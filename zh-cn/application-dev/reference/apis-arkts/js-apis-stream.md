@@ -64,7 +64,7 @@ write(chunk?: string | Uint8Array, encoding?: string, callback?: Function): bool
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| chunk  | string \| Uint8Array | 否 | 需要写入的数据。默认为undefined。 |
+| chunk  | string \| Uint8Array | 否 | 需要写入的数据。当前版本不支持输入null、undefined和空字符串。 |
 | encoding  | string | 否   | 字符编码类型。默认值是'utf8'，当前版本支持'utf8'、'gb18030'、'gbk'以及'gb2312'。|
 | callback  | Function | 否   | 回调函数。默认不调用。 |
 
@@ -107,7 +107,7 @@ writableStream.write('test', 'utf8');
 
 end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writable
 
-结束可写流的写入操作，如果传入chunk参数，则将其作为最后一块数据写入。使用callback异步回调。
+结束可写流的写入操作。如果传入chunk参数，则根据实际运行情况，通过write或者doWrite将其作为最后一块数据写入。其中通过doWrite写入时，encoding参数的合法性检查依赖doWrite。end单独使用（不使用write）并传入chunk参数的情况下，必然通过doWrite写入。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -345,7 +345,7 @@ off(event: string, callback?: Callback<emitter.EventData>): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | event    | string   | 是 | 事件回调类型，支持的事件包括：`'close'` \| `'drain' `\|`'error'` \| `'finish'` 。<br/>\- `'close'`：完成[end()](#end)调用，结束写入操作，触发该事件。<br/>\- `'drain'`：在可写流缓冲区中数据达到writableHighWatermark时触发该事件。<br/>\- `'error'`：在可写流发生异常时触发该事件。<br/>\- `'finish'`：在数据缓冲区全部写入到目标后触发该事件。 |
-| callback | string   | 否 | 回调函数。 |
+| callback | Callback\<[emitter.EventData](../apis-basic-services-kit/js-apis-emitter.md#eventdata)\>   | 否 | 回调函数。 |
 
 **错误码：**
 
@@ -979,7 +979,7 @@ off(event: string, callback?: Callback<emitter.EventData>): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | event    | string   | 是 | 事件回调类型，支持的事件包括：`'close'` \| `'data' `\|`'end'` \| `'error'`\|`'readable'`\|`'pause'`\|`'resume'` 。<br/>\- `'close'`：完成[push()](#push)调用，传入null值，触发该事件。<br/>\- `'data'`：当流传递给消费者一个数据块时触发该事件。<br/>\- `'end'`：完成[push()](#push)调用，传入null值，触发该事件。<br/>\- `'error'`：流发生异常时触发。<br/>\- `'readable'`：当有可从流中读取的数据时触发该事件。<br/>\- `'pause'`：完成[pause()](#pause)调用，触发该事件。<br/>\- `'resume'`：完成[resume()](#resume)调用，触发该事件。 |
-| callback | string   | 否 | 回调函数。 |
+| callback | Callback\<[emitter.EventData](../apis-basic-services-kit/js-apis-emitter.md#eventdata)\>   | 否 | 回调函数。 |
 
 **错误码：**
 
@@ -1118,7 +1118,7 @@ push(chunk:  Uint8Array | string | null, encoding?: string): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 可读流的缓冲区中是否还有空间。true表示缓冲区还有空间，false表示流的内部缓冲区已满。 |
+| boolean | 可读流的缓冲区中是否还有空间。true表示缓冲区还有空间，false表示流的内部缓冲区已满。输入null时，固定返回false表示推送结束，没有数据块可推送。 |
 
 **错误码：**
 
@@ -1197,7 +1197,7 @@ write(chunk?: string | Uint8Array, encoding?: string, callback?: Function): bool
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| chunk  | string \| Uint8Array | 否 | 需要写入的数据。默认为undefined。 |
+| chunk  | string \| Uint8Array | 否 | 需要写入的数据。当前版本不支持输入null、undefined和空字符串。 |
 | encoding  | string | 否   | 字符编码类型。默认值是'utf8'，当前版本支持'utf8'、'gb18030'、'gbk'以及'gb2312'。|
 | callback  | Function | 否   | 回调函数。默认不调用。 |
 
@@ -1244,7 +1244,7 @@ console.info("duplexStream result", result); // duplexStream result true
 
 end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writable
 
-结束双工流的写入操作，如果传入chunk参数，则将其作为最后一块数据写入。使用callback异步回调。
+结束双工流的写入操作。如果传入chunk参数，则根据实际运行情况，通过write或者doWrite将其作为最后一块数据写入。其中通过doWrite写入时，encoding参数的合法性检查依赖doWrite。end单独使用（不使用write）并传入chunk参数的情况下，必然通过doWrite写入。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

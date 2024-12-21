@@ -17,14 +17,6 @@
 
 ## 约束与限制
 
-- 每次执行需要目标权限的操作时，应用都必须检查自己是否已经具有该权限。
-  
-  如需检查用户是否已向您的应用授予特定权限，可以使用[checkAccessToken()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#checkaccesstoken9)函数，此方法会返回[PERMISSION_GRANTED](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus)或[PERMISSION_DENIED](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus)。具体示例可参考下文。
-
-- 每次访问受目标权限保护的接口之前，都需要使用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口请求相应的权限。
-
-  用户可能在动态授予权限后通过系统设置来取消应用的权限，因此不能将之前授予的授权状态持久化。
-
 - user_grant权限授权要基于用户可知可控的原则，需要应用在运行时主动调用系统动态申请权限的接口，系统弹框由用户授权，用户结合应用运行场景的上下文，识别出应用申请相应敏感权限的合理性，从而做出正确的选择。
 
 - 系统不鼓励频繁弹窗打扰用户，如果用户拒绝授权，将无法再次拉起弹窗，需要应用引导用户在系统应用“设置”的界面中手动授予权限。
@@ -34,15 +26,26 @@
   系统权限弹窗不可被其他组件/控件遮挡，弹窗信息需要完整展示，以便用户识别并完成授权动作。
   如果系统权限弹窗与其他组件/控件同时同位置展示，系统权限弹窗将默认覆盖其他组件/控件。
 
+- 每次执行需要目标权限的操作时，应用都必须检查自己是否已经具有该权限。
+  
+  如需检查用户是否已向您的应用授予特定权限，可以使用[checkAccessToken()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#checkaccesstoken9)函数，此方法会返回[PERMISSION_GRANTED](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus)或[PERMISSION_DENIED](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus)。具体示例可参考下文。
+
+- 每次访问受目标权限保护的接口之前，都需要使用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口请求相应的权限。
+
+  用户可能在动态授予权限后通过系统设置来取消应用的权限，因此不能将之前授予的授权状态持久化。
+
+- 应用在onWindowStageCreate()回调中申请授权时，需要等待异步接口loadContent()/setUIContent()执行结束后或在loadContent()/setUIContent()回调中调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)，否则在Content加载完成前，requestPermissionsFromUser会调用失败。
+  <!--RP1--><!--RP1End-->
+
 ## 开发步骤
 
-以申请使用麦克风权限为例进行说明。
+以申请使用位置权限为例进行说明。
 
 效果展示：
 
-![zh-cn_image_0000001701708034](figures/zh-cn_image_0000001701708034.png)
+![zh-cn_image_location](figures/zh-cn_image_location.png)
 
-1. 申请ohos.permission.MICROPHONE权限，配置方式请参见[声明权限](declare-permissions.md)。
+1. 申请ohos.permission.LOCATION、ohos.permission.APPROXIMATELY_LOCATION权限，配置方式请参见[声明权限](declare-permissions.md)。
 
 2. 校验当前是否已经授权。
 
@@ -51,8 +54,6 @@
    ```ts
    import { abilityAccessCtrl, bundleManager, Permissions } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
-   const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
    
    async function checkPermissionGrant(permission: Permissions): Promise<abilityAccessCtrl.GrantStatus> {
      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
@@ -81,12 +82,15 @@
    }
    
    async function checkPermissions(): Promise<void> {
-     let grantStatus: abilityAccessCtrl.GrantStatus = await checkPermissionGrant(permissions[0]);
-   
-     if (grantStatus === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
-       // 已经授权，可以继续访问目标操作
+     let grantStatus1: boolean = await checkPermissionGrant('ohos.permission.LOCATION') === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;// 获取精确定位权限状态
+     let grantStatus2: boolean = await checkPermissionGrant('ohos.permission.APPROXIMATELY_LOCATION') === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;// 获取模糊定位权限状态
+     // 精确定位权限只能跟模糊定位权限一起申请，或者已经有模糊定位权限才能申请精确定位权限
+     if (grantStatus2 && !grantStatus1) {
+        // 申请精确定位权限
+     } else if (!grantStatus1 && !grantStatus2) {
+        // 申请模糊定位权限与精确定位权限或单独申请模糊定位权限
      } else {
-       // 申请麦克风权限
+        //  已经授权，可以继续访问目标操作
      }
    }
    ```
@@ -109,7 +113,7 @@
       import { window } from '@kit.ArkUI';
       import { BusinessError } from '@kit.BasicServicesKit';
       
-      const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
+      const permissions: Array<Permissions> = ['ohos.permission.LOCATION','ohos.permission.APPROXIMATELY_LOCATION'];
       function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
         let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
         // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
@@ -148,7 +152,7 @@
       import { abilityAccessCtrl, common, Permissions } from '@kit.AbilityKit';
       import { BusinessError } from '@kit.BasicServicesKit';
       
-      const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
+      const permissions: Array<Permissions> = ['ohos.permission.LOCATION','ohos.permission.APPROXIMATELY_LOCATION'];
       function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
         let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
         // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗

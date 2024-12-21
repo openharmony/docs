@@ -223,15 +223,15 @@
 
 ## ColoringStrategy<sup>10+</sup>
 
-智能取色枚举类型，用于设置前景色。
+智能取色枚举类型。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 描述              |
 | ------ | --------------- |
-| INVERT | 设置前景色为控件背景色的反色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| INVERT | 设置前景色为控件背景色的反色。仅支持在[foregroundColor](ts-universal-attributes-foreground-color.md#foregroundcolor)中设置该枚举。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## LengthConstrain
 
@@ -549,16 +549,16 @@
 
 ## PixelRoundPolicy<sup>11+</sup>
 
-组件像素级取整对齐策略。
+指定组件级像素取整的方向。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
-| start | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件前部边界取整对齐。 |
-| top | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件上部边界取整对齐。 |
-| end | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件尾部边界取整对齐。 |
-| bottom | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件底部边界取整对齐。 |
+| start | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件前部边界取整对齐方式。 |
+| top | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件上部边界取整对齐方式。 |
+| end | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件尾部边界取整对齐方式。 |
+| bottom | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件底部边界取整对齐方式。 |
 
 ## VoidCallback<sup>12+</sup>
 
@@ -744,7 +744,21 @@ setTextSelection选中文字时的配置。
 
 | 名称       | 类型                                            | 必填 | 说明             |
 | ---------- | ----------------------------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](ts-appendix-enums.md#menupolicy12) | 否   | 菜单弹出的策略。 |
+| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 值   | 说明                               |
+| ------- | ---- | ---------------------------------- |
+| DEFAULT | 0    | 按照底层默认逻辑决定是否弹出菜单。 |
+| HIDE    | 1    | 始终不弹出菜单。                   |
+| SHOW    | 2    | 始终弹出菜单。                     |
 
 ## CaretOffset<sup>11+</sup>对象说明
 

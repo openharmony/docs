@@ -70,7 +70,7 @@ libnative_window.so
             OHNativeWindow* nativeWindow = static_cast<OHNativeWindow*>(window);
             // 此回调触发后，window默认引用计数会设置为1，若存在并发使用了window相关的接口和xcompnent析构的情况，
             // 则需要通过OH_NativeWindow_NativeObjectReference和OH_NativeWindow_NativeObjectUnreference对window进行
-            // 手动引用计数加1和减1，防止xcomponent析构后，并发调用window相关接口触发野指针或空指针的奔溃。
+            // 手动引用计数加1和减1，防止xcomponent析构后，并发调用window相关接口触发野指针或空指针的崩溃。
         }
         void OnSurfaceChangedCB(OH_NativeXComponent* component, void* window)
         {
@@ -83,7 +83,7 @@ libnative_window.so
             // 可获取 OHNativeWindow 实例
             OHNativeWindow* nativeWindow = static_cast<OHNativeWindow*>(window);
             // 此回调触发后，会将window进行引用计数减1的操作，当window的应用计数为0后，会触发window的析构，
-            // window析构后，不可再通过window进行接口调用，否则可能会触发野指针或空指针的奔溃。
+            // window析构后，不可再通过window进行接口调用，否则可能会触发野指针或空指针的崩溃。
         }
         void DispatchTouchEventCB(OH_NativeXComponent* component, void* window)
         {
@@ -165,7 +165,7 @@ libnative_window.so
     }
     ```
 
-5. **提交OHNativeWindowBuffer到图形队列。请注意OH_NativeWindow_NativeWindowFlushBuffer接口的acquireFenceFd不可以和OH_NativeWindow_NativeWindowRequestBuffer接口获取的releaseFenceFd相同，acquireFenceFd可传入默认值-1。acquireFenceFd是生产者需要传入的文件句柄，消费者获取到buffer后可根据生产者传入的acquireFenceFd决定何时去渲染并上屏buffer内容。**
+6. **提交OHNativeWindowBuffer到图形队列。请注意OH_NativeWindow_NativeWindowFlushBuffer接口的acquireFenceFd不可以和OH_NativeWindow_NativeWindowRequestBuffer接口获取的releaseFenceFd相同，acquireFenceFd可传入默认值-1。acquireFenceFd是生产者需要传入的文件句柄，消费者获取到buffer后可根据生产者传入的acquireFenceFd决定何时去渲染并上屏buffer内容。**
     ```c++
     // 设置刷新区域，如果Region中的Rect为nullptr,或者rectNumber为0，则认为OHNativeWindowBuffer全部有内容更改。
     Region region{nullptr, 0};
@@ -173,7 +173,7 @@ libnative_window.so
     // 通过OH_NativeWindow_NativeWindowFlushBuffer 提交给消费者使用，例如：显示在屏幕上。
     OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, buffer, acquireFenceFd, region);
     ```
-6. **取消内存映射munmap**。
+7. **取消内存映射munmap**。
     ```c++
     // 内存使用完记得去掉内存映射
     int result = munmap(mappedAddr, bufferHandle->size);
@@ -186,4 +186,4 @@ libnative_window.so
 
 针对NativeWindow的开发，有以下相关实例可供参考：
 
-- [NativeWindow（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeWindow)
+- [NativeWindow（API11）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/Native/NdkNativeWindow)

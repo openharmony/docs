@@ -123,7 +123,7 @@ colors(colors: ResourceColor | LinearGradient | Array<[ResourceColor | LinearGra
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| colors | [ResourceColor<sup>11+</sup>](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10)&nbsp;\|&nbsp;Array&lt;[[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10)&nbsp;\,&nbsp;number]&gt; | 是   | 量规图的颜色，支持分段颜色设置。<br/>API version 9 默认值：Color.Black<br/>API version 11默认值：<br/>若不传颜色，或者数组为空，无法确定圆环类型及颜色，则圆环颜色为"0xFF64BB5C"、"0xFFF7CE00"、"0xFFE84026"的渐变环。<br/>若传入颜色，但颜色值有误，则该颜色为"0xFFE84026"。 |
+| colors | [ResourceColor<sup>11+</sup>](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10)&nbsp;\|&nbsp;Array&lt;[[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10)&nbsp;\,&nbsp;number]&gt; | 是   | 量规图的颜色，支持分段颜色设置。<br/>API version 9 默认值：Color.Black<br/>API version 11默认值：<br/>若不传颜色，或者数组为空，无法确定圆环类型及颜色，则圆环颜色为"0xFF64BB5C"、"0xFFF7CE00"、"0xFFE84026"的渐变环。<br/>若传入颜色，但颜色值有误，则该颜色为"0xFFE84026"。<br/>若对应颜色的比重为0，则该颜色在圆环中不显示。若所有颜色比重均为0，圆环不显示。 |
 
 ### strokeWidth
 
@@ -258,8 +258,10 @@ GaugeShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptions10
 
 
 ## 示例
-### 示例1
-示例使用当前数值、说明文本、辅助文本。
+### 示例1（设置多色量规图）
+
+该示例通过colors接口，实现了多色量规图效果。
+
 ```ts
 @Entry
 @Component
@@ -324,8 +326,10 @@ struct Gauge1 {
 ```
 ![gauge](figures/gauge-image1.png)
 
-### 示例2
-示例使用当前数值、图标。
+### 示例2（设置单色量规图）
+
+该示例通过colors接口，实现了单色量规图效果。
+
 ```ts
 @Entry
 @Component
@@ -364,8 +368,10 @@ struct Gauge2 {
 ```
 ![gauge](figures/gauge-image2.png)
 
-### 示例3
-示例使用当前数值、说明文本。
+### 示例3（设置定制说明区）
+
+该示例通过description接口，实现了说明区的设置功能。
+
 ```ts
 @Entry
 @Component
@@ -422,8 +428,10 @@ struct Gauge3 {
 ```
 ![gauge](figures/gauge-image3.png)
 
-### 示例4
-示例使用当前数值、辅助文本。
+### 示例4（设置辅助区）
+
+该示例通过设置子组件，实现了辅助区的设置功能。
+
 ```ts
 @Entry
 @Component
@@ -474,8 +482,10 @@ struct Gauge4 {
 ```
 ![gauge](figures/gauge-image4.png)
 
-### 示例5
-示例使用当前数值、最大最小数值。
+### 示例5（设置最大最小值）
+
+该示例通过设置min，max属性，实现了量规图的最大最小值设置的功能。
+
 ```ts
 @Entry
 @Component
@@ -513,8 +523,10 @@ struct Gauge5 {
 ```
 ![gauge](figures/gauge-image5.png)
 
-### 示例6
-示例使用当前数值、最大最小数值、辅助文本。
+### 示例6（设置指针）
+
+该示例通过indicator接口，实现了设置量规图的指针的功能。
+
 ```ts
 @Entry
 @Component
@@ -558,8 +570,10 @@ struct Gauge6 {
 ```
 ![gauge](figures/gauge-image6.png)
 
-### 示例7
-示例使用当前数值、最大最小数值。
+### 示例7（设置起止角度）
+
+该示例通过startAngle、endAngle接口，实现了量规图起止角度设置的功能。
+
 ```ts
 @Entry
 @Component
@@ -597,7 +611,9 @@ struct Gauge7 {
 
 
 
-### 示例8
+### 示例8（设置定制内容区）
+
+该示例通过contentModifier接口，实现了定制量规图内容区的功能。
 
 ```ts
 // xxx.ets
@@ -678,9 +694,9 @@ struct refreshExample {
 ![gauge](figures/gauge_builder.gif)
 
 
-### 示例9
+### 示例9（设置隐私隐藏）
 
-该示例展示了如何配置隐私隐藏，效果展示需要卡片框架支持
+该示例通过privacySensitive接口，实现了隐私隐藏效果，效果展示需要卡片框架支持
 
 ```ts
 @Entry

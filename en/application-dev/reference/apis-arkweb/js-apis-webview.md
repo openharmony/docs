@@ -22,7 +22,9 @@ import { webview } from '@kit.ArkWeb';
 
 once(type: string, callback: Callback\<void\>): void
 
-Registers a one-time callback for web events of the specified type.
+Registers a one-time callback for web events of the specified type. Currently, only **webInited** is supported. This callback is triggered when the Web engine initialization is complete.
+
+When the first **Web** component is loaded in an application, the web engine is initialized. When other **Web** components are loaded in the same application, **once()** is not triggered. When the first **Web** component is loaded after the last **Web** component is destroyed in the application, the web engine will be initialized again.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -67,13 +69,21 @@ struct WebComponent {
 
 ## WebMessagePort
 
-Implements a **WebMessagePort** object to send and receive messages.
+Implements a WebMessagePort object to send and receive messages. The message of the [WebMessageType](#webmessagetype10)/[WebMessage](#webmessage) type can be sent to the HTML5 side.
+
+### Properties
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name        | Type  | Readable| Writable| Description                                             |
+| ------------ | ------ | ---- | ---- | ------------------------------------------------|
+| isExtentionType<sup>10+</sup> | boolean | Yes  | Yes| Whether to use the extended APIs [postMessageEventExt](#postmessageeventext10) and [onMessageEventExt](#onmessageeventext10) when creating a **WebMessagePort**. The default value is **false**, indicating that the extended APIs are not used.  |
 
 ### postMessageEvent
 
 postMessageEvent(message: WebMessage): void
 
-Sends a message. For the complete sample code, see [postMessage](#postmessage).
+Sends a message of the [WebMessage](#webmessage) type to the HTML5 side. The [onMessageEvent](#onmessageevent) API must be invoked first. Otherwise, the message fails to be sent. For the complete sample code, see [postMessage](#postmessage).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -127,7 +137,7 @@ struct WebComponent {
 
 onMessageEvent(callback: (result: WebMessage) => void): void
 
-Registers a callback to receive messages from the HTML side. For the complete sample code, see [postMessage](#postmessage).
+Registers a callback to receive messages of the [WebMessage](#webmessage) type from the HTML5 side. For the complete sample code, see [postMessage](#postmessage).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -188,19 +198,11 @@ struct WebComponent {
 }
 ```
 
-### isExtentionType<sup>10+</sup>
-
-**System capability**: SystemCapability.Web.Webview.Core
-
-| Name        | Type  | Readable| Writable| Description                                             |
-| ------------ | ------ | ---- | ---- | ------------------------------------------------|
-| isExtentionType | boolean | Yes  | Yes| Whether to use the extended interface when creating a **WebMessagePort** instance.  |
-
 ### postMessageEventExt<sup>10+</sup>
 
 postMessageEventExt(message: WebMessageExt): void
 
-Sends a message. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
+Sends a message of the [WebMessageType](#webmessagetype10) type to the HTML5 side. The [onMessageEventExt](#onmessageeventext10) API must be invoked first. Otherwise, the message fails to be sent. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -223,7 +225,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 
 onMessageEventExt(callback: (result: WebMessageExt) => void): void
 
-Registers a callback to receive messages from the HTML5 side.
+Registers a callback to receive messages of the [WebMessageType](#webmessagetype10) type from the HTML5 side.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -535,7 +537,7 @@ function postStringToApp() {
 
 close(): void
 
-Closes this message port. To use this API, a message port must first be created using [createWebMessagePorts](#createwebmessageports).
+Closes this message port when messages do not need to be sent. To use this API, a message port must first be created using [createWebMessagePorts](#createwebmessageports).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -594,7 +596,11 @@ Constructor used to create a **WebviewController** object.
 
 > **NOTE**
 >
-> **webTag** represents a tag that you define and pass to the **Web** component as a parameter of string type.
+> When no parameter is passed in **new webview.WebviewController()**, it indicates that the constructor is empty. If the C API is not used, no parameter needs to be passed.
+> 
+> When a valid string is passed in, **new webview.WebviewController("xxx")** can be used to distinguish multiple instances and invoke the methods of the corresponding instance.
+> 
+> When an empty parameter is passed in, such as **new webview.WebviewController("")** or **new webview.WebviewController(undefined)**, the parameter is meaningless that multiple instances cannot be distinguished and **undefined** is returned. You need to check whether the returned value is normal.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -602,7 +608,7 @@ Constructor used to create a **WebviewController** object.
 
 | Name    | Type  | Mandatory| Description                              |
 | ---------- | ------ | ---- | -------------------------------- |
-| webTag   | string | No  | Name of the **Web** component. The default value is **Empty**.|
+| webTag   | string | No  | Name of the **Web** component.|
 
 **Example**
 
@@ -678,7 +684,7 @@ HTML file to be loaded:
 
 static initializeWebEngine(): void
 
-Loads the dynamic link library (DLL) file of the web engine. This API can be called before the **Web** component is initialized to improve the startup performance.
+Loads the dynamic link library (DLL) file of the web engine. This API can be called before the **Web** component is initialized to improve the startup performance. The frequently visited websites are automatically pre-connected.
 
 > **NOTE**
 >
@@ -756,6 +762,7 @@ export default class EntryAbility extends UIAbility {
 static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
 Sets whether to enable web debugging. For details, see [Debugging Frontend Pages by Using DevTools](../../web/web-debugging-with-devtools.md).
+
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -960,15 +967,21 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 Loads specified data.
 
+When both **baseUrl** and **historyUrl** are empty,
+
+if **encoding** is not base64 (including null values), ASCII encoding is used for octets within the secure URL character range, and the standard %xx hexadecimal encoding of the URL is used for octets outside the secure URL character range.
+
+**data** must be encoded using Base64 or any hash (#) in the content must be encoded as %23. Otherwise, hash (#) is considered as the end of the content, and the remaining text is used as the document fragment identifier.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
 | Name    | Type  | Mandatory| Description                                                        |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| data       | string | Yes  | Character string obtained after being Base64 or URL encoded.                   |
+| data       | string | Yes  | String obtained after being base64 or URL encoded.                   |
 | mimeType   | string | Yes  | Media type (MIME).                                          |
-| encoding   | string | Yes  | Encoding type, which can be Base64 or URL.                      |
+| encoding   | string | Yes  | Encoding type, which can be base64 or URL.                      |
 | baseUrl    | string | No  | URL (HTTP/HTTPS/data compliant), which is assigned by the **Web** component to **window.origin**.|
 | historyUrl | string | No  | URL used for historical records. If this parameter is not empty, historical records are managed based on this URL. This parameter is invalid when **baseUrl** is left empty.|
 
@@ -989,6 +1002,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 
 **Example**
 
+When both **baseUrl** and **historyUrl** are empty:
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
@@ -1007,7 +1021,39 @@ struct WebComponent {
             this.controller.loadData(
               "<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
               "text/html",
+              // UTF-8 is charset.
               "UTF-8"
+            );
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('loadData')
+        .onClick(() => {
+          try {
+            this.controller.loadData(
+              // Coding tests: string encoded using base64.
+              "Q29kaW5nIHRlc3Rz",
+              "text/html",
+              "base64"
             );
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -1036,6 +1082,7 @@ struct WebComponent {
       Button('loadData')
         .onClick(() => {
           try {
+            // UTF-8 is charset.
             this.controller.loadData(this.updataContent, "text/html", "UTF-8", " ", " ");
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -1288,6 +1335,7 @@ onInactive(): void
 
 Called when the **Web** component enters the inactive state. You can implement the behavior to perform after the application loses focus.
 
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Error codes**
@@ -1432,7 +1480,7 @@ struct WebComponent {
 
 clearHistory(): void
 
-Clears the browsing history.
+Clears the browsing history. You are not advised to call **clearHistory()** in **onErrorReceive()** and **onPageBegin()**. Otherwise, abnormal exit occurs.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1690,6 +1738,10 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 Executes a JavaScript script. This API uses an asynchronous callback to return the script execution result. **runJavaScript** can be invoked only after **loadUrl** is executed. For example, it can be invoked in **onPageEnd**.
 
+> **NOTE**
+>
+> The offscreen component does not trigger **runJavaScript()**.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
@@ -1788,7 +1840,6 @@ Executes a JavaScript script. This API uses a promise to return the script execu
 | Type           | Description                                               |
 | --------------- | --------------------------------------------------- |
 | Promise\<string> | Promise used to return the result if the operation is successful and null otherwise.|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Error codes**
 
@@ -3284,7 +3335,7 @@ Obtains the height of this web page.
 
 | Type  | Description                |
 | ------ | -------------------- |
-| number | Height of the current web page. Unit: px|
+| number | Height of the current web page. Unit: vp|
 
 **Error codes**
 
@@ -3605,7 +3656,7 @@ struct WebComponent {
 
 scrollTo(x:number, y:number): void
 
-Scrolls the page to the specified absolute position.
+Scrolls the page to the specified absolute position within a specified period.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3613,8 +3664,8 @@ Scrolls the page to the specified absolute position.
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ---------------------- |
-| x   | number   | Yes  | X coordinate of the absolute position. If the value is a negative number, the value 0 is used.|
-| y   | number   | Yes  | Y coordinate of the absolute position. If the value is a negative number, the value 0 is used.|
+| x   | number   | Yes  | X coordinate of the absolute position. If the value is a negative number, the value 0 is used. Unit: vp|
+| y   | number   | Yes  | Y coordinate of the absolute position. If the value is a negative number, the value 0 is used. Unit: vp|
 
 **Error codes**
 
@@ -3642,7 +3693,15 @@ struct WebComponent {
       Button('scrollTo')
         .onClick(() => {
           try {
-            this.controller.scrollTo(50, 50);
+            this.controller.scrollTo(50, 50, 500);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        Button('stopScroll')
+        .onClick(() => {
+          try {
+            this.controller.scrollBy(0, 0, 1); // If you want to stop the animation generated by the current scroll, you can generate another 1ms animation to interrupt the animation.
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -3662,8 +3721,8 @@ HTML file to be loaded:
     <title>Demo</title>
     <style>
         body {
-            width:3000px;
-            height:3000px;
+            width:2000px;
+            height:2000px;
             padding-right:170px;
             padding-left:170px;
             border:5px solid blueviolet
@@ -3688,8 +3747,9 @@ Scrolls the page by the specified amount.
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ---------------------- |
-| deltaX | number   | Yes  | Amount to scroll by along the x-axis. The positive direction is rightward.|
-| deltaY | number   | Yes  | Amount to scroll by along the y-axis. The positive direction is downward.|
+| deltaX | number   | Yes  | Amount to scroll by along the x-axis. The positive direction is rightward. Unit: vp|
+| deltaY | number   | Yes  | Amount to scroll by along the y-axis. The positive direction is downward. Unit: vp|
+
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
@@ -3755,7 +3815,7 @@ Scroll Test
 ```
 ### scrollByWithResult<sup>12+</sup>
 
-scrollByWithResult(deltaX:number, deltaY:number): boolean
+scrollByWithResult(deltaX: number, deltaY: number): boolean
 
 Scrolls the page by the specified amount and returns value to indicate whether the scrolling is successful.
 
@@ -3781,6 +3841,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 > **NOTE**
 >
@@ -3852,8 +3913,8 @@ Simulates a slide-to-scroll action on the page at the specified velocity.
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ---------------------- |
-| vx     | number   | Yes  | Horizontal velocity component of the slide-to-scroll action, where the positive direction is rightward.|
-| vy     | number   | Yes  | Vertical velocity component of the slide-to-scroll action, where the positive direction is downward.|
+| vx     | number   | Yes  | Horizontal velocity component of the slide-to-scroll action, where the positive direction is rightward. Unit: vp/ms.|
+| vy     | number   | Yes  | Vertical velocity component of the slide-to-scroll action, where the positive direction is downward. Unit: vp/ms.|
 
 **Error codes**
 
@@ -5208,6 +5269,7 @@ When a URL is set for the **Web** component **src**, you are advised to set User
 
 When **src** of the **Web** component is set to an empty string, you are advised to call the **setCustomUserAgent** method to set **UserAgent** and then use **loadUrl** to load a specific page.
 
+
 > **NOTE**
 >
 >If a URL is set for the **Web** component **src**, and **UserAgent** is not set in the **onControllerAttached** callback event, calling **setCustomUserAgent** again may result in the loaded page being inconsistent with the actual user agent.
@@ -5513,6 +5575,7 @@ import { webview } from '@kit.ArkWeb';
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log("EntryAbility onCreate");
+        webview.WebviewController.initializeWebEngine();
         webview.WebviewController.warmupServiceWorker("https://www.example.com");
         AppStorage.setOrCreate("abilityWant", want);
     }
@@ -5523,7 +5586,9 @@ export default class EntryAbility extends UIAbility {
 
 enableSafeBrowsing(enable: boolean): void
 
-<!--RP1-->Enables the safe browsing feature. This feature is forcibly enabled and cannot be disabled for identified untrusted websites.<!--RP1End-->
+<!--RP1-->Enables the safe browsing feature. This feature is forcibly enabled and cannot be disabled for identified untrusted websites.
+By default, this feature does not take effect. OpenHarmony provides only the malicious website blocking web UI. The website risk detection and web UI display features are implemented by the vendor. You are advised to listen for [DidStartNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidStartNavigation) and [DidRedirectNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidRedirectNavigation) in **WebContentsObserver** to detect risks.
+<!--RP1End-->
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -5995,7 +6060,7 @@ Sets the ArkWeb render subprocess mode.
 
 | Name      | Type          | Mandatory | Description                     |
 | ----------- | ------------- | ---- | ------------------------ |
-| mode        | [RenderProcessMode](#renderprocessmode12)| Yes  | Render subprocess mode.|
+| mode        | [RenderProcessMode](#renderprocessmode12)| Yes  | Render subprocess mode. You can call [getRenderProcessMode()](#getrenderprocessmode12) to view the ArkWeb rendering subprocess mode of the current device. The enumerated value **0** indicates the single render subprocess mode, and **1** indicates the multi-render subprocess mode. If an invalid number other than the enumerated value of **RenderProcessMode** is passed, the  multi-render subprocess mode is used by default.|
 
 **Error codes**
 
@@ -6042,9 +6107,9 @@ Obtains the ArkWeb render subprocess mode.
 
 **Return value**
 
-| Type                                                        | Description                  |
-| ------------------------------------------------------------ | ---------------------- |
-| [RenderProcessMode](#renderprocessmode12)| Render subprocess mode.|
+| Type                                     | Description                                                        |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| [RenderProcessMode](#renderprocessmode12) | Render subprocess mode. You can call [getRenderProcessMode()](#getrenderprocessmode12) to obtain the ArkWeb render subprocess mode of the current device. The enumerated value **0** indicates the single render subprocess mode, and **1** indicates the multi-render subprocess mode. If the obtained value is not an enumerated value of **RenderProcessMode**, the multi-render subprocess mode is used by default.|
 
 
 **Example**
@@ -6546,6 +6611,136 @@ struct WebComponent {
   }
 }
 ```
+
+### getLastJavascriptProxyCallingFrameUrl<sup>12+</sup>
+
+getLastJavascriptProxyCallingFrameUrl(): string
+
+Obtains the URL of the frame from which the last JavaScript proxy object was called. You can inject a JavaScript object into the window object using APIs like [registerJavaScriptProxy](#registerjavascriptproxy) or [javaScriptProxy](ts-basic-components-web.md#javascriptproxy). This API can be used to obtain the URL of the frame of the object that is injected last time.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class TestObj {
+  mycontroller: webview.WebviewController;
+
+  constructor(controller: webview.WebviewController) {
+    this.mycontroller = controller;
+  }
+
+  test(testStr: string): string {
+    console.log('Web Component str' + testStr + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return testStr;
+  }
+
+  toString(): void {
+    console.log('Web Component toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+  }
+
+  testNumber(testNum: number): number {
+    console.log('Web Component number' + testNum + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return testNum;
+  }
+
+  testBool(testBol: boolean): boolean {
+    console.log('Web Component boolean' + testBol + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return testBol;
+  }
+}
+
+class WebObj {
+  mycontroller: webview.WebviewController;
+
+  constructor(controller: webview.WebviewController) {
+    this.mycontroller = controller;
+  }
+
+  webTest(): string {
+    console.log('Web test ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return "Web test";
+  }
+
+  webString(): void {
+    console.log('Web test toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State testObjtest: TestObj = new TestObj(this.controller);
+  @State webTestObj: WebObj = new WebObj(this.controller);
+
+  build() {
+    Column() {
+      Button('refresh')
+        .onClick(() => {
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Button('Register JavaScript To Window')
+        .onClick(() => {
+          try {
+            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
+            this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+    }
+  }
+}
+```
+
+HTML file to be loaded:
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <body>
+      <button type="button" onclick="htmlTest()">Click Me!</button>
+      <p id="demo"></p>
+      <p id="webDemo"></p>
+    </body>
+    <script type="text/javascript">
+    function htmlTest() {
+      // This function call expects to return "ArkUI Web Component"
+      let str=objName.test("webtest data");
+      objName.testNumber(1);
+      objName.testBool(true);
+      document.getElementById("demo").innerHTML=str;
+      console.log('objName.test result:'+ str)
+
+      // This function call expects to return "Web test"
+      let webStr = objTestName.webTest();
+      document.getElementById("webDemo").innerHTML=webStr;
+      console.log('objTestName.webTest result:'+ webStr)
+    }
+</script>
+</html>
+```
+
 ### pauseAllTimers<sup>12+</sup>
 
 pauseAllTimers(): void
@@ -7597,8 +7792,28 @@ class ActualNativeMediaPlayerListener {
     this.handler.handleFullscreenChanged(isFullscreen);
   }
   onUpdateVideoSize(width: number, height: number) {
-    //Notify the ArkWeb engine when the local player parses the video width and height.
+    // Notify the ArkWeb kernel when the native media player parses the video width and height.
     this.handler.handleVideoSizeChanged(width, height);
+  }
+  onDurationChanged(duration: number) {
+    // Notify the ArkWeb kernel when the native media player parses the video duration.
+    this.handler.handleDurationChanged(duration);
+  }
+  onError(error: webview.MediaError, errorMessage: string) {
+    // Notify the ArkWeb kernel that an error occurs in the native media player.
+    this.handler.handleError(error, errorMessage);
+  }
+  onNetworkStateChanged(state: webview.NetworkState) {
+    // Notify the ArkWeb kernel that the network state of the native media player changes.
+    this.handler.handleNetworkStateChanged(state);
+  }
+  onPlaybackRateChanged(playbackRate: number) {
+    // Notify the ArkWeb kernel that the playback rate of the native media player changes.
+    this.handler.handlePlaybackRateChanged(playbackRate);
+  }
+  onMutedChanged(muted: boolean) {
+    // Notify the ArkWeb kernel that the native media player is muted.
+    this.handler.handleMutedChanged(muted);
   }
 
   // Listen for other state of the native media player.
@@ -7635,7 +7850,7 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
   }
 
   setVolume(volume: number) {
-    // The ArkWeb kernel requires the volume of the local player to be adjusted.
+    // The ArkWeb kernel requires to adjust the volume of the native player.
     // Set the volume of the local player.
   }
 
@@ -7656,13 +7871,13 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
   }
 
   resumePlayer() {
-    // Create a local player again.
-    // Resume the status information of the local player.
+    // Create a player again.
+    // Resume the status information of the player.
   }
 
-  suspendPlayer(type: SuspendType) {
-    // Record the status information of the local player.
-    // Destroy the local player.
+  suspendPlayer(type: webview.SuspendType) {
+    // Record the status information of the player.
+    // Destroy the player.
   }
 }
 
@@ -7710,6 +7925,94 @@ function getCurrentReadyState() {
 }
 function shouldHandle(mediaInfo: webview.MediaInfo) {
   return true;
+}
+```
+
+### enableWholeWebPageDrawing<sup>12+</sup>
+
+static enableWholeWebPageDrawing(): void
+
+Enables the full drawing capability for the web page. This API works only during **Web** component initialization.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear(): void {
+    try {
+      webview.WebviewController.enableWholeWebPageDrawing();
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### webPageSnapshot<sup>12+</sup>
+
+webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): void
+
+Obtains the full drawing result of the web page. (Local resource web pages are not supported currently.)
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name      | Type          | Mandatory | Description                     |
+| ----------- | ------------- | ---- | ------------------------ |
+| info        | [SnapshotInfo](#snapshotinfo12)| Yes  | Information for obtaining the full drawing result.|
+| callback        | [SnapshotResult](#snapshotresult12)| Yes  | Callback used to return the result.|
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('webPageSnapshot')
+        .onClick(() => {
+          try {
+            this.controller.webPageSnapshot({ id: "1234", size: { width: 100, height: 100 } }, (error, result) => {
+              if (error) {
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+                return;
+              }
+              if (result) {
+                console.info(`return value is:${result}`);
+                // You can process the returned result as required.
+              }
+            });
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
 }
 ```
 
@@ -8442,6 +8745,75 @@ struct Index {
 }
 ```
 
+### getScrollOffset<sup>13+</sup>
+
+getScrollOffset(): ScrollOffset
+
+Obtains the current scrolling offset of a web page.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type                           | Description                  |
+| :------------------------------ | ---------------------- |
+| [ScrollOffset](#scrolloffset13) | Current scrolling offset of the web page.|
+
+**Example**
+
+```ts
+import { webview } from '@kit.ArkWeb';
+import { componentUtils } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct WebComponent {
+  @State testTitle: string = 'webScroll'
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State controllerX: number =-100;
+  @State controllerY: number =-100;
+  @State mode: OverScrollMode = OverScrollMode.ALWAYS;
+
+  build() {
+    Column() {
+      Row() {
+        Text(this.testTitle)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .margin(5)
+      }
+      Column() {
+        Text(`controllerX: ${this.controllerX}, controllerY: ${this.controllerY}`)
+      }
+      .margin({ top: 10, bottom: 10 })
+      Web({ src: $rawfile("scrollByTo.html"), controller: this.controller })
+        .key("web_01")
+        .overScrollMode(this.mode)
+        .onTouch((event) => {
+          this.controllerX = this.controller.getScrollOffset().x;
+          this.controllerY = this.controller.getScrollOffset().y;
+          let componentInfo = componentUtils.getRectangleById("web_01");
+          let webHeight = px2vp(componentInfo.size.height);
+          let pageHeight = this.controller.getPageHeight();
+          if (this.controllerY < 0) {
+            // Case 1: When a web page is scrolled down, use ScrollOffset.y directly.
+            console.log(`get downwards overscroll offsetY = ${this.controllerY}`);
+          } else if ((this.controllerY != 0) && (this.controllerY > (pageHeight - webHeight))) {
+            // Case 2: When a web page is scrolled up, calculate the offset between the lower boundary of the web page and that of the Web component.
+            console.log(`get upwards overscroll offsetY = ${this.controllerY - (pageHeight >= webHeight ? (pageHeight - webHeight) : 0)}`);
+          } else {
+            // Case 3: If the web page is not scrolled, use ScrollOffset.y directly.
+            console.log(`get scroll offsetY = ${this.controllerY}`);
+          }
+        })
+        .height(600)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
 ## WebCookieManager
 
 Implements a **WebCookieManager** instance to manage behavior of cookies in **Web** components. All **Web** components in an application share a **WebCookieManager** instance.
@@ -8513,6 +8885,14 @@ struct WebComponent {
 static fetchCookieSync(url: string, incognito?: boolean): string
 
 Obtains the cookie value corresponding to the specified URL.
+
+> **NOTE**
+>
+> The system automatically deletes expired cookies. For data with the same key name, the new data overwrites the previous data.
+> 
+> To obtain the cookie value that can be used, pass a complete link to **fetchCookieSync()**.
+> 
+> **fetchCookieSync()** is used to obtain all cookie values. Cookie values are separated by semicolons (;). However, a specific cookie value cannot be obtained separately.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -8752,13 +9132,15 @@ struct WebComponent {
 
 static configCookieSync(url: string, value: string, incognito?: boolean): void
 
-Sets the cookie value for the specified URL.
+Sets a cookie for the specified URL.
 
 > **NOTE**
 >
->You can set **url** in **configCookieSync** to a domain name so that the cookie is attached to the requests on the page.
-
->It is recommended that cookie syncing be completed before the **Web** component is loaded.
+> You can set **url** in **configCookieSync** to a domain name so that the cookie is attached to the requests on the page.
+>
+> It is recommended that cookie syncing be completed before the **Web** component is loaded.
+>
+> If **configCookieSync()** is used to set cookies for two or more times, the cookies set each time are separated by semicolons (;).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -8797,7 +9179,7 @@ struct WebComponent {
       Button('configCookieSync')
         .onClick(() => {
           try {
-            // Only a single cookie value can be set.
+            // Only one cookie value can be set in configCookieSync at a time.
             webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -10845,7 +11227,7 @@ Describes the data types supported for [WebMessagePort](#webmessageport).
 
 ## JsMessageType<sup>10+</sup>
 
-Describes the type of the returned result of script execution using [runJavaScirptExt](#runjavascriptext10).
+Describes the type of the returned result of script execution using [runJavaScriptExt](#runjavascriptext10).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -10901,7 +11283,7 @@ Enumerates the ArkWeb render subprocess modes.
 
 ## JsMessageExt<sup>10+</sup>
 
-Implements the **JsMessageExt** data object that is returned after script execution using the [runJavaScirptExt](#runjavascriptext10) API.
+Implements the **JsMessageExt** data object that is returned after script execution using the [runJavaScriptExt](#runjavascriptext10) API.
 
 ### getType<sup>10+</sup>
 
@@ -10915,7 +11297,7 @@ Obtains the type of the data object. For the complete sample code, see [runJavaS
 
 | Type          | Description                                                     |
 | --------------| --------------------------------------------------------- |
-| [JsMessageType](#jsmessagetype10) | Type of the data object that is returned after script execution using the [runJavaScirptExt](#runjavascriptext10) API.|
+| [JsMessageType](#jsmessagetype10) | Type of the data object that is returned after script execution using the [runJavaScriptExt](#runjavascriptext10) API.|
 
 ### getString<sup>10+</sup>
 
@@ -12463,7 +12845,11 @@ struct WebComponent {
 
 start(downloadPath: string): void
 
-Starts a download. This API must be used in the **onBeforeDownload** callback of **WebDownloadDelegate**. If it is not called in the callback, the download task remains in the PENDING state.
+Starts a download.
+
+> **NOTE**
+>
+>This API must be used in the **onBeforeDownloadb** callback of **WebDownloadDelegateb**. If it is not called in the callback, the download task remains in the PENDING state and is downloaded to a temporary directory. After the target path is specified by **WebDownloadItem.start**, the temporary files are renamed to the target path and the files that are not completely downloaded are directly downloaded to the target path. If you do not want to download the file to the temporary directory before invoking **WebDownloadItem.start**, you can call **WebDownloadItem.cancel** to cancel the current download task and then call **WebDownloadManager.resumeDownload** to resume the task.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -12825,13 +13211,17 @@ struct WebComponent {
 
 ## WebDownloadDelegate<sup>11+</sup>
 
- Implements a **WebDownloadDelegate** class. You can use the callbacks of this class to notify users of the download state.
+Implements a **WebDownloadDelegate** class. You can use the callbacks of this class to notify users of the download state.
 
 ### onBeforeDownload<sup>11+</sup>
 
 onBeforeDownload(callback: Callback\<WebDownloadItem>): void
 
 Invoked to notify users before the download starts. **WebDownloadItem.start("xxx")** must be called in this API, with a download path provided. Otherwise, the download remains in the PENDING state.
+
+> **NOTE**
+>
+>The download task remains in the PENDING state is downloaded to a temporary directory at first. After the target path is specified by **WebDownloadItem.start**, the temporary files are renamed to the target path and the files that are not completely downloaded are directly downloaded to the target path. If you do not want to download the file to the temporary directory before invoking **WebDownloadItem.start**, you can call **WebDownloadItem.cancel** to cancel the current download task and then call **WebDownloadManager.resumeDownload** to resume the task.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -13453,134 +13843,6 @@ struct WebComponent {
 }
 ```
 
-## getLastJavascriptProxyCallingFrameUrl<sup>12+</sup>
-
-getLastJavascriptProxyCallingFrameUrl(): string
-
-Obtains the URL of the frame from which the last JavaScript proxy object was called. You can inject a JavaScript object into the window object using APIs like [registerJavaScriptProxy](#registerjavascriptproxy) or [javaScriptProxy](ts-basic-components-web.md#javascriptproxy).  
-
-**System capability**: SystemCapability.Web.Webview.Core
-
-**Error codes**
-
-For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
-
-| ID| Error Message                                                    |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
-**Example**
-
-```ts
-// xxx.ets
-import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-class TestObj {
-  mycontroller: webview.WebviewController;
-
-  constructor(controller: webview.WebviewController) {
-    this.mycontroller = controller;
-  }
-
-  test(testStr: string): string {
-    console.log('Web Component str' + testStr + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-    return testStr;
-  }
-
-  toString(): void {
-    console.log('Web Component toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-  }
-
-  testNumber(testNum: number): number {
-    console.log('Web Component number' + testNum + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-    return testNum;
-  }
-
-  testBool(testBol: boolean): boolean {
-    console.log('Web Component boolean' + testBol + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-    return testBol;
-  }
-}
-
-class WebObj {
-  mycontroller: webview.WebviewController;
-
-  constructor(controller: webview.WebviewController) {
-    this.mycontroller = controller;
-  }
-
-  webTest(): string {
-    console.log('Web test ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-    return "Web test";
-  }
-
-  webString(): void {
-    console.log('Web test toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  controller: webview.WebviewController = new webview.WebviewController();
-  @State testObjtest: TestObj = new TestObj(this.controller);
-  @State webTestObj: WebObj = new WebObj(this.controller);
-
-  build() {
-    Column() {
-      Button('refresh')
-        .onClick(() => {
-          try {
-            this.controller.refresh();
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
-      Button('Register JavaScript To Window')
-        .onClick(() => {
-          try {
-            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
-            this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
-      Web({ src: $rawfile('index.html'), controller: this.controller })
-        .javaScriptAccess(true)
-    }
-  }
-}
-```
-
-HTML file to be loaded:
-```html
-<!-- index.html -->
-<!DOCTYPE html>
-<html>
-    <meta charset="utf-8">
-    <body>
-      <button type="button" onclick="htmlTest()">Click Me!</button>
-      <p id="demo"></p>
-      <p id="webDemo"></p>
-    </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      // This function call expects to return "ArkUI Web Component"
-      let str=objName.test("webtest data");
-      objName.testNumber(1);
-      objName.testBool(true);
-      document.getElementById("demo").innerHTML=str;
-      console.log('objName.test result:'+ str)
-
-      // This function call expects to return "Web test"
-      let webStr = objTestName.webTest();
-      document.getElementById("webDemo").innerHTML=webStr;
-      console.log('objTestName.webTest result:'+ webStr)
-    }
-</script>
-</html>
-```
 ## WebHttpBodyStream<sup>12+</sup>
 
 Represents the body of the data being sent in POST and PUT requests. It accepts data of the BYTES, FILE, BLOB, and CHUNKED types. Note that other APIs in this class can be called only after [initialize](#initialize12) is called successfully.
@@ -14555,7 +14817,7 @@ struct WebComponent {
                 if (buf.length == 0) {
                   console.log("[schemeHandler] length 0");
                   resourceHandler.didReceiveResponse(response);
-                  resourceHandler.didReceiveResponseBody(buf.buffer);
+                  // If the value of buf.length is 0 in normal cases, call resourceHandler.didFinish(). Otherwise, call resourceHandler.didFail().
                   resourceHandler.didFail(WebNetErrorList.ERR_FAILED);
                 } else {
                   console.log("[schemeHandler] length 1");
@@ -14948,7 +15210,7 @@ Enumerates the suspension types of the player.
 ## NativeMediaPlayerBridge<sup>12+<sup>
 
 Implements a **NativeMediaPlayerBridge** object, which is the return value of the [CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) callback.
-It is an interface class that acts as a bridge between the web media player and the ArkWeb engine.
+It is an interface class that acts as a bridge between the web media player and the ArkWeb kernel.
 The ArkWeb engine uses an object of this interface class to control the player created by the application to take over web page media.
 
 ### updateRect<sup>12+<sup>
@@ -15202,17 +15464,17 @@ The object contains information about media on the web page. The application may
 
 | Name| Type| Mandatory| Description|
 |------|------|------|------|
-| embedID | string | Yes| ID of **Video** or **\<audio>** on the web page.|
+| embedID | string | Yes| ID of **\<video>** or **\<audio>** on the web page.|
 | mediaType | [MediaType](#mediatype12) | Yes| Type of the media.|
 | mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | Yes| Source of the media. There may be multiple sources. The application needs to select a supported source to play.|
 | surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | Yes| Surface information used for same-layer rendering.|
-| controlsShown | boolean | Yes| Whether the **controls** attribute exists in **Video** or **\<audio>**.|
-| controlList | string[] | Yes| Value of the **controlslist** attribute in **Video** or **\<audio>**.|
+| controlsShown | boolean | Yes| Whether the **controls** attribute exists in **\<video>** or **\<audio>**.|
+| controlList | string[] | Yes| Value of the **controlslist** attribute in **\<video>** or **\<audio>**.|
 | muted | boolean | Yes| Whether to mute the player.|
 | posterUrl | string | Yes| URL of a poster.|
 | preload | [Preload](#preload12) | Yes| Whether preloading is required.|
 | headers | Record\<string, string\> | Yes| HTTP headers that need to be included in the player's request for media resources.|
-| attributes | Record\<string, string\> | Yes| Attributes in **Video** or **\<audio>**.|
+| attributes | Record\<string, string\> | Yes| Attributes in **\<video>** or **\<audio>**.|
 
 
 ## CreateNativeMediaPlayerCallback<sup>12+<sup>
@@ -15235,7 +15497,7 @@ This object is used to create a player to take over media playback of the web pa
 
 | Type| Description|
 |------|------|
-| [NativeMediaPlayerBridge](#nativemediaplayerbridge12) | Instance of the interface class between the player that takes over web media and the ArkWeb kernel.<br>The application needs to implement the interface class.<br> Object used by the ArkWeb engine to control the player created by the application to take over web page media.<br>If the application returns **null**, the application does not take over the media playback, and the media will be played by the ArkWeb kernel.|
+| [NativeMediaPlayerBridge](#nativemediaplayerbridge12) | Instance of the interface class between the player that takes over web media and the ArkWeb kernel.<br>The application needs to implement the interface class.<br> Object used by the ArkWeb engine to control the player created by the application to take over web page media.<br>If the application returns **null**, the application does not take over the media playback, and the media will be played by the ArkWeb engine.|
 
 **Example**
 
@@ -15322,7 +15584,7 @@ Adds a page that uses any of the following features to the back-forward cache.
 
 ## BackForwardCacheOptions<sup>12+<sup>
 
-Represents a configuration object for the back-forward cache, which is used to set back-forward cache options of the **Web** component.
+Implements a **BackForwardCacheOptions** object to set back-forward cache options of the **Web** component.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -15827,93 +16089,7 @@ struct WebComponent {
   }
 }
 ```
-### enableWholeWebPageDrawing<sup>12+</sup>
 
-static enableWholeWebPageDrawing(): void
-
-Enables the full drawing capability for the web page. This API works only during **Web** component initialization.
-
-**System capability**: SystemCapability.Web.Webview.Core
-
-**Example**
-
-```ts
-// xxx.ets
-import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-
-  aboutToAppear(): void {
-    try {
-      webview.WebviewController.enableWholeWebPageDrawing();
-    } catch (error) {
-      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-    }
-  }
-
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
-### webPageSnapshot<sup>12+</sup>
-
-webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): void
-
-Obtains the full drawing result of the web page. (Local resource web pages are not supported currently.)
-
-**System capability**: SystemCapability.Web.Webview.Core
-
-**Parameters**
-
-| Name      | Type          | Mandatory | Description                     |
-| ----------- | ------------- | ---- | ------------------------ |
-| info        | [SnapshotInfo](#snapshotinfo12)| Yes  | Information for obtaining the full drawing result.|
-| callback        | [SnapshotResult](#snapshotresult12)| Yes  | Callback used to return the result.|
-
-**Example**
-
-```ts
-// xxx.ets
-import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-
-  build() {
-    Column() {
-      Button('webPageSnapshot')
-        .onClick(() => {
-          try {
-            this.controller.webPageSnapshot({ id: "1234", size: { width: 100, height: 100 } }, (error, result) => {
-              if (error) {
-                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-                return;
-              }
-              if (result) {
-                console.info(`return value is:${result}`);
-                // You can process the returned result as required.
-              }
-            });
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
 ## SnapshotInfo<sup>12+</sup>
 
 Provides information used to obtain a full drawing result.
@@ -15948,13 +16124,13 @@ Represents a scroll type, which is used in [setScrollable](#setscrollable12).
 | ------------ | -- |--------------------------------- |
 | EVENT  | 0 | Scrolling event, indicating that a web page is scrolled by using a touchscreen, a touchpad, or a mouse.|
 
-## PressureLevel<sup>14+</sup>
+## ScrollOffset<sup>13+</sup>
 
-Represents a memory pressure level. When an application clears the cache occupied by the **Web** component, the **Web** kernel releases the cache based on the memory pressure level.
+Represents the current scrolling offset of a web page.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name| Value| Description|
-| ------------------------------- | - | ---------- |
-| MEMORY_PRESSURE_LEVEL_MODERATE | 1 | Moderate memory pressure level. At this level, the **Web** kernel attempts to release the cache that has low reallocation overhead and does not need to be used immediately.|
-| MEMORY_PRESSURE_LEVEL_CRITICAL | 2 | Critical memory pressure level. At this level, the **Web** kernel attempts to release all possible memory caches.|
+| Name| Type  | Readable| Writable| Description                                                        |
+| ---- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| x    | number | Yes  | Yes  | Horizontal scrolling offset of a web page. The value is the difference between the x-coordinate of the left boundary of the web page and that of the left boundary of the **Web** component. The unit is vp.<br>When the web page is scrolled rightwards, the value is negative.<br>When the web page is not scrolled or scrolled leftwards, the value is **0** or positive.|
+| y    | number | Yes  | Yes  | Vertical scrolling offset of a web page. The value is the difference between the y-coordinate of the upper boundary of the web page and that of the upper boundary of the **Web** component. The unit is vp.<br>When the web page is scrolled downwards, the value is negative.<br>When the web page is not scrolled or scrolled upwards, the value is **0** or positive.|

@@ -15,7 +15,7 @@ The native image module must be used together with the native window, native buf
 | API                                                      | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarget) | Creates an **OH_NativeImage** instance to be associated with the specified OpenGL ES texture ID and target.|
-| OH_NativeImage_AcquireNativeWindow (OH_NativeImage \*image)  | Obtains an **OHNativeWindow** instance associated with an **OH_NativeImage** instance. You need to call **OH_NativeWindow_DestroyNativeWindow** to release the **OHNativeWindow** instance when it is no longer needed.|
+| OH_NativeImage_AcquireNativeWindow (OH_NativeImage \*image)  | Obtains an **OHNativeWindow** instance associated with an **OH_NativeImage** instance. It is unnecessary to manually release this **OHNativeWindow** with **OH_NativeWindow_DestroyNativeWindow** as it will be automatically freed upon calling **OH_NativeImage_Destroy**. Failing to do so could result in memory access violations after the memory has been freed, which might cause the application to crash.|
 | OH_NativeImage_AttachContext (OH_NativeImage \*image, uint32_t textureId) | Attaches an **OH_NativeImage** instance to the current OpenGL ES context. The OpenGL ES texture will be bound to an **GL_TEXTURE_EXTERNAL_OES** instance and updated through the **OH_NativeImage** instance.|
 | OH_NativeImage_DetachContext (OH_NativeImage \*image)        | Detaches an **OH_NativeImage** instance from the current OpenGL ES context.             |
 | OH_NativeImage_UpdateSurfaceImage (OH_NativeImage \*image)   | Updates the OpenGL ES texture associated with the latest frame through an **OH_NativeImage** instance.     |
@@ -71,7 +71,7 @@ libnative_buffer.so
    EGLDisplay eglDisplay_ = EGL_NO_DISPLAY;
    static inline EGLConfig config_;
    static inline EGLSurface eglSurface_;
-   // OHNativeWindow obtained from the <XComponent>.
+   // OHNativeWindow obtained from the XComponent.
    OHNativeWindow *eglNativeWindow_;
    
    // Check the EGL extension.

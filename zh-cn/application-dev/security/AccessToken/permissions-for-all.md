@@ -163,7 +163,7 @@
 
 ### ohos.permission.PRIVACY_WINDOW
 
-允许应用将窗口设置为隐私窗口，禁止截屏录屏
+允许应用将窗口设置为隐私窗口，禁止截屏录屏。
 
 **权限级别**：API version 9-10为system_basic；从API version 11开始为normal。
 

@@ -49,9 +49,9 @@ static show(options?: CalendarDialogOptions)
 
 ## 示例
 
-### 示例1
+### 示例1（弹出日历选择弹窗）
 
-CalendarPickerDialog基本使用
+该示例通过点击按钮弹出日历选择弹窗。
 
 ```ts
 // xxx.ets
@@ -98,9 +98,9 @@ struct CalendarPickerDialogExample {
 
 ![CalendarPickerDialog](figures/CalendarPickerDialog.gif)
 
-### 示例2
+### 示例2（自定义按钮样式）
 
-按钮支持自定义样式
+该示例通过配置 acceptButtonStyle、cancelButtonStyle实现自定义按钮样式。
 
 ```ts
 // xxx.ets

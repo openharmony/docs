@@ -34,7 +34,11 @@ The certificate path is incorrect or no certificate is configured.
 
 ## 2302003 WebSocket Connection Already Exists
 
+##  
+
 **Error Message**
+
+ 
 
 Websocket connection already exists.
 
@@ -77,7 +81,3 @@ This error code is reported if other unknown WebSocket errors occur.
 **Possible Causes**
 
 Other system faults occur.
-
-**Solution**
-
-Contact technical support.

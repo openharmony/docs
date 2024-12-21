@@ -17,7 +17,7 @@
 >
 >  Tabs子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
 >
->  Tabs子组件TabContent显示之后不会销毁，若需要页面懒加载和释放，可以参考[11](#示例11)。
+>  Tabs子组件TabContent显示之后不会销毁，若需要页面懒加载和释放，可以参考[示例11](#示例11页面懒加载和释放)。
 
 
 ## 接口
@@ -33,7 +33,7 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsContro
 | 参数名         | 类型                              | 必填   | 说明                                     |
 | ----------- | --------------------------------- | ---- | ---------------------------------------- |
 | barPosition | [BarPosition](#barposition枚举说明)| 否    | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start   |
-| index       | number                            | 否    | 设置当前显示页签的索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>直接修改index跳页时，切换动效不生效。 使用TabController的changeIndex时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| index       | number                            | 否    | 设置当前显示页签的索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>直接修改index跳页时，切换动效不生效。 使用TabController的changeIndex时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>Tabs重建、系统资源切换（如系统字体切换、系统深浅色切换）或者组件属性变化时，会跳转到index对应的页面。若需要在上述情况下不跳转，建议使用双向绑定。 |
 | controller  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。                               |
 
 ## BarPosition枚举说明
@@ -252,7 +252,7 @@ fadingEdge(value: boolean)
 
 barOverlap(value: boolean)
 
-设置TabBar是否背后变模糊并叠加在TabContent之上。若设置barOverlap为true，TabBar默认背景色修改为'#F2F1F3F5'并添加模糊效果。
+设置TabBar是否背后变模糊并叠加在TabContent之上。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -262,7 +262,7 @@ barOverlap(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | TabBar是否背后变模糊并叠加在TabContent之上。<br />默认值：false |
+| value  | boolean | 是   | TabBar是否背后变模糊并叠加在TabContent之上。当barOverlap设置为true时，TabBar默认模糊材质的BlurStyle值修改为'BlurStyle.COMPONENT_THICK'。<br />默认值：false |
 
 ### barBackgroundColor<sup>10+</sup>
 
@@ -425,13 +425,17 @@ Tab页签切换后触发的事件。
 
 触发该事件的条件：
 
-1、TabContent支持滑动时，组件触发滑动时触发。
+1、滑动页面进行页面切换时，组件滑动动画结束后触发。
 
 2、通过[控制器](#tabscontroller)API接口调用。
 
 3、通过[状态变量](../../../quick-start/arkts-state.md)构造的属性值进行修改。
 
 4、通过页签处点击触发。
+
+>  **说明：**
+>
+>  使用自定义页签时，在onChange事件中联动可能会导致滑动页面切换后才执行页签联动，引起自定义页签切换效果延迟。建议在[onAnimationStart](#onanimationstart11)中监听并刷新当前索引，以确保动效能够及时触发。具体实现可参考[示例1](#示例1自定义页签切换联动)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -747,9 +751,9 @@ setTabBarOpacity(opacity: number): void
 
 ## 示例
 
-### 示例1
+### 示例1（自定义页签切换联动）
 
-本示例通过onChange实现切换时自定义tabBar和TabContent的联动。
+本示例通过onAnimationStart、onChange实现切换时自定义tabBar和TabContent的联动。
 
 ```ts
 // xxx.ets
@@ -804,6 +808,7 @@ struct TabsExample {
       .onChange((index: number) => {
         // currentIndex控制TabContent显示页签
         this.currentIndex = index
+        this.selectedIndex = index
       })
       .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
         if (index === targetIndex) {
@@ -823,7 +828,7 @@ struct TabsExample {
 
 ![tabs2](figures/tabs2.gif)
 
-### 示例2
+### 示例2（分割线基本属性）
 
 本示例通过divider实现了分割线各种属性的展示。
 
@@ -933,7 +938,7 @@ struct TabsDivider1 {
 
 ![tabs3](figures/tabs3.gif)
 
-### 示例3
+### 示例3（设置TabBar渐隐）
 
 本示例通过fadingEdge实现了切换子页签渐隐和不渐隐。
 
@@ -1047,7 +1052,7 @@ struct TabsOpaque {
 
 ![tabs4](figures/tabs4.gif)
 
-### 示例4
+### 示例4（设置TabBar叠加在TabContent内容上）
 
 本示例通过barOverlap实现了TabBar是否背后变模糊并叠加在TabContent之上。
 
@@ -1055,13 +1060,12 @@ struct TabsOpaque {
 // xxx.ets
 @Entry
 @Component
-struct barBackgroundColorTest {
-  private controller: TabsController = new TabsController()
+struct barHeightTest {
+  @State arr: number[] = [0, 1, 2, 3]
   @State barOverlap: boolean = true;
-  @State barBackgroundColor: string = '#88888888';
-
   build() {
     Column() {
+      Text(`barOverlap ${this.barOverlap}`).fontSize(16)
       Button("barOverlap变化").width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
           if (this.barOverlap) {
@@ -1071,41 +1075,25 @@ struct barBackgroundColorTest {
           }
         })
 
-      Tabs({ barPosition: BarPosition.Start, index: 0, controller: this.controller }) {
+      Tabs({ barPosition: BarPosition.End }) {
         TabContent() {
           Column() {
-            Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })
-            Text(`barBackgroundColor ${this.barBackgroundColor}`).fontSize(16)
-          }.width('100%').width('100%').height('100%')
+            List({ space: 10 }) {
+              ForEach(this.arr, (item: number) => {
+                ListItem() {
+                  Text("item" + item).width('80%').height(200).fontSize(16).textAlign(TextAlign.Center).backgroundColor('#fff8b81e')
+                }
+              }, (item: string) => item)
+            }.width('100%').height('100%')
+            .lanes(2).alignListItem(ListItemAlign.Center)
+          }.width('100%').height('100%')
           .backgroundColor(Color.Pink)
         }
-        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), "1"))
-
-        TabContent() {
-          Column() {
-            Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })
-            Text(`barBackgroundColor ${this.barBackgroundColor}`).fontSize(16)
-          }.width('100%').width('100%').height('100%')
-          .backgroundColor(Color.Yellow)
-        }
-        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), "2"))
-
-        TabContent() {
-          Column() {
-            Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })
-            Text(`barBackgroundColor ${this.barBackgroundColor}`).fontSize(16)
-          }.width('100%').width('100%').height('100%')
-          .backgroundColor(Color.Green)
-        }
-        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), "3"))
+        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_icon_mask_svg'), "测试0"))
       }
-      .vertical(false)
-      .barMode(BarMode.Fixed)
+      .scrollable(false)
       .height('60%')
       .barOverlap(this.barOverlap)
-      .scrollable(true)
-      .animationDuration(10)
-      .barBackgroundColor(this.barBackgroundColor)
     }
     .height(500)
     .padding({ top: '24vp', left: '24vp', right: '24vp' })
@@ -1115,7 +1103,7 @@ struct barBackgroundColorTest {
 
 ![tabs5](figures/tabs5.gif)
 
-### 示例5
+### 示例5（设置TabBar栅格化可见区域）
 
 本示例通过barGridAlign实现了以栅格化方式设置TabBar的可见区域。
 
@@ -1220,7 +1208,7 @@ struct TabsExample5 {
 
 ![tabs5](figures/tabs6.gif)
 
-### 示例6
+### 示例6（设置Scrollable模式下的TabBar的布局样式）
 
 本示例实现了barMode的ScrollableBarModeOptions参数，该参数仅在Scrollable模式下有效。
 
@@ -1338,7 +1326,7 @@ struct TabsExample6 {
 
 ![tabs5](figures/tabs7.gif)
 
-### 示例7
+### 示例7（自定义Tabs页面切换动画）
 
 本示例通过customContentTransition实现了自定义Tabs页面的切换动画。
 
@@ -1427,7 +1415,8 @@ struct TabsCustomAnimationExample {
 ```
 
 ![tabs5](figures/tabs8.gif)
-### 示例8
+
+### 示例8（页面切换拦截）
 
 本示例通过onContentWillChange实现了自定义页面手势滑动切换拦截。
 
@@ -1507,9 +1496,12 @@ struct TabsExample {
 ```
 
 ![tabs9](figures/tabs9.gif)
-### 示例9
+
+### 示例9（自定义TabBar切换动画）
 
 本示例通过onChange、onAnimationStart、onAnimationEnd、onGestureSwipe等接口实现了自定义TabBar的切换动画。
+
+<!--code_no_check-->
 
 ```ts
 // EntryAbility.ets
@@ -1526,6 +1518,8 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
+<!--code_no_check-->
 
 ```ts
 // CommonUtil.ets
@@ -1544,6 +1538,8 @@ export class CommonUtil {
 }
 ```
 
+<!--code_no_check-->
+
 ```ts
 // xxx.ets
 import { LengthMetrics } from '@kit.ArkUI'
@@ -1552,6 +1548,8 @@ import { CommonUtil } from '../common/CommonUtil'
 @Entry
 @Component
 struct TabsExample {
+  @State colorArray: [string, string][] =
+    [['green', '#00CB87'], ['blue', '#007DFF'], ['yellow', '#FFBF00'], ['pink', '#E67C92']]
   @State currentIndex: number = 0
   @State animationDuration: number = 300
   @State indicatorLeftMargin: number = 0
@@ -1559,6 +1557,12 @@ struct TabsExample {
   private tabsWidth: number = 0
   private textInfos: [number, number][] = []
   private isStartAnimateTo: boolean = false
+
+  aboutToAppear():void {
+    for (let i = 0; i < this.colorArray.length; i++) {
+      this.textInfos.push([0, 0]);
+    }
+  }
 
   @Builder
   tabBuilder(index: number, name: string) {
@@ -1570,6 +1574,9 @@ struct TabsExample {
         .id(index.toString())
         .onAreaChange((oldValue: Area, newValue: Area) => {
           this.textInfos[index] = [newValue.globalPosition.x as number, newValue.width as number]
+          if (!this.isStartAnimateTo && this.currentIndex === index && this.tabsWidth > 0) {
+            this.setIndicatorAttr(this.textInfos[this.currentIndex][0], this.textInfos[this.currentIndex][1])
+          }
         })
     }.width('100%')
   }
@@ -1577,21 +1584,11 @@ struct TabsExample {
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       Tabs({ barPosition: BarPosition.Start }) {
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#00CB87')
-        }.tabBar(this.tabBuilder(0, 'green'))
-
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#007DFF')
-        }.tabBar(this.tabBuilder(1, 'blue'))
-
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#FFBF00')
-        }.tabBar(this.tabBuilder(2, 'yellow'))
-
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#E67C92')
-        }.tabBar(this.tabBuilder(3, 'pink'))
+        ForEach(this.colorArray, (item: [string, string], index:number) => {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(item[1])
+          }.tabBar(this.tabBuilder(index, item[0]))
+        })
       }
       .onAreaChange((oldValue: Area, newValue: Area)=> {
         this.tabsWidth = newValue.width as number
@@ -1637,7 +1634,8 @@ struct TabsExample {
     let nextIndex = index
     if (index > 0 && (CommonUtil.getIsRTL() ? event.currentOffset < 0 : event.currentOffset > 0)) {
       nextIndex--
-    } else if (index < 3 && (CommonUtil.getIsRTL() ? event.currentOffset > 0 : event.currentOffset < 0)) {
+    } else if (index < this.textInfos.length - 1 &&
+        (CommonUtil.getIsRTL() ? event.currentOffset > 0 : event.currentOffset < 0)) {
       nextIndex++
     }
     let indexInfo = this.textInfos[index]
@@ -1678,7 +1676,7 @@ struct TabsExample {
 
 ![tabs10](figures/tabs10.gif)
 
-### 示例10
+### 示例10（预加载子节点）
 
 本示例通过preloadItems接口实现了预加载指定子节点。
 
@@ -1755,7 +1753,7 @@ struct MyComponent {
 }
 ```
 
-### 示例11
+### 示例11（页面懒加载和释放）
 
 本示例通过setTabBarTranslate、setTabBarOpacity等接口设置了TabBar的平移距离和不透明度。
 

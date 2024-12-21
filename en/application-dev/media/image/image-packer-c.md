@@ -115,7 +115,7 @@ After an **ImagePacker** instance is created and packing parameters are specifie
               return errCode;
           }
 
-          // Encode a Pixelmap instance and pack it into a file.
+          // Encode the Pixelmap instance and pack it into a file.
           OH_PackingOptions *option = nullptr;
           OH_PackingOptions_Create(&option);
           char type[] = "image/jpeg";

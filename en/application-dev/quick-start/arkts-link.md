@@ -26,7 +26,7 @@ An \@Link decorated variable in a child component shares the same value with a v
 | ---------------------------------------- | ------------------------------------------------------------ |
 | Decorator parameters                     | None.                                                        |
 | Synchronization type                     | Two-way:<br>from an \@State, \@StorageLink, or \@Link decorated variable in the parent component to this variable; and the other way around. |
-| Allowed variable types                   | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types. <br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor.<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Union Type @Link](#union-type-link).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Link a: string \| undefined = undefined**. |
+| Allowed variable types                   | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Union Type @Link](#union-type-link).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Link a: string \| undefined = undefined**. |
 | Initial value for the decorated variable | Forbidden.                                                   |
 
 
@@ -34,7 +34,7 @@ An \@Link decorated variable in a child component shares the same value with a v
 
 | Transfer/Access     | Description                                      |
 | ---------- | ---------------------------------------- |
-| Initialization and update from the parent component| Mandatory. A two-way synchronization relationship can be established with the @State, @StorageLink, or \@Link decorated variable in the parent component. An @Link decorated variable can be initialized from an [\@State](./arkts-state.md), @Link, [\@Prop](./arkts-prop.md), [\@Provide](./arkts-provide-and-consume.md), [\@Consume](./arkts-provide-and-consume.md), [\@ObjectLink](./arkts-observed-and-objectlink.md), [\@StorageLink](./arkts-appstorage.md#storagelink), [\@StorageProp](./arkts-appstorage.md#storageprop), [\@LocalStorageLink](./arkts-localstorage.md#localstoragelink), or [\@LocalStorageProp](./arkts-localstorage.md#localstorageprop) decorated variable in the parent component.<br>Since API version 9, the syntax is **Comp({&nbsp;aLink:&nbsp;this.aState&nbsp;})** for initializing an \@Link decorated variable in the child component from an @State decorated variable in its parent component. The **Comp({aLink:&nbsp;$aState})** syntax is also supported.|
+| Initialization and update from the parent component| Mandatory. A two-way synchronization relationship can be established with the @State, @StorageLink, or \@Link decorated variable in the parent component. An @Link decorated variable can be initialized from an [\@State](./arkts-state.md), @Link, [\@Prop](./arkts-prop.md), [\@Provide](./arkts-provide-and-consume.md), [\@Consume](./arkts-provide-and-consume.md), [\@ObjectLink](./arkts-observed-and-objectlink.md), [\@StorageLink](./arkts-appstorage.md#storagelink), [\@StorageProp](./arkts-appstorage.md#storageprop), [\@LocalStorageLink](./arkts-localstorage.md#localstoragelink), or [\@LocalStorageProp](./arkts-localstorage.md#localstorageprop) decorated variable in the parent component.<br>Since API version 9, the syntax is **Comp({ aLink: this.aState })** for initializing an \@Link decorated variable in the child component from an @State decorated variable in its parent component. The **Comp({aLink: $aState})** syntax is also supported.|
 | Child component initialization  | Supported; can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access | Private, accessible only within the component.                          |
 
@@ -120,7 +120,7 @@ An \@Link decorated variable shares the lifecycle of its owning component.
 
 To understand the value initialization and update mechanism of the \@Link decorated variable, it is necessary to consider the parent component and the initial render and update process of the child component that owns the \@Link decorated variable (in this example, the \@State decorated variable in the parent component is used).
 
-1. Initial render: The execution of the parent component's **build()** function creates a new instance of the child component. The initialization process is as follows:
+1. Initial render: The execution of the parent component's **build()** function creates a instance of the child component. The initialization process is as follows:
    1. An \@State decorated variable of the parent component must be specified to initialize the child component's \@Link decorated variable. The child component's \@Link decorated variable value and its source variable are kept in sync (two-way data synchronization).
    2. The \@State state variable wrapper class of the parent component is passed to the child component through the build function. After obtaining the \@State state variable of the parent component, the \@Link wrapper class of the child component registers the **this** pointer to the current \@Link wrapper class with the \@State variable of the parent component.
 
@@ -506,7 +506,7 @@ struct Index {
 
 When using \@Link to decorate a state variable in a child component, ensure that the variable type is the same as the source type, and the source is a state variable decorated by a decorator such as \@State.
 
-[Negative example]
+[Incorrect Example]
 
 ```ts
 @Observed
@@ -547,7 +547,7 @@ struct Parent {
 
 In the example, the type of **\@Link testNum: number** and the initialization from the parent component **LinkChild ({testNum:this.testNum.c})** are incorrect. The data source of \@Link must be a decorated state variable. The \@Link decorated variables must be of the same type as the data source, for example, \@Link: T and \@State: T. Therefore, the value should be changed to **\@Link testNum: ClassA**, and the initialization from the parent component should be **LinkChild({testNum: this.testNum})**.
 
-[Positive example]
+[Correct Example]
 
 ```ts
 @Observed
@@ -589,4 +589,193 @@ struct Parent {
 }
 ```
 
-<!--no_check-->
+### Using the a.b(this.object) Format Fails to Trigger UI Re-render
+
+In the **build** method, when the variable decorated by @Link is of the object type and is called using the **a.b(this.object)** format, the native object of **this.object** is passed in the b method. If the property of **this.object** is changed, the UI cannot be re-rendered. In the following example, when the static method **Score.changeScore1** or **this.changeScore2** is used to change **this.score.value** in the **Child** component, the UI is not re-rendered.
+
+[Incorrect Example]
+
+```ts
+class Score {
+  value: number;
+  constructor(value: number) {
+    this.value = value;
+  }
+
+  static changeScore1(score:Score) {
+    score.value += 1;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State score: Score = new Score(1);
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Parent is ${this.score.value}.`)
+        .fontSize(30)
+        .fontColor(Color.Red)
+      Child({ score: this.score })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Component
+struct Child {
+  @Link score: Score;
+
+  changeScore2(score:Score) {
+    score.value += 2;
+  }
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Child is ${this.score.value}.`)
+        .fontSize(30)
+      Button(`changeScore1`)
+        .onClick(()=>{
+          // The UI cannot be re-rendered using a static method.
+          Score.changeScore1(this.score);
+        })
+      Button(`changeScore2`)
+        .onClick(()=>{
+          // The UI cannot be re-rendered using this.
+          this.changeScore2(this.score);
+        })
+    }
+  }
+}
+```
+
+You can add a proxy for **this.score** to re-render the UI by assigning a value to the variable and then calling the variable.
+
+[Correct Example]
+
+```ts
+class Score {
+  value: number;
+  constructor(value: number) {
+    this.value = value;
+  }
+
+  static changeScore1(score:Score) {
+    score.value += 1;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State score: Score = new Score(1);
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Parent is ${this.score.value}.`)
+        .fontSize(30)
+        .fontColor(Color.Red)
+      Child({ score: this.score })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Component
+struct Child {
+  @Link score: Score;
+
+  changeScore2(score:Score) {
+    score.value += 2;
+  }
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Child is ${this.score.value}.`)
+        .fontSize(30)
+      Button(`changeScore1`)
+        .onClick(()=>{
+          // Add a proxy by assigning a value.
+          let score1 = this.score;
+          Score.changeScore1(score1);
+        })
+      Button(`changeScore2`)
+        .onClick(()=>{
+          // Add a proxy by assigning a value.
+          let score2 = this.score;
+          this.changeScore2(score2);
+        })
+    }
+  }
+}
+```
+
+### An Error Is Reported During \@Link Initialization When \@State Is Defined after build()
+
+When the \@State decorated variable is defined after the **build** function to initialize the \@Link decorated variable, the \@State decorated variable is identified as a constant. However, the \@Link decorated variable cannot be initialized by a constant. As a result, an error is reported during compilation.
+
+[Incorrect Example]
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      child({ count: this.count })
+      Button(`click times: ${this.count}`)
+        .onClick(() => {
+          this.count += 1;
+        })
+    }
+  }
+  // Define the @State variable after the build function.
+  @State count: number = 0;
+}
+
+@Component
+struct child {
+  @Link count: number;
+
+  build() {
+    Text(`cout: ${this.count}`).fontSize(30)
+  }
+}
+```
+
+![State-After-Build](figures/State-After-Build.png)
+
+The correct format is to define the \@State variable before the build function.
+
+[Correct Example]
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State count: number = 0;
+
+  build() {
+    Column() {
+      child({ count: this.count })
+      Button(`click times: ${this.count}`)
+        .onClick(() => {
+          this.count += 1;
+        })
+    }
+  }
+}
+
+@Component
+struct child {
+  @Link count: number;
+
+  build() {
+    Text(`cout: ${this.count}`).fontSize(30)
+  }
+}
+```
+

@@ -1196,7 +1196,7 @@ int OH_Rdb_Delete (OH_Rdb_Store *store, OH_Predicates *predicates )
 
 **返回：**
 
-如果更新成功，返回受影响的行数，否则返回特定的错误码。
+如果删除成功，返回删除的行数；如果失败，则返回的结果小于0。
 
 **参见：**
 
@@ -1420,7 +1420,7 @@ int OH_Rdb_Insert (OH_Rdb_Store *store, const char *table, OH_VBucket *valuesBuc
 
 **返回：**
 
-如果插入成功，返回行ID。否则返回特定的错误码。
+如果插入成功，返回rowID，否则返回的结果小于0。
 
 **参见：**
 
@@ -1795,7 +1795,7 @@ int OH_Rdb_Update (OH_Rdb_Store *store, OH_VBucket *valuesBucket, OH_Predicates 
 
 **返回：**
 
-如果更新成功，返回受影响的行数，否则返回特定的错误码。
+如果更新成功，返回更新的行数，否则返回的结果小于0。
 
 **参见：**
 

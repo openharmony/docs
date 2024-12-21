@@ -112,6 +112,8 @@
 
 ## 示例
 
+该示例通过配置priorityGesture和parallelGesture分别实现了父组件优先识别手势和父子组件同时触发手势。
+
 ```ts
 // xxx.ets
 @Entry

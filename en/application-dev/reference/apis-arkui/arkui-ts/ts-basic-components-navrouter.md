@@ -4,11 +4,13 @@ The **NavRouter** component provides default processing logic for responding to 
 
 > **NOTE**
 >
+> This component is deprecated since API version 13. You are advised to use [NavPathStack](ts-basic-components-navigation.md#navpathstack10) in conjunction with the **navDestination** attribute for page routing.
+>
 > This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Child Components
 
-This component must contain two child components, the second of which must be **[NavDestination](ts-basic-components-navdestination.md)**.
+This component must contain two child components, the second of which must be [NavDestination](ts-basic-components-navdestination.md).
 
 > **NOTE**
 >
@@ -26,6 +28,8 @@ NavRouter()
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 ### NavRouter<sup>10+</sup>
 
 NavRouter(value: RouteInfo)
@@ -34,17 +38,19 @@ Provides route information so that clicking the **NavRouter** component redirect
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name    | Type                               | Mandatory  | Description         |
 | ------- | ----------------------------------- | ---- | ------------- |
-| value   | [RouteInfo](#routeinfo10) | No   | Route information.|
+| value   | [RouteInfo](#routeinfo10) | Yes   | Route information.|
 
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-### mode
+### mode<sup>10+</sup>
 
 mode(mode: NavRouteMode)
 
@@ -64,6 +70,8 @@ Sets the route mode used for redirecting the user from the **NavRouter** compone
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name                | Type                                                    | Mandatory| Description                                                        |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | name             | string            | Yes  | Name of the navigation destination page to be redirected to.|
@@ -73,7 +81,7 @@ Sets the route mode used for redirecting the user from the **NavRouter** compone
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name   | Description              |
+| Name   | Description            |
 | ----- | ---------------- |
 | PUSH_WITH_RECREATE | The new navigation destination page replaces the current one. The current page is destroyed, but the information about this page is retained in the navigation stack.|
 | PUSH   | The new navigation destination page overwrites the current one. The current page is not destroyed, and the information about this page is retained in the navigation stack.|
@@ -98,6 +106,7 @@ Called when the component activation status changes. **onStateChange(true)** is 
 | isActivated | boolean | Yes  | Component activation status. The value **true** means that component is activated, and **false** means the opposite.|
 
 ## Example
+<!--code_no_check-->
 
 ```ts
 // xxx.ets

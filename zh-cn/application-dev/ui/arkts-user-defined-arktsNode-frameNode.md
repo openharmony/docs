@@ -1,12 +1,18 @@
-# FrameNode
+# 自定义组件节点 (FrameNode)
 
 ## 概述
 
-对于具备自己前端定义的三方框架，需要将特定的dsl转换成为ArkUI的声明式描述。这个转换过程需依赖额外的数据驱动绑定至[Builder](../quick-start/arkts-builder.md)中，转换比较复杂且性能较低。这一类框架一般依赖系统ArkUI框架的布局、事件能力，以及最基础的节点操作和自定义能力，大部分组件通过自定义完成，但是需要使用部分原生组件混合显示。[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)的设计就是为了解决上述的问题。
+对于拥有自定义前端的第三方框架（如JSON、XML、DOM树等），需将特定的DSL转换为ArkUI的声明式描述。如下图描述了JSON定义的前端框架和ArkUI声明式描述的对应关系。
 
-FrameNode表示组件树的实体节点，配合自定义占位容器组件[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)等，在占位容器内挂载一棵自定义的节点树，并对这个节点树中的节点进行动态的增加、修改、删除等操作。基础的FrameNode可以设置通用属性、设置事件回调，并提供完整的自定义能力，包括自定义测量、布局以及绘制。
+![zh-cn_image_frame-node01](figures/frame-node01.png)
 
-除此之外，ArkUI框架还提供获取和遍历获得原生组件对应的代理FrameNode对象的能力，下文简称代理节点。代理节点可以用于需要遍历整个UI的树形结构，并支持获取原生组件节点的具体信息或者额外注册组件的事件监听回调。
+上述转换过程需要依赖额外的数据驱动，绑定至[Builder](../quick-start/arkts-builder.md)中，较为复杂且性能欠佳。这类框架通常依赖于ArkUI的布局、事件处理、基础的节点操作和自定义能力。大部分组件通过自定义实现，但需结合使用部分系统组件以实现混合显示，如下图示例既使用了FrameNode的自定义方法进行绘制，又使用了系统组件Column及其子组件Text，通过BuilderNode的方式将其挂载到根节点的FrameNode上混合显示。
+
+![zh-cn_image_frame-node02](figures/frame-node02.png)
+
+[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)的设计初衷正是为了解决上述转换问题。FrameNode表示组件树中的实体节点，与自定义占位容器组件[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)相配合，实现在占位容器内构建一棵自定义的节点树。该节点树支持动态操作，如节点的增加、修改和删除。基础的FrameNode具备设置通用属性和事件回调的功能，同时提供完整的自定义能力，涵盖自定义测量、布局和绘制等方面。
+
+除此之外，ArkUI还提供了获取和遍历系统组件对应代理FrameNode对象的能力（下文简称代理节点）。代理节点能够用于遍历整个UI的树形结构，支持获取系统组件节点的详细信息，以及额外注册组件的事件监听回调。
 
 ## 创建和删除节点
 
@@ -22,15 +28,15 @@ FrameNode提供了节点创建和删除的能力。可以通过FrameNode的构�
 
 ## 判断节点是否可修改
 
-[isModifiable](../reference/apis-arkui/js-apis-arkui-frameNode.md#ismodifiable12)用于查询当前节点类型是否为原生组件的代理节点。当FrameNode节点作为原生组件的代理节点的时候，该节点不可修改。即无法修改代理节点的自身属性以及其子节点的结构。
+[isModifiable](../reference/apis-arkui/js-apis-arkui-frameNode.md#ismodifiable12)用于查询当前节点类型是否为系统组件的代理节点。当FrameNode节点作为系统组件的代理节点的时候，该节点不可修改。即无法修改代理节点的自身属性以及其子节点的结构。
 
 ## 获取对应的RenderNode节点
 
-FrameNode提供了[getRenderNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#getrendernode)接口，用于获取FrameNode中的RenderNode。可以通过对获取到的RenderNode对象进行操作，动态修改FrameNode上绘制相关的属性，具体可修改的属性参考RenderNode的接口。
+FrameNode提供了[getRenderNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#getrendernode)接口，用于获取FrameNode中的RenderNode。可以通过对获取到的RenderNode对象进行操作，动态修改FrameNode上绘制相关的属性，具体可修改的属性参考[RenderNode](arkts-user-defined-arktsNode-renderNode.md)的接口。
 
 > **说明：**
 >
-> - 无法获取原生组件代理FrameNode的RenderNode对象。
+> - 无法获取系统组件代理FrameNode的RenderNode对象。
 > 
 > - BuilderNode中调用[getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode)获取得到的FrameNode节点对象中，可以通过getRenderNode获取对应的根节点的RenderNode对象。
 
@@ -532,7 +538,6 @@ class MyFrameNode extends FrameNode {
   }
 
   onLayout(position: Position): void {
-    let y = 0;
     for (let i = 0;i < this.getChildrenCount(); i++) {
       let child = this.getChild(i);
       if (child) {
@@ -540,7 +545,6 @@ class MyFrameNode extends FrameNode {
           x: vp2px(100),
           y: vp2px(this.offsetY)
         });
-        y += child.getMeasuredSize().height + this.space;
       }
     }
     this.setLayoutPosition(position);
@@ -626,10 +630,12 @@ FrameNode提供了查询接口用于返回实体节点的基础信息。具体�
 
 > **说明：**
 >
-> 当前接口提供的可查询的信息包括：
+> 1、当前接口提供的可查询的信息包括：
 >
 > - 节点大小：[getMeasuredSize](../reference/apis-arkui/js-apis-arkui-frameNode.md#getmeasuredsize12)，[getUserConfigSize](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuserconfigsize12)
 > 
 > - 布局信息：[getPositionToWindow](../reference/apis-arkui/js-apis-arkui-frameNode.md#getpositiontowindow12)，[getPositionToParent](../reference/apis-arkui/js-apis-arkui-frameNode.md#getpositiontoparent12)，[getLayoutPosition](../reference/apis-arkui/js-apis-arkui-frameNode.md#getlayoutposition12)，[getUserConfigBorderWidth](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuserconfigborderwidth12)，[getUserConfigPadding](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuserconfigpadding12)，[getUserConfigMargin](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuserconfigmargin12)
 > 
 > - 节点信息：[getId](../reference/apis-arkui/js-apis-arkui-frameNode.md#getid12) ，[getUniqueId](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuniqueid12)，[getNodeType](../reference/apis-arkui/js-apis-arkui-frameNode.md#getnodetype12)，[getOpacity](../reference/apis-arkui/js-apis-arkui-frameNode.md#getopacity12)，[isVisible](../reference/apis-arkui/js-apis-arkui-frameNode.md#isvisible12)，[isClipToFrame](../reference/apis-arkui/js-apis-arkui-frameNode.md#iscliptoframe12)，[isAttached](../reference/apis-arkui/js-apis-arkui-frameNode.md#isattached12)，[getInspectorInfo](../reference/apis-arkui/js-apis-arkui-frameNode.md#getinspectorinfo12)，[getCustomProperty](../reference/apis-arkui/js-apis-arkui-frameNode.md#getcustomproperty12)
+>
+> 2、无法获取UINode类型节点，例如：JsView节点、[Span](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-span.md)、[ContainerSpan](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-containerspan.md)、[ContentSlot](../../application-dev/reference/apis-arkui/arkui-ts/ts-components-contentSlot.md)、[ForEach](../../application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)、[LazyForEach](../../application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)、if/else组件等。

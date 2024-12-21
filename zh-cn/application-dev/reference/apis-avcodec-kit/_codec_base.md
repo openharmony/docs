@@ -25,6 +25,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](#oh_avcodec_mimetype_audio_amr_nb) | AMR_NB音频解码器的MIME类型。                           |
 | [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。                           |
 | [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
+| [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | VVC(H.266)视频编解码器的MIME类型。                    |
 | [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | HEVC(H.265)视频编解码器的MIME类型。                    |
 | [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | AVC(H.264)视频编解码器的MIME类型。                     |
 | [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | MPEG4视频编码的MIME类型，仅用于封装MPEG4视频码流使用。 |
@@ -236,6 +237,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](#oh_avcodec_mimetype_audio_amr_nb) | AMR_NB音频解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | VVC(H.266)视频编解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | HEVC(H.265)视频编解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | AVC(H.264)视频编解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | MPEG4视频编码的MIME类型，仅用于封装MPEG4视频码流使用。 |
@@ -437,7 +439,7 @@ typedef void(* OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *u
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | OH_AVCodec实例。  | 
-| errorCode | 特定错误代码。  | 
+| errorCode | 特定错误代码。在不同场景下返回的错误码不同，详情可见方法描述中的表格。  | 
 | userData | 用户执行回调所依赖的数据。  |
 
 
@@ -1455,6 +1457,19 @@ HEVC(H.265)视频编解码器的MIME类型。
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 10
+
+
+### OH_AVCODEC_MIMETYPE_VIDEO_VVC
+
+```
+const char* OH_AVCODEC_MIMETYPE_VIDEO_VVC
+```
+**描述**
+VVC(H.266)视频编解码器的MIME类型。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
 
 
 ### OH_AVCODEC_MIMETYPE_VIDEO_MPEG4

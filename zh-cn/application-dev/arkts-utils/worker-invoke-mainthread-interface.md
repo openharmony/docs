@@ -1,10 +1,10 @@
-# Worker同步调用主线程的接口
+# Worker同步调用宿主线程的接口
 
 如果一个接口在主线程中已经实现了，Worker需要调用该接口，那么可以使用下面这种方式实现。
 
-下面以Worker同步调用主线程接口为例进行说明。
+下面以Worker同步调用宿主线程接口为例进行说明。
 
-1. 首先，在主线程实现需要调用的接口，并且创建Worker对象，在Worker上注册需要调用的接口。
+1. 首先，在宿主线程实现需要调用的接口，并且创建Worker对象，在Worker上注册需要调用的接口。
 
    ```ts
    // IconItemSource.ets
@@ -52,7 +52,7 @@
    workerInstance.postMessage("run setUp in picData");
    ```
 
-2. 然后，在Worker中通过callGlobalCallObjectMethod接口就可以调用主线程中的setUp()方法了。
+2. 然后，在Worker中通过callGlobalCallObjectMethod接口就可以调用宿主线程中的setUp()方法了。
 
    ```ts
    // Worker.ets

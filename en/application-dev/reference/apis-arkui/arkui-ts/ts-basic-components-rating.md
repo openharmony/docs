@@ -20,6 +20,8 @@ Rating(options?: { rating: number, indicator?: boolean })
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name   | Type| Mandatory| Description                                                    |
@@ -33,7 +35,7 @@ Rating(options?: { rating: number, indicator?: boolean })
 
 stars(value: number)
 
-Total number of ratings. A value less than or equal to 0 evaluates to the default value.
+Sets the total number of ratings (stars). If the value set is less than or equal to 0, the default value is used.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -99,6 +101,8 @@ contentModifier(modifier: ContentModifier\<RatingConfiguration>)
 
 Creates a content modifier.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -141,13 +145,17 @@ Triggered when the rating value changes.
 
 You need a custom class to implement the **ContentModifier** API.
 
-| Name | Type   |    Default Value     |  Description             |
-| ------ | ------ | ------ |-------------------------------- |
-| rating | number | 0 |Value to rate.|
-| indicator | boolean | false | Whether the component is used only as an indicator.|
-| stars | number | 5 |Total number of ratings.|
-| stepSize | number | 0.5 |Step of an operation.|
-| triggerChange | Callback\<number> | - |Triggered when the rating value changes.|
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type   |    Read Only   |    Optional     |  Description             |
+| ------ | ------ | ------ |-------------------------------- |-------------------------------- |
+| rating | number | No| No|Value to rate.<br>Default value: **0**|
+| indicator | boolean | No| No| Whether the component is used only as an indicator.<br>Default value: **false**|
+| stars | number | No| No|Total number of ratings.<br>Default value: **5**|
+| stepSize | number | No| No|Step of an operation.<br>Default value: **0.5**|
+| triggerChange | Callback\<number> | No| No|Callback triggered when the rating value changes.|
 
 
 ## Example

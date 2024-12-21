@@ -47,6 +47,8 @@ TextInput(value?: TextInputOptions)
 >  
 >  输入框开启下划线模式时，通用属性padding的默认值为：<br>{<br>&nbsp;top: '12vp',<br>&nbsp;right: '0vp',<br>&nbsp;bottom: '12vp',<br>&nbsp;left: '0vp'<br> }
 >
+>  当输入框设置padding为0时，可设置borderRadius为0避免光标被截断。
+>
 >   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
 ### type
@@ -387,7 +389,7 @@ showError(value?: ResourceStr | undefined)
 
 设置错误状态下提示的错误文本或者不显示错误状态。
 
-当参数类型为ResourceStr并且输入内容不符合定义规范时，提示错误文本，当提示错误单行文本超长时，末尾以省略号显示。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2)。
+当参数类型为ResourceStr并且输入内容不符合定义规范时，提示错误文本，当提示错误单行文本超长时，末尾以省略号显示。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2设置下划线)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -439,7 +441,7 @@ passwordIcon(value: PasswordIcon)
 
 enableKeyboardOnFocus(value: boolean)
 
-设置TextInput通过点击以外的方式获焦时，是否绑定输入法。
+设置TextInput通过点击以外的方式获焦时，是否主动拉起软键盘。
 
 从API version 10开始，获焦默认绑定输入法。
 
@@ -451,7 +453,7 @@ enableKeyboardOnFocus(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| value  | boolean | 是   | 通过点击以外的方式获焦时，是否绑定输入法。<br/>默认值：true |
+| value  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>默认值：true |
 
 ### selectionMenuHidden<sup>10+</sup>
 
@@ -518,6 +520,8 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[TextInputController](#textinputcontroller8).[stopEditing](#stopediting10)方法控制键盘关闭。
 
 如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。
+
+当设置自定义键盘时，可以通过绑定[onKeyPrelme](ts-universal-events-key.md#onkeypreime12)事件规避物理键盘的输入。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -971,7 +975,7 @@ enableHapticFeedback(isEnabled: boolean)
 | 名称                          | 说明                                                     |
 | ----------------------------- | ------------------------------------------------------------ |
 | Normal                        | 基本输入模式，无特殊限制。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Password                      | 密码输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Password                      | 密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Email                         | 邮箱地址输入模式。<br/>支持数字、字母、下划线、小数点、!、#、$、%、&、'、*、+、-、/、=、?、^、`、\{、\|、\}、~，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Number                        | 纯数字输入模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | PhoneNumber<sup>9+</sup>      | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -1044,6 +1048,8 @@ enableHapticFeedback(isEnabled: boolean)
 onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 输入内容发生变化时，触发该回调。
+
+在本回调中，若执行了光标操作，需要开发者在预上屏场景下依据previewText参数调整光标逻辑，以适应预上屏场景。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1384,8 +1390,10 @@ keepEditableState(): void
 
 ## 示例
 
-### 示例1
-TextInput基本使用示例。
+### 示例1（设置与获取光标位置）
+
+该示例通过controller实现了光标位置的设置与获取的功能。
+
 ```ts
 // xxx.ets
 @Entry
@@ -1460,14 +1468,16 @@ struct TextInputExample {
 
 ![TextInput](figures/TextInput.png)
 
-### 示例2
-passwordIcon、showUnderline、showUnit、showError属性接口使用示例。
+### 示例2（设置下划线）
+
+该示例通过showUnderline、showError、showUnit、passwordIcon属性展示了下划线在不同场景的效果。
+
 ```ts
 @Entry
 @Component
 struct TextInputExample {
-  @State passWordSrc1: Resource = $r('app.media.onIcon')
-  @State passWordSrc2: Resource = $r('app.media.offIcon')
+  @State passWordSrc1: Resource = $r('app.media.ImageOne')
+  @State passWordSrc2: Resource = $r('app.media.ImageTwo')
   @State textError: string = ''
   @State text: string = ''
   @State nameText: string = 'test'
@@ -1498,22 +1508,22 @@ struct TextInputExample {
       // 自定义密码显示图标
       TextInput({ placeholder: 'user define password icon' })
         .type(InputType.Password)
-        .width(380)
+        .width(350)
         .height(60)
         .passwordIcon({ onIconSrc: this.passWordSrc1, offIconSrc: this.passWordSrc2 })
       // 下划线模式
       TextInput({ placeholder: 'underline style' })
         .showUnderline(true)
-        .width(380)
+        .width(350)
         .height(60)
         .showError('Error')
         .showUnit(this.itemEnd)
 
       Text(`用户名：${this.text}`)
-        .width('95%')
+        .width(350)
       TextInput({ placeholder: '请输入用户名', text: this.text })
         .showUnderline(true)
-        .width(380)
+        .width(350)
         .showError(this.textError)
         .onChange((value: string) => {
           this.text = value
@@ -1529,16 +1539,32 @@ struct TextInputExample {
             event.keepEditableState()
           }
         })
+      // 设置下划线颜色
+      TextInput({ placeholder: '提示文本内容' })
+        .width(350)
+        .showUnderline(true)
+        .underlineColor({
+          normal: Color.Orange,
+          typing: Color.Green,
+          error: Color.Red,
+          disable: Color.Gray
+        });
+      TextInput({ placeholder: '提示文本内容' })
+        .width(350)
+        .showUnderline(true)
+        .underlineColor(Color.Gray);
 
-    }.width('100%')
+    }.width('100%').margin({ top: 10 })
   }
 }
 ```
 
-![TextInputError](figures/TextInputError.png)
+![TextInputError](figures/TextInputUnderline.png)
 
-### 示例3
-TextInput绑定自定义键盘使用示例。
+### 示例3（设置自定义键盘）
+
+该示例通过customKeyboard属性实现了自定义键盘的功能。
+
 ```ts
 // xxx.ets
 @Entry
@@ -1579,14 +1605,15 @@ struct TextInputExample {
 
 ![customKeyboard](figures/textInputCustomKeyboard.png)
 
+### 示例4（设置右侧清除按钮样式）
 
-### 示例4
-cancelButton属性接口使用示例。
+该示例通过cancelButton属性展示了自定义右侧清除按钮样式的效果。
+
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct ClearNodeExample {
+struct TextInputExample {
   @State text: string = ''
   controller: TextInputController = new TextInputController()
 
@@ -1613,8 +1640,10 @@ struct ClearNodeExample {
 
 ![cancelButton](figures/TextInputCancelButton.png)
 
-### 示例5
-TextInput计数器使用示例。
+### 示例5（设置计数器）
+
+该示例通过maxLength、showCounter、showUnderline属性实现了计数器的功能。
+
 ```ts
 // xxx.ets
 @Entry
@@ -1646,8 +1675,9 @@ struct TextInputExample {
 ![TextInputCounter](figures/TextInputShowCounter.jpg)
 
 
-### 示例6
-本示例展示如何在TextInput上将电话号码格式化为XXX XXXX XXXX。
+### 示例6（电话号码格式化）
+
+该示例通过onChange回调实现了电话号码格式化为XXX XXXX XXXX的功能。
 
 ```ts
 @Entry
@@ -1792,41 +1822,9 @@ struct TextInputExample {
 ```
 ![phone_example](figures/phone_number.PNG)
 
-### 示例7
+### 示例7（设置文本断行规则）
 
-本示例展示如何在下划线开启时，设置下划线颜色。
-
-```ts
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Column() {
-        TextInput({ placeholder: '提示文本内容' })
-          .showUnderline(true)
-          .underlineColor({
-            normal: Color.Orange,
-            typing: Color.Green,
-            error: Color.Red,
-            disable: Color.Gray
-          });
-        TextInput({ placeholder: '提示文本内容' })
-          .showUnderline(true)
-          .underlineColor(Color.Gray);
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-![UnderlineColor](figures/UnderlineColor.png)
-
-
-### 示例8
-示例展示设置不同wordBreak属性的TextInput样式。
+该示例通过wordBreak属性实现了TextArea不同断行规则下的效果。
 
 ```ts
 // xxx.ets
@@ -1872,9 +1870,9 @@ struct TextInputExample {
 ```
 ![TextInputWordBreak](figures/TextInputWordBreak.jpeg)
 
-### 示例9
+### 示例8（设置文本样式）
 
-该示例实现了使用lineHeight设置文本的文本行高，使用letterSpacing设置文本字符间距，使用decoration设置文本装饰线样式。
+该示例通过lineHeight、letterSpacing、decoration属性展示了不同样式的文本效果。
 
 ```ts
 @Entry
@@ -1919,9 +1917,9 @@ struct TextInputExample {
 
 ![TextInputDecoration](figures/textinput_decoration.png)
 
-### 示例10
+### 示例9（设置文字特性效果）
 
-fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果。
+该示例通过fontFeature属性实现了文本在不同文字特性下的展示效果。
 
 ```ts
 @Entry
@@ -1949,14 +1947,14 @@ struct TextInputExample {
 
 ![fontFeature](figures/textInputFontFeature.png)
 
-### 示例11
+### 示例10（自定义键盘避让）
 
-自定义键盘弹出发生避让示例。
+该示例通过自定义键盘实现了键盘避让的效果。
 
 ```ts
 @Entry
 @Component
-struct Index {
+struct TextInputExample {
   controller: TextInputController = new TextInputController()
   @State inputValue: string = ""
   @State height1: string | number = '80%'
@@ -2019,9 +2017,9 @@ struct Index {
 
 ![CustomTextInputType](figures/textInputCustomKeyboard.gif)
 
-### 示例12
+### 示例11（设置文本自适应）
 
-该示例实现了使用minFontSize，maxFontSize及heightAdaptivePolicy设置文本自适应字号。
+该示例通过minFontSize、maxFontSize、heightAdaptivePolicy属性实现了文本自适应字号的功能。
 
 ```ts
 @Entry
@@ -2070,8 +2068,9 @@ struct TextInputExample {
 
 ![TextInputAdaptFont](figures/textinput_adapt_font.png)
 
-### 示例13
-lineBreakStrategy使用示例，展示了lineBreakStrategy设置不同挡位的效果。
+### 示例12（设置折行规则）
+
+该示例通过lineBreakStrategy属性实现了TextArea不同折行规则下的效果。
 
 ```ts
 @Entry
@@ -2111,10 +2110,8 @@ struct TextInputExample {
 
 ![textInputLineBreakStrategy](figures/textInputLineBreakStrategy.gif)
 
-### 示例14
-
-该示例展示输入框支持插入和删除回调。
-
+### 示例13（支持插入和删除回调）
+该示例通过onWillInsert、onDidInsert、onWillDelete、onDidDelete接口实现了插入和删除的效果。
 ```ts
 // xxx.ets
 @Entry
@@ -2165,9 +2162,9 @@ struct TextInputExample {
 
 ![TextInputInsertAndDelete](figures/TextInputInsertAndDelete.PNG)
 
-### 示例15
+### 示例14（文本扩展自定义菜单）
 
-editMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+该示例通过editMenuOptions接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能。
 
 ```ts
 // xxx.ets
@@ -2177,15 +2174,6 @@ struct TextInputExample {
   @State text: string = 'TextInput editMenuOptions'
 
   onCreateMenu(menuItems: Array<TextMenuItem>) {
-    menuItems.forEach((value, index) => {
-      value.icon = $r('app.media.startIcon')
-      if (value.id.equals(TextMenuItemId.COPY)) {
-        value.content = "复制change"
-      }
-      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
-        value.content = "全选change"
-      }
-    })
     let item1: TextMenuItem = {
       content: 'custom1',
       icon: $r('app.media.startIcon'),

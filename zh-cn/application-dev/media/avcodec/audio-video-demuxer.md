@@ -174,20 +174,10 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       return;
    }
    ```
-4. 注册[DRM信息监听函数](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfocallback)（可选，若非DRM码流或已获得[DRM信息](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo)，可跳过此步）。
+4. 注册[DRM信息监听函数](../../reference/apis-avcodec-kit/_a_v_demuxer.md#demuxer_mediakeysysteminfocallback)（可选，若非DRM码流或已获得[DRM信息](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo)，可跳过此步）。
 
-   添加头文件
-   ```c++
-   #include <multimedia/drm_framework/native_drm_common.h>
-   ```
-   在 CMake 脚本中链接动态库
+   设置DRM信息监听的接口，回调函数支持返回解封装器实例，适用于多个解封装器场景。
 
-   ``` cmake
-   target_link_libraries(sample PUBLIC libnative_drm.so)
-   ```
-   设置DRM信息监听的接口有两种，示例一所示的回调函数支持返回解封装器实例，适用于多个解封装器场景，推荐使用。示例二所示的回调函数不支持返回解封装器实例，适用于单个解封装器实例场景。
-
-   使用示例一：
    ```c++
    // DRM信息监听回调OnDrmInfoChangedWithObj实现
    static void OnDrmInfoChangedWithObj(OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *drmInfo)
@@ -197,22 +187,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
    Demuxer_MediaKeySystemInfoCallback callback = &OnDrmInfoChangedWithObj;
    Drm_ErrCode ret = OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(demuxer, callback);
-
    ```
-
-   使用示例二：
-   ```c++
-   // DRM信息监听回调OnDrmInfoChanged实现
-   static void OnDrmInfoChanged(DRM_MediaKeySystemInfo *drmInfo)
-   {
-      // 解析DRM信息，包括数量、DRM类型及对应pssh
-   }
-
-   DRM_MediaKeySystemInfoCallback callback = &OnDrmInfoChanged;
-   Drm_ErrCode ret = OH_AVDemuxer_SetMediaKeySystemInfoCallback(demuxer, callback);
-   ```
-
    在监听到DRM信息后，也可主动调用获取DRM信息(uuid及对应pssh)接口。
+
    ```c++
    DRM_MediaKeySystemInfo mediaKeySystemInfo;
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
@@ -314,7 +291,8 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    | AVCODEC_BUFFER_FLAGS_DISCARD  | 可丢弃的帧。 |
 
    ```c++
-   // 创建 buffer，用与保存用户解封装得到的数据
+   // 按照指定size创建buffer，用于保存用户解封装得到的数据。
+   // buffer大小设置建议大于待获取的码流大小，示例中buffer大小设置为单帧图像的大小。
    OH_AVBuffer *buffer = OH_AVBuffer_Create(w * h * 3 >> 1);
    if (buffer == nullptr) {
       printf("build buffer failed");

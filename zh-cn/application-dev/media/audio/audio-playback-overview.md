@@ -14,7 +14,7 @@
 
 - [TonePlayer](using-toneplayer-for-playback.md)：拨号和回铃音播放ArkTS/JS API，只能在固定的类型范围内选择播放内容，无需输入媒体资源或音频数据，适用于拨号盘按键和通话回铃音的特定场景。该功能当前仅对系统应用开放。<!--DelEnd-->
 
-除上述方式外，也可以通过Media Kit实现音频播放。
+除上述方式外，也可以通过Media Kit中的AVPlayer和SoundPool实现音频播放。
 
 - [AVPlayer](../media/using-avplayer-for-playback.md)：用于音频播放的ArkTS/JS API，集成了流媒体和本地资源解析、媒体资源解封装、音频解码和音频输出功能。可用于直接播放mp3、m4a等格式的音频文件，不支持直接播放PCM格式文件。
 

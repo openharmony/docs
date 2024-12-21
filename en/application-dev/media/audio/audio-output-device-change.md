@@ -9,6 +9,7 @@ You can use [outputDeviceChangeWithInfo](../../reference/apis-audio-kit/js-apis-
 [outputDeviceChangeWithInfo](../../reference/apis-audio-kit/js-apis-audio.md#onoutputdevicechangewithinfo11) contains the information about the new audio output device, in the form of an array. Generally, the array contains information about only one device. For details, see [AudioDeviceDescriptors](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptors).
 
 ## Device Change Reason
+
 The system sends [AudioStreamDeviceChangeReason](../../reference/apis-audio-kit/js-apis-audio.md#audiostreamdevicechangereason11) to the application in any of the following cases:
 
 - **REASON_NEW_DEVICE_AVAILABLE**: A new device is available.
@@ -53,15 +54,15 @@ The system sends [AudioStreamDeviceChangeReason](../../reference/apis-audio-kit/
     channels: audio.AudioChannel.CHANNEL_2, // Channel.
     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // Sampling format.
     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
-  }
+  };
   let audioRendererInfo: audio.AudioRendererInfo = {
     usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type.
     rendererFlags: 0 // AudioRenderer flag.
-  }
+  };
   let audioRendererOptions: audio.AudioRendererOptions = {
     streamInfo: audioStreamInfo,
     rendererInfo: audioRendererInfo
-  }
+  };
   
   // Create an AudioRenderer instance.
   audio.createAudioRenderer(audioRendererOptions).then((data) => {

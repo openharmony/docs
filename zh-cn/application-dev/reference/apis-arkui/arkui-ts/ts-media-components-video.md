@@ -455,7 +455,9 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 ## 示例
 
-### 示例1
+### 示例1（视频播放基础用法）
+
+基础用法，包括控制栏、预览图、自动播放、播放速度、控制器（开始播放、暂停播放、停止播放、重置avPlayer、跳转等）以及一些状态回调方法。
 
 ```ts
 // xxx.ets
@@ -571,9 +573,9 @@ interface TimeObject {
 }
 ```
 
-### 示例2
+### 示例2（图像分析功能）
 
-图像分析功能使用示例。
+使用enableAnalyzer属性开启图像AI分析。
 
 ```ts
 // xxx.ets

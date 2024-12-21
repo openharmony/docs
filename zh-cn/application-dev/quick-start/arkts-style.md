@@ -16,15 +16,6 @@
 
 - 当前\@Styles仅支持[通用属性](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)和[通用事件](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)。
 
-- \@Styles方法不支持参数，反例如下。
-
-  ```ts
-  // 反例： @Styles不支持参数
-  @Styles function globalFancy (value: number) {
-    .width(value)
-  }
-  ```
-
 - \@Styles可以定义在组件内或全局，在全局定义时需在方法名前面添加function关键字，组件内定义时则不需要添加function关键字。
 
 > **说明：**
@@ -54,8 +45,8 @@
 
   @Entry
   @Component
-  struct attributeDemo {
-    @State modifier: MyButtonModifier = new MyButtonModifier()
+  struct AttributeDemo {
+    @State modifier: MyButtonModifier = new MyButtonModifier();
 
     build() {
       Row() {
@@ -76,7 +67,7 @@
   ```ts
   // setAttribute.ets
   export class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
-    isDark: boolean = false
+    isDark: boolean = false;
     applyNormalAttribute(instance: ButtonAttribute): void {
       if (this.isDark) {
         instance.backgroundColor(Color.Black)
@@ -92,12 +83,12 @@
   ```ts
   @Component
   struct FancyUse {
-    @State heightValue: number = 100
+    @State heightValue: number = 100;
     @Styles fancy() {
       .height(this.heightValue)
       .backgroundColor(Color.Yellow)
       .onClick(() => {
-        this.heightValue = 200
+        this.heightValue = 200;
       })
     }
   }
@@ -105,6 +96,40 @@
 
 - 组件内\@Styles的优先级高于全局\@Styles。
   框架优先找当前组件内的\@Styles，如果找不到，则会全局查找。
+
+## 限制条件
+
+- 不支持在\@Styles方法内使用逻辑组件，在逻辑组件内的属性不生效。
+
+```ts
+// 错误写法
+@Styles function backgroundColorStyle() {
+  if (true) {
+    .backgroundColor(Color.Red)
+  }
+}
+
+// 正确写法
+@Styles function backgroundColorStyle() {
+  .backgroundColor(Color.Red)
+}
+```
+
+## 限制条件
+
+- \@Styles方法不能有参数，编译期会报错，提醒开发者@Styles方法不支持参数。
+
+  ```ts
+  // 错误写法： @Styles不支持参数，编译期报错
+  @Styles function globalFancy (value: number) {
+    .width(value)
+  }
+
+  // 正确写法
+  @Styles function globalFancy () {
+    .width(value)
+  }
+  ```
 
 
 ## 使用场景
@@ -124,7 +149,7 @@
 @Entry
 @Component
 struct FancyUse {
-  @State heightValue: number = 100
+  @State heightValue: number = 100;
   // 定义在组件内的@Styles封装的样式
   @Styles fancy() {
     .width(200)

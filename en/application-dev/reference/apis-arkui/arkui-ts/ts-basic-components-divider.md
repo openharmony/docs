@@ -36,11 +36,11 @@ Sets the direction of the divider.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type   | Mandatory | Description                                                        |
+| Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether the divider is vertical or horizontal.<br>**false**: A horizontal divider is used.<br>**true**: A vertical divider is used.<br>Default value: **false** |
+| value  | boolean | Yes  | Whether the divider is vertical or horizontal.<br>**false**: A horizontal divider is used.<br>**true**: A vertical divider is used.<br>Default value: **false**|
 
 ### color
 
@@ -54,11 +54,11 @@ Sets the color of the divider.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                                 |
+| Name| Type                                      | Mandatory| Description                                 |
 | ------ | ------------------------------------------ | ---- | ------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the divider.<br>Default value: **'\#33182431'** |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the divider.<br>Default value: **'\#33182431'**|
 
 ### strokeWidth
 
@@ -72,11 +72,11 @@ Sets the stroke width of the divider.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                      | Mandatory | Description                                                        |
+| Name| Type                      | Mandatory| Description                                                        |
 | ------ | -------------------------- | ---- | ------------------------------------------------------------ |
-| value  | number \| string | Yes  | Stroke width of the divider.<br>Default value: **1px**<br>Unit: vp<br>**NOTE**<br>This attribute cannot be set to a percentage. The priority of this attribute is lower than that of the universal attribute [height](ts-universal-attributes-size.md#height). If the value of this attribute is greater than that of **height**, cropping is performed based on the **height** settings. |
+| value  | number \| string | Yes  | Stroke width of the divider.<br>Default value: **1px**<br>Unit: vp<br>**NOTE**<br>This attribute cannot be set to a percentage. The priority of this attribute is lower than that of the universal attribute [height](ts-universal-attributes-size.md#height). If the value of this attribute is greater than that of **height**, cropping is performed based on the **height** settings. Due to hardware limitations on some devices where 1 px dividers may not display properly after rounding, you are advised to use the **2px** value.|
 
 ### lineCap
 
@@ -90,11 +90,11 @@ Sets the cap style of the divider.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                             | Mandatory | Description                                            |
+| Name| Type                                             | Mandatory| Description                                            |
 | ------ | ------------------------------------------------- | ---- | ------------------------------------------------ |
-| value  | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | Yes  | Cap style of the divider.<br>Default value: **LineCapStyle.Butt** |
+| value  | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | Yes  | Cap style of the divider.<br>Default value: **LineCapStyle.Butt**|
 
 
 ## Example

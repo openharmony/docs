@@ -14,8 +14,8 @@
 | OH_Sensor_GetInfos(Sensor_Info **infos, uint32_t *count)     | 获取设备上所有传感器的信息。                                 |
 | OH_Sensor_Subscribe(const Sensor_SubscriptionId *id, const Sensor_SubscriptionAttribute *attribute, const Sensor_Subscriber *subscriber) | 订阅传感器数据。系统将以指定的频率向用户上报传感器数据。<br/>订阅加速度传感器，需要申请ohos.permission.ACCELEROMETER权限；<br/>订阅陀螺仪传感器，需要申请ohos.permission.GYROSCOPE权限；<br/>订阅计步器相关传感器时，需要申请ohos.permission.ACTIVITY_MOTION权限；<br/>订阅与健康相关的传感器时，比如心率传感器需要申请ohos.permission.READ_HEALTH_DATA权限，否则订阅失败;<br/>订阅其余传感器不需要申请权限。 |
 | OH_Sensor_Unsubscribe(const Sensor_SubscriptionId *id, const Sensor_Subscriber *subscriber) | 取消订阅传感器数据。<br/>取消订阅加速度计传感器，需要申请ohos.permission.ACCELEROMETER权限； <br/>取消订阅陀螺仪传感器，需要申请ohos.permission.GYROSCOPE权限； <br/>取消订阅计步器相关传感器时，需要申请ohos.permission.ACTIVITY_MOTION权限；<br/>取消订阅与健康相关的传感器时，需要申请ohos.permission.READ_HEALTH_DATA权限，否则取消订阅失败。 <br/>取消订阅其余传感器不需要申请权限。 |
-| OH_Sensor_CreateInfos(uint32_t count)                        | 用给定的数字创建一个实例数组，请参考[Sensor_Info](../../reference/apis-sensor-service-kit/_sensor.md)。 |
-| OH_Sensor_DestroyInfos(Sensor_Info **sensors, uint32_t count) | 销毁实例数组并回收内存，请参考[Sensor_Info](../../reference/apis-sensor-service-kit/_sensor.md)。 |
+| OH_Sensor_CreateInfos(uint32_t count)                        | 用给定的数字创建一个实例数组，请参考[Sensor_Info](../../reference/apis-sensor-service-kit/_sensor.md#sensor_info)。 |
+| OH_Sensor_DestroyInfos(Sensor_Info **sensors, uint32_t count) | 销毁实例数组并回收内存，请参考[Sensor_Info](../../reference/apis-sensor-service-kit/_sensor.md#sensor_info)。 |
 | OH_SensorInfo_GetName(Sensor_Info *sensor, char *sensorName, uint32_t *length) | 获取传感器名称。                                             |
 | OH_SensorInfo_GetVendorName(Sensor_Info* sensor, char *vendorName, uint32_t *length) | 获取传感器的厂商名称。                                       |
 | OH_SensorInfo_GetType(Sensor_Info* sensor, Sensor_Type *sensorType) | 获取传感器类型。                                             |
@@ -133,7 +133,7 @@
            return nullptr;
        }
        Sensor_Info **sensors = OH_Sensor_CreateInfos(count); // 用给定的数字创建一个实例数组。
-       if (sensor == nullptr) {
+       if (sensors == nullptr) {
            return nullptr;
        }        
        ret = OH_Sensor_GetInfos(sensors, &count); // 获取设备上所有传感器的信息。 
@@ -245,9 +245,15 @@
 
 10. 在types/libentry路径下index.d.ts文件中引入Napi接口。
 
-   ```c
-   export const getSensorInfos: () => number;
-   export const subscriber: () => number;
-   ```
+    ```c
+     export const getSensorInfos: () => number;
+     export const subscriber: () => number;
+    ```
 
-   
+11. 删除Index.ets中的已废弃函数。
+
+    ```js
+    .onClick(() => {
+        hilog.info(0x0000, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.add(2, 3));
+    })
+    ```

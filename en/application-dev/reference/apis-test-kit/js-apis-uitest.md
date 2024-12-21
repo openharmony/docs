@@ -267,7 +267,7 @@ Specifies the type attribute of the target component.
 
 >**NOTE**
 >
->You can define the type of the component, and you can use [DevEco Testing](https://developer.huawei.com/consumer/cn/download) to query the type information of the component.
+>You can define the type of the component. In addition, you can use [DevEco Testing](https://developer.huawei.com/consumer/cn/download) to query the type information of the component.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1926,7 +1926,7 @@ Searches this **Driver** object for the target component that matches the given 
 
 | Name| Type      | Mandatory| Description                                     |
 | ------ | ---------- | ---- | ----------------------------------------- |
-| On     | [On](#on9) | Yes  | Attributes of the target component.                     |
+| on    | [On](#on9) | Yes  | Attributes of the target component.                     |
 | time   | number     | Yes  | Duration for searching for the target component, in ms. The value must be greater than or equal to 0.|
 
 **Return value**
@@ -2217,7 +2217,7 @@ Swipes on this **Driver** object from the given start point to the given end poi
 | starty | number | Yes  | Y coordinate of the start point. The value must be greater than or equal to 0.             |
 | endx   | number | Yes  | X coordinate of the end point. The value must be greater than or equal to 0.             |
 | endy   | number | Yes  | Y coordinate of the end point. The value must be greater than or equal to 0.             |
-| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
+| speed  | number | No  | Swipe speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
@@ -2256,7 +2256,7 @@ Drags this **Driver** object from the given start point to the given end point.
 | starty | number | Yes  | Y coordinate of the start point. The value must be greater than or equal to 0.             |
 | endx   | number | Yes  | X coordinate of the end point. The value must be greater than or equal to 0.             |
 | endy   | number | Yes  | Y coordinate of the end point. The value must be greater than or equal to 0.             |
-| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
+| speed  | number | No  | Drag speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
@@ -3073,7 +3073,7 @@ Drags the mouse pointer from the start point to the end point.
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
 | from   | [Point](#point9) | Yes  | Coordinates of the start point.                                                |
 | to     | [Point](#point9) | Yes  | Coordinates of the end point.                                                  |
-| speed  | number           | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
+| speed  | number           | No  | Drag speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
@@ -4536,7 +4536,7 @@ async function demo() {
 
 scrollSearch(by: By): Promise\<UiComponent>
 
-Scrolls on this component to search for the target component (applicable to components that support scrolling, such as **List**).
+Scrolls on this component to search for the target component (applicable to components that support scrolling, such as **\<List>**).
 
 This API is deprecated since API version 9. You are advised to use [scrollSearch<sup>9+</sup>](#scrollsearch9) instead.
 

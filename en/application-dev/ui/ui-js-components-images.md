@@ -1,11 +1,11 @@
-# Image Development
+# \<image> Development
 
-The **Image** component is used to render and display images. For details, see [image](../reference/apis-arkui/arkui-js/js-components-basic-image.md).
+The **\<image>** component is used to render and display images. For details, see [image](../reference/apis-arkui/arkui-js/js-components-basic-image.md).
 
 
-## Creating an Image Component
+## Creating an \<image> Component
 
-Create an **Image** component in the .hml file under **pages/index**.
+Create an **\<image>** component in the .hml file under **pages/index**.
 ```html
 <!-- index.hml -->
 <div class="container">

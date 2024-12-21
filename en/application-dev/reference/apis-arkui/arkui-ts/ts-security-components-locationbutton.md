@@ -1,6 +1,6 @@
 # LocationButton
 
-The *LocationButton** security component allows you to obtain temporary precise location permission from the user by their touching the button, eliminating the need for a permission request dialog box.
+The **LocationButton** security component represents a Location button that allows you to obtain temporary, precise location permissions from users with a simple button touch, eliminating the need for a permission request dialog box.
 
 > **NOTE**
 >
@@ -26,7 +26,7 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 ### LocationButton
 
-LocationButton(option:LocationButtonOptions)
+LocationButton(options:LocationButtonOptions)
 
 Creates a Location button that contains the specified elements.
 
@@ -40,9 +40,16 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| option | [LocationButtonOptions](#locationbuttonoptions) | No| Creates a Location button that contains the specified elements.|
+| options | [LocationButtonOptions](#locationbuttonoptions) | Yes| Options for creating the Location button. |
 
 ## LocationButtonOptions
+
+Describes the icon, text, and other specific elements for the Location button.
+
+> **NOTE**
+> 
+> At least one of **icon** or **text** must be provided.<br>
+> If neither **icon** nor **text** is provided, the **options** parameter in [LocationButton](#locationbutton-1) will not take effect, and the created Location button will be in the default style.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -50,9 +57,9 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| icon | [LocationIconStyle](#locationiconstyle) | No| Icon style of the Location button.<br>If this parameter is not specified, no icon is contained. Either **icon** or **text**, or both, must be set.|
-| text | [LocationDescription](#locationdescription) | No| Text on the Location button.<br>If this parameter is not specified, no text is contained. Either **icon** or **text**, or both, must be set.|
-| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background type of the Location button.<br>If this parameter is not specified, the system uses a capsule-type button. |
+| icon | [LocationIconStyle](#locationiconstyle) | No| Icon style of the Location button.<br>If this parameter is not specified, there is no icon.|
+| text | [LocationDescription](#locationdescription) | No| Text on the Location button.<br>If this parameter is not specified, there is no text description.|
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background type of the Location button.<br>If this parameter is not specified, the button takes on the capsule type.|
 
 ## LocationIconStyle
 
@@ -98,7 +105,7 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 ## Attributes
 
-This component can only inherit the [universal attributes of security components](ts-securitycomponent-attributes.md#attributes)
+This component can only inherit the [universal attributes of security components](ts-securitycomponent-attributes.md).
 
 ## Events
 
@@ -142,6 +149,18 @@ struct Index {
           .backgroundColor(0x10007dff)
         // Create a button with an icon, text, and background. If the alpha value of the most significant eight bits of the background color is less than 0x1A, the system forcibly adjusts the alpha value to 0xFF.
         LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
+        // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
+        LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
+          .fontSize(16)
+          .width(30)
+        // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
+        LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
+          .fontSize(16)
+          .size({width: 30, height: 30})
+        // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
+        LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
+          .fontSize(16)
+          .constraintSize({minWidth: 0, maxWidth: 30, minHeight: 0, maxHeight: 30})
       }.width('100%')
     }.height('100%')
   }

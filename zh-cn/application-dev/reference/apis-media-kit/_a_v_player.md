@@ -5,6 +5,11 @@
 
 为媒体源提供播放能力的API。
 
+开发者可根据实际的开发需求，参考对应的开发指南及样例：
+
+- [使用AVPlayer播放音频](../../media/media/using-ndk-avplayer-for-playback.md)
+- [使用AVPlayer播放视频](../../media/media/using-ndk-avplayer-for-video-playback.md)
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **起始版本：** 11
@@ -53,7 +58,7 @@
 | -------- | -------- |
 | [AVPlayerState](#avplayerstate-1) {<br/>AV_IDLE = 0, <br/>AV_INITIALIZED = 1, <br/>AV_PREPARED = 2, <br/>AV_PLAYING = 3,<br/>AV_PAUSED = 4, <br/>AV_STOPPED = 5, <br/>AV_COMPLETED = 6, <br/>AV_RELEASED = 7,<br/>AV_ERROR = 8<br/>} | 播放状态。 | 
 | [AVPlayerSeekMode](#avplayerseekmode) { <br/>AV_SEEK_NEXT_SYNC = 0, <br/>AV_SEEK_PREVIOUS_SYNC, <br/>AV_SEEK_CLOSEST = 2<br/>} | 跳转模式。 | 
-| [AVPlaybackSpeed](#avplaybackspeed-1) {<br/>AV_SPEED_FORWARD_0_75_X, <br/>AV_SPEED_FORWARD_1_00_X, <br/>AV_SPEED_FORWARD_1_25_X, <br/> AV_SPEED_FORWARD_1_75_X,<br/>AV_SPEED_FORWARD_2_00_X, <br/>AV_SPEED_FORWARD_0_50_X, <br/>AV_SPEED_FORWARD_1_50_X<br/>} | 播放速度。  | 
+| [AVPlaybackSpeed](#avplaybackspeed-1) {<br/>AV_SPEED_FORWARD_0_75_X, <br/>AV_SPEED_FORWARD_1_00_X, <br/>AV_SPEED_FORWARD_1_25_X, <br/> AV_SPEED_FORWARD_1_75_X,<br/>AV_SPEED_FORWARD_2_00_X, <br/>AV_SPEED_FORWARD_0_50_X, <br/>AV_SPEED_FORWARD_1_50_X<br/>, <br/>AV_SPEED_FORWARD_3_00_X, <br/>AV_SPEED_FORWARD_0_25_X, <br/>AV_SPEED_FORWARD_0_125_X} | 播放速度。  | 
 | [AVPlayerOnInfoType](#avplayeroninfotype-1) {<br/>AV_INFO_TYPE_SEEKDONE = 0, <br/>AV_INFO_TYPE_SPEEDDONE = 1, <br/>AV_INFO_TYPE_BITRATEDONE = 2, <br/>AV_INFO_TYPE_EOS = 3,<br/>AV_INFO_TYPE_STATE_CHANGE = 4, <br/>AV_INFO_TYPE_POSITION_UPDATE = 5, <br/>AV_INFO_TYPE_MESSAGE = 6, <br/>AV_INFO_TYPE_VOLUME_CHANGE = 7,<br/>AV_INFO_TYPE_RESOLUTION_CHANGE = 8, <br/>AV_INFO_TYPE_BUFFERING_UPDATE = 9, <br/>AV_INFO_TYPE_BITRATE_COLLECT = 10, <br/>AV_INFO_TYPE_INTERRUPT_EVENT = 11,<br/>AV_INFO_TYPE_DURATION_UPDATE = 12, <br/>AV_INFO_TYPE_IS_LIVE_STREAM = 13, <br/>AV_INFO_TYPE_TRACKCHANGE = 14, <br/>AV_INFO_TYPE_TRACK_INFO_UPDATE = 15,<br/>AV_INFO_TYPE_SUBTITLE_UPDATE = 16, AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE = 17<br/>} | OnInfo类型。 | 
 | [AVPlayerBufferingType](#avplayerbufferingtype-1) { <br/>AVPLAYER_BUFFERING_START = 1, <br/>AVPLAYER_BUFFERING_END, <br/>AVPLAYER_BUFFERING_PERCENT, <br/>AVPLAYER_BUFFERING_CACHED_DURATION <br/>} | 播放缓冲消息类型定义。  | 
 
@@ -402,6 +407,9 @@ enum AVPlaybackSpeed
 | AV_SPEED_FORWARD_2_00_X | 2.0倍速播放 | 
 | AV_SPEED_FORWARD_0_50_X | 0.5倍速播放<br>**起始版本：** 12 | 
 | AV_SPEED_FORWARD_1_50_X | 1.5倍速播放<br>**起始版本：** 12 | 
+| AV_SPEED_FORWARD_3_00_X | 3.0倍速播放<br>**起始版本：** 13 |
+| AV_SPEED_FORWARD_0_25_X | 0.25倍速播放<br>**起始版本：** 13 |
+| AV_SPEED_FORWARD_0_125_X | 0.125倍速播放<br>**起始版本：** 13 |
 
 
 ### AVPlayerBufferingType
@@ -1604,7 +1612,7 @@ const char* OH_PLAYER_BITRATE_ARRAY
 **描述**
 获取比特率列表的关键字, 对应值类型是uint8_t字节数组。通过该关键字获取信息时：
 - 需要先使用 uint8_t 类型指针变量保存比特率列表，使用 size_t 类型变量保存字节数组长度。
-- 然后分配若干个 uint32_t 类型的存储空间，接收将 uint8_t 字节数组转换为 uint32_t 类型比特率整数值。可以参考[完整实例](../../media/media/using-ndk-avplayer-for-playerback.md#完整示例)中**OHAVPlayerOnInfoCallback**函数。
+- 然后分配若干个 uint32_t 类型的存储空间，接收将 uint8_t 字节数组转换为 uint32_t 类型比特率整数值。可以参考[完整实例](../../media/media/using-ndk-avplayer-for-playback.md#完整示例)中**OHAVPlayerOnInfoCallback**函数。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 

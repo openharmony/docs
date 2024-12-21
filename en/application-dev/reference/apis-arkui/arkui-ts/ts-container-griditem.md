@@ -173,8 +173,8 @@ This attribute must be used before the [style for the selected state](./ts-unive
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type                                 | Mandatory| Description                                                        |
-| ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| Name | Type                 | Mandatory| Description                        |
+| ----- | -------------------- | ---- | ---------------------------- |
 | style | [GridItemStyle](#griditemstyle11) | No  | Style of the grid item.<br>Default value: **GridItemStyle.NONE**<br>If this parameter is set to **GridItemStyle.NONE**, no style is applied.<br>If this parameter is set to **GridItemStyle.PLAIN**, the grid item is in hover or press style depending on the state.|
 
 ## GridItemStyle<sup>11+</sup>
@@ -183,7 +183,7 @@ This attribute must be used before the [style for the selected state](./ts-unive
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name |Value| Description                    |
+| Name |Value| Description                  |
 | ----- |----| ------------------------ |
 | NONE  |  0 | No style.                |
 | PLAIN |  1 | Hover or press style.|

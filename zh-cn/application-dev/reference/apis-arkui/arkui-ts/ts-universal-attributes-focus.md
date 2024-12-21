@@ -140,31 +140,6 @@ requestFocus(value: string): boolean
 >
 >  支持焦点控制的组件：[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[Search](ts-basic-components-search.md)、[Button](ts-basic-components-button.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)。焦点事件当前仅支持在真机上显示运行效果。
 
-
-## FocusController<sup>12+</sup>
-以下clearFocus，requestFocus 两个API需先使用UIContext中的[getFocusController()](../js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取实例，再通过此实例调用对应方法。
-
-
-### clearFocus<sup>12+</sup>
-
-clearFocus(): void
-
-清除焦点，将焦点强制转移到页面根容器节点，焦点链路上其他节点失焦。
-
->  **说明：**
->
->  详细介绍请参见[clearFocus](../js-apis-arkui-UIContext.md#clearfocus12)。
-
-### requestFocus<sup>12+</sup>
-
-requestFocus(key: string): void
-
-通过组件的id将焦点转移到组件树对应的实体节点。
-
->  **说明：**
->
->  详细介绍请参见[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)。
-
 ## FocusBoxStyle<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -223,11 +198,9 @@ focusScopeId(id: string, isGroup?: boolean)
 
 ## 示例
 
-### 示例1
+### 示例1（设置组件获焦和走焦的效果）
 
-defaultFocus/groupDefaultFocus/focusOnTouch示例代码：
-
-defaultFocus可以使绑定的组件成为页面创建后首次获焦的焦点。groupDefaultFocus可以使绑定的组件成为tabIndex容器创建后首次获焦的焦点。focusOnTouch可以使绑定的组件点击后立即获焦。
+该示例通过配置defaultFocus可以使绑定的组件成为页面创建后首次获焦的焦点，配置groupDefaultFocus可以使绑定的组件成为tabIndex容器创建后首次获焦的焦点，配置focusOnTouch可以使绑定的组件点击后立即获焦。
 
 ```ts
 // focusTest.ets
@@ -376,15 +349,14 @@ struct FocusableExample {
 
 ![focusOnTouch](figures/focusOnTouch.png)
 
-### 示例2
+### 示例2（设置指定组件获焦）
+
+该示例通过配置focusControl.requestFocus使指定组件获取焦点。
 
 > **说明：**
 > 
 > 直接使用focusControl可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getFocusController](../js-apis-arkui-UIContext.md#getfocuscontroller12)获取绑定实例的focusControl。
 
-focusControl.requestFocus示例代码：
-
-使用focusControl.requestFocus接口使指定组件获取焦点。
 ```ts
 // requestFocus.ets
 @Entry
@@ -464,11 +436,10 @@ struct RequestFocusExample {
 
 ![requestFocus3](figures/requestFocus3.png)
 
-### 示例3
+### 示例3（设置焦点框样式）
 
-focusBox示例代码：
+该示例通过配置focusBox修改组件的焦点框样式。
 
-使用focusBox修改组件的焦点框样式示例代码：使焦点框变为红色/加粗/内边框。
 ```ts
 import { ColorMetrics, LengthMetrics } from '@kit.ArkUI'
 
@@ -498,11 +469,9 @@ struct RequestFocusExample {
 ![focusBox](figures/focusBox.gif)
 
 
-### 示例4
+### 示例4（设置焦点组走焦）
 
-focusScopePriority/focusScopeId示例代码：
-
-focusScopePriority可以使绑定的组件成为所属容器首次获焦时的焦点。focusScopeId可以使绑定的容器组件组件成为焦点组。
+该示例通过配置focusScopePriority可以使绑定的组件成为所属容器首次获焦时的焦点，配置focusScopeId可以使绑定的容器组件组件成为焦点组。
 
 ```ts
 // focusTest.ets

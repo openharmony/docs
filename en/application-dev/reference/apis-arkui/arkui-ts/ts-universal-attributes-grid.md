@@ -16,7 +16,6 @@
 | gridSpan    | number                                                       | Default number of occupied columns, that is, the number of occupied columns when **span** in **useSizeType** is not set.<br>**NOTE**<br>If the **span** attribute is set, the component width is determined by the grid layout.<br>Default value: **1**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | gridOffset  | number                                                       | Default number of offset columns, that is, the number of offset columns in the start direction of the parent component (which is also the nth column that the component is in) when **offset** in **useSizeType** is not set.<br>**NOTE**<br>- After this attribute is set, the horizontal layout of the current component does not follow the original layout of the parent component. Instead, it offsets along the start direction of the parent component.<br>- Offset = (Column width + Gap) \* Number of columns.<br>- After this attribute is set, sibling components will be arranged relatively to this component, as in the relative layout.<br>Default value: **0**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
-
 ## Example
 
 ```ts

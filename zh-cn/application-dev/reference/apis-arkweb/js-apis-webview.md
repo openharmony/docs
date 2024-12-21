@@ -6,7 +6,7 @@
 >
 > - 本模块接口从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - 示例效果请以真机运行为准，当前IDE预览器不支持。
+> - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## 需要权限
 
@@ -647,6 +647,14 @@ struct WebComponent {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
+      Button('deleteJavaScriptRegister')
+        .onClick(() => {
+          try {
+            this.controller.deleteJavaScriptRegister("objTestName");
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
       Web({ src: '', controller: this.controller })
         .javaScriptAccess(true)
         .onControllerAttached(() => {
@@ -761,7 +769,7 @@ export default class EntryAbility extends UIAbility {
 
 static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
-设置是否启用网页调试功能。详情请参考[Devtools工具](../../web/web-debugging-with-devtools.md)。
+设置是否启用网页调试功能。详情请参考[DevTools工具](../../web/web-debugging-with-devtools.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -981,7 +989,7 @@ data数据必须使用base64编码或将内容中的任何#字符编码为%23。
 | data       | string | 是   | 按照"base64"或者"URL"编码后的一段字符串。                    |
 | mimeType   | string | 是   | 媒体类型（MIME）。                                           |
 | encoding   | string | 是   | 编码类型，具体为"base64"或者"URL"编码。                       |
-| baseUrl    | string | 否   | 指定的一个URL路径（"http"/"https"/"data"协议），并由Web组件赋值给window.origin。 |
+| baseUrl    | string | 否   | 指定的一个URL路径（"http"/"https"/"data"协议），并由Web组件赋值给window.origin。当加载大量html文件时，需设置为"data"。 |
 | historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
 
 > **说明：**
@@ -1099,6 +1107,8 @@ accessForward(): boolean
 
 当前页面是否可前进，即当前页面是否有前进历史记录。
 
+可以结合使用[getBackForwardEntries](#getbackforwardentries)来获取当前WebView的历史信息列表，以及使用[accessStep](#accessstep)来判断是否可以按照给定的步数前进或后退。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
@@ -1193,6 +1203,8 @@ struct WebComponent {
 accessBackward(): boolean
 
 当前页面是否可后退，即当前页面是否有返回历史记录。
+
+可以结合使用[getBackForwardEntries](#getbackforwardentries)来获取当前WebView的历史信息列表，以及使用[accessStep](#accessstep)来判断是否可以按照给定的步数前进或后退。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1578,6 +1590,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 
 > **说明：**
 >
+> - registerJavaScriptProxy需要和deleteJavaScriptRegister接口配合使用，防止内存泄漏。
 > - 请尽可能只在可信的URL及安全通信HTTPS场景下进行registerJavaScriptProxy注册。在非可信的Web组件中注入JavaScript对象，可能会导致应用被恶意攻击。
 > - 在注册registerJavaScriptProxy后，应用会将JavaScript对象暴露给所有的页面frames。
 > - 同一方法在同步与异步列表中重复注册，将默认异步调用。
@@ -1589,7 +1602,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 
 | 参数名     | 类型       | 必填 | 说明                                        |
 | ---------- | -------------- | ---- | ------------------------------------------------------------ |
-| object     | object         | 是   | 参与注册的应用侧JavaScript对象。可以声明方法，也可以声明属性，但是不支持h5直接调用。<br>方法的参数和返回类型可以为string，number，boolean。<br>方法的参数和返回类型支持Dictionary，Array，最多嵌套10层，每层1w个数据。<br>方法的参数和返回类型支持Object，需要在Object里添加属性methodNameListForJsProxy:[fun1, fun2]，fun1和fun2为可被调用的方法。<br>方法的参数支持Function，Promise，它们的Callback不能有返回值。<br>方法的返回类型支持Promise，Promise的Callback不能有返回值。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
+| object     | object         | 是   | 参与注册的应用侧JavaScript对象。可以单独声明方法和属性，但无法同时进行注册与使用。对象只包含属性时，H5可以访问对象中的属性。对象只包含方法时，H5可以访问对象中的方法。<br>方法的参数和返回类型可以为string，number，boolean。<br>方法的参数和返回类型支持Dictionary，Array，最多嵌套10层，每层1w个数据。<br>方法的参数和返回类型支持Object，需要在Object里添加属性methodNameListForJsProxy:[fun1, fun2]，fun1和fun2为可被调用的方法。<br>方法的参数支持Function，Promise，它们的Callback不能有返回值。<br>方法的返回类型支持Promise，Promise的Callback不能有返回值。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
 | name       | string         | 是   | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
 | methodList | Array\<string> | 是   | 参与注册的应用侧JavaScript对象的同步方法。                       |
 | asyncMethodList<sup>12+</sup> | Array\<string> | 否   | 参与注册的应用侧JavaScript对象的异步方法，默认为空。异步方法无法获取返回值。  |
@@ -1689,6 +1702,16 @@ struct Index {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
+      Button('deleteJavaScriptRegister')
+        .onClick(() => {
+          try {
+            this.controller.deleteJavaScriptRegister("objName");
+            this.controller.deleteJavaScriptRegister("objTestName");
+            this.controller.deleteJavaScriptRegister("objAsyncName");
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
     }
@@ -1735,6 +1758,10 @@ struct Index {
 runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
+
+> **说明：**
+>
+> 离屏组件不会触发runJavaScript接口。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4264,6 +4291,10 @@ removeCache(clearRom: boolean): void
 
 清除应用中的资源缓存文件，此方法将会清除同一应用中所有webview的缓存文件。
 
+> **说明：**
+>
+> 可以通过在data/storage/el2/base/cache/web/Cache目录下查看Webview的缓存。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -6052,7 +6083,7 @@ static setRenderProcessMode(mode: RenderProcessMode): void
 
 | 参数名       | 类型           | 必填  | 说明                      |
 | ----------- | ------------- | ---- | ------------------------ |
-| mode        | [RenderProcessMode](#renderprocessmode12)| 是   | 渲染子进程模式。如果传入RenderProcessMode枚举值之外的非法数字，则默认识别为多渲染子进程模式。|
+| mode        | [RenderProcessMode](#renderprocessmode12)| 是   | 渲染子进程模式。可以先调用[getRenderProcessMode()](#getrenderprocessmode12)查看当前设备的ArkWeb渲染子进程模式，枚举值0为单子进程模式，枚举值1为多子进程模式。如果传入RenderProcessMode枚举值之外的非法数字，则默认识别为多渲染子进程模式。 |
 
 **错误码：**
 
@@ -6099,9 +6130,9 @@ static getRenderProcessMode(): RenderProcessMode
 
 **返回值：**
 
-| 类型                                                         | 说明                   |
-| ------------------------------------------------------------ | ---------------------- |
-| [RenderProcessMode](#renderprocessmode12)| 渲染子进程模式类型。如果获取的值不在RenderProcessMode枚举值范围内，则默认为多渲染子进程模式。|
+| 类型                                      | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| [RenderProcessMode](#renderprocessmode12) | 渲染子进程模式类型。调用[getRenderProcessMode()](#getrenderprocessmode12)获取当前设备的ArkWeb渲染子进程模式，枚举值0为单子进程模式，枚举值1为多子进程模式。如果获取的值不在RenderProcessMode枚举值范围内，则默认为多渲染子进程模式。 |
 
 
 **示例：**
@@ -6693,6 +6724,15 @@ struct Index {
           try {
             this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Button('deleteJavaScriptRegister')
+        .onClick(() => {
+          try {
+            this.controller.deleteJavaScriptRegister("objName");
+            this.controller.deleteJavaScriptRegister("objTestName");
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -7960,7 +8000,7 @@ struct WebComponent {
 
 webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): void
 
-获取网页全量绘制结果。（本地资源网页暂不支持）
+获取网页全量绘制结果。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8519,7 +8559,7 @@ setUrlTrustList(urlTrustList: string): void
 
 setPathAllowingUniversalAccess(pathList: Array\<string\>): void
 
-设置一个路径列表，当file协议访问该路径列表中的资源时，允许跨域访问本地文件。此外，当设置了路径列表时，file协议仅允许访问路径列表中的资源（[fileAccess](ts-basic-components-web.md#fileAccess)的行为将会被此接口行为覆盖）。路径列表中的路径必须满足以下路径格式之一：
+设置一个路径列表，当file协议访问该路径列表中的资源时，允许跨域访问本地文件。此外，当设置了路径列表时，file协议仅允许访问路径列表中的资源（[fileAccess](ts-basic-components-web.md#fileaccess)的行为将会被此接口行为覆盖）。路径列表中的路径必须满足以下路径格式之一：
 
 1.应用文件目录的子目录（应用文件目录通过Ability Kit中的[Context.filesDir](../apis-ability-kit/js-apis-inner-application-context.md#context)获取），例如：
 
@@ -8531,7 +8571,7 @@ setPathAllowingUniversalAccess(pathList: Array\<string\>): void
 * /data/storage/el1/bundle/entry/resource/resfile
 * /data/storage/el1/bundle/entry/resource/resfile/example
 
-当路径列表中有其中一个路径不满足以上条件之一，则会抛出异常码401，并且设置路径列表失败。当设置的路径列表为空，则file协议可访问范围以[fileAccess](ts-basic-components-web.md#fileAccess)的行为为准。
+当路径列表中有其中一个路径不满足以上条件之一，则会抛出异常码401，并且设置路径列表失败。当设置的路径列表为空，则file协议可访问范围以[fileAccess](ts-basic-components-web.md#fileaccess)的行为为准。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8586,7 +8626,7 @@ struct WebComponent {
 
 ```
 
-加载的html文件，位于应用资源目录resource/resfile/index.html。
+加载的html文件，位于应用资源目录resource/rawfile/index.html。
 ```html
 <!-- index.html -->
 <!DOCTYPE html>
@@ -8632,7 +8672,7 @@ struct WebComponent {
 </html>
 ```
 
-html中使用file协议通过XMLHttpRequest跨域访问本地js文件，js文件位于resource/resfile/js/script.js。
+html中使用file协议通过XMLHttpRequest跨域访问本地js文件，js文件位于resource/rawfile/js/script.js。
 <!--code_no_check-->
 ```javascript
 const body = document.body;
@@ -8878,6 +8918,14 @@ static fetchCookieSync(url: string, incognito?: boolean): string
 
 获取指定url对应cookie的值。
 
+> **说明：**
+>
+> 系统会自动清理过期的cookie，对于同名key的数据，新数据将会覆盖前一个数据。
+> 
+> 为了获取可正常使用的cookie值，fetchCookieSync需传入完整链接。
+> 
+> fetchCookieSync用于获取所有的cookie值，每条cookie值之间会通过"; "进行分隔，但无法单独获取某一条特定的cookie值。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -9116,13 +9164,15 @@ struct WebComponent {
 
 static configCookieSync(url: string, value: string, incognito?: boolean): void
 
-为指定url设置cookie的值。
+为指定url设置单个cookie的值。
 
 > **说明：**
 >
->configCookie中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
-
->同步cookie的时机建议在Web组件加载之前完成。
+> configCookie中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
+>
+> 同步cookie的时机建议在Web组件加载之前完成。
+>
+> 若通过configCookieSync进行两次或多次设置cookie，则每次设置的cookie之间会通过"; "进行分隔。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9161,7 +9211,7 @@ struct WebComponent {
       Button('configCookieSync')
         .onClick(() => {
           try {
-            // 仅支持设置单个cookie值。
+            // configCookieSync每次仅支持设置单个cookie值。
             webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -12827,7 +12877,11 @@ struct WebComponent {
 
 start(downloadPath: string): void
 
-开始一个下载，参数为下载文件的磁盘存储路径(包含文件名)。该接口需要在WebDownloadDelegate的onBeforeDownload回调中使用，如果在WebDownloadDelegate的onBeforeDownload中不调用start('xxx')该下载任务会一直处于PENDING状态。
+开始下载到指定目录，参数为下载文件的磁盘存储路径(包含文件名)。
+
+> **说明：**
+>
+>该接口应在WebDownloadDelegate的onBeforeDownload回调中使用。若在WebDownloadDelegate的onBeforeDownload中未调用start('xxx')，则下载任务将保持在PENDING状态。处于PENDING状态的下载会将文件下载到临时目录，临时文件会在WebDownloadItem.start指定目标路径后被重命名为目标路径，未下载完成的部分会在WebDownloadItem.start指定目标路径后直接下载到目标路径。如果在调用WebDownloadItem.start之前不希望下载到临时文件路径，可以先通过WebDownloadItem.cancel取消当前下载任务，随后通过WebDownloadManager.resumeDownload恢复被取消的下载任务。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -13196,6 +13250,10 @@ struct WebComponent {
 onBeforeDownload(callback: Callback\<WebDownloadItem>): void
 
 下载开始前通知给用户，用户需要在此接口中调用WebDownloadItem.start("xxx")并提供下载路径，否则下载会一直处于PENDING状态。
+
+> **说明：**
+>
+>处于PENDING状态的下载任务会首先将文件保存至临时目录。在调用WebDownloadItem.start并指定目标路径后，临时文件将被重命名为目标文件名，未完成下载的部分会在调用WebDownloadItem.start并指定目标路径后直接下载到目标路径。若希望避免在调用WebDownloadItem.start前生成临时文件，可先通过WebDownloadItem.cancel来取消当前的下载任务，之后再使用WebDownloadManager.resumeDownload来恢复被取消的下载任务。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -16087,6 +16145,11 @@ struct WebComponent {
 | status | boolean | 否 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
 | size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | web绘制的真实尺寸，number类型，单位vp。|
 | imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 全量绘制结果image.pixelMap格式。|
+
+> **说明：**
+>
+> 仅支持对渲染进程上的资源进行截图：静态图片和文本。
+> 不支持动态视频，如果页面有视频则截图时会显示该视频的占位图片。
 
 ## ScrollType<sup>12+</sup>
 

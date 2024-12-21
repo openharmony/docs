@@ -1,4 +1,3 @@
-
 # 使用HiDumper命令行工具优化性能
 
 ## 简介
@@ -38,7 +37,7 @@ HiDumper是系统为开发、测试人员、IDE工具提供的系统信息获取
      | SystemUi_StatusBar   | 状态栏  |
      | ScreenLockWindow     | 锁屏   |
    
-4. 通过WinId获取对应页面的控件树文件
+4. 通过WinId获取对应页面的控件树文件。
    ```
    hdc shell hidumper -s WindowManagerService -a '-w 28 -element -c' // 28 即为查找到的WinId
    ```
@@ -54,7 +53,7 @@ HiDumper是系统为开发、测试人员、IDE工具提供的系统信息获取
    ![CorrectFilePath2](figures/hidumper-filepath2.PNG)
 
    ```
-   hdc file recv /data/app/el2/100/base/com.example.demo/haps/entry/files/arkui.dump . // 获取文件到本地
+   hdc file recv /data/app/el2/100/base/com.example.demo/haps/entry/files/arkui.dump  // 获取文件到本地
    ```
 6. 打开文件查看应用组件树。组件树文件详细列出了每个组件的各项属性，如子组件数量childSize、组件ID、背景色BackgroundColor等。
    ```
@@ -65,35 +64,35 @@ HiDumper是系统为开发、测试人员、IDE工具提供的系统信息获取
      | IsDisappearing: 0
      | FrameRect: RectT (360.00, 0.00) - [180.00 x 29.00]
      | BackgroundColor: #00000000
-     ...
+     // ...
      |-> Stack childSize:1
        | ID: 23
        | Depth: 10
        | IsDisappearing: 0
        | FrameRect: RectT (0.00, 0.00) - [180.00 x 29.00]
        | BackgroundColor: #FFFFFF00
-       ...
+       // ...
        |-> Stack childSize:1
          | ID: 24
          | Depth: 11
          | IsDisappearing: 0
          | FrameRect: RectT (0.00, 0.00) - [180.00 x 29.00]
          | BackgroundColor: #FF0000FF
-         ...
+         // ...
          |-> Stack childSize:1
            | ID: 25
            | Depth: 12
            | IsDisappearing: 0
            | FrameRect: RectT (0.00, 0.00) - [180.00 x 29.00]
            | BackgroundColor: #00000000
-           ...
+           // ...
            |-> Text childSize:0
                ID: 26
                Depth: 13
                IsDisappearing: 0
                FrameRect: RectT (83.00, 0.00) - [14.00 x 29.00]
                BackgroundColor: #00000000
-               ... 
+               // ... 
    ```
 
 ### 查看if/else控件
@@ -135,7 +134,7 @@ struct ConditionComponent {
       top: 60.000000 left: 135.000000
       Active: 1
       Visible: 0
-      ...
+      // ...
 ```
 当isShow为false时，Row组件隐藏，此时使用HiDumper查看组件树文件，可以发现使用if/else条件语句时，if/else组件也被当作节点被创建，但Row组件并不会被加载。
 ```
@@ -186,7 +185,7 @@ struct VisibilityComponent {
     top: 180.000000 left: 135.000000
     Active: 1
     Visible: 0
-    ...
+    // ...
 ```
 当isVisible为Hidden时，Row组件隐藏，此时使用HiDumper查看控件树文件，Visible属性为1，FrameRect属性内组件的宽和高为450。
 ```
@@ -200,7 +199,7 @@ struct VisibilityComponent {
     top: 180.000000 left: 135.000000
     Active: 1
     Visible: 1
-    ...
+    // ...
 ```
 当isVisible为None时，Row组件隐藏，此时使用HiDumper查看控件树文件，Visible属性为2，FrameRect属性内组件的宽和高为0。
 ```
@@ -214,7 +213,7 @@ struct VisibilityComponent {
     top: 180.000000 left: 135.000000
     Active: 1
     Visible: 2
-    ...
+    // ...
 ```
 对比三种情况的组件数可以发现：
 * 当使用visibility属性控制组件显隐时，该组件通过改变Visible属性实现功能，但组件的其他结构依然会被创建。
@@ -236,7 +235,7 @@ hdc shell hidumper --mem [pid]
 
 ## HiDumper查看CPU信息
 
-在应用开发中，经常会遇到需要大量计算的场景，HiDumper提供了查看CPU使用率的功能，方便开发者进行性能优化。下面将以[Chat](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)为例，展示如何使用HiDumper查看CPU信息。 
+在应用开发中，经常会遇到需要大量计算的场景，HiDumper提供了查看CPU使用率的功能，方便开发者进行性能优化。下面将以[Chat](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/Solutions/IM/Chat)为例，展示如何使用HiDumper查看CPU信息。 
 
 1. 编译项目、安装并打开Chat应用，运行以下hidumper命令获取当前应用的Pid。
     ```

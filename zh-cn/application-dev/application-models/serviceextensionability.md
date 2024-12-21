@@ -194,7 +194,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 
 ## 启动一个后台服务（仅对系统应用开放）
 
-系统应用通过[startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动一个后台服务，服务的[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的want对象。后台服务启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行。因此，后台服务需要在其工作完成时通过调用[ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md)的[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself)来自行停止，或者由另一个组件调用[stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#abilitycontextstopserviceextensionability)来将其停止。
+系统应用通过[startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动一个后台服务，服务的[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的want对象。后台服务启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行。因此，后台服务需要在其工作完成时通过调用[ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md)的[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself)来自行停止，或者由另一个组件调用[stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstopserviceextensionability)来将其停止。
 
 > **说明：**
 > ServiceExtensionContext的startServiceExtensionAbility()、stopServiceExtensionAbility()和terminateSelf()为系统接口，三方应用不支持调用。
@@ -344,7 +344,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 > 后台服务可以在后台长期运行，为了避免资源浪费，需要对后台服务的生命周期进行管理。即一个后台服务完成了请求方的任务，需要及时销毁。销毁已启动的后台服务有两种方式：
 >
 > - 后台服务自身调用[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself)方法来自行停止。
-> - 由其他组件调用[stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#abilitycontextstopserviceextensionability)方法来停止。
+> - 由其他组件调用[stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstopserviceextensionability)方法来停止。
 > 调用terminateSelf()或stopServiceExtensionAbility()方法之后，系统将销毁后台服务。
 
 ## 连接一个后台服务
@@ -479,7 +479,7 @@ ServiceExtensionAbility服务组件在onConnect()中返回[IRemoteObject](../ref
 
 客户端在[onConnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onconnect)中获取到[rpc.IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject)对象后便可与Service进行通信，有如下两种方式：
 
-- 使用服务端提供的IDL接口进行通信（推荐）
+- 使用服务端提供的IDL接口进行通信（推荐）。
 
   ```ts
   // 客户端需要将服务端对外提供的idl_service_ext_proxy.ts导入到本地工程中
@@ -684,6 +684,6 @@ ServiceExtensionAbility服务组件在onConnect()中返回[IRemoteObject](../ref
 
 针对ServiceExtensionAbility开发，有以下相关实例可供参考：
 
-- [Ability与ServiceExtensionAbility通信（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/IDL/AbilityConnectServiceExtension)
+- [Ability与ServiceExtensionAbility通信（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/SystemFeature/IDL/AbilityConnectServiceExtension)
 
-- [Stage模型（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/StageModel)
+- [Stage模型（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/SystemFeature/ApplicationModels/StageModel)

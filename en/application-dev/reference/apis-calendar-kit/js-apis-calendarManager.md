@@ -4,7 +4,7 @@ The **calendarManager** module provides APIs for calendar and event management, 
 
 - A [CalendarManager](#calendarmanager) object is used to manage [Calendar](#calendar) objects.
 
-- A [Calendar](#calendar) object contains the account information [CalendarAccount](#calendaraccount) and configuration information [CalendarConfig](#calendarconfig). Calendars and events are in the one-to-many relationship. That is, a calendar can have multiple events, but an event belongs to only one calendar.
+- A [Calendar](#calendar) object contains the account information [CalendarAccount](#calendaraccount) and configuration information [CalendarConfig](#calendarconfig). An **Event** object is subordinate to a **Calendar** object. To create an **Event** object, you need to create a **Calendar** object first. A **Calendar** contains multiple **Event** objects, but an **Event** belongs to only one **Calendar**. **CalendarManager** is used to manage calendars, and **EventFilter** is used to manage events.
 
 > **NOTE**
 >
@@ -493,7 +493,7 @@ Obtains the created and default **Calendar** objects of the current application.
 
 | Name  | Type                                  | Mandatory| Description                                     |
 | -------- | -------------------------------------- | ---- | ----------------------------------------- |
-| callback | AsyncCallback<[Calendar](#calendar)[]> | Yes  | Callback used to return an array of obtained **Calendar** objects.|
+| callback | AsyncCallback<[Calendar](#calendar)[]> | Yes  | Callback used to return an array of the obtained **Calendar** objects.|
 
 **Error codes**
 
@@ -571,7 +571,7 @@ calendarMgr?.getAllCalendars().then((data: calendarManager.Calendar[]) => {
 
 editEvent(event: Event): Promise\<number>
 
-Creates a single event. If the input parameter **Event** is not set to the event ID, the event creation screen is displayed when this API is called. This API uses a Promise to return the result.
+Creates a single event. If the input parameter **Event** is not set to the event ID, the event creation screen is displayed when this API is called. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -585,9 +585,9 @@ Creates a single event. If the input parameter **Event** is not set to the event
 
 **Return value**
 
-| Type          | Description                    |
-| -------------- | ------------------------ |
-| Promise\<number> | Promise used to return the event ID.|
+| Type          | Description                                                                         |
+| -------------- |-----------------------------------------------------------------------------|
+| Promise&lt;number&gt; | Promise used to return the event ID. The event ID is the unique identifier of the event and is the auto-increment primary key of the database. If the value is less than **0**, the event creation fails; if the value is greater than **0**, the event creation succeeds.|
 
 **Example**
 
@@ -619,9 +619,9 @@ In the following API examples, you need to use [createCalendar()](#createcalenda
 
 **System capability**: SystemCapability.Applications.CalendarData
 
-| Name| Type  | Read-only| Optional| Description    |
-| ---- | ------ | ---- |----| -------- |
-| id   | number | Yes  | No | Calendar account ID.|
+| Name| Type  | Read Only| Optional| Description                                                                      |
+| ---- | ------ | ---- |----|--------------------------------------------------------------------------|
+| id   | number | Yes  | No | Calendar account ID, which is the unique identifier of a calendar account and is the auto-increment primary key of the database. If the value is less than **0**, the account creation fails; if the value is greater than **0**, the account creation succeeds.|
 
 ### addEvent
 
@@ -635,10 +635,10 @@ Creates an event, with no event ID specified in **Event**. This API uses an asyn
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                  |
-| -------- | ---------------------- | ---- | ---------------------- |
-| event    | [Event](#event)        | Yes  | **Event** object.           |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the event ID.|
+| Name  | Type                  | Mandatory| Description                                                                   |
+| -------- | ---------------------- | ---- |-----------------------------------------------------------------------|
+| event    | [Event](#event)        | Yes  | **Event** object.                                                             |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the event ID. The event ID is the unique identifier of the event and is the auto-increment primary key of the database. If the value is less than **0**, the event creation fails; if the value is greater than **0**, the event creation succeeds.|
 
 **Example**
 
@@ -835,10 +835,10 @@ Deletes an event with the specified ID. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description      |
-| -------- | -------------------- | ---- | ---------- |
-| id       | number               | Yes  | Event ID.  |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| Name  | Type                | Mandatory| Description                                    |
+| -------- | -------------------- | ---- |----------------------------------------|
+| id       | number               | Yes  | Event ID, which is the unique identifier of an event. If the input event ID is a positive integer, the event is created.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.                                 |
 
 **Example**
 
@@ -860,18 +860,18 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
   } else {
     console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
-    await calendar.addEvent(event).then((data: number) => {
+    calendar.addEvent(event).then((data: number) => {
       console.info(`Succeeded in adding event, id -> ${data}`);
       id = data;
+      calendar?.deleteEvent(id, (err: BusinessError) => {
+        if (err) {
+          console.error(`Failed to delete event. Code: ${err.code}, message: ${err.message}`);
+        } else {
+          console.info(`Succeeded in deleting event, err -> ${JSON.stringify(err)}`);
+        }
+      });
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
-    });
-    calendar.deleteEvent(id, (err: BusinessError) => {
-      if (err) {
-        console.error(`Failed to delete event. Code: ${err.code}, message: ${err.message}`);
-      } else {
-        console.info(`Succeeded in deleting event, err -> ${JSON.stringify(err)}`);
-      }
     });
   }
 });
@@ -1178,7 +1178,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 getEvents(callback: AsyncCallback\<Event[]>): void
 
-Obtains all events in a calendar. This API uses an asynchronous callback to return the result.
+Obtains all events in the current calendar. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Applications.CalendarData
 
@@ -1495,11 +1495,11 @@ Describes the calendar account information.
 
 **System capability**: SystemCapability.Applications.CalendarData
 
-| Name       | Type                         | Read-only| Optional| Description                                  |
-| ----------- | ----------------------------- | ---- |----| -------------------------------------- |
-| name        | string                        | Yes  | No | Account name.                            |
-| type        | [CalendarType](#calendartype) | No  | No | Account type.                            |
-| displayName | string                        | No  | Yes | Display name of the account. If this parameter is not set, an empty string is used.|
+| Name       | Type                         | Read Only| Optional| Description                              |
+| ----------- | ----------------------------- | ---- |----|----------------------------------|
+| name        | string                        | Yes  | No | Account name (for developers).                    |
+| type        | [CalendarType](#calendartype) | No  | No | Account type.                           |
+| displayName | string                        | No  | Yes | Account name displayed on the calendar application (for users). If this parameter is not set, an empty string is used.|
 
 ## CalendarConfig
 
@@ -1507,7 +1507,7 @@ Describes the calendar configuration information.
 
 **System capability**: SystemCapability.Applications.CalendarData
 
-| Name          | Type    | Read-only   | Optional| Description                                                        |
+| Name          | Type    | Read Only   | Optional| Description                                                        |
 | -------------- |--------|-------|----| ------------------------------------------------------------ |
 | enableReminder | boolean | No    | Yes | Whether to enable the reminder for events in the calendar. The value **true** means to enable the reminder for events in the calendar, and **false** means the opposite. The default value is **true**.|
 | color          | number \| string | No  | Yes | Calendar color. If this parameter is not set, the default value **'#0A59F7'** is used.               |
@@ -1518,7 +1518,7 @@ Describes an **Event** object, including the event title, start time, and end ti
 
 **System capability**: SystemCapability.Applications.CalendarData
 
-| Name          | Type                             | Read-only| Optional| Description                                                                                                                                                                                                     |
+| Name          | Type                             | Read Only| Optional| Description                                                                                                                                                                                                     |
 | -------------- | --------------------------------- | ---- |----|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | id             | number                            | No  | Yes | Event ID. This parameter does not need to be set in the [addEvent()](#addevent) or [addEvents()](#addevents) API.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                           |
 | type           | [EventType](#eventtype)           | No  | No | Event type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                                           |
@@ -1527,9 +1527,9 @@ Describes an **Event** object, including the event title, start time, and end ti
 | startTime      | number                            | No  | No | Start time of the event. The value is a 13-digit timestamp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                                  |
 | endTime        | number                            | No  | No | End time of the event. The value is a 13-digit timestamp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                                 |
 | isAllDay       | boolean                           | No  | Yes | Whether the event is an all-day event. The value **true** means that the event is an all-day event, and **false** means the opposite. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                          |
-| attendee       | [Attendee](#attendee)[]           | No  | Yes | Event attendee. If this parameter is not set, the default null value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                               |
+| attendee       | [Attendee](#attendee)[]           | No  | Yes | Attendee of the conference event. If this parameter is not set, the default null value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                             |
 | timeZone       | string                            | No  | Yes | Time zone of the event. If this parameter is not set, the current system time zone is used. You can call the [getTimeZone()](../apis-basic-services-kit/js-apis-date-time.md#systemdatetimegettimezone) API to obtain the current system time zone.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| reminderTime   | number[]                          | No  | Yes | Amount of time that the reminder occurs before the start of the event, in minutes. For example, if the value is 5, the reminder occurs 5 minutes before the event starts. If this parameter is not set, no reminder is set. The value can be negative.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                 |
+| reminderTime   | number[]                          | No  | Yes | Amount of time that the reminder occurs before the start of the event, in minutes. For example, if the value is 5, the reminder occurs 5 minutes before the event starts. If this parameter is not set, no reminder is set. A negative value indicates the delay time for sending a notification.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
 | recurrenceRule | [RecurrenceRule](#recurrencerule) | No  | Yes | Recurrence rule of the event. If this parameter is not set, the value does not recur.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                              |
 | description    | string                            | No  | Yes | Event description. If this parameter is not set, an empty string is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                                |
 | service        | [EventService](#eventservice)     | No  | Yes | Event service. If this parameter is not set, no service is available.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                              |
@@ -1560,7 +1560,7 @@ Describes the event location.
 
 **System capability**: SystemCapability.Applications.CalendarData
 
-| Name     | Type  | Read-only| Optional| Description                    |
+| Name     | Type  | Read Only| Optional| Description                    |
 | --------- | ------ | ---- |----| ------------------------ |
 | location  | string | No  | Yes | Location. The default value is an empty string.|
 | longitude | number | No  | Yes | Longitude of the location. The default value is **0**.       |
@@ -1708,7 +1708,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 static filterByTitle(title: string): EventFilter
 
-Defines an event title based filter.
+Filters events by event title. This API supports fuzzy match.
 
 **System capability**: SystemCapability.Applications.CalendarData
 
@@ -1748,6 +1748,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
     });
+    // // Perform fuzzy query based on MyEvent. If an event of the MyEvent1 type exists, the event can also be queried.
     const filter = calendarManager.EventFilter.filterByTitle('MyEvent');
     calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
       console.info(`Succeeded in getting events filter by title, data -> ${JSON.stringify(data)}`);
@@ -1766,10 +1767,10 @@ Enumerates event types.
 
 **System capability**: SystemCapability.Applications.CalendarData
 
-| Name     | Value  | Description                |
-| --------- | ---- | -------------------- |
-| NORMAL    | 0    | Normal event.          |
-| IMPORTANT | 1    | Important event. This type of event supports countdown.|
+| Name     | Value  | Description                     |
+| --------- | ---- |-------------------------|
+| NORMAL    | 0    | Normal event, such as conference or an alarm clock.  |
+| IMPORTANT | 1    | Important event, such as wedding anniversary, are not recommended for third-party developers. Important events do not support one-click service redirection and custom reminder time.|
 
 ## RecurrenceRule
 
@@ -1777,13 +1778,19 @@ Describes the recurrence rule of the event.
 
 **System capability**: SystemCapability.Applications.CalendarData
 
-| Name               | Type                                       | Read-only| Optional| Description                                                                       |
-| ------------------- | ------------------------------------------- | ---- |----|---------------------------------------------------------------------------|
-| recurrenceFrequency | [RecurrenceFrequency](#recurrencefrequency) | No  | No | Type of the event recurrence rule.<br>**Atomic service API**: This API can be used in atomic services since API version 11.          |
-| expire              | number                                      | No  | Yes | End date of the recurrence period. If this parameter is not set, the default value **0** is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| count<sup>12+</sup>               | number                                      | No  | Yes | Number of times that an event recurs. If this parameter is not set, the default value **0** is used.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
-| interval<sup>12+</sup>            | number                                      | No  | Yes | Interval for event recurrence. If this parameter is not set, the default value **0** is used.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| excludedDates<sup>12+</sup>       | number[]                                    | No  | Yes | Excluded dates of event recurrence.<br>**Atomic service API**: This API can be used in atomic services since API version 12.          |
+| Name               | Type                                       | Read Only| Optional| Description                                                                                                                                                                                                                                                                                                                             |
+| ------------------- | ------------------------------------------- | ---- |----|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| recurrenceFrequency | [RecurrenceFrequency](#recurrencefrequency) | No  | No | Type of the event recurrence rule.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                                                                                                                                                                |
+| expire              | number                                      | No  | Yes | End date of the recurrence period. If this parameter is not set, the default value **0** is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                                                                                                                                                       |
+| count<sup>12+</sup>               | number                                      | No  | Yes | Number of the recurrent event. The value is a non-negative integer. If this parameter is not set, the default value **0** is used, indicating that the number of recurrent events is infinite; if the value is negative, the effect is the same as that of **0**. If both **count** and **expire** exist, **count** is used.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                    |
+| interval<sup>12+</sup>            | number                                      | No  | Yes | Interval for a recurrent event. The value is a non-negative integer. If this parameter is not set, the default value **0** is used, indicating that the event is repeated based on the recurrence rule without intervals; if the value is negative, the effect is the same as that of **0**. If both **interval** and **expire** exist, **expire** is used.<br>This attribute is related to the **recurrenceFrequency** rule. The recurrence interval varies according to the recurrence rule. For example, if the **interval** value is **2**, the following situations occur:<br>Daily recurrence: The event repeats every two days.<br>Weekly recurrence: The event repeats every two weeks.<br>Monthly recurrence: The event repeats every two months.<br>Yearly recurrence: The event repeats every two years.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| excludedDates<sup>12+</sup>       | number[]                                    | No  | Yes | Excluded date of a recurrent event. The value is in the timestamp format. If this parameter is not set, the default value is empty, indicating that no date is excluded; if the value is **0** or a negative number, the effect is the same as that of the empty value.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                                                |
+| daysOfWeek<sup>12+</sup>       | number[]                                    | No  | Yes | Repeats by day of a week. If this parameter is not set, the default value is empty, indicating that there is no recurrence rule. The value ranges from 1 to 7, corresponding to Monday to Sunday. Other values are invalid and have the same effect as the empty value.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                                        |
+| daysOfMonth<sup>12+</sup>       | number[]                                    | No  | Yes | Repeats by day of a month. If this parameter is not set, the default value is empty, indicating that there is no recurrence rule. The value ranges from 1 to 31, corresponding to the first to the last days of each month. Other values are invalid and have the same effect as the empty value. If this month only has 30 days, the value **31** is invalid.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                 |
+| daysOfYear<sup>12+</sup>       | number[]                                    | No  | Yes | Repeats by day of a year. If this parameter is not set, the default value is empty, indicating that there is no recurrence rule. The value ranges from 1 to 366, corresponding to the first to the last days of each year. Other values are invalid and have the same effect as the empty value. If this year only has 365 days, the value **366** is invalid.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                           |
+| weeksOfMonth<sup>12+</sup>       | number[]                                    | No  | Yes | Repeats by week of a month. If this parameter is not set, the default value is empty, indicating that there is no recurrence rule. The value ranges from 1 to 5, corresponding to the first to the last weeks of each month. Other values are invalid and have the same effect as the empty value. If this month only has four weeks, the value **5** is invalid.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                 |
+| weeksOfYear<sup>12+</sup>       | number[]                                    | No  | Yes | Repeats by week of a year. If this parameter is not set, the default value is empty, indicating that there is no recurrence rule. The value ranges from 1 to 53, corresponding to the first to the last weeks of each year. Other values are invalid and have the same effect as the empty value.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                               |
+| monthsOfYear<sup>12+</sup>       | number[]                                    | No  | Yes | Repeats by month of a year. If this parameter is not set, the default value is empty, indicating that there is no recurrence rule. The value ranges from 1 to 12, corresponding to the first to the last months of each year. Other values are invalid and have the same effect as the empty value.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                               |
 ## RecurrenceFrequency
 
 Enumerates the types of the event recurrence rule.
@@ -1801,15 +1808,15 @@ Enumerates the types of the event recurrence rule.
 
 ## Attendee
 
-Describes the attendee of the event.
+Describes the attendee information of the conference event.
 
 **System capability**: SystemCapability.Applications.CalendarData
 
-| Name | Type  | Read-only| Optional| Description                                                                   |
-| ----- | ------ | ---- |----|-----------------------------------------------------------------------|
-| name  | string | No  | No | Name of the attendee.<br>**Atomic service API**: This API can be used in atomic services since API version 11.        |
-| email | string | No  | No | Email address of the attendee.<br>**Atomic service API**: This API can be used in atomic services since API version 11.       |
-| role<sup>12+</sup>  | [AttendeeRole](#attendeerole12) | No  | Yes | Participant role.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| Name | Type  | Read Only| Optional| Description                                                                |
+| ----- | ------ | ---- |----|--------------------------------------------------------------------|
+| name  | string | No  | No | Name of the attendee.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| email | string | No  | No | Email address of the attendee.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| role<sup>12+</sup>  | [AttendeeRole](#attendeerole12) | No  | Yes | Role of the attendee.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 ## EventService
 
@@ -1819,11 +1826,11 @@ Describes the event service.
 
 **System capability**: SystemCapability.Applications.CalendarData
 
-| Name       | Type                       | Read-only| Optional| Description                                 |
-| ----------- | --------------------------- | ---- |----| ------------------------------------- |
-| type        | [ServiceType](#servicetype) | No  | No | Service type.                           |
-| uri         | string                      | No  | No | URI of the service. It can be used to redirect the user to a page of another application.|
-| description | string                      | No  | Yes | Description of the service. If this parameter is not set, an empty string is used. |
+| Name       | Type                       | Read Only| Optional| Description                                 |
+| ----------- | --------------------------- | ---- |----|-------------------------------------|
+| type        | [ServiceType](#servicetype) | No  | No | Service type.                              |
+| uri         | string                      | No  | No | Service URI, in the DeepLink format. It can be used to redirect the user to a page of another application.|
+| description | string                      | No  | Yes | Description of the service. If this parameter is not set, an empty string is used.                |
 
 ## ServiceType
 
@@ -1847,7 +1854,7 @@ Enumerates the event service types.
 
 ## AttendeeRole<sup>12+</sup>
 
-Enumerates the participant role types.
+Enumerates the attendee role types in the conference event.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

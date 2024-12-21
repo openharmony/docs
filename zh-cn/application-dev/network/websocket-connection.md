@@ -10,7 +10,7 @@ websocket支持心跳检测机制，在客户端和服务端建立WebSocket连�
 
 ## 接口说明
 
-WebSocket连接功能主要由webSocket模块提供。使用该功能需要申请ohos.permission.INTERNET权限。具体接口说明如下表。
+WebSocket连接功能主要由[webSocket模块](../reference/apis-network-kit/js-apis-webSocket.md)提供。使用该功能需要申请ohos.permission.INTERNET权限。具体接口说明如下表。
 
 | 接口名              | 描述                                      |
 | ------------------ | ----------------------------------------- |
@@ -88,4 +88,4 @@ ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
 
 针对WebSocket连接的开发，有以下相关实例可供参考：
 
-- [WebSocket（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/WebSocket)
+- [WebSocket（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/Connectivity/WebSocket)

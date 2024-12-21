@@ -4,6 +4,10 @@
 
 Socket 连接主要是通过 Socket 进行数据传输，支持 TCP/UDP/Multicast/TLS 协议。
 
+> **说明：**
+>
+> 应用退后台又切回前台后，需要对网络通信做失败重试，通信失败后匹配错误码并重新创建新的TCP/UDP连接对象。
+
 ## 基本概念
 
 - Socket：套接字，就是对网络中不同主机上的应用进程之间进行双向通信的端点的抽象。
@@ -872,4 +876,4 @@ tlsServer.off('connect');
 
 针对 Socket 连接开发，有以下相关实例可供参考：
 
-- [网络管理-Socket 连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Socket)
+- [网络管理-Socket 连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/Connectivity/Socket)

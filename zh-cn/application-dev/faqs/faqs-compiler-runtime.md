@@ -54,4 +54,6 @@ if (status != napi_ok) {
 | transform real path error: ERROR, pathName: PATH | 使用realpath函数解析路径失败，ERROR表示错误信息，PATH表示hsp路径。建议开发者重新安装应用。 |
 | CreateFileMapper, mmap failed, errno ERROR. fileName: FILENAME | 使用mmap函数映射安全内存映射失败，ERROR表示错误信息，FILENAME表示文件名。常见原因是系统内存不足、文件未签名。|
 
-```
+## Array数组的长度上限是多少
+
+ECMAScript标准中定义的是2^32 - 1，超过该值会抛出RangeError。

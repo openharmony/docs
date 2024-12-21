@@ -28,7 +28,8 @@ function loadModel() : void {
 
 模型加载成功后，可通过SceneResourceFactory实例创建相机、光源等，再对相机和光源的参数做调节，调整观察角度和光照效果。最后，将Scene实例和ModelType作为SceneOptions传给Component3D组件显示到屏幕。
 
-模型显示的示例代码如下：
+模型显示完整的示例代码如下，需确保gltf文件内容和路径准确。
+
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
@@ -151,5 +152,5 @@ function createLightPromise() : Promise<Light> {
 ## 相关实例
 
 对于模型、相机和光源更加综合的使用可以参考以下实例：
-- [3D引擎接口示例（ArkTS）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Graphics/Graphics3d) 
+- [3D引擎接口示例（ArkTS）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/Graphics/Graphics3d) 
 

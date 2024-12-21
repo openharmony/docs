@@ -5,6 +5,8 @@ The popup component is used to display popups in a specific style.
 >  **NOTE**
 >
 >  - This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  - Use this component with the custom popup features in [popup control](ts-universal-attributes-popup.md) for best results.
 
 ## Modules to Import
 

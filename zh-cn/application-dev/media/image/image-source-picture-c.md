@@ -48,7 +48,18 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
         ~ImagePictureNative() {}
     };
 
+	class ImageAuxiliaryPictureNative {
+	public:
+        Image_ErrorCode errorCode = IMAGE_SUCCESS;
+        Image_AuxiliaryPictureType type = AUXILIARY_PICTURE_TYPE_GAINMAP;
+        OH_AuxiliaryPictureNative *auxiliaryPicture = nullptr;
+        size_t BUFF_SIZE = 640 * 480 * 4; 	//辅助图size 长*宽*每像素占用字节数
+        ImageAuxiliaryPictureNative() {}
+        ~ImageAuxiliaryPictureNative() {}
+    };
+
     static ImagePictureNative *thisPicture = new ImagePictureNative();
+	static ImageAuxiliaryPictureNative *thisAuxiliaryPicture = new ImageAuxiliaryPictureNative();
 
     // 释放ImageSource
     Image_ErrorCode ReleaseImageSource(OH_ImageSourceNative *&source) {
@@ -148,6 +159,15 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
 
         thisPicture->errorCode =
             OH_ImageSourceNative_CreatePicture(thisPicture->source, thisPicture->options, &thisPicture->picture);
+        thisAuxiliaryPicture->errorCode = OH_PictureNative_GetAuxiliaryPicture(thisPicture->picture,
+            thisAuxiliaryPicture->type, &thisAuxiliaryPicture->auxiliaryPicture);
+        if (thisAuxiliaryPicture->errorCode == IMAGE_SUCCESS) {
+            uint8_t* buff = new uint8_t[thisAuxiliaryPicture->BUFF_SIZE];
+        	OH_AuxiliaryPictureNative_ReadPixels(thisAuxiliaryPicture->auxiliaryPicture, buff,
+                &thisAuxiliaryPicture->BUFF_SIZE);
+        	OH_AuxiliaryPictureNative_Release(thisAuxiliaryPicture->auxiliaryPicture);
+        	delete []buff;
+        }
         if (thisPicture->errorCode != IMAGE_SUCCESS) {
             OH_LOG_ERROR(LOG_APP, "ImageSourceNative_CreatePicture failed, errCode: %{public}d.", thisPicture->errorCode);
             return getJsResult(env, thisPicture->errorCode);

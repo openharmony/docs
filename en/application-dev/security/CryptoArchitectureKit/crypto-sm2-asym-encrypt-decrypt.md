@@ -105,18 +105,18 @@ For details about the algorithm specifications, see [SM2](crypto-asym-encrypt-de
     return decryptData;
   }
   // Generate an SM2 key pair.
-  async function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
+  function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
     let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyData };
     let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyData };
     let sm2Generator = cryptoFramework.createAsyKeyGenerator('SM2_256');
-    let keyPair = await sm2Generator.convertKey(pubKeyBlob, priKeyBlob);
-    console.info('convertKey success');
+    let keyPair = sm2Generator.convertKeySync(pubKeyBlob, priKeyBlob);
+    console.info('convertKeySync success');
     return keyPair;
   }
-  async function main() {
+  function main() {
     let pkData = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 129, 28, 207, 85, 1, 130, 45, 3, 66, 0, 4, 90, 3, 58, 157, 190, 248, 76, 7, 132, 200, 151, 208, 112, 230, 96, 140, 90, 238, 211, 155, 128, 109, 248, 40, 83, 214, 78, 42, 104, 106, 55, 148, 249, 35, 61, 32, 221, 135, 143, 100, 45, 97, 194, 176, 52, 73, 136, 174, 40, 70, 70, 34, 103, 103, 161, 99, 27, 187, 13, 187, 109, 244, 13, 7]);
     let skData = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 54, 41, 239, 240, 63, 188, 134, 113, 31, 102, 149, 203, 245, 89, 15, 15, 47, 202, 170, 60, 38, 154, 28, 169, 189, 100, 251, 76, 112, 223, 156, 159, 160, 10, 6, 8, 42, 129, 28, 207, 85, 1, 130, 45]);
-    let keyPair = await genKeyPairByData(pkData, skData);
+    let keyPair = genKeyPairByData(pkData, skData);
     let pubKey = keyPair.pubKey;
     let priKey = keyPair.priKey;
     let message = 'This is a test';

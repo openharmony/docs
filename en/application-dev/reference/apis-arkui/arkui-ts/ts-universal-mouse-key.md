@@ -7,29 +7,6 @@ If a mouse action triggers multiple events, the order of these events is fixed. 
 >  - The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >  - For the time being, a mouse event can be triggered only by an external mouse device.
 
-## onHover
-
-onHover(event: (isHover: boolean, event: HoverEvent) => void): T
-
-Triggered when the mouse pointer enters or leaves the component.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name             | Type                               | Mandatory| Description                                                        |
-| ------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| isHover             | boolean                             | Yes  | Whether the mouse cursor hovers over the component. The value **true** means that the mouse cursor enters the component, and the value **false** means that the mouse cursor leaves the component.|
-| event<sup>11+</sup> | [HoverEvent](#hoverevent11)| Yes  | Bubbling of the blocking event.                                      |
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| T | Current component.|
-
 ## onMouse
 
 onMouse(event: (event: MouseEvent) => void)
@@ -57,8 +34,8 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 | ---------------------- | ---------------------------------------- | ---------------------------- |
 | x                      | number                                   | X coordinate of the mouse pointer relative to the upper left corner of the component being clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.        |
 | y                      | number                                   | Y coordinate of the mouse pointer relative to the upper left corner of the component being clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.        |
-| button                 | [MouseButton](ts-appendix-enums.md#mousebutton) | Mouse button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                       |
-| action                 | [MouseAction](ts-appendix-enums.md#mouseaction) | Mouse action.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                       |
+| button                 | [MouseButton](ts-appendix-enums.md#mousebutton8) | Mouse button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                       |
+| action                 | [MouseAction](ts-appendix-enums.md#mouseaction8) | Mouse action.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                       |
 | stopPropagation        | () => void                               | Stops the event from bubbling upwards or downwards.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                     |
 | target    | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the component that triggers the event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.              |
 | windowX<sup>10+</sup> | number                          | X coordinate of the mouse pointer relative to the upper left corner of the application window.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -67,18 +44,6 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 | displayY<sup>10+</sup> | number                         | Y coordinate of the mouse pointer relative to the upper left corner of the application screen.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | screenX<sup>(deprecated)</sup> | number                 | X coordinate of the mouse pointer relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowX** instead.|
 | screenY<sup>(deprecated)</sup> | number                 | Y coordinate of the mouse pointer relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowY** instead.|
-
-## HoverEvent<sup>11+</sup>
-
-Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name             | Type      | Description     |
-| --------------- | ---------- | ------- |
-| stopPropagation | () => void | Stops the event from bubbling upwards or downwards.|
 
 ## Example
 
@@ -158,10 +123,6 @@ struct MouseEventExample {
 ```
 
  
-
-The figure below shows how the button looks like when hovered on.
-
- ![mouse](figures/mouse.png) 
 
 The figure below shows how the button looks like when clicked.
 

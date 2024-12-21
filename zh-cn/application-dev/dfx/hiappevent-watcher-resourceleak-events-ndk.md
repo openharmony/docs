@@ -221,12 +221,30 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存内存泄漏，需要同步在“开发者选项”中打开“系统资源泄漏日志”。接口示例代码如下：
 
    ```ts
-    import { hiAppEvent, hilog, hidebug } from '@kit.PerformanceAnalysisKit';
-   
-    Button("memoryleak").onClick(()=>{
-      // 在按钮点击函数中构造一个资源泄漏场景，触发资源泄漏事件，此处的泄漏大小为1M
-      hidebug.setAppResourceLimit("pss_memory", 1024, true);
-    })
+    import hidebug from "@ohos.hidebug";
+
+    @Entry
+    @Component
+    struct Index {
+    @State leakedArray: string[][] = [];
+
+    build() {
+      Column() {
+        Row() {
+          Column() {
+            Button("pss leak")
+              .onClick(() => {
+                hidebug.setAppResourceLimit("pss_memory", 1024, true);
+                for (let i = 0; i < 20 * 1024; i++) {
+                  this.leakedArray.push(new Array(1).fill("leak"));
+                }
+              })
+          }
+        }
+        .height('100%')
+        .width('100%')
+      }
+    }
    ```
 
 8. 点击IDE界面中的运行按钮，运行应用工程，等待15~30分钟，会上报应用内存泄漏事件。

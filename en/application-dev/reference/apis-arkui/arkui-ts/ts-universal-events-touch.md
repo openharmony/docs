@@ -30,7 +30,7 @@ Invoked when a touch event is triggered.
 
 ## TouchEvent
 
-Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
+Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent). In non-injected event scenarios, **changedTouches** indicates points resampled according to the screen's refresh rate, while **touches** indicates points based on the device's refresh rate. As such, the data in **changedTouches** may differ from that in **touches**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,7 +40,7 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 | touches             | Array&lt;[TouchObject](#touchobject)&gt; | All finger information.<br>**Atomic service API**: This API can be used in atomic services since API version 11.     |
 | changedTouches      | Array&lt;[TouchObject](#touchobject)&gt; | Finger information changed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | stopPropagation      | () => void | Stops the event from bubbling upwards or downwards.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| preventDefault<sup>12+</sup>      | () => void | Blocks the default event.<br> **NOTE**<br>This API can only be used by certain components; currently there are no supported components.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| preventDefault<sup>12+</sup>      | () => void | Blocks the default event.<br> **NOTE**<br>The specific implementation of this API is not yet available.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 
 ### getHistoricalPoints<sup>10+</sup>

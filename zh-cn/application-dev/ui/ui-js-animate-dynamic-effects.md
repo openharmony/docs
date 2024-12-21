@@ -233,4 +233,4 @@ export default {
 
 > **说明：** 
 >
-> 在调用update接口的过程中可以使用这个接口更新动画参数，入参与createAnimator一致。
+> 在调用[update](../reference/apis-arkui/js-apis-animator.md#updatedeprecated)接口的过程中可以使用这个接口更新动画参数，入参与[createAnimator](../reference/apis-arkui/js-apis-animator.md#createanimatordeprecated)一致。

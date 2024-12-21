@@ -5180,6 +5180,8 @@ async function example() {
 
 setVideoEnhancementAttr(videoEnhancementType: VideoEnhancementType, photoId: string): Promise&lt;void&gt;
 
+设置视频的二阶段增强处理类型。
+
 **系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
@@ -5652,7 +5654,7 @@ getCloudEnhancementPair(asset: PhotoAsset): Promise&lt;PhotoAsset&gt;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| photoAsset | [PhotoAsset](#photoasset) | 是   | 需要修改云增强优先级照片的[PhotoAsset](#photoasset)。 |
+| photoAsset | [PhotoAsset](#photoasset) | 是   | 需要查询云增强配对照片的[PhotoAsset](#photoasset)。 |
 
 **错误码：**
 
@@ -6132,3 +6134,16 @@ async function example() {
 |totalFileSize          |number  |否 | 总文件大小。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_UPLOADING或者CloudEnhancementTaskStage.TASK_STAGE_DOWNLOADING时提供。  |
 |expectedDuration          |number  |否 | 排队时间。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_EXECUTING时提供。  |
 |statusCode          |number  |否 | 状态码。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_FAILED时提供。  |
+
+## ThumbnailType<sup>13+</sup>
+
+枚举，缩略图类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                           | 值  | 说明       |
+| :---------------------------- | :- | :------- |
+| LCD         | 1  | 获取LCD缩略图    |
+| THM          | 2 | 获取THM缩略图    |

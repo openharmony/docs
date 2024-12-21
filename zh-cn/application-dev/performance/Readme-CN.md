@@ -29,6 +29,7 @@
     - [避免在主线程中执行耗时操作](avoid_time_consuming_operations_in_mainthread.md)
     - [模糊场景性能优化](fuzzy_scene_performance_optimization.md)
     - [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](native_drawing_substitute_canvas.md)
+    - [应用闪屏问题解决方案](screen_flicker_solution.md)
   - 提升应用启动和响应速度
     - [提升应用冷启动速度](improve-application-cold-start-speed.md)
     - [提升应用响应速度](improve-application-response.md)
@@ -51,6 +52,7 @@
     - [在线短视频流畅切换](performance-quick-switch-short-video.md)
     - [相机分段式拍照性能提升实践](performance-camera-shot2see.md)
     - [在线视频播放卡顿优化实践](online_video_playback_lags_practice.md)
+    - [音画同步最佳实践](audio-video-synchronization.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)

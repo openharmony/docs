@@ -5,6 +5,7 @@ The **socket** module implements data transfer over TCP, UDP, Web, and TLS socke
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> You are advised to call the APIs of this module in the worker thread or taskpool to perform network-related operations. Otherwise, the UI thread may be suspended.
 
 ## Modules to Import
 
@@ -3803,7 +3804,7 @@ Creates a **LocalSocket** object.
 **Return value**
 
 | Type                              | Description                   |
-  | :--------------------------------- | :---------------------- |
+| :--------------------------------- | :---------------------- |
 | [LocalSocket](#localsocket11) | **LocalSocket** object.|
 
 **Example**
@@ -6931,6 +6932,7 @@ TLS security options. When **cert** (local certificate) and **key** (private key
 | useRemoteCipherPrefer | boolean                                                 | No| Whether to use the remote cipher suite preferentially.       |
 | signatureAlgorithms   | string                                                 | No| Signing algorithm used during communication. The default value is **""**.             |
 | cipherSuite           | string                                                 | No| Cipher suite used during communication. The default value is **""**.             |
+| isBidirectionalAuthentication<sup>12+</sup>           | boolean                                                 | No| Two-way authentication. The default value is **false**.             |
 
 ## Protocol<sup>9+</sup>
 
@@ -6981,6 +6983,8 @@ Defines a TLS socket server connection. Before calling TLSSocketServer APIs, you
 listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
 Listens to client connections after **bind** is successfully called. This API uses an asynchronous callback to return the result. After a connection is established, a TLS session will be created and initialized and a certificate key will be loaded and verified. 
+
+**NOTE**<br>If the IP address is set to **0.0.0.0**, listening works for all IP addresses of the local host.
 
 **Required permissions**: ohos.permission.INTERNET
 

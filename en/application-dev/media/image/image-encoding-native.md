@@ -2,7 +2,7 @@
 
 You can call the native APIs provided by the **ImagePacker** module to encode images, that is, to compress a **PixelMap** object into an image in the desired format.
 
-Currently, JPEG, WebP, and PNG encoding formats are supported.
+Currently, images can be encoded only into the JPEG, WebP, PNG, or HEIF format (depending on the hardware).
 
 **Usage Scenario**
 
@@ -117,7 +117,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    > **NOTE**
    >
    > You only need to call the API once.
-
+   
    ```c++
    // Call OH_ImagePacker_Release to destroy the encoder.
    int32_t ret = OH_ImagePacker_Release(nativePacker);

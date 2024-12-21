@@ -6,7 +6,7 @@ When the web page loads slowly, you can use the capabilities of pre-connection, 
 
 You can call [prepareForPageLoad()](../reference/apis-arkweb/js-apis-webview.md#prepareforpageload10) to preparse or preconnect to the page to be loaded.
 
-  In the following example, the page to be loaded is preconnected in the **onAppear** callback of the **Web** component.
+  In the following example, the page to be loaded is preconnected in the **onAppear** callback of the **\<Web>** component.
 
 ```ts
 // xxx.ets
@@ -63,10 +63,10 @@ export default class EntryAbility extends UIAbility {
 
 Based on predictions as to what page is to be loaded or visited, you can use [prefetchPage()](../reference/apis-arkweb/js-apis-webview.md#prefetchpage10) for prefetching.
 
-Prefetching downloads all resources required by the page, including the main resources and subresources, but does not execute the JavaScript code of the page. Before calling **prefetchPage()**, you must create a **WebviewController** instance bound to the **Web** component.
+Prefetching downloads all resources required by the page, including the main resources and subresources, but does not execute the JavaScript code of the page. Before calling **prefetchPage()**, you must create a **WebviewController** instance bound to the **\<Web>** component.
 
 In the following example, prefetching of a page is triggered in **onPageEnd**.
-
+  
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
@@ -92,7 +92,7 @@ struct WebComponent {
 
 You can prefetch POST requests in the page that is about to be loaded using the [prefetchResource()](../reference/apis-arkweb/js-apis-webview.md#prefetchresource12) API. At the end of the page load, you can clear the cache of the prefetched requests that are no longer needed using the [clearPrefetchedResource()](../reference/apis-arkweb/js-apis-webview.md#clearprefetchedresource12) API.
 
-  The following is an example: In the **onAppear** event of the **Web** component, prefetch the POST request for the page that is about to be loaded; in the **onPageEnd** event, you can clear the cache of the prefetched POST request that is no longer needed.
+  The following is an example: In the **onAppear** event of the **\<Web>** component, prefetch the POST request for the page that is about to be loaded; in the **onPageEnd** event, you can clear the cache of the prefetched POST request that is no longer needed.
 
 ```ts
 // xxx.ets
@@ -125,7 +125,7 @@ struct WebComponent {
 }
 ```
 
-If you can predict that a **Web** component is about to load a page or is about to navigate to a page that includes a POST request, you can use [prefetchResource()](../reference/apis-arkweb/js-apis-webview.md#prefetchresource12) to prefetch the POST request for the page.
+If you can predict that a **\<Web>** component is about to load a page or is about to navigate to a page that includes a POST request, you can use [prefetchResource()](../reference/apis-arkweb/js-apis-webview.md#prefetchresource12) to prefetch the POST request for the page.
 
   Here is an example of how you might initiate prefetching of a POST request for a page to visit, in the **onPageEnd** callback:
 

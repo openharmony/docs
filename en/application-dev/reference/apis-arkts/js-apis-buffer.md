@@ -338,7 +338,7 @@ Creates a **Buffer** instance of the specified length that shares memory with **
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| arrayBuffer | ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | Yes| Array of **Buffer** instances, whose memory is to be shared.|
+| arrayBuffer | ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | Yes| **ArrayBuffer** or **SharedArrayBuffer** instance whose memory is to be shared.|
 | byteOffset | number | No| Byte offset. The default value is **0**.|
 | length | number | No| Length of the **Buffer** instance to create, in bytes. The default value is **arrayBuffer.byteLength** minus **byteOffset**.|
 
@@ -346,7 +346,7 @@ Creates a **Buffer** instance of the specified length that shares memory with **
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | **Buffer** instance with shared memory.|
+| Buffer | **Buffer** instance created.|
 
 **Error codes**
 
@@ -370,7 +370,9 @@ let buf = buffer.from(ab, 0, 2);
 
 from(buffer: Buffer | Uint8Array): Buffer
 
-Creates a **Buffer** instance with the copy of another instance.
+Copies the data of a passed **Buffer** instance to create a new **Buffer** instance and returns the new one.
+
+Creates a **Buffer** instance that holds the memory of a passed **Uint8Array** instance and returns the new instance, maintaining the memory association of the data.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -380,7 +382,7 @@ Creates a **Buffer** instance with the copy of another instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| buffer | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| **Buffer** instance to copy.|
+| buffer | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| **Buffer** or **Uint8Array** instance.|
 
 **Return value**
 
@@ -401,8 +403,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { buffer } from '@kit.ArkTS';
 
+// Create a Buffer instance of the Buffer type.
 let buf1 = buffer.from('buffer');
 let buf2 = buffer.from(buf1);
+
+// Create a Buffer instance object of the Uint8Array type to ensure memory sharing between objects.
+let uint8Array = new Uint8Array(10);
+let buf3 = buffer.from(uint8Array);
+buf3.fill(1)
+console.info("uint8Array:", uint8Array)
 ```
 
 ## buffer.from

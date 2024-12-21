@@ -8,7 +8,7 @@ The @ohos.graphics.drawing module provides basic drawing capabilities, such as d
 
 The table below lists the common APIs provided by the @ohos.graphics.drawing module. For details about all the APIs, see [@ohos.graphics.drawing](../reference/apis-arkgraphics2d/js-apis-graphics-drawing.md).
 
-| API| Description|
+| API| Description| 
 | -------- | -------- |
 | drawPath(path: Path) : void | Draws a custom path.|
 | drawRect(rect: common2D.Rect): void | Draws a rectangle. By default, black is used for filling.|
@@ -43,7 +43,7 @@ Follow the steps below to draw 2D graphics and text blobs by using the canvas an
 
 1. **Create a child class of RenderNode.**
 
-    Create the child class **MyRenderNode** and define drawing functions in it. **RenderNode** contains operations on the tree structure and drawing attributes.
+    Create the child class **MyRenderNode** and define drawing functions in it. RenderNode contains operations on the tree structure and drawing attributes. The **draw** method called when the RenderNode performs drawing. For details, see [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md).
 
     ```js
     // Create the MyRenderNode class.
@@ -246,7 +246,7 @@ Follow the steps below to draw 2D graphics and text blobs by using the canvas an
 
 11. **Draw the graphics and text blob.**
 
-    Create a **MyNodeController** instance and save it to the NodeContainer, add a **Button** component, and call the defined interfaces.
+    Create a **MyNodeController** instance and save it to the NodeContainer, add a **<\Button>** component, and call the defined interfaces.
 
     ```js
     @Entry

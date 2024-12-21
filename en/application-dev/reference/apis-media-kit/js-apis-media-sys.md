@@ -116,7 +116,7 @@ This API is called by the system application that creates the dialog box.
 | Name   | Type  | Mandatory| Description                                                         |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | sessionId | number | Yes  | Session ID of the AVScreenCapture service, which is sent to the application when the AVScreenCapture server starts the privacy dialog box.|
-| choice    | string | Yes  | User selection result. The value **false** means that the user touches a button to cancel the operation, and **true** means that the user touches a button to continue the operation.           |
+| choice    | string | Yes  | User choice, including whether screen capture is agreed, selected display ID, and window ID. For details, see JsonData in the example below.|
 
 **Error codes**
 
@@ -129,14 +129,24 @@ This API is called by the system application that creates the dialog box.
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+class JsonData {
+  public choice: string = 'true'
+  public displayId: number | null = -1
+  public missionId: number | null = -1
+}
 let sessionId: number = 0; // Use the ID of the session that starts the process.
-let choice: string = 'false'; // Use the user selection result.
 
 try {
-    await media.reportAVScreenCaptureUserChoice(sessionId, choice);
+  const jsonData: JsonData = {
+    choice: 'true',  // Replace it with the user choice.
+    displayId: -1, // Replace it with the ID of the display selected by the user.
+    missionId: -1,   // Replace it with the ID of the window selected by the user.
+  }
+  await media.reportAVScreenCaptureUserChoice(sessionId, JSON.stringify(jsonData));
 } catch (error: BusinessError) {
-    console.error(`reportAVScreenCaptureUserChoice error, error message: ${error.message}`);
+  console.error(`reportAVScreenCaptureUserChoice error, error message: ${error.message}`);
 }
 ```
 
@@ -165,9 +175,8 @@ Enumerates the color formats supported by the video thumbnail.
 | RGB_888        | 5    | RGB_888.                |
 
 ## AvPlayer<sup>9+</sup>
-> **NOTE**
-> 
-> A playback management class that provides APIs to manage and play media assets. Before calling any API in **AVPlayer**, you must use [createAVPlayer()](js-apis-media.md#mediacreateavplayer9) to create an [AVPlayer](js-apis-media.md#avplayer9) instance.
+
+A playback management class that provides APIs to manage and play media assets. Before calling any API in **AVPlayer**, you must use [createAVPlayer()](js-apis-media.md#mediacreateavplayer9) to create an [AVPlayer](js-apis-media.md#avplayer9) instance.
 
 ### setPlaybackRange<sup>12+</sup>
 

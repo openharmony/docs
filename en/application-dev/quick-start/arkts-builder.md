@@ -24,7 +24,6 @@ For simplicity, here we refer to an \@Builder decorated function also as a custo
 ## Rules of Use
 
 ### Private Custom Builder Function
-
 Syntax:
 
 ```ts
@@ -39,7 +38,7 @@ this.MyBuilderFunction()
 
 - You can define one or more @Builder decorated methods in a custom component. Such a method is considered as a private, special type of member function of the component.
 
-- The custom builder function can be called from the **build** method or another custom builder function in the same component only.
+- Private custom builder functions can be called in custom components, **build()**, and other custom builder functions.
 
 - Inside the custom builder function body, **this** refers to the owning component. Component state variables are accessible from within the custom builder function implementation. Using **this** to access the custom components' state variables is recommended over parameter passing.
 
@@ -60,6 +59,8 @@ MyGlobalBuilderFunction()
 
 - Use of a global custom builder function is recommended if no own state is involved.
 
+- Global custom builder functions can be called in **build()** and other custom builder functions.
+
 
 ## Parameter Passing Rules
 
@@ -69,7 +70,7 @@ For custom builder functions, parameters can be passed [by value](#by-value-para
 
 - All parameters must be immutable inside the custom builder function.
 
-- The custom builder function body follows the same [syntax rules](arkts-create-custom-components.md#build-function) as the **build()** function.
+- The custom builder function body follows the same [syntax rules](arkts-create-custom-components.md#build-function) as **build()**.
 
 - Parameters are passed by value in all cases except when only one parameter is passed in and the parameter needs to be directly passed to the object literal.
 
@@ -94,10 +95,11 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      // Pass the this.label reference to the overBuilder component when the overBuilder component is called in the Parent component.
+      // When the overBuilder component is called in the parent component,
+      // pass this.label to the overBuilder component by reference.
       overBuilder({ paramA1: this.label })
       Button('Click me').onClick(() => {
-        // After Click me is clicked, the UI text changes from Hello to ArkUI.
+        // After you click "Click me", the UI text changes from "Hello" to "ArkUI".
         this.label = 'ArkUI';
       })
     }
@@ -138,10 +140,11 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      // Pass the this.label reference to the overBuilder component when the overBuilder component is called in the Parent component.
+      // When the overBuilder component is called in the parent component,
+      // pass this.label to the overBuilder component by reference.
       overBuilder({paramA1: this.label})
       Button('Click me').onClick(() => {
-        // After Click me is clicked, the UI text changes from Hello to ArkUI.
+        // After you click "Click me", the UI text changes from "Hello" to "ArkUI".
         this.label = 'ArkUI';
       })
     }
@@ -152,7 +155,6 @@ struct Parent {
 ### By-Value Parameter Passing
 
 By default, parameters in the \@Builder decorated functions are passed by value. In this case, when the passed parameter is a state variable, the change of the state variable does not cause UI re-rendering in the \@Builder decorated function. Therefore, when passing state variables, you are advised to use [by-reference parameter passing](#by-reference-parameter-passing).
-
 
 ```ts
 @Builder function overBuilder(paramA1: string) {
@@ -168,6 +170,144 @@ struct Parent {
     Column() {
       overBuilder(this.label)
     }
+  }
+}
+```
+
+In the way of passing parameters by value, the @ObservedV2 and @Trace decorators can be used together in the @ComponentV2 decorated custom component to re-render the UI.
+
+[Positive Example]
+
+In @ComponentV2, only the @ObservedV2 decorated **ParamTmp** class and the @Trace decorated **count** property can trigger the UI re-render.
+
+```ts
+@ObservedV2
+class ParamTmp {
+  @Trace count : number = 0;
+}
+
+@Builder
+function renderText(param: ParamTmp) {
+  Column() {
+    Text(`param : ${param.count}`)
+      .fontSize(20)
+      .fontWeight(FontWeight.Bold)
+  }
+}
+
+@Builder
+function renderMap(paramMap: Map<string,number>) {
+  Text(`paramMap : ${paramMap.get('name')}`)
+    .fontSize(20)
+    .fontWeight(FontWeight.Bold)
+}
+
+@Builder
+function renderSet(paramSet: Set<number>) {
+  Text(`paramSet : ${paramSet.size}`)
+    .fontSize(20)
+    .fontWeight(FontWeight.Bold)
+}
+
+@Builder
+function renderNumberArr(paramNumArr: number[]) {
+  Text(`paramNumArr : ${paramNumArr[0]}`)
+    .fontSize(20)
+    .fontWeight(FontWeight.Bold)
+}
+
+@Entry
+@ComponentV2
+struct PageBuilder {
+  @Local builderParams: ParamTmp = new ParamTmp();
+  @Local map_value: Map<string,number> = new Map();
+  @Local set_value: Set<number> = new Set([0]);
+  @Local numArr_value: number[] = [0];
+  private progressTimer: number = -1;
+
+  aboutToAppear(): void {
+    this.progressTimer = setInterval(() => {
+      if (this.builderParams.count < 100) {
+        this.builderParams.count += 5;
+        this.map_value.set('name', this.builderParams.count);
+        this.set_value.add(this.builderParams.count);
+        this.numArr_value[0] = this.builderParams.count;
+      } else {
+        clearInterval(this.progressTimer)
+      }
+    }, 500);
+  }
+
+  @Builder
+  localBuilder() {
+    Column() {
+      Text(`localBuilder : ${this.builderParams.count}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+
+  build() {
+    Column() {
+      this.localBuilder()
+      Text(`builderParams :${this.builderParams.count}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+      renderText(this.builderParams)
+      renderText({ count: this.builderParams.count })
+      renderMap(this.map_value)
+      renderSet(this.set_value)
+      renderNumberArr(this.numArr_value)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+[Negative Example]
+
+In the @ComponentV2 decorated custom component, the use of simple data types cannot trigger UI re-render.
+
+```ts
+@ObservedV2
+class ParamTmp {
+  @Trace count : number = 0;
+}
+
+@Builder
+function renderNumber(paramNum: number) {
+  Text(`paramNum : ${paramNum}`)
+    .fontSize(30)
+    .fontWeight(FontWeight.Bold)
+}
+
+@Entry
+@ComponentV2
+struct PageBuilder {
+  @Local class_value: ParamTmp = new ParamTmp();
+  // Using simple data type cannot trigger UI re-render
+  @Local num_value: number = 0;
+  private progressTimer: number = -1;
+
+  aboutToAppear(): void {
+    this.progressTimer = setInterval(() => {
+      if (this.class_value.count < 100) {
+        this.class_value.count += 5;
+        this.num_value += 5;
+      } else {
+        clearInterval(this.progressTimer)
+      }
+    }, 500);
+  }
+
+  build() {
+    Column() {
+      renderNumber(this.num_value)
+    }
+    .width('100%')
+    .height('100%')
+    .padding(50)
   }
 }
 ```
@@ -250,7 +390,8 @@ struct Parent {
     Column() {
       Text('Render the UI by calling the @Builder')
         .fontSize(20)
-      overBuilder({str_value: this.objParam.str_value, num_value: this.objParam.num_value, tmp_value: this.objParam.tmp_value, arrayTmp_value: this.objParam.arrayTmp_value})
+      overBuilder({str_value: this.objParam.str_value, num_value: this.objParam.num_value,
+       tmp_value: this.objParam.tmp_value, arrayTmp_value: this.objParam.arrayTmp_value})
       Line()
         .width('100%')
         .height(10)
@@ -411,7 +552,7 @@ function childBuilder($$: Tmp) {
 
 @Component
 struct HelloChildComponent {
-  @State message: string = '';
+  @Prop message: string = '';
   build() {
     Row() {
       Text(`HelloChildComponent===${this.message}`)
@@ -459,13 +600,106 @@ struct Parent {
 }
 ```
 
+### Using \@Builder Functions Together with the Decorators in V2
+
+Call the global @Builder and local @Builder in the @ComponentV2 decorated custom component to change related variables, triggering UI re-renders.
+
+```ts
+@ObservedV2
+class Info {
+  @Trace name: string = '';
+  @Trace age: number = 0;
+}
+
+@Builder
+function overBuilder(param: Info) {
+  Column() {
+    Text('Global @Builder name :${param.name}`)
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
+    Text('Global @Builder age :${param.age}`)
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
+  }
+}
+
+@ComponentV2
+struct ChildPage {
+  @Require @Param childInfo: Info;
+  build() {
+    overBuilder({name: this.childInfo.name, age: this.childInfo.age})
+  }
+}
+
+@Entry
+@ComponentV2
+struct ParentPage {
+  info1: Info = { name: "Tom", age: 25 };
+  @Local info2: Info = { name: "Tom", age: 25 };
+
+  @Builder
+  privateBuilder() {
+    Column() {
+      Text('Local @Builder name :${this.info1.name}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      Text('Local @Builder age :${this.info1.age}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+
+  build() {
+    Column() {
+      Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      this.privateBuilder() // Call the local @Builder.
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      overBuilder({ name: this.info2.name, age: this.info2.age}) // Call the global @Builder.
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      ChildPage ({childInfo: this.info1}) // Call the custom component.
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      ChildPage ({childInfo: this.info2}) // Call the custom component.
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Button("change info1&info2")
+        .onClick(() => {
+          this.info1 = { name: "Cat", age: 18} // Text1 is not re-rendered because no decorator is used to listen for value changes.
+          this.info2 = { name: "Cat", age: 18} // Text2 is re-rendered because a decorator is used to listen for value changes.
+        })
+    }
+  }
+}
+```
+
 ## FAQs
 
 ### Two or More Parameters Are Used in the \@Builder
 
 When two or more parameters are used, the value change does not trigger the UI re-rendering even if the parameters are passed in the form of object literals.
 
-[Incorrect Example]
+[Negative Example]
 
 ```ts
 class GlobalTmp {
@@ -488,7 +722,8 @@ struct Parent {
     Column() {
       Text('Render the UI by calling the @Builder')
         .fontSize(20)
-      overBuilder({str_value: this.objParam.str_value}, this.num) // Two parameters are used.
+      // Two parameters are used, which is incorrect.
+      overBuilder({str_value: this.objParam.str_value}, this.num)
       Line()
         .width('100%')
         .height(10)
@@ -502,7 +737,7 @@ struct Parent {
 }
 ```
 
-[Incorrect Example]
+[Negative Example]
 
 ```ts
 class GlobalTmp {
@@ -527,7 +762,8 @@ struct Parent {
     Column() {
       Text('Render the UI by calling the @Builder')
         .fontSize(20)
-      overBuilder({str_value: this.strParam.str_value}, {num_value: this.numParam.num_value}) // Two parameters are used.
+      // Two parameters are used, which is incorrect.
+      overBuilder({str_value: this.strParam.str_value}, {num_value: this.numParam.num_value})
       Line()
         .width('100%')
         .height(10)
@@ -543,7 +779,7 @@ struct Parent {
 
 Only one parameter can be used in the \@Builder. When one parameter is passed in the form of object literals, the value change triggers the UI re-rendering.
 
-[Correct Example]
+[Positive Example]
 
 ```ts
 class GlobalTmp {

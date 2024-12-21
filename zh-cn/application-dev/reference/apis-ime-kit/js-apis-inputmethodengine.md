@@ -983,13 +983,13 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 ```ts
 try {
   inputMethodEngine.getKeyboardDelegate().on('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
-    console.log('inputMethodEngine keyCode.(keyUp):' + JSON.stringify(keyEvent.keyCode));
-    console.log('inputMethodEngine keyAction.(keyUp):' + JSON.stringify(keyEvent.keyAction));
+    console.log(`inputMethodEngine keyCode.(keyDown): ${keyEvent.keyCode}`);
+    console.log(`inputMethodEngine keyAction.(keyDown): ${keyEvent.keyAction}`);
     return true;
   });
   inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
-    console.log('inputMethodEngine keyCode.(keyDown):' + JSON.stringify(keyEvent.keyCode));
-    console.log('inputMethodEngine keyAction.(keyDown):' + JSON.stringify(keyEvent.keyAction));
+    console.log(`inputMethodEngine keyCode.(keyDown): ${keyEvent.keyCode}`);
+    console.log(`inputMethodEngine keyAction.(keyDown): ${keyEvent.keyAction}`);
     return true;
   });
 } catch(err) {
@@ -1042,7 +1042,7 @@ on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 设置监听类型，固定取值为'keyEvent'。 |
-| callback | function | 是   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。|
+| callback | (event: [InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent)) => boolean | 是   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。|
 
 **示例：**
 
@@ -1053,7 +1053,8 @@ try {
   inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent: KeyEvent) => {
     console.log('inputMethodEngine keyEvent.action:' + JSON.stringify(keyEvent.action));
     console.log('inputMethodEngine keyEvent.key.code:' + JSON.stringify(keyEvent.key.code));
-    console.log('inputMethodEngine keyEvent.ctrlKey:' + JSON.stringify(keyEvent.ctrlKey));
+    console.log(`inputMethodEngine keyEvent.ctrlKey: ${keyEvent.ctrlKey}`);
+    console.log(`inputMethodEngine keyEvent.unicodeChar: ${keyEvent.unicodeChar}`);
     return true;
   });
 } catch(err) {
@@ -1900,7 +1901,7 @@ on(type: 'sizeChange', callback: Callback&lt;window.Size&gt;): void;
 import { window } from '@kit.ArkUI';
 try {
   panel.on('sizeChange', (windowSize: window.Size) => {
-    console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.width)}`);
+    console.info(`panel is size changes, width: ${windowSize.width}, height: ${windowSize.height}`);
   });
 } catch(err) {
   console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);
@@ -1994,7 +1995,7 @@ off(type: 'sizeChange', callback?: Callback&lt;window.Size&gt;): void;
 import { window } from '@kit.ArkUI';
 try {
   panel.off('sizeChange', (windowSize: window.Size) => {
-    console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.width)}`);
+    console.info(`panel is size changes, width: ${windowSize.width}, height: ${windowSize.height}`);
   });
 } catch(err) {
     console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);
@@ -3129,8 +3130,8 @@ inputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMethod
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  console.log(`editorAttribute.inputPattern:  ${editorAttribute.inputPattern}`);
+  console.log(`editorAttribute.enterKeyType:  ${editorAttribute.enterKeyType}`);
 });
 ```
 
@@ -3163,8 +3164,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
-    console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-    console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+    console.log(`editorAttribute.inputPattern:  ${editorAttribute.inputPattern}`);
+    console.log(`editorAttribute.enterKeyType:  ${editorAttribute.enterKeyType}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
   });
@@ -3200,7 +3201,8 @@ getEditorAttributeSync(): EditorAttribute
 ```ts
 try {
   let editorAttribute: inputMethodEngine.EditorAttribute = inputClient.getEditorAttributeSync();
-  console.log(`Succeeded in getEditorAttributeSync, editorAttribute = ${JSON.stringify(editorAttribute)}`);
+    console.log(`editorAttribute.inputPattern:  ${editorAttribute.inputPattern}`);
+    console.log(`editorAttribute.enterKeyType:  ${editorAttribute.enterKeyType}`);
 } catch (err) {
   console.error(`Failed to getEditorAttributeSync: ${JSON.stringify(err)}`);
 }
@@ -4614,8 +4616,8 @@ textInputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMe
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  console.log(`editorAttribute.inputPattern: ${editorAttribute.inputPattern}`;
+  console.log(`editorAttribute.enterKeyType: ${editorAttribute.enterKeyType}`);
 });
 ```
 

@@ -17,21 +17,7 @@
 资源目录示例：
 ```
 resources
-|---base
-|   |---element
-|   |   |---string.json
-|   |---media
-|   |   |---icon.png
-|   |---profile
-|   |   |---test_profile.json
-|---en_US  // 默认存在的目录，设备语言环境是美式英文时，优先匹配此目录下资源
-|   |---element
-|   |   |---string.json
-|   |---media
-|   |   |---icon.png
-|   |---profile
-|   |   |---test_profile.json
-|---zh_CN  // 默认存在的目录，设备语言环境是简体中文时，优先匹配此目录下资源
+|---base  // 默认存在的目录
 |   |---element
 |   |   |---string.json
 |   |---media
@@ -57,7 +43,7 @@ base目录是默认存在的目录，二级子目录element用于存放字符串
 
 #### 限定词目录
 
-en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需要开发者根据开发需要自行创建。二级子目录element、media、profile用于存放字符串、颜色、布尔值等基础元素，以及媒体、动画、布局等资源文件。<br/>同样，目录中的资源文件会被编译成二进制文件，并赋予资源文件ID。通过指定资源类型（type）和资源名称（name）来访问。
+限定词目录需要开发者根据开发需要自行创建，二级子目录element、media、profile用于存放字符串、颜色、布尔值等基础元素，以及媒体、动画、布局等资源文件。<br/>同样，目录中的资源文件会被编译成二进制文件，并赋予资源文件ID。通过指定资源类型（type）和资源名称（name）来访问。
 
 **限定词目录的命名要求**
 
@@ -327,12 +313,12 @@ string资源配置attr属性示例如下：
 <!--Del-->
 #### bundle不同，跨bundle访问（仅支持系统应用使用）
 
-- 通过[createModuleContext(bundleName, moduleName)](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatemodulecontext12)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
+- 通过[createBundleContext(context, bundleName)](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
 <!--DelEnd-->
 
 #### bundle相同，跨module访问
 
-- 通过[createBundleContext(bundleName)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
+- 通过[createModuleContext(context, moduleName)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
 
 - 通过```"$r"```或```"$rawfile"```访问资源。具体操作如下：
 
@@ -388,7 +374,7 @@ string资源配置attr属性示例如下：
 >
 > - 对于系统预置应用，建议使用系统资源；对于三方应用，可以根据需要选择使用系统资源或自定义应用资源。
 >
-> - 界面加载的系统资源字体进行显示时，可以在配置中system/etc/fontconfig.json文件查看。默认字体为HarmonyOS Sans。
+> - 当前，界面加载的系统资源字体进行显示时（可以在配置中system/etc/fontconfig.json文件中查看），默认使用的字体是鸿蒙黑体（HarmonyOS Sans），支持的范围是[中文编码字符集GB18030-2022（级别一/级别二）](https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=A1931A578FE14957104988029B0833D3)。
 
 ```ts
 Text('Hello')
@@ -545,7 +531,7 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 
 - 静态overlay配置方式
 
-包内overlay资源包中的配置文件module.json5中支持的字段：
+包内overlay资源包中的配置文件app.json5中支持的字段：
 ```{
   "app":{
     "bundleName": "com.example.myapplication.overlay",
@@ -554,7 +540,11 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
     "versionName": "1.0.0.1",
     "icon": "$media:app_icon",
     "label": "$string:app_name",
-  },
+  }
+}
+```
+包内overlay资源包中的配置文件module.json5中支持的字段：
+```{
   "module":{
     "name": "entry_overlay_module_name",
     "type": "shared",
@@ -570,8 +560,7 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
   }
 }
 ```
-<!--Del-->
-包间overlay资源包中的配置文件module.json5中支持的字段，仅对系统应用开放：
+包间overlay资源包中的配置文件app.json5中支持的字段，仅对系统应用开放：
 ```{
   "app":{
     "bundleName": "com.example.myapplication.overlay",
@@ -582,7 +571,11 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
     "label": "$string:app_name",
     "targetBundleName": "com.example.myapplication",
     "targetPariority": 1,
-  },
+  }
+}
+```
+包间overlay资源包中的配置文件module.json5中支持的字段，仅对系统应用开放：
+```{
   "module":{
     "name": "entry_overlay_module_name",
     "type": "shared",
@@ -619,4 +612,4 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 
 针对访问应用资源，有以下相关实例可供参考：
 
-- [资源管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Resource/ResourceManager)
+- [资源管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/Resource/ResourceManager)

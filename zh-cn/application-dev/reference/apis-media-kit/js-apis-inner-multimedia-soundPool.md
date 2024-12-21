@@ -203,7 +203,7 @@ load(fd: number, offset: number, length: number, callback: AsyncCallback\<number
 
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
-| fd     | number | 是   | 资源句柄，通过resourceManager.getRawFileDescriptor获取。     |
+| fd     | number | 是   | 资源句柄，通过[resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取。     |
 | offset | number | 是   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 | length | number | 是   | 资源长度，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 | callback | AsyncCallback\<number> | 是   | 获取回调的soundID，有效值大于0。 |
@@ -282,7 +282,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
     //test_01.mp3为rawfile目录资源下面的音频
-    let fileDescriptor = await getContext().resourceManager.getRawFd('test_01.mp3');
+    let fileDescriptor = getContext().resourceManager.getRawFd('test_01.mp3');
     soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length, (error: BusinessError, soundId_: number) => {
       if (error) {
         console.error(`Failed to load soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
@@ -313,7 +313,7 @@ load(fd: number, offset: number, length: number): Promise\<number>
 
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
-| fd     | number | 是   | 资源句柄，通过resourceManager.getRawFileDescriptor获取。     |
+| fd     | number | 是   | 资源句柄，通过过[resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取。     |
 | offset | number | 是   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 | length | number | 是   | 资源长度，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 
@@ -395,7 +395,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
     //test_01.mp3为rawfile目录资源下面的音频
-    let fileDescriptor = await getContext().resourceManager.getRawFd('test_01.mp3');
+    let fileDescriptor = getContext().resourceManager.getRawFd('test_01.mp3');
     soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length).then((soundId: number) => {
       console.info('Succeeded in loading soundpool');
       soundID = soundId;

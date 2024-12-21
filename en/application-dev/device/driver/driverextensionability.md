@@ -164,7 +164,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
     }
     ```
 
-7. After completing development of the client and driver sample code, import the HAP to the device by following instructions in [Running Your App/Service on a Local Real Device](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-run-device-0000001670539800-V5), and run **Hello** in the HAP to check whether **Hello world** is displayed. If yes, the IPC communication is ready for use.
+7. After completing development of the client and driver sample code, import the HAP to the device by following instructions in [Running Your App/Service on a Local Real Device](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-run-device-V5), and run **Hello** in the HAP to check whether **Hello world** is displayed. If yes, the IPC communication is ready for use.
 
 ## Driver Development
 

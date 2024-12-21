@@ -64,7 +64,7 @@ Writes data to the buffer of the stream. This API uses an asynchronous callback 
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| chunk  | string \| Uint8Array | No| Data to write. The default value is **undefined**.|
+| chunk  | string \| Uint8Array | No| Data to write. It cannot be **null**, **undefined**, or an empty string.|
 | encoding  | string | No  | Encoding format. The default value is **'utf8'**. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
 | callback  | Function | No  | Callback used to return the result. It is not called by default.|
 
@@ -107,7 +107,13 @@ writableStream.write('test', 'utf8');
 
 end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writable
 
-Ends the writable stream. If the **chunk** parameter is passed in, it is written as the last data chunk. This API uses an asynchronous callback to return the result.
+Ends the writing process in a writable stream. This API uses an asynchronous callback to return the result.
+
+If the **chunk** parameter is passed, it is treated as the final data chunk and written using either the **write** or **doWrite** API, based on the current execution context.
+
+If **doWrite** is used for writing, the validity check of the **encoding** parameter depends on **doWrite**.
+
+If **end** is used alone (without **write**) and the **chunk** parameter is passed, the data is written through **doWrite**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -345,7 +351,7 @@ Unregisters an event processing callback used to listen for different events on 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event    | string   | Yes| Type of the event. The following events are supported:| `'drain' `\|`'error'` \|  <br>\- **'close'**: triggered when the call of [end()](#end) is complete and the write operation ends.<br>\- **'drain'**: triggered when the data in the buffer of the writable stream reaches **writableHighWatermark**.<br>\- **'error'**: triggered when an exception occurs in the writable stream.<br>\- **'finish'**: triggered when all data in the buffer is written to the target.|
-| callback | string   | No| Callback function.|
+| callback | Callback\<[emitter.EventData](../apis-basic-services-kit/js-apis-emitter.md#eventdata)\>   | No| Callback function.|
 
 **Error codes**
 
@@ -979,7 +985,7 @@ Unregisters an event processing callback used to listen for different events on 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event    | string   | Yes| Type of the event. The following events are supported:| `'data' `\|`'end'` \| `'error'`\|`'readable'`\|`'pause'`\| <br>\- **'close'**: triggered when [push()](#push) is called, with **null** passed in.<br>\- **'data'**: triggered when a data chunk is transferred to a consumer.<br>\- **'end'**: triggered when [push()](#push) is called, with **null** passed in.<br>\- **'error'**: triggered when an exception occurs in the stream.<br>\- **'readable'**: triggered when there is data available to be read from the stream.<br>\- **'pause'**: triggered when [pause()](#pause) is called.<br>\- **'resume'**: triggered when [resume()](#resume) is called.|
-| callback | string   | No| Callback function.|
+| callback | Callback\<[emitter.EventData](../apis-basic-services-kit/js-apis-emitter.md#eventdata)\>   | No| Callback function.|
 
 **Error codes**
 
@@ -1118,7 +1124,7 @@ Pushes data into the buffer of the readable stream.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Whether there is space in the buffer of the readable stream. The value **true** means that there is still space in the buffer, and **false** means that the buffer is full.|
+| boolean | Whether there is space in the buffer of the readable stream. The value **true** means that there is still space in the buffer, and **false** means that the buffer is full. If **null** is passed, **false** is always returned, indicating that no data chunk is available for pushing.|
 
 **Error codes**
 
@@ -1197,7 +1203,7 @@ Writes data to the buffer of the stream. This API uses an asynchronous callback 
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| chunk  | string \| Uint8Array | No| Data to write. The default value is **undefined**.|
+| chunk  | string \| Uint8Array | No| Data to write. It cannot be **null**, **undefined**, or an empty string.|
 | encoding  | string | No  | Encoding format. The default value is **'utf8'**. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
 | callback  | Function | No  | Callback used to return the result. It is not called by default.|
 
@@ -1244,7 +1250,13 @@ console.info("duplexStream result", result); // duplexStream result true
 
 end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writable
 
-Ends the duplex stream. If the **chunk** parameter is passed in, it is written as the last data chunk. This API uses an asynchronous callback to return the result.
+Ends the writing process in a duplex stream. This API uses an asynchronous callback to return the result.
+
+If the **chunk** parameter is passed, it is treated as the final data chunk and written using either the **write** or **doWrite** API, based on the current execution context.
+
+If **doWrite** is used for writing, the validity check of the **encoding** parameter depends on **doWrite**. 
+
+If **end** is used alone (without **write**) and the **chunk** parameter is passed, the data is written through **doWrite**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

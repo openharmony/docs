@@ -4,6 +4,8 @@
 
 当应用的代码存在规范问题或错误时，会在运行中产生异常和错误，如应用未捕获异常、应用生命周期超时等。在错误产生后，应用会异常退出。错误日志通常会保存在用户本地存储上，不方便开发者定位问题。所以，应用开发者可以使用错误管理的接口，在应用退出前，及时将相关错误及日志上报到开发者的服务平台来定位问题。
 
+使用errormanager接口监听异常和错误后，应用不会退出，建议在回调函数执行完后，增加同步退出操作，如果只是为了获取错误日志，建议使用[hiappevent](hiappevent-watcher-crash-events-arkts.md)。
+
 ## 接口说明
 
 应用错误管理接口由[errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md)模块提供，开发者可以通过import引入，详见[开发示例](#开发示例)。

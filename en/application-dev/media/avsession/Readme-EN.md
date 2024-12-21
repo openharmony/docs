@@ -4,6 +4,7 @@
 - Local AVSession
   - [Local AVSession Overview](local-avsession-overview.md)
   - [AVSession Provider](using-avsession-developer.md)
+  - [AVSession Provider (C/C++)](using-ohavsession-developer.md)
   - [Accessing AVSession](avsession-access-scene.md)
   <!--Del-->
   - [AVSession Controller (for System Applications Only)](using-avsession-controller.md)

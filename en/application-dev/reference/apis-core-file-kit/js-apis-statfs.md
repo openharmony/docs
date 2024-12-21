@@ -13,7 +13,7 @@ The **statfs** module provides APIs for obtaining file system information, inclu
 import statfs from '@ohos.statfs';
 ```
 
-## statfs.getFreeBytes
+## Statfs.getFreeBytes
 
 getFreeBytes(path:string):Promise&lt;number&gt;
 
@@ -45,7 +45,7 @@ Obtains the free size of the specified file system, in bytes. This API uses a pr
   });
   ```
 
-## statfs.getFreeBytes
+## Statfs.getFreeBytes
 
 getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 
@@ -64,6 +64,7 @@ Obtains the free size of the specified file system, in bytes. This API uses an a
 
   ```ts
   import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
   let context = getContext(this) as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getFreeBytes(path, (err: BusinessError, freeBytes:Number) => {
@@ -75,7 +76,7 @@ Obtains the free size of the specified file system, in bytes. This API uses an a
   });
   ```
 
-## statfs.getTotalBytes
+## Statfs.getTotalBytes
 
 getTotalBytes(path: string): Promise&lt;number&gt;
 
@@ -107,7 +108,7 @@ Obtains the total size of the specified file system, in byte. This API uses a pr
   });
   ```
 
-## statfs.getTotalBytes
+## Statfs.getTotalBytes
 
 getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
 
@@ -126,6 +127,7 @@ Obtains the total size of the specified file system, in bytes. This API uses an 
 
   ```ts
   import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
   let context = getContext(this) as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getTotalBytes(path, (err: BusinessError, totalBytes:Number) => {

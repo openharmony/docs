@@ -748,7 +748,7 @@ try {
 
 getForegroundApplications(): Promise\<Array\<AppStateData>>
 
-Obtains applications that are running in the foreground. This API uses a promise to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData-sys.md).
+Obtains applications that are running in the foreground. This API uses an asynchronous callback to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData-sys.md).
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -795,7 +795,7 @@ Kills a process by bundle name and account ID. This API uses a promise to return
 >
 > The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
 
-**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS or ohos.permission.CLEAN_BACKGROUND_PROCESSES
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -852,7 +852,7 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 >
 > The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
 
-**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS or ohos.permission.CLEAN_BACKGROUND_PROCESSES
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -956,7 +956,7 @@ try {
 
 killProcessesByBundleName(bundleName: string): Promise\<void>
 
-Kills a process by bundle name. This API uses a promise to return the result.
+Kills a process by bundle name. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
@@ -974,7 +974,7 @@ Kills a process by bundle name. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
@@ -1748,7 +1748,7 @@ Checks whether an application is running. This API uses a promise to return the 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name.|
-| appCloneIndex | number | No| Index of the app clone.|
+| appCloneIndex | number | No| Index of an application clone.|
 
 **Return value**
 
@@ -1850,5 +1850,63 @@ struct Index {
         }
       })
   }
+}
+
+## appManager.clearUpAppData<sup>13+</sup>
+
+clearUpAppData(bundleName: string, appCloneIndex?: number): Promise\<void>
+
+Clears data of a specified application based on the bundle name and application clone index.
+
+**Required permissions**: ohos.permission.CLEAN_APPLICATION_DATA
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+Parameters
+
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes | Bundle name. |
+| appCloneIndex | number | No | Index of the application clone. |
+
+**Return value**
+
+| Type | Description |
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID | Error Message |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+| 16000073 | The app clone index does not exist. |
+
+**Example**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundleName: string = 'com.ohos.demo';
+let appCloneIndex: number = 0;
+
+try {
+  appManager.clearUpAppData(bundleName, appCloneIndex).then(() => {
+    console.log(`clearUpAppData success.`);
+  }).catch((err: BusinessError) => {
+    console.error(`clearUpAppData fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```

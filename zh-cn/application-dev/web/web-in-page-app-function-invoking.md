@@ -4,7 +4,7 @@
 开发者使用Web组件将应用侧代码注册到前端页面中，注册完成之后，前端页面中使用注册的对象名称就可以调用应用侧的函数，实现在前端页面中调用应用侧方法。
 
 
-注册应用侧代码有两种方式，一种在Web组件初始化调用，使用[javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)接口。另外一种在Web组件初始化完成后调用，使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口。
+注册应用侧代码有两种方式，一种在Web组件初始化调用，使用[javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)接口。另外一种在Web组件初始化完成后调用，使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口, 需要和[deleteJavaScriptRegister](../reference/apis-arkweb/js-apis-webview.md#deletejavascriptregister)接口配合使用，防止内存泄漏。
 
 
 在下面的示例中，将test()方法注册在前端页面中， 该函数可以在前端页面触发运行。
@@ -34,6 +34,14 @@
 
     build() {
       Column() {
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.controller.deleteJavaScriptRegister("testObjName");
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         // Web组件加载本地index.html页面
         Web({ src: $rawfile('index.html'), controller: this.webviewController})
           // 将对象注入到web端
@@ -105,6 +113,14 @@
                       '{"methodName":"test11","urlPermissionList":[{"scheme":"q","host":"r","port":"","path":"t"},' +
                       '{"scheme":"u","host":"v","port":"","path":""}]}]}}'
               );
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.controller.deleteJavaScriptRegister("testObjName");
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
@@ -240,6 +256,14 @@
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.controller.deleteJavaScriptRegister("testObjName");
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
       }
     }
@@ -311,6 +335,14 @@
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.controller.deleteJavaScriptRegister("testObjName");
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
       }
     }
@@ -376,6 +408,14 @@
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.controller.deleteJavaScriptRegister("testObjName");
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
       }
     }
@@ -437,6 +477,14 @@
           .onClick(() => {
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.controller.deleteJavaScriptRegister("testObjName");
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
@@ -545,6 +593,14 @@
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.controller.deleteJavaScriptRegister("testObjName");
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
       }
     }
@@ -617,6 +673,14 @@
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.controller.deleteJavaScriptRegister("testObjName");
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
       }
     }
@@ -677,6 +741,14 @@
           .onClick(() => {
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.controller.deleteJavaScriptRegister("testObjName");
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }

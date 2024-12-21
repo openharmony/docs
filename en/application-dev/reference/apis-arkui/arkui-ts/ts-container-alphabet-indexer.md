@@ -33,6 +33,8 @@ When the [width](ts-universal-attributes-size.md#width) attribute is set to **"a
 
 The default value of the [padding](ts-universal-attributes-size.md#padding) attribute is 4 vp.
 
+The [maxFontScale](ts-basic-components-text.md#maxfontscale12) and [minFontScale](ts-basic-components-text.md#minfontscale12) attributes are both set to a constant value of 1, which means that they do not change with the system font size.
+
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 ### color
@@ -716,12 +718,12 @@ struct AlphabetIndexerSample {
               .onClick(() => {
                 this.isNeedAutoCollapse = true;
               })
-            Button ('30% of Index Bar Height')
+            Button('30% of Index Bar Height')
               .margin('5vp')
               .onClick(() => {
                 this.indexerHeight = '30%';
               })
-            Button ('70% of Index Bar Height')
+            Button('70% of Index Bar Height')
               .margin('5vp')
               .onClick(() => {
                 this.indexerHeight = '70%';

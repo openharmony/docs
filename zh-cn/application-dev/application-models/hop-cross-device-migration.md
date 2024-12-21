@@ -45,19 +45,19 @@
 
 1. 在[module.json5配置文件](../quick-start/module-configuration-file.md)的abilities标签中配置跨端迁移标签`continuable`。
 
-    ```json
-    {
-      "module": {
-        // ...
-        "abilities": [
-          {
-            // ...
-            "continuable": true, // 配置UIAbility支持迁移
-          }
-        ]
-      }
-    }
-    ```
+   ```json
+   {
+     "module": {
+       // ...
+       "abilities": [
+         {
+           // ...
+           "continuable": true, // 配置UIAbility支持迁移
+         }
+       ]
+     }
+   }
+   ```
 
    > **说明：**
    >
@@ -67,10 +67,15 @@
 
     当[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例触发迁移时，[onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调在源端被调用，开发者可以在该接口中通过同步或异步的方式来保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
 
-    - 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在`wantParam`参数中。
-    - 应用兼容性检测：开发者可以在触发迁移时从`onContinue()`入参`wantParam.version`获取到迁移对端应用的版本号，与迁移源端应用版本号做兼容校验。
+    1. 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在`wantParam`参数中。
 
-    - 迁移决策：开发者可以通过`onContinue()`回调的返回值决定是否支持此次迁移，接口返回值详见[AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#oncontinueresult)。
+    2. （可选）检测应用兼容性：开发者可以在触发迁移时从`onContinue()`入参`wantParam.version`获取到迁移对端应用的版本号，与迁移源端应用版本号做兼容校验。应用在校验版本兼容性失败后，需要提示用户迁移失败的原因。
+
+       > **说明：**
+       >
+       > 如果迁移过程中的兼容性问题对于应用迁移体验影响较小或无影响，可以跳过该步骤。
+
+    3. 返回迁移结果：开发者可以通过`onContinue()`回调的返回值决定是否支持此次迁移，接口返回值详见[AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#oncontinueresult)。
 
     &nbsp;
     `onContinue()`接口传入的`wantParam`参数中，有部分字段由系统预置，开发者可以使用这些字段用于业务处理。同时，应用在保存自己的`wantParam`参数时，也应注意不要使用同样的key值，避免被系统覆盖导致数据获取异常。详见下表：
@@ -83,6 +88,7 @@
     ```ts
     import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { promptAction } from '@kit.ArkUI';
     
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -94,11 +100,15 @@
         let targetDevice = wantParam.targetDevice;
         hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${targetVersion}, targetDevice: ${targetDevice}`);
     
-        // 获取本端应用的版本号
-        let versionSrc: number = -1; // 请填充具体获取版本号的代码
-    
+         // 应用可根据源端版本号设置支持接续的最小兼容版本号，源端版本号可从app.json5文件中的versionCode字段获取；防止目标端版本号过低导致不兼容。
+        let versionThreshold: number = -1; // 替换为应用自己支持兼容的最小版本号
         // 兼容性校验
-        if (targetVersion !== versionSrc) {
+        if (targetVersion < versionThreshold) {
+          // 建议在校验版本兼容性失败后，提示用户拒绝迁移的原因
+          promptAction.showToast({
+              message: '目标端应用版本号过低，不支持接续，请您升级应用版本后再试',
+              duration: 2000
+          })
           // 在兼容性校验不通过时返回MISMATCH
           return AbilityConstant.OnContinueResult.MISMATCH;
         }
@@ -1063,4 +1073,4 @@ export default class MigrationAbility extends UIAbility {
 
 针对跨端迁移的开发，有以下相关实例可供参考：
 
-[跨端迁移随手记（ArkTS）（Public SDK）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedJotNote)
+[跨端迁移随手记（ArkTS）（Public SDK）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/SuperFeature/DistributedAppDev/DistributedJotNote)

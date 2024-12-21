@@ -1,6 +1,6 @@
 # Using PixelMap to Transform Images
 
-Image processing refers to a series of operations performed on the pixel map, such as obtaining image information, cropping, scaling, translating, rotating, flipping, setting opacity, and reading and writing pixel data. These operations can be classified into image transformation and [PixelMap operation](image-pixelmap-operation.md). This topic describes the image transformation operations that you can perform.
+Image processing refers to a series of operations performed on the PixelMap, such as obtaining image information, cropping, scaling, translating, rotating, flipping, setting opacity, and reading and writing pixel data. These operations can be classified into image transformation and [PixelMap operation](image-pixelmap-operation.md). This topic describes the image transformation operations that you can perform.
 
 ## How to Develop
 
@@ -92,3 +92,6 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#pixelmap7) for APIs
      ```
 
      ![Transparency](figures/transparency.png)
+
+<!--RP1-->
+<!--RP1End-->

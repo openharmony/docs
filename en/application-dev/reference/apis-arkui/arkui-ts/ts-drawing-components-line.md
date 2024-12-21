@@ -17,12 +17,15 @@ Line(value?: {width?: string | number, height?: string | number})
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type| Mandatory| Description
 | -------- | -------- | -------- | -------- |
-| width | string \| number | No| Width.<br>**NOTE**<br>If the value is invalid or the default value is used, the width required for the content is used.|
-| height | string \| number | No| Height.<br>**NOTE**<br>If the value is invalid or the default value is used, the height required for the content is used.|
+| value | {width?: string \| number, height?: string \| number} | No| **width**: width<br>If the value is invalid or the default value is used, the width required for the content is used.<br>**height**: height<br>If the value is invalid or the default value is used, the height required for the content is used.|
 
 ## Attributes
 
@@ -35,6 +38,8 @@ startPoint(value: Array&lt;any&gt;)
 Sets the coordinates (relative coordinates) of the start point of the line. An invalid value is handled as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -52,6 +57,8 @@ Sets the coordinates (relative coordinates) of the end point of the line. An inv
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -64,9 +71,11 @@ Sets the coordinates (relative coordinates) of the end point of the line. An inv
 
 fill(value: ResourceColor)
 
-Sets the color of the fill area. This attribute does not take effect because the **Line** component cannot be used to draw a closed shape.
+Sets the color of the fill area. This attribute has no effect for the **Line** component, which cannot be used to draw a closed shape.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -80,9 +89,11 @@ Sets the color of the fill area. This attribute does not take effect because the
 
 fillOpacity(value: number | string | Resource)
 
-Sets the opacity of the fill area. This attribute does not take effect because the **Line** component cannot be used to draw a closed shape.
+Sets the opacity of the fill area. This attribute has no effect for the **Line** component, which cannot be used to draw a closed shape.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -100,6 +111,8 @@ Sets the stroke color. If this attribute is not set, the component does not have
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -115,6 +128,8 @@ strokeDashArray(value: Array&lt;any&gt;)
 Sets stroke dashes. Line segments may overlap when they intersect. An invalid value is handled as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -132,6 +147,8 @@ Sets the offset of the start point for drawing the stroke.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -148,6 +165,8 @@ Sets the cap style of the stroke.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -160,9 +179,11 @@ Sets the cap style of the stroke.
 
 strokeLineJoin(value: LineJoinStyle)
 
-Sets the join style of the stroke. This attribute does not work for the **Line** component, which does not have corners.
+Sets the join style of the stroke. This attribute has no effect for the **Line** component, which does not have corners.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -176,9 +197,11 @@ Sets the join style of the stroke. This attribute does not work for the **Line**
 
 strokeMiterLimit(value: number | string)
 
-Limit value when the sharp angle is drawn as a miter. This attribute does not take effect because the **Line** component cannot be used to draw a shape with a sharp angle.
+Sets the limit value when the sharp angle is drawn as a miter. This attribute has no effect for the **Line** component, which cannot be used to draw a shape with a sharp angle.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -196,6 +219,8 @@ Sets the stroke opacity. The value range is [0.0, 1.0]. A value less than 0.0 ev
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -212,6 +237,8 @@ Sets the stroke width. If of the string type, this attribute cannot be set in pe
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -227,6 +254,8 @@ antiAlias(value: boolean)
 Specifies whether anti-aliasing is enabled.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

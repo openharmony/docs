@@ -322,7 +322,7 @@ Grid() {
 
 针对网格开发，有以下相关实例可供参考：
 
-- [游戏2048（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Game2048)
+- [游戏2048（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/Solutions/Game/Game2048)
 
-- [分布式计算器](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc)
+- [分布式计算器](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc)
 <!--RP1--><!--RP1End-->

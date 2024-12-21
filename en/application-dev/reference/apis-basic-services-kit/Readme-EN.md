@@ -69,7 +69,7 @@
     <!--Del-->
     - [@ohos.configPolicy (Configuration Policy) (System API)](js-apis-configPolicy-sys.md)
     - [@ohos.settings (Data Item Settings) (System API)](js-apis-settings-sys.md)
-    - @ohos.systemDateTime (System Time and Time Zone) (System API)](js-apis-system-date-time-sys.md)
+    - [@ohos.systemDateTime (System Time and Time Zone) (System API)](js-apis-system-date-time-sys.md)
     - [@ohos.systemDateTime (System Time and Time Zone)](js-apis-date-time.md)
     - [@ohos.wallpaper (Wallpaper) (System API)](js-apis-wallpaper-sys.md)
     - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility) (System API)](js-apis-WallpaperExtensionAbility-sys.md)
@@ -92,11 +92,13 @@
     - [@ohos.systemTime (System Time and Time Zone)](js-apis-system-time.md)
 - C API
   - Modules
+    - [CommonEvent](capi-common-event.md)
     - [OsAccount](_os_account.md)
     - [OH_BatteryInfo](oh__batteryinfo.md)
     - [OH_Scan](c-apis-scan.md)
+    - [OH_Print](_o_h___print.md)
+    - [Pasteboard](_pasteboard.md)
     - [TimeService](_time_service.md)
-    - [CommonEvent](capi-common-event.md)
   - Header Files
     - [ohbattery_info.h](ohbattery__info_8h.md)
     - [oh_commonevent.h](oh_commonevent_8h.md)
@@ -107,6 +109,12 @@
     - [os_account_common.h](os__account__common_8h.md)
     - [ohprint.h](ohprint_8h.md)
     - [time_service.h](time__service_8h.md)
+  - Structs
+    - [Print_Margin](_print___margin.md)
+    - [Print_PageSize](_print___page_size.md)
+    - [Print_PrintAttributes](_print___print_attributes.md)
+    - [Print_PrintDocCallback](_print___print_doc_callback.md)
+    - [Print_Range](_print___range.md)
 - Error Codes
   - [USB Error Codes](errorcode-usb.md)
   - [Running Lock Error Codes](errorcode-runninglock.md)
@@ -131,4 +139,3 @@
   - [Screen Lock Management Error Codes](errorcode-screenlock.md)
   - [Intelligent Voice Error Codes](errorcode-intelligentVoice.md)
   <!--DelEnd-->
-<!--no_check-->

@@ -55,6 +55,8 @@ By default, the text content is displayed in a one line.
 
 ## ButtonOptions
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name                     | Type                                         | Mandatory | Description                                                        |
 | ------------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type                      | [ButtonType](#buttontype)             | No  | Button type.<br>Default value: **ButtonType.Capsule**<br>**Atomic service API**: This API can be used in atomic services since API version 11.           |
@@ -285,6 +287,8 @@ Creates a content modifier.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name     | Description                |
 | ------- | ------------------ |
 | Capsule | Capsule-type button (the round corner is half of the height by default). |
@@ -295,12 +299,14 @@ Creates a content modifier.
 >  - The rounded corner of a button is set by using [borderRadius](ts-universal-attributes-border.md#borderradius), rather than by using the **border** API. Only a rounded corner whose parameter is [Length](ts-types.md#length) is supported.
 >  - For a button of the **Capsule** type, the **borderRadius** settings do not take effect, and the radius of its rounded corner is always half of the button height or width, whichever is smaller.
 >  - For a button of the **Circle** type: (1) If both its width and height are set, **borderRadius** does not take effect, and the button radius is half of the width or height (whichever is smaller). (2) If either its width or height is set, **borderRadius** does not take effect, and the button radius is half of the set width or height. (3) If neither its width nor height is set, the button radius is as specified by **borderRadius**; if **borderRadius** is set to a negative value, the value **0** will be used.
->  - The button text is set using the [text style attributes](ts-universal-attributes-text-style.md#attributes).
+>  - The button text is set using [fontSize](#fontsize), [fontColor](#fontcolor), [fontStyle](#fontstyle), [fontFamily](#fontfamily), and [fontWeight](#fontweight).
 >  - Before setting the [gradient color](ts-universal-attributes-gradient-color.md), you need to set [backgroundColor](ts-universal-attributes-background.md#backgroundcolor) to transparent.
 
 ## LabelStyle<sup>10+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name                | Type                                                    | Mandatory | Description                                                        |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -317,6 +323,8 @@ Creates a content modifier.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name     | Description                |
 | ------- | ------------------ |
 | EMPHASIZED | Emphasized button (used to direct the user to the most important task). |
@@ -329,6 +337,8 @@ Creates a content modifier.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name     | Description                |
 | ------- | ------------------ |
 | SMALL | Small button. |
@@ -339,6 +349,8 @@ Creates a content modifier.
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name     | Description                |
 | ------- | ------------------ |
@@ -351,6 +363,8 @@ You need a custom class to implement the **ContentModifier** API.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name | Type   | Description             |
 | ------ | ------ | ---------------- |
 | label | string | Text label of the button. |
@@ -359,9 +373,15 @@ You need a custom class to implement the **ContentModifier** API.
 
 ## ButtonTriggerClickCallback<sup>12+</sup>
 
+type ButtonTriggerClickCallback = (xPos: number, yPos: number) => void
+
 Defines the callback type used in **ButtonConfiguration**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
 
 | Name | Type   | Mandatory | Description             |
 | ------ | ------ | ---- | ---------------- |
@@ -371,6 +391,7 @@ Defines the callback type used in **ButtonConfiguration**.
 ## Events
 
 The [universal events](ts-universal-events-click.md) are supported.
+
 ## Example
 
 ### Example 1
@@ -471,7 +492,7 @@ struct SwipeGestureExample {
 @Component
 struct buttonTestDemo {
   @State txt: string = 'overflowTextOverlengthTextOverflow.Clip';
-  @State widthShortSize: number = 200;
+  @State widthShortSize: number = 210;
 
   build() {
     Row() {
@@ -479,6 +500,7 @@ struct buttonTestDemo {
         Button(this.txt)
           .width(this.widthShortSize)
           .height(100)
+          .backgroundColor(0x317aff)
           .labelStyle({ overflow: TextOverflow.Clip,
             maxLines: 1,
             minFontSize: 20,

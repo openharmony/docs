@@ -152,19 +152,19 @@ Most of the APIs for cross-device sync of distributed data objects are executed 
 
 1. Create a distributed data object in **onContinue()** for the application on the source device, and save data.
 
-    1.1 Call **create()** to create a distributed data object instance.
+    (1) Call **create()** to create a distributed data object instance.
 
-    1.2 Call **genSessionId()** to generate a **sessionId**, call **setSessionId()** to set a **sessionId**, and add the **sessionId** to **wantParam**. The distributed data objects with the same **sessionId** can connect to the same network. 
+    (2) Call **genSessionId()** to generate a **sessionId**, call **setSessionId()** to set a **sessionId**, and add the **sessionId** to **wantParam**. The distributed data objects with the same **sessionId** can connect to the same network. 
 
-    1.3 Obtain the network ID from **wantParam** for the application on the target device and call **save()** with this network ID to save data to the target device.
+    (3) Obtain the network ID from **wantParam** for the application on the target device and call **save()** with this network ID to save data to the target device.
 
 2. Create a distributed data object in **onCreate()** and **onNewWant()** for the application on the target device, and register a listener for the "restored" state.
 
-    2.1 Call **create()** to create a distributed data object instance for the application on the target device.
+    (1) Call **create()** to create a distributed data object instance for the application on the target device.
 
-    2.2 Register a listener callback for the data recovery state. If "restored" is returned by the listener callback registered, the distributed data object of the target device has obtained the data transferred from the source device.
+    (2) Register a listener callback for the data recovery state. If "restored" is returned by the listener callback registered, the distributed data object of the target device has obtained the data transferred from the source device.
 
-    2.3 Obtain the **sessionId** of the source device from **want.parameters** and call **setSessionId** to set the same **sessionId** for the target device.
+    (3) Obtain the **sessionId** of the source device from **want.parameters** and call **setSessionId** to set the same **sessionId** for the target device.
 
 > **NOTE**
 >
@@ -318,27 +318,27 @@ export default class EntryAbility extends UIAbility {
 
 1. Call **startAbilityByCall()** to start an ability on another device.
 
-    1.1 Call **genSessionId()** to create a **sessionId** and obtain the network ID of the peer device through the distributed device management interface.
+    (1) Call **genSessionId()** to create a **sessionId** and obtain the network ID of the peer device through the distributed device management interface.
 
-    1.2 Assemble **want** and put **sessionId** into **want**.
+    (2) Assemble **want** and put **sessionId** into **want**.
 
-    1.3 Call **startAbilityByCall()** to start the peer ability.
+    (3) Call **startAbilityByCall()** to start the peer ability.
 
 2. Create a distributed data object on the caller device and adds it to the network.
 
-   2.1 Create a distributed data object instance.
+   (1) Create a distributed data object instance.
 
-   2.2 Register a listener callback for data changes.
+   (2) Register a listener callback for data changes.
 
-   2.3 Set a **sessionId** for the distributed data object and add it to the network.
+   (3) Set a **sessionId** for the distributed data object and add it to the network.
 
 3. Create a distributed data object on the peer device and restore the data saved on the caller device.
 
-   3.1 Create a distributed data object instance on the peer device.
+   (1) Create a distributed data object instance on the peer device.
 
-   3.2 Register a listener callback for data changes.
+   (2) Register a listener callback for data changes.
 
-   3.3 Obtain **sessionId** of the caller device from **want** and add the distributed data object instance to the network with the **sessionId**.
+   (3) Obtain **sessionId** of the caller device from **want** and add the distributed data object instance to the network with the **sessionId**.
 
 > **NOTE**
 >

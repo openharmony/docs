@@ -40,10 +40,13 @@ export default class EntryAbility extends UIAbility {
 After the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is created but before it enters the Foreground state, the system creates a WindowStage instance and triggers the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) callback. You can set UI loading and WindowStage event subscription in the callback.
 
 **Figure 2** WindowStageCreate and WindowStageDestroy 
-
 ![Ability-Life-Cycle-WindowStage](figures/Ability-Life-Cycle-WindowStage.png)  
 
-In the **onWindowStageCreate()** callback, use [loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9) to set the page to be loaded, and call [on('windowStageEvent')](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9) to subscribe to [WindowStage events](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9), for example, having or losing focus, or becoming visible or invisible.
+In the **onWindowStageCreate()** callback, use [loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9) to set the page to be loaded, and call [on('windowStageEvent')](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9) to subscribe to [WindowStage events](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9), for example, having or losing focus, switching to the foreground or background, or becoming interactive or non-interactive in the foreground.
+
+> **NOTE**
+> 
+> The timing of the [WindowStage events](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9) may vary according to the development scenario.
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -56,31 +59,38 @@ const DOMAIN_NUMBER: number = 0xFF00;
 export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Subscribe to the WindowStage events (having or losing focus, or becoming visible or invisible).
+    // Subscribe to the WindowStage events (having or losing focus, switching to the foreground or background, or becoming interactive or non-interactive in the foreground).
     try {
       windowStage.on('windowStageEvent', (data) => {
         let stageEventType: window.WindowStageEventType = data;
         switch (stageEventType) {
           case window.WindowStageEventType.SHOWN: // Switch to the foreground.
-            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage foreground.');
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage foreground.`);
             break;
           case window.WindowStageEventType.ACTIVE: // Gain focus.
-            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage active.');
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage active.`);
             break;
           case window.WindowStageEventType.INACTIVE: // Lose focus.
-            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage inactive.');
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage inactive.`);
             break;
           case window.WindowStageEventType.HIDDEN: // Switch to the background.
-            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage background.');
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage background.`);
+            break;
+          case window.WindowStageEventType.RESUMED: // Interactive in the foreground.
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage resumed.`);
+            break;
+          case window.WindowStageEventType.PAUSED: // Non-interactive in the foreground.
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage paused.`);
             break;
           default:
             break;
         }
       });
     } catch (exception) {
-      hilog.error(DOMAIN_NUMBER, TAG, 'Failed to enable the listener for window stage event changes. Cause:' + JSON.stringify(exception));
+      hilog.error(DOMAIN_NUMBER, TAG,
+        `Failed to enable the listener for window stage event changes. Cause: ${JSON.stringify(exception)}`);
     }
-    hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onWindowStageCreate');
+    hilog.info(DOMAIN_NUMBER, TAG, `%{public}s`, `Ability onWindowStageCreate`);
     // Set the page to be loaded.
     windowStage.loadContent('pages/Index', (err, data) => {
       // ...
@@ -98,11 +108,6 @@ Before the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbili
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-const TAG: string = '[EntryAbility]';
-const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryAbility extends UIAbility {
   windowStage: window.WindowStage | undefined = undefined;
@@ -115,16 +120,6 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageDestroy() {
     // Release UI resources.
-    // Unsubscribe from the WindowStage events such as having or losing focus in the onWindowStageDestroy() callback.
-    try {
-      if (this.windowStage) {
-        this.windowStage.off('windowStageEvent');
-      }
-    } catch (err) {
-      let code = (err as BusinessError).code;
-      let message = (err as BusinessError).message;
-      hilog.error(DOMAIN_NUMBER, TAG, `Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
-    }
   }
 }
 ```
@@ -135,6 +130,11 @@ The [onWindowStageWillDestroy()](../reference/apis-ability-kit/js-apis-app-abili
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryAbility extends UIAbility {
   windowStage: window.WindowStage | undefined = undefined;
@@ -143,9 +143,21 @@ export default class EntryAbility extends UIAbility {
     this.windowStage = windowStage;
     // ...
   }
+
   onWindowStageWillDestroy(windowStage: window.WindowStage) {
     // Release the resources obtained through the windowStage object.
+    // Unsubscribe from the WindowStage events (having or losing focus, switching to the foreground or background, or becoming interactive or non-interactive in the foreground) in the onWindowStageDestroy() callback.
+    try {
+      if (this.windowStage) {
+        this.windowStage.off('windowStageEvent');
+      }
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
+    }
   }
+
   onWindowStageDestroy() {
     // Release UI resources.
   }

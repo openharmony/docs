@@ -15,7 +15,7 @@
 
 ## 使用方式
 
-开发者可以利用诸如<!--Del-->[<!--DelEnd-->Trace<!--Del-->](../performance/common-trace-using-instructions.md)<!--DelEnd-->工具或日志记录等手段，来识别冷启动期间未被实际调用的文件。通过对这些数据的分析，开发者能够精准地定位出启动阶段不必预先加载的文件列表。针对这些文件的调用点，可以直接增加lazy标识。但需要注意的是，后续执行的加载是同步加载，有可能会阻塞任务执行（如点击任务，触发了延迟加载，那么运行时会去执行冷启动未加载的文件，从而增加耗时），因此是否使用lazy需要开发者自行评估。
+开发者可以利用诸如<!--Del-->[<!--DelEnd-->Trace<!--Del-->](../performance/common-trace-using-instructions.md)<!--DelEnd-->工具或日志记录等手段，来识别冷启动期间未被实际调用的文件<!--RP1-->，分析方法可参考[延迟加载lazy-import使用指导](../performance/Lazy-Import-Instructions.md)<!--RP1End-->。通过对这些数据的分析，开发者能够精准地定位出启动阶段不必预先加载的文件列表。针对这些文件的调用点，可以直接增加lazy标识。但需要注意的是，后续执行的加载是同步加载，有可能会阻塞任务执行（如点击任务，触发了延迟加载，那么运行时会去执行冷启动未加载的文件，从而增加耗时），因此是否使用lazy需要开发者自行评估。
 
 > **说明**：
 >
@@ -155,24 +155,24 @@
     ```
 - 在同一ets文件中，未使用懒加载变量并再次导出，不支持延迟加载变量被re-export导出。
     
-    这种方式导出的变量c未在B.ets中使用，文件B.ets不触发执行。在文件A.ets中使用变量a时，该变量未初始化，抛js异常。
+    这种方式导出的变量c未在B.ets中使用，文件B.ets不触发执行。在文件A.ets中使用变量c时，该变量未初始化，抛js异常。
     ```typescript
         // A.ets
         import { c } from "./B";
         console.info(c);
 
         // B.ets
-        import lazy { c } from "./C";    // 从"mod1"内获取a对象，标记为延迟加载
+        import lazy { c } from "./C";    // 从"C"内获取c对象，标记为延迟加载
         export { c }
 
         // C.ets
-        function c(){};
+        let c = "c";
         export { c }
     ```
     执行结果:
     ```typescript
-        ReferenceError: a is not initaliized
-             at func_main_0 (A.ets:2:1)
+        ReferenceError: c is not initaliized
+             at func_main_0 (A.ets:2:13)
     ```
 
     ```typescript
@@ -181,17 +181,17 @@
         console.info(ns.c);
 
         // B.ets
-        import lazy { c } from "./C";    // 从"mod1"内获取a对象，标记为延迟加载
+        import lazy { c } from "./C";    // 从"C"内获取c对象，标记为延迟加载
         export { c }
 
         // C.ets
-        function c(){};
+        let c = "c";
         export { c }
     ```
     执行结果:
     ```typescript
     ReferenceError: module environment is undefined
-        at func_main_0 (A_ns.js:2:1)
+        at func_main_0 (A_ns.js:2:13)
     ```
 
 - 暂不支持lazy-import延迟加载kit。

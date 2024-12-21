@@ -15,10 +15,10 @@ Provides C APIs for the network protocol stack module.
 
 | Name| Description| 
 | -------- | -------- |
-| [net_ssl_c.h](net__ssl__c_8h.md) | Defines C APIs for the SSL/TLS certificate chain verification module.| 
-| [net_ssl_c_type.h](net__ssl__c__type_8h.md) | Defines data structures for the C APIs of the SSL/TLS certificate chain verification module.| 
-| [net_websocket.h](net__websocket_8h.md) | Defines C APIs for the WebSocket client module.| 
-| [net_websocket_type.h](net__websocket__type_8h.md) | Defines data structures for the C APIs of the WebSocket client module.| 
+| [net_ssl_c.h](net__ssl__c_8h.md) | Defines C APIs for the SSL/TLS certificate chain verification module.<br>**File to include**: \<network\/netstack\/net_ssl\/net_ssl_c.h\>| 
+| [net_ssl_c_type.h](net__ssl__c__type_8h.md) | Defines data structures for the C APIs of the SSL/TLS certificate chain verification module. **File to include**:  \<network\/netstack\/net_ssl\/net_ssl_c_type.h\>| 
+| [net_websocket.h](net__websocket_8h.md) | Defines C APIs for the WebSocket client module. **File to include**: \<network\/netstack\/net_websocket.h\>| 
+| [net_websocket_type.h](net__websocket__type_8h.md) | Defines data structures for the C APIs of the WebSocket client module. **File to include**: \<network\/net_websocket_type.h\>| 
 
 
 ### Structs
@@ -26,7 +26,7 @@ Provides C APIs for the network protocol stack module.
 | Name| Description|
 | -------- | -------- |
 | [NetStack_CertBlob](_net_stack___cert_blob.md) | Certificate data structure.|
-| [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) | Data structure of the certificate pinning information.|
+| [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) | Data structure of the certificate lock information.|
 | [NetStack_Certificates](_net_stack___certificates.md) | Data structure of the certificate information.|
 | [WebSocket_CloseResult](_web_socket___close_result.md) | Parameters for the connection closure received by the WebSocket client. |
 | [WebSocket_CloseOption](_web_socket___close_option.md) | Parameters for the proactive connection closure initiated by the WebSocket client. |
@@ -65,7 +65,7 @@ Provides C APIs for the network protocol stack module.
 | [OH_WebSocketClient_Send](#oh_websocketclient_send) (struct [WebSocket](_web_socket.md) \*client, char \*data, size_t length) | Sends data from the client to the server. |
 | [OH_WebSocketClient_Close](#oh_websocketclient_close) (struct [WebSocket](_web_socket.md) \*client, struct [WebSocket_CloseOption](_web_socket___close_option.md) options) | Lets the WebSocket client proactively close the connection. |
 | [OH_WebSocketClient_Destroy](#oh_websocketclient_destroy) (struct [WebSocket](_web_socket.md) \*client) | Releases the context and resources of the WebSocket connection. |
-| [OH_NetStack_GetPinSetForHostName](#oh_netstack_getpinsetforhostname)(const char \*hostname, [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) \*pin) | Obtains the certificate pinning information.|
+| [OH_NetStack_GetPinSetForHostName](#oh_netstack_getpinsetforhostname)(const char \*hostname, [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) \*pin) | Obtains the certificate lock information.|
 | [OH_NetStack_GetCertificatesForHostName](#oh_netstack_getcertificatesforhostname)(const char \*hostname, [NetStack_Certificates](_net_stack___certificates.md) \*certs) | Obtains certificate information.|
 | [OH_Netstack_DestroyCertificatesContent](#oh_netstack_destroycertificatescontent)([NetStack_Certificates](_net_stack___certificates.md) \*certs) | Releases the certificate content.|
 
@@ -239,7 +239,7 @@ enum NetStack_CertificatePinningKind
 
 **Description**
 
-Enumerates certificate pinning types.
+Enumerates certificate lock types.
 
 **Since**: 12
 
@@ -289,9 +289,9 @@ Verifies the certificate chain.
 
 **Returns**
 
-**0**: Success.
+**0**: success.
 
-**2305001**: Unknown error.
+**2305001**: unknown error.
 
 **2305002**: Failed to obtain the issuer certificate.
 
@@ -321,6 +321,8 @@ Verifies the certificate chain.
 
 **2305027**: The certificate is untrusted.
 
+**2305069**: A call error occurred during certificate verification or the parameter is invalid.
+
 ### OH_NetStack_GetPinSetForHostName()
 
 ```
@@ -329,7 +331,7 @@ int32_t OH_NetStack_GetPinSetForHostName (const char * hostname, NetStack_Certif
 
 **Description**
 
-Obtains the certificate pinning information.
+Obtains the certificate lock information.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -340,11 +342,11 @@ Obtains the certificate pinning information.
 | Name    | Description                          |
 | -------- | ------------------------------ |
 | hostname | Host name.                      |
-| pin      | Structure of the certificate pinning information.|
+| pin      | Structure of the certificate lock information.|
 
 **Returns**
 
-**0**: Success.
+**0**: success.
 
 **401**: Parameter error.
 
@@ -373,9 +375,9 @@ Obtains the certificate information.
 
 **Returns**
 
-**0**: Success.
+**0**: success.
 
-**401**: Incorrect parameter settings.
+**401**: Parameter error.
 
 **2305999**: Memory error.
 

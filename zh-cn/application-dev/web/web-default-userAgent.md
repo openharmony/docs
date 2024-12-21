@@ -14,11 +14,15 @@ Mozilla/5.0 ({deviceType}; {OSName} {OSVersion}) AppleWebKit/537.36 (KHTML, like
 | ArkWeb VersionCode | ArkWeb版本号       |- |
 | Mobile（可选）     | 是否是手机设备     |- |
 
+> **说明：**
+>
+> - 当前通过UserAgent中是否含有"Mobile"字段来判断是否开启前端HTML页面中meta标签的viewport属性。当UserAgent中不含有"Mobile"字段时，meta标签中viewport属性默认关闭，此时可通过显性设置[metaViewport](../reference/apis-arkweb/ts-basic-components-web.md#metaviewport12)属性为true来覆盖关闭状态。
+
 举例：
 
 Mozilla/5.0 (Phone; OpenHarmony <!--RP2-->4.1<!--RP2End-->) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 ArkWeb/4.1.6.1 Mobile
 
-建议通过ArkWeb关键字识别是否是OpenHarmony设备以及web内核是否为ArkWeb，同时可以通过deviceType识别设备类型用于不同设备上的页面显示
+建议通过ArkWeb关键字识别是否是OpenHarmony设备以及web内核是否为ArkWeb，同时可以通过deviceType识别设备类型用于不同设备上的页面显示。
 
 ## 使用场景
 

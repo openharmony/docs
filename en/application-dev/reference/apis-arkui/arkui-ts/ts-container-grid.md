@@ -642,7 +642,7 @@ onReachStart(event: () => void)
 
 Triggered when the grid reaches the start position.
 
-This event is triggered once when the grid is initialized and once when the grid scrolls to the start position. If the edge effect is set to a spring effect, this event is triggered once when the swipe passes the start position, and triggered again when the swipe rebounds back to the start position.
+This event is triggered once when the grid is initialized and once when the grid scrolls to the start position. If the edge effect is set to a spring effect, this event is triggered once when the swipe passes the initial position, and triggered again when the swipe rebounds back to the initial position.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1161,8 +1161,8 @@ struct GridExample {
 ### Example 5
 
 1.  Set **editMode\(true\)** to enable edit mode, where the user can drag the grid items.
-2.  Through [onItemDragStart](#events), set the image to be displayed during dragging.
-3.  Through [onItemDrop](#events), obtain the initial position of the dragged item and the position to which the dragged item will be dropped. Through [onItemDrop](#events), complete the array position exchange logic.
+2.  In the [onItemDragStart](#onitemdragstart8) callback, set the image to be displayed during dragging.
+3.  Through [onItemDrop](#onitemdrop8), obtain the initial position of the dragged item and the position to which the dragged item will be dropped. Through [onItemDrop](#onitemdrop8), complete the array position exchange logic.
 
 > **NOTE**
 >
@@ -1480,7 +1480,7 @@ struct Index {
             Column() {
               Column().height(100).backgroundColor('#D5D5D5').width('100%')
               // The Text component in the center is set with flexGrow(1) to automatically fill the available space within the parent component.
-              Text('A piece of text.'.repeat(this.items[item]))
+              Text('This is a piece of text.'.repeat(this.items[item]))
                 .flexGrow(1).width('100%').align(Alignment.TopStart)
                 .backgroundColor('#F7F7F7')
               Column().height(50).backgroundColor('#707070').width('100%')

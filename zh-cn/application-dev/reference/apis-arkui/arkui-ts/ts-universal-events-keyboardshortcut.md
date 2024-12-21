@@ -117,9 +117,9 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 
 ## 示例
 
-### 示例1
+### 示例1（设置组件快捷键）
 
-设置组件的快捷键，同时按控制键+对应的字符可以触发组件响应快捷键，并触发onClick事件或自定义事件。
+该示例通过设置组件的快捷键，同时按控制键+对应的字符可以触发组件响应快捷键，并触发onClick事件或自定义事件。
 
 ```ts
 @Entry
@@ -163,9 +163,9 @@ struct Index {
 
  ![keyEvent](figures/keyboard-shortcut.gif)
 
-### 示例2
+### 示例2（注册和解注册快捷键绑定）
 
-通过按键注册和解注册快捷键绑定
+该示例演示了如何实现按键注册和解注册快捷键绑定。
 
 ```ts
 @Entry

@@ -1,7 +1,7 @@
 # SaveButton (System API)
 
 
-The **SaveButton** security component allows you to obtain temporary storage permission from the user by their touching the button, eliminating the need for a permission request dialog box.
+The **\<SaveButton>** security component allows you to obtain temporary storage permission from the user by their touching the button, eliminating the need for a permission request dialog box.
 
 
 > **NOTE**

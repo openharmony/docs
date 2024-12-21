@@ -33,9 +33,9 @@ constructor(options?: ShapeSize)
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| options | [ShapeSize](#shapesize) | No | Size of the shape. |
+| options | [ShapeSize](#shapesize) | No| Size of the shape.|
 
 This API inherits from [BaseShape](#baseshape).
 
@@ -57,9 +57,9 @@ constructor(options?: ShapeSize)
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| options | [ShapeSize](#shapesize) | No | Size of the shape. |
+| options | [ShapeSize](#shapesize) | No| Size of the shape.|
 
 This API inherits from [BaseShape](#baseshape).
 
@@ -81,9 +81,9 @@ constructor(options?: PathShapeOptions)
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| options | [PathShapeOptions](#pathshapeoptions) | No | Path parameters. |
+| options | [PathShapeOptions](#pathshapeoptions) | No| Path parameters.|
 
 This API inherits from [CommonShapeMethod](#commonshapemethod).
 
@@ -99,9 +99,9 @@ Sets the path drawing commands.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| commands | string | Yes | Path drawing commands. |
+| commands | string | Yes| Path drawing commands.|
 
 ## RectShape
 
@@ -121,9 +121,9 @@ constructor(options?: RectShapeOptions | RoundRectShapeOptions)
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| options | [RectShapeOptions](#rectshapeoptions)  \|  [RoundRectShapeOptions](#roundrectshapeoptions) | No | Rectangle parameters. |
+| options | [RectShapeOptions](#rectshapeoptions)  \|  [RoundRectShapeOptions](#roundrectshapeoptions) | No| Rectangle parameters.|
 
 This API inherits from [BaseShape](#baseshape).
 
@@ -139,9 +139,9 @@ Sets the radius width of the rectangle border corners.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| rWidth | number  \|  string | Yes | Radius width of the rectangle border corners. |
+| rWidth | number  \|  string | Yes| Radius width of the rectangle border corners.|
 
 ### radiusHeight
 
@@ -155,9 +155,9 @@ Sets the radius height of the rectangle border corners.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| rHeight | number  \|  string | Yes | Radius height of the rectangle border corners. |
+| rHeight | number  \|  string | Yes| Radius height of the rectangle border corners.|
 
 ### radius
 
@@ -171,9 +171,9 @@ Sets the radius of the rectangle border corners.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| radius | number  \|  string  \|  Array<number  \|  string> | Yes | Radius of the rectangle border corners. |
+| radius | number  \|  string  \|  Array<number  \|  string> | Yes| Radius of the rectangle border corners. When an array is provided, it should contain exactly four elements, corresponding to the radius of the upper left, upper right, lower left, and lower right corners of the rectangle, respectively. If more than four elements are contained, only the first four are accepted.|
 
 
 ## ShapeSize
@@ -188,8 +188,8 @@ Describes the size of a shape.
 
 | Name        | Type                                              | Mandatory                                            | Description                                        |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| width | number  \|  string | No | Width of the shape. |
-| height | number  \|  string | No | Height of the shape. |
+| width | number  \|  string | No| Width of the shape.|
+| height | number  \|  string | No| Height of the shape.|
 
 ## PathShapeOptions
 
@@ -203,7 +203,7 @@ Represents the parameter of the constructor used to create a **PathShape** objec
 
 | Name        | Type                                              | Mandatory                                            | Description                                        |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| commands | string | No | Path drawing commands. |
+| commands | string | No| Path drawing commands. For details, see [commands](./arkui-ts/ts-drawing-components-path.md#commands-1).|
 
 ## RectShapeOptions
 
@@ -219,11 +219,11 @@ This API inherits from [ShapeSize](#shapesize).
 
 | Name        | Type                                              | Mandatory                                            | Description                                        |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| radius | number  \|  string  \|  Array<number  \|  string> | No | Radius of the rectangle border corners. |
+| radius | number  \|  string  \|  Array<number  \|  string> | No| Radius of the rectangle border corners.|
 
 ## RoundRectShapeOptions
 
-Represents the parameter of the constructor used to create a **RectShape** object radius.
+Represents the parameter of the constructor used to create a **RectShape** object with rounded corners.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -235,8 +235,8 @@ This API inherits from [ShapeSize](#shapesize).
 
 | Name        | Type                                              | Mandatory                                            | Description                                        |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| radiusWidth | number  \|  string | No | Radius width of the rectangle border corners. |
-| radiusHeight | number  \|  string | No | Radius height of the rectangle border corners. |
+| radiusWidth | number  \|  string | No| Radius width of the rectangle border corners.|
+| radiusHeight | number  \|  string | No| Radius height of the rectangle border corners.|
 
 ## BaseShape
 
@@ -258,9 +258,9 @@ Sets the width of a shape.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| width | [Length](arkui-ts/ts-types.md#length) | Yes | Width of the shape. |
+| width | [Length](arkui-ts/ts-types.md#length) | Yes| Width of the shape.|
 
 ### height
 
@@ -274,9 +274,9 @@ Sets the height of a shape.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| height | [Length](arkui-ts/ts-types.md#length) | Yes | Height of the shape. |
+| height | [Length](arkui-ts/ts-types.md#length) | Yes| Height of the shape.|
 
 ### size
 
@@ -290,9 +290,9 @@ Sets the size of a shape.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| size | [SizeOptions](arkui-ts/ts-types.md#sizeoptions) | Yes | Size of the shape. |
+| size | [SizeOptions](arkui-ts/ts-types.md#sizeoptions) | Yes| Size of the shape.|
 
 ## CommonShapeMethod
 
@@ -312,15 +312,15 @@ Sets the coordinate offset relative to the component's layout position.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| offset | [Position](arkui-ts/ts-types.md#position) | Yes | Coordinate offset relative to the component's layout position. |
+| offset | [Position](arkui-ts/ts-types.md#position) | Yes| Coordinate offset relative to the component's layout position.|
 
 ### fill
 
 fill(color: ResourceColor): T
 
-Sets the fill color of a shape.
+Sets the fill color of this shape, which determines its opacity, with black representing full transparency and white representing full opacity.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -328,9 +328,9 @@ Sets the fill color of a shape.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| color | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | Yes | Fill color of the shape. |
+| color | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | Yes| Fill color of the shape, which represents the opacity of the fill area. The black color indicates full transparency, while white indicates full opacity.|
 
 ### position
 
@@ -344,9 +344,9 @@ Sets the position of a shape.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| position | [Position](arkui-ts/ts-types.md#position) | Yes | Position of the shape. |
+| position | [Position](arkui-ts/ts-types.md#position) | Yes| Position of the shape.|
 
 ## **Example**
 

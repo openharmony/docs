@@ -177,6 +177,10 @@ stateEffect(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true |
 
+>  **说明：**
+> 
+>  使用多态样式设置按压态时，需优先设置stateEffect为false，防止内置按压态与多态样式按压态冲突。
+
 ### fontFamily<sup>8+</sup>
 
 fontFamily(value: string | Resource)
@@ -369,9 +373,9 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 | ------ | ------ | ---------------- | ---------------- | ---------------- |
 | label | string | 否 | 否 | Button的文本标签。 |
 | pressed | boolean | 否 | 否 | 指示是否按下Button。<br/>**说明：**  <br/>此属性指示的是原本Button是否被按压，而非build出来的新组件。若新build出来的组件超过原本组件的大小，那么超出部分按压不触发。 |
-| triggerClick | [ButtonTriggerClickCallback](#buttontriggerclickcallback12对象说明) | 否 | 否 | 使用builder新构建出来组件的点击事件。 |
+| triggerClick | [ButtonTriggerClickCallback](#buttontriggerclickcallback12) | 否 | 否 | 使用builder新构建出来组件的点击事件。 |
 
-## ButtonTriggerClickCallback<sup>12+</sup>对象说明
+## ButtonTriggerClickCallback<sup>12+</sup>
 
 type ButtonTriggerClickCallback = (xPos: number, yPos: number) => void
 
@@ -393,7 +397,9 @@ type ButtonTriggerClickCallback = (xPos: number, yPos: number) => void
 支持[通用事件](ts-universal-events-click.md)。
 ## 示例
 
-### 示例1
+### 示例1（设置按钮的显示样式）
+
+该示例实现了两种创建按钮的方式，包含子组件或使用文本内容创建相应的按钮。
 
 ```ts
 // xxx.ets
@@ -453,7 +459,9 @@ struct ButtonExample {
 
 ![button](figures/button.gif)
 
-### 示例2 
+### 示例2 （为按钮添加渲染控制）
+
+该示例通过if/else控制按钮的显示文本。
 
 ```ts
 // xxx.ets
@@ -483,7 +491,9 @@ struct SwipeGestureExample {
 
 ![ifButton](figures/ifButton.gif)
 
-### 示例3 
+### 示例3 （设置按钮文本样式）
+
+该示例通过配置labelStyle自定义按钮文本的显示样式。
 
 ```ts
 // xxx.ets
@@ -522,7 +532,10 @@ struct buttonTestDemo {
 
 ![image-20230711171138661](figures/imageButtonLabelStyle.png)
 
-### 示例4
+### 示例4（设置不同尺寸按钮的重要程度）
+
+该示例通过配置controlSize、buttonStyle实现不同尺寸按钮的重要程度。
+
 ```ts
 // xxx.ets
 @Entry
@@ -557,7 +570,10 @@ struct ButtonExample {
 ```
 ![image-20230711171138661](figures/buttonstyleandsize.jpeg)
 
-### 示例5
+### 示例5（设置按钮的角色）
+
+该示例通过配置role实现按钮的角色。
+
 ```ts
 // xxx.ets
 @Entry
@@ -583,7 +599,7 @@ struct ButtonExample {
 ```
 ![buttonrole](figures/buttonrole.jpeg)
 
-### 示例6
+### 示例6（设置自定义样式按钮）
 该示例实现了自定义样式的功能，自定义样式实现了一个圆圈替换原本的按钮样式。如果按压，圆圈将变成红色，标题会显示按压字样；如果没有按压，圆圈将变成黑色，标题会显示非按压字样。
 ```ts
 class MyButtonStyle implements ContentModifier<ButtonConfiguration> {

@@ -259,6 +259,17 @@ normalize(): URI
 
 规范化此URI的路径。
 
+> **说明：**
+>
+> 如果此URI是不透明的，或者其路径已经是规范形式，则返回该URI。否则将构造一个新的URI，该URI与当前URI相同，唯一的区别是其路径通过规范化当前URI的路径来计算，具体规则如下：
+>
+>  1.移除所有的 .（点）段。
+>
+>  2.如果 ..（双点）段前面有一个非 .. 段，则将这两个段一起移除。重复此步骤，直到不再适用为止。
+>
+>如果路径规范化后以 ..（双点）段开头，这表明之前没有足够的非 .. 段可以移除，因此路径将以 .. 段开始。
+
+
 **原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -274,8 +285,14 @@ normalize(): URI
 ```ts
 const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
 console.info(uriInstance.path); // /path/path1/../path2/./path3
+// 规范化path后，移除所有的.（点）段,如果 ..（双点）段前面有一个非 .. 段，则将这两个段一起移除。
 let uriInstance1 = uriInstance.normalize();
 console.info(uriInstance1.path); // /path/path2/path3
+let uri1 = new uri.URI('http://www.test.com/../../patch/path1/../path2/path3/./path4/../');
+console.log(uri1.path); // /../../patch/path1/../path2/path3/./path4/../
+// 如果路径规范化后以 ..（双点）段开头，这表明之前没有足够的非 .. 段可以移除，因此路径将以 .. 段开始。
+let uri2 = uri1.normalize();
+console.log(uri2.path); // /../../patch/path2/path3
 ```
 
 ### checkRelative<sup>12+</sup>

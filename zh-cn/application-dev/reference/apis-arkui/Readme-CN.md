@@ -44,7 +44,6 @@
       - [Graphics](js-apis-arkui-graphics.md)
       - [NodeController](js-apis-arkui-nodeController.md)
       - [RenderNode](js-apis-arkui-renderNode.md)
-      - [XComponentNode](js-apis-arkui-xcomponentNode.md)
       - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
       - [Content](js-apis-arkui-Content.md)
       - [NodeContent](js-apis-arkui-NodeContent.md)
@@ -69,6 +68,7 @@
     - [@system.mediaquery (媒体查询)](js-apis-system-mediaquery.md)
     - [@system.prompt (弹窗)](js-apis-system-prompt.md)
     - [@system.router (页面路由)](js-apis-system-router.md)
+    - [XComponentNode](js-apis-arkui-xcomponentNode.md)
 - ArkTS组件
   - 组件通用信息
     - 通用事件
@@ -91,6 +91,7 @@
       - [尺寸设置](arkui-ts/ts-universal-attributes-size.md)
       - [位置设置](arkui-ts/ts-universal-attributes-location.md)
       - [布局约束](arkui-ts/ts-universal-attributes-layout-constraints.md)
+      - [组件级像素取整](arkui-ts/ts-universal-attributes-pixelRound.md)
       - [Flex布局](arkui-ts/ts-universal-attributes-flex-layout.md)
       - [边框设置](arkui-ts/ts-universal-attributes-border.md)
       - [图片边框设置](arkui-ts/ts-universal-attributes-border-image.md)
@@ -197,9 +198,7 @@
     <!--DelEnd-->
   - 导航与切换
     - [Navigation](arkui-ts/ts-basic-components-navigation.md)
-    - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
     - [NavDestination](arkui-ts/ts-basic-components-navdestination.md)
-    - [Navigator](arkui-ts/ts-container-navigator.md)
     - [Stepper](arkui-ts/ts-basic-components-stepper.md)
     - [StepperItem](arkui-ts/ts-basic-components-stepperitem.md)
     - [Tabs](arkui-ts/ts-container-tabs.md)
@@ -392,6 +391,8 @@
     - [AbilityComponent](arkui-ts/ts-container-ability-component-sys.md)
     <!--DelEnd-->
     - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
+    - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
+    - [Navigator](arkui-ts/ts-container-navigator.md)
     - [Panel](arkui-ts/ts-container-panel.md)
     - [点击控制](arkui-ts/ts-universal-attributes-click.md)
 - JS组件 

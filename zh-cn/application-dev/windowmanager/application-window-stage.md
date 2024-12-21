@@ -52,7 +52,7 @@
 
 ## 设置应用主窗口
 
-在`Stage`模型下，应用主窗口由`UIAbility`创建并维护生命周期。在`UIAbility`的`onWindowStageCreate`回调中，通过`WindowStage`获取应用主窗口，即可对其进行属性设置等操作。还可以在应用配置文件中设置应用主窗口的属性，如最大窗口宽度maxWindowWidth等，详见[module.json5配置文件](../quick-start/module-configuration-file.md#abilities标签)。
+在`Stage`模型下，应用主窗口由`UIAbility`创建并维护生命周期。在`UIAbility`的`onWindowStageCreate`回调中，通过`WindowStage`获取应用主窗口，即可对其进行属性设置等操作。还可以在应用配置文件中设置应用主窗口的属性，如最大窗口宽度maxWindowWidth等，详见[module.json5配置文件中的abilities标签](../quick-start/module-configuration-file.md#abilities标签)。
 
 ### 开发步骤
 
@@ -112,6 +112,12 @@ export default class EntryAbility extends UIAbility {
 ## 设置应用子窗口
 
 开发者可以按需创建应用子窗口，如弹窗等，并对其进行属性设置等操作。
+
+> **说明：**  
+> 由于以下几种情况，移动设备场景下不推荐使用子窗口，优先推荐使用控件[overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md)能力实现。  
+> - 移动设备场景下子窗不能超出主窗口范围，与控件一致。  
+> - 分屏窗口与自由窗口模式下，主窗口位置大小发生改变时控件实时跟随变化能力优于子窗。  
+> - 部分设备平台下根据实际的系统配置限制，子窗只有系统默认的动效和圆角阴影，应用无法设置，自由度低。
 
 ### 开发步骤
 
@@ -457,13 +463,13 @@ export default class EntryAbility extends UIAbility {
 <!--RP2-->
 ## 设置悬浮窗<!--RP2End-->
 
-悬浮窗可以在已有的任务基础上，创建一个始终在前台显示的窗口。即使创建悬浮窗的任务退至后台，悬浮窗仍然可以在前台显示。通常悬浮窗位于所有应用窗口之上；开发者可以创建悬浮窗，并对悬浮窗进行属性设置等操作。
+悬浮窗可以在已有的任务基础上，创建一个始终在前台显示的窗口。即使创建悬浮窗的任务退至后台，悬浮窗仍然可以在前台显示。通常悬浮窗位于所有应用窗口之上，开发者可以创建悬浮窗，并对悬浮窗进行属性设置等操作。
 
 
 ### 开发步骤
 
 <!--RP1-->
-**前提条件：** 创建`WindowType.TYPE_FLOAT`即悬浮窗类型的窗口，需要申请`ohos.permission.SYSTEM_FLOAT_WINDOW`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
+**前提条件：** 创建`WindowType.TYPE_FLOAT`即悬浮窗类型的窗口，需要申请`ohos.permission.SYSTEM_FLOAT_WINDOW`权限，配置方式请参见[system_basic等级应用申请权限的方式](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 <!--RP1End-->
 
 1. 创建悬浮窗。
@@ -603,8 +609,8 @@ export default class EntryAbility extends UIAbility {
 
 针对window开发（Stage模型），有以下相关实例可供参考：
 
-- [`Window`：一多设置典型页面（Settings）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)
+- [`Window`：一多设置典型页面（Settings）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/SuperFeature/MultiDeviceAppDev/Settings)
 
-- [悬浮窗（ArkTS）（API10）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowRatio)
+- [悬浮窗（ArkTS）（API10）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/SystemFeature/WindowManagement/WindowRatio)
 
-- [窗口管理（ArkTS）（API12）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowManage)
+- [窗口管理（ArkTS）（API12）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/SystemFeature/WindowManagement/WindowManage)

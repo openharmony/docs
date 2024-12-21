@@ -5,6 +5,11 @@
 
 VideoEncoder模块提供用于视频编码的接口。
 
+开发者可根据实际的开发需求，参考对应的开发指南及样例：
+
+- [视频编码](../../media/avcodec/video-encoding.md)
+- [时域可分层视频编码](../../media/avcodec/video-encoding-temporal-scalability.md)
+
 **系统能力：** SystemCapability.Multimedia.VideoEncoder
 
 **起始版本：** 9
@@ -408,7 +413,7 @@ OH_AVFormat* OH_VideoEncoder_GetOutputDescription (OH_AVCodec *codec)
 OH_AVErrCode OH_VideoEncoder_GetSurface (OH_AVCodec *codec, OHNativeWindow ** window )
 ```
 **描述**
-从视频编码器获取输入surface，必须在调用OH_VideoEncoder_Prepare接口之前调用此接口。
+从视频编码器获取输入surface，必须在调用OH_VideoEncoder_Configure接口之后OH_VideoEncoder_Prepare接口之前调用此接口。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
 

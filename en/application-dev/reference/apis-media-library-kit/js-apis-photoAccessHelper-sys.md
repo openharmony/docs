@@ -37,7 +37,7 @@ The file name must comply with the following specifications:
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | displayName  | string        | Yes  | File name of the image or video to create.             |
-| callback |  AsyncCallback&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Callback invoked to return the image or video created.|
+| callback |  AsyncCallback&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Callback used to return the image or video created.|
 
 **Error codes**
 
@@ -150,7 +150,7 @@ The file name must comply with the following specifications:
 | -------- | ------------------------ | ---- | ------------------------- |
 | displayName  | string        | Yes  | File name of the image or video to create.             |
 | options  | [PhotoCreateOptions](#photocreateoptions)        | Yes  | Options for creating an image or video asset.             |
-| callback |  AsyncCallback&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Callback invoked to return the image or video created.|
+| callback |  AsyncCallback&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Callback used to return the image or video created.|
 
 **Error codes**
 
@@ -274,7 +274,7 @@ The album name must meet the following requirements:
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | name  | string         | Yes  | Name of the album to create.             |
-| callback |  AsyncCallback&lt;[Album](#album)&gt; | Yes  | Callback invoked to return the created album instance.|
+| callback |  AsyncCallback&lt;[Album](#album)&gt; | Yes  | Callback used to return the created album instance.|
 
 **Error codes**
 
@@ -518,7 +518,7 @@ Obtains hidden albums based on the specified display mode and retrieval options.
 | -------- | ------------------------ | ---- | ------------------------- |
 | mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden files. |
 | options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | Yes  |  Options for retrieving the hidden files. |
-| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the result.|
+| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -575,7 +575,7 @@ Obtains hidden albums based on the specified display mode. This API uses an asyn
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden files. |
-| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the result.|
+| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -879,7 +879,7 @@ Obtains the index of an image or video in an album. This API uses an asynchronou
 | photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
 | albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
 | options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search criteria or sorting modes are set, the API cannot be called successfully.     |
-| callback | AsyncCallback&lt;number&gt;| Yes  | Callback invoked to return the index obtained.|
+| callback | AsyncCallback&lt;number&gt;| Yes  | Callback used to return the index obtained.|
 
 **Error codes**
 
@@ -1250,7 +1250,7 @@ async function example() {
 
 createAssetsForApp(bundleName: string, appName: string, appId: string, photoCreationConfigs: Array&lt;PhotoCreationConfig&gt;): Promise&lt;Array&lt;string&gt;&gt;
 
-Creates media assets for an application. The returned URIs has been granted with the permission for writing the media assets (images or vides).
+Creates media assets for an application. The returned URIs has been granted with the permission for writing the media assets (images or videos).
 
 **System API**: This is a system API.
 
@@ -1335,7 +1335,7 @@ Grants an application the permission to access a URI. This API uses a promise to
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;number&gt; | Promise used to return the result. The value **0** indicates means the permission is granted to the application. The value **1** means the application already has the permission. The value **-1** means the permission fails to be granted.|
+| Promise&lt;number&gt; | Promise used to return the result. The value **0** means the permission is granted to the application. The value **1** means the application already has the permission. The value **-1** means the permission fails to be granted.|
 
 **Error codes**
 
@@ -1385,14 +1385,14 @@ Grants an application the permission to access multiple URIs. This API uses a pr
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | appid | string | Yes| ID of the target application.|
 | uriList | Array&lt;string&gt; | Yes| A list of URIs, which cannot exceed 1000.|
-| photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | Yes| Type of the permission to be granted. For details, see **PhotoPermissionType**.|
+| photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | Yes| Type of the permission to be granted. For details, see the enum.|
 | hideSensitiveType | [HideSensitiveType](#hidesensitivetype12) | Yes| Type of the information to hide. This parameter is reserved. Currently, any enumerated value of **HideSensitiveType** can be passed in.|
 
 **Return value**
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;number&gt; | Promise used to return the result. The value **0** indicates means the operation is successful; and the value **-1** means the opposite.|
+| Promise&lt;number&gt; | Promise used to return the result. The value **0** means the operation is successful; the value **-1** means the opposite.|
 
 **Error codes**
 
@@ -1431,7 +1431,7 @@ async function example() {
 
 cancelPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoPermissionType): Promise&lt;number&gt;
 
-Cancels the permission for accessing an URI from an appliction. This API uses a promise to return the result.
+Cancels the permission for accessing an URI from an application. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1444,7 +1444,7 @@ Cancels the permission for accessing an URI from an appliction. This API uses a 
 | Name  | Type                                                                  | Mandatory| Description                     |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | appid | string | Yes| ID of the target application.|
-| uri | sring | Yes| URI of the media asset.|
+| uri | string | Yes| URI of the media asset.|
 | photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | Yes| Permission type.|
 
 **Return value**
@@ -1578,7 +1578,7 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | mode     | string                      | Yes   | Mode for opening the file, which can be **'r'** (read-only), **'w'** (write-only), or **'rw'** (read/write).|
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor (FD) of the file opened.                           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the file descriptor (FD) of the file opened.                           |
 
 **Error codes**
 
@@ -2004,7 +2004,7 @@ The EXIF data obtained are provided by the [image](../apis-image-kit/js-apis-ima
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the EXIF data, in JSON strings.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the EXIF data, in JSON strings.|
 
 **Error codes**
 
@@ -2319,7 +2319,7 @@ Checks whether this image or video asset is edited. This API uses an asynchronou
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
 
@@ -2439,7 +2439,7 @@ If the asset has never been edited, an empty string is returned.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the edit data obtained.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the edit data obtained.|
 
 **Error codes**
 
@@ -2606,7 +2606,7 @@ Opens the source file to obtain the FD. This API uses an asynchronous callback t
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the FD.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the FD.|
 
 **Error codes**
 
@@ -3025,7 +3025,7 @@ Obtains the thumbnails of an asset based on the specified options. This API uses
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
 | options | [RequestPhotoOptions](#requestphotooptions11) | Yes   | Options for obtaining the asset thumbnail.|
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the thumbnails obtained. The callback may be invoked more than once, depending on **options**.|
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback used to return the thumbnails obtained. The callback may be invoked more than once, depending on **options**.|
 
 **Return value**
 
@@ -3621,13 +3621,13 @@ Represents the edited media asset data.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-### Attributes
+### Properties
 
 | Name          | Type   | Readable  | Writable | Description  |
 | ------------ | ------ | ---- | ---- | ------- |
-| compatibleFormat | string | Yes   | Yes   | Format of the edited data. **System API**: This is a system API.   |
-| formatVersion | string | Yes   | Yes  | Version of the data format. **System API**: This is a system API.   |
-| data | string | Yes   | Yes  | Content edited. **System API**: This is a system API.   |
+| compatibleFormat | string | Yes   | Yes   | Format of the edited data. <br>**System API**: This is a system API.   |
+| formatVersion | string | Yes   | Yes  | Version of the data format. <br>**System API**: This is a system API.   |
+| data | string | Yes   | Yes  | Content edited. <br>**System API**: This is a system API.   |
 
 ### constructor<sup>11+</sup>
 
@@ -4787,7 +4787,7 @@ async function example() {
 
 dismissAssets(assets: Array&lt;PhotoAsset&gt;): void
 
-Removes assets from this portrait album.
+Removes assets from this portrait album or group photo album.
 
 **System API**: This is a system API.
 
@@ -4951,18 +4951,6 @@ async function example() {
   }
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## HighlightAlbum<sup>12+</sup>
 
@@ -5188,6 +5176,580 @@ async function example() {
 }
 ```
 
+### setVideoEnhancementAttr<sup>13+</sup>
+
+setVideoEnhancementAttr(videoEnhancementType: VideoEnhancementType, photoId: string): Promise&lt;void&gt;
+
+Sets the attributes for deferred video enhancement.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE\_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| videoEnhancementType       | [VideoEnhancementType](#videoenhancementtype13) | Yes   | Type of video enhancement.|
+| photoId | string | Yes   | Photo ID of the image.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID   | Error Message                             |
+| :------- | :-------------------------------- |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+| 14000016 | Operation Not Support.            |
+
+**Example**
+
+```ts
+async function example(asset: photoAccessHelper.PhotoAsset) {
+  try {
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    let photoId = "202410011800";
+    assetChangeRequest.setVideoEnhancementAttr(photoAccessHelper.VideoEnhancementType.QUALITY_ENHANCEMENT_LOCAL, photoId);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+  } catch (err) {
+    console.error(`setVideoEnhancementAttr fail with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### dismiss<sup>13+</sup>
+
+dismiss(): void
+
+Removes this group photo album.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID   | Error Message                             |
+| :------- | :-------------------------------- |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
+| 14000011 | System inner fail.            |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('dismissDemo');
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.GROUP_PHOTO);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.dismiss();
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('dismiss successfully');
+  } catch (err) {
+    console.error(`dismissDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+## CloudEnhancement<sup>13+</sup>
+
+Provides APIs for cloud enhancement management, including managing the tasks of generating AI-powered cloud enhancement photos and obtaining the association between the original photos and AI cloud enhancement photos.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### getCloudEnhancementInstance<sup>13+</sup>
+
+static getCloudEnhancementInstance(context: Context): CloudEnhancement
+
+Obtains a cloud enhancement instance.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('getCloudEnhancementInstanceDemo');
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  try {
+    let fetchResult = await phAccessHelper.getAssets(photoFetchOptions);
+    let asset = await fetchResult.getLastObject();
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    let hasCloudWatermark = true;
+    await cloudEnhancementInstance.submitCloudEnhancementTasks([asset], hasCloudWatermark);
+  } catch (err) {
+    console.error(`getCloudEnhancementInstanceDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### submitCloudEnhancementTasks<sup>13+</sup>
+
+submitCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;, hasCloudWatermark: boolean): Promise&lt;void&gt;
+
+Submits cloud enhancement tasks.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| photoAssets | Array<[PhotoAsset](#photoasset)> | Yes  | [PhotoAsset](#photoasset) to enhance.|
+| hasCloudWatermark | boolean | Yes  | Whether to add a cloud enhancement watermark to the enhanced images.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('submitCloudEnhancementTasksDemo');
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  try {
+    let fetchResult = await phAccessHelper.getAssets(photoFetchOptions);
+    let asset = await fetchResult.getLastObject();
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    let hasCloudWatermark = true;
+    await cloudEnhancementInstance.submitCloudEnhancementTasks([asset], hasCloudWatermark);
+  } catch (err) {
+    console.error(`submitCloudEnhancementTasksDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### prioritizeCloudEnhancementTask<sup>13+</sup>
+
+prioritizeCloudEnhancementTask(photoAsset: PhotoAsset): Promise&lt;void&gt;
+
+Prioritizes a cloud enhancement task.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| photoAsset | [PhotoAsset](#photoasset) | Yes  | [PhotoAsset](#photoasset) whose cloud enhancement priority needs to be escalated.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('prioritizeCloudEnhancementTaskDemo');
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  // Obtain the cloud enhancement tasks in progress.
+  photoPredicates.equalTo(photoAccessHelper.PhotoKeys.CE_AVAILABLE, 2);
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  try {
+    let fetchResult = await phAccessHelper.getAssets(photoFetchOptions);
+    let asset = await fetchResult.getLastObject();
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    let hasCloudWatermark = true;
+    await cloudEnhancementInstance.prioritizeCloudEnhancementTask(asset);
+  } catch (err) {
+    console.error(`prioritizeCloudEnhancementTaskDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### cancelCloudEnhancementTasks<sup>13+</sup>
+
+cancelCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
+
+Cancels cloud enhancement tasks.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| photoAssets | Array<[PhotoAsset](#photoasset)> | Yes  | Array of [PhotoAssets](#photoasset) whose cloud enhancement tasks are to be canceled.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('cancelCloudEnhancementTasksDemo');
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  // Obtain the cloud enhancement tasks in progress.
+  photoPredicates.equalTo(photoAccessHelper.PhotoKeys.CE_AVAILABLE, 2);
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  try {
+    let fetchResult = await phAccessHelper.getAssets(photoFetchOptions);
+    let asset = await fetchResult.getLastObject();
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    await cloudEnhancementInstance.cancelCloudEnhancementTasks([asset]);
+  } catch (err) {
+    console.error(`cancelCloudEnhancementTasksDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### cancelAllCloudEnhancementTasks<sup>13+</sup>
+
+cancelAllCloudEnhancementTasks(): Promise&lt;void&gt;
+
+Cancels all cloud enhancement tasks.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 14000011 | Internal system error.            |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('cancelAllCloudEnhancementTasksDemo');
+  try {
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    await cloudEnhancementInstance.cancelCloudEnhancementTasks();
+  } catch (err) {
+    console.error(`cancelAllCloudEnhancementTasksDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### queryCloudEnhancementTaskState<sup>13+</sup>
+
+queryCloudEnhancementTaskState(photoAsset: PhotoAsset): Promise&lt;CloudEnhancementTaskState&gt;
+
+Queries information about a cloud enhancement task.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| photoAsset | [PhotoAsset](#photoasset) | Yes  | [PhotoAsset](#photoasset) whose cloud enhancement task information is to be queried.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('queryCloudEnhancementTaskStateDemo');
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  // Obtain the cloud enhancement tasks in progress.
+  photoPredicates.equalTo(photoAccessHelper.PhotoKeys.CE_AVAILABLE, 2);
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  try {
+    let fetchResult = await phAccessHelper.getAssets(photoFetchOptions);
+    let asset = await fetchResult.getLastObject();
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    const cloudEnhancementTaskState: photoAccessHelper.CloudEnhancementTaskState
+      = await cloudEnhancementInstance.queryCloudEnhancementTaskState(asset);
+    let taskStage = cloudEnhancementTaskState.taskStage;
+    if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_EXCEPTION) {
+      console.log("task has exception");
+    } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_PREPARING) {
+      console.log("task is preparing");
+    } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_UPLOADING) {
+      let transferredFileSize = cloudEnhancementTaskState.transferredFileSize;
+      let totalFileSize = cloudEnhancementTaskState.totalFileSize;
+      let message = `task is uploading, transferredFileSize: ${transferredFileSize}, totalFileSize: ${totalFileSize}`;
+      console.log(message);
+    } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_EXECUTING) {
+      let expectedDuration = cloudEnhancementTaskState.expectedDuration;
+      let message = `task is executing, expectedDuration: ${expectedDuration}`;
+      console.log(message);
+    } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_DOWNLOADING) {
+      let transferredFileSize = cloudEnhancementTaskState.transferredFileSize;
+      let totalFileSize = cloudEnhancementTaskState.totalFileSize;
+      let message = `task is downloading, transferredFileSize: ${transferredFileSize}, totalFileSize: ${totalFileSize}`;
+      console.log(message);
+    } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_FAILED) {
+      let errCode = cloudEnhancementTaskState.statusCode;
+      let message = `task is failed, errCode: ${errCode}`;
+      console.log(message);
+    } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_COMPLETED) {
+      console.log("task is completed");
+    }
+  } catch (err) {
+    console.error(`queryCloudEnhancementTaskStateDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### syncCloudEnhancementTaskStatus<sup>13+</sup>
+
+syncCloudEnhancementTaskStatus(): Promise&lt;void&gt;
+
+Synchronizes the cloud enhancement task status.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 14000011 | Internal system error.            |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('syncCloudEnhancementTaskStatusDemo');
+  try {
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    await cloudEnhancementInstance.syncCloudEnhancementTaskStatus();
+  } catch (err) {
+    console.error(`syncCloudEnhancementTaskStatusDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### getCloudEnhancementPair<sup>13+</sup>
+
+getCloudEnhancementPair(asset: PhotoAsset): Promise&lt;PhotoAsset&gt;
+
+Obtains the photo after cloud enhancement.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| photoAsset | [PhotoAsset](#photoasset) | Yes  | [PhotoAsset](#photoasset) whose cloud enhancement photo is to be obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('getCloudEnhancementPairDemo');
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  // Query the completed cloud enhancement tasks.
+  photoPredicates.equalTo(photoAccessHelper.PhotoKeys.CE_AVAILABLE, 5);
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  try {
+    let fetchResult = await phAccessHelper.getAssets(photoFetchOptions);
+    let asset = await fetchResult.getLastObject();
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    let photoAsset: photoAccessHelper.PhotoAsset
+      = await cloudEnhancementInstance.getCloudEnhancementPair(asset);
+  } catch (err) {
+    console.error(`getCloudEnhancementPairDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### getFaceId<sup>13+</sup>
+
+getFaceId(): Promise\<string>
+
+Obtains the face identifier on the cover of a portrait album or group photo album.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ\_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Return value**
+
+| Type               | Description                               |
+| :------------------ | :---------------------------------- |
+| Promise&lt;string&gt; | Promise used to return **tag_id**  of the portrait album, **group_tag** of the group photo album, or an empty string if no face identifier is found.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message                                                    |
+| :------- | :----------------------------------------------------------- |
+| 201      | Permission denied.                                           |
+| 202      | Called by non-system application.                            |
+| 14000011 | Internal system error                                        |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  try {
+    console.info('getFaceIdDemo');
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo("user_display_level", 1);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult =
+      await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT,
+        fetchOptions);
+    let album = await fetchResult?.getFirstObject();
+    let faceId = await album?.getFaceId();
+    console.info(`getFaceId successfully, faceId: ${faceId}`);
+    fetchResult.close();
+  } catch (err) {
+    console.error(`getFaceId failed with err: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ## PhotoSubtype
 
 Enumerates the [PhotoAsset](#photoasset) types.
@@ -5196,7 +5758,7 @@ Enumerates the [PhotoAsset](#photoasset) types.
 
 | Name |  Value|  Description|
 | ----- |  ---- |  ---- |
-| SCREENSHOT |  1 |  Screenshot and screen recording file. **System API**: This is a system API.|
+| SCREENSHOT |  1 |  Screenshot and screen recording file. <br>**System API**: This is a system API.|
 
 ## PositionType
 
@@ -5219,7 +5781,7 @@ Enumerates the album types.
 
 | Name                 | Value   | Description                       |
 | ------------------- | ---- | ------------------------- |
-| SMART<sup>11+</sup> | 4096 | Smart analysis album. **System API**: This is a system API.|
+| SMART<sup>11+</sup> | 4096 | Smart analysis album. <br>**System API**: This is a system API.|
 
 ## AlbumSubtype
 
@@ -5229,19 +5791,20 @@ Enumerate the album subtypes.
 
 | Name                               | Value         | Description                             |
 | --------------------------------- | ---------- | ------------------------------- |
-| HIDDEN                            | 1027       | Hidden album. **System API**: This is a system API.        |
-| TRASH                             | 1028       | Trash. **System API**: This is a system API.         |
-| SCREENSHOT                        | 1029       | Album for screenshots and screen recording files. **System API**: This is a system API.     |
-| CAMERA                            | 1030       | Album for photos and videos taken by the camera. **System API**: This is a system API.|
-| SOURCE\_GENERIC<sup>11+</sup>     | 2049       | Source album. **System API**: This is a system API.        |
-| CLASSIFY<sup>11+</sup>            | 4097       | Classified album. **System API**: This is a system API.        |
-| GEOGRAPHY\_LOCATION<sup>11+</sup> | 4099       | Geographic location album. **System API**: This is a system API.        |
-| GEOGRAPHY\_CITY<sup>11+</sup>     | 4100       | City album. **System API**: This is a system API.        |
-| SHOOTING\_MODE<sup>11+</sup>      | 4101       | Shooting mode album. **System API**: This is a system API.      |
-| PORTRAIT<sup>11+</sup>            | 4102       | Portrait album. **System API**: This is a system API.        |
-| GROUP_PHOTO<sup>12+</sup>         | 4103       | Group photo album. **System API**: This is a system API.        |
-| HIGHLIGHT<sup>12+</sup>           | 4104       | Highlights album. **System API**: This is a system API.        |
-| HIGHLIGHT_SUGGESTIONS<sup>12+</sup> | 4105     | Highlights suggestion album. **System API**: This is a system API.        |
+| HIDDEN                            | 1027       | Hidden album. <br>**System API**: This is a system API.        |
+| TRASH                             | 1028       | Trash. <br>**System API**: This is a system API.         |
+| SCREENSHOT                        | 1029       | Album for screenshots and screen recording files. <br>**System API**: This is a system API.     |
+| CAMERA                            | 1030       | Album for photos and videos taken by the camera. <br>**System API**: This is a system API.|
+| SOURCE\_GENERIC<sup>11+</sup>     | 2049       | Source album. <br>**System API**: This is a system API.        |
+| CLASSIFY<sup>11+</sup>            | 4097       | Classified album. <br>**System API**: This is a system API.        |
+| GEOGRAPHY\_LOCATION<sup>11+</sup> | 4099       | Geographic location album. <br>**System API**: This is a system API.        |
+| GEOGRAPHY\_CITY<sup>11+</sup>     | 4100       | City album. <br>**System API**: This is a system API.        |
+| SHOOTING\_MODE<sup>11+</sup>      | 4101       | Shooting mode album. <br>**System API**: This is a system API.      |
+| PORTRAIT<sup>11+</sup>            | 4102       | Portrait album. <br>**System API**: This is a system API.        |
+| HIGHLIGHT<sup>12+</sup>           | 4104       | Highlights album. <br>**System API**: This is a system API.        |
+| HIGHLIGHT_SUGGESTIONS<sup>12+</sup> | 4105     | Highlights suggestion album. <br>**System API**: This is a system API.        |
+| CLOUD_ENHANCEMENT<sup>13+</sup> | 1032     | AI-powered cloud enhanced album. <br>**System API**: This is a system API.        |
+| GROUP_PHOTO<sup>13+</sup>         | 4103       | Group photo album. <br>**System API**: This is a system API.        |
 
 ## RequestPhotoType<sup>11+</sup>
 
@@ -5276,6 +5839,7 @@ Defines the key information about an image or video file.
 | PENDING<sup>11+</sup>  | 'pending'            | Pending state. <br>**System API**: This is a system API.          |
 | DATE_TRASHED_MS<sup>12+</sup>  | 'date_trashed_ms'  | Date when the file was deleted. The value is the number of milliseconds elapsed since the Epoch time. **System API**: This is a system API.<br>**NOTE**: The photos queried cannot be sorted based on this field.|
 | MOVING_PHOTO_EFFECT_MODE<sup>12+</sup>  | 'moving_photo_effect_mode' | Effect of the moving photo. <br>**System API**: This is a system API.|
+| CE_AVAILABLE<sup>13+</sup>  | 'ce_available' | Cloud enhancement identifier.<br>**System API**: This is a system API.|
 
 ## HiddenPhotosDisplayMode<sup>11+</sup>
 
@@ -5364,7 +5928,7 @@ Enumerates the types of the resources to write.
 | Name |  Value|  Description|
 | ----- |  ---- |  ---- |
 | PHOTO_PROXY |  3 |  Photo proxy. <br>**System API**: This is a system API.|
-| PRIVATE_MOVING_PHOTO_RESOURCE<sup>12+</sup> |  4 |  Private moving photo. <br>**System API**: This is a system API.|
+| PRIVATE_MOVING_PHOTO_RESOURCE<sup>13+</sup> |  4 |  Private moving photo. <br>**System API**: This is a system API.|
 
 ## DefaultChangeUri
 
@@ -5388,6 +5952,7 @@ Enumerates the types of the file to read.
 | ----- |  ---- |  ---- |
 | ORIGINAL_MODE |  0 |  Original file.|
 | EDITED_MODE |  1 |  Edited file.|
+
 ## AuthorizationMode<sup>12+</sup>
 
 Enumerates the authorization modes.
@@ -5472,14 +6037,14 @@ Enumerates the effects of a moving photo.
 | LOOP\_PLAY       | 2  | Continuously repeated animation.|
 | LONG\_EXPOSURE   | 3  | Long exposure. |
 | MULTI\_EXPOSURE  | 4  | Multiple exposures. |
-| CINEMA\_GRAPH  | 5  | Cinemagraph. |
-| IMAGE\_ONLY  | 10  | Image only. |
+| CINEMA\_GRAPH<sup>13+</sup>  | 5  | Cinemagraph. |
+| IMAGE\_ONLY<sup>13+</sup>  | 10  | Image only. |
 
 ## PhotoPermissionType<sup>12+</sup>
 
 Enumerates the types of permissions for accessing media assets.
 
-The permissions include temporary read permission and persistent read permission. The temporary read permission will be removed when the application exits, while the persisten read permission will not.
+The permissions include temporary read permission and persistent read permission. The temporary read permission will be removed when the application is dead, while the persistent read permission will not.
 
 For the same media asset and application, the persistent read permission overwrites the temporary read permission. The temporary read permission does not overwrite the persistent read permission.
 
@@ -5506,3 +6071,79 @@ Enumerates the types of media resource information to be hidden from an applicat
 | HIDE_LOCATION_ONLY |  1 |  Geographical location information.|
 | HIDE_SHOOTING_PARAM_ONLY |  2 |  Shooting parameters.|
 | NO_HIDE_SENSITIVE_TYPE |  3 |  Do not hide any information.|
+
+## VideoEnhancementType<sup>13+</sup>
+
+Enumerates the types of segmented video enhancement.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| QUALITY_ENHANCEMENT_LOCAL |  0 |  Apply enhancement on the device.|
+| QUALITY_ENHANCEMENT_CLOUD |  1 |  Apply enhancement on the cloud.|
+| QUALITY_ENHANCEMENT_LOCAL_AND_CLOUD |  2 |  Apply enhancement on both the device and cloud.|
+
+## CloudEnhancementTaskStage<sup>13+</sup>
+
+Enumerates the cloud enhancement task states, which are returned by [CloudEnhancementTaskState] (#cloudenhancement13).
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| TASK_STAGE_EXCEPTION |  -1 |  The cloud enhancement task is abnormal.|
+| TASK_STAGE_PREPARING |  0 |  The cloud enhancement task is being prepared.|
+| TASK_STAGE_UPLOADING |  1 |  The cloud enhancement task is uploading data.|
+| TASK_STAGE_EXECUTING |  2 |  The cloud enhancement task is being executed.|
+| TASK_STAGE_DOWNLOADING |  3 |  The cloud enhancement task is downloading data.|
+| TASK_STAGE_FAILED |  4 |  The cloud enhancement task failed.|
+| TASK_STAGE_COMPLETED |  5 |  The cloud enhancement task is complete.|
+
+## CloudEnhancementState<sup>13+</sup>
+
+Enumerates the cloud enhancement states.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| UNAVAILABLE |  0 |  Cloud enhancement is unavailable.|
+| AVAILABLE |  1 |  Cloud enhancement is available.|
+| EXECUTING |  2 |  Cloud enhancement is being executed.|
+| COMPLETED |  3 |  Cloud enhancement has been completed.|
+
+## CloudEnhancementTaskState<sup>13+</sup>
+
+Represents the cloud enhancement task information, which includes the cloud enhancement task state and other information related to certain states.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                  | Type               | Mandatory| Description                                             |
+| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
+|taskStage       |[CloudEnhancementTaskStage](#cloudenhancementtaskstage13)  |Yes| Cloud enhancement task state.|
+|transferredFileSize          |number  |No| Size of the file transferred. This parameter is mandatory when **taskStage** is **CloudEnhancementTaskStage.TASK_STAGE_UPLOADING** or **CloudEnhancementTaskStage.TASK_STAGE_DOWNLOADING**. |
+|totalFileSize          |number  |No| Total file size. This parameter is mandatory when **taskStage** is **CloudEnhancementTaskStage.TASK_STAGE_UPLOADING** or **CloudEnhancementTaskStage.TASK_STAGE_DOWNLOADING**. |
+|expectedDuration          |number  |No| Queuing time. This parameter is mandatory when **taskStage** is **CloudEnhancementTaskStage.TASK_STAGE_EXECUTING**. |
+|statusCode          |number  |No| Status code. This parameter is mandatory when **taskStage** is **CloudEnhancementTaskStage.TASK_STAGE_FAILED**. |
+
+## ThumbnailType<sup>13+</sup>
+
+Enumerates thumbnail types.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                          | Value | Description      |
+| :---------------------------- | :- | :------- |
+| LCD         | 1  | LCD thumbnail.   |
+| THM          | 2 | THM thumbnail.   |

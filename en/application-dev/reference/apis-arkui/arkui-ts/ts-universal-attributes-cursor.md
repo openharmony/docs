@@ -19,7 +19,7 @@ Sets the cursor style. This API is a global API.
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ---- | ---- |
-| value | [PointerStyle](../apis/js-apis-pointer.md#pointerstyle) | All consistent  | Cursor style.|
+| value | [PointerStyle](../../apis-input-kit/js-apis-pointer.md#pointerstyle) | All consistent  | Cursor style.|
 
 
 ### restoreDefault

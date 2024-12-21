@@ -1,4 +1,4 @@
-# Tabs
+# Using Tabs (Tabs)
 
 
 When there is a large amount of page information, to enable the user to focus on the currently displayed content, the page content needs to be classified to improve the page space utilization. The [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) component can quickly switch between views on a page, improving information search efficiency and reducing the amount of information that users receive at a time.
@@ -33,7 +33,7 @@ Each **TabContent** component should be mapped to a tab page, which can be confi
  TabContent() {
    Text('Home tab content').fontSize(30)
  }
-.tabBar ('Home')
+.tabBar('Home')
 ```
 
 
@@ -44,22 +44,22 @@ Tabs() {
   TabContent() {
     Text('Home tab content').fontSize(30)
   }
-  .tabBar ('Home')
+  .tabBar('Home')
 
   TabContent() {
     Text('Recommended tab content').fontSize(30)
   }
-  .tabBar ('Recommended')
+  .tabBar('Recommended')
 
   TabContent() {
-    Text ('Discover tab content').fontSize (30)
+    Text('Discover tab content').fontSize(30)
   }
-  .tabBar ('Discover')
+  .tabBar('Discover')
   
   TabContent() {
-    Text ('Me tab content').fontSize (30)
+    Text('Me tab content').fontSize(30)
   }
-  .tabBar ("Me")
+  .tabBar("Me")
 }
 ```
 
@@ -156,7 +156,7 @@ Tabs({ barPosition: BarPosition.End }) {
     .backgroundColor('#ff08a8f1')
     .width('100%')
   }
-  .tabBar ('Home')
+  .tabBar('Home')
 
   // Other TabContent content: Discover, Recommended, and Me
   ...
@@ -304,7 +304,7 @@ struct TabsExample1 {
   }
 }
 ```
-  **Figure 10** Content page and tab bar synced 
+  **Figure 11** Content page and tab bar synced 
 
 ![Content Page and Tab Bar Synced](figures/tabcontent_tabbar_sync.gif)
 
@@ -321,7 +321,7 @@ Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.
    this.currentIndex = index
 })
 
-Button('Switch Tab by Index').width('50%').margin({ top: 20 })
+Button('Change Index').width('50%').margin({ top: 20 })
   .onClick(()=>{
     this.currentIndex = (this.currentIndex + 1) % 4
 })
@@ -354,7 +354,7 @@ Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.cu
 <!--Del-->
 ## Supporting Aging-Friendly Design
 
-In ging-friendly scenarios with large font sizes, the bottom tab bar offers a dialog box with large fonts for content display. When the component detects a large font setting, it constructs a long-press dialog box based on the configured text and icons. After the user long-presses the tab bar and then swipes in the dialog box to switch to the next tab, the dialog box updates with content of the new tab. Upon releasing, the dialog box closes and the UI switches to the corresponding tab page.
+In aging-friendly scenarios with large font sizes, the bottom tab bar offers a dialog box with large fonts for content display. When the component detects a large font setting, it constructs a long-press dialog box based on the configured text and icons. After the user long-presses the tab bar and then swipes in the dialog box to switch to the next tab, the dialog box updates with content of the new tab. Upon releasing, the dialog box closes and the UI switches to the corresponding tab page.
 
 >  **NOTE** 
 >

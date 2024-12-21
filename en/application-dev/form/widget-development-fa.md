@@ -59,35 +59,35 @@ The widget provider consists of the following modules:
 
 The **FormAbility** has the following APIs.
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| onCreate(want: Want): formBindingData.FormBindingData  | Called to notify the widget provider that a widget has been created. |
-| onCastToNormal(formId: string): void  | Called to notify the widget provider that a temporary widget has been converted to a normal one. |
-| onUpdate(formId: string): void  | Called to notify the widget provider that a widget has been updated. |
-| onVisibilityChange(newStatus: Record&lt;string, number&gt;): void | Called to notify the widget provider of the change in widget visibility. |
-| onEvent(formId: string, message: string): void  | Called to instruct the widget provider to receive and process a widget event. |
-| onDestroy(formId: string): void  | Called to notify the widget provider that a widget has been destroyed. |
-| onAcquireFormState?(want: Want): formInfo.FormState  | Called to instruct the widget provider to receive the status query result of a widget. |
-| onShare?(formId: string): {[key: string]: any}  | Called by the widget provider to receive shared widget data. |
-| onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt; | Called by the widget provider to receive shared widget data. You are advised to use this API, instead of **onShare()**. If this API is implemented, **onShare()** will not be triggered. |
+| onCreate(want: Want): formBindingData.FormBindingData | Called to notify the widget provider that a widget has been created.|
+| onCastToNormal(formId: string): void | Called to notify the widget provider that a temporary widget has been converted to a normal one.|
+| onUpdate(formId: string): void | Called to notify the widget provider that a widget has been updated.|
+| onVisibilityChange(newStatus: Record&lt;string, number&gt;): void | Called to notify the widget provider of the change in widget visibility.|
+| onEvent(formId: string, message: string): void | Called to instruct the widget provider to receive and process a widget event.|
+| onDestroy(formId: string): void | Called to notify the widget provider that a widget has been destroyed.|
+| onAcquireFormState?(want: Want): formInfo.FormState | Called to instruct the widget provider to receive the status query result of a widget.|
+| onShare?(formId: string): {[key: string]: any} | Called by the widget provider to receive shared widget data.|
+| onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt; | Called by the widget provider to receive shared widget data. You are advised to use this API, instead of **onShare()**. If this API is implemented, **onShare()** will not be triggered.|
 
 The **FormProvider** class has the following APIs. For details, see [FormProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md).
 
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void; | Sets the next refresh time for a widget. This API uses an asynchronous callback to return the result. |
-| setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;; | Sets the next refresh time for a widget. This API uses a promise to return the result. |
-| updateForm(formId: string, formBindingData: FormBindingData, callback: AsyncCallback&lt;void&gt;): void;  | Updates a widget. This API uses an asynchronous callback to return the result. |
-| updateForm(formId: string, formBindingData: FormBindingData): Promise&lt;void&gt;;  | Updates a widget. This API uses a promise to return the result. |
+| setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void;| Sets the next refresh time for a widget. This API uses an asynchronous callback to return the result.|
+| setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;;| Sets the next refresh time for a widget. This API uses a promise to return the result.|
+| updateForm(formId: string, formBindingData: FormBindingData, callback: AsyncCallback&lt;void&gt;): void; | Updates a widget. This API uses an asynchronous callback to return the result.|
+| updateForm(formId: string, formBindingData: FormBindingData): Promise&lt;void&gt;; | Updates a widget. This API uses a promise to return the result.|
 
 
 The **FormBindingData** class has the following APIs. For details, see [FormBindingData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md).
 
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| createFormBindingData(obj?: Object \ string): FormBindingData|  | Creates a **FormBindingData** object. |
+| createFormBindingData(obj?: Object \ string): FormBindingData| | Creates a **FormBindingData** object.|
 
 
 ## How to Develop
@@ -109,7 +109,7 @@ The widget provider development based on the [FA model](../application-models/fa
 
 ### Implementing Widget Lifecycle Callbacks
 
-To create a widget in the FA model, implement the widget lifecycle callbacks. Generate a widget template by referring to <!--RP1-->[Developing a Service Widget](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-development-service-widget-0000001263280425)<!--RP1End-->.
+To create a widget in the FA model, implement the widget lifecycle callbacks. For details about how to generate a service widget template, see <!--RP1-->[Creating a Service Widget](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-service-widget-V5)<!--RP1End-->.
 
 1. Import related modules to **form.ts**.
    
@@ -265,20 +265,20 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Ge
 The widget configuration file is named **config.json**. Find the **config.json** file for the widget and edit the file depending on your need.
 
 - The **js** module in the **config.json** file provides JavaScript resources of the widget. The internal structure is described as follows: 
-    | Name | Description | Data Type | Initial Value Allowed |
+    | Name| Description| Data Type| Initial Value Allowed|
   | -------- | -------- | -------- | -------- |
-  | name | Name of a JavaScript component. The default value is **default**. | String | No |
-  | pages | Route information about all pages in the JavaScript component, including the page path and page name. The value is an array, in which each element represents a page. The first element in the array represents the home page of the JavaScript FA. | Array | No |
-  | window | Window-related configurations. | Object | Yes |
-  | type | Type of the JavaScript component. The value can be:<br>**normal**: indicates an application instance.<br>**form**: indicates a widget instance. | String | Yes (initial value: **normal**) |
-  | mode | Development mode of the JavaScript component. | Object | Yes (initial value: left empty) |
+  | name | Name of a JavaScript component. The default value is **default**.| String| No|
+  | pages | Route information about all pages in the JavaScript component, including the page path and page name. The value is an array, in which each element represents a page. The first element in the array represents the home page of the JavaScript FA.| Array| No|
+  | window | Window-related configurations.| Object| Yes|
+  | type | Type of the JavaScript component. The value can be:<br>**normal**: indicates an application instance.<br>**form**: indicates a widget instance.| String| Yes (initial value: **normal**)|
+  | mode | Development mode of the JavaScript component.| Object| Yes (initial value: left empty)|
 
   Example configuration:
 
   
   ```json
   "js": [
-    ...
+    // ...
     {
       "name": "widget",
       "pages": [
@@ -294,30 +294,30 @@ The widget configuration file is named **config.json**. Find the **config.json**
   ```
   
 - The **abilities** module in the **config.json** file corresponds to **FormAbility** of the widget. The internal structure is described as follows:
-    | Name | Description | Data Type | Initial Value Allowed |
+    | Name| Description| Data Type| Initial Value Allowed|
   | -------- | -------- | -------- | -------- |
-  | name | Class name of a widget. The value is a string with a maximum of 127 bytes. | String | No |
-  | description | Description of the widget. The value can be a string or a resource index to descriptions in multiple languages. The value is a string with a maximum of 255 bytes. | String | Yes (initial value: left empty) |
-  | isDefault | Whether the widget is a default one. Each ability has only one default widget.<br>**true**: The widget is the default one.<br>**false**: The widget is not the default one. | Boolean | No |
-  | type | Type of the widget. The value can be:<br>**JS**: indicates a JavaScript-programmed widget. | String | No |
-  | colorMode | Color mode of the widget.<br>**auto**: The widget adopts the auto-adaptive color mode.<br>**dark**: The widget adopts the dark color mode.<br>**light**: The widget adopts the light color mode. | String | Yes (initial value: **auto**) |
-  | supportDimensions | Grid styles supported by the widget.<br>**1 * 2**: indicates a grid with one row and two columns.<br>**2 * 2**: indicates a grid with two rows and two columns.<br>**2 * 4**: indicates a grid with two rows and four columns.<br>**4 * 4**: indicates a grid with four rows and four columns. | String array | No |
-  | defaultDimension | Default grid style of the widget. The value must be available in the **supportDimensions** array of the widget. | String | No |
-  | updateEnabled | Whether the widget can be updated periodically.<br>**true**: The widget can be updated at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** takes precedence over **scheduledUpdateTime**.<br>**false**: The widget cannot be updated periodically. | Boolean | No |
-  | scheduledUpdateTime | Scheduled time to update the widget. The value is in 24-hour format and accurate to minute.<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used. | String | Yes (initial value: **0:0**) |
-  | updateDuration | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this field does not take effect.<br>If the value is a positive integer *N*, the interval is calculated by multiplying *N* and 30 minutes.<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used. | Number | Yes (initial value: **0**) |
-  | formConfigAbility | Link to a specific page of the application. The value is a URI. | String | Yes (initial value: left empty) |
-  | formVisibleNotify | Whether the widget is allowed to use the widget visibility notification. | String | Yes (initial value: left empty) |
-  | jsComponentName | Component name of the widget. The value is a string with a maximum of 127 bytes. | String | No |
-  | metaData | Metadata of the widget. This field contains the array of the **customizeData** field. | Object | Yes (initial value: left empty) |
-  | customizeData | Custom information about the widget. | Object array | Yes (initial value: left empty) |
+  | name | Class name of a widget. The value is a string with a maximum of 127 bytes.| String| No|
+  | description | Description of the widget. The value can be a string or a resource index to descriptions in multiple languages. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
+  | isDefault | Whether the widget is a default one. Each ability has only one default widget.<br>**true**: The widget is the default one.<br>**false**: The widget is not the default one.| Boolean| No|
+  | type | Type of the widget. The value can be:<br>**JS**: indicates a JavaScript-programmed widget.| String| No|
+  | colorMode | Color mode of the widget.<br>**auto**: The widget adopts the auto-adaptive color mode.<br>**dark**: The widget adopts the dark color mode.<br>**light**: The widget adopts the light color mode.| String| Yes (initial value: **auto**)|
+  | supportDimensions | Grid styles supported by the widget.<br>**1 * 2**: indicates a grid with one row and two columns.<br>**2 * 2**: indicates a grid with two rows and two columns.<br>**2 * 4**: indicates a grid with two rows and four columns.<br>**4 * 4**: indicates a grid with four rows and four columns.| String array| No|
+  | defaultDimension | Default grid style of the widget. The value must be available in the **supportDimensions** array of the widget.| String| No|
+  | updateEnabled | Whether the widget can be updated periodically.<br>**true**: The widget can be updated at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** takes precedence over **scheduledUpdateTime**.<br>**false**: The widget cannot be updated periodically.| Boolean| No|
+  | scheduledUpdateTime | Scheduled time to update the widget. The value is in 24-hour format and accurate to minute.<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| String| Yes (initial value: **0:0**)|
+  | updateDuration | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this field does not take effect.<br>If the value is a positive integer *N*, the interval is calculated by multiplying *N* and 30 minutes.<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| Number| Yes (initial value: **0**)|
+  | formConfigAbility | Link to a specific page of the application. The value is a URI.| String| Yes (initial value: left empty)|
+  | formVisibleNotify | Whether the widget is allowed to use the widget visibility notification.| String| Yes (initial value: left empty)|
+  | jsComponentName | Component name of the widget. The value is a string with a maximum of 127 bytes.| String| No|
+  | metaData | Metadata of the widget. This field contains the array of the **customizeData** field.| Object| Yes (initial value: left empty)|
+  | customizeData | Custom information about the widget.| Object array| Yes (initial value: left empty)|
 
   Example configuration:
 
   
   ```json
   "abilities": [
-    ...
+    // ...
     {
       "name": ".FormAbility",
       "srcPath": "FormAbility",
@@ -346,7 +346,7 @@ The widget configuration file is named **config.json**. Find the **config.json**
         }
       ]
     },
-    ...
+    // ...
   ]
   ```
 
@@ -391,7 +391,7 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context) => 
   }
 }
 
-...
+// ...
   onCreate(want: Want) {
     hilog.info(domain, TAG, 'FormAbility onCreate');
     if (want.parameters) {
@@ -412,7 +412,7 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context) => 
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     return formData;
   },
-...
+// ...
 
 let deleteFormInfo = async (formId: string, context: featureAbility.Context): Promise<void> => {
   try {
@@ -426,7 +426,7 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context): Pr
   }
 };
 
-...
+// ...
     // Override onDestroy to implement widget data deletion.
   onDestroy(formId: string) {
     // Delete widget data.
@@ -435,7 +435,7 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context): Pr
     // Implement this API based on project requirements.
     deleteFormInfo(formId, this.context);
   }
-...
+// ...
 ```
 
 For details about how to implement persistent data storage, see [Application Data Persistence Overview](../database/app-data-persistence-overview.md).

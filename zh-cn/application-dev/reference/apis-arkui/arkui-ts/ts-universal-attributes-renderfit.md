@@ -22,6 +22,10 @@ renderFit(fitMode: RenderFit)
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | fitMode | [RenderFit](#renderfit枚举说明) | 是   | 设置宽高动画过程中的组件内容填充方式。<br/>当不设置renderFit属性时，取默认值RenderFit.TOP_LEFT。 |
 
+>  **说明：**
+>
+>  对于TEXTURE和SURFACE类型的[XComponent](./ts-basic-components-xcomponent.md)组件，当不设置renderFit属性时，取默认值为RenderFit.RESIZE_FILL。
+
 ## RenderFit枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -51,6 +55,8 @@ renderFit(fitMode: RenderFit)
 > - 不同的内容填充方式在宽高动画过程中效果不一致，开发者需要选择合适的内容填充方式以实现需要的动画效果。
 
 ## 示例
+
+该示例主要演示通过renderFit设置宽高动画过程中的组件内容不同填充方式。
 
 ```ts
 // xxx.ets

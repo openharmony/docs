@@ -157,11 +157,13 @@
 
    通过photoOutput类的[capture](../../reference/apis-camera-kit/js-apis-camera.md#capture-2)方法，执行拍照任务。该方法有两个参数，第一个参数为拍照设置参数的setting，setting中可以设置照片的质量和旋转角度，第二参数为回调函数。
 
+   获取拍照旋转角度的方法为，通过通过[PhotoOutput](../../reference/apis-camera-kit/js-apis-camera.md#photooutput)类中的[getPhotoRotation](../../reference/apis-camera-kit/js-apis-camera.md#getphotorotation12)方法获取rotation实际的值
+
    ```ts
    function capture(captureLocation: camera.Location, photoOutput: camera.PhotoOutput): void {
      let settings: camera.PhotoCaptureSetting = {
        quality: camera.QualityLevel.QUALITY_LEVEL_HIGH,  // 设置图片质量高
-       rotation: camera.ImageRotation.ROTATION_0,  // 设置图片旋转角度0
+       rotation: camera.ImageRotation.ROTATION_0,  // 设置图片旋转角度的camera.ImageRotation.ROTATION_0是通过说明中获取拍照角度的getPhotoRotation方法获取的值进行设置
        location: captureLocation,  // 设置图片地理位置
        mirror: false  // 设置镜像使能开关(默认关)
      };
@@ -219,7 +221,7 @@
   }
   ```
 
-- 通过注册固定的error回调函数获取监听拍照输出流的错误结果。callback返回拍照输出接口使用错误时的对应错误码，错误码类型参见[CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
+- 通过注册固定的error回调函数获取监听拍照输出流的错误结果。回调返回拍照输出接口使用错误时的对应错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
 
   ```ts
   function onPhotoOutputError(photoOutput: camera.PhotoOutput): void {

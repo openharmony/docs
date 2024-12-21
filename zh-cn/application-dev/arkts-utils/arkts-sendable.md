@@ -12,7 +12,7 @@ Sendable对象为可共享的，其跨线程前后指向同一个JS对象，如�
 
 当多个并发实例尝试同时更新Sendable数据时，会发生数据竞争，例如[ArkTS共享容器](arkts-collections-introduction.md)的多线程操作。因此，ArkTS提供了[异步锁](arkts-async-lock-introduction.md)的机制来避免不同并发实例间的数据竞争。同时，还可以通过[对象冻结接口](sendable-freeze.md)冻结对象，将其变为只读对象，就可以不用考虑数据的竞争问题。
 
-Sendable对象提供了并发实例间高效的通信效率，即引用传递的能力，一般适用于开发者自定义大对象需要线程间通信的场景，例如子线程读取数据库的数据返回主线程。
+Sendable对象提供了并发实例间高效的通信效率，即引用传递的能力，一般适用于开发者自定义大对象需要线程间通信的场景，例如子线程读取数据库的数据返回宿主线程。
 
 ## 基础概念
 
@@ -20,7 +20,7 @@ Sendable对象提供了并发实例间高效的通信效率，即引用传递的
 
 Sendable协议定义了ArkTS的可共享对象体系及其规格约束。符合Sendable协议的数据（以下简称Sendable对象）可以在ArkTS并发实例间传递。
 
-默认情况下，Sendable数据在ArkTS并发实例间（包括主线程、TaskPool、Worker线程）传递的行为是引用传递。同时，ArkTS也支持Sendable数据在ArkTS并发实例间拷贝传递。
+默认情况下，Sendable数据在ArkTS并发实例间（包括UI主线程、TaskPool线程、Worker线程）传递的行为是引用传递。同时，ArkTS也支持Sendable数据在ArkTS并发实例间拷贝传递。
 
 ### ISendable
 
@@ -94,6 +94,7 @@ Sendable interface需同时满足以下两个规则：
 
 为了实现[Sendable数据](#sendable支持的数据类型)在不同并发实例间的引用传递，Sendable共享对象会分配在共享堆中，以实现跨并发实例的内存共享。
 
+
 共享堆（SharedHeap）是进程级别的堆空间，与虚拟机本地堆（LocalHeap）不同的是，LocalHeap只能被单个并发实例访问，而SharedHeap可以被所有线程访问。一个Sendable共享对象的跨线程行为是引用传递。因此，Sendable可能被多个并发实例引用，判断Sendable共享对象是否存活，取决于所有并发实例的对象是否存在对此Sendable共享对象的引用。
 
 **SharedHeap与LocalHeap关系图**
@@ -117,7 +118,7 @@ Sendable interface需同时满足以下两个规则：
 | 装饰的对象内的属性的其他限制 | 成员属性必须显式初始化。成员属性不能跟感叹号。 |
 | 装饰的函数或类对象内的方法参数限制 | 允许使用local变量、入参和通过import引入的变量。禁止使用闭包变量，定义在顶层的Sendable class和Sendable function除外。 |
 | Sendable Class及Sendable Function的限制 | 不支持增加属性、不支持删除属性、允许修改属性，修改前后属性的类型必须一致、不支持修改方法。 |
-| 适用场景 | 1. 在TaskPool或Worker中使用类方法/Sendable函数。<br/>2. 传输对象数据量较大的使用场景。 |
+| 适用场景 | 1. 在TaskPool或Worker中使用类方法/Sendable函数。<br/>2. 传输对象数据量较大的使用场景。序列化耗时会随着数据量增大而增大，使用Sendable对数据改造后传输100KB数据时效率提升约20倍，传输1M数据时效率提升约100倍。 |
 
 **装饰器修饰Class使用示例：**
 

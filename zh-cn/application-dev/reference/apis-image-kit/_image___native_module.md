@@ -7,6 +7,16 @@
 
 使用该模块的接口，无需通过JS接口导入，可直接使用NDK完成功能开发。
 
+开发者可根据实际的开发需求，参考对应的开发指南及样例：
+
+- [使用Image_NativeModule完成图片解码](../../media/image/image-source-c.md)
+- [使用Image_NativeModule完成多图对象解码](../../media/image/image-source-picture-c.md)
+- [使用Image_NativeModule完成图片接收器](../../media/image/image-receiver-c.md)
+- [使用Image_NativeModule完成位图操作](../../media/image/pixelmap-c.md)
+- [使用Image_NativeModule处理图像信息](../../media/image/image-info-c.md)
+- [使用Image_NativeModule完成图片编码](../../media/image/image-packer-c.md)
+- [使用Image_NativeModule完成多图对象编码](../../media/image/image-packer-picture-c.md)
+
 **起始版本：** 12
 
 
@@ -891,10 +901,10 @@ Pixelmap缩放时采用的缩放算法。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OH_PixelmapNative_AntiAliasing_NONE  | 最近邻缩放算法。   | 
-| OH_PixelmapNative_AntiAliasing_LOW  | 双线性缩放算法。   | 
-| OH_PixelmapNative_AntiAliasing_MEDIUM  | 双线性缩放算法，同时开启mipmap。   | 
-| OH_PixelmapNative_AntiAliasing_HIGH  | cubic缩放算法。   | 
+| OH_PixelmapNative_AntiAliasing_NONE  | 最近邻插值算法。   | 
+| OH_PixelmapNative_AntiAliasing_LOW  | 双线性插值算法。   | 
+| OH_PixelmapNative_AntiAliasing_MEDIUM  | 双线性插值算法，同时开启Mipmap。缩小图片时建议使用。   | 
+| OH_PixelmapNative_AntiAliasing_HIGH  | 三次插值算法。   | 
 
 
 ### PIXELMAP_ALPHA_TYPE
@@ -1353,7 +1363,7 @@ Image_ErrorCode OH_DecodingOptions_Create(OH_DecodingOptions **options)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 
 **返回：**
 
@@ -1374,7 +1384,7 @@ Image_ErrorCode OH_DecodingOptions_GetDesiredDynamicRange(OH_DecodingOptions *op
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | desiredDynamicRange | 期望的动态范围值 [IMAGE_DYNAMIC_RANGE](#image_dynamic_range)。  | 
 
 **返回：**
@@ -1396,7 +1406,7 @@ Image_ErrorCode OH_DecodingOptions_GetDesiredRegion(OH_DecodingOptions *options,
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | desiredRegion | 解码区域。  | 
 
 **返回：**
@@ -1418,7 +1428,7 @@ Image_ErrorCode OH_DecodingOptions_GetDesiredSize(OH_DecodingOptions *options, I
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | desiredSize | 期望输出大小。  | 
 
 **返回：**
@@ -1440,7 +1450,7 @@ Image_ErrorCode OH_DecodingOptions_GetIndex(OH_DecodingOptions *options, uint32_
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | index | 解码图片序号。  | 
 
 **返回：**
@@ -1462,7 +1472,7 @@ Image_ErrorCode OH_DecodingOptions_GetPixelFormat(OH_DecodingOptions *options, i
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | pixelFormat | pixel格式[PIXEL_FORMAT](#pixel_format)。 | 
 
 **返回：**
@@ -1484,7 +1494,7 @@ Image_ErrorCode OH_DecodingOptions_GetRotate(OH_DecodingOptions *options, float 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | rotate | 旋转角度，单位为deg。  | 
 
 **返回：**
@@ -1506,7 +1516,7 @@ Image_ErrorCode OH_DecodingOptions_Release(OH_DecodingOptions *options)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 
 **返回：**
 
@@ -1527,7 +1537,7 @@ Image_ErrorCode OH_DecodingOptions_SetDesiredDynamicRange(OH_DecodingOptions *op
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | desiredDynamicRange | 期望的动态范围值 [IMAGE_DYNAMIC_RANGE](#image_dynamic_range)。  | 
 
 **返回：**
@@ -1549,7 +1559,7 @@ Image_ErrorCode OH_DecodingOptions_SetDesiredRegion(OH_DecodingOptions *options,
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | desiredRegion | 解码区域。  | 
 
 **返回：**
@@ -1571,7 +1581,7 @@ Image_ErrorCode OH_DecodingOptions_SetDesiredSize(OH_DecodingOptions *options, I
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | desiredSize | 期望输出大小。  | 
 
 **返回：**
@@ -1593,7 +1603,7 @@ Image_ErrorCode OH_DecodingOptions_SetIndex(OH_DecodingOptions *options, uint32_
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | index | 解码图片序号。  | 
 
 **返回：**
@@ -1615,7 +1625,7 @@ Image_ErrorCode OH_DecodingOptions_SetPixelFormat(OH_DecodingOptions *options, i
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | pixelFormat | pixel格式[PIXEL_FORMAT](#pixel_format)。  | 
 
 **返回：**
@@ -1637,7 +1647,7 @@ Image_ErrorCode OH_DecodingOptions_SetRotate(OH_DecodingOptions *options, float 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | rotate | 旋转角度，单位为deg。  | 
 
 **返回：**
@@ -1808,7 +1818,7 @@ Image_ErrorCode OH_ImageNative_GetComponentTypes(OH_ImageNative *image, uint32_t
 Image_ErrorCode OH_ImageNative_GetImageSize(OH_ImageNative *image, Image_Size *size)
 ```
 **描述**
-获取Native [OH_ImageNative](#oh_imagenative) 对象的 [Image_Size](_image___size.md) 信息。如果[OH_ImageNative](#oh_imagenative) 对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的[Image_Size](_image___size.md)中的宽高分别对应YUV图像的宽高；如果[OH_ImageNative](#oh_imagenative) 对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的数据，[Image_Size](_image___size.md)中的宽等于JPEG数据大小，高等于1。[OH_ImageNative](#oh_imagenative) 对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。
+获取Native [OH_ImageNative](#oh_imagenative) 对象的 [Image_Size](_image___size.md) 信息。如果[OH_ImageNative](#oh_imagenative) 对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的[Image_Size](_image___size.md)中的宽高分别对应YUV图像的宽高；如果[OH_ImageNative](#oh_imagenative) 对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的数据，[Image_Size](_image___size.md)中的宽等于JPEG数据大小，高等于1。[OH_ImageNative](#oh_imagenative) 对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。相机预览与拍照最佳实践请参考[预览流二次处理(C/C++)](../../media/camera/native-camera-preview-imageReceiver.md)与[拍照(C/C++)](../../media/camera/native-camera-shooting.md)。
 
 **起始版本：** 12
 
@@ -2266,6 +2276,8 @@ Image_ErrorCode OH_ImageReceiverNative_ReadLatestImage(OH_ImageReceiverNative* r
 **描述**
 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取最新的一张图片。
 
+**注意**：此接口需要在[OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)回调后调用，才能正常的接收到数据。并且此接口返回的[OH_ImageNative](#oh_imagenative)使用完毕后需要调用[OH_ImageNative_Release](#oh_imagenative_release)方法释放，释放后才可以继续接收新的数据。
+
 **起始版本：** 12
 
 **参数:**
@@ -2291,6 +2303,8 @@ Image_ErrorCode OH_ImageReceiverNative_ReadNextImage(OH_ImageReceiverNative* rec
 ```
 **描述**
 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取下一张图片。
+
+**注意**：此接口需要在[OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)回调后调用，才能正常的接收到数据。并且此接口返回的[OH_ImageNative](#oh_imagenative)使用完毕后需要调用[OH_ImageNative_Release](#oh_imagenative_release)方法释放，释放后才可以继续接收新的数据。
 
 **起始版本：** 12
 
@@ -3941,7 +3955,7 @@ Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(OH_Pixelmap_Initialization
 Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLength, OH_Pixelmap_InitializationOptions *options, OH_PixelmapNative **pixelmap)
 ```
 **描述**
-通过属性创建PixelMap，默认采用BGRA_8888格式处理数据。
+通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，其他格式请参考[OH_PixelmapInitializationOptions_SetSrcPixelFormat](#oh_pixelmapinitializationoptions_setsrcpixelformat)。
 
 **起始版本：** 12
 

@@ -25,7 +25,7 @@ import { mediaquery } from '@kit.ArkUI';
 
 
 ```ts
-let listener: mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)');
+let listener: mediaquery.MediaQueryListener = this.getUIContext().getMediaQuery().matchMediaSync('(orientation: landscape)');
 ```
 
 给条件监听句柄listener绑定回调函数onPortrait，当listener检测设备状态变化时执行回调函数。在回调函数内，根据不同设备状态更改页面布局或者实现业务逻辑。
@@ -129,7 +129,7 @@ listener.on('change', onPortrait);
 | min-device-height | 设备的最小高度。                                 |
 | max-device-height | 设备的最大高度。                                 |
 | device-width      | 设备的宽度。当前仅在应用初始化时保存一次，不会随设备宽度变化实时更新，例如折叠屏的折叠展开场景。                                   |
-| device-type       | 设备的类型。<br/>可选值：default、tablet。           |
+| device-type       | 设备的类型。<br/>可选值：default、phone、tablet、tv、car、wearable、2in1。          |
 | min-device-width  | 设备的最小宽度。                                 |
 | max-device-width  | 设备的最大宽度。                                 |
 | round-screen      | 屏幕类型，圆形屏幕为true，非圆形屏幕为false。              |
@@ -274,4 +274,4 @@ struct MediaQueryExample {
 
 针对媒体查询开发，有以下相关实例可供参考：
 
-- [横竖屏切换（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/MediaQuery)
+- [横竖屏切换（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/UI/ArkTsComponentCollection/MediaQuery)

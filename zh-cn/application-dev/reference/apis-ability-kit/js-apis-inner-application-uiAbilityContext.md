@@ -1051,6 +1051,7 @@ export default class EntryAbility extends UIAbility {
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 跨设备场景下，启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。使用Promise异步回调。仅支持在主线程调用。
+该接口不支持拉起启动模式为[specified模式](../../application-models/uiability-launch-type.md#specified启动模式)的UIAbility。
 
 > **说明：**
 >

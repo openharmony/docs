@@ -14,7 +14,7 @@
 
 - 数据提供方：[DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)，可以选择性实现数据的增、删、改、查，以及文件打开等功能，并对外共享这些数据。
 
-- 数据访问方：由[createDataShareHelper()](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#datasharecreatedatasharehelper)方法所创建的工具类，利用工具类，便可以访问提供方提供的这些数据。
+- 数据访问方：由[createDataShareHelper()](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#datasharecreatedatasharehelper)方法所创建的工具类，利用工具类便可以访问提供方提供的这些数据。
 
 **图1** 数据共享运作机制  
 ![dataShare](figures/dataShare.jpg)
@@ -313,4 +313,4 @@
 
 针对数据共享开发，有以下相关实例可供参考：
 
-- [系统应用跨应用数据共享（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DataManagement/CrossAppDataShare)
+- [系统应用跨应用数据共享（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/SystemFeature/DataManagement/CrossAppDataShare)

@@ -15,10 +15,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [net_ssl_c.h](net__ssl__c_8h.md) | 为SSL/TLS证书链校验模块定义C接口。 | 
-| [net_ssl_c_type.h](net__ssl__c__type_8h.md) | 定义SSL/TLS证书链校验模块的C接口需要的数据结构。 | 
-| [net_websocket.h](net__websocket_8h.md) | 为websocket客户端模块定义C接口。 | 
-| [net_websocket_type.h](net__websocket__type_8h.md) | 定义websocket客户端模块的C接口需要的数据结构。 | 
+| [net_ssl_c.h](net__ssl__c_8h.md) | 为SSL/TLS证书链校验模块定义C接口。<br>**引用文件：** \<network\/netstack\/net_ssl\/net_ssl_c.h\> | 
+| [net_ssl_c_type.h](net__ssl__c__type_8h.md) | 定义SSL/TLS证书链校验模块的C接口需要的数据结构。**引用文件：** \<network\/netstack\/net_ssl\/net_ssl_c_type.h\> | 
+| [net_websocket.h](net__websocket_8h.md) | 为websocket客户端模块定义C接口。**引用文件：** \<network\/netstack\/net_websocket.h\> | 
+| [net_websocket_type.h](net__websocket__type_8h.md) | 定义websocket客户端模块的C接口需要的数据结构。**引用文件：** \<network\/net_websocket_type.h\> | 
 
 
 ### 结构体
@@ -266,10 +266,10 @@ enum NetStack_HashAlgorithm
 ## 函数说明
 
 
-### OH_NetStack_VerifyCertification()
+### OH_NetStack_CertVerification()
 
 ```
-uint32_t OH_NetStack_VerifyCertification (const struct NetStack_CertBlob * cert, const struct NetStack_CertBlob * caCert )
+uint32_t OH_NetStack_CertVerification(const struct NetStack_CertBlob * cert, const struct NetStack_CertBlob * caCert )
 ```
 
 **描述**

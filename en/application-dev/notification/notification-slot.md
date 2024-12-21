@@ -45,11 +45,11 @@ In addition to using **addslot()**, you can also create a notification slot by p
     ```ts
     // addSlot callback
     let addSlotCallBack = (err: BusinessError): void => {
-        if (err) {
-            console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
-        } else {
-            hilog.info(DOMAIN_NUMBER, TAG, "addSlot success");
-        }
+      if (err) {
+        hilog.info(DOMAIN_NUMBER, TAG, `addSlot failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        hilog.info(DOMAIN_NUMBER, TAG, `addSlot success`);
+      }
     }
     notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack);
     ```
@@ -60,17 +60,17 @@ In addition to using **addslot()**, you can also create a notification slot by p
     ```ts
     // getSlot callback
     let getSlotCallback = (err: BusinessError, data: notificationManager.NotificationSlot): void => {
-        if (err) {
-            console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
-        } else {
-            hilog.info(DOMAIN_NUMBER, TAG, `getSlot success. `);
-            if (data != null) {
-                hilog.info(DOMAIN_NUMBER, TAG, `slot enable status is ${JSON.stringify(data.enabled)}`);
-                hilog.info(DOMAIN_NUMBER, TAG, `slot level is ${JSON.stringify(data.level)}`);
-                hilog.info(DOMAIN_NUMBER, TAG, `vibrationEnabled status is ${JSON.stringify(data.vibrationEnabled)}`);
-                hilog.info(DOMAIN_NUMBER, TAG, `lightEnabled status is ${JSON.stringify(data.lightEnabled)}`);
-            }
+      if (err) {
+        hilog.error(DOMAIN_NUMBER, TAG, `getSlot failed, code is ${JSON.stringify(err.code)}, message is ${JSON.stringify(err.message)}`);
+      } else {
+        hilog.info(DOMAIN_NUMBER, TAG, `getSlot success. `);
+        if (data != null) {
+          hilog.info(DOMAIN_NUMBER, TAG, `slot enable status is ${JSON.stringify(data.enabled)}`);
+          hilog.info(DOMAIN_NUMBER, TAG, `slot level is ${JSON.stringify(data.level)}`);
+          hilog.info(DOMAIN_NUMBER, TAG, `vibrationEnabled status is ${JSON.stringify(data.vibrationEnabled)}`);
+          hilog.info(DOMAIN_NUMBER, TAG, `lightEnabled status is ${JSON.stringify(data.lightEnabled)}`);
         }
+      }
     }
     let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
     notificationManager.getSlot(slotType, getSlotCallback);
@@ -81,11 +81,11 @@ In addition to using **addslot()**, you can also create a notification slot by p
     ```ts
     // removeSlot callback
     let removeSlotCallback = (err: BusinessError): void => {
-    if (err) {
-        console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
-    } else {
+      if (err) {
+        hilog.error(DOMAIN_NUMBER, TAG, `removeSlot failed, code is ${JSON.stringify(err.code)}, message is ${JSON.stringify(err.message)}`);
+      } else {
         hilog.info(DOMAIN_NUMBER, TAG, "removeSlot success");
-    }
+      }
     }
     let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
     notificationManager.removeSlot(slotType, removeSlotCallback);

@@ -63,7 +63,7 @@ Typically, a widget includes local images or online images downloaded from the n
       const DOMAIN_NUMBER: number = 0xFF00;
 
       export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
-        onFormEvent(formId: string, message: string): void {
+        async onFormEvent(formId: string, message: string): Promise<void> {
           let param: Record<string, string> = {
             'text': 'Updating...'
           };
@@ -76,56 +76,54 @@ Typically, a widget includes local images or online images downloaded from the n
           let tempDir = this.context.getApplicationContext().tempDir;
           let fileName = 'file' + Date.now();
           let tmpFile = tempDir + '/' + fileName;
+          let imgMap: Record<string, number> = {};
+
+          class FormDataClass {
+            text: string = 'Image: Bear' + fileName;
+            loaded: boolean = true;
+            // If an image needs to be displayed in the widget, the value of imgName must be the same as the key fileName in formImages.
+            imgName: string = fileName;
+            // If an image needs to be displayed in the widget, the formImages field is mandatory (formImages cannot be left blank or renamed), and fileName corresponds to the FD.
+            formImages: Record<string, number> = imgMap;
+          }
 
           let httpRequest = http.createHttp()
-          httpRequest.request(netFile).then((data) => {
-            if (data?.responseCode == http.ResponseCode.OK) {
+          let data = await httpRequest.request(netFile);
+          if (data?.responseCode == http.ResponseCode.OK) {
+            try {
               let imgFile = fileIo.openSync(tmpFile, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-              fileIo.write(imgFile.fd, data.result as ArrayBuffer).then((writeLen: number) => {
+              imgMap[fileName] = imgFile.fd;
+              try{
+                let writeLen: number = await fileIo.write(imgFile.fd, data.result as ArrayBuffer);
                 hilog.info(DOMAIN_NUMBER, TAG, "write data to file succeed and size is:" + writeLen);
-              }).catch((err: BusinessError) => {
+                hilog.info(DOMAIN_NUMBER, TAG, 'ArkTSCard download complete: %{public}s', tmpFile);
+                try {
+                  let formData = new FormDataClass();
+                  let formInfo = formBindingData.createFormBindingData(formData);
+                  await formProvider.updateForm(formId, formInfo);
+                  hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'FormAbility updateForm success.');
+                } catch (error) {
+                  hilog.error(DOMAIN_NUMBER, TAG, `FormAbility updateForm failed: ${JSON.stringify(error)}`);
+                }
+              } catch (err) {
                 hilog.error(DOMAIN_NUMBER, TAG, "write data to file failed with error message: " + err.message + ", error code: " + err.code);
-              }).finally(() => {
+              } finally {
                 fileIo.closeSync(imgFile);
-              });
-
-              hilog.info(DOMAIN_NUMBER, TAG, 'ArkTSCard download complete: %{public}s', tmpFile);
-              let imgMap: Record<string, number> = {};
-              try {
-                let file = fileIo.openSync(tmpFile);
-                imgMap[fileName] = file.fd;
-              } catch (e) {
-                hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as BusinessError)}`);
-              }
-
-              class FormDataClass {
-                text: string = 'Image: Bear' + fileName;
-                loaded: boolean = true;
-                // If an image needs to be displayed in the widget, the value of imgName must be the same as the key fileName in formImages.
-                imgName: string = fileName;
-                // If an image needs to be displayed in the widget, the formImages field is mandatory (formImages cannot be left blank or renamed), and fileName corresponds to the FD.
-                formImages: Record<string, number> = imgMap;
-              }
-
-              let formData = new FormDataClass();
-              let formInfo = formBindingData.createFormBindingData(formData);
-              formProvider.updateForm(formId, formInfo).then(() => {
-                hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'FormAbility updateForm success.');
-              }).catch((error: BusinessError) => {
-                hilog.error(DOMAIN_NUMBER, TAG, `FormAbility updateForm failed: ${JSON.stringify(error)}`);
-              });
-            } else {
-              hilog.error(DOMAIN_NUMBER, TAG, `ArkTSCard download task failed`);
-              let param: Record<string, string> = {
-                'text': 'Update failed.'
               };
-              let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
-              formProvider.updateForm(formId, formInfo);
+            } catch (e) {
+              hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as BusinessError)}`);
             }
-            httpRequest.destroy();
-          })
+
+          } else {
+            hilog.error(DOMAIN_NUMBER, TAG, `ArkTSCard download task failed`);
+            let param: Record<string, string> = {
+              'text': 'Update failed.'
+            };
+            let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
+            formProvider.updateForm(formId, formInfo);
+          }
+          httpRequest.destroy();
         }
-        //...
       }
       ```
 
@@ -188,3 +186,5 @@ Typically, a widget includes local images or online images downloaded from the n
 > - The **Image** component displays images in the remote memory based on the **memory://** identifier in the input parameter (**memory://fileName**). The value of **fileName** must be consistent with the key in the object (**'formImages': {key: fd}**) passed by the EntryFormAbility.
 >
 > - The **Image** component determines whether to update the image by comparing the values of **imgName** consecutively passed by the EntryFormAbility. It updates the image only when the values are different.
+>
+> - The size of the image displayed on the widget must be less than 2 MB.

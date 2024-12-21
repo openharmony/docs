@@ -24,7 +24,7 @@ Sets whether to hide insecure windows.
 
 > **NOTE**
 >
-> Insecure windows refer to the windows that may block the **EmbeddedComponent** (or **UIExtensionComponent**), such as global floating windows, host subwindows, and dialog box windows created by the host application, excluding the aforementioned types of windows created by system applications. When the **EmbeddedComponent** (or **UIExtensionComponent**) is used to present important information, you can hide insecure windows to prevent such information from being blocked. When the **EmbeddedComponent** (or **UIExtensionComponent**) is not displayed or is destroyed, you must unhide the insecure windows. The **UIExtensionComponent** created using the **CreateModalUIExtension** API will hide insecure windows by default, which cannot be changed manually.
+> Insecure windows refer to the windows that may block the **EmbeddedComponent** (or **UIExtensionComponent**), such as global floating windows, host subwindows, and dialog box windows created by the host application, excluding the aforementioned types of windows created by system applications. When the **EmbeddedComponent** (or **UIExtensionComponent**) is used to present important information, you can hide insecure windows to prevent such information from being blocked. When the **EmbeddedComponent** (or **UIExtensionComponent**) is not displayed or is destroyed, you must unhide the insecure windows. By default, the **UIExtensionComponent** created using the **CreateModalUIExtension** API hides insecure windows. To cancel this behavior and show insecure windows, apply for the **ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS** permission and call this API to set **shouldHide** to **false**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -32,21 +32,24 @@ Sets whether to hide insecure windows.
 
 **Parameters**
 
-| Name     | Type                     | Mandatory | Description      |
+| Name     | Type                     | Mandatory| Description      |
 | ----------- | ------------------------- | ---- | ---------- |
-| shouldHide  | boolean                   | Yes  | Whether to hide insecure windows. The value **true** means to hide insecure windows, and **false** means the opposite. |
+| shouldHide  | boolean                   | Yes  | Whether to hide insecure windows. The value **true** means to hide insecure windows, and **false** means the opposite.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
-**Error codes** 
+**Error codes**
 
-| ID | Error Message                         |
+| ID| Error Message                         |
 | -------- | --------------------------------- |
-| 401      | Parameter error. Possible causes: |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameters types. <br> 3. Parameter verification failed. |
+| 1300002  | Abnormal state. Possible causes: <br> 1. Permission denied. Interface caller does not have permission "ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS". <br> 2. The UIExtension window proxy is abnormal. |
+| 1300003  | This window manager service works abnormally. |
 
 **Example**
 
@@ -93,25 +96,25 @@ Adds or deletes the watermark flag for this window. This API uses a promise to r
 
 **Parameters**
 
-| Name | Type    | Mandatory | Description                                           |
+| Name| Type    | Mandatory| Description                                           |
 | ------ | ------- | --- | ------------------------------------------------ |
-| enable | boolean | Yes  | Whether to add or delete the flag. The value **true** means to add the watermark flag, and **false** means to delete the watermark flag. |
+| enable | boolean | Yes  | Whether to add or delete the flag. The value **true** means to add the watermark flag, and **false** means to delete the watermark flag.|
 
-**Return value** 
+**Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ---------------------------------------------- |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
 | 1300008 | The operation is on invalid display. |
 
-**Example** 
+**Example**
 
 ```ts
 // ExtensionProvider.ts

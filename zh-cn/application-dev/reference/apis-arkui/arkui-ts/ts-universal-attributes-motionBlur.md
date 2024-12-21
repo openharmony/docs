@@ -51,7 +51,7 @@ motionBlur(value: MotionBlurOptions)
 | x | number      | 是    | 锚点坐标x值,取值范围[0.0, 1.0]。 |
 | y | number      | 是    | 锚点坐标y值,取值范围[0.0, 1.0]。 |
 
-## 示例
+## 示例（属性动画状态下添加运动模糊效果）
 
 属性动画状态下添加运动模糊效果。
 ```ts

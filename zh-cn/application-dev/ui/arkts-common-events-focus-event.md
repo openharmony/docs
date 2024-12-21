@@ -69,7 +69,7 @@ Shift+TAB键：与TAB键具有相反的焦点转移效果。
 不可跨窗口，不可跨ArkUI实例申请焦点，可以跨层级页面申请焦点。
 
 - clearFocus
-详见[clearFocus](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#clearfocus12)，会清除当前层级页面中的焦点，最终焦点停留在根容器上。
+详见[clearFocus](../reference/apis-arkui/js-apis-arkui-UIContext.md#clearfocus12)，会清除当前层级页面中的焦点，最终焦点停留在根容器上。
 
 - focusOnTouch
 详见[focusOnTouch](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9)，使绑定组件具备点击后获得焦点的能力。若组件本身不可获焦，则此功能无效。若绑定的是容器组件，点击后优先将焦点转移给上一次获焦的子组件，否则转移给第一个可获焦的子组件。
@@ -772,6 +772,44 @@ struct FocusableExample {
 
 - input方框内设置了焦点组，因此按下TAB键后焦点会快速从input中走出去，而按下方向键后可以在input内走焦。
 - 左上角的Column没有设置焦点组，因此只能通过Tab键一个一个地走焦。
+
+## 焦点与按键事件
+
+当组件获焦且存在点击事件（`onClick`）或单指单击事件（`TapGesture`）时，回车和空格会触发对应的事件回调。
+
+>  **说明：**
+>
+>  1. 点击事件（`onClick`）或单指单击事件（`TapGesture`）在回车、空格触发对应事件回调时，默认不冒泡传递，即父组件对应[按键事件](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md)不会被同步触发。
+>  2. 按键事件（`onKeyEvent`）默认冒泡传递，即同时会触发父组件的按键事件回调。
+>  3. 组件同时存在点击事件（`onClick`）和按键事件（`onKeyEvent`），在回车、空格触发时，两者都会响应。
+>  4. 获焦组件响应点击事件（`onClick`），与焦点激活态无关。
+
+```
+@Entry
+@Component
+struct FocusOnclickExample {
+  @State count: number = 0
+  @State name: string = 'Button'
+
+  build() {
+    Column() {
+      Button(this.name)
+        .fontSize(30)
+        .onClick(() => {
+          this.count++
+          if (this.count <= 0) {
+            this.name = "count is negative number"
+          } else if (this.count % 2 === 0) {
+            this.name = "count is even number"
+          } else {
+            this.name = "count is odd number"
+          }
+        }).height(60)
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+![focus-4](figures/focus-4.gif)
 
 ## 组件获焦能力说明
 

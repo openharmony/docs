@@ -7,6 +7,8 @@ Declares the APIs for accessing **NativeXComponent**.
 
 **Library**: libace_ndk.z.so
 
+**File to include**: <ace/xcomponent/native_interface_xcomponent.h>
+
 **Since**: 8
 
 **Related module**: [Native XComponent](_o_h___native_x_component.md)
@@ -53,7 +55,7 @@ Declares the APIs for accessing **NativeXComponent**.
 
 | Name| Description|
 | -------- | -------- |
-| int32_t [OH_NativeXComponent_GetXComponentId](_o_h___native_x_component.md#oh_nativexcomponent_getxcomponentid) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, char \*id, uint64_t \*size) | Obtain the ID of ArkUI XComponent. | 
+| int32_t [OH_NativeXComponent_GetXComponentId](_o_h___native_x_component.md#oh_nativexcomponent_getxcomponentid) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, char \*id, uint64_t \*size) | Obtains the ID of ArkUI XComponent. | 
 | int32_t [OH_NativeXComponent_GetXComponentSize](_o_h___native_x_component.md#oh_nativexcomponent_getxcomponentsize) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, const void \*window, uint64_t \*width, uint64_t \*height) | Obtains the size of the surface held by the ArkUI XComponent. | 
 | int32_t [OH_NativeXComponent_GetXComponentOffset](_o_h___native_x_component.md#oh_nativexcomponent_getxcomponentoffset) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, const void \*window, double \*x, double \*y) | Obtains the offset of the ArkUI XComponent relative to the upper left vertex of the screen. | 
 | int32_t [OH_NativeXComponent_GetTouchEvent](_o_h___native_x_component.md#oh_nativexcomponent_gettouchevent) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, const void \*window, [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md) \*touchEvent) | Obtains the touch event scheduled by the ArkUI XComponent. | 
@@ -78,11 +80,12 @@ Declares the APIs for accessing **NativeXComponent**.
 | int32_t [OH_NativeXComponent_AttachNativeRootNode](_o_h___native_x_component.md#oh_nativexcomponent_attachnativerootnode) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | Attaches the UI component created through the native API of ArkUI to this **OH_NativeXComponent** instance. | 
 | int32_t [OH_NativeXComponent_DetachNativeRootNode](_o_h___native_x_component.md#oh_nativexcomponent_detachnativerootnode) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | Detaches the native component of ArkUI from this **OH_NativeXComponent** instance. | 
 | int32_t [OH_NativeXComponent_RegisterUIInputEventCallback](_o_h___native_x_component.md#oh_nativexcomponent_registeruiinputeventcallback) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type), [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type) | Registers a UI input event callback for an **OH_NativeXComponent** instance and enables the callback to be invoked when a UI input event is received. | 
-| int32_t [OH_NativeXComponent_RegisterOnTouchInterceptCallback](_o_h___native_x_component.md#oh_nativexcomponent_registerontouchinterceptcallback) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, [HitTestMode](_ark_u_i___native_module.md#hittestmode)(\*callback)([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event)) | Registers a custom event intercept callback for an **OH_NativeXComponent** and enables the callback during the hit test. | 
+| int32_t [OH_NativeXComponent_RegisterOnTouchInterceptCallback](_o_h___native_x_component.md#oh_nativexcomponent_registerontouchinterceptcallback) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, [HitTestMode](_ark_u_i___native_module.md#arkui_hittestmode)(\*callback)([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event)) | Registers a custom event intercept callback for an **OH_NativeXComponent** and enables the callback during the hit test. | 
 | int32_t [OH_NativeXComponent_SetNeedSoftKeyboard](_o_h___native_x_component.md#oh_nativexcomponent_setneedsoftkeyboard) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, bool needSoftKeyboard) | Sets whether the soft keyboard is required for an **OH_NativeXComponent** instance. | 
 | int32_t [OH_NativeXComponent_RegisterSurfaceShowCallback](_o_h___native_x_component.md#oh_nativexcomponent_registersurfaceshowcallback) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void \*window)) | Registers a surface display callback for an **OH_NativeXComponent** instance. The callback is invoked whenever the application is switched to the foreground. | 
 | int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](_o_h___native_x_component.md#oh_nativexcomponent_registersurfacehidecallback) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void \*window)) | Registers a surface hiding callback for an **OH_NativeXComponent** instance. The callback is invoked whenever the application is switched to the background. | 
 | int32_t [OH_NativeXComponent_GetTouchEventSourceType](_o_h___native_x_component.md#oh_nativexcomponent_gettoucheventsourcetype) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, int32_t pointId, [OH_NativeXComponent_EventSourceType](_o_h___native_x_component.md#oh_nativexcomponent_eventsourcetype) \*sourceType) | Obtains the touch event source type of an **OH_NativeXComponent** instance. |
+| [OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \* [OH_NativeXComponent_GetNativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent_getnativexcomponent) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | Obtains the pointer to an **OH_NativeXComponent** instance based on the specified component instance created by the native API. | 
 
 ### Variables
 
@@ -90,4 +93,3 @@ Declares the APIs for accessing **NativeXComponent**.
 | -------- | -------- |
 |  const uint32_t **OH_XCOMPONENT_ID_LEN_MAX** = 128 |  Maximum length of the ArkUI XComponent ID.| 
 |  const uint32_t **OH_MAX_TOUCH_POINTS_NUMBER** = 10 |  Maximum number of identifiable touch points in a touch event.| 
-<!--no_check-->

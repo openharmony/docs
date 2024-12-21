@@ -11,7 +11,9 @@
 对于缓冲区而言，下载线程是生产端，读取线程则是消费端。生产端是将数据写入到缓冲区中，消费端则是从缓冲区读取数据，下面将介绍下缓冲区中的几个水线概念。
 
 缓冲区原理图  
-<img src="./figures/online_video_playback_lags_practice.PNG"></img>
+
+
+![online_video_playback_lags_practice](./figures/online_video_playback_lags_practice.PNG)
 
 如上图所示：
 
@@ -77,9 +79,10 @@ player.setMediaSource(mediaSource, playStrategy);
 | 10MB                     | 28.95%                                 |
 | 20MB                     | 28.95%                                 |
 
-视频卡顿率折线图
+视频卡顿率折线图  
 
-<img src="./figures/online_video_playback_lags_practice_chart.PNG"></img>
+
+![online_video_playback_lags_practice_chart](./figures/online_video_playback_lags_practice_chart.PNG)
 
 从实验数据可以看出：
 

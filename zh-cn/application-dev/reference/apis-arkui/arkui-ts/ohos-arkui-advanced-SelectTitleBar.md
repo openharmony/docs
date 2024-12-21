@@ -63,6 +63,8 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 
 ## 示例
 
+该示例实现了简单的下拉菜单标题栏，带有返回箭头的下拉菜单标题栏和带有右侧菜单项目列表的下拉菜单标题栏。
+
 ```ts
 import { SelectTitleBar, promptAction } from '@kit.ArkUI'
 
@@ -75,11 +77,15 @@ interface menuItems {
 @Entry
 @Component
 struct Index {
+  //定义右侧菜单项目列表
   private  menuItems:Array<menuItems> =
   [
     {
+      //菜单图片资源
       value:$r('app.media.ic_public_save'),
+      //启用图片
       isEnabled:true,
+      //点击菜单时触发事件
       action:() => promptAction.showToast({ message: "show toast index 1" })
     },
     {
@@ -104,13 +110,17 @@ struct Index {
       Column() {
 		Divider().height(2).color(0xCCCCCC)
         SelectTitleBar({
+          //定义下拉列表选项
           options: [
             { value: '所有照片' },
             { value: '本地（设备）' },
             { value: '本地本地本地本地本地（储存卡）' }
           ],
+          //初始选择第一个下拉选项
           selected: 0,
+          //选中时触发函数
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          //隐藏左侧返回箭头
           hidesBackButton: true
         })
         Divider().height(2).color(0xCCCCCC)

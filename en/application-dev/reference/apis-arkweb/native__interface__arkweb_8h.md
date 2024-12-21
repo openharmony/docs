@@ -7,6 +7,8 @@ Declares APIs used to inject objects and execute JavaScript code.
 
 **Library**: libohweb.so
 
+**File to include**: <web/native_interface_arkweb.h>
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Since**: 11
@@ -19,12 +21,12 @@ Declares APIs used to inject objects and execute JavaScript code.
 
 ### Types
 
-| Name| **Description**| 
+| Name| Description| 
 | -------- | -------- |
 | typedef void(\* [NativeArkWeb_OnJavaScriptCallback](_web.md#nativearkweb_onjavascriptcallback)) (const char \*) | Defines a callback used to return the result after the JavaScript code is executed. | 
 | typedef char \*(\* [NativeArkWeb_OnJavaScriptProxyCallback](_web.md#nativearkweb_onjavascriptproxycallback)) (const char \*\*argv, int32_t argc) | Defines a callback of the injected object. | 
-| typedef void(\* [NativeArkWeb_OnValidCallback](_web.md#nativearkweb_onvalidcallback)) (const char \*) | Defines a callback used when the Web component is valid. | 
-| typedef void(\* [NativeArkWeb_OnDestroyCallback](_web.md#nativearkweb_ondestroycallback)) (const char \*) | Defines a callback used when the Web component is destroyed. | 
+| typedef void(\* [NativeArkWeb_OnValidCallback](_web.md#nativearkweb_onvalidcallback)) (const char \*) | Defines a callback used when the **Web** component is valid. | 
+| typedef void(\* [NativeArkWeb_OnDestroyCallback](_web.md#nativearkweb_ondestroycallback)) (const char \*) | Defines a callback used when the **Web** component is destroyed. | 
 
 
 ### Functions

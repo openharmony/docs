@@ -1,13 +1,13 @@
 # 应用侧调用前端页面函数
 
+应用侧可以通过[runJavaScript()](../reference/apis-arkweb/js-apis-webview.md#runjavascript)和[runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview.md#runjavascriptext10)方法调用前端页面的JavaScript相关函数。
 
-应用侧可以通过[runJavaScript()](../reference/apis-arkweb/js-apis-webview.md#runjavascript)方法调用前端页面的JavaScript相关函数。
-
+[runJavaScript()](../reference/apis-arkweb/js-apis-webview.md#runjavascript)和[runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview.md#runjavascriptext10)在参数类型上有些差异。[runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview.md#runjavascriptext10)入参类型不仅支持string还支持ArrayBuffer（从文件中获取JavaScript脚本数据），另外可以通过AsyncCallback的方式获取执行结果。
 
 在下面的示例中，点击应用侧的“runJavaScript”按钮时，来触发前端页面的htmlTest()方法。
 
 - 前端页面代码。
-  
+
   ```html
   <!-- index.html -->
   <!DOCTYPE html>
@@ -37,7 +37,7 @@
 
 
 - 应用侧代码。
-  
+
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -74,4 +74,4 @@
 
 针对Web组件开发，有以下相关实例可供参考：
 
-- [JS注入与执行（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/RunJsInWeb)
+- [JS注入与执行（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/Web/RunJsInWeb)

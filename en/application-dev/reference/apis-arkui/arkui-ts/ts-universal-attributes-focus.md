@@ -6,7 +6,7 @@ Focus control attributes set whether a component is focusable and how it partici
 >
 >  - The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >  
->  - Custom components are inherently unfocusable, and setting [focusable](#focusable) and [enabled](ts-universal-attributes-enable.md#enabled) attributes to **false** does not impact their child components' ability to gain focus.
+>  - Custom components are inherently unfocusable, and setting [focusable](#focusable) and [enabled](ts-universal-attributes-enable.md#enabled) attributes to **false** or setting the [visibility](ts-universal-attributes-visibility.md#visibility) attribute to **Hidden** or **None** does not impact their child components' capability to gain focus.
 >  
 >  - Components can actively acquire focus independently of the window's focus state.
 >  
@@ -138,7 +138,7 @@ Requests the focus to move to the specified component. It is a global API. This 
 
 >  **NOTE**
 >
->  The following components support focus control: [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [Search](ts-basic-components-search.md), [Button](ts-basic-components-button.md), [Text](ts-basic-components-text.md), [Image](ts-basic-components-image.md), [List](ts-container-list.md), and [Grid](ts-container-grid.md). Currently, the running effect of the focus event can be displayed only on a real device.
+>  The following components support focus control: [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [Search](ts-basic-components-search.md), [Button](ts-basic-components-button.md), [Text](ts-basic-components-text.md), [Image](ts-basic-components-image.md), [List](ts-container-list.md), [Grid](ts-container-grid.md). Currently, the running effect of the focus event can be displayed only on a real device.
 
 
 ## FocusController<sup>12+</sup>
@@ -378,13 +378,13 @@ Clicking the component bound to **focusOnTouch** sets the focus on the component
 
 ### Example 2
 
-This example shows how to use **focusControl.requestFocus**
+> **NOTE**
+> 
+> To avoid confusion with **focusControl** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](../js-apis-arkui-UIContext.md#uicontext) API, and then obtain the **focusControl** instance bound to the context through the [getFocusController](../js-apis-arkui-UIContext.md#getfocuscontroller12) API.
 
-to move the focus to the specified component.
+This example shows how to use **focusControl.requestFocus** to move the focus to the specified component.
 ```ts
 // requestFocus.ets
-import { promptAction } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct RequestFocusExample {
@@ -433,11 +433,12 @@ struct RequestFocusExample {
         Button("RequestFocus")
           .width(200).height(70).fontColor(Color.White)
           .onClick(() => {
+            // You are advised to use this.getUIContext().getFocusController().requestFocus().
             let res = focusControl.requestFocus(this.selectId)      // Move the focus to the component specified by this.selectId.
             if (res) {
-              promptAction.showToast({message: 'Request success'})
+              this.getUIContext().getPromptAction().showToast({message: 'Request success'})
             } else {
-              promptAction.showToast({message: 'Request failed'})
+              this.getUIContext().getPromptAction().showToast({message: 'Request failed'})
             }
           })
       }

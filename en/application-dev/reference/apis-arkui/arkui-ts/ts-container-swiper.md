@@ -7,7 +7,8 @@
 > - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
 > - The default value of the universal attribute [clip](ts-universal-attributes-sharp-clipping.md) is **true** for the **Swiper** component.
-
+>
+> - The **Swiper** component incorporates a [PanGesture](ts-basic-gestures-pangesture.md) event that facilitates the swiping action to cycle through its child components. Setting [disableSwipe](#disableswipe8) to **true** will cancel the internal listening for the **PanGesture** event, disabling the swiping interaction.
 
 ## Child Components
 
@@ -15,7 +16,7 @@ This component can contain child components.
 
 >  **NOTE**
 >
->  - Supported types of child components: built-in components and custom components, with support for rendering control with [if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md), or [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md).
+>  - Child components can consist of both built-in components and custom components, and their rendering can be controlled with [if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md), and [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md). To maximize the benefits of lazy loading, avoid mixing lazy loading components (including **LazyForEach** and **Repeat**) and non-lazy loading components, and exercise caution when using multiple lazy loading components.
 >
 >  - If a child component has its **visibility** attribute set to **None** and the **Swiper** component has its **displayCount** attribute set to **'auto'**, the child component takes up space in the viewport, but is not displayed.
 >
@@ -29,7 +30,7 @@ This component can contain child components.
 >
 >  - Child components of the **Swiper** component are drawn based on their level if they have the **offset** attribute set. A child component with a higher level overwrites one with a lower level. For example, if the **Swiper** contains three child components and **offset({ x: 100 })** is set for the third child component, the third child component overwrites the first child component during horizontal loop playback. To prevent the first child component from being overwritten, set its **zIndex** attribute to a value greater than that of the third child component.
 >
->  - Do not add or delete child components during a page turning animation. Doing so may result in child components not yet animated entering the viewport in advance and causing display exceptions.
+>  - If rendering control ([if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md), or [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)) is employed, do not perform operations on the data source while a component animation is in progress. Such operations can cause layout issues.
 
 ## APIs
 
@@ -70,7 +71,7 @@ Since API version 10, this attribute supports two-way binding through [$$](../..
 
 | Name| Type  | Mandatory| Description                                            |
 | ------ | ------ | ---- | ------------------------------------------------ |
-| value  | number | Yes  | Index of the child component currently displayed in the container.<br>Default value: **0**|
+| value  | number | Yes  | Index of the child component currently displayed in the container.<br>Default value: **0**<br>**NOTE**<br>If the value specified is less than 0 or greater than the maximum page index, the value **0** is used.|
 
 ### autoPlay
 
@@ -78,7 +79,7 @@ autoPlay(value: boolean)
 
 Sets whether to enable automatic playback for child component switching.
 
-If **loop** is set to **false**, the playback stops when the last page is displayed. The playback continues when the page is not the last page after a swipe gesture.
+If **loop** is set to **false**, the playback stops when the last page is reached. The playback continues when the page is not the last page after a swipe gesture. If the **Swiper** component becomes invisible, the playback stops.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 10.
 
@@ -571,7 +572,7 @@ Stops an animation.
 
 ## Indicator<sup>10+</sup>
 
-Sets the distance between the navigation point indicator and the **Swiper** component.
+Sets the distance between the navigation point indicator and the **Swiper** component. Note that due to its default interaction area height of 32 vp, the navigation point indicator cannot be placed flush against the bottom edge.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 10.
 
@@ -579,22 +580,119 @@ Sets the distance between the navigation point indicator and the **Swiper** comp
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### left
 
-| Name   | Type                        | Mandatory | Description                                    |
+left(value: Length): T
+
+Sets the position of the navigation point indicator relative to the left edge of the **Swiper** component.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                                                        |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | Yes  | Position of the navigation point indicator relative to the left edge of the **Swiper** component.<br>If neither **left** nor **right** is set, the navigation point indicator is centered along the main axis based on its own size and the size of the **Swiper** component.<br>If the value specified is **0**, the navigation point indicator is placed at the position 0.<br>Priority: higher than the **right** property<br>Value range: [0, Swiper width - Navigation point indicator area width]. Values outside this range are adjusted to the nearest boundary.|
+
+### top
+
+top(value: Length): T
+
+Sets the position of the navigation point indicator relative to the top edge of the **Swiper** component.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                                                        |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | Yes  | Position of the navigation point indicator relative to the top edge of the **Swiper** component.<br>If neither **top** nor **bottom** is set, the navigation point indicator is aligned at the bottom along the cross axis based on its own size and the size of the **Swiper** component, which is the same effect as setting **bottom=0**.<br>If the value specified is **0**, the navigation point indicator is placed at the position 0.<br>Priority: higher than the **bottom** property<br>Value range: [0, Swiper height - Navigation point indicator area height]. Values outside this range are adjusted to the nearest boundary.|
+
+### right
+
+right(value: Length): T
+
+Sets the position of the navigation point indicator relative to the right edge of the **Swiper** component.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                                                        |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | Yes  | Sets the position of the navigation point indicator relative to the right edge of the **Swiper** component.<br>If neither **left** nor **right** is set, the navigation point indicator is centered along the main axis based on its own size and the size of the **Swiper** component.<br>If the value specified is **0**, the navigation point indicator is placed at the position 0.<br>Priority: lower than the **left** property<br>Value range: [0, Swiper width - Navigation point indicator area width]. Values outside this range are adjusted to the nearest boundary.|
+
+### bottom
+
+bottom(value: Length): T
+
+Sets the position of the navigation point indicator relative to the bottom edge of the **Swiper** component.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                                                        |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | Yes  | Position of the navigation point indicator relative to the bottom edge of the **Swiper** component.<br>If neither **top** nor **bottom** is set, the navigation point indicator is aligned at the bottom along the cross axis based on its own size and the size of the **Swiper** component, which is the same effect as setting **bottom=0**.<br>If the value specified is **0**, the navigation point indicator is placed at the position 0.<br>Priority: lower than the **top** property<br>Value range: [0, Swiper height - Navigation point indicator area height]. Values outside this range are adjusted to the nearest boundary.|
+
+### start<sup>12+</sup>
+
+start(value: LengthMetrics): T
+
+Sets the distance between the navigation point indicator and the right edge (in right-to-left scripts) or the left edge (in left-to-right scripts) of the **Swiper** component.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | Yes  | Distance between the navigation point indicator and the right edge (in right-to-left scripts) or the left edge (in left-to-right scripts) of the **Swiper** component.<br>Default value: **0**<br>Unit: vp|
+
+### end<sup>12+</sup>
+
+end(value: LengthMetrics): T
+
+Sets the distance between the navigation point indicator and the left edge (in right-to-left scripts) or the right edge (in left-to-right scripts) of the **Swiper** component.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory | Description                                    |
 | ------ | ---------------------------- | ---- | ---------------------------------------- |
-| left   | [Length](ts-types.md#length) | Yes   | Distance between the navigation point indicator and the left edge of the **Swiper** component.<br>Default value: **0**<br>Unit: vp|
-| top    | [Length](ts-types.md#length) | Yes   | Distance between the navigation point indicator and the top edge of the **Swiper** component.<br>Default value: **0**<br>Unit: vp|
-| right  | [Length](ts-types.md#length) | Yes   | Distance between the navigation point indicator and the right edge of the **Swiper** component.<br>Default value: **0**<br>Unit: vp|
-| bottom | [Length](ts-types.md#length) | Yes   | Distance between the navigation point indicator and the bottom edge of the **Swiper** component.<br>Default value: **0**<br>Unit: vp|
-| start<sup>12+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | Yes   | Right-to-left scripts: Distance between the navigation point indicator and the right edge of the **Swiper** component.<br>Left-to-right scripts: Distance between the navigation point indicator and the left edge of the **Swiper** component.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| end<sup>12+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | Yes   | Right-to-left scripts: Distance between the navigation point indicator and the left edge of the **Swiper** component.<br>Left-to-right scripts: Distance between the navigation point indicator and the right edge of the **Swiper** component.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| value | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | Yes   | Distance between the navigation point indicator and the left edge (in right-to-left scripts) or the right edge (in left-to-right scripts) of the **Swiper** component.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ### dot
 
 static dot(): DotIndicator
 
-**DotIndicator** object returned.
+Returns a **DotIndicator** object.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 10.
 
@@ -606,7 +704,7 @@ static dot(): DotIndicator
 
 static digit(): DigitIndicator
 
-**DigitIndicator** object returned.
+Returns **DigitIndicator** object.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 10.
 
@@ -616,22 +714,201 @@ static digit(): DigitIndicator
 
 ## DotIndicator<sup>10+</sup>
 
-Defines the navigation point indicator of the dot style. It inherits from [Indicator](#indicator10).
+Defines a dot-style navigation point indicator. Inherits [Indicator](#indicator10).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                       | Type                                  | Mandatory| Description                                                    |
-| ----------------------------- | ------------------------------------------ | ------ | ------------------------------------------------------------ |
-| itemWidth                     | [Length](ts-types.md#length)               | Yes    | Width of the navigation point indicator of the dot style. This parameter cannot be set in percentage.<br>Default value: **6**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.|
-| itemHeight                    | [Length](ts-types.md#length)               | Yes    | Height of the navigation point indicator of the dot style. This parameter cannot be set in percentage.<br>Default value: **6**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.|
-| selectedItemWidth             | [Length](ts-types.md#length)               | Yes    | Width of the selected navigation point indicator of the dot style. This parameter cannot be set in percentage.<br>Default value: **12**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.|
-| selectedItemHeight            | [Length](ts-types.md#length)               | Yes    | Height of the selected navigation point indicator of the dot style. This parameter cannot be set in percentage.<br>Default value: **6**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.|
-| mask                          | boolean                                    | Yes    | Whether to enable the mask for the navigation point indicator of the dot style.<br>Default value: **false**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.|
-| color                         | [ResourceColor](ts-types.md#resourcecolor) | Yes    | Color of the navigation point indicator of the dot style.<br>Default value: **'\#182431'** (10% opacity)<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.|
-| selectedColor                 | [ResourceColor](ts-types.md#resourcecolor) | Yes    | Color of the selected navigation point indicator of the dot style.<br>Default value: **'\#007DFF'**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.|
-| maxDisplayCount<sup>12+</sup> | number                                     | Yes    | Maximum number of navigation dots in the navigation point indicator of the dot style. When the actual number of navigation dots exceeds the maximum, the overflow effect will be activated, as shown in Example 5.<br>Default value: This attribute has no default value; if an invalid value is set, it is equivalent to having no overflow effect.<br>Value range: 6–9<br>**NOTE**<br>1. In the overflow display scenario, interactive features are currently not supported, including gestures and mouse operations.<br>2. In the overflow display scenario, the position of the selected navigation dot corresponding to the middle page is not completely fixed; it depends on the sequence of previous page-turning operations.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+### itemWidth
+
+itemWidth(value: Length): DotIndicator
+
+Sets the width of the dot-style navigation point indicator. This parameter cannot be set in percentage.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                                                        |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | Yes  | Width of the dot-style navigation point indicator. This parameter cannot be set in percentage.<br>Default value: **6**<br>Unit: vp|
+
+**Return value**
+
+| Type                           | Description        |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | Dot-style navigation point indicator.|
+
+### itemHeight
+
+itemHeight(value: Length): DotIndicator
+
+Sets the height of the dot-style navigation point indicator. This parameter cannot be set in percentage.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                                                        |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | Yes  | Height of the dot-style navigation point indicator. This parameter cannot be set in percentage.<br>Default value: **6**<br>Unit: vp|
+
+**Return value**
+
+| Type                           | Description        |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | Dot-style navigation point indicator.|
+
+### selectedItemWidth
+
+selectedItemWidth(value: Length): DotIndicator
+
+Sets the width of the selected dot in the dot-style navigation point indicator. This parameter cannot be set in percentage.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                                                        |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | Yes  | Width of the selected dot in the dot-style navigation point indicator. This parameter cannot be set in percentage.<br>Default value: **12**<br>Unit: vp|
+
+**Return value**
+
+| Type                           | Description        |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | Dot-style navigation point indicator.|
+
+### selectedItemHeight
+
+selectedItemHeight(value: Length): DotIndicator
+
+Sets the height of the selected dot in the dot-style navigation point indicator. This parameter cannot be set in percentage.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                                                        |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | Yes  | Height of the selected dot in the dot-style navigation point indicator. This parameter cannot be set in percentage.<br>Default value: **6**<br>Unit: vp|
+
+**Return value**
+
+| Type                           | Description        |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | Dot-style navigation point indicator.|
+
+### mask
+
+mask(value: boolean): DotIndicator
+
+Sets whether to enable the mask for the dot-style navigation point indicator.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | Yes  | Whether to enable the mask for the dot-style navigation point indicator.<br>Default value: **false**|
+
+**Return value**
+
+| Type                           | Description        |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | Dot-style navigation point indicator.|
+
+### color
+
+color(value: ResourceColor): DotIndicator
+
+Sets the color of the dot-style navigation point indicator.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                                                        |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the dot-style navigation point indicator.<br>Default value: **'\#182431'** (10% opacity)|
+
+**Return value**
+
+| Type                           | Description        |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | Dot-style navigation point indicator.|
+
+### selectedColor
+
+selectedColor(value: ResourceColor): DotIndicator
+
+Sets the color of the selected dot in the dot-style navigation point indicator.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                                                        |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the selected dot in the dot-style navigation point indicator.<br>Default value: **'\#007DFF'**|
+
+**Return value**
+
+| Type                           | Description        |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | Dot-style navigation point indicator.|
+
+### maxDisplayCount<sup>12+</sup>
+
+maxDisplayCount(maxDisplayCount: number): DotIndicator
+
+Sets the maximum number of navigation dots in the dot-style navigation point indicator.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name         | Type  | Mandatory| Description                                                        |
+| --------------- | ------ | ---- | ------------------------------------------------------------ |
+| maxDisplayCount | number | Yes  | Maximum number of navigation dots in the dot-style navigation point indicator. If the actual number of navigation dots exceeds this limit, the overflow effect is activated, as shown in Example 5.<br>This parameter has no default value. If an invalid value is set, no overflow effect is applied.<br>Value range: 6–9<br>**NOTE**<br>In scenarios involving overflow display:<br>1. Interactive features, such as gestures and mouse operations, are not supported.<br>2. The position of the selected navigation dot corresponding to the middle page is not strictly fixed; it depends on the sequence of previous page-turning operations.|
+
+**Return value**
+
+| Type                           | Description        |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | Dot-style navigation point indicator.|
 
 ### constructor
 
@@ -651,7 +928,7 @@ A constructor used to create a **DotIndicator** object.
 
 ## DigitIndicator<sup>10+</sup>
 
-Defines the navigation point indicator of the digit style. It inherits from [Indicator](#indicator10).
+Defines a digit-style navigation point indicator. Inherits [Indicator](#indicator10).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 10.
 
@@ -659,12 +936,110 @@ Defines the navigation point indicator of the digit style. It inherits from [Ind
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name              | Type                                    | Mandatory | Description                                    |
-| ----------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| fontColor         | [ResourceColor](ts-types.md#resourcecolor) | Yes   | Font color of the navigation point indicator of the digit style.<br>Default value: **'\#ff182431'**|
-| selectedFontColor | [ResourceColor](ts-types.md#resourcecolor) | Yes   | Font color of the selected navigation point indicator of the digit style.<br>Default value: **'\#ff182431'**|
-| digitFont         | {<br>size?:[Length](ts-types.md#length)<br>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br>} | Yes   | Font style of the navigation point indicator of the digit style.<br>\- **size**:font size. It cannot be set in percentage.<br>Default value: **14vp**<br>\- **weight**: font weight.<br>Default value: **FontWeight.Normal**|
-| selectedDigitFont | {<br>size?:[Length](ts-types.md#length)<br>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br>} | Yes   | Font style of the selected navigation point indicator of the digit style.<br>\- **size**:font size. It cannot be set in percentage.<br>Default value: **14vp**<br>\- **weight**: font weight.<br>Default value: **FontWeight.Normal**|
+>**NOTE**
+>
+>When pages are turned by group, the child nodes displayed in the digit-style navigation point indicator do not count placeholder nodes.<br>
+>The maximum value of [maxFontScale](ts-basic-components-text.md#maxfontscale12) for the digit-style navigation point indicator is 2.
+
+### fontColor
+
+fontColor(value: ResourceColor): DigitIndicator
+
+Sets the font color of the digit-style navigation point indicator.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                                                        |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of the digit-style navigation point indicator.<br>Default value: **'\#ff182431'**|
+
+**Return value**
+
+| Type                               | Description        |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | Digit-style navigation point indicator.|
+
+### selectedFontColor
+
+selectedFontColor(value: ResourceColor): DigitIndicator
+
+Sets the font color of the selected digit in the digit-style navigation point indicator.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                                                        |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of the selected digit in the digit-style navigation point indicator.<br>Default value: **'\#ff182431'**|
+
+**Return value**
+
+| Type                               | Description        |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | Digit-style navigation point indicator.|
+
+### digitFont
+
+digitFont(value: Font): DigitIndicator
+
+Sets the font style of the digit-style navigation point indicator.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                    | Mandatory| Description                                                        |
+| ------ | ------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Font](ts-types.md#font) | Yes  | Font style of the digit-style navigation point indicator.<br>Only the **size** and **weight** parameters in **Font** are adjustable. Setting **family** and **style** has no effect.<br>Default value:<br>{ size: 14, weight: FontWeight.Normal } |
+
+**Return value**
+
+| Type                               | Description        |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | Digit-style navigation point indicator.|
+
+### selectedDigitFont
+
+selectedDigitFont(value: Font): DigitIndicator
+
+Sets the font style of the selected digit in the digit-style navigation point indicator.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                    | Mandatory| Description                                                        |
+| ------ | ------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Font](ts-types.md#font) | Yes  | Font style of the selected digit in the digit-style navigation point indicator.<br>Default value:<br>{ size: 14, weight: FontWeight.Normal } |
+
+>**NOTE**
+>
+> When pages are turned by group, the child nodes displayed in the digit-style navigation point indicator do not count placeholder nodes.
+
+**Return value**
+
+| Type                               | Description        |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | Digit-style navigation point indicator.|
 
 ### constructor
 
@@ -752,6 +1127,10 @@ Triggered when the switching animation starts. The **index** parameter indicates
 | targetIndex<sup>10+</sup> | number                                                     | Yes  | Index of the target element to switch to.                                    |
 | extraInfo<sup>10+</sup>   | [SwiperAnimationEvent](#swiperanimationevent10) | Yes  | Extra information of the animation, including the offset of the currently displayed element and target element relative to the start position of the **Swiper** along the main axis, and the hands-off velocity.|
 
+>**NOTE**
+>
+>- When the duration of the switching animation is set to 0, this callback is triggered only in the following scenarios: swiping to turn pages, automatic playback, calling **SwiperController.showNext()** or **SwiperController.showPrevious()**, and touching navigation points to navigate.
+
 ### onAnimationEnd<sup>9+</sup>
 
 onAnimationEnd(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
@@ -772,6 +1151,10 @@ This event is triggered when the switching animation of the **Swiper** component
 | ----------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | index                   | number                                                     | Yes  | Index of the currently displayed element.                                        |
 | extraInfo<sup>10+</sup> | [SwiperAnimationEvent](#swiperanimationevent10) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **Swiper** along the main axis.|
+
+>**NOTE**
+>
+>- When the duration of the switching animation is set to 0, this callback is triggered only in the following scenarios: swiping to turn pages, automatic playback, calling **SwiperController.showNext()** or **SwiperController.showPrevious()**, and touching navigation points to navigate.
 
 ### onGestureSwipe<sup>10+</sup>
 
@@ -798,7 +1181,10 @@ Defines a custom switching animation. You can define custom animation attributes
 
 Instructions:
 
-1. This API does not work when **prevMargin** and **nextMargin** are set in such a way that the **Swiper** frontend and backend display the same page during loop playback.<br>2. During the swiping-initiated page switching animation, the [SwiperContentTransitionProxy](#swipercontenttransitionproxy12) callback is invoked for all pages in the viewport on a frame-by-frame basis. For example, when there are two pages whose subscripts are 0 and 1 in the viewport, two callbacks whose indexes are 0 and 1 are invoked in each frame.<br>3. When the **swipeByGroup** parameter of the **displayCount** attribute is set to **true**, the callback is invoked for all pages in a group if any page in the group is within the viewport; and all pages in a group are removed from the render tree if none of them are within the viewport.<br>4. During the swiping-initiated page switching animation, the default animation (page scrolling) is still effective. If you do not want the page to scroll, you can set the **translate** attribute on the main axis to offset the page scrolling. For example, if the value of **displayCount** is **2** and there are two pages whose subscripts are 0 and 1 within the viewport, you can set the **translate** attribute on the main axis to the following on a frame-by-frame basis: **translate** for page 0 = **-position** x **mainAxisLength**; **translate** for page 1 = **-(position - 1)** x **mainAxisLength**
+1. This API does not work when **prevMargin** and **nextMargin** are set in such a way that the **Swiper** frontend and backend display the same page during loop playback.
+2. During the swiping-initiated page switching animation, the [SwiperContentTransitionProxy](#swipercontenttransitionproxy12) callback is invoked for all pages in the viewport on a frame-by-frame basis. For example, when there are two pages whose subscripts are 0 and 1 in the viewport, two callbacks whose indexes are 0 and 1 are invoked in each frame.
+3. When the **swipeByGroup** parameter of the **displayCount** attribute is set to **true**, the callback is invoked for all pages in a group if any page in the group is within the viewport; and all pages in a group are removed from the render tree if none of them are within the viewport.
+4. During the swiping-initiated page switching animation, the default animation (page scrolling) is still effective. If you do not want the page to scroll, you can set the **translate** attribute on the main axis to offset the page scrolling. For example, if the value of **displayCount** is **2** and there are two pages whose subscripts are 0 and 1 within the viewport, you can set the **translate** attribute on the main axis to the following on a frame-by-frame basis: **translate** for page 0 = **-position** x **mainAxisLength**; **translate** for page 1 = **-(position - 1)** x **mainAxisLength**
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -818,7 +1204,9 @@ Triggered when content in the **Swiper** component scrolls.
 
 Instructions:
 
-1. This API does not work when **prevMargin** and **nextMargin** are set in such a way that the **Swiper** frontend and backend display the same page during loop playback.<br>2. During page scrolling, the [ContentDidScrollCallback](#contentdidscrollcallback12) callback is invoked for all pages in the viewport on a frame-by-frame basis. For example, when there are two pages whose subscripts are 0 and 1 in the viewport, two callbacks whose indexes are 0 and 1 are invoked in each frame.<br>3. When the **swipeByGroup** parameter of the **displayCount** attribute is set to **true**, the callback is invoked for all pages in a group if any page in the group is within the viewport.
+1. This API does not work when **prevMargin** and **nextMargin** are set in such a way that the **Swiper** frontend and backend display the same page during loop playback.
+2. During page scrolling, the [ContentDidScrollCallback](#contentdidscrollcallback12) callback is invoked for all pages in the viewport on a frame-by-frame basis. For example, when there are two pages whose subscripts are 0 and 1 in the viewport, two callbacks whose indexes are 0 and 1 are invoked in each frame.
+3. When the **swipeByGroup** parameter of the **displayCount** attribute is set to **true**, the callback is invoked for all pages in a group if any page in the group is within the viewport.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -910,8 +1298,10 @@ Triggered during the swipe action of the **Swiper** component. For details about
 
 ## Example
 
-### Example 1
-This example shows the usage of **indicatorInteractive**.
+### Example 1: Configuring Navigation Point Indicator Interaction
+
+This example demonstrates how to configure the interaction of the navigation point indicator using the **indicatorInteractive** API.
+
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
@@ -1024,7 +1414,10 @@ struct SwiperExample {
 
 ![swiper](figures/swiper.gif)
 
-### Example 2
+### Example 2: Implementing a Digit-Style Navigation Point Indicator
+
+This example showcases how to implement a digit-style navigation point indicator using the **DigitIndicator** API.
+
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
@@ -1079,8 +1472,7 @@ struct SwiperExample {
       .index(1)
       .autoPlay(true)
       .interval(4000)
-      .indicator(Indicator.digit() // Set the navigation point indicator of the digit style.
-        .right("43%")
+      .indicator(Indicator.digit() // Set the digit-style navigation point indicator.
         .top(200)
         .fontColor(Color.Gray)
         .selectedFontColor(Color.Gray)
@@ -1108,7 +1500,10 @@ struct SwiperExample {
 ```
 ![swiper](figures/swiper-digit.gif)
 
-### Example 3
+### Example 3: Configuring Group Page-Turning
+
+This example illustrates the group page-turning effect using the **displayCount** property.
+
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
@@ -1191,9 +1586,9 @@ struct SwiperExample {
 ```
 ![swiper](figures/swiper-swipe-by-group.gif)
 
-### Example 4
+### Example 4: Customizing the Page Switching Animation
 
-In this example, the **customContentTransition** API is used to define a custom switching animation for the **Swiper** component.
+This example presents how to implement a custom page switching animation for the **Swiper** component through the **customContentTransition** API.
 
 ```ts
 // xxx.ets
@@ -1270,9 +1665,9 @@ struct SwiperCustomAnimationExample {
 ```
 ![swiper](figures/swiper-custom-animation.gif)
 
-### Example 5
+### Example 5: Configuring Overflow for the Dot-Style Navigation Point Indicator
 
-This example implements an animation for the display of navigation dots that exceed the maximum display count through the **maxDisplayCount** attribute of the **DotIndicator** API.
+This example illustrates the activation of the overflow effect when the number of navigation dots exceeds the limit set through the **maxDisplayCount** property of the **DotIndicator** API.
 
 ```ts
 class MyDataSource implements IDataSource {

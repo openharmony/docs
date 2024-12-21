@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **oh_display_info.h** file declares the common enums and definitions of the display manager.
+The **oh_display_info.h** file declares the common enums and definitions of the display.
 
 **File to include**: &lt;window_manager/oh_display_info.h&gt;
 
@@ -24,8 +24,8 @@ The **oh_display_info.h** file declares the common enums and definitions of the 
 | Name| Description| 
 | -------- | -------- |
 | struct  [NativeDisplayManager_Rect](_native_display_manager___rect.md) | Describes a rectangle.| 
-| struct  [NativeDisplayManager_WaterfallDisplayAreaRects](ive_display_manager___waterfall_display_area_rects.md) | Describes the curved area on the waterfall display.| 
-| struct  [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md) | Describes the cutout, which is an area that is not intended for displaying content on the display.| 
+| struct  [NativeDisplayManager_WaterfallDisplayAreaRects](ive_display_manager___waterfall_display_area_rects.md) | Describes the curved area on a waterfall display.| 
+| struct  [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md) | Describes the unusable area of a display, including punch hole, notch, and curved area of a waterfall display.| 
 
 
 ### Types
@@ -37,8 +37,8 @@ The **oh_display_info.h** file declares the common enums and definitions of the 
 | typedef enum [NativeDisplayManager_ErrorCode](_o_h___display_manager.md#nativedisplaymanager_errorcode) [NativeDisplayManager_ErrorCode](_o_h___display_manager.md#nativedisplaymanager_errorcode) | Defines an enum for the status codes returned by the display manager interface.| 
 | typedef enum [NativeDisplayManager_FoldDisplayMode](_o_h___display_manager.md#nativedisplaymanager_folddisplaymode) [NativeDisplayManager_FoldDisplayMode](_o_h___display_manager.md#nativedisplaymanager_folddisplaymode) | Defines an enum for the display modes of a foldable device.| 
 | typedef struct [NativeDisplayManager_Rect](_native_display_manager___rect.md) [NativeDisplayManager_Rect](_o_h___display_manager.md#nativedisplaymanager_rect) | Defines a struct for a rectangle.| 
-| typedef struct [NativeDisplayManager_WaterfallDisplayAreaRects](ive_display_manager___waterfall_display_area_rects.md) [NativeDisplayManager_WaterfallDisplayAreaRects](_o_h___display_manager.md#nativedisplaymanager_waterfalldisplayarearects) | Defines a struct for the curved area on the waterfall display.| 
-| typedef struct [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md) [NativeDisplayManager_CutoutInfo](_o_h___display_manager.md#nativedisplaymanager_cutoutinfo) | Defines a struct for the cutout, which is an area that is not intended for displaying content on the display.| 
+| typedef struct [NativeDisplayManager_WaterfallDisplayAreaRects](ive_display_manager___waterfall_display_area_rects.md) [NativeDisplayManager_WaterfallDisplayAreaRects](_o_h___display_manager.md#nativedisplaymanager_waterfalldisplayarearects) | Defines a struct for the curved area on a waterfall display.| 
+| typedef struct [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md) [NativeDisplayManager_CutoutInfo](_o_h___display_manager.md#nativedisplaymanager_cutoutinfo) | Defines a struct for the unusable area of a display, including punch hole, notch, and curved area of a waterfall display.| 
 
 
 ### Enums

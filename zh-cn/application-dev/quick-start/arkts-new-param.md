@@ -3,13 +3,13 @@
 
 为了增强子组件接受外部参数输入的能力，开发者可以使用\@Param装饰器。
 
+
+\@Param不仅可以接受组件外部输出，还可以接受\@Local的同步变化。在阅读本文档前，建议提前阅读：[\@Local](./arkts-new-local.md)。
+
 > **说明：**
 >
 > 从API version 12开始，在\@ComponentV2装饰的自定义组件中支持使用\@Param装饰器。
 >
->当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
-
-
 
 ## 概述
 
@@ -184,7 +184,7 @@ struct Child {
         })
         Button("change name")
           .onClick(() => {
-            // \@Local与\@Param均不具备观察类对象属性的能力，因此对rawObject.name的修改无法观察到
+            // @Local与@Param均不具备观察类对象属性的能力，因此对rawObject.name的修改无法观察到
             this.rawObject.name = "new rawObject name";
             // 由于ObservedObject的name属性被@Trace装饰，因此对observedObject.name的修改能被观察到
             this.observedObject.name = "new observedObject name";
@@ -358,14 +358,14 @@ struct Child {
 
   ```ts
   @ComponentV2
-  struct CompA {
+  struct MyComponent {
     @Param message: string = "Hello World"; // 正确用法
     build() {
     }
   }
   @Component
-  struct CompB {
-    @Param message: string = "Hello World"; // 错误用法
+  struct TestComponent {
+    @Param message: string = "Hello World"; // 错误用法，编译时报错
     build() {
     }
   }
@@ -375,25 +375,26 @@ struct Child {
 
   ```ts
   @ComponentV2
-  struct CompA {
+  struct ChildComponent {
     @Param param1: string = "Initialize local";
     @Param param2: string = "Initialize local and put in";
     @Require @Param param3: string;
+    @Param param4: string; // 错误用法，外部未传入初始化且本地也无初始值，编译报错
     build() {
       Column() {
-        Text(`${this.param1}`) // Initialize local
-        Text(`${this.param2}`) // Put in
-        Text(`${this.param3}`) // Put in
+        Text(`${this.param1}`) // 本地初始化，显示Initialize local
+        Text(`${this.param2}`) // 外部传入初始化，显示Put in
+        Text(`${this.param3}`) // 外部传入初始化，显示Put in
       }
     }
   }
   @Entry
   @ComponentV2
-  struct CompB {
+  struct MyComponent {
     @Local message: string = "Put in";
     build() {
       Column() {
-        CompA({
+        ChildComponent({
           param2: this.message,
           param3: this.message
         })
@@ -435,7 +436,7 @@ struct Child {
         Text(`info.name: ${this.info.name}`)
         Button("change info")
           .onClick(() => {
-            this.info = new Info("Jack"); //错误用法，不允许在子组件更改@Param变量
+            this.info = new Info("Jack"); //错误用法，不允许在子组件更改@Param变量，编译时报错
           })
         Button("Child change info.name")
           .onClick(() => {

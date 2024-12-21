@@ -41,23 +41,15 @@ struct HelloComponent {
 Multiple **HelloComponent** instances can be created in the **build()** function of other custom components. In this way, **HelloComponent** is reused by those custom components.
 
 ```ts
-class HelloComponentParam {
-  message: string = ""
-}
-
 @Entry
 @Component
 struct ParentComponent {
-  param: HelloComponentParam = {
-    message: 'Hello, World!'
-  }
-
   build() {
     Column() {
       Text('ArkUI message')
-      HelloComponent(this.param);
+      HelloComponent({ message: 'Hello World!' });
       Divider()
-      HelloComponent(this.param);
+      HelloComponent({message: 'Hello, World!'});
     }
   }
 }
@@ -384,7 +376,7 @@ Whatever declared in the **build()** function are called UI descriptions. UI des
   }
   ```
 
-- Directly changing a state variable is not allowed. The following example should be avoided:
+- Directly changing a state variable is not allowed. The following example should be avoided: For details, see [State Variables Modification in build() Is Forbidden](./arkts-state.md#state-variables-modification-in-build()-is-forbidden).
 
   ```ts
   @Component
@@ -444,7 +436,7 @@ Whatever declared in the **build()** function are called UI descriptions. UI des
 
 ## Universal Style of a Custom Component
 
-The universal style of a custom component is configured by invoking chainable attribute methods.
+The universal style of a custom component is configured by the chain call.
 
 
 ```ts
@@ -472,5 +464,3 @@ struct MyComponent {
 > **NOTE**
 >
 > When ArkUI sets styles for custom components, an invisible container component is set for **MyComponent2**. These styles are set on the container component instead of the **Button** component of **MyComponent2**. As seen from the rendering result, the red background color is not directly applied to the button. Instead, it is applied to the container component that is invisible to users where the button is located.
-
-<!--no_check-->

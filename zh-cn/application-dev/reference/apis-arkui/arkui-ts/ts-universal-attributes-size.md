@@ -120,7 +120,7 @@ margin(value: Margin | Length | LocalizedMargin)
 
 layoutWeight(value: number | string)
 
-对子组件进行重新布局。
+设置组件的布局权重，使用该属性的组件在父容器（[Row](./ts-container-row.md)/[Column](./ts-container-column.md)/[Flex](./ts-container-flex.md)）的主轴方向按照权重分配尺寸。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -197,7 +197,10 @@ constraintSize(value: ConstraintSizeOptions)
 >  在[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[RelativeContainer](./ts-container-relativecontainer.md)组件中，width、height设置auto表示自适应子组件。在[TextInput](./ts-basic-components-textinput.md)组件中，width设置auto表示自适应文本宽度。
 
 ## 示例
-### 示例1
+
+### 示例1（设置组件的宽高和边距）
+
+设置组件的宽度和高度，以及内边距和外边距。
 
 ```ts
 // xxx.ets
@@ -256,7 +259,10 @@ struct SizeExample {
 
 ![size](figures/size.png)
 
-### 示例2
+### 示例2（LocalizedPadding和LocalizedMargin类型的使用）
+
+padding和margin属性使用LocalizedPadding类型和LocalizedMargin类型。
+
 ```ts
 // xxx.ets
 // padding和margin属性使用LocalizedPadding类型和LocalizedMargin类型
