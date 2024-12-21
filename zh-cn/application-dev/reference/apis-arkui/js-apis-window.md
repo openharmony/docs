@@ -359,7 +359,7 @@ import { window } from '@kit.ArkUI';
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.Window.SessionManager
 
 | 名称   | 类型 | 可读 | 可写 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
