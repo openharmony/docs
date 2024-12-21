@@ -165,6 +165,36 @@ Operation failed because of PIN expired.
 
 用户前往设置更新系统锁屏密码，再次发起认证。
 
+<!--Del-->
+## 12500015 AuthToken完整性校验失败
+
+**错误信息**
+
+Operation failed because of authToken integrity check failed.
+
+**可能原因**
+
+当验证的AuthToken无效时，会返回12500015错误码。
+
+**处理步骤**
+
+重新发起认证，签发有效token。
+
+## 12500016 AuthToken过期
+
+**错误信息**
+
+Operation failed because of authToken has expired.
+
+**可能原因**
+
+当AuthToken的签发时间至发起验证时的时间间隔超过传入的最大有效时长时，会返回12500016错误码。
+
+**处理步骤**
+
+重新发起认证，签发有效token。
+<!--DelEnd-->
+
 ## 12700001 人脸录入过程中的操作失败
 
 **错误信息**
