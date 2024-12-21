@@ -6208,7 +6208,7 @@ call.off('cameraCapabilitiesChange', (data: call.CameraCapabilities) => {
 | markCount | number       | 否  | 号码的标记次数。 |
 | markSource | string | 否 | 号码的标记来源供应商。 |
 | isCloud | boolean | 否 | 号码的标记是否来自云端。 |
-| markDetails | string | 否 | 号码标记的详细信息，markType为MARK_TYPE_ENTERPRISE时，该字段返回信息为“部门 职位”。 |
+| markDetails<sup>14+</sup> | string | 否 | 号码标记的详细信息，markType为MARK_TYPE_ENTERPRISE时，该字段返回信息为“部门 职位”。 |
 
 ## MarkType<sup>12+</sup>
 
@@ -6231,4 +6231,4 @@ call.off('cameraCapabilitiesChange', (data: call.CameraCapabilities) => {
 | MARK_TYPE_CUSTOM | 8 | 用户自定义 |
 | MARK_TYPE_OTHERS | 9 | 其他 |
 | MARK_TYPE_YELLOW_PAGE | 10 | 黄页 |
-| MARK_TYPE_ENTERPRISE | 11 | 企业联系人 |
+| MARK_TYPE_ENTERPRISE<sup>14+</sup> | 11 | 企业联系人 |
