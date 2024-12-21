@@ -218,7 +218,7 @@ struct Index {
   private cameraInput: camera.CameraInput | undefined = undefined;
   private previewOutput1: camera.PreviewOutput | undefined = undefined;
   private previewOutput2: camera.PreviewOutput | undefined = undefined;
-  private session: camera.PhotoSession | camera.VideoSession | undefined = undefined;
+  private session: camera.VideoSession | undefined = undefined;
 
   onPageShow(): void {
     console.info('onPageShow');
@@ -372,7 +372,7 @@ struct Index {
         console.error('initCamera createPreviewOutput2');
       }
       // 创建录像模式相机会话
-      this.session = this.cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.PhotoSession;
+      this.session = this.cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
       if (!this.session) {
         console.error('initCamera createSession');
       }
