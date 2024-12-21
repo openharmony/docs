@@ -4791,6 +4791,6 @@ Allows a system application or system service to call APIs to perform encryption
 
 **Enable via ACL**: true
 
-**Valid since**: 15
+**Valid since**: 12
 
 **Changelog**: This permission is available only to system services in API versions 12 to 14. From API version 15, it is also available to system applications.
