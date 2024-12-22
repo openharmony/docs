@@ -34,7 +34,7 @@
 | RETURN_OFFSET         | 类型为number，取值范围：1-65536。                              | 可选     | 关键资产查询返回的结果偏移量。<br>**说明：** 用于分批查询场景，指定从第几个开始返回。                                 |
 | RETURN_ORDERED_BY     | 类型为number，取值范围：asset.Tag.DATA_LABEL_xxx。             | 可选     | 关键资产查询返回的结果排序依据，仅支持按照附属信息排序。<br>**说明：** 默认按照关键资产新增的顺序返回。 |
 | REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | 类型为bool。 | 可选 | 是否查询业务自定义附属信息被加密的数据，默认查询业务附属信息不加密的数据。|
-| GROUP_ID<sup>16+</sup> | 类型为Uint8Array，长度为7-127字节。 | 可选 | 查询属于指定业务群组的关键资产，默认查询只属于当前业务的关键资产。|
+| GROUP_ID<sup>16+</sup> | 类型为Uint8Array，长度为7-127字节。 | 可选 | 待查询的关键资产所属群组，默认查询不属于任何群组的关键资产。|
 
 ## 约束和限制
 
@@ -90,6 +90,8 @@ try {
 
 查询别名是demo_alias的关键资产属性。
 
+在指定群组中查询同一条关键资产属性的使用示例详见[查询单条群组关键资产属性](asset-js-group.md#查询单条群组关键资产属性)。
+
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
@@ -121,6 +123,8 @@ try {
 ### 批量查询关键资产属性
 
 批量查询标签1是demo_label的关键资产属性，从第5条满足条件的结果开始返回，一共返回10条，且返回结果以DATA_LABEL_NORMAL_1属性内容排序。
+
+在指定群组中批量查询同一条关键资产属性，再以相同形式排序并返回的使用示例详见[批量查询群组关键资产属性](asset-js-group.md#批量查询群组关键资产属性)。
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
