@@ -801,6 +801,28 @@ Not support back to caller.
 1. 确认当前应用已在module.json5文件中配置linkFeature字段。
 2. 确认当前应用声明的linkFeature取值正确，linkFeature描述的功能与应用链接对应的实际功能一致，且应用通过系统审核。
 
+## 16000081 获取目标应用信息失败
+
+**错误信息**
+
+Get target application info failed.
+
+**错误描述**
+
+调用<!--Del-->[<!--DelEnd-->URI授权相关接口<!--Del-->](js-apis-uripermissionmanager-sys.md)<!--DelEnd-->时，无法根据应用包名和分身索引获取到目标应用的相关信息。
+
+**可能原因**
+
+1. 没有安装目标应用。
+2. 分身索引超出允许的范围。
+3. 目标应用没有该索引的分身。
+
+**处理步骤**
+
+1. 检查目标应用是否已经安装。
+2. 检查分身应用索引是否在允许范围内。
+3. 检查目标应用是否创建了该索引对应的分身应用。
+
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
 **错误信息**
