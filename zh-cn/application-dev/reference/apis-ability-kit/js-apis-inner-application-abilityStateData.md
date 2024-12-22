@@ -1,11 +1,10 @@
-# AbilityStateData (系统接口)
+# AbilityStateData
 
-定义Ability状态信息，可以通过[on](js-apis-app-ability-appManager-sys.md#appmanageronappforegroundstate11)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md)的onAbilityStateChanged生命周期回调获取。
+定义Ability状态信息，可以通过[on](js-apis-app-ability-appManager.md#appmanageronapplicationstate)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)的onAbilityStateChanged生命周期回调获取。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口为系统接口。
+> 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -16,8 +15,6 @@ import { appManager } from '@kit.AbilityKit';
 ## 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称                     | 类型     | 可读 | 可写 | 说明                       |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
