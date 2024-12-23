@@ -319,10 +319,7 @@ napi_value NapiGenericFailure(napi_env env, napi_callback_info)
 
 ## NAPI常见错误用法导致的异常日志/崩溃
 
-以下维未测手段多依赖于ArkTS运行时的多线程检测能力，因此建议在调试前启用此功能。启用方法如下：
-
-1. 使用param工具，全局启用，重启后生效。<!--Del-->详见[ArkTS语言基础类库开发常见问题](../faqs/faqs-arkts-utils.md#hdc属性开关)。<!--DelEnd-->
-2. 在调试应用时临时启用，应用退出后失效。详见[分析CppCrash（进程崩溃）](../dfx/cppcrash-guidelines.md#工具二方舟多线程检测)。
+以下维未测手段多依赖于ArkTS运行时的多线程检测能力，因此建议在调试前启用此功能。启用方法参考文档[分析CppCrash（进程崩溃）](../dfx/cppcrash-guidelines.md#工具二方舟多线程检测)。
 
 若无特殊说明，本章节所描述的维测手段，在启用ArkTS运行时多线程检测开关的前提下，会在第一现场中断进程。
 
