@@ -11,6 +11,7 @@ Telephony Kit provides the following APIs that help you develop communication ap
 
 - SIM module: Allows an application to obtain SIM card information, such as the service provider, International Organization for Standardization (ISO) country code, and home Public Land Mobile Network (PLMN) number. For details, see [SIM API Reference](../reference/apis-telephony-kit/js-apis-telephony-data.md).
 
+- eSIM module (eSIM card management): Implements eSIM card management and eSIM card services. For details, see [@ohos.telephony.esim API Reference](../reference/apis-telephony-kit/js-apis-esim.md).
 
 ## Constraints
 

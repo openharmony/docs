@@ -7,7 +7,7 @@ Defines the structure for storing 32-bit unsigned integer arrays.
 
 **Since**: 9
 
-**Related module**: [NeuralNetworkRuntime](_neural_network_runtime.md)
+**Related module**: [NeuralNeworkRuntime](_neural_network_runtime.md)
 
 
 ## Summary
