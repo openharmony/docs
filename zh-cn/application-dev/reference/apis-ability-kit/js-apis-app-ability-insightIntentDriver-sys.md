@@ -35,6 +35,20 @@ import { insightIntentDriver } from '@kit.AbilityKit';
 | insightIntentParam | string | 是 | 意图调用参数。 |
 | executeMode | [insightIntent.ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) | 是 | 意图调用执行模式。 |
 | displayId<sup>12+</sup> | number | 否 | 意图调用时指定的物理屏幕id，该参数应为整数，仅在executeMode为UI_ABILITY_FOREGROUND时生效。 |
+| uris<sup>16+</sup> | Array&lt;string&gt; | 否 | （API16及之后版本支持）意图调用时，意图调用方给意图执行方授权的URI列表。 |
+| flags<sup>16+</sup> | number | 否 | （API16及之后版本支持）意图调用时，意图调用方给意图执行方授权的uris的标志位[insightIntent.ExecuteParam.flags](js-apis-app-ability-insightIntentDriver-sys.md#ExecuteParam.flags)。 |
+
+## ExecuteParam.flags
+
+flags说明。（API16及之后版本支持）用于表示处理意图拉起回调时，调用方给执行方授予的URI列表权限。
+
+**系统能力**：SystemCapability.Ability.AbilityBase
+
+| 名称                                                           | 值         | 说明                      |
+| ---------------------------------------------------------------| ---------- | ------------------------- |
+| FLAG_AUTH_READ_URI_PERMISSION                                  | 0x00000001 | 读取权限。                 |
+| FLAG_AUTH_WRITE_URI_PERMISSION                                 | 0x00000002 | 写入权限。                 |
+| FLAG_AUTH_WRITE_URI_PERMISSION|FLAG_AUTH_READ_URI_PERMISSION   | 0x00000003 | 读写权限。                 |
 
 ## insightIntentDriver.execute
 

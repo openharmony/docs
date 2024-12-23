@@ -38,3 +38,17 @@ import { insightIntent } from '@kit.AbilityKit';
 | -------- | -------- | -------- | -------- | -------- |
 | code | number | 否 | 否 | 意图调用返回的错误码。 |
 | result | Record<string, Object> | 否 | 是 | 意图调用返回的结果。 |
+| uris<sup>16+</sup> | Array&lt;string&gt; | 否 | 是 | （API16及之后版本支持）意图调用时，意图执行方给意图调用方授权的URI列表。 |
+| flags<sup>16+</sup> | number | 否 | 是 | （API16及之后版本支持）意图调用时，意图执行方给意图调用方授权的uris的标志位[insightIntent.ExecuteResult.flags](js-apis-app-ability-insightIntent.md#ExecuteResult.flags)。 |
+
+## ExecuteResult.flags
+
+flags说明。（API16及之后版本支持）用于表示处理意图拉起回调时，执行方给调用方授予的URI列表权限。
+
+**系统能力**：SystemCapability.Ability.AbilityBase
+
+| 名称                                                           | 值         | 说明                           |
+| ---------------------------------------------------------------| ---------- | ------------------------------ |
+| FLAG_AUTH_READ_URI_PERMISSION                                  | 0x00000001 | 读取权限。                      |
+| FLAG_AUTH_WRITE_URI_PERMISSION                                 | 0x00000002 | 写入权限。                      |
+| FLAG_AUTH_WRITE_URI_PERMISSION|FLAG_AUTH_READ_URI_PERMISSION   | 0x00000003 | 读写权限。                      |
