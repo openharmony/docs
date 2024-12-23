@@ -43,15 +43,14 @@
 | general.xwindowdump-image           | general.image                 | .xwd                                   | image/x-xwindowdump                                                                    | XWD图片类型                            |
 | general.heif                        | general.image                 | .heif, .heifs, .hif                    | image/heif                                                                             | 高效图像文件格式                           |
 | general.heic                        | general.image                 | .heic, .heics                          | image/heic                                                                             | 高效容器图像文件格式                         |
-| general.jpeg-2000 | general.image | .jp2, .jpg2, .jpx, .jpf, .jpm | image/jp2, image/jpx, image/jpm | JPEG 2000图片类型 |
-| general.ief-image | general.image | .ief | image/ief | 图像交换格式 |
-| com.aol.art-image | general.image | .art | image/x-jg | ART图像格式 |
-| general.video                       | general.media                 |                -                       |                                        -                                        | 所有视频的基类型                           |
+| general.jpeg-2000                   | general.image                 | .jp2, .jpg2, .jpx, .jpf, .jpm          | image/jp2, image/jpx, image/jpm                                                        | JPEG 2000图片类型 |
+| general.ief-image                   | general.image                 | .ief                                   | image/ief                                                                              | 图像交换格式 |
+| general.video                       | general.media                 |                -                       |                                        -                                               | 所有视频的基类型                           |
 | general.avi                         | general.video                 | .avi, .vfw                             | video/avi, video/msvideo, video/x-msvideo                                              | AVI视频类型                            |
 | general.mpeg                        | general.video                 | .mpg, .mpeg, .m75, .m15,.mpe           | video/mpg, video/mpeg, video/x-mpg, video/x-mpeg                                       | MPEG-1或MPEG-2视频类型                  |
-| general.mpeg-4                      | general.video                 | .mp4, .mpeg4                           | video/mp4, video/mp4v                                                                  | MPEG-4视频类型                         |
+| general.mpeg-4                      | general.video                 | .mp4, .mp4v, .mpeg4                    | video/mp4, video/mp4v                                                                  | MPEG-4视频类型                         |
 | general.3gpp                        | general.video                 | .3gp, .3gpp                            | video/3gpp                                                                             | 3GPP视频类型                           |
-| general.3gpp2                       | general.video                 | .3g2, .3gp2, .3gpp2                   | video/3gpp2                                                                            | 3GPP2视频类型                          |
+| general.3gpp2                       | general.video                 | .3g2, .3gp2, .3gpp2                    | video/3gpp2                                                                            | 3GPP2视频类型                          |
 | general.vob                         | general.video                 | .vob                                   | video/mpeg, video/x-ms-vob                                                             | DVD视频类媒体的容器类型                      |
 | general.dif-video                   | general.video                 | .dif                                   | video/dv                                                                               | 原始数字视频类型                           |
 | general.dv-video                    | general.video                 | .dv                                    | video/dv                                                                               | DV视频类型                             |
@@ -59,13 +58,13 @@
 | general.mng                         | general.video                 | .mng                                   | video/x-mng                                                                            | 多重图像网络图形类型                         |
 | general.mpegurl-video               | general.video                 | .mxu, .m4u                             | video/vnd.mpegurl                                                                      | 视频播放列表类型                           |
 | general.ts                          | general.video                 | .ts                                    | video/mp2ts, video/mp2t                                                                | mpeg传输流格式                          |
-| general.mp2t | general.video | .m2ts, .mts, .m2t | video/mp2t | Bru-Ray Budav视频Ophil格式 |
-| general.mpeg-2 | general.video | .mpeg2, .mpv2, .mp2v, .m2v, .mpv | video/mpeg | MPEG-2视频格式 |
-| general.mpeg-1 | general.video | .mpeg1, .mpv1, .mp1v, .m1v | video/mpeg | MPEG-1视频格式 |
-| general.divx-video | general.video | .divx | video/divx | DivX编码电影文件类型 |
-| general.ogv | general.video | .ogv | video/ogg | Ogg视频格式 |
-| general.h264-video | general.video | .h264 | video/H264 | H.264编码视频格式 |
-| general.audio                       | general.media                 |                 -                      |                                        -                                        | 所有音频的基类型                           |
+| general.mp2t                        | general.video                 | .m2ts, .mts, .m2t                      | video/mp2t                                                                             | 蓝光BDAV 视频类型 |
+| general.mpeg-2                      | general.video                 | .mpeg2, .mpv2, .mp2v, .m2v, .mpv       | video/mpeg                                                                             | MPEG-2视频格式 |
+| general.mpeg-1                      | general.video                 | .mpeg1, .mpv1, .mp1v, .m1v             | video/mpeg                                                                             | MPEG-1视频格式 |
+| general.divx-video                  | general.video                 | .divx                                  | video/divx                                                                             | DivX编码电影文件类型 |
+| general.ogv                         | general.video                 | .ogv                                   | video/ogg                                                                              | Ogg视频格式 |
+| general.h264-video                  | general.video                 | .h264                                  | video/H264                                                                             | H.264编码视频格式 |
+| general.audio                       | general.media                 |                 -                      |                                        -                                               | 所有音频的基类型                           |
 | general.ogg                         | general.audio                 | .ogg                                   | audio/ogg                                                                              | OGG音频类型                            |
 | general.aiff                        | general.audio                 | .aiff                                  | audio/aiff                                                                             | AIFF音频类型                           |
 | general.pcm                         | general.audio                 | .pcm                                   | audio/pcm                                                                              | PCM音频类型                            |
@@ -134,6 +133,9 @@
 | general.p7r                         | general.text                  | .p7r                                   | application/x-pkcs7-certreqresp                                                        | 证书请求响应文件类型                         |
 | general.pem                         | general.text                  | .pem                                   | application/x-pem-file                                                                 | 增强私隐邮件证书文件类型                       |
 | general.log                         | general.text                  | .log                                   | text/plain                                                                             | 日志文件类型                             |
+| general.tel                         | general.text                  | .tel                                   |                                                                                        | 包含器件封装、网络拓扑、编码信息等的原理图信息文件类型                             |
+| general.ion                         | general.text                  | .ion                                   | text/plain                                                                             | 文件内容描述类型                  |
+| general.conf                        | general.text                  | .conf                                  | text/plain                                                                             | 通用配置文件类型        |
 | general.calendar                    | general.text                  |                 -                      |                                               -                                        | 所有日程类数据的基类型                        |
 | general.vcs                         | general.calendar              | .vcs                                   | text/calendar                                                                          | VCalendar日历数据类型                    |
 | general.ics                         | general.calendar              | .ics                                   | text/calendar                                                                          | ICalendar日历数据类型                    |
@@ -168,6 +170,8 @@
 | general.json                        | general.script                | .json                                  | application/json                                                                       | JSON数据类型                           |
 | general.yaml                        | general.script                | .yaml, .yml                            | application/yaml                                                                       | YAML文档类型                           |
 | general.shell-script                | general.script                | .sh, .command                          | text/x-shellscript                                                                     | shell脚本类型                          |
+| general.ets                         | general.script                | .ets                                   |                                                                                        | extended TypeScript源代码类型                          |
+| general.json5                       | general.script                | .json5                                 |                                                                                        | JSON5数据交换类型                          |
 | general.csh-script                  | general.shell-script          | .csh                                   | text/x-csh                                                                             | C-shell脚本类型                        |
 | general.perl-script                 | general.shell-script          | .pl, .pm                               | text/x-perl-script                                                                     | Perl脚本类型                           |
 | general.python-script               | general.shell-script          | .py                                    | text/x-python-script                                                                   | Python脚本类型                         |
@@ -211,15 +215,17 @@
 | openharmony.atomic-service | general.object           |                  -                    |-                                                                    | OpenHarmony系统定义的原子化服务数据类型        |
 | openharmony.package        | general.directory        |                  -                    |-                                                                    | OpenHarmony系统定义的文件封装类型           |
 | openharmony.hap            | openharmony.package      | .hap                                  |-                                                                    | OpenHarmony系统定义的Ability封装类型      |
+| openharmony.app            | openharmony.package      | .app                                  |-                                                                    | OpenHarmony系统定义的应用包类型      |
 | openharmony.hdoc           | general.composite-object | .hdoc                                 |-                                                                    | OpenHarmony系统定义的备忘录文件格式。         |
 | openharmony.hinote         | general.composite-object | .hinote                               |-                                                                    | OpenHarmony系统定义的笔记文件格式。          |
 | openharmony.styled-string  | general.composite-object |                  -                    |-                                                                    | OpenHarmony系统定义的样式字符串类型          |
 | openharmony.moving-photo   | general.media            |                  -                    |-                                                                    | OpenHarmony系统定义的动图Moving Photo类型 |
 | openharmony.pixel-map      | general.image            |                  -                    |-                                                                    | OpenHarmony系统定义的Pixel map数据类型    |
-| macos.dmg                  | general.disk-image       | .dmg                                  |- application/x-apple-diskimage                                      | MacOS系统定义的安装包格式文件类型              |
-| debian.deb                 | general.archive          | .deb,.udeb                            | application/x-debian-package,application/vnd.debian.binary-package | Debian系统中的软件安装包类型                |
-| com.android.apk            | general.archive          | .apk, .apks, .aab, .xapk, .apkm, .akp | application/vnd.android.package-archive                            | Android安装包文件类型                   |
-| redhat.rpm-archive         | general.archive          | .rpm                                  | application/x-rpm                                                  | RedHat软件安装包类型                    |
+| macos.dmg                  | general.disk-image       | .dmg                                  | application/x-apple-diskimage                                      | MacOS系统定义的安装包格式文件类型              |
+| debian.deb                 | general.archive          | .deb,.udeb                            | application/x-debian-package,application/vnd.debian.binary-package  | Debian系统中的软件安装包类型                |
+| com.android.apk            | general.archive          | .apk, .apks, .aab, .xapk, .apkm, .akp | application/vnd.android.package-archive                             | Android安装包文件类型                   |
+| redhat.rpm-archive         | general.archive          | .rpm                                  | application/x-rpm                                                   | RedHat软件安装包类型                    |
+| com.huawei.hmos.settings.wifi  | general.text         | .hmoswifi                             |                                                                     | HarmonyOS wifi分享配置文件类型                    |
 
 ## 应用定义类型
 应用定义类型表示该类型由具体的应用或者组织进行定义与维护，数据的交互依赖特定的应用进行识别，标识ID为com.company-name.xxx或org.orgnization-name.xxx。当前系统中预定义的应用定义类型列表如下：
@@ -394,6 +400,7 @@
 | org.aomedia.avif-image                                      | general.image                                                            | .avif                   | image/avif                                                                | AVIF图片类型                                  |
 | com.google.webp                                             | general.image                                                            | .webp                   | image/webp                                                                | WebP图像格式                                  |
 | org.gimp.xcf                                                | general.image                                                            | .xcf                    | application/x-xcf,image/x-xcf                                             | GIMP图像类型                                  |
+| com.aol.art-image                                           | general.image                                                            | .art                    | image/x-jg                                                                | ART图像格式 |
 | com.real.realmedia                                          | general.video                                                            | .rm                     | application/vnd.rn-realmedia                                              | 流媒体视频类型                                   |
 | com.real.realmedia-vbr | general.video | .rmvb | application/vnd.rn-realmedia-vbr | RealMedia可变比特率格式 |
 | com.real.realvideo | general.video | .rv | video/x-pn-realvideo | RealVideo格式 |
@@ -457,12 +464,26 @@
 | org.mozilla.xpinstall                                       | general.archive                                                          | .xpi                    | application/x-xpinstall                                                   | 压缩文件类型                                    |
 | com.ezbsystems.zipped-iso                                   | general.disk-image                                                       | .isz                    |                           -                                               | Zip压缩后的ISO镜像文件类型                          |
 | com.dbase.dbf                                               | general.database                                                         | .dbf                    | application/dbf, application/dbase                                        | 数据库文件格式                                   |
-| com.youtube.video | general.video | .yt, .vt | video/vnd.youtube.yt | Youtube视频格式 |
-| com.cisco.webex-video | general.video | .wrf | video/x-webex | WebEx录制格式 |
-| org.csiro.annodex | general.video | .axv | video/annodex | Annodex视频格式 |
-| com.fujifilm.raf-raw-image | general.raw-image | .raf | image/x-fuji-raf | Fujifilm原始图像格式 |
-| com.panasonic.rw2-raw-image | general.raw-image | .rw2, .raw | image/x-panasonic-raw | Panasonic原始图像格式 |
-| com.pentax.pef-raw-image | general.raw-image | .pef | image/x-pentax-pef | Pentax电子原始图像格式 |
-| com.sumsung.srw-raw-image | general.raw-image | .srw | image/x-samsung-srw | Samsung原始图像格式 |
-| com.epson.erf-raw-image | general.raw-image | .erf | image/x-epson-erf | Epson原始图像格式 |
-| com.olympus.orf-raw-image | general.raw-image | .orf | image/x-olympus-orf | Olympus原始图像格式 |
+| com.youtube.video                                           | general.video                                                            | .yt, .vt                | video/vnd.youtube.yt                                                      | Youtube视频格式 |
+| com.cisco.webex-video                                       | general.video                                                            | .wrf                    | video/x-webex                                                             | WebEx录制格式 |
+| org.csiro.annodex                                           | general.video                                                            | .axv                    | video/annodex                                                             | Annodex视频格式 |
+| com.fujifilm.raf-raw-image                                  | general.raw-image                                                        | .raf                    | image/x-fuji-raf                                                          | Fujifilm原始图像格式 |
+| com.panasonic.rw2-raw-image                                 | general.raw-image                                                        | .rw2, .raw              | image/x-panasonic-raw                                                     | Panasonic原始图像格式 |
+| com.pentax.pef-raw-image                                    | general.raw-image                                                        | .pef                    | image/x-pentax-pef                                                        | Pentax电子原始图像格式 |
+| com.sumsung.srw-raw-image                                   | general.raw-image                                                        | .srw                    | image/x-samsung-srw                                                       | Samsung原始图像格式 |
+| com.epson.erf-raw-image                                     | general.raw-image                                                        | .erf                    | image/x-epson-erf                                                         | Epson原始图像格式 |
+| com.olympus.orf-raw-image                                   | general.raw-image                                                        | .orf                    | image/x-olympus-orf                                                       | Olympus原始图像格式 |
+| org.w3.woff                                                 | general.font                                                             | .woff                   | font/woff                                                                 | Web开放字体格式类型 |
+| org.sqlite.database                                         | general.database                                                         | .sqlite, .sqlite3, .db, .db3, .s3db, .sl3  | application/vnd.sqlite3                                | SQLite 数据库类型 |
+| com.microsoft.pdb                                           | general.database                                                         | .pdb                    | application/x-ms-pdb                                                      | 程序数据库类型 |
+| com.monkeysaudio.ape-audio                                  | general.audio                                                            | .pdb                    | audio/x-monkeys-audio                                                     | Monkey's Audio音频类型 |
+| org.xiph.opus-audio                                         | general.audio                                                            | .opus                   | audio/opus                                                                | Opus有损音频编码格式 |
+| com.microsoft.tlb                                           | general.object                                                           | .tlb                    |                                                                           | OLE类型库类型 |
+| com.microsoft.catalog                                       | general.object                                                           | .cat                    |                                                                           | Windows目录文件类型 |
+| com.microsoft.vbscript                                      | general.script                                                           | .vbs                    | application/x-vbs                                                         | VBScript脚本类型 |
+| com.microsoft.sys                                           | general.object                                                           | .sys                    |                                                                           | Windows系统文件类型 |
+| com.microsoft.powershell-script                             | general.script                                                           | .ps1                    |                                                                           | Windows PowerShell脚本类型 |
+| com.microsoft.registry                                      | general.database                                                         | .reg                    |                                                                           | DOS批处理文件类型 |
+| com.microsoft.dos-batch                                     | general.script                                                           | .bat                    | application/x-bat                                                         | Windows注册表类型 |
+| com.microsoft.inf                                           | general.text                                                             | .inf                    | text/plain                                                                | 安装信息文件 |
+| com.microsoft.sccd                                          | general.xml                                                              | .sccd                   |                                                                           | 签名自定义功能描述符 |
