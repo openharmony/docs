@@ -46,7 +46,47 @@ FullScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: A
 | options | [AtomicServiceOptions](../../apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md) | 否 | - | 拉起原子化服务参数。 |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-universal-events-click.md)，仅支持以下事件。
+
+### onError<sup>16+<sup>
+
+onError(callback: ErrorCallback)
+
+被拉起的原子化服务扩展在运行过程中发生异常时触发本回调。可通过回调参数中的code、name和message获取错误信息并做处理。
+
+**参数：**
+
+| 参数名                       | 类型   | 说明                                                         |
+| ---------------------------- | ------ | ------------------------------------------------------------ |
+| callback                     | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | 报错信息。    |
+
+### onTerminated<sup>16+<sup>
+
+onTerminated(callback: Callback&lt;TerminationInfo&gt;)
+
+被拉起的原子化服务通过调用[terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)或者[terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)正常退出时，触发本回调函数。
+
+**参数：**
+
+| 参数名   | 类型   | 说明                                                                                     |
+| -------  | ------ | ---------------------------------------------------------------------------------------- |
+| callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](ohos-arkui-advanced-FullScreenLaunchComponent.md#terminationinfo16)> | 回调函数，入参用于接收原子化服务的返回结果，类型为[TerminationInfo](ohos-arkui-advanced-FullScreenLaunchComponent.md#terminationinfo16)。 |
+
+> **说明：**
+>
+> - 若原子化服务通过调用[terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)退出，其携带的信息会传给回调函数的入参；
+> - 若原子化服务通过调用[terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)退出，上述回调函数的入参中，"code"取默认值"0"，"want"为"undefined"。
+
+## TerminationInfo<sup>16+<sup>
+
+用于表示被拉起的原子化服务通过调用[terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)或者[terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)正常退出时的返回结果。
+
+### 属性
+
+| 名称 | 类型                                                       | 必填 | 说明                               |
+| ---- | ---------------------------------------------------------- | ---- | --------------------------------- |
+| code | number                                                     | 是   | 被拉起原子化服务退出时返回的结果码。 |
+| want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 被拉起原子化服务退出时返回的数据。   |
 
 ## 示例
 
