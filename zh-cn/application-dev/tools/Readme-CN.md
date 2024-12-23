@@ -21,3 +21,4 @@
 - 命令行工具
   - [toybox工具](toybox.md)
   - [mediatool工具](mediatool.md)
+  - [rawheap-translator工具](rawheap-translator.md)

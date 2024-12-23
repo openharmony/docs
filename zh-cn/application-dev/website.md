@@ -1241,6 +1241,7 @@
         - 命令行工具<!--command-line-utilities-->
           - [toybox工具](tools/toybox.md)
           - [mediatool工具](tools/mediatool.md)
+          - [rawheap-translator工具](tools/rawheap-translator.md)
   - 媒体<!--media-->
     - Audio Kit（音频服务）<!--audio-kit-->
       - [Audio Kit简介](media/audio/audio-kit-intro.md)
