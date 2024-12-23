@@ -3,7 +3,7 @@
 
 ## 概述
 
-采用UTF-16BE（大端模式）编码的字符串信息结构体。
+采用UTF-16编码的字符串信息结构体。
 
 **起始版本：** 14
 
@@ -17,7 +17,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| uint8_t \* [strData](#strdata) | 指向包含UTF-16BE（大端）编码的字节数组的指针  | 
+| uint8_t \* [strData](#strdata) | 指向包含UTF-16编码的字节数组的指针  | 
 | uint32_t [strLen](#strlen) | strData指向的字符串的实际长度，单位为字节  | 
 
 
@@ -31,7 +31,7 @@ uint8_t* OH_Drawing_String::strData
 ```
 **描述**
 
-指向包含UTF-16BE（大端）编码的字节数组的指针
+指向包含UTF-16编码的字节数组的指针
 
 
 ### strLen
