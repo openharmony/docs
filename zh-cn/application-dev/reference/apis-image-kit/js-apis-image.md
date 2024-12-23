@@ -157,16 +157,13 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 
 通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，通过Promise返回结果。
 
-> **说明：**
-> 1. 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数
-
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。 |
+| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数 |
 | options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
@@ -197,16 +194,13 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，通过callback返回结果。
 
-> **说明：**
-> 1. 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数
-
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
 | 参数名   | 类型                                             | 必填 | 说明                       |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
-| colors   | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。 |
+| colors   | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数 |
 | options  | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 | callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | 是   | 回调函数，当创建PixelMap成功，err为undefined，data为获取到的PixelMap对象；否则为错误对象。 |
 
@@ -507,16 +501,13 @@ createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMa
 
 通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，同步返回结果。
 
-> **说明：**
-> 1. 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数
-
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。 |
+| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数 |
 | options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
@@ -2660,6 +2651,7 @@ async function CreateScaledPixelMapSync() {
 translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
 根据输入的坐标对图片进行位置变换，使用callback形式返回。
+
 translate后的图片尺寸改变为：width+X ，height+Y，建议translate后的图片尺寸宽高不要超过屏幕的宽高。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
@@ -2702,6 +2694,7 @@ async function Translate() {
 translate(x: number, y: number): Promise\<void>
 
 根据输入的坐标对图片进行位置变换，使用Promise形式返回。
+
 translate后的图片尺寸改变为：width+X ，height+Y，建议translate后的图片尺寸宽高不要超过屏幕的宽高。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
@@ -2746,6 +2739,7 @@ async function Translate() {
 translateSync(x: number, y: number): void
 
 根据输入的坐标对图片进行位置变换，同步返回结果。
+
 translate后的图片尺寸改变为：width+X ，height+Y，建议translate后的图片尺寸宽高不要超过屏幕的宽高。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
