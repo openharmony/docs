@@ -746,7 +746,7 @@ getItemRect(index: number): RectResult
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100004   | Controller not bound to component.                               |
-### getItemIndex<sup>13+</sup>
+### getItemIndex<sup>14+</sup>
 
 getItemIndex(x: number, y: number): number
 
@@ -756,7 +756,7 @@ getItemIndex(x: number, y: number): number
 >
 >  支持List、Grid、WaterFlow组件。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
