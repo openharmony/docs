@@ -32,7 +32,7 @@ Rating(options?: RatingOptions)
 
 ### stars
 
-stars(value: number)
+stars(value: Optional\<number>)
 
 设置评分总数。设置为小于等于0的值时，按默认值显示。
 
@@ -46,11 +46,11 @@ stars(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                         |
 | ------ | ------ | ---- | ---------------------------- |
-| value  | number | 是   | 设置评分总数。<br/>默认值：5 |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 设置评分总数。<br/>默认值：5 |
 
 ### stepSize
 
-stepSize(value: number)
+stepSize(value: Optional\<number>)
 
 设置操作评级的步长。设置为小于0.1的值时，按默认值显示。
 
@@ -64,11 +64,11 @@ stepSize(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                        |
 | ------ | ------ | ---- | ----------------------------------------------------------- |
-| value  | number | 是   | 操作评级的步长。<br/>默认值：0.5<br/>取值范围：[0.1, stars] |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 操作评级的步长。<br/>默认值：0.5<br/>取值范围：[0.1, stars] |
 
 ### starStyle
 
-starStyle(options: StarStyleOptions)
+starStyle(options: Optional\<StarStyleOptions>)
 
 设置评分的样式。该属性所支持的图片类型能力参考[Image](ts-basic-components-image.md)组件。
 
@@ -86,7 +86,7 @@ starStyle(options: StarStyleOptions)
 
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [StarStyleOptions](#starstyleoptions14对象说明) | 是   | 评分的样式。<br/>**说明：** <br/>backgroundUri或者foregroundUri或者secondaryUri设置的图片路径错误时，图片不显示。<br/>backgroundUri或者foregroundUri设置为undefined或者空字符串时，rating会选择加载系统默认星型图源。<br/>secondaryUri不设置或者设置的值为undefined或者空字符串时，优先设置为backgroundUri，效果上等同于只设置了foregroundUri、backgroundUri。 |
+| options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[StarStyleOptions](#starstyleoptions14对象说明)> | 是   | 评分的样式。<br/>**说明：** <br/>backgroundUri或者foregroundUri或者secondaryUri设置的图片路径错误时，图片不显示。<br/>backgroundUri或者foregroundUri设置为undefined或者空字符串时，rating会选择加载系统默认星型图源。<br/>secondaryUri不设置或者设置的值为undefined或者空字符串时，优先设置为backgroundUri，效果上等同于只设置了foregroundUri、backgroundUri。 |
 
 >  **说明：**
 >
@@ -96,7 +96,7 @@ starStyle(options: StarStyleOptions)
 
 ### contentModifier<sup>12+</sup>
 
-contentModifier(modifier: ContentModifier\<RatingConfiguration>)
+contentModifier(modifier: Optional<ContentModifier\<RatingConfiguration>>)
 
 定制Rating内容区的方法。
 
@@ -108,20 +108,38 @@ contentModifier(modifier: ContentModifier\<RatingConfiguration>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<RatingConfiguration>](#ratingconfiguration12对象说明) | 是   | 在Rating组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<RatingConfiguration>](#ratingconfiguration12对象说明)> | 是   | 在Rating组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 
 ## 事件
 
 ### onChange
 
-onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
+onChange(callback:Optional\<OnRatingChangeCallback>)
 
 操作评分条的评星发生改变时触发该回调。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                   | 必填 | 说明                                 |
+| -------- | ---------------------- | ---- | ------------------------------------ |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnRatingChangeCallback](#onratingchangecallback16)> | 是   | 操作评分条的评星发生改变时触发该回调 |
+
+## OnRatingChangeCallback<sup>16+</sup>
+
+type OnRatingChangeCallback = (value: number) => void
+
+操作评分条的评星发生改变时触发该回调。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
