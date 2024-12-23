@@ -255,6 +255,8 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Opacity](#oh_pixelmapnative_opacity) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float rate) | 通过设置透明比率来让PixelMap达到对应的透明效果。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Scale](#oh_pixelmapnative_scale) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float scaleX, float scaleY) | 根据输入的宽高对图片进行缩放。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ScaleWithAntiAliasing](#oh_pixelmapnative_scalewithantialiasing) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float scaleX, float scaleY, [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) level) | 根据指定的缩放算法和输入的宽高对图片进行缩放。  | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_CreateScaledPixelMap](#oh_pixelmapnative_createscaledpixelmap) ([OH_PixelmapNative](#oh_pixelmapnative) \*srcPixelmap, [OH_PixelmapNative](#oh_pixelmapnative) \*\*dstPixelmap, float scaleX, float scaleY) | 根据输入的宽高的缩放比例，创建一个新的缩放后的图片。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing](#oh_pixelmapnative_createscaledpixelmapwithantialiasing) ([OH_PixelmapNative](#oh_pixelmapnative) \*srcPixelmap, [OH_PixelmapNative](#oh_pixelmapnative) \*\*dstPixelmap, float scaleX, float scaleY, [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) level) | 根据指定的缩放算法和输入的宽高的缩放比例，创建一个新的缩放后的图片。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Translate](#oh_pixelmapnative_translate) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float x, float y) | 根据输入的坐标对图片进行位置变换。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Rotate](#oh_pixelmapnative_rotate) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float angle) | 根据输入的角度对图片进行旋转。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Flip](#oh_pixelmapnative_flip) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, bool shouldFilpHorizontally, bool shouldFilpVertically) | 根据输入的条件对图片进行翻转。  | 
@@ -4265,6 +4267,59 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLengt
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果不支持的操作返回 IMAGE_UNSUPPORTED_OPERATION， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_CreateScaledPixelMap()
+
+```
+Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative **dstPixelmap, float scaleX, float scaleY)
+```
+
+**描述**
+
+根据输入的宽高的缩放比例，创建一个新的缩放后的图片。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| srcpixelmap | 被操作的OH_PixelmapNative指针，源pixelmap对象指针。 | 
+| dstpixelmap | 被操作的OH_PixelmapNative指针，目标pixelmap对象指针。 | 
+| scaleX | 宽度的缩放比例。 | 
+| scaleY | 高度的缩放比例。 | 
+
+**返回：**
+
+如果操作成功返回IMAGE_SUCCESS，如果参数错误返回IMAGE_BAD_PARAMETER，具体请参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing()
+
+```
+Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative **dstPixelmap, float scaleX, float scaleY, OH_PixelmapNative_AntiAliasingLevel level)
+```
+
+**描述**
+
+根据指定的缩放算法和输入的宽高的缩放比例，创建一个新的缩放后的图片。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| srcpixelmap | 被操作的OH_PixelmapNative指针，源pixelmap对象指针。 | 
+| dstpixelmap | 被操作的OH_PixelmapNative指针，目标pixelmap对象指针。 | 
+| scaleX | 宽度的缩放比例。 | 
+| scaleY | 高度的缩放比例。 | 
+| level | 缩放算法。 | 
+
+**返回：**
+
+如果操作成功返回IMAGE_SUCCESS，如果参数错误返回IMAGE_BAD_PARAMETER，如果图片过大返回IMAGE_TOO_LARGE，如果内存申请失败返回IMAGE_ALLOC_FAILED，具体请参考[Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_PixelmapNative_Crop()
