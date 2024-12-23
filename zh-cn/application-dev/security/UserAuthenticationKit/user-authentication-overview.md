@@ -77,7 +77,7 @@ User Authentication Kit（用户认证服务）提供了基于用户在设备本
 | version | token版本号 | uint32_t | 当前为2.0。 |
 | challenge | 认证随机挑战 | uint8_t[32] | 需要校验认证结果的业务方生成的一次性随机挑战。 |
 | time | 认证通过时戳 | uint64_t | 认证通过时戳。 |
-| authTrustLevel | 认证可信等级 | uint32_t | 见[认证可信等级划分原则](#认证可信等级划分原则)。 |
+| authTrustLevel | 认证可信等级 | uint32_t | 见[生物认证可信等级划分原则](#生物认证可信等级划分原则)。 |
 | authType | 认证类型 | uint32_t | 认证通过采用的认证类型，包括人脸、指纹、口令（特指锁屏密码认证）。 |
 | authMode | 操作类型 | uint32_t | 操作类型：识别/认证。 |
 | securityLevel | token签发环境安全等级 | uint32_t | token签发环境安全等级。 |
