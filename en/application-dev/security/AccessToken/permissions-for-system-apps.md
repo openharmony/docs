@@ -3593,6 +3593,18 @@ Allows a system application to filter input events.
 
 **Valid since**: 12
 
+### ohos.permission.INPUT_DEVICE_CONTROLLER
+
+Allows an application to query and set the status of input devices.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：16
+
 ### ohos.permission.ACTIVATE_DEVICE_PSI
 
 Allows a system application or system ability to report the device activation status.
