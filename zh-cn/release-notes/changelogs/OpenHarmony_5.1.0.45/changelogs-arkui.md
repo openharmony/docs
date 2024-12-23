@@ -19,7 +19,9 @@
 
 变更后：带标题栏窗口应用内弹出菜单位置正确，菜单和按钮对齐。
 
-![应用内菜单偏移4vp](figures/menu_4vp_changelog.png)
+| 变更前 | 变更后 |
+|---------|---------|
+|  ![变更前](figures/menu-item-4vp-before.png)       |  ![变更后](figures/menu-item-4vp-after.png)       |
 
 **起始API Level**
 
