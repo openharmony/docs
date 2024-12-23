@@ -20,6 +20,7 @@ Promise是ArkTS中用来处理异步操作的对象，Promise有pending（待定
 ## 场景和功能介绍
 
 以下Node-API接口主要用于与ArkTS Promise对象进行交互。他们的使用场景如下：
+
 | 接口 | 描述 |
 | -------- | -------- |
 | napi_is_promise | 检查一个napi_value是否代表一个Promise对象时，可以使用这个函数。 |
@@ -110,6 +111,8 @@ napi_value NapiPromiseDemo(napi_env env, napi_callback_info)
 ### napi_resolve_deferred & napi_reject_deferred
 
 用于对Promise关联的deferred对象进行解析，napi_resolve_deferred将其从挂起状态转换为已兑现状态，napi_reject_deferred将其从挂起状态转换为已拒绝状态。
+
+为确保微任务能正确的被执行，ArkTS运行时在使用Node-API方法兑现Promise时，将会触发一次微任务的执行。
 
 cpp部分代码
 
