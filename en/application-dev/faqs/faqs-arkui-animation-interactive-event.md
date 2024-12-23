@@ -16,7 +16,7 @@ Check the trigger device. By default, the focus event (and the **onBlur** and **
 [Focus Control](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md)
 
 
-## How do I disable the scroll event of a \<Grid> nested in the \<Scroll>? (API version 9)
+## How do I disable the scroll event of a Grid nested in the Scroll? (API version 9)
 
 Implement nested scrolling of the containers, by using the **onScrollFrameBegin** event and the **scrollBy** method.
 
@@ -38,7 +38,7 @@ Use either of the following:
 
 - Add **focusable(true)** to the list item to enable it to obtain focus.
 
-- Nest a focusable component, for example, **\<Button>**, at the outer layer of each item.
+- Nest a focusable component, for example, **Button**, at the outer layer of each item.
 
 
 ## Why is the click event not triggered for the focused component upon the press of the Enter key after keyboard navigation? (API version 9)
@@ -94,7 +94,7 @@ build() {
 
 ## How do I implement a button that only responds to the bound onClick event, but not the onTouch event bound to the button's parent component? (API version 9)
 
-Bind the **onTouch** event to the **\<Button>** component and use **stopPropagation()** in the event to prevent the event from bubbling up to the parent component.
+Bind the **onTouch** event to the **Button** component and use **stopPropagation()** in the event to prevent the event from bubbling up to the parent component.
 
 **Example**
 

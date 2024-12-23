@@ -156,7 +156,7 @@ void CreateShareEglContext()
 
 No, a custom transition animation cannot be used. The UIAbility displays only one widget on the Recents screen. No customization is allowed for consistency purposes.
 
-The UIAbility cannot be used to combine in-app screens. Instead, use the **\<Navigation>** component to implement in-app redirection.
+The UIAbility cannot be used to combine in-app screens. Instead, use the **Navigation** component to implement in-app redirection.
 
 **References**
 

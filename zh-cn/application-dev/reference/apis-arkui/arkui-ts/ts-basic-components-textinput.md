@@ -999,6 +999,25 @@ cancelButton(value: CancelButtonSymbolOptions)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [CancelButtonSymbolOptions](ts-basic-components-search.md#cancelbuttonsymboloptions12对象说明) | 是   | 右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
+
+### ellipsisMode<sup>16+</sup>
+
+ellipsisMode(value: EllipsisMode)
+
+设置省略位置。ellipsisMode属性需要配合overflow设置为TextOverflow.Ellipsis使用，单独设置ellipsisMode属性不生效。
+
+EllipsisMode仅在内联模式下生效。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                | 必填 | 说明                                      |
+| ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
+| value  | [EllipsisMode](ts-basic-components-richeditor#ellipsismode16) | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
+
 ## InputType枚举说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -2345,3 +2364,61 @@ struct TextInputExample {
 ```
 
 ![cancelButton](figures/TextInputCancelButton_SymbolGlyphModifier.jpg)
+
+### 示例16（文本设置省略模式）
+
+该示例通过textOverflow、ellipsisMode、style属性展示了文本超长省略以及调整省略位置的效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct EllipsisModeExample {
+  @State text: string = "As the sun begins to set, casting a warm golden hue across the sky," +
+    "the world seems to slow down and breathe a sigh of relief. The sky is painted with hues of orange, " +
+    " pink, and lavender, creating a breath taking tapestry that stretches as far as the eye can see." +
+    "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil."
+  @State ellipsisModeIndex: number = 0
+  @State ellipsisMode: (EllipsisMode | undefined | null)[] = [EllipsisMode.END, EllipsisMode.START, EllipsisMode.CENTER]
+  @State ellipsisModeStr: string[] = ['END ', 'START', 'CENTER']
+  @State textOverflowIndex: number = 0
+  @State textOverflow: TextOverflow[] = [TextOverflow.Ellipsis, TextOverflow.Clip]
+  @State textOverflowStr: string[] = ['Ellipsis', 'Clip']
+  @State styleInputIndex: number = 0
+  @State styleInput: TextInputStyle[] = [TextInputStyle.Inline, TextInputStyle.Default]
+  @State styleInputStr: string[] = ['Inline', 'Default']
+  build() {
+    Row() {
+      Column({ space: 20 }) {
+        Text('测试TextInput').fontSize(30)
+        TextInput({ text: this.text})
+          .textOverflow( this.textOverflow[this.textOverflowIndex])
+          .ellipsisMode( this.ellipsisMode[this.ellipsisModeIndex])
+          .style(this.styleInput[this.styleInputIndex])
+          .fontSize(30)
+          .margin(30)
+        Button('更改ellipsisMode模式：' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
+          this.ellipsisModeIndex++
+          if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
+            this.ellipsisModeIndex = 0
+          }
+        }).fontSize(20)
+        Button('更改textOverflow模式：' + this.textOverflowStr[this.textOverflowIndex]).onClick(() => {
+          this.textOverflowIndex++
+          if (this.textOverflowIndex > (this.textOverflowStr.length - 1)) {
+            this.textOverflowIndex = 0
+          }
+        }).fontSize(20)
+        Button('更改Style大小：' + this.styleInputStr[this.styleInputIndex]).onClick(() => {
+          this.styleInputIndex++
+          if (this.styleInputIndex > (this.styleInputStr.length - 1)) {
+            this.styleInputIndex = 0
+          }
+        }).fontSize(20)
+      }
+    }
+  }
+}
+```
+
+![textInputEllipsisMode](figures/textInputEllipsisMode.png)

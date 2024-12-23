@@ -1124,8 +1124,10 @@ class MyNodeController extends NodeController {
       .borderColor(Color.Black)
       .backgroundColor(Color.Green)
     let component = new ComponentContent<Object>(uiContext, wrapBuilder(buildText))
-    row4.addComponentContent(component)
-    col.appendChild(row4)
+    if (row4.isModifiable()) {
+      row4.addComponentContent(component)
+      col.appendChild(row4)
+    }
     return node
   }
 }
@@ -1518,6 +1520,8 @@ Creates a FrameNode of the Stack type.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 typeNode.createNode(uiContext, 'Stack');
 ```
@@ -1557,6 +1561,8 @@ Creates a FrameNode of the GridRow type.
 | [GridRow](#gridrow12) | FrameNode node of the GridRow type. |
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'GridRow');
@@ -1598,6 +1604,8 @@ Creates a FrameNode of the GridCol type.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 typeNode.createNode(uiContext, 'GridCol');
 ```
@@ -1638,6 +1646,8 @@ Creates a FrameNode of the Flex type.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 typeNode.createNode(uiContext, 'Flex');
 ```
@@ -1677,6 +1687,8 @@ Creates a FrameNode of the Swiper type.
 | [Swiper](#swiper12) | FrameNode node of the Swiper type. |
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Swiper');
@@ -1798,6 +1810,8 @@ Creates a FrameNode of the RelativeContainer type.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 typeNode.createNode(uiContext, 'RelativeContainer');
 ```
@@ -1837,6 +1851,8 @@ Creates a FrameNode of the Divider type.
 | [Divider](#divider12) | FrameNode node of the Divider type. |
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Divider');
@@ -1878,6 +1894,8 @@ Creates a FrameNode of the LoadingProgress type.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 typeNode.createNode(uiContext, 'LoadingProgress');
 ```
@@ -1917,6 +1935,8 @@ Creates a FrameNode of the Search type.
 | [Search](#search12) | FrameNode node of the Search type. |
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Search');
@@ -1958,6 +1978,8 @@ Creates a FrameNode of the Blank type.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 typeNode.createNode(uiContext, 'Blank');
 ```
@@ -1997,6 +2019,8 @@ Creates a FrameNode of the Image type.
 | [Image](#image12) | FrameNode node of the Image type. |
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Image');
@@ -2038,6 +2062,8 @@ Creates a FrameNode of the List type.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 typeNode.createNode(uiContext, 'List');
 ```
@@ -2077,6 +2103,8 @@ Creates a FrameNode of the ListItem type.
 | [ListItem](#listitem12) | FrameNode node of the ListItem type. |
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'ListItem');
@@ -2119,6 +2147,8 @@ Creates a FrameNode of the TextInput type.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 typeNode.createNode(uiContext, 'TextInput');
 ```
@@ -2159,6 +2189,8 @@ Creates a FrameNode of the Button type.
 | [Button](#button12) | FrameNode node of the Button type. |
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Button');
@@ -2201,6 +2233,8 @@ Creates a FrameNode of the ListItemGroup type.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 typeNode.createNode(uiContext, 'ListItemGroup');
 ```
@@ -2242,6 +2276,8 @@ Creates a FrameNode of the WaterFlow type.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 typeNode.createNode(uiContext, 'WaterFlow');
 ```
@@ -2282,6 +2318,8 @@ Creates a FrameNode of the FlowItem type.
 | [FlowItem](#flowitem12) | FrameNode node of the FlowItem type. |
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'FlowItem');

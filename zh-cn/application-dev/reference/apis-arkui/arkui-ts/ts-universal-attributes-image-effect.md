@@ -189,7 +189,7 @@ colorBlend(color: Optional\<Color | string | Resource>)
 
 ## linearGradientBlur<sup>12+</sup> 
 
-linearGradientBlur(value: number, options: LinearGradientBlurOptions)
+linearGradientBlur(value: Optional\<number>, options: Optional\<LinearGradientBlurOptions>)
 
 为组件添加内容线性渐变模糊效果。
 
@@ -201,12 +201,12 @@ linearGradientBlur(value: number, options: LinearGradientBlurOptions)
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | number                                                       | 是   | 为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, 1000]<br/>线性梯度模糊包含两个部分fractionStops和direction。 |
-| options | [LinearGradientBlurOptions](#lineargradientbluroptions12对象说明) | 是   | 设置线性渐变模糊效果。                                       |
+| value   | Optional\<number>                                                       | 是   | 为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, 1000]<br/>线性梯度模糊包含两个部分fractionStops和direction。 |
+| options | Optional\<[LinearGradientBlurOptions](#lineargradientbluroptions12对象说明)> | 是   | 设置线性渐变模糊效果。                                       |
 
 ## renderGroup<sup>10+</sup>
 
-renderGroup(render: Optional\<boolean>)
+renderGroup(value: Optional\<boolean>)
 
 设置当前控件和子控件是否先整体离屏渲染绘制后再与父控件融合绘制。
 
@@ -218,7 +218,7 @@ renderGroup(render: Optional\<boolean>)
 
 | 参数名 | 类型               | 必填 | 说明                                                         |
 | ------ | ------------------ | ---- | ------------------------------------------------------------ |
-| render | Optional\<boolean> | 是   | 设置当前控件和子控件是否先整体离屏渲染绘制后再与父控件融合绘制。当前控件的不透明度不为1时绘制效果可能有差异。<br/>默认值：false |
+| value  | Optional\<boolean> | 是   | 设置当前控件和子控件是否先整体离屏渲染绘制后再与父控件融合绘制。当前控件的不透明度不为1时绘制效果可能有差异。<br/>默认值：false |
 
 ## blendMode<sup>11+</sup> 
 

@@ -1558,7 +1558,7 @@ Deselects a track when the AVPlayer is used to play a resource with multiple aud
 
 | Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
-| index | number | Yes  | Track index, which is obtained from [MediaDescription] (#mediadescription8) by calling [getTrackDescription](#gettrackdescription9-1).|
+| index | number | Yes  | Track index, which is obtained from [MediaDescription](#mediadescription8) by calling [getTrackDescription](#gettrackdescription9-1).|
 
 **Return value**
 
