@@ -1159,13 +1159,17 @@
 
 允许应用获取对端Wi-Fi设备的MAC地址。
 
-**权限级别**：system_core
+在获取Wi-Fi扫描结果时，如果需要获取对端设备的MAC地址，则需要申请该权限。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
 **起始版本**：8
+
+**变更信息**：API 8-13，权限等级为system_core；从API 14开始，权限等级变更为system_basic。
 
 ### ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
@@ -4200,6 +4204,42 @@
 **ACL使能**：true
 
 **起始版本**：14
+
+### ohos.permission.ACCESS_ACCOUNT_SERVICE_EXTENSION_ABILITY
+
+允许系统应用调用账号ServiceExtensionAbility所提供的服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.ANTI_FRAUD
+
+允许应用接入风控探针以检测端侧风险，检测结果可作为云侧风险决策的输入。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
+
+允许应用发起录屏的时候，不弹出隐私授权弹窗。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
 
 ### ohos.permission.STORAGE_MANAGER_CRYPT
 

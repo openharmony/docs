@@ -265,7 +265,7 @@ backgroundColor(value: ResourceColor): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件的背景颜色。<br/>默认值：$r('sys.color.icon_emphasize')<br/>安全控件按钮背景色高八位的α值低于0x1a（例如0x1800ff00）时，安全控件按钮背景色高八位的α值会被系统强制调整为0xff。|
+| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件的背景颜色。安全控件按钮背景色高八位的α值低于0x1a（例如0x1800ff00）时，安全控件按钮背景色高八位的α值会被系统强制调整为0xff。<br/>默认值：$r('sys.color.icon_emphasize')|
 
 **返回值：**
 
@@ -441,7 +441,7 @@ textIconSpace(value: Dimension): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [Dimension](ts-types.md#dimension10) |是 |安全控件中图标和文字的间距。<br/>默认值：4vp<br/>从API 14开始，若设置值为负值，则使用默认值。|
+| value | [Dimension](ts-types.md#dimension10) |是 |安全控件中图标和文字的间距。从API 14开始，若设置值为负值，则使用默认值。<br/>默认值：4vp|
 
 **返回值：**
 
