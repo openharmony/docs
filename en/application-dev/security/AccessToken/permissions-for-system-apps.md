@@ -4459,6 +4459,20 @@ Allows an application to query and configure user identity authentication polici
 
 **Valid since**: 16
 
+### ohos.permission.STORAGE_MANAGER_CRYPT
+
+Allows a system application or system service to call APIs to perform encryption and decryption.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+**Changelog**: This permission is available only to system services in API versions 12 to 14. From API version 15, it is also available to system applications.
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.
@@ -4780,17 +4794,3 @@ With this permission, the application can perform operations such as taking scre
 **Enable via ACL**: true
 
 **Valid since**: 14
-
-### ohos.permission.STORAGE_MANAGER_CRYPT
-
-Allows a system application or system service to call APIs to perform encryption and decryption.
-
-**Permission level**: system_core
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
-
-**Changelog**: This permission is available only to system services in API versions 12 to 14. From API version 15, it is also available to system applications.
