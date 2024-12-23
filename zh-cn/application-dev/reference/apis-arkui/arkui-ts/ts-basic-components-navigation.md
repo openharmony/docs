@@ -10,7 +10,7 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 >
 > - [NavBar](#navbar12)嵌套使用Navigation时，内层Navigation的生命周期不和外层Navigation以及[全模态](ts-universal-attributes-modal-transition.md#全屏模态转场)的生命周期进行联动。
 >
-> - Navigation未设置主副标题和返回键时，不显示标题栏。
+> - Navigation未设置主副标题并且没有返回键时，不显示标题栏。
 
 
 ## 子组件
