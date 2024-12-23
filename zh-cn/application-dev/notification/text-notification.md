@@ -16,8 +16,6 @@
 | **接口名** | **描述** |
 | -------- | -------- |
 | publish(request:&nbsp;NotificationRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 发布通知。                 |
-| cancel(id:&nbsp;number,&nbsp;label:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 取消指定的通知。           |
-| cancelAll(callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 取消所有该应用发布的通知。 |
 
 
 ## 开发步骤
@@ -83,14 +81,3 @@
         hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
       });
       ```
-3. 删除通知。
-
-   ```ts
-    notificationManager.cancel(1, (err: BusinessError) => {
-      if (err) {
-        hilog.error(DOMAIN_NUMBER, TAG, `Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
-        return;
-      }
-      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in cancel notification.');
-    });
-   ```
