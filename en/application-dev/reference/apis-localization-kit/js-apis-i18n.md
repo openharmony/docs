@@ -3770,3 +3770,5 @@ This API is supported since API version 8 and is deprecated since API version 9.
 | Type    | Description         |
 | ------ | ----------- |
 | string | Type of the input character.|
+
+<!--no_check-->
