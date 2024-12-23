@@ -836,7 +836,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 ### OH_Drawing_Array
 
 ```
-typedef struct OH_Drawing_ArrayOH_Drawing_Array
+typedef struct OH_Drawing_Array OH_Drawing_Array
 ```
 
 **描述**
@@ -850,7 +850,7 @@ typedef struct OH_Drawing_ArrayOH_Drawing_Array
 ### OH_Drawing_LineTypography
 
 ```
-typedef struct OH_Drawing_LineTypographyOH_Drawing_LineTypography
+typedef struct OH_Drawing_LineTypography OH_Drawing_LineTypography
 ```
 
 **描述**
@@ -862,7 +862,7 @@ typedef struct OH_Drawing_LineTypographyOH_Drawing_LineTypography
 ### OH_Drawing_TextTab
 
 ```
-typedef struct OH_Drawing_TextTabOH_Drawing_TextTab
+typedef struct OH_Drawing_TextTab OH_Drawing_TextTab
 ```
 
 **描述**
@@ -900,7 +900,7 @@ typedef bool(* Drawing_CaretOffsetsCallback) (double offset, int32_t index, bool
 ### OH_Drawing_String
 
 ```
-typedef struct OH_Drawing_StringOH_Drawing_String
+typedef struct OH_Drawing_String OH_Drawing_String
 ```
 
 **描述**
