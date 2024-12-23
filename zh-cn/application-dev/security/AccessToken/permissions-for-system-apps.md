@@ -4201,6 +4201,20 @@
 
 **起始版本**：14
 
+### ohos.permission.STORAGE_MANAGER_CRYPT
+
+允许系统应用和系统服务调用接口完成加解密操作。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+**变更信息**：API 12-14仅对系统服务开放；从API 15开始对系统应用开放。
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -4458,20 +4472,6 @@
 **ACL使能**：false
 
 **起始版本**：16
-
-### ohos.permission.STORAGE_MANAGER_CRYPT
-
-允许系统应用和系统服务调用接口完成加解密操作。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-**变更信息**：API 12-14仅对系统服务开放；从API 15开始对系统应用开放。
 
 ## user_grant，允许ACL跨级申请
 
