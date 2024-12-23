@@ -266,7 +266,7 @@ struct Index {
   }
 }
 ```
-![relative container](figures/relativecontainer.PNG)
+![relative container](figures/relativecontainer.png)
 
 ### 示例2（子组件设置外边距）
 
@@ -341,7 +341,7 @@ struct Index {
   }
 }
 ```
-![relative container](figures/relativecontainer1.PNG)
+![relative container](figures/relativecontainer1.png)
 
 ### 示例3（设置容器大小自适应内容）
 
@@ -410,7 +410,7 @@ struct Index {
   }
 }
 ```
-![relative container](figures/relativecontainer2.PNG)
+![relative container](figures/relativecontainer2.png)
 
 ### 示例4（设置偏移）
 
@@ -444,7 +444,7 @@ struct Index {
   }
 }
 ```
-![relative container](figures/relativecontainer3.PNG)
+![relative container](figures/relativecontainer3.png)
 
 ### 示例5（设置辅助线）
 
@@ -478,7 +478,7 @@ struct Index {
   }
 }
 ```
-![relative container](figures/relativecontainer4.PNG)
+![relative container](figures/relativecontainer4.png)
 
 ### 示例6（设置屏障）
 
@@ -550,7 +550,7 @@ struct Index {
   }
 }
 ```
-![relative container](figures/relativecontainer5.PNG)
+![relative container](figures/relativecontainer5.png)
 
 ### 示例7（设置链）
 
@@ -700,7 +700,7 @@ struct Index {
   }
 }
 ```
-![relative container](figures/relativecontainer6.PNG)
+![relative container](figures/relativecontainer6.png)
 
 ### 示例8（链中设置偏移）
 
@@ -765,7 +765,7 @@ struct Index {
   }
 }
 ```
-![relative container](figures/relativecontainer7.PNG)
+![relative container](figures/relativecontainer7.png)
 
 ### 示例9（设置镜像模式）
 
@@ -838,4 +838,4 @@ struct Index {
   }
 }
 ```
-![relative container](figures/relativecontainer8.PNG)
+![relative container](figures/relativecontainer8.png)
