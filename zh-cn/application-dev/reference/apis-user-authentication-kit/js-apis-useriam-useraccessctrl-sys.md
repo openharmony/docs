@@ -22,8 +22,8 @@ import { userAccessCtrl } from '@kit.UserAuthenticationKit';
 
 | 名称                      | 值   | 说明       |
 | ------------------------ | ---- | ---------- |
-| TOKEN_TYPE_LOCAL_AUTH    | 0    | 身份验证令牌在本地签发。 |
-| TOKEN_TYPE_LOCAL_RESIGN  | 1    | 身份认证验证令牌基于复用的身份认证结果重新签发。 |
+| TOKEN_TYPE_LOCAL_AUTH    | 0    | 身份验证令牌基于本地认证结果签发。 |
+| TOKEN_TYPE_LOCAL_RESIGN  | 1    | 身份验证令牌基于复用的身份认证结果重新签发。 |
 | TOKEN_TYPE_COAUTH        | 2    | 身份验证令牌基于多个设备协同认证结果签发。 |
 
 ## AuthToken
