@@ -55,6 +55,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 | 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
+| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -4421,6 +4422,63 @@ notificationManager.getDoNotDisturbProfile(1).then((data: notificationManager.Do
 }).catch((error: BusinessError) => {
   console.error(`getDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
 });
+```
+
+## notificationManager.disableNotificationFeature<sup>16+</sup>
+
+disableNotificationFeature(disabled: boolean, bundleList: Array\<string\>): Promise\<void\>
+
+将应用包名添加到通知发布权限管控名单，以阻止应用发布通知。支持启用或关闭该功能。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                     |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| disabled | boolean | 是   | 是否启用通知发布权限管控名单（true：开启，false：关闭）。 |
+| bundleList | Array\<string\> | 是   | 指定通知发布权限管控名单的应用列表，使用包名代表应用。 |
+
+**返回值：**
+
+| 类型            | 说明                     | 
+|-----------------|-------------------------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 1600001      | Internal error.                     |
+| 1600002      | Marshalling or unmarshalling error. |
+
+**示例：**
+
+```ts
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let disabled: boolean = true;
+let bundleList: Array<string> = ["com.example.myapplication"];
+try {
+  notificationManager.disableNotificationFeature(disabled, bundleList).then(() => {
+    hilog.info(0x0000, 'testTag', '%{public}s', `disableNotificationFeature success.`);
+  }).catch((error: BusinessError) => {
+    hilog.error(0x0000, 'testTag', '%{public}s', `disableNotificationFeature fail: ${JSON.stringify(error)}`);
+  });
+} catch (error) {
+  hilog.error(0x0000, 'testTag', '%{public}s', `testTag fail: ${JSON.stringify(error)}`);
+}
 ```
 
 ## DoNotDisturbDate
