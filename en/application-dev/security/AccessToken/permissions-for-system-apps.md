@@ -2885,6 +2885,18 @@ Allows an application or system ability to initiate the process for registering 
 
 **Valid since**: 13
 
+### ohos.permission.MANAGE_SHUTDOWN_FINDNETWORK
+
+Allows an application or system ability to manage the service that enables a powered-off device to be found by another device with the same account.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
 ### ohos.permission.MANAGE_RGM
 
 Allows a system service or system application to manage RGM.

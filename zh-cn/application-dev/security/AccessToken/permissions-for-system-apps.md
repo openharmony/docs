@@ -2885,6 +2885,18 @@
 
 **起始版本**：13
 
+### ohos.permission.MANAGE_SHUTDOWN_FINDNETWORK
+
+允许应用和系统服务管理设备关机查找功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
 ### ohos.permission.MANAGE_RGM
 
 允许系统服务或系统应用管理RGM。
