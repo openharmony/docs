@@ -57,17 +57,20 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                                 | 类型                                                        | 必填 | 说明                                                                                                           |
-|------------------------------------|-----------------------------------------------------------| -------- |--------------------------------------------------------------------------------------------------------------|
-| content                            | [ResourceStr](ts-types.md#resourcestr)                    | 是 | 工具栏子项的文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                |
-| action                             | ()&nbsp;=&gt;&nbsp;void                                   | 否 | 工具栏子项点击事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                               |
-| icon                               | [Resource](ts-types.md#resource)                          | 否 | 工具栏子项的图标。<br/>toolBarSymbolOptions有传入参数时，icon不生效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
-| state                              | [ItemState](#itemstate)                                   | 否 | 工具栏子项的状态。<br/>默认为ENABLE。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                 |
-| iconColor<sup>13+</sup>            | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项的图标填充颜色。<br/>默认值为$r('sys.color.icon_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。      |
-| activatedIconColor<sup>13+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项激活态的图标填充颜色。<br/>默认值为$r('sys.color.icon_emphasize')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
-| textColor<sup>13+</sup>            | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项的文本颜色。<br/>默认值为$r('sys.color.font_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。        |
-| activatedTextColor<sup>13+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项激活态的文本颜色。<br/>默认值为$r('sys.color.font_emphasize')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
-| toolBarSymbolOptions<sup>13+</sup> | [ToolBarSymbolGlyphOptions](#toolbarsymbolglyphoptions13) | 否 | 工具栏子项的图标属性，symbol类型。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                                     |
+| 名称                                     | 类型                                                        | 必填 | 说明                                                                                                                                                                                                                    |
+|----------------------------------------|-----------------------------------------------------------| -------- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| content                                | [ResourceStr](ts-types.md#resourcestr)                    | 是 | 工具栏子项的文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                         |
+| action                                 | ()&nbsp;=&gt;&nbsp;void                                   | 否 | 工具栏子项点击事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                        |
+| icon                                   | [Resource](ts-types.md#resource)                          | 否 | 工具栏子项的图标。<br/>toolBarSymbolOptions有传入参数时，icon不生效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                 |
+| state                                  | [ItemState](#itemstate)                                   | 否 | 工具栏子项的状态。<br/>默认为ENABLE。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                          |
+| iconColor<sup>13+</sup>                | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项的图标填充颜色。<br/>默认值为$r('sys.color.icon_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                                                                                                               |
+| activatedIconColor<sup>13+</sup>       | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项激活态的图标填充颜色。<br/>默认值为$r('sys.color.icon_emphasize')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                                                                                                          |
+| textColor<sup>13+</sup>                | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项的文本颜色。<br/>默认值为$r('sys.color.font_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                                                                                                                 |
+| activatedTextColor<sup>13+</sup>       | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项激活态的文本颜色。<br/>默认值为$r('sys.color.font_emphasize')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                                                                                                            |
+| toolBarSymbolOptions<sup>13+</sup>     | [ToolBarSymbolGlyphOptions](#toolbarsymbolglyphoptions13) | 否 | 工具栏子项的图标属性，symbol类型。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                                                                                                                                              |
+| accessibilityText<sup>16+</sup>        | [ResourceStr](ts-types.md#resourcestr)                    | 否 | 工具栏子项无障碍标签名。<br/>默认值为当前项content属性内容。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                     |
+| accessibilityDescription<sup>16+</sup> | [ResourceStr](ts-types.md#resourcestr)                    | 否 | 工具栏子项无障碍说明。<br/>默认值为“单指双击即可执行”。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                                                                   |
+| accessibilityLevel<sup>16+</sup>       | string                                                    | 否 | 工具栏子项无障碍重要性，用于控制当前项是否可被无障碍辅助服务所识别。具体值可以设置为auto，yes，no和no-hide-descendants（最后一个值会使屏幕朗读忽略当前项）。若设置为yes，当前项对无障碍辅助服务而言可选中；若设置为no，则当前项对无障碍辅助服务来说是不可选中的。<br/>默认值为“auto”。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## ToolBarModifier<sup>13+</sup>
 ToolBarModifier提供设置工具栏高度(height)、背景色(backgroundColor)、左右内边距（padding，仅在item小于5个时生效）、是否显示按压态（stateEffect）的方法。
@@ -319,3 +322,75 @@ struct Index {
 ```
 
 ![zh-cn_image_toolbar_example02](figures/zh-cn_image_toolbar_example02.png)
+
+
+### 示例3（设置工具栏自定义播报场景）
+该示例通过设置工具栏子项属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+```ts
+import { ToolBar, ToolBarOptions, ItemState } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State toolbarList: ToolBarOptions = new ToolBarOptions()
+
+  aboutToAppear() {
+    this.toolbarList.push({
+      content: '剪贴我是超超超超超超超超超长样式',
+      icon: $r('sys.media.ohos_ic_public_share'),
+      action: () => {
+      },
+      accessibilityText: '剪贴', //该项屏幕朗读播报文本为‘剪贴’
+      accessibilityDescription: '单指双击即可剪贴', //该项屏幕朗读播报描述为'单指双击即可剪贴'
+      accessibilityLevel: 'yes'  //该项可被无障碍屏幕朗读聚焦
+    })
+    this.toolbarList.push({
+      content: '拷贝',
+      icon: $r('sys.media.ohos_ic_public_copy'),
+      action: () => {
+      },
+      state: ItemState.DISABLE,
+      accessibilityLevel: 'no'  //该项将无法被屏幕朗读服务所识别，屏幕朗读不可聚焦
+    })
+    this.toolbarList.push({
+      content: '粘贴',
+      icon: $r('sys.media.ohos_ic_public_paste'),
+      action: () => {
+      },
+      state: ItemState.ACTIVATE
+    })
+    this.toolbarList.push({
+      content: '全选',
+      icon: $r('sys.media.ohos_ic_public_select_all'),
+      action: () => {
+      },
+    })
+    this.toolbarList.push({
+      content: '分享',
+      icon: $r('sys.media.ohos_ic_public_share'),
+      action: () => {
+      },
+    })
+    this.toolbarList.push({
+      content: '分享',
+      icon: $r('sys.media.ohos_ic_public_share'),
+      action: () => {
+      },
+    })
+  }
+
+  build() {
+    Row() {
+      Stack() {
+        Column() {
+          ToolBar({
+            toolBarList: this.toolbarList,
+          })
+        }
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+  }
+}
+```
+![zh-cn_image_toolbar_example01](figures/zh-cn_image_toolbar_example01.png)
