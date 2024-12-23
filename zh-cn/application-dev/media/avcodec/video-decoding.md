@@ -271,8 +271,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         (void)userData;
         OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, &width);
         OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, &height);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, &heightStride);
     }
 
     // 解码输入回调OH_AVCodecOnNeedInputBuffer实现
@@ -306,6 +304,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > 1. 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
     > 2. 播放视频时，若视频码流的SPS中包含颜色信息，解码器会把这些信息（RangeFlag、ColorPrimary、MatrixCoefficient、TransferCharacteristic）通过
     > OH_AVCodecOnStreamChanged接口中的OH_AVFormat返回。
+    > 3. 视频解码的Surface模式下，由于内部是高压缩的，获取到的widthStride、heightStride的值可能是错误的。
+    > 若需要准确获取视频的widthStride、heightStride, 建议在Buffer模式下获取，具体可参考Buffer模式步骤-3。
     >
 
 4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。在获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第4步)，完成DRM许可证申请后，通过此接口进行解密配置。此接口需在Prepare前调用。在Surface模式下，DRM解密能力既支持安全视频通路，也支持非安全视频通路。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
