@@ -1,11 +1,10 @@
-# AbilityRunningInfo (系统接口)
+# AbilityRunningInfo
 
 AbilityRunningInfo模块提供对Ability运行的相关信息和状态的定义。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口为系统接口。
+> 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -15,13 +14,11 @@ import { abilityManager } from '@kit.AbilityKit';
 
 ## 使用说明
 
-通过abilityManager中[getAbilityRunningInfos](js-apis-app-ability-abilityManager-sys.md#getabilityrunninginfos)方法获取。
+通过abilityManager中[getAbilityRunningInfos](js-apis-app-ability-abilityManager.md#getabilityrunninginfos)方法获取。
 
 ## 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -30,7 +27,7 @@ import { abilityManager } from '@kit.AbilityKit';
 | uid | number | 是 | 否 | 用户ID。  |
 | processName | string | 是 | 否 | 进程名称。  |
 | startTime | number | 是 | 否 | Ability启动时间。  |
-| abilityState | [abilityManager.AbilityState](js-apis-app-ability-abilityManager-sys.md#abilitystate) | 是 | 否 | Ability状态。  |
+| abilityState | [AbilityState](js-apis-app-ability-abilityManager.md#abilitystate) | 是 | 否 | Ability状态。  |
 
 **示例：**
 
