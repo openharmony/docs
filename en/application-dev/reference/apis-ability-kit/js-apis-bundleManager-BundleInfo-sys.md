@@ -8,13 +8,11 @@ The **BundleInfo** module defines the bundle information. A third-party applicat
 >
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [[BundleInfo](js-apis-bundleManager-bundleInfo.md).
 
-## AppCloneIdentity<sup>12+<sup>
+## AppCloneIdentity<sup>14+<sup>
 
 Describes the identity information of an application clone.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-**System API**: This is a system API.
 
 | Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |

@@ -8,7 +8,7 @@
 
 ## clip<sup>12+</sup>
 
-clip(value: boolean)
+clip(clip: Optional\<boolean>)
 
 是否对子组件超出当前组件范围外的区域进行裁剪。
 
@@ -20,9 +20,9 @@ clip(value: boolean)
 
 **参数：**
 
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 参数为boolean类型，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false |
+| 参数名 | 类型               | 必填 | 说明                                                         |
+| ------ | ------------------ | ---- | ------------------------------------------------------------ |
+| clip   | Optional\<boolean> | 是   | 参数为boolean类型，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false <br/>**说明：** 设置为true后，子组件超出当前组件范围外的区域将不响应绑定的手势事件。 |
 
 ## clip<sup>(deprecated)</sup>
 
@@ -42,11 +42,11 @@ clip(value: boolean | CircleAttribute | EllipseAttribute | PathAttribute | RectA
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | boolean&nbsp;\|&nbsp;[CircleAttribute](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[EllipseAttribute](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[PathAttribute](ts-drawing-components-path.md)&nbsp;\|&nbsp;[RectAttribute](ts-drawing-components-rect.md) | 是   | 参数为相应类型的组件，按指定的形状对当前组件进行裁剪；参数为boolean类型时，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false |
+| value  | boolean&nbsp;\|&nbsp;[CircleAttribute](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[EllipseAttribute](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[PathAttribute](ts-drawing-components-path.md)&nbsp;\|&nbsp;[RectAttribute](ts-drawing-components-rect.md) | 是   | 参数为相应类型的组件，按指定的形状对当前组件进行裁剪；参数为boolean类型时，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false <br/>**说明：** 参数为对应类型的组件时，裁剪不会导致被裁剪区域无法响应绑定的手势事件。参数为boolean类型时，裁剪会导致被裁剪区域无法响应绑定的手势事件。 |
 
 ## clipShape<sup>12+</sup>
 
-clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
+clipShape(shape: Optional\<CircleShape | EllipseShape | PathShape | RectShape>)
 
 按指定的形状对当前组件进行裁剪。
 
@@ -60,11 +60,11 @@ clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CircleShape](../js-apis-arkui-shape.md#circleshape)&nbsp;\|&nbsp;[EllipseShape](../js-apis-arkui-shape.md#ellipseshape)&nbsp;\|&nbsp;[PathShape](../js-apis-arkui-shape.md#pathshape)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape) | 是   | 参数为相应类型的组件，按指定的形状对当前组件进行裁剪。|
+| shape  | Optional\<[CircleShape](../js-apis-arkui-shape.md#circleshape)&nbsp;\|&nbsp;[EllipseShape](../js-apis-arkui-shape.md#ellipseshape)&nbsp;\|&nbsp;[PathShape](../js-apis-arkui-shape.md#pathshape)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape)> | 是   | 参数为相应类型的组件，按指定的形状对当前组件进行裁剪。<br/>**说明：** 裁剪不会导致被裁剪区域无法响应绑定的手势事件。 |
 
 ## mask<sup>12+</sup>
 
-mask(value: ProgressMask)
+mask(mask: Optional\<ProgressMask>)
 
 为组件上添加可调节进度的遮罩。
 
@@ -76,7 +76,7 @@ mask(value: ProgressMask)
 
 | 参数名 | 类型                                                         | 必填 | 说明                             |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
-| value  | [ProgressMask](#progressmask10) | 是   | 在当前组件上加上可动态设置进度、最大值和颜色的遮罩。 |
+| mask | Optional\<[ProgressMask](#progressmask10)> | 是   | 在当前组件上加上可动态设置进度、最大值和颜色的遮罩。 |
 
 ## mask<sup>(deprecated)</sup>
 
@@ -100,7 +100,7 @@ mask(value: CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute |
 
 ## maskShape<sup>12+</sup>
 
-maskShape(value: CircleShape | EllipseShape | PathShape | RectShape)
+maskShape(shape: Optional\<CircleShape | EllipseShape | PathShape | RectShape>)
 
 为组件上添加指定形状的遮罩。
 
@@ -114,7 +114,7 @@ maskShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 
 | 参数名 | 类型                                                         | 必填 | 说明                             |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
-| value  | [CircleShape](../js-apis-arkui-shape.md#circleshape)&nbsp;\|&nbsp;[EllipseShape](../js-apis-arkui-shape.md#ellipseshape)&nbsp;\|&nbsp;[PathShape](../js-apis-arkui-shape.md#pathshape)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape) | 是   | 在当前组件上加上指定形状的遮罩。 |
+| shape  | Optional\<[CircleShape](../js-apis-arkui-shape.md#circleshape)&nbsp;\|&nbsp;[EllipseShape](../js-apis-arkui-shape.md#ellipseshape)&nbsp;\|&nbsp;[PathShape](../js-apis-arkui-shape.md#pathshape)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape)> | 是   | 在当前组件上加上指定形状的遮罩。 |
 
 ## ProgressMask<sup>10+</sup>
 
@@ -193,7 +193,7 @@ enableBreathingAnimation(value: boolean): void
 
 ## 示例
 
-### 示例1
+### 示例1（使用不同裁剪属性）
 
 ```ts
 // xxx.ets
@@ -232,7 +232,7 @@ struct ClipAndMaskExample {
 
 ![clipAndMask](figures/clipAndMask.PNG)
 
-### 示例2
+### 示例2（裁剪属性动画）
 
 ```ts
 @Entry

@@ -1,4 +1,4 @@
-# 仅对系统应用开放
+# 系统应用可用权限
 
 在申请目标权限前，建议开发者先阅读[权限工作流程](determine-application-mode.md)，对权限的工作流程有基本了解后，再结合以下权限字段的具体说明，判断应用能否申请目标权限，提高开发效率。
 
@@ -265,18 +265,6 @@
 
 **起始版本**：11
 
-### ohos.permission.GET_DOMAIN_ACCOUNTS
-
-允许应用查询域账号信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：10
-
 ### ohos.permission.UNINSTALL_BUNDLE
 
 允许应用卸载应用。
@@ -396,18 +384,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
-### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
-
-允许应用跨系统本地账号交互。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：7
 
 ### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
@@ -1183,13 +1159,17 @@
 
 允许应用获取对端Wi-Fi设备的MAC地址。
 
-**权限级别**：system_core
+在获取Wi-Fi扫描结果时，如果需要获取对端设备的MAC地址，则需要申请该权限。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
 **起始版本**：8
+
+**变更信息**：API 8-13，权限等级为system_core；从API 14开始，权限等级变更为system_basic。
 
 ### ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
@@ -2941,6 +2921,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_CMAP_SERVICE
+
+允许系统应用访问通信地图服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
 ### ohos.permission.MANAGE_USER_ACCOUNT_INFO
 
 允许系统应用及系统SA调用账号服务。
@@ -3204,6 +3196,18 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.ENABLE_EXPERIENCE_HBM
+
+允许应用启用屏幕HBM（High Brightness Mode）亮度模式。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
 
 ### ohos.permission.SET_PROCESS_CACHE_STATE
 
@@ -3887,7 +3891,7 @@
 
 **ACL使能**：true
 
-**起始版本**：13
+**起始版本**：14
 
 ### ohos.permission.SET_TELEPHONY_ESIM_STATE
 
@@ -3899,7 +3903,7 @@
 
 **ACL使能**：true
 
-**起始版本**：13
+**起始版本**：14
 
 ### ohos.permission.CAMERA_BACKGROUND
 
@@ -4025,6 +4029,20 @@
 
 **起始版本**：12
 
+### ohos.permission.CHECK_QUICKFIX_RESULT
+
+允许系统服务或应用检查补丁安装结果。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+**变更信息**：API 12-13，开放范围为系统服务；从API 14开始，开放范围变更为系统应用。
+
 ### ohos.permission.USER_AUTH_FROM_BACKGROUND
 
 允许应用/服务在后台发起用户身份认证请求。
@@ -4127,7 +4145,7 @@
 
 允许应用禁用本应用的代码运行时完整性保护。
 
-针对使用跨平台框架开发的应用，用于应用申请可写可执行的匿名内存。当前仅平板、2in1设备应用可申请此权限。
+针对使用跨平台框架开发的应用，用于应用豁免代码运行时的完整性保护。当前仅平板、2in1设备应用可申请此权限。
 
 **权限级别**：system_basic
 
@@ -4174,6 +4192,68 @@
 **ACL使能**：true
 
 **起始版本**：14
+
+### ohos.permission.ACCESS_APP_INSTALL_DIR
+
+允许系统应用访问安装文件目录。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.ACCESS_ACCOUNT_SERVICE_EXTENSION_ABILITY
+
+允许系统应用调用账号ServiceExtensionAbility所提供的服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.ANTI_FRAUD
+
+允许应用接入风控探针以检测端侧风险，检测结果可作为云侧风险决策的输入。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
+
+允许应用发起录屏的时候，不弹出隐私授权弹窗。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.STORAGE_MANAGER_CRYPT
+
+允许系统应用和系统服务调用接口完成加解密操作。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+**变更信息**：API 12-14仅对系统服务开放；从API 15开始对系统应用开放。
 
 ## system_grant，不允许ACL跨级申请
 
@@ -4420,6 +4500,18 @@
 **ACL使能**：false
 
 **起始版本**：14
+
+### ohos.permission.USE_USER_ACCESS_MANAGER
+
+允许应用查询和配置用户身份认证策略、校验用户身份认证结果。
+
+**权限级别** system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：false
+
+**起始版本**：16
 
 ## user_grant，允许ACL跨级申请
 

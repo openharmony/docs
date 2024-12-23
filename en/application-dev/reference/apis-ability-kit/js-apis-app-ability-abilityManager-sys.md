@@ -216,52 +216,6 @@ try {
 }
 ```
 
-## getAbilityRunningInfos
-
-getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
-
-Obtains the UIAbility running information. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.GET_RUNNING_INFO
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**Return value**
-
-| Type                                      | Description     |
-| ---------------------------------------- | ------- |
-| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md)>> | Promise used to return the API call result and the UIAbility running information. You can perform error handling or custom processing in it.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
-
-| ID| Error Message|
-| ------- | -------- |
-| 202 | Not System App. Interface caller is not a system app. |
-| 16000050 | Internal error. |
-
-**Example**
-
-```ts
-import { abilityManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  abilityManager.getAbilityRunningInfos().then((data: Array<abilityManager.AbilityRunningInfo>) => {
-    console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
-  }).catch((err: BusinessError) => {
-    console.error(`getAbilityRunningInfos fail, err: ${JSON.stringify(err)}`);
-  });
-} catch (paramError) {
-  let code: number = (paramError as BusinessError).code;
-  let message: string = (paramError as BusinessError).message;
-  console.error(`error.code: ${code}, error.message: ${message}`);
-}
-```
-
 ## getExtensionRunningInfos
 
 getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<ExtensionRunningInfo>>): void
@@ -804,7 +758,7 @@ Obtains the information about the UIAbilities of an application that is running 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>>  | Yes|Callback used to return the API call result and the UIAbility information. You can perform error handling or custom processing in it.|
+  | callback | AsyncCallback\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData.md)>>  | Yes|Callback used to return the API call result and the UIAbility information. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
@@ -848,7 +802,7 @@ Obtains the information about the UIAbilities of an application that is running 
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>> | Promise used to return the API call result and the UIAbility information. You can perform error handling or custom processing in it.|
+| Promise\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData.md)>> | Promise used to return the API call result and the UIAbility information. You can perform error handling or custom processing in it.|
 
 **Error codes**
 

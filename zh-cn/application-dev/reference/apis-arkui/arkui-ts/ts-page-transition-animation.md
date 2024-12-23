@@ -145,7 +145,7 @@ onEnter(event: PageTransitionCallback): PageTransitionEnterInterface
 
 | 参数名 | 类型                                                               | 必填 | 说明                                                |
 | ------ | ----------------------------------------------------------------- | ---- | ------------------------------------------------    |
-| event  | [PageTransitionCallback](#pagetransitioncallback13) | 是   | 入场动画的逐帧回调直到入场动画结束，progress从0变化到1。 |
+| event  | [PageTransitionCallback](#pagetransitioncallback14) | 是   | 入场动画的逐帧回调直到入场动画结束，progress从0变化到1。 |
 
 **示例：**
 
@@ -173,15 +173,15 @@ onExit(event: PageTransitionCallback): PageTransitionExitInterface
 
 | 参数名 | 类型                                                               | 必填 | 说明                                                |
 | ------ | ----------------------------------------------------------------- | ---- | ------------------------------------------------    |
-| event  | [PageTransitionCallback](#pagetransitioncallback13) | 是   | 出场动画的逐帧回调直到出场动画结束，progress从0变化到1。 |
+| event  | [PageTransitionCallback](#pagetransitioncallback14) | 是   | 出场动画的逐帧回调直到出场动画结束，progress从0变化到1。 |
 
-## PageTransitionCallback<sup>13+</sup>
+## PageTransitionCallback<sup>14+</sup>
 
 type PageTransitionCallback = (type: RouteType, progress: number) => void
 
 页面转场事件回调。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -232,7 +232,7 @@ type PageTransitionCallback = (type: RouteType, progress: number) => void
 
 ## 示例
 
-### 示例1
+### 示例1（设置退入场动画）
 
 自定义方式1：通过不同的退入场类型配置不同的退场，入场动画。
 
@@ -378,7 +378,7 @@ struct PageTransitionExample1 {
 
 ![pageTransition2](figures/pageTransition2.gif)
 
-### 示例2
+### 示例2（设置退入场平移效果）
 
 自定义方式1：配置提供的不同退入场平移效果，将系统语言排版模式改为RTL。
 

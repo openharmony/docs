@@ -105,6 +105,7 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | DISABLE_SCALE  | 2 | 禁用系统对拖拽背板图的缩放行为。 |
 | ENABLE_DEFAULT_SHADOW<sup>12+</sup> | 3 | 启用非文本类组件默认阴影效果。 |
 | ENABLE_DEFAULT_RADIUS<sup>12+</sup> | 4 | 启用非文本类组件统一圆角效果，默认值12vp。当应用自身设置的圆角值大于默认值或modifier设置的圆角时，则显示应用自定义圆角效果。 |
+| ENABLE_DRAG_ITEM_GRAY_EFFECT<sup>16+</sup> | 5 | 启用支持原拖拽对象灰显（透明度）效果，对文本内容拖拽不生效。用户拖起时原对象显示灰显效果，释放时原对象恢复原有效果。不支持对该开关与自定义处理原对象透明度效果同时使用。开启默认灰显效果后，如果应用再自行设置透明度，则灰显效果将被覆盖，且在结束拖拽时无法正确恢复原始透明度效果。 |
 
 ## DragInteractionOptions<sup>12+</sup>
 
@@ -116,8 +117,9 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | defaultAnimationBeforeLifting | boolean | 否 | 表示是否启用长按浮起阶段组件自身的默认点按效果（缩小）。<br/>默认值：false <br/> |
 
 ## 示例
-### 示例1
-allowDrop与draggable属性用法示例
+### 示例1（允许拖拽和落入）
+
+该示例通过配置allowDrop和draggable分别设置组件是否可落入和拖拽。
 
 ```ts
 // xxx.ets
@@ -235,8 +237,10 @@ struct ImageExample {
 
 ![dragImage.gif](figures/dragImage.gif)
 
-### 示例2
-dragPreview属性用法示例
+### 示例2（设置预览图）
+
+该示例通过配置dragPreview设置拖拽过程的预览图。
+
 ```ts
 // xxx.ets
 @Entry
@@ -298,8 +302,10 @@ struct DragPreviewDemo{
 
 ![dragPreview.gif](figures/dragPreview.gif)
 
-### 示例3
-dragPreviewOptions属性用法示例
+### 示例3（设置背板图样式）
+
+该示例通过配置dragPreviewOptions为ENABLE_DEFAULT_SHADOW和ENABLE_DEFAULT_RADIUS设置默认阴影和统一圆角效果。
+
 ```ts
 // xxx.ets
 @Entry
@@ -310,15 +316,18 @@ struct dragPreviewOptionsDemo{
       Column() {
         Image('/resource/image.jpeg')
           .margin({ top: 10 })
-          .width("100%")
+          .width("30%")
           .draggable(true)
           .dragPreviewOptions({ mode: DragPreviewMode.AUTO })
         Image('/resource/image.jpeg')
           .margin({ top: 10 })
-          .width("80%")
+          .width("30%")
           .border({ radius: { topLeft: 1, topRight: 2, bottomLeft: 4, bottomRight: 8 } })
           .draggable(true)
-          .dragPreviewOptions({ mode: [ DragPreviewMode.ENABLE_DEFAULT_SHADOW, DragPreviewMode.ENABLE_DEFAULT_RADIUS ] })
+          .onDragStart(() => {
+            console.log("Image onDragStart")
+          })
+          .dragPreviewOptions({ mode: [ DragPreviewMode.ENABLE_DEFAULT_SHADOW, DragPreviewMode.ENABLE_DEFAULT_RADIUS, DragPreviewMode.ENABLE_DRAG_ITEM_GRAY_EFFECT ] })
       }
       .width("100%")
       .height("100%")
@@ -327,11 +336,13 @@ struct dragPreviewOptionsDemo{
 }
 ```
 
-![dragPreviewOptions.gif](figures/dragPreviewOptions.gif)
+![dragPreviewMode.gif](figures/dragPreviewMode.gif)
 
 
-### 示例4
-DragInteractionOptions属性中isMultiSelectionEnabled参数使用方法用例。
+### 示例4（设置多选拖拽）
+
+该示例通过配置isMultiSelectionEnabled实现Grid组件的多选拖拽效果。
+
 ```ts
 @Entry
 @Component
@@ -368,8 +379,10 @@ struct Example {
 
 ![isMultiSelectionEnabled.gif](figures/isMultiSelectionEnabled.gif)
 
-### 示例5
-DragInteractionOptions属性中defaultAnimationBeforeLifting参数使用方法用例。
+### 示例5（设置默认点按效果）
+
+该示例通过配置defaultAnimationBeforeLifting实现Grid组件的默认点按效果。
+
 ```ts
 @Entry
 @Component
@@ -406,8 +419,10 @@ struct Example {
 
 ![defaultAnimationBeforeLifting.gif](figures/defaultAnimationBeforeLifting.gif)
 
-### 示例6
-dragPreviewOptions属性中ImageModifier参数使用方法用例。
+### 示例6（自定义背板图样式）
+
+该示例通过配置ImageModifier实现Image组件的自定义背板图样式。
+
 ```ts
 // xxx.ets
 import { ImageModifier } from '@kit.ArkUI'

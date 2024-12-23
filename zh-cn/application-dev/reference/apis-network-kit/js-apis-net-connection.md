@@ -957,6 +957,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
     }
     console.info("Succeeded to get data: " + JSON.stringify(data));
   })
+}).catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
 });
 ```
 
@@ -1009,6 +1011,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
       console.info("Succeeded to get data: " + JSON.stringify(data));
   })
+}).catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
 });
 ```
 
@@ -1894,7 +1898,7 @@ unregister(callback: AsyncCallback\<void>): void
 | 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
-| 2101007 | The callback does not exists.      |
+| 2101007 | The callback does not exist.      |
 
 **示例：**
 

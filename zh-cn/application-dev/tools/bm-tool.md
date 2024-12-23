@@ -28,7 +28,7 @@ Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、�
 | dump-target-overlay | 打印目标应用的所有关联overlay应用的overlayModuleInfo。 |
 
 
-## 帮助命令
+## 帮助命令（help）
 
 ```bash
 # 显示帮助信息
@@ -36,7 +36,7 @@ bm help
 ```
 
 
-## 安装命令
+## 安装命令（install）
 
 ```bash
 bm install [-h] [-p filePath] [-r] [-w waitingTime] [-s hspDirPath]
@@ -68,7 +68,7 @@ bm install -p aaa.hap -s xxx.hsp yyy.hsp
 bm install -p /data/app/ohos.app.hap -w 10
 ```
 
-## 卸载命令
+## 卸载命令（uninstall）
 
 ```bash
 bm uninstall [-h] [-n bundleName] [-m moduleName] [-k] [-s] [-v versionCode]
@@ -102,10 +102,10 @@ bm uninstall -n com.ohos.app -k
 ```
 
 
-## 查询应用信息命令
+## 查询应用信息命令（dump）
 
 ```bash
-bm dump [-h] [-a] [-n bundleName] [-s shortcutInfo] [-d deviceId]
+bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId]
 ```
 
   **查询命令参数列表**
@@ -114,6 +114,7 @@ bm dump [-h] [-a] [-n bundleName] [-s shortcutInfo] [-d deviceId]
 | -------- | -------- |
 | -h | 帮助信息。 |
 | -a | 可选参数，查询系统已经安装的所有应用。 |
+| -g | 可选参数，查询系统中签名为调试类型的应用包名。 |
 | -n | 可选参数，查询指定Bundle名称的详细信息。 |
 | -s | 可选参数，查询指定Bundle名称下的快捷方式信息。 |
 | -d | 可选参数，查询指定设备中的包信息。默认查询当前设备。 |
@@ -124,6 +125,8 @@ bm dump [-h] [-a] [-n bundleName] [-s shortcutInfo] [-d deviceId]
 ```bash
 # 显示所有已安装的Bundle名称
 bm dump -a
+# 查询系统中签名为调试类型的应用包名
+bm dump -g
 # 查询该应用的详细信息
 bm dump -n com.ohos.app
 # 查询该应用的快捷方式信息
@@ -132,7 +135,7 @@ bm dump -s -n com.ohos.app
 bm dump -n com.ohos.app -d xxxxx
 ```
 
-## 清理命令
+## 清理命令（clean）
 
 ```bash
 bm clean [-h] [-c] [-n bundleName] [-d] [-i appIndex]
@@ -159,7 +162,7 @@ clean bundle data files successfully.
 ```
 
 <!--Del-->
-## 使能命令
+## 使能命令（enable）
 
 ```bash
 bm enable [-h] [-n bundleName] [-a abilityName]
@@ -185,7 +188,7 @@ enable bundle successfully.
 ```
 
 
-## 禁用命令
+## 禁用命令（disable）
 
 ```bash
 bm disable [-h] [-n bundleName] [-a abilityName]
@@ -212,7 +215,7 @@ disable bundle successfully.
 <!--DelEnd-->
 
 
-## 获取udid命令
+## 获取udid命令（get）
 
 ```bash
 bm get [-h] [-u]
@@ -237,7 +240,7 @@ udid of current device is :
 ```
 
 
-## 快速修复命令
+## 快速修复命令（quickfix）
 
 ```bash
 bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b bundleName]
@@ -283,7 +286,7 @@ bm quickfix -r -b com.ohos.app
 delete quick fix successfully
 ```
 
-## 共享库查询命令
+## 共享库查询命令（dump-shared）
 
 ```bash
 bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
@@ -310,7 +313,7 @@ bm dump-shared -n com.ohos.lib
 bm dump-dependencies -n com.ohos.app -m entry
 ```
 
-## 共享库依赖关系查询命令
+## 共享库依赖关系查询命令（dump-dependencies）
 
 显示指定应用和指定模块依赖的共享库信息。
 ```bash
@@ -331,7 +334,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 ```
 
 
-## 应用执行编译AOT命令
+## 应用执行编译AOT命令（compile）
 
 应用执行编译AOT命令。
 ```bash
@@ -353,7 +356,7 @@ bm compile [-h] [-m mode] [-r bundleName]
 bm compile -m partial com.example.myapplication
 ```
 
-## 拷贝ap文件命令
+## 拷贝ap文件命令（copy-ap）
 
 拷贝ap文件到指定应用的/data/local/pgo路径。
 
@@ -376,7 +379,7 @@ bm copy-ap [-h] [-a] [-n bundleName]
 bm copy-ap -n com.example.myapplication
 ```
 
-## 查询overlay应用信息命令
+## 查询overlay应用信息命令（dump-overlay）
 
 打印overlay应用的overlayModuleInfo。
 ```bash
@@ -404,7 +407,7 @@ bm dump-overlay -b com.ohos.app -m entry
 bm dump-overlay -b com.ohos.app -m feature
 ```
 
-## 查询应用的overlay相关信息命令
+## 查询应用的overlay相关信息命令（dump-target-overlay）
 
 查询目标应用的所有关联overlay应用的overlayModuleInfo信息。
 
@@ -444,7 +447,7 @@ Failed to install bundle, no signature file.
 
 **可能原因**
 
-HAP包未经签名认证。
+HAP包没有签名。
 
 **处理步骤**
 
@@ -582,7 +585,8 @@ Error: dependent module does not exist.
 ![示例图](figures/zh-cn_image_0000001560201786.png)
 2. 在运行配置页，选择Deploy Multi Hap标签页，勾选Deploy Multi Hap Packages，选择依赖的模块，点击OK保存配置，再进行运行/调试。
 ![示例图](figures/zh-cn_image_0000001610761941.png)
-
+3. 单击Run > Edit Configurations，在General中，勾选Auto Dependencies。点击OK保存配置，再运行/调试。
+![示例图](figures/zh-cn_image_9568305.png)
 
 ### 9568259 安装解析配置文件缺少字段
 **错误信息**
@@ -627,11 +631,13 @@ Error: install releaseType target not same.
 
 **可能原因**
 
-设备上已安装的旧HAP和现在要安装的新HAP所使用的SDK中的releaseType值不一样。
+* 场景一：设备上已安装的旧HAP和现在要安装的新HAP所使用的SDK中的releaseType值不一样。
+* 场景二：安装的应用为多HAP时，每个HAP所使用的SDK中的releaseType值不一致。
 
 **处理步骤**
 
-1. 请先卸载设备上已安装的HAP，再安装新的HAP。
+* 场景一：请先卸载设备上已安装的HAP，再安装新的HAP。
+* 场景二：使用相同版本的SDK对HAP重新打包，保证多HAP的releaseType值一致。
 
 
 ### 9568322 由于应用来源不可信，签名验证失败
@@ -708,7 +714,6 @@ Error: install failed due to older sdk version in the device.
 
 * 场景二：对于需要运行在OpenHarmony设备上的应用，请确认runtimeOS已改为OpenHarmony。
 
-
 ### 9568332 签名不一致导致安装失败
 **错误信息**
 
@@ -722,13 +727,15 @@ Error: install sign info inconsistent.
 
 **可能原因**
 
-设备上已安装的应用与新安装的应用中签名不一致或者多个包（HAP和HSP）之间的签名存在差异。如果在“Edit Configurations”中勾选了“Keep Application Data”（即不卸载应用，直接覆盖安装），并且重新进行了签名，将导致该报错。
+1. 设备上已安装的应用与新安装的应用中签名不一致或者多个包（HAP和HSP）之间的签名存在差异。如果在“Edit Configurations”中勾选了“Keep Application Data”（即不卸载应用，直接覆盖安装），并且重新进行了签名，将导致该报错。
+2. 如果某个应用被卸载但是保留了数据，那么后面安装相同包名的应用时，需要校验其身份信息的一致性。如果两者的签名信息皆不一致，则会导致该报错。
 
 
 **处理步骤**
 
 1. 请卸载设备上已安装的应用，或取消勾选“Keep Application Data”后，重新安装新的应用。
 2. 如果是因不同团队提供的HSP导致签名不一致问题，可以采用[集成态HSP](../quick-start/integrated-hsp.md)的方式统一提供HSP；在多HAP包的情况下，必须确保所有HAP包的签名一致。
+3. 如果某个应用被卸载但是保留了数据，后面安装相同包名但签名信息不一致的应用时，安装失败。如果出现这种情况，则需要把之前已卸载掉的应用重新安装之后，执行不保留数据地卸载，这样相同包名但签名信息不一致的应用才能安装成功。
 
 ### 9568329 签名信息验证失败
 **错误信息**
@@ -993,11 +1000,12 @@ Error: compatible policy not same.
 
 **可能原因**
 
-设备中已安装相同包名的hap包。
+1. 应用已安装，再安装一个同包名的应用间共享库。
+2. 应用间共享库已安装，再安装一个同包名的应用。
 
 **处理步骤**
 
-1. 卸载已安装相同包名hap包，再安装新包。
+1. 卸载已安装的应用或应用间共享库，再安装新包。
 
 
 ### 9568391 包管理服务已停止
@@ -1011,11 +1019,17 @@ Error: bundle manager service is died.
 
 **可能原因**
 
-使用bm install -p ***.hap方式安装预置应用会杀掉正在运行的应用，导致异常（例如foundation进程重启）。
+系统出现未知的异常，导致系统服务重启。
 
 **处理步骤**
 
-1. 预置应用请参考OTA升级。
+1.查询设备/data/log/faultlog/faultlogger/目录下是否存在crash文件。
+
+2.crash文件中是否包含foundation字样的文件。
+
+3.请多次重试安装，如果还是报同样的错误，观察是否会多出包含foundation字样的crash文件生成。
+
+4.若多次重试都无法解决，请导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
 
 
 ### 9568393 验证代码签名失败
@@ -1029,22 +1043,11 @@ Error: verify code signature failed.
 
 **可能原因**
 
-* 场景一：包没有代码签名信息。
-
-* 场景二：签名证书问题。
-
+包没有代码签名信息。
 
 **处理步骤**
 
-* 场景一：使用SDK签名工具验证包是否签名。
-	```
-	//验证签名指令
-	java -jar SDK安装路径（DevEco工具安装目录中sdk）\toolchains\lib\hap-sign-tool.jar verify-app -outCertChain out.cer -outProfile out.p7b -inFile 包路径\**.hap
-	// 执行结果1：can not find codesign block。说明包没有签名
-	// 执行结果2：verify codesign success。说明包已签名
-	```
-
-* 场景二：检查签名流程和签名证书，参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13)。
+1. 安装最新版本DevEco Studio，重新签名。
 
 
 ### 9568257 验证pkcs7文件失败
@@ -1084,23 +1087,22 @@ Error: debug bundle can only be installed in developer mode.
 2. USB数据线连接终端和PC，在“设置 > 系统 > 开发者选项”中，打开“USB调试”开关，弹出的“允许USB调试”的弹框，点击“允许”。
 3. 启动调试或运行应用。
 
-### 9568386 卸载找不到资源
+### 9568386 卸载的应用不存在
 **错误信息**
 
 Error: uninstall missing installed bundle.
 
 **错误描述**
 
-卸载找不到资源。
+卸载的应用不存在。
 
 **可能原因**
 
-之前卸载不干净，有资源残留。
+要卸载的应用没有安装。
 
 **处理步骤**
 
-1. 手动清理el1/el2下所有未卸载的资源。
-2. 重新安装。
+1. 确认要卸载的应用是否已经安装。
 
 
 ### 9568284 安装版本不匹配
@@ -1160,30 +1162,6 @@ app.json5文件中app的vendor字段配置不一致。
 
 1. 若只有一个HAP，要求与已安装应用vendor字段一致，卸载重装即可。
 2. 若包含集成态HSP，要求集成态HSP与使用方HAP的vendor字段保持一致。
-
-
-### 9568279 安装版本名不一致
-**错误信息**
-
-Error: install version name not same.
-
-**错误描述**
-
-安装版本名不一致。
-
-**可能原因**
-
-* 场景一：只有一个hap，可能是保存数据的应用版本和新安装版本不一致导致。
-
-* 场景二：HSP和HAP一起安装时，HSP和HAP的包名、版本号、sdk版本号、releaseType有不一致。
-
-**处理步骤**
-
-* 场景一：DevEco entry配置界面中取消勾选“Keep Application Data”。
-
-![示例图](figures/zh-cn_image_9568279.png)
-
-* 场景二：对其HSP和HAP的包名、版本号、sdk版本号、releaseType使其一致。
 
 
 ### 9568274 安装服务错误
@@ -1263,3 +1241,20 @@ Error: check encryption failed.
 
 1. 安装新版本镜像。
 2. 删除HAP工程中lib目录内非so文件，重新签名打包。
+
+### 9568417 签名校验失败
+**错误信息**
+
+Error: bundle cannot be installed because the appId is not same with preinstalled bundle.
+
+**错误描述**
+
+签名校验失败。
+
+**可能原因**
+
+安装的应用与已经预置的同包名应用签名不一致。
+
+**处理步骤**
+
+1. 如果安装的应用是预置应用，需要保证安装应用的签名与预置应用的一致。

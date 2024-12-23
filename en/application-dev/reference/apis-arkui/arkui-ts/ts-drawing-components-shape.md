@@ -59,7 +59,7 @@ Sets the viewport of the shape.
 
 fill(value: ResourceColor)
 
-Color of the fill area. An invalid value is handled as the default value.
+Sets the color of the fill area. An invalid value is handled as the default value.
 
 **Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 

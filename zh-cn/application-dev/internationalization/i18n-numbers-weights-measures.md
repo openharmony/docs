@@ -35,7 +35,7 @@
 
 **数字格式化选项**
 
-对于数字，通过[NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions)参数可以设置最小整数位数、最小小数位数、最大小数位数、最低有效位数、最大有效位数、是否分组显示、数字的格式化规格、紧凑型的显示格式，以及数字的显示格式和数字系统。其中，数字的显示格式包括decimal(十进制)、percent(百分数)、currency(货币)、unit(单位)。
+对于数字，通过[NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions)参数可以设置最小整数位数、最小小数位数、最大小数位数、最低有效位数、最大有效位数、是否分组显示、数字的格式化规格、紧凑型的显示格式、舍入模式、舍入优先级、舍入增量，以及数字的显示格式和数字系统。其中，数字的显示格式包括decimal(十进制)、percent(百分数)、currency(货币)、unit(单位)。
 
 以123000.123为例，各属性参数取值和显示效果如下表所示。
 
@@ -119,6 +119,74 @@ let formattedNumber3 = numberFormat3.format(123400); // formattedNumber3: +123,4
 // 显示百分数
 let numberFormat4 = new intl.NumberFormat('zh-CN', {style: 'percent'});
 let formattedNumber4 = numberFormat4.format(0.25); // formattedNumber4: 25%
+
+// 舍入模式
+let numberFormat5 : intl.NumberFormat = new intl.NumberFormat('en',
+    {
+        roundingMode: 'trunc',
+        maximumSignificantDigits: 2
+    });
+console.log(numberFormat5.format(2.28)); // 2.2
+console.log(numberFormat5.format(-2.25)); // -2.2
+
+// 舍入优先级
+let options : intl.NumberOptions = {
+    roundingPriority: 'lessPrecision',
+    maximumFractionDigits: 3,
+    maximumSignificantDigits: 2
+};
+let numberFormat6 : intl.NumberFormat = new intl.NumberFormat('en', options);
+console.log(numberFormat6.format(1.23456)); // 1.2
+
+// 舍入增量
+let numOptions : intl.NumberOptions = {
+    style: "currency",
+    currency: "USD",
+    roundingIncrement: 5,
+    maximumFractionDigits: 2,
+    roundingMode: "halfCeil"
+};
+let numberFormat7 : intl.NumberFormat = new intl.NumberFormat('en-US', numOptions);
+console.log(numberFormat7.format(11.21)); // $11.20
+```
+
+### 数字范围格式化
+
+数字范围格式化通过[NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat)的[formatRange](../reference/apis-localization-kit/js-apis-intl.md#formatrange-1)接口实现，具体开发步骤如下。
+
+1. 导入模块。
+   ```ts
+   import { intl } from '@kit.LocalizationKit';
+   ```
+
+2. 创建NumberFormat对象。
+   传入locale列表时，使用第一个有效的locale创建对象。不传入locale参数时，使用系统当前的locale创建对象。
+   构造函数支持通过NumberOptions设置不同的数字格式化格式，具体请参考表1-表8。
+
+   ```ts
+   let numberFormat: intl.NumberFormat = new intl.NumberFormat(locale: string | Array<string>, options?: NumberOptions);
+   ```
+
+3. 数字范围格式化，根据numberFormat的设置格式化开始和结束数字。
+   ```ts
+   let formattedNumber: string = numberFormat.formatRange(startRange: number, endRange: number);
+   ```
+
+**开发实例**
+
+```ts
+// 导入模块
+import { intl } from '@kit.LocalizationKit';
+
+// 数字范围格式化
+let options : intl.NumberOptions = {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0
+};
+let numberRangeFormat : intl.NumberFormat = new intl.NumberFormat('es-ES', options);
+console.log(numberRangeFormat.formatRange(2, 8)); // 2-8 €
+console.log(numberRangeFormat.formatRange(2.9, 3.1)); // ~3 €
 ```
 
 

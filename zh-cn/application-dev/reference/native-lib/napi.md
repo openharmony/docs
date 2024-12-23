@@ -26,7 +26,7 @@ libace_napi.z.so
 
 ## 已从Node-API组件标准库中导出的符号列表
 
-从Node-API标准库导出的接口，其使用方法及行为基于[Node.js](https://nodejs.org/docs/latest-v10.x/api/n-api.html)，并进行了部分[能力拓展](#node-api组件扩展的符号列表)。
+从Node-API标准库导出的接口，其使用方法及行为基于[Node.js](https://nodejs.org/docs/latest-v12.x/api/n-api.html)，并进行了部分[能力拓展](#node-api组件扩展的符号列表)。
 
 |符号类型|符号名|说明|起始支持API版本|
 | --- | --- | --- | --- |
@@ -45,8 +45,8 @@ libace_napi.z.so
 |FUNC|napi_fatal_error|引发致命错误以立即终止进程。|10|
 |FUNC|napi_open_handle_scope|创建一个上下文环境使用。|10|
 |FUNC|napi_close_handle_scope|关闭传入的上下文环境，关闭后，全部在其中声明的引用都将被关闭。|10|
-|FUNC|napi_open_escapable_handle_scope|创建出一个可逃逸的handel scope，可将范围内声明的值返回到父作用域。|10|
-|FUNC|napi_close_escapable_handle_scope|关闭传入的可逃逸的handel scope。|10|
+|FUNC|napi_open_escapable_handle_scope|创建出一个可逃逸的handle scope，可将范围内声明的值返回到父作用域。|10|
+|FUNC|napi_close_escapable_handle_scope|关闭传入的可逃逸的handle scope。|10|
 |FUNC|napi_escape_handle|提升传入的js object的生命周期到其父作用域。|10|
 |FUNC|napi_create_reference|为`Object`创建一个reference，以延长其生命周期。调用者需要自己管理reference生命周期。|10|
 |FUNC|napi_delete_reference|删除传入的reference。|10|
@@ -182,7 +182,7 @@ libace_napi.z.so
 
 **返回：**
 
-- 当code == nullptr时，标准库会返回napi_invalid_arg，而OpenHarmony中未做判断。
+- 当code为空指针时，标准库会返回napi_invalid_arg，而OpenHarmony中未做判断。
 
 - 该导出接口允许code属性设置失败。
 
@@ -190,7 +190,7 @@ libace_napi.z.so
 
 **返回：**
 
-- 当code == nullptr时，标准库会返回napi_invalid_arg，而OpenHarmony中未做判断。
+- 当code为空指针时，标准库会返回napi_invalid_arg，而OpenHarmony中未做判断。
 
 - 该导出接口允许code属性设置失败。
 
@@ -198,7 +198,7 @@ libace_napi.z.so
 
 **返回：**
 
-- 当code == nullptr时，标准库会返回napi_invalid_arg，而OpenHarmony中未做判断。
+- 当code为空指针时，标准库会返回napi_invalid_arg，而OpenHarmony中未做判断。
 
 - 该导出接口允许code属性设置失败。
 
@@ -248,6 +248,12 @@ libace_napi.z.so
 
 - value: 标准库中仅支持Object、Function、Symbol类型，而该导出接口对value的类型没有限制。
 
+### napi_delete_reference
+
+**说明：**
+
+- 在OpenHarmory中，如果创建强引用时注册了napi_finalize回调函数，调用该接口的时候会触发该napi_finalize回调。
+
 ### napi_create_symbol
 
 **返回：**
@@ -273,6 +279,10 @@ libace_napi.z.so
 **参数：**
 
 - object: 该导出接口支持TypedArray或[Sendable TypedArray](../apis-arkts/js-apis-arkts-collections.md#collectionstypedarray)类型。
+
+**返回：**
+
+- 标准库接口中出参length返回typedarray的元素数量，而OpenHarmony的该导出接口返回typedarray中元素的字节长度。
 
 ### napi_coerce_to_object
 
@@ -354,6 +364,8 @@ libace_napi.z.so
 
 - 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
 
+- 当设置的index超大的时候，标准库中会直接抛出异常并中断进程，OpenHarmony中会尝试分配内存，若分配失败则不对object进行修改。
+
 ### napi_get_element
 
 **返回：**
@@ -377,6 +389,8 @@ libace_napi.z.so
 **返回：**
 
 - 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+- 若在遍历设置属性的过程中触发异常，标准库中会直接将异常抛出，OpenHarmony中会清除异常继续执行。
 
 ### napi_type_tag_object
 
@@ -412,6 +426,11 @@ libace_napi.z.so
 
 ### napi_wrap
 
+**参数：**
+
+- finalize_cb: 标准库允许为空， OpenHarmony在该参数为空时，返回napi_invalid_arg。
+- result: 标准库返回弱引用， OpenHarmony在result不为空时返回强引用。
+
 **返回：**
 
 - 参数js_object不为Object或Function对象时，该导出接口返回napi_object_expected。
@@ -427,6 +446,10 @@ libace_napi.z.so
 **返回：**
 
 - 参数js_object不为Object或Function对象时，该导出接口返回napi_object_expected。
+
+**说明：**
+
+- 如果封装中关联有finalize回调，OpenHarmony中该导出接口将在移除封装前调用它。
 
 ### napi_create_async_work
 
@@ -560,7 +583,7 @@ libace_napi.z.so
 
 - OpenHarmony中创建的buffer类型为ArrayBufferLike。
 
-- OpenHarmony中，size为0时返回napi_invalid_arg。
+- OpenHarmony中，size小于等于0时返回napi_invalid_arg。
 
 - OpenHarmony中，size大于2097152时返回napi_invalid_arg并打印错误日志。
 
@@ -574,9 +597,9 @@ libace_napi.z.so
 
 - OpenHarmony中创建的buffer类型为ArrayBufferLike。
 
-- OpenHarmony中，size为0时返回napi_invalid_arg。
+- OpenHarmony中，length小于等于0时返回napi_invalid_arg。
 
-- OpenHarmony中，size大于2097152时返回napi_invalid_arg并打印错误日志。
+- OpenHarmony中，length大于2097152时返回napi_invalid_arg并打印错误日志。
 
 - OpenHarmony中，data为nullptr时返回napi_invalid_arg。
 
@@ -588,9 +611,9 @@ libace_napi.z.so
 
 - OpenHarmony中创建的buffer类型为ArrayBufferLike。
 
-- OpenHarmony中，size为0时返回napi_invalid_arg。
+- OpenHarmony中，length小于等于0时返回napi_invalid_arg。
 
-- OpenHarmony中，size大于2097152时返回napi_invalid_arg并打印错误日志。
+- OpenHarmony中，length大于2097152时返回napi_invalid_arg并打印错误日志。
 
 - 标准库中，因未知原因导致创建失败时将返回napi_generic_failure，OpenHarmony中返回napi_pending_exception。
 
@@ -624,6 +647,10 @@ libace_napi.z.so
 
 - 回调主动抛出异常时，OpenHarmony会触发JSCrash。
 
+**说明：**
+
+- 标准库中返回弱引用， OpenHarmony在result不为空时返回强引用。
+
 ### napi_fatal_exception
 
 **参数：**
@@ -635,6 +662,18 @@ libace_napi.z.so
 **返回：**
 
 - 参数env不是有效的napi_env（例如此env已被释放）时，该导出接口返回napi_generic_failure。
+
+### napi_create_array_with_length
+
+**返回：**
+
+- 当length数值过大时，标准库中会直接抛出异常并中断进程，OpenHarmony中会尝试分配内存，若分配失败则抛出异常并返回长度为0的array。
+
+### napi_create_arraybuffer
+
+**返回：**
+
+- 当length数值过大时，标准库中会直接抛出异常并中断进程，OpenHarmony中会尝试分配内存，若分配失败则抛出异常并返回undefined。
 
 ## 未从Node-API组件标准库中导出的符号列表
 
@@ -875,7 +914,7 @@ napi_status napi_create_ark_runtime(napi_env *env)
 
 **描述：**
 
-创建基础运行时环境。
+创建基础运行时环境，一个进程最多创建64个，并满足与[Worker](../../arkts-utils/worker-introduction.md)创建的子线程总数不超过80个。
 
 **参数：**
 

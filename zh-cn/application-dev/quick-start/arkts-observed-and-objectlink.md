@@ -3,6 +3,7 @@
 
 上文所述的装饰器仅能观察到第一层的变化，但是在实际应用开发中，应用会根据开发需要，封装自己的数据模型。对于多层嵌套的情况，比如二维数组，或者数组项class，或者class的属性是class，他们的第二层的属性变化是无法观察到的。这就引出了\@Observed/\@ObjectLink装饰器。
 
+\@Observed/\@ObjectLink配套使用是用于嵌套场景的观察，主要是为了弥补装饰器仅能观察一层的能力限制，开发者最好对装饰器的基本观察能力有一定的了解，再来对比阅读该文档。建议提前阅读：[\@State](./arkts-state.md)的基本用法。
 
 > **说明：**
 >
@@ -281,7 +282,7 @@ struct Parent {
 
   build() {
     Column() {
-      Text(`count的值: ${this.num}`)
+      Text(`count的值: ${this.num.count}`)
       Child({num: this.num})
     }
   }
@@ -322,7 +323,7 @@ struct Parent {
 
   build() {
     Column() {
-      Text(`count的值: ${this.num}`)
+      Text(`count的值: ${this.num.count}`)
       Button('click')
         .onClick(() => {
           // 可以在父组件做整体替换
@@ -390,13 +391,13 @@ class BookName extends Bag {
 }
 
 @Component
-struct ViewA {
-  label: string = 'ViewA';
+struct Son {
+  label: string = 'Son';
   @ObjectLink bag: Bag;
 
   build() {
     Column() {
-      Text(`ViewA [${this.label}] this.bag.size = ${this.bag.size}`)
+      Text(`Son [${this.label}] this.bag.size = ${this.bag.size}`)
         .fontColor('#ffffffff')
         .backgroundColor('#ff3d9dba')
         .width(320)
@@ -404,7 +405,7 @@ struct ViewA {
         .borderRadius(25)
         .margin(10)
         .textAlign(TextAlign.Center)
-      Button(`ViewA: this.bag.size add 1`)
+      Button(`Son: this.bag.size add 1`)
         .width(320)
         .backgroundColor('#ff17a98d')
         .margin(10)
@@ -416,14 +417,14 @@ struct ViewA {
 }
 
 @Component
-struct ViewC {
-  label: string = 'ViewC1';
+struct Father {
+  label: string = 'Father';
   @ObjectLink bookName: BookName;
 
   build() {
     Row() {
       Column() {
-        Text(`ViewC [${this.label}] this.bookName.size = ${this.bookName.size}`)
+        Text(`Father [${this.label}] this.bookName.size = ${this.bookName.size}`)
           .fontColor('#ffffffff')
           .backgroundColor('#ff3d9dba')
           .width(320)
@@ -431,7 +432,7 @@ struct ViewC {
           .borderRadius(25)
           .margin(10)
           .textAlign(TextAlign.Center)
-        Button(`ViewC: this.bookName.size add 1`)
+        Button(`Father: this.bookName.size add 1`)
           .width(320)
           .backgroundColor('#ff17a98d')
           .margin(10)
@@ -447,17 +448,17 @@ struct ViewC {
 
 @Entry
 @Component
-struct ViewB {
+struct GrandFather {
   @State user: User = new User(new Bag(0));
   @State child: Book = new Book(new BookName(0));
 
   build() {
     Column() {
-      ViewA({ label: 'ViewA #1', bag: this.user.bag })
+      Son({ label: 'Son #1', bag: this.user.bag })
         .width(320)
-      ViewC({ label: 'ViewC #3', bookName: this.child.bookName })
+      Father({ label: 'Father #3', bookName: this.child.bookName })
         .width(320)
-      Button(`ViewB: this.child.bookName.size add 10`)
+      Button(`GrandFather: this.child.bookName.size add 10`)
         .width(320)
         .backgroundColor('#ff17a98d')
         .margin(10)
@@ -465,14 +466,14 @@ struct ViewB {
           this.child.bookName.size += 10
           console.log('this.child.bookName.size:' + this.child.bookName.size)
         })
-      Button(`ViewB: this.user.bag = new Bag(10)`)
+      Button(`GrandFather: this.user.bag = new Bag(10)`)
         .width(320)
         .backgroundColor('#ff17a98d')
         .margin(10)
         .onClick(() => {
           this.user.bag = new Bag(10);
         })
-      Button(`ViewB: this.user = new User(new Bag(20))`)
+      Button(`GrandFather: this.user = new User(new Bag(20))`)
         .width(320)
         .backgroundColor('#ff17a98d')
         .margin(10)
@@ -489,7 +490,7 @@ struct ViewB {
 被@Observed装饰的BookName类，可以观测到继承基类的属性的变化。
 
 
-ViewB中的事件句柄：
+GrandFather中的事件句柄：
 
 
 - this.user.bag = new Bag(10) 和this.user = new User(new Bag(20))： 对@State装饰的变量size和其属性的修改。
@@ -497,7 +498,7 @@ ViewB中的事件句柄：
 - this.child.bookName.size += ... ：该变化属于第二层的变化，@State无法观察到第二层的变化，但是Bag被\@Observed装饰，Bag的属性size的变化可以被\@ObjectLink观察到。
 
 
-ViewC中的事件句柄：
+Father中的事件句柄：
 
 
 - this.bookName.size += 1：对\@ObjectLink变量size的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
@@ -1950,9 +1951,9 @@ struct Child {
 }
 ```
 
-\@ObjectLink的数据源更新依赖其父组件，当父组件中数据源改变引起父组件刷新时，会重新设置子组件\@ObjectLink的数据源。这个过程不是在父组件数据源变化后立刻发生的，而是在父组件实际刷新时才会进行。上述示例中，Parent包含Child，Parent传递箭头函数给Child，在点击时，日志打印顺序是1-2-3-4-5，打印到日志4时，点击事件流程结束，此时仅仅是将子组件Child标记为需要父组件更新的节点，因此日志4打印的this.per.name的值仍为1，等到父组件真正更新时，才会更新Child的数据源。
+\@ObjectLink的数据源更新依赖其父组件，当父组件中数据源改变引起父组件刷新时，会重新设置子组件\@ObjectLink的数据源。这个过程不是在父组件数据源变化后立刻发生的，而是在父组件实际刷新时才会进行。上述示例中，Parent包含Child，Parent传递箭头函数给Child，在点击时，日志打印顺序是1-2-3-4-5，打印到日志4时，点击事件流程结束，此时仅仅是将子组件Child标记为需要父组件更新的节点，因此日志4打印的this.per.name的值仍为Bob，等到父组件真正更新时，才会更新Child的数据源。
 
-当@ObjectLink @Watch('onChange02') per: Person的\@Watch函数执行时，说明\@ObjectLink的数据源已被父组件更新，此时日志5打印的值为更新后的2。
+当@ObjectLink @Watch('onChange02') per: Person的\@Watch函数执行时，说明\@ObjectLink的数据源已被父组件更新，此时日志5打印的值为更新后的Jack。
 
 日志的含义为：
 - 日志1：对Parent @State @Watch('onChange01') info: Info = new Info(new Person('Bob', 10)) 赋值前。
@@ -1961,13 +1962,13 @@ struct Child {
 
 - 日志3：对Parent @State @Watch('onChange01') info: Info = new Info(new Person('Bob', 10)) 赋值完成。
 
-- 日志4：onClickType方法内clickEvent执行完，此时只是将子组件Child标记为需要父组件更新的节点，未将最新的值更新给Child @ObjectLink @Watch('onChange02') per: Person，所以日志4打印的this.per.name的值仍然是1。
+- 日志4：onClickType方法内clickEvent执行完，此时只是将子组件Child标记为需要父组件更新的节点，未将最新的值更新给Child @ObjectLink @Watch('onChange02') per: Person，所以日志4打印的this.per.name的值仍然是Bob。
 
-- 日志5：下一次vsync信号触发Child更新，@ObjectLink @Watch('onChange02') per: Person被更新，触发其\@Watch方法，此时@ObjectLink @Watch('onChange02') per: Person为新值2。
+- 日志5：下一次vsync信号触发Child更新，@ObjectLink @Watch('onChange02') per: Person被更新，触发其\@Watch方法，此时@ObjectLink @Watch('onChange02') per: Person为新值Jack。
 
 \@Prop父子同步原理同\@ObjectLink一致。
 
-当clickEvent中更改this.info.person.name时，修改会立刻生效，此时日志4打印的值是2。
+当clickEvent中更改this.info.person.name时，修改会立刻生效，此时日志4打印的值是Jack。
 
 ```ts
 Child({

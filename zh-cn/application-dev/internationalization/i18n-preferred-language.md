@@ -30,3 +30,13 @@
       console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
     }
    ```
+
+4. 清除应用的偏好语言。将应用偏好语言设置为"default"后，该应用的界面会跟随系统语言变化，该特性将在应用重新启动后生效。
+   ```ts
+    try {  
+      i18n.System.setAppPreferredLanguage("default"); // 清除应用的偏好语言
+    } catch(error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
+    }
+   ```

@@ -114,7 +114,7 @@ struct ProgressCase1 {
       Column() {
         Progress({value:0, total:100, type:ProgressType.Capsule}).width(200).height(50).value(this.progressValue)
         Row().width('100%').height(5)
-        Button ("Progress + 5")
+        Button("Progress + 5")
           .onClick(()=>{
             this.progressValue += 5
             if (this.progressValue > 100){

@@ -85,6 +85,8 @@ onClick(event: (event: ClickEvent) => void): T
 
 ## 示例
 
+该示例通过按钮设置了点击事件，点击按钮可获取点击事件的相关参数。
+
 ```ts
 // xxx.ets
 @Entry

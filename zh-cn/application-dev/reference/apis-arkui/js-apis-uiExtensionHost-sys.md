@@ -494,7 +494,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
-    // 添加安全水印标志
+    // 开启截图隐私内容保护
     extensionHostWindow.hidePrivacyContentForHost(true).then(() => {
       console.log(`Successfully enabled privacy protection for non-system screenshots.`);
     }).catch((err: BusinessError) => {
@@ -616,6 +616,11 @@ export default class EntryAbility extends UIExtensionAbility {
         console.log(`Succeeded in hiding the non-secure windows.`);
       }).catch((err: BusinessError)=> {
         console.log(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
+      })
+      extensionHostWindow.hidePrivacyContentForHost(true).then(() => {
+        console.log(`Successfully enabled privacy protection for non-system screenshots.`);
+      }).catch((err: BusinessError) => {
+        console.log(`Failed enabled privacy protection for non-system screenshots. Cause:${JSON.stringify(err)}`);
       })
     }
 

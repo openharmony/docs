@@ -8,7 +8,7 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
 >
 > - [allowWindowOpenMethod()](../reference/apis-arkweb/ts-basic-components-web.md#allowwindowopenmethod10)接口设置为true时，前端页面通过JavaScript函数调用的方式打开新窗口。
 >
-> - 如果开发者在[onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9)接口通知中不需要打开新窗口，需要将[ControllerHandler.setWebController()](../reference/apis-arkweb/ts-basic-components-web.md#setwebcontroller9)接口参数设置成null。
+> - 如果开发者在[onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9)接口通知中没有创建新窗口，需要将[ControllerHandler.setWebController()](../reference/apis-arkweb/ts-basic-components-web.md#setwebcontroller9)接口参数设置成null。
 
 
 如下面的本地示例，当用户点击“新窗口中打开网页”按钮时，应用侧会在[onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9)接口中收到Web组件新窗口事件。
@@ -64,8 +64,8 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
             })
             this.dialogController.open();
             // 将新窗口对应WebviewController返回给Web内核。
-            // 如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
             // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
+            // 如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
             event.handler.setWebController(popController);
           })
       }

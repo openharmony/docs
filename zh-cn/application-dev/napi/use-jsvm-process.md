@@ -221,7 +221,7 @@
   .reserved = {0},
   };
   
-  extern "C" attribute((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
+  extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
   ```
   
 ## ArkTS侧调用C/C++方法实现

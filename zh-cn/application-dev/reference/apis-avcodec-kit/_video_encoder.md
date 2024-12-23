@@ -5,6 +5,11 @@
 
 VideoEncoder模块提供用于视频编码的接口。
 
+开发者可根据实际的开发需求，参考对应的开发指南及样例：
+
+- [视频编码](../../media/avcodec/video-encoding.md)
+- [时域可分层视频编码](../../media/avcodec/video-encoding-temporal-scalability.md)
+
 **系统能力：** SystemCapability.Multimedia.VideoEncoder
 
 **起始版本：** 9
@@ -35,7 +40,7 @@ VideoEncoder模块提供用于视频编码的接口。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode) { CBR = 0, VBR = 1, CQ = 2 } | 视频编码器的码率控制模式。  | 
+| [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode) { CBR = 0, VBR = 1, CQ = 2 } | 视频编码器的码率控制模式。（API14废弃）  | 
 
 
 ### 函数
@@ -109,6 +114,10 @@ enum OH_VideoEncodeBitrateMode
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
 
 **起始版本：** 9
+
+**废弃版本：** 14 
+
+**替代接口：** [OH_BitrateMode](_codec_base.md#oh_bitratemode-1)
 
 | 枚举值 | 描述 | 
 | -------- | -------- |

@@ -2589,6 +2589,9 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | tid | string | 是 | 任务id，在系统上是唯一的，由系统自动生成。 |
 | config | [Config](#config10) | 是 | 任务的配置信息。 |
 
+> **说明：**
+>
+> Task对象及其挂载回调函数会在调用remove方法后释放并被系统自动回收。
 
 ### on('progress')<sup>10+</sup>
 
@@ -3968,11 +3971,11 @@ pause(): Promise&lt;void&gt;
     task.pause().then(() => {
       console.info(`Succeeded in pausing a download task. `);
     }).catch((err: BusinessError) => {
-      console.error(`Failed to pause the upload task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -4320,13 +4323,15 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config, (err: BusinessError, task: request.agent.Task) => {
+  request.agent.create(getContext(), config, async (err: BusinessError, task: request.agent.Task) => {
     if (err) {
       console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
-    task.start();
+    await task.start();
+    //用户需要手动调用remove从而结束task对象的生命周期
+    request.agent.remove(task.tid);
   });
   ```
 
@@ -4408,9 +4413,11 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(getContext(), config).then(async (task: request.agent.Task) => {
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
-    task.start();
+    await task.start();
+    //用户需要手动调用remove从而结束task对象的生命周期
+    request.agent.remove(task.tid);
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -4458,9 +4465,9 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   request.agent.getTask(getContext(), "123456").then((task: request.agent.Task) => {
-    console.info(`Succeeded in querying a upload task. result: ${task.tid}`);
+    console.info(`Succeeded in querying a task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query a task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -4468,7 +4475,7 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
 
 remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
-移除属于调用方的指定任务，如果正在处理中，该任务将被迫停止。使用callback异步回调。
+移除属于调用方的指定任务，如果正在处理中，该任务将被迫停止。使用callback异步回调。在调用后任务对象和其回调函数会被释放。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4510,7 +4517,7 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
 remove(id: string): Promise&lt;void&gt;
 
-移除属于调用方的指定任务，如果正在处理中，该任务将被迫停止，使用Promise异步回调。
+移除属于调用方的指定任务，如果正在处理中，该任务将被迫停止。使用Promise异步回调。在调用后任务对象和其回调函数会被释放。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

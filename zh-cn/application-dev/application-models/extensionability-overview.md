@@ -12,7 +12,7 @@
 > 
 > - “是否允许三方应用实现”是指：对于一类ExtensionAbility，三方应用能否继承该ExtensionAbility父类实现自己的业务逻辑。
 > - “是否允许三方应用访问”是指：有些ExtensionAbility会对外提供一些服务，这些ExtensionAbility可能允许三方访问，也可能不允许。“Y”表示允许，“N”表示不允许，“NA”表示不涉及对外服务。
-> - “是否有独立Extension沙箱”是指：已经开发Extension都是和主应用共沙箱运行，API12及其之后新增Extension默认独立沙箱运行，输入法Extesnion由于安全机制管控改为独立沙箱运行。
+> - “是否有独立Extension沙箱”是指：已经开发Extension都是和主应用共沙箱运行，API12及其之后新增Extension默认独立沙箱运行，输入法Extension由于安全机制管控改为独立沙箱运行。
 > - “启动Extension传递共享数据是否严格模式访问”是指：共享数据可通过配置应用的<!--Del-->[<!--DelEnd-->data-group-ids<!--Del-->](../security/app-provision-structure.md#bundle-info对象内部结构)<!--DelEnd-->和ExtensionAbility的[dataGroupIds](../quick-start/module-configuration-file.md#extensionabilities标签)实现。严格模式访问表示只读，非严格模式访问表示可以读写。“Y”表示严格模式访问共享数据，即只能读取共享数据，“N”表示非严格模式访问共享数据，即可以读写共享数据。
 
 

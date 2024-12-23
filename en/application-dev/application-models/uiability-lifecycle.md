@@ -40,7 +40,6 @@ export default class EntryAbility extends UIAbility {
 After the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is created but before it enters the Foreground state, the system creates a WindowStage instance and triggers the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) callback. You can set UI loading and WindowStage event subscription in the callback.
 
 **Figure 2** WindowStageCreate and WindowStageDestroy 
-
 ![Ability-Life-Cycle-WindowStage](figures/Ability-Life-Cycle-WindowStage.png)  
 
 In the **onWindowStageCreate()** callback, use [loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9) to set the page to be loaded, and call [on('windowStageEvent')](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9) to subscribe to [WindowStage events](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9), for example, having or losing focus, switching to the foreground or background, or becoming interactive or non-interactive in the foreground.
@@ -109,11 +108,6 @@ Before the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbili
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-const TAG: string = '[EntryAbility]';
-const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryAbility extends UIAbility {
   windowStage: window.WindowStage | undefined = undefined;
@@ -126,6 +120,32 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageDestroy() {
     // Release UI resources.
+  }
+}
+```
+
+### WindowStageWillDestroy
+The [onWindowStageWillDestroy()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagewilldestroy12) callback is invoked before the window stage is destroyed. In this case, the window stage can still be used.
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+export default class EntryAbility extends UIAbility {
+  windowStage: window.WindowStage | undefined = undefined;
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    this.windowStage = windowStage;
+    // ...
+  }
+
+  onWindowStageWillDestroy(windowStage: window.WindowStage) {
+    // Release the resources obtained through the windowStage object.
     // Unsubscribe from the WindowStage events (having or losing focus, switching to the foreground or background, or becoming interactive or non-interactive in the foreground) in the onWindowStageDestroy() callback.
     try {
       if (this.windowStage) {
@@ -137,26 +157,7 @@ export default class EntryAbility extends UIAbility {
       hilog.error(DOMAIN_NUMBER, TAG, `Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
     }
   }
-}
-```
 
-### WindowStageWillDestroy
-The [onWindowStageWillDestroy()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagewilldestroy12) callback is invoked before the window stage is destroyed. In this case, the window stage can still be used.
-
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
-
-export default class EntryAbility extends UIAbility {
-  windowStage: window.WindowStage | undefined = undefined;
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    this.windowStage = windowStage;
-    // ...
-  }
-  onWindowStageWillDestroy(windowStage: window.WindowStage) {
-    // Release the resources obtained through the windowStage object.
-  }
   onWindowStageDestroy() {
     // Release UI resources.
   }

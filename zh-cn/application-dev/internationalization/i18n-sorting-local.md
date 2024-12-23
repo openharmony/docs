@@ -105,4 +105,15 @@ array.sort((a, b) => {
     return collator.compare(a, b);
 })
 console.log("result: ", array);  // 甘蔗,石榴,苹果,香蕉,梨,葡萄,橘子
+
+// 搜索匹配的字符串
+options = {
+    usage: "search",
+    sensitivity: "base"
+};
+collator = new intl.Collator("tr", options);
+let sourceArray = ['Türkiye', 'TüRkiye', 'salt', 'bright'];
+let s = 'türkiye';
+let matches = sourceArray.filter(item => collator.compare(item, s) === 0);
+console.log(matches.toString());  // Türkiye,TüRkiye
 ```

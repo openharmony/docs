@@ -89,6 +89,53 @@ createData(mimeType: string, value: ValueType): PasteData
  let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, dataText);
   ```
 
+## pasteboard.createData<sup>14+</sup>
+
+createData(data: Record&lt;string, ValueType&gt;): PasteData
+
+构建一个包含多个类型数据的剪贴板内容对象。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名 | 类型                                             | 必填 | 说明                                                                                                                                                                                                                                                                                          |
+| -------- |------------------------------------------------| -------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| data | Record&lt;string, [ValueType](#valuetype9)&gt; | 是 | Record的key为剪贴板数据对应的MIME类型。可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型。也可以是自定义的MIME类型，可自定义此参数值，mimeType长度不能超过1024字节。<br/>Record的value为key中指定MIME类型对应的自定义数据。<br/>Record中的首个key-value指定的MIME类型，会作为剪贴板内容对象中首个PasteDataRecord的默认MIME类型，非默认类型的数据在粘贴时只能使用[getData](#getdata14)接口读取。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteData](#pastedata) |  剪贴板内容对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+
+**示例1：**
+
+```ts
+let pasteData: pasteboard.PasteData = pasteboard.createData({
+    'text/plain': 'hello',
+    'app/xml': new ArrayBuffer(256),
+});
+```
+
+**示例2：**
+
+```ts
+let record: Record<string, pasteboard.ValueType> = {};
+record[pasteboard.MIMETYPE_TEXT_PLAIN] = 'hello';
+record[pasteboard.MIMETYPE_TEXT_URI] = 'dataability:///com.example.myapplication1/user.txt';
+let pasteData: pasteboard.PasteData = pasteboard.createData(record);
+```
 
 ## pasteboard.createRecord<sup>9+</sup>
 
@@ -435,6 +482,119 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 | localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容是否为“仅在本地”，默认值为false。其值会被shareOption属性覆盖，推荐使用shareOption属性。ShareOption.INAPP、ShareOption.LOCALDEVICE会将localOnly设置为true，ShareOption.CROSSDEVICE会将localOnly设置为false。<br/>- 配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>- 配置为false时，表示内容将在设备间传递。 |
 | shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CROSSDEVICE。                                                                                                                                                                                            |
 
+## FileConflictOption<sup>15+</sup>
+
+定义文件拷贝冲突时的选项。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+| 名称      | 值   | 说明                                                         |
+| --------- | ---- | ------------------------------------------------------------ |
+| OVERWRITE | 0    | 目标路径存在同文件名时覆盖。                                 |
+| SKIP      | 1    | 目标路径存在同文件名时跳过，若设置SKIP，应用获取到的粘贴数据不包含跳过文件。 |
+
+## ProgressIndicator<sup>15+</sup>
+
+定义进度条指示选项，可选择是否采用系统默认进度显示。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+| 名称    | 值   | 说明                     |
+| ------- | ---- | ------------------------ |
+| NONE    | 0    | 不采用系统默认进度显示。 |
+| DEFAULT | 1    | 采用系统默认进度显示。   |
+
+## ProgressInfo<sup>15+</sup>
+
+定义进度上报的数据结构，且仅当进度指示选项[ProgressIndicator](#progressindicator15)设置为NONE时才会上报此信息。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+| 名称     | 类型   | 可读 | 可写 | 说明                                                       |
+| -------- | ------ | ---- | ---- | ---------------------------------------------------------- |
+| progress | number | 是   | 否   | 不使用系统提供的进度条时，系统上报拷贝粘贴任务进度百分比。 |
+
+## ProgressListener<sup>15+</sup>
+
+type ProgressListener = (progress: ProgressInfo) => void
+
+定义进度数据变化的订阅函数，当选择不使用系统默认进度显示时，可设置该项获取粘贴过程的进度。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+| 参数名   | 类型                            | 必填 | 说明                                                         |
+| -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| progress | [ProgressInfo](#progressinfo15) | 是   | 定义进度上报的数据结构，且仅当进度指示选项[ProgressIndicator](#progressindicator15)设置为NONE时才会上报此信息。 |
+
+## ProgressSignal<sup>15+</sup>
+
+定义进度取消的函数，在粘贴过程中可选择取消任务，且仅当进度指示选项[ProgressIndicator](#progressindicator15)设置为NONE时此参数才有意义。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+### cancel
+
+cancel(): void
+
+取消正在进行的拷贝粘贴任务。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**示例：**
+
+```ts
+import { AbilityConstant, UIAbility, Want} from '@kit.AbilityKit'
+import { BusinessError pasteboard } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+    async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
+        let text = "test";
+        let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
+        let systemPasteboard = pasteboard.getSystemPasteboard();
+        await systemPasteboard.setData(pasteData);
+        let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+        let signal = new pasteboard.ProgressSignal;
+		let ProgressListener = (progress: pasteData.ProgressInfo) => {
+    		console.log('progressListener success, progress:' + progress.progress);
+            signal.cancel();
+		}
+		let params: pasteData.GetDataParams = {
+    		destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
+    		fileConflictOption: pasteData.FileConflictOption.OVERWRITE,
+    		progressIndicator: pasteData.ProgressIndicator.DEFAULT,
+    		progressListener: ProgressListener
+		}
+		systemPasteboard.getDataWithProgress().then((pasteData: pasteboard.PasteData) => {
+    		let text: string = pasteData.getPrimaryText();
+		}).catch((err: BusinessError) => {
+    		console.error('Failed to get PasteData. Cause: ' + err.message);
+		});   
+    }
+}
+```
+
+## GetDataParams<sup>15+</sup>
+
+应用在使用剪贴板提供的文件拷贝能力的情况下需要的参数，包含目标路径、文件冲突选项、进度条类型等。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+| 名称               | 类型                                        | 必填 | 说明                                                         |
+| ------------------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| destUri            | string                                      | 否   | 拷贝文件时目标路径。若不支持文件处理，则不需要设置此参数；若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。 |
+| fileConflictOption | [FileConflictOption](#fileconflictoption15) | 否   | 定义文件拷贝冲突时的选项，默认为OVERWRITE。                  |
+| progressIndicator  | [ProgressIndicator](#progressindicator15)   | 是   | 定义进度条指示选项，可选择是否采用系统默认进度显示。         |
+| progressListener   | [ProgressListener](#progresslistener15)     | 否   | 定义进度数据变化的订阅函数，当选择不使用系统默认进度显示时，可设置该项获取粘贴过程的进度。 |
+| progressSignal     | [ProgressSignal](#progresssignal15)         | 否   | 定义进度取消的函数，在粘贴过程中可选择取消任务，且仅当进度指示选项[ProgressIndicator](#progressindicator15)设置为NONE时此参数才有意义。 |
+
 ## PasteDataRecord<sup>7+</sup>
 
 对于剪贴板中内容记录的抽象定义，称之为条目。剪贴板内容部分由一个或者多个条目构成，例如一条文本内容、一份HTML、一个URI或者一个Want。
@@ -477,6 +637,137 @@ toPlainText(): string
 let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 let data: string = record.toPlainText();
 console.info(`Succeeded in converting to text. Data: ${data}`);
+```
+
+### addEntry<sup>14+</sup>
+
+addEntry(type: string, value: ValueType): void
+
+往一个PasteDataRecord中额外添加一种样式的自定义数据。此方式添加的MIME类型都不是Record的默认类型，粘贴时只能使用[getData](#getdata14)接口读取对应数据。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名   | 类型 | 必填 | 说明                |
+|-------| -------- | -------- |-------------------|
+| type  | string | 是 | 剪贴板数据对应的MIME类型，可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型；也可以是自定义的MIME类型，开发者可自定义此参数值，mimeType长度不能超过1024个字节。  |
+| value | [ValueType](#valuetype9) | 是 | 自定义数据内容。          |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
+let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
+record.addEntry(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
+record.addEntry(pasteboard.MIMETYPE_TEXT_HTML, html);
+```
+
+### getValidTypes<sup>14+</sup>
+
+getValidTypes(types: Array&lt;string&gt;): Array&lt;string&gt;
+
+根据传入的MIME类型，返回传入的MIME类型和剪贴板中数据的MIME类型的交集。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名   | 类型 | 说明             |
+|-------| -------- |----------------|
+| types | Array&lt;string&gt; | MIME类型列表。 |
+
+**返回值：**
+
+| 类型 | 说明                                   |
+| -------- |--------------------------------------|
+| Array&lt;string&gt; | 传入的MIME类型和剪贴板中数据的MIME类型的交集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
+let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
+record.addEntry(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
+record.addEntry(pasteboard.MIMETYPE_TEXT_HTML, html);
+let types: string[] = record.getValidTypes([
+    pasteboard.MIMETYPE_TEXT_PLAIN,
+    pasteboard.MIMETYPE_TEXT_HTML,
+    pasteboard.MIMETYPE_TEXT_URI,
+    pasteboard.MIMETYPE_TEXT_WANT,
+    pasteboard.MIMETYPE_PIXELMAP
+]);
+```
+
+### getData<sup>14+</sup>
+
+getData(type: string): Promise&lt;ValueType&gt;
+
+从PasteDataRecord中获取指定MIME类型的自定义数据。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名  | 类型     | 说明       |
+|------|--------|----------|
+| type | string | MIME类型。 |
+
+**返回值：**
+
+| 类型                                      | 说明                                                                                                                   |
+|-----------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| Promise&lt;[ValueType](#valuetype9)&gt; | Promise对象，返回PasteDataRecord中指定MIME类型的自定义数据。<br/>PasteDataRecord中包含多个MIME类型数据时，非PasteDataRecord的默认MIME类型的数据只能通过本接口获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
+let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
+record.addEntry(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
+record.addEntry(pasteboard.MIMETYPE_TEXT_HTML, html);
+record.getData(pasteboard.MIMETYPE_TEXT_PLAIN).then((value: pasteboard.ValueType) => {
+    let textPlainContent = value as string;
+    console.info('Success to get text/plain value. value is: ' + textPlainContent);
+}).catch((err: BusinessError) => {
+    console.error('Failed to get text/plain value. Cause: ' + err.message);
+});
+record.getData(pasteboard.MIMETYPE_TEXT_URI).then((value: pasteboard.ValueType) => {
+    let uri = value as string;
+    console.info('Success to get text/uri value. value is: ' + uri);
+}).catch((err: BusinessError) => {
+    console.error('Failed to get text/uri value. Cause: ' + err.message);
+});
 ```
 
 ### convertToText<sup>(deprecated)</sup>
@@ -2502,6 +2793,81 @@ try {
     console.error('Failed to set UnifiedData. Cause:' + err.message);
 };  
 ```
+
+### setAppShareOptions<sup>14+</sup>
+
+setShareOptions(shareOptions: ShareOption): void
+
+应用设置本应用剪贴板数据的可粘贴范围。
+
+**需要权限**：ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| shareOptions | [ShareOption](js-apis-pasteboard.md#shareoption9) | 是 | 可粘贴的范围，参数只允许pasteboard.ShareOption.INAPP。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 12900006 | Settings already exist. |
+
+**示例：**
+
+```ts
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+  systemPasteboard.setAppShareOptions(pasteboard.ShareOption.INAPP);
+  console.info('Set app share options success.');
+} catch (err) {
+  let error: BusinessError = err as BusinessError;
+  console.error(`Set app share options failed, errorCode: ${error.code}, errorMessage: ${error.message}.`);
+}
+```
+
+### removeAppShareOptions<sup>14+</sup>
+
+removeShareOptions(): void
+
+删除应用全局的可粘贴的范围。
+
+**需要权限**：ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+  systemPasteboard.removeAppShareOptions();
+  console.info('Remove app share options success.');
+} catch (err) {
+  let error: BusinessError = err as BusinessError;
+  console.error(`Remove app share options failed, errorCode: ${error.code}, errorMessage: ${error.message}.`);
+}
+```
+
 ### Pattern<sup>13+</sup>
 剪贴板支持检测的模式类型。
 
@@ -2583,12 +2949,82 @@ getMimeTypes(): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-import { pasteboard } from '@kit.BasicServicesKit'
+import { pasteboard, BusinessError } from '@kit.BasicServicesKit'
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getMimeTypes().then((data: Array<String>) => {
     console.info('Succeeded in getting mimeTypes. mimeTypes: ' + data.sort().join(','));
-}) catch (err) {
+}).catch((err: BusinessError) => {
     console.error('Failed to get mimeTypes. Cause:' + err.message);
-};
+});
 ```
+
+### getDataWithProgress<sup>15+</sup>
+
+getDataWithProgress(params: GetDataParams): Promise&lt;PasteData&gt;
+
+获取剪贴板的内容和进度，使用Promise异步回调。
+
+**需要权限**：ohos.permission.READ_PASTEBOARD
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名 | 类型                              | 必填 | 说明                                                         |
+| ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
+| params | [GetDataParams](#getdataparams15) | 是   | 应用在使用剪贴板提供的文件拷贝能力的情况下需要的参数，包含目标路径、文件冲突选项、进度条类型等。 |
+
+**返回值：**
+
+| 类型                                   | 说明                              |
+| -------------------------------------- | --------------------------------- |
+| Promise&lt;[PasteData](#pastedata)&gt; | Promise对象，返回系统剪贴板数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the. |
+| 401      | Parameter error.                                             |
+| 12900003 | Another copy or paste operation is in progress.              |
+| 12900007 | Copy file failed.                                            |
+| 12900008 | Failed to start progress.                                    |
+| 12900009 | Progress exits abnormally.                                   |
+| 12900010 | Get pasteData error.                                         |
+
+**示例：**
+
+```ts
+import { AbilityConstant, UIAbility, Want} from '@kit.AbilityKit'
+import { BusinessError pasteboard } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+    async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
+        let text = "test";
+        let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
+        let systemPasteboard = pasteboard.getSystemPasteboard();
+        await systemPasteboard.setData(pasteData);
+        let signal = new pasteboard.ProgressSignal;
+		let ProgressListener = (progress: pasteData.ProgressInfo) => {
+    		console.log('progressListener success, progress:' + progress.progress);
+		}
+		let params: pasteData.GetDataParams = {
+    		destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
+    		fileConflictOption: pasteData.FileConflictOption.OVERWRITE,
+    		progressIndicator: pasteData.ProgressIndicator.DEFAULT,
+    		progressListener: ProgressListener
+		}
+		systemPasteboard.getDataWithProgress().then((pasteData: pasteboard.PasteData) => {
+    		let text: string = pasteData.getPrimaryText();
+		}).catch((err: BusinessError) => {
+    		console.error('Failed to get PasteData. Cause: ' + err.message);
+		});   
+    }
+}
+```
+

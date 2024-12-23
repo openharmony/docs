@@ -31,11 +31,12 @@ import { StartOptions } from '@kit.AbilityKit';
 | startupVisibility<sup>12+</sup> | [contextConstant.StartupVisibility](js-apis-app-ability-contextConstant.md#startupvisibility12) | Yes| No| Visibility of the ability after it is started.<br>**Constraints**:<br>1. This property takes effect only on tablets.<br>2. This property takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).<br>3. **processMode** and **startupVisibility** must be set in pair.|
 | startWindowIcon<sup>14+</sup> | [image.PixelMap](../../reference/apis-image-kit/js-apis-image.md#pixelmap7) | No| Yes|  Icon displayed on the launch page when the UIAbility is started in an application. If this property is not set, the value of **startWindowIcon** in the **module.json5** file is used by default.<br>**Constraints**:<br>1. This property takes effect only on tablets and 2-in-1 devices.<br>2. This property takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).<br>3. The maximum size of an image is 600 MB.|
 | startWindowBackgroundColor<sup>14+</sup> | string | No| Yes|  Background color of the launch page when the UIAbility is launched in an application. If this property is not set, the value of **startWindowBackground** in the **module.json5** file is used by default.<br>**Constraints**:<br>1. This property takes effect only on tablets and 2-in-1 devices.<br>2. This property takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).|
+| supportWindowModes<sup>14+</sup> | Array\<[bundleManager.SupportWindowMode](./js-apis-bundleManager.md#supportwindowmode)> | No| Yes|  Whether to display the maximize, minimize, or split-screen button when the UIAbility is launched in an application. If this property is not set, the value of **supportWindowMode** in the **module.json5** file is used by default.<br>**Constraints**:<br>This property takes effect only on tablets and 2-in-1 devices.|
  
 **Example**
 
   ```ts
-  import { UIAbility, Want, StartOptions } from '@kit.AbilityKit';
+  import { UIAbility, Want, StartOptions, bundleManager } from '@kit.AbilityKit';
   import { BusinessError } from '@kit.BasicServicesKit';
   import { image } from '@kit.ImageKit';
 
@@ -59,7 +60,12 @@ import { StartOptions } from '@kit.AbilityKit';
         let options: StartOptions = {
           displayId: 0,
           startWindowIcon: imagePixelMap,
-          startWindowBackgroundColor: '#00000000'
+          startWindowBackgroundColor: '#00000000',
+          supportWindowModes: [
+            bundleManager.SupportWindowMode.FULL_SCREEN,
+            bundleManager.SupportWindowMode.SPLIT,
+            bundleManager.SupportWindowMode.FLOATING
+          ]
         };
 
         try {

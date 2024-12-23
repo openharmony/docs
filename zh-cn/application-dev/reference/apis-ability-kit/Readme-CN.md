@@ -116,6 +116,7 @@
       - [processInfo](js-apis-inner-app-processInfo.md)
     - application
       - [abilityMonitor](js-apis-inner-application-abilityMonitor.md)
+      - [AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)
       - [AbilityStageContext](js-apis-inner-application-abilityStageContext.md)
       - [abilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md)
       - [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)
@@ -143,7 +144,6 @@
       - [AbilityFirstFrameStateData(系统接口)](js-apis-inner-application-abilityFirstFrameStateData-sys.md)
       - [AbilityFirstFrameStateObserver(系统接口)](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)
       - [AbilityForegroundStateObserver(系统接口)](js-apis-inner-application-abilityForegroundStateObserver-sys.md)
-      - [AbilityRunningInfo(系统接口)](js-apis-inner-application-abilityRunningInfo-sys.md)
       - [AppForegroundStateObserver(系统接口)](js-apis-inner-application-appForegroundStateObserver-sys.md)
       - [ApplicationContext(系统接口)](js-apis-inner-application-applicationContext-sys.md)
       - [AutoFillPopupConfig (系统接口)](js-apis-inner-application-autoFillPopupConfig-sys.md)

@@ -1,8 +1,10 @@
 # 组件导航 (Navigation)(推荐)
 
+组件导航（Navigation）主要用于实现页面间以及组件内部的页面跳转，支持在不同组件间传递跳转参数，提供灵活的跳转栈操作，从而更便捷地实现对不同页面的访问和复用。本文将从组件导航（Navigation）的显示模式、路由操作、子页面管理、跨包跳转以及跳转动效等几个方面进行详细介绍。
+
 [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)是路由导航的根视图容器，一般作为页面（@Entry）的根容器，包括单栏（Stack）、分栏（Split）和自适应（Auto）三种显示模式。Navigation组件适用于模块内和跨模块的路由切换，通过组件级路由能力实现更加自然流畅的转场体验，并提供多种标题栏样式来呈现更好的标题和内容联动效果。[一次开发，多端部署](../key-features/multi-device-app-dev/introduction.md)场景下，Navigation组件能够自动适配窗口显示大小，在窗口较大的场景下自动切换分栏展示效果。
 
-Navigation组件主要包含​导航页（NavBar）和子页（NavDestination）。导航页由标题栏（Titlebar，包含菜单栏menu）、内容区（Navigation子组件）和工具栏（Toolbar）组成，其中导航页可以通过[hideNavBar](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#hidenavbar9)属性进行隐藏，导航页不存在页面栈中，导航页和子页，以及子页之间可以通过路由操作进行切换。
+Navigation组件主要包含​导航页和子页。导航页由标题栏（包含菜单栏）、内容区和工具栏组成，可以通过[hideNavBar](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#hidenavbar9)属性进行隐藏，导航页不存在页面栈中，与子页，以及子页之间可以通过路由操作进行切换。
 
 在API Version 9上，Navigation需要配合[NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md)组件实现页面路由。从API Version 10开始，更推荐使用[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)实现页面路由。
 
@@ -39,7 +41,7 @@ Navigation组件通过mode属性设置页面的显示模式。
   .mode(NavigationMode.Stack)
   ```
 
-  ![单页面1](figures/单页面1.jpg)
+  ![导航单栏模式](figures/导航单栏模式.jpg)
 
 - 分栏模式
 
@@ -80,7 +82,7 @@ Navigation组件通过mode属性设置页面的显示模式。
           List({ space: 12 }) {
             ForEach(this.arr, (item:number) => {
               ListItem() {
-                Text("NavRouter" + item)
+                Text("Page" + item)
                   .width("100%")
                   .height(72)
                   .backgroundColor('#FFFFFF')
@@ -170,7 +172,7 @@ Navigation组件通过mode属性设置页面的显示模式。
   }
   ```
 
-  ![分栏](figures/分栏.jpg)
+  ![导航分栏模式](figures/导航分栏模式.jpg)
 
 
 ## 设置标题栏模式
@@ -279,7 +281,11 @@ Navigation() {
 
 Navigation路由相关的操作都是基于页面栈[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)提供的方法进行，每个Navigation都需要创建并传入一个NavPathStack对象，用于管理页面。主要涉及页面跳转、页面返回、页面替换、页面删除、参数获取、路由拦截等功能。
 
-从API version 12开始，页面栈允许被继承。开发者可以在派生类中自定义属性和方法，也可以重写父类的方法。派生类对象可以替代基类NavPathStack对象使用。具体示例代码参见：[页面栈继承示例代码](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例10)。
+从API version 12开始，页面栈允许被继承。开发者可以在派生类中自定义属性和方法，也可以重写父类的方法。派生类对象可以替代基类NavPathStack对象使用。具体示例代码参见：[页面栈继承示例代码](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例10定义路由栈派生类)。
+
+> **说明：**
+>
+> 不建议开发者通过监听生命周期的方式管理自己的页面栈。
 
 ```ts
 @Entry
@@ -318,12 +324,18 @@ NavPathStack通过Push相关的接口去实现页面跳转的功能，主要分�
 3. 带错误码的跳转，跳转结束会触发异步回调，返回错误码信息。
 
     ```ts
-    this.pageStack.pushDestinationByName('PageOne', "PageOne Param")
-    .catch((error: BusinessError) => {
-      console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
-    }).then(() => {
-      console.info('Push destination succeed.');
-    });
+    this.pageStack.pushDestination({name: "PageOne", param: "PageOne Param"})
+      .catch((error: BusinessError) => {
+        console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
+      }).then(() => {
+        console.info('Push destination succeed.');
+      });
+    this.pageStack.pushDestinationByName("PageOne", "PageOne Param")
+      .catch((error: BusinessError) => {
+        console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
+      }).then(() => {
+        console.info('Push destination succeed.');
+      });
     ```
 
 ### 页面返回
@@ -349,6 +361,13 @@ NavPathStack通过Replace相关接口去实现页面替换功能。
 // 将栈顶页面替换为PageOne
 this.pageStack.replacePath({ name: "PageOne", param: "PageOne Param" })
 this.pageStack.replacePathByName("PageOne", "PageOne Param")
+// 带错误码的替换，跳转结束会触发异步回调，返回错误码信息
+this.pageStack.replaceDestination({name: "PageOne", param: "PageOne Param"})
+  .catch((error: BusinessError) => {
+    console.error(`Replace destination failed, error code = ${error.code}, error.message = ${error.message}.`);
+  }).then(() => {
+    console.info('Replace destination succeed.');
+  })
 ```
 
 ### 页面删除
@@ -360,6 +379,19 @@ NavPathStack通过Remove相关接口去实现删除页面栈中特定页面的�
 this.pageStack.removeByName("PageOne")
 // 删除指定索引的页面
 this.pageStack.removeByIndexes([1,3,5])
+// 删除指定id的页面
+this.pageStack.removeByNavDestinationId("1");
+```
+
+### 移动页面
+
+NavPathStack通过Move相关接口去实现移动页面栈中特定页面到栈顶的功能。
+
+```ts
+// 移动栈中name为PageOne的页面到栈顶
+this.pageStack.moveToTop("PageOne");
+// 移动栈中索引为1的页面到栈顶
+this.pageStack.moveIndexToTop(1);
 ```
 
 ### 参数获取
@@ -591,7 +623,7 @@ Navigation通过[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts
 2. 实现一个转场协议对象[NavigationAnimatedTransition](..//reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navigationanimatedtransition11)，其中timeout属性表示转场结束的超时时间，默认为1000ms，transition属性为自定义的转场动画方法，开发者要在这里实现自己的转场动画逻辑，系统会在转场开始时调用该方法，onTransitionEnd为转场结束时的回调。
 3. 调用customNavContentTransition方法，返回实现的转场协议对象，如果返回undefined，则使用系统默认转场。
 
-具体示例代码可以参考[Navigation自定义转场示例](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例3)。
+具体示例代码可以参考[Navigation自定义转场示例](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例3设置可交互转场动画)。
 
 ### 共享元素转场
 
@@ -601,25 +633,25 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
     ```ts
     // 起始页配置共享元素id
     NavDestination() {
-    Column() {
+      Column() {
         // ...
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(100)
         .height(100)
-    }
+      }
     }
     .title('FromPage')
 
     // 目的页配置共享元素id
     NavDestination() {
-    Column() {
+      Column() {
         // ...
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(200)
         .height(200)
-    }
+      }
     }
     .title('ToPage')
     ```
@@ -628,7 +660,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 
     ```ts
     NavDestination() {
-    Column() {
+      Column() {
         Button('跳转目的页')
         .width('80%')
         .height(40)
@@ -638,7 +670,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
               this.pageStack.pushPath({ name: 'ToPage' }, false)
             })
         })
-    }
+      }
     }
     .title('FromPage')
     ```
@@ -665,7 +697,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 
 ### 系统路由表
 
-从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（HSP/HAR）中需要独立配置route_map.json文件，在触发路由跳转时，应用只需要通过NavPathStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。其主要步骤如下：
+从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（[HSP](../quick-start/in-app-hsp.md)/[HAR](../quick-start/har-package.md)）中需要独立配置route_map.json文件，在触发路由跳转时，应用只需要通过NavPathStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。系统路由表不支持预览器，跨平台及模拟器。其主要步骤如下：
 
 1. 在跳转目标模块的配置文件module.json5添加路由表配置：
    

@@ -164,7 +164,7 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -204,7 +204,7 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -250,7 +250,7 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -289,7 +289,7 @@ getLocalDeviceNetworkId(): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -329,7 +329,7 @@ getLocalDeviceName(): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -369,7 +369,7 @@ getLocalDeviceType(): number;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -409,7 +409,7 @@ getLocalDeviceId(): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -456,7 +456,7 @@ getDeviceName(networkId: string): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -505,7 +505,7 @@ getDeviceType(networkId: string): number;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -550,7 +550,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptio
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -603,7 +603,7 @@ stopDiscovering(): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -646,7 +646,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -706,7 +706,7 @@ unbindTarget(deviceId: string): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -747,7 +747,7 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -800,7 +800,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -853,7 +853,7 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo; }&g
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -956,7 +956,7 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string; }&gt;):
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1002,7 +1002,7 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string; }&gt;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1048,7 +1048,7 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number; }&gt;): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1094,7 +1094,7 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number; }&gt;): vo
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1140,7 +1140,7 @@ on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1182,7 +1182,7 @@ off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 

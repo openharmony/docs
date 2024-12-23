@@ -250,3 +250,49 @@ axContext.startAbility(want).then(() => {
   console.error(`startAbility failed to enable ability, Code is ${err.code}, message is ${err.message}`);
 });
 ```
+
+### getElements<sup>16+</sup>
+
+getElements(windowId: number, elementId?: number): Promise<Array&lt;AccessibilityElement&gt;>;
+
+提供批量查询节点的能力。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| windowId | number | 是 | 表示查询的窗口id。 |
+| elementId | number | 否 | 表示查询的节点id。传入此参数表示查询当前节点下的所有子节点列表，不传则查询窗口下所有节点。 |
+
+**返回值：**
+| 类型                                  | 说明                     |
+| ----------------------------------- | ---------------------- |
+| Promise<Array&lt;AccessibilityElement&gt;> | Promise对象，返回当前窗口或者当前节点下的所有子节点列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
+
+**示例：**
+
+```ts
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowId: number = 10;
+let elementId: number = 10;
+
+axContext.getElements(windowId, elementId).then((data:AccessibilityElement[]) => {
+  console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
+});
+```

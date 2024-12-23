@@ -11,7 +11,7 @@ When the application responds to user input, its main thread should execute only
 
 ### Using Asynchronous Component Loading
 
-The **\<Image>** component has the asynchronous loading feature enabled by default. When an application loads a batch of local images to be displayed on the page, blank placeholder icons are displayed first, and then replaced by the images when these images have finished loading in other threads. In this way, image loading does not block page display. The following code is recommended only when the image loading takes a short time.
+The **Image** component has the asynchronous loading feature enabled by default. When an application loads a batch of local images to be displayed on the page, blank placeholder icons are displayed first, and then replaced by the images when these images have finished loading in other threads. In this way, image loading does not block page display. The following code is recommended only when the image loading takes a short time.
 
 ```typescript
 @Entry
@@ -61,7 +61,7 @@ struct ImageExample2 {
 
 ### Using TaskPool for Asynchronous Processing
 
-Compared with the worker thread, [TaskPool](../reference/apis/js-apis-taskpool.md) provides the task priority setting and automatic thread pool management mechanism. The following is an example:
+Compared with the worker thread, [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) provides the task priority setting and automatic thread pool management mechanism. The following is an example:
 
 ```typescript
 import taskpool from '@ohos.taskpool';
@@ -141,7 +141,7 @@ When an application refreshes a page, the number of components to be refreshed m
 
 Negative example: If a component in a container is included in the **if** condition, changes in the **if** condition result will trigger the creation and destruction of the component. If the container layout is affected in this case, all components in the container are refreshed. As a result, the UI refresh of the main thread takes a long time.
 
-In the following example, the **Text('New Page')** component is controlled by the state variable **isVisible**. When **isVisible** is set to **true**, the component is created. When **isVisible** is set to **false**, the component is destroyed. This means that, when the value of **isVisible** changes, all components in the **\<Stack>** container are refreshed.
+In the following example, the **Text('New Page')** component is controlled by the state variable **isVisible**. When **isVisible** is set to **true**, the component is created. When **isVisible** is set to **false**, the component is destroyed. This means that, when the value of **isVisible** changes, all components in the **Stack** container are refreshed.
 
 ```typescript
 @Entry

@@ -92,13 +92,13 @@ getLineMetrics(lineNumber: number): LineMetrics
 | ---------------------------------------- | -------- |
 | [LineMetrics](../../apis-arkgraphics2d/js-apis-graphics-text.md#linemetrics) | 行信息、文本样式信息、以及字体属性信息。 |
 
-### getRectsForRange<sup>13+</sup>
+### getRectsForRange<sup>14+</sup>
 
 getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeightStyle): Array\<TextBox>
 
 获取给定的矩形区域宽度以及矩形区域高度的规格下，文本中任意区间范围内的字符或占位符所占的绘制区域信息。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -206,6 +206,7 @@ equals(id: TextMenuItemId): boolean
 | content | [ResourceStr](ts-types.md#resourcestr) | 是   | 菜单名称。 |
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单图标。<br/>不支持网络图片。 |
 | id | [TextMenuItemId](#textmenuitemid12) | 是   | 菜单id。 |
+| labelInfo<sup>16+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 快捷键提示。<br/>该字段仅2in1设备支持。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## EditMenuOptions对象说明
 
@@ -380,7 +381,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 
 ## FontSettingOptions<sup>12+</sup>对象说明
 
-字体配置项。
+字体配置项，比如通过设置应用内组件的字体粗细，进行字体粗细的无极调节（指在一定范围内无限制的调节的状态）。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 

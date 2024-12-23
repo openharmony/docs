@@ -246,7 +246,7 @@ struct SpecialImage {
   }
 }
 @Component
-struct CompA {
+struct PageChild {
   @ObjectLink uiStyle: UIStyle
   // 下面的函数用于显示组件是否被渲染
   private isRenderColumn() : number {
@@ -351,7 +351,7 @@ struct Page {
   @State uiStyle: UIStyle = new UIStyle();
   build() {
     Stack() {
-      CompA({
+      PageChild({
         uiStyle: this.uiStyle
       })
     }
@@ -447,7 +447,7 @@ struct SpecialImage {
   }
 }
 @Component
-struct CompA {
+struct PageChild {
   @ObjectLink uiStyle: UIStyle;
   @ObjectLink needRenderTranslate: NeedRenderTranslate; // 从其父组件接收新定义的NeedRenderxxx类的实例
   @ObjectLink needRenderFontSize: NeedRenderFontSize;
@@ -570,7 +570,7 @@ struct Page {
   @State uiStyle: UIStyle = new UIStyle();
   build() {
     Stack() {
-      CompA({
+      PageChild({
         uiStyle: this.uiStyle,
         needRenderTranslate: this.uiStyle.needRenderTranslate, // 传递needRenderxxx类给子组件
         needRenderFontSize: this.uiStyle.needRenderFontSize,
@@ -641,7 +641,7 @@ struct SpecialImage {
   }
 }
 @Component
-struct CompA {
+struct PageChild {
   @ObjectLink uiStyle: UIStyle
   // 下面的函数用于显示组件是否被渲染
   private isRenderColumn() : number {
@@ -746,7 +746,7 @@ struct Page {
   @State uiStyle: UIStyle = new UIStyle();
   build() {
     Stack() {
-      CompA({
+      PageChild({
         uiStyle: this.uiStyle
       })
     }
@@ -1371,10 +1371,10 @@ struct ChildComponent {
 
 ```typescript
 @Observed
-class StyleList extends Array<TextStyle> {
+class StyleList extends Array<TextStyles> {
 };
 @Observed
-class TextStyle {
+class TextStyles {
   fontSize: number;
 
   constructor(fontSize: number) {
@@ -1387,7 +1387,7 @@ struct Page {
   @State styleList: StyleList = new StyleList();
   aboutToAppear() {
     for (let i = 15; i < 50; i++)
-    this.styleList.push(new TextStyle(i));
+    this.styleList.push(new TextStyles(i));
   }
   build() {
     Column() {
@@ -1400,7 +1400,7 @@ struct Page {
           console.log("change font size");
         })
       List() {
-        ForEach(this.styleList, (item: TextStyle) => {
+        ForEach(this.styleList, (item: TextStyles) => {
           ListItem() {
             Text("Hello World")
               .fontSize(item.fontSize)
@@ -1420,10 +1420,10 @@ struct Page {
 
 ```typescript
 @Observed
-class StyleList extends Array<TextStyle> {
+class StyleList extends Array<TextStyles> {
 };
 @Observed
-class TextStyle {
+class TextStyles {
   fontSize: number;
 
   constructor(fontSize: number) {
@@ -1432,7 +1432,7 @@ class TextStyle {
 }
 @Component
 struct TextComponent {
-  @ObjectLink textStyle: TextStyle;
+  @ObjectLink textStyle: TextStyles;
   build() {
     Text("Hello World")
       .fontSize(this.textStyle.fontSize)
@@ -1444,7 +1444,7 @@ struct Page {
   @State styleList: StyleList = new StyleList();
   aboutToAppear() {
     for (let i = 15; i < 50; i++)
-      this.styleList.push(new TextStyle(i));
+      this.styleList.push(new TextStyles(i));
   }
   build() {
     Column() {
@@ -1457,7 +1457,7 @@ struct Page {
           console.log("change font size");
         })
       List() {
-        ForEach(this.styleList, (item: TextStyle) => {
+        ForEach(this.styleList, (item: TextStyles) => {
           ListItem() {
             TextComponent({ textStyle: item})
           }

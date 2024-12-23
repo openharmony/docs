@@ -75,8 +75,8 @@ createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<Audi
 import { audio } from '@kit.AudioKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_1,
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+  channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
 };
@@ -128,8 +128,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_1,
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+  channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
 };
@@ -179,7 +179,7 @@ createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<Audio
 import { audio } from '@kit.AudioKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
   channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
@@ -236,7 +236,7 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
   channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
@@ -414,8 +414,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 | 名称      |  值       | 说明   |
 | --------- | -------- |------|
-| CHANNEL_1 | 0x1 << 0 | 单声道。 |
-| CHANNEL_2 | 0x1 << 1 | 双声道。 |
+| CHANNEL_1 | 1 | 单声道。 |
+| CHANNEL_2 | 2 | 双声道。 |
 | CHANNEL_3<sup>11+</sup> | 3 | 三声道。 |
 | CHANNEL_4<sup>11+</sup> | 4 | 四声道。 |
 | CHANNEL_5<sup>11+</sup> | 5 | 五声道。 |
@@ -4276,13 +4276,14 @@ on(type: 'micBlockStatusChanged', callback: Callback<DeviceBlockStatusInfo\>): v
 **示例：**
 
 ```ts
-let blockMic: boolean = audioRoutingManager.isMicBlockDetectionSupported()
+let blockMic: boolean = audioRoutingManager.isMicBlockDetectionSupported();
 if (blockMic == true) {
-  audioRoutingManager.on('micBlockStatusChanged', async(deviceBlockStatusInfo: ESObject) =>{
-  if (deviceBlockStatusInfo.DeviceBlockStatus == audioRoutingManager.blocksStatus.Blocked ||
-    deviceBlockStatusInfo.DeviceBlockStatus == audioRoutingManager.blocksStatus.UNBlocked) {
-    console.info(`${Tag}: on_micBlockStatusChanged: SUCCESS`);
-  })
+  audioRoutingManager.on('micBlockStatusChanged', (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
+    if (micBlockStatusChanged.blockStatus == audio.DeviceBlockStatus.BLOCKED ||
+      micBlockStatusChanged.blockStatus == audio.DeviceBlockStatus.UNBLOCKED) {
+      console.info(`${Tag}: on_micBlockStatusChanged: SUCCESS`);
+    }
+  });
 }
 ```
 
@@ -5498,9 +5499,9 @@ type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackRe
 
 **返回值：** 
 
-| 类型                                                           | 说明 |
-|--------------------------------------------------------------| ------- |
-| [AudioDataCallbackResult](#audiodatacallbackresult12) \| void | 如果返回 void 或 AudioDataCallbackResult.VALID ，表示数据有效并将被播放；如果返回 AudioDataCallbackResult.INVALID ，表示数据无效并将不会被播放。|
+| 类型                                                           | 说明                                                                                                          |
+|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| [AudioDataCallbackResult](#audiodatacallbackresult12) \| void | 如果返回 void 或 AudioDataCallbackResult.VALID：表示数据有效，将播放音频数据；如果返回 AudioDataCallbackResult.INVALID：表示数据无效，且音频数据不播放。 |
 
 ## AudioRenderer<sup>8+</sup>
 
@@ -7774,6 +7775,8 @@ on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 
 监听音频数据写入回调事件（当需要写入音频数据时触发），使用 callback 方式返回结果。
 
+回调函数仅用来写入音频数据，请勿在回调函数中调用AudioRenderer相关接口。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
@@ -9039,7 +9042,9 @@ audioCapturer.on('stateChange', (state: audio.AudioState) => {
 
 on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 
-监听音频数据读入回调事件（当需要读取音频流数据时触发），使用callback方式返回结果。
+监听音频数据读取回调事件（当需要读取音频流数据时触发），使用callback方式返回结果。
+
+回调函数仅用来读取音频数据，请勿在回调函数中调用AudioCapturer相关接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -9099,7 +9104,7 @@ audioCapturer.start((err: BusinessError) => {
 
 off(type: 'readData', callback?: Callback\<ArrayBuffer>): void
 
-取消监听音频数据读入回调事件，使用callback方式返回结果。
+取消监听音频数据读取回调事件，使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 

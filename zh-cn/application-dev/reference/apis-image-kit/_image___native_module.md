@@ -7,6 +7,16 @@
 
 使用该模块的接口，无需通过JS接口导入，可直接使用NDK完成功能开发。
 
+开发者可根据实际的开发需求，参考对应的开发指南及样例：
+
+- [使用Image_NativeModule完成图片解码](../../media/image/image-source-c.md)
+- [使用Image_NativeModule完成多图对象解码](../../media/image/image-source-picture-c.md)
+- [使用Image_NativeModule完成图片接收器](../../media/image/image-receiver-c.md)
+- [使用Image_NativeModule完成位图操作](../../media/image/pixelmap-c.md)
+- [使用Image_NativeModule处理图像信息](../../media/image/image-info-c.md)
+- [使用Image_NativeModule完成图片编码](../../media/image/image-packer-c.md)
+- [使用Image_NativeModule完成多图对象编码](../../media/image/image-packer-picture-c.md)
+
 **起始版本：** 12
 
 
@@ -912,10 +922,10 @@ Pixelmap缩放时采用的缩放算法。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OH_PixelmapNative_AntiAliasing_NONE  | 最近邻缩放算法。   | 
-| OH_PixelmapNative_AntiAliasing_LOW  | 双线性缩放算法。   | 
-| OH_PixelmapNative_AntiAliasing_MEDIUM  | 双线性缩放算法，同时开启mipmap。   | 
-| OH_PixelmapNative_AntiAliasing_HIGH  | cubic缩放算法。   | 
+| OH_PixelmapNative_AntiAliasing_NONE  | 最近邻插值算法。   | 
+| OH_PixelmapNative_AntiAliasing_LOW  | 双线性插值算法。   | 
+| OH_PixelmapNative_AntiAliasing_MEDIUM  | 双线性插值算法，同时开启Mipmap。缩小图片时建议使用。   | 
+| OH_PixelmapNative_AntiAliasing_HIGH  | 三次插值算法。   | 
 
 
 ### PIXELMAP_ALPHA_TYPE
@@ -4239,7 +4249,7 @@ Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(OH_Pixelmap_Initialization
 Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLength, OH_Pixelmap_InitializationOptions *options, OH_PixelmapNative **pixelmap)
 ```
 **描述**
-通过属性创建PixelMap，默认采用BGRA_8888格式处理数据。
+通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，其他格式请参考[OH_PixelmapInitializationOptions_SetSrcPixelFormat](#oh_pixelmapinitializationoptions_setsrcpixelformat)。
 
 **起始版本：** 12
 

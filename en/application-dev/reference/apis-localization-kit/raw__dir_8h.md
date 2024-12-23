@@ -5,6 +5,10 @@
 
 Provides APIs for operating the **rawfile** directory, including traversing and closing the **rawfile** directory.
 
+ **System capability**: SystemCapability.Global.ResourceManager
+
+ **Library**: librawfile.z.so
+
 **Since**: 8
 
 **Related module**: [Rawfile](rawfile.md)

@@ -5,6 +5,14 @@
 
 提供image接口的访问。
 
+开发者可根据实际的开发需求，参考对应的开发指南及样例：
+
+- [使用Image完成图片解码](../../media/image/image-decoding-native.md)
+- [使用Image完成图片接收器](../../media/image/image-receiver-native.md)
+- [使用Image完成图像变换](../../media/image/image-transformation-native.md)
+- [使用Image处理PixelMap数据](../../media/image/image-pixelmap-operation-native.md)
+- [使用Image完成图片编码](../../media/image/image-encoding-native.md)
+
 **系统能力：** SystemCapability.Multimedia.Image
 
 **起始版本：** 8
@@ -561,10 +569,10 @@ Pixelmap缩放时采用的缩放算法。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OH_PixelMap_AntiAliasing_NONE  | 最近邻缩放算法。   | 
-| OH_PixelMap_AntiAliasing_LOW  | 双线性缩放算法。   | 
-| OH_PixelMap_AntiAliasing_MEDIUM  | 双线性缩放算法，同时开启mipmap。   | 
-| OH_PixelMap_AntiAliasing_HIGH  | cubic缩放算法。   | 
+| OH_PixelMap_AntiAliasing_NONE  | 最近邻插值算法。   | 
+| OH_PixelMap_AntiAliasing_LOW  | 双线性插值算法。   | 
+| OH_PixelMap_AntiAliasing_MEDIUM  | 双线性插值算法，同时开启Mipmap。缩小图片时建议使用。   | 
+| OH_PixelMap_AntiAliasing_HIGH  | 三次插值算法。   | 
 
 
 ## 函数说明
@@ -2561,7 +2569,7 @@ int32_t OH_PixelMap_CreateAlphaPixelMap (napi_env env, napi_value source, napi_v
 int32_t OH_PixelMap_CreatePixelMap (napi_env env, OhosPixelMapCreateOps info, void * buf, size_t len, napi_value * res )
 ```
 **描述**
-创建**PixelMap**对象。当前只支持输入流为BGRA格式的流。该接口传入的buf不支持stride。
+创建**PixelMap**对象。当前只支持输入流为BGRA格式的流。该接口传入的buf不支持stride。该接口不支持DMA内存。
 
 **起始版本：** 10
 

@@ -21,7 +21,7 @@ Sets the base size of the component.
 
 | Name| Type                      | Mandatory| Description                                                        |
 | ------ | -------------------------- | ---- | ------------------------------------------------------------ |
-| value  | number \| string | Yes  | Base size of the component in the main axis of the parent container.<br>Default value: **'auto'** (indicating that the base size of the component in the main axis is the original size of the component)<br>This attribute cannot be set in percentage.|
+| value  | number \| string | Yes  | Base size of the component in the main axis of the parent container.<br>Default value: **'auto'** (indicating that the base size of the component in the main axis is the original size of the component)<br>For the string type, the value must be a string that can be converted into a number (for example, **'10'**), a string that includes a length unit (for example, **'10px'**), or the literal string **'auto'**; percentage-based strings are not supported.<br>For the number type, the value range is (0, +∞), and the unit is vp.<br>Invalid values are treated as the default value **'auto'**.|
 
 ## flexGrow
 
@@ -57,7 +57,7 @@ Sets the percentage of the parent container's shrink size that is allocated to t
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Percentage of the parent container's shrink size that is allocated to the component.<br>If the parent container is [Column](ts-container-column.md) or [Row](ts-container-row.md), the default value is **0**.<br> If the parent container is [Flex](ts-container-flex.md), the default value is **1**.|
+| value  | number | Yes  | Percentage of the parent container's shrink size that is allocated to the component.<br>If the parent container is [Column](ts-container-column.md) or [Row](ts-container-row.md), the default value is **0**.<br> If the parent container is [Flex](ts-container-flex.md), the default value is **1**.<br>When [constraintSize](ts-universal-attributes-size.md#constraintsize) is applied to the [Column](ts-container-column.md) and [Row](ts-container-row.md) components without the main axis size specified (through [width](ts-universal-attributes-size.md#width), [height](ts-universal-attributes-size.md#height), or [size](ts-universal-attributes-size.md#size)), these components use their default layout behavior, adapting to the size of their child component along the main axis. In this case, **flexShrink** does not take effect.|
 
 ## alignSelf
 
@@ -79,6 +79,8 @@ Sets the alignment mode of the child components along the cross axis of the pare
 
 
 ## Example
+
+This example shows how to set up a flex layout through the **flexBasis**, **flexGrow**, **flexShrink**, and **alignSelf** attributes.
 
 ```ts
 // xxx.ets

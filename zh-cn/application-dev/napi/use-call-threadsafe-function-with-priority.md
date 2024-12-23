@@ -27,7 +27,7 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
 - 模块注册
 
    ```c++
-    // hello.cpp
+    // napi_init.cpp
     #include "napi/native_api.h"
     #include <string.h>
     #include <stdlib.h>

@@ -1,6 +1,6 @@
 # Startup
 
-## Navigation of the Guide to Starting the Recovery Subsystem
+## Navigation of the Guide to Starting the Startup Subsystem
 
   ### init Module
 
@@ -25,6 +25,7 @@
   - [ueventd](./subsys-boot-init-ueventd.md)
 
   - [Init Module FAQs](./subsys-boot-init-faqs.md)
+
   ### [appspawn](./subsys-boot-appspawn.md)
 
   ### [Device Boot](./subsys-boot-deviceboot.md)

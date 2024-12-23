@@ -45,7 +45,9 @@ You can bind a full-screen modal to a component through the [bindContentCover](.
      .bindContentCover(this.isPresent, this.MyBuilder(), {
                modalTransition: ModalTransition.NONE,
                onDisappear: () => {
-                 this.isPresent = !this.isPresent;
+                 if (this.isPresent) {
+                   this.isPresent = !this.isPresent;
+                 }
                }
              })
      .onClick(() => {
@@ -56,8 +58,6 @@ You can bind a full-screen modal to a component through the [bindContentCover](.
 
 
 Below is the complete sample code and effect.
-
-
 
 ```ts
 import { curves } from '@kit.ArkUI';
@@ -138,7 +138,7 @@ struct BindContentCoverDemo {
             .alignItems(HorizontalAlign.Start)
 
             Column() {
-              Text ('Edit')
+              Text('Edit')
                 .fontColor(0x007dfe)
                 .fontSize(16)
             }
@@ -152,7 +152,7 @@ struct BindContentCoverDemo {
       }
       .padding({ top: 20, bottom: 20 })
 
-      Text ('OK')
+      Text('OK')
         .width('90%')
         .height(40)
         .textAlign(TextAlign.Center)
@@ -191,13 +191,13 @@ struct BindContentCoverDemo {
 
           Column() {
             Text('G1234')
-            Text ('8 h 1 min')
+            Text('8 h 1 min')
           }
           .width('30%')
 
           Column() {
             Text('08:26')
-            Text ('To')
+            Text('To')
           }
           .width('30%')
         }
@@ -221,7 +221,9 @@ struct BindContentCoverDemo {
           .bindContentCover(this.isPresent, this.MyBuilder(), {
             modalTransition: ModalTransition.DEFAULT,
             onDisappear: () => {
-              this.isPresent = !this.isPresent;
+              if (this.isPresent) {
+                this.isPresent = !this.isPresent;
+              }
             }
           })
           .onClick(() => {
@@ -281,7 +283,7 @@ struct BindSheetDemo {
 
   build() {
     Column() {
-      Text ('Preferences')
+      Text('Preferences')
         .fontSize(28)
         .padding({ top: 30, bottom: 30 })
       Column() {
@@ -427,7 +429,7 @@ struct BindContextMenuDemo {
   build() {
     Column() {
       Row() {
-        Text ('View image')
+        Text('View image')
           .fontSize(20)
           .fontColor(Color.White)
           .width('100%')
@@ -539,7 +541,7 @@ struct ModalTransitionWithIf {
   // Step 1: Define a state variable to control page display.
   @State isShowShare: boolean = false;
   private shareFunc(): void {
-    animateTo({ duration: 500 }, () => {
+    this.getUIContext()?.animateTo({ duration: 500 }, () => {
       this.isShowShare = !this.isShowShare;
     })
   }

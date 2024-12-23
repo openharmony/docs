@@ -10,7 +10,7 @@
 
 overlay(value: string | CustomBuilder | ComponentContent, options?: OverlayOptions )
 
-在当前组件上，增加遮罩文本或者叠加自定义组件以及ComponentContent作为该组件的浮层。
+在当前组件上，增加遮罩文本或者叠加自定义组件以及ComponentContent作为该组件的浮层。浮层不通过组件树进行渲染，部分接口（例如[getRectangleById](../js-apis-arkui-componentUtils.md#componentutilsgetrectanglebyid)）不支持获取浮层中的组件。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -22,7 +22,7 @@ overlay(value: string | CustomBuilder | ComponentContent, options?: OverlayOptio
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>10+</sup>&nbsp;\| [ComponentContent](../js-apis-arkui-ComponentContent.md)<sup>12+</sup> | 是   | 遮罩文本内容或自定义组件构造函数。<br/>**说明：**<br/>自定义组件作为浮层时，不支持键盘走焦到自定义组件中。 |
+| value   | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>10+</sup>&nbsp;\| [ComponentContent](../js-apis-arkui-ComponentContent.md)<sup>12+</sup> | 是   | 遮罩文本内容或自定义组件构造函数。<br/>**说明：**<br/>自定义组件作为浮层时，不支持键盘走焦到自定义组件中。通过CustomBuilder设置浮层时，浮层中的内容会在页面刷新时销毁并重新创建，存在一定的性能损耗，页面频繁刷新的场景推荐使用ComponentContent方式设置浮层。 |
 | options | [OverlayOptions](#overlayoptions12) | 否   | 浮层的定位。<br/>**说明：**<br/>需要解析为Json格式。<br/>API version 12之前，options: <br/>{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment),&nbsp;<br/>offset?:&nbsp;{x?:&nbsp;number, y?:&nbsp;number}<br/>} |
 
 >  **说明：**
@@ -51,7 +51,9 @@ overlay(value: string | CustomBuilder | ComponentContent, options?: OverlayOptio
 
 ## 示例
 
-### 示例1
+### 示例1（通过string设置浮层）
+
+该示例通过传入string设置浮层。
 
 ```ts
 // xxx.ets
@@ -79,7 +81,9 @@ struct OverlayExample {
 
 ![zh-cn_image_0000001205769446](figures/zh-cn_image_0000001205769446.png)
 
-### 示例2
+### 示例2（通过builder设置浮层）
+
+该示例通过传入builder设置浮层。
 
 ```ts
 // xxx.ets
@@ -105,8 +109,10 @@ struct OverlayExample {
 ```
 ![zh-cn_image_0000001210111632](figures/zh-cn_image_0000001210111632.png)
 
-### 示例3
-通过overlay传入了ComponentContent使backgroundColor不断发生变化
+### 示例3（通过ComponentContent设置浮层）
+
+该示例通过overlay传入了ComponentContent使backgroundColor不断发生变化。
+
 ```ts
 // xxx.ets
 import { ComponentContent } from '@kit.ArkUI';

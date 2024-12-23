@@ -8,6 +8,10 @@
 
 ### JS Crash日志规格
 
+直接生成的JS Crash日志为二进制格式的rawheap文件，由于.rawheap文件为二进制格式，需要先使用如下方式进行处理：
+1、使用解析脚本手动将日志解析为heapsnapshot文件后进行查看，工具使用方法见[rawheap格式文件转换工具](../tools/rawheap-translator.md)。
+2、DevEco Profiler 提供Raw Heap离线导入能力，可导入一个或多个 .rawheap文件。
+
 以下是进程崩溃日志信息中对应字段解释。
 
 ```
@@ -64,9 +68,9 @@ JS Crash异常根据不同的异常场景，在 Reason 字段进行了分类，�
     hiAppEvent 提供了故障订阅接口，可以订阅各类故障打点，详见[HiAppEvent介绍](hiappevent-intro.md)。
 
 <!--Del-->
-- 方式三：通过shell获取日志
+- 方式三：设备ROOT模式下通过shell获取日志
 
-    进程崩溃后，JS Crash文件会生成在设备“/data/log/faultlog/faultlogger/”路径下，故障日志文件名格式为“jscrash-进程名-进程UID-秒级时间”，包含设备名、系统版本、进程崩溃调用栈等信息。
+    进程崩溃后，JS Crash文件会生成在设备“/data/log/faultlog/faultlogger/”路径下，故障日志文件名格式为“jscrash-进程名-进程UID-毫秒级时间.log”，包含设备名、系统版本、进程崩溃调用栈等信息。
 
     ![](figures/jscrash.png)
 <!--DelEnd-->

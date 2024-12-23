@@ -52,7 +52,7 @@ struct Page {
 }
 ```
 
-In the preceding example, when the value of **prop1** changes at the click of the button, although the components in **CompA** do not use **prop1**, you can still observe that the **\<Text>** component associated with **prop2** is re-rendered – reflected by the component's enlarged font size and the console log of "Text prop2 is rendered." This indicates that, when a property (**prop1** in this example) of an @Observed decorated class object is changed, all components associated with any property of this object are re-rendered at once, even though these components may not directly use the changed property (i.e., the **\<Text>** component using **prop** in this example). In this case, invisible, redundant re-renders occur. When a large number of components are involved in redundant re-renders, the render performance is greatly affected.
+In the preceding example, when the value of **prop1** changes at the click of the button, although the components in **CompA** do not use **prop1**, you can still observe that the **Text** component associated with **prop2** is re-rendered – reflected by the component's enlarged font size and the console log of "Text prop2 is rendered." This indicates that, when a property (**prop1** in this example) of an @Observed decorated class object is changed, all components associated with any property of this object are re-rendered at once, even though these components may not directly use the changed property (i.e., the **Text** component using **prop** in this example). In this case, invisible, redundant re-renders occur. When a large number of components are involved in redundant re-renders, the render performance is greatly affected.
 
 The following figure shows the code running.
 
@@ -386,7 +386,7 @@ struct Page {
 }
 ```
 
-In the preceding example, a new variable **b** decorated by @ObjectLink is defined in **CompA**. When **CompA** is created on the page, **prop3** in object **a** is passed to **b**. In this way, **b** can be directly used in **CompA**. This means that, in effect, **CompA** is associated with **b** and can observe the change of **subProp1** in **b**. When **Change subProp1** is clicked, the associated **\<Text>** component is re-rendered, but other components are not (because these components are associated with **a**). Similarly, changes to other properties in **a** do not cause the **\<Text>** component to be re-rendered.
+In the preceding example, a new variable **b** decorated by @ObjectLink is defined in **CompA**. When **CompA** is created on the page, **prop3** in object **a** is passed to **b**. In this way, **b** can be directly used in **CompA**. This means that, in effect, **CompA** is associated with **b** and can observe the change of **subProp1** in **b**. When **Change subProp1** is clicked, the associated **Text** component is re-rendered, but other components are not (because these components are associated with **a**). Similarly, changes to other properties in **a** do not cause the **Text** component to be re-rendered.
 
 The following figure shows the code running.
 

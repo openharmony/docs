@@ -1425,10 +1425,10 @@ Defines an enum for the accessibility action types.
 
 | Enum| Description|
 | -------- | -------- |
-| ARKUI_ACCESSIBILITY_ACTION_CLICK  | Tapping |
-| ARKUI_ACCESSIBILITY_ACTION_LONG_CLICK  | Long press |
+| ARKUI_ACCESSIBILITY_ACTION_CLICK  | Tapping. |
+| ARKUI_ACCESSIBILITY_ACTION_LONG_CLICK  | Long press. |
 | ARKUI_ACCESSIBILITY_ACTION_CUT  | Cut. |
-| ARKUI_ACCESSIBILITY_ACTION_COPY  |   |
+| ARKUI_ACCESSIBILITY_ACTION_COPY  | Copy.  |
 | ARKUI_ACCESSIBILITY_ACTION_PASTE  | Paste. |
 
 
@@ -2676,7 +2676,7 @@ Defines the native API types.
 | ARKUI_NATIVE_NODE  | API related to UI components. For details, see the struct definition in &lt;arkui/native_node.h&gt;. |
 | ARKUI_NATIVE_DIALOG  | API related to dialog boxes. For details, see the struct definition in &lt;arkui/native_node.h&gt;. |
 | ARKUI_NATIVE_GESTURE  | API related to gestures. For details, see the struct definition in &lt;arkui/native_node.h&gt;. |
-| ARKUI_NATIVE_ANIMATE  | API related to animations. For details, see the struct definition in <arkui/native_animate.h>. |
+| ARKUI_NATIVE_ANIMATE  | API related to animations. For details, see the struct definition in &lt;arkui/native_animate.h&gt;. |
 
 
 ### ArkUI_NavDestinationState
@@ -3012,7 +3012,7 @@ Defines the ArkUI style attributes that can be set on the native side.
 | NODE_SCROLL_OFFSET                          | Defines the specified position to scroll to. This attribute can be set, reset, and obtained as required through APIs.<br>Parameter format of the attribute setting method [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].f32: horizontal scrolling offset, in vp.<br>.value[1].f32: vertical scrolling offset, in vp.<br>.value[2]?.i32: scrolling duration, in milliseconds. Optional.<br>.value[3]?.i32: (optional) scrolling curve. The parameter type is [ArkUI_AnimationCurve](#arkui_animationcurve). The default value is **ARKUI_CURVE_EASE**.<br>.value[4]?.i32: whether to enable the default spring animation. Optional. The default value **0** means not to enable the default spring animation.<br>.value[5]?.i32: whether to enable overscroll. Optional.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].f32: horizontal scrolling offset, in vp.<br>.value[1].f32: vertical scrolling offset, in vp.|
 | NODE_SCROLL_EDGE                            | Defines the edge position to scroll to. This attribute can be set and obtained as required through APIs.<br>Parameter format of the attribute setting method [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].i32: container edge. The parameter type is [ArkUI_ScrollEdge](#arkui_scrolledge).<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].i32: indicates whether the container is on the edge. The value -1 indicates that the container is not on the edge. If the container is on the edge, the status parameter type is [ArkUI_ScrollEdge](#arkui_scrolledge).|
 | NODE_SCROLL_ENABLE_PAGING                   | Defines whether to enable the swipe-to-turn-pages feature. This attribute can be set, reset, and obtained as required through APIs.<br>If both **enablePaging** and **scrollSnap** are set, **scrollSnap** takes effect, but **enablePaging** does not.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].i32: whether to enable the swipe-to-turn-pages feature. The default value is **false**.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].i32: whether to enable the swipe-to-turn-pages feature.|
-| NODE_SCROLL_PAGE                            | Scrolls to the next or previous page.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].i32: whether to scroll to the next page. The value **1** means to scroll to the next page, and **0** means to scroll to the previous page.<br>.value[1]?.i32: whether to enable the page turning animation. The value **1** means to enable the page turning animation, and **0** means the opposite. Default value: 0.|
+| NODE_SCROLL_PAGE                            | Scrolls to the next or previous page.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].i32: whether to scroll to the next page. The value **0** means to scroll to the next page, and **1** means to scroll to the previous page.<br>.value[1]?.i32: whether to enable the page turning animation. The value **1** means to enable the page turning animation, and **0** means the opposite. Default value: 0.|
 | NODE_SCROLL_BY                              | Scrolls by the specified amount.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].f32: amount to scroll by in the horizontal direction, in vp by default. <br>.value[1].f32: amount to scroll by in the vertical direction, in vp by default.|
 | NODE_SCROLL_FLING                           | Performs inertial scrolling based on the initial velocity passed in.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].f32: initial velocity of inertial scrolling. The default unit is vp/s. If the value specified is 0, it is considered as invalid, and the scrolling for this instance will not take effect. If the value is positive, the scroll will move downward; if the value is negative, the scroll will move upward.|
 | NODE_SCROLL_FADING_EDGE                     | Sets the edge fade effect for the scrollable component.<br>Format of the [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) parameter for setting the attribute:<br>.value[0].i32: whether to enable the edge fade effect. The value **0** means to disable edge fade effect, and **1** means the opposite.<br>.value[1]?.f32: length of the edge fade effect, in vp. The default value is **32**.<br>Format of the return value [ArkUI_AttributeItem](_ark_u_i___attribute_item.md):<br>.value[0].i32: whether to enable the edge fade effect. The value **0** means to disable edge fade effect, and **1** means the opposite.<br>.value[1].f32: length of the edge fade effect, in vp.<br>**Since**: 14|
@@ -3186,7 +3186,7 @@ Enumerates the event types supported by the NativeNode component.
 | NODE_IMAGE_ON_DOWNLOAD_PROGRESS  | Called during image download.<br>Condition for triggering this event: This event is triggered when the page component downloads a web page image.<br>When the event callback occurs, the union type in the [ArkUI_NodeEvent](#arkui_nodeevent-12) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>Number of bytes that have been downloaded by the [ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].u32: so far.<br>Total number of bytes of images to be downloaded by the [ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].u32:.|
 | NODE_TOGGLE_ON_CHANGE  | Called when the toggle status changes.<br>This event is triggered when the switch status changes.<br>When the event callback occurs, the union type in the [ArkUI_NodeEvent](#arkui_nodeevent-12) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32: current switch status. The value 1 indicates that the switch is turned on, and the value 0 indicates that the switch is turned off.|
 | NODE_TEXT_INPUT_ON_CHANGE  | Called when the text input content changes.<br>Condition for triggering the event: The input content changes.<br>When the event callback occurs, the union type in the [ArkUI_NodeEvent](#arkui_nodeevent-12) object is [ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md).<br>[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md) contains the following parameters:<br>[ArkUI_StringAsyncEvent.pStr](_ark_u_i___string_async_event.md#pstr): input text content.|
-| NODE_TEXT_INPUT_ON_SUBMIT  | This event is triggered when the Enter key of the textInput input method is pressed.<br>This event is triggered when the Enter key of the input method is pressed.<br>When the event callback occurs, the union type in the [ArkUI_NodeEvent](#arkui_nodeevent-12) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32: type of the Enter key.|
+| NODE_TEXT_INPUT_ON_SUBMIT  | Called when the Enter key of the textInput input method is pressed.<br>When the event callback occurs, the union type in the [ArkUI_NodeEvent](#arkui_nodeevent-12) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32: type of the Enter key.|
 | NODE_TEXT_INPUT_ON_CUT  | Called when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>Condition for triggering this event: Touch and hold the internal area of the text box to display the clipboard, and touch the clipboard cut button.<br>When the event callback occurs, the union type in the [ArkUI_NodeEvent](#arkui_nodeevent-12) object is [ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md).<br>[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md) contains the following parameters:<br>[ArkUI_StringAsyncEvent.pStr](_ark_u_i___string_async_event.md#pstr): cut text content.|
 | NODE_TEXT_INPUT_ON_PASTE  | Called when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>When the event callback occurs, the union type in the [ArkUI_NodeEvent](#arkui_nodeevent-12) object is [ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md).<br>[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md) contains the following parameters:<br>[ArkUI_StringAsyncEvent.pStr](_ark_u_i___string_async_event.md#pstr): text pasted.|
 | NODE_TEXT_INPUT_ON_TEXT_SELECTION_CHANGE  | Called when the text selection position changes.<br>When the event callback occurs, the union type in the [ArkUI_NodeEvent](#arkui_nodeevent-12) object is [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md).<br>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) contains the following parameters:<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32: indicates the start position of the selected text.<br>[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32: indicates the end position of the selected text.|
@@ -4674,7 +4674,7 @@ const char* OH_ArkUI_AlignmentRuleOption_GetBottomId (ArkUI_AlignmentRuleOption 
 ```
 **Description**
 
-Obtains the alignment mode in bottom alignment parameters.
+Obtains the ID in bottom alignment parameters.
 
 **Since**: 12
 
@@ -4717,7 +4717,7 @@ ArkUI_VerticalAlignment OH_ArkUI_AlignmentRuleOption_GetCenterAlignmentVertical 
 ```
 **Description**
 
-Obtains the ID in vertical center alignment parameters.
+Obtains the alignment mode in vertical center alignment parameters.
 
 **Since**: 12
 
@@ -4729,7 +4729,7 @@ Obtains the ID in vertical center alignment parameters.
 
 **Returns**
 
-Returns the vertical center alignment parameters.
+Returns the alignment mode in vertical center alignment parameters.
 
 
 ### OH_ArkUI_AlignmentRuleOption_GetCenterIdHorizontal()
@@ -4739,7 +4739,7 @@ const char* OH_ArkUI_AlignmentRuleOption_GetCenterIdHorizontal (ArkUI_AlignmentR
 ```
 **Description**
 
-Obtains the ID in horizontal center alignment parameters.
+Obtains the alignment mode in horizontal center alignment parameters.
 
 **Since**: 12
 
@@ -4751,7 +4751,7 @@ Obtains the ID in horizontal center alignment parameters.
 
 **Returns**
 
-Returns the ID in horizontal center alignment parameters.
+Returns the alignment mode in horizontal center alignment parameters.
 
 
 ### OH_ArkUI_AlignmentRuleOption_GetCenterIdVertical()
@@ -4805,7 +4805,7 @@ const char* OH_ArkUI_AlignmentRuleOption_GetEndId (ArkUI_AlignmentRuleOption * o
 ```
 **Description**
 
-Obtains the alignment mode in the right alignment parameters.
+Obtains the ID in the right alignment parameters.
 
 **Since**: 12
 
@@ -4893,7 +4893,7 @@ const char* OH_ArkUI_AlignmentRuleOption_GetTopId (ArkUI_AlignmentRuleOption * o
 ```
 **Description**
 
-Obtains the alignment mode in top alignment parameters.
+Obtains the ID in top alignment parameters.
 
 **Since**: 12
 
@@ -5179,7 +5179,7 @@ Obtains the animation duration, in milliseconds.
 
 **Returns**
 
-Duration,
+Returns the animation duration.
 
 
 ### OH_ArkUI_AnimateOption_GetExpectedFrameRateRange()
@@ -5308,7 +5308,7 @@ Sets the animation curve.
 | Name| Description|
 | -------- | -------- |
 | option | Pointer to an animation configuration. |
-| value | Returns the animation curve. Default value: **ARKUI_CURVE_LINEAR**. |
+| value | Animation curve. Default value: **ARKUI_CURVE_LINEAR**. |
 
 
 ### OH_ArkUI_AnimateOption_SetDelay()
@@ -6066,7 +6066,7 @@ Sets the interpolation curve for the animation of an animator.
 | Name| Description|
 | -------- | -------- |
 | option | Pointer to an **AnimatorOption** object. |
-| value | Returns the interpolation curve of the animation. Default value: **ARKUI_CURVE_LINEAR**. |
+| value | Interpolation curve of the animation. Default value: **ARKUI_CURVE_LINEAR**. |
 
 **NOTE**
 

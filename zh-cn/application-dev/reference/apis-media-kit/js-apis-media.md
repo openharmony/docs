@@ -481,6 +481,17 @@ media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptu
 | AVERR_SERVICE_DIED                    | 5400105 | 表示服务进程死亡。                   |
 | AVERR_UNSUPPORT_FORMAT                | 5400106 | 表示不支持当前媒体资源的格式。       |
 | AVERR_AUDIO_INTERRUPTED<sup>11+</sup> | 5400107 | 表示音频焦点被抢占                   |
+| AVERR_IO_HOST_NOT_FOUND<sup>14+</sup> | 5411001 | 表示解析或链接服务端地址错误。        |
+| AVERR_IO_CONNECTION_TIMEOUT<sup>14+</sup> | 5411002 | 表示网络连接超时。        |
+| AVERR_IO_NETWORK_ABNORMAL<sup>14+</sup> | 5411003 | 表示网络异常导致的数据或链路异常。        |
+| AVERR_IO_NETWORK_UNAVAILABLE<sup>14+</sup> | 5411004 | 表示网络被禁用。        |
+| AVERR_IO_NO_PERMISSION<sup>14+</sup> | 5411005 | 表示无访问权限。        |
+| AVERR_IO_REQUEST_DENIED<sup>14+</sup> | 5411006 | 表示客户端请求参数错误或超出处理能力。        |
+| AVERR_IO_RESOURCE_NOT_FOUND<sup>14+</sup> | 5411007 | 表示无可用网络资源。        |
+| AVERR_IO_SSL_CLIENT_CERT_NEEDED<sup>14+</sup> | 5411008 | 表示服务端校验客户端证书失败。        |
+| AVERR_IO_SSL_CONNECTION_FAILED<sup>14+</sup> | 5411009 | 表示SSL连接失败。        |
+| AVERR_IO_SSL_SERVER_CERT_UNTRUSTED<sup>14+</sup> | 5411010 | 表示客户端校验服务端证书失败。        |
+| AVERR_IO_UNSUPPORTED_REQUEST<sup>14+</sup> | 5411011 | 表示网络协议的原因导致请求不受支持。        |
 
 ## MediaType<sup>8+</sup>
 
@@ -709,7 +720,9 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+在API version 9-13，针对网络、服务器等数据流异常，接口上报5400103；从API version 14开始，对应错误细化为错误码5411001-5411011。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -722,6 +735,17 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400104  | Time out              |
 | 5400105  | Service died.         |
 | 5400106  | Unsupported format.     |
+| 5411001  | Can not find host.    |
+| 5411002  | Connection time out.  |
+| 5411003  | NetWork abnormal.     |
+| 5411004  | NetWork unavailable.  |
+| 5411005  | No permission.        |
+| 5411006  | Network access denied.  |
+| 5411007  | Cannot find available network resources. |
+| 5411008  | SSL client cert needed.    |
+| 5411009  | SSL connection failed.     |
+| 5411010  | SSL server cert needed.    |
+| 5411011  | Unsupportted request.      |
 
 **示例：**
 
@@ -792,8 +816,6 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 **示例：**
 
 ```ts
-import { media } from '@kit.MediaKit';
-
 let player = await media.createAVPlayer();
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
@@ -835,7 +857,6 @@ setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
 **示例：**
 
 ```ts
-import { media } from '@kit.MediaKit';
 import { common } from '@kit.AbilityKit';
 
 let player = await media.createAVPlayer();
@@ -1466,7 +1487,6 @@ getPlaybackInfo(): Promise\<PlaybackInfo>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer | undefined = undefined;
 let playbackInfo: media.PlaybackInfo | undefined = undefined;
@@ -1524,7 +1544,6 @@ selectTrack(index: number, mode?: SwitchMode): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer = await media.createAVPlayer();
 let audioTrackIndex: Object = 0;
@@ -1580,7 +1599,6 @@ deselectTrack(index: number): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer = await media.createAVPlayer();
 let audioTrackIndex: Object = 0;
@@ -2490,7 +2508,6 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 **示例：**
 
 ```ts
-import { media } from '@kit.MediaKit'
 import { common } from '@kit.AbilityKit'
 
 let context = getContext(this) as common.UIAbilityContext
@@ -2531,8 +2548,6 @@ addSubtitleFromUrl(url: string): Promise\<void>
 **示例：**
 
 ```ts
-import { media } from '@kit.MediaKit'
-
 let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt'
 
 let avPlayer: media.AVPlayer = await media.createAVPlayer()
@@ -2849,7 +2864,7 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | fileSize     | number | 是   | 待播放文件大小（字节），-1代表大小未知。如果fileSize设置为-1, 播放模式类似于直播，不能进行seek及setSpeed操作，不能设置loop属性，因此不能重新播放。 |
-| callback | (buffer: ArrayBuffer, length: number, pos?: number) => number | 是   | 用户设置的回调函数，用于填写数据。<br>- 函数列式：callback: (buffer: ArrayBuffer, length: number, pos?:number) => number;<br>- buffer，ArrayBuffer类型，表示被填写的内存，必选。<br>- length，number类型，表示被填写内存的最大长度，必选。<br>- pos，number类型，表示填写的数据在资源文件中的位置，可选，当fileSize设置为-1时，该参数禁止被使用。 <br>- 返回值，number类型，返回要填充数据的长度。 |
+| callback | (buffer: ArrayBuffer, length: number, pos?: number) => number | 是   | 用户设置的回调函数，用于填写数据。<br>- 函数列式：callback: (buffer: ArrayBuffer, length: number, pos?:number) => number;<br>- buffer，ArrayBuffer类型，表示被填写的内存，必选。<br>- length，number类型，表示被填写内存的最大长度，必选。<br>- pos，number类型，表示填写的数据在资源文件中的位置，可选，当fileSize设置为-1时，该参数禁止被使用。 <br>- 返回值，number类型，返回填充数据的长度，返回-1表示到达流的末尾，返回-2表示遇到不可恢复的错误。|
 
 ## SubtitleInfo<sup>12+</sup>
 
@@ -2939,7 +2954,6 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
@@ -2981,7 +2995,6 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 function printfPlaybackInfo(obj: media.PlaybackInfo, key: string) {
   let property: Object = obj[key];
@@ -7273,7 +7286,6 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 import { image } from '@kit.ImageKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
@@ -7342,7 +7354,6 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 import { image } from '@kit.ImageKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
@@ -7400,7 +7411,6 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
@@ -7448,7 +7458,6 @@ release(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
@@ -7529,8 +7538,6 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 **示例1：**
 
 ```ts
-import { media } from '@kit.MediaKit';
-
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
 ```
@@ -7538,7 +7545,6 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 **示例2：**
 
 ```ts
-import { media } from '@kit.MediaKit';
 import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
 

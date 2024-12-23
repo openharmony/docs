@@ -378,6 +378,8 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。
 
+当设置自定义键盘时，可以通过绑定[onKeyPrelme](ts-universal-events-key.md#onkeypreime12)事件规避物理键盘的输入。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -665,6 +667,22 @@ maxFontSize(value: number | string | Resource)
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
 
+### halfLeading<sup>16+</sup>
+
+halfLeading(halfLeading: boolean)
+
+设置文本是否将行间距平分至行的顶部与底部。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| halfLeading | boolean | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
+
 ### heightAdaptivePolicy<sup>12+</sup>
 
 heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
@@ -792,6 +810,24 @@ enableHapticFeedback(isEnabled: boolean)
 >  }
 > ]
 > ```
+
+### ellipsisMode<sup>16+</sup>
+
+ellipsisMode(value: EllipsisMode)
+
+设置省略位置。ellipsisMode属性需要配合overflow设置为TextOverflow.Ellipsis以及maxLines使用，单独设置ellipsisMode属性不生效。
+
+EllipsisMode.START和EllipsisMode.CENTER仅在maxLines设置为1生效。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                | 必填 | 说明                                      |
+| ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
+| value  | [EllipsisMode](ts-appendix-enums.md#ellipsismode11) | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
 
 ## 事件
 
@@ -1145,7 +1181,7 @@ type TextAreaSubmitCallback = (enterKeyType: EnterKeyType, event?: SubmitEvent) 
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
-| enterKeyType | [EnterKeyType](ts-types.md#enterkeytype枚举说明)             | 是   | 软键盘输入法回车键类型。 |
+| enterKeyType | [EnterKeyType](ts-types.md#enterkeytype枚举说明)             | 是   | 软键盘输入法回车键类型。<br>类型为EnterKeyType.NEW_LINE时不触发onSubmit。 |
 | event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11对象说明) | 否   | 提交事件。         |
 
 ## 示例
@@ -1743,15 +1779,6 @@ struct TextAreaExample {
   @State text: string = 'TextArea editMenuOptions'
 
   onCreateMenu(menuItems: Array<TextMenuItem>) {
-    menuItems.forEach((value, index) => {
-      value.icon = $r('app.media.startIcon')
-      if (value.id.equals(TextMenuItemId.COPY)) {
-        value.content = "复制change"
-      }
-      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
-        value.content = "全选change"
-      }
-    })
     let item1: TextMenuItem = {
       content: 'custom1',
       icon: $r('app.media.startIcon'),
@@ -1798,4 +1825,74 @@ struct TextAreaExample {
 ```
 
 ![textAreaEditMenuOptions](figures/textAreaEditMenuOptions.gif)
+
+### 示例15（文本设置省略模式）
+
+该示例通过textOverflow、ellipsisMode、maxlines属性展示了文本超长省略以及调整省略位置的效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct EllipsisModeExample {
+  @State textIndex: number = 0
+  @State text: string = "As the sun begins to set, casting a warm golden hue across the sky," +
+    "the world seems to slow down and breathe a sigh of relief. The sky is painted with hues of orange, " +
+    " pink, and lavender, creating a breath taking tapestry that stretches as far as the eye can see." +
+    "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil."
+  @State ellipsisModeIndex: number = 0
+  @State ellipsisMode: (EllipsisMode | undefined | null)[] =
+    [EllipsisMode.START, EllipsisMode.END, EllipsisMode.CENTER, undefined, null]
+  @State ellipsisModeStr: string[] = ['START ', 'END', 'CENTER', 'undefined', 'null']
+  @State textOverflowIndex: number = 0
+  @State textOverflow: TextOverflow[] = [TextOverflow.Ellipsis, TextOverflow.Clip]
+  @State textOverflowStr: string[] = ['Ellipsis', 'Clip']
+  @State maxLinesIndex: number = 0
+  @State maxLines: number[] = [1, 2, 3]
+  @State maxLinesStr: string[] = ['1', '2', '3']
+  @State styleAreaIndex: number = 0
+  @State styleArea: TextContentStyle[] = [TextContentStyle.INLINE, TextContentStyle.DEFAULT]
+  @State styleAreaStr: string[] = ['Inline', 'Default']
+
+  build() {
+    Column() {
+      TextArea({ text: this.text })
+        .textOverflow(this.textOverflow[this.textOverflowIndex])
+        .ellipsisMode(this.ellipsisMode[this.ellipsisModeIndex])
+        .maxLines(this.maxLines[this.maxLinesIndex])
+        .style(this.styleArea[this.styleAreaIndex])
+        .fontSize(30)
+        .margin(30)
+
+      Button('更改ellipsisMode模式：' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
+        this.ellipsisModeIndex++
+        if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
+          this.ellipsisModeIndex = 0
+        }
+      }).fontSize(20)
+      Button('更改textOverflow模式：' + this.textOverflowStr[this.textOverflowIndex]).onClick(() => {
+        this.textOverflowIndex++
+        if (this.textOverflowIndex > (this.textOverflowStr.length - 1)) {
+          this.textOverflowIndex = 0
+        }
+      }).fontSize(20)
+      Button('更改maxLines大小：' + this.maxLinesStr[this.maxLinesIndex]).onClick(() => {
+        this.maxLinesIndex++
+        if (this.maxLinesIndex > (this.maxLinesStr.length - 1)) {
+          this.maxLinesIndex = 0
+        }
+      }).fontSize(20)
+      Button('更改Style大小：' + this.styleAreaStr[this.styleAreaIndex]).onClick(() => {
+
+        this.styleAreaIndex++
+        if (this.styleAreaIndex > (this.styleAreaStr.length - 1)) {
+          this.styleAreaIndex = 0
+        }
+      }).fontSize(20)
+    }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![textAreaEllipsisMode](figures/textAreaEllipsisMode.png)
 

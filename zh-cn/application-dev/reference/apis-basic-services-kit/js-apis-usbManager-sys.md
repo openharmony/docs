@@ -534,6 +534,8 @@ setDeviceFunctions(funcs: FunctionType): Promise\<void\>
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 14400002 | Permission denied. The HDC is disabled by the system.                                                   |
+| 14400006 | Unsupported operation. The function is not supported.                                                   |
 
 **返回值：**
 
@@ -807,8 +809,8 @@ USB设备侧功能。
 | ACM          | 1   | acm功能。  |
 | ECM          | 2   | ecm功能。  |
 | HDC          | 4   | hdc功能。  |
-| MTP          | 8   | 媒体传输（暂不支持）。 |
-| PTP          | 16  | 图片传输（暂不支持）。 |
+| MTP          | 8   | 媒体传输。 |
+| PTP          | 16  | 图片传输。 |
 | RNDIS        | 32  | 网络共享（暂不支持）。 |
 | MIDI         | 64  | midi功能（暂不支持）。 |
 | AUDIO_SOURCE | 128 | 音频功能（暂不支持）。 |

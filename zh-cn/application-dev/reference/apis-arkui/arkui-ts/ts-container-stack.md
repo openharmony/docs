@@ -65,6 +65,8 @@ alignContent(value: Alignment)
 
 ## 示例
 
+Stack的alignContent设置为Alignment.Bottom条件下子组件显示效果。
+
 ```ts
 // xxx.ets
 @Entry

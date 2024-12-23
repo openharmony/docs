@@ -10,6 +10,8 @@ An **ImageData** object stores pixel data rendered on a canvas.
 
 constructor(width: number, height: number, data?: Uint8ClampedArray, unit?: LengthMetricsUnit);
 
+A constructor used to create an **ImageData** object. To ensure successful drawing, make sure the object's area does not exceed 16000 x 16000, with its width and height not greater than 16384 px. If the created area exceeds 536870911 px, the returned width and height are both 0 px, and **data** is **undefined**.
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -17,12 +19,12 @@ constructor(width: number, height: number, data?: Uint8ClampedArray, unit?: Leng
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-| Name | Type | Mandatory | Description |
+| Name| Type | Mandatory | Description|
 | ------ | ----- | ----- | ----- |
-| width | number |Yes| Actual width of the rectangle on the canvas. The default unit is vp. |
-| height | number |Yes| Actual height of the rectangle on the canvas. The default unit is vp.|
-| data | Uint8ClampedArray |No| A one-dimensional array of color values. The values range from 0 to 255. |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | No  |  Unit mode of the **ImageData** object. The value cannot be dynamically changed once set. The configuration method is the same as that of [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12).<br>Default value: **DEFAULT** |
+| width | number |Yes| Width of the rectangle.<br>Default unit: vp|
+| height | number |Yes| Height of the rectangle.<br>Default unit: vp|
+| data | Uint8ClampedArray |No| A one-dimensional array of color values. The values range from 0 to 255.|
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | No  |  Unit mode of the **ImageData** object. The value cannot be dynamically changed once set. The configuration method is the same as that of [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12).<br>Default value: **DEFAULT**|
 
 ## Attributes
 
@@ -32,17 +34,19 @@ constructor(width: number, height: number, data?: Uint8ClampedArray, unit?: Leng
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Type  | Read-Only | Optional | Description |
+| Name    | Type  | Read Only| Optional| Description|
 | ------ | -------- | --------- | ---------- | ------------------------------ |
-| width | number | Yes | No | Actual width of the rectangle on the canvas.<br>The unit is px. |
-| height | number | Yes | No | Actual height of the rectangle on the canvas.<br>The unit is px. |
-| data | Uint8ClampedArray | Yes | No | A one-dimensional array of color values. The values range from 0 to 255. |
+| width | number | Yes| No| Actual width of the rectangle on the canvas.<br>The unit is px.|
+| height | number | Yes| No| Actual height of the rectangle on the canvas.<br>The unit is px.|
+| data | Uint8ClampedArray | Yes| No| A one-dimensional array of color values. The values range from 0 to 255.|
 
 >  **NOTE**
 >
 >  You can use the [px2vp](ts-pixel-units.md#pixel-unit-conversion) API to convert the unit.
 
 **Example**
+
+This example shows how to use the **getImageData** API to obtain an **ImageData** object.
 
   ```ts
   // xxx.ets

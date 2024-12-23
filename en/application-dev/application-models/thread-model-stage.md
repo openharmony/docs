@@ -4,8 +4,8 @@
 There are three types of threads in the stage model:
 - Main thread
   - Draws the UI.
-  - Manages the ArkTS engine instance of the main thread so that multiple UIAbility components can run on it.
-  - Manages ArkTS engine instances of other threads, for example, using **TaskPool** to create or cancel tasks, and starting and terminating **Worker** threads.
+  - Manages the [ArkTS engine](../arkts-utils/arkts-runtime-overview.md) instance of the main thread so that multiple UIAbility components can run on it.
+  - Manages [ArkTS engine](../arkts-utils/arkts-runtime-overview.md) instances of other threads, for example, using **TaskPool** to create or cancel tasks, and starting and terminating **Worker** threads.
   - Distributes interaction events.
   - Processes application code callbacks (event processing and lifecycle management).
   - Receives messages sent by the **TaskPool** and **Worker** threads.

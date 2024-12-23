@@ -1,6 +1,9 @@
-# \@Event装饰器：组件输出
+# \@Event装饰器：规范组件输出
 
-为了实现子组件向父组件要求更新\@Param装饰变量的能力，开发者可以使用\@Event装饰器。
+为了实现子组件向父组件要求更新\@Param装饰变量的能力，开发者可以使用\@Event装饰器。使用\@Event装饰回调方法是一种规范，表明子组件需要传入更新数据源的回调。
+
+
+\@Event主要配合\@Param实现数据的双向同步。在阅读本文档前，建议提前阅读：[\@Param](./arkts-new-param.md)。
 
 >**说明：**
 >
@@ -39,7 +42,7 @@
     @Event message: string = "abcd"; // 错误用法，装饰非方法类型变量，@Event无作用
   }
   @Component
-  struct CompA {
+  struct Index {
     @Event changeFactory: ()=>void = ()=>{}; // 错误用法，编译时报错
   }
   ```

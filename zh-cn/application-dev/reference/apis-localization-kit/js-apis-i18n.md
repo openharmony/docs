@@ -367,7 +367,7 @@ static getFirstPreferredLanguage(): string
 
 static setAppPreferredLanguage(language: string): void
 
-设置应用的偏好语言。
+设置应用的偏好语言。设置偏好语言为"default"后，应用语言将跟随系统语言，应用冷启动生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -377,7 +377,7 @@ static setAppPreferredLanguage(language: string): void
 
 | 参数名      | 类型     | 必填   | 说明    |
 | -------- | ------ | ---- | ----- |
-| language | string | 是    | 合法的语言ID。 |
+| language | string | 是    | 合法的语言ID或"default"。 |
 
 **错误码：**
 
@@ -442,6 +442,172 @@ static getUsingLocalDigit(): boolean
   ```ts
   let status: boolean = i18n.System.getUsingLocalDigit();  // 判断本地化数字开关是否打开
   ```
+
+### getSimplifiedLanguage<sup>15+</sup>
+
+static getSimplifiedLanguage(language?: string): string
+
+获取语言的最简化表示。如："zh-Hans-CN"的最简化表示是"zh"，"zh-Hant-TW"的最简表示为"zh-TW"。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明            |
+| -------- | ------ | ---- | ------------- |
+| language | string | 否    | 合法的语言ID。默认值：系统语言。 |
+
+**返回值：**
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| string | 不传入language时，会根据系统语言和地区判断是否存在系统支持的方言，若存在则返回方言的最简表示；若不存在，则返回系统语言的最简表示。<br>传入language时，返回language的最简表示。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let simplifiedLanguage: string = i18n.System.getSimplifiedLanguage("zh-Hans-CN");  // simplifiedLanguage = zh
+    let simplifiedSystemLanguage: string = i18n.System.getSimplifiedLanguage();  // simplifiedSystemLanguage = zh, 如果当前系统语言为简体中文
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getSimplifiedLanguage failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
+### getTemperatureType<sup>16+</sup>
+
+static getTemperatureType(): TemperatureType
+
+获取当前用户偏好的温度单位。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| [TemperatureType](#temperaturetype16) | 温度单位。 |
+
+**示例：**
+  ```ts
+  let type: i18n.TemperatureType = i18n.System.getTemperatureType();
+  ```
+
+### getTemperatureName<sup>16+</sup>
+
+static getTemperatureName(type: TemperatureType): string
+
+获取温度单位的名称。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明            |
+| -------- | ------ | ---- | ------------- |
+| type| [TemperatureType](#temperaturetype16) | 是    | 温度单位。 |
+
+**返回值：**
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| string | 返回温度单位的名称，包括celsius，fahrenheit，kelvin。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+
+> **说明**
+>
+> 890001的报错信息请以接口的实际报错为准。
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let res: string = i18n.System.getTemperatureName(i18n.TemperatureType.CELSIUS);  // res = celsius
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getTemperatureName failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
+### getFirstDayOfWeek<sup>16+</sup>
+
+static getFirstDayOfWeek(): WeekDay
+
+获取当前用户偏好的周起始日。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| [WeekDay](#weekday16) | 周起始日。 |
+
+**示例：**
+  ```ts
+  let type: i18n.WeekDay = i18n.System.getFirstDayOfWeek();
+  ```
+
+## TemperatureType<sup>16+</sup>
+
+温度单位的枚举。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| CELSIUS | 1 | 摄氏度。 |
+| FAHRENHEIT | 2 | 华氏度。 |
+| KELVIN | 3 | 开尔文。 |
+
+## WeekDay<sup>16+</sup>
+
+周起始日的枚举，取值是周一至周日的某天。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| MON | 1 | 周一。 |
+| TUE | 2 | 周二。 |
+| WED | 3 | 周三。 |
+| THU | 4 | 周四。 |
+| FRI | 5 | 周五。 |
+| SAT | 6 | 周六。 |
+| SUN | 7 | 周日。 |
 
 
 ## i18n.isRTL
@@ -2704,6 +2870,346 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 | language        | string           |   是    | 节假日的本地语言，例如ar,en,tr。          |
 | name            | string           |   是    | 节假日的本地名称，例如Sacrifice Feast(宰牲节)的土耳其语名称为Kurban Bayrami。      |
 
+
+## i18n.getSimpleDateTimeFormatByPattern<sup>16+</sup>
+
+getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleDateTimeFormat
+
+通过模式字符串获取SimpleDateTimeFormat对象。与getSimpleDateTimeFormatBySkeleton接口获取的对象在格式化后显示差异请参考[SimpleDateTimeFormat](#simpledatetimeformat16)。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明                                       |
+| ------- | ----------- | ----- | ---------------------------------------- |
+| pattern | string      | 是    | 合法的模式字符串，支持的字符及含义请参考[日期字段符号表](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)。同时，pattern支持传入自定义文本，文本内容以''标识。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 合法的区域对象。默认值：系统区域。 |
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| [SimpleDateTimeFormat](#simpledatetimeformat16) | SimpleDateTimeFormat对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
+  let formatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
+  ```
+
+## i18n.getSimpleDateTimeFormatBySkeleton<sup>16+</sup>
+
+getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleDateTimeFormat
+
+通过框架字符串获取SimpleDateTimeFormat对象。与getSimpleDateTimeFormatByPattern接口获取的对象在格式化后显示差异请参考[SimpleDateTimeFormat](#simpledatetimeformat16)。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明                                       |
+| ------- | ----------- | ----- | ---------------------------------------- |
+| skeleton | string      | 是    | 合法的框架字符串，支持的字符及含义请参考[日期字段符号表](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)。skeleton不支持传入自定义文本。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 合法的区域对象。默认值：系统区域。 |
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| [SimpleDateTimeFormat](#simpledatetimeformat16) | SimpleDateTimeFormat对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
+  let formatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton("yMd", locale);
+  ```
+
+## SimpleDateTimeFormat<sup>16+</sup>
+
+### format<sup>16+</sup>
+
+format(date: Date): string
+
+对时间、日期进行格式化。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明                |
+| ---- | ---- | ---- | ----------------- |
+| date | Date | 是    | 时间日期对象。 |
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| string | 格式化后的时间、日期字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
+  let date : Date = new Date(2024, 11, 13);
+
+  let formatterWithText : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
+  let result : string = formatterWithText.format(date); // result = month(12)
+
+  let patternFormatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("yMd", locale);
+  result = patternFormatter.format(date); // result = 20241213
+
+  let skeletonFormatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton("yMd", locale);
+  result = skeletonFormatter.format(date); // result = 2024/12/13
+  ```
+
+
+## i18n.getSimpleNumberFormatBySkeleton<sup>16+</sup>
+
+getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleNumberFormat
+
+通过框架字符串获取SimpleNumberFormat对象。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明                                       |
+| ------- | ----------- | ----- | ---------------------------------------- |
+| skeleton | string      | 是    | 合法的框架字符串，支持的字符及含义请参考[Number Skeletons](https://unicode-org.github.io/icu/userguide/format_parse/numbers/skeletons.html#number-skeletons)。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 合法的区域对象。默认值：系统区域。 |
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| [SimpleNumberFormat](#simplenumberformat16) | SimpleNumberFormat对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
+  let formatter : i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton("%", locale);
+  ```
+
+## SimpleNumberFormat<sup>16+</sup>
+
+### format<sup>16+</sup>
+
+format(value: number): string
+
+格式化数字字符串。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明                |
+| ---- | ---- | ---- | ----------------- |
+| value | number | 是    | 数字对象。 |
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| string | 格式化后的数字字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
+  let formatter : i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton("%", locale);
+  let result : string = formatter.format(10); // result = 10%
+  ```
+
+## StyledNumberFormat<sup>16+</sup>
+
+### constructor<sup>16+</sup>
+
+constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: StyledNumberFormatOptions)
+
+创建需要富文本显示的数字格式化的对象。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+|   参数名  |      类型      | 必填 |     说明      |
+| --------- | ------------- | ---- | ------------- |
+| numberFormat | [intl.NumberFormat](js-apis-intl.md#numberformat) \| [SimpleNumberFormat](#simplenumberformat16) | 是   | 用于格式化数字的对象。  |
+| options | [StyledNumberFormatOptions](#stylednumberformatoptions16) | 否 | 指定数字格式化对象的配置项。默认值：默认的文本样式。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let integer_textStyle = new TextStyle({fontColor: Color.Red});
+  let decimal_textStyle = new TextStyle({fontColor: Color.Brown});
+  let fraction_textStyle = new TextStyle({fontColor: Color.Blue});
+  let unit_textStyle = new TextStyle({fontColor: Color.Green});
+
+  // 通过intl.NumberFormat创建StyledNumberFormat对象
+  let numFmt = new intl.NumberFormat("zh", {style: "unit", unit: "percent"});
+  let styledNumFmt_1 = new i18n.StyledNumberFormat(numFmt, {
+    integer: integer_textStyle,
+    decimal: decimal_textStyle,
+    fraction: fraction_textStyle,
+    unit: unit_textStyle });
+  
+  // 通过SimpleNumberFormat创建StyledNumberFormat对象
+  let locale = new intl.Locale("zh");
+  let simpleNumFmt = i18n.getSimpleNumberFormatBySkeleton("percent", locale);
+  let styledNumFmt_2 = new i18n.StyledNumberFormat(simpleNumFmt, {
+    integer: integer_textStyle,
+    decimal: decimal_textStyle,
+    fraction: fraction_textStyle,
+    unit: unit_textStyle });
+  ```
+
+### format<sup>16+</sup>
+
+format(value: number): StyledString
+
+对创建的数字格式化对象处理，返回富文本对象。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+|   参数名  |      类型      | 必填 |     说明      |
+| --------- | ------------- | ---- | ------------- |
+| value | Number | 是 | 需要格式化的数字。  |
+
+**返回值：**
+
+|       类型        |         说明          |
+| ----------------- | ----------------------|
+| [StyledString](../apis-arkui/arkui-ts/ts-universal-styled-string.md#styledstring) | 返回格式化后的富文本对象。 |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let integer_textStyle = new TextStyle({fontColor: Color.Red});
+  let decimal_textStyle = new TextStyle({fontColor: Color.Brown});
+  let fraction_textStyle = new TextStyle({fontColor: Color.Blue});
+  let unit_textStyle = new TextStyle({fontColor: Color.Green});
+
+  // 通过intl.NumberFormat创建StyledNumberFormat对象
+  let numFmt = new intl.NumberFormat("zh", {style: "unit", unit: "percent"});
+  let styledNumFmt_1 = new i18n.StyledNumberFormat(numFmt, {
+    integer: integer_textStyle,
+    decimal: decimal_textStyle,
+    fraction: fraction_textStyle,
+    unit: unit_textStyle });
+  let result_1 = styledNumFmt_1.format(1234.5678);  // result_1.getString() 为 "1,234.568%"。显示result_1时"1,234"是红色，"."是棕色，"568"是蓝色，"%"是绿色。
+  
+  // 通过SimpleNumberFormat创建StyledNumberFormat对象
+  let locale = new intl.Locale("zh");
+  let simpleNumFmt = i18n.getSimpleNumberFormatBySkeleton("percent", locale);
+  let styledNumFmt_2 = new i18n.StyledNumberFormat(simpleNumFmt, {
+    integer: integer_textStyle,
+    decimal: decimal_textStyle,
+    fraction: fraction_textStyle,
+    unit: unit_textStyle });
+  let result_2 = styledNumFmt_2.format(1234.5678);  // result_2.getString() 为 "1,234.5678%"。显示result_2时"1,234"是红色，"."是棕色，"5678"是蓝色，"%"是绿色。
+  ```
+
+## StyledNumberFormatOptions<sup>16+</sup>
+
+创建需要富文本显示的数字格式化的对象时，可选的配置项。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称            | 类型             |  必填   |  说明                                   |
+| --------------- | --------------- | ------  | --------------------------------------- |
+| integer        | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   否    |  指定整数部分的文本样式。默认值：默认的文本样式。     |
+| decimal        | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   否    |  指定小数点的文本样式。默认值：默认的文本样式。    |
+| fraction       | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   否    |  指定小数部分的文本样式。默认值：默认的文本样式。     |
+| unit           | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   否    |  指定单位部分的文本样式。默认值：默认的文本样式。     |
 
 ## i18n.getDisplayCountry<sup>(deprecated)</sup>
 

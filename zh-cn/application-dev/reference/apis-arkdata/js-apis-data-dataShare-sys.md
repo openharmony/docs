@@ -9,6 +9,8 @@
 > - 本模块接口为系统接口。
 >
 > - 本模块接口仅可在Stage模型下使用。
+>
+> - 本模块订阅RDB数据变更的接口on('rdbDataChange')的回调支持不大于200KB数据的传输。
 
 
 ## 导入模块
@@ -87,7 +89,7 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context)        | 是   | 应用的上下文环境。                                           |
 | uri      | string                                                   | 是   | 要连接的服务端应用的路径。                               |
-| options | [DataShareHelperOptions](#datasharehelperoptions10)| 是   | 可选配置。指定[DataShareHelper](#datasharehelper)是否在代理模式下。|
+| options | [DataShareHelperOptions](#datasharehelperoptions10)| 是   | 指定[DataShareHelper](#datasharehelper)是否在代理模式下，指定非静默访问时的等待拉起时间。如果不设置，则表示[DataShareHelper](#datasharehelper)不在代理模式下，且非静默访问时的等待拉起时间为2秒。|
 | callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | 是   | 回调函数。当创建DataShareHelper实例成功，err为undefined，data为获取到的DataShareHelper实例；否则为错误对象。 |
 
 **错误码：**
@@ -141,7 +143,7 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 | ------- | ------------------------------------------------- | ---- | ------------------------------ |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | 是   | 应用的上下文环境。             |
 | uri     | string                                            | 是   | 要连接的服务端应用的路径。 |
-| options<sup>10+</sup> | [DataShareHelperOptions](#datasharehelperoptions10) | 否 | 可选配置。从API version 10开始支持此参数，如果不设置，则表示[DataShareHelper](#datasharehelper)不在代理模式下。|
+| options<sup>10+</sup> | [DataShareHelperOptions](#datasharehelperoptions10) | 否 | 可选配置。从API version 10开始支持此参数，如果不设置，则表示[DataShareHelper](#datasharehelper)不在代理模式下，且非静默访问时的等待拉起时间为2秒。 |
 
 **返回值：**
 
@@ -264,7 +266,7 @@ disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700011 | The URI is not exist. |
+| 15700011 | The URI does not exist. |
 
 **示例：**
 
@@ -283,13 +285,14 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 
 ## DataShareHelperOptions<sup>10+</sup>
 
-指定[DataShareHelper](#datasharehelper)是否在代理模式下。
+指定[DataShareHelper](#datasharehelper)的可选参数，包含是否在代理模式下，以及非静默访问的拉起等待时间。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | isProxy | boolean | 否 | 默认为false，如果为true，则要创建的[DataShareHelper](#datasharehelper)处于代理模式，所有操作都不会打开数据提供者APP，除非数据库不存在，当数据库不存在时，[createDataShareHelper](#datasharecreatedatasharehelper10)会拉起数据提供者创建数据库。 |
+| waitTime<sup>16+</sup> | number | 否 | 拉起数据提供者进程的等待时间（单位：秒），默认值为2秒。 |
 
 ## TemplateId<sup>10+</sup>
 
@@ -316,7 +319,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 
 ## RdbDataChangeNode<sup>10+</sup>
 
-订阅/取消订阅RDB数据变更的结果。
+订阅/取消订阅RDB数据变更的结果，回调支持传输不大于200KB的数据。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -324,7 +327,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 | -------- | -------- | -------- | -------- |
 | uri | string | 是 | 指定回调的uri。 |
 | templateId | [TemplateId](#templateid10) | 是 | 处理回调的templateId。 |
-| data | Array&lt;string&gt; | 是 | 指定回调的数据。 |
+| data | Array&lt;string&gt; | 是 | 指定回调的数据。若处理回调数据时发生错误，则回调将不会被触发。 |
 
 ## PublishedDataChangeNode<sup>10+</sup>
 

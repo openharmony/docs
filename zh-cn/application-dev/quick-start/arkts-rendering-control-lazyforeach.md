@@ -24,7 +24,7 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 
 ## 组件创建规则
 
-在确定键值生成规则后，LazyForEach的第二个参数`itemGenerator`函数会根据键值生成规则为数据源的每个数组项创建组件。组件的创建包括两种情况：[LazyForEach首次渲染](#首次渲染)和[LazyForEach非首次渲染](#非首次渲染)。
+在确定键值生成规则后，LazyForEach的第二个参数`itemGenerator`函数会根据组件创建规则为数据源的每个数组项创建组件。组件的创建包括两种情况：[LazyForEach首次渲染](#首次渲染)和[LazyForEach非首次渲染](#非首次渲染)。
 
 ### 首次渲染
 
@@ -240,6 +240,10 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
+  public getAllData(): string[] {
+    return this.dataArray;
+  }
+
   public addData(index: number, data: string): void {
     this.dataArray.splice(index, 0, data);
     this.notifyDataAdd(index);
@@ -279,7 +283,7 @@ struct MyComponent {
         }
         .onClick(() => {
           // 点击删除子组件
-          this.data.deleteData(this.data.dataArray.indexOf(item));
+          this.data.deleteData(this.data.getAllData().indexOf(item));
         })
       }, (item: string) => item)
     }.cachedCount(5)
@@ -308,6 +312,10 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): string {
     return this.dataArray[index];
+  }
+
+  public getAllData(): string[] {
+    return this.dataArray;
   }
 
   public addData(index: number, data: string): void {
@@ -356,7 +364,7 @@ struct MyComponent {
           }.margin({ left: 10, right: 10 })
         }
         .onClick(() => {
-          this.moved.push(this.data.dataArray.indexOf(item));
+          this.moved.push(this.data.getAllData().indexOf(item));
           if (this.moved.length === 2) {
           	// 点击交换子组件
           	this.data.moveData(this.moved[0], this.moved[1]);
@@ -587,7 +595,7 @@ struct MyComponent {
 
   build() {
     Column() {
-      Text('第二项数据移动到第四项处，第五项数据和第七项数据交换，第九项开始添加数据 "Hello 1" "Hello 2", 第十一项开始删除两个数据')
+      Text('change data')
         .fontSize(10)
         .backgroundColor(Color.Blue)
         .fontColor(Color.White)
@@ -614,7 +622,7 @@ struct MyComponent {
 }
 ```
 
-onDatasetChange接口由开发者一次性通知LazyForEach应该做哪些操作。上述例子展示了LazyForEach同时进行数据添加、删除、移动、交换的操作。  
+onDatasetChange接口允许开发者一次性通知LazyForEach进行数据添加、删除、移动和交换等操作。在上述例子中，点击“change data”文本后,第二项数据被移动到第四项位置，第五项与第七项数据交换位置，并且从第九项开始添加了数据"Hello 1"和"Hello 2"，同时从第十一项开始删除了两项数据。  
 
 **图8**  LazyForEach改变多个数据  
 
@@ -714,7 +722,7 @@ struct MyComponent {
 4. 部分操作可以由开发者传入键值，LazyForEach不会再去重复调用keygenerator获取键值，需要开发者保证传入的键值的正确性。
 5. 若本次操作集合中有RELOAD操作，则其余操作全不生效。
 
-- ### 改变数据子属性
+### 改变数据子属性
 
 若仅靠`LazyForEach`的刷新机制，当`item`变化时若想更新子组件，需要将原来的子组件全部销毁再重新构建，在子组件结构较为复杂的情况下，靠改变键值去刷新渲染性能较低。因此框架提供了`@Observed`与@`ObjectLink`机制进行深度观测，可以做到仅刷新使用了该属性的组件，提高渲染性能。开发者可根据其自身业务特点选择使用哪种刷新方式。
 
@@ -796,7 +804,7 @@ struct ChildComponent {
 **图10**  LazyForEach改变数据子属性  
 ![LazyForEach-Change-SubProperty](./figures/LazyForEach-Change-SubProperty.gif)
 
-- ### 使用状态管理V2
+### 使用状态管理V2
 
 状态管理V2提供了`@ObservedV2`与`@Trace`装饰器可以实现对属性的深度观测，使用`@Local`和`@Param`可以实现对子组件的刷新管理，仅刷新使用了对应属性的组件。
 
@@ -1317,6 +1325,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
+      // 此处'app.media.img'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       this.data.pushData(new StringData(`Hello ${i}`, $r('app.media.img')));
     }
   }
@@ -1882,7 +1891,7 @@ struct ChildComponent {
 ### string类型数组的BasicDataSource代码
 
 ```ts
-// Basic implementation of IDataSource to handle data listener
+// BasicDataSource实现了IDataSource接口，用于管理listener监听，以及通知LazyForEach数据更新
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
   private originDataArray: string[] = [];

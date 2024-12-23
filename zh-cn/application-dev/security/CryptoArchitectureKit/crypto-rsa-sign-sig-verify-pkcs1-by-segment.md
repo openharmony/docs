@@ -86,7 +86,7 @@
     let messageData = new Uint8Array(buffer.from(message, 'utf-8').buffer);
     let signData = await signMessageBySegment(keyPair.priKey, messageData);
     let verifyResult = await verifyMessagBySegment(keyPair.pubKey, messageData, signData);
-    if (verifyResult == true) {
+    if (verifyResult === true) {
       console.info('verify success');
     } else {
       console.error('verify failed');
@@ -146,7 +146,7 @@
     let messageData = new Uint8Array(buffer.from(message, 'utf-8').buffer);
     let signData = signMessageBySegment(keyPair.priKey, messageData);
     let verifyResult = verifyMessagBySegment(keyPair.pubKey, messageData, signData);
-    if (verifyResult == true) {
+    if (verifyResult === true) {
       console.info('verify success');
     } else {
       console.error('verify failed');

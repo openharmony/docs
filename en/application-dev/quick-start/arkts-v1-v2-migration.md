@@ -1,4 +1,4 @@
-# Migrating Application from V1 to V2
+# Migrating Applications from V1 to V2
 
 ## Overview
 ArkUI state management automatically synchronizes observable data changes to the UI to implement data-driven UI re-render, enabling you to focus on UI implementation and design.
@@ -353,7 +353,7 @@ struct Parent {
   }
 }
 ```
-​
+
 V2:
 
 ```ts

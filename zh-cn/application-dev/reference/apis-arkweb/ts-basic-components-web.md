@@ -5,7 +5,7 @@
 > **说明：**
 >
 > - 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> - 示例效果请以真机运行为准，当前IDE预览器不支持。
+> - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## 需要权限
 
@@ -152,7 +152,7 @@ Web组件指定共享渲染进程。
   }
   ```
 
-加载沙箱路径下的本地资源文件。
+加载沙箱路径下的本地资源文件，需要开启应用中文件系统的访问[fileAccess](#fileaccess)权限。
 
 1. 通过构造的单例对象GlobalContext获取沙箱路径。
 
@@ -196,6 +196,7 @@ Web组件指定共享渲染进程。
        Column() {
          // 加载沙箱路径文件。
          Web({ src: url, controller: this.controller })
+         .fileAccess(true)
        }
      }
    }
@@ -400,6 +401,14 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
     testObj = new TestObj();
     build() {
       Column() {
+        Button('deleteJavaScriptRegister')
+        .onClick(() => {
+          try {
+            this.controller.deleteJavaScriptRegister("objName");
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
         Web({ src: 'www.example.com', controller: this.controller })
           .javaScriptAccess(true)
           .javaScriptProxy({
@@ -451,7 +460,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 overScrollMode(mode: OverScrollMode)
 
-设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
+设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web根页面上滑动到边缘时，Web会通过弹性动画弹回界面，根页面上的内部页面不会触发回弹。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1023,11 +1032,11 @@ textZoomAtio(textZoomAtio: number)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-    @State atio: number = 150
+    @State ratio: number = 150
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .textZoomAtio(this.atio)
+          .textZoomAtio(this.ratio)
       }
     }
   }
@@ -1057,12 +1066,12 @@ textZoomRatio(textZoomRatio: number)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    @State atio: number = 150;
+    @State ratio: number = 150;
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .textZoomRatio(this.atio)
+          .textZoomRatio(this.ratio)
       }
     }
   }
@@ -1733,8 +1742,8 @@ allowWindowOpenMethod(flag: boolean)
             })
             this.dialogController.open();
             // 将新窗口对应WebviewController返回给Web内核。
-            // 如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
             // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
+            // 如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
             event.handler.setWebController(popController);
           })
       }
@@ -2002,7 +2011,7 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
 > - 可以设置上下左右四个方向，或者设置向前、向后两个方向的嵌套滚动模式，实现与父组件的滚动联动。
 > - value为NestedScrollOptionsExt（上下左右四个方向）类型时，scrollUp、scrollDown、scrollLeft、scrollRight默认滚动选项为[NestedScrollMode.SELF_FIRST](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10)。
 > - value为NestedScrollOptions（向前、向后两个方向）类型时，scrollForward、scrollBackward默认滚动选项为NestedScrollMode.SELF_FIRST。
-> - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
+> - 支持嵌套滚动的容器：[Grid](../apis-arkui/arkui-ts/ts-container-grid.md)、[List](../apis-arkui/arkui-ts/ts-container-list.md)、[Scroll](../apis-arkui/arkui-ts/ts-container-scroll.md)、[Swiper](../apis-arkui/arkui-ts/ts-container-swiper.md)、[Tabs](../apis-arkui/arkui-ts/ts-container-tabs.md)、[WaterFlow](../apis-arkui/arkui-ts/ts-container-waterflow.md)。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
 > - 嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
@@ -2133,6 +2142,8 @@ forceDisplayScrollBar(enabled: boolean)
 
 
 设置滚动条是否常驻。默认不常驻，在常驻状态下，当页面大小超过一页时，滚动条出现且不消失。
+
+全量展开模式下不支持滚动条常驻，即layoutMode为WebLayoutMode.FIT_CONTENT模式时，参数enabled为false。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2287,6 +2298,7 @@ metaViewport(enabled: boolean)
 > - 设置true支持meta标签viewport属性，将解析viewport属性，并根据viewport属性布局。
 > - 如果设置为异常值将无效。
 > - 如果设备为2in1，不支持viewport属性。设置为true或者false均不会解析viewport属性，进行默认布局。
+> - 如果设备为Tablet，设置为true或false均会解析meta标签viewport-fit属性。当viewport-fit=cover时，可通过CSS属性获取安全区域大小。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2870,6 +2882,79 @@ blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
   </body>
 </html>
 ```
+
+### enableSmoothDragResize<sup>16+</sup>
+
+enableSmoothDragResize(mode: boolean)
+
+
+设置是否开启Web组件窗口拖拽缩放优化能力，默认关闭。开启后在Web窗口拖拽放大时会优化跟手性，减少白块。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填 | 说明           |
+| ------- | -------- | ---- | ------------------ |
+| mode | boolean  | 是   | 是否开启Web拖拽放大优化。默认值：false。 |
+
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .enableSmoothDragResize(true)
+      }
+    }
+  }
+  ```
+
+### enableFollowSystemFontWeight<sup>16+</sup>
+
+enableFollowSystemFontWeight(follow: boolean)
+
+设置Web组件是否开启字重跟随系统设置变化，默认不开启。
+
+> **说明：**
+>
+> 目前该能力只支持前端文本元素跟随变化，暂不支持canvas元素、内嵌docx和pdf格式中的文本跟随变化。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名       | 类型                             | 必填 | 说明                                |
+| ------------ | ------------------------------- | ---- | ----------------------------------- |
+| follow | boolean | 是    | 设置Web组件是否开启字重跟随系统设置变化，默认值：false。设置为true时，字重跟随系统设置中的字体粗细变化，系统设置改变时字重跟随变化。设置为false时，字重不再跟随系统设置中的字体粗细变化，系统设置改变时维持当前字重不变。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    build() {
+      Column() {
+        Web({ src: "www.example.com", controller: this.controller })
+          .enableFollowSystemFontWeight(true)
+      }
+    }
+  }
+  ```
 
 ## 事件
 
@@ -3633,7 +3718,7 @@ onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
 应用渲染进程异常退出时触发该回调。
 
-应用中的一个页面执行了onRenderExited之后所有Web组件都会退出。
+多个Web组件可能共享单个渲染进程，每个受影响的Web组件都会触发该回调。
 
 应用处理该回调时，可以调用绑定的webviewController相关接口来恢复页面。例如[refresh](js-apis-webview.md#refresh)、[loadUrl](js-apis-webview.md#loadurl)等。
 
@@ -3992,7 +4077,7 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
     controller: webview.WebviewController = new webview.WebviewController();
     responseWeb: WebResourceResponse = new WebResourceResponse();
     heads: Header[] = new Array();
-    @State webData: string = "<!DOCTYPE html>\n" +
+    webData: string = "<!DOCTYPE html>\n" +
       "<html>\n" +
       "<head>\n" +
       "<title>intercept test</title>\n" +
@@ -4128,6 +4213,48 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { cert } from '@kit.DeviceCertificateKit';
+  
+  function LogCertInfo(certChainData : Array<Uint8Array> | undefined) {
+    if (!(certChainData instanceof Array)) {
+      console.log('failed, cert chain data type is not array');
+      return;
+    }
+
+    for (let i = 0; i < certChainData.length; i++) {
+      let encodeBlobData: cert.EncodingBlob = {
+        data: certChainData[i],
+        encodingFormat: cert.EncodingFormat.FORMAT_DER
+      }
+      cert.createX509Cert(encodeBlobData, (error, x509Cert) => {
+        if (error) {
+          console.error('Index : ' + i + ',createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+        } else {
+          console.log('createX509Cert success');
+          console.log(ParseX509CertInfo(x509Cert));
+        }
+      });
+    }
+    return;
+  }
+  
+  function Uint8ArrayToString(dataArray: Uint8Array) {
+    let dataString = '';
+    for (let i = 0; i < dataArray.length; i++) {
+      dataString += String.fromCharCode(dataArray[i]);
+    }
+    return dataString;
+  }
+
+  function ParseX509CertInfo(x509Cert: cert.X509Cert) {
+    let res: string = 'getCertificate success, '
+      + 'issuer name = '
+      + Uint8ArrayToString(x509Cert.getIssuerName().data) + ', subject name = '
+      + Uint8ArrayToString(x509Cert.getSubjectName().data) + ', valid start = '
+      + x509Cert.getNotBeforeTime()
+      + ', valid end = ' + x509Cert.getNotAfterTime();
+    return res;
+  }
 
   @Entry
   @Component
@@ -4138,6 +4265,7 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onSslErrorEventReceive((event) => {
+            LogCertInfo(event.certChainData);
             AlertDialog.show({
               title: 'onSslErrorEventReceive',
               message: 'text',
@@ -4959,7 +5087,7 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 
 使能multiWindowAccess情况下，通知用户新建窗口请求。
 若不调用event.handler.setWebController接口，会造成render进程阻塞。
-如果不需要打开新窗口，在调用event.handler.setWebController接口时须设置成null。
+如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
 
 应用应谨慎的显示新窗口：不要简单的覆盖在原web组件上，防止误导用户正在查看哪个网站，如果应用显示主页的URL，请确保也以相似的方式显示新窗口的URL。否则请考虑完全禁止创建新窗口。
 
@@ -5023,8 +5151,8 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
             })
             this.dialogController.open();
             // 将新窗口对应WebviewController返回给Web内核。
-            // 如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
             // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
+            // 如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
             event.handler.setWebController(popController);
           })
       }
@@ -6006,7 +6134,7 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
     height: number;
   }
 
-  declare class nodeControllerParams {
+  declare class NodeControllerParams {
     surfaceId: string;
     renderType: NodeRenderType;
     width: number;
@@ -6020,7 +6148,7 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
     private width_: number = 0;
     private height_: number = 0;
 
-    setRenderOption(params: nodeControllerParams) {
+    setRenderOption(params: NodeControllerParams) {
       this.surfaceId_ = params.surfaceId;
       this.renderType_ = params.renderType;
       this.width_ = params.width;
@@ -6508,7 +6636,7 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
     height: number;
   }
 
-  declare class nodeControllerParams {
+  declare class NodeControllerParams {
     surfaceId: string;
     renderType: NodeRenderType;
     width: number;
@@ -6522,7 +6650,7 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
     private width_: number = 0;
     private height_: number = 0;
 
-    setRenderOption(params: nodeControllerParams) {
+    setRenderOption(params: NodeControllerParams) {
       this.surfaceId_ = params.surfaceId;
       this.renderType_ = params.renderType;
       this.width_ = params.width;
@@ -9580,6 +9708,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | 是 | 通知Web组件用户操作行为。 |
 | error   | [SslError](#sslerror9枚举说明)           | 是 | 错误码。           |
+| certChainData<sup>14+</sup>   | Array<Uint8Array\>           | 否 | 证书链数据。           |
 
 ## OnClientAuthenticationEvent<sup>12+</sup>
 

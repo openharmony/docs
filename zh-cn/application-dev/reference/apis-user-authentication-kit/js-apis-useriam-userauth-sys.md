@@ -13,6 +13,16 @@
 import { userAuth } from '@kit.UserAuthenticationKit';
 ```
 
+## AuthParam<sup>10+</sup>
+
+用户认证相关参数。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称           | 类型                               | 必填 | 说明                                                         |
+| -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| userId<sup>16+</sup> | number | 否   |要认证的目标用户ID，值为大于等于0的正整数。|
+
 ## WindowModeType<sup>10+</sup>
 
 用户认证界面的显示类型。
@@ -295,5 +305,52 @@ try {
   console.log('subscribe authentication event success');
 } catch (error) {
   console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+}
+```
+
+## UserAuthType<sup>8+</sup>
+
+表示身份认证的凭据类型枚举。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称        | 值   | 说明       |
+| ----------- | ---- | ---------- |
+| PRIVATE_PIN<sup>14+</sup>  | 16   | 隐私口令。 |
+
+**示例：**
+
+发起用户认证，采用认证可信等级≥ATL3的隐私密码认证，获取认证结果：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PRIVATE_PIN],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  const widgetParam: userAuth.WidgetParam = {
+    title: '请输入密码',
+  };
+
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.log('get userAuth instance success');
+  // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
+  userAuthInstance.on('result', {
+    onResult (result) {
+      console.log(`userAuthInstance callback result = ${JSON.stringify(result)}`);
+    }
+  });
+  console.log('auth on success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
