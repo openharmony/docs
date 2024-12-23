@@ -1773,7 +1773,6 @@
         - 通用能力的接口(推荐)<!--both-models-->
           - [@ohos.abilityAccessCtrl (程序访问控制管理)](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)
           - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)](reference/apis-ability-kit/js-apis-screenLockFileManager.md)
-          - [@ohos.app.ability.abilityManager (AbilityManager)](reference/apis-ability-kit/js-apis-app-ability-abilityManager.md)
           - [@ohos.app.ability.appManager (appManager)](reference/apis-ability-kit/js-apis-app-ability-appManager.md)
           - [@ohos.app.ability.appRecovery (appRecovery)](reference/apis-ability-kit/js-apis-app-ability-appRecovery.md)
           - [@ohos.app.ability.Configuration (Configuration)](reference/apis-ability-kit/js-apis-app-ability-configuration.md)
@@ -1830,14 +1829,10 @@
             - [processInfo](reference/apis-ability-kit/js-apis-inner-app-processInfo.md)
           - application<!--ability-arkts-application-->
             - [abilityMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityMonitor.md)
-            - [AbilityRunningInfo](reference/apis-ability-kit/js-apis-inner-application-abilityRunningInfo.md)
             - [AbilityStageContext](reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)
             - [abilityStageMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md)
             - [AbilityStartCallback](reference/apis-ability-kit/js-apis-inner-application-abilityStartCallback.md)
-            - [AbilityStateData](reference/apis-ability-kit/js-apis-inner-application-abilityStateData.md)
             - [ApplicationContext](reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)
-            - [ApplicationStateObserver](reference/apis-ability-kit/js-apis-inner-application-applicationStateObserver.md)
-            - [AppStateData](reference/apis-ability-kit/js-apis-inner-application-appStateData.md)
             - [BaseContext](reference/apis-ability-kit/js-apis-inner-application-baseContext.md)
             - [Context](reference/apis-ability-kit/js-apis-inner-application-context.md)
             - [EmbeddableUIAbilityContext](reference/apis-ability-kit/js-apis-inner-application-EmbeddableUIAbilityContext.md)
@@ -1849,16 +1844,19 @@
             - [ProcessRunningInfo](reference/apis-ability-kit/js-apis-inner-application-processRunningInfo.md)
             - [UIAbilityContext](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)
             - [UIExtensionContext](reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)
-            - [ProcessData](reference/apis-ability-kit/js-apis-inner-application-processData.md)
             - [PhotoEditorExtensionContext](reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionContext.md)
             - [SendableContext](reference/apis-ability-kit/js-apis-inner-application-sendableContext.md)
             <!--Del-->
             - [AbilityFirstFrameStateData(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityFirstFrameStateData-sys.md)
             - [AbilityFirstFrameStateObserver(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)
             - [AbilityForegroundStateObserver(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityForegroundStateObserver-sys.md)
+            - [AbilityRunningInfo(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityRunningInfo-sys.md)
+            - [AbilityStateData(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityStateData-sys.md)
             - [AppForegroundStateObserver(系统接口)](reference/apis-ability-kit/js-apis-inner-application-appForegroundStateObserver-sys.md)
             - [ApplicationContext(系统接口)](reference/apis-ability-kit/js-apis-inner-application-applicationContext-sys.md)
             - [AutoFillPopupConfig (系统接口)](reference/apis-ability-kit/js-apis-inner-application-autoFillPopupConfig-sys.md)
+            - [ApplicationStateObserver(系统接口)](reference/apis-ability-kit/js-apis-inner-application-applicationStateObserver-sys.md)
+            - [AppStateData(系统接口)](reference/apis-ability-kit/js-apis-inner-application-appStateData-sys.md)
             - [AutoFillExtensionContext(系统接口)](reference/apis-ability-kit/js-apis-inner-application-autoFillExtensionContext-sys.md)
             - [AutoFillRequest(系统接口)](reference/apis-ability-kit/js-apis-inner-application-autoFillRequest-sys.md)
             - [AutoFillType(系统接口)](reference/apis-ability-kit/js-apis-inner-application-autoFillType-sys.md)
@@ -1877,6 +1875,7 @@
             - [MissionParameter(系统接口)](reference/apis-ability-kit/js-apis-inner-application-missionParameter-sys.md)
             - [MissionSnapshot(系统接口)](reference/apis-ability-kit/js-apis-inner-application-missionSnapshot-sys.md)
             - [MissionSnapshot(系统接口)](reference/apis-ability-kit/js-apis-inner-application-pageNodeInfo-sys.md)
+            - [ProcessData(系统接口)](reference/apis-ability-kit/js-apis-inner-application-processData-sys.md)
             - [PageNodeInfo(系统接口)](reference/apis-ability-kit/js-apis-inner-application-pageNodeInfo-sys.md)
             - [ServiceExtensionContext(系统接口)](reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md)
             - [UIAbilityContext(系统接口)](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md)
@@ -4092,8 +4091,10 @@
     - Location Kit（位置服务）<!--location-api-->
       - ArkTS API<!--location-arkts-->
         - [@ohos.geoLocationManager (位置服务)](reference/apis-location-kit/js-apis-geoLocationManager.md)
+        - [@ohos.app.ability.FenceExtensionAbility (FenceExtensionAbility)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)
         <!--Del-->
         - [@ohos.geoLocationManager (位置服务)(系统接口)](reference/apis-location-kit/js-apis-geoLocationManager-sys.md)
+        - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext系统接口)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext-sys.md)
         <!--DelEnd-->
         - 已停止维护的接口<!--location-arkts-dep-->
           - [@ohos.geolocation (位置服务)](reference/apis-location-kit/js-apis-geolocation.md)
