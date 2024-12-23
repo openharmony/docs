@@ -1880,7 +1880,7 @@ struct styled_string_demo7 {
 ![](figures/styledstring_7.gif)
 
 
-### 示例8
+### 示例8（支持转换HTML格式字符串）
 
 属性字符串toHtml、fromHtml使用示例
 
