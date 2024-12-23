@@ -5325,6 +5325,7 @@ async function example() {
 | isEditSupported<sup>11+</sup>       | boolean | 否   | 是否支持编辑照片，true表示支持，false表示不支持，默认为true。     |
 | isOriginalSupported<sup>12+</sup>       | boolean | 否   | 是否显示选择原图按钮，true表示显示，false表示不显示，默认为false。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
 | subWindowName<sup>12+</sup>       | string | 否   | 子窗窗口名称。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| complteButtonText<sup>14+</sup>       | [CompleteButtonText](#completebuttontext14) | 否   | 完成按钮显示的内容。<br>完成按钮指在界面右下方，用户点击表示图片选择已完成的按钮。 <br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。     |
 
 ## PhotoSelectResult
 
@@ -5377,6 +5378,18 @@ async function example() {
 | ----- | ---- | ---- |
 | FAST_ORIGINAL_FORMAT_MODE |  0 |  原视频资源内容模式。  |
 | COMPATIBLE_FORMAT_MODE    |  1 |  兼容模式，从HDR视频转换为SDR视频。    |
+
+## CompleteButtonText<sup>14+</sup>
+
+配置完成按钮显示内容。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- | ---- | ---- |
+| TEXT_DONE |  0 |  显示“完成”。  |
+| TEXT_SEND    |  1 |  显示“发送”。    |
+| TEXT_ADD |  2 |  显示“添加”。  |
 
 ## MediaAssetProgressHandler<sup>13+</sup>
 
