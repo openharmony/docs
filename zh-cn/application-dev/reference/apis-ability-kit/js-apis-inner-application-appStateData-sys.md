@@ -1,4 +1,4 @@
- # AppStateData (系统接口)
+# AppStateData (系统接口)
 
 定义应用状态信息，可以通过[getForegroundApplications](js-apis-app-ability-appManager-sys.md#appmanagergetforegroundapplications)获取当前应用的相关信息。
 
@@ -17,7 +17,7 @@ import { appManager } from '@kit.AbilityKit';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：本模块被标记为@systemapi，对三方应用隐藏
+**系统API**：此接口为系统接口。
 
 | 名称                      | 类型   | 必填  | 说明       |
 | ------------------------- | ------ | ---- | --------- |
