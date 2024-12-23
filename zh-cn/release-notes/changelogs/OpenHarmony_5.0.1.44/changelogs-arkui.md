@@ -26,7 +26,7 @@ zIndex接口在3D变换场景与translateZ耦合，导致zIndex值的改变会�
 
 **起始API Level**
 
-API 14
+API 7
 
 **变更发生版本**
 
