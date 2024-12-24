@@ -4,7 +4,7 @@
 
 数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括数字型、字符型、布尔型以及这3种类型的数组类型。
 
-用户首选项默认加密等级为[EL2](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)，持久化文件存储在对应的EL2路径下，路径访问限制详见[应用文件目录与应用文件路径](../../../application-dev/file-management/app-sandbox-directory.md#应用文件目录与应用文件路径)。修改加密等级方法请参见[获取和修改加密分区](../../../application-dev/application-models/application-context-stage.md#获取和修改加密分区)。
+用户首选项的持久化文件存储在[preferencesDir](../../../application-dev/application-models/application-context-stage.md#获取应用文件路径)路径下，路径访问限制详见[应用文件目录与应用文件路径](../../../application-dev/file-management/app-sandbox-directory.md#应用文件目录与应用文件路径)。修改加密等级方法请参见[获取和修改加密分区](../../../application-dev/application-models/application-context-stage.md#获取和修改加密分区)。
 
 > **说明：**
 >
