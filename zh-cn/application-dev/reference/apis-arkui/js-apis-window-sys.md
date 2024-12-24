@@ -180,6 +180,7 @@ import { window } from '@kit.ArkUI';
 | abilityName | string   | 是   | 否   | Ability的名称。               |
 | windowId | number | 是   | 否   | 窗口ID。   |
 | windowStatusType | [WindowStatusType](js-apis-window.md#windowstatustype11) | 是   | 否   | 窗口模式枚举。   |
+| isFocused<sup>14+</sup> | boolean | 是   | 是   | 窗口是否获焦。true表示窗口获焦；false表示窗口未获焦。   |
 
 ## window.minimizeAll<sup>9+</sup>
 minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
@@ -1015,6 +1016,7 @@ promise.then((data) => {
     console.info(`windowStatusType:${windowInfo.windowStatusType}`);
     console.info(`abilityName:${windowInfo.abilityName}`);
     console.info(`bundleName:${windowInfo.bundleName}`);
+    console.info(`isFocused:${windowInfo.isFocused}`);
   })
 }).catch((err: BusinessError) => {
   console.error('Failed to getWindowInfo. Cause: ' + JSON.stringify(err));
