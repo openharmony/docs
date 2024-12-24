@@ -810,6 +810,7 @@ hasAccessoryRight(accessory: USBAccessory): boolean
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = usbManager.hasAccessoryRight(accList[0])
@@ -855,6 +856,7 @@ requestAccessoryRight(accessory: USBAccessory): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = await usbManager.requestAccessoryRight(accList[0])
@@ -894,6 +896,7 @@ cancelAccessoryRight(accessory: USBAccessory): void;
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = await usbManager.requestAccessoryRight(accList[0])
@@ -929,6 +932,7 @@ getAccessoryList(): Array<Readonly&lt;USBAccessory&gt;>
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   hilog.info(0, 'testTag ui', `getAccessoryList success, accList: ${JSON.stringify(accList)}`)
@@ -975,6 +979,7 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle;
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = await usbManager.requestAccessoryRight(accList[0])
@@ -1013,6 +1018,7 @@ closeAccessory(accessoryHandle: USBAccessoryHandle): void;
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = await usbManager.requestAccessoryRight(accList[0])
