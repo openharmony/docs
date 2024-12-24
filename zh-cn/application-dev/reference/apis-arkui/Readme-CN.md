@@ -200,6 +200,7 @@
   - 导航与切换
     - [Navigation](arkui-ts/ts-basic-components-navigation.md)
     - [NavDestination](arkui-ts/ts-basic-components-navdestination.md)
+    - [MultiNavigation](arkui-ts/ohos-arkui-advanced-MultiNavigation.md)
     - [Stepper](arkui-ts/ts-basic-components-stepper.md)
     - [StepperItem](arkui-ts/ts-basic-components-stepperitem.md)
     - [Tabs](arkui-ts/ts-container-tabs.md)
