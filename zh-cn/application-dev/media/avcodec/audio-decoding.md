@@ -2,20 +2,6 @@
 
 开发者可以调用本模块的Native API接口，完成音频解码，即将媒体数据解码为PCM码流。
 
-当前支持的解码能力如下:
-
-| 容器规格 | 音频解码类型                 |
-| -------- | :--------------------------- |
-| mp4      | AAC、MPEG(MP3)、Flac、Vorbis<!--RP1--><!--RP1End--> |
-| m4a      | AAC                          |
-| flac     | Flac                         |
-| ogg      | Vorbis<!--RP2--><!--RP2End-->    |
-| aac      | AAC                          |
-| mp3      | MPEG(MP3)                    |
-| amr      | AMR(amrnb、amrwb)            |
-| raw      | G711mu                       |
-| ape      | APE                          |
-
 **适用场景**
 
 - 音频播放

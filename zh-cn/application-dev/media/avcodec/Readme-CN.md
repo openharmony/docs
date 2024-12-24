@@ -1,6 +1,7 @@
 # AVCodec Kit（音视频编解码服务）
 
 - [AVCodec Kit简介](avcodec-kit-intro.md)
+- [AVCodec支持的格式](avcodec-support-formats.md)
 - 音视频编解码
   - [获取支持的编解码能力](obtain-supported-codecs.md)
   - [音频编码](audio-encoding.md)
