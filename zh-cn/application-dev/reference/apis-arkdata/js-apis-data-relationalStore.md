@@ -8249,14 +8249,14 @@ getRows(maxCount: number, position?: number): Promise&lt;Array&lt;ValuesBucket&g
 **示例：**
 
 ```ts
-// 假设结果集resultSet有100条数据
+// 以查到100条数据为例
 async function proccessRows(resultSet) {
   // 示例1：仅指定maxCount
   if (resultSet != undefined) {
     let rows:Array<relationalStore.ValuesBucket>
     let maxCount:number = 50
-    // getRows会自动移动结果集当前行到上次getRows获取结束位置的下一行，无需使用go类接口自行移动
-    while ((rows = (resultSet as relationalStore.ResultSet).getRows(maxCount)).length != 0) {
+    // getRows会自动移动结果集当前行到上次getRows获取结束位置的下一行，无需使用goToNextRow等接口移动
+    while ((rows = await (resultSet as relationalStore.ResultSet).getRows(maxCount)).length != 0) {
       console.info(JSON.stringify(rows[0]))
     }
   }
@@ -8266,7 +8266,7 @@ async function proccessRows(resultSet) {
     let rows:Array<relationalStore.ValuesBucket>
     let maxCount:number = 50
     let position:number = 50
-    while ((rows = (resultSet as relationalStore.ResultSet).getRows(maxCount, position)).length != 0) {
+    while ((rows = await (resultSet as relationalStore.ResultSet).getRows(maxCount, position)).length != 0) {
       console.info(JSON.stringify(rows[0]))
       position += rows.length
     }
