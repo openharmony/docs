@@ -20,7 +20,7 @@
 ## 规格约束
 
 * UIContext.getPromptAction.showDialog、UIContext.getPromptAction.showActionMenu、UIContext.getPromptAction.openCustomDialog依赖UI的执行上下文，不可以在UI上下文不明确的地方使用，参见[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)说明。
-* 建议在除[ServiceExtension](../../application-dev/application-models/serviceextensionability.md)等无UI界面的场景外，均使用UIContext中的弹出框方法。
+* 建议在<!--Del-->除[ServiceExtension](../../application-dev/application-models/serviceextensionability.md)等<!--DelEnd-->无UI界面的场景外，均使用UIContext中的弹出框方法。
 * 可以通过使用UIContext中的[getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction)对象。
 
 

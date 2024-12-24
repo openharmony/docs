@@ -1159,13 +1159,17 @@ Allows an application to obtain the MAC address of the local Wi-Fi device.
 
 Allows an application to obtain the MAC address of the peer Wi-Fi device.
 
-**Permission level**: system_core
+To obtain the MAC address of the peer device when obtaining Wi-Fi scanning results, you need to apply for this permission.
+
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
 **Enable via ACL**: true
 
 **Valid since**: 8
+
+**Changelog**: The permission level is **system_core** in API versions 8 to 13 and **system_basic** since API versions 14.
 
 ### ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
@@ -2881,6 +2885,18 @@ Allows an application or system ability to initiate the process for registering 
 
 **Valid since**: 13
 
+### ohos.permission.MANAGE_SHUTDOWN_FINDNETWORK
+
+Allows an application or system ability to manage the service that enables a powered-off device to be found by another device with the same account.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
 ### ohos.permission.MANAGE_RGM
 
 Allows a system service or system application to manage RGM.
@@ -3577,6 +3593,18 @@ Allows a system application to filter input events.
 
 **Valid since**: 12
 
+### ohos.permission.INPUT_DEVICE_CONTROLLER
+
+Allows an application to query and set the status of input devices.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：16
+
 ### ohos.permission.ACTIVATE_DEVICE_PSI
 
 Allows a system application or system ability to report the device activation status.
@@ -4201,6 +4229,56 @@ Allows a system application to access the application installation directory.
 
 **Valid since**: 14
 
+### ohos.permission.ACCESS_ACCOUNT_SERVICE_EXTENSION_ABILITY
+
+Allows a system application to invoke the services provided by the account ServiceExtensionAbility.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：13
+
+### ohos.permission.ANTI_FRAUD
+
+Allows an application to access risk control probes to detect device security risks. The detection result can be used as input for risk control decision-making in the cloud.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
+
+Allows an application to initiate screen recording without displaying the user authorization dialog box.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.STORAGE_MANAGER_CRYPT
+
+Allows a system application or system service to call APIs to perform encryption and decryption.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+**Changelog**: This permission is available only to system services in API versions 12 to 14. From API version 15, it is also available to system applications.
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
@@ -4450,6 +4528,18 @@ Allows a UIExtensionAbility to be displayed on the locked screen.
 ### ohos.permission.USE_USER_ACCESS_MANAGER
 
 Allows an application to query and configure user identity authentication policies, and verify the authentication result.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: false
+
+**Valid since**: 16
+
+### ohos.permission.SET_LAUNCH_REASON_MESSAGE
+
+Allows a system application to set the launch reason when starting another application.
 
 **Permission level**: system_basic
 

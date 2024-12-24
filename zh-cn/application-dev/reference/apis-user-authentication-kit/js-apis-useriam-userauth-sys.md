@@ -13,6 +13,16 @@
 import { userAuth } from '@kit.UserAuthenticationKit';
 ```
 
+## AuthParam<sup>10+</sup>
+
+用户认证相关参数。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称           | 类型                               | 必填 | 说明                                                         |
+| -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| userId<sup>16+</sup> | number | 否   |要认证的目标用户ID，值为大于等于0的正整数。|
+
 ## WindowModeType<sup>10+</sup>
 
 用户认证界面的显示类型。
@@ -343,4 +353,15 @@ try {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
+
+## UserAuthResultCode<sup>16+</sup>
+
+表示返回码的枚举。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称                    |   值   | 说明                 |
+| ----------------------- | ------ | -------------------- |
+| AUTH_TOKEN_CHECK_FAILED | 12500015      | verifyAuthToken系统接口错误码，表示验证的AuthToken无效。|
+| AUTH_TOKEN_EXPIRED      | 12500016      | verifyAuthToken系统接口错误码，AuthToken的签发时间至发起验证时的时间间隔超过传入的最大有效时长。|
 ```

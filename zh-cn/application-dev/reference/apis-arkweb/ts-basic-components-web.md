@@ -401,6 +401,14 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
     testObj = new TestObj();
     build() {
       Column() {
+        Button('deleteJavaScriptRegister')
+        .onClick(() => {
+          try {
+            this.controller.deleteJavaScriptRegister("objName");
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
         Web({ src: 'www.example.com', controller: this.controller })
           .javaScriptAccess(true)
           .javaScriptProxy({
@@ -2003,7 +2011,7 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
 > - 可以设置上下左右四个方向，或者设置向前、向后两个方向的嵌套滚动模式，实现与父组件的滚动联动。
 > - value为NestedScrollOptionsExt（上下左右四个方向）类型时，scrollUp、scrollDown、scrollLeft、scrollRight默认滚动选项为[NestedScrollMode.SELF_FIRST](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10)。
 > - value为NestedScrollOptions（向前、向后两个方向）类型时，scrollForward、scrollBackward默认滚动选项为NestedScrollMode.SELF_FIRST。
-> - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow、Refresh、bindSheet。
+> - 支持嵌套滚动的容器：[Grid](../apis-arkui/arkui-ts/ts-container-grid.md)、[List](../apis-arkui/arkui-ts/ts-container-list.md)、[Scroll](../apis-arkui/arkui-ts/ts-container-scroll.md)、[Swiper](../apis-arkui/arkui-ts/ts-container-swiper.md)、[Tabs](../apis-arkui/arkui-ts/ts-container-tabs.md)、[WaterFlow](../apis-arkui/arkui-ts/ts-container-waterflow.md)。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
 > - 嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
@@ -2906,6 +2914,43 @@ enableSmoothDragResize(mode: boolean)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .enableSmoothDragResize(true)
+      }
+    }
+  }
+  ```
+
+### enableFollowSystemFontWeight<sup>16+</sup>
+
+enableFollowSystemFontWeight(follow: boolean)
+
+设置Web组件是否开启字重跟随系统设置变化，默认不开启。
+
+> **说明：**
+>
+> 目前该能力只支持前端文本元素跟随变化，暂不支持canvas元素、内嵌docx和pdf格式中的文本跟随变化。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名       | 类型                             | 必填 | 说明                                |
+| ------------ | ------------------------------- | ---- | ----------------------------------- |
+| follow | boolean | 是    | 设置Web组件是否开启字重跟随系统设置变化，默认值：false。设置为true时，字重跟随系统设置中的字体粗细变化，系统设置改变时字重跟随变化。设置为false时，字重不再跟随系统设置中的字体粗细变化，系统设置改变时维持当前字重不变。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    build() {
+      Column() {
+        Web({ src: "www.example.com", controller: this.controller })
+          .enableFollowSystemFontWeight(true)
       }
     }
   }

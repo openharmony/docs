@@ -1159,13 +1159,17 @@
 
 允许应用获取对端Wi-Fi设备的MAC地址。
 
-**权限级别**：system_core
+在获取Wi-Fi扫描结果时，如果需要获取对端设备的MAC地址，则需要申请该权限。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
 **起始版本**：8
+
+**变更信息**：API 8-13，权限等级为system_core；从API 14开始，权限等级变更为system_basic。
 
 ### ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
@@ -2881,6 +2885,18 @@
 
 **起始版本**：13
 
+### ohos.permission.MANAGE_SHUTDOWN_FINDNETWORK
+
+允许应用和系统服务管理设备关机查找功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
 ### ohos.permission.MANAGE_RGM
 
 允许系统服务或系统应用管理RGM。
@@ -3577,6 +3593,18 @@
 
 **起始版本**：12
 
+### ohos.permission.INPUT_DEVICE_CONTROLLER
+
+允许应用查询和设置输入设备相关状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.ACTIVATE_DEVICE_PSI
 
 允许系统应用或系统服务上报设备激活状态。
@@ -4201,6 +4229,56 @@
 
 **起始版本**：14
 
+### ohos.permission.ACCESS_ACCOUNT_SERVICE_EXTENSION_ABILITY
+
+允许系统应用调用账号ServiceExtensionAbility所提供的服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.ANTI_FRAUD
+
+允许应用接入风控探针以检测端侧风险，检测结果可作为云侧风险决策的输入。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
+
+允许应用发起录屏的时候，不弹出隐私授权弹窗。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.STORAGE_MANAGER_CRYPT
+
+允许系统应用和系统服务调用接口完成加解密操作。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+**变更信息**：API 12-14仅对系统服务开放；从API 15开始对系统应用开放。
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -4452,6 +4530,18 @@
 允许应用查询和配置用户身份认证策略、校验用户身份认证结果。
 
 **权限级别** system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：false
+
+**起始版本**：16
+
+### ohos.permission.SET_LAUNCH_REASON_MESSAGE
+
+允许系统应用拉起其他应用时设置拉起原因。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 

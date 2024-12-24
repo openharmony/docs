@@ -431,3 +431,41 @@ CanvasRenderingContext2D的measureText接口
 **适配指导**
 
 无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.6 Canvas使用toDataURL接口生成图片，对于带有透明度的图片，创建为“image/png”或“image/webp”格式时，其效果可能会发生变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+变更前效果未达到预期。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：Canvas使用toDataURL接口生成图片，对于带有透明度的图片，创建为“image/png”或“image/webp”格式时，带透明度部分会与黑色背景混合，效果与原图有色差。
+
+变更后：Canvas使用toDataURL接口生成图片，对于带有透明度的图片，创建为“image/png”或“image/webp”格式时，变更为与原图一致。
+
+|                   变更前                   |                 变更后                  |
+| :----------------------------------------: | :-------------------------------------: |
+| ![toDataURLDemo](figures/toDataURLDemo1.png) | ![toDataURLDemo](figures/toDataURLDemo2.png) |
+
+**起始API Level**
+
+API 8
+
+**变更发生版本**
+
+从OpenHarmony 5.0.0.57开始。
+
+**变更的接口/组件**
+
+Canvas组件的toDataURL接口。
+
+**适配指导**
+
+默认效果变更，无需适配，但应注意变更后的效果是否符合预期。

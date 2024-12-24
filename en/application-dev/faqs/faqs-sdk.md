@@ -51,7 +51,7 @@ The link library file is missing.
 
 **Solution**
 
-Open the **CMakeLists.txt** file and append **libhilog_ndk.z.so** to **target_link_libraries**.
+Open the **CMakeLists.txt** file and append **libhilog_ndk.z.so** to the end of **target_link_libraries**.
 
 ```
 set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
@@ -70,4 +70,4 @@ Use the **OH_ResourceManager_OpenRawDir()** native API to obtain the root direct
 
 **Reference**
 
-[Rawfile](../reference/native-apis/rawfile.md)
+[Rawfile](../reference/apis-localization-kit/rawfile.md)
