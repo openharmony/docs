@@ -4277,6 +4277,42 @@ Allows a system application or system service to call APIs to perform encryption
 
 **Valid since**: 12
 
+### ohos.permission.WATCH_READ_EMERGENCY_INFO
+
+Allows an application to read the SOS emergency information.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：16
+
+### ohos.permission.WATCH_WRITE_EMERGENCY_INFO
+
+Allows an application to write the SOS emergency information.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：16
+
+### ohos.permission.WATCH_START_SOS_SERVICE
+
+Allows an application to enable or access the SOS service.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：16
+
 **Changelog**: This permission is available only to system services in API versions 12 to 14. From API version 15, it is also available to system applications.
 
 ## system_grant Permissions (Unavailable via ACL)

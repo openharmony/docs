@@ -4277,6 +4277,42 @@
 
 **起始版本**：12
 
+### ohos.permission.WATCH_READ_EMERGENCY_INFO
+
+允许应用读取SOS个人紧急信息数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.WATCH_WRITE_EMERGENCY_INFO
+
+允许应用写入SOS个人紧急信息数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.WATCH_START_SOS_SERVICE
+
+允许应用启用或访问SOS服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 **变更信息**：API 12-14仅对系统服务开放；从API 15开始对系统应用开放。
 
 ## system_grant，不允许ACL跨级申请
