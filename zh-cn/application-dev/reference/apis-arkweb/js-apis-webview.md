@@ -5954,14 +5954,9 @@ struct WebComponent {
     Column() {
       Button('getDefaultUserAgent')
         .onClick(() => {
-          try {
-            let userAgent = webview.WebviewController.getDefaultUserAgent();
-            console.log("userAgent: " + userAgent);
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
+          let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
+          console.log("defaultUserAgent: " + defaultUserAgent);
         })
-      Web({ src: 'www.example.com', controller: this.controller })
     }
   }
 }
