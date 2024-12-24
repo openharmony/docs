@@ -255,17 +255,6 @@ typedef void(* Input_DeviceRemovedCallback) (int32_t deviceId)
 | deviceId | 设备的ID。  | 
 
 
-### Input_HotkeyCallback
-
-```
-typedef void(* Input_HotkeyCallback) (Input_Hotkey *hotkey)
-```
-**描述**
-回调函数，用于回调快捷键事件。
-
-**起始版本：** 13
-
-
 ### Input_InterceptorEventCallback
 
 ```
