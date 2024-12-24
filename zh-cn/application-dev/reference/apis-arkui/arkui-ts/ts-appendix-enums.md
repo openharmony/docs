@@ -12,8 +12,8 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 颜色名称                     | 颜色值           | 颜色示意                                     |
-| ------------------------ | ------------- | ---------------------------------------- |
+| 名称                     | 值            | 说明                                                         |
+| ------------------------ | ------------- | ------------------------------------------------------------ |
 | Black                    | 0x000000      | ![zh-cn_image_0000001219864153](figures/zh-cn_image_0000001219864153.png) |
 | Blue                     | 0x0000ff      | ![zh-cn_image_0000001174104404](figures/zh-cn_image_0000001174104404.png) |
 | Brown                    | 0xa52a2a      | ![zh-cn_image_0000001219744201](figures/zh-cn_image_0000001219744201.png) |
@@ -25,7 +25,7 @@
 | Red                      | 0xff0000      | ![zh-cn_image_0000001219662665](figures/zh-cn_image_0000001219662665.png) |
 | White                    | 0xffffff      | ![zh-cn_image_0000001174582866](figures/zh-cn_image_0000001174582866.png) |
 | Yellow                   | 0xffff00      | ![zh-cn_image_0000001174582864](figures/zh-cn_image_0000001174582864.png) |
-| Transparent<sup>9+</sup> | rgba(0,0,0,0) | 透明色                                      |
+| Transparent<sup>9+</sup> | rgba(0,0,0,0) | 透明色                                                       |
 
 ## ImageFit
 
@@ -733,6 +733,18 @@
 | ----------- | ------------------------ |
 | PLACEHOLDER | 显示的数据为通用占位符。 |
 
+## ColoringStrategy<sup>10+</sup>
+
+智能取色枚举类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 描述              |
+| ------ | --------------- |
+| INVERT | 设置前景色为控件背景色的反色。仅支持在[foregroundColor](ts-universal-attributes-foreground-color.md#foregroundcolor)中设置该枚举。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+
 ## ClickEffectLevel<sup>10+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -744,6 +756,17 @@
 | LIGHT  | 小面积（轻盈） | 弹簧动效， 刚性：410，阻尼：38，初始速度：1 | 90% |
 | MIDDLE | 中面积（稳定） | 弹簧动效， 刚性：350，阻尼：35，初始速度：0.5 | 95% |
 | HEAVY  | 大面积（厚重） | 弹簧动效， 刚性：240，阻尼：28，初始速度：0 | 95% |
+
+## CheckBoxShape<sup>11+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 值   | 说明     |
+| -------------- | ---- | -------- |
+| CIRCLE         | 0    | 圆形     |
+| ROUNDED_SQUARE | 1    | 圆角方形 |
 
 ## FoldStatus<sup>11+</sup>
 
