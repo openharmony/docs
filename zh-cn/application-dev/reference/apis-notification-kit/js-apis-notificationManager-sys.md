@@ -22,7 +22,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER 或 ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
 **系统接口**: 此接口为系统接口。
 
@@ -95,7 +95,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER  或 ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
 **系统接口**: 此接口为系统接口。
 
