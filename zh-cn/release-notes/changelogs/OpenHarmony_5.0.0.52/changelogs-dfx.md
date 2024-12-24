@@ -36,7 +36,7 @@ hdc命令行工具
 /storage/cloud/\<USERID\>/files/Photo</br>
 /storage/media/\<USERID\>/local/files/Photo</br>
 
-通过mediatool recv命令将指定uri对应的媒体库资源的源文件内容导出到定的设备路径下，具体操作说明可阅读[mediatool参考文档](../../../application-dev/tools/mediatool.md#mediatool-recv)。
+通过mediatool recv命令将指定uri对应的媒体库资源的源文件内容导出到指定的设备路径下，具体操作说明可阅读[mediatool参考文档](../../../application-dev/tools/mediatool.md#mediatool-recv)。
 
 ```shell
 > mediatool recv file://media/Photo/3 /data/local/tmp/out.jpg
@@ -44,7 +44,7 @@ Table Name: Photos
 /data/local/tmp/out.jpg
 ```
 
-通过hdc file recv命令将媒体文件从远端设备接收文件至本地。
+通过hdc file recv命令将媒体文件从远端设备接收至本地。
 
 ```bash
 > hdc file recv /data/local/tmp/out.jpg ./out.jpg
