@@ -126,16 +126,16 @@ conn.unregister((err: BusinessError, data: void) => {
 ## 监控默认网络变化并主动重建网络连接
 
 根据当前网络状态及网络质量情况，默认网络可能会发生变化，如：
-1. 在WiFi弱信号的情况下，默认网络可能会切换到蜂窝网络
-2. 在蜂窝网络状态差的情况下，默认网络可能会切换到WiFi
-3. 关闭WiFi后，默认网络可能会切换到蜂窝网络
-4. 关闭蜂窝网络后，默认网络可能会切换到WiFi
-5. 在WiFi弱信号的情况下，默认网络可能会切换到其他WiFi（存在跨网情况）
-6. 在蜂窝网络状态差的情况下，默认网络可能会切换到其他蜂窝（存在跨网情况）
+1. 在WiFi弱信号的情况下，默认网络可能会切换到蜂窝网络。
+2. 在蜂窝网络状态差的情况下，默认网络可能会切换到WiFi。
+3. 关闭WiFi后，默认网络可能会切换到蜂窝网络。
+4. 关闭蜂窝网络后，默认网络可能会切换到WiFi。
+5. 在WiFi弱信号的情况下，默认网络可能会切换到其他WiFi（存在跨网情况）。
+6. 在蜂窝网络状态差的情况下，默认网络可能会切换到其他蜂窝（存在跨网情况）。
 
 本节旨在介绍监控默认网络的变化后，应用报文能够快速迁移到新默认网络上，具体做法如下。
 
-### 监控默认网络变化的方法
+### 监控默认网络变化
 
 ```ts
 import connection from '@ohos.net.connection';
@@ -150,13 +150,13 @@ async function test() {
 }
 ```
 
-### 默认网络变化后重新建立网络连接的方法
+### 默认网络变化后重新建立网络连接
 
-#### 原网络连接使用@ohos.net.http建立网络连接的情况
+#### 原网络连接使用@ohos.net.http建立网络连接
 
-如果您使用了@ohos.net.http建立网络连接，由于该Api没有提供Close接口用于关闭Socket，在切换默认网络并建立新的网络连接后原有Socket不会立即关闭。因此请切换使用@hms.collaboration.rcp建立网络连接。
+如果您使用了@ohos.net.http建立网络连接，由于该模块没有提供Close接口用于关闭Socket，在切换默认网络并建立新的网络连接后原有Socket不会立即关闭。因此请切换使用@hms.collaboration.rcp建立网络连接。
 
-#### 原网络连接使用@hms.collaboration.rcp建立网络连接的情况
+#### 原网络连接使用@hms.collaboration.rcp建立网络连接
 
 ```ts
 import rcp from '@hms.collaboration.rcp';
@@ -168,10 +168,10 @@ let session = rcp.createSession();
 async function useRcp() {
   /* 建立rcp请求 */
   try {
-    const request = await session.get('https://www.baidu.com');
+    const request = await session.get('https://www.example.com');
     console.info(request.statusCode.toString());
   } catch (e) {
-    console.info(e.code.toString());
+    console.error(e.code.toString());
   }
 }
 
@@ -193,7 +193,8 @@ async function rcpTest() {
 }
 ```
 
-#### 原网络连接使用@ohos.net.socket建立连接的情况
+#### 原网络连接使用@ohos.net.socket建立连接
+
 ```ts
 import socket from '@ohos.net.socket';
 import connection from '@ohos.net.connection';
@@ -248,7 +249,7 @@ async function socketTest() {
 }
 ```
 
-#### 原网络连接使用Socket Library建立网络连接的情况
+#### 原网络连接使用Socket Library建立网络连接
 
 请在监控到默认网络变化后关闭原有Socket并重新建立Socket连接。
 
