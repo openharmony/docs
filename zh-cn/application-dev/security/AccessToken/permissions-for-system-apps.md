@@ -4075,6 +4075,18 @@
 
 **起始版本**：14
 
+### ohos.permission.ACCESS_CONFIDENTIAL_COMPUTING_ZONE
+
+允许应用访问机密计算空间。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
 
 允许应用获取恢复密钥的简要信息。
@@ -4780,15 +4792,3 @@
 **ACL使能**：true
 
 **起始版本**：14
-
-### ohos.permission.ACCESS_CONFIDENTIAL_COMPUTING_ZONE
-
-允许应用访问机密计算空间。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：16
