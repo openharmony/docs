@@ -86,35 +86,105 @@ struct Index {
 - \@Reusable装饰器不支持嵌套使用。
 
 ```ts
-// Parent 被标记@Reusable
-@Reusable
-@Component
-export struct Parent{
-  build() {
-    Column() {
-      //  问题用法，编译不报错，有时显示正常，可能导致未定义的结果，不建议使用此用法
-      //  可复用的组件的子树中存在可复用的组件，可能导致未定义的结果
-      HasReusableChild()
-      Text("Parent")
-        .fontSize(12)
-        .lineHeight(18)
-        .fontColor(Color.Blue)
-        .margin({
-          left: 6
-        })
-    }.width('100%')
-    .height('100%')
-    .justifyContent(FlexAlign.Center)
+export class Message {
+  value: string | undefined;
+
+  constructor(value: string) {
+    this.value = value;
   }
 }
 
-//  子自定义组件被也被标记@Reusable
+@Entry
+@Component
+struct Index {
+  @State switch: boolean = true;
+  @State childswitch: boolean = false;
+
+  build() {
+    Column() {
+      Button('click')
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .onClick(() => {
+          this.switch = !this.switch;
+        })
+
+      if (this.switch) {
+        // 父自定义组件已经添加@Reusable（出于描述方便，以下子组件代指自定义组件，父组件代指父自定义组件）
+        Parent({ message: new Message('Parent') })
+          .reuseId('Parent')
+      }
+    }
+    .height("100%")
+    .width('100%')
+  }
+}
+
+@Reusable
+@Component
+struct Parent {
+  @State message: Message = new Message('AboutToReuse');
+  @State switchchild: boolean = true;
+
+  aboutToRecycle(): void {
+    console.info("aboutToRecycle===Parent ====Child==");
+  }
+
+  aboutToReuse(params: Record<string, ESObject>) {
+    this.message = params.message as Message;
+    console.info("aboutToReuse==Parent====Child==" + this.message.value);
+  }
+
+  build() {
+    Column() {
+      Button('click child')
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .onClick(() => {
+          this.switchchild = !this.switchchild;
+        })
+
+      // 子自定义组件
+      if (this.switchchild) {
+        // 父自定义组件已经添加@Reusable
+        HasReusableChild({ message: new Message('From ChildReuse') });
+      }
+      Text(this.message.value)
+        .fontSize(30)
+    }
+    .borderWidth(1)
+    .height(100)
+  }
+}
+
+// 可复用的自定义组件的子树中存在可复用的自定义组件,如果子组件标记@Reuable，会导致同一颗子树下复用率变低,因此不建议子组件加上@Reusable
 @Reusable
 @Component
 export struct HasReusableChild {
+  @State message: Message = new Message('AboutToReuse');
+
+  // 子组件有@Reusable，单独刷新子组件,执行了子组件的aboutToReuse,父组件是不复用的
+  aboutToAppear(): void {
+    console.info("aboutToAppear=== HasReusableChild ====Child==");
+  }
+
+  aboutToDisappear(): void {
+    console.info("aboutToDisappear=== HasReusableChild ====Child==");
+  }
+
+  aboutToRecycle(): void {
+    console.info("aboutToRecycle=== HasReusableChild ====Child==");
+  }
+
+  // 正常复用，父组件刷新，引发子组件aboutToReuse方法的执行
+  aboutToReuse(params: Record<string, ESObject>) {
+    this.message = params.message as Message;
+    console.info("aboutToReuse== HasReusableChild ====Child==" + this.message.value);
+  }
+
   build() {
     Column() {
-      Text("hasReusableChild")
+      Text(this.message.value)
         .fontSize(12)
         .lineHeight(18)
         .fontColor(Color.Blue)
