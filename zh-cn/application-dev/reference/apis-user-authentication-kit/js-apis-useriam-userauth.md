@@ -112,9 +112,9 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
   let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);
-  console.info('get current enrolled state success, enrolledState = ' + JSON.stringify(enrolledState));
+  console.info(`get current enrolled state success, enrolledState = ${JSON.stringify(enrolledState)}`);
 } catch (error) {
-  console.error('get current enrolled state failed, error = ' + JSON.stringify(error));
+  console.error(`get current enrolled state failed, error = ${JSON.stringify(error)}`);
 }
 ```
 
@@ -204,14 +204,14 @@ try {
   };
 
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  console.info('get userAuth instance success');
   // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
   userAuthInstance.on('result', {
     onResult (result) {
-      console.log(`userAuthInstance callback result = ${JSON.stringify(result)}`);
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
     }
   });
-  console.log('auth on success');
+  console.info('auth on success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -245,14 +245,14 @@ try {
     title: '请输入密码',
   };
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  console.info('get userAuth instance success');
   // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
   userAuthInstance.on('result', {
     onResult (result) {
-      console.log(`userAuthInstance callback result = ${JSON.stringify(result)}`);
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
     }
   });
-  console.log('auth on success');
+  console.info('auth on success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -286,14 +286,14 @@ try {
     title: '请输入密码',
   };
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  console.info('get userAuth instance success');
   // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
   userAuthInstance.on('result', {
     onResult (result) {
-      console.log(`userAuthInstance callback result = ${JSON.stringify(result)}`);
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
     }
   });
-  console.log('auth on success');
+  console.info('auth on success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -351,14 +351,14 @@ try {
     title: '请输入密码',
   };
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  console.info('get userAuth instance success');
   // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
   userAuthInstance.on('result', {
     onResult (result) {
-      console.log(`userAuthInstance callback result = ${JSON.stringify(result)}`);
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
     }
   });
-  console.log('auth on success');
+  console.info('auth on success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -415,13 +415,13 @@ try {
     title: '请输入密码',
   };
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  console.info('get userAuth instance success');
   userAuthInstance.off('result', {
     onResult (result) {
-      console.log(`auth off result = ${JSON.stringify(result)}`);
+      console.info(`auth off result = ${JSON.stringify(result)}`);
     }
   });
-  console.log('auth off success');
+  console.info('auth off success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -483,9 +483,9 @@ try {
     title: '请输入密码',
   };
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  console.info('get userAuth instance success');
   userAuthInstance.start();
-  console.log('auth start success');
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -536,10 +536,10 @@ try {
     title: '请输入密码',
   };
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  console.info('get userAuth instance success');
   // 需要调用UserAuthInstance的start()接口，启动认证后，才能调用cancel()接口。
   userAuthInstance.cancel();
-  console.log('auth cancel success');
+  console.info('auth cancel success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -603,7 +603,7 @@ try {
     title: '请输入密码',
   };
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  console.info('get userAuth instance success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -713,16 +713,16 @@ try {
   let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   auth.on('result', {
     callback: (result: userAuth.AuthResultInfo) => {
-      console.log('authV9 result ' + result.result);
-      console.log('authV9 token ' + result.token);
-      console.log('authV9 remainAttempts ' + result.remainAttempts);
-      console.log('authV9 lockoutDuration ' + result.lockoutDuration);
+      console.info(`authV9 result ${result.result}`);
+      console.info(`authV9 token ${result.token}`);
+      console.info(`authV9 remainAttempts ${result.remainAttempts}`);
+      console.info(`authV9 lockoutDuration ${result.lockoutDuration}`);
     }
   } as userAuth.AuthEvent);
   auth.start();
-  console.log('authV9 start success');
+  console.info('authV9 start success');
 } catch (error) {
-  console.error('authV9 error = ' + error);
+  console.error(`authV9 error = ${error}`);
   // do error
 }
 // 通过callback获取认证过程中的提示信息
@@ -741,9 +741,9 @@ try {
     }
   } as userAuth.AuthEvent);
   auth.start();
-  console.log('authV9 start success');
+  console.info('authV9 start success');
 } catch (error) {
-  console.error('authV9 error = ' + error);
+  console.error(`authV9 error = ${error}`);
   // do error
 }
 ```
@@ -796,10 +796,10 @@ try {
   // 订阅认证结果
   auth.on('result', {
     callback: (result: userAuth.AuthResultInfo) => {
-      console.log('authV9 result ' + result.result);
-      console.log('authV9 token ' + result.token);
-      console.log('authV9 remainAttempts ' + result.remainAttempts);
-      console.log('authV9 lockoutDuration ' + result.lockoutDuration);
+      console.info(`authV9 result ${result.result}`);
+      console.info(`authV9 token ${result.token}`);
+      console.info(`authV9 remainAttempts ${result.remainAttempts}`);
+      console.info(`authV9 lockoutDuration ${result.lockoutDuration}`);
     }
   });
   // 订阅认证过程中的提示信息
@@ -816,9 +816,9 @@ try {
     }
   } as userAuth.AuthEvent);
   auth.start();
-  console.log('authV9 start success');
+  console.info('authV9 start success');
 } catch (error) {
-  console.error('authV9 error = ' + error);
+  console.error(`authV9 error = ${error}`);
   // do error
 }
 ```
@@ -861,17 +861,17 @@ try {
   // 订阅认证结果
   auth.on('result', {
     callback: (result: userAuth.AuthResultInfo) => {
-      console.log('authV9 result ' + result.result);
-      console.log('authV9 token ' + result.token);
-      console.log('authV9 remainAttempts ' + result.remainAttempts);
-      console.log('authV9 lockoutDuration ' + result.lockoutDuration);
+      console.info(`authV9 result ${result.result}`);
+      console.info(`authV9 token ${result.token}`);
+      console.info(`authV9 remainAttempts ${result.remainAttempts}`);
+      console.info(`authV9 lockoutDuration ${result.lockoutDuration}`);
     }
   });
   // 取消订阅结果
   auth.off('result');
   console.info('cancel subscribe authentication event success');
 } catch (error) {
-  console.error('cancel subscribe authentication event failed, error =' + error);
+  console.error(`cancel subscribe authentication event failed, error = ${error}`);
   // do error
 }
 ```
@@ -922,7 +922,7 @@ try {
   auth.start();
   console.info('authV9 start auth success');
 } catch (error) {
-  console.error('authV9 start auth failed, error = ' + error);
+  console.error(`authV9 start auth failed, error = ${error}`);
 }
 ```
 
@@ -965,7 +965,7 @@ try {
   auth.cancel();
   console.info('cancel auth success');
 } catch (error) {
-  console.error('cancel auth failed, error = ' + error);
+  console.error(`cancel auth failed, error = ${error}`);
 }
 ```
 
@@ -1021,7 +1021,7 @@ try {
   let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   console.info('let auth instance success');
 } catch (error) {
-  console.error('get auth instance success failed, error = ' + error);
+  console.error(`get auth instance success failed, error = ${error}`);
 }
 ```
 
@@ -1074,7 +1074,7 @@ try {
   userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);
   console.info('current auth trust level is supported');
 } catch (error) {
-  console.error('current auth trust level is not supported, error = ' + error);
+  console.error(`current auth trust level is not supported, error = ${error}`);
 }
 ```
 
@@ -1150,7 +1150,7 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let version = auth.getVersion();
-console.info('auth version = ' + version);
+console.info(`auth version = ${version}`);
 ```
 
 ### getAvailableStatus<sup>(deprecated)</sup>
@@ -1189,7 +1189,7 @@ let checkCode = auth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.Aut
 if (checkCode == userAuth.ResultCode.SUCCESS) {
   console.info('check auth support success');
 } else {
-  console.error('check auth support fail, code = ' + checkCode);
+  console.error(`check auth support fail, code = ${checkCode}`);
 }
 ```
 
@@ -1231,15 +1231,15 @@ let challenge = new Uint8Array([]);
 auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
   onResult: (result, extraInfo) => {
     try {
-      console.info('auth onResult result = ' + result);
-      console.info('auth onResult extraInfo = ' + JSON.stringify(extraInfo));
+      console.info(`auth onResult result = ${result}`);
+      console.info(`auth onResult extraInfo = ${JSON.stringify(extraInfo)}`);
       if (result == userAuth.ResultCode.SUCCESS) {
         // 此处添加认证成功逻辑
       } else {
         // 此处添加认证失败逻辑
       }
     } catch (error) {
-      console.error('auth onResult error = ' + error);
+      console.error(`auth onResult error = ${error}`);
     }
   }
 });
@@ -1321,15 +1321,15 @@ let challenge = new Uint8Array([]);
 auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
   onResult: (result, extraInfo) => {
     try {
-      console.info('auth onResult result = ' + result);
-      console.info('auth onResult extraInfo = ' + JSON.stringify(extraInfo));
+      console.info(`auth onResult result = ${result}`);
+      console.info(`auth onResult extraInfo = ${JSON.stringify(extraInfo)}`);
       if (result == userAuth.ResultCode.SUCCESS) {
         // 此处添加认证成功逻辑
       }  else {
         // 此处添加认证失败逻辑
       }
     } catch (error) {
-      console.error('auth onResult error = ' + error);
+      console.error(`auth onResult error = ${error}`);
     }
   }
 });
@@ -1364,24 +1364,24 @@ let challenge = new Uint8Array([]);
 auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
   onResult: (result, extraInfo) => {
     try {
-      console.info('auth onResult result = ' + result);
-      console.info('auth onResult extraInfo = ' + JSON.stringify(extraInfo));
+      console.info(`auth onResult result = ${result}`);
+      console.info(`auth onResult extraInfo = ${JSON.stringify(extraInfo)}`);
       if (result == userAuth.ResultCode.SUCCESS) {
         // 此处添加认证成功逻辑
       }  else {
         // 此处添加认证失败逻辑
       }
     } catch (error) {
-      console.error('auth onResult error = ' + error);
+      console.error(`auth onResult error = ${error}`);
     }
   },
   onAcquireInfo: (module, acquire, extraInfo : userAuth.AuthResult) => {
     try {
-      console.info('auth onAcquireInfo module = ' + module);
-      console.info('auth onAcquireInfo acquire = ' + acquire);
-      console.info('auth onAcquireInfo extraInfo = ' + JSON.stringify(extraInfo));
+      console.info(`auth onAcquireInfo module = ${module}`);
+      console.info(`auth onAcquireInfo acquire = ${acquire}`);
+      console.info(`auth onAcquireInfo extraInfo = ${JSON.stringify(extraInfo)}`);
     } catch (error) {
-      console.error('auth onAcquireInfo error = ' + error);
+      console.error(`auth onAcquireInfo error = ${error}`);
     }
   }
 });
@@ -1560,7 +1560,7 @@ authenticator.execute('FACE_ONLY', 'S2', (error, code)=>{
     console.info('auth success');
     return;
   }
-  console.error('auth fail, code = ' + code);
+  console.error(`auth fail, code = ${code}`);
 });
 ```
 
@@ -1602,7 +1602,7 @@ try {
     console.info('auth success');
   })
 } catch (error) {
-  console.error('auth fail, code = ' + error);
+  console.error(`auth fail, code = ${error}`);
 }
 ```
 
