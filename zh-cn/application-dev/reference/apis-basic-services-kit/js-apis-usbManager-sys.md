@@ -394,7 +394,7 @@ usbManager.requestRight (#usbrequestright)会触发弹框请求用户授权；ad
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
+import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let devicesName: string = "1-1";
 let tokenId: string = "";
@@ -755,6 +755,8 @@ usbManager.requestAccessoryRight会触发弹窗请求用户授权；addAccessory
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { bundleManager } from '@kit.AbilityKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flags = bundleManager.BundleFlah.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY
