@@ -274,12 +274,12 @@ typedef void(* Input_DeviceRemovedCallback) (int32_t deviceId)
 ### Input_Hotkey
 
 ```
-typedef struct Input_HotkeyInput_Hotkey
+typedef struct Input_Hotkey Input_Hotkey
 ```
 **描述**
 定义快捷键结构体。
 
-**起始版本：** 13
+**起始版本：** 14
 
 
 ### Input_HotkeyCallback
@@ -290,7 +290,7 @@ typedef void(* Input_HotkeyCallback) (Input_Hotkey *hotkey)
 **描述**
 回调函数，用于回调快捷键事件。
 
-**起始版本：** 13
+**起始版本：** 14
 
 
 ### Input_InterceptorEventCallback
@@ -788,8 +788,8 @@ enum Input_Result
 | INPUT_PARAMETER_ERROR  | 参数检查失败&nbsp;&nbsp; | 
 | INPUT_SERVICE_EXCEPTION  | 服务异常&nbsp;&nbsp; | 
 | INPUT_REPEAT_INTERCEPTOR  | 应用创建拦截后，再次执行创建拦截的操作&nbsp;&nbsp; | 
-| INPUT_OCCUPIED_BY_SYSTEM  | 已经被系统应用占用，**起始版本：** 13 | 
-| INPUT_OCCUPIED_BY_OTHER  | 已经被其他应用占用，**起始版本：** 13 | 
+| INPUT_OCCUPIED_BY_SYSTEM  | 已经被系统应用占用，**起始版本：** 14 | 
+| INPUT_OCCUPIED_BY_OTHER  | 已经被其他应用占用，**起始版本：** 14 | 
 
 
 ### Input_TouchEventAction
@@ -964,7 +964,7 @@ Input_Result OH_Input_AddHotkeyMonitor (const Input_Hotkey * hotkey, Input_Hotke
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
@@ -1174,7 +1174,7 @@ Input_Hotkey** OH_Input_CreateAllSystemHotkeys (int32_t count)
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
@@ -1231,7 +1231,7 @@ Input_Hotkey* OH_Input_CreateHotkey ()
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-**起始版本：** 13
+**起始版本：** 14
 
 **返回：**
 
@@ -1316,7 +1316,7 @@ void OH_Input_DestroyAllSystemHotkeys (Input_Hotkey ** hotkeys, int32_t count )
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
@@ -1378,7 +1378,7 @@ void OH_Input_DestroyHotkey (Input_Hotkey ** hotkey)
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
@@ -1473,7 +1473,7 @@ Input_Result OH_Input_GetAllSystemHotkeys (Input_Hotkey ** hotkey, int32_t * cou
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
@@ -1886,7 +1886,7 @@ Input_Result OH_Input_GetFinalKey (const Input_Hotkey * hotkey, int32_t * finalK
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
@@ -1912,7 +1912,7 @@ int32_t OH_Input_GetIntervalSinceLastInput (int64_t * timeInterval)
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
@@ -2285,7 +2285,7 @@ Input_Result OH_Input_GetPreKeys (const Input_Hotkey * hotkey, int32_t ** preKey
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
@@ -2311,7 +2311,7 @@ Input_Result OH_Input_GetRepeat (const Input_Hotkey * hotkey, bool * isRepeat )
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
@@ -2598,7 +2598,7 @@ Input_Result OH_Input_RemoveHotkeyMonitor (const Input_Hotkey * hotkey, Input_Ho
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
@@ -2915,7 +2915,7 @@ void OH_Input_SetFinalKey (Input_Hotkey * hotkey, int32_t finalKey )
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
@@ -3195,7 +3195,7 @@ void OH_Input_SetPreKeys (Input_Hotkey * hotkey, int32_t * preKeys, int32_t size
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
@@ -3216,7 +3216,7 @@ void OH_Input_SetRepeat (Input_Hotkey * hotkey, bool isRepeat )
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
