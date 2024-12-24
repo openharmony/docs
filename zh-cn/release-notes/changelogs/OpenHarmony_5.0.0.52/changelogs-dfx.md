@@ -49,3 +49,40 @@ Table Name: Photos
 ```bash
 > hdc file recv /data/local/tmp/out.jpg ./out.jpg
 ```
+## cl.dfx.2 hdc命令file recv命令及shell读取权限收紧
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+为了更好的保护终端用户的隐私安全，加强hdc/shell对系统目录文件的权限管控
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：支持通过hdc/shell对系统目录文件访问，如调试应用数据沙箱等
+
+变更后：hdc/shell访问调试应用数据沙箱目录，该目录需具有用户组访问权限
+
+**起始API Level**
+
+不涉及
+
+**变更发生版本**
+
+从OpenHarmony 5.0.0.52 版本开始。
+
+**变更的接口/组件**
+
+hdc命令行工具
+
+**适配指导**
+
+通过hdc访问调试签名的应用的数据沙箱目录文件，需要在目录、文件创建时指定用户组读取权限；路径如：</br>
+/data/app/el1/\<USERID\>/base/\<BUNDLENAME\></br>
+/data/app/el1/\<USERID\>/database/\<BUNDLENAME\></br>
+/data/app/el2/\<USERID\>/base/\<BUNDLENAME\></br>
+/data/app/el2/\<USERID\>/database/\<BUNDLENAME\></br>
