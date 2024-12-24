@@ -4,12 +4,10 @@ UserAgent（简称UA）是一个特殊的字符串，它包含了设备类型、
 
 ## 默认UserAgent结构
 
-从API version 11起，Web组件基于ArkWeb的内核。
-
 - 默认UserAgent定义
 
   ```ts
-  Mozilla/5.0 ({deviceType}; {OSName} {OSVersion}; {DistributionOSName} {DistributionOSVersion}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 ArkWeb/{ArkWeb VersionCode} {deviceCompat} {扩展区}
+  Mozilla/5.0 ({deviceType}; {OSName} {OSVersion}; {DistributionOSName} {DistributionOSVersion}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{ChromeCompatibleVersion}.0.0.0 Safari/537.36 ArkWeb/{ArkWeb VersionCode} {deviceCompat} {扩展区}
   ```
 
 - 举例说明
@@ -21,14 +19,15 @@ UserAgent（简称UA）是一个特殊的字符串，它包含了设备类型、
 
 | 字段                  | 含义                                                         |
 | --------------------- | ------------------------------------------------------------ |
-| deviceType            | 当前的设备类型。<br>取值范围：<br>- Phone：手机<br>- Tablet：平板设备<br>-  PC：2in1设备 |
+| DeviceType            | 当前的设备类型。<br>取值范围：<br>- Phone：手机<br>- Tablet：平板设备<br>-  PC：2in1设备 |
 | OSName                | 基础操作系统名称。<br>默认取值：OpenHarmony                  |
-| OSVersion             | 基础操作系统版本，两位数字，M.S。<br>通过系统参数const.product.os.dist.name得到。<br>默认取值：例如5.0       |
+| OSVersion             | 基础操作系统版本，两位数字，M.S。<br>通过系统参数const.product.os.dist.name解析版本号得到。<br>默认取值：例如5.0       |
 | DistributionOSName    | 发行版操作系统名称。                                         |
 | DistributionOSVersion | 发行版操作系统版本，两位数字，M.S。<br>通过系统参数const.product.os.dist.apiname解析版本号得到，如果const.product.os.dist.apiname为空，通过系统参数const.product.os.dist.version解析版本号得到。<br>默认取值：例如5.0     |
+| ChromeCompatibleVersion | 兼容Chrome主版本的版本号，从114版本开始演进。<br>默认取值：114            |
 | ArkWeb                | OpenHarmony版本Web内核名称。<br>默认取值：ArkWeb             |
 | ArkWeb VersionCode    | ArkWeb版本号，格式a.b.c.d。<br>默认取值：例如4.1.6.1         |
-| deviceCompat          | 前向兼容字段。<br>默认取值：Mobile。                         |
+| DeviceCompat          | 前向兼容字段。<br>默认取值：Mobile。                         |
 | 扩展区                | 三方应用可以扩展的字段。<br>三方应用使用ArkWeb组件时，可以做UA扩展，例如加入APP相关信息标识。 |
 
 > **说明：**
