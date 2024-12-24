@@ -7,7 +7,7 @@ UserAgent（简称UA）是一个特殊的字符串，它包含了设备类型、
 - 默认UserAgent定义
 
   ```ts
-  Mozilla/5.0 ({deviceType}; {OSName} {OSVersion}; {DistributionOSName} {DistributionOSVersion}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{ChromeCompatibleVersion}.0.0.0 Safari/537.36 ArkWeb/{ArkWeb VersionCode} {deviceCompat} {扩展区}
+  Mozilla/5.0 ({DeviceType}; {OSName} {OSVersion}; {DistributionOSName} {DistributionOSVersion}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{ChromeCompatibleVersion}.0.0.0 Safari/537.36 ArkWeb/{ArkWeb VersionCode} {DeviceCompat} {扩展区}
   ```
 
 - 举例说明
