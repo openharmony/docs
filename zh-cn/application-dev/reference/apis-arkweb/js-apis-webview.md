@@ -5910,7 +5910,6 @@ static clearIntelligentTrackingPreventionBypassingList(): void
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
