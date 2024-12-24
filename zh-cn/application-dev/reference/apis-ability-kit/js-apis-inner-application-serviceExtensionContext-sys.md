@@ -40,7 +40,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
-启动Ability。
+启动Ability。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -122,7 +122,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
-启动Ability，结果以Promise的形式返回。
+启动Ability，结果以Promise的形式返回。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -213,7 +213,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability，结果以Callback的形式返回。
+启动Ability，结果以Callback的形式返回。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -300,7 +300,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
 
-根据account启动Ability（callback形式）。
+根据account启动Ability（callback形式）。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -392,7 +392,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
 
-根据account启动Ability（callback形式）。
+根据account启动Ability（callback形式）。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -489,7 +489,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void>;
 
-根据account启动Ability（Promise形式）。
+根据account启动Ability（Promise形式）。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -902,7 +902,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 
-使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。
+使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -982,7 +982,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
 
-使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。
+使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1065,7 +1065,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 
-使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用Promise异步回调。
+使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1450,7 +1450,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
-停止Ability自身。
+停止Ability自身。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1501,7 +1501,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 terminateSelf(): Promise&lt;void&gt;;
 
-停止Ability自身。通过Promise返回结果。
+停止Ability自身。通过Promise返回结果。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1549,7 +1549,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
-将当前Ability连接到一个ServiceExtensionAbility。
+将当前Ability连接到一个ServiceExtensionAbility。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1634,7 +1634,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
 
-将当前Ability连接到一个指定account的ServiceExtensionAbility。
+将当前Ability连接到一个指定account的ServiceExtensionAbility。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1726,7 +1726,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
 
-将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空。
+将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1786,7 +1786,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 
-将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空(Promise形式返回结果)。
+将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空(Promise形式返回结果)。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1974,7 +1974,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
+启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -2051,7 +2051,7 @@ class EntryAbility extends ServiceExtensionAbility {
 startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
 
 启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
-当开发者需要携带启动参数时可以选择此API。
+当开发者需要携带启动参数时可以选择此API。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -2133,7 +2133,7 @@ class EntryAbility extends ServiceExtensionAbility {
 startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。
-当开发者期望启动结果以Promise形式返回时可以选择此API。
+当开发者期望启动结果以Promise形式返回时可以选择此API。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -2307,7 +2307,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 requestModalUIExtension(pickerWant: Want): Promise\<void>
 
-请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用promise形式异步回调。
+请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用promise形式异步回调。仅支持在主线程调用。
 
 在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
 
@@ -2384,7 +2384,7 @@ class ServiceExtension extends ServiceExtensionAbility {
 
 requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
-请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用callback形式异步回调。
+请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用callback形式异步回调。仅支持在主线程调用。
 
 在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
 
@@ -2455,7 +2455,7 @@ class ServiceExtension extends ServiceExtensionAbility {
 ## ServiceExtensionContext.openLink<sup>12+<sup>
 openLink(link:string, options?: OpenLinkOptions): Promise&lt;void&gt;
 
-通过AppLinking启动UIAbility，使用Promise异步回调。
+通过AppLinking启动UIAbility，使用Promise异步回调。仅支持在主线程调用。
 
 通过在link字段中传入标准格式的URL，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理AppLinking链接：
 - "actions"列表中包含"ohos.want.action.viewData"。
