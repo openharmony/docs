@@ -4103,6 +4103,18 @@ Allows an application to utilize the recovery key to reset the lock screen passw
 
 **Valid since**: 14
 
+### ohos.permission.ACCESS_CONFIDENTIAL_COMPUTING_ZONE
+
+Allows an application to access the confidential computing zone.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：16
+
 ### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
 
 Allows an application to obtain brief information about the recovery key.
