@@ -128,9 +128,9 @@ shape(value: CheckBoxShape)
 
 **参数：** 
 
-| 参数名 | 类型                                          | 必填 | 说明                                                         |
-| ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [CheckBoxShape](#checkboxshape11枚举类型说明) | 是   | CheckBox组件形状, 包括圆形和圆角方形。<br/>默认值：CheckBoxShape.CIRCLE |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | 是   | CheckBox组件形状, 包括圆形和圆角方形。<br/>默认值：CheckBoxShape.CIRCLE |
 
 ### contentModifier<sup>12+</sup>
 
@@ -187,17 +187,6 @@ type OnCheckboxChangeCallback  = (value: boolean) => void
 | 参数名 | 类型    | 必填 | 说明                                              |
 | ------ | ------- | ---- | ------------------------------------------------- |
 | value  | boolean | 是   | 返回true时，表示已选中。返回false时，表示未选中。 |
-
-## CheckBoxShape<sup>11+</sup>枚举类型说明
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称           | 值   | 说明     |
-| -------------- | ---- | -------- |
-| CIRCLE         | 0    | 圆形     |
-| ROUNDED_SQUARE | 1    | 圆角方形 |
 
 ## CheckBoxConfiguration<sup>12+</sup>对象说明
 

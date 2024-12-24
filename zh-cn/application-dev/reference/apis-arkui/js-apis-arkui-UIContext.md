@@ -6865,6 +6865,19 @@ struct CustomDialogUser {
   }
 }
 ```
+## PointerStyle<sup>12+</sup>
+
+type PointerStyle = PointerStyle
+
+光标样式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+|类型|说明|
+| -- | -- |
+|[PointerStyle](../apis-input-kit/js-apis-pointer.md#pointerstyle) |光标样式。|
 
 ## CursorController<sup>12+</sup>
 以下API需先使用UIContext中的[getCursorController()](js-apis-arkui-UIContext.md#getcursorcontroller12)方法获取CursorController实例，再通过此实例调用对应方法。
@@ -6923,7 +6936,7 @@ setCursor(value: PointerStyle): void
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| value | [PointerStyle](../apis-input-kit/js-apis-pointer.md#pointerstyle) | 是    | 光标样式 |
+| value | [PointerStyle](#pointerstyle12) | 是    | 光标样式 |
 
 **示例：**
 当光标进入蓝框时，通过CursorController的setCursor方法修改光标样式为PointerStyle.WEST
@@ -7804,7 +7817,7 @@ SwiperDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应S
 
 ## MarqueeDynamicSyncScene<sup>14+</sup>
 
-MarqueeDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应Marquee的动态帧率场景。
+MarqueeDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应[Marquee](arkui-ts/ts-basic-components-marquee.md)的动态帧率场景。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
