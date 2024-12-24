@@ -731,6 +731,19 @@ Nullable\<T> {
 | SELECTABLE_FOCUSABLE | 文本可选择，可获焦并Touch后获得焦点。 |
 | UNSELECTABLE     | 文本不可选择，不可获焦，设置属性selection、bindSelectionMenu、copyOption都不生效。  |
 
+## AccessibilityHoverType<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 值 | 说明                                                         |
+| ------------ | - | ------------------------------------------------------------ |
+| HOVER_ENTER  | 0 | 手指按下时触发。         |
+| HOVER_MOVE   | 1 | 触摸移动时触发。         |
+| HOVER_EXIT   | 2 | 抬手触发。              |
+| HOVER_CANCEL | 3 | 打断取消当前触发的事件。  |
+
 ## EllipsisMode<sup>11+</sup>
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
