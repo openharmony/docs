@@ -33,6 +33,7 @@
     - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
     - [@ohos.print (打印)](js-apis-print.md)
     - [@ohos.request (上传下载)](js-apis-request.md)
+    - [@ohos.request.cacheDownload (缓存下载)](js-apis-request-cacheDownload.md)
     - [@ohos.zlib (Zip模块)](js-apis-zlib.md)
     <!--Del-->
     - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)](js-apis-app-ability-PrintExtensionAbility-sys.md)
