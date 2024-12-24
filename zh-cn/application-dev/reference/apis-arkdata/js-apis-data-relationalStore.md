@@ -847,6 +847,7 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 | 名称     | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | autoSync   | boolean | 是   | 该值为true时，表示该表支持自动同步和手动同步；该值为false时，表示该表只支持手动同步，不支持自动同步。 |
+| asyncDownloadAsset | boolean | 否 | 该值为true时，表示该表所在数据库支持异步下载资产；该值为false时，表示该表所在数据库支持同步下载资产。 |
 
 ## ConflictResolution<sup>10+</sup>
 
