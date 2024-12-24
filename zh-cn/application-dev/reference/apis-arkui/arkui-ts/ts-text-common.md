@@ -90,7 +90,7 @@ getLineMetrics(lineNumber: number): LineMetrics
 
 | 类型                                       | 说明       |
 | ---------------------------------------- | -------- |
-| [LineMetrics](#linemetrics14) | 行信息、文本样式信息、以及字体属性信息。 |
+| [LineMetrics](#linemetrics12) | 行信息、文本样式信息、以及字体属性信息。 |
 
 ### getRectsForRange<sup>13+</sup>
 
@@ -127,7 +127,7 @@ getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeig
 | 名称      | 类型                   | 只读 | 可选 | 说明                      |
 | --------- | --------------------- | ---- | ---- | ------------------------ |
 | position  | number                | 是   | 否   | 字形相对于组件内容的索引，整数。  |
-| affinity  | [Affinity](#affinity14) | 是   | 是   | 位置亲和度。             |
+| affinity  | [Affinity](#affinity12) | 是   | 是   | 位置亲和度。             |
 
 ## TextMenuItemId<sup>12+</sup>
 
@@ -646,7 +646,7 @@ getStyledString(): MutableStyledString;
 | color | [ResourceColor](ts-types.md#resourcecolor) | 是   | 装饰线颜色。 |
 | style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 装饰线样式。 |
 
-## LineMetrics<sup>14+</sup>
+## LineMetrics<sup>12+</sup>
 
 type LineMetrics = LineMetrics
 
@@ -659,6 +659,20 @@ type LineMetrics = LineMetrics
 | 类型                              | 说明   |
 | --------------------------------- | --------------------------------- |
 | [LineMetrics](../../apis-arkgraphics2d/js-apis-graphics-text.md#linemetrics) | 用于描述文本布局中单行文字的度量信息。 |
+
+## Affinity<sup>12+</sup>
+
+type Affinity = Affinity
+
+位置亲和度枚举。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                              | 说明   |
+| --------------------------------- | --------------------------------- |
+| [Affinity](../../apis-arkgraphics2d/js-apis-graphics-text.md#affinity) | 位置亲和度枚举。 |
 
 ## TextBox<sup>14+</sup>
 
@@ -701,17 +715,3 @@ type RectWidthStyle = RectWidthStyle
 | 类型                              | 说明   |
 | --------------------------------- | --------------------------------- |
 | [RectWidthStyle](../../apis-arkgraphics2d/js-apis-graphics-text.md#rectwidthstyle) | 矩形区域宽度规格枚举。 |
-
-## Affinity<sup>14+</sup>
-
-type Affinity = Affinity
-
-位置亲和度枚举。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 类型                              | 说明   |
-| --------------------------------- | --------------------------------- |
-| [Affinity](../../apis-arkgraphics2d/js-apis-graphics-text.md#affinity) | 位置亲和度枚举。 |
