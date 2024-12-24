@@ -1315,6 +1315,18 @@ typedef struct ArkUI_StyledString ArkUI_StyledString
 **起始版本：** 12
 
 
+### ArkUI_StyledString_Descriptor
+
+```
+typedef struct ArkUI_StyledString_Descriptor ArkUI_StyledString_Descriptor
+```
+**描述：**
+
+定义文本组件支持的属性字符串的数据对象。
+
+**起始版本：** 14
+
+
 ### ArkUI_SwiperIndicator
 
 ```
