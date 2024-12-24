@@ -8081,9 +8081,9 @@ PixelMap的初始化选项。
 
 | 名称 | 类型          | 只读 | 可选| 说明         |
 | ---- | ------------- | ---- | ---- | ------------ |
-| size | [Size](#size) | 否   | 否   | 区域大小。   |
-| x    | number        | 否   | 否  | 区域横坐标。 |
-| y    | number        | 否  | 否  | 区域纵坐标。 |
+| size<sup>7+</sup> | [Size](#size) | 否   | 否   | 区域大小。   |
+| x<sup>7+</sup>    | number        | 否   | 否  | 区域横坐标。 |
+| y<sup>7+</sup>    | number        | 否  | 否  | 区域纵坐标。 |
 
 ## PackingOption
 
