@@ -47,13 +47,13 @@ try {
   };
   // 获取认证对象
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  console.info('get userAuth instance success');
   // 开始认证
   userAuthInstance.start();
-  console.log('auth start success');
+  console.info('auth start success');
   // 取消认证
   userAuthInstance.cancel();
-  console.log('auth cancel success');
+  console.info('auth cancel success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);

@@ -239,14 +239,14 @@ try {
     uiContext: this.getUIContext().getHostContext(),
   };
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  console.info('get userAuth instance success');
   // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
   userAuthInstance.on('result', {
     onResult (result) {
-      console.log(`userAuthInstance callback result = ${JSON.stringify(result)}`);
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
     }
   });
-  console.log('auth on success');
+  console.info('auth on success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
