@@ -161,8 +161,6 @@
 | [Input_Result](#input_result) [OH_Input_AddInputEventInterceptor](#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback [Input_InterceptorOptions](#input_interceptoroptions) \*option) | 添加输入事件拦截，包括鼠标、触摸和轴事件，重复添加只有第一次生效。  | 
 | [Input_Result](#input_result) [OH_Input_RemoveKeyEventInterceptor](#oh_input_removekeyeventinterceptor) () | 移除按键事件拦截。  | 
 | [Input_Result](#input_result) [OH_Input_RemoveInputEventInterceptor](#oh_input_removeinputeventinterceptor) () | 移除输入事件拦截，包括鼠标、触摸和轴事件。  | 
-| void [OH_Input_SetFinalKey](#oh_input_setfinalkey) ([Input_Hotkey](#input_hotkey) \*hotkey, int32_t finalKey) | 设置被修饰键。  | 
-| [Input_Hotkey](#input_hotkey) \*\* [OH_Input_CreateAllSystemHotkeys](#oh_input_createallsystemhotkeys) (int32_t count) | 创建[Input_Hotkey](#input_hotkey)类型实例的数组。  | 
 | [Input_Result](#input_result) [OH_Input_GetDeviceIds](#oh_input_getdeviceids) (int32_t \*deviceIds, int32_t inSize, int32_t \*outSize) | 获取所有输入设备的ID列表。  | 
 | [Input_Result](#input_result) [OH_Input_GetDevice](#oh_input_getdevice) (int32_t deviceId, [Input_DeviceInfo](#input_deviceinfo) \*\*deviceInfo) | 获取输入设备信息。  | 
 | [Input_DeviceInfo](#input_deviceinfo) \* [OH_Input_CreateDeviceInfo](#oh_input_createdeviceinfo) (void) | 创建输入设备信息的对象。  | 
@@ -2311,32 +2309,6 @@ ohos.permission.INPUT_MONITORING
 若移除轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
-### OH_Input_RemoveHotkeyMonitor()
-
-```
-Input_Result OH_Input_RemoveHotkeyMonitor (const Input_Hotkey * hotkey, Input_HotkeyCallback callback )
-```
-**描述**
-取消订阅快捷键。
-
-**系统能力：** SystemCapability.MultimodalInput.Input.Core
-
-**起始版本：** 13
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| hotkey | 指定要取消订阅的快捷键对象。  | 
-| callback | 回调函数，用于回调快捷键事件。  | 
-
-**返回：**
-
-OH_Input_RemoveHotkeyMonitor 函数错误码。 INPUT_SUCCESS 表示取消订阅组合按键成功。
-
-INPUT_PARAMETER_ERROR 表示参数检查失败。
-
-
 ### OH_Input_RemoveInputEventInterceptor()
 
 ```
@@ -2626,26 +2598,6 @@ Input_Result OH_Input_SetAxisEventType (Input_AxisEvent * axisEvent, InputEvent_
 **返回：**
 
 若设置轴事件类型成功，则返回**INTO_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
-
-
-### OH_Input_SetFinalKey()
-
-```
-void OH_Input_SetFinalKey (Input_Hotkey * hotkey, int32_t finalKey )
-```
-**描述**
-设置被修饰键。
-
-**系统能力：** SystemCapability.MultimodalInput.Input.Core
-
-**起始版本：** 13
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| hotkey | 快捷键对象的实例。  | 
-| finalKey | 被修饰键值，被修饰键值只能是1个。  | 
 
 
 ### OH_Input_SetKeyCode()
