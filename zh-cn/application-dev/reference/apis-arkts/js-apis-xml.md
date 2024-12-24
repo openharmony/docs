@@ -474,8 +474,8 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<title>Happy</title>'
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer, 'UTF-8');
+let uint8Array = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(uint8Array.buffer as object as ArrayBuffer, 'UTF-8');
 ```
 
 ### parseXml<sup>14+</sup>
