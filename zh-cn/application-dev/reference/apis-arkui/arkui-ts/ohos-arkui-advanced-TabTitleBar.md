@@ -54,6 +54,10 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 | label<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标标签描述。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | isEnabled | boolean | 否 | 是否启用。默认禁用。true：启用，false：禁用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| accessibilityLevel<sup>16+<sup>       | string  | 否 | 右侧自定义按钮无障碍重要性。<br/>用于控制当前项是否可被无障碍辅助服务所识别。具体值可以设置为'auto'，'yes'，'no'和'no-hide-descendants'（最后一个值会使屏幕朗读忽略当前项）。若设置为'yes'，当前项对无障碍辅助服务而言可选中；若设置为'no'，则当前项对无障碍辅助服务来说是不可选中的。<br/>默认值：“auto”。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| accessibilityText<sup>16+<sup>        | ResourceStr | 否 | 右侧自定义按钮无障碍描述。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                                                                                                        |
+| accessibilityDescription<sup>16+<sup> | ResourceStr | 否 | 右侧自定义按钮无障碍说明，用于为用户进一步说明当前组件。<br/>默认值：“单指双击即可执行”。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                                                                     |
+
 
 ## TabTitleBarTabItem
 
