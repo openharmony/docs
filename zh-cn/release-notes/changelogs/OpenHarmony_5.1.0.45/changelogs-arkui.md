@@ -110,3 +110,62 @@ MenuItem组件。
 **适配指导**
 
 MenuItem设置padding属性时默认布局效果变更，开发者无需适配。
+
+## cl.arkui.3 DatePickerDialog和TimePickerDialog调用show()方法，参数缺省时的行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+DatePickerDialog和TimePickerDialog调用show()方法，若参数缺省，无法弹出对话框。该参数为可选参数，会对开发者造成困惑。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+举例说明，执行以下用例：
+
+```ts
+@Entry
+@Component
+struct PickerDialogExample {
+  build() {
+    Column() {
+      Button("DatePickerDialog")
+        .onClick(() => {
+          DatePickerDialog.show()
+        })
+
+      Button("TimePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          TimePickerDialog.show()
+        })
+    }
+  }
+}
+```
+
+变更前:  
+DatePickerDialog.show()和TimePickerDialog.show()无法弹出日期选择器对话框。 
+
+变更后:  
+DatePickerDialog.show()和TimePickerDialog.show()可以弹出日期选择器对话框。
+
+**起始API Level**
+
+API 8
+
+**变更发生版本**
+
+从OpenHarmony 5.1.0.45开始。
+
+**变更的接口/组件**
+
+TimePickerDialog和DatePickerDialog组件。
+
+**适配指导**
+
+DatePickerDialog和TimePickerDialog调用show()方法，参数缺省时，可弹出默认样式的对话框。
