@@ -311,14 +311,15 @@ zh-cn/application-dev/web/ @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
 
 
 [开发-Background Tasks Kit]
-zh-cn/application-dev/task-management/background-task-overview.md @Brilliantry_Rui @yuanzhizhong @hmosdeveloper
-zh-cn/application-dev/task-management/transient-task.md @Brilliantry_Rui @yuanzhizhong @hmosdeveloper
-zh-cn/application-dev/task-management/continuous-task.md @Brilliantry_Rui @yuanzhizhong @hmosdeveloper
-zh-cn/application-dev/task-management/work-scheduler.md @Brilliantry_Rui @yuanzhizhong @hmosdeveloper
-zh-cn/application-dev/task-management/agent-powered-reminder.md @Brilliantry_Rui @yuanzhizhong @hmosdeveloper
-zh-cn/application-dev/task-management/efficiency-resource-request.md @Brilliantry_Rui @yuanzhizhong @hmosdeveloper
-h-cn/application-dev/task-management/native-transient-task.md @Brilliantry_Rui @Brilliantry_Rui @yuanzhizhong @hmosdeveloper
-zh-cn/application-dev/device-usage-statistics/ @Brilliantry_Rui @yuanzhizhong @hmosdeveloper
+zh-cn/application-dev/task-management/background-task-overview.md @Brilliantry_Rui 
+zh-cn/application-dev/task-management/transient-task.md @Brilliantry_Rui 
+zh-cn/application-dev/task-management/continuous-task.md @Brilliantry_Rui 
+zh-cn/application-dev/task-management/work-scheduler.md @Brilliantry_Rui 
+zh-cn/application-dev/task-management/agent-powered-reminder.md @Brilliantry_Rui 
+zh-cn/application-dev/task-management/efficiency-resource-request.md @Brilliantry_Rui 
+h-cn/application-dev/task-management/native-transient-task.md @Brilliantry_Rui @Brilliantry_Rui 
+zh-cn/application-dev/device-usage-statistics/device-usage-statistics-overview.md @Brilliantry_Rui 
+zh-cn/application-dev/device-usage-statistics/device-usage-statistics-use-guide.md @Brilliantry_Rui
 
 [开发-Basic Services Kit-帐号]
 zh-cn/application-dev/account/ @zengyawen
@@ -382,13 +383,15 @@ zh-cn/application-dev/inputmethod/inputmethod_application_guide.md @illybyy @mur
 zh-cn/application-dev/inputmethod/switch_inputmehod_guide.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
 
 [开发-Input kit]
-zh-cn/application-dev/device/inputdevice-guidelines.md @hhh2 @Brilliantry_Rui @mayunteng @star-wind-snow-and-rain
-zh-cn/application-dev/device/pointerstyle-guidelines.md @hhh2 @Brilliantry_Rui @mayunteng @star-wind-snow-and-rain
-zh-cn/application-dev/device/inputmonitor-guidelines.md @hhh2 @Brilliantry_Rui @mayunteng @star-wind-snow-and-rain
-zh-cn/application-dev/device/inputeventclient-guidelines.md @hhh2 @Brilliantry_Rui @mayunteng @star-wind-snow-and-rain
-zh-cn/application-dev/device/inputconsumer-guidelines.md @hhh2 @Brilliantry_Rui @mayunteng @star-wind-snow-and-rain
-zh-cn/application-dev/device/shortkey-guidelines.md @hhh2 @Brilliantry_Rui @mayunteng @star-wind-snow-and-rain
-zh-cn/application-dev/device/input-overview.md  @hhh2 @Brilliantry_Rui @mayunteng @star-wind-snow-and-rain
+zh-cn/application-dev/device/inputdevice-guidelines.md @Brilliantry_Rui @mayunteng 
+zh-cn/application-dev/device/pointerstyle-guidelines.md @Brilliantry_Rui @mayunteng 
+zh-cn/application-dev/device/inputmonitor-guidelines.md @Brilliantry_Rui @mayunteng 
+zh-cn/application-dev/device/inputeventclient-guidelines.md @Brilliantry_Rui @mayunteng 
+zh-cn/application-dev/device/inputconsumer-guidelines.md @Brilliantry_Rui @mayunteng 
+zh-cn/application-dev/device/shortkey-guidelines.md  @Brilliantry_Rui @mayunteng 
+zh-cn/application-dev/device/input-overview.md @Brilliantry_Rui @mayunteng 
+zh-cn/application-dev/device/monitor-guidelines.md @Brilliantry_Rui @mayunteng
+zh-cn/application-dev/device/interceptor-guidelines.md @Brilliantry_Rui @mayunteng
 
 [开发-IPC Kit]
 zh-cn/application-dev/connectivity/ipc-rpc-overview.md @zhang_yixin13 @luodh0157  @zhaopeng_gitee @zhang-yang123321
@@ -399,7 +402,32 @@ zh-cn/application-dev/connectivity/subscribe-remote-state.md @zhang_yixin13 @luo
 
 [开发-Localization Kit]
 zh-cn/application-dev/internationalization/ @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
-
+zh-cn/application-dev/internationalization/i18n-l10n.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/i18n-ui-design.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/i18n-locale-culture.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/i18n-system-language-region.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/i18n-preferred-language.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/i18n-user-preferences.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/i18n-time-date.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/i18n-numbers-weights-measures.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/i18n-phone-numbers.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/i18n-calendar.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/i18n-time-zone.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/i18n-dst-transition.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/i18n-sorting-overview.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/i18n-sorting-local.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/i18n-sorting-index.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/i18n-character-processing.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/i18n-language-region-display.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/i18n-time-zone-display.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/l10n-multilingual-resources.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/l10n-hard-coding-concatenate.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/l10n-translation-scene.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/l10n-singular-plural.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/pseudo-i18n-testing-overview.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/pseudo-i18n-testing-translation.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/pseudo-i18n-testing-mirror.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/internationalization/linguistic-testing.md @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
 
 [开发-Location Kit]
 zh-cn/application-dev/device/device-location-overview.md @RayShih
@@ -410,6 +438,10 @@ zh-cn/application-dev/device/device-location-geocoding.md @RayShih
 [开发-Media]
 zh-cn/application-dev/media/ @zengyawen
 
+[开发-MDM Kit]
+zh-cn/application-dev/mdm/mdm-kit-intro.md @Brilliantry_Rui
+zh-cn/application-dev/mdm/mdm-kit-guide.md @Brilliantry_Rui
+zh-cn/application-dev/mdm/mdm-kit-admin.md @Brilliantry_Rui
 
 [开发-MindSpore Lite Kit]
 zh-cn/application-dev/ai/MindSpore-Lite-Kit-Introduction.md @ge-yafang @principal87 @limingjiang
@@ -439,6 +471,7 @@ zh-cn/application-dev/napi/neural-network-runtime-guidelines.md @ge-yafang @prin
 zh-cn/application-dev/napi/  @foryourself
 zh-cn/application-dev/napi/rawfile-guidelines.md @Brilliantry_Rui @Buda-Liu @budda-wang @yangqing3
 zh-cn/application-dev/napi/usb-ddk-guidelines.md @li-yan339 @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/napi/rawfile-guidelines.md @Brilliantry_Rui @budda-wang @yangqing3
 
 
 [开发-Notification Kit]
@@ -486,8 +519,6 @@ zh-cn/application-dev/webgl/ @ge-yafang @zhangqiang183  @wind_zj @zxg-gitee
 [开发-一多]
 zh-cn/application-dev/key-features/multi-device-app-dev/ @HelloCrease @uhamc
 
-[开发-其他]
-zh-cn/application-dev/device-usage-statistics/ @chenmingJay @Brilliantry_Rui @tangtiantian2021 @nan-xiansen @iceice1001
 zh-cn/application-dev/device/sample-server-overview.md @hu-zhiqiong @hughes802 @zhangzhengxue @mamba-ting
 zh-cn/application-dev/device/sample-server-guidelines.md @hu-zhiqiong @hughes802 @zhangzhengxue @mamba-ting
 
@@ -882,21 +913,19 @@ zh-cn/application-dev/reference/apis-arkweb/errorcode-webview.md @bigpumpkin @He
 
 
 [API参考-Background Tasks Kit]
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md @Brilliantry_Rui @yuanzhizhong  @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager-sys.md @Brilliantry_Rui @yuanzhizhong  @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md @Brilliantry_Rui @yuanzhizhong  @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md @Brilliantry_Rui @yuanzhizhong  @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md @Brilliantry_Rui @yuanzhizhong  @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md @Brilliantry_Rui @yuanzhizhong  @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext.md @Brilliantry_Rui @yuanzhizhong  @hmosdeveloper
-
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceStandby-sys.md @foolish-older-man @Brilliantry_Rui @yuanzhizhong 
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md @Brilliantry_Rui @yuanzhizhong  @hmosdeveloper
-
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md @Brilliantry_Rui @yuanzhizhong  @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-reminderAgentManager.md @Brilliantry_Rui @yuanzhizhong  @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-workScheduler.md @Brilliantry_Rui @yuanzhizhong  @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md @Brilliantry_Rui @yuanzhizhong  @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md @Brilliantry_Rui 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager-sys.md @Brilliantry_Rui 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md @Brilliantry_Rui 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md @Brilliantry_Rui 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md @Brilliantry_Rui 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md @Brilliantry_Rui 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext.md  @Brilliantry_Rui 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceStandby-sys.md @Brilliantry_Rui 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md @Brilliantry_Rui 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md @Brilliantry_Rui 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-reminderAgentManager.md @Brilliantry_Rui 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-workScheduler.md @Brilliantry_Rui 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md @Brilliantry_Rui
 
 [API参考-Basic Services Kit-配置策略]
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-configPolicy-sys.md @Brilliantry_Rui @yangqing3 @liubingbing
@@ -1067,14 +1096,17 @@ zh-cn/application-dev/reference/apis-Localization-kit/js-apis-intl.md  @Brillian
 zh-cn/application-dev/reference/apis-Localization-kit/js-apis-i18n-sys.md  @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
 zh-cn/application-dev/reference/apis-Localization-kit/errorcode-i18n.md  @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu
 zh-cn/application-dev/reference/apis-Localization-kit/js-apis-resource-manager.md  @Brilliantry_Rui @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/js-apis-sendable-resource-manager.md @Brilliantry_Rui @budda-wang @yangqing3
 zh-cn/application-dev/reference/apis-Localization-kit/rawfile.md  @Brilliantry_Rui @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/resourcemanager.md  @Brilliantry_Rui @budda-wang @yangqing3
 zh-cn/application-dev/reference/apis-Localization-kit/raw__dir_8h.md  @Brilliantry_Rui @budda-wang @yangqing3
 zh-cn/application-dev/reference/apis-Localization-kit/raw__file__manager_8h.md  @Brilliantry_Rui @budda-wang @yangqing3
 zh-cn/application-dev/reference/apis-Localization-kit/raw__file_8h.md  @Brilliantry_Rui @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/ohresmgr_8h.md @Brilliantry_Rui @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/resmgr__common_8h.md @Brilliantry_Rui @budda-wang @yangqing3
 zh-cn/application-dev/reference/apis-Localization-kit/_raw_file_descriptor.md  @Brilliantry_Rui @budda-wang @yangqing3
 zh-cn/application-dev/reference/apis-Localization-kit/_raw_file_descriptor64.md  @Brilliantry_Rui @budda-wang @yangqing3
 zh-cn/application-dev/reference/apis-Localization-kit/errorcode-resource-manager.md  @Brilliantry_Rui @budda-wang @yangqing3
-zh-cn/application-dev/napi/rawfile-guidelines.md @Brilliantry_Rui @budda-wang @yangqing3
 
 [API参考-Location Kit]
 zh-cn/application-dev/reference/apis-location-kit/ @cheng_guohong @RayShih @cheng_guohong @xiangkejin123
@@ -1094,6 +1126,39 @@ zh-cn/application-dev/reference/apis-media-library-kit/ @zengyawen
 
 [API参考-MDM Kit]
 zh-cn/application-dev/reference/apis-mdm-kit/ @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-accountManager.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-adminManager.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-applicationManager.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-bluetoothManager.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-browser.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-bundleManager.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-deviceControl.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-deviceInfo.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-deviceSettings.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-locationManager.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-networkManager.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-restrictions.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-securityManager.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-systemManager.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-usbManager.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-wifiManager.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-accountManager-sys.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-adminManager-sys.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-applicationManager-sys.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-bluetoothManager-sys.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-browser-sys.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-bundleManager-sys.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-dateTimeManager-sys.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-deviceControl-sys.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-deviceInfo-sys.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-deviceSettings-sys.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-networkManager-sys.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-restrictions-sys.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-securityManager-sys.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-usbManager-sys.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-wifiManager-sys.md @liuzuming @Brilliantry_Rui @yangqing3 
+zh-cn/application-dev/reference/apis-mdm-kit/errorcode-enterpriseDeviceManager.md @liuzuming @Brilliantry_Rui @yangqing3 
 
 
 [API参考-MindSpore Lite Kit]
@@ -1159,10 +1224,10 @@ zh-cn/application-dev/reference/apis-telephony-kit/ @jiayanhong-hw @zhang_yixin1
 
 
 [API参考-Test Kit]
-zh-cn/application-dev/reference/apis-tesk-kit/js-apis-testRunner.md @Brilliantry_Rui 
-zh-cn/application-dev/reference/apis-tesk-kit/js-apis-app-ability-abilityDelegatorRegistry.md @Brilliantry_Rui 
-zh-cn/application-dev/reference/apis-tesk-kit/js-apis-uitest.md @inter515 @Brilliantry_Rui @inter515 @jiyong
-zh-cn/application-dev/reference/apis-tesk-kit/errorcode-uitest.md @Brilliantry_Rui @inter515 @jiyong
+zh-cn/application-dev/reference/apis-tesk-kit/js-apis-testRunner.md
+zh-cn/application-dev/reference/apis-tesk-kit/js-apis-app-ability-abilityDelegatorRegistry.md
+zh-cn/application-dev/reference/apis-tesk-kit/js-apis-uitest.md @inter515 @Brilliantry_Rui @inter515 
+zh-cn/application-dev/reference/apis-tesk-kit/errorcode-uitest.md @Brilliantry_Rui @inter515
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-deviceAttest-sys.md @Brilliantry_Rui @jiyong
 
 [工具-元能力、包管理、通知等]
