@@ -35,13 +35,13 @@
     build() {
       Column() {
         Button('deleteJavaScriptRegister')
-        .onClick(() => {
-          try {
-            this.controller.deleteJavaScriptRegister("testObjName");
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
+          .onClick(() => {
+            try {
+              this.controller.deleteJavaScriptRegister("testObjName");
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         // Web组件加载本地index.html页面
         Web({ src: $rawfile('index.html'), controller: this.webviewController})
           // 将对象注入到web端
