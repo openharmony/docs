@@ -76,7 +76,7 @@
     - [使用DH进行密钥协商](crypto-key-agreement-using-dh.md)
 - 消息摘要计算
   - [消息摘要计算介绍及算法规格](crypto-generate-message-digest-overview.md)
-  - 消息摘要计算开发指导
+  - 消息摘要计算开发指导<!--crypto-generate-message-digest-dev-->
     - [消息摘要计算SHA256(ArkTS)](crypto-generate-message-digest.md)
     - [消息摘要计算SHA256(C/C++)](crypto-generate-message-digest-ndk.md)
     - [消息摘要计算MD5(ArkTS)](crypto-generate-message-digest-md5.md)
