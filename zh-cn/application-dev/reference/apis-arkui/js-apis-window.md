@@ -3656,6 +3656,12 @@ on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): voi
 
 开启窗口模式变化的监听，当窗口windowStatus发生变化时进行通知（此时窗口属性可能还没有更新）。
 
+> **说明：**
+>
+> 在2in1设备上调用本接口时，在窗口最大化状态时返回值对应为WindowStatusType::FULL_SCREEN。
+>
+> 若想在2in1设备上区分当前窗口状态为最大化还是全屏，可在窗口状态为WindowStatusType::FULL_SCREEN的情况下，再调用[getImmersiveModeEnabledState()](#getimmersivemodeenabledstate12) 接口进行进一步判断，到底是最大化状态还是全屏状态。若接口返回true则表示当前窗口为全屏状态，若接口返回false则表示当前窗口为最大化状态。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -5814,6 +5820,12 @@ export default class EntryAbility extends UIAbility {
 getWindowStatus(): WindowStatusType
 
 获取当前应用窗口的模式。
+
+> **说明：**
+>
+> 在2in1设备上调用本接口时，在窗口最大化状态时返回值对应为WindowStatusType::FULL_SCREEN。
+>
+> 若想在2in1设备上区分当前窗口状态为最大化还是全屏，可在窗口状态为WindowStatusType::FULL_SCREEN的情况下，再调用[getImmersiveModeEnabledState()](#getimmersivemodeenabledstate12) 接口进行进一步判断，到底是最大化状态还是全屏状态。若接口返回true则表示当前窗口为全屏状态，若接口返回false则表示当前窗口为最大化状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
