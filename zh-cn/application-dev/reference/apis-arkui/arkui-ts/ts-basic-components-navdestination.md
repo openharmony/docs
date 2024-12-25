@@ -279,7 +279,7 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 枚举值   | 描述 |
+| 名称   | 值   | 说明 |
 | ----  | ---   | ----- |
 | DEFAULT  | 0 | 默认系统转场动画。|
 | NONE| 1 | 无系统转场动画。|
