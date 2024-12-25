@@ -917,6 +917,7 @@ readable.unpipe(writable);
 readable.on('data', () => {
   console.info("Readable test unpipe data event called");
 });
+// unpipe成功断开连接之后，data事件将不会触发，不会打印"Readable test unpipe data event called"
 ```
 
 ### on
@@ -1011,6 +1012,7 @@ readable.setEncoding('utf8');
 readable.on('readable', read);
 readable.off('readable');
 readable.push('test');
+// off注销对readable事件的监听后，read函数不会被调用，"read() called"也不会被打印
 ```
 
 ### doInitialize
