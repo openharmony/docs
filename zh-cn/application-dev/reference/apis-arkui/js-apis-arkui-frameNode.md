@@ -2777,12 +2777,12 @@ createNode(context: UIContext, nodeType: 'TextArea'): TextArea
 typeNode.createNode(uiContext, 'TextArea');
 ```
 
-### SymbolGlyph<sup>13+</sup>
+### SymbolGlyph<sup>14+</sup>
 type SymbolGlyph = TypedFrameNode&lt;SymbolGlyphInterface, SymbolGlyphAttribute&gt;
 
 SymbolGlyph类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2790,12 +2790,12 @@ SymbolGlyph类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;SymbolGlyphInterface, SymbolGlyphAttribute&gt; | 提供SymbolGlyph类型FrameNode节点。<br/>**说明：**<br/> SymbolGlyphInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为SymbolGlyph组件的构造函数类型。 <br/> SymbolGlyphAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回SymbolGlyph组件的属性设置对象。 |
 
-### createNode('SymbolGlyph')<sup>13+</sup>
+### createNode('SymbolGlyph')<sup>14+</sup>
 createNode(context: UIContext, nodeType: 'SymbolGlyph'): SymbolGlyph
 
 创建SymbolGlyph类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2810,7 +2810,7 @@ createNode(context: UIContext, nodeType: 'SymbolGlyph'): SymbolGlyph
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [SymbolGlyph](#symbolglyph13) | SymbolGlyph类型的FrameNode节点。 |
+| [SymbolGlyph](#symbolglyph14) | SymbolGlyph类型的FrameNode节点。 |
 
 **示例：** 
 
