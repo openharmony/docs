@@ -104,6 +104,8 @@ scrollSnap(value: ScrollSnapOptions)
 
 设置Scroll组件的限位滚动模式。
 
+限位动画期间onWillScroll事件上报的滚动操作来源类型为ScrollSource.FLING。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
