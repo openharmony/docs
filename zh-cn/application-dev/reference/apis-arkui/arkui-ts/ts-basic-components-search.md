@@ -322,7 +322,7 @@ enterKeyType(value: EnterKeyType)
 
 | 参数名 | 类型                                             | 必填 | 说明                                               |
 | ------ | ------------------------------------------------ | ---- | -------------------------------------------------- |
-| value  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.Search |
+| value  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.Search |
 
 ### lineHeight<sup>12+</sup>
 
