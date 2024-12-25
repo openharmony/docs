@@ -251,6 +251,7 @@ replacePhotoPickerPreview(originalUri: string, newUri: string, callback: AsyncCa
 
 | 参数名         | 类型                                                             | 必填  | 说明                |
 |-------------|----------------------------------------------------------------| ----- |-------------------|
+
 | originalUri     | string  | 是 | 原uri，将会被替换掉的uri |
 | newUri  | boolean   | 是 | 新uri，即替换后的uri。基于originalUri修改后期望在photoPicker上替换originalUri显示的，暂存在应用沙箱的图片/视频uri。      |
 | callback   | AsyncCallback&lt;void&gt;   | 是 | 调用接口完成替换后的回调      |
