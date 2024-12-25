@@ -60,13 +60,19 @@ struct WebComponent {
   }
 }
 ```
+
 加载的html文件。
 ```html
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
 <body>
-<a href='data:text/html,%3Ch1%3EHello%2C%20World%21%3C%2Fh1%3E' download='download.html'>下载</a>
+// 点击视频右下方菜单的下载按钮会触发下载任务。
+<video controls="controls" width="800px" height="580px"
+       src="http://vjs.zencdn.net/v/oceans.mp4"
+       type="video/mp4">
+</video>
+<a href='data:text/html,%3Ch1%3EHello%2C%20World%21%3C%2Fh1%3E' download='download.html'>下载download.html</a>
 </body>
 </html>
 ```
