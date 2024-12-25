@@ -39,7 +39,7 @@ Currently, adjusting the system volume is mainly conducted by using system APIs,
 
 An application cannot directly adjust the system volume. However, it can invoke the system volume panel for users to adjust the volume. When the user adjusts the volume, a volume prompt UI is displayed to explicitly notify the user that the system volume changes.
 
-To achieve this, you can use the ArkTS component **\<AVVolumePanel>** in your application. For details, see the [AVVolumePanel Reference](../../reference/apis-audio-kit/ohos-multimedia-avvolumepanel.md).
+To achieve this, you can use the ArkTS component **AVVolumePanel** in your application. For details, see the [AVVolumePanel Reference](../../reference/apis-audio-kit/ohos-multimedia-avvolumepanel.md).
 
 ## Audio Stream Volume
 

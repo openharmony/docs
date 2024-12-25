@@ -6204,10 +6204,11 @@ Defines a number mark.
 | Name   |     Type     | Mandatory| Description          |
 | ------- | ------------ | ---- | ------------- |
 | markType | [MarkType](#marktype12) | Yes  | Mark type.|
-| markContent | string | No | Mark content.|
+| markContent | string | No | Mark content. When **markType** is set to **MARK_TYPE_ENTERPRISE**, the returned information consists of the employee name and ID.|
 | markCount | number       | No | Mark count.|
 | markSource | string | No| Mark source.|
 | isCloud | boolean | No| Whether the number mark is from the cloud.|
+| markDetails<sup>14+</sup> | string | No| Mark details. When **markType** is set to **MARK_TYPE_ENTERPRISE**, the value of this parameter is the department position.|
 
 ## MarkType<sup>12+</sup>
 
@@ -6230,3 +6231,4 @@ Enumerates number mark types.
 | MARK_TYPE_CUSTOM | 8 | Custom|
 | MARK_TYPE_OTHERS | 9 | Others|
 | MARK_TYPE_YELLOW_PAGE | 10 | Yellow page|
+| MARK_TYPE_ENTERPRISE<sup>14+</sup> | 11 | Enterprise contact|

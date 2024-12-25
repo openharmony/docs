@@ -22,8 +22,8 @@ Defines shortcut key options.
 
 | Name       | Type  | Readable  | Writable  | Description     |
 | --------- | ------ | ------- | ------- | ------- |
-| preKeys   | Array&lt;number&gt; | Yes     | No     | Modifier (include Ctrl、Shift and Alt) key set. The number of modifier keys is [1, 2]. There is no requirement on the sequence of modifier keys.<br>For example, in **Ctrl+Shift+Esc**, **Ctrl** and **Shift** are modifier keys.|
-| finalKey  | number  | Yes     | No     | Modified key (include all other keys except for modifier keys and Meta).<br>For example, in **Ctrl+Shift+Esc**, **Esc** is the modified key.|
+| preKeys   | Array&lt;number&gt; | Yes     | No     | Modifier key set (including Ctrl, Shift, and Alt). A maximum of two modifier keys are supported. There is no requirement on the sequence of modifier keys.<br>For example, in **Ctrl+Shift+Esc**, **Ctrl** and **Shift** are modifier keys.|
+| finalKey  | number  | Yes     | No     | Modified key, which is the key other than the modifier key and meta key.<br>For example, in **Ctrl+Shift+Esc**, **Esc** is the modified key.|
 | isRepeat  | boolean  | Yes     | No     | Whether to report repeated key events. The value **true** means to report repeated key events, and the value **false** means the opposite. The default value is **true**.|
 
 ## inputConsumer.getAllSystemHotkeys<sup>14+</sup>

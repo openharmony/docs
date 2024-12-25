@@ -22,7 +22,7 @@ static show(options?: TextPickerDialogOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型                                                        | 必填 | 说明                       |
 | ------- | ----------------------------------------------------------- | ---- | -------------------------- |
@@ -49,15 +49,18 @@ static show(options?: TextPickerDialogOptions)
 | onAccept | (value: [TextPickerResult](#textpickerresult对象说明)) => void | 否 | 点击弹窗中的“确定”按钮时触发该回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onCancel | () => void | 否 | 点击弹窗中的“取消”按钮时触发该回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onChange | (value: [TextPickerResult](#textpickerresult对象说明)) => void | 否 | 滑动弹窗中的选择器使当前选中项改变时触发该回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| onScrollStop<sup>14+</sup> | (value: [TextPickerResult](#textpickerresult对象说明)) => void | 否 | 滑动弹窗中的选择器的选择列停止触发该回调。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent<br/>**说明：** <br/>当设置了backgroundColor为非透明色时，backgroundBlurStyle需要设置为BlurStyle.NONE，否则颜色显示将不符合预期效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK<br/>**说明：** <br/>设置为BlurStyle.NONE即可关闭背景虚化。当设置了backgroundBlurStyle为非NONE值时，则不要设置backgroundColor，否则颜色显示将不符合预期效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| onDidAppear<sup>12+</sup> | () => void | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。<br />4. 当弹窗入场动效未完成时关闭弹窗，该回调不会触发。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| onDidDisappear<sup>12+</sup> | () => void | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| onWillAppear<sup>12+</sup> | () => void | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| onWillDisappear<sup>12+</sup> | () => void | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。<br />2.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onDidAppear<sup>12+</sup> | () => void | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange/onScrollStop)>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。<br />4. 当弹窗入场动效未完成时关闭弹窗，该回调不会触发。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| onDidDisappear<sup>12+</sup> | () => void | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange/onScrollStop)>>onWillDisappear>>onDidDisappear。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| onWillAppear<sup>12+</sup> | () => void | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange/onScrollStop)>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onWillDisappear<sup>12+</sup> | () => void | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange/onScrollStop)>>onWillDisappear>>onDidDisappear。<br />2.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明) | 否   | 设置弹窗背板的阴影。<br />当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦为ShadowStyle.OUTER_FLOATING_SM <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| enableHoverMode<sup>13+</sup>              | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。|
-| hoverModeArea<sup>13+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype13) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。|
+| enableHoverMode<sup>14+</sup>     | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| disableTextStyleAnimation<sup>15+</sup>   |  boolean | 否   |  设置滑动过程中是否有文本样式变化动效。<br/>true：无文本样式变化动效，false：有文本样式变化动效。<br/>默认值：false |
+| defaultTextStyle<sup>15+</sup>   |  [TextPickerTextStyle](ts-basic-components-textpicker.md#textpickertextstyle15类型说明) | 否   |  设置关闭滑动过程中文本样式变化动效时的各个选项文本的样式，仅当disableTextStyleAnimation为true时生效。<br/>默认值：与[Text](ts-basic-components-text.md)组件默认值相同。 |
 
 ## TextPickerResult对象说明
 
@@ -87,7 +90,7 @@ static show(options?: TextPickerDialogOptions)
 struct TextPickerDialogExample {
   private select: number | number[] = 0
   private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
-  @State v:string = '';
+  @State v: string = '';
 
   build() {
     Row() {
@@ -95,12 +98,12 @@ struct TextPickerDialogExample {
         Button("TextPickerDialog:" + this.v)
           .margin(20)
           .onClick(() => {
-            TextPickerDialog.show({ // 建议使用 this.getUIContext().showTextPickerDialog()接口
+            TextPickerDialog.show({
+              // 建议使用 this.getUIContext().showTextPickerDialog()接口
               range: this.fruits,
               selected: this.select,
-              disappearTextStyle: {color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}},
-              textStyle: {color: Color.Black, font: {size: 20, weight: FontWeight.Normal}},
-              selectedTextStyle: {color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}},
+              value: this.v,
+              defaultPickerItemHeight: 40,
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
                 this.select = value.index
@@ -114,6 +117,9 @@ struct TextPickerDialogExample {
               },
               onChange: (value: TextPickerResult) => {
                 console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+              },
+              onScrollStop: (value: TextPickerResult) => {
+                console.info("TextPickerDialog:onScrollStop()" + JSON.stringify(value))
               },
               onDidAppear: () => {
                 console.info("TextPickerDialog:onDidAppear()")
@@ -149,7 +155,7 @@ struct TextPickerDialogExample {
 struct TextPickerDialogExample {
   private select: number | number[] = 0
   private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
-  @State v:string = '';
+  @State v: string = '';
 
   build() {
     Row() {
@@ -157,18 +163,37 @@ struct TextPickerDialogExample {
         Button("TextPickerDialog:" + this.v)
           .margin(20)
           .onClick(() => {
-            TextPickerDialog.show({ // 建议使用 this.getUIContext().showTextPickerDialog()接口
+            TextPickerDialog.show({
+              // 建议使用 this.getUIContext().showTextPickerDialog()接口
               range: this.fruits,
               selected: this.select,
-              disappearTextStyle: {color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}},
-              textStyle: {color: Color.Black, font: {size: 20, weight: FontWeight.Normal}},
-              selectedTextStyle: {color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}},
-              acceptButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Red,
-                fontSize: '26fp', fontWeight: FontWeight.Bolder, fontStyle: FontStyle.Normal, fontFamily: 'sans-serif', backgroundColor:'#80834511',
-                borderRadius: 20 },
-              cancelButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Blue,
-                fontSize: '16fp', fontWeight: FontWeight.Normal, fontStyle: FontStyle.Italic, fontFamily: 'sans-serif', backgroundColor:'#50182431',
-                borderRadius: 10 },
+              disappearTextStyle: { color: '#297bec', font: { size: 15, weight: FontWeight.Lighter } },
+              textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
+              selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } },
+              acceptButtonStyle: {
+                type: ButtonType.Normal,
+                style: ButtonStyleMode.NORMAL,
+                role: ButtonRole.NORMAL,
+                fontColor: 'rgb(81, 81, 216)',
+                fontSize: '26fp',
+                fontWeight: FontWeight.Bolder,
+                fontStyle: FontStyle.Normal,
+                fontFamily: 'sans-serif',
+                backgroundColor: '#A6ACAF',
+                borderRadius: 20
+              },
+              cancelButtonStyle: {
+                type: ButtonType.Normal,
+                style: ButtonStyleMode.NORMAL,
+                role: ButtonRole.NORMAL,
+                fontColor: Color.Blue,
+                fontSize: '16fp',
+                fontWeight: FontWeight.Normal,
+                fontStyle: FontStyle.Italic,
+                fontFamily: 'sans-serif',
+                backgroundColor: '#50182431',
+                borderRadius: 10
+              },
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
                 this.select = value.index
@@ -182,6 +207,9 @@ struct TextPickerDialogExample {
               },
               onChange: (value: TextPickerResult) => {
                 console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+              },
+              onScrollStop: (value: TextPickerResult) => {
+                console.info("TextPickerDialog:onScrollStop()" + JSON.stringify(value))
               },
               onDidAppear: () => {
                 console.info("TextPickerDialog:onDidAppear()")
@@ -243,6 +271,9 @@ struct TextPickerDialogExample {
               onChange: (value: TextPickerResult) => {
                 console.info("TextPickerDialog:onChange()" + JSON.stringify(value));
               },
+              onScrollStop: (value: TextPickerResult) => {
+                console.info("TextPickerDialog:onScrollStop()" + JSON.stringify(value));
+              },
               onDidAppear: () => {
                 console.info("TextPickerDialog:onDidAppear()");
               },
@@ -266,3 +297,177 @@ struct TextPickerDialogExample {
 ```
 
 ![TextPickerDialog](figures/TextPickerDialog_HoverMode.gif)
+
+### 示例4（设置弹窗位置）
+
+该示例通过alignment、offset设置弹窗的位置。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerDialogExample {
+  private select: number | number[] = 0
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  @State v: string = '';
+
+  build() {
+    Row() {
+      Column() {
+        Button("TextPickerDialog:" + this.v)
+          .margin(20)
+          .onClick(() => {
+            TextPickerDialog.show({
+              range: this.fruits,
+              selected: this.select,
+              alignment: DialogAlignment.Center,
+              offset: { dx: 20, dy: 0 },
+              onAccept: (value: TextPickerResult) => {
+                // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
+                this.select = value.index
+                console.log(this.select + '')
+                // 点击确定后，被选到的文本数据展示到页面
+                this.v = value.value as string
+                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+              }
+            })
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+![TextPickerDialog](figures/TextPickerDialogDemo4.png)
+
+### 示例5（设置遮蔽区）
+
+该示例通过maskRect设置遮蔽区。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerDialogExample {
+  private select: number | number[] = 0
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  @State v: string = '';
+
+  build() {
+    Row() {
+      Column() {
+        Button("TextPickerDialog:" + this.v)
+          .margin(20)
+          .onClick(() => {
+            TextPickerDialog.show({
+              range: this.fruits,
+              selected: this.select,
+              maskRect: {
+                x: 30,
+                y: 60,
+                width: '100%',
+                height: '60%'
+              },
+              onAccept: (value: TextPickerResult) => {
+                // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
+                this.select = value.index
+                console.log(this.select + '')
+                // 点击确定后，被选到的文本数据展示到页面
+                this.v = value.value as string
+                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+              }
+            })
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+![TextPickerDialog](figures/TextPickerDialogDemo5.png)
+
+### 示例6（设置弹窗背板）
+
+该示例通过backgroundColor、backgroundBlurStyle、shadow设置弹窗背板。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerDialogExample {
+  private select: number | number[] = 0
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  @State v: string = '';
+
+  build() {
+    Row() {
+      Column() {
+        Button("TextPickerDialog:" + this.v)
+          .margin(20)
+          .onClick(() => {
+            TextPickerDialog.show({
+              range: this.fruits,
+              selected: this.select,
+              backgroundColor: 'rgb(204, 226, 251)',
+              backgroundBlurStyle: BlurStyle.NONE,
+              shadow: ShadowStyle.OUTER_FLOATING_SM,
+              onAccept: (value: TextPickerResult) => {
+                // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
+                this.select = value.index
+                console.log(this.select + '')
+                // 点击确定后，被选到的文本数据展示到页面
+                this.v = value.value as string
+                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+              }
+            })
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+![TextPickerDialog](figures/TextPickerDialogDemo6.png)
+
+
+### 示例7（设置循环滚动）
+
+该示例使用canLoop设置是否循环滚动。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerDialogExample {
+  private select: number | number[] = 0
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  @State v: string = '';
+
+  build() {
+    Row() {
+      Column() {
+        Button("TextPickerDialog:" + this.v)
+          .margin(20)
+          .onClick(() => {
+            TextPickerDialog.show({
+              range: this.fruits,
+              selected: this.select,
+              value: this.v,
+              canLoop: false,
+              onAccept: (value: TextPickerResult) => {
+                // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
+                this.select = value.index
+                console.log(this.select + '')
+                // 点击确定后，被选到的文本数据展示到页面
+                this.v = value.value as string
+                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+              }
+            })
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+![TextPickerDialog](figures/TextPickerDialogDemo7.gif)

@@ -259,7 +259,7 @@ Obtains the color space name.
 
 **Returns**
 
-Returns the color space name, which is defined in [ColorSpaceName] (#colorspacename). The return value **0** means that the function call fails.
+Returns the color space name, which is defined in [ColorSpaceName](#colorspacename). The return value **0** means that the function call fails.
 
 
 ### OH_NativeColorSpaceManager_GetGamma()

@@ -66,8 +66,8 @@ HiAppEvent提供接口用于订阅系统崩溃事件。
 | 名称    | 类型   | 说明                       |
 | ------- | ------ | ------------------------- |
 | file | string | 文件名。 |
-| symbol | string | 函数名称。 |
-| buildId | string | 文件唯一标识。 |
+| symbol | string | 函数名称。**函数名称长度超过256字节时，栈帧打印不包含函数名称。** |
+| buildId | string | 文件唯一标识。**elf中如果不包含 .note.gnu.build-id时，栈帧打印不包含build-id信息。** |
 | pc | string | pc寄存器地址。 |
 | offset | number | 函数偏移量。 |
 

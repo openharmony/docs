@@ -1159,13 +1159,17 @@ Allows an application to obtain the MAC address of the local Wi-Fi device.
 
 Allows an application to obtain the MAC address of the peer Wi-Fi device.
 
-**Permission level**: system_core
+To obtain the MAC address of the peer device when obtaining Wi-Fi scanning results, you need to apply for this permission.
+
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
 **Enable via ACL**: true
 
 **Valid since**: 8
+
+**Changelog**: The permission level is **system_core** in API versions 8 to 13 and **system_basic** since API versions 14.
 
 ### ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
@@ -1375,7 +1379,7 @@ Allows an application to obtain information about local accounts.
 
 ### ohos.permission.GET_TELEPHONY_STATE
 
-Allows an application to read telephony information.
+Allows an application to read telephony information. 
 
 **Permission level**: system_basic
 
@@ -2651,7 +2655,7 @@ Allows an application to intercept input events.
 
 ### ohos.permission.RECORD_VOICE_CALL
 
-Allows the application to record voice calls.
+Allows an application to record voice calls.
 
 **Permission level**: system_core
 
@@ -2880,6 +2884,18 @@ Allows an application or system ability to initiate the process for registering 
 **Enable via ACL**: true
 
 **Valid since**: 13
+
+### ohos.permission.MANAGE_SHUTDOWN_FINDNETWORK
+
+Allows an application or system ability to manage the service that enables a powered-off device to be found by another device with the same account.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
 
 ### ohos.permission.MANAGE_RGM
 
@@ -3195,7 +3211,7 @@ Allows a system application to use infrared interfaces.
 
 ### ohos.permission.ENABLE_EXPERIENCE_HBM
 
-Allows an application to enable High Brightness Mode(HBM) for the screen.
+Allows an application to enable the High Brightness Mode (HBM) for the screen.
 
 **Permission level**: system_basic
 
@@ -3577,6 +3593,18 @@ Allows a system application to filter input events.
 
 **Valid since**: 12
 
+### ohos.permission.INPUT_DEVICE_CONTROLLER
+
+Allows an application to query and set the status of input devices.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：16
+
 ### ohos.permission.ACTIVATE_DEVICE_PSI
 
 Allows a system application or system ability to report the device activation status.
@@ -3887,7 +3915,7 @@ Allows a system application to obtain eSIM profile information and data written 
 
 **Enable via ACL**: true
 
-**Valid since**: 13
+**Valid since**: 14
 
 ### ohos.permission.SET_TELEPHONY_ESIM_STATE
 
@@ -3899,7 +3927,7 @@ Allows a system application to modify the eSIM profile and upgrade the eSIM.
 
 **Enable via ACL**: true
 
-**Valid since**: 13
+**Valid since**: 14
 
 ### ohos.permission.CAMERA_BACKGROUND
 
@@ -3965,7 +3993,7 @@ Allows a system application to subscribe to the restore start event of the backu
 
 Allows an application to connect to a device and read and write the device data via USB for debugging purposes.
 
-Currently, this permission is available only for 2-in-1 device applications.
+Currently, this permission is available only to 2-in-1 device applications.
 
 **Permission level**: system_basic
 
@@ -3979,7 +4007,7 @@ Currently, this permission is available only for 2-in-1 device applications.
 
 Allows an application to access and modify files in user directories.
 
-Currently, this permission is available only for 2-in-1 device applications.
+Currently, this permission is available only to 2-in-1 device applications.
 
 **Permission level**: system_basic
 
@@ -4037,7 +4065,7 @@ Allows a system service or system application to check the patch installation re
 
 **Valid since**: 12
 
-**Changelog**: From API version 12 to 13, this permission is available to system services. Starting from API version 14, this permission is available to system applications.
+**Changelog**: This permission is available to system services in API versions 12 to 13. From API version 14, it is available to system applications.
 
 ### ohos.permission.USER_AUTH_FROM_BACKGROUND
 
@@ -4075,9 +4103,21 @@ Allows an application to utilize the recovery key to reset the lock screen passw
 
 **Valid since**: 14
 
+### ohos.permission.ACCESS_CONFIDENTIAL_COMPUTING_ZONE
+
+Allows an application to access the confidential computing zone.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：16
+
 ### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
 
-Allows an application to obtain brief information of the recovery key.
+Allows an application to obtain brief information about the recovery key.
 
 **Permission level**: system_basic
 
@@ -4091,7 +4131,7 @@ Allows an application to obtain brief information of the recovery key.
 
 Allows an application to update the virtual keyboard status or a service to query the virtual keyboard status.
 
-With this permission, the application can update the virtual keyboard status and the service can query the virtual keyboard status. Currently, this permission is available only for applications or services running on 2-in-1 devices.
+With this permission, the application can update the virtual keyboard status and the service can query the virtual keyboard status. Currently, this permission is available only to applications or services running on 2-in-1 devices.
 
 **Permission level**: system_basic
 
@@ -4141,7 +4181,7 @@ Allows an application to access the application lock.
 
 Allows an application to disable its runtime code integrity protection.
 
-For the application developed using the cross-platform framework, this permission allows the application to disable its runtime code integrity protection. Currently, this permission is available only for applications running on tablets and 2-in-1 devices.
+For the application developed using the cross-platform framework, this permission allows the application to disable its runtime code integrity protection. Currently, this permission is available only to applications running on tablets and 2-in-1 devices.
 
 **Permission level**: system_basic
 
@@ -4155,7 +4195,7 @@ For the application developed using the cross-platform framework, this permissio
 
 Allows an application to apply for writable and executable anonymous memory.
 
-For the application developed using the cross-platform framework, this permission allows the application to apply for writable and executable anonymous memory. Currently, this permission is available only for applications running on tablets and 2-in-1 devices.
+For the application developed using the cross-platform framework, this permission allows the application to apply for writable and executable anonymous memory. Currently, this permission is available only to applications running on tablets and 2-in-1 devices.
 
 **Permission level**: system_basic
 
@@ -4167,7 +4207,7 @@ For the application developed using the cross-platform framework, this permissio
 
 ### ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
 
-Allows an application to set or remove the sharing range of the data supported by UDMF.
+Allows an application to set or remove the sharing range of the data supported by the UDMF.
 
 **Permission level**: system_basic
 
@@ -4193,13 +4233,99 @@ Allows an application to manage the pasteable range of the pasteboard data.
 
 Allows a system application to access the application installation directory.
 
-**Permission level**：system_core
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
+### ohos.permission.ACCESS_ACCOUNT_SERVICE_EXTENSION_ABILITY
+
+Allows a system application to invoke the services provided by the account ServiceExtensionAbility.
+
+**Permission level**：system_basic
 
 **Authorization mode**：system_grant
 
 **Enable via ACL**：true
 
-**Valid since**：14
+**Valid since**：13
+
+### ohos.permission.ANTI_FRAUD
+
+Allows an application to access risk control probes to detect device security risks. The detection result can be used as input for risk control decision-making in the cloud.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
+
+Allows an application to initiate screen recording without displaying the user authorization dialog box.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.STORAGE_MANAGER_CRYPT
+
+Allows a system application or system service to call APIs to perform encryption and decryption.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.WATCH_READ_EMERGENCY_INFO
+
+Allows an application to read the SOS emergency information.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：16
+
+### ohos.permission.WATCH_WRITE_EMERGENCY_INFO
+
+Allows an application to write the SOS emergency information.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：16
+
+### ohos.permission.WATCH_START_SOS_SERVICE
+
+Allows an application to enable or access the SOS service.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：16
+
+**Changelog**: This permission is available only to system services in API versions 12 to 14. From API version 15, it is also available to system applications.
 
 ## system_grant Permissions (Unavailable via ACL)
 
@@ -4446,6 +4572,30 @@ Allows a UIExtensionAbility to be displayed on the locked screen.
 **Enable via ACL**: false
 
 **Valid since**: 14
+
+### ohos.permission.USE_USER_ACCESS_MANAGER
+
+Allows an application to query and configure user identity authentication policies, and verify the authentication result.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: false
+
+**Valid since**: 16
+
+### ohos.permission.SET_LAUNCH_REASON_MESSAGE
+
+Allows a system application to set the launch reason when starting another application.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: false
+
+**Valid since**: 16
 
 ## user_grant Permissions (Available via ACL)
 
@@ -4733,7 +4883,7 @@ Allows an application to read the pasteboard.
 
 Allows an application to access the **Desktop** directory and its subdirectories in the user directory.
 
-Currently, this permission is available only for 2-in-1 device applications.
+Currently, this permission is available only to 2-in-1 device applications.
 
 **Permission level**: system_basic
 
@@ -4759,7 +4909,7 @@ Allows an application to save images and videos to the user's directory within u
 
 Allows an application to capture screen information.
 
-With this permission, the application can perform operations such as taking screenshots and recording on-screen information. Currently, this permission is available only for applications running on tablets and 2-in-1 devices.
+With this permission, the application can perform operations such as taking screenshots and recording on-screen information. Currently, this permission is available only to applications running on tablets and 2-in-1 devices.
 
 **Permission level**: system_basic
 

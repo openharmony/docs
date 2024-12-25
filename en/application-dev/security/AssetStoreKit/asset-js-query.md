@@ -33,7 +33,7 @@ The following table describes the attributes of **AssetMap** for querying an ass
 | RETURN_LIMIT          | Type: number                                                | No    | Maximum number of asset records to return.                                        |
 | RETURN_OFFSET         | Type: number<br>Value range: 1-65536                             | No    | Offset of the asset query result.<br>**NOTE**: This parameter specifies the starting asset record to return in batch asset query.                                |
 | RETURN_ORDERED_BY     | Type: number<br>Value: asset.Tag.DATA_LABEL_xxx.            | No    | How the query results are sorted. Currently, the results can be sorted only by **DATA_LABEL**.<br>**NOTE**: By default, assets are returned in the order in which they are added.|
-| REQUIRE_ATTR_ENCRYPTED<sup>13+</sup> | Type: bool| No| Whether to query the customized asset attribute information that is encrypted. By default, the unencrypted, customized asset attribute information is queried.|
+| REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | Type: bool| No| Whether to query the customized asset attribute information that is encrypted. By default, the unencrypted, customized asset attribute information is queried.|
 
 ## Constraints
 
@@ -61,7 +61,7 @@ function stringToArray(str: string): Uint8Array {
 
 function arrayToString(arr: Uint8Array): string {
   let textDecoder = util.TextDecoder.create("utf-8", { ignoreBOM: true });
-  let str = textDecoder.decodeWithStream(arr, { stream: false })
+  let str = textDecoder.decodeToString(arr, { stream: false })
   return str;
 }
 

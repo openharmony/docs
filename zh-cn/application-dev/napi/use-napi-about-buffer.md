@@ -238,11 +238,11 @@ static napi_value IsBuffer(napi_env env, napi_callback_info info)
     napi_create_buffer(env, strlen(str.data()), (void **)(str.data()), &buffer);
 
     // 调用napi_is_buffer接口判断创建的对象是否为buffer
-    bool reslut = false;
-    napi_is_buffer(env, buffer, &reslut);
+    bool result = false;
+    napi_is_buffer(env, buffer, &result);
     // 将结果返回出去
     napi_value returnValue = nullptr;
-    napi_get_boolean(env, reslut, &returnValue);
+    napi_get_boolean(env, result, &returnValue);
     return returnValue;
 }
 ```

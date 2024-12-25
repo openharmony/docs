@@ -38,6 +38,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | CM_DIGEST_SHA256 | 4      | SHA256摘要算法。 |
 | CM_DIGEST_SHA384 | 5      | SHA384摘要算法。 |
 | CM_DIGEST_SHA512 | 6      | SHA512摘要算法。 |
+| CM_DIGEST_SM3<sup>16+</sup> | 7 | SM3摘要算法。 |
 
 ## CmKeyPadding
 
@@ -164,6 +165,40 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | CM_ERROR_INCORRECT_FORMAT  | 17500003      | 表示输入证书或凭据的数据格式无效。 |
 | CM_ERROR_MAX_CERT_COUNT_REACHED<sup>12+</sup>  | 17500004      | 表示证书或凭据数量达到上限。 |
 | CM_ERROR_NO_AUTHORIZATION<sup>12+</sup>  | 17500005      | 表示应用未经用户授权。 |
+
+## CertType<sup>16+</sup>
+
+表示证书类型。
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+| 名称       | 值 |  说明      |
+| ---------- | ------ | --------- |
+| CA_CERT_SYSTEM   | 0      | 表示系统CA证书。 |
+| CA_CERT_USER   | 1      | 表示用户CA证书。 |
+
+## CertScope<sup>16+</sup>
+
+表示证书的位置。
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+| 名称       | 值 |  说明      |
+| ---------- | ------ | --------- |
+| CURRENT_USER   | 1      | 表示当前用户。 |
+| GLOBAL_USER   | 2      | 表示设备公共。 |
+
+## CertStoreProperty<sup>16+</sup>
+
+表示获取证书存储位置的参数集合，包括证书的类型及证书的位置。
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+| 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
+| -------------- | --------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| certType          | [CertType](#certtype16)                     | 否  | 否  | 表示证书的类型。 |
+| certScope        | [CertScope](#certscope16)                     | 否   | 是  | 表示证书的存储位置。当证书类型为CURRENT_USER时，此项为必选项。 |
+
 
 ## certificateManager.installPrivateCertificate
 
@@ -1227,3 +1262,65 @@ try {
   console.error(`Failed to get all private certificates installed by the application. Code: ${error.code}, message: ${error.message}`);
 }
 ```
+## certificateManager.getCertificateStorePath<sup>16+</sup>
+
+getCertificateStorePath(property: CertStoreProperty): string;
+
+表示获取证书的存储位置。
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+**参数**：
+
+| 参数名   | 类型                                      | 必填 | 说明                             |
+| -------- | ----------------------------------------- | ---- | -------------------------------- |
+| property | [CertStoreProperty](#certstoreproperty16) | 是   | 表示获取证书存储位置的参数集合。 |
+
+**返回值**：
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| string | 表示证书的存储位置。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+
+**示例**：
+```ts
+import { certificateManager } from '@kit.DeviceCertificateKit';
+
+try {
+  /* 获取系统CA的存储位置 */
+  let property1: certificateManager.CertStoreProperty = {
+    certType: certificateManager.CertType.CA_CERT_SYSTEM,
+  }
+  let systemCAPath = certificateManager.getCertificateStorePath(property1);
+  console.info(`Success to get system ca path: ${systemCAPath}`);
+    
+  /* 获取当前用户的用户CA存储位置 */
+  let property2: certificateManager.CertStoreProperty = {
+    certType: certificateManager.CertType.CA_CERT_USER,
+    certScope: certificateManager.CertScope.CURRENT_USER,
+  }
+  let userCACurrentPath = certificateManager.getCertificateStorePath(property2);
+  console.info(`Success to get current user's user ca path: ${userCACurrentPath}`);
+  
+  /* 获取设备公共的用户CA存储位置 */
+  let property3: certificateManager.CertStoreProperty = {
+    certType: certificateManager.CertType.CA_CERT_USER,
+    certScope: certificateManager.CertScope.GLOBAL_USER,
+  }
+  let globalCACurrentPath = certificateManager.getCertificateStorePath(property3);
+  console.info(`Success to get global user's user ca path: ${globalCACurrentPath}`);
+} catch (error) {
+  console.error(`Failed to get store path. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+

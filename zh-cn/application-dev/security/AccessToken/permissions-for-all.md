@@ -371,16 +371,6 @@
 
 **起始版本**：12
 
-## ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
-
-允许系统应用和运营商应用设置eSIM昵称和激活eSIM。
-
-**权限级别**：normal
-
-**授权方式**：system_grant
-
-**起始版本**：13
-
 ## ohos.permission.WINDOW_TOPMOST
 
 允许应用将窗口设置为应用置顶窗口。
@@ -390,6 +380,38 @@
 **授权方式**：system_grant
 
 **起始版本**：13
+
+## ohos.permission.USE_MESSAGES_PICKER
+
+允许应用使用短信选择器，获取短信内容。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：16
+
+## ohos.permission.USE_CALL_LOG_PICKER
+
+允许应用使用通话记录选择器，获取通话记录内容。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：16
+
+### ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
+
+允许系统JS引擎申请带MAP_FORT标识的匿名可执行内存。
+
+应用申请此权限后，系统引擎可申请带MAP_FORT的匿名可执行内存，做即时编译，提高与形式执行效率。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：14
 
 
 

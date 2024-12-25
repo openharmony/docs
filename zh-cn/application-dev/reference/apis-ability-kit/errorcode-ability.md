@@ -576,11 +576,11 @@ The target to restart does not belong to the current application or is not a UIA
 
 **错误信息**
 
-Restart too frequently. Try again at least 10s later.
+Restart too frequently. Try again at least 3s later.
 
 **错误描述**
 
-当重启应用拉起指定组件时，10s内再次调用，返回该错误码。
+当重启应用拉起指定组件时，3s内再次调用，返回该错误码。
 
 **可能原因**
 
@@ -588,7 +588,7 @@ Restart too frequently. Try again at least 10s later.
 
 **处理步骤**
 
-间隔10s后再次调用。
+间隔3s后再次调用。
 
 ## 16000065 接口只支持Ability在前台时调用
 
@@ -892,6 +892,28 @@ Creating an instance is not supported.
 **处理步骤**
 
 删除参数[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)。
+
+## 16000081 获取目标应用信息失败
+
+**错误信息**
+
+Get target application info failed.
+
+**错误描述**
+
+调用<!--Del-->[<!--DelEnd-->URI授权相关接口<!--Del-->](js-apis-uripermissionmanager-sys.md)<!--DelEnd-->时，无法根据应用包名和分身索引获取到目标应用的相关信息。
+
+**可能原因**
+
+1. 没有安装目标应用。
+2. 分身索引超出允许的范围。
+3. 目标应用没有该索引的分身。
+
+**处理步骤**
+
+1. 检查目标应用是否已经安装。
+2. 检查分身应用索引是否在允许范围内。
+3. 检查目标应用是否创建了该索引对应的分身应用。
 
 ## 16000082 单实例模式下的UIAbility未完成启动
 

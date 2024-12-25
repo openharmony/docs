@@ -602,7 +602,7 @@ struct TestPage {
 }
 ```
 
-## cl.arkui.5 RichEditor（富文本）向前删除空文本时onWillChange回调变更
+## cl.arkui.6 RichEditor（富文本）在光标处于文本起始位置情况时向前删除空文本onWillChange回调变更
 
 **访问级别**
 
@@ -610,15 +610,17 @@ struct TestPage {
 
 **变更原因**
 
-光标位于文本起始位置时向前删除，触发onWillChange回调范围是[-1, -1]，不符合接口定义。
+RichEditorController构造的富文本：光标位于文本起始位置时向前删除，触发onWillChange回调范围是[-1, -1]，不符合接口定义。
+RichEditorStyledStringController构造的富文本：光标位于文本起始位置时向前删除，触发onWillChange回调范围是[0, 1]，不符合接口定义。
 
 **变更影响**
 
 该变更为不兼容变更。
 
-变更前：光标位于文本起始位置时向前删除，触发onWillChange回调范围是[-1, -1]。
-
-变更后：光标位于文本起始位置时向前删除，触发onWillChange回调范围是[0, 0]。
+| 组件                                | 变更前                                  | 变更后                                               |
+|------------------------------------ | ---------------------------------------|---------------------------------------|
+|RichEditorController构造的富文本| 光标位于文本起始位置时向前删除，触发onWillChange回调范围是[-1, -1]。 | 光标位于文本起始位置时向前删除，触发onWillChange回调范围是[0, 0]。|
+|RichEditorStyledStringController构造的富文本| 光标位于文本起始位置时向前删除，触发onWillChange回调范围是[0, 1]。| 光标位于文本起始位置时向前删除，触发onWillChange回调范围是[0, 0]。|
 
 **起始API Level**
 

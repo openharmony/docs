@@ -8,7 +8,7 @@
 
 **变更原因**
 
-播放器当前上报的IO错误码只有一个，导致应用在故障时难以进行问题定界，本次细化了IO相关错误，提升生态应用友好度。
+播放器当前上报的IO错误码只有一个，为了帮助开发者更好地了解播放失败的原因，本次细化了IO相关错误，提升生态应用友好度。
 
 **变更影响**
 
@@ -19,8 +19,8 @@
 变更后：播放框架返回IO类网络错误时，对应的错误码会细化，涉及到IO返回错误的接口返回值会有变化，用户升级后需要适配新的错误码上报规则。
 |                       接口声明                        |           变更前            |           变更后         |
 | :--------------------------------------------------: | :------------------------------: | :---------------------------: |
-| AVPlayer.on(type: 'error', callback: ErrorCallback)  |        AVERR_IO = 5400103        |     新增返回5411001 ~ 5411011     |
-| void (*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg) |        AV_ERR_IO = 4        |     新增返回5411001 ~ 5411011     |
+| AVPlayer.on(type: 'error', callback: ErrorCallback)  |        AVERR_IO = 5400103        |     网络场景原有错误码废弃，返回细化后的错误码5411001 ~ 5411011，其余场景不变。     |
+| void (*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg) |        AV_ERR_IO = 4        |     网络场景原有错误码废弃，返回细化后的错误码5411001 ~ 5411011，其余场景不变。      |
 
 **起始 API Level**
 

@@ -63,7 +63,7 @@ Radio(options: RadioOptions)
 
 ### checked
 
-checked(value: boolean)
+checked(value: Optional\<boolean>)
 
 设置单选框的选中状态。
 
@@ -79,7 +79,7 @@ checked(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | ------------------------------------ |
-| value  | boolean | 是   | 单选框的选中状态。<br/>默认值：false |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 单选框的选中状态。<br/>默认值：false |
 
 ### radioStyle<sup>10+</sup>
 
@@ -101,7 +101,7 @@ radioStyle(value?: RadioStyle)
 
 ## contentModifier<sup>12+</sup>
 
-contentModifier(modifier: ContentModifier\<RadioConfiguration>)
+contentModifier(modifier: Optional<ContentModifier\<RadioConfiguration>>)
 
 定制Radio内容区的方法。
 
@@ -113,7 +113,7 @@ contentModifier(modifier: ContentModifier\<RadioConfiguration>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<RadioConfiguration>](#radioconfiguration12对象说明) | 是   | 在Radio组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<RadioConfiguration>](#radioconfiguration12对象说明)> | 是   | 在Radio组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 ## 事件
 
@@ -121,13 +121,31 @@ contentModifier(modifier: ContentModifier\<RadioConfiguration>)
 
 ### onChange
 
-onChange(callback: (isChecked: boolean) => void)
+onChange(callback: Optional\<OnRadioChangeCallback>)
 
 单选框选中状态改变时触发回调。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                  | 必填 | 说明                           |
+| -------- | --------------------- | ---- | ------------------------------ |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnRadioChangeCallback](#onradiochangecallback16)> | 是   | 单选框选中状态改变时触发该回调 |
+
+## OnRadioChangeCallback<sup>16+</sup>
+
+type OnRadioChangeCallback = (isChecked: boolean) => void
+
+单选框选中状态改变时触发回调。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

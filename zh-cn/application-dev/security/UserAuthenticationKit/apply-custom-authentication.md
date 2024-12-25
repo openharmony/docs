@@ -60,21 +60,21 @@ try {
   };
   // 获取认证对象
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  console.info('get userAuth instance success');
   // 订阅认证结果
   userAuthInstance.on('result', {
     onResult(result) {
       // 若收到ResultCode值为12500000，代表操作成功
-      console.log('userAuthInstance callback result = ' + JSON.stringify(result));
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
       // 若收到ResultCode值为12500011,说明用户点击了导航按钮想切换自定义认证方式
       if (result.result == 12500011) {
         //请开发者自行完成拉起自定义认证界面的实现
       }
     }
   });
-  console.log('auth on success');
+  console.info('auth on success');
   userAuthInstance.start();
-  console.log('auth start success');
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);

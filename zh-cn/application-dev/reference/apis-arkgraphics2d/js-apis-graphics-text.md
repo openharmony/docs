@@ -2172,11 +2172,11 @@ createTruncatedLine(width: number, ellipsisMode: EllipsisMode, ellipsis: string)
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -| - | - | - |
-| width | number | 是 | 截断后的行宽度，浮点数。|
-| ellipsisMode | [EllipsisMode](#ellipsismode) | 是 | 截断的类型。|
-| ellipsis | string | 是 | 截断的标记字符串。|
+| 参数名 | 类型 | 必填 | 说明                            |
+| -| - | - |-------------------------------|
+| width | number | 是 | 截断后的行宽度，浮点数。                  |
+| ellipsisMode | [EllipsisMode](#ellipsismode) | 是 | 截断的类型，当前仅支持头部截断START和尾部截断END。 |
+| ellipsis | string | 是 | 截断的标记字符串。                     |
 
 **返回值：**
 

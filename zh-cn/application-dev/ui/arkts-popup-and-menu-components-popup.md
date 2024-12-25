@@ -1,11 +1,9 @@
-# 气泡提示 (Popup)
-
-
+# 气泡提示（Popup）
 Popup属性可绑定在组件上显示气泡弹窗提示，设置弹窗内容、交互逻辑和显示状态。主要用于屏幕录制、信息弹出提醒等显示状态。
 
+气泡分为两种类型，一种是系统提供的气泡[PopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions类型说明)，一种是开发者可以自定义的气泡[CustomPopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8类型说明)。其中，PopupOptions通过配置primaryButton和secondaryButton来设置带按钮的气泡，CustomPopupOptions通过配置[builder](../../application-dev/quick-start/arkts-builder.md)来设置自定义的气泡。
 
-气泡分为两种类型，一种是系统提供的气泡[PopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions类型说明)，一种是开发者可以自定义的气泡[CustomPopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8类型说明)。其中PopupOptions为系统提供的气泡，通过配置primaryButton、secondaryButton来设置带按钮的气泡。CustomPopupOptions通过配置[builder](../quick-start/arkts-builder.md)参数来设置自定义的气泡。
-
+气泡可以通过配置[mask](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions类型说明)来实现模态和非模态窗口，mask为true或者颜色值的时候，气泡为模态窗口，mask为false时，气泡为非模态窗口。
 
 ## 文本提示气泡
 
@@ -18,7 +16,7 @@ Popup属性可绑定在组件上显示气泡弹窗提示，设置弹窗内容、
 @Component
 struct PopupExample {
   @State handlePopup: boolean = false
- 
+
   build() {
     Column() {
       Button('PopupOptions')
@@ -32,7 +30,6 @@ struct PopupExample {
   }
 }
 ```
-
 
 ![zh-cn_image_0000001511740524](figures/zh-cn_image_0000001511740524.png)
 
@@ -109,9 +106,7 @@ struct PopupExample22 {
 }
 ```
 
-
 ![zh-cn_other_0000001500740342](figures/zh-cn_other_0000001500740342.jpeg)
-
 
 ## 气泡的动画
 
@@ -181,7 +176,6 @@ struct PopupExample {
 
 ![popup_transition](figures/popup_transition.gif)
 
-
 ## 自定义气泡
 
 开发者可以使用CustomPopupOptions的builder创建自定义气泡，\@Builder中可以放自定义的内容。除此之外，还可以通过popupColor等参数控制气泡样式。
@@ -221,9 +215,50 @@ struct Index {
 }
 ```
 
-
 使用者通过配置placement参数将弹出的气泡放到需要提示的位置。弹窗构造器会触发弹出提示信息，来引导使用者完成操作，也让使用者有更好的UI体验。
 
-
 ![zh-cn_other_0000001500900234](figures/zh-cn_other_0000001500900234.jpeg)
+
+## 气泡样式
+
+气泡除了可以通过builder实现自定义气泡，还可以通过接口设置气泡的样式和显示效果。
+
+背景颜色：气泡的背景色默认为透明，但是会有一个默认的模糊效果，手机上为COMPONENT\_ULTRA\_THICK。
+蒙层样式：气泡默认有蒙层，且蒙层的颜色为透明。
+显示大小：气泡大小有内部的builder大小或者message的长度决定的。
+显示位置：气泡默认显示在宿主组件的下方，可以通过Placement接口来配置其显示位置以及对齐方向。
+以下示例通过设置popupColor（背景颜色）、mask（蒙层样式）、width（气泡宽度）、placement（显示位置）实现气泡的样式。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct PopupExample {
+  @State handlePopup: boolean = false
+
+  build() {
+    Column({ space: 100 }) {
+      Button('PopupOptions')
+        .onClick(() => {
+          this.handlePopup = !this.handlePopup
+        })
+        .bindPopup(this.handlePopup, {
+          width: 200,
+          message: 'This is a popup.',
+          popupColor: Color.Red, // 设置气泡的背景色
+          mask: {
+            color: '#33d9d9d9'
+          },
+          placement: Placement.Top,
+          backgroundBlurStyle: BlurStyle.NONE // 去除背景模糊效果需要关闭气泡的模糊背景
+        })
+    }
+    .width('100%')
+  }
+}
+```
+
+![image](figures/UIpopupStyle.gif)
+
 

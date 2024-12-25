@@ -246,7 +246,7 @@ Follow the steps below to draw 2D graphics and text blobs by using the canvas an
 
 11. **Draw the graphics and text blob.**
 
-    Create a **MyNodeController** instance and save it to the NodeContainer, add a **<\Button>** component, and call the defined interfaces.
+    Create a **MyNodeController** instance and save it to the NodeContainer, add a **Button** component, and call the defined interfaces.
 
     ```js
     @Entry
