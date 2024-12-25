@@ -325,4 +325,4 @@ struct Index1 {
   }
 }
 ```
-![zh-cn_image_editabletitlebar_example03](figures/zh-cn_image_editabletitlebar_example03.png)
+![/zh-cn_image_editabletitlebar_example03](figures/zh-cn_image_editabletitlebar_example03.png)
