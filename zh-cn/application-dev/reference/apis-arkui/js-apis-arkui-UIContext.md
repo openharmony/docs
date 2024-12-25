@@ -6597,16 +6597,14 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 配置键盘避让时页面的避让模式。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 值   | 说明       |
 | ------ | ---- | ---------- |
-| OFFSET | 0    | 上抬模式。 |
-| RESIZE | 1    | 压缩模式。 |
-| OFFSET_WITH_CARET<sup>14+</sup>  | 2 | 上抬模式，输入框光标位置发生变化时候也会触发避让。|
-| RESIZE_WITH_CARET<sup>14+</sup>  | 3 | 压缩模式，输入框光标位置发生变化时候也会触发避让。|
+| OFFSET | 0    | 上抬模式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| RESIZE | 1    | 压缩模式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| OFFSET_WITH_CARET<sup>14+</sup>  | 2 | 上抬模式，输入框光标位置发生变化时候也会触发避让。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| RESIZE_WITH_CARET<sup>14+</sup>  | 3 | 压缩模式，输入框光标位置发生变化时候也会触发避让。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 
 
 ## FocusController<sup>12+</sup>
