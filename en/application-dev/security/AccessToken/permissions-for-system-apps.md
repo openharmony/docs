@@ -4189,7 +4189,7 @@ For the application developed using the cross-platform framework, this permissio
 
 **Enable via ACL**: true
 
-**Valid since**: 13
+**Valid since**: 14
 
 ### ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY
 
@@ -4203,7 +4203,7 @@ For the application developed using the cross-platform framework, this permissio
 
 **Enable via ACL**: true
 
-**Valid since**: 13
+**Valid since**: 14
 
 ### ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
 
