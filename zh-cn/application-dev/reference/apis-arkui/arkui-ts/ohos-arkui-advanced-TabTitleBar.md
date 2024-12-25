@@ -76,8 +76,8 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 
 ## 示例
 
+### 示例1（简单的页签型标题栏）
 该示例实现了带有左侧页签和右侧菜单列表的页签型标题栏。
-
 ```ts
 import { TabTitleBar, promptAction } from '@kit.ArkUI'
 
@@ -177,4 +177,122 @@ struct Index {
 }
 ```
 
+![zh-cn_image_0000001616916278](figures/zh-cn_image_0000001616916278.png)
+
+### 示例2（右侧自定义按钮播报）
+该示例通过设置标题栏右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+```ts
+import { TabTitleBar, promptAction } from '@kit.ArkUI'
+
+//定义标题栏左侧的页签项目类
+class tabItem {
+  title: ResourceStr;
+  icon?: ResourceStr;
+  constructor(title: ResourceStr,icon?: ResourceStr) {
+    this.title = title
+    this.icon = icon
+  }
+}
+
+//定义标题栏右侧菜单项目接口
+interface menuItem {
+  value: ResourceStr;
+  isEnabled?: boolean;
+  action?: () => void;
+  accessibilityText?: ResourceStr;
+  accessibilityDescription?: ResourceStr;
+  accessibilityLevel?: string
+}
+
+@Entry
+@Component
+struct Index {
+  @Builder
+  //定义页签列表关联的页面
+  componentBuilder() {
+    Text("#1ABC9C\nTURQUOISE")
+      .fontWeight(FontWeight.Bold)
+      .fontSize(14)
+      .width("100%")
+      .textAlign(TextAlign.Center)
+      .fontColor("#CCFFFFFF")
+      .backgroundColor("#1ABC9C")
+    Text("#16A085\nGREEN SEA")
+      .fontWeight(FontWeight.Bold)
+      .fontSize(14)
+      .width("100%")
+      .textAlign(TextAlign.Center)
+      .fontColor("#CCFFFFFF")
+      .backgroundColor("#16A085")
+    Text("#2ECC71\nEMERALD")
+      .fontWeight(FontWeight.Bold)
+      .fontSize(14)
+      .width("100%")
+      .textAlign(TextAlign.Center)
+      .fontColor("#CCFFFFFF")
+      .backgroundColor("#2ECC71")
+    Text("#27AE60\nNEPHRITIS")
+      .fontWeight(FontWeight.Bold)
+      .fontSize(14)
+      .width("100%")
+      .textAlign(TextAlign.Center)
+      .fontColor("#CCFFFFFF")
+      .backgroundColor("#27AE60")
+    Text("#3498DB\nPETER RIVER")
+      .fontWeight(FontWeight.Bold)
+      .fontSize(14)
+      .width("100%")
+      .textAlign(TextAlign.Center)
+      .fontColor("#CCFFFFFF")
+      .backgroundColor("#3498DB")
+  }
+
+  //定义几个左侧的页签项目
+  private readonly tabItems: Array<tabItem> = [new tabItem('页签1'),new tabItem('页签2'),new tabItem('页签3'),new tabItem("Happy",$r('app.media.emoji_happy')),new tabItem('页签4')]
+  //定义几个右侧的菜单项目
+  private  readonly menuItems: Array<menuItem> = [
+    {
+      value: $r('app.media.ic_public_reduce'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "on item click! index 0" }),
+      accessibilityText: '缩小',
+      //此处为no，屏幕朗读不聚焦
+      accessibilityLevel: 'no',
+      accessibilityDescription: '点击操作缩小图标'
+    },
+    {
+      value: $r('app.media.ic_public_edit'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "on item click! index 1" }),
+      accessibilityText: '编辑',
+      accessibilityLevel: 'yes',
+      accessibilityDescription: '点击操作编辑图标'
+    },
+    {
+      value: $r('app.media.ic_public_save'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "on item click! index 2" }),
+      //屏幕朗读播报文本，优先级比label高
+      accessibilityText: '保存',
+      //屏幕朗读是否可以聚焦到
+      accessibilityLevel: 'yes',
+      //屏幕朗读最后播报的描述文本
+      accessibilityDescription: '点击操作保存图标'
+    },
+  ]
+
+  //TabTitleBar效果展示
+  build() {
+    Row() {
+      Column() {
+        TabTitleBar({
+          swiperContent: this.componentBuilder,
+          tabItems: this.tabItems,
+          menuItems: this.menuItems,
+        })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
 ![zh-cn_image_0000001616916278](figures/zh-cn_image_0000001616916278.png)

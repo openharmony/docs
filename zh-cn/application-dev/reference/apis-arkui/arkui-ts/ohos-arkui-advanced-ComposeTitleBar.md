@@ -64,6 +64,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 
 ## 示例
 
+### 示例1（简单的标题栏）
 该示例实现了简单的标题栏，带有返回箭头的标题栏和带有右侧菜单项目列表的标题栏。
 ```ts
 import { ComposeTitleBar, promptAction, ComposeTitleBarMenuItem } from '@kit.ArkUI'
@@ -137,4 +138,95 @@ struct Index {
 }
 ```
 
+![zh-cn_image_0000001616913438](figures/zh-cn_image_0000001616913438.jpg)
+
+### 示例2（右侧自定义按钮播报）
+该示例通过设置标题栏右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+```ts
+import { ComposeTitleBar, promptAction, ComposeTitleBarMenuItem } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  //定义右侧菜单项目列表
+  private menuItems: Array<ComposeTitleBarMenuItem> = [
+    {
+      //菜单图片资源
+      value: $r('app.media.ic_public_save'),
+      //启用图标
+      isEnabled: true,
+      //点击菜单时触发事件
+      action: () => promptAction.showToast({ message: "show toast index 1" }),
+      //屏幕朗读播报文本，优先级比label高
+      accessibilityText: '保存',
+      //屏幕朗读是否可以聚焦到
+      accessibilityLevel: 'yes',
+      //屏幕朗读最后播报的描述文本
+      accessibilityDescription: '点击操作保存图标'
+    },
+    {
+      value: $r('app.media.ic_public_reduce'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "show toast index 1" }),
+      accessibilityText: '缩小',
+      //此处为no，屏幕朗读不聚焦
+      accessibilityLevel: 'no',
+      accessibilityDescription: '点击操作缩小图标'
+    },
+    {
+      value: $r('app.media.ic_public_edit'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "show toast index 1" }),
+      accessibilityText: '编辑',
+      accessibilityLevel: 'yes',
+      accessibilityDescription: '点击操作编辑图标'
+    },
+    {
+      value: $r('app.media.ic_public_remove'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "show toast index 1" }),
+      accessibilityText: '移除',
+      accessibilityLevel: 'yes',
+      accessibilityDescription: '点击操作移除图标'
+    },
+  ]
+
+  build() {
+    Row() {
+      Column() {
+        //分割线
+        Divider().height(2).color(0xCCCCCC)
+        ComposeTitleBar({
+          title: "标题",
+          subtitle: "副标题",
+          menuItems: this.menuItems.slice(0, 1),
+        })
+        Divider().height(2).color(0xCCCCCC)
+        ComposeTitleBar({
+          title: "标题",
+          subtitle: "副标题",
+          menuItems: this.menuItems.slice(0, 2),
+        })
+        Divider().height(2).color(0xCCCCCC)
+        ComposeTitleBar({
+          title: "标题",
+          subtitle: "副标题",
+          menuItems: this.menuItems,
+        })
+        Divider().height(2).color(0xCCCCCC)
+        //定义带头像的标题栏
+        ComposeTitleBar({
+          menuItems: [{ isEnabled: true, value: $r('app.media.ic_public_save'),
+            action: () => promptAction.showToast({ message: "show toast index 1" })
+          }],
+          title: "标题",
+          subtitle: "副标题",
+          item: { isEnabled: true, value: $r('app.media.app_icon') }
+        })
+        Divider().height(2).color(0xCCCCCC)
+      }
+    }.height('100%')
+  }
+}
+```
 ![zh-cn_image_0000001616913438](figures/zh-cn_image_0000001616913438.jpg)
