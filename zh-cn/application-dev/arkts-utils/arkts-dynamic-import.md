@@ -528,7 +528,7 @@ import(filePath).then(……);
 变量动态import加载API时无需配置runtimeOnly。
 
 ### HAR模块间动态import依赖解耦
-当应用包含多个HAR包，且HAR包之间依赖关系比较复杂。在IDE中配置依赖关系时，可能会形成循环依赖。这时，如果HAR之间的依赖关系中仅有变量动态import，可以将HAR包之间直接依赖关系转移到HAP/HSP中配置，HAR包之间无需配置依赖关系，从而达到HAR包间依赖解耦的目的。如下示意图：
+当应用包含多个HAR包，且HAR包之间依赖关系比较复杂。在DevEco Studio中配置依赖关系时，可能会形成循环依赖。这时，如果HAR之间的依赖关系中仅有变量动态import，可以将HAR包之间直接依赖关系转移到HAP/HSP中配置，HAR包之间无需配置依赖关系，从而达到HAR包间依赖解耦的目的。如下示意图：
 
 ![变量动态import HAR包形成循环依赖](figures/dynamicimport1.png)
 
