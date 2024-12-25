@@ -1499,7 +1499,7 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 
 > **说明**
 >
-> 面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的0.6倍。
+> 面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的0.7倍。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1545,7 +1545,7 @@ resize(width: number, height: number): Promise\<void>
 
 > **说明**
 >
-> 面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的0.6倍。
+> 面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的0.7倍。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1785,7 +1785,7 @@ panel.hide().then(() => {
 
 adjustPanelRect(flag: PanelFlag, rect: PanelRect): void
 
-预设置输入法应用横竖屏大小。
+预设置输入法应用横竖屏大小。接口调用完毕表示adjust请求已提交到输入法框架，不表示执行完毕。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
