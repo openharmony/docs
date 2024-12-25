@@ -239,9 +239,9 @@ setPhotoBrowserUIElementVisibility(elements: Array&lt;PhotoBrowserUIElement&gt;,
 
 ### replacePhotoPickerPreview<sup>14+</sup>
 
-replacePhotoPickerPreview(originalUri: string, newUri: string, callback: AsyncCallback&lt;void&gt;): void;
+replacePhotoPickerPreview(originalUri: string, newUri: string, callback: AsyncCallback&lt;void&gt;): void
 
-应用可通过该接口，将photoPicker中用户勾选的图片替换为应用后期编辑修改后的图片
+应用可通过该接口，将photoPicker中用户勾选的图片替换为应用后期编辑修改后的图片。
 
 **原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -254,10 +254,11 @@ replacePhotoPickerPreview(originalUri: string, newUri: string, callback: AsyncCa
 | originalUri     | string  | 是 | 原uri，将会被替换掉的uri |
 | newUri  | boolean   | 是 | 新uri，即替换后的uri。基于originalUri修改后期望在photoPicker上替换originalUri显示的，暂存在应用沙箱的图片/视频uri。      |
 | callback   | AsyncCallback&lt;void&gt;   | 是 | 调用接口完成替换后的回调      |
+ (微信编辑保存需求doc文档2)
 
 ### saveTrustedPhotoAssets<sup>14+</sup>
 
-saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;, configs?: Array&lt;photoAccessHelper.PhotoCreationConfig&gt;, saveMode?: SaveMode): void;
+saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;, configs?: Array&lt;photoAccessHelper.PhotoCreationConfig&gt;, saveMode?: SaveMode): void
 
 应用可通过该接口，保存对应uri列表的文件。使用时，一般结合[replacePhotoPickerPreview](#replacephotopickerpreview14)接口使用，将替换显示成功后的应用沙箱图片/视频newUris保存到图库。
 
