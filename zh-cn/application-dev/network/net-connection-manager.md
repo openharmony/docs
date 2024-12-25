@@ -138,7 +138,7 @@ conn.unregister((err: BusinessError, data: void) => {
 ### 监控默认网络变化
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 async function test() {
   const netConnection = connection.createNetConnection();
@@ -152,16 +152,16 @@ async function test() {
 
 ### 默认网络变化后重新建立网络连接
 
-#### 原网络连接使用@ohos.net.http建立网络连接
+#### 原网络连接使用http模块建立网络连接
 
-如果您使用了@ohos.net.http建立网络连接，由于该模块没有提供Close接口用于关闭Socket，在切换默认网络并建立新的网络连接后原有Socket不会立即关闭。因此请切换使用@hms.collaboration.rcp建立网络连接。
+如果您使用了http模块建立网络连接，由于该模块没有提供Close接口用于关闭Socket，在切换默认网络并建立新的网络连接后原有Socket不会立即关闭。因此请切换使用Remote Communication Kit建立网络连接。
 
-#### 原网络连接使用@hms.collaboration.rcp建立网络连接
+#### 原网络连接使用Remote Communication Kit建立网络连接
 
 ```ts
-import rcp from '@hms.collaboration.rcp';
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { rcp } from '@kit.RemoteCommunicationKit';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let session = rcp.createSession();
 
@@ -188,17 +188,16 @@ async function rcpTest() {
     });
     useRcp();
   } catch (e) {
-    console.info(e.code.toString());
+    console.error(e.code.toString());
   }
 }
 ```
 
-#### 原网络连接使用@ohos.net.socket建立连接
+#### 原网络连接使用Socket模块建立连接
 
 ```ts
-import socket from '@ohos.net.socket';
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection, socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let sock: socket.TCPSocket = socket.constructTCPSocketInstance();
 
@@ -214,7 +213,7 @@ async function useSocket() {
   /* 建立socket连接 */
   sock.connect(tcpConnectOptions, (err: BusinessError) => {
     if (err) {
-      console.log('connect fail');
+      console.error('connect fail');
       return;
     }
     console.log('connect success');
@@ -226,7 +225,7 @@ async function useSocket() {
     sock.send(tcpSendOptions).then(() => {
       console.log('send success');
     }).catch((err: BusinessError) => {
-      console.log('send fail');
+      console.error('send fail');
     });
   })
 }
@@ -244,7 +243,7 @@ async function socketTest() {
     });
     useSocket();
   } catch (e) {
-    console.info(e.code.toString());
+    console.error(e.code.toString());
   }
 }
 ```
