@@ -317,6 +317,38 @@ barState(state: BarState)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | state | [BarState](ts-appendix-enums.md#barstate) | 是   | 输入框编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
 
+### maxLength<sup>16+</sup>
+
+maxLength(value: number)
+
+设置文本的最大输入字符数。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | 是   | 文本的最大输入字符数。<br/>默认值：Infinity，可以无限输入。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值，设置小数时，取整数部分。 |
+
+### maxLines<sup>16+</sup>
+
+maxLines(value: number)
+
+设置文本可显示的最大行数。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                      | 必填 | 说明                                                         |
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | number | 是   | 设置文本可显示的最大行数。<br/>默认值：Infinity，可以无限输入 <br/>取值范围：(0, +∞) |
+
 ### enableHapticFeedback<sup>13+</sup>
 
 enableHapticFeedback(isEnabled: boolean)
@@ -4707,3 +4739,101 @@ struct Index {
 ```
 
 ![StyledString](figures/example24.gif)
+
+### 示例25（设置最大行数和最大字符数）
+通过maxLength设置可输入的最大字符数，通过maxLines设置可输入的最大行数。
+
+```ts
+@Entry
+@Component
+struct RichEditorExample {
+  @State text: string = "As the sun begins to set, casting a warm golden hue across the sky,"+
+    "the world seems to slow down and breathe a sigh of relief. The sky is painted with hues of orange, "+
+    " pink, and lavender, creating a breathtaking tapestry that stretches as far as the eye can see." +
+    "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil." +
+    "it casts a warm," +
+    "golden hue that spreads like liquid amber across the vast expanse of the sky." +
+    "The once-blue heavens gradually transform, " +
+    "now painted in a breathtaking palette of soft oranges, pinks, " +
+    "and purples, each color blending seamlessly into the next. Wisps of clouds, tinged with fiery edges, " +
+    "float lazily amidst this celestial canvas," +
+    "creating a scene so serene and beautiful that it almost seems to pause time itself." +
+    "As the sun begins to set, casting a warm golden hue across the sky," +
+    "the world seems to slow down and breathe a sigh of relief. The sky is painted with hues of orange, " +
+    " pink, and lavender, creating a breathtaking tapestry that stretches as far as the eye can see." +
+    "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil." +
+    "it casts a warm," +
+    "golden hue that spreads like liquid amber across the vast expanse of the sky." +
+    "The once-blue heavens gradually transform, "
+  @State maxLineList: (number | undefined)[] = [ 2, 6, undefined]
+  @State maxLineIndex: number = 0
+  @State maxLineStringList: (string)[] = ["2", "6", "undefined"]
+  richEditorStyledString: MutableStyledString = new MutableStyledString("");
+  controller1: RichEditorController = new RichEditorController()
+  controller2: TextInputController = new TextInputController()
+  controller3: RichEditorController = new RichEditorController()
+  controller4: RichEditorStyledStringController = new RichEditorStyledStringController();
+  controller: RichEditorController = new RichEditorController();
+  option: RichEditorOptions = { controller: this.controller };
+
+  build() {
+    Column() {
+      Text("当前的maxLength为7 " )
+        .margin(10)
+        .fontSize(25)
+      Row() {
+        Button("插入占1字符数的图片")
+          .onClick(() => {
+            this.controller1.addImageSpan($r("app.media.app_icon"),
+              {
+                imageStyle:
+                {
+                  size: ["57px", "57px"]
+                }
+              })
+          })
+        Button("插入占2字符数图片")
+          .onClick(() => {
+            this.controller1.addSymbolSpan($r("sys.symbol.ohos_trash"),
+              {
+                style:
+                {
+                  fontSize: 30
+                }
+              })
+          })
+          .margin({left:20})
+      }
+        RichEditor({ controller: this.controller1 })
+          .width('95%')
+          .margin(10)
+          .maxLength(7)
+          .backgroundColor('rgb(240,250,255)')
+        Text("当前的maxLine为 " + this.maxLineStringList[this.maxLineIndex]).margin(10)
+          .fontSize(25)
+        Button("更改maxLines").onClick(() => {
+          this.maxLineIndex++
+          if (this.maxLineIndex > this.maxLineList.length - 1) {
+            this.maxLineIndex = 0
+          }
+        })
+      RichEditor({ controller: this.controller3 })
+        .onReady(() => {
+          this.controller3.addTextSpan(this.text,
+            {
+              style:
+              {
+                fontColor: 'rgb(0,74,175)'
+              }
+            })
+        })
+        .margin(10)
+        .width('95%')
+        .maxLines(this.maxLineList[this.maxLineIndex])
+        .height(105)
+        .backgroundColor('rgb(240,250,255)')
+    }
+  }
+}
+```
+![StyledString](figures/maxLengthmaxLines.gif)
