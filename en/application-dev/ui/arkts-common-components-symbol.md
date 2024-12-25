@@ -166,7 +166,7 @@ You can display icon glyphs by using [SymbolSpan](../reference/apis-arkui/arkui-
     }
 
     Column() {
-      Text ("Layered mode")
+      Text("Layered mode")
       Text() {
         SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
           .fontSize(96)

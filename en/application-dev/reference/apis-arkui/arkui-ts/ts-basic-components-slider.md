@@ -799,7 +799,7 @@ struct SliderExample {
       Progress({value: config.value, total: config.max, type:ProgressType.Ring})
         .margin({ top:20 })
 
-      Button ('Increase').onClick () => {
+      Button('Increase').onClick () => {
         config.value = config.value + config.step
         config.triggerChange(config.value, SliderChangeMode.Click)
       })
@@ -808,7 +808,7 @@ struct SliderExample {
         .fontSize(10)
         .enabled(config.value<config.max)
 
-      Button ('Decrease').onClick () => {
+      Button('Decrease').onClick () => {
         config.value=config.value-config.step
         config.triggerChange(config.value, SliderChangeMode.Click)
       })
@@ -840,7 +840,7 @@ struct SliderExample {
         .fontSize(10)
       Text('Max: ' + config.max)
         .fontSize(10)
-      Text ('Step: ' + config.step)
+      Text('Step: ' + config.step)
         .fontSize(10)
     }
     .width('80%')

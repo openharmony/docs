@@ -1,10 +1,10 @@
 # Component Navigation (Navigation) (Recommended)
 
-The [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) component functions as the root container of a page and supports three display modes: single-page, column, and adaptive. It is applicable to routing within a module or across modules and useful in one-time development for multi-device deployment. Draw on this component's routing capability to create a smooth page transition experience, and explore its various title bar styles to present titles seamlessly linked with the content. On devices of different sizes, the **Navigation** component can automatically adapt to the display size and switch between display modes.
+[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) component serves as the root view container for route navigation and is commonly used as the root container for pages decorated with @Entry. It supports three display modes: Stack, Split, and Auto. This component is designed for both intra-module and cross-module routing, leveraging component-level routing to provide a more natural and seamless transition between pages. It also offers multiple title bar styles to enhance the cascading between titles and content. In one-time development for multi-device deployment scenarios, the **Navigation** component can automatically adapt to the window size. When the window is large enough, it automatically displays content in columns.
 
-The **Navigation** component consists of the navigation page (**NavBar**) and subpage (**NavDestination**). The navigation page consists of the title bar (including the menu bar), content area, and toolbar. It can be hidden through the [hideNavBar](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#hidenavbar9) attribute. The navigation page does not exist in the page stack, and switching between this page and its subpages, as well as switching between subpages, can be implemented through routing.
+The **Navigation** component consists of a navigation page (**NavBar**) and subpages (**NavDestination**). The navigation page consists of the title bar (with the menu bar), content area, and toolbar, and can be hidden through the [hideNavBar](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#hidenavbar9) attribute. Unlike other pages, the navigation page does not reside in the page stack. Routing is used to manage transitions between the navigation page and its subpages, as well as between subpages themselves.
 
-In API version 9, you need to combine the **Navigation** component and the [\<NavRouter>](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md) component to implement page navigation. Since API version 10, you are advised to use the [NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10) component for the same purpose.
+In API version 9, the **Navigation** component must be used together with the [NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md) component for page routing. Since API version 10, whenever possible, use [NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10) instead to implement page routing.
 
 
 ## Setting the Page Display Mode
@@ -18,7 +18,7 @@ The **Navigation** component uses the **mode** attribute to set the page display
 
   ```
   Navigation() {
-    ...
+    // ...
   }
   .mode(NavigationMode.Auto)
   ```
@@ -34,7 +34,7 @@ The **Navigation** component uses the **mode** attribute to set the page display
 
   ```ts
   Navigation() {
-    ...
+    // ...
   }
   .mode(NavigationMode.Stack)
   ```
@@ -78,7 +78,7 @@ The **Navigation** component uses the **mode** attribute to set the page display
             .backgroundColor('#FFFFFF')
   
           List({ space: 12 }) {
-            ForEach(this.arr, (item:string) => {
+            ForEach(this.arr, (item:number) => {
               ListItem() {
                 Text("NavRouter" + item)
                   .width("100%")
@@ -92,12 +92,12 @@ The **Navigation** component uses the **mode** attribute to set the page display
                     this.pageInfos.pushPath({ name: "NavDestinationTitle" + item})
                   })
               }
-            }, (item:string):string => item)
+            }, (item:number) => item.toString())
           }
           .width("90%")
           .margin({ top: 12 })
         }
-        .title ("Main Title")
+        .title("Main Title")
         .mode(NavigationMode.Split)
         .navDestination(this.PageMap)
         .menus([
@@ -188,7 +188,7 @@ The title bar is on the top of the page and is used to display the page name and
 
   ```ts
   Navigation() {
-    ...
+    // ...
   }
   .titleMode(NavigationTitleMode.Mini)
   ```
@@ -205,7 +205,7 @@ The title bar is on the top of the page and is used to display the page name and
 
   ```ts
   Navigation() {
-    ...
+    // ...
   }
   .titleMode(NavigationTitleMode.Full)
   ```
@@ -213,7 +213,7 @@ The title bar is on the top of the page and is used to display the page name and
 
 ## Setting the Menu Bar
 
-The menu bar is in the upper right corner of the **Navigation** component. You can set the menu bar through the **menus** attribute, which supports two parameter types: Array&lt;[NavigationMenuItem](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navigationmenuitem)&gt; and CustomBuilder. When the Array\<NavigationMenuItem> type is used, a maximum of three icons can be displayed in portrait mode and a maximum of five icons can be displayed in landscape mode. Extra icons will be placed in the automatically generated More icons.
+The menu bar is in the upper right corner of the **Navigation** component. You can set the menu bar through the **menus** attribute, which supports two parameter types: Array&lt;[NavigationMenuItem](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navigationmenuitem)&gt; and [CustomBuilder](../reference/apis-arkui/arkui-ts/ts-types.md#custombuilder8). When the Array\<NavigationMenuItem> type is used, a maximum of three icons can be displayed in portrait mode and a maximum of five icons can be displayed in landscape mode. Extra icons will be placed in the automatically generated More icons.
 
 **Figure 5** Menu bar with three icons 
 
@@ -222,7 +222,7 @@ The menu bar is in the upper right corner of the **Navigation** component. You c
 ```ts
 let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
-  ...
+  // ...
 }
 .menus([TooTmp,
   TooTmp,
@@ -234,7 +234,7 @@ You can also reference images in the **resources** folder.
 ```ts
 let TooTmp: NavigationMenuItem = {'value': "", 'icon': "resources/base/media/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
-  ...
+  // ...
 }
 .menus([TooTmp,
   TooTmp,
@@ -248,7 +248,7 @@ Navigation() {
 ```ts
 let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
-  ...
+  // ...
 }
 .menus([TooTmp,
   TooTmp,
@@ -259,7 +259,7 @@ Navigation() {
 
 ## Setting the Toolbar
 
-The toolbar is located at the bottom of the **Navigation** component. You can set the toolbar through the **toolbarConfiguration** attribute.
+Use the [toolbarConfiguration](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#toolbarconfiguration10) attribute to customize the toolbar, which is located at the bottom of the **Navigation** component.
 
 
   **Figure 7** Toolbar 
@@ -270,14 +270,14 @@ The toolbar is located at the bottom of the **Navigation** component. You can se
 let TooTmp: ToolbarItem = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 let TooBar: ToolbarItem[] = [TooTmp,TooTmp,TooTmp]
 Navigation() {
-  ...
+  // ...
 }
 .toolbarConfiguration(TooBar)
 ```
 
 ## Route Operations
 
-Navigation-related routing operations are all based on the APIs provided by [NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10). For each **Navigation** component, a **NavPathStack** object must be created and passed in to manage pages. The router operations mainly involve page navigation, page return, page replacement, page deletion, parameter acquisition, and routing interception.
+Navigation-related routing operations are all based on the APIs provided by [NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10). For each **Navigation** component, a **NavPathStack** object must be created and passed in to manage pages. The router operations mainly involve page navigation, page return, page replacement, page deletion, parameter acquisition, and route interception.
 
 **NavPathStack** can be inherited since API version 12. You can customize attributes and methods in derived classes or override methods of the parent class. Derived class objects can be used in place of the base class **NavPathStack** objects. For details about the sample code, see [Example 10](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#example-10).
 
@@ -311,7 +311,7 @@ struct Index {
 
     ```ts
     this.pageStack.pushPathByName('PageOne', "PageOne Param", (popInfo) => {
-    console.log('Pop page name is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result))
+      console.log('Pop page name is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result))
     });
     ```
 
@@ -320,9 +320,9 @@ struct Index {
     ```ts
     this.pageStack.pushDestinationByName('PageOne', "PageOne Param")
     .catch((error: BusinessError) => {
-        console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
+      console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
     }).then(() => {
-    console.error('Push destination succeed.');
+      console.info('Push destination succeed.');
     });
     ```
 
@@ -384,7 +384,7 @@ this.pageStack.getIndexByName("PageOne")
 | Name      | Description                                                |
 | ------------ | ------------------------------------------------------ |
 | willShow   | Callback invoked when the page is about to be navigated, allowing for stack operations, which are effective in the current navigation.      |
-| didShow    | Callback invoked after the page is navigated. Stack operations in this callback are effective in the next navigation. |
+| didShow    | Callback invoked after the page is navigated. Stack operations in this callback are effective in the next navigation.|
 | modeChange | Callback invoked when the display mode of the **Navigation** component switches between single-column and dual-column. |
 
 > **NOTE**
@@ -419,7 +419,7 @@ this.pageStack.setInterception({
 
 - Standard mode
 
-  By default, subpages in the **\<NavDestination>** component are in standard mode, which corresponds to the **NavDestinationMode.STANDARD** value of the **mode** attribute. The lifecycle of a standard type **NavDestination** follows the changes in its position in the **NavPathStack**.
+  By default, subpages in the **NavDestination** component are in standard mode, which corresponds to the **NavDestinationMode.STANDARD** value of the **mode** attribute. The lifecycle of a standard type **NavDestination** follows the changes in its position in the **NavPathStack**.
 
 - Dialog mode
   
@@ -486,11 +486,11 @@ this.pageStack.setInterception({
 
 ### Page Lifecycle
 
-As a routing container, **Navigation**'s lifecycle is carried on the **NavDestination** component, which is opened in the form of component events.
+**Navigation**, as a routing container, hosts its lifecycle within the **NavDestination** component and exposes lifecycle events as component events.
 
-Its lifecycle can be roughly divided into three categories: custom component lifecycle, universal component lifecycle, and its own lifecycle (where **aboutToAppear** and **aboutToDisappear** are [custom component lifecycle callbacks](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md) and exist when **NavDestination** contains custom components; **OnAppear** and **OnDisappear** are [universal component lifecycle](../reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md); the remaining are unique to **NavDestination**)
+The lifecycle of **Navigation** can be divided into three categories: custom component lifecycle, universal component lifecycle, and its own exclusive lifecycle. [aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear) and [aboutToDisappear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear) are the lifecycle callbacks of custom components (custom components contained in the outer layer of **NavDestination**); [OnAppear](../reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear) and [OnDisappear](../reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear) are universal component lifecycle callbacks. The remaining six lifecycle events are unique to **NavDestination**.
 
-The following figure shows the lifecycle.
+The sequence of these lifecycle events is illustrated in the figure below.
 
 ![navigation_lifecycle](figures/navigation_lifecycle.png)
 
@@ -534,7 +534,7 @@ To facilitate the decoupling of components from pages, custom components within 
   ```
 - Page status listening
   
-  The registration API provided by [@ohos.arkui.observer](../reference/apis-arkui/js-apis-arkui-observer.md#observeronnavdestinationupdate) can be used to listen for the lifecycle changes of **NavDestination**. The usage is as follows:
+  You can register a listener for **NavDestination** lifecycle changes using the [observer.on('navDestinationUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#observeronnavdestinationupdate) API.
   
   ```ts
   uiObserver.on('navDestinationUpdate', (info) => {
@@ -542,7 +542,7 @@ To facilitate the decoupling of components from pages, custom components within 
    });
   ```
   
-  You can also register a callback for page switching status to obtain the corresponding page information [NavDestinationSwitchInfo](../reference/apis-arkui/js-apis-arkui-observer.md#navdestinationswitchinfo12) when a page route switching occurs, and it provides different listening scopes for UIAbilityContext and UIContext:
+  You can also register a callback for page transition states to obtain page information during route changes using [NavDestinationSwitchInfo](../reference/apis-arkui/js-apis-arkui-observer.md#navdestinationswitchinfo12). This registration supports different scopes: UIAbilityContext and UIContext.
   
   ```ts
    // Used in UIAbility
@@ -588,14 +588,14 @@ To facilitate the decoupling of components from pages, custom components within 
 You can customize transition animations through the [customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11) event. Specifically, you can define a custom transition animation in the following steps:
 
 1. Build a custom transition animation utility class **CustomNavigationUtils**, which manages custom transition animation **CustomTransition** objects for each page through a Map. A page registers its **CustomTransition** object when created and unregisters it when destroyed.
-2. Implement a transition protocol object [NavigationAnimatedTransition](..//reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navigationanimatedtransition11). In this object, the **timeout** property indicates the timeout for the transition to end, with a default value of 1000 ms; the **transition** property is the custom transition animation API, where you should implement your own transition animation logic, which the system will call when the transition starts; **onTransitionEnd** is the callback when the transition ends.
+2. Implement a transition protocol object [NavigationAnimatedTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navigationanimatedtransition11). The **timeout** property indicates the transition timeout duration, with a default value of 1000 ms. The **transition** property is where you implement your custom transition animation logic; it is the method that the system calls when the transition starts. The **onTransitionEnd** is the callback for when the transition ends.
 3. Call the **customNavContentTransition** API to return the **NavigationAnimatedTransition** object. If **undefined** is returned, the system default transition is used.
 
 For details about the sample code, see [Example 3](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#example-3).
 
 ### Defining a Shared Element Transition
 
-During the switching between **NavDestination** components, the [geometryTransition](../reference/apis-arkui/arkui-ts/ts-transition-animation-geometrytransition.md) API can be used to implement the shared element transitions. Pages configured with shared element transitions must have the system's default transition animations disabled.
+You can implement shared element transitions between navigation destination pages using [geometryTransition](../reference/apis-arkui/arkui-ts/ts-transition-animation-geometrytransition.md#geometrytransition). Ensure that the default transition animations are disabled for pages configured with shared element transitions.
 1. Add the **geometryTransition** attribute to the components that need to implement shared element transitions, ensuring that the **id** parameter is consistent between the two **NavDestination** components.
 
     ```ts
@@ -665,7 +665,7 @@ The custom route table and system route table can be used together.
 
 ### System Routing Table
 
-**Navigation** supports the system routing table for dynamic routing since API version 12. Each service module (HSP/HAR) requires an individual **router_map.json** file. When routing is triggered, the application only needs to pass the name of the page that needs to be routed through the routing API provided by **NavPathStack**. In this case, the system will automatically complete the dynamic loading of the target module, page component construction, and route redirection. This way, module decoupling is achieved at the development level. The main steps are as follows:
+**Navigation** supports the system routing table for dynamic routing since API version 12. Each service module (HSP/HAR) requires an individual **route_map.json** file. When routing is triggered, the application only needs to pass the name of the page that needs to be routed through the routing API provided by **NavPathStack**. The system then automatically completes the dynamic loading of the target module, page component construction, and route redirection. This way, module decoupling is achieved at the development level. The main steps are as follows:
 
 1. Add the route table configuration to the **module.json5** file of the redirection target module.
    
@@ -695,14 +695,14 @@ The custom route table and system route table can be used together.
 
     The configuration is described as follows.
 
-    | Item | Description |
-    |---|---|
-    | name | Name of the target page to be redirected to.|
-    | pageSourceFile | Path of the target page in the package, relative to the **src** directory.|
-    | buildFunction | Name of the entry point function for redirection to the target page, which must be decorated by @Builder. |
-    | data | Custom data. You can obtain the value through the **getConfigInRouteMap** API.|
+   | Item| Description|
+   |---|---|
+   | name | Name of the target page to be redirected to.|
+   | pageSourceFile | Path of the target page in the package, relative to the **src** directory.|
+   | buildFunction | Name of the entry point function for redirection to the target page, which must be decorated by @Builder.|
+   | data | Custom data. You can obtain the value through the **getConfigInRouteMap** API.|
 
-3. On the target page, configure the @Builder decorated entry point function. The function name must be the same as the value of **buildFunction** in the **router_map.json** file. Otherwise, an error is reported at compile time.
+3. On the target page, configure the @Builder decorated entry point function. The function name must be the same as the value of **buildFunction** in the **route_map.json** file. Otherwise, an error is reported at compile time.
    
    ```ts
      // Entry point function for redirection to the target page
@@ -750,8 +750,9 @@ You can implement cross-package dynamic routing through a custom routing table.
 **Implementation:**
 
 1. Define page navigation configuration items.
-   - Use resource files for definition. The [resource manager](../reference/apis-localization-kit/js-apis-resource-manager.md) parses resource files during running.
-   - Configure the route loading configuration items in the .ets file, including the route page name (alias of the page in the **pushPath** API), name of the module where the file is located (name of the HSP/HAR module), and path of the page to be loaded in the module (relative to the **src** directory).
-2. Load the target navigation page. Use **import** to load the module where the target page is located during running. After the module is loaded, call the method in the module, load the target page to be displayed in the module by importing the method of the module, and return the **Builder** function defined after the page is loaded.
-3. Trigger page navigation. Execute the **Builder** function loaded in step 2 on the [navDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10) attribute of **Navigation** to navigate to the target page.
+   - Use resource files for definitions and use the [@ohos.resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md) module to parse the resource files at runtime.
+   - Configure the route loading options in the .ets file, including the route page name (that is, the alias of the page in APIs like **pushPath**), name of the module where the file is located (name of the HSP/HAR module), and path to the target page in the module (relative to the **src** directory).
+2. Use [dynamic import](../arkts-utils/arkts-dynamic-import.md) to load the module containing the target page at runtime. Once the module is loaded, call a method within the module that uses **import** to load and display the target page, then return the **Builder** function defined after the page has finished loading.
+3. Execute the **Builder** function loaded in step 2 on the [navDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10) attribute of the **Navigation** component to navigate to the target page.
+<!--RP2--><!--RP2End-->
 <!--no_check-->

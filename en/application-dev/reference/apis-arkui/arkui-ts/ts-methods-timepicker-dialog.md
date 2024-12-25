@@ -76,10 +76,10 @@ struct TimePickerDialogExample {
 
   build() {
     Column() {
-      Button ("TimePickerDialog 12-hour format")
+      Button("TimePickerDialog 12-hour format")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show ({ // You are advised to use the this.getUIContext ().showTimePickerDialog () API to obtain the UI context.
+          TimePickerDialog.show ({ // You are advised to use this.getUIContext().showTimePickerDialog() API.
             selected: this.selectTime,
             disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } },
             textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
@@ -111,7 +111,7 @@ struct TimePickerDialogExample {
             }
           })
         })
-      Button ("TimePickerDialog 24-hour format")
+      Button("TimePickerDialog 24-hour format")
         .margin(20)
         .onClick(() => {
           TimePickerDialog.show({
@@ -167,7 +167,7 @@ struct TimePickerDialogExample {
 
   build() {
     Column() {
-      Button ("TimePickerDialog 24-hour format")
+      Button("TimePickerDialog 24-hour format")
         .margin(20)
         .onClick(() => {
           TimePickerDialog.show({

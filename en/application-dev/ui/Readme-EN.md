@@ -98,7 +98,7 @@
   - [Using the Mirroring Capability](arkts-mirroring-display.md)
   - [Supporting Aging-Friendly Design](arkui-support-for-aging-adaptation.md)
   - Setting the Theme
-    - [Setting Theme Skinning](theme_skinning.md)
+    - [Configuring In-Application Theme Skinning](theme_skinning.md)
   - [Using the UI Context API for UI Operations (UIContext)](arkts-global-interface.md)
   <!--Del-->
     - [Cross-Process Application Capability Extension (UIExtension, for System Applications Only)](arkts-ui-extension-components.md)

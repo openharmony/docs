@@ -19,7 +19,7 @@ ArkUI provides four types of damped spring curve APIs:
 
 
 - [responsiveSpringMotion](../reference/apis-arkui/js-apis-curve.md#curvesresponsivespringmotion9): creates a responsive spring animation curve. It is a special case of **springMotion**, with the only difference in the default values. It is typically used to create an animation with a gesture on the screen. You can use **springMotion** to create an animation for when the user lifts their finger off the screen. The created animation automatically inherits the previous velocity for animation transition.
-  When the **overlapDuration** parameter of the new animation is not **0** and the previous spring animation of the current attribute is not yet complete, **response** and **dampingFracion** transit, over the period specified by **overlapDuration**, from the values of the previous animation to that of the new animation.
+  When the **overlapDuration** parameter of the new animation is not **0** and the previous spring animation of the current attribute is not yet complete, **response** and **dampingFraction** transit, over the period specified by **overlapDuration**, from the values of the previous animation to that of the new animation.
 
 
   ```ts
@@ -108,10 +108,10 @@ struct Motion {
 export struct SpringCurve {
   @State dRotate: number = 0;
   private springs: Spring[] = [
-    new Spring('springMotion', 'Cycle: 2, damping: 0.25', curves.springMotion(1, 0.25)),
-    new Spring('responsive' + '\n' + 'SpringMotion', 'Default responsive spring curve', curves.responsiveSpringMotion(1, 0.25)),
-    new Spring('interpolating' + '\n' + 'Initial velocity: 100; quality: 1; stiffness: 228; damping: 30', curves.interpolatingSpring(10, 1, 228, 30)),
-    new Spring('springCurve', 'Initial velocity: 100; quality: 1; stiffness: 228; damping: 30', curves.springCurve(10, 1, 228, 30))
+    new Spring('springMotion', 'Cycle: 1, damping: 0.25', curves.springMotion(1, 0.25)),
+    new Spring('responsive' + '\n' + 'SpringMotion', 'Responsive spring curve', curves.responsiveSpringMotion(1, 0.25)),
+    new Spring('interpolating' + '\n' + 'Spring', 'Initial velocity: 10; quality: 1; stiffness: 228; damping: 30', curves.interpolatingSpring(10, 1, 228, 30)),
+    new Spring('springCurve', 'Initial velocity: 10; quality: 1; stiffness: 228; damping: 30', curves.springCurve(10, 1, 228, 30))
   ];
 
   build() {
@@ -133,4 +133,4 @@ export struct SpringCurve {
 
 
 
-![en-us_image_0000001649089041](figures/en-us_image_0000001649089041.gif)
+![en-us_image_0000001649089041](figures/spring_curve.gif)

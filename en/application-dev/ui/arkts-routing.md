@@ -1,7 +1,11 @@
 # Page Routing (@ohos.router) (Not Recommended)
 
+Page routing refers to the redirection and data transfer between different pages in an application. It can be implemented through APIs of the **Router** module. Through different URLs, you can easily navigate users through pages. This document outlines the key features of the **Router** module, including:
 
-Page routing refers to the redirection and data transfer between different pages in an application. It can be implemented through APIs of the **Router** module. Through different URLs, you can easily navigate users through pages. This document describes the functions provided by the **Router** module from the following aspects: [Page Redirection](#page-redirection), [Page Return](#page-return), [Adding a Confirmation Dialog Box Before Page Return](#adding-a-confirmation-dialog-box-before-page-return), and [Named Route](#named-route).
+- [Page Redirection](#page-redirection)
+- [Page Return](#page-return)
+- [Adding a Confirmation Dialog Box Before Page Return](#adding-a-confirmation-dialog-box-before-page-return)
+- [Named Route](#named-route)
 
 >**NOTE**
 >
@@ -43,9 +47,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 - Scenario 1: There is a home page (**Home**) and a details page (**Detail**). You want to click an offering on the home page to go to the details page. In addition, the home page needs to be retained in the page stack so that the status can be restored when the page is returned. In this scenario, you can use the **pushUrl** API and use the **Standard** instance mode (which can also be omitted).
 
-
   ```ts
   import { router } from '@kit.ArkUI';
+
   // On the Home page
   function onJumpClick(): void {
     router.pushUrl({
@@ -66,9 +70,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 - Scenario 2: There is a login page (**Login**) and a personal center page (**Profile**). After a user successfully logs in from the **Login** page, the **Profile** page is displayed. At the same time, the **Login** page is destroyed, and the application exits when the back button is pressed. In this scenario, you can use the **replaceUrl** API and use the Standard instance mode (which can also be omitted).
 
-
   ```ts
   import { router } from '@kit.ArkUI';
+
   // On the Login page
   function onJumpClick(): void {
     router.replaceUrl({
@@ -89,9 +93,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 - Scenario 3: There is a **Setting** page and a **Theme** page. After a theme option on the **Setting** page is clicked, the **Theme** page is displayed. Only one **Theme** page exists in the page stack at the same time. When the back button is clicked on the **Theme** page, the **Setting** page is displayed. In this scenario, you can use the **pushUrl** API and use the **Single** instance mode.
 
-
   ```ts
   import { router } from '@kit.ArkUI';
+
   // On the Setting page
   function onJumpClick(): void {
     router.pushUrl({
@@ -107,7 +111,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
   ```
 
 - Scenario 4: There is a search result list page (**SearchResult**) and a search result details page (**SearchDetail**). You want to click a result on the **SearchResult** page to go to the **SearchDetail** page. In addition, if the result has been viewed before, clicking the result displays the existing details page, instead of creating a new one. In this scenario, you can use the **replaceUrl** API and use the **Single** instance mode.
-
 
   ```ts
   import { router } from '@kit.ArkUI';
@@ -133,13 +136,14 @@ If you need to transfer data to the target page during redirection, you can add 
 
 ```ts
 import { router } from '@kit.ArkUI';
+
 class DataModelInfo {
   age: number = 0;
 }
 
 class DataModel {
   id: number = 0;
-  info: DataModelInfo|null = null;
+  info: DataModelInfo | null = null;
 }
 
 function onJumpClick(): void {
@@ -208,6 +212,7 @@ You can use any of the following methods to return to a page:
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back();
   ```
 
@@ -220,6 +225,7 @@ You can use any of the following methods to return to a page:
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'pages/Home'
   });
@@ -229,6 +235,7 @@ You can use any of the following methods to return to a page:
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'myPage' // myPage is the alias of the page to return to.
   });
@@ -243,6 +250,7 @@ You can use any of the following methods to return to a page:
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'pages/Home',
     params: {
@@ -255,6 +263,7 @@ You can use any of the following methods to return to a page:
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'myPage', // myPage is the alias of the page to return to.
     params: {
@@ -267,21 +276,23 @@ You can use any of the following methods to return to a page:
 
 On the target page, call the **router.getParams** API to obtain parameters at the desired location. For example, you can use it in the [onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow) lifecycle callback.
 
+> **NOTE**
+> 
+> To avoid confusion with **router** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext) API, and then obtain the **router** instance bound to the context through the [getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter) API.
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct Home {
   @State message: string = 'Hello World';
 
   onPageShow() {
-    const params = router.getParams() as Record<string, string>; // Obtain the passed parameter object.
+    const params = this.getUIContext().getRouter().getParams() as Record<string, string>; // Obtain the passed parameter object.
     if (params) {
       const info: string = params.info as string; // Obtain the value of the info attribute.
     }
   }
+
   ...
 }
 ```
@@ -316,7 +327,6 @@ import { router } from '@kit.ArkUI';
 ```
 
 To enable the confirmation dialog box for page return, call the [router.showAlertBeforeBackPage](../reference/apis-arkui/js-apis-router.md#routershowalertbeforebackpage9) API (for setting the information about the dialog box), then the [router.back](../reference/apis-arkui/js-apis-router.md#routerback) API. For example, define a click event processing function for the back button on the payment page:
-
 
 ```ts
 import { router } from '@kit.ArkUI';
@@ -360,7 +370,6 @@ import { router } from '@kit.ArkUI';
 
 In the event callback, call the [promptAction.showDialog](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog) API of the **PromptAction** module.
 
-
 ```ts
 import { promptAction, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -379,7 +388,7 @@ function onBackClick() {
         color: '#0099FF'
       }
     ]
-  }).then((result:promptAction.ShowDialogSuccessResponse) => {
+  }).then((result: promptAction.ShowDialogSuccessResponse) => {
     if (result.index === 0) {
       // The user selects Cancel.
       console.info('User canceled the operation.');
@@ -389,7 +398,7 @@ function onBackClick() {
       // Invoke the router.back() API to return to the previous page.
       router.back();
     }
-  }).catch((err:Error) => {
+  }).catch((err: Error) => {
     let message = (err as BusinessError).message
     let code = (err as BusinessError).code
     console.error(`Invoke showDialog failed, code is ${code}, message is ${message}`);
@@ -439,9 +448,9 @@ export struct MyComponent {
 When the configuration is successful, import the named route page to the page from which you want to redirect.
 
 ```ts
-import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import '@ohos/library/src/main/ets/pages/Index';  // Import the named route page from the library of the shared package.
+import '@ohos/library/src/main/ets/pages/Index'; // Import the named route page from the library of the shared package.
+
 @Entry
 @Component
 struct Index {
@@ -454,7 +463,7 @@ struct Index {
         .backgroundColor('#ccc')
         .onClick(() => { // Click to go to a page in another shared package.
           try {
-            router.pushNamedRoute({
+            this.getUIContext().getRouter().pushNamedRoute({
               name: 'myPage',
               params: {
                 data1: 'message',

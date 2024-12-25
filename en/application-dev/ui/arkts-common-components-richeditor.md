@@ -31,7 +31,7 @@ RichEditor(this.options)
 RichEditor(options: RichEditorStyledStringOptions)
 ```
 
-Creates a **RichEditor** component with the initialization options specified by **RichEditorStyledStringOptions**.
+Creates a **RichEditor** component with the initialization options specified by **RichEditorStyledStringOptions**. For details about how to use styled strings, see [Styled String (StyledString/MutableStyledString)](arkts-styled-string.md).
 
 ```ts
 mutableStyledString: MutableStyledString = new MutableStyledString("Create a RichEditor component using a styled string.",
@@ -55,7 +55,7 @@ RichEditor(this.options)
 ## Setting Attributes
 
 ### Setting the Custom Context Menu on Text Selection
-  
+
 You can set custom context menu on text selection using the [bindSelectionMenu](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#bindselectionmenu) API, which includes the following parameters:
 
 **spanType**: type of the menu, with the default being text.<br>**content**: content of the menu.<br>**responseType**: response type of the menu, with the default being a long press.<br>**options**: options of the menu, allowing you to set callbacks for when the menu appears or disappears.
@@ -116,7 +116,7 @@ SystemMenu() {
 ![alt text](figures/richeditor_image_bindselectionmenu.gif)
 
 ### Setting the Color of the Caret and Selection Handle in the Text Box
-  
+
 You can set the color of the caret and selection handle in the text box using the [caretColor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#caretcolor12) API.
 
 ```ts
@@ -137,9 +137,9 @@ RichEditor(this.options)
 ![alt text](figures/richeditor_image_caretcolor.gif)
 
 ### Setting Placeholder Text
-  
+
 You can set the placeholder text, which is displayed when there is no input, using the [placeholder](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#placeholder12) API.
-  
+
 In the API, **value** indicates the placeholder text displayed when there is no input; **style** indicates the font style for the placeholder text. If not specified, the style follows the theme settings.
 
 ```ts
@@ -163,7 +163,7 @@ For details about all available attributes, see [RichEditor Attributes](../refer
 
 ## Adding Events
 ### Adding a Callback for Component Initialization
-  
+
 Use the [onReady](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onready) API to add a callback that is invoked after the component has been initialized.
 
 In the API, **callback** indicates the callback invoked when the **RichEditor** component has completed initialization.
@@ -179,11 +179,11 @@ RichEditor(this.options)
         })
     })
 ```
-  
+
 ![alt text](figures/richeditor_image_onReady.gif)
 
 ### Adding a Callback for Content Selection
-  
+
 Use the [onSelect](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onselect) API to add a callback that is invoked when content within the component is selected.
 
 In **callback**, [RichEditorSelection](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorselection) provides information about all the selected content.
@@ -214,7 +214,7 @@ Text('View callback content:').fontSize(10).fontColor(Color.Gray).width(300)
 RichEditor(this.options1)
     .width(300)
     .height(70)
- ```
+```
 
 ![alt text](figures/richeditor_image_onSelect.gif)
 
@@ -224,7 +224,7 @@ Use the [onWillChange](../reference/apis-arkui/arkui-ts/ts-basic-components-rich
 
 In the **onWillChange** callback, [RichEditorChangeValue](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorchangevalue12) provides information about the text and image change; a boolean value indicates whether the change is allowed (**true**) or not allowed (**false**).
 
-In the **onDidChange** callback, [OnDidChangeCallback](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#ondidchangecallback12) provides the content range before and after the text or image change.
+In the **onDidChange** callback, [OnDidChangeCallback](../reference/apis-arkui/arkui-ts/ts-text-common.md#ondidchangecallback12) provides the content range before and after the text or image change.
 
 The **RichEditor** component constructed with [RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12) does not support these two types of callbacks.
 
@@ -267,7 +267,7 @@ RichEditor(this.options1)
 ![alt text](figures/richeditor_image_ondid.gif)
 
 ### Adding Callbacks for Before and After Content Input in the Input Method
-  
+
 Use the [aboutToIMEInput](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#abouttoimeinput) API to add a callback invoked when content is about to be entered in the input method. Use the [onIMEInputComplete](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onimeinputcomplete) method to add a callback invoked when text input in the input method is complete.
 
 In the **aboutToIMEInput** callback, [RichEditorInsertValue](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorinsertvalue) provides information about the content to be entered in the input method; a boolean value indicates whether the content is inserted (**true**) or not (**false**).
@@ -315,7 +315,7 @@ RichEditor(this.options1)
 ![alt text](figures/richeditor_image_aboutToIMEInput2.0.gif)
 
 ### Adding a Callback for Before Paste Completion
-  
+
 Use the [onPaste](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onpaste11) API to add a callback invoked when the paste is about to be completed.
 
 In the API, **callback** is used to define the user paste event.
@@ -333,7 +333,7 @@ RichEditor(this.options)
         })
     })
     .onPaste(() => {
-        this.controller1.addTextSpan ('The onPaste callback is invoked.\n', {
+        this.controller1.addTextSpan('The onPaste callback is invoked.\n', {
             style: {
                 fontColor: Color.Gray,
                 fontSize: 10
@@ -363,7 +363,7 @@ RichEditor(this.options)
         })
     })
     .onCut(() => {
-        this.controller1.addTextSpan ('The onCut callback is invoked.\n', {
+        this.controller1.addTextSpan('The onCut callback is invoked.\n', {
             style: {
                 fontColor: Color.Gray,
                 fontSize: 10
@@ -393,7 +393,7 @@ RichEditor(this.options)
         })
     })
     .onCopy(() => {
-        this.controller1.addTextSpan ('The onCopy callback is invoked.\n', {
+        this.controller1.addTextSpan('The onCopy callback is invoked.\n', {
             style: {
                 fontColor: Color.Gray,
                 fontSize: 10
@@ -412,7 +412,7 @@ For details about all available events, see [RichEditor Events](../reference/api
 ## Setting the Typing Style
 
 Use the [setTypingStyle](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#settypingstyle12) API to set the typing style.
-  
+
 In the API, **value** indicates the preset typing style.
 
 ```ts
@@ -449,7 +449,7 @@ Button('setTypingStyle', {
 ![alt text](figures/richeditor_image_setTypingStyle.gif)
 
 ## Setting Highlight for Selected Content
-  
+
 Use the [setSelection](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#setselection12) API to configure the component to highlight the background of the selected portion.
 
 In the API:<br>**selectionStart**: start position of the selection.<br>selectionEnd: end position of the selection. If both **selectionStart** and **selectionEnd** are set to **-1**, the entire content is selected.
@@ -481,10 +481,10 @@ Button('setSelection(0,2)', {
 ![alt text](figures/richeditor_image_set_selection.gif)
 
 ## Adding a Text Span
-  
+
 In addition to directly entering content into the component, you can also add a text span using the [addTextSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addtextspan) API.
 
-In the API, **value** indicates the text content to add, and **options** indicates the text options, which include the offset position where the text is added and the text style information ([RichEditorParagraphStyle](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditortextspanoptions)).
+In the API, **value** indicates the text content to add, and **options** indicates the text options, which include the offset position where the text is added and the text style information ([RichEditorTextSpanOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditortextspanoptions)).
 
 If the cursor in the component is blinking, the cursor position is updated to be after the inserted text span.
 
@@ -515,7 +515,7 @@ Button('addTextSpan', {
 ## Adding an Image Span
 
 Use the [addImageSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addimagespan) API to add an image span.
-  
+
 In the API, **value** indicates the image content to be added, and **options** indicates the image options, which include the offset position where the image is added and the image style information ([RichEditorImageSpanOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorimagespanoptions)).
 
 Adds an image span. If the cursor in the component is blinking, the cursor position is updated to be after the inserted image span.
@@ -545,21 +545,21 @@ Button('addImageSpan', {
         })
     })
 ```
-  
+
 ![alt text](figures/richeditor_image_add_image.gif)
 
-## Adding a Builder Span
-Use the [addBuilderSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addbuilderspan11) API to add a builder span.
-  
+## Adding @Builder Decorated Content
+Use [addBuilderSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addbuilderspan11) to add the content decorated by the @Builder decorator.
+
 In the API, **value** indicates the content created by the builder, and **options** indicates the builder options, which allow you to set the index of this builder in the **RichEditor** component through [RichEditorBuilderSpanOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorbuilderspanoptions11). Each text character is considered a single unit.
-  
+
 ```ts
 @Builder
 TextBuilder() {
     Row() {
             Image($r('app.media.startIcon')).width(50).height(50).margin(16)
             Column() {
-                Text("Text.txt").fontWeight (FontWeight.Bold).fontSize(16)
+                Text("Text.txt").fontWeight(FontWeight.Bold).fontSize(16)
                 Text("123.45KB").fontColor('#8a8a8a').fontSize(12)
             }.alignItems(HorizontalAlign.Start)
         }.backgroundColor('#f4f4f4')
@@ -582,7 +582,7 @@ Button('addBuilderSpan', {
 ![alt text](figures/richeditor_image_add_builder_span2.0.gif)   
 
 ## Adding a Symbol Span
-  
+
 Use the [addSymbolSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addsymbolspan11) AOU to add a symbol span.
 
 In the API, **value** indicates the content of the symbol span, and **options** indicates options of the symbol span, which are used to set the offset position and style information of the symbol span ([RichEditorSymbolSpanOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorsymbolspanoptions11)).
@@ -619,7 +619,7 @@ Button('addSymbolSpan', {
 ![alt text](figures/richeditor_image_add_SymbolSpan.gif)
 
 ## Obtaining Span Information
-  
+
 Use the [getSpans](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#getspans) API to obtain the span information of the component.
 
 In the API, **value** indicates the range of the target span. The return value is an array of either [RichEditorTextSpanResult](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditortextspanresult) or [RichEditorImageSpanResult](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorimagespanresult), which includes information about text and image spans.
@@ -636,7 +636,7 @@ RichEditor(this.options)
     })
     .width(300)
     .height(50)
-Text('View the return value of getSpans: ').fontSize (10).fontColor(Color.Gray).width(300)
+Text('View the return value of getSpans: ').fontSize(10).fontColor(Color.Gray).width(300)
 RichEditor(this.options1)
     .width(300)
     .height(50)
@@ -656,3 +656,4 @@ Button('getSpans', {
     })
 ```
 ![alt text](figures/richeditor_image_getspan.gif)
+<!--RP1--><!--RP1End-->

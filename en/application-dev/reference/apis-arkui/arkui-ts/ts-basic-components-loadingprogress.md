@@ -241,7 +241,7 @@ struct LoadingProgressDemoExample {
         }.width('100%').margin({ top: 5 })
       }.height('85%')
 
-      Button ('Switch config.enableloading').onClick(() => {
+      Button('Switch config.enableloading').onClick(() => {
         this.clickFlag++
         this.loadingProgressIndex = (this.loadingProgressIndex + 1) % this.loadingProgressList.length
         console.log('enableLoading:' + this.loadingProgressList[this.loadingProgressIndex])

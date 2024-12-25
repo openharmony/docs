@@ -15,7 +15,7 @@ The drag event, bolstered by the drag and drop framework, represents a mode of d
 
 ### ​Gesture-based Drag Operation
 
-​If a drag operation is initiated by a gesture, the framework checks whether the current component is draggable. For draggable components ([Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md), [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md), [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md), [RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md), [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md), [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md), <!--Del-->[FormComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md), <!--DelEnd-->[Hyperlink](../reference/apis-arkui/arkui-ts/ts-container-hyperlink.md)), the framework checks whether their [draggable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#draggable) attribute is set to **true** (this attribute is true by default if layered parameters are used); for other components, the framework checks whether the **onDragStart** callback is set. If the attribute or callback is set as required, the framework starts dragging once a user has long pressed the component for 500 ms or longer, and displays a drag preview once the user has long pressed the component for 800 ms.
+​If a drag operation is initiated by a gesture, the framework checks whether the current component is draggable. For draggable components ([Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md), [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md), [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md), [RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md), [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md), [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md), <!--Del-->[FormComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md), <!--DelEnd-->[Hyperlink](../reference/apis-arkui/arkui-ts/ts-container-hyperlink.md)), the framework checks whether their [draggable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#draggable) attribute is set to **true** (this attribute is true by default if layered parameters are used); for other components, the framework checks whether the **onDragStart** callback is set. If the attribute or callback is set as required, the framework starts dragging once a user has long pressed the component for 500 ms or longer, and displays a drag preview once the user has long pressed the component for 800 ms. When the drag operation is used together with a menu controlled by the **isShow** attribute for visibility, avoid delaying the display of the menu by 800 milliseconds after the user's action. Otherwise, unexpected behavior may occur.
 
 Below you can see the drag process initiated by a gesture (finger or stylus).
 
@@ -37,7 +37,28 @@ A drag and drop can occur in a single application, or start in one application a
 | onDragEnd | Triggered when dragging of the component ends.|
 | onPreDrag | Triggered when the component enters a state prior to a drop and drop operation.<br>You can use this callback to listen for the value of [PreDragStatus](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#predragstatus12) to prepare corresponding data.<br>1. **ACTION\_DETECTING\_STATUS**: A drag gesture is being detected. (Triggered when the component is long pressed for 50 ms.)<br>2. **READY\_TO\_TRIGGER\_DRAG\_ACTION**: The component is ready to be dragged. (Triggered when the component is long pressed for 500 ms.)<br>3. **PREVIEW\_LIFT\_STARTED**: A lift animation is started. (Triggered when the component is long pressed for 800 ms.)<br>4. **PREVIEW\_LIFT\_FINISHED**: A lift animation is finished. (Triggered at the completion of the lift animation.)<br>5. **PREVIEW\_LANDING\_STARTED**: A drop animation is started. (Triggered when the drop animation starts.)<br>6. **PREVIEW\_LANDING\_FINISHED**: A drop animation is finished. (Triggered when the drop animation ends.)<br>7. **ACTION\_CANCELED\_BEFORE\_DRAG**: A drop animation is terminated. (Triggered when the finger is lifted off the screen after the component enters the **READY\_TO\_TRIGGER\_DRAG\_ACTION** state.)|
 
-For more usage, see [Drag Event](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md)
+For more usage, see [Drag Event](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md).
+
+[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent) provides getters to obtain information about the drag action. The table below lists whether the getters can return valid data in the corresponding drag callbacks.
+| Callback Event| onDragStart | onDragEnter | onDragMove | onDragLeave | onDrop | onDragEnd |
+| - | - | - | - | - | - | - |
+| getData         |   |   |   |   | Supported|   |
+| getSummary      |   | Supported| Supported| Supported| Supported|   |
+| getResult       |   |   |   |   |   | Supported|
+| getPreviewRect  |   |   |   |   | Supported|   |
+| getVelocity/X/Y |   | Supported| Supported| Supported| Supported|   |
+| getWindowX/Y    | Supported| Supported| Supported| Supported| Supported|   |
+| getDisplayX/Y   | Supported| Supported| Supported| Supported| Supported|   |
+| getX/Y          | Supported| Supported| Supported| Supported| Supported|   |
+| behavior        |   |   |   |   |   | Supported|
+
+[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent) also provides setters to transfer information to the system, which may affect how the system handles UI or data. The table below lists the stages in the callbacks where the setters should be executed for the information to be accepted and processed by the system.
+| Callback Event| onDragStart | onDragEnter | onDragMove | onDragLeave | onDrop |
+| - | - | - | - | - | - |
+| useCustomDropAnimation |   |   |   |   | Supported|
+| setData                | Supported|   |   |   |   |
+| setResult              | Supported; can be used to prevent dragging initiation by setting failed or cancel| Supported; not passed as the final result to **onDragEnd**| Supported; not passed as the final result to **onDragEnd**| Supported; not passed as the final result to **onDragEnd** | Supported; passed as the final result to **onDragEnd**|
+| behavior               |   | Supported| Supported| Supported| Supported|
 
 ## Drag Preview
 
@@ -58,7 +79,7 @@ The following uses the [Image](../reference/apis-arkui/arkui-ts/ts-basic-compone
 
 1. Make the component draggable.
 
-* Set the **draggable** attribute to **true** and set the **onDragStart** callback function. In the callback function, you can use UDMF to set the drag data and return the custom drag preview.
+   Set the **draggable** attribute to **true** and set the **onDragStart** callback function. In the callback function, you can use UDMF to set the drag data and return the custom drag preview.
 
     ```ts
     import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
@@ -82,7 +103,7 @@ The following uses the [Image](../reference/apis-arkui/arkui-ts/ts-basic-compone
         })
     ```
 
-* The gesture-based drag operation is initiated by a long press gesture bound at the underlying layer. If a long press gesture is also bound to the dragged component, gesture conflict will occur, resulting in dragging to fail. To avoid such an issue, you can use parallel gestures.
+   The gesture-based drag operation is initiated by a long press gesture bound at the underlying layer. If a long press gesture is also bound to the dragged component, gesture conflict will occur, resulting in dragging to fail. To avoid such an issue, you can use parallel gestures.
 
     ```ts
     .parallelGesture(LongPressGesture().onAction(() => {
@@ -92,7 +113,7 @@ The following uses the [Image](../reference/apis-arkui/arkui-ts/ts-basic-compone
 
 2. Customize the drag preview.
    
-  * Prepare the pixel map for the custom drag preview within the callback triggered by [onPreDrag](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#onpredrag12) after a long press of 50 ms.
+   Prepare the pixel map for the custom drag preview within the callback triggered by [onPreDrag](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#onpredrag12) after a long press of 50 ms.
    
     ```ts
     .onPreDrag((status: PreDragStatus) => {
@@ -102,7 +123,7 @@ The following uses the [Image](../reference/apis-arkui/arkui-ts/ts-basic-compone
     })
     ```
    
-   * Generate the specific pixel map by calling [componentSnapshot.createFromBuilder](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotcreatefrombuilder).
+   Generate the specific pixel map by calling [componentSnapshot.createFromBuilder](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotcreatefrombuilder).
 
       ```ts
       @Builder
@@ -153,13 +174,13 @@ The following uses the [Image](../reference/apis-arkui/arkui-ts/ts-basic-compone
 
 4. Set the badge displayed during dragging.
 
-* You can set [allowDrop](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop) to define the allowed data types for dropping to affect the badge display. The COPY badge is displayed when the drag data matches the allowed data types, the FORBIDDEN badge when it does not, and the MOVE badge if **allowDrop** is not set. The following example allows only data of HYPERLINK and PLAIN_TEXT types defined in UnifiedData.
+   You can set [allowDrop](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop) to define the allowed data types for dropping to affect the badge display. The COPY badge is displayed when the drag data matches the allowed data types, the FORBIDDEN badge when it does not, and the MOVE badge if **allowDrop** is not set. The following example allows only data of HYPERLINK and PLAIN_TEXT types defined in UnifiedData.
 
     ```ts
     .allowDrop([uniformTypeDescriptor.UniformDataType.HYPERLINK, uniformTypeDescriptor.UniformDataType.PLAIN_TEXT])
     ```
 
-* If the **onDrop** callback is implemented, you can control the badge display by setting [DragResult](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragresult10) to **DROP\_ENABLED** in **onDragMove** and setting [DragBehavior](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragbehavior10) to **COPY** or **MOVE**. The following code forces the badge to display **MOVE** during a drag operation:
+   If the **onDrop** callback is implemented, you can control the badge display by setting [DragResult](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragresult10) to **DROP\_ENABLED** in **onDragMove** and setting [DragBehavior](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragbehavior10) to **COPY** or **MOVE**. The following code forces the badge to display **MOVE** during a drag operation:
 
     ```ts
     .onDragMove((event) => {
@@ -170,7 +191,7 @@ The following uses the [Image](../reference/apis-arkui/arkui-ts/ts-basic-compone
 
 5. Receive drag data.
 
-* Set the **onDrop** callback to handle the drag data and determine the drag result.
+   Set the **onDrop** callback to handle the drag data and determine the drag result.
 
     ```ts
     .onDrop((dragEvent?: DragEvent) => {
@@ -181,13 +202,13 @@ The following uses the [Image](../reference/apis-arkui/arkui-ts/ts-basic-compone
         this.imageWidth = Number(rect.width);
         this.imageHeight = Number(rect.height);
         this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
-        this.imgState = Visibility.None；
+        this.imgState = Visibility.None;
         // Explicitly set the result to successful, and then pass this value to onDragEnd of the drag source.
         event.setResult(DragResult.DRAG_SUCCESSFUL);
     })
     ```
 
-* Data transfer is managed by UDMF, which may experience latency with large data volumes. Therefore, you are advised to implement a retry mechanism with a 1500 ms delay after the initial data acquisition fails.
+   Data transfer is managed by UDMF, which may experience latency with large data volumes. Therefore, you are advised to implement a retry mechanism with a 1500 ms delay after the initial data acquisition fails.
 
     ```ts
     getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent) => void) {
@@ -239,7 +260,7 @@ Since API version 12, the [Grid](../reference/apis-arkui/arkui-ts/ts-container-g
 
 1. Enable multi-select drag and drop.
 
-* Create **GridItem** child components and bind the **onDragStart** callback to them. In addition, set the **GridItem** components to be selectable.
+   Create **GridItem** child components and bind the **onDragStart** callback to them. In addition, set the **GridItem** components to be selectable.
 
     ```ts
     Grid() {
@@ -258,13 +279,13 @@ Since API version 12, the [Grid](../reference/apis-arkui/arkui-ts/ts-container-g
     }
     ```
 
-* Multi-select drag and drop is disabled by default. To enable it, set **isMultiSelectionEnabled** to **true** in the **DragInteractionOptions** parameter of the [dragPreviewOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11) API. **DragInteractionOptions** also has the **defaultAnimationBeforeLifting** parameter, which, when set to **true**, applies a default scaling down animation as the lift animation for the component.
+   Multi-select drag and drop is disabled by default. To enable it, set **isMultiSelectionEnabled** to **true** in the **DragInteractionOptions** parameter of the [dragPreviewOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11) API. **DragInteractionOptions** also has the **defaultAnimationBeforeLifting** parameter, which, when set to **true**, applies a default scaling down animation as the lift animation for the component.
 
     ```ts
     .dragPreviewOptions({isMultiSelectionEnabled:true,defaultAnimationBeforeLifting:true})
     ```
 
-* To maintain the selected state, set the **selected** attribute of the **GridItem** child component to **true**. For example, use [onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick) to set a specific component to the selected state.
+   To maintain the selected state, set the **selected** attribute of the **GridItem** child component to **true**. For example, use [onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick) to set a specific component to the selected state.
 
     ```ts
     .selected(this.isSelectedGrid[idx])
@@ -275,7 +296,7 @@ Since API version 12, the [Grid](../reference/apis-arkui/arkui-ts/ts-container-g
 
 2. Optimize the multi-select drag and drop performance.
 
-* In multi-select drag and drop scenarios, there is a clustering animation effect when multiple items are selected. This effect captures a snapshot of the selected components currently displayed on the screen, which can lead to high performance costs if there are too many selected components. To save on performance, multi-select drag and drop supports obtaining a snapshot from **dragPreview** to use as the basis for the clustering animation.
+   In multi-select drag and drop scenarios, there is a clustering animation effect when multiple items are selected. This effect captures a snapshot of the selected components currently displayed on the screen, which can lead to high performance costs if there are too many selected components. To save on performance, multi-select drag and drop supports obtaining a snapshot from **dragPreview** to use as the basis for the clustering animation.
 
     ```ts
     .dragPreview({
@@ -283,7 +304,7 @@ Since API version 12, the [Grid](../reference/apis-arkui/arkui-ts/ts-container-g
     })
     ```
 
-* You can obtain snapshots of a component by calling the **get** method of **componentSnapshot** when the component is selected. The following shows how to use the component ID to obtain the snapshot.
+   You can obtain snapshots of a component by calling the **get** method of **componentSnapshot** when the component is selected. The following shows how to use the component ID to obtain the snapshot.
 
     ```ts
     @State previewData: DragItemInfo[] = []
@@ -344,7 +365,7 @@ Since API version 12, the [Grid](../reference/apis-arkui/arkui-ts/ts-container-g
 
 ## Example
 
-### General Drag and Drop Adaptation Case
+### General Drag and Drop Adaptation
 
 ```ts
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
@@ -504,7 +525,7 @@ struct Index {
 
 ```
 
-### Multi-Select Drag and Drop Adaptation Case
+### Multi-Select Drag and Drop Adaptation
 
 ```ts
 import { image } from '@kit.ImageKit';
@@ -597,3 +618,4 @@ struct GridEts {
   }
 }
 ```
+<!--RP1--><!--RP1End-->
