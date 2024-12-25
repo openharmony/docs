@@ -709,6 +709,11 @@
 | void [OH_ArkUI_StyledString_PopTextStyle](#oh_arkui_styledstring_poptextstyle) ([ArkUI_StyledString](#arkui_styledstring) \*handle) | 将当前格式化字符串对象中栈顶样式出栈。  | 
 | OH_Drawing_Typography \* [OH_ArkUI_StyledString_CreateTypography](#oh_arkui_styledstring_createtypography) ([ArkUI_StyledString](#arkui_styledstring) \*handle) | 基于格式字符串对象创建指向OH_Drawing_Typography对象的指针，用于提前进行文本测算排版。  | 
 | void [OH_ArkUI_StyledString_AddPlaceholder](#oh_arkui_styledstring_addplaceholder) ([ArkUI_StyledString](#arkui_styledstring) \*handle, OH_Drawing_PlaceholderSpan \*placeholder) | 设置占位符。  | 
+| [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \* [OH_ArkUI_StyledString_Descriptor_Create](#oh_arkui_styledstring_descriptor_create) (void) | 创建属性字符串数据对象。  | 
+| void [OH_ArkUI_StyledString_Descriptor_Destroy](#oh_arkui_styledstring_descriptor_destroy) ([ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 释放被ArkUI_StyledString_Descriptor对象占据的内存。  | 
+| int32_t [OH_ArkUI_UnmarshallStyledStringDescriptor](#oh_arkui_unmarshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor, size_t \*resultSize) | 将包含属性字符串信息的字节数组反序列化为属性字符串。  | 
+| int32_t [OH_ArkUI_MarshallStyledStringDescriptor](#oh_arkui_marshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息序列化为字节数组。  | 
+| const char \* [OH_ArkUI_ConvertToHtml](#oh_arkui_converttohtml) ([ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息转化成html。  | 
 
 
 ## 宏定义说明
@@ -1307,6 +1312,18 @@ typedef struct ArkUI_StyledString ArkUI_StyledString
 定义文本组件支持的格式化字符串数据对象。
 
 **起始版本：** 12
+
+
+### ArkUI_StyledString_Descriptor
+
+```
+typedef struct ArkUI_StyledString_Descriptor ArkUI_StyledString_Descriptor
+```
+**描述：**
+
+定义文本组件支持的属性字符串的数据对象。
+
+**起始版本：** 14
 
 
 ### ArkUI_SwiperIndicator
@@ -6456,6 +6473,27 @@ void OH_ArkUI_BarrierOption_SetReferencedId (ArkUI_BarrierOption * barrierStyle,
 | index | 屏障索引值。  | 
 
 
+### OH_ArkUI_ConvertToHtml()
+
+```
+const char* OH_ArkUI_ConvertToHtml (ArkUI_StyledString_Descriptor * descriptor)
+```
+**描述：**
+
+将属性字符串信息转化成html。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| descriptor | 指向ArkUI_StyledString_Descriptor对象的指针。  | 
+
+**返回：**
+
+html。该指针由内部管理，在OH_ArkUI_StyledString_Descriptor_Destroy()时释放。
+
 ### OH_ArkUI_CreateAsymmetricTransitionEffect()
 
 ```
@@ -10850,6 +10888,30 @@ int32_t OH_ArkUI_LongPress_GetRepeatCount (const ArkUI_GestureEvent * event)
 长按手势定时触发次数。
 
 
+### OH_ArkUI_MarshallStyledStringDescriptor()
+
+```
+int32_t OH_ArkUI_MarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor )
+```
+**描述：**
+
+将属性字符串信息序列化为字节数组。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| buffer | 字节数组，用于存储属性字符串序列化后的数据。  | 
+| bufferSize | 字节数组长度。  | 
+| descriptor | 指向ArkUI_StyledString_Descriptor对象的指针。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。 ARKUI_ERROR_CODE_INVALID_STYLED_STRING 无效的属性字符串。
+
+
 ### OH_ArkUI_NodeAdapter_Create()
 
 ```
@@ -12743,6 +12805,38 @@ OH_Drawing_Typography* OH_ArkUI_StyledString_CreateTypography (ArkUI_StyledStrin
 
 指向OH_Drawing_Typography对象的指针。如果对象返回空指针，表示创建失败，失败的原因可能是handle参数异常如空指针。
 
+### OH_ArkUI_StyledString_Descriptor_Create()
+
+```
+ArkUI_StyledString_Descriptor* OH_ArkUI_StyledString_Descriptor_Create (void )
+```
+**描述：**
+
+创建属性字符串数据对象。
+
+**起始版本：** 14
+
+**返回：**
+
+指向ArkUI_StyledString_Descriptor对象的指针。
+
+### OH_ArkUI_StyledString_Descriptor_Destroy()
+
+```
+void OH_ArkUI_StyledString_Descriptor_Destroy (ArkUI_StyledString_Descriptor * descriptor)
+```
+**描述：**
+
+释放被ArkUI_StyledString_Descriptor对象占据的内存。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| descriptor | 指向ArkUI_StyledString_Descriptor对象的指针。  | 
+
 
 ### OH_ArkUI_StyledString_Destroy()
 
@@ -13485,6 +13579,30 @@ int32_t OH_ArkUI_TransitionEffect_SetAnimation (ArkUI_TransitionEffect * option,
 **注解：**
 
 如果通过combine进行转场效果的组合，前一转场效果的动画参数也可用于后一转场效果。
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+### OH_ArkUI_UnmarshallStyledStringDescriptor()
+
+```
+int32_t OH_ArkUI_UnmarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor, size_t * resultSize )
+```
+**描述：**
+
+将包含属性字符串信息的字节数组反序列化为属性字符串。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| buffer | 待反序列化的字节数组。  | 
+| bufferSize | 字节数组长度。  | 
+| descriptor | 指向ArkUI_StyledString_Descriptor对象的指针。  | 
+| resultSize | 属性字符串转换后的字节数组实际长度。  | 
 
 **返回：**
 
