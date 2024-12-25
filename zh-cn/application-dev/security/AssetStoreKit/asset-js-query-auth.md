@@ -85,8 +85,6 @@
 
 查询别名是demo_alias且需要用户认证的关键资产。
 
-在指定群组中查询同一条需要用户认证的关键资产的使用示例详见[查询需要用户认证的群组关键资产](asset-js-group.md#查询需要用户认证的群组关键资产)。
-
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';

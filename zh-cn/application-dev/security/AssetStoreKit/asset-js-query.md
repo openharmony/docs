@@ -45,6 +45,8 @@
 > **说明：**
 >
 > 本模块提供了异步和同步两套接口，以下为异步接口的使用示例，同步接口详见[API文档](../../reference/apis-asset-store-kit/js-apis-asset.md)。
+>
+> 在指定群组中查询一条关键资产明文的使用示例详见[查询单条群组关键资产明文](asset-js-group.md#查询单条群组关键资产属性)，在指定群组中查询一条关键资产属性的使用示例详见[查询单条群组关键资产属性](asset-js-group.md#查询单条群组关键资产属性)。
 
 ### 查询单条关键资产明文
 
@@ -90,8 +92,6 @@ try {
 
 查询别名是demo_alias的关键资产属性。
 
-在指定群组中查询同一条关键资产属性的使用示例详见[查询单条群组关键资产属性](asset-js-group.md#查询单条群组关键资产属性)。
-
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
@@ -123,8 +123,6 @@ try {
 ### 批量查询关键资产属性
 
 批量查询标签1是demo_label的关键资产属性，从第5条满足条件的结果开始返回，一共返回10条，且返回结果以DATA_LABEL_NORMAL_1属性内容排序。
-
-在指定群组中批量查询同一条关键资产属性，再以相同形式排序并返回的使用示例详见[批量查询群组关键资产属性](asset-js-group.md#批量查询群组关键资产属性)。
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';

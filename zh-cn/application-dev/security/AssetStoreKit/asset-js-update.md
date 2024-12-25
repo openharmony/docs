@@ -54,10 +54,10 @@
 > **说明：**
 >
 > 本模块提供了异步和同步两套接口，以下为异步接口的使用示例，同步接口详见[API文档](../../reference/apis-asset-store-kit/js-apis-asset.md)。
+>
+> 在指定群组中更新一条关键资产的使用示例详见[更新群组关键资产](asset-js-group.md#更新群组关键资产)。
 
 更新别名是demo_alias的关键资产，将关键资产明文更新为demo_pwd_new，附属属性更新成demo_label_new。
-
-更新指定群组的同一条关键资产的使用示例详见[更新群组关键资产](asset-js-group.md#更新群组关键资产)。
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';

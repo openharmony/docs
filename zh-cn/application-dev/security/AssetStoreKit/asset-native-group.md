@@ -2,6 +2,8 @@
 
 ## 新增群组关键资产
 
+业务HAP在BMS配置了一个群组ID：demo_group_id。在群组中新增一条密码是demo_pwd，别名是demo_alias，附属信息是demo_label的关键资产，该关键资产在用户首次解锁设备后可被访问。
+
 ```c
 #include <string.h>
 
@@ -36,6 +38,8 @@ void AddAsset() {
 
 ## 删除群组关键资产
 
+业务HAP在BMS配置了一个群组ID：demo_group_id。在群组中删除别名是demo_alias的关键资产。
+
 ```c
 #include <string.h>
 
@@ -63,6 +67,8 @@ void RemoveAsset() {
 
 ## 更新群组关键资产
 
+业务HAP在BMS配置了一个群组ID：demo_group_id。在群组中更新别名是demo_alias的关键资产，将关键资产明文更新为demo_pwd_new，附属信息更新成demo_label_new。
+
 ```c
 #include <string.h>
 
@@ -73,12 +79,12 @@ void UpdateAsset() {
     static const char *SECRET = "demo_pwd_new";
     static const char *LABEL = "demo_label_new";
     static const char *GROUP_ID = "demo_group_id";
-    
+
     Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
     Asset_Blob new_secret = { (uint32_t)(strlen(SECRET)), (uint8_t *)SECRET };
     Asset_Blob new_label = { (uint32_t)(strlen(LABEL)), (uint8_t *)LABEL };
     Asset_Blob group_id = { (uint32_t)(strlen(GROUP_ID)), (uint8_t *)GROUP_ID };
-    Asset_Attr query[] = { 
+    Asset_Attr query[] = {
         { .tag = ASSET_TAG_ALIAS, .value.blob = alias },
         { .tag = ASSET_TAG_GROUP_ID, .value.blob = group_id },
     };
@@ -97,7 +103,41 @@ void UpdateAsset() {
 }
 ```
 
+## 查询单条群组关键资产明文
+
+业务HAP在BMS配置了一个群组ID：demo_group_id。在群组中查询别名是demo_alias的关键资产明文。
+
+```c
+#include <string.h>
+
+#include "asset/asset_api.h"
+
+void QueryAsset() {
+    static const char *ALIAS = "demo_alias";
+    Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
+    Asset_Blob group_id = { (uint32_t)(strlen(GROUP_ID)), (uint8_t *)GROUP_ID };
+    Asset_Attr attr[] = {
+        { .tag = ASSET_TAG_ALIAS, .value.blob = alias },  // 指定了群组关键资产别名，最多查询到一条满足条件的群组关键资产
+        { .tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ALL },  // 此处表示需要返回群组关键资产的所有信息，即属性+明文
+        { .tag = ASSET_TAG_GROUP_ID, .value.blob = group_id },
+    };
+
+    Asset_ResultSet resultSet = {0};
+    int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
+    if (ret == ASSET_SUCCESS) {
+        // Parse the resultSet.
+        for (uint32_t i = 0; i < resultSet.count; i++) {
+            // Parse the secret: the data is secret->blob.data, the size is secret->blob.size.
+            Asset_Attr *secret = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_SECRET);
+        }
+    }
+    OH_Asset_FreeResultSet(&resultSet);
+}
+```
+
 ## 查询单条群组关键资产属性
+
+业务HAP在BMS配置了一个群组ID：demo_group_id。查询别名是demo_alias的关键资产属性。
 
 ```c
 #include <string.h>
@@ -122,41 +162,6 @@ void QueryAttributes() {
         for (uint32_t i = 0; i < resultSet.count; i++) {
         // Parse the data label: the data is label->blob.data, the size is label->blob.size.
             Asset_Attr *label = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_DATA_LABEL_NORMAL_1);
-        }
-    }
-    OH_Asset_FreeResultSet(&resultSet);
-}
-```
-
-## 批量查询群组关键资产属性
-
-```c
-#include <string.h>
-
-#include "asset/asset_api.h"
-
-void BatchQuery() {
-    static const char *LABEL = "demo_label";
-    static const char *GROUP_ID = "demo_group_id";
-    Asset_Blob label = { (uint32_t)(strlen(LABEL)), (uint8_t *)LABEL };
-    Asset_Blob group_id = { (uint32_t)(strlen(GROUP_ID)), (uint8_t *)GROUP_ID };
-
-    Asset_Attr attr[] = {
-        { .tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ATTRIBUTES },
-        { .tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = label },
-        { .tag = ASSET_TAG_RETURN_OFFSET, .value.u32 = 5 },
-        { .tag = ASSET_TAG_RETURN_LIMIT, .value.u32 = 10 },
-        { .tag = ASSET_TAG_RETURN_ORDERED_BY, .value.u32 = ASSET_TAG_DATA_LABEL_NORMAL_1 },
-        { .tag = ASSET_TAG_GROUP_ID, .value.blob = group_id },
-    };
-
-    Asset_ResultSet resultSet = { 0 };
-    int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
-    if (ret == ASSET_SUCCESS) {
-        // Parse the result.
-        for (uint32_t i = 0; i < resultSet.count; i++) {
-            // Parse the data alias: the data is alias->blob.data, the size is alias->blob.size..
-            Asset_Attr *alias = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_ALIAS);
         }
     }
     OH_Asset_FreeResultSet(&resultSet);
