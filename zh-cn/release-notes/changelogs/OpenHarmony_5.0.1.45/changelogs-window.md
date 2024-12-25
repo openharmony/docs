@@ -130,3 +130,43 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
+## cl.window.2 在2in1设备上hasImmersiveWindow接口在窗口最大化状态返回值变更
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+在2in1设备上调用hasImmersiveWindow接口在窗口处于最大化状态时返回true，与实际情况不符合。
+
+无法通过这个接口在2in1设备上区分是否有窗口处于最大化状态，还是全屏状态，与接口功能设计不符合。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：2in1设备上调用hasImmersiveWindow接口时，如果窗口处于最大化状态时下，则返回true。
+
+变更后：2in1设备上调用hasImmersiveWindow接口时，如果窗口处于最大化状态时下，则返回false。
+
+**起始 API Level**
+
+hasImmersiveWindow接口从API version 11开始支持
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.1.45开始。
+
+**变更的接口/组件**
+
+@ohos.display.d.ts
+
+系统能力：SystemCapability.Window.SessionManager
+
+接口：hasImmersiveWindow
+
+**适配指导**
+
+排查应用实现中是否存在调用hasImmersiveWindow判断当前屏幕是否包含全屏窗口的场景。若涉及，需要根据返回值变更进行调整适配。
