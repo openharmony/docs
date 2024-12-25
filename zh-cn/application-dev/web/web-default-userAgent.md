@@ -156,7 +156,7 @@ OpenHarmony设备的识别主要通过UserAgent中的系统、系统版本和设
 
 3. 设备类型识别
 
-    通过deviceType字段来识别不同设备类型。
+    通过DeviceType字段来识别不同设备类型。
 
    ```ts
    // 检测是否为手机设备
