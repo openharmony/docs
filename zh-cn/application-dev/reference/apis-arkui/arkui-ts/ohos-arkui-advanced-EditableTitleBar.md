@@ -267,7 +267,7 @@ struct Index {
 ![zh-cn_image_EditableTitleBar](figures/zh-cn_image_EditableTitleBar.png)
 
 ### 示例3（右侧自定义按钮播报）
-该示例通过设置标题栏右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+该示例通过设置标题栏的右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
 
 import {  LengthMetrics, promptAction, router, EditableLeftIconType, EditableTitleBar } from '@kit.ArkUI'；
