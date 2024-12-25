@@ -254,7 +254,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-9. 点击IDE界面中的“entry”，点击“Edit Configurations”，点击“Diagnostics”，勾选“Address Sanitizer”，保存设置。点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“address-sanitizer”，触发一次踩内存事件。应用崩溃后重新进入应用，可以在Log窗口看到对系统事件数据的处理日志：
+9. 点击DevEco Studio界面中的“entry”，点击“Edit Configurations”，点击“Diagnostics”，勾选“Address Sanitizer”，保存设置。点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“address-sanitizer”，触发一次踩内存事件。应用崩溃后重新进入应用，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
    HiAppEvent eventInfo.domain=OS
