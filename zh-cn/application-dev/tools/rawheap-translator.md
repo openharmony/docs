@@ -10,17 +10,17 @@
 
 当前工具适配了OHOS、Windows、Linux、MacOS平台，获取方法如下：
 
-* 设备内获取：/bin/rawheap_translator，可在oh设备使用；
+- 设备内获取：/bin/rawheap_translator，可在oh设备使用；
 
-* SDK中获取：不同平台工具在SDK路径下toolchains目录获取，可在对应平台下使用。
+- SDK中获取：不同平台工具在SDK路径下toolchains目录获取，可在对应平台下使用。
 
 ### 环境配置
 
-* Windows环境变量设置方法
+- Windows环境变量设置方法
 
   在此电脑 > 属性 > 高级系统设置 > 高级 > 环境变量 > Path > 编辑 中，将rawheap_translator.exe所在路径添加到 Path，环境变量配置完成后，请重启电脑，即可在cmd窗口执行rawheap_translator命令。
 
-* MacOS环境变量设置方法
+- MacOS环境变量设置方法
 
   1）打开终端工具，执行以下命令，根据输出结果分别执行不同命令。
 
@@ -58,16 +58,15 @@
 ## 使用方法
 
 ### 解析命令
-
-* rawheap_translator <rawheap_file>
-* rawheap_translator <rawheap_file> [heapsnapshot_file]
-
+```bash
+rawheap_translator <rawheap_file> [heapsnapshot_file]
+```
 ### 参数列表
 
 | 选项 | 描述 | 举例 |
 | -------- | ----------------- | ---------------------------------- |
-| <rawheap_file> | OOM时生成的rawheap文件路径：<br>/data/log/reliability/resource_leak/memory_leak | 解析指定目录(如：D:\temp\rawheap)下的rawheap文件：<br>rawheap_translator D:\temp\rawheap\xxx.rawheap<br>解析当前目录下的rawheap文件：<br>rawheap_translator xxx.rawheap |
-| [heapsnapshot_file] | 指定生成的文件名称和路径，后缀名必须是heapsnapshot；<br>不指定则默认为当前路径，生成的文件名如：hprof_2024-11-19-21-13-20.heapsnapshot | 解析当前目录下的rawheap文件，并在指定路径(如：D:\temp)下生成的heapsnapshot:<br>rawheap_translator xxx.rawheap D:\temp\xxx.heapsnapshot<br>解析当前目录下的rawheap文件，并在当前路径下生成的heapsnapshot:<br>rawheap_translator xxx.rawheap xxx.heapsnapshot |
+| \<rawheap_file\> | 必选参数，OOM时生成的rawheap文件路径：<br>/data/log/reliability/resource_leak/memory_leak | 解析指定目录(如：D:\temp\rawheap)下的rawheap文件：<br>rawheap_translator D:\temp\rawheap\xxx.rawheap<br>解析当前目录下的rawheap文件：<br>rawheap_translator xxx.rawheap |
+| [heapsnapshot_file] | 可选参数，指定生成的文件名称和路径，后缀名必须是heapsnapshot；<br>不指定则默认为当前路径，生成的文件名如：hprof_2024-11-19-21-13-20.heapsnapshot | 解析当前目录下的rawheap文件，并在指定路径(如：D:\temp)下生成的heapsnapshot:<br>rawheap_translator xxx.rawheap D:\temp\xxx.heapsnapshot<br>解析当前目录下的rawheap文件，并在当前路径下生成的heapsnapshot:<br>rawheap_translator xxx.rawheap xxx.heapsnapshot |
 
 ## 解析命令示例
 
