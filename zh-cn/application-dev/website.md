@@ -385,8 +385,11 @@
           - [编译期自定义修改方舟字节码](arkts-utils/customize-bytecode-during-compilation.md)
         - [Disassembler反汇编工具](arkts-utils/tool-disassembler.md)
         - ArkGuard源码混淆<!--arkts-arkguard-->
-          - [ArkGuard源码混淆工具](arkts-utils/source-obfuscation.md)
+          - [ArkGuard混淆概述](arkts-utils/source-obfuscation-overview.md)
+          - [ArkGuard混淆原理及功能](arkts-utils/source-obfuscation.md)
+          - [ArkGuard混淆开启指南](arkts-utils/source-obfuscation-guide.md)
           - [不同包类型的源码混淆建议](arkts-utils/source-obfuscation-practice.md)
+          - [ArkGuard混淆常见问题](arkts-utils/source-obfuscation-questions.md)
         - [在build-profile.json5中配置arkOptions](arkts-utils/arkoptions-guide.md)
     - ArkUI（方舟UI框架）<!--arkui-->
       - [ArkUI简介](ui/arkui-overview.md)
