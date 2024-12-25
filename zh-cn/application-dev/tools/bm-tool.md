@@ -1258,3 +1258,20 @@ Error: bundle cannot be installed because the appId is not same with preinstalle
 **处理步骤**
 
 1. 如果安装的应用是预置应用，需要保证安装应用的签名与预置应用的一致。
+
+### 9568418 应用设置了卸载处置规则，不允许直接卸载
+**错误信息**
+
+Error: Failed to uninstall the app because the app is locked.
+
+**错误描述**
+
+卸载应用时，应用存在卸载处置规则，不允许直接卸载。
+
+**可能原因**
+
+应用存在卸载处置规则，不允许直接卸载。
+
+**处理步骤**
+
+1. 检查应用是否设置了卸载处置规则，由设置方取消卸载处置规则。

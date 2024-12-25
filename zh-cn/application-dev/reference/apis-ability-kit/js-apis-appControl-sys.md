@@ -829,7 +829,7 @@ try {
 }
 ```
 
-## appControl.setUninstallDisposedRule<sup>14+</sup>
+## appControl.setUninstallDisposedRule<sup>15+</sup>
 
 setUninstallDisposedRule(appIdentifier: string, rule: UninstallDisposedRule, appIndex:? number): void
 
@@ -846,7 +846,7 @@ setUninstallDisposedRule(appIdentifier: string, rule: UninstallDisposedRule, app
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appIdentifier  | string | 是    | 要设置卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
-| rule | [UninstallDisposedRule](#uninstalldisposedrule14) | 是 | 表示要设置的卸载处置规则。 |
+| rule | [UninstallDisposedRule](#uninstalldisposedrule15) | 是 | 表示要设置的卸载处置规则。 |
 | appIndex   | number  | 否   | 表示分身应用的索引。<br> appIndex为0时，为主应用设置卸载处置规则。            |
 
 **错误码：**
@@ -890,7 +890,7 @@ try {
 }
 ```
 
-## appControl.getUninstallDisposedRule<sup>14+</sup>
+## appControl.getUninstallDisposedRule<sup>15+</sup>
 
 getUninstallDisposedRule(appIdentifier: string, appIndex:? number): UninstallDisposedRule
 
@@ -913,7 +913,7 @@ getUninstallDisposedRule(appIdentifier: string, appIndex:? number): UninstallDis
 
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
-| [UninstallDisposedRule](#uninstalldisposedrule14) | 表示应用的卸载处置规则。 |
+| [UninstallDisposedRule](#uninstalldisposedrule15) | 表示应用的卸载处置规则。 |
 
 **错误码：**
 
@@ -945,7 +945,7 @@ try {
 }
 ```
 
-## appControl.deleteUninstallDisposedRule<sup>14+</sup>
+## appControl.deleteUninstallDisposedRule<sup>15+</sup>
 
 deleteUninstallDisposedRule(appIdentifier: string, appIndex:? number): void
 
@@ -1050,7 +1050,7 @@ try {
 | ALLOWED_LIST | 1    | 允许运行指定功能的列表。 |
 | DISALLOWED_LIST | 2    | 不允许运行指定功能的列表。 |
 
-## UninstallDisposedRule<sup>14+</sup>
+## UninstallDisposedRule<sup>15+</sup>
 
 标识卸载处置规则。
 
@@ -1061,10 +1061,10 @@ try {
 | 名称      | 类型           | 可读 | 可写 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | want | [Want](js-apis-app-ability-want.md)     | 是   | 是   | 指定应用被拦截时，跳转到的页面。 |
-| UninstallComponentType | [UninstallComponentType](#uninstallcomponenttype14)  | 是   | 是   | 拦截时将拉起能力的类型。 |
+| UninstallComponentType | [UninstallComponentType](#uninstallcomponenttype15)  | 是   | 是   | 拦截时将拉起能力的类型。 |
 | priority | number | 是 | 是 | 拦截规则的优先级。 |
 
-### UninstallComponentType<sup>14+</sup>
+### UninstallComponentType<sup>15+</sup>
 
 标识卸载时功能组件类型。
 
