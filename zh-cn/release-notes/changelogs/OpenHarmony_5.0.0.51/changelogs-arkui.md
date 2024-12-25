@@ -219,7 +219,7 @@ ImageAttributeModifier的colorFilter接口。
 
 **适配指导**
 
-使用ImageAttributeModifier的colorFilter接口时，已经支持new方式创建ColorFilter对象传入接口中。示例如下:
+已知bug修复，无需适配。使用ImageAttributeModifier的colorFilter接口时，已经支持new方式创建ColorFilter对象传入接口中。示例如下:
 
 ```ts
 class ColorFilterModifier implements AttributeModifier<ImageAttribute> {
