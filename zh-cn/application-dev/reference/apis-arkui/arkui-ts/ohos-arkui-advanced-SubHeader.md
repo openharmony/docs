@@ -442,4 +442,4 @@ struct SubHeaderExample {
   }
 }
 ```
-![zh-cn_image_subheader_example08](figures/zh-cn_image_subheader_example08.png)
+![/zh-cn_image_subheader_example08](figures/zh-cn_image_subheader_example08.png)
