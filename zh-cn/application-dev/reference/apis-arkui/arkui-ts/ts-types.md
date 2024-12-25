@@ -599,26 +599,6 @@ type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) =>
 | ------------- | ---------------------- | ---------------------------------------- |
 | VisibleAreaChangeCallback | (isExpanding: boolean, currentRatio: number) => void | 组件可见区域变化事件的回调。<br/>-isExpanding：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
 
-## StyledStringValue<sup>12+</sup>
-
-样式对象类型，用于设置属性字符串的样式。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称   | 描述       |
-| ------ | ---------- |
-| TextStyle | 文本字体样式。 |
-| DecorationStyle | 文本装饰线样式。 |
-| BaselineOffsetStyle | 文本基线偏移量样式。 |
-| LetterSpacingStyle | 文本字符间距样式。 |
-| LineHeightStyle | 文本行高样式。 |
-| TextShadowStyle | 文本阴影样式。 |
-| GestureStyle | 事件手势样式。 |
-| ParagraphStyle | 文本段落样式。 |
-| ImageAttachment | 图片样式。 |
-| CustomSpan | 自定义绘制Span样式。 |
-| UserDataSpan | UserDataSpan样式。 |
-
 ## DividerStyleOptions<sup>12+</sup>
 
 分割线样式属性集合, 用于描述分割线相关信息。
