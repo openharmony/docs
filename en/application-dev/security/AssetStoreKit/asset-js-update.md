@@ -32,7 +32,7 @@ The following table describes the attributes of **AssetMap** for updating an ass
   | DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | Type: Uint8Array<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
   | DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | Type: Uint8Array<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
   | DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | Type: Uint8Array<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
-  | REQUIRE_ATTR_ENCRYPTED<sup>13+</sup> | Type: bool| No| Whether to update the customized asset attribute information that is encrypted. By default, the unencrypted customized asset attribute information is updated.|
+  | REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | Type: bool| No| Whether to update the customized asset attribute information that is encrypted. By default, the unencrypted customized asset attribute information is updated.|
 
 - Attributes of **AssetMap** in **attributesToUpdate**:
 

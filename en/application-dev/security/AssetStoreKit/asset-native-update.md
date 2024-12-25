@@ -34,7 +34,7 @@ The following table describes the attributes for updating an asset.
   | ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | Type: uint8[]<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
   | ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | Type: uint8[]<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
   | ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | Type: uint8[]<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
-  | ASSET_TAG_REQUIRE_ATTR_ENCRYPTED<sup>13+</sup> | Type: bool| No| Whether to update the customized asset attribute information that is encrypted. By default, the unencrypted, customized asset attribute information is updated.|
+  | ASSET_TAG_REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | Type: bool| No| Whether to update the customized asset attribute information that is encrypted. By default, the unencrypted, customized asset attribute information is updated.|
 
 - Attributes in **attributesToUpdate**:
 
