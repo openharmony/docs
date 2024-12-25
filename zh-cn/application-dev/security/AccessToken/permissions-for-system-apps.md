@@ -4189,7 +4189,7 @@
 
 **ACL使能**：true
 
-**起始版本**：13
+**起始版本**：14
 
 ### ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY
 
@@ -4203,7 +4203,7 @@
 
 **ACL使能**：true
 
-**起始版本**：13
+**起始版本**：14
 
 ### ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
 
