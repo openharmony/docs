@@ -9,7 +9,7 @@ nestedScroll入参为一个[NestedScrollOptions](../reference/apis-arkui/arkui-t
 
 > **说明：**
 >
-> - 支持嵌套滚动的容器：[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md)、[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)、[Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md)、[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)。
+> - 支持嵌套滚动的容器：[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md)、[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)、[Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md)、[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)、[Refresh](../reference/apis-arkui/arkui-ts/ts-container-refresh.md)、[bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
 
 ```ts
