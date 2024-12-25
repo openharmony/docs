@@ -61,6 +61,18 @@
 
 **起始版本**：12
 
+### ohos.permission.LOCATION_SWITCH_IGNORED
+
+允许系统应用在位置开关关闭的情况下，获取位置信息。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.SUBSCRIBE_SWING_ABILITY
 
 允许应用使用智慧感知订阅能力。
