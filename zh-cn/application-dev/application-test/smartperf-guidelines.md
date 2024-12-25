@@ -757,7 +757,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 应用响应时延
 
   ```
-   # SP_daemon -editor responseTime com.ohos.settings 设置
+   # SP_daemon -editor responseTime com.ohos.settings ohtest
    time:544ms
 
    command exec finished!
@@ -769,7 +769,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 应用完成时延
 
   ```
-   # SP_daemon -editor completeTime com.ohos.settings 设置
+   # SP_daemon -editor completeTime com.ohos.settings ontest
    time:677ms
 
    command exec finished!
