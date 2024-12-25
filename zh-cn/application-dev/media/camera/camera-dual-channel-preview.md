@@ -108,7 +108,7 @@
     > **注意：**
     > 需要确认图像的宽width是否与行距rowStride一致，如果不一致可参考以下方式处理：
 
-    方式一：去除component.byteBuffer中stride数据，拷贝得到新的buffer，调用不支持stride的接口处理buffer。
+    方式一：去除imgComponent.byteBuffer中stride数据，拷贝得到新的buffer，调用不支持stride的接口处理buffer。
 
     ```ts
     // 以NV21为例（YUV_420_SP格式的图片）YUV_420_SP内存计算公式：长x宽+(长x宽)/2
@@ -116,8 +116,8 @@
     const dstArr = new Uint8Array(dstBufferSize);
     // 逐行读取buffer数据
     for (let j = 0; j < height * 1.5; j++) {
-      // component.byteBuffer的每行数据拷贝前width个字节到dstArr中
-      const srcBuf = new Uint8Array(component.byteBuffer, j * stride, width);
+      // imgComponent.byteBuffer的每行数据拷贝前width个字节到dstArr中
+      const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width);
       dstArr.set(srcBuf, j * width);
     }
     let pixelMap = await image.createPixelMap(dstArr.buffer, {
@@ -129,13 +129,13 @@
 
     ```ts
     // 创建pixelMap，width宽传行距stride的值
-    let pixelMap = await image.createPixelMap(component.byteBuffer, {
+    let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
       size:{height: height, width: stride}, srcPixelFormat: 8});
     // 裁剪多余的像素
     pixelMap.cropSync({size:{width:width, height:height}, x:0, y:0});
     ```
 
-    方式三：将原始component.byteBuffer和stride信息一起传给支持stride的接口处理。
+    方式三：将原始imgComponent.byteBuffer和stride信息一起传给支持stride的接口处理。
 
 
 
