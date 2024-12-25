@@ -71,7 +71,7 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          // ComponentContent 底层时buildNode,buildNode不支持传入@Reusable注解的自定义组件
+          // ComponentContent底层是buildNode，buildNode不支持传入@Reusable注解的自定义组件
           let contentNode = new ComponentContent(this.uicontext, wrapBuilder(buildCreativeLoadingDialog), () => {
           });
           this.uicontext.getPromptAction().openCustomDialog(contentNode);
@@ -157,7 +157,7 @@ struct Parent {
   }
 }
 
-// 可复用的自定义组件的子树中存在可复用的自定义组件,如果子组件标记@Reuable，会导致同一颗子树下复用率变低,因此不建议子组件加上@Reusable
+// 可复用的自定义组件的子树中存在可复用的自定义组件，如果子组件标记@Reuable，会导致同一颗子树下复用率变低，因此不建议子组件加上@Reusable
 @Reusable
 @Component
 export struct HasReusableChild {
@@ -211,9 +211,9 @@ export struct HasReusableChild {
 
 ### 动态布局更新
 
-- 示例代码将Child自定义组件标记为复用组件，通过Button点击更新Child,触发Child复用;
+- 示例代码将Child自定义组件标记为复用组件，通过Button点击更新Child，触发Child复用;
 - \@Reusable：自定义组件被\@Reusable装饰器修饰，即表示其具备组件复用的能力;
-- aboutToReuse：当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发aboutToReuse生命周期回调，并将组件的构造参数传递给aboutToReuse;
+- aboutToReuse：当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发aboutToReuse生命周期回调，并将组件的构造参数传递给aboutToReuse。
 
 ```ts
 // xxx.ets
@@ -273,7 +273,7 @@ struct Child {
 
 - 示例代码将CardView自定义组件标记为复用组件，List上下滑动，触发CardView复用;
 - \@Reusable：自定义组件被@Reusable装饰器修饰，即表示其具备组件复用的能力;
-- 变量item的被\@State修饰，才能更新，非\@State修饰变量存在无法更新问题;
+- 变量item的被\@State修饰，才能更新，非\@State修饰变量存在无法更新问题。
 
 ```ts
 class MyDataSource implements IDataSource {
@@ -348,8 +348,8 @@ export struct CardView {
 ### if使用场景
 
 - 示例代码将OneMoment自定义组件标记为复用组件，List上下滑动，触发OneMoment复用;
-- 可以使用reuseId为复用组件分配复用组，相同reuseId的组件会在同一个复用组中复用,如果只有一个复用的组件，可以不用设置reuseId;
-- 通过reuseId来标识需要复用的组件，省去重复执行if的删除重创逻辑，提高组件复用的效率和性能;
+- 可以使用reuseId为复用组件分配复用组，相同reuseId的组件会在同一个复用组中复用，如果只有一个复用的组件，可以不用设置reuseId;
+- 通过reuseId来标识需要复用的组件，省去重复执行if的删除重创逻辑，提高组件复用的效率和性能。
 
 ```ts
 @Entry
@@ -400,9 +400,9 @@ export struct OneMoment {
 }
 ```
 
-### foreach使用场景
+### Foreach使用场景
 
-- 示例点击update，数据刷新成功，但是滑动列表，组件复用无法使用，foreach的折叠展开属性的原因;
+- 示例点击update，数据刷新成功，但是滑动列表，组件复用无法使用，Foreach的折叠展开属性的原因;
 - 点击clear，再次update，复用成功；符合一帧内重复创建多个已被销毁的自定义组件;
 
 ```ts
@@ -434,7 +434,7 @@ class MyDataSource implements IDataSource {
 struct Index {
   private data: MyDataSource = new MyDataSource();
   private data02: MyDataSource = new MyDataSource();
-  @State isShow: boolean = true
+  @State isShow: boolean = true;
   @State dataSource: ListItemObject[] = [];
 
   aboutToAppear() {
@@ -455,7 +455,7 @@ struct Index {
             let obj = new ListItemObject();
             obj.id = i;
             obj.uuid = Math.random().toString();
-            obj.isExpand = false
+            obj.isExpand = false;
             this.dataSource.pop();
           }
         }).height(40)
@@ -493,17 +493,17 @@ struct Index {
 @Component
 struct ListItemView {
   @ObjectLink obj: ListItemObject;
-  @State item: string = ''
+  @State item: string = '';
 
   aboutToAppear(): void {
-    // 点击 update，首次进入，上下滑动,由于foreach折叠展开属性，无法复用
+    // 点击 update，首次进入，上下滑动，由于Foreach折叠展开属性，无法复用
     console.log("=====abouTo===Appear=====ListItemView==创建了==" + this.item)
   }
 
   aboutToReuse(params: ESObject) {
     this.item = params.item;
-    // 点击 clear，再次update ,复用成功
-    //符合一帧内重复创建多个已被销毁的自定义组件
+    // 点击 clear，再次update，复用成功
+    // 符合一帧内重复创建多个已被销毁的自定义组件
     console.log("=====aboutTo===Reuse====ListItemView==复用了==" + this.item)
   }
 
@@ -535,7 +535,7 @@ struct ListItemView {
 
 @Observed
 class ListItemObject {
-  uuid: string = ""
+  uuid: string = "";
   id: number = 0;
   isExpand: boolean = false;
 }
@@ -671,7 +671,7 @@ struct ReusableChildComponent {
 @Reusable
 @Component
 struct ReusableFlowItem {
-  @State item: number = 0
+  @State item: number = 0;
  
   // 从复用缓存中加入到组件树之前调用，可在此处更新组件的状态变量以展示正确的内容
   aboutToReuse(params) {
