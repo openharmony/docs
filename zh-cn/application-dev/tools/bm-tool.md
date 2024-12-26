@@ -851,7 +851,7 @@ Error: install debug type not same.
 
 **可能原因**
 
-开发者使用IDE的debug按钮安装了应用，后面打包之后又通过hdc install方式安装。
+开发者使用DevEco Studio的debug按钮安装了应用，后面打包之后又通过hdc install方式安装。
 
 **处理步骤**
 
