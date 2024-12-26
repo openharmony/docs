@@ -94,8 +94,8 @@ Picker配置选项。
 | maxVideoSelectNumber            | number                                  | 否   | 视频最大的选择数量。最大值为500，受到最大选择总数的限制。                                           |
 | isSlidingSelectionSupported<sup>13+</sup>     | boolean                                 | 否   | 是否支持滑动多选，默认不支持。重复选择场景不支持滑动多选。                                            |
 | photoBrowserCheckboxPosition<sup>13+</sup>    | [number, number]                        | 否   | 设置大图页checkbox的位置。第一个参数为X方向偏移量，第二个参数为Y方向偏移量。传参范围0-1，代表距离组件左上角0%-100%的偏移量。 |
-| gridMargin<sup>14+</sup>        | Margin                        | 否   | 设置组件宫格页margin。 |
-| photoBrowserMargin<sup>14+</sup>    | Margin                        | 否   | 设置组件大图页margin |
+| gridMargin<sup>14+</sup>        | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | 否   | 设置组件宫格页margin。 |
+| photoBrowserMargin<sup>14+</sup>    | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | 否   | 设置组件大图页margin |
 
 
 
