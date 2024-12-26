@@ -75,7 +75,7 @@ struct foregroundColorInherit {
     Column() {
       Button('Foreground Color: Set to Orange').fontSize(20).foregroundColor(Color.Orange).backgroundColor(Color.Gray)
       Divider()
-      Button ('Foreground Color: Inherited from Parent Component When Not Set').fontSize(20).backgroundColor(Color.Gray)
+      Button('Foreground Color: Inherited from Parent Component When Not Set').fontSize(20).backgroundColor(Color.Gray)
     }.foregroundColor(Color.Red)
   }
 }

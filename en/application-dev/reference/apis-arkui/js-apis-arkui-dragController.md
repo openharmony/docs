@@ -795,7 +795,7 @@ struct DragControllerPage {
 
   build() {
     Column() {
-      Button ('Drag Here')
+      Button('Drag Here')
         .margin(10)
         .onDragEnter(() => {
         try {
@@ -818,7 +818,7 @@ struct DragControllerPage {
         .onDrop(() => {
           promptAction.showToast({duration: 100, message: 'Drag Success', bottom: 400})
         })
-      Button ('Drag').onTouch ((event?:TouchEvent) => {
+      Button('Drag').onTouch ((event?:TouchEvent) => {
         if(event){
           if (event.type == TouchType.Down) {
             let text = new unifiedDataChannel.Text()

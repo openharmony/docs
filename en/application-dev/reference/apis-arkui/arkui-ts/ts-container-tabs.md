@@ -874,11 +874,11 @@ struct TabsDivider1 {
             this.startMargin -= 2
           }
         })
-      Button ('Increase Bottom Margin').width ('100%').margin ({ bottom:'12vp'})
+      Button('Increase Bottom Margin').width('100%').margin({ bottom:'12vp'})
         .onClick(() => {
           this.endMargin += 2
         })
-      Button ('Decrease Bottom Margin').width ('100%').margin ({ bottom:'12vp' })
+      Button('Decrease Bottom Margin').width('100%').margin({ bottom:'12vp' })
         .onClick(() => {
           if (this.endMargin > 2) {
             this.endMargin -= 2
@@ -1214,7 +1214,7 @@ struct TabsExample6 {
       }
 
       Row() {
-        Button ("Add Text")
+        Button("Add Text")
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1222,7 +1222,7 @@ struct TabsExample6 {
             this.text += 'Add Text'
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button ("Reset Text")
+        Button("Reset Text")
           .width('47%')
           .height(50)
           .margin({ top: 5 })

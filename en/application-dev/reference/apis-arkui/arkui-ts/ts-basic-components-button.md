@@ -603,7 +603,7 @@ class MyButtonStyle implements ContentModifier<ButtonConfiguration> {
 @Builder function buildButton1(config: ButtonConfiguration) {
   Column({space:30}) {
     Text(config.enabled ? "enabled true" : "enabled false")
-    Text ('Circle state' + (config.pressed? "(Pressed)": "(Not pressed)"))
+    Text('Circle state' + (config.pressed? "(Pressed)": "(Not pressed)"))
     Text('X-coordinate of the click point:' + (config.enabled ? (config.contentModifier as MyButtonStyle).x : "0"))
     Text('Y-coordinate of the click point:' + (config.enabled ? (config.contentModifier as MyButtonStyle).y : "0"))
     Circle({ width: 50, height: 50 })

@@ -70,7 +70,6 @@ The **TextInput** component comes in nine types. You can specify its type by set
 ## Setting Styles
 
 - Set the placeholder text displayed when there is no input.
-  TextInput({placeholder:'I am placeholder text'})
 
 
   ```ts
@@ -110,7 +109,7 @@ TextInput()
     console.info(value);
   })
   .onFocus(() => {
-    console.info ('Get Focus');
+    console.info('Get Focus');
   })
 ```
 

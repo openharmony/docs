@@ -13,7 +13,7 @@ The ArkUI development framework primarily offers property animations through NDK
 > 
 > - Animation property changes must be written within the callback of **ArkUI_ContextCallback**.
 > 
-> - The properties to be animated must have been set before the animation is executed.
+> - Ensure that the properties intended for animation have been set before the animation is executed.
 
 A global **animateTo** explicit animation API is provided to specify transition effects for state changes caused by closure code. Like property animations, layout changes such as width and height adjustments are animated directly to their final states.
 
@@ -70,7 +70,7 @@ A global **animateTo** explicit animation API is provided to specify transition 
        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode  onFinishCallback %{public}d",
                     reinterpret_cast<AA *>(userData)->a);
    };
-   // User data 
+   // User data
    UserData *eventUser = new UserData ;
    eventUser->data= 201;
    static bool isback = true;
@@ -110,7 +110,7 @@ A global **animateTo** explicit animation API is provided to specify transition 
 
 Use **NODE_*XX*_TRANSITION** properties (where *XX* can be **OPACITY**, **TRANSLATE**, **SCALE**, **ROTATE**, or **MOVE**) to configure transition effects for components, enhancing the user experience when components are added to or removed from containers. The **NODE_TRANSFORM_CENTER** property sets the center point for animations including **NODE_SCALE_TRANSITION** and **NODE_ROTATE_ROTATE**.  
 
-1. Design an interactive UI with a button to manage the addition and removal of transition nodes.
+1. Design an interactive UI with a button to manage the addition and removal of transition nodes. For details about how to obtain and use the ArkUI_NodeContentHandle node, see [Integrating with ArkTS Pages](ndk-access-the-arkts-page.md).
    ```
    constexpr int32_t BUTTON_CLICK_ID = 1;
    bool flag = false;
@@ -118,11 +118,8 @@ Use **NODE_*XX*_TRANSITION** properties (where *XX* can be **OPACITY**, **TRANSL
    ArkUI_NodeHandle childNode;
    ArkUI_NodeHandle buttonNode;
    
-   void mainViewMethod(OH_NativeXComponent *component)
+   void mainViewMethod(ArkUI_NodeContentHandle handle)
    {
-       if (!component) {
-           return;
-       }
        ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
        ArkUI_NodeHandle column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
@@ -156,7 +153,7 @@ Use **NODE_*XX*_TRANSITION** properties (where *XX* can be **OPACITY**, **TRANSL
        parrentNode = column;
        buttonNode = buttonShow;
        nodeAPI->addChild(column, buttonShow);
-       OH_NativeXComponent_AttachNativeRootNode(component, column);
+       OH_ArkUI_NodeContent_AddNode(handle, column);
    }
    ```
 
