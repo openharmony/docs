@@ -810,7 +810,7 @@ try {
 }
 ```
 
-## window.getAllWindowLayoutInfo</sup>16+</sup>
+## window.getAllWindowLayoutInfo<sup>16+</sup>
 
 getAllWindowLayoutInfo(displayId: number): Promise&lt;Array&lt;WindowLayoutInfo&gt;&gt;
 
