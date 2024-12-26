@@ -2435,17 +2435,25 @@ inflateBack(strm: ZStream, backIn: InflateBackInputCallback, inDesc: object, bac
 | backOut | InflateBackOutputCallback | 是   | 将解压缩的数据写入目标输出。                                 |
 | outDesc | object                    | 是   | 通用对象。                                                   |
 
-InflateBackInputCallback的说明：
+### InflateBackInputCallback
 
 InflateBackInputCallback = (inDesc: object) => ArrayBuffer
+
+用于输入数据的回调函数。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称   | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
 | inDesc | object | 是   | 用户定义数据对象 |
 
-InflateBackOutputCallback的说明：
+### InflateBackOutputCallback
 
 InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) => number
+
+用于输出数据的回调函数。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称    | 类型        | 必填 | 说明                   |
 | ------- | ----------- | ---- | ---------------------- |
