@@ -1,16 +1,22 @@
 # 使用示例
-
-可通过API文档查看此功能的相关接口：
-
-| 异步接口 | 同步接口 | 说明 |
-| ----- | ------ | ------- |
-| [preQuery(query: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetprequery) | [preQuerySync(query: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetprequerysync12) | 查询预处理。|
-| [query(query: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquery) | [querySync(query: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquerysync12) | 查询关键资产。|
-| [postQuery(handle: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetpostquery) | [postQuerySync(handle: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetpostquerysync12) | 查询后置处理。 |
+> **前置条件：**
+>
+> 业务HAP在app.json配置了一个群组ID：demo_group_id。
+> ```json
+> {
+>   "app": {
+>     其他配置项此处省略
+>     "asset-access-groups": [
+>       "demo_group_id"
+>     ]
+>   }
+> }
+> ```
+> 配置规则详见[配置规则](../../quick-start/app-configuration-file.md#配置文件标签)。
 
 ## 新增群组关键资产
 
-业务HAP在BMS配置了一个群组ID：demo_group_id。在群组中新增一条密码是demo_pwd，别名是demo_alias，附属信息是demo_label的关键资产，该关键资产在用户首次解锁设备后可被访问。
+在群组中新增一条密码是demo_pwd，别名是demo_alias，附属信息是demo_label的关键资产，该关键资产在用户首次解锁设备后可被访问。
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -42,7 +48,7 @@ try {
 
 ## 删除群组关键资产
 
-业务HAP在BMS配置了一个群组ID：demo_group_id。在群组中删除一条别名是demo_alias的关键资产。
+在群组中删除一条别名是demo_alias的关键资产。
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -55,7 +61,7 @@ function stringToArray(str: string): Uint8Array {
 }
 
 let query: asset.AssetMap = new Map();
-query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // 此处指定别名删除单条数据，也可不指定别名删除多条数据
+query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // 此处指定别名删除单条群组关键资产，也可不指定别名删除多条群组关键资产
 query.set(asset.Tag.GROUP_ID, stringToArray('demo_group_id'));
 try {
   asset.remove(query).then(() => {
@@ -71,7 +77,7 @@ try {
 
 ## 更新群组关键资产
 
-业务HAP在BMS配置了一个群组ID：demo_group_id。在群组中更新别名是demo_alias的关键资产，将关键资产明文更新为demo_pwd_new，附属属性更新成demo_label_new。
+在群组中更新别名是demo_alias的关键资产，将关键资产明文更新为demo_pwd_new，附属属性更新成demo_label_new。
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -103,7 +109,7 @@ try {
 
 ## 查询单条群组关键资产明文
 
-业务HAP在BMS配置了一个群组ID：demo_group_id。在群组中查询别名是demo_alias的关键资产明文。
+在群组中查询别名是demo_alias的关键资产明文。
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -144,7 +150,7 @@ try {
 
 ## 查询单条群组关键资产属性
 
-业务HAP在BMS配置了一个群组ID：demo_group_id。在群组中查询别名是demo_alias的关键资产属性。
+在群组中查询别名是demo_alias的关键资产属性。
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';

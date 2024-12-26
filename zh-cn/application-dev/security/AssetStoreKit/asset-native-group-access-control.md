@@ -1,8 +1,22 @@
-# 示例代码
+# 代码示例
+> **前置条件：**
+>
+> 业务HAP在app.json配置了一个群组ID：demo_group_id。
+> ```json
+> {
+>   "app": {
+>     其他配置项此处省略
+>     "asset-access-groups": [
+>       "demo_group_id"
+>     ]
+>   }
+> }
+> ```
+> 配置规则详见[配置规则](../../quick-start/app-configuration-file.md#配置文件标签)。
 
 ## 新增群组关键资产
 
-业务HAP在BMS配置了一个群组ID：demo_group_id。在群组中新增一条密码是demo_pwd，别名是demo_alias，附属信息是demo_label的关键资产，该关键资产在用户首次解锁设备后可被访问。
+在群组中新增一条密码是demo_pwd，别名是demo_alias，附属信息是demo_label的关键资产，该关键资产在用户首次解锁设备后可被访问。
 
 ```c
 #include <string.h>
@@ -38,7 +52,7 @@ void AddAsset() {
 
 ## 删除群组关键资产
 
-业务HAP在BMS配置了一个群组ID：demo_group_id。在群组中删除别名是demo_alias的关键资产。
+在群组中删除别名是demo_alias的关键资产。
 
 ```c
 #include <string.h>
@@ -67,7 +81,7 @@ void RemoveAsset() {
 
 ## 更新群组关键资产
 
-业务HAP在BMS配置了一个群组ID：demo_group_id。在群组中更新别名是demo_alias的关键资产，将关键资产明文更新为demo_pwd_new，附属信息更新成demo_label_new。
+在群组中更新别名是demo_alias的关键资产，将关键资产明文更新为demo_pwd_new，附属信息更新成demo_label_new。
 
 ```c
 #include <string.h>
@@ -105,7 +119,7 @@ void UpdateAsset() {
 
 ## 查询单条群组关键资产明文
 
-业务HAP在BMS配置了一个群组ID：demo_group_id。在群组中查询别名是demo_alias的关键资产明文。
+在群组中查询别名是demo_alias的关键资产明文。
 
 ```c
 #include <string.h>
@@ -137,7 +151,7 @@ void QueryAsset() {
 
 ## 查询单条群组关键资产属性
 
-业务HAP在BMS配置了一个群组ID：demo_group_id。查询别名是demo_alias的关键资产属性。
+查询别名是demo_alias的关键资产属性。
 
 ```c
 #include <string.h>

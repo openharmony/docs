@@ -54,7 +54,7 @@
 >
 > 本模块提供了异步和同步两套接口，以下为异步接口的使用示例，同步接口详见[API文档](../../reference/apis-asset-store-kit/js-apis-asset.md)。
 >
-> 在指定群组中新增一条关键资产的使用示例详见[新增群组关键资产](asset-js-group.md#新增群组关键资产)。
+> 在指定群组中新增一条关键资产的使用示例详见[新增群组关键资产](asset-js-group-access-control.md#新增群组关键资产)。
 
 新增一条密码是demo_pwd，别名是demo_alias，附属信息是demo_label的关键资产，该关键资产在用户首次解锁设备后可被访问。
 

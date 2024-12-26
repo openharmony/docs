@@ -53,7 +53,7 @@
 
 更新别名是demo_alias的关键资产，将关键资产明文更新为demo_pwd_new，附属信息更新成demo_label_new。
 
-在指定群组中更新一条关键资产的示例代码详见[更新群组关键资产](asset-native-group.md#更新群组关键资产)。
+在指定群组中更新一条关键资产的示例代码详见[更新群组关键资产](asset-native-group-access-control.md#更新群组关键资产)。
 
 1. 在CMake脚本中链接相关动态库
    ```txt

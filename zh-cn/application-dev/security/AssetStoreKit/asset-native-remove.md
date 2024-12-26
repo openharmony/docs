@@ -37,7 +37,7 @@
 
 删除别名是demo_alias的关键资产。
 
-在指定群组中删除一条关键资产的示例代码详见[删除群组关键资产](asset-native-group.md#删除群组关键资产)。
+在指定群组中删除一条关键资产的示例代码详见[删除群组关键资产](asset-native-group-access-control.md#删除群组关键资产)。
 
 1. 在CMake脚本中链接相关动态库
    ```txt
