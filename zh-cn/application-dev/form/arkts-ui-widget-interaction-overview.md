@@ -13,7 +13,7 @@ ArkTS卡片框架为提供方提供了[updateForm](../reference/apis-form-kit/js
 
 **1. 提供方主动刷新卡片流程示意：**
 
-![updateForm](figures/updateForm.png)
+![updateForm](figures/updateForm.PNG)
 
 卡片提供方应用运行过程中，如果识别到有要更新卡片数据的诉求，可以主动通过formProvider提供的updateForm接口更新卡片。
 
