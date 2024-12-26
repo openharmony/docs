@@ -9,9 +9,9 @@
   - [@ohos.i18n (国际化-I18n)(系统接口)](js-apis-i18n-sys.md)
   <!--DelEnd-->
   - global
-    - [rawFileDescriptor](rawFileDescriptor.md) 
-    - [resource](resource.md)
-    - [sendableResource](sendableResource.md)
+    - [RawFileDescriptor](rawFileDescriptor.md) 
+    - [Resource](resource.md)
+    - [SendableResource](sendableResource.md)
 - C API
   - 模块
     - [Rawfile](rawfile.md)
