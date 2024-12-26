@@ -1342,11 +1342,11 @@ linux环境可以选择开启非root用户USB设备操作权限，方法如下�
 
 ## hdc错误码
 
-### E003001 shell指定的应用名称非法
+### E003001 （命令行）指定的应用名称非法
 
 **错误信息**
 
-Invalid bundle name:[bundlename]
+Invalid bundle name: _bundlename_
 
 **错误描述**
 
@@ -1364,18 +1364,30 @@ Invalid bundle name:[bundlename]
 
 * 场景一：确认命令指定的应用已安装到设备上。
 
-   a.可执行`hdc shell "bm dump -a|grep [bundlename]"`查询是否已安装到设备上，预期返回信息为 _bundlename_；
+   a.可执行`hdc shell "bm dump -a | grep bundlename"`查询是否已安装到设备上，预期返回信息为 _bundlename_；
+   
+   以应用名`com.example.myapplication`为例，查询命令如下：
+
+   ```shell
+   hdc shell "bm dump -a | grep com.example.myapplication"
+   ```
+
+   如应用已安装到设备上，预期返回信息：
+
+   ```shell
+   com.example.myapplication
+   ```
 
    b.如应用为debug应用，但未安装到设备上，可执行`hdc install [app_path]`安装应用；
 
    c.如应用不是debug应用，而是release类型的应用，将不支持指定 _bundlename_ 执行命令相关功能。
 
-* 场景二：确认命令指定的应用是debug应用。
+* 场景二：确认命令指定的应用是debug应用，可执行`hdc shell "bm dump -n bundlename | grep appProvisionType"`查询应用是否为debug应用，预期返回信息为"appProvisionType": "debug"。
 
-   可执行如下命令查询是否为debug应用：
+   以应用名`com.example.myapplication`为例，可执行如下命令查询是否为debug应用：
 
    ```shell
-   hdc shell "bm dump -n [bundlename] | grep appProvisionType"
+   hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
    ```
 
    如应用为debug应用，预期返回信息：
@@ -1388,11 +1400,15 @@ Invalid bundle name:[bundlename]
 
 * 场景三：确定命令指定的应用已启动。
 
-   a.启动应用后，系统会挂载相应的资源目录，可执行如下命令查询是否已挂载资源目录：
+   a.启动应用后，系统会挂载相应的资源目录，可执行`hdc shell "mount |grep bundlename"`查询应用启动后的资源目录挂载情况。
+
+   以应用名`com.example.myapplication`为例，可执行如下命令查询是否已挂载资源目录：
 
    ```shell
-   hdc shell "mount |grep [bundlename]"
+   hdc shell "mount |grep com.example.myapplication"
    ```
+
+   如已挂载相应的资源目录，预期返回多行挂载信息（返回内容以实际挂载情况为准，此处不作展示）。
 
    如未挂载相应的资源目录，预期无返回信息。
 
@@ -1406,7 +1422,7 @@ Invalid bundle name:[bundlename]
 
    更多详细用法请参考[aa命令介绍](../tools/aa-tool.md)。
 
-### E003002 shell指定的参数不支持交互模式命令行
+### E003002 命令行指定的参数不支持交互模式
 
 **错误信息**
 
@@ -1414,33 +1430,37 @@ Unsupport interactive shell command option
 
 **错误描述**
 
-命令`hdc shell [-b bundlename] [command]`不支持交互模式命令行。
+命令`hdc shell [-b bundlename] [command]`不支持“交互模式”命令行。
 
 **可能原因**
 
- _command_ 参数为空。
+场景一：期望指定命令行参数，如`-b bundlename`，以此执行“非交互模式”命令行，但指定的 _command_ 参数为空。
+
+场景二：期望进入交互模式命令行，但是指定了不支持“交互模式”命令行的参数。
 
 **处理步骤**
 
-确认命令`hdc shell [-b bundlename] [command]`的[command]参数不为空。
+场景一：确认命令`hdc shell [-b bundlename] [command]`指定了合适的参数，以此执行“非交互模式”命令行，其中[command]参数不为空。
+
+场景二：请移除不支持“交互模式”命令行的参数，以`hdc shell`执行“交互模式”命令行。
 
 ### E003003 不支持的命令行参数
 
 **错误信息**
 
-Unsupported shell option:[option]
+Unsupported shell option: _option_
 
 **错误描述**
 
-命令`hdc shell [-b bundlename] [command]`存在不支持的命令行参数。。
+命令`hdc shell [-b bundlename] [command]`存在不支持的命令行参数 _option_ 。
 
 **可能原因**
 
-命令`[-b bundlename]`存在不支持的命令行参数，当前版本支持的命令行参数仅包含`-b`。
+命令`hdc shell [-b bundlename] [command]`指定了如`-f`、`-B`等不支持的命令行参数（参数区分大小写）。
 
 **处理步骤**
 
-确认命令`[-b bundlename]`的参数是否正确。
+请使用当前版本支持的命令行参数，如`-b`参数。
 
 ### E003004 存在设备不支持的命令行参数
 
@@ -1460,11 +1480,11 @@ Device does not supported this shell command
 
 升级设备系统版本，`hdc shell -b`参数选项为API16支持的特性。
 
-### E003005 缺少参数
+### E003005 （命令行）缺少参数
 
 **错误信息**
 
-The parameter is missing, correct your input by referring below:
+The parameter is missing, correct your input by referring below: _Usage_
 
 **错误描述**
 
@@ -1472,13 +1492,13 @@ The parameter is missing, correct your input by referring below:
 
 **可能原因**
 
-命令未指定应用名称( _bundlename_ )参数。
+命令指定-b选项时，缺少 _bundlename_、 _command_ 参数，参数详细释义参考[执行交互命令介绍](#执行交互命令)。
 
 **处理步骤**
 
 确认命令的 _bundlename_ 、 _command_ 参数均不为空。
 
-### E005101 指定的应用名称非法
+### E005101 （文件传输）指定的应用名称非法
 
 **错误信息**
 
@@ -1486,7 +1506,7 @@ Invalid bundle name: _bundlename_
 
 **错误描述**
 
-命令`hdc file send/recv -b bundlename localpath remotepath`指定的 _bundlename_ 不是debug（可调试）应用，或应用目录不存在。
+命令`hdc file send/recv [-b bundlename] [localpath] [remotepath]`指定的 _bundlename_ 不是debug（可调试）应用，或应用目录不存在。
 
 **可能原因**
 
@@ -1504,9 +1524,9 @@ Remote path: _remotepath_ is invalid, it is out of the application directory.
 
 **错误描述**
 
-命令`hdc file send -b bundlename localpath remotepath`指定的 _remotepath_ 表示的路径不存在或者已超出应用数据目录。
+命令`hdc file send [-b bundlename] [localpath] [remotepath]`指定的 _remotepath_ 表示的路径不存在或者已超出应用数据目录。
 
-命令`hdc file recv -b bundlename remotepath localpath`指定的 _remotepath_ 表示的路径不存在或者已超出应用数据目录。
+命令`hdc file recv [-b bundlename] [remotepath] [localpath]`指定的 _remotepath_ 表示的路径不存在或者已超出应用数据目录。
 
 **可能原因**
 
@@ -1518,17 +1538,19 @@ Remote path: _remotepath_ is invalid, it is out of the application directory.
 
 检查参数 _remotepath_ 指定的应用数据目录相对路径是否真实存在。
 
-### E005003 缺少参数
+### E005003 （文件传输）缺少参数
 
 **错误信息**
 
-The parameter is missing, correct your input by referring below
+The parameter is missing, correct your input by referring below:
+
+_Usage_
 
 **错误描述**
 
-命令`hdc file send -b bundlename localpath remotepath`缺少必要的参数。
+命令`hdc file send [-b bundlename] [localpath] [remotepath]`缺少必要的参数。
 
-命令`hdc file recv -b bundlename remotepath localpath`缺少必要的参数。
+命令`hdc file recv [-b bundlename] [remotepath] [localpath]`缺少必要的参数。
 
 **可能原因**
 
@@ -1550,9 +1572,9 @@ hdc file send/recv 命令带-b选项时，SDK中的hdc或设备系统版本不�
 
 **可能原因**
 
-* 场景一：执行命令`hdc file send -b bundlename localpath remotepath`时，设备系统版本不支持-b选项。
+* 场景一：执行命令`hdc file send [-b bundlename] [localpath] [remotepath]`时，设备系统版本不支持-b选项。
 
-* 场景二：执行命令`hdc file recv -b bundlename remotepath localpath`时，SDK中的hdc不支持-b选项。
+* 场景二：执行命令`hdc file recv [-b bundlename] [remotepath] [localpath]`时，SDK中的hdc不支持-b选项。
 
 **处理步骤**
 
