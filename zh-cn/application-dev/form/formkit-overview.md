@@ -8,7 +8,8 @@ Form Kit（卡片开发框架）提供了一种在桌面、锁屏等系统入口
 
 ## 服务卡片架构
 **图1** 服务卡片架构  
-<img src="figures/formKit_l0.png" alt="WidgetArchitecture" style="zoom:100%" />
+
+![formKit_l0](figures/formKit_l0.PNG)
 
 **卡片场景中涉及到的基本概念：**
 - 卡片使用方：如上图中的桌面，作为显示卡片内容的宿主应用，用于与用户直接进行交互，完成卡片添加、删除、显示功能，并能控制卡片在宿主中具体展示的位置。
@@ -20,6 +21,7 @@ Form Kit（卡片开发框架）提供了一种在桌面、锁屏等系统入口
 卡片的常见使用步骤如下：
 
 **图2** 卡片常见使用步骤
+
 ![WidgetUse](figures/WidgetUse.png)
 
 1. 长按“桌面图标”，弹出操作菜单。
