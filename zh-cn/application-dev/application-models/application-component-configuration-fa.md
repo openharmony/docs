@@ -30,7 +30,7 @@ FA模型不支持直接配置应用图标和标签，会以符合规则的PageAb
 FA模型的入口图标和标签是Page类型的Ability配置的icon和label。
 
 PageAbility的图标和标签配置请参见[PageAbility组件配置](pageability-configuration.md)。需在config.json文件的abilities标签下做如下配置：
-* 配置icon字段，标签值为资源文件的索引。图标需要在配置IDE的资源文件中，路径为/resource/base/media。取值示例：$media:ability_icon。
+* 配置icon字段，标签值为资源文件的索引。图标需要在配置DevEco Studio的资源文件中，路径为/resource/base/media。取值示例：$media:ability_icon。
 * 配置label字段，标签值为资源文件的索引，标识Ability对用户显示的名称。取值可以是Ability名称，也可以是对该名称的资源索引，以支持多语言。
 
 如果在该PageAbility的skills属性中，actions的取值包含 "action.system.home"，entities取值中包含"entity.system.home"，则该Ability的icon和label将同时作为应用的icon和label。如果存在多个符合条件的Ability，则取位置靠前的Ability的icon和label作为应用的icon和label。图标和标签配置可以参考[abilities标签说明](../quick-start/module-structure.md)。
