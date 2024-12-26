@@ -341,34 +341,41 @@ lastName
 
 **哪些属性名应该被保留?**
 
-为了保障混淆的正确性，建议保留所有不通过点语法访问的属性。
-
-例子:
+1.为了保障混淆的正确性，建议保留所有不通过点语法访问的属性。例如，通过字符串访问的对象属性：
 
 ```
 var obj = {x0: 0, x1: 0, x2: 0};
 for (var i = 0; i <= 2; i++) {
-    console.info(obj['x' + i]);  // x0, x1, x2 应该被保留
+    console.info(obj['x' + i]);  // x0, x1, x2应该被保留
 }
 
-Object.defineProperty(obj, 'y', {});  // y 应该被保留
+Object.defineProperty(obj, 'y', {});  // y应该被保留
+Object.getOwnPropertyDescriptor(obj, 'y');  // y应该被保留
 console.info(obj.y);
 
 obj.s = 0;
 let key = 's';
-console.info(obj[key]);        // s 应该被保留
+console.info(obj[key]);        // key对应的变量值s应该被保留
 
-obj.u = 0;
-console.info(obj.u);           // u 可以被正确地混淆
-
-obj.t = 0;
-console.info(obj['t']);        // 在开启字符串字面量属性名混淆时t和't'会被正确地混淆，但是建议保留
-
-obj['v'] = 0;
-console.info(obj['v']);        // 在开启字符串字面量属性名混淆时'v'会被正确地混淆，但是建议保留
+obj.t1 = 0;
+console.info(obj['t' + '1']);        // t1应该被保留
 ```
 
-对于间接导出的场景，例如`export MyClass`和`let a = MyClass; export {a};`，如果不想混淆它们的属性名，那么需要使用[保留选项](#保留选项)来保留这些属性名。另外，对于直接导出的类或对象的属性的属性名，例如下面例子中的`name`和`age`, 如果不想混淆它们，那么也需要使用[保留选项](#保留选项)来保留这些属性名。
+对于如下的字符串常量形式的属性调用，可以选择性保留：
+
+```
+// 混淆配置：
+// -enable-property-obfuscation
+// -enable-string-property-obfuscation
+
+obj.t = 0;
+console.info(obj['t']); // 此时，'t'会被正确混淆，t可以选择性保留
+
+obj.['v'] = 0;
+console.info(obj['v']); // 此时，'v'会被正确混淆，v可以选择性保留
+```
+
+2.对于间接导出的场景，例如`export MyClass`和`let a = MyClass; export {a};`，如果不想混淆它们的属性名，那么需要使用[保留选项](#保留选项)来保留这些属性名。另外，对于直接导出的类或对象的属性的属性名，例如下面例子中的`name`和`age`, 如果不想混淆它们，那么也需要使用[保留选项](#保留选项)来保留这些属性名。
 
 ```
 export class MyClass {
@@ -376,30 +383,49 @@ export class MyClass {
 }
 ```
 
-so库的API（例如示例中的foo），如果要在ArkTS/TS/JS文件中使用需手动保留API名称。
+3.so库的API（例如示例中的foo），如果要在ArkTS/TS/JS文件中使用需手动保留API名称。
 
 ```
 import testNapi from 'library.so'
 testNapi.foo() // foo需要保留，示例如：-keep-property-name foo
 ```
 
-使用到的json文件中的字段，需要手动保留。
+4.JSON数据解析及对象序列化时，需要保留使用到的字段，例如：
 
 ```
-const jsonData = ('./1.json')
-let jsonStr = JSON.parse(jsonData)
-let jsonObj = jsonStr.jsonProperty  // jsonProperty 需要被保留
+// 示例JSON文件结构(test.json)：
+/*
+{
+  "jsonProperty": "value",
+  "otherProperty": "value2"
+}
+*/
+
+const jsonData = fs.readFileSync('./test.json', 'utf8');
+let jsonObj = JSON.parse(jsonData);
+let jsonProp = jsonObj.jsonProperty; // jsonProperty应该被保留
+
+class jsonTest {
+  prop1: string = '';
+  prop2: number = 0
+}
+
+let obj = new jsonTest();
+const jsonStr = JSON.stringify(obj); // prop1、prop2会被混淆，应该被保留
 ```
 
-使用到的数据库相关的字段，需要手动保留。
+5.使用到的数据库相关的字段，需要手动保留。例如，数据库键值对类型（ValuesBucket）中的属性：
 
 ```
-const dataToInsert = {  
-  value1: 'example1',   // value1 需要被保留
-};
+const valueBucket: ValuesBucket = {
+  'ID1': ID1, // ID1应该被保留
+  'NAME1': name, // NAME1应该被保留
+  'AGE1': age, // AGE1应该被保留
+  'SALARY1': salary // SALARY1应该被保留
+}
 ```
 
-源码中自定义装饰器修饰了成员变量、成员方法、参数，同时其源码编译的中间产物为js文件时（如编译release源码HAR或者源码包含@ts-ignore、@ts-nocheck），这些装饰器所在的成员变量/成员方法名称需要被保留。这是由于ts高级语法特性转换为js标准语法时，将上述装饰器所在的成员变量/成员方法名称硬编码为字符串常量。
+6.源码中自定义装饰器修饰了成员变量、成员方法、参数，同时其源码编译的中间产物为js文件时（如编译release源码HAR或者源码包含@ts-ignore、@ts-nocheck），这些装饰器所在的成员变量/成员方法名称需要被保留。这是由于ts高级语法特性转换为js标准语法时，将上述装饰器所在的成员变量/成员方法名称硬编码为字符串常量。
 
 示例：
 
@@ -487,14 +513,14 @@ entry
 const module1 = require('./file1')   // file1 应该被保留
 ```
 
-2.对于动态引用方式，由于无法识别`import`函数中的参数是否为路径，因此这种情况下路径应该被保留。
+2.对于动态导入的路径名，由于无法识别`import`函数中的参数是否为路径，因此这种情况下路径应该被保留。
 
 ```
-const moduleName = './file2'         // file2 应该被保留
+const moduleName = './file2'         // moduleName对应的路径名file2应该被保留
 const module2 = import(moduleName)
 ```
 
-3.在使用[动态路由](../ui/arkts-navigation-navigation.md#跨包动态路由)进行路由跳转时，传递给路由的路径应该被保留。动态路由提供系统路由表和自定义路由表两种方式。若采用自定义路由表进行跳转，配置白名单的方式与上述第二种动态引用场景一致。而若采用系统路由表进行跳转，则需要将模块下`resources/base/profile/route_map.json`文件中`pageSourceFile`字段对应的路径添加到白名单中。
+3.在使用[动态路由](../ui/arkts-navigation-navigation.md#跨包动态路由)进行路由跳转时，传递给动态路由的路径应该被保留。动态路由提供系统路由表和自定义路由表两种方式。若采用自定义路由表进行跳转，配置白名单的方式与上述第二种动态引用场景一致。而若采用系统路由表进行跳转，则需要将模块下`resources/base/profile/route_map.json`文件中`pageSourceFile`字段对应的路径添加到白名单中。
 
 ```
   {
