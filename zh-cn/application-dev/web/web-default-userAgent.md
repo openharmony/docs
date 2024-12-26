@@ -1,5 +1,5 @@
 # UserAgent开发指导
-
+<!--RP1-->
 UserAgent（简称UA）是一个特殊的字符串，它包含了设备类型、操作系统及版本等关键信息。如果页面无法正确识别UA，可能会导致一系列异常情况，例如页面布局错误、渲染问题以及逻辑错误等。
 
 ## 默认UserAgent结构
@@ -172,3 +172,4 @@ OpenHarmony设备的识别主要通过UserAgent中的系统、系统版本和设
 ### 如何模拟OpenHarmony操作系统的UserAgent进行前端调试
 
 在Windows/Mac/Linux等操作系统中，可以通过Chrome/Edge/Firefox等浏览器DevTools提供的UserAgent复写能力，模拟OpenHarmony UserAgent。
+<!--RP1End-->
