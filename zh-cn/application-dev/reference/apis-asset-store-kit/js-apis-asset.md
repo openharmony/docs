@@ -832,6 +832,12 @@ type Value = boolean | number | Uint8Array;
 
 **系统能力：** SystemCapability.Security.Asset
 
+| 类型    | 说明                                             |
+| ------- | ------------------------------------------------|
+| boolean | 表示值类型为布尔类型，取值范围为true或false。      |
+| number  | 表示值类型为数字，取值范围为Tag对应的枚举值或数值。 |
+| Uint8Array | 表示值类型为字节数组，内容由业务自定义。        |
+
 ## AssetMap
 
 type AssetMap = Map\<Tag, Value>
@@ -841,6 +847,10 @@ type AssetMap = Map\<Tag, Value>
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Asset
+
+| 类型             | 说明                                                              |
+| ---------------- | ------------------------------------------------------------------|
+| Map\<Tag, Value> | 表示值类型是Map，键值对取值范围分别参考[Tag](#tag)和[Value](#value)。|
 
 ## Accessibility
 
