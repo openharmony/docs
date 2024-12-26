@@ -297,33 +297,27 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 ## RawFileDescriptor<sup>8+</sup>
 
-表示rawfile文件所在hap的descriptor信息。
+type RawFileDescriptor = _RawFileDescriptor
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
-| 名称     | 类型    | 可读   | 可写  | 说明           |
-| ------ | ------  | ---- | ---- | ------------------ |
-| fd     | number  | 是    | 否 | 文件描述符。 |
-| offset | number  | 是    | 否 | 起始偏移量。      |
-| length | number  | 是    | 否 | 文件长度。       |
+| 类型    | 说明   |
+| ------  | ---- | 
+|RawFileDescriptor|表示rawfile文件所在hap的descriptor信息。|
 
 ## Resource<sup>9+</sup>
 
-表示的资源信息。
+type Resource = _Resource
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
 
-| 名称         | 类型     | 可读   | 可写  |说明          |
-| ---------- | ------ | ----- | ----  | ---------------|
-| bundleName | string | 是    | 否 | 应用的bundle名称。 |
-| moduleName | string | 是    | 否 | 应用的module名称。 |
-| id         | number | 是    | 否 | 资源的id值。      |
-| params     | any[] | 是    | 否 | 其他资源参数（可选）。      |
-| type       | number | 是    | 否 | 资源的类型（可选）。      |
+| 类型    | 说明   |
+| ------  | ---- | 
+|RawFileDescriptor|表示资源信息。|
 
 ## ResourceManager
 
