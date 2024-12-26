@@ -521,7 +521,7 @@
 | void [OH_ArkUI_NodeUtils_RemoveCustomProperty](#oh_arkui_nodeutils_removecustomproperty) ([ArkUI_NodeHandle](#arkui_nodehandle) node, const char \*name) | 移除组件已设置的自定义属性。  | 
 | int32_t [OH_ArkUI_NodeUtils_GetCustomProperty](#oh_arkui_nodeutils_getcustomproperty) ([ArkUI_NodeHandle](#arkui_nodehandle) node, const char \*name, ArkUI_CustomProperty \*\*handle) | 获取组件的自定义属性的值。  | 
 | [ArkUI_NodeHandle](#arkui_nodehandle) [OH_ArkUI_NodeUtils_GetParentInPageTree](#oh_arkui_nodeutils_getparentinpagetree) ([ArkUI_NodeHandle](#arkui_nodehandle) node) | 获取父节点，可获取由ArkTs创建的组件节点。  | 
-| int32_t [OH_ArkUI_NodeUtils_GetActiveChildrenInfo](#oh_arkui_nodeutils_getactivechildreninfo) ([ArkUI_NodeHandle](#arkui_nodehandle) head, ArkUI_ActiveChildrenInfo \*\*handle) | 获取某个节点所有活跃的子节点。Span和ImageSpan将不会被计入子结点的统计中。  | 
+| int32_t [OH_ArkUI_NodeUtils_GetActiveChildrenInfo](#oh_arkui_nodeutils_getactivechildreninfo) ([ArkUI_NodeHandle](#arkui_nodehandle) head, ArkUI_ActiveChildrenInfo \*\*handle) | 获取某个节点所有活跃的子节点。Span将不会被计入子结点的统计中。  | 
 | [ArkUI_NodeHandle](#arkui_nodehandle) [OH_ArkUI_NodeUtils_GetCurrentPageRootNode](#oh_arkui_nodeutils_getcurrentpagerootnode) ([ArkUI_NodeHandle](#arkui_nodehandle) node) | 获取当前页面的根节点。  | 
 | bool [OH_ArkUI_NodeUtils_IsCreatedByNDK](#oh_arkui_nodeutils_iscreatedbyndk) ([ArkUI_NodeHandle](#arkui_nodehandle) node) | 获取组件是否由C-API创建的标签。  | 
 | int32_t [OH_ArkUI_NodeUtils_GetNodeType](#oh_arkui_nodeutils_getnodetype) ([ArkUI_NodeHandle](#arkui_nodehandle) node) | 获取节点的类型。  | 
@@ -12594,7 +12594,7 @@ int32_t OH_ArkUI_NodeUtils_GetActiveChildrenInfo (ArkUI_NodeHandle head, ArkUI_A
 ```
 **描述：**
 
-获取某个节点所有活跃的子节点。
+获取某个节点所有活跃的子节点。Span将不会被计入子结点的统计中。
 
 **起始版本：** 14
 
