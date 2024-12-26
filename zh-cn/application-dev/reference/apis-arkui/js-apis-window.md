@@ -10816,7 +10816,7 @@ promise.then(() => {
 });
 ```
 
-### setRaiseByClickEnabled<sup>10+</sup>
+### setRaiseByClickEnabled<sup>14+</sup>
 
 setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
 
