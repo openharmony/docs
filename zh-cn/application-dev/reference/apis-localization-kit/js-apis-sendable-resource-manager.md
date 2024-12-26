@@ -118,7 +118,7 @@ try {
 
 type SendableResource = _SendableResource
 
-**系统能力：**SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 | 类型         | 说明     |
 | ---------- | ------ | 
