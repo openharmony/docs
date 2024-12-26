@@ -17,4 +17,4 @@
 
 - [页面转场动画（不推荐）](arkts-page-transition-animation.md)：页面的路由转场方式，可以通过在pageTransition函数中自定义页面入场和页面退场的转场动效。为了实现更好的转场效果，推荐使用[导航转场](arkts-navigation-transition.md)和[模态转场](arkts-modal-transition.md)。
 
-- [旋转屏动画增强](arkts-rotation-transition-animation.md)：在原旋转屏动画基础上，可配置渐隐和渐现的转场效果。
+- [旋转屏动画](arkts-rotation-transition-animation.md)：旋转屏动画主要分为两类：[布局切换的旋转屏动画](arkts-rotation-transition-animation.md#布局切换的旋转屏动画)和[透明度变化的旋转屏动画](arkts-rotation-transition-animation.md#透明度变化的旋转屏动画)，旨在实现屏幕显示方向变化时的自然过渡。

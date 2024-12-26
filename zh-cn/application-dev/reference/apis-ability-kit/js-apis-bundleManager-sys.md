@@ -3626,6 +3626,8 @@ getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): Bund
 
 以同步方法根据给定的bundleName、bundleFlags和userId获取BundleInfo。
 
+获取调用方自己的信息时不需要权限。
+
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
@@ -3680,6 +3682,8 @@ try {
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
 以同步方法根据给定的bundleName、bundleFlags获取BundleInfo。
+
+获取调用方自己的信息时不需要权限。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 

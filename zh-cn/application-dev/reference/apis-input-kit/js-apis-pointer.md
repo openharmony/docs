@@ -575,7 +575,7 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
 | MIDDLE_BTN_WEST                  | 30   | 向西滚动   |![MID_Btn_West.png](./figures/MID_Btn_West.png)|
 | MIDDLE_BTN_SOUTH                 | 31   | 向南滚动   | ![MID_Btn_South.png](./figures/MID_Btn_South.png)            |
 | MIDDLE_BTN_NORTH                 | 32   | 向北滚动   |![MID_Btn_North.png](./figures/MID_Btn_North.png)|
-| MIDDLE_BTN_NORTH_SOUTH           | 33   | 向北南滚动  |![MID_Btn_North_South.png](./figures/MID_Btn_North_South.png)|
+| MIDDLE_BTN_NORTH_SOUTH           | 33   | 向南北滚动  |![MID_Btn_North_South.png](./figures/MID_Btn_North_South.png)|
 | MIDDLE_BTN_NORTH_EAST            | 34   | 向东北滚动  |![MID_Btn_North_East.png](./figures/MID_Btn_North_East.png)|
 | MIDDLE_BTN_NORTH_WEST            | 35   | 向西北滚动  |![MID_Btn_North_West.png](./figures/MID_Btn_North_West.png)|
 | MIDDLE_BTN_SOUTH_EAST            | 36   | 向东南滚动  |![MID_Btn_South_East.png](./figures/MID_Btn_South_East.png)|
@@ -586,6 +586,7 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
 | CURSOR_CIRCLE<sup>10+</sup> | 41 | 圆形光标 |![Cursor_Circle.png](./figures/Cursor_Circle.png)|
 | LOADING<sup>10+</sup> | 42 | 正在载入动画光标 |![Loading.png](./figures/Loading.png)<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | RUNNING<sup>10+</sup> | 43 | 后台运行中动画光标 |![Running.png](./figures/Running.png)<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| MIDDLE_BTN_EAST_WEST<sup>16+</sup>           | 44   | 向东西滚动 |![MID_Btn_East_West.png](./figures/MID_Btn_East_West.png)|
 
 ## pointer.setCustomCursor<sup>11+</sup>
 

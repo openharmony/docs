@@ -2319,6 +2319,75 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
   }
   ```
 
+### getPropertyByCredentialId<sup>14+</sup>
+
+getPropertyByCredentialId(credentialId: Uint8Array, keys: Array&lt;GetPropertyType&gt;): Promise&lt;ExecutorProperty&gt;;
+
+基于凭据id获取关联执行器的指定属性信息。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**参数：**
+
+| 参数名    | 类型                                                   | 必填 | 说明                                |
+| -------- | ------------------------------------------------------ | ---- | ---------------------------------- |
+| credentialId  | Uint8Array | 是   | 指示凭据索引。 |
+| keys     | Array&lt;[GetPropertyType](#getpropertytype8)&gt; | 是    | 指示要查询的属性类型数组。 |
+
+**返回值：**
+
+| 类型                                                              | 说明                                                 |
+| :---------------------------------------------------------------- | :-------------------------------------------------- |
+| Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise对象，返回执行器的属性信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid keys. |
+| 12300102 | The credential does not exist. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
+  let credInfo: osAccount.EnrolledCredInfo[] = [];
+  try {
+    credInfo = await userIDM.getAuthInfo(osAccount.AuthType.PRIVATE_PIN);
+  } catch (e) {
+    console.log('getAuthInfo exception = ' + JSON.stringify(e));
+    return;
+  }
+  if (credInfo.length == 0) {
+    console.log('no credential infos');
+    return;
+  }
+  let testCredentialId: Uint8Array = credInfo[0].credentialId;
+  let keys: Array<osAccount.GetPropertyType> = [
+    osAccount.GetPropertyType.AUTH_SUB_TYPE,
+    osAccount.GetPropertyType.REMAIN_TIMES,
+    osAccount.GetPropertyType.FREEZING_TIME
+  ];
+  try {
+    let userAuth = new osAccount.UserAuth();
+    userAuth.getPropertyByCredentialId(testCredentialId, keys).then((result: osAccount.ExecutorProperty) => {
+      console.log('getPropertyByCredentialId result = ' + JSON.stringify(result));
+    }).catch((err: BusinessError) => {
+      console.log('getPropertyByCredentialId error = ' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('getPropertyByCredentialId exception = ' + JSON.stringify(e));
+  }
+  ```
+
 ### setProperty<sup>8+</sup>
 
 setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;void&gt;): void
@@ -5402,6 +5471,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | FACE  | 2     | 表示脸部认证类型。|
 | FINGERPRINT<sup>10+</sup>   | 4     | 表示指纹认证类型。 |
 | RECOVERY_KEY<sup>12+</sup> | 8 | 表示键恢复类型。 |
+| PRIVATE_PIN<sup>14+</sup> | 16 | 表示隐私PIN类型。 |
 | DOMAIN<sup>9+</sup>  | 1024     | 表示域认证类型。|
 
 ## AuthSubType<sup>8+</sup>
@@ -5419,6 +5489,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | PIN_MIXED  | 10002 | 表示自定义混合凭据。 |
 | PIN_FOUR<sup>12+</sup>   | 10003 | 表示4位凭证。 |
 | PIN_PATTERN<sup>12+</sup>  | 10004 | 表示图案凭据。 |
+| PIN_QUESTION<sup>14+</sup>  | 10005 | 表示密保问题凭据。 |
 | FACE_2D    | 20000 | 表示2D 人脸凭证。   |
 | FACE_3D    | 20001 | 表示3D 人脸凭证。   |
 | FINGERPRINT_CAPACITIVE<sup>10+</sup>    | 30000 | 表示电容式指纹。   |
@@ -5692,6 +5763,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称     | 值   | 说明       |
 | -------- | --- | ---------- |
 | UNLOCK   | 1   | 解锁意图。 |
+| SILENT_AUTH<sup>14+</sup>  | 2   | 静默认证意图。 |
+| QUESTION_AUTH<sup>14+</sup>   | 3   | 密保问题认证意图。 |
 
 ## RemoteAuthOptions<sup>12+</sup>
 

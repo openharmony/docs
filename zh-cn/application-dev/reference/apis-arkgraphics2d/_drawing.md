@@ -62,7 +62,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct  [OH_Drawing_String](_o_h___drawing___string.md) | 采用UTF-16BE（大端模式）编码的字符串信息结构体。 |
+| struct  [OH_Drawing_String](_o_h___drawing___string.md) | 采用UTF-16编码的字符串信息结构体。 |
 | struct  [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) | 结构体用于描述位图像素的格式，包括颜色类型和透明度类型 | 
 | struct  [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) | 定义字体度量信息的结构体。 | 
 | struct  [OH_Drawing_GpuContextOptions](_o_h___drawing___gpu_context_options.md) | 定义有关图形处理器上下文的选项。 | 
@@ -89,7 +89,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [OH_Drawing_String](_o_h___drawing___string.md) [OH_Drawing_String](#oh_drawing_string) | 采用UTF-16BE（大端模式）编码的字符串信息结构体。 |
+| typedef struct [OH_Drawing_String](_o_h___drawing___string.md) [OH_Drawing_String](#oh_drawing_string) | 采用UTF-16编码的字符串信息结构体。 |
 | typedef enum [OH_Drawing_SystemFontType](#oh_drawing_systemfonttype) [OH_Drawing_SystemFontType](#oh_drawing_systemfonttype) | 字体类型的枚举。 |
 | typedef bool(\* [Drawing_CaretOffsetsCallback](#drawing_caretoffsetscallback)) (double offset, int32_t index, bool leadingEdge) | 用户自定义的回调函数。将文本行对象中每个字符的偏移量、索引值作为参数传递给用户自定义的回调函数。 |
 | typedef struct [OH_Drawing_LineTypography](#oh_drawing_linetypography) [OH_Drawing_LineTypography](#oh_drawing_linetypography) | 用于从一段文字中提取单行数据进行排版。 |
@@ -836,7 +836,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 ### OH_Drawing_Array
 
 ```
-typedef struct OH_Drawing_ArrayOH_Drawing_Array
+typedef struct OH_Drawing_Array OH_Drawing_Array
 ```
 
 **描述**
@@ -850,7 +850,7 @@ typedef struct OH_Drawing_ArrayOH_Drawing_Array
 ### OH_Drawing_LineTypography
 
 ```
-typedef struct OH_Drawing_LineTypographyOH_Drawing_LineTypography
+typedef struct OH_Drawing_LineTypography OH_Drawing_LineTypography
 ```
 
 **描述**
@@ -862,7 +862,7 @@ typedef struct OH_Drawing_LineTypographyOH_Drawing_LineTypography
 ### OH_Drawing_TextTab
 
 ```
-typedef struct OH_Drawing_TextTabOH_Drawing_TextTab
+typedef struct OH_Drawing_TextTab OH_Drawing_TextTab
 ```
 
 **描述**
@@ -900,12 +900,12 @@ typedef bool(* Drawing_CaretOffsetsCallback) (double offset, int32_t index, bool
 ### OH_Drawing_String
 
 ```
-typedef struct OH_Drawing_StringOH_Drawing_String
+typedef struct OH_Drawing_String OH_Drawing_String
 ```
 
 **描述**
 
-采用UTF-16BE（大端模式）编码的字符串信息结构体。
+采用UTF-16编码的字符串信息结构体。
 
 **起始版本：** 14
 

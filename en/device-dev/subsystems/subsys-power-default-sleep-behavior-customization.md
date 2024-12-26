@@ -4,7 +4,7 @@
 
 ### Introduction
 
-By default, after a device screen is turned off, OpenHarmony starts the running lock loop detection thread and then enters the hibernation state. For different devices, the mode of turning off the screen is different, which can be closing the lid, setting a timeout, or pressing the power button. Besides, the default hibernation behavior is also different, which can be performing no action, powering off the screen, or entering the hibernation state. To address this issue, OpenHarmony provides the default hibernation behavior customization function, allowing you to customize the default hibernation behavior depending on your hardware specifications.
+By default, after a device screen is turned off, OpenHarmony starts the running lock loop detection thread and then enters the hibernation state. For different devices, the mode of turning off the screen is different, which can be closing the lid, setting a timeout, covering the screen, or pressing the power button. Besides, the default hibernation behavior is also different, which can be performing no action, powering off the screen, or entering the hibernation state. To address this issue, OpenHarmony provides the default hibernation behavior customization function, allowing you to customize the default hibernation behavior depending on your hardware specifications.
 
 ### Constraints
 
@@ -56,6 +56,10 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
         "switch": {
             "action": 1,
             "delayMs": 0
+        },
+        "tp_cover": {
+            "action": 1,
+            "delayMs": 0
         }
     }
     ```
@@ -68,6 +72,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     | timeout | Hibernation by timeout|
     | lid | Hibernation by lid|
     | switch | Hibernation by switch|
+    | tp_cover | Hibernation by screen covering|
 
     **Table 2** Description of the hibernation source configuration
 
@@ -146,6 +151,10 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
             "delayMs": 0
         },
         "switch": {
+            "action": 1,
+            "delayMs": 0
+        },
+        "tp_cover": {
             "action": 1,
             "delayMs": 0
         }

@@ -723,6 +723,7 @@ struct Index {
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
       Button('注册屏幕像素密度变化监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
           this.message = '已注册监听'
           observer.on('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
@@ -808,6 +809,7 @@ struct Index {
   build() {
     Column() {
       Button('注册绘制指令下发监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
           observer.on('willDraw', this.getUIContext(), this.willDrawCallback);
         })
@@ -891,6 +893,7 @@ struct Index {
   build() {
     Column() {
       Button('注册布局完成监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
           observer.on('didLayout', this.getUIContext(), this.didLayoutCallback);
         })

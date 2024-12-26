@@ -48,7 +48,7 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 
 ### selectAll
 
-selectAll(value: boolean)
+selectAll(value: Optional\<boolean>)
 
 设置是否全选。若同组的[Checkbox](ts-basic-components-checkbox.md)显式设置了select属性，则Checkbox的优先级高。
 
@@ -64,11 +64,11 @@ selectAll(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                         |
 | ------ | ------- | ---- | ---------------------------- |
-| value  | boolean | 是   | 是否全选。<br/>默认值：false |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否全选。<br/>默认值：false |
 
 ### selectedColor
 
-selectedColor(value: ResourceColor)
+selectedColor(value: Optional\<ResourceColor>)
 
 设置被选中或部分选中状态的颜色。
 
@@ -82,11 +82,11 @@ selectedColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                                         |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 被选中或部分选中状态的颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')<br/>异常值按照默认值处理。 |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 被选中或部分选中状态的颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')<br/>异常值按照默认值处理。 |
 
 ### unselectedColor<sup>10+</sup>
 
-unselectedColor(value: ResourceColor)
+unselectedColor(value: Optional\<ResourceColor>)
 
 设置非选中状态边框颜色。
 
@@ -98,11 +98,11 @@ unselectedColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                 |
 | ------ | ------------------------------------------ | ---- | -------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 非选中状态边框颜色。<br/>默认值：$r('sys.color.ohos_id_color_switch_outline_off')。 |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 非选中状态边框颜色。<br/>默认值：$r('sys.color.ohos_id_color_switch_outline_off')。 |
 
 ### mark<sup>10+</sup>
 
-mark(value: MarkStyle)
+mark(value: Optional\<MarkStyle>)
 
 设置多选框内部图标样式。
 
@@ -114,11 +114,11 @@ mark(value: MarkStyle)
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| value  | [MarkStyle](ts-types.md#markstyle10对象说明) | 是   | 多选框内部图标样式。 |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[MarkStyle](ts-types.md#markstyle10对象说明)> | 是   | 多选框内部图标样式。 |
 
 ### checkboxShape<sup>12+</sup>
 
-checkboxShape(value: CheckBoxShape)
+checkboxShape(value: Optional\<CheckBoxShape>)
 
 设置CheckboxGroup组件形状， 包括圆形和圆角方形。
 
@@ -130,9 +130,9 @@ checkboxShape(value: CheckBoxShape)
 
 **参数：** 
 
-| 参数名 | 类型                                                | 必填 | 说明               |
-| ------ | --------------------------------------------------- | ---- | ------------------ |
-| value  | [CheckBoxShape](ts-basic-components-checkbox.md#checkboxshape11枚举类型说明) | 是   | 设置CheckboxGroup组件形状， 包括圆形和圆角方形。<br/>默认值:CheckBoxShape.CIRCLE。 <br />**说明**：<br/>CheckboxGroup组件形状按照设置显示。<br/>CheckboxGroup内所有没有单独设置shape类型的Checkbox形状和CheckboxGroup的保持一致。<br/>CheckboxGroup内有单独设置shape类型的Checkbox形状则优先于CheckboxGroup，按照设置形状显示。
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | 是   | 设置CheckboxGroup组件形状， 包括圆形和圆角方形。<br/>默认值:CheckBoxShape.CIRCLE。 <br />**说明**：<br/>CheckboxGroup组件形状按照设置显示。<br/>CheckboxGroup内所有没有单独设置shape类型的Checkbox形状和CheckboxGroup的保持一致。<br/>CheckboxGroup内有单独设置shape类型的Checkbox形状则优先于CheckboxGroup，按照设置形状显示。 |
 
 ## 事件
 
@@ -140,7 +140,7 @@ checkboxShape(value: CheckBoxShape)
 
 ### onChange
 
-onChange(callback: OnCheckboxGroupChangeCallback)
+onChange(callback: Optional\<OnCheckboxGroupChangeCallback>)
 
 CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。
 
@@ -154,7 +154,7 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 | 参数名   | 类型                                                         | 必填 | 说明               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| callback | [OnCheckboxGroupChangeCallback](#oncheckboxgroupchangecallback14) | 是   | 多选框群组的信息。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnCheckboxGroupChangeCallback](#oncheckboxgroupchangecallback14)> | 是   | 多选框群组的信息。 |
 
 ## OnCheckboxGroupChangeCallback<sup>14+</sup>
 

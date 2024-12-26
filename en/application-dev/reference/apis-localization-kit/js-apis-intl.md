@@ -469,8 +469,45 @@ Formats a number.
 **Example**
   ```ts
   // Use locale list ["en-GB**, **zh"] to create a NumberFormat object. Because en-GB is a valid locale ID, it is used to create the NumberFormat object.
-  let numfmt = new intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
-  let formattedNumber = numfmt.format(1223); // formattedNumber = 1.223E3
+  let numfmt : intl.NumberFormat = new intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
+  let formattedNumber : string = numfmt.format(1223); // formattedNumber = 1.223E3
+  let options : intl.NumberOptions = {
+    roundingPriority: "lessPrecision",
+    maximumFractionDigits: 3,
+    maximumSignificantDigits: 3
+  }
+  let numberFmt : intl.NumberFormat = new intl.NumberFormat("en", options);
+  let result : string = numberFmt.format(1.23456); // result = 1.23
+  ```
+
+### formatRange<sup>16+</sup>
+
+formatRange(startRange: number, endRange: number): string
+
+Formats number ranges.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description  |
+| ------ | ------ | ---- | ---- |
+| startRange | number | Yes   | Start number.|
+| endRange | number | Yes   | End number.|
+
+**Return value**
+
+| Type    | Description        |
+| ------ | ---------- |
+| string | Formatted number range.|
+
+
+**Example**
+  ```ts
+  let numfmt : intl.NumberFormat = new intl.NumberFormat("en-US", {style:'unit', unit:"meter"});
+  let formattedRange : string = numfmt.formatRange(0, 3); // formattedRange: 0–3 m
   ```
 
 
@@ -514,7 +551,7 @@ Options for creating the **NumberFormat** object. Since API version 9, the **Num
 | currency                 | string  | No   | Currency unit. The value must comply with the [ISO-4217 standard](https://www.iso.org/iso-4217-currency-codes.html), for example, EUR, CNY, and USD.<br>From API version 12, a three-digit number is supported, for example, **978**, **156**, or **840**.   |
 | currencySign             | string  | No   | Currency unit symbol. The value can be **standard** or **accounting**.<br>The default value is **standard**.|
 | currencyDisplay          | string  | No   | Currency display mode. The value can be **symbol**, **narrowSymbol**, **code**, or **name**.<br>The default value is **symbol**.|
-| unit                     | string  | No   | Unit name, for example, **meter**, **inch**, or **hectare**.       |
+| unit                     | string  | No   | Unit name, for example, **meter**, **inch**, or **hectare**.<br>The combination units supported since API version 16 are as follows: beat-per-minute, body-weight-per-second, breath-per-minute, foot-per-hour, jump-rope-per-minute, meter-per-hour, milliliter-per-minute-per-kilogram, rotation-per-minute, step-per-minute, and stroke-per-minute.      |
 | unitDisplay              | string  | No   | Display format of units. The value can be **long**, **short**, or **narrow**.<br>The default value is **short**.|
 | unitUsage<sup>8+</sup>   | string  | No   | Application scenario of units. The value can be any of the following: "default**, **area-land-agricult**, **area-land-commercl**, **area-land-residntl**, **length-person**, **length-person-small**, **length-rainfall**, **length-road**, **length-road-small**, **length-snowfall**, **length-vehicle**, **length-visiblty**, **length-visiblty-small**, **length-person-informal**, **length-person-small-informal**, **length-road-informal**, **speed-road-travel**, **speed-wind**, **temperature-person**, **temperature-weather**, **volume-vehicle-fuel**, **elapsed-time-second**, **size-file-byte**, or **size-shortfile-byte**.<br>The default value is **default**.|
 | signDisplay              | string  | No   | Number sign display format. The value can be **auto**, **never**, **always**, or **expectZero**.<br>The default value is **auto**.|
@@ -524,11 +561,14 @@ Options for creating the **NumberFormat** object. Since API version 9, the **Num
 | style                    | string  | No   | Number display format. The value can be **decimal**, **currency**, **percent**, or **unit**.<br>The default value is **decimal**.|
 | numberingSystem          | string  | No   | Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**. The default value is the default numbering system of the specified locale.|
 | useGrouping              | boolean | No   | Whether to use grouping for display. The default value is **auto**.                                 |
-| minimumIntegerDigits     | number  | No   | Minimum number of digits allowed in the integer part of a number. The value ranges from **1** to **21**.<br>The default value of is **1**.                 |
+| minimumIntegerDigits     | number  | No   | Minimum number of digits allowed in the integer part of a number. The value ranges from **1** to **21**.<br>The default value is **1**.                 |
 | minimumFractionDigits    | number  | No   | Minimum number of digits in the fraction part of a number. The value ranges from **0** to **20**.<br>The default value is **0**.                 |
 | maximumFractionDigits    | number  | No   | Maximum number of digits in the fraction part of a number. The value ranges from **1** to **21**.<br>The default value is **3**.                 |
-| minimumSignificantDigits | number  | No   | Minimum number of the least significant digits. The value ranges from **1** to **21**.<br>The default value of is **1**.                 |
+| minimumSignificantDigits | number  | No   | Minimum number of the least significant digits. The value ranges from **1** to **21**.<br>The default value is **1**.                 |
 | maximumSignificantDigits | number  | No   | Maximum number of the least significant digits. The value ranges from **1** to **21**.<br>The default value is **21**.                 |
+| roundingPriority<sup>16+</sup>   | string  | No   | Rounding priority used when both the maximum number of fraction digits and the maximum number of valid digits are set. The value **auto** and **morePrecision** indicate that the maximum number of fraction digits is used. The value **lessPrecision** indicates that the maximum number of valid digits is used.<br>The default value is **auto**.                 |
+| roundingIncrement<sup>16+</sup>  | number  | No   | Rounding increment. The value can be **1**, **2**, **5**, **10**, **20**, **25**, **50**, **100**, **200**, **250**, **500**, **1000**, **2000**, **2500**, or **5000**.<br>The default value is **1**.                 |
+| roundingMode<sup>16+</sup>       | string  | No   | Rounding mode. The value can be **ceil**, **floor**, **expand**, **trunc**, **halfCeil**, **halfFloor**, **halfExpand**, **halfTrunc**, or **halfEven**.<br>The default value is **halfExpand**.                 |
 
 >  **NOTE**
 >

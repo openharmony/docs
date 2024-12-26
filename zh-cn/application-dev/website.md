@@ -453,7 +453,7 @@
             - [出现/消失转场](ui/arkts-enter-exit-transition.md)
             - [模态转场](ui/arkts-modal-transition.md)
             - [共享元素转场 (一镜到底)](ui/arkts-shared-element-transition.md)
-            - [旋转屏动画增强](ui/arkts-rotation-transition-animation.md)
+            - [旋转屏动画](ui/arkts-rotation-transition-animation.md)
             - [页面转场动画 (不推荐)](ui/arkts-page-transition-animation.md)
           - [粒子动画](ui/arkts-particle-animation.md)
           - [组件动画](ui/arkts-component-animation.md)
@@ -466,7 +466,7 @@
             - [模糊](ui/arkts-blur-effect.md)
             - [阴影](ui/arkts-shadow-effect.md)
             - [色彩](ui/arkts-color-effect.md)
-          - [帧动画](ui/arkts-animator.md)
+          - [帧动画（ohos.animator）](ui/arkts-animator.md)
         - 支持交互事件<!--arkts-events-->
           - [交互事件概述](ui/arkts-event-overview.md)
           - 使用通用事件<!--arkts-common-events-->
@@ -605,7 +605,7 @@
       - [ArkWeb进程](web/web_component_process.md)
       - [Web组件的生命周期](web/web-event-sequence.md)
       - 设置基本属性和事件<!--web-set-attributes-events-->
-        - [设置UserAgent](web/web-default-userAgent.md)
+        - [UserAgent开发指导](web/web-default-userAgent.md)
         - [管理Cookie及数据存储](web/web-cookie-and-data-storage-mgmt.md)
         - [设置深色模式](web/web-set-dark-mode.md)
         - [在新窗口中打开页面](web/web-open-in-new-window.md)
@@ -820,7 +820,6 @@
           - [安全控件概述](security/AccessToken/security-component-overview.md)
           - [使用粘贴控件](security/AccessToken/pastebutton.md)
           - [使用保存控件](security/AccessToken/savebutton.md)
-          - [使用位置控件](security/AccessToken/locationbutton.md)
       - Asset Store Kit（关键资产存储服务）<!--asset-store-kit-->
         - [Asset Store Kit简介](security/AssetStoreKit/asset-store-kit-overview.md)
         - 常见场景<!--asset-scenarios-->
@@ -1254,6 +1253,7 @@
           - [toybox工具](tools/toybox.md)
           - [mediatool工具](tools/mediatool.md)
           - [devicedebug工具](tools/devicedebug-tool.md)
+          - [rawheap_translator工具](tools/rawheap-translator.md)
   - 媒体<!--media-->
     - Audio Kit（音频服务）<!--audio-kit-->
       - [Audio Kit简介](media/audio/audio-kit-intro.md)
@@ -1411,6 +1411,7 @@
         - 播放<!--media-playback-arkts-->
           - [使用AVPlayer播放音频(ArkTS)](media/media/using-avplayer-for-playback.md)
           - [使用AVPlayer播放视频(ArkTS)](media/media/video-playback.md)
+          - [使用AVPlayer设置播放URL](media/media/playback-url-setting-method.md)
           - [使用AVPlayer播放流媒体(ArkTS)](media/media/streaming-media-playback-development-guide.md)
           - [使用AVPlayer添加视频外挂字幕(ArkTS)](media/media/video-subtitle.md)
           - [使用SoundPool播放短音频(ArkTS)](media/media/using-soundpool-for-playback.md)
@@ -1790,6 +1791,7 @@
             - [ErrorObserver](reference/apis-ability-kit/js-apis-inner-application-errorObserver.md)
             - [EventHub](reference/apis-ability-kit/js-apis-inner-application-eventHub.md)
             - [ExtensionContext](reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)
+            - [GlobalObserver](reference/apis-ability-kit/js-apis-inner-application-GlobalObserver.md)
             - [LoopObserver](reference/apis-ability-kit/js-apis-inner-application-loopObserver.md)
             - [ProcessInformation](reference/apis-ability-kit/js-apis-inner-application-processInformation.md)
             - [ProcessRunningInfo](reference/apis-ability-kit/js-apis-inner-application-processRunningInfo.md)
@@ -1947,7 +1949,6 @@
         - [@ohos.data.uniformTypeDescriptor (标准化数据定义与描述)](reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md)
         - [@ohos.data.ValuesBucket (数据集)](reference/apis-arkdata/js-apis-data-valuesBucket.md)
         <!--Del-->
-        - [@ohos.data.unifiedDataChannel (标准化数据通路)(系统接口)](reference/apis-arkdata/js-apis-data-unifiedDataChannel-sys.md)
         - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)(系统接口)](reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)
         <!--DelEnd-->
         - [@ohos.data.cloudData (端云服务)](reference/apis-arkdata/js-apis-data-cloudData.md)
@@ -2250,6 +2251,7 @@
         - 导航与切换
           - [Navigation](reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)
           - [NavDestination](reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)
+          - [MultiNavigation](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-MultiNavigation.md)
           - [Stepper](reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md)
           - [StepperItem](reference/apis-arkui/arkui-ts/ts-basic-components-stepperitem.md)
           - [Tabs](reference/apis-arkui/arkui-ts/ts-container-tabs.md)
@@ -2390,7 +2392,6 @@
           <!--DelEnd-->
         - 安全
           - [安全控件通用属性](reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)
-          - [LocationButton](reference/apis-arkui/arkui-ts/ts-security-components-locationbutton.md)
           - [PasteButton](reference/apis-arkui/arkui-ts/ts-security-components-pastebutton.md)
           - [SaveButton](reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)
           <!--Del-->
@@ -2443,6 +2444,7 @@
           <!--DelEnd-->
           - [GridContainer](reference/apis-arkui/arkui-ts/ts-container-gridcontainer.md)
           - [Panel](reference/apis-arkui/arkui-ts/ts-container-panel.md)
+          - [LocationButton](reference/apis-arkui/arkui-ts/ts-security-components-locationbutton.md)
           - [NavRouter](reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md)
           - [Navigator](reference/apis-arkui/arkui-ts/ts-container-navigator.md)
           - [点击控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-click.md)
@@ -3408,7 +3410,6 @@
           <!--Del-->
           - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](reference/apis-input-kit/js-apis-pointer-sys.md)
           - [@ohos.multimodalInput.shortKey(快捷键)(系统接口)](reference/apis-input-kit/js-apis-shortKey-sys.md)
-          - [@ohos.multimodalInput.infraredEmitter (红外管理)(系统接口)](reference/apis-input-kit/js-apis-infraredemitter-sys.md)
           - [@ohos.multimodalInput.inputConsumer (组合按键)(系统接口)](reference/apis-input-kit/js-apis-inputconsumer-sys.md)
           - [@ohos.multimodalInput.inputDevice (输入设备)(系统接口)](reference/apis-input-kit/js-apis-inputdevice-sys.md)
           - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](reference/apis-input-kit/js-apis-inputeventclient-sys.md)

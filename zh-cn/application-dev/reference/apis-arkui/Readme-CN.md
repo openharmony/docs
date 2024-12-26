@@ -200,6 +200,7 @@
   - 导航与切换
     - [Navigation](arkui-ts/ts-basic-components-navigation.md)
     - [NavDestination](arkui-ts/ts-basic-components-navdestination.md)
+    - [MultiNavigation](arkui-ts/ohos-arkui-advanced-MultiNavigation.md)
     - [Stepper](arkui-ts/ts-basic-components-stepper.md)
     - [StepperItem](arkui-ts/ts-basic-components-stepperitem.md)
     - [Tabs](arkui-ts/ts-container-tabs.md)
@@ -340,7 +341,6 @@
     <!--DelEnd-->
   - 安全
     - [安全控件通用属性](arkui-ts/ts-securitycomponent-attributes.md)
-    - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
     - [PasteButton](arkui-ts/ts-security-components-pastebutton.md)
     - [SaveButton](arkui-ts/ts-security-components-savebutton.md)
     <!--Del-->
@@ -393,6 +393,7 @@
     <!--DelEnd-->
     - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
     - [Panel](arkui-ts/ts-container-panel.md)
+    - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
     - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
     - [Navigator](arkui-ts/ts-container-navigator.md)
     - [点击控制](arkui-ts/ts-universal-attributes-click.md)

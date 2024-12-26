@@ -8,7 +8,7 @@
 
 **变更原因**
 
-新规格，申请了系统权限的应用设置或者删除本应用剪贴板数据的可粘贴范围时需要申请ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION权限。
+新规格，三方应用设置或者删除本应用剪贴板数据的可粘贴范围时需要申请ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION权限。
 
 **变更影响**
 
@@ -17,8 +17,8 @@
 变更前：SetAppShareOptions()和RemoveAppShareOptions()为System Api，只有系统应用可以调用。
         应用设置或者删除本应用剪贴板数据的可粘贴范围时不会校验ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION。
 
-变更后：SetAppShareOptions()和RemoveAppShareOptions()为Public Api，申请白名单的普通应用可以调用。
-        应用在设置或者删除本应用剪贴板数据的可粘贴范围时，如未申请ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION，访问会被拦截。
+变更后：SetAppShareOptions()和RemoveAppShareOptions()为Public Api，申请权限的三方应用和系统应用都可以调用。
+        应用在设置或者删除本应用剪贴板数据的可粘贴范围时，三方应用如未申请ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION，访问会被拦截。
 
 **起始API Level** 
 
@@ -35,7 +35,7 @@ RemoveAppShareOptions()/剪贴板服务（pasteboard_service）
 
 **适配指导**
 
-应用需申请系统权限，并且在module.json中按需声明ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION，示例代码片段如下：
+三方应用在module.json中按需声明ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION，示例代码片段如下：
 ```ts
 "requestPermissions": [
   {

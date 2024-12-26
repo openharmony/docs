@@ -4,7 +4,7 @@
 The $$ operator provides a TypeScript variable by-reference to a built-in component so that the variable value and the internal state of that component are kept in sync.
 
 
-What the internal state is depends on the component. For example, for the [\<TextInput>](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) component, it is the **text** parameter.
+What the internal state is depends on the component. For example, for the [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) component, it is the **text** parameter.
 
 
 > **NOTE**

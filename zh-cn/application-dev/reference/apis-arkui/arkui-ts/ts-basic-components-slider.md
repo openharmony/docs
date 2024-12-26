@@ -559,9 +559,9 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 | min | number | 否 | 否 | 最小值。 |
 | max | number | 否 | 否 | 最大值。 |
 | step | number | 否 | 否 | Slider滑动步长。 |
-| triggerChange | [SliderTriggerChangeCallback](#slidertriggerchangecallback12对象说明) | 否 | 否 | 触发Slider变化。 |
+| triggerChange | [SliderTriggerChangeCallback](#slidertriggerchangecallback12) | 否 | 否 | 触发Slider变化。 |
 
-## SliderTriggerChangeCallback<sup>12+</sup>对象说明
+## SliderTriggerChangeCallback<sup>12+</sup>
 
 type SliderTriggerChangeCallback = (value: number, mode: SliderChangeMode) => void
 
