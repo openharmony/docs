@@ -478,3 +478,16 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：15
+
+### ohos.permission.NDK_START_SELF_UI_ABILITY
+
+允许应用通过C API启动同应用的UIAbility。
+
+当前仅2in1设备应用可申请此权限。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：15
+

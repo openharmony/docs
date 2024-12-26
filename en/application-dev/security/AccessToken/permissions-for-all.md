@@ -475,6 +475,24 @@ The configured icon and label information can be displayed in the Task Center an
 
 **Valid since**: 15
 
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
+### ohos.permission.NDK_START_SELF_UI_ABILITY
+
+Allows an application to start its UIAbility by using C API.
+
+Currently, this permission is available only to 2-in-1 device applications.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
 ## ohos.permission.ACCESS_DISK_PHY_INFO
 
 Allows an application to obtain the disk hardware information.
