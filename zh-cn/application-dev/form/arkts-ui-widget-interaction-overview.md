@@ -21,7 +21,7 @@ ArkTS卡片框架为提供方提供了[updateForm](../reference/apis-form-kit/js
 
 **2. 使用方主动请求更新卡片流程示意：**
 
-![requestForm](figures/requestForm.png)
+![requestForm](figures/requestForm.PNG)
 
 卡片使用方在运行过程中，如果检测到系统语言、深浅色有变化时，可以主动通过formHost提供的requestForm接口请求更新卡片，卡片管理服务会进而通知提供方完成卡片更新。
 
@@ -29,7 +29,7 @@ ArkTS卡片框架为提供方提供了[updateForm](../reference/apis-form-kit/js
 
 **3. 卡片框架通知提供方定时更新卡片流程示意：**
 
-![timer_updateForm](figures/timer_updateForm.png)
+![timer_updateForm](figures/timer_updateForm.PNG)
 
 根据卡片提供方开发者提前配置声明的定时刷新信息，卡片管理服务会根据定时信息、卡片可见状态、刷新次数等因素综合判断是否需要通知提供方更新卡片。
 
