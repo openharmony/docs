@@ -64,7 +64,7 @@ HUKS采用分层架构，包含应用层、服务层、核心层（领域层）�
 
 - **密钥材料格式** 
   
-  导入/导出密钥时（包括密钥对、公钥、私钥），密钥材料的数据格式必须满足HUKS要求的格式，具体各个密码算法密钥材料见[密钥材料格式](../../application-dev/security/huks-appendix.md#密钥材料格式)。
+  导入/导出密钥时（包括密钥对、公钥、私钥），密钥材料的数据格式必须满足HUKS要求的格式，具体各个密码算法密钥材料见[密钥材料格式](../../application-dev/security/UniversalKeystoreKit/huks-concepts.md#密钥材料格式)。
 
 - **证书链格式** 
 
