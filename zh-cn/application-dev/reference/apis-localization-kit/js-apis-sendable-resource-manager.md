@@ -122,5 +122,5 @@ type SendableResource = _SendableResource
 
 | 类型         | 说明     |
 | ---------- | ------ | 
-| [_SendableResource](sendableResource.md#SendableResource)|表示的SendableResource资源信息。|
+| [_SendableResource](sendableResource.md#sendableresource-1)|表示的SendableResource资源信息。|
 
