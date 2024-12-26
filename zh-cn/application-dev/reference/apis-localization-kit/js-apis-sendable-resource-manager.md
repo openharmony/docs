@@ -121,5 +121,6 @@ type SendableResource = _SendableResource
 **系统能力：**SystemCapability.Global.ResourceManager
 
 | 类型         | 说明     |
+| ---------- | ------ | 
 | SendableResource|表示的SendableResource资源信息。|
 
