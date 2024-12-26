@@ -1537,6 +1537,34 @@ auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
 | ATL3 | 30000 | 认证结果的信任等级级别3，代表该认证方案能够精确识别用户个体，有较强的活体检测能力。常用的业务场景有设备解锁等。 |
 | ATL4 | 40000 | 认证结果的信任等级级别4，代表该认证方案能够高精度的识别用户个体，有很强的活体检测能力。常用的业务场景有小额支付等。 |
 
+## SecureLevel<sup>(deprecated)</sup>
+
+表示认证的安全级别。
+
+**原子化服务API：** 从 API version 6 开始支持，从 API version 8 开始废弃。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称 | 值    | 说明                                                         |
+| ---- | ----- | ------------------------------------------------------------ |
+| S1 | 'S1' | 认证结果的信任等级级别1，代表该认证方案能够识别用户个体，有一定的活体检测能力。常用的业务场景有业务风控、一般个人数据查询等。 |
+| S2 | 'S2' | 认证结果的信任等级级别2，代表该认证方案能够精确识别用户个体，有一定的活体检测能力。常用的业务场景有维持设备解锁状态，应用登录等。 |
+| S3 | 'S3' | 认证结果的信任等级级别3，代表该认证方案能够精确识别用户个体，有较强的活体检测能力。常用的业务场景有设备解锁等。 |
+| S4 | 'S4' | 认证结果的信任等级级别4，代表该认证方案能够高精度的识别用户个体，有很强的活体检测能力。常用的业务场景有小额支付等。 |
+
+## AuthType<sup>(deprecated)</sup>
+
+表示认证类型。
+
+**原子化服务API：** 从 API version 6 开始支持，从 API version 8 开始废弃。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称 | 值    | 说明                                                         |
+| ---- | ----- | ------------------------------------------------------------ |
+| ALL  | 'ALL' | 预留参数。当前版本暂不支持ALL类型的认证。 |
+| FACE_ONLY | 'FACE_ONLY' | 人脸认证。 |
+
 ## userAuth.getAuthenticator<sup>(deprecated)</sup>
 
 getAuthenticator(): Authenticator
