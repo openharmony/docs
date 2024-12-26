@@ -54,6 +54,9 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 | label<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标标签描述。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | isEnabled | boolean | 否 | 是否启用。默认禁用。true：启用，false：禁用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| accessibilityText<sup>16+</sup>        | [ResourceStr](ts-types.md#resourcestr)                    | 否 | 工具栏子项的无障碍文本属性。当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br/>默认值为当前项content属性内容。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                                                                                             |
+| accessibilityDescription<sup>16+</sup> | [ResourceStr](ts-types.md#resourcestr)                    | 否 | 工具栏子项的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br/>默认值为“单指双击即可执行”。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                                                                                    |
+| accessibilityLevel<sup>16+</sup>       | string                                                    | 否 | 工具栏子项无障碍重要性。用于控制当前项是否可被无障碍辅助服务所识别。<br/>支持的值为：<br/>"auto"：当前组件会转换'yes'。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## TabTitleBarTabItem
 
@@ -72,8 +75,8 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 
 ## 示例
 
+### 示例1（简单的页签型标题栏）
 该示例实现了带有左侧页签和右侧菜单列表的页签型标题栏。
-
 ```ts
 import { TabTitleBar, promptAction } from '@kit.ArkUI'
 
@@ -173,4 +176,122 @@ struct Index {
 }
 ```
 
+![zh-cn_image_0000001616916278](figures/zh-cn_image_0000001616916278.png)
+
+### 示例2（右侧自定义按钮播报）
+该示例通过设置标题栏右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+```ts
+import { TabTitleBar, promptAction } from '@kit.ArkUI'
+
+//定义标题栏左侧的页签项目类
+class tabItem {
+  title: ResourceStr;
+  icon?: ResourceStr;
+  constructor(title: ResourceStr,icon?: ResourceStr) {
+    this.title = title
+    this.icon = icon
+  }
+}
+
+//定义标题栏右侧菜单项目接口
+interface menuItem {
+  value: ResourceStr;
+  isEnabled?: boolean;
+  action?: () => void;
+  accessibilityText?: ResourceStr;
+  accessibilityDescription?: ResourceStr;
+  accessibilityLevel?: string
+}
+
+@Entry
+@Component
+struct Index {
+  @Builder
+  //定义页签列表关联的页面
+  componentBuilder() {
+    Text("#1ABC9C\nTURQUOISE")
+      .fontWeight(FontWeight.Bold)
+      .fontSize(14)
+      .width("100%")
+      .textAlign(TextAlign.Center)
+      .fontColor("#CCFFFFFF")
+      .backgroundColor("#1ABC9C")
+    Text("#16A085\nGREEN SEA")
+      .fontWeight(FontWeight.Bold)
+      .fontSize(14)
+      .width("100%")
+      .textAlign(TextAlign.Center)
+      .fontColor("#CCFFFFFF")
+      .backgroundColor("#16A085")
+    Text("#2ECC71\nEMERALD")
+      .fontWeight(FontWeight.Bold)
+      .fontSize(14)
+      .width("100%")
+      .textAlign(TextAlign.Center)
+      .fontColor("#CCFFFFFF")
+      .backgroundColor("#2ECC71")
+    Text("#27AE60\nNEPHRITIS")
+      .fontWeight(FontWeight.Bold)
+      .fontSize(14)
+      .width("100%")
+      .textAlign(TextAlign.Center)
+      .fontColor("#CCFFFFFF")
+      .backgroundColor("#27AE60")
+    Text("#3498DB\nPETER RIVER")
+      .fontWeight(FontWeight.Bold)
+      .fontSize(14)
+      .width("100%")
+      .textAlign(TextAlign.Center)
+      .fontColor("#CCFFFFFF")
+      .backgroundColor("#3498DB")
+  }
+
+  //定义几个左侧的页签项目
+  private readonly tabItems: Array<tabItem> = [new tabItem('页签1'),new tabItem('页签2'),new tabItem('页签3'),new tabItem("Happy",$r('app.media.emoji_happy')),new tabItem('页签4')]
+  //定义几个右侧的菜单项目
+  private  readonly menuItems: Array<menuItem> = [
+    {
+      value: $r('app.media.ic_public_reduce'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "on item click! index 0" }),
+      accessibilityText: '缩小',
+      //此处为no，屏幕朗读不聚焦
+      accessibilityLevel: 'no',
+      accessibilityDescription: '点击操作缩小图标'
+    },
+    {
+      value: $r('app.media.ic_public_edit'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "on item click! index 1" }),
+      accessibilityText: '编辑',
+      accessibilityLevel: 'yes',
+      accessibilityDescription: '点击操作编辑图标'
+    },
+    {
+      value: $r('app.media.ic_public_save'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "on item click! index 2" }),
+      //屏幕朗读播报文本，优先级比label高
+      accessibilityText: '保存',
+      //屏幕朗读是否可以聚焦到
+      accessibilityLevel: 'yes',
+      //屏幕朗读最后播报的描述文本
+      accessibilityDescription: '点击操作保存图标'
+    },
+  ]
+
+  //TabTitleBar效果展示
+  build() {
+    Row() {
+      Column() {
+        TabTitleBar({
+          swiperContent: this.componentBuilder,
+          tabItems: this.tabItems,
+          menuItems: this.menuItems,
+        })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
 ![zh-cn_image_0000001616916278](figures/zh-cn_image_0000001616916278.png)
