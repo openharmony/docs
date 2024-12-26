@@ -851,7 +851,6 @@ try {
     let displayId = 0;
     let promise = window.getAllWindowLayoutInfo(displayId)
     promise.then((data) => {
-        windowClass = data;
         console.info('Succeeded in obtaining all window layout info. Data: ' + JSON.stringify(data));
       }).catch((err: BusinessError) => {
         console.error(`Failed to obtain all window layout info. Cause code: ${err.code}, message: ${err.message}`);
