@@ -848,15 +848,15 @@ import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let displayId = 0;
-    let promise = window.getAllWindowLayoutInfo(displayId)
-    promise.then((data) => {
-        console.info('Succeeded in obtaining all window layout info. Data: ' + JSON.stringify(data));
-    }).catch((err: BusinessError) => {
-        console.error(`Failed to obtain all window layout info. Cause code: ${err.code}, message: ${err.message}`);
-    });
+  let displayId = 0;
+  let promise = window.getAllWindowLayoutInfo(displayId)
+  promise.then((data) => {
+    console.info('Succeeded in obtaining all window layout info. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to obtain all window layout info. Cause code: ${err.code}, message: ${err.message}`);
+  });
 } catch (exception) {
-   console.error(`Failed to obtain all window layout info. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to obtain all window layout info. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
