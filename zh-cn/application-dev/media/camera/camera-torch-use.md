@@ -34,7 +34,7 @@
     }
     ```
 
-3. 通过[CameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameramanager)类中的[isTorchModeSupported](../../reference/apis-camera-kit/js-apis-camera.md#istorchmodesupported11)方法，检测是否支持设置的手电筒模式[TorchMode](../../reference/apis-camera-kit/js-apis-camera.md#torchmode11)。
+3. 通过[CameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameramanager)类中的[isTorchModeSupported](../../reference/apis-camera-kit/js-apis-camera.md#istorchmodesupported11)方法，检测是否支持指定的手电筒模式[TorchMode](../../reference/apis-camera-kit/js-apis-camera.md#torchmode11)。
 
     ```ts
     function isTorchModeSupported(cameraManager: camera.CameraManager, torchMode: camera.TorchMode) : boolean {
