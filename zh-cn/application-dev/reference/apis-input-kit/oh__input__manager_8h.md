@@ -47,13 +47,11 @@
 | typedef void(\* [Input_MouseEventCallback](input.md#input_mouseeventcallback)) (const [Input_MouseEvent](input.md#input_mouseevent) \*mouseEvent) | 鼠标事件的回调函数，mouseEvent的生命周期为回调函数内。  | 
 | typedef void(\* [Input_TouchEventCallback](input.md#input_toucheventcallback)) (const [Input_TouchEvent](input.md#input_touchevent) \*touchEvent) | 触摸事件的回调函数，touchEvent的生命周期为回调函数内。  | 
 | typedef void(\* [Input_AxisEventCallback](input.md#input_axiseventcallback)) (const [Input_AxisEvent](input.md#input_axisevent) \*axisEvent) | 轴事件的回调函数，axisEvent的生命周期为回调函数内。  | 
-| typedef void(\* [Input_HotkeyCallback](input.md#input_hotkeycallback)) ([Input_Hotkey](input.md#input_hotkey) \*hotkey) | 回调函数，用于回调快捷键事件。  |
 | typedef void(\* [Input_DeviceAddedCallback](input.md#input_deviceaddedcallback)) (int32_t deviceId) | 回调函数，用于回调输入设备的热插事件。  | 
 | typedef void(\* [Input_DeviceRemovedCallback](input.md#input_deviceremovedcallback)) (int32_t deviceId) | 回调函数，用于回调输入设备的热拔事件。  | 
 | typedef struct [Input_InterceptorEventCallback](_input___interceptor_event_callback.md) [Input_InterceptorEventCallback](input.md#input_interceptoreventcallback) | 拦截回调事件结构体，拦截鼠标事件、触摸事件和轴事件。  | 
 | typedef struct [Input_DeviceListener](_input___device_listener.md) [Input_DeviceListener](input.md#input_devicelistener) | 定义一个结构体用于监听设备热插拔。  | 
 | typedef struct [Input_InterceptorOptions](input.md#input_interceptoroptions) [Input_InterceptorOptions](input.md#input_interceptoroptions) | 事件拦截选项。  | 
-| typedef struct [Input_Hotkey](input.md#input_hotkey) [Input_Hotkey](input.md#input_hotkey) | 定义快捷键结构体。  | 
 | typedef struct [Input_DeviceInfo](input.md#input_deviceinfo) [Input_DeviceInfo](input.md#input_deviceinfo) | 输入设备信息。  | 
 
 
@@ -69,7 +67,7 @@
 | [Input_TouchEventAction](input.md#input_toucheventaction) { [TOUCH_ACTION_CANCEL](input.md) = 0, [TOUCH_ACTION_DOWN](input.md) = 1, [TOUCH_ACTION_MOVE](input.md) = 2, [TOUCH_ACTION_UP](input.md) = 3 } | 触摸动作的枚举值。  | 
 | [InputEvent_SourceType](input.md#inputevent_sourcetype) { [SOURCE_TYPE_MOUSE](input.md) = 1, [SOURCE_TYPE_TOUCHSCREEN](input.md) = 2, [SOURCE_TYPE_TOUCHPAD](input.md) = 3 } | 输入事件源类型。  | 
 | [Input_KeyboardType](input.md#input_keyboardtype) {<br/>[KEYBOARD_TYPE_NONE](input.md) = 0, [KEYBOARD_TYPE_UNKNOWN](input.md) = 1, [KEYBOARD_TYPE_ALPHABETIC](input.md) = 2, [KEYBOARD_TYPE_DIGITAL](input.md) = 3,<br/>[KEYBOARD_TYPE_STYLUS](input.md) = 4, [KEYBOARD_TYPE_REMOTE_CONTROL](input.md) = 5<br/>} | 输入设备的键盘类型。  | 
-| [Input_Result](input.md#input_result) {<br/>[INPUT_SUCCESS](input.md) = 0, [INPUT_PERMISSION_DENIED](input.md) = 201, [INPUT_NOT_SYSTEM_APPLICATION](input.md) = 202, [INPUT_PARAMETER_ERROR](input.md) = 401,<br/>[INPUT_SERVICE_EXCEPTION](input.md) = 3800001, [INPUT_REPEAT_INTERCEPTOR](input.md) = 4200001, [INPUT_OCCUPIED_BY_SYSTEM](input.md) = 4200002, [INPUT_OCCUPIED_BY_OTHER](input.md) = 4200003<br/>} | 错误码枚举值。  | 
+| [Input_Result](input.md#input_result) {<br/>[INPUT_SUCCESS](input.md) = 0, [INPUT_PERMISSION_DENIED](input.md) = 201, [INPUT_NOT_SYSTEM_APPLICATION](input.md) = 202, [INPUT_PARAMETER_ERROR](input.md) = 401,<br/>[INPUT_SERVICE_EXCEPTION](input.md) = 3800001, [INPUT_REPEAT_INTERCEPTOR](input.md) = 4200001<br/>} | 错误码枚举值。  | 
 
 
 ### 函数
@@ -155,20 +153,6 @@
 | [Input_Result](input.md#input_result) [OH_Input_AddInputEventInterceptor](input.md#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback [Input_InterceptorOptions](input.md#input_interceptoroptions) \*option) | 添加输入事件拦截，包括鼠标、触摸和轴事件，重复添加只有第一次生效。  | 
 | [Input_Result](input.md#input_result) [OH_Input_RemoveKeyEventInterceptor](input.md#oh_input_removekeyeventinterceptor) () | 移除按键事件拦截。  | 
 | [Input_Result](input.md#input_result) [OH_Input_RemoveInputEventInterceptor](input.md#oh_input_removeinputeventinterceptor) () | 移除输入事件拦截，包括鼠标、触摸和轴事件。  | 
-| int32_t [OH_Input_GetIntervalSinceLastInput](input.md#oh_input_getintervalsincelastinput) (int64_t \*timeInterval) | 获取距离上次系统输入事件的时间间隔。  | 
-| [Input_Hotkey](input.md#input_hotkey) \* [OH_Input_CreateHotkey](input.md#oh_input_createhotkey) () | 创建快捷键对象的实例。  | 
-| void [OH_Input_DestroyHotkey](input.md#oh_input_destroyhotkey) ([Input_Hotkey](input.md#input_hotkey) \*\*hotkey) | 销毁快捷键对象的实例。  | 
-| void [OH_Input_SetPreKeys](input.md#oh_input_setprekeys) ([Input_Hotkey](input.md#input_hotkey) \*hotkey, int32_t \*preKeys, int32_t size) | 设置修饰键。  | 
-| [Input_Result](input.md#input_result) [OH_Input_GetPreKeys](input.md#oh_input_getprekeys) (const [Input_Hotkey](input.md#input_hotkey) \*hotkey, int32_t \*\*preKeys, int32_t \*preKeyCount) | 获取修饰键。  | 
-| void [OH_Input_SetFinalKey](input.md#oh_input_setfinalkey) ([Input_Hotkey](input.md#input_hotkey) \*hotkey, int32_t finalKey) | 设置被修饰键。  | 
-| [Input_Result](input.md#input_result) [OH_Input_GetFinalKey](input.md#oh_input_getfinalkey) (const [Input_Hotkey](input.md#input_hotkey) \*hotkey, int32_t \*finalKeyCode) | 获取被修饰键。  | 
-| [Input_Hotkey](input.md#input_hotkey) \*\* [OH_Input_CreateAllSystemHotkeys](input.md#oh_input_createallsystemhotkeys) (int32_t count) | 创建[Input_Hotkey](input.md#input_hotkey)类型实例的数组。  | 
-| void [OH_Input_DestroyAllSystemHotkeys](input.md#oh_input_destroyallsystemhotkeys) ([Input_Hotkey](input.md#input_hotkey) \*\*hotkeys, int32_t count) | 销毁[Input_Hotkey](input.md#input_hotkey)实例数组并回收内存。  | 
-| [Input_Result](input.md#input_result) [OH_Input_GetAllSystemHotkeys](input.md#oh_input_getallsystemhotkeys) ([Input_Hotkey](input.md#input_hotkey) \*\*hotkey, int32_t \*count) | 获取设置的所有快捷键。  | 
-| void [OH_Input_SetRepeat](input.md#oh_input_setrepeat) ([Input_Hotkey](input.md#input_hotkey) \*hotkey, bool isRepeat) | 设置是否上报重复key事件。  | 
-| [Input_Result](input.md#input_result) [OH_Input_GetRepeat](input.md#oh_input_getrepeat) (const [Input_Hotkey](input.md#input_hotkey) \*hotkey, bool \*isRepeat) | 获取是否上报重复key事件。  | 
-| [Input_Result](input.md#input_result) [OH_Input_AddHotkeyMonitor](input.md#oh_input_addhotkeymonitor) (const [Input_Hotkey](input.md#input_hotkey) \*hotkey, [Input_HotkeyCallback](input.md#input_hotkeycallback) callback) | 订阅快捷键事件。  | 
-| [Input_Result](input.md#input_result) [OH_Input_RemoveHotkeyMonitor](input.md#oh_input_removehotkeymonitor) (const [Input_Hotkey](input.md#input_hotkey) \*hotkey, [Input_HotkeyCallback](input.md#input_hotkeycallback) callback) | 取消订阅快捷键。  | 
 | [Input_Result](input.md#input_result) [OH_Input_GetDeviceIds](input.md#oh_input_getdeviceids) (int32_t \*deviceIds, int32_t inSize, int32_t \*outSize) | 获取所有输入设备的ID列表。  | 
 | [Input_Result](input.md#input_result) [OH_Input_GetDevice](input.md#oh_input_getdevice) (int32_t deviceId, [Input_DeviceInfo](input.md#input_deviceinfo) \*\*deviceInfo) | 获取输入设备信息。  | 
 | [Input_DeviceInfo](input.md#input_deviceinfo) \* [OH_Input_CreateDeviceInfo](input.md#oh_input_createdeviceinfo) (void) | 创建输入设备信息的对象。  | 
