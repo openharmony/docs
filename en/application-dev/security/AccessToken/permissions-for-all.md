@@ -390,3 +390,13 @@ Allows an application to set pinned windows.
 **Authorization mode**: system_grant
 
 **Valid since**: 13
+
+### ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
+
+After the application has this permission, the system JS engine can request anonymous executable memory with MAP_FORT for Just-in-time (JIT) compilation, which increases the runtime execution efficiency.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 14
