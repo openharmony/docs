@@ -1,4 +1,4 @@
-# rawFileDescriptor
+# RawFileDescriptor
 
 本模块提供rawfile文件所在hap的descriptor信息。
 
