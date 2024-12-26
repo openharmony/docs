@@ -26,7 +26,7 @@
     "targetPriority": 50,
     "appEnvironments": [
       {
-        "name":"name1",debug
+        "name":"name1",
         "value": "value1"
       }
     ],
