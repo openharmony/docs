@@ -137,7 +137,7 @@ type CurrentAlbumDeletedCallback = () => void
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-## videoPlayStateChangedCallback<sup>13+</sup>
+## videoPlayStateChangedCallback<sup>14+</sup>
 
 type videoPlayStateChangedCallback = (state: VideoPlayerState) => void
 
