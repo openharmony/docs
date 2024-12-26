@@ -435,7 +435,7 @@ Picker的颜色模式。
 | CHECKBOX    | 0   | 大图页勾选框。  |
 | BACK_BUTTON | 1   | 大图页返回按钮。 |
 
-## VideoPlayerState
+## VideoPlayerState<sup>14+</sup>
 
 视频播放状态。
 
