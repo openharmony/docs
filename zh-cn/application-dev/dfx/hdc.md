@@ -488,7 +488,7 @@ hdc -s IP:8710 [command] // 其中IP为服务端IP，8710为第一步服务端�
    ```
 
    > **说明：**
-   > 配置的指定调试应用名参数[-b _bundlename_]，仅支持调试debug应用。如何查询一个应用是否为debug应用请参考[错误码E003001处理场景二](#e003001-shell指定的应用名称不是debug应用或应用目录不存在)。
+   > 配置的指定调试应用名参数[-b _bundlename_]，仅支持调试debug应用。如何查询一个应用是否为debug应用请参考[错误码E003001处理场景二](#e003001-shell指定的应用名称非法)。
 
 ## 应用管理
 
@@ -591,7 +591,6 @@ hdc -s IP:8710 [command] // 其中IP为服务端IP，8710为第一步服务端�
    >
    > 使用方法中，`hdc file send -b com.example.myapplication a.txt data/storage/el2/base/b.txt`指定了-b参数，将传输本地当前目录下的文件a.txt到名为com.example.myapplication可调试应用进程的应用数据相对路径data/storage/el2/base/下，并重命名为b.txt。
    > 
-   > hdc file send 指定-b参数时，可以省略 _remotepath_ 参数，此时将传输文件到可调试应用进程数据根目录：`/mnt/debug/<userid>/debug_hap/<bundlename>/`,其中`<userid>`代表当前用户id，`<bundlename>`代表可调试应用进程的包名。
 
 2. 从远端设备发送文件至本地，命令格式如下：
 
@@ -1343,11 +1342,11 @@ linux环境可以选择开启非root用户USB设备操作权限，方法如下�
 
 ## hdc错误码
 
-### E003001 shell指定的应用名称不是debug应用，或应用目录不存在
+### E003001 shell指定的应用名称非法
 
 **错误信息**
 
-The specified bundle name is not a debug application or the debug application path does not exist.
+Invalid bundle name:[bundlename]
 
 **错误描述**
 
@@ -1419,7 +1418,7 @@ Unsupport interactive shell command option
 
 **可能原因**
 
-[command]参数为空。
+ _command_ 参数为空。
 
 **处理步骤**
 
@@ -1461,81 +1460,83 @@ Device does not supported this shell command
 
 升级设备系统版本，`hdc shell -b`参数选项为API16支持的特性。
 
-### E003005 指定的应用名称为空
+### E003005 缺少参数
 
 **错误信息**
 
-The specified bundle name is empty.
+The parameter is missing, correct your input by referring below:
 
 **错误描述**
 
-`hdc shell [-b bundlename] [command]`命令指定-b选项时，未指定应用名称(bundlename)。
+`hdc shell [-b bundlename] [command]`命令指定选项时，缺少必要的参数。
 
 **可能原因**
 
-命令未指定应用名称(bundlename)参数。
+命令未指定应用名称( _bundlename_ )参数。
 
 **处理步骤**
 
-确认命令的[bundlename]参数不为空。
+确认命令的 _bundlename_ 、 _command_ 参数均不为空。
 
 ### E005101 指定的应用名称非法
 
 **错误信息**
 
-Invalid bundle name: [bundlename]
+Invalid bundle name: _bundlename_
 
 **错误描述**
 
-命令`hdc file send/recv [-b bundlename] [local_path] [remote_path]`指定的 _bundlename_ 不是debug（可调试）应用，或应用目录不存在。
+命令`hdc file send/recv -b bundlename localpath remotepath`指定的 _bundlename_ 不是debug（可调试）应用，或应用目录不存在。
 
 **可能原因**
 
-同错误码[E003001](#e003001-shell指定的应用名称不是debug应用或应用目录不存在)
+同错误码[E003001](#e003001-shell指定的应用名称非法)
 
 **处理步骤**
 
-同错误码[E003001](#e003001-shell指定的应用名称不是debug应用或应用目录不存在)
+同错误码[E003001](#e003001-shell指定的应用名称非法)
 
 ### E005102 非法的远程路径
 
 **错误信息**
 
-Remote path: [remotepath] is invalid, it is out of the application directory.
+Remote path: _remotepath_ is invalid, it is out of the application directory.
 
 **错误描述**
 
-命令`hdc file send [-b bundlename] [localpath] [remotepath]`指定的[remotepath]表示的路径不存在或者已超出应用数据目录。
+命令`hdc file send -b bundlename localpath remotepath`指定的 _remotepath_ 表示的路径不存在或者已超出应用数据目录。
 
-命令`hdc file recv [-b bundlename] [remotepath] [localpath]`指定的[remotepath]表示的路径不存在或者已超出应用数据目录。
+命令`hdc file recv -b bundlename remotepath localpath`指定的 _remotepath_ 表示的路径不存在或者已超出应用数据目录。
 
 **可能原因**
 
 * 场景一：路径不存在。
 
-* 场景二：参数[remotepath]包含../跳转符号，处理跳转后，实际目录超出了应用数据根目录。
+* 场景二：参数 _remotepath_ 包含`..`跳转符号，处理跳转后，实际目录超出了应用数据根目录。
 
 **处理步骤**
 
-检查参数[remotepath]指定的应用数据目录相对路径是否真实存在。
+检查参数 _remotepath_ 指定的应用数据目录相对路径是否真实存在。
 
-### E005003 未指定应用名称
+### E005003 缺少参数
 
 **错误信息**
 
-There is no bundle name.
+The parameter is missing, correct your input by referring below
 
 **错误描述**
 
-`hdc file send [-b bundlename] [localpath] [remotepath]`命令指定-b选项时，未指定应用名称(bundlename)。
+命令`hdc file send -b bundlename localpath remotepath`缺少必要的参数。
+
+命令`hdc file recv -b bundlename remotepath localpath`缺少必要的参数。
 
 **可能原因**
 
-命令未指定应用名称(bundlename)参数。
+命令指定-b选项时，缺少 _bundlename_、 _localpath_、 _remotepath_ 参数，参数详细释义参考[文件传输命令介绍](#文件传输)。
 
 **处理步骤**
 
-确认命令的[bundlename]、[localpath]、[remotepath]参数均不为空。
+确认命令的 _bundlename_、_localpath_、_remotepath_ 参数均不为空。
 
 ### E005004 SDK或者设备系统版本不支持-b选项
 
@@ -1549,9 +1550,9 @@ hdc file send/recv 命令带-b选项时，SDK中的hdc或设备系统版本不�
 
 **可能原因**
 
-* 场景一：执行命令`hdc file send [-b bundlename] [localpath] [remotepath]`时，设备系统版本不支持-b选项。
+* 场景一：执行命令`hdc file send -b bundlename localpath remotepath`时，设备系统版本不支持-b选项。
 
-* 场景二：执行命令`hdc file recv [-b bundlename] [remotepath] [localpath]`时，SDK中的hdc不支持-b选项。
+* 场景二：执行命令`hdc file recv -b bundlename remotepath localpath`时，SDK中的hdc不支持-b选项。
 
 **处理步骤**
 
