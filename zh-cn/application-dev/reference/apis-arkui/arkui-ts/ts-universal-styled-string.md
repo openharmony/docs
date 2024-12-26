@@ -476,6 +476,29 @@ appendStyledString(other: StyledString): void
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | other | [StyledString](#styledstring) | 是   | 新的属性字符串对象。|
 
+
+## StyledStringValue对象说明
+
+样式对象类型，用于设置属性字符串的样式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 描述       |
+| ------ | ---------- |
+| [TextStyle](#textstyle) | 文本字体样式。 |
+| [DecorationStyle](#decorationstyle) | 文本装饰线样式。 |
+| [BaselineOffsetStyle](#baselineoffsetstyle) | 文本基线偏移量样式。 |
+| [LetterSpacingStyle](#letterspacingstyle) | 文本字符间距样式。 |
+| [LineHeightStyle](#lineheightstyle) | 文本行高样式。 |
+| [TextShadowStyle](#textshadowstyle) | 文本阴影样式。 |
+| [GestureStyle](#gesturestyle) | 事件手势样式。 |
+| [ParagraphStyle](#paragraphstyle) | 文本段落样式。 |
+| [ImageAttachment](#imageattachment) | 图片样式。 |
+| [CustomSpan](#customspan) | 自定义绘制Span样式。 |
+| [UserDataSpan](#userdataspan) | UserDataSpan样式。 |
+
 ## StyleOptions对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -487,7 +510,7 @@ appendStyledString(other: StyledString): void
 | start | number | 否   | 设置属性字符串样式的开始位置。 |
 | length | number | 否   | 设置属性字符串样式的长度。 |
 | styledKey | [StyledStringKey](#styledstringkey12枚举说明) | 是   | 样式类型的枚举值。 |
-| styledValue | [StyledStringValue](ts-types.md#styledstringvalue12) | 是   | 样式对象。 |
+| styledValue | [StyledStringValue](#styledstringvalue对象说明) | 是   | 样式对象。 |
 
 ## SpanStyle对象说明
 
@@ -500,7 +523,7 @@ appendStyledString(other: StyledString): void
 | start | number | 是   | 匹配属性字符串样式的开始位置。 |
 | length | number | 是   | 匹配属性字符串样式的长度。 |
 | styledKey | [StyledStringKey](#styledstringkey12枚举说明) | 是   | 样式类型的枚举值。 |
-| styledValue | [StyledStringValue](ts-types.md#styledstringvalue12) | 是   | 样式对象。 |
+| styledValue | [StyledStringValue](#styledstringvalue对象说明) | 是   | 样式对象。 |
 
 ## TextStyle
 
