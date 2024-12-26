@@ -305,7 +305,7 @@ type RawFileDescriptor = _RawFileDescriptor
 
 | 类型    | 说明   |
 | ------  | ---- | 
-|RawFileDescriptor|表示rawfile文件所在hap的descriptor信息。|
+|[_RawFileDescriptor](rawFileDescriptor.md#RawFileDescriptor)|表示rawfile文件所在hap的descriptor信息。|
 
 ## Resource<sup>9+</sup>
 
@@ -317,7 +317,7 @@ type Resource = _Resource
 
 | 类型    | 说明   |
 | ------  | ---- | 
-|RawFileDescriptor|表示资源信息。|
+|[_Resource](resource.md#Resource)|表示资源信息。|
 
 ## ResourceManager
 
