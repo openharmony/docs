@@ -2,16 +2,15 @@
 目前HAR的使用存在打包多份，包膨胀的问题，导致整体应用包的体积很大，HSP可以很好地解决该问题，本文介绍了HAR转HSP的步骤，主要是通过配置项的变更将HAR工程变成HSP工程。
 ## HAR转HSP的操作步骤
 
-1. 修改HAR模块下的module.json5文件，修改type字段为shared，新增deliveryWithInstall字段。
+1. 修改HAR模块下的module.json5文件，修改type字段为shared，新增deliveryWithInstall和pages字段。
     ```json
     // MyApplication\library\src\main\module.json5
     {
       "module": {
-        "name": "library",
         "type": "shared",
-        "description": "$string:shared_desc",
         "deliveryWithInstall": true,
         "pages": "$profile:main_pages"
+        // ...
       }
     }
     ```
@@ -82,7 +81,21 @@
     }
     ```
 
-8. 修改项目根目录下的配置文件build-profile.json5。
-![har-to-hsp-8-1.png](figures/har-to-hsp-8-1.png)
-修改后：
-![har-to-hsp-8-2.png](figures/har-to-hsp-8-2.png)
+8. 修改项目根目录下的配置文件build-profile.json5，在modules标签下找到library的配置，新增targets标签。
+
+    ```json
+    // MyApplication\build-profile.json5
+    "modules": [
+      {
+        "name": "library",
+        "srcPath": "./library",
+        "targets": [
+          {
+            "name": "default",
+            "applyToProducts": [
+              "default"
+            ]
+          }
+        ]
+      }
+    ]
