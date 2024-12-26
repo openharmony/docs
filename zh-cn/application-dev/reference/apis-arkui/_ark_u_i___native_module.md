@@ -12593,7 +12593,7 @@ int32_t OH_ArkUI_NodeUtils_GetActiveChildrenInfo (ArkUI_NodeHandle head, ArkUI_A
 ```
 **描述：**
 
-获取某个节点所有活跃的子节点。
+获取某个节点所有活跃的子节点。Span将不会被计入子结点的统计中。
 
 **起始版本：** 14
 
