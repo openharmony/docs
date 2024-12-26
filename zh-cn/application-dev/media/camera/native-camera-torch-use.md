@@ -46,7 +46,7 @@
    }
    ```
 
-4. 通过[OH_CameraManager_IsTorchSupportedByTorchMode()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_istorchsupportedbytorchmode)方法，检测当前设备是否支持设置的手电筒模式。
+4. 通过[OH_CameraManager_IsTorchSupportedByTorchMode()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_istorchsupportedbytorchmode)方法，检测当前设备是否支持指定的手电筒模式。
 
    ```c++
    bool torchModeSupported = false;
