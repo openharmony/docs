@@ -622,16 +622,6 @@ hdc -s IP:8710 [command] // 其中IP为服务端IP，8710为第一步服务端�
    hdc file recv -b com.example.myapplication data/storage/el2/base/a.txt ./a.txt
    ```
 
-   > **注意：**
-   >
-   > hdc file recv命令无法将媒体库目录内文件从远端设备接收至本地。
-   >
-   > 媒体库目录包含:
-   > /storage/cloud/\<USERID\>/files/Photo</br>
-   > /storage/media/\<USERID\>/local/files/Photo</br>
-   >
-   > 开发者可通过mediatool recv命令将指定uri对应的媒体库资源的源文件内容导出到指定的设备路径下，具体操作说明可阅读[mediatool参考文档](../tools/mediatool.md#mediatool-recv)。
-
 ## 端口转发
 
 | 命令 | 说明 |
