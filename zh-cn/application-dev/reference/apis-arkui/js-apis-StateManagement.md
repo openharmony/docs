@@ -154,6 +154,106 @@ const keys: Array<string> = AppStorageV2.keys();
 
 ## PersistenceV2
 
+PersistenceV2中的新接口，详见[PersistenceV2(持久化存储UI状态)](../../quick-start/arkts-new-persistencev2.md)。
+
+### globalConnect<sup>16+</sup>
+
+```ts
+// globalConnect 接口
+static globalConnect<T extends object>(
+    type: ConnectOptions<T>
+  ): T | undefined;
+```
+
+```ts
+// ConnectOptions参数
+class ConnectOptions<T extends object> {
+  type: TypeConstructorWithArgs<T>;	// 必选，指定的类型；
+  key?: string;	// 可选，传入的key，若未指定key，则使用type的name作为key；
+  defaultCreator?: StorageDefaultCreator<T>;	// 默认数据的构造器，建议填写；
+  areaMode?: contextConstant.AreaMode;	// 可选，加密参数；
+}
+```
+
+将键值对数据储存在应用磁盘中。如果给定的key已经存在于[PersistenceV2](../../quick-start/arkts-new-persistencev2.md)中，返回对应的值；否则，会通过获取默认值的构造器构造默认值，并返回。如果globalConnect的是\@ObservedV2对象，该对象\@Trace属性的变化，会触发整个关联对象的自动刷新；非\@Trace属性变化则不会，如有必要，可调用PersistenceV2.save接口手动存储。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| globalConnect | 说明                                                      |
+| ------------- | --------------------------------------------------------- |
+| 参数          | type：传入的connect参数，详细说明见ConnectOptions参数说明 |
+| 返回值        | 创建或获取数据成功时，返回数据；否则返回undefined。       |
+
+| ConnectOptions参数 | 说明                                                         |
+| :----------------: | :----------------------------------------------------------- |
+|        type        | TypeConstructorWithArgs\<T\>，必选参数，指定的类型。         |
+|        key         | string，传入的key，不传则使用type的名字作为key。             |
+|   defaultCreator   | StorageDefaultCreator\<T\>，默认数据的构造器，建议传递，如果globalConnect是第一次连接key，不传会报错。 |
+|      areaMode      | contextConstant.AreaMode，加密级别：EL1-EL5，详见[加密级别](../../application-models/application-context-stage.md)，对应数值：0-4，不传时默认为EL2，不同加密级别对应不同的加密分区，即不同的存储路径，传入的加密等级数值不在0-4会直接运行crash。 |
+
+> **说明：**
+>
+> 1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数作为默认构造器（第二个参数非法也使用第三个参数作为默认构造器）；
+>
+> 2、确保数据已经存储在PersistenceV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常；
+>
+> 3、同一个key，globalConnect不同类型的数据会导致应用异常，应用需要确保类型匹配；
+>
+> 4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的；
+>
+> 5、关联[\@Observed](../../quick-start/arkts-observed-and-objectlink.md)对象时，因为该类型的name属性未定义，需要指定key或者自定义name属性。
+>
+> 6、数据的存储路径为应用级别，不同module使用相同的key和相同的加密分区进行globalConnect，存储的数据副本应用仅有一份。
+>
+> 7、globalConnect使用同一个key但设置了不同的加密级别，数据为第一个使用globalConnect的加密级别，并且PersistenceV2中的数据也会存入最先使用key的加密级别。
+>
+> 8、connect和globalConnect不建议混用，因为数据副本路径不同，如果混用，则key不可以一样，否则会crash。
+>
+> 9、EL5加密要想生效，需要开发者在module.json中配置字段ohos.permission.PROTECT_SCREEN_LOCK_DATA，使用说明见[声明权限](../../security/AccessToken/declare-permissions.md)
+
+**返回值：**
+
+| 类型 | 描述                                                         |
+| ---- | ------------------------------------------------------------ |
+| T    | 创建或获取AppStorageV2数据成功时，返回数据；否则返回undefined。 |
+
+**示例：**
+
+```ts
+import { PersistenceV2, Type } from '@kit.ArkUI';
+import { contextConstant } from '@kit.AbilityKit';
+import { ConnectOptions } from '@ohos.arkui.StateManagement';
+
+@ObservedV2
+class SampleChild {
+  @Trace childId: number = 0;
+  groupId: number = 1;
+}
+
+@ObservedV2
+export class Sample {
+  // 对于复杂对象需要@Type修饰，确保序列化成功
+  @Type(SampleChild)
+  @Trace father: SampleChild = new SampleChild();
+}
+
+// key不传入尝试用为type的name作为key，加密参数不传入默认加密等级为EL2
+@Local p: Sample = PersistenceV2.globalConnect({type: Sample, defaultCreator:() => new Sample()})!;
+
+// 使用key:global1连接，传入加密等级为EL1
+@Local p1: Sample = PersistenceV2.globalConnect({type: Sample, key:'global1', defaultCreator:() => new Sample(), areaMode: contextConstant.AreaMode.EL1})!;
+
+// 使用key:global2连接，使用构造函数形式，加密参数不传入默认加密等级为EL2
+options: ConnectOptions<Sample> = {type: Sample, key: 'global2', defaultCreator:() => new Sample()};
+@Local p2: Sample = PersistenceV2.globalConnect(this.options)!;
+
+// 使用key:global3连接，直接写加密数值，范围只能在0-4，否则运行会crash,例如加密设置为EL3
+@Local p3: Sample = PersistenceV2.globalConnect({type: Sample, key:'global3', defaultCreator:() => new Sample(), areaMode: 3})!;
+
+```
+
 继承自AppStorageV2，PersistenceV2具体UI使用说明，详见[PersistenceV2(持久化存储UI状态)](../../quick-start/arkts-new-persistencev2.md)。
 
 ### save<sup>12+</sup>
@@ -178,10 +278,10 @@ static&nbsp;save\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs
 >
 >手动持久化当前内存中不处于connect状态的key是无意义的。
 
-
 **示例：**
 
 <!--code_no_check-->
+
 ```ts
 // 假设PersistenceV2中存在key为key_as2的键，持久化该键值对数据
 PersistenceV2.save('key_as2');
