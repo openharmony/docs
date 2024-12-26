@@ -3,8 +3,6 @@
 
 The swipe refresher is a component used to obtain and load content, typically with a pull-down gesture.
 
-
-
 > **NOTE**
 >
 > This component and its child components are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
@@ -29,7 +27,7 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 
 SwipeRefresher ({content?: string, isLoading: boolean})
 
-**Decorator**: @Component
+**Decorator**: \@Component
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -46,6 +44,7 @@ SwipeRefresher ({content?: string, isLoading: boolean})
 The [universal events](ts-universal-events-click.md) are supported.
 
 ## Example
+This example demonstrates how setting the **content** parameter to empty or non-empty strings and toggling the **isLoading** parameter between **true** and **false** affects the loading effect.
 ```ts
 import { SwipeRefresher } from '@kit.ArkUI';
 

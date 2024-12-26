@@ -12,8 +12,8 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 颜色名称                     | 颜色值           | 颜色示意                                     |
-| ------------------------ | ------------- | ---------------------------------------- |
+| 名称                     | 值            | 说明                                                         |
+| ------------------------ | ------------- | ------------------------------------------------------------ |
 | Black                    | 0x000000      | ![zh-cn_image_0000001219864153](figures/zh-cn_image_0000001219864153.png) |
 | Blue                     | 0x0000ff      | ![zh-cn_image_0000001174104404](figures/zh-cn_image_0000001174104404.png) |
 | Brown                    | 0xa52a2a      | ![zh-cn_image_0000001219744201](figures/zh-cn_image_0000001219744201.png) |
@@ -25,7 +25,7 @@
 | Red                      | 0xff0000      | ![zh-cn_image_0000001219662665](figures/zh-cn_image_0000001219662665.png) |
 | White                    | 0xffffff      | ![zh-cn_image_0000001174582866](figures/zh-cn_image_0000001174582866.png) |
 | Yellow                   | 0xffff00      | ![zh-cn_image_0000001174582864](figures/zh-cn_image_0000001174582864.png) |
-| Transparent<sup>9+</sup> | rgba(0,0,0,0) | 透明色                                      |
+| Transparent<sup>9+</sup> | rgba(0,0,0,0) | 透明色                                                       |
 
 ## ImageFit
 
@@ -731,6 +731,18 @@
 | ----------- | ------------------------ |
 | PLACEHOLDER | 显示的数据为通用占位符。 |
 
+## ColoringStrategy<sup>10+</sup>
+
+智能取色枚举类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 描述              |
+| ------ | --------------- |
+| INVERT | 设置前景色为控件背景色的反色。仅支持在[foregroundColor](ts-universal-attributes-foreground-color.md#foregroundcolor)中设置该枚举。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+
 ## ClickEffectLevel<sup>10+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -742,6 +754,17 @@
 | LIGHT  | 小面积（轻盈） | 弹簧动效， 刚性：410，阻尼：38，初始速度：1 | 90% |
 | MIDDLE | 中面积（稳定） | 弹簧动效， 刚性：350，阻尼：35，初始速度：0.5 | 95% |
 | HEAVY  | 大面积（厚重） | 弹簧动效， 刚性：240，阻尼：28，初始速度：0 | 95% |
+
+## CheckBoxShape<sup>11+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 值   | 说明     |
+| -------------- | ---- | -------- |
+| CIRCLE         | 0    | 圆形     |
+| ROUNDED_SQUARE | 1    | 圆角方形 |
 
 ## FoldStatus<sup>11+</sup>
 
@@ -821,6 +844,19 @@ Nullable\<T> {
 | SELECTABLE_UNFOCUSABLE  | 文本可选择，但不可获焦，设置属性selection、bindSelectionMenu、copyOption不影响当前行为。 |
 | SELECTABLE_FOCUSABLE | 文本可选择，可获焦并Touch后获得焦点。 |
 | UNSELECTABLE     | 文本不可选择，不可获焦，设置属性selection、bindSelectionMenu、copyOption都不生效。  |
+
+## AccessibilityHoverType<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 值 | 说明                                                         |
+| ------------ | - | ------------------------------------------------------------ |
+| HOVER_ENTER  | 0 | 手指按下时触发。         |
+| HOVER_MOVE   | 1 | 触摸移动时触发。         |
+| HOVER_EXIT   | 2 | 抬手触发。              |
+| HOVER_CANCEL | 3 | 打断取消当前触发的事件。  |
 
 ## EllipsisMode<sup>11+</sup>
 
@@ -978,11 +1014,11 @@ Nullable\<T> {
 | TEXTURE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容会和XComponent组件的内容合成后展示到屏幕上。1、保持帧同步，保持在同一帧将图形处理器（GPU）纹理和ArkUI其他的绘制指令统一发给渲染服务(RenderService)。2、动效和原生组件统一。3、走图形处理器（GPU）合成，相比surface可能走显示子系统（DSS）功耗更高。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NODE<sup>12+</sup>            | 用于Native UI节点的占位容器，开发者通过Native API 开发的页面组件可展示在此容器区域内。<br/>**说明：**<br/>该类型不再演进，推荐使用[ContentSlot](../../../quick-start/arkts-rendering-control-contentslot.md)占位组件管理Native API创建的组件，ContentSlot在内存和性能方面都优于NODE类型的XComponent。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
-## HoverModeAreaType<sup>13+</sup>
+## HoverModeAreaType<sup>14+</sup>
 
 悬停态显示区域类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 

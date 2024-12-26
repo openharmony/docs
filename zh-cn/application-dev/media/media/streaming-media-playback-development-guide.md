@@ -1,4 +1,4 @@
-# 使用AVPlayer开发流媒体播放功能
+# 使用AVPlayer播放流媒体(ArkTS)
 
 本开发指导将介绍如何使用[AVPlayer](media-kit-intro.md#avplayer)开发流媒体播放功能，以完整地播放一个流媒体视频作为示例，实现端到端播放流媒体资源。
 当前指导仅介绍如何实现流媒体播放功能，本地音视频播放等其他场景，请参考[视频播放](using-avplayer-for-playback.md)。
@@ -12,11 +12,9 @@
 | HTTP/HTTPS | `https://xxxx.mp4` | 支持 |-  | srt/vtt | - | 支持 |
 | HTTP-FLV | `https://xxxx.flv` | 支持 | 支持 | srt/vtt | - | 支持 |
 
-## 流媒体播放流程
+## 开发步骤
 
-创建AVPlayer，设置播放资源和窗口，设置播放参数（音量/倍速/缩放模式），播放控制（播放/暂停/跳转/停止），重置，销毁资源。在进行应用开发的过程中，开发者可以通过AVPlayer的state属性主动获取当前状态或使用on('stateChange')方法监听状态变化。如果应用在视频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。状态的详细说明请参考[AVPlayerState](../../reference/apis-media-kit/js-apis-media.md#avplayerstate9)。
-
-## 开发步骤及注意事项
+创建AVPlayer，设置播放资源和窗口，设置播放参数（音量/倍速/缩放模式），播放控制（播放/暂停/跳转/停止），重置，销毁资源。在进行应用开发的过程中，开发者可以通过AVPlayer的state属性主动获取当前状态或使用on('stateChange')方法监听状态变化。如果应用在视频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。状态的详细说明请参考[AVPlayerState](../../reference/apis-media-kit/js-apis-media.md#avplayerstate9)。具体的开发步骤如下：
 
 1. 创建实例createAVPlayer()，AVPlayer初始化idle状态。
 
@@ -52,6 +50,70 @@
 
 7. 退出播放：调用release()销毁实例，AVPlayer进入released状态，退出播放。
 
+## 注意事项
+
+播放流媒体的标准流程如上述开发步骤所示，但使用不同的流媒体格式在实际开发的过程中还是会存在一定差异，本节将详细描述不同流媒体格式业务的差异，包括设置视频起播策略、切换音视频轨道等。
+
+### DASH设置视频起播策略
+
+为了保证在弱网环境下的播放体验，AVPlayer会默认选择最低的视频分辨率开始播放，随后依据网络状况自动调整。开发者可根据实际需求，自定义DASH视频的起播策略，包括设定视频的宽度、高度以及色彩格式等参数。
+
+以调节视频起播分辨率为例，下述示例代码描述了设置视频宽度1920px、高度1080px起播。此时，AVPlayer会选择MPD资源中一路分辨率为1920x1080的视频资源进行播放。
+
+```ts
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://test.cn/dash/aaa.mpd",  {"User-Agent" : "User-Agent-Value"});
+let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1920, preferredHeight: 1080};
+avPlayer.setMediaSource(mediaSource, playbackStrategy);
+```
+
+### DASH切换音视频轨道
+
+DASH流媒体资源一般包含多路分辨率、码率、采样率、编码格式等参数各不相同的音频、视频和字幕资源。默认情况下，AVPlayer会依据网络状况自动切换不同码率的视频轨道。开发者可根据实际需求，自主选择指定的音视频轨道进行播放，此时自适应码率切换策略会失效。
+
+1. 设置selectTrack生效的监听事件[trackChange](../../reference/apis-media-kit/js-apis-media.md)。
+
+    ```ts
+    avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
+      console.info(`trackChange info, index: ${error}, isSelect: ${isSelect}`);
+    })
+    ```
+
+2. 调用[getTrackDescription](../../reference/apis-media-kit/js-apis-media.md#gettrackdescription9)获取所有音视频轨道列表。开发者可根据实际需求，基于[MediaDescription](../../reference/apis-media-kit/js-apis-media.md#mediadescription8)各字段信息，确定目标轨道索引。
+
+    ```ts
+    // 以获取1080p视频轨道索引为例
+    public videoTrackIndex: number;
+    avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
+      if (arrList != null) {
+        for (let i = 0; i < arrList.length; i++) {
+          let propertyIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
+          let propertyType: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_TYPE];
+          let propertyWidth: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_WIDTH];
+          let propertyHeight: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_HEIGHT];
+          if (propertyType == media.MediaType.MEDIA_TYPE_VID && propertyWidth == 1920 && propertyHeight == 1080) {
+            videoTrackIndex = parseInt(propertyIndex.toString()); // 获取1080p视频轨道索引
+          }
+        }
+      } else {
+        console.error(`getTrackDescription fail, error:${error}`);
+      }
+    });
+    ```                   
+
+3. 在音视频播放过程中调用[selectTrack](../../reference/apis-media-kit/js-apis-media.md#selecttrack12)选择对应的音视频轨道，或者调用[deselectTrack](../../reference/apis-media-kit/js-apis-media.md#deselecttrack12)取消选择的音视频轨道。
+
+    ```ts
+    // 切换至目标视频轨道
+    avPlayer.selectTrack(videoTrackIndex);
+    // 取消选择目标视频轨道
+    // avPlayer.deselectTrack(videoTrackIndex);
+    ```
+
+## 异常场景说明
+
+使用avPlayer播放流媒体过程中断网：流媒体模块会根据返回的错误码、服务器请求失败的响应时间、请求次数等因素综合处理。若错误码类型属于不进行请求重试的类型，会向应用上报对应的错误码。若错误码类型需要进行请求重试，会在30s内进行至多10次的请求重试。若请求重试次数超过10次，或重试总时长超过30秒，会上向应用上报对应的错误码。若请求重试成功，则继续播放。
+
+
 ## 完整实例
 
 参考以下示例，完整地播放一个流媒体视频。
@@ -65,12 +127,17 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export class AVPlayerDemo {
   private count: number = 0;
   private isSeek: boolean = true; // 用于区分模式是否支持seek操作
+  public audioTrackList: number[] = [];
+  public videoTrackList: number[] = [];
   // 注册avplayer回调函数
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
     // seek操作结果回调函数
     avPlayer.on('seekDone', (seekDoneTime: number) => {
       console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
     })
+    // avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
+    //   console.info(`AVPlayer track changed, track index: ${index}, isSelect: ${isSelect}`);
+    // })
     // error回调监听函数,当avPlayer在操作过程中出现错误时调用 reset接口触发重置流程
     avPlayer.on('error', (err: BusinessError) => {
       console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
@@ -143,6 +210,41 @@ export class AVPlayerDemo {
     avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8';
   }
 
+  // 以下demo为通过url设置网络地址来实现播放Dash流媒体视频
+  async avPlayerDashDemo() {
+    // 创建avPlayer实例对象
+    let avPlayer: media.AVPlayer = await media.createAVPlayer();
+    // 创建状态机变化回调函数
+    this.setAVPlayerCallback(avPlayer);
+    // 设置播放偏好策略
+    // let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://test.cn/dash/aaa.mpd",  {"User-Agent" : "User-Agent-Value"});
+    // let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
+    // avPlayer.setMediaSource(mediaSource, playbackStrategy);
+    this.isSeek = true; // 表示支持seek操作
+    avPlayer.url = 'http://test.cn/dash/aaa.mpd'; //须替换为DASH资源实际地址
+
+    // 通过selectTrack设置音频/视频轨道，通过deselectTrack取消上次设置的音频/视频轨道并恢复到默认音频/视频轨道
+    avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
+      if (arrList != null) {
+        for (let i = 0; i < arrList.length; i++) {
+          let propertyIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
+          let propertyType: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_TYPE];
+          if (propertyType == 0) {
+            this.audioTrackList.push(parseInt(propertyIndex.toString())); // 获取音频轨道列表
+          } else if (propertyType == 1) {
+            this.videoTrackList.push(parseInt(propertyIndex.toString())); // 获取视频轨道列表
+          }
+        }
+      } else {
+        console.error(`getTrackDescription fail, error:${error}`);
+      }
+    });
+    // 选择其中一个视频轨道
+    // avPlayer.selectTrack(this.videoTrackList[0]);
+    // 取消选择的视频轨道
+    // avPlayer.deselectTrack(this.videoTrackList[0]);
+  }
+
   // 以下demo为通过setMediaSource设置自定义头域及媒体播放优选参数实现初始播放参数设置，以流媒体Https点播为例
   async preDownloadDemo() {
     // 创建avPlayer实例对象
@@ -160,6 +262,5 @@ export class AVPlayerDemo {
 }
 ```
 
-## 异常场景说明
 
-使用avPlayer播放流媒体过程中断网：流媒体模块会根据返回的错误码、服务器请求失败的响应时间、请求次数等因素综合处理。若错误码类型属于不进行请求重试的类型，会向应用上报对应的错误码。若错误码类型需要进行请求重试，会在30s内进行至多10次的请求重试。若请求重试次数超过10次，或重试总时长超过30秒，会上向应用上报对应的错误码。若请求重试成功，则继续播放。
+

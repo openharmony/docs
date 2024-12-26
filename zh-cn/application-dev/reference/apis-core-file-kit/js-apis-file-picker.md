@@ -392,15 +392,17 @@ async function example12(context: common.Context) { // 需确保 context 由 UIA
 
 getSelectedIndex(): number
 
-**原子化服务API:** 从API version 13开始，该接口支持在原子化服务中使用。
+获取保存成功后的文件后缀类型的下标。
+
+该方法只在调用 [save()](#save)时使用生效，其他场景下不可以使用。
+
+该方法需要配置参数[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)使用。
+
+该方法返回的是所选后缀类型的下标(number)，所选的后缀类型是开发者所传的参数[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)里的某个后缀类型，如果没有传参，并且调用了getSelectedIndex()方法，返回值为-1。
+
+**原子化服务API:** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection
-
-通过getSelectedIndex()方法获取保存成功后的文件后缀类型的下标。
-  > **注意**：
-  > <br>**1**、getSelectedIndex()方法只在调用 [save()](#save)时使用生效，其他场景下不可以使用。
-  > <br>**2**、getSelectedIndex()方法需要配置参数[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)使用。
-  > <br>**3**、getSelectedIndex()方法返回的是所选后缀类型的下标(number)，所选的后缀类型是开发者所传的参数[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)里的某个后缀类型，如果没有传参，并且调用了getSelectedIndex()方法，返回值为-1。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';

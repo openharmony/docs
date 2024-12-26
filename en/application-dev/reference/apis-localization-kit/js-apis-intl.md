@@ -206,7 +206,7 @@ Options for initializing the **Locale** object. Since API version 9, the **Local
 | collation       | string  | No    |Collation parameter.<br>The value can be any of the followings: **big5han**, **compat**, **dict**, **direct**, **ducet**, **emoji**, **eor**, **gb2312**, **phonebk**, **phonetic**, **pinyin**, or **reformed**". **search**, **searchjl**, **standard**, **stroke**, **trad**, **unihan**, **zhuyin**.|
 | hourCycle       | string  | No    |Hour cycle.<br>The value can be **h11**, **h12**, **h23**, or **h24**.|
 | numberingSystem | string  | No    |Numbering system.<br>The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**.|
-| numeric         | boolean | No    | Whether to use the 12-hour clock. The default value is **false**.                              |
+| numeric         | boolean | No    | Whether to apply special collation rules for numeric characters. The default value is **false**.                              |
 | caseFirst       | string  | No    | Whether upper case or lower case is sorted first.<br>The value can be **upper**, **lower**, or **false**.|
 
 >  **NOTE**
@@ -924,5 +924,3 @@ Represents the properties of a **RelativeTimeFormat** object.
 | numeric         | string | Yes   | Format of the output message. The value can be **always** or **auto**.     |
 | style           | string | Yes   | Length of an internationalized message. The value can be **long**, **short**, or **narrow**.|
 | numberingSystem | string | Yes   | Numbering system.                                |
-
-<!--no_check-->

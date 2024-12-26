@@ -274,7 +274,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_StartNativeChildProcess(
 
 Starts a native child process, loads the specified dynamic library file, and calls the entry function. Arguments can be passed to the child process. The ArkTS basic runtime environment cannot be created in the child process.
 
-The specified dynamic library must implement and export the entry parameters of [NativeChildProcess_Args] (#nativechildprocess_args). For details, see [Native Child Process Development (C/C++) - Creating a Child Process That Supports Pass-by-Parameter](../../application-models/capi_nativechildprocess_development_guideline.md#creating-a-child-process-that-supports-pass-by-parameter).
+The specified dynamic library must implement and export the entry parameters of [NativeChildProcess_Args](#nativechildprocess_args). For details, see [Native Child Process Development (C/C++) - Creating a Child Process That Supports Pass-by-Parameter](../../application-models/capi_nativechildprocess_development_guideline.md#creating-a-child-process-that-supports-pass-by-parameter).
 
 > **NOTE**
 >

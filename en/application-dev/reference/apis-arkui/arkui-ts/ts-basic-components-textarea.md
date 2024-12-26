@@ -1,8 +1,8 @@
 # TextArea
 
-The **TextArea** component provides multi-line text input and automatically wraps text so that each line does not have more than the width of the component.
+The **TextArea** component provides multi-line text input and automatically wraps text to ensure that no line extends beyond the component's width.
 
-If the component does not have its height set, it adapts its height to the content. If the component does not have its width set, it takes the maximum available width.
+If the component does not have its height set, it adapts its height to the content. If the component does not have its width set, it stretches to fill the maximum available width.
 
 >  **NOTE**
 >
@@ -71,7 +71,7 @@ Sets the placeholder text color.
 
 placeholderFont(value: Font)
 
-Sets the placeholder text style, including the font size, font width, font family, and font style. Currently, only the default font family is supported.
+Sets the placeholder text style, including the font size, font width, font family, and font style. The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -132,8 +132,6 @@ fontColor(value: ResourceColor)
 
 Sets the font color.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -146,11 +144,9 @@ Sets the font color.
 
 ### fontSize
 
-fontSize(value: number | string | Resource)
+fontSize(value: Length)
 
 Sets the text size.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -158,17 +154,15 @@ Sets the text size.
 
 **Parameters**
 
-| Name| Type                                                        | Mandatory| Description                                                        |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource) \| number \| string | Yes  | Font size. If **fontSize** is of the number type, the unit fp is used. The default font size is 16 fp. This parameter cannot be set in percentage.|
+| Name| Type                        | Mandatory| Description                                                        |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | Yes  | Font size. If **fontSize** is of the number type, the unit fp is used. The default font size is 16 fp. This parameter cannot be set in percentage.|
 
 ### fontStyle
 
 fontStyle(value: FontStyle)
 
 Sets the font style.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -186,8 +180,6 @@ fontWeight(value: number | FontWeight | string)
 
 Sets the font weight. If the value is too large, the text may be clipped depending on the font.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -196,15 +188,13 @@ Sets the font weight. If the value is too large, the text may be clipped dependi
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | Yes  | Font weight. For the number type, the value range is [100, 900], at an interval of 100. The default value is **400**. A larger value indicates a heavier font weight. For the string type, only strings that represent a number, for example, **"400"**, and the following enumerated values of **FontWeight** are supported: **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**.<br>Default value: **FontWeight.Normal**|
+| value  | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | Yes  | Font weight. For the number type, the value range is [100, 900], at an interval of 100. The default value is **400**. A larger value indicates a heavier font weight. For the string type, only strings that represent a number, for example, **"400"**, and the following enumerated values of **FontWeight** are supported: **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**.<br>Default value: **FontWeight.Normal**|
 
 ### fontFamily
 
-fontFamily(value: string | Resource)
+fontFamily(value: ResourceStr)
 
 Sets the font family.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -212,9 +202,9 @@ Sets the font family.
 
 **Parameters**
 
-| Name| Type                                                | Mandatory| Description                                                        |
-| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource) \| string | Yes  | Font family. Default font: **'HarmonyOS Sans'**<br>The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported for applications.<br>Only the 'HarmonyOS Sans' font is supported for widgets.|
+| Name| Type                                  | Mandatory| Description                                                        |
+| ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [ResourceStr](ts-types.md#resourcestr) | Yes  | Font family. Default font: **'HarmonyOS Sans'**<br>The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported for applications.<br>Only the 'HarmonyOS Sans' font is supported for widgets.|
 
 ### inputFilter<sup>8+</sup>
 
@@ -237,7 +227,7 @@ Sets the regular expression for input filtering. Only inputs that comply with th
 
 copyOption(value: CopyOptions)
 
-Sets whether copy and paste is allowed. If this attribute is set to **CopyOptions.None**, the paste operation is allowed, but the copy and cut operations are not.
+Sets whether copy and paste is allowed. If this attribute is set to **CopyOptions.None**, the text can be pasted, but copy, cut, and AI-powered writing is not allowed.
 
 Dragging is not allowed when **CopyOptions.None** is set.
 
@@ -308,7 +298,7 @@ Sets the polymorphic style of the text box. The inline input style is only avail
 
 enableKeyboardOnFocus(value: boolean)
 
-Sets whether to enable the input method when the component obtains focus in a way other than clicking.
+Sets whether to enable the input method when the **TextArea** component obtains focus in a way other than clicking.
 
  
 
@@ -320,7 +310,7 @@ Sets whether to enable the input method when the component obtains focus in a wa
 
 | Name| Type   | Mandatory| Description                                                       |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| value  | boolean | Yes  | Whether to enable the input method when the component obtains focus in a way other than clicking.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether to enable the input method when the **TextArea** component obtains focus in a way other than clicking.<br>Default value: **true**|
 
 ### selectionMenuHidden<sup>10+</sup>
 
@@ -336,7 +326,7 @@ Sets whether to hide the system text selection menu.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to hide the system text selection menu.<br>**true**: Tapping, long-pressing, double-tapping, triple-tapping, or right-clicking the text box will not trigger the system text selection menu.<br>**false**: Tapping, long-pressing, double-tapping, triple-tapping, or right-clicking the text box will trigger the system text selection menu.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to hide the system text selection menu.<br>**true**: The system text selection menu does not appear under the following circumstances: clicking the text box cursor, long-pressing the text box, double-tapping the text box, triple-tapping the text box, or right-clicking the text box.<br>**false**: The system text selection menu appears under the following circumstances: clicking the text box cursor, long-pressing the text box, double-tapping the text box, triple-tapping the text box, or right-clicking the text box.<br>Default value: **false**|
 
 ### barState<sup>10+</sup>
 
@@ -387,6 +377,8 @@ The custom keyboard cannot obtain the focus, but it blocks gesture events.
 By default, the custom keyboard is closed when the input component loses the focus. You can also use the [TextAreaController](#textareacontroller8).[stopEditing](#stopediting10) API to close the keyboard.
 
 When a custom keyboard is set, the text box does not support camera input, even when the device supports.
+
+When setting a custom keyboard, you can bind the [onKeyPrelme](ts-universal-events-key.md#onkeypreime12) event to prevent input from the physical keyboard.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -764,6 +756,45 @@ Preview text is in a temporary state and does not support text interception. As 
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | Yes  | Whether to enable preview text.<br>Default value: **true**|
 
+>  **NOTE**
+>
+>  This API is disabled by default in C API scenarios. To enable preview text in such scenarios, set [metadata](../../../../application-dev/quick-start/module-structure.md#internal-structure-of-the-metadata-attribute) in the **module.json5** file of the project as follows:
+> ```json
+> "metadata": [
+>  {
+>     "name": "can_preview_text",
+>     "value": "true",
+>  }
+> ]
+> ```
+
+### enableHapticFeedback<sup>13+</sup>
+
+enableHapticFeedback(isEnabled: boolean)
+
+Specifies whether to enable haptic feedback.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                              |
+| ------ | ------- | ---- | ---------------------------------- |
+| isEnabled | boolean | Yes  | Whether to enable haptic feedback.<br>Default value: **true**|
+
+>  **NOTE**
+>
+>  To enable haptic feedback, you must declare the ohos.permission.VIBRATE permission under **requestPermissions** in the **module.json5** file of the project.
+> ```json
+> "requestPermissions": [
+>  {
+>     "name": "ohos.permission.VIBRATE",
+>  }
+> ]
+> ```
+
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
@@ -773,6 +804,8 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 onChange(callback: EditableTextOnChangeCallback)
 
 Called when the input in the text box changes.
+
+In this callback, if cursor operations are performed, developers need to adjust the cursor logic based on the **previewText** parameter to ensure it works seamlessly within the preview display scenario.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -788,7 +821,7 @@ Called when the input in the text box changes.
 
 onEditChange(callback: (isEditing: boolean) =&gt; void)
 
-Called when the input status changes. The text box is in the editing state when it has the caret placed in it, and is in the non-editing state otherwise. If the value of **isEditing** is **true**, the text box is in the editing state.
+Triggered when the input status changes. The text box is in the editing state when it has the caret placed in it, and is in the non-editing state otherwise. If the value of **isEditing** is **true**, the text box is in the editing state.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -804,7 +837,7 @@ Called when the input status changes. The text box is in the editing state when 
 
 onCopy(callback: (value: string) =&gt; void)
 
-Invoked when a copy operation is performed.
+Triggered when a copy operation is performed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -820,7 +853,7 @@ Invoked when a copy operation is performed.
 
 onCut(callback: (value: string) =&gt; void)
 
-Invoked when a cut operation is performed.
+Triggered when a cut operation is performed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -836,7 +869,7 @@ Invoked when a cut operation is performed.
 
 onPaste(callback: (value: string, event: PasteEvent) =&gt; void)
 
-Invoked when a paste operation is performed.
+Triggered when a paste operation is performed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -853,7 +886,7 @@ Invoked when a paste operation is performed.
 
 onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
 
-Invoked when the position of the text selection changes or when the cursor position changes during the editing state.
+Triggered when the position of the text selection changes or when the cursor position changes during the editing state.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -870,7 +903,7 @@ Invoked when the position of the text selection changes or when the cursor posit
 
 onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
-Called when the text content is scrolled.
+Triggered when the text content is scrolled.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -887,7 +920,7 @@ Called when the text content is scrolled.
 
 onSubmit(callback: (enterKey: EnterKeyType) =&gt; void)
 
-Called when the Enter key on the keyboard is pressed.
+Triggered when the Enter key on the soft keyboard is pressed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -899,11 +932,27 @@ Called when the Enter key on the keyboard is pressed.
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | enterKey | [EnterKeyType](ts-types.md#enterkeytype) | Yes  | Type of the Enter key. If it is **EnterKeyType.NEW_LINE** and the text box is in inline input style, **onSubmit** is not triggered.|
 
+### onSubmit<sup>14+</sup>
+
+onSubmit(callback: TextAreaSubmitCallback)
+
+Triggered when the Enter key on the soft keyboard is pressed, providing methods to maintain the editing state of the **TextArea** component upon submission.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                         |
+| ------ | ------- | ---- | ----------------------------- |
+| callback | [TextAreaSubmitCallback](#textareasubmitcallback14) | Yes  | Callback triggered when the Enter key on the soft keyboard is pressed.|
+
 ### onWillInsert<sup>12+</sup>
 
 onWillInsert(callback: Callback\<InsertValue, boolean>)
 
-Called when text is about to be inserted.
+Triggered when text is about to be inserted.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -935,7 +984,7 @@ Called when text is inserted.
 
 onWillDelete(callback: Callback\<DeleteValue, boolean>)
 
-Called when text is about to be deleted.
+Triggered when text is about to be deleted.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -951,7 +1000,7 @@ Called when text is about to be deleted.
 
 onDidDelete(callback: Callback\<DeleteValue>)
 
-Called when text is deleted.
+Triggered when text is deleted.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1084,10 +1133,29 @@ Enumerates the content types for autofill.
 | DETAIL_INFO_WITHOUT_STREET | 24   | Address information without street address. The scenario-based autofill feature, when enabled, can automatically save and fill in address information without street addresses.|
 | FORMAT_ADDRESS             | 25   | Standard address. The scenario-based autofill feature, when enabled, can automatically save and fill in standard addresses.|
 
+## TextAreaSubmitCallback<sup>14+</sup>
+
+type TextAreaSubmitCallback = (enterKeyType: EnterKeyType, event?: SubmitEvent) => void
+
+Represents the callback invoked when the Enter key on the soft keyboard is pressed.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                    |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
+| enterKeyType | [EnterKeyType](ts-types.md#enterkeytype)             | Yes  | Type of the Enter key.<br>If the type is **EnterKeyType.NEW_LINE**, **onSubmit** is not triggered.|
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11) | No  | Submit event.        |
+
 ## Example
 
-### Example 1
-This example demonstrates the basic usage of **TextArea**.
+### Example 1: Setting and Obtaining the Cursor Position
+
+This example demonstrates how to use the controller to set and obtain the cursor position within a text box.
+
 ```ts
 // xxx.ets
 @Entry
@@ -1135,16 +1203,16 @@ struct TextAreaExample {
 
 ![textArea](figures/textArea.gif)
 
-### Example 2
-This example shows how to set the **maxLength** and **showCounter** attributes.
+### Example 2: Implementing a Counter
+
+This example showcases the implementation of a counter feature using the **maxLength** and **showCounter** attributes.
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TextAreaExample {
-  @State text: string = 'test'
-  @State counterVisible: boolean = false
-  @State maxNumber: number = -1
+  @State text: string = ''
   controller: TextAreaController = new TextAreaController()
 
   build() {
@@ -1160,9 +1228,12 @@ struct TextAreaExample {
         .margin(20)
         .fontSize(16)
         .fontColor('#182431')
-        .maxLength(4)
-        .showCounter(true)
         .backgroundColor('#FFFFFF')
+        .maxLength(4)
+        .showCounter(true, { thresholdPercentage: 50, highlightBorder: true })
+          // The character counter is in this format: Number of characters that have been entered/Maximum number of characters allowed, which is specified by maxLength().
+          // The character counter is displayed when the number of characters that have been entered is greater than the maximum number of characters multiplied by 50% (threshold percentage).
+          // When highlightBorder is set to false, the text box border turns red when the number of entered characters reaches the maximum. The default value is true.
         .onChange((value: string) => {
           this.text = value
         })
@@ -1171,11 +1242,13 @@ struct TextAreaExample {
 }
 ```
 
-![maxLength](figures/maxLength.png)
+![TextAreaCounter](figures/TextAreaCounter.gif)
 
 
-### Example 3
-This example illustrates how to bind a custom keyboard to the **TextArea** component.
+### Example 3: Implementing a Custom Keyboard
+
+This example demonstrates how to implement a custom keyboard using the **customKeyboard** attribute.
+
 ```ts
 // xxx.ets
 @Entry
@@ -1217,60 +1290,33 @@ struct TextAreaExample {
 
 ![customKeyboard](figures/textAreaCustomKeyboard.png)
 
-### Example 4
-This example illustrates the use of a character counter with the **TextArea** component.
+### Example 4: Setting the Enter Key Type
+
+This example shows how to use the **enterKeyType** attribute to dynamically change the effect of the Enter key on the soft keyboard.
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TextAreaExample {
   @State text: string = ''
-  controller: TextAreaController = new TextAreaController()
-
-  build() {
-    Column() {
-      TextArea({ text: this.text, controller: this.controller })
-        .placeholderFont({ size: 16, weight: 400 })
-        .width(336)
-        .height(56)
-        .maxLength(6)
-		.showCounter(true, { thresholdPercentage: 50, highlightBorder: true })
-		// The character counter is in this format: Number of characters that have been entered/Maximum number of characters allowed, which is specified by maxLength().
-        // The character counter is displayed when the number of characters that have been entered is greater than the maximum number of characters multiplied by 50% (threshold percentage).
-        // When highlightBorder is set to false, the text box border turns red when the number of entered characters reaches the maximum. The default value is true.
-        .onChange((value: string) => {
-          this.text = value
-        })
-    }.width('100%').height('100%').backgroundColor('#F1F3F5')
-  }
-}
-```
-
-![TextAreaCounter](figures/TextAreaCounter.jpg)
-
-
-### Example 5
-This example shows how to set the **enterKeyType** attribute.
-```ts
-// xxx.ets
-@Entry
-@Component
-struct TextInputExample {
-  @State Text: string = ''
-  @State enterTypes: Array<EnterKeyType> = [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next, EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
+  @State enterTypes: Array<EnterKeyType> =
+    [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next,
+      EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
   @State index: number = 0
+
   build() {
     Column({ space: 20 }) {
-      TextArea({ placeholder: 'Enter user name', text: this.Text })
+      TextArea({ placeholder: 'Enter user name', text: this.text })
         .width(380)
         .enterKeyType(this.enterTypes[this.index])
         .onChange((value: string) => {
-          this.Text = value
+          this.text = value
         })
         .onSubmit((enterKey: EnterKeyType) => {
           console.log("trigger area onsubmit" + enterKey);
         })
-      Button ('Change EnterKeyType').onClick () => {
+      Button('Change EnterKeyType').onClick(() => {
         this.index = (this.index + 1) % this.enterTypes.length;
       })
 
@@ -1282,8 +1328,9 @@ struct TextInputExample {
 ![TextAreaEnterKeyType](figures/area_enterkeytype.gif)
 
 
-### Example 6
-This example shows how to set the **wordBreak** attribute for the **TextArea** component.
+### Example 5: Setting Text Wrapping Rules
+
+This example demonstrates the effects of different text wrapping rules using the **wordBreak** attribute.
 
 ```ts
 // xxx.ets
@@ -1299,13 +1346,20 @@ struct TextAreaExample {
         .fontSize(16)
         .border({ width: 1 })
         .wordBreak(WordBreak.NORMAL)
-      Text ("WordBreakType as BREAK_ALL") .fontSize (16).fontColor (0xFF0000)
+      Text("WordBreakType as BREAK_ALL: ").fontSize(16).fontColor(0xFF0000)
       TextArea({
         text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
       })
         .fontSize(16)
         .border({ width: 1 })
-        .wordBreak(WordBreak.BREAK_ALL)    
+        .wordBreak(WordBreak.BREAK_ALL)
+      Text("WordBreakType as BREAK_ALL: ") .fontSize (16).fontColor (0xFF0000)
+      TextArea({
+        text: 'The TextArea component automatically wraps text so that each line does not have more than the width of the component.\nIf the component does not have its height set, it adapts its height to the content. If the component does not have its width set, it takes the maximum available width.'
+      })
+        .fontSize(16)
+        .border({ width: 1 })
+        .wordBreak(WordBreak.BREAK_ALL)
       Text("WordBreakType as BREAK_WORD: ").fontSize(16).fontColor(0xFF0000)
       TextArea({
         text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
@@ -1320,9 +1374,9 @@ struct TextAreaExample {
 
 ![TextAreaWordBreak](figures/TextAreaWordBreak.jpeg)
 
-### Example 7
+### Example 6: Setting the Text Style
 
-This example shows how to use the **lineHeight**, **letterSpacing**, and **decoration** attributes.
+This example showcases various text styles by using the **lineHeight**, **letterSpacing**, and **decoration** attributes.
 
 ```ts
 // xxx.ets
@@ -1368,14 +1422,16 @@ struct TextAreaExample {
 
 ![TextAreaDecoration](figures/textarea_decoration.png)
 
-### Example 8
-This example shows how to set the **fontFeature** attribute, with a comparison between the ss01-enabled and ss01-disabled effects.
+### Example 7: Setting Text Feature Effects
+
+This example demonstrates how to use the **fontFeature** attribute to display text with various typographic features.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct textArea {
-  @State text1: string = 'This is ss01 on: 0123456789'
+struct TextAreaExample {
+  @State text1: string = 'This is ss01 on : 0123456789'
   @State text2: string = 'This is ss01 off: 0123456789'
 
   build() {
@@ -1396,11 +1452,12 @@ struct textArea {
 ```
 ![fontFeature](figures/textAreaFontFeature.png)
 
-### Example 9
+### Example 8: Setting Custom Keyboard Avoidance
 
-This example shows how to support custom keyboard avoidance.
+This example illustrates the implementation of a custom keyboard that automatically adjusts its position to avoid covering the text box.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextAreaExample {
@@ -1463,9 +1520,9 @@ struct TextAreaExample {
 ```
 ![CustomTextAreaType](figures/textAreaCustomKeyboard.gif)
 
-### Example 10
+### Example 9: Setting Text Auto-Adaptation
 
-This example shows how to set **minFontSize**, **maxFontSize**, and **heightAdaptivePolicy**.
+This example showcases the implementation of text auto-adaptation features using the **minFontSize**, **maxFontSize**, and **heightAdaptivePolicy** attributes.
 
 ```ts
 // xxx.ets
@@ -1504,16 +1561,17 @@ struct TextAreaExample {
 
 ![TextAreaAdaptFont](figures/textarea_adapt_font.png)
 
-### Example 11
+### Example 10: Setting the Text Line Spacing
 
-This example shows how to set the **lineSpacing** attribute, with a comparison of line spacing effects.
+This example demonstrates how to use the **lineSpacing** attribute to set different line spacing values for text presentation.
 
 ```ts
+// xxx.ets
 import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component
-struct LineSpacingExample {
+struct TextAreaExample {
   build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
         Text('TextArea lineSpacing.').fontSize(9).fontColor(0xCCCCCC)
@@ -1541,9 +1599,9 @@ struct LineSpacingExample {
 
 ![lineSpacing](figures/TextArea_lineSpacing.png)
 
-### Example 12
+### Example 11: Setting Autofill
 
-This example shows how to use autofill.
+This example illustrates how to implement the autofill feature for text input using the **contentType** and **enableAutoFill** attributes.
 
 ```ts
 // xxx.ets
@@ -1577,51 +1635,51 @@ struct TextAreaExample {
 
 ![CustomTextAreaType](figures/textAreaAutoFillFeature.png)
 
-### Example 13
+### Example 12: Setting Line Break Rules
 
-This example shows how to set the **lineBreakStrategy** attribute, with a comparison of line break rules.
+This example demonstrates the effects of different line break rules using the **wordBreak** attribute.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct TextExample1 {
-  @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
-    "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
-    "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+struct TextAreaExample {
+  @State message1: string =
+    "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
+      "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
+      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented."
+  @State lineBreakStrategyIndex: number = 0
+  @State lineBreakStrategy: LineBreakStrategy[] =
+    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-      Text('LineBreakStrategy.GREEDY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextArea({text: this.message1})
+      Text('lineBreakStrategy').fontSize(9).fontColor(0xCCCCCC)
+      TextArea({ text: this.message1 })
         .fontSize(12)
         .border({ width: 1 })
         .padding(10)
         .width('100%')
-        .lineBreakStrategy(LineBreakStrategy.GREEDY)
-      Text('LineBreakStrategy.HIGH_QUALITY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextArea({text: this.message1})
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .lineBreakStrategy(LineBreakStrategy.HIGH_QUALITY)
-      Text('LineBreakStrategy.BALANCED').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextArea({text: this.message1})
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .lineBreakStrategy(LineBreakStrategy.BALANCED)
+        .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
+      Row() {
+        Button('Current lineBreakStrategy value: ' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
+          this.lineBreakStrategyIndex++
+          if (this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
+            this.lineBreakStrategyIndex = 0
+          }
+        })
+      }.padding({ top: 10 })
     }.height(700).width(370).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
 
-![textAreaLineBreakStrategy](figures/textAreaLineBreakStrategy.PNG)
+![textAreaLineBreakStrategy](figures/textAreaLineBreakStrategy.gif)
 
-### Example 14
+### Example 13: Setting Insert and Delete Callbacks
 
-This example shows how to use the insert and delete callbacks.
+This example showcases the implementation of insert and delete operations using the **onWillInsert**, **onDidInsert**, **onWillDelete**, and **onDidDelete** APIs.
 
 ```ts
 // xxx.ets
@@ -1675,9 +1733,9 @@ struct TextAreaExample {
 
 ![TextAreaInsertAndDelete](figures/TextAreaInsertAndDelete.PNG)
 
-### Example 15
+### Example 14: Setting Custom Menu Extensions
 
-This example shows how to set **editMenuOptions**.
+This example demonstrates how to use the **editMenuOptions** API to create custom menu extensions for text settings. It includes customizing text content, icons, and callbacks for these extensions.
 
 ```ts
 // xxx.ets
@@ -1687,15 +1745,6 @@ struct TextAreaExample {
   @State text: string = 'TextArea editMenuOptions'
 
   onCreateMenu(menuItems: Array<TextMenuItem>) {
-    menuItems.forEach((value, index) => {
-      value.icon = $r('app.media.startIcon')
-      if (value.id.equals(TextMenuItemId.COPY)) {
-        value.content = "Copy"
-      }
-      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
-        value.content = "Select All"
-      }
-    })
     let item1: TextMenuItem = {
       content: 'Custom 1',
       icon: $r('app.media.startIcon'),

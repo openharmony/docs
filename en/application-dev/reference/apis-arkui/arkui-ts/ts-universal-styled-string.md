@@ -13,12 +13,15 @@ Styled strings are string objects that facilitate the flexible use of text style
 * If a styled string conflicts with the current style settings in a component, the style set in the styled string takes effect.
 * If a styled string conflicts with the child components in [Text](./ts-basic-components-text.md), the style set in the styled string is applied to the **Text** component, and style settings of the child components, including [Span](./ts-basic-components-span.md), are ignored.
 * @State is not supported.
+* To prevent the application from being inadvertently terminated while running in the background, define **StyledString** as a member variable.
 
 ## StyledString
 
 constructor(value: string | ImageAttachment | CustomSpan , styles?: Array\<StyleOptions>)
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -27,7 +30,7 @@ constructor(value: string | ImageAttachment | CustomSpan , styles?: Array\<Style
 | value | string \| [ImageAttachment](#imageattachment) \| [CustomSpan](#customspan) | Yes| Text of the styled string.<br>**NOTE**<br>If this parameter is of the ImageAttachment or CustomSpan type, the **styles** parameter does not take effect. |
 | styles | Array<[StyleOptions](#styleoptions)> | No| Initialization options of the styled string.<br>**NOTE**<br>If **start** is set to an invalid value, it uses the default value **0**.<br>If the value of **start** is valid but that of **length** is invalid, the difference between the length of the styled string and the value of **start** is used as the value of **length**.<br>If **StyledStringKey** does not match **StyledStringValue**, it does not take effect.<br>The **styledKey** parameter has no default value.|
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -77,9 +80,9 @@ Checks whether this styled string the same as another styled string.
 
 ### subStyledString
 
-Obtains a substring of this styled string.
-
 subStyledString(start: number , length?: number): StyledString
+
+Obtains a substring of this styled string.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -104,13 +107,13 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### getStyles
 
-Obtains the styles in the specified range of a styled string.
-
 getStyles(start: number , length: number , styledKey?: StyledStringKey): Array\<SpanStyle>
+
+Obtains the styles in the specified range of a styled string.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -136,13 +139,13 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### fromHtml
 
-Converts an HTML-formatted string into a styled string. Currently, the conversion supports the following HTML tags: **\<p>**, **\<span>**, **\<img>**. Only the styles defined by the **style** attributes of these tags can be converted into corresponding styles in styled strings.
-
 static fromHtml(html: string): Promise\<StyledString>
+
+Converts an HTML-formatted string into a styled string. Currently, the conversion supports the following HTML tags: **\<p>**, **\<span>**, **\<img>**. Only the styles defined by the **style** attributes of these tags can be converted into corresponding styles in styled strings.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -166,7 +169,37 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+
+### toHtml<sup>14+</sup>
+
+static toHtml(styledString: StyledString): string
+
+Converts a styled string into an HTML-formatted string. The supported styled string keys for conversion, as detailed in [StyledStringKey](#styledstringkey12), include: **StyledStringKey.FONT**, **StyledStringKey.DECORATION**, **StyledStringKey.LETTER_SPACING**, **StyledStringKey.TEXT_SHADOW**, **StyledStringKey.LINE_HEIGHT**, and **StyledStringKey.IMAGE**.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| styledString | StyledString | Yes  | Styled string.|
+
+**Return value**
+
+| Type             |       Description      |
+| ------- | --------------------------------- |
+| string | HTML string.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ## MutableStyledString
 
@@ -181,9 +214,9 @@ Inherits from the [StyledString](#styledstring) class.
 
 ### replaceString
 
-Replaces the string in the specified range of this styled string.
-
 replaceString(start: number , length: number , other: string): void
+
+Replaces the string in the specified range of this styled string.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -203,13 +236,13 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### insertString
 
-Inserts a string.
-
 insertString(start: number , other: string): void
+
+Inserts a string.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -228,15 +261,15 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### removeString
+
+removeString(start: number , length: number): void
 
 Removes the string in the specified range of this styled string.
 
 This API equally works when the styled string contains an image.
-
-removeString(start: number , length: number): void
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -255,13 +288,13 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### replaceStyle
 
-Replaces the style in the specified range of this styled string.
-
 replaceStyle(spanStyle: SpanStyle): void
+
+Replaces the style in the specified range of this styled string.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -271,7 +304,7 @@ replaceStyle(spanStyle: SpanStyle): void
 
 | Name | Type                             | Mandatory| Description                                                        |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| spanStyle | [SpanStyle](#spanstyle) | Yes  | Style object.<br>**NOTE**<br>By default, the original style is removed and replaced with the new style.<br>If **styledKey** of **SpanStyle** is **IMAGE**, this API takes effect only when an image with the length of 1 is at the **start** position.|
+| spanStyle | [SpanStyle](#spanstyle) | Yes  | Style object.<br>**NOTE**<br>By default, the original style is removed and replaced with the new style.<br>If **styledKey** of **SpanStyle** is **IMAGE** or **CUSTOM_SPAN**, this API takes effect only when an image or custom span with the length of 1 is at the **start** position.|
 
 **Error codes**
 
@@ -279,13 +312,13 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### setStyle
 
-Sets a new style for the specified range of this styled string.
-
 setStyle(spanStyle: SpanStyle): void
+
+Sets a new style for the specified range of this styled string.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -295,17 +328,25 @@ setStyle(spanStyle: SpanStyle): void
 
 | Name | Type                             | Mandatory| Description                                                        |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| spanStyle | [SpanStyle](#spanstyle) | Yes  | Style object.<br>**NOTE**<br>By default, the new style is applied without removing the original style. If the style already exists, it is updated.<br>If **styledKey** of **SpanStyle** is **IMAGE**, this API takes effect only when an image with the length of 1 is at the **start** position.|
+| spanStyle | [SpanStyle](#spanstyle) | Yes  | Style object.<br>**NOTE**<br>By default, the new style is applied without removing the original style. If the style already exists, it is updated.<br>If **styledKey** of **SpanStyle** is **IMAGE** or **CUSTOM_SPAN**, this API takes effect only when an image or custom span with the length of 1 is at the **start** position.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      |The parameter check failed.   |
 
 ### removeStyle
+
+removeStyle(start: number , length: number , styledKey: StyledStringKey): void
 
 Removes the style for the specified range of this styled string.
 
 After a style is removed, the value set for the corresponding style attribute in the [Text](./ts-basic-components-text.md) component is used. If the value is not set, the default value is used.
 
 This API equally works when the styled string contains an image.
-
-removeStyle(start: number , length: number , styledKey: StyledStringKey): void
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -325,17 +366,17 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### removeStyles
+
+removeStyles(start: number , length: number): void
 
 Removes all styles for the specified range of this styled string.
 
 After a style is removed, the value set for the corresponding style attribute in the [Text](./ts-basic-components-text.md) component is used. If the value is not set, the default value is used.
 
 This API equally works when the styled string contains an image.
-
-removeStyles(start: number , length: number): void
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -354,15 +395,15 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### clearStyles
+
+clearStyles(): void
 
 Removes all styles of this styled string.
 
 After a style is removed, the value set for the corresponding style attribute in the [Text](./ts-basic-components-text.md) component is used. If the value is not set, the default value is used.
-
-clearStyles(): void
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -370,9 +411,9 @@ clearStyles(): void
 
 ### replaceStyledString
 
-Replaces the styled string in the specified range.
-
 replaceStyledString(start: number , length: number , other: StyledString): void
+
+Replaces the styled string in the specified range.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -392,13 +433,13 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### insertStyledString
 
-Inserts a new styled string at the specified position.
-
 insertStyledString(start: number , other: StyledString): void
+
+Inserts a new styled string at the specified position.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -417,13 +458,13 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### appendStyledString
 
-Appends a styled string.
-
 appendStyledString(other: StyledString): void
+
+Appends a styled string.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -439,6 +480,8 @@ appendStyledString(other: StyledString): void
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | start | number | No  | Start position of the styled string style.|
@@ -449,6 +492,8 @@ appendStyledString(other: StyledString): void
 ## SpanStyle
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
@@ -463,19 +508,19 @@ Describes the text font style.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name          | Type             | Read Only  | Mandatory  | Description    |
+| Name          | Type             | Read Only  | Optional  | Description    |
 | ------------ |---------------------| ---- | ---- | ------ |
-| fontColor  | [ResourceColor](ts-types.md#resourcecolor) |  Yes |  No | Font color of the styled string.|
-| fontFamily | string   | Yes   | No   | Font family of the styled string.|
-| fontSize   | number   | Yes   | No   | Font size of the styled string.<br>Unit: fp|
-| fontWeight   | number   | Yes   | No   | Font weight of the styled string.|
-| fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | Yes   | No   | Font style of the styled string.|
+| fontColor  | [ResourceColor](ts-types.md#resourcecolor) |  Yes |  Yes | Font color of the styled string.|
+| fontFamily | string   | Yes   | Yes  | Font family of the styled string.|
+| fontSize   | number   | Yes   | Yes   | Font size of the styled string.<br>Unit: fp|
+| fontWeight   | number   | Yes   | Yes   | Font weight of the styled string.|
+| fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | Yes   | Yes   | Font style of the styled string.|
 
 ### constructor
 
@@ -494,6 +539,8 @@ constructor(value?: TextStyleInterface)
 ## TextStyleInterface
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
@@ -527,10 +574,12 @@ constructor(value?: GestureStyleInterface)
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| onClick | CallBack\<[ClickEvent](ts-universal-events-click.md#clickevent)> | No  | Callback for click events.|
-| onLongPress | CallBack\<[GestureEvent](./ts-gesture-settings.md#gestureevent)> | No  | Callback for long press events.|
+| onClick | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent)> | No  | Callback for click events.|
+| onLongPress | Callback\<[GestureEvent](./ts-gesture-settings.md#gestureevent)> | No  | Callback for long press events.|
 
 ## DecorationStyle
 
@@ -538,17 +587,17 @@ Describes the text decorative line style.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name          | Type             | Read Only  | Mandatory  | Description    |
+| Name          | Type             | Read Only  |Optional  | Description    |
 | ------------ |---------------------| ---- | ---- | ------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) |  Yes |  Yes | Type of the text decorative line.|
-| color | [ResourceColor](ts-types.md#resourcecolor)   | Yes   | No   | Color of the text decorative line.|
-| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | Yes   | No   | Style of the text decorative line.|
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) |  Yes |  No | Type of the text decorative line.|
+| color | [ResourceColor](ts-types.md#resourcecolor)   | Yes   | Yes | Color of the text decorative line.|
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | Yes   |Yes | Style of the text decorative line.|
 
 ### constructor
 
@@ -566,24 +615,14 @@ constructor(value: DecorationStyleInterface)
 
 ## DecorationStyleInterface
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | Yes  | Type of the text decorative line.|
 | color | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the text decorative line.|
-| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | No  | Style of the text decorative line.|
-
-## DecorationStyleResult
-
-Provides the text decorative line information returned by the backend.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name | Type                             | Mandatory| Description  |
-| ------- | --------------------------------- | ---- | --------------------------------- |
-| type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | Yes  | Type of the text decorative line.|
-| color | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the text decorative line.|
 | style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | No  | Style of the text decorative line.|
 
 ## BaselineOffsetStyle
@@ -592,15 +631,15 @@ Describes the text baseline offset style.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name          | Type             | Read Only  | Mandatory  | Description    |
+| Name          | Type             | Read Only  | Optional  | Description    |
 | ------------ |---------------------| ---- | ---- | ------ |
-| baselineOffset  | number |  Yes |  Yes | Text baseline offset.<br>Unit: vp|
+| baselineOffset  | number |  Yes |  No| Text baseline offset.<br>Unit: vp|
 
 ### constructor
 
@@ -622,15 +661,15 @@ Describes the letter spacing style.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name          | Type             | Read Only  | Mandatory  | Description    |
+| Name          | Type             | Read Only  | Optional  | Description    |
 | ------------ |---------------------| ---- | ---- | ------ |
-| letterSpacing  | number |  Yes |  Yes | Letter spacing.<br>Unit: vp|
+| letterSpacing  | number |  Yes |  No | Letter spacing.<br>Unit: vp|
 
 ### constructor
 
@@ -652,15 +691,15 @@ Describes the text line height style.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name          | Type             | Read Only  | Mandatory  | Description    |
+| Name          | Type             | Read Only  | Optional  | Description    |
 | ------------ |---------------------| ---- | ---- | ------ |
-| lineHeight  | number |  Yes |  Yes | Text line height of the styled string.<br>Unit: vp|
+| lineHeight  | number |  Yes |  No | Text line height of the styled string.<br>Unit: vp|
 
 ### constructor
 
@@ -682,15 +721,15 @@ Describes the text shadow style.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name          | Type             | Read Only  | Mandatory  | Description    |
+| Name          | Type             | Read Only  | Optional  | Description    |
 | ------------ |---------------------| ---- | ---- | ------ |
-| textShadow  | Array\<[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)> |  Yes |  Yes | Text shadow of the styled string.|
+| textShadow  | Array\<[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)> |  Yes |  No | Text shadow of the styled string.|
 
 ### constructor
 
@@ -712,19 +751,19 @@ Describes the image attachment.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name          | Type             | Read Only  | Mandatory  | Description    |
+| Name          | Type             | Read Only  | Optional  | Description    |
 | ------------ |---------------------| ---- | ---- | ------ |
-| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  Yes |  Yes | Image data source of the styled string.|
-| size  | [SizeOptions](ts-types.md#sizeoptions) |  Yes |  No | Image size of the styled string.|
-| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) |  Yes |  No | Image alignment mode of the styled string.|
-| objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  Yes |  No | Image scale type of the styled string.|
-| layoutStyle  | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle) |  Yes |  No | Image layout of the styled string.|
+| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  Yes |  No | Image data source of the styled string.|
+| size  | [SizeOptions](ts-types.md#sizeoptions) |  Yes |  Yes | Image size of the styled string.|
+| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) |  Yes |  Yes | Image alignment mode of the styled string.|
+| objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  Yes |  Yes | Image scale type of the styled string.|
+| layoutStyle  | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle) |  Yes |  Yes | Image layout of the styled string.|
 
 ### constructor
 
@@ -744,6 +783,8 @@ constructor(value: ImageAttachmentInterface)
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  Yes | Image data source.|
@@ -755,6 +796,8 @@ constructor(value: ImageAttachmentInterface)
 ## ImageAttachmentLayoutStyle
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
@@ -772,9 +815,9 @@ The drag preview of a custom span is blank.
 
 ### onMeasure
 
-Called to obtain the size of a custom span.
-
 abstract onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics
+
+Called to obtain the size of a custom span.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -794,9 +837,9 @@ abstract onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics
 
 ### onDraw
 
-Called to draw a custom span.
-
 abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
+
+Called to draw a custom span.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -809,9 +852,21 @@ abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 | context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | Yes  | Drawing context.<br>**NOTE**<br>The **canvas** method of **DrawContext** obtains the canvas of the **Text** component. As such, the custom span does not extend beyond the area of the **Text** component.|
 | drawInfo | [CustomSpanDrawInfo](#customspandrawinfo) | Yes  | Drawing information of the custom span.|
 
+### invalidate<sup>13+<sup>
+
+invalidate(): void
+
+Manually triggers a refresh of the **Text** component that uses this **CustomSpan**.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 ## CustomSpanMeasureInfo
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
@@ -821,6 +876,8 @@ abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | width | number |  Yes | Width of the custom span.<br>Unit: vp|
@@ -829,6 +886,8 @@ abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 ## CustomSpanDrawInfo
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
@@ -847,20 +906,20 @@ The style of a paragraph is the one (if any) set for the first element or the pa
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name          | Type             | Read Only  | Mandatory  | Description    |
+| Name          | Type             | Read Only  | Optional  | Description    |
 | ------------ |---------------------| ---- | ---- | ------ |
-| textAlign  | [TextAlign](ts-appendix-enums.md#textalign) |  Yes |  No | Horizontal alignment of the text paragraph.|
-| textIndent | number   | Yes   | No   | First line indent of the text paragraph.|
-| maxLines   | number   | Yes   | No   | Maximum number of lines in the text paragraph.|
-| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   | Yes   | No   | Display mode when the text is too long in the text paragraph.|
-| wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | Yes   | No   | Word break rule of the text paragraph.|
-| leadingMargin   | number \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | Yes   | No   | Indent of the text paragraph.|
+| textAlign  | [TextAlign](ts-appendix-enums.md#textalign) |  Yes |  Yes | Horizontal alignment of the text paragraph.|
+| textIndent | number   | Yes   | Yes   | First line indent of the text paragraph.|
+| maxLines   | number   | Yes   | Yes   | Maximum number of lines in the text paragraph.|
+| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   | Yes   | Yes  | Display mode when the text is too long in the text paragraph.|
+| wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | Yes   | Yes   | Word break rule of the text paragraph.|
+| leadingMargin   | number \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | Yes   | Yes  | Indent of the text paragraph.|
 
 >  **NOTE**
 >
@@ -883,6 +942,8 @@ constructor(value?: ParagraphStyleInterface)
 ## ParagraphStyleInterface
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
@@ -909,7 +970,7 @@ The extended user data does not affect the display effect.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Description                           |
+| Name    |Description                          |
 | ------ | ----------------------------- |
 | FONT | Font style key, applicable to [TextStyle](./ts-universal-styled-string.md#textstyle).|
 | DECORATION | Text decorative line style key, applicable to [DecorationStyle](./ts-universal-styled-string.md#decorationstyle).|
@@ -917,17 +978,81 @@ The extended user data does not affect the display effect.
 | LETTER_SPACING | Text letter spacing style key, applicable to [LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle).|
 | LINE_HEIGHT | Text line height style key, applicable to [LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle).|
 | TEXT_SHADOW | Text shadow style key, applicable to [TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle).|
+| BACKGROUND_COLOR<sup>14+</sup> | Text background color style key, applicable to [BackgroundColorStyle](./ts-universal-styled-string.md#backgroundcolorstyle14).|
+| URL<sup>14+</sup> | Hyperlink style key, applicable to [UrlStyle](./ts-universal-styled-string.md#urlstyle14).|
 | GESTURE | Gesture key, applicable to [GestureStyle](./ts-universal-styled-string.md#gesturestyle).|
 | PARAGRAPH_STYLE | Paragraph style key, applicable to [ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle).|
 | IMAGE | Image key, applicable to [ImageAttachment](./ts-universal-styled-string.md#imageattachment).|
 | CUSTOM_SPAN | Custom span key, applicable to [CustomSpan](./ts-universal-styled-string.md#customspan).|
 | USER_DATA | User data span key, applicable to [UserDataSpan](./ts-universal-styled-string.md#userdataspan).|
 
+## BackgroundColorStyle<sup>14+</sup>
+
+Describes the text background color style.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### Properties
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name          | Type             | Read Only  | Mandatory  | Description    |
+| ------------ |---------------------| ---- | ---- | ------ |
+| textBackgroundStyle  |  [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11)  |  Yes |  Yes | Text background color of the styled string.<br>Default value:<br>{<br> color: Color.Transparent,<br>  radius: 0<br>} |
+
+### constructor<sup>14+</sup>
+
+constructor(textBackgroundStyle: TextBackgroundStyle)
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| textBackgroundStyle |  [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11) | Yes  | Options of the text background color.<br>Default value:<br>{<br>  color: Color.Transparent,<br>  radius: 0<br>} |
+
+## UrlStyle<sup>14+</sup>
+
+Describes the hyperlink style.
+
+The default color, font size, and font weight are **'#ff0a59f7'**, **'16fp'**, and **'FontWeight.Regular'**, respectively. If the styled string has **TextStyle** set, the **TextStyle** settings take precedence.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### Properties
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name          | Type             | Read Only  | Mandatory  | Description    |
+| ------------ |---------------------| ---- | ---- | ------ |
+| url  | string |  Yes |  Yes | Hyperlink content of the styled string.|
+
+### constructor<sup>14+</sup>
+
+constructor(url: string)
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| url | string | Yes  | Options of the hyperlink.|
+
 ## Example
 
-### Example 1
+### Example 1: Processing Styled Strings
 
-This example shows the basic usage of a styled string.
+This example shows how to perform insertion, deletion, replacement, and viewing of styled strings using the **insertString**, **removeStyles**, **replaceStyle**, and **getStyles** APIs.
 
 ```ts
 // xxx.ets
@@ -982,7 +1107,6 @@ struct styled_string_demo1 {
         Column() {
           // Display the styled string.
           Text(undefined, { controller: this.controller1 })
-          Text(undefined, { controller: this.controller2 }).key('mutableStyledString1')
           Text(undefined, { controller: this.controller3 }).key('mutableStyledString2')
           Button('Change string1 Value')
             .onClick(() => {
@@ -1090,11 +1214,11 @@ struct styled_string_demo1 {
 }
 ```
 
-![](figures/styledstring_1.jpeg)
+![](figures/styledstring_1.PNG)
 
-### Example 2
+### Example 2: Binding Events
 
-This example shows a styled string that supports events.
+This example demonstrates how to bind events to styled strings using the **styledKey** and **styledValue** APIs.
 
 ```ts
 // xxx.ets
@@ -1180,9 +1304,9 @@ struct styled_string_demo2 {
 
 ![](figures/styledstring_2.png)
 
-### Example 3
+### Example 3: Setting the Text Style
 
-This example shows a styled string that supports text styles.
+This example shows how to query and set styles for styled strings using the **getStyles** and **setStyle** APIs.
 
 ```ts
 // xxx.ets
@@ -1366,9 +1490,9 @@ struct styled_string_demo3 {
 ```
 ![](figures/styledstring_3.png)
 
-### Example 4
+### Example 4: Setting Images
 
-This example shows a styled string that contains an image.
+This example illustrates how to set images in styled strings using the **ImageAttachment** API.
 
 ```ts
 // xxx.ets
@@ -1495,9 +1619,9 @@ struct styled_string_demo4 {
 
 ![](figures/styledstring_4.png)
 
-### Example 5
+### Example 5: Setting the Text Line Height and Paragraph Style
 
-This example shows a styled string configured with **LineHeightStyle** and **ParagraphStyle**.
+This example demonstrates how to set the line height and paragraph styles for styled strings using the **LineHeightStyle** and **ParagraphStyle** APIs.
 
 ```ts
 import { LengthMetrics } from '@kit.ArkUI'
@@ -1641,14 +1765,13 @@ struct Index {
 
 ![](figures/styledstring_5.png)
 
-### Example 6
+### Example 6: Setting Custom Spans
 
-This example shows a styled string with a custom span.
+This example shows how to set custom spans within styled strings using the **CustomSpan** API.
 
 ```ts
 // xxx.ets
 import { drawing } from '@kit.ArkGraphics2D'
-import { image } from '@kit.ImageKit'
 import { LengthMetrics } from '@kit.ArkUI'
 
 class MyCustomSpan extends CustomSpan {
@@ -1667,7 +1790,12 @@ class MyCustomSpan extends CustomSpan {
     let canvas = context.canvas;
 
     const brush = new drawing.Brush();
-    brush.setColor({ alpha: 255, red: 0, green: 74, blue: 175 });
+    brush.setColor({
+      alpha: 255,
+      red: 0,
+      green: 74,
+      blue: 175
+    });
     const font = new drawing.Font();
     font.setSize(25);
     const textBlob = drawing.TextBlob.makeFromString(this.word, font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
@@ -1679,7 +1807,12 @@ class MyCustomSpan extends CustomSpan {
       bottom: options.lineBottom - 10
     });
 
-    brush.setColor({ alpha: 255, red: 23, green: 169, blue: 141 });
+    brush.setColor({
+      alpha: 255,
+      red: 23,
+      green: 169,
+      blue: 141
+    });
     canvas.attachBrush(brush);
     canvas.drawTextBlob(textBlob, options.x + 20, options.lineBottom - 15);
     canvas.detachBrush();
@@ -1697,30 +1830,12 @@ class MyCustomSpan extends CustomSpan {
 @Entry
 @Component
 struct styled_string_demo6 {
-  customSpan2: MyCustomSpan = new MyCustomSpan("change", 130, 10);
   customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 80, 10);
-  customSpan3: MyCustomSpan = new MyCustomSpan("World", 80, 40);
-  style2: MutableStyledString = new MutableStyledString(this.customSpan2);
-  style1: MutableStyledString = new MutableStyledString(this.customSpan1);
+  customSpan2: MyCustomSpan = new MyCustomSpan("World", 80, 40);
+  style: MutableStyledString = new MutableStyledString(this.customSpan1);
   textStyle: MutableStyledString = new MutableStyledString("123");
   textController: TextController = new TextController();
-  imagePixelMap: image.PixelMap | undefined = undefined;
   isPageShow: boolean = true;
-
-  private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength));
-    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
-      desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-      desiredSize: { width: 50, height: 50 }
-    });
-    await imageSource.release();
-    return createPixelMap;
-  }
 
   async onPageShow() {
     if (!this.isPageShow) {
@@ -1728,7 +1843,7 @@ struct styled_string_demo6 {
     }
     this.isPageShow = false;
 
-    this.style1.appendStyledString(new MutableStyledString("Sample CustomSpan", [
+    this.style.appendStyledString(new MutableStyledString("Text drawing sample CustomSpan", [
       {
         start: 0,
         length: 5,
@@ -1746,15 +1861,14 @@ struct styled_string_demo6 {
       styledValue: new TextStyle({ fontColor: Color.Green, fontWeight: FontWeight.Bold })
     }
     ]))
-    this.style1.appendStyledString(new StyledString(this.customSpan3))
-    this.style1.appendStyledString(new StyledString("Custom Span", [{
+    this.style.appendStyledString(new StyledString(this.customSpan2))
+    this.style.appendStyledString(new StyledString("Custom drawing", [{
       start: 0,
       length: 5,
       styledKey: StyledStringKey.FONT,
       styledValue: new TextStyle({ fontColor: Color.Green, fontSize: LengthMetrics.px(50) })
     }]))
-    this.textController.setStyledString(this.style1)
-    this.imagePixelMap = await this.getPixmapFromMedia($r('sys.media.ohos_ic_public_voice')).then()
+    this.textController.setStyledString(this.style)
   }
 
   build() {
@@ -1763,6 +1877,11 @@ struct styled_string_demo6 {
         Text(undefined, { controller: this.textController })
           .copyOption(CopyOptions.InApp)
           .fontSize(30)
+
+        Button("invalidate").onClick(() => {
+          this.customSpan1.setWord("Hello")
+          this.customSpan1.invalidate()
+        })
       }
       .width('100%')
     }
@@ -1771,11 +1890,11 @@ struct styled_string_demo6 {
 }
 ```
 
-![](figures/styledstring_6.PNG)
+![](figures/styledstring_6.gif)
 
-### Example 7
+### Example 7: Storing Custom Extension Information
 
-This example shows the usage of **UserDataSpan**.
+This example illustrates how to store custom extension information within styled strings using the **UserDataSpan** API.
 
 ```ts
 // xxx.ets
@@ -1823,3 +1942,113 @@ struct styled_string_demo7 {
 ```
 
 ![](figures/styledstring_7.gif)
+
+
+### Example 8: Implementing Conversion Between Styled Strings and HTML-Formatted Strings
+
+his example demonstrates the conversion between styled strings and HTML-formatted strings using the **toHtml** and **fromHtml** APIs.
+
+```ts
+// xxx.ets
+import { image } from '@kit.ImageKit'
+import { LengthMetrics } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct styled_string_demo8 {
+  imagePixelMap: image.PixelMap | undefined = undefined
+  @State html : string | undefined = undefined
+  @State styledString : StyledString | undefined = undefined
+  controller1 : TextController = new TextController
+  controller2 : TextController = new TextController
+
+  async aboutToAppear() {
+    console.info("aboutToAppear initial imagePixelMap")
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.icon'))
+  }
+
+  private async getPixmapFromMedia(resource: Resource) {
+    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    })
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+    })
+    await imageSource.release()
+    return createPixelMap
+  }
+
+  build() {
+    Column() {
+      Text(undefined, { controller: this.controller1 }).height(100)
+      Row() {
+        Button("Add Styled String").onClick(() => {
+          let mutableStyledString1: MutableStyledString = new MutableStyledString("Styled string", [{
+            start: 0,
+            length: 6,
+            styledKey: StyledStringKey.FONT,
+            styledValue: new TextStyle({ fontColor: Color.Green, fontSize: LengthMetrics.px(50) })
+          }]);
+          if (this.imagePixelMap !== undefined) {
+            let mutableStyledString2 = new MutableStyledString(new ImageAttachment({
+              value: this.imagePixelMap,
+              size: { width: 50, height: 50 },
+            }))
+            mutableStyledString1.appendStyledString(mutableStyledString2)
+          }
+          this.styledString = mutableStyledString1
+          this.controller1.setStyledString(mutableStyledString1)
+        }).margin(5)
+        Button("toHtml").onClick(() => {
+          this.html = StyledString.toHtml(this.styledString)
+        }).margin(5)
+        Button("fromHtml").onClick(async () => {
+          let styledString = await StyledString.fromHtml(this.html)
+          this.controller2.setStyledString(styledString)
+        }).margin(5)
+      }
+      Text(undefined, { controller: this.controller2 }).height(100)
+      Text(this.html)
+    }.width("100%")
+  }
+}
+```
+
+![](figures/styledString_8.gif)
+
+
+### Example 9: Setting a Hyperlink
+
+This example demonstrates how to set a hyperlink within a styled string using the **UrlStyle** API.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct styled_string {
+  urlString: StyledStringValue = new UrlStyle( "https://www.example.com" );
+  mutableStyledString: MutableStyledString = new MutableStyledString("Hello World", [{
+    start: 0,
+    length: "Hello".length,
+    styledKey: StyledStringKey.URL,
+    styledValue: this.urlString
+  }]);
+  controller: TextController = new TextController();
+  async onPageShow() {
+    this.controller.setStyledString(this.mutableStyledString)
+  }
+  build() {
+    Column() {
+      Column() {
+        Text(undefined, { controller: this.controller }).key('mutableStyledString').fontSize(30)
+      }
+    }.width('100%').height(250).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![](figures/styledString_9.gif)
+<!--no_check-->

@@ -10,7 +10,7 @@ struct ParticleExample {
   build() {
     Stack() {
       Text()
-        .width(300).height(300).backgroundColor(Color.Black)
+        .width(300).height(300).backgroundColor('rgb(240, 250, 255)')
       Particle({ particles: [
         {
           emitter: {
@@ -21,6 +21,9 @@ struct ParticleExample {
               },
               count: 100, // 粒子总数
             },
+          },
+          color:{
+            range:['rgb(39, 135, 217)','rgb(0, 74, 175)'],//初始颜色范围
           },
         },
       ]
@@ -62,7 +65,7 @@ Particle(...).width(300).height(300).emitter(this.emitterProperties) // 动态�
 ```ts
 // ...
 color: {
-  range: [Color.White, Color.Yellow], // 初始颜色范围
+  range: ['rgb(39, 135, 217)','rgb(0, 74, 175)'], // 初始颜色范围
   distributionType: DistributionType.GAUSSIAN // 初始颜色随机值分布
 },
 // ...
@@ -88,7 +91,7 @@ emitter: {
   shape: ParticleEmitterShape.RECTANGLE // 发射器形状
 },
 color: {
-  range: [Color.White, Color.Yellow], // 初始颜色范围
+  range: ['rgb(39, 135, 217)','rgb(0, 74, 175)'], // 初始颜色范围
 },
 // ...
 ```

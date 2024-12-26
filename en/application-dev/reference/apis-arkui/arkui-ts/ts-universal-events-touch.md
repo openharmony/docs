@@ -30,7 +30,7 @@ Invoked when a touch event is triggered.
 
 ## TouchEvent
 
-Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
+Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent). In non-injected event scenarios, **changedTouches** indicates points resampled according to the screen's refresh rate, while **touches** indicates points based on the device's refresh rate. As such, the data in **changedTouches** may differ from that in **touches**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,8 +40,7 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 | touches             | Array&lt;[TouchObject](#touchobject)&gt; | All finger information.<br>**Atomic service API**: This API can be used in atomic services since API version 11.     |
 | changedTouches      | Array&lt;[TouchObject](#touchobject)&gt; | Finger information changed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | stopPropagation      | () => void | Stops the event from bubbling upwards or downwards.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| preventDefault<sup>12+</sup>      | () => void | Blocks the default event.<br> **NOTE**<br>This API can only be used by certain components; currently there are no supported components.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-
+| preventDefault<sup>12+</sup>      | () => void |  Blocks the default event.<br> **NOTE**<br>This API is only supported by the following components: **Hyperlink**. Asynchronous calls and the **Modifier** API are not yet supported.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ### getHistoricalPoints<sup>10+</sup>
 
@@ -90,6 +89,8 @@ Obtains all historical points of the current frame. The touch event frequency of
 | force       | number                              | Touch force of the historical point.<br>Default value: **0**<br>Value range: [0, 65535). The greater the pressure, the larger the value.|
 | timestamp   | number                              | Timestamp of the historical point. It is the interval between the time when the event is triggered and the time when the system starts.<br>Unit: ns          |
 ## Example
+
+This example configures a touch event for a button. When the button is touched, it obtains relevant parameters of the touch event.
 
 ```ts
 // xxx.ets

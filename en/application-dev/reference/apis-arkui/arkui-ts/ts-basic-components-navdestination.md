@@ -25,6 +25,8 @@ NavDestination()
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 ## Attributes
 
 The [universal attributes](ts-universal-attributes-size.md) are supported.
@@ -33,9 +35,9 @@ Avoid setting layout-related attributes such as the position and size. They may 
 
 ### title
 
-title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestinationCustomTitle, options?: NavigationTitleOptions)
+title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestinationCustomTitle | Resource, options?: NavigationTitleOptions)
 
-Sets the page title. When the NavigationCustomTitle type is used to set the height, the **titleMode** attribute does not take effect. When the title string is too long: (1) If no subtitle is set, the string is scaled down, wrapped in two lines, and then clipped with an ellipsis (...); (2) If a subtitle is set, the subtitle is scaled down and then clipped with an ellipsis (...).
+Sets the page title. When the NavigationCustomTitle type is used to set the height, the [titleMode](ts-basic-components-navigation.md#titlemode) attribute does not take effect. When the title string is too long: (1) If no subtitle is set, the string is scaled down, wrapped in two lines, and then clipped with an ellipsis (...); (2) If a subtitle is set, the subtitle is scaled down and then clipped with an ellipsis (...).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -45,7 +47,7 @@ Sets the page title. When the NavigationCustomTitle type is used to set the heig
 
 | Name| Type                                                        | Mandatory| Description      |
 | ------ | ------------------------------------------------------------ | ---- | ---------- |
-| value  | string \| [CustomBuilder](ts-types.md#custombuilder8) \| [NavDestinationCommonTitle](#navdestinationcommontitle) \| [NavDestinationCustomTitle](#navdestinationcustomtitle) | Yes  | Page title.|
+| value  | string \| [CustomBuilder](ts-types.md#custombuilder8) \| [NavDestinationCommonTitle](#navdestinationcommontitle) \| [NavDestinationCustomTitle](#navdestinationcustomtitle) \| [Resource](ts-types.md#resource)  | Yes  | Page title.|
 | options<sup>12+</sup> | [NavigationTitleOptions](ts-basic-components-navigation.md#navigationtitleoptions11) | No  | Title bar options.|
 
 ### hideTitleBar
@@ -64,11 +66,66 @@ Specifies whether to hide the title bar.
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | Yes  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Display the title bar.|
 
+### hideTitleBar<sup>13+</sup>
+
+hideTitleBar(hide: boolean, animated: boolean)
+
+Sets whether to hide the title bar and whether to animate the visibility change.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| hide  | boolean | Yes  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Show the title bar.|
+| animated  | boolean | Yes  | Whether to animate the visibility change.<br>Default value: **false**<br>**true**: Animate the visibility change.<br>**false**: Do not animate the visibility change.|
+
+### toolbarConfiguration<sup>13+</sup>
+
+toolbarConfiguration(toolbarParam: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+Sets the content of the toolbar. If this API is not called, the toolbar remains hidden.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name      | Type                                                        | Mandatory| Description                                                        |
+| ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| toolbarParam |  Array&lt;[ToolbarItem](ts-basic-components-navigation.md#toolbaritem10)&gt;  \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Content of the toolbar.<br>When configured with Array&lt;[ToolbarItem](ts-basic-components-navigation.md#toolbaritem10)&gt;, the toolbar follows the rules below:<br>- Toolbar items are evenly distributed on the bottom toolbar, with text and icons evenly spaced in each content area.<br>- If any item contains overlong text and there are fewer than five items, the toolbar will: 1. Increase the item width to accommodate the text until the toolbar spans the screen width; 2. Reduce the text size progressively; 3. Wrap the text over two lines; 4. Clip the text with an ellipsis (...).<br>- In portrait mode, the toolbar shows a maximum of five icons, with any additional icons placed under an automatically generated **More** icon. In landscape mode, the behavior of the toolbar is determined by the display mode: (1) If the display mode is [Split](ts-basic-components-navigation.md#navigationmode9), the toolbar follows the same rules as in portrait mode. (2) If the display mode is [Stack](ts-basic-components-navigation.md#navigationmode9), the toolbar must be used together with Array&lt;[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt; of the **menus** attribute; in this configuration, the bottom toolbar is automatically hidden, and all items on the toolbar are relocated to the menu in the upper right corner of the screen.<br>When configured with [CustomBuilder](ts-types.md#custombuilder8), the toolbar does not follow the above rules, except for evenly distributing items at the bottom of the toolbar.|
+| options      | [NavigationToolbarOptions](ts-basic-components-navigation.md#navigationtoolbaroptions11) | No  | Toolbar options.                                                |
+
+> **NOTE**
+>
+> The following are not allowed: modify the icon size through the **fontSize** attribute of the **SymbolGlyphModifier** object, change the animation effects through the **effectStrategy** attribute, or change the type of animation effects through the **symbolEffect** attribute.
+
+### hideToolBar<sup>13+</sup>
+
+hideToolBar(hide: boolean, animated?: boolean)
+
+Sets whether to hide the toolbar and whether to animate the visibility change.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| hide  | boolean | Yes  | Whether to hide the toolbar.<br>Default value: **false**<br>**true**: Hide the toolbar.<br>**false**: Show the toolbar.|
+| animated  | boolean | No  | Whether to animate the visibility change.<br>Default value: **false**<br>**true**: Animate the visibility change.<br>**false**: Do not animate the visibility change.|
+
 ### mode <sup>11+</sup>
 
 mode(value: NavDestinationMode)
 
-Sets the type of the navigation destination page. Dynamic modification is not supported.
+Sets the mode of the **NavDestination** component. Dynamic modification is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -78,7 +135,7 @@ Sets the type of the navigation destination page. Dynamic modification is not su
 
 | Name| Type                                                | Mandatory| Description                                                        |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [NavDestinationMode](#navdestinationmode11) | Yes  | Mode of the navigation destination page.<br>Default value: **NavDestinationMode.STANDARD**|
+| value  | [NavDestinationMode](#navdestinationmode11) | Yes  | Mode of the **NavDestination** component.<br>Default value: **NavDestinationMode.STANDARD**|
 
 ### backButtonIcon<sup>11+</sup>
 
@@ -167,14 +224,74 @@ Sets the style of the system status bar when this **NavDestination** page is dis
 > 1. The setting takes effect only when the **NavDestination** component is used in conjunction with the **Navigation** component.
 > 2. For other usage restrictions, see the description of [systemBarStyle](ts-basic-components-navigation.md#systembarstyle12) for the **Navigation** component.
 
+### systemTransition<sup>14+</sup>
+systemTransition(type: NavigationSystemTransitionType)
+
+Sets the system transition animation of the **NavDestination** component. System transition animations for the title bar and content area can be configured separately.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                | Mandatory| Description                                                        |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type  | [NavigationSystemTransitionType](#navigationsystemtransitiontype14) | Yes  | Type of the system transition animation.<br>Default value: **NavigationSystemTransitionType.DEFAULT**|
+
+### recoverable<sup>14+</sup>
+
+recoverable(recoverable: Optional&lt;boolean&gt;)
+
+Sets whether the **NavDestination** component is recoverable. If set to recoverable, when the application process exits unexpectedly and restarts, the **NavDestination** component will be automatically recreated. To use this feature, ensure that the **recoverable** attribute is set for the **Navigation** component associated with the **NavDestination** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type        | Mandatory| Description              |
+| ------ | -------------- | ---- | ------------------ |
+| recoverable  | Optional&lt;boolean&gt; | No  | Whether the **NavDestination** component is recoverable. By default, it is recoverable.|
+
+>  **NOTE**
+>
+> This API must be used together with the [recoverable](./ts-basic-components-navigation.md#recoverable14) API of **Navigation**.
+
 ## NavDestinationMode<sup>11+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name  | Description                                      |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Description                                    |
 | ---- | ---------------------------------------- |
 | STANDARD | Standard mode.                      |
-| DIALOG | Dialog mode, in which the navigation destination is transparent by default, adding or removing it from the navigation stack does not affect the lifecycle of the lower-layer navigation destination, and the system transition animation is not supported.   |
+| DIALOG | Dialog mode, where the navigation destination is transparent by default, and adding or removing the navigation destination from the navigation stack does not affect the lifecycle of the lower-layer navigation destinations.<br>System transition animations are supported since API version 13. |
+
+## NavigationSystemTransitionType<sup>14+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Value  | Description|
+| ----  | ---   | ----- |
+| DEFAULT  | 0 | Default system transition animation.|
+| NONE| 1 | No system transition animation.|
+| TITLE | 2 | System transition animation of the title bar.|
+| CONTENT | 3 | System transition animation of the content area.|
+
+**NOTE**
+>
+> System transition animations for the title bar and content area can be configured separately.
+> 
+> The system transition animation of the title bar is only available for the push and pop animations of navigation destination pages in STANDARD mode, with the following constraints:
+> 1. When **NavigationSystemTransitionType** is set to **TITLE**, only the system transition animation of the title bar is displayed.
+> 2. When **NavigationSystemTransitionType** is set to **CONTENT**, only the system transition animation of the content area is displayed.
+>
+> When **NONE** or **TITLE** is set, no system transition animation is displayed. When **CONTENT** or **DEFAULT** is set, the system transition animation is displayed by default.
 
 ## Events
 
@@ -270,8 +387,8 @@ Called when the **NavDestination** component is about to build a child component
 
 | Name  | Type    | Mandatory  | Description    |
 | ---- | ------ | ---- | ------ |
-| main | string | Yes   | Main title.|
-| sub  | string | Yes   | Subtitle.|
+| main | string \| [Resource<sup>14+<sup>](ts-types.md#resource) | Yes   | Main title.|
+| sub  | string \| [Resource<sup>14+<sup>](ts-types.md#resource) | Yes   | Subtitle.|
 
 ## NavDestinationCustomTitle
 
@@ -282,9 +399,11 @@ Called when the **NavDestination** component is about to build a child component
 | Name     | Type                                      | Mandatory  | Description      |
 | ------- | ---------------------------------------- | ---- | -------- |
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | Yes   | Content of the title bar.|
-| height  | [TitleHeight](ts-basic-components-navigation.md#titleheight9) \| [Length](ts-types.md#length) | Yes   | Height of the title bar.|
+| height  | [TitleHeight](ts-appendix-enums.md#titleheight9) \| [Length](ts-types.md#length) | Yes   | Height of the title bar.|
 
 ## NavDestinationContext<sup>11+</sup>
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  | Type    | Mandatory  |  Description    |
 | ---- | ------ | ----- | ------ |
@@ -311,11 +430,13 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name  | Type  | Description|
-| ----  | ---   | ----- |
-| name  | string | Page name.|
-| pageSourceFile| string | Path of the page in the current package.|
-| data | object | Custom data of the page.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Type  |Mandatory| Description|
+| ----  | ---   | ---- |----- |
+| name  | string | Yes| Page name.|
+| pageSourceFile| string | Yes| Path of the page in the current package.|
+| data | Object | Yes| Custom data of the page.|
 
 ## Example
 

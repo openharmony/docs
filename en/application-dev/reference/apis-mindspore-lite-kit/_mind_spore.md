@@ -87,7 +87,7 @@ Provides APIs related to MindSpore Lite model inference. The APIs in this module
 
 | Name| Description|
 | -------- | -------- |
-| [OH_AI_ContextCreate](#oh_ai_contextcreate) () | Creates a context object.|
+| [OH_AI_ContextCreate](#oh_ai_contextcreate) () | Creates a context object. This API must be used together with [OH_AI_ContextDestroy](#oh_ai_contextdestroy).|
 | [OH_AI_ContextDestroy](#oh_ai_contextdestroy) ([OH_AI_ContextHandle](#oh_ai_contexthandle) \*context) | Destroys a context object.|
 | [OH_AI_ContextSetThreadNum](#oh_ai_contextsetthreadnum) ([OH_AI_ContextHandle](#oh_ai_contexthandle) context, int32_t thread_num) | Sets the number of runtime threads.|
 | [OH_AI_ContextGetThreadNum](#oh_ai_contextgetthreadnum) (const [OH_AI_ContextHandle](#oh_ai_contexthandle) context) | Obtains the number of threads.|
@@ -735,7 +735,7 @@ OH_AI_API OH_AI_ContextHandle OH_AI_ContextCreate ()
 
 **Description**
 
-Creates a context object.
+Creates a context object. This API must be used together with [OH_AI_ContextDestroy](#oh_ai_contextdestroy).
 
 **Since**: 9
 

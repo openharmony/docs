@@ -49,9 +49,9 @@ This API is deprecated since API version 12. You are advised to use [XComponent(
 
 XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
 
-**NOTE**
-
-This API is deprecated since API version 12. You are advised to use [XComponent(options: XComponentOptions)](#xcomponent12) instead.
+> **NOTE**
+>
+> This API is deprecated since API version 12. You are advised to use [XComponent(options: XComponentOptions)](#xcomponent12) instead.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -85,11 +85,13 @@ In addition to universal attributes, the following attributes are supported.
   > **NOTE**
   >
   > The **foregroundColor**, **obscured**, and **pixelStretchEffect** attributes are not supported. When **type** is set to **SURFACE**, the following are not supported either: attribute modifier, custom drawing, background options (except **backgroundColor**), image effects (except **shadow**), **maskShape**, and **foregroundEffect** attributes.
+  >
+  > When the **XComponent** is of the TEXTURE or SURFACE type, if the [renderFit](./ts-universal-attributes-renderfit.md) attribute is not set, it defaults to **RenderFit.RESIZE_FILL**.
 ### enableAnalyzer<sup>12+</sup>
 
 enableAnalyzer(enable: boolean)
 
-Sets whether to enable the AI analyzer, which supports subject recognition, text recognition, and object lookup.
+Sets whether to enable the AI image analyzer, which supports subject recognition, text recognition, and object lookup.
 For the settings to take effect, this attribute must be used together with [StartImageAnalyzer](#startimageanalyzer12) and [StopImageAnalyzer](#stopimageanalyzer12) of **XComponentController**.
 This feature cannot be used together with the [overlay](ts-universal-attributes-overlay.md) attribute. If both are set, the **CustomBuilder** attribute in **overlay** has no effect. This feature also depends on device capabilities.
 
@@ -143,11 +145,11 @@ The following events are effective only when **type** is set to **SURFACE** or *
 
 ### onLoad
 
-onLoad(callback: (event?: object) => void )
+onLoad(callback: OnNativeLoadCallback )
 
 Triggered when the plug-in is loaded.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -155,17 +157,39 @@ Triggered when the plug-in is loaded.
 
 | Name  | Type  | Mandatory  | Description                                      |
 | ----- | ------ | ---- | ---------------------------------------- |
-| event | object | No   | Context of the **XComponent** object. The APIs contained in the context are defined at the C++ layer by developers.|
+| callback | [OnNativeLoadCallback](#onnativeloadcallback14) | Yes   | Callback after the surface held by the **XComponent** is created.|
 
 ### onDestroy
 
-onDestroy(event: () => void )
+onDestroy(event: VoidCallback )
 
 Triggered when the plug-in is destroyed.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type  | Mandatory  | Description                                      |
+| ----- | ------ | ---- | ---------------------------------------- |
+| event | [VoidCallback](ts-types.md#voidcallback12) | Yes   | Callback after the **XComponent** is destroyed.|
+
+## OnNativeLoadCallback<sup>14+</sup>
+
+type OnNativeLoadCallback = (event?: object) =\> void
+
+Triggered after the surface held by the **XComponent** is created.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type  | Mandatory  | Description                                      |
+| ----- | ------ | ---- | ---------------------------------------- |
+| event | object | No   | Context of the **XComponent** object. The APIs contained in the context are defined at the native layer by developers.|
 
 ## XComponentController
 
@@ -300,7 +324,7 @@ Triggered when the surface held by the **XComponent** is created. This API works
 | --------- | -------- | ---- | ------------------------------------------------- |
 | surfaceId | string   | Yes  | ID of the surface held by the **XComponent**.|
 
-> **NOTE**<br>
+> **NOTE**
 >
 > The callback is triggered only when the **libraryname** parameter is not set for the **XComponent**.
 
@@ -341,7 +365,7 @@ Triggered when the surface held by the **XComponent** is destroyed. This API wor
 | --------- | -------- | ---- | ------------------------------------------------- |
 | surfaceId | string   | Yes  | ID of the surface held by the **XComponent**.|
 
-> **NOTE**<br>
+> **NOTE**
 >
 > The callback is triggered only when the **libraryname** parameter is not set for the **XComponent**.
 
@@ -351,7 +375,7 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
 Starts AI image analysis in the given settings. Before calling this API, make sure the AI image analyzer is [enabled](#enableanalyzer12).<br>Because the image frame used for analysis is the one captured when this API is called, pay attention to the invoking time of this API.<br>If this API is repeatedly called before the execution is complete, an error callback is triggered.
 
-> **NOTE**<br>
+> **NOTE**
 > 
 > The image analysis type cannot be dynamically modified.
 > This API depends on device capabilities. If it is called on an incompatible device, an error code is returned.
@@ -388,9 +412,10 @@ stopImageAnalyzer(): void
 
 Stops AI image analysis. The content displayed by the AI image analyzer will be destroyed.
 
-> **NOTE**<br>
-> 
+> **NOTE**
+>
 > If this API is called when the **startImageAnalyzer** API has not yet returned any result, an error callback is triggered.
+>
 > This feature depends on device capabilities.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -474,11 +499,12 @@ Describes the rectangle of the surface held by the **XComponent**.
 
 ## Example
 
-You can preview how this component looks on a real device, but not in the DevEco Studio Previewer.
+You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 
-### Example 1
 
-This example shows how to use the AI analyzer.
+### Example 1: Enabling AI Image Analyzer
+
+This example shows how to use the **enableAnalyzer** attribute to enable AI image analyzer. You can use **XComponentController** to start or stop AI analysis on images.
 
 ```ts
 // xxx.ets
@@ -577,9 +603,9 @@ struct XComponentExample {
 ```
 <!--RP1--><!--RP1End-->
 
-### Example 2
+### Example 2: Locking the Surface Orientation During Screen Rotation
 
-This example shows how to apply the orientation lock to the surface.
+This example shows how to use **setXComponentSurfaceRotation** to lock the surface orientation during screen rotation so that the surface does not rotate with the screen.
 
 ```ts
 // xxx.ets

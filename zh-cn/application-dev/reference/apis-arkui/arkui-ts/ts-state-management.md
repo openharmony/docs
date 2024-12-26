@@ -352,7 +352,17 @@ static delete(propName: string): boolean
 
 在AppStorage中删除该属性的前提是必须保证该属性没有订阅者。如果有订阅者，则返回false。如果没有订阅者则删除成功并返回true。
 
-属性的订阅者为[link](#link10)、[prop](#prop10)等接口绑定的propName，以及[\@StorageLink('propName')](../../../quick-start/arkts-appstorage.md#storagelink)和[\@StorageProp('propName')](../../../quick-start/arkts-appstorage.md#storageprop)。如果自定义组件中使用\@StorageLink('propName')和\@StorageProp('propName')或者[SubscribedAbstractProperty](#subscribedabstractproperty)实例依旧对propName有同步关系，则该属性不能从AppStorage中删除。
+属性的订阅者为：
+
+1. [\@StorageLink](../../../quick-start/arkts-appstorage.md#storagelink)、[\@StorageProp](../../../quick-start/arkts-appstorage.md#storageprop)装饰的变量。
+
+2. 通过[link](#link10)、[prop](#prop10)、[setAndLink](#setandlink10)、[setAndProp](#setandprop10)接口返回的[SubscribedAbstractProperty](#subscribedabstractproperty)的实例。
+
+如果想要删除这些订阅者，可以通过以下方式：
+
+1. 删除\@StorageLink、\@StorageProp所在的自定义组件。删除自定义组件请参考[自定义组件的删除](../../../quick-start/arkts-page-custom-components-lifecycle.md#自定义组件的删除)。
+
+2. 对link、prop、setAndLink、setAndProp接口返回的SubscribedAbstractProperty的实例调用[aboutToBeDeleted](#abouttobedeleted10)接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1282,7 +1292,17 @@ delete(propName: string): boolean
 
 在[LocalStorage](../../../quick-start/arkts-localstorage.md)中删除propName对应的属性。在LocalStorage中删除属性的前提是该属性已经没有订阅者，如果有订阅者，则返回false。如果没有订阅者则删除成功并返回true。
 
-属性的订阅者为[link](#link9)，[prop](#prop9)等接口绑定的propName，以及[\@LocalStorageLink('propName')](../../../quick-start/arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp('propName')](../../../quick-start/arkts-localstorage.md#localstorageprop)。如果自定义组件中使用\@LocalStorageLink('propName')和\@LocalStorageProp('propName')或者SubscribedAbstractProperty实例（link和prop接口的返回类型）依旧对propName有同步关系，则该属性不能从LocalStorage中删除。
+属性的订阅者为：
+
+1. [\@LocalStorageLink](../../../quick-start/arkts-localstorage.md#localstoragelink)、[\@LocalStorageProp](../../../quick-start/arkts-localstorage.md#localstorageprop)装饰的变量。
+
+2. 通过[link](#link9)、[prop](#prop9)、[setAndLink](#setandlink9)、[setAndProp](#setandprop9)接口返回的[SubscribedAbstractProperty](#subscribedabstractproperty)的实例。
+
+如果想要删除这些订阅者，可以通过以下方式：
+
+1. 删除\@LocalStorageLink、\@LocalStorageProp所在的自定义组件。删除自定义组件请参考[自定义组件的删除](../../../quick-start/arkts-page-custom-components-lifecycle.md#自定义组件的删除)。
+
+2. 对link、prop、setAndLink、setAndProp接口返回的SubscribedAbstractProperty的实例调用[aboutToBeDeleted](#abouttobedeleted10)接口。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -1670,7 +1690,7 @@ persistProp具体使用，见[从AppStorage中访问PersistentStorage初始化�
 
 static deleteProp(key: string): void
 
-[persistProp](#persistprop10)的逆向操作。将key对应的属性从PersistentStorage中删除，后续[AppStorage](../../../quick-start/arkts-appstorage.md)的操作，对[PersistentStorage](../../../quick-start/arkts-persiststorage.md)不会再有影响。
+[persistProp](#persistprop10)的逆向操作。将key对应的属性从PersistentStorage中删除，后续[AppStorage](../../../quick-start/arkts-appstorage.md)的操作，对[PersistentStorage](../../../quick-start/arkts-persiststorage.md)不会再有影响。该操作会将对应的key从持久化文件中删除，如果希望再次持久化，可以再次调用[persistProp](#persistprop10)接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

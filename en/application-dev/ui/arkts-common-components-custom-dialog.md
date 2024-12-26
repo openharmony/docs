@@ -5,7 +5,7 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
 
 > **NOTE**
 >
-> Currently, ArkUI dialog boxes do not close automatically when you switch pages unless you manually call **close**. If you need a dialog box to close in sync with page navigation, consider using the **Navigation** component. For details, see the [page display mode: dialog mode](arkts-navigation-navigation.md#page-display-mode).
+> Currently, dialog boxes in ArkUI do not close automatically when you switch pages unless you manually call **close**. To enable a dialog box to be covered during page navigation, consider using the **Navigation** component. For details, see the [page display mode: dialog mode](arkts-navigation-navigation.md#page-display-mode).
 
 ## Creating a Custom Dialog Box
 
@@ -380,7 +380,7 @@ struct CustomDialogUser {
 
 ## Nesting a Custom Dialog Box
 
-To nest a dialog box (dialog 2) within another dialog box (dialog 1), it is recommended that you define dialog 2 at the parent component of dialog 1 and open dialog 2 through the callback sent by the parent component to dialog 1.
+To nest a dialog box (dialog 2) inside another dialog box (dialog 1), it is recommended that you define dialog 2 within the parent component of dialog 1 so that you can then open dialog 2 through the callback sent from the parent component to dialog 1.
 
 ```ts
 @CustomDialog
@@ -482,5 +482,5 @@ struct CustomDialogUser {
 ```
 ![nested_dialog](figures/nested_dialog.gif)
 
-If you define dialog 2 at dialog 1 instead, due to the parent-child relationship between custom dialog boxes on the state management side, you will not be able to create any component in dialog 2 once dialog 1 is destroyed (closed).
+If you define dialog 2 within dialog 1 instead, because of the parent-child relationship that exists between custom dialog boxes in terms of state management, you will not be able to create any component in dialog 2 once dialog 1 is destroyed (closed).
 

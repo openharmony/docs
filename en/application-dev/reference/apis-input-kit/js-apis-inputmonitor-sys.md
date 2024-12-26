@@ -211,7 +211,7 @@ try {
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
   return false;
@@ -271,7 +271,7 @@ try {
 
 ```js
 import { MouseEvent } from '@kit.InputKit';
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
   return false;
@@ -411,7 +411,7 @@ try {
 ```
 
 ```js
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 import { Pinch } from '@kit.InputKit';
 
 let callback = (pinchEvent: Pinch) => {
@@ -514,7 +514,7 @@ try {
 ```
 
 ```js
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 import { ThreeFingersSwipe } from '@kit.InputKit';
 
 let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
@@ -617,7 +617,7 @@ try {
 ```
 
 ```js
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 import { FourFingersSwipe } from '@kit.InputKit';
 
 let callback = (fourFingersSwipe: FourFingersSwipe) => {
@@ -723,7 +723,7 @@ try {
 ```
 
 ```js
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 import { Rotate } from '@kit.InputKit';
 
 let callback = (rotateEvent: Rotate) => {
@@ -829,7 +829,7 @@ try {
 ```
 
 ```js
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 import { Pinch } from '@kit.InputKit';
 
 let callback = (pinchEvent: Pinch) => {
@@ -932,7 +932,7 @@ try {
 ```
 
 ```js
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 import { ThreeFingersTap } from '@kit.InputKit';
 
 let callback = (threeFingersTap: ThreeFingersTap) => {
@@ -952,7 +952,7 @@ try {
 
 on(type: 'touchscreenSwipe', fingers: number, receiver: Callback&lt;TouchGestureEvent&gt;): void
 
-Start monitoring events of swiping on touchscreen.
+Enables listening for touchscreen swipe events.
 
 **Required permissions**: ohos.permission.INPUT_MONITORING
 
@@ -960,17 +960,17 @@ Start monitoring events of swiping on touchscreen.
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. This field has a fixed value of **touchscreenSwipe**.  |
-| fingers  | number                                                       | Yes  | Number of fingers swiping, must be in the range [3,5]. |
-| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | Yes   | The callback as monitor to which touchscreen-swipe events will be reported. |
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **touchscreenSwipe**.                   |
+| fingers  | number                                                       | Yes  | Number of fingers that trigger the swipe. The value range is [3, 5].|
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | Yes  | Callback used to return touchscreen swipe events asynchronously.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID   | Error Message |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied.   |
 | 202  | SystemAPI permission error.  |
@@ -996,7 +996,7 @@ try {
 
 off(type: 'touchscreenSwipe', fingers: number, receiver?: Callback&lt;TouchGestureEvent&gt;): void
 
-Stop monitoring events of swiping on touchscreen.
+Disables listening for touchscreen swipe events.
 
 **Required permissions**: ohos.permission.INPUT_MONITORING
 
@@ -1004,17 +1004,17 @@ Stop monitoring events of swiping on touchscreen.
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes   | Event type. This field has a fixed value of **touchscreenSwipe**. |
-| fingers  | number                                                       | Yes   | Number of fingers swiping, must be in the range [3,5]. |
-| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | No   | The monitor that will be stopped; If not specified, all monitors of touchscreen-swipe events will be stopped. |
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **touchscreenSwipe**.                   |
+| fingers  | number                                                       | Yes  | Number of fingers that trigger the swipe. The value range is [3, 5].|
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID   | Error Message |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied.   |
 | 202  | SystemAPI permission error.  |
@@ -1023,7 +1023,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-// Stop one specific monitor of touchscreen-swipe events.
+// Disable listening for a single callback.
 import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
@@ -1040,7 +1040,7 @@ try {
 ```
 
 ```js
-// Stop all monitors of touchscreen-swipe events.
+// Disable listening for all callbacks.
 import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
@@ -1059,7 +1059,7 @@ try {
 
 on(type: 'touchscreenPinch', fingers: number, receiver: Callback&lt;TouchGestureEvent&gt;): void
 
-Start monitoring events of pinching on touchscreen.
+Enables listening for touchscreen pinch events.
 
 **Required permissions**: ohos.permission.INPUT_MONITORING
 
@@ -1067,17 +1067,17 @@ Start monitoring events of pinching on touchscreen.
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. This field has a fixed value of **touchscreenSwipe**. |
-| fingers  | number                                                       | Yes  | Number of fingers pinching, must be in the range [4,5]. |
-| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | Yes | The callback as monitor to which touchscreen-pinch events will be reported. |
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **touchscreenPinch**.                   |
+| fingers  | number                                                       | Yes  | Number of fingers that trigger the pinch. The value range is [4, 5].|
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | Yes  | Callback used to return touchscreen pinch events asynchronously.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID   | Error Message |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied.   |
 | 202  | SystemAPI permission error.  |
@@ -1103,7 +1103,7 @@ try {
 
 off(type: 'touchscreenPinch', fingers: number, receiver?: Callback&lt;TouchGestureEvent&gt;): void
 
-Stop monitoring events of pinching on touchscreen.
+Disables listening for touchscreen pinch events.
 
 **Required permissions**: ohos.permission.INPUT_MONITORING
 
@@ -1111,17 +1111,17 @@ Stop monitoring events of pinching on touchscreen.
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes   | Event type. This field has a fixed value of **touchscreenPinch**. |
-| fingers  | number                                                       | Yes   | Number of fingers pinching, must be in the range [4,5]. |
-| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | No | The monitor that will be stopped; If not specified, all monitors of touchscreen-pinch events will be stopped. |
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **touchscreenPinch**.                   |
+| fingers  | number                                                       | Yes  | Number of fingers that trigger the pinch. The value range is [4, 5].|
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID   | Error Message |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied.   |
 | 202  | SystemAPI permission error.  |
@@ -1130,7 +1130,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-// Stop one specific monitor of touchscreen-pinch events.
+// Disable listening for a single callback.
 import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
@@ -1147,7 +1147,7 @@ try {
 ```
 
 ```js
-// Stop all monitors of touchscreen-pinch events.
+// Disable listening for all callbacks.
 import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 

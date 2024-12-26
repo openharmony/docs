@@ -31,14 +31,14 @@ Column() {
 
 A struct with mandatory parameters is a component whose API definition expects parameters enclosed in parentheses.
 
-- Set the mandatory parameter **src** of the **\<Image>** component as follows:
+- Set the mandatory parameter **src** of the **Image** component as follows:
 
   ```ts
   Image('https://xyz/test.jpg')
   ```
 
 
-- Set the optional parameter **content** of the **\<Text>** component.
+- Set the optional parameter **content** of the **Text** component.
 
   ```ts
   // Parameter of the string type
@@ -51,7 +51,7 @@ A struct with mandatory parameters is a component whose API definition expects p
 
 
 - You can also use variables or expressions to assign values to parameters. The result type returned by an expression must meet the parameter type requirements.
-    For example, to set a variable or expression to construct the **\<Image>** and **\<Text>** components:
+    For example, to set a variable or expression to construct the **Image** and **Text** components:
 
     ```ts
     Image(this.imagePath)
@@ -65,14 +65,14 @@ A struct with mandatory parameters is a component whose API definition expects p
 Use chainable attribute methods to configure the style and other attributes of built-in components. It is recommended that a separate line be used for each attribute method.
 
 
-- Example of configuring the **fontSize** attribute for the **\<Text>** component:
+- Example of configuring the **fontSize** attribute for the **Text** component:
 
   ```ts
   Text('test')
     .fontSize(12)
   ```
 
-- Example of configuring multiple attributes for the **\<Image>** component:
+- Example of configuring multiple attributes for the **Image** component:
 
   ```ts
   Image('test.jpg')
@@ -92,7 +92,7 @@ Use chainable attribute methods to configure the style and other attributes of b
   ```
 
 - For built-in components, ArkUI also predefines some enumeration types. These enumeration types can be passed as parameters, as long as they meet the parameter type requirements.
-  Example of configuring the font color and style of the **\<Text>** component:
+  Example of configuring the font color and style of the **Text** component:
 
   ```ts
   Text('hello')
@@ -155,10 +155,10 @@ Use chainable event methods to configure events supported by built-in components
 
 ## Configuring Child Components
 
-For a component with child components, for example, a container component, add the UI descriptions of the child components inside parentheses. The **\<Column>**, **\<Row>**, **\<Stack>**, **\<Grid>**, and **\<List>** components are all container components.
+For a component with child components, for example, a container component, add the UI descriptions of the child components inside parentheses. The **Column**, **Row**, **Stack**, **Grid**, and **List** components are all container components.
 
 
-- Simple example of configuring child components for the **\<Column>** component:
+- Simple example of configuring child components for the **Column** component:
 
   ```ts
   Column() {
@@ -171,7 +171,7 @@ For a component with child components, for example, a container component, add t
   }
   ```
 
-- Example of nested child components in the **\<Column>** component:.
+- Example of nested child components in the **Column** component:.
 
   ```ts
   Column() {

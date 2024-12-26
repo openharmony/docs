@@ -1,4 +1,4 @@
-# Modal Dialog Box (ModelDialog)
+# Modal Dialog Box (ModalDialog)
 
 ## Overview
 

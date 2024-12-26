@@ -22,9 +22,9 @@ Uses a **Matrix2D** object as a parameter to perform matrix transformation on th
 
 **Parameters**
 
-| Name     | Type | Mandatory | Description  |
+| Name     | Type | Mandatory| Description  |
 | --------- | -------------- | ------ | ---------- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | No | Transformation matrix. |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | No | Transformation matrix.<br>Default value: **null**|
 
 **Example**
 

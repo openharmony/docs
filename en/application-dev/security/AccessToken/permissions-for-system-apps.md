@@ -4173,7 +4173,7 @@ Allows an application to disable its runtime code integrity protection.
 
 **Enable via ACL**: true
 
-**Valid since**: 13
+**Valid since**: 14
 
 ### ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY
 
@@ -4187,7 +4187,7 @@ This permission is available to the applications developed using the cross-platf
 
 **Enable via ACL**: true
 
-**Valid since**: 13
+**Valid since**: 14
 
 ### ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
 

@@ -1,7 +1,7 @@
 # swiper
 
 
-The **\<Swiper>** component provides a container that allows users to switch among child components using swipe gestures.
+The **Swiper ** component provides a container that allows users to switch among child components using swipe gestures.
 
 
 > **NOTE**

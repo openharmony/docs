@@ -2,7 +2,7 @@
 
 ## Background
 
-During application development, the **\<Swiper>** component is frequently seen in page turning scenarios, as in home screen and gallery applications. In general cases, the on-demand loading technique is adopted for the **\<Swiper>** component. This means that, a new page is loaded and rendered only when it is about to be displayed.This process includes the following steps:
+During application development, the **Swiper ** component is frequently seen in page turning scenarios, as in home screen and gallery applications. In general cases, the on-demand loading technique is adopted for the **Swiper ** component. This means that, a new page is loaded and rendered only when it is about to be displayed.This process includes the following steps:
 
 - If the target page uses a custom component decorated by @Component, the build function of the custom component is executed and the internal UI component is created.
 
@@ -12,36 +12,36 @@ During application development, the **\<Swiper>** component is frequently seen i
 
 In complex page scenarios, the preceding process may last for a long time. As a result, frame freezing occurs during swiping, undermining the swiping experience and even becoming a performance bottleneck of the entire application. For example, in terms of browsing large images in the Gallery application, if an image is not loaded until the first frame of swiping, the first frame will take a long time or even frame loss will occur, slowing down the application performance.
 
-This is where the pre-loading mechanism of the **\<Swiper>** component comes into picture. By allowing for prebuilding and prerendering components in the idle time of the main thread, this mechanism can greatly improve the swiping experience.
+This is where the pre-loading mechanism of the **Swiper ** component comes into picture. By allowing for prebuilding and prerendering components in the idle time of the main thread, this mechanism can greatly improve the swiping experience.
 
 ## When to Use
 
-The pre-loading mechanism of the **\<Swiper>** component is preferred where time-consuming loading is involved, especially in the following scenarios:
+The pre-loading mechanism of the **Swiper ** component is preferred where time-consuming loading is involved, especially in the following scenarios:
 
-- The number of child components in **\<Swiper>** is greater than or equal to 5.
+- The number of child components in **Swiper ** is greater than or equal to 5.
 
-- The child components in **\<Swiper>** exhibit complex animations.
+- The child components in **Swiper ** exhibit complex animations.
 
-- Loading child components in **\<Swiper>** is accompanied by time-consuming operations such as network requests.
+- Loading child components in **Swiper ** is accompanied by time-consuming operations such as network requests.
 
-- The child components in **\<Swiper>** contain a large number of images or resources to be rendered.
+- The child components in **Swiper ** contain a large number of images or resources to be rendered.
 
-## Understanding Pre-loading of \<Swiper>
+## Understanding Pre-loading of Swiper 
 
-The pre-loading mechanism of **\<Swiper>** is designed to offer an uninterrupted swiping experience, by allowing **\<Swiper>** to load page content before the associated page is actually displayed As opposed to the traditional approach, where page loading happens concurrently with processing of the swipe event, pre-loading is triggered when the animation for finger lifting starts. As the animation for finger lifting is calculated is in the rendering thread, the main thread has time to perform pre-loading. To improve swipe performance with less memory usage, combine pre-loading with the on-demand loading and destruction capabilities of **LazyForEach**.
+The pre-loading mechanism of **Swiper ** is designed to offer an uninterrupted swiping experience, by allowing **Swiper ** to load page content before the associated page is actually displayed As opposed to the traditional approach, where page loading happens concurrently with processing of the swipe event, pre-loading is triggered when the animation for finger lifting starts. As the animation for finger lifting is calculated is in the rendering thread, the main thread has time to perform pre-loading. To improve swipe performance with less memory usage, combine pre-loading with the on-demand loading and destruction capabilities of **LazyForEach**.
 
 ## How to Use
 
-- Set the number of elements to load ahead of time through the [cachedCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#attributes) attribute of **\<Swiper>**.
+- Set the number of elements to load ahead of time through the [cachedCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#attributes) attribute of **Swiper **.
 
-Below shows the pre-loading result of the **\<Swiper>** component that contains five pages and its **cacheCount** attribute set to **1** and **loop** attribute set to **false**.
+Below shows the pre-loading result of the **Swiper ** component that contains five pages and its **cacheCount** attribute set to **1** and **loop** attribute set to **false**.
  ![loop=false](figures/swiper_loop_false.png)
 
 \
- Below shows the pre-loading result of the **\<Swiper>** component that contains five pages and its **cacheCount** attribute set to **1** and **loop** attribute set to **true**.
+ Below shows the pre-loading result of the **Swiper ** component that contains five pages and its **cacheCount** attribute set to **1** and **loop** attribute set to **true**.
  ![loop=true](figures/swiper_loop_true.png)
 
-- [LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md) is used to dynamically load and destroy the child components in **\<Swiper>**.
+- [LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md) is used to dynamically load and destroy the child components in **Swiper **.
 
 **Example**
 
@@ -147,23 +147,23 @@ struct SwiperExample {
 
 ## Verification
 
-To better demonstrate the performance improvements brought by the **\<Swiper>** component's pre-loading mechanism, the following prerequisites are used:
+To better demonstrate the performance improvements brought by the **Swiper ** component's pre-loading mechanism, the following prerequisites are used:
 
-- The **\<Swiper>** component contains 10 **\<List>** components.
+- The **Swiper ** component contains 10 **List** components.
 
-- Each of the **\<List>** component contains 100 list items.
+- Each of the **List** component contains 100 list items.
 
-Under these prerequisites, using the **\<Swiper>** component's pre-loading mechanism can save about 40% time for each page turning action and ensure that no frame is lost during page turning.
+Under these prerequisites, using the **Swiper ** component's pre-loading mechanism can save about 40% time for each page turning action and ensure that no frame is lost during page turning.
 
 ## Optimization Suggestion
 
-Component building and layout calculation take some time. Therefore, the value of **cachedCount** cannot be as large as possible. If the value of **cachedCount** is too large, the application performance may deteriorate. Currently, the duration of the animation for finger lifting is about 400 ms for the **\<Swiper>** component. If the time for the application to load a child component ranges from 100 ms to 200 ms, you are advised to set **cachedCount** to **1** or **2**, so that the pre-loading can be completed before the animation ends.
+Component building and layout calculation take some time. Therefore, the value of **cachedCount** cannot be as large as possible. If the value of **cachedCount** is too large, the application performance may deteriorate. Currently, the duration of the animation for finger lifting is about 400 ms for the **Swiper ** component. If the time for the application to load a child component ranges from 100 ms to 200 ms, you are advised to set **cachedCount** to **1** or **2**, so that the pre-loading can be completed before the animation ends.
 
-In light of this, the [OnAnimationStart](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#events) callback provided by **\<Swiper>** can be used, which is called when the switching animation starts. At this time, the main thread is idle, and the application can make full use of this period to preload resources such as images, reducing the time required for preloading nodes specified by **cachedCount**.
+In light of this, the [OnAnimationStart](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#events) callback provided by **Swiper ** can be used, which is called when the switching animation starts. At this time, the main thread is idle, and the application can make full use of this period to preload resources such as images, reducing the time required for preloading nodes specified by **cachedCount**.
 
 **Example**
 
-The page code of the child component in **\<Swiper>** is as follows.
+The page code of the child component in **Swiper ** is as follows.
 
 When the child component is built for the first time (the lifecycle reaches [aboutToAppear](../quick-start/arkts-page-custom-components-lifecycle.md)), the system checks the data source for data that matches the index. If no data is found, the system loads resources before building the node. If data is found, the system directly builds the node.
 
@@ -212,7 +212,7 @@ export struct PhotoItem { // Child component in <Swiper>
 }
 ```
 
-The code of the \<Swiper> home page is as follows:
+The code of the Swiper  home page is as follows:
 ```
 import Curves from '@ohos.curves';
 import { PhotoItem } from './PhotoItem'
@@ -313,8 +313,8 @@ struct Index {
 
 ## Takeaway
 
-- A tie-in of the **\<Swiper>** component's pre-loading mechanism and **LazyForEach** delivers optimal performance improvements.
+- A tie-in of the **Swiper ** component's pre-loading mechanism and **LazyForEach** delivers optimal performance improvements.
 
 - The value of **cachedCount** for pre-loading must be set appropriately based on the loading duration of a single child component. A larger value does not necessarily lead to better performance. If a child component takes *N* ms to load, you are advised to set **cachedCount** to a value less than 400/*N*.
 
-- To further improve pre-loading efficiency to meet high-demanding performance requirements, use the **\<Swiper>** component's pre-loading mechanism together with the **OnAnimationStart** callback.
+- To further improve pre-loading efficiency to meet high-demanding performance requirements, use the **Swiper ** component's pre-loading mechanism together with the **OnAnimationStart** callback.

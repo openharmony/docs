@@ -1,7 +1,9 @@
 # Text Display (Text/Span)
 
 
-The **Text** component is used to display a piece of textual information. For details, see [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md).
+The **Text** component is used to display a piece of textual information. The **Span** component is used to display inline text. 
+
+For details, see [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md) and [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md).
 
 
 ## Creating Text
@@ -42,7 +44,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
 - Creating a Span Component
 
-  The **Span** component works only when included in a **Text** component. If both the **Span** and **Text** components have text configured, the text of the **Span** overwrites that of the **Text** component.
+  The **Span** component works only when included in a **Text** component. It does not display any content when used alone. If both the **Span** and **Text** components have text configured, the text of the **Span** overwrites that of the **Text** component.
 
 
   ```ts
@@ -57,7 +59,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
 - Set the text decorative line.
 
-  Use the **decoration** attribute to set the style and color of the text decorative line.
+  Use the [decoration](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md#decoration) attribute to set the style and color of the text decorative line.
 
 
   ```ts
@@ -76,7 +78,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
   ![en-us_image_0000001562700437](figures/en-us_image_0000001562700437.png)
 
-- Use the **textCase** attribute to set the text case.
+- Use the [textCase](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md#textcase) attribute to set the text case.
 
   ```ts
   Text() {
@@ -89,9 +91,9 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
   ![en-us_image_0000001562940525](figures/en-us_image_0000001562940525.png)
 
-- Adding Events
+- Add events.
 
-  The **Span** component does not have size information. Therefore, only an **onClick** event can be added for this component.
+  The **Span** component does not have size information. Therefore, only an [onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick) event can be added for this component.
 
 
   ```ts
@@ -107,7 +109,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
 ## Setting Styles
 
-- Use the **textAlign** attribute to set the alignment mode of text.
+- Use the [textAlign](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#textalign) attribute to set the alignment mode of text.
 
   ```ts
   Text('Left aligned')
@@ -115,7 +117,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
     .textAlign(TextAlign.Start)
     .border({ width: 1 })
     .padding(10)
-  Text ('Center aligned')
+  Text('Center aligned')
     .width(300)
     .textAlign(TextAlign.Center)
     .border({ width: 1 })
@@ -129,7 +131,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
   ![en-us_image_0000001511421260](figures/en-us_image_0000001511421260.png)
 
-- Use the **textOverflow** attribute to set the display mode for when the text is too long. This attribute must be used together with **maxLines**. By default, the text is automatically folded.
+- Use the [textOverflow](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#textoverflow) attribute to set the display mode for when the text is too long. This attribute must be used together with [maxLines](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#maxlines). By default, the text is automatically wrapped.
 
   ```ts
   Text('This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content. This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content.')
@@ -157,7 +159,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
   ![en-us_image_0000001563060701](figures/en-us_image_0000001563060701.gif)
 
-- Use the **lineHeight** attribute to set the text line height.
+- Use the [lineHeight](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#lineheight) attribute to set the text line height.
 
   ```ts
   Text('This is the text with the line height set. This is the text with the line height set.')
@@ -169,7 +171,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
   ![en-us_image_0000001511740480](figures/en-us_image_0000001511740480.png)
 
-- Use the **decoration** attribute to set the style and color of the text decorative line.
+- Use the [decoration](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#decoration) attribute to set the style and color of the text decorative line.
 
   ```ts
   Text('This is the text')
@@ -194,7 +196,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
   ![en-us_image_0000001511580888](figures/en-us_image_0000001511580888.png)
 
-- Use the **baselineOffset** attribute to set the baseline offset of the text.
+- Use the [baselineOffset](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#baselineoffset) attribute to set the baseline offset of the text.
 
   ```ts
   Text('This is the text content with baselineOffset 0.')
@@ -223,7 +225,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
   ![en-us_image_0000001562820789](figures/en-us_image_0000001562820789.png)
 
-- Use the **letterSpacing** attribute to set the letter spacing.
+- Use the [letterSpacing](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#letterspacing) attribute to set the letter spacing.
 
   ```ts
   Text('This is the text content with letterSpacing 0.')
@@ -251,7 +253,9 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
   ![en-us_image_0000001562940513](figures/en-us_image_0000001562940513.png)
 
-- Use the **minFontSize** and **maxFontSize** attributes to set the minimum and maximum font size, respectively. For the settings to take effect, these attributes must be used together with **maxLines** or layout constraint settings.
+- Use the [minFontSize](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#minfontsize) and [maxFontSize](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#maxfontsize) attributes to set the minimum and maximum font size, respectively.
+
+  For the settings to take effect, these attributes must be used together with [maxLines](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#maxlines) or layout constraint settings.
 
   ```ts
   Text('My maximum font size is 30, minimum font size is 5, width is 250, and maximum number of lines is 1')
@@ -290,7 +294,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
   ![en-us_image_0000001511740472](figures/en-us_image_0000001511740472.png)
 
-- Use the **textCase** attribute to set the text case.
+- Use the [textCase](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#textcase) attribute to set the text case.
 
   ```ts
   Text('This is the text content with textCase set to Normal.')
@@ -317,7 +321,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
   ![en-us_image_0000001562940529](figures/en-us_image_0000001562940529.png)
 
-- Use the **copyOption** attribute to set whether copy and paste is allowed.
+- Use the [copyOption](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#copyoption9) attribute to set whether copy and paste is allowed.
 
   ```ts
   Text("This text is copyable")
@@ -330,8 +334,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
 ## Adding Events
 
-The **Text** component supports the universal events. It can be bound to the **onClick**, **onTouch**, or other events to respond to user operations.
-
+You can bind the **Text** component to the [onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick), [onTouch](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch), or other universal events to respond to user operations.
 
 ```ts
 Text ('Click Me')
@@ -340,9 +343,9 @@ Text ('Click Me')
    })
 ```
 
-
 ## Example Scenario
 
+This example demonstrates how to implement a hot search list using the **maxLines**, **textOverflow**, **textAlign**, and **constraintSize** attributes.
 
 ```ts
 // xxx.ets
@@ -373,7 +376,7 @@ struct TextExample {
 
       Row() {
         Text("2").fontSize(14).fontColor(Color.Red).margin({ left: 10, right: 10 })
-        Text("I am entry 2")
+        Text("I am entry 2 I am entry 2 I am entry 2 I am entry 2")
           .fontSize(12)
           .fontColor(Color.Blue)
           .fontWeight(300)
@@ -415,7 +418,7 @@ struct TextExample {
 
       Row() {
         Text("4").fontSize(14).fontColor(Color.Grey).margin({ left: 10, right: 10 })
-        Text("I am entry 4")
+        Text("I am entry 4 I am entry 4 I am entry 4 I am entry 4")
           .fontSize(12)
           .fontColor(Color.Blue)
           .fontWeight(300)

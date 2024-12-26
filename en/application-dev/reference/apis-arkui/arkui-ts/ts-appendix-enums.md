@@ -38,7 +38,7 @@
 | Auto      | The image is scaled automatically based on its own size and the size of the component to fit the display area.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | Fill      | The image is scaled to fill the display area, and its aspect ratio is not retained.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | ScaleDown | The image is displayed with its aspect ratio retained, in a size smaller than or equal to the original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| None      | The original size is retained.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| None      | The image is displayed in its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | TOP_START<sup>12+</sup> | The image is displayed at the top start corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | TOP<sup>12+</sup>       | The image is displayed horizontally centered at the top of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | TOP_END<sup>12+</sup>   | The image is displayed at the top end corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -887,20 +887,6 @@ Defines the pixel-level rounding policy for component boundaries.
 | DASHED        | Dashed line.|
 | WAVY        | Wavy line.|
 
-## MenuPolicy<sup>12+</sup>
-
-Defines the menu display policy.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name   | Value  | Description                              |
-| ------- | ---- | ---------------------------------- |
-| DEFAULT | 0    | Whether the menu is displayed depends on the underlying default logic.|
-| HIDE    | 1    | The menu is always hidden.                  |
-| SHOW    | 2    | The menu is always displayed.                    |
-
 ## EmbeddedType<sup>12+</sup>
 Enumerates the types of the providers that can be started by the **EmbeddedComponent**.
 
@@ -936,7 +922,7 @@ Enumerates the types of the providers that can be started by the **EmbeddedCompo
 | ROTATION_180 | 180 degrees.|
 | ROTATION_270 | 270 degrees.|
 
-## BlurStyleActivePolicy<sup>13+</sup>
+## BlurStyleActivePolicy<sup>14+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 13.
 
@@ -1034,3 +1020,16 @@ Enumerates the height breakpoint values corresponding to different window aspect
 | HEIGHT_SM | 0   | The window aspect ratio is less than 0.8.|
 | HEIGHT_MD | 1   | The window aspect ratio is greater than or equal to 0.8 and less than 1.2.|
 | HEIGHT_LG | 2   | The window aspect ratio is greater than or equal to 1.2.|
+
+### PageFlipMode<sup>14+</sup>
+
+Enumerates the modes for flipping pages using the mouse wheel.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value  | Description                  |
+| -------- | ---- | ---------------------- |
+| CONTINUOUS | 0   | Continuous page flipping mode where multiple pages are turned continuously when the user scrolls the mouse wheel without interruption.|
+| SINGLE | 1   | Single-page flipping mode where the mouse wheel event is ignored until the current page flipping animation is complete.|

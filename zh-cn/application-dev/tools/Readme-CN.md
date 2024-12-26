@@ -22,3 +22,4 @@
   - [toybox工具](toybox.md)
   - [mediatool工具](mediatool.md)
   - [devicedebug工具](devicedebug-tool.md)
+  - [rawheap-translator工具](rawheap-translator.md)

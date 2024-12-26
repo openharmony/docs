@@ -117,7 +117,7 @@ try {
 
 setDisallowedPolicyForAccount(admin: Want, feature: string, disallow: boolean, accountId: number): void
 
-设置禁用/启用某用户的某特性。 
+设置禁用/启用某用户的某特性，当前仅支持2in1使用。 
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -165,7 +165,7 @@ try {
 
 getDisallowedPolicyForAccount(admin: Want, feature: string, accountId: number): boolean
 
-获取某用户的某特性状态。 
+获取某用户的某特性状态，当前仅支持2in1使用。 
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -217,7 +217,7 @@ try {
 
 addDisallowedListForAccount(admin: Want, feature: string, list: Array\<string>, accountId: number): void
 
-为用户添加禁用某特征的名单。
+为用户添加禁用某特征的名单，当前仅支持2in1使用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -264,7 +264,7 @@ try {
 
 removeDisallowedListForAccount(admin: Want, feature: string, list: Array\<string>, accountId: number): void
 
-为用户移除禁用的某特征的名单。
+为用户移除禁用的某特征的名单，当前仅支持2in1使用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -311,7 +311,7 @@ try {
 
 getDisallowedListForAccount(admin: Want, feature: string, accountId: number): Array\<string>
 
-获取用户禁用某特征的名单。
+获取用户禁用某特征的名单，当前仅支持2in1使用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 

@@ -54,7 +54,7 @@ Since API version 10, this API supports the calc calculation feature.
 
 >  **NOTE**
 >
->  In the [Row](./ts-container-row.md), [Column](./ts-container-column.md), and [RelativeContainer] (./ts-container-relativecontainer.md) components, setting **width** and **height** to **auto** means that the size adapts to the size of their child components.
+>  In the [Row](./ts-container-row.md), [Column](./ts-container-column.md), and [RelativeContainer](./ts-container-relativecontainer.md) components, setting **width** and **height** to **auto** means that the size adapts to the size of their child components.
 
 ## size
 
@@ -138,7 +138,7 @@ Sets the safe area padding. It enables a container to add a component-level safe
 
 layoutWeight(value: number | string)
 
-Sets the weight of the component during layout.
+Sets the weight of the component during layout. A component with this attribute is allocated space along the main axis of its parent container ([Row](./ts-container-row.md), [Column](./ts-container-column.md), or [Flex](./ts-container-flex.md)) based on its specified weight.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 

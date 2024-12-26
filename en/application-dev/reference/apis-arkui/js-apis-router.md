@@ -14,7 +14,7 @@ For routing management, it is recommended that you use the [Navigation](../../ui
 >
 > - Since API version 10, you can use the [getRouter](./js-apis-arkui-UIContext.md#getrouter) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](./js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 >
-> - When the **pushUrl** or **pushNamedRoute** API uses a callback to return the result, the information obtained from the callback using APIs such as **getLength** may represent an intermediate state of the stack and might not be consistent with the final state.
+> - When the [pushUrl](#routerpushurl9-1) or [pushNamedRoute](#routerpushnamedroute10-1) API is used with a callback, the information obtained from the callback using APIs such as [getLength](#routergetlength) may represent an intermediate state of the stack. This means that the information might not be consistent with the stack information obtained after all stack operations have been completed.
 
 ## Modules to Import
 
@@ -47,6 +47,9 @@ Navigates to a specified page in the application.
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
+> **NOTE**
+>
+> The following error codes returned by this API are all of the string type.
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -108,6 +111,9 @@ Navigates to a specified page in the application.
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
+> **NOTE**
+>
+> The following error codes returned by this API are all of the string type.
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -174,6 +180,9 @@ Navigates to a specified page in the application.
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
+> **NOTE**
+>
+> The following error codes returned by this API are all of the string type.
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -236,6 +245,9 @@ Navigates to a specified page in the application.
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
+> **NOTE**
+>
+> The following error codes returned by this API are all of the string type.
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -302,6 +314,9 @@ Replaces the current page with another one in the application and destroys the c
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
+> **NOTE**
+>
+> The following error codes returned by this API are all of the string type.
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -352,6 +367,9 @@ Replaces the current page with another one in the application and destroys the c
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
+> **NOTE**
+>
+> The following error codes returned by this API are all of the string type.
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -409,6 +427,9 @@ Replaces the current page with another one in the application and destroys the c
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
+> **NOTE**
+>
+> The following error codes returned by this API are all of the string type.
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -460,6 +481,9 @@ Replaces the current page with another one in the application and destroys the c
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
+> **NOTE**
+>
+> The following error codes returned by this API are all of the string type.
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -516,6 +540,9 @@ Navigates to a page using the named route. This API uses a promise to return the
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
+> **NOTE**
+>
+> The following error codes returned by this API are all of the string type.
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -579,6 +606,9 @@ Navigates to a page using the named route. This API uses a promise to return the
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
+> **NOTE**
+>
+> The following error codes returned by this API are all of the string type.
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -645,6 +675,9 @@ Navigates to a page using the named route. This API uses a promise to return the
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
+> **NOTE**
+>
+> The following error codes returned by this API are all of the string type.
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -707,6 +740,9 @@ Navigates to a page using the named route. This API uses a promise to return the
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
+> **NOTE**
+>
+> The following error codes returned by this API are all of the string type.
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -773,6 +809,9 @@ Replaces the current page with another one using the named route and destroys th
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
+> **NOTE**
+>
+> The following error codes returned by this API are all of the string type.
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -823,6 +862,9 @@ Replaces the current page with another one using the named route and destroys th
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
+> **NOTE**
+>
+> The following error codes returned by this API are all of the string type.
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -880,6 +922,9 @@ Replaces the current page with another one using the named route and destroys th
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
+> **NOTE**
+>
+> The following error codes returned by this API are all of the string type.
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -931,6 +976,9 @@ Replaces the current page with another one using the named route and destroys th
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
+> **NOTE**
+>
+> The following error codes returned by this API are all of the string type.
 
 | ID  | Error Message|
 | --------- | ------- |

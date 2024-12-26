@@ -76,12 +76,12 @@ GridRow({
    ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
      GridCol({
        span: {
-         xs: 2, // The <GridCol> component occupies two grid columns on the minimum-width device.
-         sm: 3, // The <GridCol> component occupies three grid columns on the small-width device.
-         md: 4, // The <GridCol> component occupies four grid columns on the medium-width device.
-         lg: 6, // The <GridCol> component occupies six grid columns on the large-width device.
-         xl: 8, // The <GridCol> component occupies eight grid columns on the extra-large-width device.
-         xxl: 12 // The <GridCol> component occupies 12 grid columns on the extra-extra-large-width device.
+         xs: 2, // The GridCol component occupies two grid columns on the minimum-width device.
+         sm: 3, // The GridCol component occupies three grid columns on the small-width device.
+         md: 4, // The GridCol component occupies four grid columns on the medium-width device.
+         lg: 6, // The GridCol component occupies six grid columns on the large-width device.
+         xl: 8, // The GridCol component occupies eight grid columns on the extra-large-width device.
+         xxl: 12 // The GridCol component occupies 12 grid columns on the extra-extra-large-width device.
        }
      }) {
        Row() {
@@ -242,7 +242,7 @@ In the **GridRow** component, **gutter** is used to set the spacing between adja
 
 ## GridCol
 
-The **GridCol** component is a child component of the **GridRow** component. You can set the **span**, **offset**, and **order** attributes of this component by passing parameters or using setters.
+The **\GridCol** component is a child component of the **GridRow** component. You can set the **span**, **offset**, and **order** attributes of this component by passing parameters or using setters.
 
 - Setting **span**
 
@@ -441,9 +441,7 @@ If **order** is not set for all child components, those that have **order** set 
 
 Responsive grid components can be contained in other responsive grid components.
 
-In the following example, the responsive grid divides the entire space into 12 parts. At the first layer, **GridCol** is nested in **GridRow**, and the space is divided into the large area in the center and the footer area. At the second layer, **GridCol** is nested in **GridRow**, and the space is divided into the left and right areas. The child components take up the space allocated by the parent component at the upper layer. In this example, the pink area is made up of 12 columns of the screen space, and the green and blue areas take up the 12 columns of the parent component proportionally.
-
-
+In the following example, the responsive grid divides the entire space into 12 parts. At the first layer, **\GridCol** is nested in **GridRow**, and the space is divided into the large area in the center and the footer area. At the second layer, **\GridCol** is nested in **GridRow**, and the space is divided into the left and right areas. The child components take up the space allocated by the parent component at the upper layer. In this example, the pink area is made up of 12 columns of the screen space, and the green and blue areas take up the 12 columns of the parent component proportionally.
 
 ```ts
 @Entry
@@ -470,7 +468,6 @@ struct GridRowExample {
           }.backgroundColor('#ff4168db')
         }
         .backgroundColor('#19000000')
-        .height('100%')
       }
 
       GridCol({ span: { sm: 12 } }) {

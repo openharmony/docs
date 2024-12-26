@@ -221,18 +221,6 @@
 | string                              | rgb或者argb格式颜色。示例：'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'。 |
 | [Resource](#resource)               | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。       |
 
-## ColoringStrategy<sup>10+</sup>
-
-智能取色枚举类型。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 描述              |
-| ------ | --------------- |
-| INVERT | 设置前景色为控件背景色的反色。仅支持在[foregroundColor](ts-universal-attributes-foreground-color.md#foregroundcolor)中设置该枚举。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-
 ## LengthConstrain
 
 长度约束，用于对组件最大、最小长度做限制。
@@ -610,38 +598,6 @@ type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) =>
 | 名称            | 类型                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
 | VisibleAreaChangeCallback | (isExpanding: boolean, currentRatio: number) => void | 组件可见区域变化事件的回调。<br/>-isExpanding：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
-
-## StyledStringValue<sup>12+</sup>
-
-样式对象类型，用于设置属性字符串的样式。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称   | 描述       |
-| ------ | ---------- |
-| TextStyle | 文本字体样式。 |
-| DecorationStyle | 文本装饰线样式。 |
-| BaselineOffsetStyle | 文本基线偏移量样式。 |
-| LetterSpacingStyle | 文本字符间距样式。 |
-| LineHeightStyle | 文本行高样式。 |
-| TextShadowStyle | 文本阴影样式。 |
-| GestureStyle | 事件手势样式。 |
-| ParagraphStyle | 文本段落样式。 |
-| ImageAttachment | 图片样式。 |
-| CustomSpan | 自定义绘制Span样式。 |
-| UserDataSpan | UserDataSpan样式。 |
-
-## EnterKeyType枚举说明
-
-| 名称                   | 描述               |
-| ---------------------- | ------------------ |
-| Go                     | 显示为开始样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| Search                 | 显示为搜索样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| Send                   | 显示为发送样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| Next                   | 显示为下一步样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Done                   | 显示为完成样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| PREVIOUS<sup>11+</sup> | 显示为上一步样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| NEW_LINE<sup>11+</sup> | 显示为换行样式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 
 ## DividerStyleOptions<sup>12+</sup>
 

@@ -40,14 +40,16 @@ TextInput(value?: TextInputOptions)
 
 ## Attributes
 
-Among the [universal attributes](ts-universal-attributes-size.md) and [universal text attributes](ts-universal-attributes-text-style.md), **fontColor**, **fontSize**, **fontStyle**, **fontWeight**, and **fontFamily** are supported. In addition, the following attributes are supported.
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 >  **NOTE**   
 >  When no underline is set, the default value of the universal attribute [padding](ts-universal-attributes-size.md#padding) is as follows:<br>{<br> top: '8vp',<br> right: '16vp',<br> bottom: '8vp',<br> left: '16vp'<br> } 
 >  
 >  When an underline is set, the default value of **padding** is as follows:<br>{<br> top: '12vp',<br> right: '0vp',<br> bottom: '12vp',<br> left: '0vp'<br> }
 >
->   Since API version 10, **.width('auto')** can be set for the **TextInput** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions received by the parent container. For details, see [Size](ts-universal-attributes-size.md).
+>  When **padding** is set to **0**, set **borderRadius** to **0** to avoid truncation of the cursor.
+>
+>  Since API version 10, **.width('auto')** can be set for the **TextInput** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions imposed by the parent container. For details, see [Size](ts-universal-attributes-size.md).
 
 ### type
 
@@ -64,22 +66,6 @@ Sets the text box type.
 | Name| Type                           | Mandatory| Description                                     |
 | ------ | ------------------------------- | ---- | ----------------------------------------- |
 | value  | [InputType](#inputtype) | Yes  | Text box type.<br>Default value: **InputType.Normal**|
-
-### contentType<sup>12+</sup>
-
-contentType(value: ContentType)
-
-Sets the content type for autofill.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type                                 | Mandatory| Description          |
-| ------ | ------------------------------------- | ---- | -------------- |
-| value  | [ContentType](#contenttype12) | Yes  | Content type for autofill.|
 
 ### placeholderColor
 
@@ -101,7 +87,7 @@ Sets the placeholder text color.
 
 placeholderFont(value?: Font)
 
-Sets the placeholder text style, including the font size, font width, font family, and font style. Currently, only the default font family is supported.
+Sets the placeholder text style, including the font size, font width, font family, and font style. The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -162,11 +148,91 @@ Sets the maximum number of characters for text input.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Maximum number of characters for text input.<br>Default value: **Infinity**, indicating that there is no maximum number.<br>**NOTE**<br>If this attribute is not set or is set to an invalid value, the default value is used. If a decimal number is specified, the integer part is used.|
+| value  | number | Yes  | Maximum number of characters for text input.<br>Default value: **Infinity**, indicating that there is no upper limit on the number of characters that can be entered<br>**NOTE**<br>If this attribute is not set or is set to an invalid value, the default value is used. If a decimal number is specified, the integer part is used.|
+
+### fontColor
+
+fontColor(value: ResourceColor)
+
+Sets the font color.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description      |
+| ------ | ------------------------------------------ | ---- | ---------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color.|
+
+### fontSize
+
+fontSize(value: Length)
+
+Sets the font size.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                                                        |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | Yes  | Font size. If **fontSize** is of the number type, the unit fp is used. The default font size is 16 fp. The value cannot be a percentage.|
+
+### fontStyle
+
+fontStyle(value: FontStyle)
+
+Sets the font style.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description                                   |
+| ------ | ------------------------------------------- | ---- | --------------------------------------- |
+| value  | [FontStyle](ts-appendix-enums.md#fontstyle) | Yes  | Font style.<br>Default value: **FontStyle.Normal**|
+
+### fontWeight
+
+fontWeight(value: number | FontWeight | string)
+
+Sets the font weight. If the value is too large, the text may be clipped depending on the font.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | Yes  | Font weight. For the number type, the value range is [100, 900], at an interval of 100. The default value is **400**. A larger value indicates a heavier font weight. For the string type, only strings that represent a number, for example, **"400"**, and the following enumerated values of **FontWeight** are supported: **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**.<br>Default value: **FontWeight.Normal**|
+
+### fontFamily
+
+fontFamily(value: ResourceStr)
+
+Sets the font family.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                  | Mandatory| Description                                                        |
+| ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [ResourceStr](ts-types.md#resourcestr) | Yes  | Font family. Default font: **'HarmonyOS Sans'**<br>The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported for applications.<br>Only the 'HarmonyOS Sans' font is supported for widgets.|
 
 ### inputFilter<sup>8+</sup>
 
-inputFilter(value: ResourceStr, error?: (value: string) => void)
+inputFilter(value: ResourceStr, error?: Callback\<string>)
 
 Sets the regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are filtered out. The specified regular expression can match single characters, but not strings.
 
@@ -181,15 +247,15 @@ Since API version 11, if **inputFilter** is set and the entered characters are n
 | Name| Type                                  | Mandatory| Description                              |
 | ------ | -------------------------------------- | ---- | ---------------------------------- |
 | value  | [ResourceStr](ts-types.md#resourcestr) | Yes  | Regular expression.                      |
-| error  | (value: string) => void                | No  | Filtered-out content to return when regular expression matching fails.|
+| error  | Callback\<string>                | No  | Filtered-out content to return when regular expression matching fails.|
 
 ### copyOption<sup>9+</sup>
 
 copyOption(value: CopyOptions)
 
-Sets whether copy and paste is allowed. If this attribute is set to **CopyOptions.None**, the paste operation is allowed, but not the copy or cut operation.
+Sets whether copy and paste is allowed. If this attribute is set to **CopyOptions.None**, the text can be pasted, but copy, cut, and AI-powered writing is not allowed.
 
-For dragging, **copyOption** only restricts whether text is selected and does not involve the dragging scope.
+Dragging is not allowed when **CopyOptions.None** is set.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -305,7 +371,7 @@ Sets the caret position.
 
 showUnit(value: CustomBuilder)
 
-Sets the unit for content in the component. This attribute takes effect only when [showUnderline](#showunderline10) is set to **true**.
+Sets the unit displayed with the text box. This attribute effective only when [showUnderline](#showunderline10) is set to **true**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -315,7 +381,7 @@ Sets the unit for content in the component. This attribute takes effect only whe
 
 | Name| Type                                       | Mandatory| Description                          |
 | ------ | ------------------------------------------- | ---- | ------------------------------ |
-| value  | [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Unit to display as content in the text input.|
+| value  | [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Unit displayed with the text box.|
 
 ### showError<sup>10+</sup>
 
@@ -323,7 +389,7 @@ showError(value?: ResourceStr | undefined)
 
 Sets the error message displayed when an error occurs.
 
-If the data type is **ResourceStr** and the input content does not comply with specifications, the error message is displayed. If the error message does not fit in one line, an ellipsis (…) is displayed to represent clipped text. If the data type is **undefined**, no error message is displayed. See [Example 2](#example-2).
+If the data type is **ResourceStr** and the input content does not comply with specifications, the error message is displayed. If the error message does not fit in one line, an ellipsis (…) is displayed to represent clipped text. If the data type is **undefined**, no error message is displayed. For details, see [Example 2](#example-2-setting-underlines).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -351,25 +417,15 @@ Sets whether to show an underline. By default, the underline comes in the color 
 | ------ | ------- | ---- | ---------------------------------- |
 | value  | boolean | Yes  | Whether to show an underline.<br>Default value: **false**|
 
-### underlineColor<sup>12+</sup>
-
-underlineColor(value: ResourceColor|UnderlineColor|undefined)
-
-Sets the color of the underline when it is shown.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name| Type                                                        | Mandatory| Description                                                        |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) \| [UnderlineColor](#underlinecolor12) \| undefined | Yes  | Color of the underline.<br>The underline color changes with the underline mode. If the underline color is only set for the normal state, you can directly enter a value of the ResourceColor type. If the value specified is **undefined**, **null**, or invalid, all underlines are restored to the default value.<br>Default value: underline color configured for the theme, which is **#33182431** by default|
-
 ### passwordIcon<sup>10+</sup>
 
 passwordIcon(value: PasswordIcon)
 
 Sets the password icon to display at the end of the password text box.
+
+Images in JPG, PNG, BMP, HEIC, and WEBP formats are supported.
+
+The icon size is fixed at 24 vp, regardless of the source image size.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -385,7 +441,7 @@ Sets the password icon to display at the end of the password text box.
 
 enableKeyboardOnFocus(value: boolean)
 
-Sets whether to enable the input method when the component obtains focus in a way other than clicking.
+Sets whether to enable the input method when the **TextInput** component obtains focus in a way other than clicking.
 
  
 
@@ -397,13 +453,13 @@ Sets whether to enable the input method when the component obtains focus in a wa
 
 | Name| Type   | Mandatory| Description                                                       |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| value  | boolean | Yes  | Whether to enable the input method when the component obtains focus in a way other than clicking.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether to enable the input method when the **TextInput** component obtains focus in a way other than clicking.<br>Default value: **true**|
 
 ### selectionMenuHidden<sup>10+</sup>
 
 selectionMenuHidden(value: boolean)
 
-Sets whether to hide the text selection menu when the text box is long-pressed, double-touched, or right-clicked.
+Sets whether to hide the system text selection menu.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -413,7 +469,7 @@ Sets whether to hide the text selection menu when the text box is long-pressed, 
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to hide the text selection menu when the text box is long-pressed, double-touched, or right-clicked.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to hide the system text selection menu.<br>**true**: The system text selection menu does not appear under the following circumstances: clicking the text box cursor, long-pressing the text box, double-tapping the text box, triple-tapping the text box, or right-clicking the text box.<br>**false**: The system text selection menu appears under the following circumstances: clicking the text box cursor, long-pressing the text box, double-tapping the text box, triple-tapping the text box, or right-clicking the text box.<br>Default value: **false**|
 
 ### barState<sup>10+</sup>
 
@@ -457,13 +513,15 @@ When a custom keyboard is set, activating the text box opens the specified custo
 
 The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.
 
-The custom keyboard is displayed on top of the current page, without compressing or raising the page.
+The custom keyboard is presented by overlaying the original screen, which is not compressed or lifted if avoid mode is not enabled or avoidance is not needed for the text box.
 
 The custom keyboard cannot obtain the focus, but it blocks gesture events.
 
 By default, the custom keyboard is closed when the input component loses the focus. You can also use the [TextInputController](#textinputcontroller8).[stopEditing](#stopediting10) API to close the keyboard.
 
 When a custom keyboard is set, the text box does not support camera input, even when the device supports.
+
+When setting a custom keyboard, you can bind the [onKeyPrelme](ts-universal-events-key.md#onkeypreime12) event to prevent input from the physical keyboard.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -496,7 +554,7 @@ Sets whether to enable autofill.
 
 passwordRules(value: string)
 
-Rules for generating passwords. When autofill is used, these rules are transparently transmitted to Password Vault for generating a new password.
+Rules for generating passwords. When autofill is used, these rules are transparently transmitted to Password Vault for generating a new password.<!--RP1--><!--RP1End-->
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -510,9 +568,9 @@ Rules for generating passwords. When autofill is used, these rules are transpare
 
 ### cancelButton<sup>11+</sup>
 
-cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
+cancelButton(options: CancelButtonOptions)
 
-Sets the style of the Cancel button on the right. This attribute is not available for the inline input style.
+Sets the style of the cancel button on the right. This attribute is not available for the inline input style.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -522,7 +580,7 @@ Sets the style of the Cancel button on the right. This attribute is not availabl
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br>style? : [CancelButtonStyle](ts-basic-components-search.md#cancelbuttonstyle10)<br>icon?: [IconOptions](ts-basic-components-search.md#iconoptions10) <br>} | Yes  | Style of the Cancel button on the right.<br>Default value:<br>{<br>style: CancelButtonStyle.INPUT<br>} |
+| options  | [CancelButtonOptions](ts-basic-components-search.md#cancelbuttonoptions12) | Yes  | Options of the cancel button on the right.<br>Default value:<br>{<br>style: CancelButtonStyle.INPUT<br>} |
 
 ### selectAll<sup>11+</sup>
 
@@ -562,6 +620,36 @@ The character counter is not displayed for text boxes in inline or password inpu
 | --------------------- | ----------------------------------------------------- | ---- | ---------------- |
 | value                 | boolean                                               | Yes  | Whether to display the character counter.|
 | options<sup>11+</sup> | [InputCounterOptions](ts-types.md#inputcounteroptions11) | No  | Threshold percentage of the character counter.|
+
+### contentType<sup>12+</sup>
+
+contentType(value: ContentType)
+
+Sets the content type for autofill.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                 | Mandatory| Description          |
+| ------ | ------------------------------------- | ---- | -------------- |
+| value  | [ContentType](#contenttype12) | Yes  | Content type for autofill.|
+
+### underlineColor<sup>12+</sup>
+
+underlineColor(value: ResourceColor|UnderlineColor|undefined)
+
+Sets the color of the underline when it is shown.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) \| [UnderlineColor](#underlinecolor12) \| undefined | Yes  | Color of the underline.<br>The underline color changes with the underline mode. If the underline color is only set for the normal state, you can directly enter a value of the ResourceColor type. If the value specified is **undefined**, **null**, or invalid, all underlines are restored to the default value.<br>Default value: underline color configured for the theme, which is **#33182431** by default|
 
 ### lineHeight<sup>12+</sup>
 
@@ -685,7 +773,7 @@ Text is clipped at the transition between words. To clip text in the middle of a
 | value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | Yes  | Display mode when the text is too long.<br>Default value in non-editing state in the inline input style: **TextOverflow.Ellipsis**<br>Default value in editing state in the inline input style: **TextOverflow.Clip**                    |
 
 >  **NOTE** 
->   The **TextInput** component does not support the **TextOverflow.MARQUEE** mode. If this attribute is set to **TextOverflow.MARQUEE**, **TextOverflow.Ellipsis** is used instead for the non-editing state in the inline input style and **TextOverflow.Clip** for the non-inline input style and the editing state in the inline input style.
+>   The **TextInput** component does not support the **TextOverflow.MARQUEE** mode. If **TextOverflow.MARQUEE** is set, the component automatically switches to **TextOverflow.Ellipsis** for the non-editing state in the inline input style and **TextOverflow.Clip** for the non-inline input style and the editing state in the inline input style.
 
 ### textIndent<sup>12+</sup>
 
@@ -779,7 +867,7 @@ Sets whether to show the password.
 
 This attribute takes effect only in password input mode.
 
-As the password icon has a built-in state for updating the password mode, you are advised to add state synchronization to [onSecurityStateChange](#onsecuritystatechange12).
+In password input mode, the icon at the end of the text box serves as a toggle for password visibility. As such, you are advised to implement status synchronization with [onSecurityStateChange](#onsecuritystatechange12) to ensure that the password visibility status is accurately reflected.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -829,6 +917,8 @@ enablePreviewText(enable: boolean)
 
 Sets whether to enable preview text.
 
+Preview text is in a temporary state and does not support text interception. As such, it does not trigger **onWillInsert**, **onDidInsert**, **onWillDelete**, or **onDidDelete** callbacks.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -839,26 +929,80 @@ Sets whether to enable preview text.
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | Yes  | Whether to enable preview text.<br>Default value: **true**|
 
+>  **NOTE**
+>
+>  This API is disabled by default in C API scenarios. To enable preview text in such scenarios, set [metadata](../../../../application-dev/quick-start/module-structure.md#internal-structure-of-the-metadata-attribute) in the **module.json5** file of the project as follows:
+> ```json
+> "metadata": [
+>  {
+>     "name": "can_preview_text",
+>     "value": "true",
+>  }
+> ]
+> ```
+
+### enableHapticFeedback<sup>13+</sup>
+
+enableHapticFeedback(isEnabled: boolean)
+
+Specifies whether to enable haptic feedback.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                              |
+| ------ | ------- | ---- | ---------------------------------- |
+| isEnabled | boolean | Yes  | Whether to enable haptic feedback.<br>Default value: **true**|
+
+>  **NOTE**
+>
+>  To enable haptic feedback, you must declare the ohos.permission.VIBRATE permission under **requestPermissions** in the **module.json5** file of the project.
+> ```json
+> "requestPermissions": [
+>  {
+>     "name": "ohos.permission.VIBRATE",
+>  }
+> ]
+> ```
+
+### cancelButton<sup>14+</sup>
+
+cancelButton(value: CancelButtonSymbolOptions)
+
+Sets the style of the cancel button on the right. This attribute is not available for the inline input style.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [CancelButtonSymbolOptions](ts-basic-components-search.md#cancelbuttonsymboloptions12) | Yes  | Style of the cancel button on the right.<br>Default value:<br>{<br>style: CancelButtonStyle.INPUT<br>} |
 ## InputType
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                         | Description                                                        |
+| Name                         | Description                                                    |
 | ----------------------------- | ------------------------------------------------------------ |
 | Normal                        | Normal input mode. In this mode, there is no special restriction on the input characters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Password                      | Password input mode.<br>The value can contain digits, letters, underscores (_), spaces, and special characters. An eye icon is used to show or hide the password. By default, the entered characters are temporarily shown before being obscured by dots; they are directly obscured by dots since API version 12 on certain devices. The password input mode does not support underlines. If Password Vault is enabled, autofill is available for the username and password.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Password                      | Password input mode.<br>An eye icon is used to show or hide the password. By default, the entered characters are temporarily shown before being obscured by dots; they are directly obscured by dots since API version 12 on certain devices. The password input mode does not support underlines. If Password Vault is enabled, autofill is available for the username and password.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | Email                         | Email address input mode.<br>This mode accepts only digits, letters, underscores (_), dots (.), and the following special characters: ! # $ % & ' * + - / = ? ^ ` \{ \| \} ~ @ (which can only appear once)<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | Number                        | Digit input mode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | PhoneNumber<sup>9+</sup>      | Phone number input mode.<br>In this mode, the following are allowed: digits, spaces, plus signs (+), hyphens (-), asterisks (*), and number signs (#); the length is not limited.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | USER_NAME<sup>11+</sup>       | Username input mode.<br>If Password Vault is enabled, autofill is available for the username and password.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | NEW_PASSWORD<sup>11+</sup>    | New password input mode.<br>An eye icon is used to show or hide the password. By default, the entered characters are temporarily shown before being obscured by dots; they are directly obscured by dots since API version 12 on certain devices. If Password Vault is enabled, a new password can be automatically generated.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| NUMBER_PASSWORD<sup>11+</sup> | Numeric password input mode.<br>An eye icon is used to show or hide the password. By default, the entered characters are temporarily shown before being obscured by dots; they are directly obscured by dots since API version 12 on certain devices. The password input mode does not support underlines.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| NUMBER_PASSWORD<sup>11+</sup> | Numeric password input mode.<br>An eye icon is used to show or hide the password. By default, the entered characters are temporarily shown before being obscured by dots; they are directly obscured by dots since API version 12 on certain devices. The password input mode does not support underlines.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | NUMBER_DECIMAL<sup>11+</sup>  | Number input mode with a decimal point.<br>The value can contain digits and one decimal point.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | URL<sup>12+</sup>  | URL input mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## ContentType<sup>12+</sup>
 
-Content type for autofill.
+Enumerates the content types for autofill.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -894,10 +1038,10 @@ Content type for autofill.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name     | Description                                      |
-| ------- | ---------------------------------------- |
-| Default | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.     |
-| Inline  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.<br>The **showError** attribute is not supported for this style.|
+| Name   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| Default | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.|
+| Inline  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.<br>The **showError** attribute is not supported for this style.<br>This style does not allow for text dragging and dropping.|
 
 ## PasswordIcon<sup>10+</sup>
 
@@ -910,6 +1054,8 @@ Content type for autofill.
 | onIconSrc  | string \| [Resource](ts-types.md#resource) | No   | Icon that can be used to hide the password in password input mode.|
 | offIconSrc | string \| [Resource](ts-types.md#resource) | No   | Icon that can be used to show the password in password input mode.|
 
+
+
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
@@ -918,15 +1064,9 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 onChange(callback: EditableTextOnChangeCallback)
 
-Called when the input in the text box changes.
+Triggered when the input in the text box changes.
 
-This event is triggered when any of the following conditions is met:
-
-1. Keyboard input is received.
-
-2. Paste and cut is performed.
-
-3. Ctrl+V is pressed.
+In this callback, if cursor operations are performed, developers need to adjust the cursor logic based on the **previewText** parameter to ensure it works seamlessly within the preview display scenario.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -940,9 +1080,9 @@ This event is triggered when any of the following conditions is met:
 
 ### onSubmit
 
-onSubmit(callback: (enterKey: EnterKeyType, event: SubmitEvent) =&gt; void)
+onSubmit(callback:OnSubmitCallback)
 
-Called when the Enter key on the keyboard is pressed.
+Triggered when the Enter key on the keyboard is pressed for submission.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -952,14 +1092,13 @@ Called when the Enter key on the keyboard is pressed.
 
 | Name             | Type                                            | Mandatory| Description                                                        |
 | ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| enterKey            | [EnterKeyType](ts-types.md#enterkeytype) | Yes  | Type of the Enter key. If it is **EnterKeyType.NEW_LINE** and the text box is in inline input style, **onSubmit** is not triggered.|
-| event<sup>11+</sup> | [SubmitEvent](#submitevent11)         | Yes  | Submit event.                                                  |
+| callback            | [OnSubmitCallback](#onsubmitcallback14) | Yes  | Callback for submission.|
 
 ### onEditChanged<sup>(deprecated)</sup>
 
 onEditChanged(callback: (isEditing: boolean) =&gt; void)
 
-Called when the input status changes.
+Triggered when the input status changes.
 
 This API is deprecated since API version 8. You are advised to use **onEditChange** instead.
 
@@ -973,9 +1112,9 @@ This API is deprecated since API version 8. You are advised to use **onEditChang
 
 ### onEditChange<sup>8+</sup>
 
-onEditChange(callback: (isEditing: boolean) =&gt; void)
+onEditChange(callback:Callback\<boolean>)
 
-Called when the input status changes. The text box is in the editing state when it has the caret placed in it, and is in the non-editing state otherwise. If the value of **isEditing** is **true**, the text box is in the editing state.
+Triggered when the input status changes. The text box is in the editing state when it has the caret placed in it, and is in the non-editing state otherwise.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -985,13 +1124,13 @@ Called when the input status changes. The text box is in the editing state when 
 
 | Name   | Type   | Mandatory| Description                |
 | --------- | ------- | ---- | -------------------- |
-| isEditing | boolean | Yes  | Whether the text box is in the editing state. The value **true** indicates that the text box is in the editing state.|
+| callback | Callback\<boolean> | Yes  | Callback for input status changes. It returns **true** if the input operation is currently in progress.|
 
 ### onCopy<sup>8+</sup>
 
-onCopy(callback: (value: string) =&gt; void)
+onCopy(callback:Callback\<string>)
 
-Called when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.
+Triggered when a copy operation is performed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1001,13 +1140,13 @@ Called when the copy button on the pasteboard, which displays when the text box 
 
 | Name   | Type   | Mandatory| Description            |
 | --------- | ------- | ---- | ---------------- |
-| value | string | Yes  | Text that is copied.|
+| callback | Callback\<string> | Yes  | Callback used to return the copied text content.|
 
 ### onCut<sup>8+</sup>
 
-onCut(callback: (value: string) =&gt; void)
+onCut(callback:Callback\<string>)
 
-Called when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.
+Triggered when a cut operation is performed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1017,30 +1156,28 @@ Called when the cut button on the pasteboard, which displays when the text box i
 
 | Name   | Type   | Mandatory| Description            |
 | --------- | ------- | ---- | ---------------- |
-| value | string | Yes  | Text that is cut.|
+| callback | Callback\<string> | Yes  | Callback used to return the cut text content.|
 
 ### onPaste<sup>8+</sup>
 
-onPaste(callback: (value: string, event: PasteEvent) =&gt; void)
+onPaste(callback:OnPasteCallback )
 
-Called when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.
+Triggered when a paste operation is performed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-
 | Name             | Type                                                        | Mandatory| Description                  |
 | ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| value               | string                                                       | Yes  | Text to be pasted.      |
-| event<sup>11+</sup> | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | No  | Custom paste event.|
+| callback | [OnPasteCallback](#onpastecallback14)       | Yes  | Callback used to return the pasted text content.|
 
 ### onTextSelectionChange<sup>10+</sup>
 
-onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
+onTextSelectionChange(callback: OnTextSelectionChangeCallback)
 
-Called when the position of the text selection changes or when the cursor position changes during the editing state.
+Triggered when the position of the text selection changes or when the cursor position changes during the editing state.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1050,14 +1187,13 @@ Called when the position of the text selection changes or when the cursor positi
 
 | Name        | Type  | Mandatory| Description                                   |
 | -------------- | ------ | ---- | --------------------------------------- |
-| selectionStart | number | Yes  | Start position of the selected text. The start position of text is **0**.|
-| selectionEnd   | number | Yes  | End position of the selected text.                   |
+| callback | [OnTextSelectionChangeCallback](#ontextselectionchangecallback14) | Yes  | Callback for text selection changes or cursor position changes.|
 
 ### onContentScroll<sup>10+</sup>
 
-onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
+onContentScroll(callback: OnContentScrollCallback)
 
-Called when the text content is scrolled.
+Triggered when the text content is scrolled.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1067,14 +1203,13 @@ Called when the text content is scrolled.
 
 | Name      | Type  | Mandatory| Description                              |
 | ------------ | ------ | ---- | ---------------------------------- |
-| totalOffsetX | number | Yes  | Offset in the X coordinate of the text in the content area, in px.|
-| totalOffsetY | number | Yes  | Offset in the Y coordinate of the text in the content area, in px.|
+| callback | [OnContentScrollCallback](#oncontentscrollcallback14) | Yes  | Callback for text content scrolling.|
 
 ### onSecurityStateChange<sup>12+</sup>
 
 onSecurityStateChange(callback: Callback\<boolean>)
 
-Called when the password visibility changes.
+Triggered when the password visibility changes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1090,7 +1225,7 @@ Called when the password visibility changes.
 
 onWillInsert(callback: Callback\<InsertValue, boolean>)
 
-Called when text is about to be inserted.
+Triggered when text is about to be inserted.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1106,7 +1241,7 @@ Called when text is about to be inserted.
 
 onDidInsert(callback: Callback\<InsertValue>)
 
-Called when text is inserted.
+Triggered when text is inserted.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1122,7 +1257,7 @@ Called when text is inserted.
 
 onWillDelete(callback: Callback\<DeleteValue, boolean>)
 
-Called when text is about to be deleted.
+Triggered when text is about to be deleted.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1138,7 +1273,7 @@ Called when text is about to be deleted.
 
 onDidDelete(callback: Callback\<DeleteValue>)
 
-Called when text is deleted.
+Triggered when text is deleted.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1245,15 +1380,100 @@ Defines the user submission event.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type | Mandatory  | Description|
 | ---- | ----- | ---- | ---- |
-| keepEditableState | () => void | Yes  | Editing status of the text box.<br> When this API is called, the text box remains in editing state.|
 | text              | string     | Yes  | Text in the text box.                                  |
+
+### keepEditableState
+
+keepEditableState(): void
+
+Maintains the editable state of the text box when called.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+## OnPasteCallback<sup>14+</sup>
+
+type OnPasteCallback = (content: string, event: PasteEvent) => void
+
+Defines the callback used to return the pasted text content.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name             | Type                                                        | Mandatory| Description                  |
+| ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
+| content               | string                                                       | Yes  | Text to be pasted.      |
+| event | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | Yes  | Custom paste event.|
+
+## OnSubmitCallback<sup>14+</sup>
+
+type OnSubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
+
+Defines the callback for submission.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name             | Type                                            | Mandatory| Description                                                        |
+| ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| enterKey            | [EnterKeyType](ts-types.md#enterkeytype) | Yes  | Type of the Enter key.|
+| event | [SubmitEvent](#submitevent11)         | Yes  | Submit event.                                                  |
+
+## OnTextSelectionChangeCallback<sup>14+</sup>
+
+type OnTextSelectionChangeCallback = (selectionStart: number, selectionEnd: number) => void
+
+Defines the callback for text selection changes or cursor position changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name        | Type  | Mandatory| Description                                   |
+| -------------- | ------ | ---- | --------------------------------------- |
+| selectionStart | number | Yes  | Start position of the selected text. The start position of text is **0**.|
+| selectionEnd   | number | Yes  | End position of the selected text.                   |
+
+## OnContentScrollCallback<sup>14+</sup>
+
+type OnContentScrollCallback = (totalOffsetX: number, totalOffsetY: number) => void
+
+Defines the callback for text content scrolling.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name      | Type  | Mandatory| Description                              |
+| ------------ | ------ | ---- | ---------------------------------- |
+| totalOffsetX | number | Yes  | Offset in the X coordinate of the text in the content area, in px.|
+| totalOffsetY | number | Yes  | Offset in the Y coordinate of the text in the content area, in px.|
 
 ## Example
 
-### Example 1
-This example demonstrates the basic usage of **TextInput**.
+### Example 1: Setting and Obtaining the Cursor Position
+
+This example demonstrates how to use the controller to set and obtain the cursor position within a text box.
+
 ```ts
 // xxx.ets
 @Entry
@@ -1328,17 +1548,19 @@ struct TextInputExample {
 
 ![TextInput](figures/TextInput.png)
 
-### Example 2
-This example showcases the use of the **passwordIcon**, **showUnderline**, **showUnit**, and **showError** attributes.
+### Example 2: Setting Underlines
+
+This example showcases the effects of underlines in different scenarios using the **showUnderline**, **showError**, **showUnit**, and **passwordIcon** attributes.
+
 ```ts
 @Entry
 @Component
 struct TextInputExample {
-  @State PassWordSrc1: Resource = $r('app.media.onIcon')
-  @State PassWordSrc2: Resource = $r('app.media.offIcon')
-  @State TextError: string = ''
-  @State Text: string = ''
-  @State NameText: string = 'test'
+  @State passWordSrc1: Resource = $r('app.media.ImageOne')
+  @State passWordSrc2: Resource = $r('app.media.ImageTwo')
+  @State textError: string = ''
+  @State text: string = ''
+  @State nameText: string = 'test'
 
   @Builder itemEnd() {
     Select([{ value: 'KB' },
@@ -1366,44 +1588,63 @@ struct TextInputExample {
       // Customize the password icon.
       TextInput({ placeholder: 'Custom password icon' })
         .type(InputType.Password)
-        .width(380)
+        .width(350)
         .height(60)
-        .passwordIcon({ onIconSrc: this.PassWordSrc1, offIconSrc: this.PassWordSrc2 })
+        .passwordIcon({ onIconSrc: this.passWordSrc1, offIconSrc: this.passWordSrc2 })
       // Show an underline.
       TextInput({ placeholder: 'Underline style' })
         .showUnderline(true)
-        .width(380)
+        .width(350)
         .height(60)
         .showError('Error')
         .showUnit(this.itemEnd)
 
-      Text (`User name: ${this.Text}`)
-        .width('95%')
-      TextInput({ placeholder: 'Enter user name', text: this.Text })
+      Text(`User name: ${this.text}`)
+        .width(350)
+      TextInput({ placeholder: 'Enter user name', text: this.text })
         .showUnderline(true)
-        .width(380)
-        .showError(this.TextError)
+        .width(350)
+        .showError(this.textError)
         .onChange((value: string) => {
-          this.Text = value
+          this.text = value
         })
-        .onSubmit(() => {// If the entered user name is incorrect, the text box will be cleared and the error message will be displayed.
-          if (this.Text == this.NameText) {
-            this.TextError = ''
+        .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
+          // If the entered user name is incorrect, clear the text box and display an error message.
+          if (this.text == this.nameText) {
+            this.textError = ''
           } else {
-            this.TextError ='Incorrect user name.'
-            this.Text = ''
+            this.textError = 'Incorrect user name.'
+            this.text = ''
+            // Call keepEditableState to maintain the editable state of the text box.
+            event.keepEditableState()
           }
         })
+      // Set the color of the underline.
+      TextInput({ placeholder: 'Placeholder text' })
+        .width(350)
+        .showUnderline(true)
+        .underlineColor({
+          normal: Color.Orange,
+          typing: Color.Green,
+          error: Color.Red,
+          disable: Color.Gray
+        });
+      TextInput({ placeholder: 'Placeholder text' })
+        .width(350)
+        .showUnderline(true)
+        .underlineColor(Color.Gray);
 
-    }.width('100%')
+    }.width('100%').margin({ top: 10 })
   }
 }
 ```
 
-![TextInputError](figures/TextInputError.png)
+![TextInputError](figures/TextInputUnderline.png)
 
-### Example 3
-This example illustrates how to bind a custom keyboard to the **TextInput** component.
+### Example 3: Implementing a Custom Keyboard
+
+This example demonstrates how to implement a custom keyboard using the **customKeyboard** attribute.
+
 ```ts
 // xxx.ets
 @Entry
@@ -1444,14 +1685,15 @@ struct TextInputExample {
 
 ![customKeyboard](figures/textInputCustomKeyboard.png)
 
+### Example 4: Customizing the Cancel Button Style on the Right
 
-### Example 4
-This example demonstrates the use of the **cancelButton** API.
+This example demonstrates how to use the **cancelButton** attribute to customize the style of the cancel button on the right side of the text box.
+
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct ClearNodeExample {
+struct TextInputExample {
   @State text: string = ''
   controller: TextInputController = new TextInputController()
 
@@ -1478,8 +1720,10 @@ struct ClearNodeExample {
 
 ![cancelButton](figures/TextInputCancelButton.png)
 
-### Example 5
-This example illustrates the use of a character counter with the **TextInput** component.
+### Example 5: Implementing a Counter
+
+This example showcases the implementation of a counter feature using the **maxLength**, **showCounter**, and **showUnderline** attributes.
+
 ```ts
 // xxx.ets
 @Entry
@@ -1511,13 +1755,14 @@ struct TextInputExample {
 ![TextInputCounter](figures/TextInputShowCounter.jpg)
 
 
-### Example 6
-This example presents how to format a telephone number as XXX XXXX XXXX using the **TextInput** component.
+### Example 6: Formatting Phone Numbers
+
+This example illustrates how to format phone numbers using the **onChange callback** API.
 
 ```ts
 @Entry
 @Component
-struct phone_example {
+struct TextInputExample {
   @State submitValue: string = ''
   @State text: string = ''
   public readonly NUM_TEXT_MAXSIZE_LENGTH = 13
@@ -1657,37 +1902,9 @@ struct phone_example {
 ```
 ![phone_example](figures/phone_number.PNG)
 
-### Example 7
+### Example 7: Setting Text Wrapping Rules
 
-This example shows how to set the color of the underline when it is shown.
-
-```ts
-@Entry
-@Component
-struct Index {
-
-  build() {
-    Row() {
-      Column() {
-        TextInput({placeholder:'Placeholder text'})
-          .showUnderline(true)
-          .underlineColor({normal:Color.Orange,typing:Color.Green,error:Color.Red,disable:Color.Gray});
-        TextInput({placeholder:'Placeholder text'})
-          .showUnderline(true)
-          .underlineColor(Color.Gray);
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-![UnderlineColor](figures/UnderlineColor.png)
-
-
-### Example 8
-This example shows how to set the **wordBreak** attribute for the **TextInput** component.
+This example demonstrates the effects of different text wrapping rules using the **wordBreak** attribute.
 
 ```ts
 // xxx.ets
@@ -1733,9 +1950,9 @@ struct TextInputExample {
 ```
 ![TextInputWordBreak](figures/TextInputWordBreak.jpeg)
 
-### Example 9
+### Example 8: Setting the Text Style
 
-This example shows how to use the **lineHeight**, **letterSpacing**, and **decoration** attributes.
+This example showcases various text styles by using the **lineHeight**, **letterSpacing**, and **decoration** attributes.
 
 ```ts
 @Entry
@@ -1780,26 +1997,25 @@ struct TextInputExample {
 
 ![TextInputDecoration](figures/textinput_decoration.png)
 
-### Example 10
+### Example 9: Setting Text Feature Effects
 
-This example shows how to set the **fontFeature** attribute, with a comparison between the ss01-enabled and ss01-disabled effects.
+This example demonstrates how to use the **fontFeature** attribute to display text with various typographic features.
 
 ```ts
 @Entry
 @Component
-struct textInput {
+struct TextInputExample {
   @State text1: string = 'This is ss01 on : 0123456789'
   @State text2: string = 'This is ss01 off: 0123456789'
 
-
   build() {
-    Column(){
-      TextInput({text: this.text1})
+    Column() {
+      TextInput({ text: this.text1 })
         .fontSize(20)
-        .margin({top:200})
+        .margin({ top: 200 })
         .fontFeature("\"ss01\" on")
-      TextInput({text : this.text2})
-        .margin({top:10})
+      TextInput({ text: this.text2 })
+        .margin({ top: 10 })
         .fontSize(20)
         .fontFeature("\"ss01\" off")
     }
@@ -1811,29 +2027,32 @@ struct textInput {
 
 ![fontFeature](figures/textInputFontFeature.png)
 
-### Example 11
+### Example 10: Setting Custom Keyboard Avoidance
 
-This example shows how to support custom keyboard avoidance.
+This example illustrates the implementation of a custom keyboard that automatically adjusts its position to avoid covering the text box.
 
 ```ts
 @Entry
 @Component
-struct Input {
+struct TextInputExample {
   controller: TextInputController = new TextInputController()
   @State inputValue: string = ""
-  @State height1:string|number = '80%'
-  @State supportAvoidance:boolean = true;
+  @State height1: string | number = '80%'
+  @State supportAvoidance: boolean = true
+
   // Create a custom keyboard component.
-  @Builder CustomKeyboardBuilder() {
+  @Builder
+  CustomKeyboardBuilder() {
     Column() {
-      Row(){
+      Row() {
         Button('x').onClick(() => {
           // Disable the custom keyboard.
           this.controller.stopEditing()
         }).margin(10)
       }
+
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item:number|string) => {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
@@ -1844,18 +2063,19 @@ struct Input {
       }.maxCount(3).columnsGap(10).rowsGap(10).padding(5)
     }.backgroundColor(Color.Gray)
   }
+
   build() {
     Column() {
-      Row(){
+      Row() {
         Button("20%")
           .fontSize(24)
-          .onClick(()=>{
+          .onClick(() => {
             this.height1 = "20%"
           })
         Button("80%")
           .fontSize(24)
-          .margin({left:20})
-          .onClick(()=>{
+          .margin({ left: 20 })
+          .onClick(() => {
             this.height1 = "80%"
           })
       }
@@ -1863,10 +2083,12 @@ struct Input {
       .alignItems(VerticalAlign.Bottom)
       .height(this.height1)
       .width("100%")
-      .padding({bottom:50})
-      TextInput({ controller: this.controller, text: this.inputValue })
-        // Bind the custom keyboard.
-        .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
+      .padding({ bottom: 50 })
+
+      TextInput({ controller: this.controller, text: this.inputValue })// Bind a custom keyboard.
+        .customKeyboard(this.CustomKeyboardBuilder(), { supportAvoidance: this.supportAvoidance })
+        .margin(10)
+        .border({ width: 1 })
 
     }
   }
@@ -1875,9 +2097,9 @@ struct Input {
 
 ![CustomTextInputType](figures/textInputCustomKeyboard.gif)
 
-### Example 12
+### Example 11: Setting Text Auto-Adaptation
 
-This example shows how to set **minFontSize**, **maxFontSize**, and **heightAdaptivePolicy**.
+This example showcases the implementation of text auto-adaptation features using the **minFontSize**, **maxFontSize**, and **heightAdaptivePolicy** attributes.
 
 ```ts
 @Entry
@@ -1887,22 +2109,31 @@ struct TextInputExample {
     Row() {
       Column() {
         Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC)
-        TextInput({text: 'This is the text without the height adaptive policy set'})
+        TextInput({ text: 'This is the text without the height adaptive policy set' })
           .width('80%').height(50).borderWidth(1).margin(1)
-        TextInput({text: 'This is the text with the height adaptive policy set'})
-          .width('80%').height(50).borderWidth(1).margin(1)
+        TextInput({ text: 'This is the text with the height adaptive policy set' })
+          .width('80%')
+          .height(50)
+          .borderWidth(1)
+          .margin(1)
           .minFontSize(4)
           .maxFontSize(40)
           .maxLines(3)
           .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
-        TextInput({text: 'This is the text with the height adaptive policy set'})
-          .width('80%').height(50).borderWidth(1).margin(1)
+        TextInput({ text: 'This is the text with the height adaptive policy set' })
+          .width('80%')
+          .height(50)
+          .borderWidth(1)
+          .margin(1)
           .minFontSize(4)
           .maxFontSize(40)
           .maxLines(3)
           .heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
-        TextInput({text: 'This is the text with the height adaptive policy set'})
-          .width('80%').height(50).borderWidth(1).margin(1)
+        TextInput({ text: 'This is the text with the height adaptive policy set' })
+          .width('80%')
+          .height(50)
+          .borderWidth(1)
+          .margin(1)
           .minFontSize(4)
           .maxFontSize(40)
           .maxLines(3)
@@ -1917,57 +2148,50 @@ struct TextInputExample {
 
 ![TextInputAdaptFont](figures/textinput_adapt_font.png)
 
-### Example 13
-This example shows how to set the **lineBreakStrategy** attribute, with a comparison of line break rules.
+### Example 12: Setting Line Break Rules
+
+This example demonstrates the effects of different line break rules using the **wordBreak** attribute.
 
 ```ts
 @Entry
 @Component
-struct TextExample1 {
-  @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
-    "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
-    "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+struct TextInputExample {
+  @State message1: string =
+    "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
+      "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
+      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented."
+  @State lineBreakStrategyIndex: number = 0
+  @State lineBreakStrategy: LineBreakStrategy[] = [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-      Text('LineBreakStrategy.GREEDY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextInput({text: this.message1})
+      Text('lineBreakStrategy').fontSize(9).fontColor(0xCCCCCC)
+      TextInput({ text: this.message1 })
         .fontSize(12)
         .border({ width: 1 })
         .padding(10)
         .width('100%')
-        .maxLines(5)
+        .maxLines(12)
         .style(TextInputStyle.Inline)
-        .lineBreakStrategy(LineBreakStrategy.GREEDY)
-      Text('LineBreakStrategy.HIGH_QUALITY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextInput({text: this.message1})
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .maxLines(5)
-        .style(TextInputStyle.Inline)
-        .lineBreakStrategy(LineBreakStrategy.HIGH_QUALITY)
-      Text('LineBreakStrategy.BALANCED').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextInput({text: this.message1})
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .maxLines(5)
-        .style(TextInputStyle.Inline)
-        .lineBreakStrategy(LineBreakStrategy.BALANCED)
+        .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
+      Row() {
+        Button('Toggle lineBreakStrategy Value: ' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
+          this.lineBreakStrategyIndex++
+          if(this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
+            this.lineBreakStrategyIndex = 0
+          }
+        })
+      }
     }.height(700).width(370).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
 
-![textInputLineBreakStrategy](figures/textInputLineBreakStrategy.PNG)
+![textInputLineBreakStrategy](figures/textInputLineBreakStrategy.gif)
 
-### Example 14
-
-This example shows how to use the insert and delete callbacks.
-
+### Example 13: Setting Insert and Delete Callbacks
+This example showcases the implementation of insert and delete operations using the **onWillInsert**, **onDidInsert**, **onWillDelete**, and **onDidDelete** APIs.
 ```ts
 // xxx.ets
 @Entry
@@ -2018,9 +2242,9 @@ struct TextInputExample {
 
 ![TextInputInsertAndDelete](figures/TextInputInsertAndDelete.PNG)
 
-### Example 15
+### Example 14: Setting Custom Menu Extensions
 
-This example shows how to set **editMenuOptions**.
+This example demonstrates how to use the **editMenuOptions** API to create custom menu extensions for text settings. It includes customizing text content, icons, and callbacks for these extensions.
 
 ```ts
 // xxx.ets
@@ -2030,15 +2254,6 @@ struct TextInputExample {
   @State text: string = 'TextInput editMenuOptions'
 
   onCreateMenu(menuItems: Array<TextMenuItem>) {
-    menuItems.forEach((value, index) => {
-      value.icon = $r('app.media.startIcon')
-      if (value.id.equals(TextMenuItemId.COPY)) {
-        value.content = "Copy_custom"
-      }
-      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
-        value.content = "Select all_custom"
-      }
-    })
     let item1: TextMenuItem = {
       content: 'Custom 1',
       icon: $r('app.media.startIcon'),
@@ -2085,3 +2300,32 @@ struct TextInputExample {
 ```
 
 ![textInputEditMenuOptions](figures/textInputEditMenuOptions.gif)
+
+### Example 15: Setting Symbol Type Cancel Button
+
+This example demonstrates how to use the **cancelButton** attribute to customize the style of the symbol type cancel button on the right side of the text box.
+
+```ts
+import { SymbolGlyphModifier } from '@kit.ArkUI';
+
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  @State text: string = ''
+  symbolModifier: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.trash')).fontColor([Color.Red]).fontSize(16).fontWeight(FontWeight.Regular)
+
+  build() {
+    Column() {
+      TextInput({ text: this.text, placeholder: 'input your word...' })
+        .cancelButton({
+          style: CancelButtonStyle.CONSTANT,
+          icon: this.symbolModifier
+        })
+    }
+  }
+}
+```
+
+![cancelButton](figures/TextInputCancelButton_SymbolGlyphModifier.jpg)

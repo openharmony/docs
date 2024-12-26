@@ -110,7 +110,7 @@ let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGE
 
 try {
   adminManager.subscribeManagedEventSync(wantTemp, events);
-  console.info('Succeeded in subscribe managed event.');
+  console.info('Succeeded in subscribing managed event.');
 } catch (err) {
   console.error(`Failed to subscribe managed event. Code: ${err.code}, message: ${err.message}`);
 }
@@ -160,9 +160,9 @@ let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGE
 
 try {
   adminManager.unsubscribeManagedEventSync(wantTemp, events);
-  console.info('Succeeded in subscribe managed event.');
+  console.info('Succeeded in unsubscribing managed event.');
 } catch (err) {
-  console.error(`Failed to subscribe managed event. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to unsubscribe managed event. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
