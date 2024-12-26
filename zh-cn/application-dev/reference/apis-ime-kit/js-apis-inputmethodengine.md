@@ -2386,7 +2386,7 @@ try {
     let messageHandler: inputmethod.MessageHandler = {
         onTerminated(): void {
             console.log('OnTerminated.');
-        }
+        },
         onMessage(msgId: string, msgParam?:ArrayBuffer): void {
             console.log('recv message.');
         }
@@ -2420,7 +2420,7 @@ try {
     let messageHandler: inputmethod.MessageHandler = {
         onTerminated(): void {
             console.log('OnTerminated.');
-        }
+        },
         onMessage(msgId: string, msgParam?:ArrayBuffer): void {
             console.log('recv message.');
         }
@@ -4236,7 +4236,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let messageHandler: inputmethod.MessageHandler = {
     onTerminated(): void {
         console.log('OnTerminated.');
-    }
+    },
     onMessage(msgId: string, msgParam?:ArrayBuffer): void {
         console.log('recv message.');
     }
