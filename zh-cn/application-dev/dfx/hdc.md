@@ -1542,9 +1542,7 @@ Remote path: _remotepath_ is invalid, it is out of the application directory.
 
 **错误信息**
 
-The parameter is missing, correct your input by referring below:
-
-_Usage_
+The parameter is missing, correct your input by referring below: _Usage_
 
 **错误描述**
 
