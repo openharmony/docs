@@ -322,27 +322,27 @@ class MyNodeController extends NodeController {
   }
 
   onAttach(): void {
-    console.log("Cmw myButton on attach");
+    console.log("myButton on attach");
   }
 
   onDetach(): void {
-    console.log("Cmw myButton on detach");
+    console.log("myButton on detach");
   }
 
-  onWillBind(): void{
-    console.log("Cmw myButton onWillBind")
+  onWillBind(containerId: number): void{
+    console.log("myButton on WillBind" + containerId);
   }
 
-  onWillUnbind(): void{
-    console.log("Cmw myButton onWillUnbind")
+  onWillUnbind(containerId: number): void{
+    console.log("myButton on WillUnbind" + containerId);
   }
 
   onBind(containerId: number): void {
-    console.log("Cmw myButton on bind: " + containerId);
+    console.log("myButton on bind: " + containerId);
   }
 
   onUnbind(containerId: number): void {
-    console.log("Cmw myButton on unbind: " + containerId);
+    console.log("myButton on unbind: " + containerId);
   }
 }
 
