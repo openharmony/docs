@@ -33,46 +33,52 @@ XML模块的API接口可以参考[@ohos.xml](../reference/apis-arkts/js-apis-xml
    ```ts
    // 方式1：基于Arraybuffer构造XmlSerializer对象
    let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); // 创建一个2048字节的缓冲区
-   let thatSer: xml.XmlSerializer = new xml.XmlSerializer(arrayBuffer); // 基于Arraybuffer构造XmlSerializer对象
+   let serializer: xml.XmlSerializer = new xml.XmlSerializer(arrayBuffer); // 基于Arraybuffer构造XmlSerializer对象
 
    // 方式2：基于DataView构造XmlSerializer对象
    // let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); 
    // let dataView: DataView = new DataView(arrayBuffer); 
-   // let thatSer: xml.XmlSerializer = new xml.XmlSerializer(dataView); 
+   // let serializer: xml.XmlSerializer = new xml.XmlSerializer(dataView);
    ```
 
 3. 调用XML元素生成函数。
 
    ```ts
-   thatSer.setDeclaration(); // 写入xml的声明
-   thatSer.startElement('bookstore'); // 写入元素开始标记
-   thatSer.startElement('book'); // 嵌套元素开始标记
-   thatSer.setAttributes('category', 'COOKING'); // 写入属性及属性值
-   thatSer.startElement('title');
-   thatSer.setAttributes('lang', 'en');
-   thatSer.setText('Everyday'); // 写入标签值
-   thatSer.endElement(); // 写入结束标记
-   thatSer.startElement('author');
-   thatSer.setText('Giana');
-   thatSer.endElement();
-   thatSer.startElement('year');
-   thatSer.setText('2005');
-   thatSer.endElement();
-   thatSer.endElement();
-   thatSer.endElement();
+   serializer.setDeclaration(); // 写入xml的声明
+   serializer.startElement('bookstore'); // 写入元素开始标记
+   serializer.startElement('book'); // 嵌套元素开始标记
+   serializer.setAttributes('category', 'COOKING'); // 写入属性及属性值
+   serializer.startElement('title');
+   serializer.setAttributes('lang', 'en');
+   serializer.setText('Everyday'); // 写入标签值
+   serializer.endElement(); // 写入结束标记
+   serializer.startElement('author');
+   serializer.setText('Giana');
+   serializer.endElement();
+   serializer.startElement('year');
+   serializer.setText('2005');
+   serializer.endElement();
+   serializer.endElement();
+   serializer.endElement();
    ```
 
 4. 使用Uint8Array操作Arraybuffer，调用TextDecoder对Uint8Array解码后输出。
 
    ```ts
-   let view: Uint8Array = new Uint8Array(arrayBuffer); // 使用Uint8Array读取arrayBuffer的数据
+   let uint8Array: Uint8Array = new Uint8Array(arrayBuffer); // 使用Uint8Array读取arrayBuffer的数据
    let textDecoder: util.TextDecoder = util.TextDecoder.create(); // 调用util模块的TextDecoder类
-   let res: string = textDecoder.decodeToString(view); // 对view解码
-   console.info(res);
+   let result: string = textDecoder.decodeToString(uint8Array); // 对uint8Array解码
+   console.info(result);
    ```
 
    输出结果如下：
 
    ```
-   <?xml version=\"1.0\" encoding=\"utf-8\"?><bookstore>\r\n  <book category=\"COOKING\">\r\n    <title lang=\"en\">Everyday</title>\r\n    <author>Giana</author>\r\n    <year>2005</year>\r\n  </book>\r\n</bookstore>
+   <?xml version="1.0" encoding="utf-8"?><bookstore>
+     <book category="COOKING">
+       <title lang="en">Everyday</title>
+       <author>Giana</author>
+       <year>2005</year>
+     </book>
+   </bookstore>
    ```
