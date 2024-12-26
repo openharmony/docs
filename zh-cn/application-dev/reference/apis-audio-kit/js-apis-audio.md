@@ -5326,9 +5326,15 @@ audioSessionManager.off('audioSessionDeactivated', audioSessionDeactivatedCallba
 
 ## AudioRendererChangeInfoArray<sup>9+</sup>
 
+type AudioRendererChangeInfoArray = Array&lt;Readonly&lt;AudioRendererChangeInfo&gt;&gt;
+
 数组类型，AudioRenderChangeInfo数组，只读。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+| 类型      | 说明                                                            |
+|---------|---------------------------------------------------------------|
+| Array&lt;Readonly&lt;AudioRendererChangeInfo&gt;&gt; | 数组类型，[AudioRenderChangeInfo](#audiorendererchangeinfo9)数组，只读。 |
 
 ## AudioRendererChangeInfo<sup>9+</sup>
 
@@ -5375,9 +5381,15 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 
 ## AudioCapturerChangeInfoArray<sup>9+</sup>
 
+type AudioCapturerChangeInfoArray = Array&lt;Readonly&lt;AudioCapturerChangeInfo&gt;&gt;
+
 数组类型，AudioCapturerChangeInfo数组，只读。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 类型      | 说明                                                              |
+|---------|-----------------------------------------------------------------|
+| Array&lt;Readonly&lt;AudioCapturerChangeInfo&gt;&gt; | 数组类型，[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)数组，只读。 |
 
 ## AudioCapturerChangeInfo<sup>9+</sup>
 
@@ -5423,13 +5435,29 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 ## AudioEffectInfoArray<sup>10+</sup>
 
+type AudioEffectInfoArray = Array&lt;Readonly&lt;AudioEffectMode&gt;&gt;
+
 待查询ContentType和StreamUsage组合场景下的音效模式数组类型，[AudioEffectMode](#audioeffectmode10)数组，只读。
 
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+| 类型      | 说明                                                            |
+|---------|---------------------------------------------------------------|
+| Array&lt;Readonly&lt;AudioEffectMode&gt;&gt; | 待查询ContentType和StreamUsage组合场景下的音效模式数组类型，[AudioEffectMode](#audioeffectmode10)数组，只读。 |
+
 ## AudioDeviceDescriptors
+
+type AudioDeviceDescriptors = Array&lt;Readonly&lt;AudioDeviceDescriptor&gt;&gt;
 
 设备属性数组类型，为[AudioDeviceDescriptor](#audiodevicedescriptor)的数组，只读。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 类型      | 说明                                                            |
+|---------|---------------------------------------------------------------|
+| Array&lt;Readonly&lt;AudioDeviceDescriptor&gt;&gt; | 设备属性数组类型，为[AudioDeviceDescriptor](#audiodevicedescriptor)的数组，只读。 |
 
 ## AudioDeviceDescriptor
 
