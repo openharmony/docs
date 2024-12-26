@@ -925,7 +925,7 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 
 getSnapshot(windowId: number): Promise<image.PixelMap>
 
-获取指定窗口截图，使用Promise异步回调
+获取指定窗口相同尺寸截图，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
