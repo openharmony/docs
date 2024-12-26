@@ -353,7 +353,7 @@ import { window } from '@kit.ArkUI';
 | ------ | ------ | ---- | ------------------------------------------ |
 | displayId | number | 否 | 目标屏幕ID，该参数应该为整数，非整数输入将向下取整。此参数不填或者传入目标屏幕ID不存在，将默认保持为当前屏幕。 |
 
-## WindowLayoutInfo<sup>14+</sup>
+## WindowLayoutInfo<sup>16+</sup>
 
 窗口布局信息。
 
@@ -805,6 +805,8 @@ try {
     }).catch((err: BusinessError) => {
         console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
     });
+} catch (exception) {
+    console.error(`Failed to get window from point. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
