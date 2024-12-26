@@ -749,7 +749,7 @@ int32_t Mac(struct IHuks *self, const struct HuksBlob *encKey, const struct Huks
     ```undefined
     //drivers_peripheral/huks
     ├── BUILD.gn # 编译脚本
-    ├── hdi_service # 实现依赖，通过dloppen方式引用libhuks_engine_core_standard.z.so(软实现的HUKS Core，仅用于参考)
+    ├── hdi_service # 实现依赖，通过dlopen方式引用libhuks_engine_core_standard.z.so(软实现的HUKS Core，仅用于参考)
         ├── huks_sa_type.h # HUKS服务层的数据结构定义
         ├── huks_sa_hdi_struct.h # libhuks_engine_core_standard.z.so中函数指针结构体的定义
         ├── huks_hdi_template.h # HUKS服务层和HDI接口数据结构的转化适配
@@ -1065,9 +1065,9 @@ JS测试代码示例如下（仅供参考），如果整个流程能够正常运
         properties: genProperties
       }
       await huks.generateKeyItem(aesKeyAlias, options).then((data) => {
-        console.log("generateKeyItem success");
+        console.info("generateKeyItem success");
       }).catch((error: BusinessError) => {
-        console.log("generateKeyItem failed");
+        console.error("generateKeyItem failed");
       })
     }
    ```
@@ -1124,12 +1124,12 @@ JS测试代码示例如下（仅供参考），如果整个流程能够正常运
       await huks.initSession(aesKeyAlias, options).then((data) => {
         handle = data.handle;
       }).catch((error: BusinessError) => {
-        console.log("initSession failed");
+        console.error("initSession failed");
       })
       await huks.finishSession(handle, options).then((data) => {
-        console.log("finishSession success");
+        console.info("finishSession success");
       }).catch((error: BusinessError) => {
-        console.log("finishSession failed");
+        console.error("finishSession failed");
       })
     }
 
