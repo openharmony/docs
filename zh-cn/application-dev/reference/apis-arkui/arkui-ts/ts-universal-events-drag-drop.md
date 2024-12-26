@@ -18,6 +18,10 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 其他组件需要开发者将draggable属性设置为true，并在onDragStart等接口中实现数据传输相关内容，才能正确处理拖拽。
 
+> **说明：**
+>
+> Text组件需配合[copyOption](ts-basic-components-text.md#copyoption9)一起使用，设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice。
+
 ## onDragStart
 
 onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | DragItemInfo)
