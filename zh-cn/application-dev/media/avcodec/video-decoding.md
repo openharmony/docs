@@ -4,6 +4,8 @@
 
 <!--RP3--><!--RP3End-->
 
+当前支持的解码能力请参考[AVCodec支持的格式](avcodec-support-formats.md#视频解码)。
+
 <!--RP1--><!--RP1End-->
 
 通过视频解码，应用可以实现以下重点能力，包括：
