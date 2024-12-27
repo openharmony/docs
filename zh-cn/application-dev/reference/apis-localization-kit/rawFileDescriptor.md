@@ -1,4 +1,4 @@
-# rawFileDescriptor
+# RawFileDescriptor
 
 本模块提供rawfile文件所在hap的descriptor信息。
 
@@ -14,9 +14,9 @@ import { resourceManager } from '@kit.LocalizationKit'
 
 ## RawFileDescriptor
 
-**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：**SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 | 名称     | 类型    | 可读   | 可写  | 说明           |
 | ------ | ------  | ---- | ---- | ------------------ |
