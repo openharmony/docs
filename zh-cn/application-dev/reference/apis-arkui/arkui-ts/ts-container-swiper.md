@@ -313,6 +313,8 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 
 在按组翻页时，判断翻页的拖拽距离阈值条件，会更新为Swiper自身宽度的一半。（按子元素翻页时，该阈值为子元素自身宽度的一半）。
 
+从API version 16开始，当按组进行翻页时，如果设置导航点样式为圆点导航，圆点导航点的个数与组数保持一致（组数的计算逻辑为子元素总数除以视窗内显示的子元素个数，当无法除尽时，向上取整）。
+
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
