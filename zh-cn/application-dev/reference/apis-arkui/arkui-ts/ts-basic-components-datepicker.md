@@ -137,7 +137,7 @@ selectedTextStyle(value: Optional\<PickerTextStyle>)
 | 参数名   | 参数类型                                     | 必填   | 参数描述                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本颜色。                     |
-| font  | [Font](ts-types.md#font)                 | 否    | 文本样式，picker只支持字号、字体粗细的设置。 |
+| font  | [Font](ts-types.md#font)                 | 否    | 文本样式。 |
 
 ## 事件
 
@@ -247,7 +247,7 @@ struct DatePickerExample {
       })
         .disappearTextStyle({ color: Color.Gray, font: { size: '16fp', weight: FontWeight.Bold } })
         .textStyle({ color: '#ff182431', font: { size: '18fp', weight: FontWeight.Normal } })
-        .selectedTextStyle({ color: '#ff0000FF', font: { size: '26fp', weight: FontWeight.Regular } })
+        .selectedTextStyle({ color: '#ff0000FF', font: { size: '26fp', weight: FontWeight.Regular, family: "HarmonyOS Sans", style: FontStyle.Normal } })
         .onDateChange((value: Date) => {
           this.selectedDate = value
           console.info('select current date is: ' + value.toString())
