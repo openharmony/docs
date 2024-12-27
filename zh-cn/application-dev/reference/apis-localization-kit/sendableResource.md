@@ -1,4 +1,4 @@
-# rawFileDescriptor
+# SendableResource
 
 本模块提供SendableResource资源相关信息，包括应用包名、应用模块名、资源类型等。
 
@@ -14,9 +14,9 @@ import { resourceManager } from '@kit.LocalizationKit'
 
 ## SendableResource
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：**SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 | 名称         | 类型     | 只读   | 可选  |说明          |
 | ---------- | ------ | ----- | ----  | ---------------|
