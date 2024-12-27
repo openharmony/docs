@@ -413,5 +413,30 @@
 
 **起始版本**：14
 
+### ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
+
+允许设备管理应用配置BYOD管控策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：15
+
+### ohos.permission.START_PROVISIONING_MESSAGE
+
+允许设备管理应用拉起BYOD激活页面。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：15
 
 

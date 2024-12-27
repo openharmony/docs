@@ -412,3 +412,29 @@ After the application has this permission, the system JS engine can request anon
 **Authorization mode**: system_grant
 
 **Valid since**: 14
+
+## ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
+
+Allow device management applications to configure BYOD control policies.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 15
+
+## ohos.permission.START_PROVISIONING_MESSAGE
+
+Allow device management applications to pull up BYOD activation pages.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 15
