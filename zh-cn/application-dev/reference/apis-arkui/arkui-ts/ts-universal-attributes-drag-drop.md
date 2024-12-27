@@ -105,7 +105,7 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | DISABLE_SCALE  | 2 | 禁用系统对拖拽背板图的缩放行为。 |
 | ENABLE_DEFAULT_SHADOW<sup>12+</sup> | 3 | 启用非文本类组件默认阴影效果。 |
 | ENABLE_DEFAULT_RADIUS<sup>12+</sup> | 4 | 启用非文本类组件统一圆角效果，默认值12vp。当应用自身设置的圆角值大于默认值或modifier设置的圆角时，则显示应用自定义圆角效果。 |
-| ENABLE_DRAG_ITEM_GRAY_EFFECT<sup>16+</sup> | 5 | 启用支持原拖拽对象灰显（透明度）效果，对文本内容拖拽不生效。用户拖起时原对象显示灰显效果，释放时原对象恢复原有效果。不支持对该开关与自定义处理原对象透明度效果同时使用。开启默认灰显效果后，如果应用再自行设置透明度，则灰显效果将被覆盖，且在结束拖拽时无法正确恢复原始透明度效果。 |
+| ENABLE_DRAG_ITEM_GRAY_EFFECT<sup>16+</sup> | 5 | 启用支持原拖拽对象灰显（透明度）效果，对文本内容拖拽不生效。用户拖起时原对象显示灰显效果，释放时原对象恢复原有效果。开启默认灰显效果后，不建议在拖拽开始后自行修改透明度，如果开发者在拖拽发起后自行修改应用透明度，则灰显效果将被覆盖，且在结束拖拽时无法正确恢复原始透明度效果。 |
 
 ## DragInteractionOptions<sup>12+</sup>
 
@@ -304,7 +304,7 @@ struct DragPreviewDemo{
 
 ### 示例3（设置背板图样式）
 
-该示例通过配置dragPreviewOptions为ENABLE_DEFAULT_SHADOW和ENABLE_DEFAULT_RADIUS设置默认阴影和统一圆角效果。
+该示例通过配置dragPreviewOptions为ENABLE_DEFAULT_SHADOW、ENABLE_DEFAULT_RADIUS和ENABLE_DRAG_ITEM_GRAY_EFFECT设置默认阴影、统一圆角效果与灰显效果。
 
 ```ts
 // xxx.ets
