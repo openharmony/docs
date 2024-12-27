@@ -3339,7 +3339,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetBounds (const OH_Drawing_Font* font, cons
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3366,7 +3366,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetPathForGlyph (const OH_Drawing_Font* font
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3959,7 +3959,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetTextPath (const OH_Drawing_Font* font, co
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
