@@ -61,7 +61,7 @@ static void *CreateArkRuntimeFunc(void *arg)
     if (ret != napi_ok) {
         std::abort();
     }
-    // 4. 获取ArkTS返回的结果
+    // 5. 获取ArkTS返回的结果
     int value0;
     napi_get_value_int32(env, result, &value0);
     if (value0 != 1024) {
