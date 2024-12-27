@@ -11,7 +11,7 @@
 | AVC(H.264)、HEVC(H.265) |AVC(H.264)<!--RP12--><!--RP12End--> |
 
 视频解码软/硬件解码存在差异，基于MimeType创建解码器时，<!--RP13-->软解当前仅支持 H264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)，<!--RP13End-->
-如果硬件平台支持，则可以使用H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)硬件解码能力。
+如果硬件平台支持，则可以使用H264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)和H265(OH_AVCODEC_MIMETYPE_VIDEO_HEVC)硬件解码能力。
 
 每一种解码的能力范围，可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取。
 
@@ -25,7 +25,7 @@
 | -------- | ---------------------------- |
 | mp4      | HEVC（H.265）、 AVC（H.264） |
 
-目前仅支持硬件编码，基于MimeType创建编码器时，支持配置为H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
+目前仅支持硬件编码，基于MimeType创建编码器时，支持配置为H264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)和H265(OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
 
 每一种编码的能力范围，可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取。
 
