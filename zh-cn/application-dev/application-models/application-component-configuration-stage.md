@@ -18,7 +18,7 @@
 
 * HAP中不包含UIAbility，系统将返回app.json5中的icon和label。
 
-
+<!--RP1-->
 ### 应用场景
 
 - 用于在应用界面内展示当前应用。例如：在设置应用中展示应用列表，在设置的隐私管理中展示应用申请的权限。
@@ -27,6 +27,7 @@
 效果图如下：
 
 ![application-component-configuration-stage-app-module](figures/application-component-configuration-stage-app-module.png)
+<!--RP1End-->
 
 ### 配置示例
 
