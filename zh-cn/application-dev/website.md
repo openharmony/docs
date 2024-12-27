@@ -1294,6 +1294,7 @@
         - [使用OpenSL ES开发音频录制功能(C/C++)](media/audio/using-opensl-es-for-recording.md)
     - AVCodec Kit（音视频编解码服务）<!--avcodec-kit-->
       - [AVCodec Kit简介](media/avcodec/avcodec-kit-intro.md)
+      - [AVCodec支持的格式](media/avcodec/avcodec-support-formats.md)
       - 音视频编解码<!--audio-video-codec-->
         - [获取支持的编解码能力](media/avcodec/obtain-supported-codecs.md)
         - [音频编码](media/avcodec/audio-encoding.md)
