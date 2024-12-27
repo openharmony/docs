@@ -6947,9 +6947,15 @@ TLS通信的协议版本。
 
 ## X509CertRawData<sup>9+</sup>
 
+type X509CertRawData = cert.EncodingBlob
+
 存储证书的数据。
 
 **系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| cert.EncodingBlob | 提供证书编码blob类型。     |
 
 ## socket.constructTLSSocketServerInstance<sup>10+</sup>
 
