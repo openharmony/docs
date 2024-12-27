@@ -21,4 +21,4 @@ The specified device does not exist.
 
 **处理步骤**
 
-1. 可以通过inputdevice.getDeviceIds接口查询所有的设备Id，inputdevice.getDevice接口获取设备信息，使用正确的设备Id操作。
+1. 可以通过[inputDevice.getDeviceList](js-apis-inputdevice.md)接口查询设备Id，然后使用正确的设备Id操作。
