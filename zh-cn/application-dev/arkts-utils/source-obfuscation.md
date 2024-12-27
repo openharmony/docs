@@ -1118,3 +1118,73 @@ AppAbility
 
 1. 将HAP与HSP共同依赖的本地源码HAR改造为[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section179161312181613)，这样此HAR在被依赖时不会被二次混淆。
 2. 将HAP与HSP共同依赖的本地源码HAR以[release模式构建打包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section19788284410)，这样此HAR在被依赖时，其文件名与对外接口不会被混淆。
+
+#### 同时开启-enable-property-obfuscation和-keep选项可能会出现的问题
+
+**问题现象**
+
+使用如下混淆配置：
+
+```
+-enable-property-obfuscation
+-keep
+./file1.ts
+```
+
+并且在`file2.ts`中导入`file1.ts`的接口。此时，接口中有属性的类型为对象类型，该对象类型的属性在`file1.ts`中被保留，在`file2.ts`中被混淆，从而导致调用时引发功能异常。示例如下：
+
+```
+// 混淆前
+// file1.ts
+export interface MyInfo {
+  age: number;
+  address: {
+    city1: string;
+  }
+}
+
+// file2.ts
+import { MyInfo } from './file1';
+const person: MyInfo = {
+  age: 20,
+  address: {
+    city1: "shanghai"
+  }
+}
+
+// 混淆后，file1.ts的代码被保留
+// file2.ts
+import { MyInfo } from './file1';
+const person: MyInfo = {
+  age: 20,
+  address: {
+    i: "shanghai"
+  }
+}
+```
+
+**问题原因**
+
+`-keep`选项保留`file1.ts`文件时，`file1.ts`中代码不会被混淆。对于导出属性（如address）所属类型内的属性，不会被自动收集在属性白名单中。因此，该类型内的属性在其他文件中被使用时，会被混淆。
+
+**解决方案**
+
+方案一：使用`interface`定义该属性的类型，并使用`export`进行导出，这样该属性会被自动被收集到属性白名单中。示例如下：
+
+```
+// file1.ts
+export interface AddressType {
+  city1: string
+}
+export interface MyInfo {
+  age: number;
+  address: AddressType;
+}
+```
+
+方案二：使用`-keep-property-name`选项，将未直接导出的类型内的属性配置到属性白名单中。示例如下：
+
+```
+-keep-property-name
+city1
+```
