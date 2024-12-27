@@ -824,7 +824,7 @@ onContentScroll(callback: OnContentScrollCallback)
 
 onEditChange(callback:&nbsp;Callback<&nbsp;boolean&nbsp;>)
 
-输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。
+输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。callback返回值为true表示正在输入。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -834,7 +834,7 @@ onEditChange(callback:&nbsp;Callback<&nbsp;boolean&nbsp;>)
 
 | 参数名    | 类型                                | 必填 | 说明                 |
 | --------- | ---------------------------------- | ---- | -------------------- |
-| isEditing | &nbsp;Callback<&nbsp;boolean&nbsp;> | 是   | 为true表示正在输入。 |
+| callback | &nbsp;Callback<&nbsp;boolean&nbsp;> | 是   | 编辑状态改变回调，其返回值为true表示正在输入。 |
 
 ### onWillInsert<sup>12+</sup>
 
