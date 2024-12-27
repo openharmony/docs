@@ -305,19 +305,19 @@ type RawFileDescriptor = _RawFileDescriptor
 
 | 类型    | 说明   |
 | ------  | ---- | 
-|RawFileDescriptor|表示rawfile文件所在hap的descriptor信息。|
+|[_RawFileDescriptor](rawFileDescriptor.md#rawfiledescriptor-1)|表示rawfile文件所在hap的descriptor信息。|
 
 ## Resource<sup>9+</sup>
 
 type Resource = _Resource
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 | 类型    | 说明   |
 | ------  | ---- | 
-|RawFileDescriptor|表示资源信息。|
+|[_Resource](resource.md#resource-1)|表示资源信息。|
 
 ## ResourceManager
 
