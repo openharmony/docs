@@ -4653,3 +4653,57 @@ struct RichEditor_example {
 ```
 
 ![StyledString](figures/example23.gif)
+
+### 示例24（获取光标相对组件位置的矩形）
+通过RichEditorBaseController的[getCaretRect](#getcaretrect16)方法来获取当前光标相对于组件位置的Rect。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  controller: RichEditorController = new RichEditorController()
+  options: RichEditorOptions = { controller: this.controller };
+  @State caretRect: string = "not found";
+
+  build() {
+    Column() {
+      Button('get caret rect')
+        .onClick(() => {
+          let rectCaret = this.controller.getCaretRect();
+          if(rectCaret == undefined) {
+            this.caretRect = 'undefined'
+          } else {
+            this.caretRect = 'X: ' + rectCaret.x + '\nY: ' + rectCaret.y
+              + '\nWidth: ' + rectCaret.width + '\nHeight: ' + rectCaret.height
+          }
+        })
+        .fontSize(24)
+        .width("60%")
+        .height("10%")
+
+      Text(this.caretRect)
+        .margin(12)
+        .fontSize(24)
+
+      RichEditor(this.options)
+        .onReady(() => {
+          this.controller.addTextSpan('12345678901234567890', {
+            style:
+            {
+              fontColor: Color.Orange,
+              fontSize: 50
+            }
+          })
+        })
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .width("100%")
+        .height("60%")
+    }
+  }
+}
+
+```
+
+![StyledString](figures/example24.gif)
