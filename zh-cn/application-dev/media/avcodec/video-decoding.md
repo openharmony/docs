@@ -4,15 +4,7 @@
 
 <!--RP3--><!--RP3End-->
 
-当前支持的解码能力如下：
-
-| 视频硬解类型       | 视频软解类型   |
-| --------------------- | ---------------- |
-| AVC(H.264)、HEVC(H.265) |AVC(H.264)、HEVC(H.265) |
-
-视频解码软/硬件解码存在差异，基于MimeType创建解码器时，软解当前仅支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC)，硬解则支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
-
-每一种解码的能力范围，可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取。
+当前支持的解码能力请参考[AVCodec支持的格式](avcodec-support-formats.md#视频解码)。
 
 <!--RP1--><!--RP1End-->
 
