@@ -615,6 +615,8 @@ stringify(value: ISendable | null | undefined): string
 
 该方法将ISendable数据转换为JSON字符串。
 
+能力扩展：该方法支持将Map、Set、[collections.Map](./js-apis-arkts-collections.md#collectionsmap)、[collections.Set](./js-apis-arkts-collections.md#collectionsset)、[HashMap](./js-apis-hashmap.md#hashmap)、[HashSet](./js-apis-hashset.md#hashset)转换为JSON字符串。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -634,11 +636,26 @@ stringify(value: ISendable | null | undefined): string
 **示例：**
 
 ```ts
-import { collections } from '@kit.ArkTS';
+import { collections, lang, ArkTSUtils } from '@kit.ArkTS';
 
 let arr = new collections.Array(1, 2, 3);
 let str = ArkTSUtils.ASON.stringify(arr);
 console.info(str);
+// 期望输出: '[1,2,3]'
+
+let map = new collections.Map<string, string>();
+map.set("key1", "value1");
+map.set("key2", "value2");
+let str2 = ArkTSUtils.ASON.stringify(map);
+console.info(str2);
+// 期望输出: '{"key1":"value1","key2":"value2"}'
+
+let set = new Set<number>();
+set.add(1);
+set.add(2);
+set.add(3);
+let str3 = ArkTSUtils.ASON.stringify(set as Object as lang.ISendable);
+console.info(str3);
 // 期望输出: '[1,2,3]'
 ```
 
