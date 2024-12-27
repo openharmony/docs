@@ -366,7 +366,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 
 | 名称     | 类型                                             | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
-| enableVariableFontWeight | boolean | 否   | 是否支持字重无极调节。 |
+| enableVariableFontWeight | boolean | 否   | 是否支持字重无极调节。<br/>默认值：false |
 
 ## OnDidChangeCallback<sup>12+</sup>
 
