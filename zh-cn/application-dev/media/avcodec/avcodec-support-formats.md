@@ -8,9 +8,9 @@
 
 | 视频硬解类型       | 视频软解类型   |
 | --------------------- | ---------------- |
-| AVC(H.264)、HEVC(H.265) |AVC(H.264)<!--RP11--><!--RP11End--> |
+| AVC(H.264)、HEVC(H.265) |AVC(H.264)<!--RP12--><!--RP12End--> |
 
-视频解码软/硬件解码存在差异，基于MimeType创建解码器时，<!--RP12-->软解当前仅支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC),<!--RP12End-->
+视频解码软/硬件解码存在差异，基于MimeType创建解码器时，<!--RP13-->软解当前仅支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC),<!--RP13End-->
 如果硬件平台支持，则可以使用H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)硬件解码能力。
 
 每一种解码的能力范围，可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取。
@@ -103,7 +103,7 @@ DRM解密能力支持的解封装格式：<!--RP10-->mp4(H.264，AAC)、mpeg-ts(
 
 | 封装格式 | 视频编解码类型        | 音频编解码类型   | 封面类型       |
 | -------- | --------------------- | ---------------- | -------------- |
-| mp4      | AVC（H.264）<!--RP10--><!--RP10End-->    | AAC、MPEG（MP3） | jpeg、png、bmp |
+| mp4      | AVC（H.264）<!--RP11--><!--RP11End-->    | AAC、MPEG（MP3） | jpeg、png、bmp |
 | m4a      | -                     | AAC              | jpeg、png、bmp |
 | mp3      | -                     | MPEG（MP3）      | -              |
 | amr      | -                     | AMR(amrnb、amrwb) | -             |
