@@ -83,71 +83,71 @@
 
    在UIAbility中接收router事件并获取参数，根据传递的params不同，选择拉起不同的页面。
   
-  ```ts
-  //src/main/ets/entryability/EntryAbility.ets
-  import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-  import { window } from '@kit.ArkUI';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  
-  const TAG: string = 'EntryAbility';
-  const DOMAIN_NUMBER: number = 0xFF00;
-
-  export default class EntryAbility extends UIAbility {
-    private selectPage: string = '';
-    private currentWindowStage: window.WindowStage | null = null;
-  
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-      // 获取router事件中传递的targetPage参数
-      hilog.info(DOMAIN_NUMBER, TAG, `Ability onCreate: ${JSON.stringify(want?.parameters)}`);
-      if (want?.parameters?.params) {
-        // want.parameters.params 对应 postCardAction() 中 params 内容
-        let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
-        this.selectPage = params.targetPage as string;
-        hilog.info(DOMAIN_NUMBER, TAG, `onCreate selectPage: ${this.selectPage}`);
-      }
-    }
-  
-    // 如果UIAbility已在后台运行，在收到Router事件后会触发onNewWant生命周期回调
-    onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-      hilog.info(DOMAIN_NUMBER, TAG, `Ability onNewWant: ${JSON.stringify(want?.parameters)}`);
-      if (want?.parameters?.params) {
-        // want.parameters.params 对应 postCardAction() 中 params 内容
-        let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
-        this.selectPage = params.targetPage as string;
-        hilog.info(DOMAIN_NUMBER, TAG, `onNewWant selectPage: ${this.selectPage}`);
-      }
-      if (this.currentWindowStage !== null) {
-        this.onWindowStageCreate(this.currentWindowStage);
-      }
-    }
-  
-    onWindowStageCreate(windowStage: window.WindowStage): void {
-      // Main window is created, set main page for this ability
-      let targetPage: string;
-      // 根据传递的targetPage不同，选择拉起不同的页面
-      switch (this.selectPage) {
-        case 'funA':
-          targetPage = 'pages/FunA'; //与实际的UIAbility页面路径保持一致
-          break;
-        case 'funB':
-          targetPage = 'pages/FunB'; //与实际的UIAbility页面路径保持一致
-          break;
-        default:
-          targetPage = 'pages/Index'; //与实际的UIAbility页面路径保持一致
-      }
-      if (this.currentWindowStage === null) {
-        this.currentWindowStage = windowStage;
-      }
-      windowStage.loadContent(targetPage, (err, data) => {
-        if (err.code) {
-          hilog.error(DOMAIN_NUMBER, TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-          return;
-        }
-        hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-      });
-    }
-  }
-  ```
+     ```ts
+     //src/main/ets/entryability/EntryAbility.ets
+     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+     import { window } from '@kit.ArkUI';
+     import { hilog } from '@kit.PerformanceAnalysisKit';
+     
+     const TAG: string = 'EntryAbility';
+     const DOMAIN_NUMBER: number = 0xFF00;
+   
+     export default class EntryAbility extends UIAbility {
+       private selectPage: string = '';
+       private currentWindowStage: window.WindowStage | null = null;
+     
+       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+         // 获取router事件中传递的targetPage参数
+         hilog.info(DOMAIN_NUMBER, TAG, `Ability onCreate: ${JSON.stringify(want?.parameters)}`);
+         if (want?.parameters?.params) {
+           // want.parameters.params 对应 postCardAction() 中 params 内容
+           let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
+           this.selectPage = params.targetPage as string;
+           hilog.info(DOMAIN_NUMBER, TAG, `onCreate selectPage: ${this.selectPage}`);
+         }
+       }
+     
+       // 如果UIAbility已在后台运行，在收到Router事件后会触发onNewWant生命周期回调
+       onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+         hilog.info(DOMAIN_NUMBER, TAG, `Ability onNewWant: ${JSON.stringify(want?.parameters)}`);
+         if (want?.parameters?.params) {
+           // want.parameters.params 对应 postCardAction() 中 params 内容
+           let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
+           this.selectPage = params.targetPage as string;
+           hilog.info(DOMAIN_NUMBER, TAG, `onNewWant selectPage: ${this.selectPage}`);
+         }
+         if (this.currentWindowStage !== null) {
+           this.onWindowStageCreate(this.currentWindowStage);
+         }
+       }
+     
+       onWindowStageCreate(windowStage: window.WindowStage): void {
+         // Main window is created, set main page for this ability
+         let targetPage: string;
+         // 根据传递的targetPage不同，选择拉起不同的页面
+         switch (this.selectPage) {
+           case 'funA':
+             targetPage = 'pages/FunA'; //与实际的UIAbility页面路径保持一致
+             break;
+           case 'funB':
+             targetPage = 'pages/FunB'; //与实际的UIAbility页面路径保持一致
+             break;
+           default:
+             targetPage = 'pages/Index'; //与实际的UIAbility页面路径保持一致
+         }
+         if (this.currentWindowStage === null) {
+           this.currentWindowStage = windowStage;
+         }
+         windowStage.loadContent(targetPage, (err, data) => {
+           if (err.code) {
+             hilog.error(DOMAIN_NUMBER, TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+             return;
+           }
+           hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+         });
+       }
+     }
+     ```
 5. 创建跳转后的UIAbility页面
 
    在pages文件夹下新建FunA.ets和FunB.ets，构建页面布局。
