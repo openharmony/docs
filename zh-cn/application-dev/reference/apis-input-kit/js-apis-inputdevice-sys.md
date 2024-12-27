@@ -358,11 +358,12 @@ setInputDeviceEnabled(deviceId: number, enabled: boolean): Promise&lt;void&gt;
 | 参数名   | 类型    | 必填 | 说明                      |
 | -------- | ------- | ---- | ------------------------- |
 | deviceId | number  | 是   | 目标设备Id。              |
-| enabled  | boolean | 是   | true：开启，false：关闭。 |
+| enabled  | boolean | 是   | true：开启输入设备输入；false：关闭输入设备输入。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[模块错误码](errorcode-inputdevice.md)。
+
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
