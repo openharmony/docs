@@ -135,7 +135,7 @@ objectFit(value: ImageFit)
 
 imageMatrix(matrix: ImageMatrix)
 
-设置图片的变换矩阵。
+设置图片的变换矩阵。svg类型图源不支持该属性。
 
 **卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
