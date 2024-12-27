@@ -4,6 +4,8 @@
 
 <!--RP3--><!--RP3End-->
 
+当前支持的编码能力请参考[AVCodec支持的格式](avcodec-support-formats.md#视频编码)。
+
 <!--RP1--><!--RP1End-->
 
 视频编码支持以下能力：
