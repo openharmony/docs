@@ -345,7 +345,7 @@ try {
 
 setInputDeviceEnabled(deviceId: number, enabled: boolean): Promise&lt;void&gt;
 
-设置输入设备开启或关闭。
+设置输入设备的开关状态。以触摸屏为例：关闭时，点击触摸屏设备不响应；开启时，可正常操作触摸屏。
 
 **需要权限**：ohos.permission.INPUT_DEVICE_CONTROLLER
 
