@@ -2,6 +2,8 @@
 
 开发者可以调用本模块的Native API接口，完成音频解码，即将媒体数据解码为PCM码流。
 
+当前支持的解码能力请参考[AVCodec支持的格式](avcodec-support-formats.md#音频解码)。
+
 **适用场景**
 
 - 音频播放
