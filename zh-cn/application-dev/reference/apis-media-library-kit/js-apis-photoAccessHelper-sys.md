@@ -1590,9 +1590,9 @@ getKeyFrameThumbnail(beginFrameTimeMs: number, type: ThumbnailType): Promise<ima
 
 ```ts
 import { common }  from '@kit.AbilityKit';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
 
 async function example() {
   try{
@@ -4226,7 +4226,7 @@ setSupportedWatermarkType(watermarkType: WatermarkType): void
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';;
 
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -5911,7 +5911,7 @@ static getCloudMediaAssetManagerInstance(context: Context): CloudMediaAssetManag
 **示例：**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 async function example() {
   console.info('getCloudMediaAssetManagerInstanceDemo');
@@ -5961,7 +5961,7 @@ startDownloadCloudMedia(downloadType: CloudMediaDownloadType): Promise&lt;void&g
 **示例：**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 async function example() {
   console.info('startDownloadCloudMediaDemo');
@@ -6004,7 +6004,7 @@ pauseDownloadCloudMedia(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 async function example() {
   console.info('pauseDownloadCloudMediaDemo');
@@ -6047,7 +6047,7 @@ cancelDownloadCloudMedia(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 async function example() {
   console.info('cancelDownloadCloudMediaDemo');
@@ -6097,7 +6097,7 @@ retainCloudMediaAsset(retainType: CloudMediaRetainType): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 async function example() {
   console.info('retainCloudMediaAssetDemo');
@@ -6140,7 +6140,7 @@ getCloudMediaAssetStatus(): Promise&lt;CloudMediaAssetStatus&gt;
 **示例：**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 async function example() {
   console.info('getCloudMediaAssetStatusDemo');
