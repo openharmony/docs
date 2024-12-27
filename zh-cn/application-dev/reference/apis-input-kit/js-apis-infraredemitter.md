@@ -72,7 +72,6 @@ getInfraredFrequencies(): Array&lt;InfraredFrequency&gt;
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
 
 **示例**：
 

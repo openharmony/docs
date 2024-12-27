@@ -72,7 +72,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message         |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
 
 **Example**
 
