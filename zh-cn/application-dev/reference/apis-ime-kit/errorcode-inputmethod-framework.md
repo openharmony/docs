@@ -239,3 +239,21 @@ Window manager service error.
 **处理步骤**
 
 建议重启设备后重试调用接口。
+
+## 12800017 无效的面板类型或面板状态
+
+**错误信息**
+
+Invalid panel type or panel flag.
+
+**错误描述**
+
+无效的面板类型或面板状态。
+
+**可能原因**
+
+当前的输入法[面板类型](js-apis-inputmethodengine.md#paneltype10)或[面板状态](js-apis-inputmethodengine.md#panelflag10)不支持其调用此接口，或者此接口不支持开发者传入当前面板类型或面板状态，则抛出此错误码。
+
+**处理步骤**
+
+建议开发者进一步阅读接口使用说明，按要求调整当前输入法面板类型或面板状态、调整传入的参数，或者即当前面板无法使用此接口能力。
