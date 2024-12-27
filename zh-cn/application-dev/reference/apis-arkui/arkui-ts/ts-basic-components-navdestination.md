@@ -262,6 +262,46 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 >
 > 该接口需要配合Navigation的[recoverable](./ts-basic-components-navigation.md#recoverable14)接口使用。
 
+### bindToScrollable<sup>14+</sup>
+bindToScrollable(scrollers: Array&lt;Scroller&gt;)
+
+绑定NavDestination组件和可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效。一个NavDestination可与多个可滚动容器组件绑定，一个可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
+
+> **说明：**
+>
+> - 只有NavDestination的标题栏或工具栏设置为可见时，联动效果才会生效。
+> - 当多个可滚动容器组件绑定了同一个NavDestination组件时，滚动任何一个容器都会触发标题栏和工具栏的显示或隐藏效果。且当任何一个可滚动容器组件滑动到底部或顶部位置时，会立即触发标题栏和工具栏的显示动效。因此，为了获得最佳用户体验，不建议同时触发多个可滚动容器组件的滚动事件。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                 | 必填 | 说明                                                         |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| scrollers | Array<[Scroller](./ts-container-scroll.md#scroller)> | 是   | 可滚动容器组件的控制器。 |
+
+### bindToNestedScrollable<sup>14+</sup>
+bindToNestedScrollable(scrollers: Array&lt;NestedScrollInfo&gt;)
+
+绑定NavDestination组件和嵌套的可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效。一个NavDestination可与多个嵌套的可滚动容器组件绑定，嵌套的可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
+
+> **说明：**
+>
+> - 只有NavDestination的标题栏或工具栏设置为可见时，联动效果才会生效。
+> - 当多个可滚动容器组件绑定了同一个NavDestination组件时，滚动任何一个容器都会触发标题栏和工具栏的显示或隐藏效果。且当任何一个可滚动容器组件滑动到底部或顶部位置时，会立即触发标题栏和工具栏的显示动效。因此，为了获得最佳用户体验，不建议同时触发多个可滚动容器组件的滚动事件。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                 | 必填 | 说明                                                         |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| scrollInfos | Array<[NestedScrollInfo](#nestedscrollinfo14)> | 是   | 嵌套的可滚动容器组件的控制器。 |
+
 ## NavDestinationMode枚举说明 <sup>11+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -441,6 +481,161 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 | pageSourceFile| string | 是 | 页面在当前包中的路径。|
 | data | Object | 是 | 页面自定义字段信息。|
 
+## NestedScrollInfo<sup>14+</sup>
+
+嵌套可滚动容器组件信息
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   |必填 | 说明 |
+| ----  | ---   | ---- |----- |
+| parent | [Scroller](./ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器。 |
+| child | [Scroller](./ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器，child对应的组件需要是parent对应组件的子组件，且组件间存在嵌套滚动关系。|
+
 ## 示例
 
-NavDestination用法可参考[Navigation示例](ts-basic-components-navigation.md#示例2使用路由栈方法)。
+### 示例1
+
+以下示例主要演示NavDestination绑定可滚动容器组件来实现滚动内容时触发标题栏和工具栏显示隐藏的效果。
+
+```ts
+import { SymbolGlyphModifier } from '@kit.ArkUI';
+
+@Component
+struct MyPageOne {
+  private listScroller: Scroller = new Scroller();
+  private scrollScroller: Scroller = new Scroller();
+  private arr: number[] = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 30; i++) {
+      this.arr.push(i);
+    }
+  }
+
+  build() {
+    NavDestination() {
+      Scroll(this.scrollScroller) {
+        Column() {
+          List({space: 0, initialIndex: 0, scroller: this.listScroller}) {
+            ForEach(this.arr, (item: number, index: number) => {
+              ListItem() {
+                Text('' + item)
+                  .height(100)
+                  .fontSize(16)
+                  .textAlign(TextAlign.Center)
+                  .width('90%')
+                  .margin({left: '5%'})
+                  .borderRadius(10)
+                  .backgroundColor(Color.Gray)
+              }
+            }, (item: string) => item);
+          }.width('100%').height('80%').scrollBar(BarState.Off)
+          .nestedScroll({scrollForward: NestedScrollMode.SELF_FIRST, scrollBackward: NestedScrollMode.SELF_FIRST})
+          ForEach(this.arr, (item: number, index: number) => {
+            ListItem() {
+              Text('' + item)
+                .height(100)
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .width('90%')
+                .margin({top: '5%'})
+                .borderRadius(10)
+                .backgroundColor(Color.Pink)
+            }
+          }, (item: string) => item);
+        }
+      }
+      .width('100%')
+      .scrollBar(BarState.Off)
+      .scrollable(ScrollDirection.Vertical)
+      .edgeEffect(EdgeEffect.Spring)
+    }
+    .title('PageOne', {backgroundColor: Color.Yellow, barStyle: BarStyle.STACK})
+    .toolbarConfiguration([
+      {
+        value: 'item1',
+        symbolIcon: new SymbolGlyphModifier($r('sys.symbol.phone_badge_star'))
+      }
+    ], {backgroundColor: Color.Orange, barStyle: BarStyle.STACK})
+    // 绑定有父子关系的可滚动容器组件
+    .bindToNestedScrollable([{parent: this.scrollScroller, child: this.listScroller}])
+  }
+}
+
+@Component
+struct MyPageTwo {
+  private listScroller: Scroller = new Scroller();
+  private arr: number[] = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 30; i++) {
+      this.arr.push(i);
+    }
+  }
+
+  build() {
+    NavDestination() {
+      List({scroller: this.listScroller}) {
+        ForEach(this.arr, (item: number, index: number) => {
+          ListItem() {
+            Text('' + item)
+              .height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .width('90%')
+              .margin({left: '5%'})
+              .borderRadius(10)
+              .backgroundColor(Color.Gray)
+          }
+        }, (item: string) => item);
+      }.width('100%')
+    }
+    .title('PageTwo', {backgroundColor: Color.Yellow, barStyle: BarStyle.STACK})
+    .toolbarConfiguration([
+      {
+        value: 'item1',
+        symbolIcon: new SymbolGlyphModifier($r('sys.symbol.phone_badge_star'))
+      }
+    ], {backgroundColor: Color.Orange, barStyle: BarStyle.STACK})
+    // 绑定可滚动容器组件
+    .bindToScrollable([this.listScroller])
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  MyPageMap(name: string) {
+    if (name === 'myPageOne') {
+      MyPageOne()
+    } else {
+      MyPageTwo()
+    }
+  }
+
+  build() {
+    Navigation(this.stack) {
+      Column() {
+        Button('push PageOne').onClick(() => {
+          this.stack.pushPath({name: 'myPageOne'})
+        })
+        Button('push PageTwo').onClick(() => {
+          this.stack.pushPath({name: 'myPageTwo'})
+        })
+      }.height('40%').justifyContent(FlexAlign.SpaceAround)
+    }.width('100%')
+    .height('100%')
+    .title({main: 'MainTitle', sub: 'subTitle'})
+    .navDestination(this.MyPageMap)
+  }
+}
+```
+![navdestination_bind_scrollable](figures/navdestination_bind_scrollable.gif)
+
+NavDestination其他用法可参考[Navigation示例](ts-basic-components-navigation.md#示例1)。
