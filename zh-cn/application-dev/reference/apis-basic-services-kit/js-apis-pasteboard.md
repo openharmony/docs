@@ -2675,7 +2675,7 @@ try {
 
 ### setAppShareOptions<sup>14+</sup>
 
-setShareOptions(shareOptions: ShareOption): void
+setAppShareOptions(shareOptions: ShareOption): void
 
 应用设置本应用剪贴板数据的可粘贴范围。
 
@@ -2716,7 +2716,7 @@ try {
 
 ### removeAppShareOptions<sup>14+</sup>
 
-removeShareOptions(): void
+removeAppShareOptions(): void
 
 删除应用全局的可粘贴的范围。
 
