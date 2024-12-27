@@ -1005,3 +1005,15 @@ type ResponseHeaders = {[k: string]: string | string[] | undefined;}
 | 1002      | 协议错误           |
 | 1003      | 无法处理的数据类型 |
 | 1004~1015 | 保留值             |
+
+## HttpProxy
+
+type HttpProxy = connection.HttpProxy
+
+网络全局代理配置信息。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| connection.HttpProxy | 使用指定的网络代理。    |
