@@ -9,9 +9,9 @@
 
 ## 示例代码开发步骤
 - 1：创建动态卡片
-  - 在工程的 entry 模块中，通过右键操作添加一个名为WidgetEventCallCard的ArkTs动态卡片，用于后续相关功能的承载与展示。
+  - 在工程的 entry 模块中，通过右键操作新建一个ArkTs动态卡片，比如名为WidgetEventCallCard。
 - 2：页面布局代码实现
-  - 找到WidgetEventCallCard卡片页面对应代码文件(通常在src/main/ets相关目录下)，构建页面布局，确保页面呈现符合预期功能需求。
+  - 在卡片页面代码文件WidgetEventCallCard中，构建页面布局。
   - 示例代码在卡片页面中布局两个按钮，点击其中一个按钮时调用postCardAction向指定UIAbility发送call事件，并在事件内定义需要调用的方法和传递的数据。需要注意的是，method参数为必选参数，且类型需要为string类型，用于触发UIAbility中对应的方法。
     ```ts
     //src/main/ets/widgeteventcallcard/pages/WidgetEventCallCardCard.ets
