@@ -207,6 +207,38 @@ gradientHeight(value: Dimension)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | [Dimension](ts-types.md#dimension10) | 是   | 内容区上下边缘的渐隐高度（支持百分比，100%为TextPicker高度的一半即最大值），设置为0时不显示渐隐效果，负数等非法值显示默认渐隐效果。默认值为36vp。|
 
+### disableTextStyleAnimation<sup>15+</sup>
+
+disableTextStyleAnimation(disabled: boolean)
+
+设置滑动过程中是否有文本样式变化动效。设置为true时，滑动过程中无字号、字重、字体颜色等变化动效，且文本均显示为[defaultTextStyle](#defaulttextstyle15)属性设置样式。如未设置defaultTextStyle，则显示为Text组件默认样式。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| disabled  | boolean | 是   | 设置滑动过程中是否有文本样式变化动效。<br/>true：无文本样式变化动效，false：有文本样式变化动效。<br/>默认值：false |
+
+### defaultTextStyle<sup>15+</sup>
+
+defaultTextStyle(style: TextPickerTextStyle)
+
+设置关闭滑动过程中文本样式变化动效时，各个选项文本的样式。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style  | [TextPickerTextStyle](#textpickertextstyle15类型说明) | 是   | 设置关闭滑动过程中文本样式变化动效时的各个选项文本的样式，仅当disableTextStyleAnimation为true时生效。<br/>默认值：与[Text](ts-basic-components-text.md)组件默认值相同。 |
+
 > **说明：**
 >
 > 该组件不建议开发者在动效过程中修改属性数据。
@@ -214,33 +246,6 @@ gradientHeight(value: Dimension)
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
-
-### onAccept<sup>(deprecated) </sup>
-
-onAccept(callback: (value: string, index: number) => void)
-
-点击弹窗中的“确定”按钮时触发该回调。该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。
-
-从API version 10开始废弃。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| value  | string | 是   | 当前选中项的文本。   |
-| index  | number | 是   | 当前选中项的索引值。 |
-
-### onCancel<sup>(deprecated) </sup>
-
-onCancel(callback: () => void)
-
-点击弹窗中的“取消”按钮时触发该回调。该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。
-
-从API version 10开始废弃。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onChange
 
@@ -280,37 +285,32 @@ onScrollStop(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;inde
 | value  | string&nbsp;\|&nbsp;string[] | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
 | index  | number&nbsp;\|&nbsp;number[] | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
 
-### disableTextStyleAnimation<sup>15+</sup>
+### onAccept<sup>(deprecated) </sup>
 
-disableTextStyleAnimation(disabled: boolean)
+onAccept(callback: (value: string, index: number) => void)
 
-设置滑动过程中是否有文本样式变化动效。设置为true时，滑动过程中无字号、字重、字体颜色等变化动效，且文本均显示为[defaultTextStyle](#defaulttextstyle15)属性设置样式。如未设置defaultTextStyle，则显示为Text组件默认样式。
+点击弹窗中的“确定”按钮时触发该回调。该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明                                                         |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| disabled  | boolean | 是   | 设置滑动过程中是否有文本样式变化动效。<br/>true：无文本样式变化动效，false：有文本样式变化动效。<br/>默认值：false |
-
-### defaultTextStyle<sup>15+</sup>
-
-defaultTextStyle(style: TextPickerTextStyle)
-
-设置关闭滑动过程中文本样式变化动效时，各个选项文本的样式。
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+从API version 10开始废弃。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [TextPickerTextStyle](#textpickertextstyle15类型说明) | 是   | 设置关闭滑动过程中文本样式变化动效时的各个选项文本的样式，仅当disableTextStyleAnimation为true时生效。<br/>默认值：与[Text](ts-basic-components-text.md)组件默认值相同。 |
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| value  | string | 是   | 当前选中项的文本。   |
+| index  | number | 是   | 当前选中项的索引值。 |
+
+### onCancel<sup>(deprecated) </sup>
+
+onCancel(callback: () => void)
+
+点击弹窗中的“取消”按钮时触发该回调。该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。
+
+从API version 10开始废弃。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## TextPickerTextStyle<sup>15+</sup>类型说明
 
