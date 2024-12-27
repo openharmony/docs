@@ -1046,7 +1046,7 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 
 async function example() {
     console.info('createAssetWithShortTermPermissionDemo.');
@@ -1060,22 +1060,22 @@ async function example() {
         };
 
         let resultUri: string = await phAccessHelper.createAssetWithShortTermPermission(photoCreationConfig);
-        let resultFile: fs.File = fs.openSync(resultUri, fs.OpenMode.READ_WRITE);
+        let resultFile: fileIo.File = fileIo.openSync(resultUri, fileIo.OpenMode.READ_WRITE);
         // 实际场景请使用真实的uri和文件大小
-        let srcFile:  fs.File = fs.openSync("file://test.jpg", fs.OpenMode.READ_ONLY);
+        let srcFile:  fileIo.File = fileIo.openSync("file://test.jpg", fileIo.OpenMode.READ_ONLY);
         let bufSize: number = 2000000;
         let readSize: number = 0;
         let buf = new ArrayBuffer(bufSize);
-        let readLen = fs.readSync(srcFile.fd, buf, {
+        let readLen = fileIo.readSync(srcFile.fd, buf, {
             offset: readSize,
             length: bufSize
         });
         if (readLen > 0) {
             readSize += readLen;
-            fs.writeSync(resultFile.fd, buf, { length: readLen });
+            fileIo.writeSync(resultFile.fd, buf, { length: readLen });
         }
-        fs.closeSync(srcFile);
-        fs.closeSync(resultFile);
+        fileIo.closeSync(srcFile);
+        fileIo.closeSync(resultFile);
     } catch (err) {
         console.error('createAssetWithShortTermPermission failed, errCode is ' + err.code + ', errMsg is ' + err.message);
     }
@@ -3603,8 +3603,8 @@ saveCameraPhoto(imageFileType: ImageFileType): void
 **示例：**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
 async function example(asset: photoAccessHelper.PhotoAsset) {
@@ -4329,8 +4329,8 @@ static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: Re
 **示例：**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
 class MediaHandler implements photoAccessHelper.QuickImageDataHandler<image.Picture> {
