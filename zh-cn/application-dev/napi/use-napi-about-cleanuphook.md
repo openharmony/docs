@@ -16,7 +16,6 @@ Node-API提供了注册和取消注册清理钩子函数的功能，以下是相
 ## 场景和功能介绍
 
 以下Node-API接口用于注册和取消不同类型的清理钩子。他们的使用场景如下：
-
 | 接口 | 描述 |
 | -------- | -------- |
 | napi_add_env_cleanup_hook | 注册一个环境清理钩子函数，该函数将在Node-API环境退出时被调用。 |
@@ -31,8 +30,6 @@ Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程
 ### napi_add_env_cleanup_hook
 
 用于注册一个环境清理钩子函数，该函数将在环境退出时执行。这是确保资源在环境销毁前得到清理的重要机制。
-
-需要注意的是，napi_add_env_cleanup_hook接口并不支持对同一arg绑定多个回调。若出现env已销毁，但cleanup回调未被执行的情况。可以在启用ArkTS运行时[多线程检测](../dfx/cppcrash-guidelines.md#工具二方舟多线程检测)功能的前提下，查看hilog流水日志`AddCleanupHook Failed, data cannot register multiple times.`来查找发生注册失败的调用。
 
 ### napi_remove_env_cleanup_hook
 
