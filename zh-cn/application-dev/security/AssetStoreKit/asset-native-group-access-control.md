@@ -12,7 +12,7 @@
 >   }
 > }
 > ```
-> 配置规则详见[配置规则](../../quick-start/app-configuration-file.md#配置文件标签)。
+> 参考[配置文件标签说明](../../quick-start/app-configuration-file.md#配置文件标签)进行配置。
 
 ## 新增群组关键资产
 
