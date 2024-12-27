@@ -71,6 +71,57 @@ buffer数组的列表。
 | FORMAT_PEM | 1      | PEM格式。 |
 | FORMAT_PKCS7<sup>11+</sup> | 2 | PKCS7格式。 |
 
+## EncodingBaseFormat<sup>16+</sup>
+
+ 表示生成CSR的编码格式的枚举。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称       | 值 |  说明      |
+| ---------- | ------ | --------- |
+| PEM | 0      | PEM格式。 |
+| DER | 1      | DER格式。 |
+
+## CsrAttribute<sup>16+</sup>
+ 表示生成CSR的编码格式配置参数中的拓展。
+
+openssl中规定了拓展类型，例如challengePassword、keyUsage等。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称       | 值 |  说明      |
+| ---------- | ------ | --------- |
+| type | 指定的拓展类型 | openssl指定的拓展类型 |
+| value | 拓展值 | 拓展值 |
+
+## CsrGenerationConfig<sup>16+</sup>
+RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、输出格式等。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| subject | [X500DistinguishedName](#x500distinguishedname12) | 是   | 是   | X509定义的Name类型的对象 |
+| mdName | string | 是   | 是   | 摘要算法名 |
+| attributes | [CsrAttribute](#csrattribute16) | 是   | 是   | 拓展 |
+| outFormat | [EncodingBaseFormat](#encodingbaseformat16) | 是   | 是   | 输出类型 |
+
+> **说明：**
+>
+> - subject是X509定义的Name类型的对象。
+>
+> - mdName是摘要算法名，当前支持SHA1、SHA256、SHA384、SHA512。
+>
+> - attributes是可选参数，可以指定openssl中规定的拓展类型跟拓展值生成CSR。例如challengePassword、keyUsage等。
+>
+> - outFormat指定输出CSR的格式，若不指定默认为PEM格式。
+
 ## CertItemType<sup>10+</sup>
 
  表示获取证书字段的枚举。
@@ -10854,6 +10905,109 @@ async function certChainHashCode() {
   }
 }
 ```
+
+## cert.generateCsr<sup>16+</sup>
+
+generateCsr(keyInfo: PrivateKeyInfo, config: CsrGenerationConfig): string | Uint8Array
+
+表示使用指定的RSA私钥，传入主体、拓展、摘要算法、输出格式等配置参数去生成CSR。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                 |
+| -------- | ----------------------------- | ---- | -------------------- |
+| keyInfo | [PrivateKeyInfo](#privatekeyinfo16) | 是 | 包含私钥跟口令的配置参数 |
+| config | [CsrGenerationConfig](#csrgenerationconfig16) | 是 | 包含生成CSR的配置参数 |
+
+**返回值：**
+
+| 类型                            | 说明             |
+| ------------------------------- | ---------------- |
+| string | Uint8Array | 表示生成的CSR数据。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+| 19030002 | the certificate signature verification failed. |
+| 19030003 | the certificate has not taken effect. |
+| 19030004 | the certificate has expired. |
+| 19030005 | failed to obtain the certificate issuer. |
+| 19030006 | the key cannot be used for signing a certificate. |
+| 19030007 | the key cannot be used for digital signature. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+
+let nameStr = '/CN=John Doe/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';
+let prikeyEnstr: string =
+  '-----BEGIN RSA PRIVATE KEY-----\n'                                  +
+    'Proc-Type: 4,ENCRYPTED\n'                                           +
+    'DEK-Info: AES-128-CBC,B5FFA3AEEE7176106FDDB0988B532F07\n\n'         +
+    't3zNRGKp5X4BNkcsYATad/Le+94yMIX9CoNAGsBIDzQw+773UMGIoeGEYVlXWc8x\n' +
+    'N1XWDinn4ytWw9x9OfUYgmNnrdkWRSaIuw+SpQfBgJip+MsNERYOHZ5TYWTR8n3k\n' +
+    '7/jHY8eCgTsP3hbNtyaePIrtbTLZGZAHG1YWY5UmLaYoI1O6/Vvobx72lx3b43Tx\n' +
+    '4j5lkknpLl85fcs1s4TYMOd8vEwhdpouR4VY8kfRSm44WQLtGXrce0An3MG3pXyZ\n' +
+    'GhpmJyTcg0epTEYVzglENlBJrBVDL+bJ8uvHGH4tmeQb77e6ILXoxZntM7zQMMFo\n' +
+    'A7dilqO6FBxu20n2TidVGCa0Yn+DZLpry2OdwVUC2nXyCHCehr3jAZz6k20FWg5B\n' +
+    'EsU16yOIB+bp9BUKdTpJVtc/pmZJtnlA9pSCUVmWdltOsjjxkE94wfAUOYhO3Mvz\n' +
+    'gF9KR1/bdAbLw4t7bGeuyV4N2iYr83FodLLXpupM6Qfb51+HVgHvm2aaHv2Q4sf3\n' +
+    'poCVTNlegoVV9x3+7HqXY6MjlG8aU6LcWqH34ySqRBQrKL1PuDzQSY5/RmP7PUhG\n' +
+    'ym4l6KbEaRC2H/XS2qKa4VCMgBCgA0hoiw4s48Xd4h2GUTuxLM9wGyW89OEaHky7\n' +
+    'VE7t3O9a2zhkRTYDDYQ8QCycKhNrsKySyItRUWn/w2lXvuKM7PpAzYH7Ey3W1eZG\n' +
+    'PyyeGG9exjpdIvD3tx5Hl/OWwBkW1DAzO40gT6sdD5FXzRv4fCHuCrIow5QMLF4T\n' +
+    'd5Y4a6q13V4O5b73T5INmKl8rEbPGIw7WLR7BNj05QuzNcn5kA1aBFIJqsxQv46l\n' +
+    '-----END RSA PRIVATE KEY-----\n';
+let priKeyInfo: cert.PrivateKeyInfo = {
+  key: prikeyEnstr,
+  password : "123abc"
+}
+let keyUsage: cert.CsrAttribute = {
+  type: "keyUsage",
+  value: "digitalSignature, keyEncipherment"
+};
+
+let challengePassword: cert.CsrAttribute = {
+  type:"challengePassword",
+  value: "123456"
+};
+let attribute: cert.CsrAttribute[] = [
+  keyUsage,challengePassword
+];
+try {
+  let data = await cert.createX500DistinguishedName(nameStr);
+  console.info('createX500DistinguishedName success' + data.getName("CN").toString());
+  let conf: cert.CsrGenerationConfig = {
+    subject: data,
+    mdName: "SHA256",
+    outFormat: cert.EncodingBaseFormat.PEM,
+    attributes: attribute
+  }
+  try {
+    let csrStr = cert.generateCsr(priKeyInfo, conf)
+    console.log('return str is' + csrStr.toString())
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('generateCsr failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
+}
+```
+
 ## cert.createX500DistinguishedName<sup>12+</sup>
 
 createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
