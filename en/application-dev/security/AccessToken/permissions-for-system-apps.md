@@ -1035,7 +1035,7 @@ Allows an application to control the microphone, for example, persisting the mut
 
 ### ohos.permission.CAPTURE_PLAYBACK
 
-Allows a system application to capture audio without using the AVScreenCapture framework.
+Allows a system service to capture internal audio without using the AVScreenCapture framework.
 
 **Permission level**: system_core
 
