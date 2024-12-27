@@ -1535,3 +1535,17 @@ http协议版本。
 | ------------------  |---- |-- | ----------- |
 | publicKeyHash       | string | 是 |字符串类型的证书PIN码。 |
 | hashAlgorithm        | 'SHA-256' |  是  |加密算法，当前仅支持该算法。 |
+
+## HttpProxy
+
+type HttpProxy = connection.HttpProxy
+
+网络代理配置信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| connection.HttpProxy | 网络代理配置信息。     |
