@@ -1033,6 +1033,18 @@ Allows an application to control the microphone, for example, persisting the mut
 
 **Valid since**: 12
 
+### ohos.permission.CAPTURE_PLAYBACK
+
+Allows a system service to capture internal audio without using the AVScreenCapture framework.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.START_DLP_CRED
 
 Allows a system application or system service to start the DLP credential management application.

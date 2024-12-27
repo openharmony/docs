@@ -1033,6 +1033,18 @@
 
 **起始版本**：12
 
+### ohos.permission.CAPTURE_PLAYBACK
+
+允许系统服务不通过录屏框架，直接进行音频内录。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.START_DLP_CRED
 
 允许系统应用或者系统服务拉起DLP凭据管理应用。
