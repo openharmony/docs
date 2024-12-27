@@ -590,7 +590,6 @@ hdc -s IP:8710 [command] // 其中IP为服务端IP，8710为第一步服务端�
    > **说明：**
    >
    > 使用方法中，`hdc file send -b com.example.myapplication a.txt data/storage/el2/base/b.txt`指定了-b参数，将传输本地当前目录下的文件a.txt到名为com.example.myapplication可调试应用进程的应用数据相对路径data/storage/el2/base/下，并重命名为b.txt。
-   > 
 
 2. 从远端设备发送文件至本地，命令格式如下：
 
