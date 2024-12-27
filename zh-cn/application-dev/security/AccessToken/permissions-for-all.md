@@ -413,5 +413,17 @@
 
 **起始版本**：14
 
+<!--Del-->
+### ohos.permission.PRELOAD_FILE
 
+允许应用预加载文件以提升文件打开速度。
+
+仅当应用为文档编辑类应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：15
+<!--DelEnd-->
 
