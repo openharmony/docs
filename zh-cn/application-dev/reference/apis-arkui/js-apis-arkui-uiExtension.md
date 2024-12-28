@@ -220,7 +220,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 ### on('rectChange')<sup>14+</sup>
 
-on(type: 'rectChange', reasons: number, callback: Callback<RectChangeOptions>): void
+on(type: 'rectChange', reasons: number, callback: Callback&lt;RectChangeOptions&gt;): void
 
 注册组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的监听，目前仅支持在PC设备上使用。
 
@@ -265,7 +265,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 ### off('rectChange')<sup>14+</sup>
 
-off(type: 'rectChange', callback?: Callback<RectChangeOptions>): void
+off(type: 'rectChange', callback?: Callback&lt;RectChangeOptions&gt;): void
 
 注销组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的监听，目前仅支持在PC设备上使用。
 
