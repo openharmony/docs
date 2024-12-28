@@ -24,7 +24,7 @@
 > - 仅系统应用支持构建ServiceExtensionAbility和DataShareExtensionAbility。
 > - 执行`hdc shell`命令，进入设备的shell命令行。在shell命令行中，执行`ps -ef`命令，可以查看所有正在运行的进程信息。
 
-在上述模型基础上，对于系统应用可以通过申请多进程权限（如下图所示），为指定HAP配置一个自定义进程名，该HAP中的UIAbility、DataShareExtensionAbility、ServiceExtensionAbility就会运行在自定义进程中。不同的HAP可以通过配置不同的进程名运行在不同进程中。
+在上述模型基础上，对于系统应用可以通过申请多进程权限（如下图所示），为指定HAP配置一个自定义进程名，该HAP中的UIAbility、DataShareExtensionAbility、ServiceExtensionAbility就会运行在自定义进程中<!--Del-->，具体申请方式请参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)<!--DelEnd-->。不同的HAP可以通过配置[module.json5](../quick-start/module-configuration-file.md#配置文件标签)中的process属性，使HAP运行在不同进程中。
 
 **图2** 多进程示意图  
 ![multi-process](figures/multi-process.png)
