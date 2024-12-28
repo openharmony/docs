@@ -263,25 +263,6 @@ onChange(callback: Optional\<OnTextPickerChangeCallback>)
 | -------- | -------------------------- | ---- | ------------------------------------------ |
 | callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnTextPickerChangeCallback](#ontextpickerchangecallback16)> | 是   | 滑动选中TextPicker文本内容后，触发的回调。 |
 
-## OnTextPickerChangeCallback<sup>16+</sup>
-
-type OnTextPickerChangeCallback = (value: string | string[], index: number | number[]) => void
-
-滑动选中TextPicker文本内容后，触发该回调。
-
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                       | 必填 | 说明                                              |
-| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| value  | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
-| index  | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
-
 ### onScrollStop<sup>14+</sup>
 
 onScrollStop(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&nbsp;number&nbsp;\|&nbsp;number[])&nbsp;=&gt;&nbsp;void)
@@ -343,6 +324,25 @@ onCancel(callback: () => void)
 | minFontSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 文本最小显示字号，与maxFontSize配合使用，当设置minFontSize与maxFontSize时，font中的size设置不生效，默认最大行数为1，默认自适应高度方式为MIN_FONT_SIZE_FIRST。                     |
 | maxFontSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 文本最大显示字号。                     |
 |  overflow   |   [TextOverflow](ts-appendix-enums.md#textoverflow) | 否    | 文本截断方式，设置为MARQUEE时不生效。                     |
+
+## OnTextPickerChangeCallback<sup>16+</sup>
+
+type OnTextPickerChangeCallback = (value: string | string[], index: number | number[]) => void
+
+滑动选中TextPicker文本内容后，触发该回调。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                              |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| value  | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
+| index  | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
 
 ## 示例
 
