@@ -19,6 +19,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 | warn(domain: number, tag: string, format: string, ...args: any[]) | 输出WARN级别日志。表示存在警告。 |
 | error(domain: number, tag: string, format: string, ...args: any[]) | 输出ERROR级别日志。表示存在错误。 |
 | fatal(domain: number, tag: string, format: string, ...args: any[]) | 输出FATAL级别日志。表示出现致命错误、不可恢复错误。 |
+| setMinLogLevel(level: LogLevel) | 设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别，[全局日志级别](hilog.md#查看和设置日志级别)默认为Info。|
 
 ### 参数解析
 
@@ -94,8 +95,12 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
            .height('5%')
            // 跳转按钮绑定onClick事件，点击时打印日志
            .onClick(() => {
-             hilog.isLoggable(0xFF00, "testTag", hilog.LogLevel.INFO);    
+             hilog.isLoggable(0xFF00, "testTag", hilog.LogLevel.INFO);
              hilog.info(0xFF00, "testTag", "%{public}s World %{public}d", "hello", 3);
+             // 设置应用日志最低打印级别，设置完成后，低于Warn级别的日志将无法打印
+             hilog.setMinLogLevel(hilog.LogLevel.WARN);
+             hilog.info(0x0000, 'testTag', 'this is an info level log');
+             hilog.error(0x0000, 'testTag', 'this is an error level log');
            })
          }
          .width('100%')
@@ -108,9 +113,8 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
    以输出一条INFO级别的信息为例，表示输出一条普通信息，格式字符串为：
 
    ```txt
-   ”%{public}s World %{public}d”
+   '%{public}s World %{public}d'
    ```
-
    其中变参"%{public}s"为公共的字符串，%{public}d为公共的整型数。
 
 4. 在真机上运行该工程，单击应用/服务界面上的“Next”按钮。
@@ -118,7 +122,11 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 5. 在DevEco Studio的底部，切换到“Log”窗口，设置日志的过滤条件。
    选择当前的设备及进程，日志级别选择Verbose，搜索内容设置为“testTag”。此时窗口仅显示符合条件的日志。
 
-   打印日志结果为“hello World 3”。
+   打印日志结果为:
+   ```txt
+   01-02 08:18:24.947   30988-30988   A0ff00/testTag                  com.example.hilogemo  I     hello World 3
+   01-02 08:18:24.947   30988-30988   A00000/testTag                  com.example.hilogemo  E     this is an error level log
+   ```
 
 <!--RP1-->
 <!--RP1End-->
