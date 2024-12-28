@@ -456,7 +456,7 @@ pageFlipMode(value: PageFlipMode)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PageFlipMode](ts-appendix-enums.md#PageFlipMode) | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
+| value  | [PageFlipMode](ts-appendix-enums.md#pageflipmode14) | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
 
 ## IndicatorStyle<sup>(deprecated)</sup>对象说明
 
