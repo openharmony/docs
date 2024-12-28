@@ -18,6 +18,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [oh_preferences.h](oh__preferences_8h.md) | 提供访问Preferences对象的接口与数据结构。 | 
+| [oh_preferences_err_code.h](oh__preferences__err__code_8h.md) | 声明首选项模块统一使用的错误码信息。  |
 | [oh_preferences_option.h](oh__preferences__option_8h.md) | 提供访问Preferences配置选项（PreferencesOption）的接口与数据结构。 | 
 | [oh_preferences_value.h](oh__preferences__value_8h.md) | 提供访问Preferences值（PreferencesValue）对象的接口、枚举类型与数据结构。 | 
 
