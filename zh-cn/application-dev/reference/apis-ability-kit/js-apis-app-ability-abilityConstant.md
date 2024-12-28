@@ -269,3 +269,26 @@ class MyAbility extends UIAbility {
   }
 }
 ```
+
+## CollaborateResult<sup>16+</sup>
+
+协同状态枚举值，用于表示多设备场景下，调用方应用拉起协同方应用时，协同方应用是否接受协同。配合UIAbility的[onCollaborate(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncollaborate)方法进行设置。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称     | 值   | 说明       |
+| -------- | ---- | ---------- |
+| ACCEPT   | 0    | 接受协同。 |
+| REJECT   | 1    | 拒绝协同。 |
+
+**示例：**
+
+```ts
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
+
+class MyAbility extends UIAbility {
+  onCollaborate(wantParam: Record<string, Object>) {
+    return AbilityConstant.CollaborateResult.ACCEPT;
+  }
+}
+```
