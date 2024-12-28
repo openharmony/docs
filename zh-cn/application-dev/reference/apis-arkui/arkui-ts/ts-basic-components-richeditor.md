@@ -1705,7 +1705,7 @@ RichEditor span信息。
 | ----------- | ---------- | ---- | ------------- |
 | onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | 否    | 自定义选择菜单弹出时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onDisappear | Callback\<void\>  | 否    | 自定义选择菜单关闭时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13枚举说明) | 否 | 自定义选择菜单类型。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13枚举说明) | 否 | 自定义选择菜单类型。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br/>默认值：MenuType.SELECTION_MENU。 |
 
 ## PasteEvent<sup>11+</sup>
 
