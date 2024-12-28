@@ -2033,6 +2033,7 @@
           - [udmf_meta.h](reference/apis-arkdata/udmf__meta_8h.md)
           - [uds.h](reference/apis-arkdata/uds_8h.md)
           - [utd.h](reference/apis-arkdata/utd_8h.md)
+          - [oh_preferences_err_code.h](reference/apis-arkdata/oh__preferences__err__code_8h.md)
           - [oh_preferences.h](reference/apis-arkdata/oh__preferences_8h.md)
           - [oh_preferences_option.h](reference/apis-arkdata/oh__preferences__option_8h.md)
           - [oh_preferences_value.h](reference/apis-arkdata/oh__preferences__value_8h.md)
