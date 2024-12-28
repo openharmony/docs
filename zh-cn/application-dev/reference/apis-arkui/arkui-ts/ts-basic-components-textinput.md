@@ -1016,13 +1016,13 @@ enableHapticFeedback(isEnabled: boolean)
 > ]
 > ```
 
-### cancelButton<sup>14+</sup>
+### cancelButton<sup>16+</sup>
 
 cancelButton(value: CancelButtonSymbolOptions)
 
 设置右侧清除按钮样式。不支持内联模式。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
