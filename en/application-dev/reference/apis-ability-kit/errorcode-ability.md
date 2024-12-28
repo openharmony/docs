@@ -576,11 +576,11 @@ Ensure that the specified ability name exists in the current application and the
 
 **Error Message**
 
-Restart too frequently. Try again at least 10s later.
+Restart too frequently. Try again at least 3s later.
 
 **Description**
 
-An API is called to restart the application and start a specified ability. This error code is reported when the API is called again within 10 seconds.
+An API is called to restart the application and start a specified ability. This error code is reported when the API is called again within 3 seconds.
 
 **Possible Causes**
 
@@ -588,7 +588,7 @@ The API is frequently called.
 
 **Solution**
 
-Call the API again after 10 seconds.
+Call the API again after 3 seconds.
 
 ## 16000065 API Can Be Called for a Foreground Ability
 

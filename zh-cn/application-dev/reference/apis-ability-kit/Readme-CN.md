@@ -130,6 +130,7 @@
       - [ErrorObserver](js-apis-inner-application-errorObserver.md)
       - [EventHub](js-apis-inner-application-eventHub.md)
       - [ExtensionContext](js-apis-inner-application-extensionContext.md)
+      - [GlobalObserver](js-apis-inner-application-GlobalObserver.md)
       - [LoopObserver](js-apis-inner-application-loopObserver.md)
       - [ProcessInformation](js-apis-inner-application-processInformation.md)
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)

@@ -2885,6 +2885,18 @@
 
 **起始版本**：13
 
+### ohos.permission.MANAGE_SHUTDOWN_FINDNETWORK
+
+允许应用和系统服务管理设备关机查找功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
 ### ohos.permission.MANAGE_RGM
 
 允许系统服务或系统应用管理RGM。
@@ -3581,6 +3593,18 @@
 
 **起始版本**：12
 
+### ohos.permission.INPUT_DEVICE_CONTROLLER
+
+允许应用查询和设置输入设备相关状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.ACTIVATE_DEVICE_PSI
 
 允许系统应用或系统服务上报设备激活状态。
@@ -4079,6 +4103,18 @@
 
 **起始版本**：14
 
+### ohos.permission.ACCESS_CONFIDENTIAL_COMPUTING_ZONE
+
+允许应用访问机密计算空间。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
 
 允许应用获取恢复密钥的简要信息。
@@ -4240,6 +4276,56 @@
 **ACL使能**：true
 
 **起始版本**：16
+
+### ohos.permission.STORAGE_MANAGER_CRYPT
+
+允许系统应用和系统服务调用接口完成加解密操作。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.WATCH_READ_EMERGENCY_INFO
+
+允许应用读取SOS个人紧急信息数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.WATCH_WRITE_EMERGENCY_INFO
+
+允许应用写入SOS个人紧急信息数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.WATCH_START_SOS_SERVICE
+
+允许应用启用或访问SOS服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+**变更信息**：API 12-14仅对系统服务开放；从API 15开始对系统应用开放。
 
 ## system_grant，不允许ACL跨级申请
 
@@ -4492,6 +4578,18 @@
 允许应用查询和配置用户身份认证策略、校验用户身份认证结果。
 
 **权限级别** system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：false
+
+**起始版本**：16
+
+### ohos.permission.SET_LAUNCH_REASON_MESSAGE
+
+允许系统应用拉起其他应用时设置拉起原因。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 

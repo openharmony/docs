@@ -526,6 +526,8 @@ appendStyledString(other: StyledString): void
 
 constructor(value?: TextStyleInterface)
 
+文本字体样式的构造函数。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -559,6 +561,8 @@ constructor(value?: TextStyleInterface)
 ### constructor
 
 constructor(value?: GestureStyleInterface)
+
+事件手势的构造函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -603,6 +607,8 @@ constructor(value?: GestureStyleInterface)
 
 constructor(value: DecorationStyleInterface)
 
+文本装饰线样式的构造函数。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -645,6 +651,8 @@ constructor(value: DecorationStyleInterface)
 
 constructor(value: LengthMetrics)
 
+文本基线偏移的构造函数。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -674,6 +682,8 @@ constructor(value: LengthMetrics)
 ### constructor
 
 constructor(value: LengthMetrics)
+
+文本字符间距的构造函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -705,6 +715,8 @@ constructor(value: LengthMetrics)
 
 constructor(lineHeight: LengthMetrics)
 
+文本行高的构造函数。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -734,6 +746,8 @@ constructor(lineHeight: LengthMetrics)
 ### constructor
 
 constructor(value: ShadowOptions | Array\<ShadowOptions>)
+
+文本阴影对象的构造函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -768,6 +782,8 @@ constructor(value: ShadowOptions | Array\<ShadowOptions>)
 ### constructor
 
 constructor(value: ImageAttachmentInterface)
+
+图片对象的构造函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -929,6 +945,8 @@ invalidate(): void
 
 constructor(value?: ParagraphStyleInterface)
 
+文本段落样式的构造函数。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1006,6 +1024,8 @@ constructor(value?: ParagraphStyleInterface)
 
 constructor(textBackgroundStyle: TextBackgroundStyle)
 
+文本背景颜色的构造函数。
+
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1037,6 +1057,8 @@ constructor(textBackgroundStyle: TextBackgroundStyle)
 ### constructor<sup>14+</sup>
 
 constructor(url: string)
+
+超链接对象的构造函数。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 

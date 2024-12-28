@@ -34,6 +34,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 | ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY | 19030005 | 无法获取证书的颁发者。        |
 | ERR_KEYUSAGE_NO_CERTSIGN              | 19030006 | 证书的秘钥用途不含证书签名。   |
 | ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE     | 19030007 |  证书的秘钥用途不含数字签名。  |
+| ERR_MAYBE_WRONG_PASSWORD<sup>16+</sup>              | 19030008 | 私钥密码错误。                |
 
 ## DataBlob
 buffer数组。
@@ -411,10 +412,90 @@ buffer数组的列表。
 | 名称         | 类型                                              | 必填 | 说明                                   |
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | password     | string                                            | 是   | 表示P12文件的密码。             |
-| needsPrivateKey  | boolean                                       | 否   | 表示是否获取私钥，默认为true。                       |
-| privateKeyFormat |  [EncodingBaseFormat](#encodingbaseformat16)                      | 否   | 表示获取私钥的格式，默认为PEM。 |
-| needsCert    | boolean                                           | 否   | 表示是否获取证书，默认为true。 |
-| needsOtherCerts  | boolean                                       | 否   | 表示是否获取其他证书合集，默认为false。 |
+| needsPrivateKey  | boolean                                       | 否   | 表示是否获取私钥。默认为true。                       |
+| privateKeyFormat |  [EncodingBaseFormat](#encodingbaseformat16)                      | 否   | 表示获取私钥的格式。默认为PEM。 |
+| needsCert    | boolean                                           | 否   | 表示是否获取证书。默认为true。 |
+| needsOtherCerts  | boolean                                       | 否   | 表示是否获取其他证书合集。默认为false。 |
+
+## CmsContentType<sup>16+</sup>
+
+表示Cms内容类型的枚举。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称                                  | 值   | 说明                          |
+| --------------------------------------| -------- | -----------------------------|
+| SIGNED_DATA | 0 | 签名数据。 |
+
+## CmsContentDataFormat<sup>16+</sup>
+
+表示Cms内容数据格式的枚举。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称   | 值 | 说明                     |
+| ------ | --- | ------------------------ |
+| BINARY | 0   | 表示二进制数据格式。     |
+| TEXT   | 1   | 表示文本数据格式。       |
+
+## CmsFormat<sup>16+</sup>
+
+表示Cms签名格式的枚举。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称 | 值 | 说明               |
+| ---- | --- | ------------------ |
+| PEM  | 0   | 表示PEM格式。      |
+| DER  | 1   | 表示DER格式。      |
+
+## PrivateKeyInfo<sup>16+</sup>
+
+表示私钥信息。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称         | 类型                                              | 必填 | 说明                                   |
+| ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
+| key          | string \| Uint8Array                     | 是   | 未加密或加密的私钥，支持PEM或DER格式。 |
+| password     | string                                  | 否   | 私钥的密码，如果私钥是加密的。         |
+
+## CmsSignerConfig<sup>16+</sup>
+
+表示Cms签名者的配置选项。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称         | 类型                                                  | 必填 | 说明                                   |
+| ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
+| mdName                | string              | 是   | 消息摘要算法的名称，例如 "SHA384", 当前支持"SHA1"、"SHA256"、"SHA384"、"SHA512"。                 |
+| addCert               | boolean            | 否   | 是否添加证书。默认为true。                             |
+| addAttr               | boolean            | 否   | 是否添加签名属性。默认为true。           |
+| addSmimeCapAttr       | boolean            | 否   | 是否将SMIME能力添加到Cms对象。默认为true。            |
+
+## CmsGeneratorOptions<sup>16+</sup>
+
+表示生成Cms签名结果的配置选项。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称                  | 类型                          | 必填 | 说明                                                   |
+| --------------------- | ----------------------------- | ---- | ------------------------------------------------------ |
+| contentDataFormat     | [CmsContentDataFormat](#cmscontentdataformat16)               | 否   | 内容数据的格式。默认为CmsContentDataFormat.BINARY。   |
+| outFormat             | [CmsFormat](#cmsformat16)                          | 否   | Cms最终数据的输出格式。默认为DER。         |
+| isDetached     | boolean                            | 否   | Cms最终数据是否不包含原始数据。默认为false。         |
 
 ## cert.createX509Cert
 
@@ -11063,5 +11144,555 @@ async function getEncoded() {
     let e: BusinessError = error as BusinessError;
     console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
+}
+```
+
+## cert.createCmsGenerator<sup>16+</sup>
+
+createCmsGenerator(contentType: CmsContentType): CmsGenerator
+
+表示创建CmsGenerator对象。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                 |
+| -------- | ----------------------------- | ---- | -------------------- |
+| contentType | [CmsContentType](#cmscontenttype16) | 是 | 指定CMS内容类型。|
+
+**返回值：**
+
+| 类型                            | 说明             |
+| ------------------------------- | ---------------- |
+| [CmsGenerator](#cmsgenerator16) | CmsGenerator对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIICXjCCAcegAwIBAgIGAXKnJjrAMA0GCSqGSIb3DQEBCwUAMEgxCzAJBgNVBAYT\n' +
+  'AkNOMQwwCgYDVQQIDANzaGExDTALBgNVBAcMBHhpYW4xDTALBgNVBAoMBHRlc3Qx\n' +
+  'DTALBgNVBAMMBHRlc3QwHhcNMjQxMTIyMDkwNTIyWhcNMzQxMTIwMDkwNTIyWjBI\n' +
+  'MQswCQYDVQQGEwJDTjEMMAoGA1UECAwDc2hhMQ0wCwYDVQQHDAR4aWFuMQ0wCwYD\n' +
+  'VQQKDAR0ZXN0MQ0wCwYDVQQDDAR0ZXN0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\n' +
+  'iQKBgQC6nCZTM16Rk2c4P/hwfVm++jqe6GCA/PXXGe4YL218q1dTKMHBGEw8kXi0\n' +
+  'XLDcyyC2yUn8ywN2QSyly6ke9EE6PGfZywStLp4g2PTTWB04sS3aXT2y+fToiTXQ\n' +
+  '3AxfFYRpB+EgSdSCkJs6jKXVwbzu54kEtQTfs8UdBQ9nVKaJLwIDAQABo1MwUTAd\n' +
+  'BgNVHQ4EFgQU6QXnt1smb2HRSO/2zuRQnz/SDxowHwYDVR0jBBgwFoAU6QXnt1sm\n' +
+  'b2HRSO/2zuRQnz/SDxowDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOB\n' +
+  'gQBPR/+5xzFG1XlTdgwWVvqVxvhGUkbMTGW0IviJ+jbKsi57vnVsOtFzEA6y+bYx\n' +
+  'xG/kEOcwLtzeVHOQA+ZU5SVcc+qc0dfFiWjL2PSAG4bpqSTjujpuUk+g8ugixbG1\n' +
+  'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
+  '-----END CERTIFICATE-----\n';
+
+function testcreateCmsGenerator() {
+  let certEncodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+  cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
+    if (error) {
+      console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+    } else {
+        try {
+          let cmsContentType = cert.CmsContentType.SIGNED_DATA;
+          let cmsGenerator = cert.createCmsGenerator(cmsContentType);
+          console.info('testcreateCmsGenerator createCmsGenerator success.');
+        } catch (err) {
+          let e: BusinessError = err as BusinessError;
+          console.error('createCmsGenerator failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+        }
+    }
+  });
+}
+```
+
+## CmsGenerator<sup>16+</sup>
+
+CmsGenerator对象用于生成CMS（Cryptographic Message Syntax）格式的消息。
+
+> **说明：**
+>
+> PKCS#7是用于存储签名或加密数据的标准语法。注意CMS是PKCS#7的扩展，PKCS#7支持的数据类型包括数据、签名数据、信封数据、
+> 签名和信封数据、摘要数据、加密数据。常用于保护数据的完整性和机密性。
+
+### addSigner<sup>16+</sup>
+
+addSigner(cert: X509Cert, keyInfo: PrivateKeyInfo, config: CmsSignerConfig): void;
+
+用于添加签名者信息。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名       | 类型   | 必填 | 说明           |
+| ------------ | ------ | ---- | -------------- |
+| cert |  [X509Cert](#x509cert) | 是 | 指定X509证书。|
+| keyInfo | [PrivateKeyInfo](#privatekeyinfo16) | 是 | 指定私钥信息。|
+| config | [CmsSignerConfig](#cmssignerconfig16) | 是 | 指定签名者选项。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+| 19030008 | maybe wrong password. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIICXjCCAcegAwIBAgIGAXKnJjrAMA0GCSqGSIb3DQEBCwUAMEgxCzAJBgNVBAYT\n' +
+  'AkNOMQwwCgYDVQQIDANzaGExDTALBgNVBAcMBHhpYW4xDTALBgNVBAoMBHRlc3Qx\n' +
+  'DTALBgNVBAMMBHRlc3QwHhcNMjQxMTIyMDkwNTIyWhcNMzQxMTIwMDkwNTIyWjBI\n' +
+  'MQswCQYDVQQGEwJDTjEMMAoGA1UECAwDc2hhMQ0wCwYDVQQHDAR4aWFuMQ0wCwYD\n' +
+  'VQQKDAR0ZXN0MQ0wCwYDVQQDDAR0ZXN0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\n' +
+  'iQKBgQC6nCZTM16Rk2c4P/hwfVm++jqe6GCA/PXXGe4YL218q1dTKMHBGEw8kXi0\n' +
+  'XLDcyyC2yUn8ywN2QSyly6ke9EE6PGfZywStLp4g2PTTWB04sS3aXT2y+fToiTXQ\n' +
+  '3AxfFYRpB+EgSdSCkJs6jKXVwbzu54kEtQTfs8UdBQ9nVKaJLwIDAQABo1MwUTAd\n' +
+  'BgNVHQ4EFgQU6QXnt1smb2HRSO/2zuRQnz/SDxowHwYDVR0jBBgwFoAU6QXnt1sm\n' +
+  'b2HRSO/2zuRQnz/SDxowDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOB\n' +
+  'gQBPR/+5xzFG1XlTdgwWVvqVxvhGUkbMTGW0IviJ+jbKsi57vnVsOtFzEA6y+bYx\n' +
+  'xG/kEOcwLtzeVHOQA+ZU5SVcc+qc0dfFiWjL2PSAG4bpqSTjujpuUk+g8ugixbG1\n' +
+  'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let rsaStr1024: string  =
+  '-----BEGIN RSA PRIVATE KEY-----\n' +
+    'Proc-Type: 4,ENCRYPTED\n' +
+    'DEK-Info: DES-EDE3-CBC,DB0AC6E3BEE16420\n\n' +
+    '1N5xykdckthZnswMV7blxXm2RCqe/OByBfMwFI7JoXR8STtMiStd4xA3W405k1Ma\n' +
+    'ExpsHgWwZaS23x+sQ1sL1dsqIPMrw1Vr+KrL20vQcCVjXPpGKauafVbtcWQ1r2PZ\n' +
+    'QJ4KWP6FhUp+sGt2ItODW3dK+1GdqL22ZtANrgFzS42Wh8FSn0UMCf6RG62DK62J\n' +
+    'z2jtf4XaorrGSjdTeY+fyyGfSyKidIMMBe+IXwlhCgAe7aHSaqXtMsv+BibB7PJ3\n' +
+    'XmEp1D/0ptL3r46txyYcuy8jSNCkW8er93KKnlRN6KbuYZPvPNncWkzZBzV17t5d\n' +
+    'QgtvVh32AKgqk5jm8YVnspOFiPrbrK9UN3IW15juFkfnhriM3IrKap4/kW+tfawZ\n' +
+    'DmHkSyl8xqFK413Rv0UvYBTjOcGbs2BSJYEvp8CIjtA17SvLmNw70K2nXWuQYutY\n' +
+    '+HyucPtHfEqUPQRzWTAMMntTru77u7dxo2WMMMxOtMJO5h7MAnZH9bAFiuO3ewcY\n' +
+    'eEePg10d8Owcfh9G6kc0HIGT9MMLMi0mTXhpoQTuWPYuSx6uUZL1fsp1x2fuM0qn\n' +
+    'bdf3+UnATYUu4tgvBHrMV7405Y6Y3PnqOFxVMeAHeOTo6UThtJ10mfeCPXGcUaHo\n' +
+    'P5enw7h4145cha3+S4hNrUwj3skrtavld7tY74p4DvgZSlCMF3JAm3DhpnEMVcYP\n' +
+    'Y6TkSevvxOpBvEHE41Y4VBCBwd9clcixI6cSBJKPUU4A/sc/kkNdGFcbzLQCg/zR\n' +
+    '1m7YmBROb2qy4w3lv/uwVnPGLg/YV465irRaN3hgz7/1lm8STKQhmQ==\n' +
+    '-----END RSA PRIVATE KEY-----\n';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+function testAddSigner() {
+  let certEncodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+  cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
+    if (error) {
+      console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+    } else {
+        try {
+          let cmsContentType = cert.CmsContentType.SIGNED_DATA;
+          let cmsGenerator = cert.createCmsGenerator(cmsContentType);
+          console.info('testAddSigner createCmsGenerator success.');
+          let privateKeyInfo: cert.PrivateKeyInfo = {
+            key: rsaStr1024,
+            password: '123456'
+          };
+          // addCert设置为true时，第二次addSigner增加相同的证书，会报错
+          let config: cert.CmsSignerConfig = {
+            mdName:'SHA256',
+            addCert:false,
+            addAttr:false,
+            addSmimeCapAttr:false
+          }
+          cmsGenerator.addSigner(x509Cert, privateKeyInfo, config);
+          console.info('testAddSigner addSigner success.');
+        } catch (err) {
+          let e: BusinessError = err as BusinessError;
+          console.error('testAddSigner failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+        }
+    }
+  });
+}
+```
+
+### addCert<sup>16+</sup>
+
+addCert(cert: X509Cert): void
+
+用于添加证书，例如签名证书的颁发者证书。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名 | 类型      | 必填 | 说明                     |
+| ------ | --------- | ---- | ------------------------ |
+| cert   | [X509Cert](#x509cert)  | 是   | 要添加的X509证书。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIICXjCCAcegAwIBAgIGAXKnJjrAMA0GCSqGSIb3DQEBCwUAMEgxCzAJBgNVBAYT\n' +
+  'AkNOMQwwCgYDVQQIDANzaGExDTALBgNVBAcMBHhpYW4xDTALBgNVBAoMBHRlc3Qx\n' +
+  'DTALBgNVBAMMBHRlc3QwHhcNMjQxMTIyMDkwNTIyWhcNMzQxMTIwMDkwNTIyWjBI\n' +
+  'MQswCQYDVQQGEwJDTjEMMAoGA1UECAwDc2hhMQ0wCwYDVQQHDAR4aWFuMQ0wCwYD\n' +
+  'VQQKDAR0ZXN0MQ0wCwYDVQQDDAR0ZXN0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\n' +
+  'iQKBgQC6nCZTM16Rk2c4P/hwfVm++jqe6GCA/PXXGe4YL218q1dTKMHBGEw8kXi0\n' +
+  'XLDcyyC2yUn8ywN2QSyly6ke9EE6PGfZywStLp4g2PTTWB04sS3aXT2y+fToiTXQ\n' +
+  '3AxfFYRpB+EgSdSCkJs6jKXVwbzu54kEtQTfs8UdBQ9nVKaJLwIDAQABo1MwUTAd\n' +
+  'BgNVHQ4EFgQU6QXnt1smb2HRSO/2zuRQnz/SDxowHwYDVR0jBBgwFoAU6QXnt1sm\n' +
+  'b2HRSO/2zuRQnz/SDxowDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOB\n' +
+  'gQBPR/+5xzFG1XlTdgwWVvqVxvhGUkbMTGW0IviJ+jbKsi57vnVsOtFzEA6y+bYx\n' +
+  'xG/kEOcwLtzeVHOQA+ZU5SVcc+qc0dfFiWjL2PSAG4bpqSTjujpuUk+g8ugixbG1\n' +
+  'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
+  '-----END CERTIFICATE-----\n';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+function testAddCert() {
+  let certEncodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+  cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
+    if (error) {
+      console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+    } else {
+        try {
+          let cmsContentType = cert.CmsContentType.SIGNED_DATA;
+          let cmsGenerator = cert.createCmsGenerator(cmsContentType);
+          console.info('testAddCert createCmsGenerator success.');
+          // 第二次addCert增加相同的证书，会报错
+          cmsGenerator.addCert(x509Cert);
+          console.info('testAddCert addCert success.');
+        } catch (err) {
+          let e: BusinessError = err as BusinessError;
+          console.error('testAddCert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+        }
+    }
+  });
+}
+```
+
+### doFinal<sup>16+</sup>
+
+doFinal(data: Uint8Array, options?: CmsGeneratorOptions): Promise<Uint8Array | string>
+
+用于获取Cms最终数据，例如Cms签名数据。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名      | 类型                | 必填 | 说明                                       |
+| ----------- | ------------------- | ---- | ------------------------------------------ |
+| data        | Uint8Array         | 是   | Cms操作的内容。                           |
+| options     | [CmsGeneratorOptions](#cmsgeneratoroptions16)  | 否   | Cms操作的配置选项。                       |
+
+**返回值：**
+
+| 类型                            | 说明             |
+| ------------------------------- | ---------------- |
+| Promise<Uint8Array \| string> | 返回Cms最终数据的Promise。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIICXjCCAcegAwIBAgIGAXKnJjrAMA0GCSqGSIb3DQEBCwUAMEgxCzAJBgNVBAYT\n' +
+  'AkNOMQwwCgYDVQQIDANzaGExDTALBgNVBAcMBHhpYW4xDTALBgNVBAoMBHRlc3Qx\n' +
+  'DTALBgNVBAMMBHRlc3QwHhcNMjQxMTIyMDkwNTIyWhcNMzQxMTIwMDkwNTIyWjBI\n' +
+  'MQswCQYDVQQGEwJDTjEMMAoGA1UECAwDc2hhMQ0wCwYDVQQHDAR4aWFuMQ0wCwYD\n' +
+  'VQQKDAR0ZXN0MQ0wCwYDVQQDDAR0ZXN0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\n' +
+  'iQKBgQC6nCZTM16Rk2c4P/hwfVm++jqe6GCA/PXXGe4YL218q1dTKMHBGEw8kXi0\n' +
+  'XLDcyyC2yUn8ywN2QSyly6ke9EE6PGfZywStLp4g2PTTWB04sS3aXT2y+fToiTXQ\n' +
+  '3AxfFYRpB+EgSdSCkJs6jKXVwbzu54kEtQTfs8UdBQ9nVKaJLwIDAQABo1MwUTAd\n' +
+  'BgNVHQ4EFgQU6QXnt1smb2HRSO/2zuRQnz/SDxowHwYDVR0jBBgwFoAU6QXnt1sm\n' +
+  'b2HRSO/2zuRQnz/SDxowDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOB\n' +
+  'gQBPR/+5xzFG1XlTdgwWVvqVxvhGUkbMTGW0IviJ+jbKsi57vnVsOtFzEA6y+bYx\n' +
+  'xG/kEOcwLtzeVHOQA+ZU5SVcc+qc0dfFiWjL2PSAG4bpqSTjujpuUk+g8ugixbG1\n' +
+  'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let rsaStr1024: string  =
+  '-----BEGIN RSA PRIVATE KEY-----\n' +
+    'Proc-Type: 4,ENCRYPTED\n' +
+    'DEK-Info: DES-EDE3-CBC,DB0AC6E3BEE16420\n\n' +
+    '1N5xykdckthZnswMV7blxXm2RCqe/OByBfMwFI7JoXR8STtMiStd4xA3W405k1Ma\n' +
+    'ExpsHgWwZaS23x+sQ1sL1dsqIPMrw1Vr+KrL20vQcCVjXPpGKauafVbtcWQ1r2PZ\n' +
+    'QJ4KWP6FhUp+sGt2ItODW3dK+1GdqL22ZtANrgFzS42Wh8FSn0UMCf6RG62DK62J\n' +
+    'z2jtf4XaorrGSjdTeY+fyyGfSyKidIMMBe+IXwlhCgAe7aHSaqXtMsv+BibB7PJ3\n' +
+    'XmEp1D/0ptL3r46txyYcuy8jSNCkW8er93KKnlRN6KbuYZPvPNncWkzZBzV17t5d\n' +
+    'QgtvVh32AKgqk5jm8YVnspOFiPrbrK9UN3IW15juFkfnhriM3IrKap4/kW+tfawZ\n' +
+    'DmHkSyl8xqFK413Rv0UvYBTjOcGbs2BSJYEvp8CIjtA17SvLmNw70K2nXWuQYutY\n' +
+    '+HyucPtHfEqUPQRzWTAMMntTru77u7dxo2WMMMxOtMJO5h7MAnZH9bAFiuO3ewcY\n' +
+    'eEePg10d8Owcfh9G6kc0HIGT9MMLMi0mTXhpoQTuWPYuSx6uUZL1fsp1x2fuM0qn\n' +
+    'bdf3+UnATYUu4tgvBHrMV7405Y6Y3PnqOFxVMeAHeOTo6UThtJ10mfeCPXGcUaHo\n' +
+    'P5enw7h4145cha3+S4hNrUwj3skrtavld7tY74p4DvgZSlCMF3JAm3DhpnEMVcYP\n' +
+    'Y6TkSevvxOpBvEHE41Y4VBCBwd9clcixI6cSBJKPUU4A/sc/kkNdGFcbzLQCg/zR\n' +
+    '1m7YmBROb2qy4w3lv/uwVnPGLg/YV465irRaN3hgz7/1lm8STKQhmQ==\n' +
+    '-----END RSA PRIVATE KEY-----\n';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+async function testDoFinalByPromise() {
+  let certEncodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+  cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
+    if (error) {
+      console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+    } else {
+      try {
+        let cmsContentType = cert.CmsContentType.SIGNED_DATA;
+        let cmsGenerator = cert.createCmsGenerator(cmsContentType);
+        console.info('testDoFinalByPromise createCmsGenerator success.');
+        let privateKeyInfo: cert.PrivateKeyInfo = {
+          key: rsaStr1024,
+          password: '123456'
+        };
+        // addCert设置为true时，第二次addSigner或者addCert增加相同的证书，会报错
+        let config: cert.CmsSignerConfig = {
+          mdName:'SHA256',
+          addCert:false,
+          addAttr:true,
+          addSmimeCapAttr:true
+        }
+        cmsGenerator.addSigner(x509Cert, privateKeyInfo, config);
+        console.info('testDoFinalByPromise addSigner success.');
+        cmsGenerator.addCert(x509Cert);
+        console.info('testDoFinalByPromise addCert success.');
+        let content = new Uint8Array([1,2,3,4]);
+        let optionsFinal: cert.CmsGeneratorOptions = {
+          contentDataFormat : cert.CmsContentDataFormat.BINARY,
+          outFormat : cert.CmsFormat.PEM,
+          isDetached : true
+        };
+        cmsGenerator.doFinal(content, optionsFinal).then(result => {
+          console.log('testDoFinalByPromise doFinal success, resullt = %s', result);
+        }).catch((error: BusinessError) => {
+          console.error('testDoFinalByPromise failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+        });
+      } catch (err) {
+        let e: BusinessError = err as BusinessError;
+        console.error('testDoFinalByPromise failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+      }
+    }
+  });
+}
+```
+
+### doFinalSync<sup>16+</sup>
+
+doFinalSync(data: Uint8Array, options?: CmsGeneratorOptions): Uint8Array | string
+
+用于获取Cms最终数据，例如Cms签名数据（同步方法）。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名      | 类型                | 必填 | 说明                                       |
+| ----------- | ------------------- | ---- | ------------------------------------------ |
+| data        | Uint8Array         | 是   | Cms操作的内容。                           |
+| options     | [CmsGeneratorOptions](#cmsgeneratoroptions16)  | 否   | Cms操作的配置选项。                       |
+
+**返回值：**
+
+| 类型                            | 说明             |
+| ------------------------------- | ---------------- |
+| Uint8Array \| string            | 返回Cms最终数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIICXjCCAcegAwIBAgIGAXKnJjrAMA0GCSqGSIb3DQEBCwUAMEgxCzAJBgNVBAYT\n' +
+  'AkNOMQwwCgYDVQQIDANzaGExDTALBgNVBAcMBHhpYW4xDTALBgNVBAoMBHRlc3Qx\n' +
+  'DTALBgNVBAMMBHRlc3QwHhcNMjQxMTIyMDkwNTIyWhcNMzQxMTIwMDkwNTIyWjBI\n' +
+  'MQswCQYDVQQGEwJDTjEMMAoGA1UECAwDc2hhMQ0wCwYDVQQHDAR4aWFuMQ0wCwYD\n' +
+  'VQQKDAR0ZXN0MQ0wCwYDVQQDDAR0ZXN0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\n' +
+  'iQKBgQC6nCZTM16Rk2c4P/hwfVm++jqe6GCA/PXXGe4YL218q1dTKMHBGEw8kXi0\n' +
+  'XLDcyyC2yUn8ywN2QSyly6ke9EE6PGfZywStLp4g2PTTWB04sS3aXT2y+fToiTXQ\n' +
+  '3AxfFYRpB+EgSdSCkJs6jKXVwbzu54kEtQTfs8UdBQ9nVKaJLwIDAQABo1MwUTAd\n' +
+  'BgNVHQ4EFgQU6QXnt1smb2HRSO/2zuRQnz/SDxowHwYDVR0jBBgwFoAU6QXnt1sm\n' +
+  'b2HRSO/2zuRQnz/SDxowDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOB\n' +
+  'gQBPR/+5xzFG1XlTdgwWVvqVxvhGUkbMTGW0IviJ+jbKsi57vnVsOtFzEA6y+bYx\n' +
+  'xG/kEOcwLtzeVHOQA+ZU5SVcc+qc0dfFiWjL2PSAG4bpqSTjujpuUk+g8ugixbG1\n' +
+  'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let rsaStr1024: string  =
+  '-----BEGIN RSA PRIVATE KEY-----\n' +
+    'Proc-Type: 4,ENCRYPTED\n' +
+    'DEK-Info: DES-EDE3-CBC,DB0AC6E3BEE16420\n\n' +
+    '1N5xykdckthZnswMV7blxXm2RCqe/OByBfMwFI7JoXR8STtMiStd4xA3W405k1Ma\n' +
+    'ExpsHgWwZaS23x+sQ1sL1dsqIPMrw1Vr+KrL20vQcCVjXPpGKauafVbtcWQ1r2PZ\n' +
+    'QJ4KWP6FhUp+sGt2ItODW3dK+1GdqL22ZtANrgFzS42Wh8FSn0UMCf6RG62DK62J\n' +
+    'z2jtf4XaorrGSjdTeY+fyyGfSyKidIMMBe+IXwlhCgAe7aHSaqXtMsv+BibB7PJ3\n' +
+    'XmEp1D/0ptL3r46txyYcuy8jSNCkW8er93KKnlRN6KbuYZPvPNncWkzZBzV17t5d\n' +
+    'QgtvVh32AKgqk5jm8YVnspOFiPrbrK9UN3IW15juFkfnhriM3IrKap4/kW+tfawZ\n' +
+    'DmHkSyl8xqFK413Rv0UvYBTjOcGbs2BSJYEvp8CIjtA17SvLmNw70K2nXWuQYutY\n' +
+    '+HyucPtHfEqUPQRzWTAMMntTru77u7dxo2WMMMxOtMJO5h7MAnZH9bAFiuO3ewcY\n' +
+    'eEePg10d8Owcfh9G6kc0HIGT9MMLMi0mTXhpoQTuWPYuSx6uUZL1fsp1x2fuM0qn\n' +
+    'bdf3+UnATYUu4tgvBHrMV7405Y6Y3PnqOFxVMeAHeOTo6UThtJ10mfeCPXGcUaHo\n' +
+    'P5enw7h4145cha3+S4hNrUwj3skrtavld7tY74p4DvgZSlCMF3JAm3DhpnEMVcYP\n' +
+    'Y6TkSevvxOpBvEHE41Y4VBCBwd9clcixI6cSBJKPUU4A/sc/kkNdGFcbzLQCg/zR\n' +
+    '1m7YmBROb2qy4w3lv/uwVnPGLg/YV465irRaN3hgz7/1lm8STKQhmQ==\n' +
+    '-----END RSA PRIVATE KEY-----\n';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+function testDoFinalSync() {
+  let certEncodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+  cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
+    if (error) {
+      console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+    } else {
+        try {
+          let cmsContentType = cert.CmsContentType.SIGNED_DATA;
+          let cmsGenerator = cert.createCmsGenerator(cmsContentType);
+          console.info('testDoFinalSync createCmsGenerator success.');
+          let privateKeyInfo: cert.PrivateKeyInfo = {
+            key: rsaStr1024,
+            password: '123456'
+          };
+          // addCert设置为true时，第二次addSigner或者addCert增加相同的证书，会报错
+          let config: cert.CmsSignerConfig = {
+            mdName:'SHA256',
+            addCert:false,
+            addAttr:false,
+            addSmimeCapAttr:false
+          }
+          cmsGenerator.addSigner(x509Cert, privateKeyInfo, config);
+          console.info('testDoFinalSync addSigner success.');
+          cmsGenerator.addCert(x509Cert);
+          console.info('testDoFinalSync addCert success.');
+          let content = new Uint8Array([1,2,3,4]);
+          let optionsFinal: cert.CmsGeneratorOptions = {
+            contentDataFormat : cert.CmsContentDataFormat.BINARY,
+            outFormat : cert.CmsFormat.DER,
+            isDetached : false
+          };
+          let output = cmsGenerator.doFinalSync(content, optionsFinal);
+          console.info('testDoFinalSync doFinalSync success, output = %s.',output);
+        } catch (err) {
+          let e: BusinessError = err as BusinessError;
+          console.error('testDoFinalSync failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+        }
+    }
+  });
 }
 ```

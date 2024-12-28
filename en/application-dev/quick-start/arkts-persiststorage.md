@@ -107,14 +107,14 @@ struct Index {
   2. A search for the attribute **aProp** in AppStorage still returns no result.
   3. Create the **aProp** attribute of the number type in AppStorge and initialize it with the value 47.
   4. PersistentStorage writes the **aProp** attribute and its value **47** to the local device. The value of **aProp** in AppStorage and its subsequent changes are persisted.
-  5. In the **\<Index>** component, create the state variable **\@StorageLink('aProp') aProp**, which creates a two-way synchronization with the **aProp** attribute in AppStorage. During the creation, the search in AppStorage for the **aProp** attribute is successful, and therefore, the state variable is initialized with the value **47** found in AppStorage.
+  5. In the **Index** component, create the state variable **\@StorageLink('aProp') aProp**, which creates a two-way synchronization with the **aProp** attribute in AppStorage. During the creation, the search in AppStorage for the **aProp** attribute is successful, and therefore, the state variable is initialized with the value **47** found in AppStorage.
 
   **Figure 1** PersistProp initialization process 
 
 ![en-us_image_0000001553348833](figures/en-us_image_0000001553348833.png)
 
 - After a click event is triggered:
-  1. The state variable **\@StorageLink('aProp') aProp** is updated, triggering the **\<Text>** component to be re-rendered.
+  1. The state variable **\@StorageLink('aProp') aProp** is updated, triggering the **Text** component to be re-rendered.
   2. The two-way synchronization between the \@StorageLink decorated variable and AppStorage results in the change of the **\@StorageLink('aProp') aProp** being synchronized back to AppStorage.
   3. The change of the **aProp** attribute in AppStorage triggers any other one-way or two-way bound variables to be updated. (In this example, there are no such other variables.)
   4. Because the attribute corresponding to **aProp** has been persisted, the change of the **aProp** attribute in AppStorage triggers PersistentStorage to write the attribute and its new value to the device.
@@ -122,7 +122,7 @@ struct Index {
 - Subsequent application running:
   1. **PersistentStorage.persistProp('aProp', 47)** is called. A search for the **aProp** attribute in PersistentStorage succeeds.
   2. The attribute is added to AppStorage with the value found in PersistentStorage.
-  3. In the **\<Index>** component, the value of the @StorageLink decorated **aProp** attribute is the value written by PersistentStorage to AppStorage, that is, the value stored when the application was closed last time.
+  3. In the **Index** component, the value of the @StorageLink decorated **aProp** attribute is the value written by PersistentStorage to AppStorage, that is, the value stored when the application was closed last time.
 
 
 ### Accessing an Attribute in AppStorage Before PersistentStorage

@@ -262,7 +262,7 @@ Sets whether the **NavDestination** component is recoverable. If set to recovera
 ### bindToScrollable<sup>14+</sup>
 bindToScrollable(scrollers: Array&lt;Scroller&gt;)
 
-Binds the **NavDestination** component to a scrollable container, which can be [List](./ts-container-list.md), [Scroll](./ts-container-scroll.md), [Grid](./ts-container-grid.md), or [WaterFlow] (./ts-container-waterflow.md). After the binding, scrolling in the scrollable container will trigger the animations for showing or hiding the title bar and toolbar of all bound **NavDestination** components. A single **NavDestination** component can be bound to multiple scrollable containers, and a single scrollable container can be bound to multiple **NavDestination** components. For details, see [Example 1](#example-1).
+Binds the **NavDestination** component to a scrollable container, which can be [List](./ts-container-list.md), [Scroll](./ts-container-scroll.md), [Grid](./ts-container-grid.md), or [WaterFlow](./ts-container-waterflow.md). After the binding, scrolling in the scrollable container will trigger the animations for showing or hiding the title bar and toolbar of all bound **NavDestination** components. A single **NavDestination** component can be bound to multiple scrollable containers, and a single scrollable container can be bound to multiple **NavDestination** components. For details, see [Example 1](#example-1).
 
 > **NOTE**
 >
@@ -282,7 +282,7 @@ Binds the **NavDestination** component to a scrollable container, which can be [
 ### bindToNestedScrollable<sup>14+</sup>
 bindToNestedScrollable(scrollers: Array&lt;NestedScrollInfo&gt;)
 
-Binds the **NavDestination** component to nested scrollable containers, which can be [List](./ts-container-list.md), [Scroll](./ts-container-scroll.md), [Grid](./ts-container-grid.md), or [WaterFlow] (./ts-container-waterflow.md). After the binding, scrolling in any of these scrollable containers will trigger the animations for showing or hiding the title bar and toolbar of all bound **NavDestination** components. A single **NavDestination** component can be bound to multiple nested scrollable containers, and a single nested scrollable container can be bound to multiple **NavDestination** components. For details, see [Example 1](#example-1).
+Binds the **NavDestination** component to nested scrollable containers, which can be [List](./ts-container-list.md), [Scroll](./ts-container-scroll.md), [Grid](./ts-container-grid.md), or [WaterFlow](./ts-container-waterflow.md). After the binding, scrolling in any of these scrollable containers will trigger the animations for showing or hiding the title bar and toolbar of all bound **NavDestination** components. A single **NavDestination** component can be bound to multiple nested scrollable containers, and a single nested scrollable container can be bound to multiple **NavDestination** components. For details, see [Example 1](#example-1).
 
 > **NOTE**
 >

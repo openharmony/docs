@@ -33,9 +33,6 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
-**参数：**
-
-
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | contentItem | [ContentItem](#contentitem) | 否 | \@Prop | 定义左侧以及中间元素。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |

@@ -10,8 +10,8 @@ Image为图片组件，常用于在应用中显示图片。Image支持加载[Pix
 >
 > 图片格式支持SVG图源，SVG标签文档请参考[SVG标签说明](./ts-basic-svg.md)
 >
-> 动图的播放依赖于Image节点的可见性变化，其默认行为是不播放的。当节点可见时，通过回调启动动画，当节点不可见时，停止动画。可见性状态的判断是通过[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)事件触发的，当当可见阈值ratios大于0时，表明Image处于可见状态。
-> 
+> 动图的播放依赖于Image节点的可见性变化，其默认行为是不播放的。当节点可见时，通过回调启动动画，当节点不可见时，停止动画。可见性状态的判断是通过[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)事件触发的，当可见阈值ratios大于0时，表明Image处于可见状态。
+>
 > API version 14及之后，Image组件在显示网络图片时，网络图片下载与缓存能力将不再内嵌于Image组件中，而是剥离至上传下载模块进行统一管理。上传下载模块提供独立的预下载接口，允许应用开发者在创建Image组件前预下载所需图片。组件创建后，通过向上传下载模块请求数据，从而优化了Image组件的显示流程。关于网络缓存的位置，对于API version 14之前的版本，Image组件的缓存位于应用的本地沙箱路径下，而对于API version 14及之后的版本，缓存则移至应用根目录下的cache目录中。
 
 ## 需要权限
@@ -481,6 +481,22 @@ dynamicRangeMode(value: DynamicRangeMode)
 | ------ | --------------------------------------- | ---- | -------------------------------- |
 | value  | [DynamicRangeMode](#dynamicrangemode12-1) | 是   | 图像显示的动态范围。<br/>默认值：dynamicRangeMode.Standard |
 
+### orientation<sup>14+</sup>
+
+orientation(orientation: ImageRotateOrientation)
+
+设置图像内容的显示方向。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                    | 必填 | 说明                             |
+| ------ | --------------------------------------- | ---- | -------------------------------- |
+| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>默认值：ImageRotateOrientation.UP |
+
 ## ImageContent<sup>12+</sup>
 
 指定图像内容。
@@ -564,6 +580,22 @@ dynamicRangeMode(value: DynamicRangeMode)
 | HIGH   | 0  | 不受限动态范围，最大限度进行图片提亮。              |
 | CONSTRAINT | 1 | 受限动态范围，受限进行图片提亮。          |
 | STANDARD | 2 | 标准动态范围，不进行图片提亮。         |
+
+## ImageRotateOrientation<sup>14+</sup>
+
+期望的图像内容显示方向。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值    | 说明                    |
+| ------ | -------------------------- | -------------------------- |
+| AUTO   | 0  | 读取图片携带的EXIF元数据作为显示方向。              |
+| UP | 1 | 默认按照当前图片进行显示，不做任何EXIF处理。          |
+| RIGHT | 2 | 将当前图片向右旋转90度后显示。         |
+| DOWN | 3| 将当前图片旋转180度后显示。         |
+| LEFT | 4 | 将当前图片向左旋转90度后显示。         |
 
 ## ImageSourceSize<sup>14+</sup>对象说明
 
@@ -1256,3 +1288,71 @@ struct ImageExample11 {
 ```
 
 ![imageContent](figures/imageScanEffect.gif)
+
+### 示例12（通过imageMatrix为图片设置旋转、平移等）
+
+该示例通过[imageMatrix](ts-basic-components-image.md#imagematrix16)接口和[objectFit](ts-basic-components-image.md#objectfit)实现了给图片设置变换效果。
+
+```ts
+import { matrix4 } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Test {
+  private matrix1 = matrix4.identity()
+    .translate({ x: -200, y: -200 })
+    .scale({ x: 0.2, y: 0.2 })
+    .rotate({
+      x: 2,
+      y: 0.5,
+      z: 3,
+      centerX: 10,
+      centerY: 10,
+      angle: -10
+    })
+
+  build() {
+    Row() {
+      Column({ space: 20 }) {
+        Text("无变换")
+          .fontSize('30px')
+        Image($r("app.media.test"))
+          .border({ width: 5, color: Color.Orange })
+          .objectFit(ImageFit.None)
+          .width(150)
+          .height(150)
+        Text("Image直接变换")
+          .height(30)
+          .width(150)
+          .fontSize('30px')
+        Image($r("app.media.test"))
+          .border({ width: 5, color: Color.Orange })
+          .objectFit(ImageFit.None)
+          .translate({ x: 50, y: 50 })
+          .scale({ x: 0.2, y: 0.2 })
+          .rotate({
+            x: 2,
+            y: 0.5,
+            z: 3,
+            centerX: 10,
+            centerY: 10,
+            angle: -10
+          })
+          .width(150)
+          .height(150)
+        Text("Image通过imageMatrix变换")
+          .fontSize('30px')
+        Image($r("app.media.test"))
+          .objectFit(ImageFit.MATRIX)
+          .imageMatrix(this.matrix1)
+          .border({ width: 5, color: Color.Orange })
+          .width(150)
+          .height(150)
+      }
+      .width('100%')
+    }
+  }
+}
+```
+
+![imageMatrix](figures/imageMatrix.jpeg)

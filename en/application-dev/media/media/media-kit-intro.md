@@ -1,6 +1,6 @@
 # Introduction to Media Kit
 
-Media Kit provides the [AVPlayer](#avplayer), [SoundPool](#soundpool), [AVRecorder](#avrecorder), [AVScreenCapture](#avscreencapture), [AVMetadataExtractor] (#avmetadataextractor), and [AVImageGenerator] (#avimagegenerator) classes for playing and recording audio/video, and obtaining audio/video metadata and video thumbnails.
+Media Kit provides the [AVPlayer](#avplayer), [SoundPool](#soundpool), [AVRecorder](#avrecorder), [AVScreenCapture](#avscreencapture), [AVMetadataExtractor](#avmetadataextractor), and [AVImageGenerator](#avimagegenerator) classes for playing and recording audio/video, and obtaining audio/video metadata and video thumbnails.
 
 From this guide, you will learn how to use the APIs provided by Media Kit to develop a wealth of audio and video playback or recording scenarios. For example, you can use the SoundPool to implement simple prompt tones so that a drip sound is played upon the receipt of a new message; you can use the AVPlayer to develop a music player, which can loop a piece of music.
 

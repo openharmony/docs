@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.infraredEmitter (IR Management) 
+# @ohos.multimodalInput.infraredEmitter (IR Management)
 
 The **infraredEmitter** module generates IR signals of the specified frequency and size, and queries the frequency range supported by the device.
 

@@ -163,7 +163,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。 |
+| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数 |
 | options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
@@ -192,7 +192,7 @@ async function CreatePixelMap() {
 
 createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: AsyncCallback\<PixelMap>): void
 
-通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，通过回调函数返回结果。
+通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，通过callback返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -200,7 +200,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 | 参数名   | 类型                                             | 必填 | 说明                       |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
-| colors   | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。 |
+| colors   | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数 |
 | options  | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 | callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | 是   | 回调函数，当创建PixelMap成功，err为undefined，data为获取到的PixelMap对象；否则为错误对象。 |
 
@@ -499,7 +499,7 @@ async function Demo(surfaceId: string) {
 
 createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMap
 
-通过属性创建PixelMap，同步返回PixelMap结果。
+通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，同步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -507,7 +507,7 @@ createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMa
 
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。 |
+| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数 |
 | options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
@@ -1723,7 +1723,7 @@ async function WritePixels() {
 
 writePixelsSync(area: PositionArea): void
 
-固定按照BGRA_8888格式，读取[PositionArea](#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](#positionarea7).region指定，同步回结果。
+固定按照BGRA_8888格式，读取[PositionArea](#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](#positionarea7).region指定，同步返回结果。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2316,7 +2316,11 @@ async function CreateAlphaPixelmapSync() {
 
 scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
-根据输入的宽高对图片进行缩放，使用callback形式返回。
+根据输入的宽高的缩放倍数对图片进行缩放，使用callback形式返回。
+
+> **说明：**
+> 1. 建议宽高的缩放倍数取非负数，否则会产生翻转效果。
+> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2357,7 +2361,11 @@ async function Scale() {
 
 scale(x: number, y: number): Promise\<void>
 
-根据输入的宽高对图片进行缩放，使用Promise形式返回。
+根据输入的宽高的缩放倍数对图片进行缩放，使用Promise形式返回。
+
+> **说明：**
+> 1. 建议宽高的缩放倍数取非负数，否则会产生翻转效果。
+> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2401,7 +2409,11 @@ async function Scale() {
 
 scaleSync(x: number, y: number): void
 
-以同步方法根据输入的宽高对图片进行缩放。
+根据输入的宽高的缩放倍数对图片进行缩放，同步返回结果。
+
+> **说明：**
+> 1. 建议宽高的缩放倍数取非负数，否则会产生翻转效果。
+> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2441,7 +2453,11 @@ async function ScaleSync() {
 
 scale(x: number, y: number, level: AntiAliasingLevel): Promise\<void>
 
-根据输入的宽高对图片进行缩放，使用Promise形式返回。
+根据指定的缩放算法和输入的宽高的缩放倍数对图片进行缩放，使用Promise形式返回。
+
+> **说明：**
+> 1. 建议宽高的缩放倍数取非负数，否则会产生翻转效果。
+> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2495,7 +2511,11 @@ async function Scale() {
 
 scaleSync(x: number, y: number, level: AntiAliasingLevel): void
 
-以同步方法根据输入的宽高对图片进行缩放。
+根据指定的缩放算法和输入的宽高的缩放倍数对图片进行缩放，同步返回结果。
+
+> **说明：**
+> 1. 建议宽高的缩放倍数取非负数，否则会产生翻转效果。
+> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2630,7 +2650,9 @@ async function CreateScaledPixelMapSync() {
 
 translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
-根据输入的坐标对图片进行位置变换，translate后的图片尺寸：width+X ，height+Y，使用callback形式返回。
+根据输入的坐标对图片进行位置变换，使用callback形式返回。
+
+translate后的图片尺寸改变为：width+X ，height+Y，建议translate后的图片尺寸宽高不要超过屏幕的宽高。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2642,8 +2664,8 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| x        | number               | 是   | 区域横坐标。                  |
-| y        | number               | 是   | 区域纵坐标。                  |
+| x        | number               | 是   | 区域横坐标。单位：像素。 |
+| y        | number               | 是   | 区域纵坐标。单位：像素。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当对图片进行位置变换成功，err为undefined，否则为错误对象。|
 
 **示例：**
@@ -2671,7 +2693,9 @@ async function Translate() {
 
 translate(x: number, y: number): Promise\<void>
 
-根据输入的坐标对图片进行位置变换，translate后的图片尺寸：width+X ，height+Y，使用Promise形式返回。
+根据输入的坐标对图片进行位置变换，使用Promise形式返回。
+
+translate后的图片尺寸改变为：width+X ，height+Y，建议translate后的图片尺寸宽高不要超过屏幕的宽高。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2683,8 +2707,8 @@ translate(x: number, y: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明        |
 | ------ | ------ | ---- | ----------- |
-| x      | number | 是   | 区域横坐标。|
-| y      | number | 是   | 区域纵坐标。|
+| x      | number | 是   | 区域横坐标。单位：像素。 |
+| y      | number | 是   | 区域纵坐标。单位：像素。 |
 
 **返回值：**
 
@@ -2714,7 +2738,9 @@ async function Translate() {
 
 translateSync(x: number, y: number): void
 
-根据输入的坐标对图片进行位置变换并同步返回结果。
+根据输入的坐标对图片进行位置变换，同步返回结果。
+
+translate后的图片尺寸改变为：width+X ，height+Y，建议translate后的图片尺寸宽高不要超过屏幕的宽高。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2724,8 +2750,8 @@ translateSync(x: number, y: number): void
 
 | 参数名   | 类型                 | 必填 | 说明                            |
 | -------- | -------------------- | ---- | ------------------------------- |
-| x        | number               | 是   | 区域横坐标。|
-| y        | number               | 是   | 区域纵坐标。|
+| x        | number               | 是   | 区域横坐标。单位：像素。 |
+| y        | number               | 是   | 区域纵坐标。单位：像素。 |
 
 **错误码：**
 
@@ -2756,6 +2782,10 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 
 根据输入的角度对图片进行旋转，使用callback形式返回。
 
+> **说明：**
+> 1. 图片旋转的角度取值范围：0-360。超出取值范围时，根据圆周360度自动矫正。例如，-100度与260度效果相同。
+> 2. 如果图片旋转的角度不是90的整数倍，旋转后图片的尺寸会发生改变。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -2766,7 +2796,7 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| angle    | number               | 是   | 图片旋转的角度。              |
+| angle    | number               | 是   | 图片旋转的角度。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当对图片进行旋转成功，err为undefined，否则为错误对象。|
 
 **示例：**
@@ -2795,6 +2825,10 @@ rotate(angle: number): Promise\<void>
 
 根据输入的角度对图片进行旋转，使用Promise形式返回。
 
+> **说明：**
+> 1. 图片旋转的角度取值范围：0-360。超出取值范围时，根据圆周360度自动矫正。例如，-100度与260度效果相同。
+> 2. 如果图片旋转的角度不是90的整数倍，旋转后图片的尺寸会发生改变。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -2805,7 +2839,7 @@ rotate(angle: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                          |
 | ------ | ------ | ---- | ----------------------------- |
-| angle  | number | 是   | 图片旋转的角度。              |
+| angle  | number | 是   | 图片旋转的角度。 |
 
 **返回值：**
 
@@ -2834,7 +2868,11 @@ async function Rotate() {
 
 rotateSync(angle: number): void
 
-根据输入的角度对图片进行旋转并同步返回结果。
+根据输入的角度对图片进行旋转，同步返回结果。
+
+> **说明：**
+> 1. 图片旋转的角度取值范围：0-360。超出取值范围时，根据圆周360度自动矫正。例如，-100度与260度效果相同。
+> 2. 如果图片旋转的角度不是90的整数倍，旋转后图片的尺寸会发生改变。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2844,7 +2882,7 @@ rotateSync(angle: number): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| angle    | number               | 是   | 图片旋转的角度。              |
+| angle    | number               | 是   | 图片旋转的角度。 |
 
 **错误码：**
 
@@ -3008,7 +3046,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](#region8)   | 是   | 裁剪的尺寸。                  |
+| region   | [Region](#region8)   | 是   | 裁剪的尺寸。取值范围不能超过图片的宽高。 |
 | callback | AsyncCallback\<void> | 是   |  回调函数。当对图片进行裁剪成功，err为undefined，否则为错误对象。|
 
 **示例：**
@@ -3047,7 +3085,7 @@ crop(region: Region): Promise\<void>
 
 | 参数名 | 类型               | 必填 | 说明        |
 | ------ | ------------------ | ---- | ----------- |
-| region | [Region](#region8) | 是   | 裁剪的尺寸。|
+| region | [Region](#region8) | 是   | 裁剪的尺寸。取值范围不能超过图片的宽高。 |
 
 **返回值：**
 
@@ -3087,7 +3125,7 @@ cropSync(region: Region): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](#region8)   | 是   | 裁剪的尺寸。                  |
+| region   | [Region](#region8)   | 是   | 裁剪的尺寸。取值范围不能超过图片的宽高。 |
 
 **错误码：**
 
@@ -7842,7 +7880,7 @@ img.release().then(() => {
 
 | 名称   | 类型               | 只读|  可选| 说明                                                         |
 | ------ | ------------------ | ---| -----|------------------------------------------------------- |
-| pixels | ArrayBuffer        | 否 |   否   | 像素。                                                       |
+| pixels | ArrayBuffer        | 否 |   否  | 像素。仅支持BGRA_8888格式的图像像素数据。 |
 | offset | number             | 否 |   否  |  偏移量。                                                     |
 | stride | number             | 否 |   否  | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4。                   |
 | region | [Region](#region8) | 否 |   否  |区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
@@ -8043,9 +8081,9 @@ PixelMap的初始化选项。
 
 | 名称 | 类型          | 只读 | 可选| 说明         |
 | ---- | ------------- | ---- | ---- | ------------ |
-| size | [Size](#size) | 否   | 否   | 区域大小。   |
-| x    | number        | 否   | 否  | 区域横坐标。 |
-| y    | number        | 否  | 否  | 区域纵坐标。 |
+| size<sup>7+</sup> | [Size](#size) | 否   | 否   | 区域大小。   |
+| x<sup>7+</sup>    | number        | 否   | 否  | 区域横坐标。 |
+| y<sup>7+</sup>    | number        | 否  | 否  | 区域纵坐标。 |
 
 ## PackingOption
 

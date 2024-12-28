@@ -4,7 +4,7 @@ The @AnimatableExtend decorator is used to define an attribute method for the no
 
 - Animatable attribute: If an attribute method is called before the **animation** attribute, and changing the value of this attribute can make the animation effect specified by the **animation** attribute take effect, then this attribute is called animatable attribute. For example, **height**, **width**, **backgroundColor**, **translate**, and **fontSize** (of the **Text** component) are all animatable attributes.
 
-- Non-animatable attribute: If an attribute method is called before the **animation** attribute, and changing the value of this attribute cannot make the animation effect specified by the **animation** attribute take effect, then this attribute is called non-animatable attribute. For example, the **points** attribute of the **\<Polyline>** component is a non-animatable attribute.
+- Non-animatable attribute: If an attribute method is called before the **animation** attribute, and changing the value of this attribute cannot make the animation effect specified by the **animation** attribute take effect, then this attribute is called non-animatable attribute. For example, the **points** attribute of the **Polyline** component is a non-animatable attribute.
 
 >  **NOTE**
 >

@@ -99,3 +99,12 @@ Before implementing the specifications for mini-system devices, determine whethe
 | RSA |  An integer multiple of 8, ranging from 1024 to 2048 (inclusive)| 12+ |
 | HMAC | An integer multiple of 8, ranging from 8 to 1024 (inclusive)| 12+ |
 | CMAC | 128 | 12+ |
+
+## Key Import Formats
+HUKS supports various types of keys in different formats. The following table lists the key types and key material formats supported by HUKS.
+| Key Type| Algorithm| Import Format|
+| -------- | -------- | -------- |
+| Symmetric key| - | Raw data|
+| Asymmetric key pair| - | [Key pair material format](huks-concepts.md#key-pair-material-format)|
+| Public key of an asymmetric key pair| Ed25519, X25519| Raw data. For details, see [Importing the X25519 Key and Public Key] (huks-import-key-in-plaintext-arkts.md#importing-the-public-key-of-an-x25519-key-pair).|
+| Public key of an asymmetric key pair| RSA, ECC, ECDH, DSA, DH, SM2| DER format defined in X.509|

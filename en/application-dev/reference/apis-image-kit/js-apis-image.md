@@ -1310,7 +1310,7 @@ async function Demo() {
 
 readPixels(area: PositionArea): Promise\<void>
 
-Reads the pixels in the area (specified by [PositionArea] (#positionarea7).region) of this PixelMap and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API uses a promise to return the result.
+Reads the pixels in the area (specified by [PositionArea](#positionarea7).region) of this PixelMap and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API uses a promise to return the result.
 
 When the pixel format of the PixelMap is RGB, the data is read from the PixelMap in the BGRA_8888 format.
 
@@ -1380,7 +1380,7 @@ async function Demo() {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Reads the pixels in the area (specified by [PositionArea] (#positionarea7).region) of this PixelMap and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API uses an asynchronous callback to return the result.
+Reads the pixels in the area (specified by [PositionArea](#positionarea7).region) of this PixelMap and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API uses an asynchronous callback to return the result.
 
 When the pixel format of the PixelMap is RGB, the data is read from the PixelMap in the BGRA_8888 format.
 
@@ -1451,7 +1451,7 @@ async function Demo() {
 
 readPixelsSync(area: PositionArea): void
 
-Reads the pixels in the area (specified by [PositionArea] (#positionarea7).region) of this PixelMap and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API returns the result synchronously.
+Reads the pixels in the area (specified by [PositionArea](#positionarea7).region) of this PixelMap and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API returns the result synchronously.
 
 When the pixel format of the PixelMap is RGB, the data is read from the PixelMap in the BGRA_8888 format.
 
@@ -1496,7 +1496,7 @@ async function Demo() {
 
 writePixels(area: PositionArea): Promise\<void>
 
-Reads the pixels from the [PositionArea] (#positionarea7).pixels buffer and writes the data to the area (specified by [PositionArea](#positionarea7).region) in the PixelMap. This API uses a promise to return the result.
+Reads the pixels from the [PositionArea](#positionarea7).pixels buffer and writes the data to the area (specified by [PositionArea](#positionarea7).region) in the PixelMap. This API uses a promise to return the result.
 
 When the pixel format of the PixelMap is RGB, the data is written to the PixelMap in the BGRA_8888 format.
 
@@ -1574,7 +1574,7 @@ async function Demo() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Reads the pixels from the [PositionArea] (#positionarea7).pixels buffer and writes the data to the area (specified by [PositionArea](#positionarea7).region) in the PixelMap. This API uses an asynchronous callback to return the result.
+Reads the pixels from the [PositionArea](#positionarea7).pixels buffer and writes the data to the area (specified by [PositionArea](#positionarea7).region) in the PixelMap. This API uses an asynchronous callback to return the result.
 
 When the pixel format of the PixelMap is RGB, the data is written to the PixelMap in the BGRA_8888 format.
 
@@ -1651,7 +1651,7 @@ async function Demo() {
 
 writePixelsSync(area: PositionArea): void
 
-Reads the pixels from the [PositionArea] (#positionarea7).pixels buffer and writes the data to the area (specified by [PositionArea](#positionarea7).region) in the PixelMap. This API returns the result synchronously.
+Reads the pixels from the [PositionArea](#positionarea7).pixels buffer and writes the data to the area (specified by [PositionArea](#positionarea7).region) in the PixelMap. This API returns the result synchronously.
 
 When the pixel format of the PixelMap is RGB, the data is written to the PixelMap in the BGRA_8888 format.
 

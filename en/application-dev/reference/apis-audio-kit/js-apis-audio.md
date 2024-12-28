@@ -165,7 +165,7 @@ Creates an **AudioCapturer** instance. This API uses an asynchronous callback to
 
 **Required permissions**: ohos.permission.MICROPHONE
 
-This permission is required when [SourceType] (#sourcetype8) is set to **SOURCE_TYPE_MIC**, **SOURCE_TYPE_VOICE_RECOGNITION**, **SOURCE_TYPE_VOICE_COMMUNICATION**, **SOURCE_TYPE_VOICE_MESSAGE**, or **SOURCE_TYPE_CAMCORDER**.
+This permission is required when [SourceType](#sourcetype8) is set to **SOURCE_TYPE_MIC**, **SOURCE_TYPE_VOICE_RECOGNITION**, **SOURCE_TYPE_VOICE_COMMUNICATION**, **SOURCE_TYPE_VOICE_MESSAGE**, or **SOURCE_TYPE_CAMCORDER**.
 
 **Parameters**
 
@@ -216,7 +216,7 @@ Creates an **AudioCapturer** instance. This API uses a promise to return the res
 
 **Required permissions**: ohos.permission.MICROPHONE
 
-This permission is required when [SourceType] (#sourcetype8) is set to **SOURCE_TYPE_MIC**, **SOURCE_TYPE_VOICE_RECOGNITION**, **SOURCE_TYPE_VOICE_COMMUNICATION**, **SOURCE_TYPE_VOICE_MESSAGE**, or **SOURCE_TYPE_CAMCORDER**.
+This permission is required when [SourceType](#sourcetype8) is set to **SOURCE_TYPE_MIC**, **SOURCE_TYPE_VOICE_RECOGNITION**, **SOURCE_TYPE_VOICE_COMMUNICATION**, **SOURCE_TYPE_VOICE_MESSAGE**, or **SOURCE_TYPE_CAMCORDER**.
 
 **Parameters**
 

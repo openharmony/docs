@@ -164,20 +164,20 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 | themeColorMode | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明) | 否 | - | 自定义弹窗深浅色模式。 |
 
 
-## PopoverDialog<sup>13+</sup>
+## PopoverDialog<sup>14+</sup>
 
 PopoverDialog({visible: boolean, popover: PopoverOptions, targetBuilder: Callback\<void>})
 
 跟手弹窗，基于目标组件位置弹出，上文中的TipsDialog、SelectDialog、ConfirmDialog、AlertDialog、LoadingDialog、CustomContentDialog都可作为弹窗内容。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | visible | boolean | 是 | \@Link | 跟手弹出框显示状态。<br/>默认值为false，隐藏弹窗。 |
-| popover | [PopoverOptions](#popoveroptions13) | 是 | \@Prop | 配置跟手弹窗的参数。 |
+| popover | [PopoverOptions](#popoveroptions14) | 是 | \@Prop | 配置跟手弹窗的参数。 |
 | targetBuilder | Callback\<void> | 是 | - | 跟手弹出框基于的目标组件。 |
 
 
@@ -198,7 +198,7 @@ PopoverDialog({visible: boolean, popover: PopoverOptions, targetBuilder: Callbac
 >
 >  buttonStyle和role优先级高于fontColor和background。如果buttonStyle和role设置的是默认值，那么fontColor和background可生效。
 
-## PopoverOptions<sup>13+</sup>
+## PopoverOptions<sup>14+</sup>
 
 跟手弹窗参数，用于设置弹窗内容、位置属性等。
 
@@ -208,7 +208,7 @@ PopoverDialog({visible: boolean, popover: PopoverOptions, targetBuilder: Callbac
 >
 > radius默认值为32vp。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

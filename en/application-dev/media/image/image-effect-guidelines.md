@@ -104,12 +104,12 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
 
     **Scenario 4: Set the OHNativeWindow input type.**
 
-    The following uses camera preview as an example to describe the scenario. The surface ID provided by the **\<XComponent>** for camera preview streams can be converted into an **OHNativeWindow** instance at the native C++ layer.
-    For details about how to use the **\<XComponent>**, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
+    The following uses camera preview as an example to describe the scenario. The surface ID provided by the **XComponent** for camera preview streams can be converted into an **OHNativeWindow** instance at the native C++ layer.
+    For details about how to use the **XComponent**, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
     For details about how to use the native window module, see [OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md).
     For details about how to use the camera, see [Camera Preview (C/C++)](../camera/native-camera-preview.md).
 
-    (1) Add an **\<XComponent>** to the .ets file.
+    (1) Add an **XComponent** to the .ets file.
 
      ```ts
      XComponent({ 

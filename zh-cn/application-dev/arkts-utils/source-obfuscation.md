@@ -364,6 +364,14 @@ strip-language-default
 -extra-options strip-language-default
 -extra-options strip-system-api-args
 ```
+#### -keep-parameter-names
+保留声明文件中对外接口的参数名称。开启此选项后，有如下效果：
+- 对于函数与类中成员方法，如果函数或方法名称没有被混淆，则保留其参数名称。
+- 对于类的构造器，如果类名没有被混淆，则保留构造器中的参数名称。
+
+> **说明**：
+> - 对于非上述场景（如匿名函数）中的参数名称，无法通过此选项保留。
+> - 源码文件中的参数名称仍然会被混淆，无法通过此选项保留。
 
 #### -enable-lib-obfuscation-options  
 配置此开关后，依赖模块的混淆选项将被合并到当前编译模块的混淆配置中。  

@@ -6192,7 +6192,7 @@ Enumerates the types of media resource information to be hidden from an applicat
 
 ## CloudEnhancementTaskStage<sup>13+</sup>
 
-Enumerates the cloud enhancement task states, which are returned by [CloudEnhancementTaskState] (#cloudenhancement13).
+Enumerates the cloud enhancement task states, which are returned by [CloudEnhancementTaskState](#cloudenhancement13).
 
 **System API**: This is a system API.
 
