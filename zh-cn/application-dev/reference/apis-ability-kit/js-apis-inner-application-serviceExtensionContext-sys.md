@@ -2701,3 +2701,73 @@ export default class MyServiceExtensionAbility extends ServiceExtensionAbility {
   }
 }
 ```
+
+## ServiceExtensionContext.openAtomicService<sup>16+<sup>
+openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;void&gt;
+
+通过应用ID，拉起原子化服务。使用Promise异步回调。
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| appId | string | 是 | 应用的唯一标识，由云端统一分配。 |
+| options | [AtomicServiceOptions](js-apis-app-ability-atomicServiceOptions.md) | 否 | 跳出式启动原子化服务所携带的参数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application does not have permission to call the interface. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 16000002 | Incorrect ability type.                                      |
+| 16000004 | Failed to start the invisible ability.                       |
+| 16000011 | The context does not exist.                                  |
+| 16000012 | The application is controlled.                               |
+| 16000050 | Internal error.                                              |
+| 16200001 | The caller has been released.                                |
+
+**示例：**
+
+```ts
+import { ServiceExtensionAbility, AtomicServiceOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class ServiceExtension extends ServiceExtensionAbility {
+  onRequest(want: Want, startId: number) {
+    let appId: string = '6918661953712445909';
+    let options: AtomicServiceOptions = {
+      displayId: 0,
+    };
+    try {
+      this.context.openAtomicService(appId, options)
+        .then(() => {
+          console.info('openAtomicService succeed');
+        })
+        .catch((err: BusinessError) => {
+          console.error(`openAtomicService failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`openAtomicService failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
