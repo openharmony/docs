@@ -2900,7 +2900,12 @@ blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
 enableSmoothDragResize(mode: boolean)
 
 
-设置是否开启Web组件窗口拖拽缩放优化能力，默认关闭。开启后在Web窗口拖拽放大时会优化跟手性，减少白块。
+设置是否开启Web组件窗口拖拽缩放优化能力，默认关闭。开启后在2in1上Web窗口拖拽放大时减少白块面积。
+
+> **说明：**
+>
+> 不支持全量展开（WebLayoutMode.FIT_CONTENT）和同步模式（RenderMode.SYNC_RENDER）。
+> 
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
