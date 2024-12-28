@@ -4189,6 +4189,18 @@
 
 **起始版本**：13
 
+### ohos.permission.ACCESS_APP_SINGLE_PERMISSION_MANAGEMENT
+
+允许应用拉起用于修改其他应用授权的界面。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
 ### ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
 
 允许应用禁用本应用的代码运行时完整性保护。

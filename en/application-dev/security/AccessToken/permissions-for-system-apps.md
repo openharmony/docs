@@ -4189,6 +4189,18 @@ Allows an application to access the application lock.
 
 **Valid since**: 13
 
+### ohos.permission.ACCESS_APP_SINGLE_PERMISSION_MANAGEMENT
+
+Allows an application to launch a page for modifying a specific permission of another application.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
 ### ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
 
 Allows an application to disable its runtime code integrity protection.
