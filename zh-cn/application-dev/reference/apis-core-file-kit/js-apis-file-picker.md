@@ -790,7 +790,7 @@ constructor()
 let photoPicker = new picker.PhotoViewPicker(); // 不推荐使用无参构造，会出现概率性拉起失败问题
 ```
 
-### select<sup>(deprecated)</sup>
+### select
 
 select(option?: PhotoSelectOptions): Promise&lt;PhotoSelectResult&gt;
 
@@ -842,7 +842,7 @@ async function example01(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
-### select<sup>(deprecated)</sup>
+### select
 
 select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
@@ -891,7 +891,7 @@ async function example02(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
-### select<sup>(deprecated)</sup>
+### select
 
 select(callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
@@ -936,7 +936,7 @@ async function example03(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
-### save<sup>(deprecated)</sup>
+### save
 
 save(option?: PhotoSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
@@ -985,7 +985,7 @@ async function example04(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
-### save<sup>(deprecated)</sup>
+### save
 
 save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
@@ -1031,7 +1031,7 @@ async function example05(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
-### save<sup>(deprecated)</sup>
+### save
 
 save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
