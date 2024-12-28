@@ -968,21 +968,6 @@ enableHapticFeedback(isEnabled: boolean)
 > ]
 > ```
 
-### cancelButton<sup>14+</sup>
-
-cancelButton(value: CancelButtonSymbolOptions)
-
-设置右侧清除按钮样式。不支持内联模式。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CancelButtonSymbolOptions](ts-basic-components-search.md#cancelbuttonsymboloptions12对象说明) | 是   | 右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
 ## InputType枚举说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -2315,32 +2300,3 @@ struct TextInputExample {
 ```
 
 ![textInputEditMenuOptions](figures/textInputEditMenuOptions.gif)
-
-### 示例15（设置symbol类型清除按钮）
-
-该示例通过cancelButton属性展示了自定义右侧symbol类型清除按钮样式的效果。
-
-```ts
-import { SymbolGlyphModifier } from '@kit.ArkUI';
-
-// xxx.ets
-@Entry
-@Component
-struct TextInputExample {
-  @State text: string = ''
-  symbolModifier: SymbolGlyphModifier =
-    new SymbolGlyphModifier($r('sys.symbol.trash')).fontColor([Color.Red]).fontSize(16).fontWeight(FontWeight.Regular)
-
-  build() {
-    Column() {
-      TextInput({ text: this.text, placeholder: 'input your word...' })
-        .cancelButton({
-          style: CancelButtonStyle.CONSTANT,
-          icon: this.symbolModifier
-        })
-    }
-  }
-}
-```
-
-![cancelButton](figures/TextInputCancelButton_SymbolGlyphModifier.jpg)
