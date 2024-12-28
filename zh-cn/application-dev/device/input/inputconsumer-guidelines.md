@@ -16,8 +16,8 @@ import { inputConsumer } from '@kit.InputKit';
 
 | 接口名称  | 描述 |
 | ------------------------------------------------------------ | -------------------------- |
-| on(type: 'key', keyOptions: KeyOptions, callback: Callback<KeyOptions>): void | 订阅组合按键。 |
-| off(type: 'key', keyOptions: KeyOptions, callback?: Callback<KeyOptions>): void | 取消订阅组合按键。 |
+| on(type: 'key', keyOptions: KeyOptions, callback: Callback\<KeyOptions>): void | 订阅组合按键。 |
+| off(type: 'key', keyOptions: KeyOptions, callback?: Callback\<KeyOptions>): void | 取消订阅组合按键。 |
 | setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void | 设置屏蔽按键拦截状态。 |
 | getShieldStatus(shieldMode: ShieldMode): boolean | 获取屏蔽按键拦截是否生效。 |
 
