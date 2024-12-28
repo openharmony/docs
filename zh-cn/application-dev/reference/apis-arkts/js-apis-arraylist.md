@@ -99,7 +99,6 @@ class C1 {
 }
 let arrayList: ArrayList<string | number | boolean | Array<number> | C1> = new ArrayList();
 let result1 = arrayList.add("a");
-let arrayList1: ArrayList<number> = new ArrayList();
 let result2 = arrayList.add(1);
 let b = [1, 2, 3];
 let result3 = arrayList.add(b);
