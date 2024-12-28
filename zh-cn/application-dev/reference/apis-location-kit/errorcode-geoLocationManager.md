@@ -172,7 +172,7 @@ The number of geofences exceeds the maximum.
 
 **可能原因**
 
-1.系统中存在的地理围栏个数超过最大值限制。
+1.系统中存在的地理围栏个数超过最大值(1000)限制。
 
 **处理步骤**
 
