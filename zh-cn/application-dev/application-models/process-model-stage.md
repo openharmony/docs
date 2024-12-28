@@ -1,8 +1,6 @@
 # 进程模型
 
-
-系统的进程模型如下图所示。
-
+进程是系统进行资源分配的基本单位，是操作系统结构的基础。系统的进程模型如下图所示。
 
 - 通常情况下，应用中（同一Bundle名称）的所有UIAbility、ServiceExtensionAbility和DataShareExtensionAbility均是运行在同一个独立进程（主进程）中，如下图中绿色部分的“Main Process”。
 - 应用中（同一Bundle名称）的所有同一类型ExtensionAbility（除ServiceExtensionAbility和DataShareExtensionAbility外）均是运行在一个独立进程中，如下图中蓝色部分的“FormExtensionAbility Process”、“InputMethodExtensionAbility Process”、其他ExtensionAbility Process。
