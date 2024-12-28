@@ -10,6 +10,7 @@
   <!--Del-->
   - [发布实况窗类型通知（仅对系统应用开放）](live-view-notification.md)
   <!--DelEnd-->
+  - [更新通知](notification-update.md)
   - [为通知添加行为意图](notification-with-wantagent.md)
 - [取消通知](notification-cancel.md)
 <!--Del-->
