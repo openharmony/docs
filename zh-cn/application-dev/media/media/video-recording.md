@@ -98,10 +98,10 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
      videoFrameRate : 30 // 视频帧率
    };
 
-  const context: Context = getContext(this); // 参考应用文件访问与管理
-  let filePath: string = context.filesDir + '/example.mp4';
-  let videoFile: fs.File = fs.openSync(filePath, OpenMode.READ_WRITE | OpenMode.CREATE);
-  let fileFd = videoFile.fd; // 获取文件fd
+   const context: Context = getContext(this); // 参考应用文件访问与管理
+   let filePath: string = context.filesDir + '/example.mp4';
+   let videoFile: fs.File = fs.openSync(filePath, OpenMode.READ_WRITE | OpenMode.CREATE);
+   let fileFd = videoFile.fd; // 获取文件fd
   
    let avConfig: media.AVRecorderConfig = {
      videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式
