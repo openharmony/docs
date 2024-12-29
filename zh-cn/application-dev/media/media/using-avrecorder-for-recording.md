@@ -170,15 +170,15 @@ export class AudioRecorderDemo {
     profile: this.avProfile,
     url: 'fd://35', // 参考应用文件访问与管理开发示例新建并读写一个文件
   };
-  private uriPath: string = ''; // 文件uri，可用于
+  private uriPath: string = '';
   private filePath: string = '';
   
   // 创建文件以及设置avConfig.url
   async createAndSetFd(): Promise<void> {
       const context: Context = getContext(this);
-      const path: string = context.filesDir + '/example.mp3'; // 文件后缀名应与封装格式对应
+      const path: string = context.filesDir + '/example.mp3'; // 文件沙箱路径，文件后缀名应与封装格式对应
       const audioFile: fs.File = fs.openSync(path, OpenMode.READ_WRITE | OpenMode.CREATE);
-      this.avConfig.url = 'fd://' + audioFile.fd;
+      this.avConfig.url = 'fd://' + audioFile.fd; // 更新url
       this.filePath = path;
   }
 

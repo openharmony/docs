@@ -184,11 +184,11 @@ export class VideoRecorderDemo {
   
   // 创建文件以及设置avConfig.url
   async createAndSetFd() {
-    const path: string = context.filesDir + '/example.mp4'; // 文件后缀名应与封装格式对应
+    const path: string = context.filesDir + '/example.mp4'; // 文件沙箱路径，文件后缀名应与封装格式对应
     const videoFile: fs.File = fs.openSync(path, OpenMode.READ_WRITE | OpenMode.CREATE);
     this.avConfig.url = 'fd://' + videoFile.fd; // 设置url
     this.fileFd = videoFile.fd; // 文件fd
-    this.filePath = path; // 文件路径
+    this.filePath = path;
   }
 
   // 注册avRecorder回调函数
