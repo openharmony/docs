@@ -48,9 +48,11 @@ deactivateUserKey(userId: number):void;
   import keyManager from "@ohos.file.keyManager";
   import { BusinessError } from '@ohos.base';
   let userId: number = 100;
-  keyManager.deactivateUserKey(userId) => {
+  try {
+    keyManager.deactivateUserKey(userId);
     console.info("deactivateUserKey success");
-  }).catch((err: BusinessError) => {
-    console.error("deactivateUserKey failed with error:" + JSON.stringify(err));
-  });
+  } catch (err) {
+    let error: BusinessError = err as BusinessError;
+    console.error("deactivateUserKey failed with error:" + JSON.stringify(error));
+  }
   ```
