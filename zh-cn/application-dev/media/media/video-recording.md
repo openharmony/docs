@@ -98,9 +98,9 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
      videoFrameRate : 30 // 视频帧率
    };
 
-  const context:Context = getContext(this); // 参考应用文件访问与管理
-  let filePath:string = context.filesDir + "/example.mp4";
-  let videoFile:fs.File = fs.openSync(filePath, OpenMode.READ_WRITE|OpenMode.CREATE);
+  const context: Context = getContext(this); // 参考应用文件访问与管理
+  let filePath: string = context.filesDir + '/example.mp4';
+  let videoFile: fs.File = fs.openSync(filePath, OpenMode.READ_WRITE | OpenMode.CREATE);
   let fileFd = videoFile.fd; // 获取文件fd
   
    let avConfig: media.AVRecorderConfig = {
@@ -154,6 +154,9 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
 ```ts
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
 
 const TAG = 'VideoRecorderDemo:';
 export class VideoRecorderDemo {
@@ -183,9 +186,9 @@ export class VideoRecorderDemo {
   async createAndSetFd() {
     const path: string = context.filesDir + '/example.mp4'; // 文件后缀名应与封装格式对应
     const videoFile: fs.File = fs.openSync(path, OpenMode.READ_WRITE | OpenMode.CREATE);
-    this.avConfig.url = 'fd://' + videoFile.fd;
-    this.fileFd = videoFile.fd;
-    this.filePath = path;
+    this.avConfig.url = 'fd://' + videoFile.fd; // 设置url
+    this.fileFd = videoFile.fd; // 文件fd
+    this.filePath = path; // 文件路径
   }
 
   // 注册avRecorder回调函数
@@ -277,12 +280,13 @@ export class VideoRecorderDemo {
     }
   }
   
-  // 安全控件保存至图库
+  // 安全控件保存媒体资源至图库
   async saveRecorderAsset() {
     let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
     // 需要确保uriPath对应的资源存在
-    // uriPath = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'
-    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(this.context, this.uriPath);
+    this.uriPath = file.Uri.getUriFromPath(this.filePath); // 获取录制文件的uri，用于安全控件保存至图库
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = 
+      photoAccessHelper.MediaAssetChangeRequest.createVideoAssetRequest(this.context, this.uriPath);
     await phAccessHelper.applyChanges(assetChangeRequest);
   }
 
@@ -293,6 +297,8 @@ export class VideoRecorderDemo {
     await this.pauseRecordingProcess();         //暂停录制
     await this.resumeRecordingProcess();        // 恢复录制
     await this.stopRecordingProcess();          // 停止录制
+    // 安全控件保存媒体资源至图库
+    await this.saveRecorderAsset();
   }
 }
 ```
