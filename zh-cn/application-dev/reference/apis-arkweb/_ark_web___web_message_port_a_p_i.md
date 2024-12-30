@@ -3,7 +3,7 @@
 
 ## 概述
 
-Post Message相关的Native API结构体。 在调用接口前建议通过ARKWEB_MEMBER_MISSING校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。
+Post Message相关的Native API结构体。 在调用API前建议通过ARKWEB_MEMBER_MISSING校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。
 
 **起始版本：** 12
 
@@ -40,7 +40,7 @@ void(* ArkWeb_WebMessagePortAPI::close) (const ArkWeb_WebMessagePortPtr webMessa
 | 名称 | 描述 | 
 | -------- | -------- |
 | webMessagePort | Post Message端口结构体指针。  | 
-| webTag | Web组件名称。  | 
+| webTag | Web组件名字。  | 
 
 
 ### postMessage
@@ -57,7 +57,7 @@ ArkWeb_ErrorCode(* ArkWeb_WebMessagePortAPI::postMessage) (const ArkWeb_WebMessa
 | 名称 | 描述 | 
 | -------- | -------- |
 | webMessagePort | Post Message端口结构体指针。  | 
-| webTag | Web组件名称。  | 
+| webTag | Web组件名字。  | 
 | webMessage | 需要发送的消息。  | 
 
 **返回：**
@@ -79,7 +79,7 @@ void(* ArkWeb_WebMessagePortAPI::setMessageEventHandler) (const ArkWeb_WebMessag
 | 名称 | 描述 | 
 | -------- | -------- |
 | webMessagePort | Post Message端口结构体指针。  | 
-| webTag | Web组件名称。  | 
+| webTag | Web组件名字。  | 
 | messageEventHandler | 处理消息的回调。  | 
 | userData | 用户自定义数据。  | 
 
