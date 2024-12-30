@@ -137,6 +137,8 @@ imageMatrix(matrix: ImageMatrix)
 
 设置图片的变换矩阵。svg类型图源不支持该属性。
 
+设置resizable属性时，该属性设置不生效。
+
 **卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
