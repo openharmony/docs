@@ -51,4 +51,4 @@ flags说明。（API16及之后版本支持）用于表示处理意图拉起回�
 | ---------------------------------------------------------------| ---------- | ------------------------------ |
 | FLAG_AUTH_READ_URI_PERMISSION                                  | 0x00000001 | 读取权限。                      |
 | FLAG_AUTH_WRITE_URI_PERMISSION                                 | 0x00000002 | 写入权限。                      |
-| [FLAG_AUTH_WRITE_URI_PERMISSION | FLAG_AUTH_READ_URI_PERMISSION]   | 0x00000003 | 读写权限。                      |
+| FLAG_AUTH_WRITE_URI_PERMISSION [|] FLAG_AUTH_READ_URI_PERMISSION   | 0x00000003 | 读写权限。                      |
