@@ -453,12 +453,16 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     const extensionWindow = session.getUIExtensionWindowProxy();
     // 占用事件
-    let promise = extensionWindow.occupyEvents(uiExtension.EventFlag.EVENT_CLICK | uiExtension.EventFlag.EVENT_LONG_PRESS);
-    promise.then(() => {
-      console.info('Succeeded in occupy events');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to  occupy events. Cause code: ${err.code}, message: ${err.message}`);
-    });
+    try {
+      let promise = extensionWindow.occupyEvents(uiExtension.EventFlag.EVENT_CLICK | uiExtension.EventFlag.EVENT_LONG_PRESS);
+      promise.then(() => {
+        console.info('Succeeded in occupy events');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to  occupy events. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (e) {
+      console.error(`Occupy events got exception`);
+    }
   }
 }
 ```
