@@ -7959,6 +7959,10 @@ paste(): void
 
 执行与此上下文菜单相关的粘贴操作。
 
+> **说明：**
+>
+> 需要配置权限：ohos.permission.READ_PASTEBOARD。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 ### cut<sup>9+</sup>
