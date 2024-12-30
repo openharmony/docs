@@ -893,6 +893,46 @@ let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight:
 player.setPlaybackStrategy(playStrategy);
 ```
 
+### setPlaybackRange<sup>16+</sup>
+
+setPlaybackRange(startTimeMs: number, endTimeMs: number, mode?: SeekMode) : Promise\<void>
+
+设置播放区间，并通过指定的[SeekMode](#seekmode8)跳转到区间开始位置。设置之后，只播放音视频文件设定区间内的内容。该方法异步方式返回执行结果，通过Promise获取返回值。可在**initialized**/**prepared**/**paused**/**stopped**/**completed**状态下使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AvPlayer
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                        |
+| -------- | ---------------------- | ---- | --------------------------- |
+| startTimeMs | number | 是   | 区间开始位置，单位ms，取值[0, duration)。可以设置-1值，系统将会从0位置开始播放。|
+| endTimeMs | number | 是   | 区间结束位置，单位ms，取值(startTimeMs, duration]。可以设置-1值，系统将会播放到资源末尾。|
+| mode | [SeekMode](#seekmode8) | 否   | 支持SeekMode.SEEK_PREV_SYNC和SeekMode.SEEK_CLOSEST, <br/>默认值: SeekMode.SEEK_PREV_SYNC。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 401  | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**示例：**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avPlayer.setPlaybackRange(0, 6000, media.SeekMode.SEEK_CLOSEST).then(() => {
+  console.info('Succeeded setPlaybackRange');
+}).catch((err: BusinessError) => {
+  console.error('Failed to setPlaybackRange' + err.message);
+});
+```
+
 ### prepare<sup>9+</sup>
 
 prepare(callback: AsyncCallback\<void>): void
@@ -7638,6 +7678,7 @@ setMimeType(mimeType: AVMimeTypes): void
 | preferredHeight | number | 否   | 播放策略首选高度，int类型，如1920。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| showFirstFrameOnPrepare | boolean | 否   | 播放策略true是Prepare之后显示视频起播首帧，false是Prepare之后不显示视频起播首帧，默认不显示。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | mutedMediaType | [MediaType](#mediatype8) | 否 | 静音播放的媒体类型，仅支持设置 MediaType.MEDIA_TYPE_AUD。 |
 | preferredAudioLanguage<sup>13+</sup> | string | 否 | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | preferredSubtitleLanguage<sup>13+</sup> | string | 否 | 播放策略首选字幕语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
