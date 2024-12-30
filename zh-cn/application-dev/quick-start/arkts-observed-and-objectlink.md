@@ -187,7 +187,7 @@ struct Parent {
 ### 框架行为
 
 1. 初始渲染：
-   1. \@Observed装饰的class的实例会被不透明的代理对象包装，代理了class上的属性的setter和getter方法
+   1. \@Observed装饰的class的实例会被不透明的代理对象包装，代理了class上的属性的setter和getter方法。
    2. 子组件中\@ObjectLink装饰的从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。
 
 2. 属性更新：当\@Observed装饰的class属性改变时，会执行到代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
@@ -493,7 +493,7 @@ struct GrandFather {
 GrandFather中的事件句柄：
 
 
-- this.user.bag = new Bag(10) 和this.user = new User(new Bag(20))： 对@State装饰的变量size和其属性的修改。
+- this.user.bag = new Bag(10) 和this.user = new User(new Bag(20))： 对@State装饰的变量user和其属性的修改。
 
 - this.child.bookName.size += ... ：该变化属于第二层的变化，@State无法观察到第二层的变化，但是Bag被\@Observed装饰，Bag的属性size的变化可以被\@ObjectLink观察到。
 
@@ -501,7 +501,7 @@ GrandFather中的事件句柄：
 Father中的事件句柄：
 
 
-- this.bookName.size += 1：对\@ObjectLink变量size的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
+- this.bookName.size += 1：对\@ObjectLink变量size的修改，将触发Text组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
 
 - \@ObjectLink变量是只读的，this.bookName = new bookName(...)是不允许的，因为一旦赋值操作发生，指向数据源的引用将被重置，同步将被打断。
 
