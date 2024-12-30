@@ -10780,7 +10780,7 @@ export default class EntryAbility extends UIAbility {
 
 raiseToAppTop(): Promise&lt;void&gt;
 
-提升应用子窗口层级到顶层，只在当前应用同一个父窗口下的相同类型子窗范围内生效。使用Promise异步回调。
+应用子窗口调用，提升应用子窗口到顶层，只在当前应用同一个父窗口下的相同类型子窗范围内生效。使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
