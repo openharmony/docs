@@ -54,7 +54,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | buildHost | string | 是 | 否 | 构建主机。<br/>示例：default |
 | buildTime | string | 是 | 否 | 构建时间。<br/>示例：default |
 | buildRootHash | string | 是 | 否 | 构建版本Hash。<br/>示例：default |
-| udid<sup>7+</sup> | string | 是 | 否 | 设备Udid,仅限系统应用使用。<br/>**说明**：数据长度为65字节。可作为设备唯一识别码。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID<br/>示例：9D6AABD147XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXE5536412  |
+| udid<sup>7+</sup> | string | 是 | 否 | 设备Udid。<br/>**说明**：数据长度为65字节。可作为设备唯一识别码。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID<br/>示例：9D6AABD147XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXE5536412  |
 | distributionOSName<sup>10+</sup> | string | 是 | 否 | 发行版系统名称<!--Del-->，由发行方定义<!--DelEnd-->。<br/>示例：OpenHarmony |
 | distributionOSVersion<sup>10+</sup> | string | 是 | 否 | 发行版系统版本号<!--Del-->，由发行方定义<!--DelEnd-->。<!--RP11--><!--RP11End--><br/>示例：5.0.0.1  |
 | distributionOSApiVersion<sup>10+</sup> | number| 是 | 否 | 发行版系统api版本<!--Del-->，由发行方定义<!--DelEnd-->。<br/>示例：50001 |
