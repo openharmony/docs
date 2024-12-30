@@ -1,18 +1,26 @@
-# 使用示例
-> **前置条件：**
->
-> 业务HAP在app.json配置了一个群组ID：demo_group_id。
-> ```json
-> {
->   "app": {
->     其他配置项此处省略
->     "asset-access-groups": [
->       "demo_group_id"
->     ]
->   }
-> }
-> ```
-> 参考[配置文件标签说明](../../quick-start/app-configuration-file.md#配置文件标签)进行配置。
+# 管理群组关键资产
+
+以下为管理群组关键资产使用示例，请先查看开发指导：
+
+  - [新增关键资产(ArkTS)](asset-js-add.md)
+  - [删除关键资产(ArkTS)](asset-js-remove.md)
+  - [更新关键资产(ArkTS)](asset-js-update.md)
+  - [查询关键资产(ArkTS)](asset-js-query.md)
+
+## 前置条件
+
+业务HAP在app.json配置了一个群组ID：demo_group_id。
+
+```json
+{
+  "app": {
+    //其他配置项此处省略
+    "asset-access-groups": [
+      "demo_group_id"
+    ]
+  }
+}
+```
 
 ## 新增群组关键资产
 
