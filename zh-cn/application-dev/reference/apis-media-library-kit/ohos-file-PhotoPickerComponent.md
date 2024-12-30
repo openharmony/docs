@@ -68,7 +68,7 @@ PhotoPickerComponent({
 | onSelectedItemsDeleted<sup>13+</sup>  | [ItemsDeletedCallback](#itemsdeletedcallback13)                                  | 否   | - | 已勾选的图片被删除时产生的回调，并将被删除图片的相关信息回调给应用。                                                                                                                                                                                                                                                                                                                              |
 | onExceedMaxSelected<sup>13+</sup>     | [ExceedMaxSeletedCallback](#exceedmaxseletedcallback13)                          | 否   | - | 选择达到最大选择数量（最大图片选择数量或者是最大视频选择数量亦或是总的最大选择数量）之后再次点击勾选时产生的回调。<br>- 若选择的数量达到了最大图片选择数量且未达到总的最大选择数量则回调的参数exceedMaxCountType为[MaxCountType](#maxcounttype).PHOTO_MAX_COUNT。<br>- 若选择的数量达到了最大视频选择数量且未达到总的最大选择数量则回调的参数exceedMaxCountType为[MaxCountType](#maxcounttype).VIDEO_MAX_COUNT。<br>- 只要选择的数量达到了总的最大选择数量则回调的的参数exceedMaxCountType为[MaxCountType](#maxcounttype).TOTAL_MAX_COUNT。 |
 | onCurrentAlbumDeleted<sup>13+</sup>   | [CurrentAlbumDeletedCallback](#currentalbumdeletedcallback13)                    | 否   | - | 当前相册被删除时产生的回调。<br>当前相册是指通过pickerContorller.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, currentAlbumUri)接口设置给宫格组件的相册，即“currentAlbumUri”。<br>当前相册被删除后若使用方刷新自己的相册标题栏，使用方可以设置自己的标题栏名称为默认的相册名例如“图片和视频”、“图片”或“视频”，然后通过pickerContorller.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, '')接口传空串去刷新宫格页为默认相册。                                  |
-| onVideoPlayStateChanged<sup>14+</sup>   | [videoPlaySatteChanged](#videoPlaySatteChanged13)                    | 否   | - | 当前大图页视频播放状态改变时回调。                                  |
+| onVideoPlayStateChanged<sup>14+</sup>   | [videoPlayStateChangedCallback](#videoPlayStateChangedCallback14)                    | 否   | - | 大图页视频播放状态改变时回调。                                  |
 | pickerController        | [PickerController](#pickercontroller)                                            | 否   | @ObjectLink | 应用可通过PickerController向Picker组件发送数据。                                                                                                                                                                                                                                                                                                                             |
 
 ## PickerOptions
@@ -142,9 +142,9 @@ type CurrentAlbumDeletedCallback = () => void
 
 type videoPlayStateChangedCallback = (state: VideoPlayerState) => void
 
-当前相册被删除时的回调事件。
+大图页视频播放状态改变时回调。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -452,6 +452,7 @@ Picker的颜色模式。
 | SEEK_START | 3   | 开始拖拽进度条。 |
 | SEEK_FINSH | 4   | 结束拖拽进度条。 |
 
+
 ## 示例
 
 ```ts
@@ -590,7 +591,6 @@ struct PickerDemo {
   private videoPlayStateChanged(stata: videoPlayerState): void {
     // 当视频播放状态变化时回调
   }
-
   build() {
     Flex({
       direction: FlexDirection.Column,
@@ -620,7 +620,7 @@ struct PickerDemo {
           onSelectedItemsDeleted: this.selectedItemsDeletedCallback,
           onExceedMaxSelected: this.exceedMaxSeletedCallback,
           onCurrentAlbumDeleted: this.currentAlbumDeletedCallback,
-           onVideoPlayStateChanged: this.videoPlayStateChangedCallback,
+          onVideoPlayStateChanged: this.videoPlayStateChangedCallback,
           pickerController: this.pickerController,
         }).height('60%').width('100%')
 
