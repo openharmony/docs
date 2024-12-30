@@ -18,8 +18,8 @@
 在开发此功能前，开发者应根据实际需求申请相关权限：
 - 当需要使用麦克风时，需要申请**ohos.permission.MICROPHONE**麦克风权限。申请方式请参考：[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 - 当需要使用相机拍摄时，需要申请**ohos.permission.CAMERA**相机权限。申请方式请参考：[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
-- 当需要读取图片或视频文件时，请优先使用媒体库[Picker选择媒体资源](../medialibrary/photoAccessHelper-photoviewpicker.md)。
-- 当需要保存图片或视频文件时，请优先使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)。
+- 当需要从图库读取图片或视频文件时，请优先使用媒体库[Picker选择媒体资源](../medialibrary/photoAccessHelper-photoviewpicker.md)。
+- 当需要保存图片或视频文件至图库时，请优先使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)。
 
 > **说明：**
 >
@@ -31,6 +31,8 @@
 > **说明：**
 >
 > AVRecorder只负责视频数据的处理，需要与视频数据采集模块配合才能完成视频录制。视频数据采集模块需要通过Surface将视频数据传递给AVRecorder进行数据处理。当前常用的数据采集模块为相机模块，具体请参考[相机-录像](../camera/camera-recording.md)。
+> 文件的创建与存储，请参考[应用文件访问与管理](../../file-management/app-file-access.md)，默认存储在应用的沙箱路径之下，如需存储至图库，请使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)对沙箱内文件进行存储。
+
 
 AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis-media-kit/js-apis-media.md#avrecorder9)。
 
@@ -95,10 +97,16 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
      videoFrameHeight : 480, // 视频分辨率的高
      videoFrameRate : 30 // 视频帧率
    };
+   
+   const context: Context = getContext(this); // 参考应用文件访问与管理
+   let filePath: string = context.filesDir + '/example.mp4';
+   let videoFile: fs.File = fs.openSync(filePath, OpenMode.READ_WRITE | OpenMode.CREATE);
+   let fileFd = videoFile.fd; // 获取文件fd
+  
    let avConfig: media.AVRecorderConfig = {
      videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式
      profile : avProfile,
-     url : 'fd://35', // 参考应用文件访问与管理开发示例新建并读写一个文件
+     url: 'fd://' + fileFd.toString(), // 参考应用文件访问与管理开发示例新建并读写一个视频文件
      rotation : 0 // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270
    };
    avRecorder.prepare(avConfig).then(() => {
@@ -146,9 +154,13 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
 ```ts
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
 
 const TAG = 'VideoRecorderDemo:';
 export class VideoRecorderDemo {
+  const context: Context = getContext(this);
   private avRecorder: media.AVRecorder | undefined = undefined;
   private videoOutSurfaceId: string = "";
   private avProfile: media.AVRecorderProfile = {
@@ -166,6 +178,19 @@ export class VideoRecorderDemo {
     rotation : 0 // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270
   };
 
+  private uriPath: string = ''; // 文件uri，可用于安全控件保存媒体资源
+  private filePath: string = ''; // 文件路径
+  private fileFd: number = 0;
+  
+  // 创建文件以及设置avConfig.url
+  async createAndSetFd() {
+    const path: string = context.filesDir + '/example.mp4'; // 文件沙箱路径，文件后缀名应与封装格式对应
+    const videoFile: fs.File = fs.openSync(path, OpenMode.READ_WRITE | OpenMode.CREATE);
+    this.avConfig.url = 'fd://' + videoFile.fd; // 设置url
+    this.fileFd = videoFile.fd; // 文件fd
+    this.filePath = path;
+  }
+  
   // 注册avRecorder回调函数
   setAvRecorderCallback() {
     if (this.avRecorder != undefined) {
@@ -249,11 +274,22 @@ export class VideoRecorderDemo {
       // 3.释放录制实例
       await this.avRecorder.release();
       // 4.文件录制完成后，关闭fd,实现略
+      await fs.close(videoFile);
       // 5.释放相机相关实例
       await this.releaseCamera();
     }
   }
 
+  // 安全控件保存媒体资源至图库
+  async saveRecorderAsset() {
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
+    // 需要确保uriPath对应的资源存在
+    this.uriPath = file.Uri.getUriFromPath(this.filePath); // 获取录制文件的uri，用于安全控件保存至图库
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = 
+      photoAccessHelper.MediaAssetChangeRequest.createVideoAssetRequest(this.context, this.uriPath);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+  }
+  
   // 一个完整的【开始录制-暂停录制-恢复录制-停止录制】示例
   async videoRecorderDemo() {
     await this.startRecordingProcess();         // 开始录制
@@ -261,6 +297,8 @@ export class VideoRecorderDemo {
     await this.pauseRecordingProcess();         //暂停录制
     await this.resumeRecordingProcess();        // 恢复录制
     await this.stopRecordingProcess();          // 停止录制
+    // 安全控件保存媒体资源至图库
+    await this.saveRecorderAsset();
   }
 }
 ```
