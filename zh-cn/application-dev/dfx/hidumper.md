@@ -658,7 +658,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     >
     > 该命令仅限debug版本使用，release版本不可用。
     >
-    > 如何区分debug/release版本：同上。
+    > 如何区分debug/release版本：请查看`hidumper -p`中说明。
 
     **使用样例：**
 
@@ -720,7 +720,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     >
     > 该命令在release版本只支持导出debug应用的快照信息。
     >
-    > 如何区分debug和release版本：同上。
+    > 如何区分debug和release版本：请查看`hidumper -p`中说明。
     >
     > 导出的jsheap文件一般位于/data/log/faultlog/temp或/data/log/reliability/resource_leak/memory_leak下
 
