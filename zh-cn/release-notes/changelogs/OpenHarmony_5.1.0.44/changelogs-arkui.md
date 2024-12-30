@@ -283,3 +283,57 @@ struct Page2 {
 ```
 
 当子组件Child不使用组件冻结功能时，跳转到页面2，修改状态变量将响应更新，@Monitor被调用，状态变量关联的节点将会刷新。
+
+## cl.arkui.3 contentModifier导致margin属性失效变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+用户配置了contentModifier时，设置margin无法生效。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+| 变更前 | 变更后 |
+|---------|---------|
+|配置了contentModifier时，设置margin不生效|配置了contentModifier时，设置margin生效|
+|![超长错误文本变更前样式](figures/ContentModifierBefore.png)|![超长错误文本变更后样式](figures/ContentModifierAfter.png)|
+
+**起始API Level**
+
+API 7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.44开始。
+
+**变更的接口/组件**
+
+Checkbox/Radio/Rating/Slider/Toggle
+
+**适配指导**
+
+若应用存在使用contentModifer，并且设置了margin的情况，变更后margin会生效，适配删除margin属性即可。
+
+```ts
+@Entry
+@Component
+struct Index {
+
+  build() {
+    Column() {
+      Text("Checkbox设置了margin top为200")
+      Checkbox({ name: '复选框状态', group: 'checkboxGroup' })
+        .contentModifier(new MyCheckboxStyle(Color.Red))
+        .onChange((value: boolean) => {
+          console.info('Checkbox change is' + value)
+        })
+        // .margin({ top: 200 }) 若期望原有效果，删除margin调用即可
+    }.width('100%')
+  }
+}
+```
