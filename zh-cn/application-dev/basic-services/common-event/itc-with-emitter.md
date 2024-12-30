@@ -91,5 +91,5 @@ Emitter通过维护一个内部事件队列，来进行任务分发。应用需�
     取消事件订阅使用emit接口进行取消，设置要取消的事件ID。
    ```ts
    // 取消eventId为1的事件。
-   emitter.emit(1);
+   emitter.off(1);
    ```
