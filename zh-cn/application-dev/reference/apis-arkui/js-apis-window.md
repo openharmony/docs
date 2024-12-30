@@ -353,11 +353,11 @@ import { window } from '@kit.ArkUI';
 | ------ | ------ | ---- | ------------------------------------------ |
 | displayId | number | 否 | 目标屏幕ID，该参数应该为整数，非整数输入将向下取整。此参数不填或者传入目标屏幕ID不存在，将默认保持为当前屏幕。 |
 
-## WindowDensityInfo<sup>16+</sup>
+## WindowDensityInfo<sup>15+</sup>
 
 窗口Density参数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3850,13 +3850,13 @@ try {
 }
 ```
 
-### on('systemDensityChange')<sup>16+</sup>
+### on('systemDensityChange')<sup>15+</sup>
 
 on(type: 'systemDensityChange', callback: Callback&lt;number&gt;): void
 
 开启本窗口所处屏幕的系统Density变化事件的监听。比如，当前调整当前窗口的显示大小时，可以从此接口监听到这个行为。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3888,13 +3888,13 @@ try {
   console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
-### off('systemDensityChange')<sup>16+</sup>
+### off('systemDensityChange')<sup>15+</sup>
 
 off(type: 'systemDensityChange', callback?: Callback&lt;number&gt;): void
 
 关闭本窗口所处屏幕变化事件的监听。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -9930,7 +9930,7 @@ getWindowDensityInfo(): WindowDensityInfo
 
 获取当前窗口的Density参数，返回WindowDensityInfo。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.Window.SessionManager
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -9938,7 +9938,7 @@ getWindowDensityInfo(): WindowDensityInfo
 
 | 类型 | 说明 |
 | ------------------------------------- | ------------- |
-| [WindowDensityInfo](#windowdensityinfo16) | 当前窗口Density参数。 |
+| [WindowDensityInfo](#windowdensityinfo15) | 当前窗口Density参数。 |
 
 **错误码：**
 
@@ -10658,15 +10658,15 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setCustomDensity<sup>16+</sup>
+### setCustomDensity<sup>15+</sup>
 
 setCustomDensity(density: number): void
 
-支持应用自定义窗口的Density。
+支持应用自定义窗口的Density。该接口的优先级和[setDefaultDensityEnabled](#setdefaultdensityenabled12)一样，因此最后调用的接口才会生效。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
