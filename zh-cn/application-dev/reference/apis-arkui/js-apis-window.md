@@ -9924,7 +9924,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### getWindowDensityInfo<sup>16+</sup>
+### getWindowDensityInfo<sup>15+</sup>
 
 getWindowDensityInfo(): WindowDensityInfo
 
@@ -9932,7 +9932,7 @@ getWindowDensityInfo(): WindowDensityInfo
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -10662,7 +10662,7 @@ export default class EntryAbility extends UIAbility {
 
 setCustomDensity(density: number): void
 
-支持应用自定义窗口的Density。该接口的优先级和[setDefaultDensityEnabled](#setdefaultdensityenabled12)一样，因此最后调用的接口才会生效。
+支持应用自定义窗口的Density。该接口的优先级和[setDefaultDensityEnabled](#setdefaultdensityenabled12)相等，最后调用的会覆盖之前调用的。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
