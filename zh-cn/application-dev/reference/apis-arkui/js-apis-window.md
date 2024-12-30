@@ -363,9 +363,9 @@ import { window } from '@kit.ArkUI';
 
 | 名称   | 类型 | 可读 | 可写 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
-| SystemDensity  | number   | 是   | 否   | 窗口所在屏幕的Density，该参数应为浮点数。 |
-| DefaultDensity | number   | 是   | 否   | 窗口所在屏幕的默认Density，该参数应为浮点数。 |
-| CustomDensity | number   | 是   | 否   | 窗口设置的自定义Density，未设置时，通常为所在屏幕的Density或默认Density，该参数应为浮点数。 |
+| SystemDensity  | number   | 是   | 否   | 窗口所在屏幕的Density值，跟随用户显示大小设置变化，该参数应为浮点数。 |
+| DefaultDensity | number   | 是   | 否   | 窗口所在屏幕的默认Density值，该参数应为浮点数。 |
+| CustomDensity | number   | 是   | 否   | 窗口设置的自定义Density值，该参数应为浮点数。未设置该参数时，将跟随SystemDensity变化，如果调用[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，将跟随DefaultDensity变化。 |
 
 ## window.createWindow<sup>9+</sup>
 
@@ -3854,7 +3854,7 @@ try {
 
 on(type: 'systemDensityChange', callback: Callback&lt;number&gt;): void
 
-开启本窗口所处屏幕的系统Density变化事件的监听。比如，当前调整当前窗口的显示大小时，可以从此接口监听到这个行为。
+开启本窗口所处屏幕的系统Density变化事件的监听。比如，当调整当前屏幕显示大小选项时，可以从此接口监听到这个行为。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
