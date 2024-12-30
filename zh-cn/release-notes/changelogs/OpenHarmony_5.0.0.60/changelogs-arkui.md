@@ -102,3 +102,68 @@ API 12
 **适配指导**
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.4 CanvasRenderingContext2D的miterLimit接口，当传入参数为0时，其异常值的处理方式发生变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+CanvasRenderingContext2D的miterLimit接口，当传入参数为0时，未按照默认值设置参数，与文档所规定的处理异常值的方式不符。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+|               变更前                |              变更后               |
+| :---------------------------------: | :-------------------------------: |
+| 当传入参数0为时，未按照默认值进行参数设置。<br>![](figures/miterLimit_1.jpeg) | 当传入参数为0时，按照默认值进行参数设置。<br>![](figures/miterLimit_2.jpeg) |
+
+**起始API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.60 版本开始。
+
+**变更的接口/组件**
+
+CanvasRenderingContext2D的miterLimit接口
+
+**适配指导**
+
+API versiont 15及以后，使用miterLimit接口，当传入参数0为时，按照默认值进行参数设置，即miterLimit被设置为10。
+
+**示例**
+
+```ts
+@Entry
+@Component
+struct MiterLimit {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('rgb(213,213,213)')
+        .onReady(() => {
+          this.context.lineWidth = 10
+          this.context.lineJoin = 'miter'
+          this.context.miterLimit = 0
+          this.context.moveTo(50, 30)
+          this.context.lineTo(170, 90)
+          this.context.lineTo(50, 150)
+          this.context.stroke()
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
