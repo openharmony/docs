@@ -95,8 +95,6 @@ createData(data: Record&lt;string, ValueType&gt;): PasteData
 
 构建一个包含多个类型数据的剪贴板内容对象。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -532,8 +530,6 @@ addEntry(type: string, value: ValueType): void
 
 往一个PasteDataRecord中额外添加一种样式的自定义数据。此方式添加的MIME类型都不是Record的默认类型，粘贴时只能使用[getData](#getdata14)接口读取对应数据。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -566,15 +562,13 @@ getValidTypes(types: Array&lt;string&gt;): Array&lt;string&gt;
 
 根据传入的MIME类型，返回传入的MIME类型和剪贴板中数据的MIME类型的交集。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
 
-| 参数名   | 类型 | 说明             |
-|-------| -------- |----------------|
-| types | Array&lt;string&gt; | MIME类型列表。 |
+| 参数名   | 类型 | 必填 | 说明             |
+|-------| -------- | -------- |----------------|
+| types | Array&lt;string&gt; | 是 | MIME类型列表。 |
 
 **返回值：**
 
@@ -612,15 +606,13 @@ getData(type: string): Promise&lt;ValueType&gt;
 
 从PasteDataRecord中获取指定MIME类型的自定义数据。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
 
-| 参数名  | 类型     | 说明       |
-|------|--------|----------|
-| type | string | MIME类型。 |
+| 参数名  | 类型     |必填 | 说明       |
+|------|--------|-------- |----------|
+| type | string |是 | MIME类型。 |
 
 **返回值：**
 
@@ -2683,7 +2675,7 @@ try {
 
 ### setAppShareOptions<sup>14+</sup>
 
-setShareOptions(shareOptions: ShareOption): void
+setAppShareOptions(shareOptions: ShareOption): void
 
 应用设置本应用剪贴板数据的可粘贴范围。
 
@@ -2724,7 +2716,7 @@ try {
 
 ### removeAppShareOptions<sup>14+</sup>
 
-removeShareOptions(): void
+removeAppShareOptions(): void
 
 删除应用全局的可粘贴的范围。
 
