@@ -10780,7 +10780,7 @@ export default class EntryAbility extends UIAbility {
 
 raiseToAppTop(): Promise&lt;void&gt;
 
-应用子窗口调用，提升应用子窗口到顶层，只在当前应用同一个父窗口下的相同类型子窗范围内生效。使用Promise异步回调。
+提升应用子窗口层级到顶层，只在当前应用同一个父窗口下的相同类型子窗范围内生效。使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -10822,7 +10822,7 @@ setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
 
 禁止/使能子窗点击抬升功能。使用Promise异步回调。
 
-通常来说，点击一个子窗口，会将该子窗口显示到最上方，如果设置为false，那么点击子窗口的时候，不会将该子窗口显示到最上方，而是保持不变。
+通常来说，点击一个子窗口，会将该子窗口显示抬升到应用内同一个父窗口下同类型子窗口的最上方，如果设置为false，那么点击子窗口的时候，不会将该子窗口进行抬升，而是保持不变。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
