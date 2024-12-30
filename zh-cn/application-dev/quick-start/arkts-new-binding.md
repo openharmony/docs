@@ -82,6 +82,9 @@ struct Star {
   | [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11) | isShow | 13          |
   | [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12) | isShown | 13          |
   | [bindPopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) | show | 13   |
+  | [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) | text | 16   |
+  | [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md) | text | 16   |
+  | [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md) | value | 16   |
 
 - !!绑定的[\@Local](arkts-new-local.md)变量变化时，会触发UI的同步刷新。
 
