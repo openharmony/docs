@@ -1,6 +1,6 @@
-# uiExtension hideNonSecureWindows接口PC规格变更
+# ArkUI uiExtension hideNonSecureWindows接口PC规格变更
 
-## cl.uiExtension.1 hideNonSecureWindows在PC上不阻止全局悬浮窗创建和显示
+## cl.ArkUI.1 uiExtension hideNonSecureWindows在PC上不阻止全局悬浮窗创建和显示
 
 **访问级别**
 
