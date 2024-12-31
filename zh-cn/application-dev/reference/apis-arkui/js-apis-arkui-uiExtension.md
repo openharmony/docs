@@ -222,7 +222,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 on(type: 'rectChange', reasons: number, callback: Callback&lt;RectChangeOptions&gt;): void
 
-注册组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的监听，目前仅支持在PC设备上使用。
+注册组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的监听，目前仅支持在2in1设备上使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -267,7 +267,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 off(type: 'rectChange', callback?: Callback&lt;RectChangeOptions&gt;): void
 
-注销组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的监听，目前仅支持在PC设备上使用。
+注销组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的监听，目前仅支持在2in1设备上使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
