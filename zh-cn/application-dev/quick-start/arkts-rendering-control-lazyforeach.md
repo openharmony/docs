@@ -46,11 +46,6 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: string): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
@@ -110,11 +105,6 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: string): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
@@ -172,11 +162,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): string {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
@@ -242,11 +227,6 @@ class MyDataSource extends BasicDataSource {
 
   public getAllData(): string[] {
     return this.dataArray;
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
@@ -318,18 +298,8 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray;
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: string): void {
     this.dataArray.push(data);
-  }
-  
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
   }
   
   public moveData(from: number, to: number): void {
@@ -400,18 +370,8 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: string): void {
     this.dataArray.push(data);
-  }
-  
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
   }
   
   public changeData(index: number, data: string): void {
@@ -476,22 +436,8 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: string): void {
     this.dataArray.push(data);
-  }
-  
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
-  }
-  
-  public changeData(index: number): void {
-    this.notifyDataChange(index);
   }
     
   public reloadData(): void {
@@ -740,11 +686,6 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: StringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
@@ -822,11 +763,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {
@@ -912,11 +848,6 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: StringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
@@ -996,11 +927,6 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: StringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
@@ -1072,11 +998,6 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public moveDataWithoutNotify(from: number, to: number): void {
     let tmp = this.dataArray.splice(from, 1);
     this.dataArray.splice(to, 0, tmp[0])
@@ -1086,17 +1007,18 @@ class MyDataSource extends BasicDataSource {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
-
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
-  }
 }
 
 @Entry
 @Component
 struct Parent {
   private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 100; i++) {
+      this.data.pushData(i.toString())
+    }
+  }
 
   build() {
     Row() {
@@ -1118,11 +1040,6 @@ struct Parent {
       .width('100%')
       .height('100%')
       .backgroundColor("#FFDCDCDC")
-    }
-  }
-  aboutToAppear(): void {
-    for (let i = 0; i < 100; i++) {
-      this.data.pushData(i.toString())
     }
   }
 }
@@ -1147,11 +1064,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): string {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
@@ -1216,11 +1128,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): string {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
@@ -1291,11 +1198,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {
@@ -1375,11 +1277,6 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: StringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
@@ -1400,7 +1297,6 @@ class StringData {
 @Entry
 @Component
 struct MyComponent {
-  // 用状态变量来驱动UI刷新，而不是通过Lazyforeach的api来驱动UI刷新
   private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
@@ -1425,6 +1321,7 @@ struct MyComponent {
 
 @Component
 struct ChildComponent {
+  // 用状态变量来驱动UI刷新，而不是通过Lazyforeach的api来驱动UI刷新
   @ObjectLink data: StringData
   build() {
     Column() {
@@ -1457,11 +1354,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {
@@ -1547,11 +1439,6 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: StringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
@@ -1635,23 +1522,9 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: string): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
-  }
-
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
-  }
-
-  public changeData(index: number): void {
-    this.notifyDataChange(index);
   }
 
   operateData():void {
@@ -1721,23 +1594,9 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: string): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
-  }
-
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
-  }
-
-  public changeData(index: number): void {
-    this.notifyDataChange(index);
   }
 
   operateData():void {
@@ -1808,11 +1667,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {
