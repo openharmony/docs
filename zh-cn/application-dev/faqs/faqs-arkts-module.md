@@ -129,38 +129,57 @@ load libentry.so failed.
 
 
 ## 模块间循环依赖导致运行时未初始化异常问题定位
-
-模块间的循环依赖往往是存在这种文件依赖情况：
-```ts
-// file1
-  export {b} from './file2'
-  export {a} from './A'
-
-// file2
-  import {a} from './file1'
-  export let b:number = a;
-
-// A
-  export let a:number = 50;
+### 循环依赖问题定位方法
+报错xxx is not initialized不一定是循环依赖问题，需要打开开关进一步确认：
 ```
-如上代码会报错：
+打开option: hdc shell param set persist.ark.properties 0x2000105c
+打开后必须重启机器：hdc shell reboot
+如果需要关闭option: hdc shell param set persist.ark.properties 0x0000105c
+关闭后必须重启机器：hdc shell reboot
 ```
-Error message:a is not initialized
-```
+开关打开后复现报错就是第一现场报错，解决即可。如果报错仍是xxx is not initialized, 就是文件存在循环依赖。
 
-但如果仅仅是更换file1的加载顺序：
-```ts
-// file1
-  export {a} from './A'
-  export {b} from './file2'
-// file2
-  import {a} from './file1'
-  export let b:number = a;
-// A
-  export let a:number = 50;
+### 循环依赖原理
+1. 模块加载顺序：  
+根据ECMA规范，模块的执行顺序是深度遍历加载。  
+假设应用存在加载链路A->B->C，那么ArkTs模块化会先执行C文件，再执行B文件，最后执行A文件，执行顺序为C->B->A。  
+2. 循环依赖：  
+如果应用存在加载链路A->B->A，根据深度遍历执行顺序，执行流程会先标记A的状态为加载中，然后去加载B，标记B的状态为加载中，然后去加载A，由于A文件已经标记加载中，根据规范定义，识别到加载中模块会直接返回，就会先执行B文件。  
+**为什么有的循环依赖没有影响，有的就会产生crash?**  
+由上面的叙述可知，B文件虽然依赖A文件变量，但是B文件先执行，如果B文件导入的A文件变量没有在全局或者类静态中被使用，B文件就会正常执行。如果B文件在全局或者实例化某个类等其他方法，导致文件执行时就会用到A的变量，就会产生xxx is not initialized的crash，即循环依赖导致变量未被初始化。
+
+示例：
+``` typescript
+// A.ets
+import { Animal } from './B'
+export let a = "this is A";
+export function A() {
+  return new Animal;
+}
+
+// ---------------------
+
+// B.ets
+import { a } from './A'
+export class Animal {
+  static {
+    console.log("this is in class");
+    let str = a; // 报错信息：a is not initialized
+  }
+}
 ```
-以上代码就不会报错。此时执行顺序：file1加载A, A文件无依赖；返回file1继续加载file2, file2文件加载file1时，变量a文件所在的A已经执行完成，因此正常加载。
-开发者需注意，模块化编译采用的是深度遍历加载。
+**正例**
+
+``` typescript
+// B.ets
+import { a } from './A'
+export class Animal {
+  static {
+    console.log("this is in class");
+  }
+  str = a;  // 修改点
+}
+```
 
 ### 循环依赖的解决方法：
 [安全规则@security/no-cycle](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide_no-cycle-V5)
