@@ -1,6 +1,6 @@
-# ArkUI uiExtension hideNonSecureWindows接口PC规格变更
+# ArkUI uiExtension hideNonSecureWindows接口2in1设备规格变更
 
-## cl.ArkUI.1 uiExtension hideNonSecureWindows在PC上不阻止全局悬浮窗创建和显示
+## cl.ArkUI.1 uiExtension hideNonSecureWindows在2in1设备上不阻止全局悬浮窗创建和显示
 
 **访问级别**
 
@@ -8,7 +8,7 @@
 
 **变更原因**
 
-hideNonSecureWindows在PC上不允许全局悬浮窗创建和显示，不满足业务需求，导致部分依赖全局悬浮窗的PC应用异常。
+hideNonSecureWindows在2in1设备上不允许全局悬浮窗创建和显示，不满足业务需求，导致2in1设备上部分依赖全局悬浮窗应用异常。
 
 **变更影响**
 
@@ -17,12 +17,12 @@ hideNonSecureWindows在PC上不允许全局悬浮窗创建和显示，不满足业务需求，导致部分依
 
 变更前：
 
-hideNonSecureWindows在PC上不允许全局悬浮窗创建，且会隐藏已经创建的全局悬浮窗。
+hideNonSecureWindows在2in1设备上不允许全局悬浮窗创建，且会隐藏已经创建的全局悬浮窗。
 
 
 变更后：
 
-hideNonSecureWindows在PC上不阻止全局悬浮窗创建和显示。
+hideNonSecureWindows在2in1设备上不阻止全局悬浮窗创建和显示。
 
 
 **起始API Level**
