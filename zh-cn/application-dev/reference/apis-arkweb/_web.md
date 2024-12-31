@@ -599,7 +599,7 @@ custom scheme的配置信息。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKWEB_SCHEME_OPTION_STANDARD  | 如果设置了ARKWEB_SCHEME_OPTION_STANDARD，那么该scheme将被视为标准scheme来处理。 标准scheme需要遵守在RFC 1738第3.1节中定义的URL规范化和解析规则，该规则可以在http://www\.ietf.org/rfc/rfc1738.txt中找到。  | 
+| ARKWEB_SCHEME_OPTION_STANDARD  | 如果设置了ARKWEB_SCHEME_OPTION_STANDARD，那么该scheme将被视为标准scheme来处理。 标准scheme需要遵守在RFC 1738第3.1节中定义的URL规范化和解析规则，该规则可以在http:\//www\.ietf.org/rfc/rfc1738.txt中找到。  | 
 | ARKWEB_SCHEME_OPTION_LOCAL  | 如果设置了ARKWEB_SCHEME_OPTION_LOCAL，则将使用与“file” URL相同的安全规则来处理该scheme。  | 
 | ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED  | 如果设置了ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED，则该scheme的请求只能由使用相同scheme加载的页面中发起。  | 
 | ARKWEB_SCHEME_OPTION_SECURE  | 如果设置了ARKWEB_SCHEME_OPTION_SECURE，则将使用与“https” URL相同的安全规则来处理该scheme。  | 
