@@ -4988,6 +4988,22 @@ let router: Router = uiContext.getRouter();
 router.getParams();
 ```
 
+## CustomBuilderWithId<sup>16+</sup>
+
+type CustomBuilderWithId = (id: number)&nbsp;=&gt;&nbsp;void
+
+组件属性方法参数可使用CustomBuilderWithId类型来自定义UI描述，并且可以指定组件ID生成用户自定义组件。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| id | number | 是 | 组件ID |
+
 ## PromptAction
 
 以下API需先使用UIContext中的[getPromptAction()](#getpromptaction)方法获取到PromptAction对象，再通过该对象调用对应方法。
@@ -5533,6 +5549,107 @@ struct Index {
 }
 ```
 
+### openCustomDialogWithController<sup>16+</sup>
+
+openCustomDialogWithController\<T extends Object>(dialogContent: ComponentContent\<T>, controller: promptAction.DialogController, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
+
+创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。支持传入弹窗控制器与自定义弹窗绑定，后续可以通过控制器控制自定义弹窗。
+
+通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。
+
+暂不支持isModal = true与showInSubWindow = true同时使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
+| controller | [promptAction.DialogController](js-apis-promptAction.md#dialogcontroller16) | 是 | 自定义弹窗的控制器。 |
+| options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | 否    | 自定义弹窗的样式。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | the ComponentContent is incorrect. |
+| 103302 | Dialog content already exists.|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ComponentContent, promptAction } from '@kit.ArkUI';
+
+class Params {
+  text: string = ""
+  dialogController: promptAction.DialogController = new promptAction.DialogController();
+  constructor(text: string, dialogController: promptAction.DialogController) {
+    this.text = text;
+    this.dialogController = dialogController;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({bottom: 36})
+    Button('点我关闭弹窗：通过外部传递的DialogController')
+      .onClick(() => {
+        if (params.dialogController != undefined) {
+          params.dialogController.close()
+        }
+      })
+  }.backgroundColor('#FFF0F0F0')
+}
+
+@Entry
+@ComponentV2
+struct Index {
+  @Local message: string = "hello"
+  private dialogController: promptAction.DialogController = new promptAction.DialogController()
+
+  build() {
+    Row() {
+      Column() {
+        Button("click me")
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText),
+              new Params(this.message, this.dialogController));
+            try {
+              promptAction.openCustomDialogWithController(contentNode, this.dialogController);
+            } catch (error) {
+              let message = (error as BusinessError).message;
+              let code = (error as BusinessError).code;
+              console.error(`OpenCustomDialogWithController args error code is ${code}, message is ${message}`);
+            };
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ### closeCustomDialog<sup>12+</sup>
 
 closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promise&lt;void&gt;
@@ -5754,6 +5871,121 @@ openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal error.                                              |
+
+### presentCustomDialog<sup>16+</sup>
+
+presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: promptAction.DialogController, options?: promptAction.DialogOptions): Promise\<number>
+
+创建并弹出自定义弹窗。使用Promise异步回调，返回供closeCustomDialog使用的对话框id。
+
+支持在自定义弹窗内容中持有弹窗ID进行对应操作。支持传入弹窗控制器与自定义弹窗绑定，后续可以通过控制器控制自定义弹窗。
+
+暂不支持isModal = true与showInSubWindow = true同时使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                         | 必填 | 说明               |
+| ------- | ------------------------------------------------------------ | ---- | ------------------ |
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [CustomBuilderWithId](#custombuilderwithid16) | 是   | 自定义弹窗的内容。 |
+| controller | [promptAction.DialogController](js-apis-promptAction.md#dialogcontroller16) | 否 | 自定义弹窗的控制器。 |
+| options | [promptAction.DialogOptions](js-apis-promptAction.md#dialogoptions16) | 否 | 自定义弹窗的样式。 |
+
+**返回值：**
+
+| 类型                | 说明                                    |
+| ------------------- | --------------------------------------- |
+| Promise&lt;number&gt; | 返回自定义弹窗ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { PromptAction, promptAction } from '@kit.ArkUI';
+
+@Entry
+@ComponentV2
+struct Index {
+  @Local message: string = "hello"
+  private ctx: UIContext = this.getUIContext()
+  private promptAction: PromptAction = this.ctx.getPromptAction()
+  private dialogController: promptAction.DialogController = new promptAction.DialogController()
+
+  private customDialogComponentId: number = 0
+  @Builder customDialogComponent() {
+    Column() {
+      Text(this.message).fontSize(30)
+      Row({ space: 10 }) {
+        Button("通过DialogId关闭").onClick(() => {
+          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+        })
+        Button("通过DialogController关闭").onClick(() => {
+          this.dialogController.close()
+        })
+      }
+    }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
+  }
+
+  @Builder customDialogComponentWithId(dialogId: number) {
+    Column() {
+      Text(this.message).fontSize(30)
+      Row({ space: 10 }) {
+        Button("通过DialogId关闭").onClick(() => {
+          this.promptAction.closeCustomDialog(dialogId)
+        })
+        Button("通过DialogController关闭").onClick(() => {
+          this.dialogController.close()
+        })
+      }
+    }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
+  }
+
+  build() {
+    Row() {
+      Column({ space: 10 }) {
+        Button('presentCustomDialog')
+          .fontSize(20)
+          .onClick(() => {
+            this.promptAction.presentCustomDialog(() => {
+              this.customDialogComponent()
+            }, this.dialogController)
+              .then((dialogId: number) => {
+                this.customDialogComponentId = dialogId
+              })
+              .catch((err: BusinessError) => {
+                console.error("presentCustomDialog error: " + err.code + " " + err.message)
+              })
+          })
+        Button('presentCustomDialog with id')
+          .fontSize(20)
+          .onClick(() => {
+            this.promptAction.presentCustomDialog((dialogId: number) => {
+              this.customDialogComponentWithId(dialogId)
+            }, this.dialogController)
+              .catch((err: BusinessError) => {
+                console.error("presentCustomDialog with id error: " + err.code + " " + err.message)
+              })
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
 
 ### closeCustomDialog<sup>12+</sup>
 
