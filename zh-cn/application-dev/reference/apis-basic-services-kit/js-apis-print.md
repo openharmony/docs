@@ -850,7 +850,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | PRINT_FILE_CREATION_FAILED | 1 | 表示打印文件创建失败|
 | PRINT_FILE_CREATED_UNRENDERED | 2 | 表示打印文件创建成功但未渲染 |
 
-## PrinterState
+## PrinterState<sup>14+</sup>
 
 打印机状态的枚举。
 
@@ -865,7 +865,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | PRINTER_DISCONNECTED | 4 | 表示打印机已断开连接 |
 | PRINTER_RUNNING | 5 | 表示打印机正在运行 |
 
-## PrintJobState
+## PrintJobState<sup>14+</sup>
 
 打印任务状态的枚举。
 
@@ -879,7 +879,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | PRINT_JOB_BLOCKED | 3 | 表示打印任务已被阻止 |
 | PRINT_JOB_COMPLETED | 4 | 表示打印任务完成 |
 
-## PrintJobSubState
+## PrintJobSubState<sup>14+</sup>
 
 打印任务子状态的枚举。
 
@@ -904,19 +904,19 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | PRINT_JOB_BLOCK_LOW_ON_TONER | 14 | 表示打印墨粉不足 |
 | PRINT_JOB_BLOCK_REALLY_LOW_ON_INK | 15 | 表示打印墨水量非常低 |
 | PRINT_JOB_BLOCK_BAD_CERTIFICATE | 16 | 表示打印证书有误 |
-| PRINT_JOB_BLOCK_ACCOUNT_ERROR<sup>11+</sup> | 18 | 表示打印账户时出错 |
-| PRINT_JOB_BLOCK_PRINT_PERMISSION_ERROR<sup>11+</sup> | 19 | 表示打印许可异常 |
-| PRINT_JOB_BLOCK_PRINT_COLOR_PERMISSION_ERROR<sup>11+</sup> | 20 | 表示彩色打印权限异常 |
-| PRINT_JOB_BLOCK_NETWORK_ERROR<sup>11+</sup> | 21 | 表示设备未连接到网络 |
-| PRINT_JOB_BLOCK_SERVER_CONNECTION_ERROR<sup>11+</sup> | 22 | 表示无法连接服务器 |
-| PRINT_JOB_BLOCK_LARGE_FILE_ERROR<sup>11+</sup> | 23 | 表示打印大文件异常 |
-| PRINT_JOB_BLOCK_FILE_PARSING_ERROR<sup>11+</sup> | 24 | 表示文件分析异常 |
-| PRINT_JOB_BLOCK_SLOW_FILE_CONVERSION<sup>11+</sup> | 25 | 表示文件转换太慢 |
-| PRINT_JOB_RUNNING_UPLOADING_FILES<sup>11+</sup> | 26 | 表示正在上传文件 |
-| PRINT_JOB_RUNNING_CONVERTING_FILES<sup>11+</sup> | 27 | 表示正在转换文件 |
+| PRINT_JOB_BLOCK_ACCOUNT_ERROR | 18 | 表示打印账户时出错 |
+| PRINT_JOB_BLOCK_PRINT_PERMISSION_ERROR | 19 | 表示打印许可异常 |
+| PRINT_JOB_BLOCK_PRINT_COLOR_PERMISSION_ERROR | 20 | 表示彩色打印权限异常 |
+| PRINT_JOB_BLOCK_NETWORK_ERROR | 21 | 表示设备未连接到网络 |
+| PRINT_JOB_BLOCK_SERVER_CONNECTION_ERROR | 22 | 表示无法连接服务器 |
+| PRINT_JOB_BLOCK_LARGE_FILE_ERROR | 23 | 表示打印大文件异常 |
+| PRINT_JOB_BLOCK_FILE_PARSING_ERROR | 24 | 表示文件分析异常 |
+| PRINT_JOB_BLOCK_SLOW_FILE_CONVERSION | 25 | 表示文件转换太慢 |
+| PRINT_JOB_RUNNING_UPLOADING_FILES | 26 | 表示正在上传文件 |
+| PRINT_JOB_RUNNING_CONVERTING_FILES | 27 | 表示正在转换文件 |
 | PRINT_JOB_BLOCK_UNKNOWN | 99 | 表示打印未知问题 |
 
-## PrintErrorCode
+## PrintErrorCode<sup>14+</sup>
 
 打印错误代码的枚举。
 
@@ -935,7 +935,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | E_PRINT_INVALID_PRINT_JOB | 13100006 | 表示打印任务无效 |
 | E_PRINT_FILE_IO | 13100007 | 表示文件输入/输出错误 |
 
-## ApplicationEvent<sup>12+</sup>
+## ApplicationEvent<sup>14+</sup>
 
 打印应用事件的枚举。
 
@@ -973,7 +973,7 @@ addPrinterToDiscovery(printerInformation: PrinterInformation): Promise&lt;void&g
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1024,7 +1024,7 @@ updatePrinterInDiscovery(printerInformation: PrinterInformation): Promise&lt;voi
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1093,7 +1093,7 @@ removePrinterFromDiscovery(printerId: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1112,7 +1112,7 @@ print.removePrinterFromDiscovery(printerId).then((data : void) => {
 
 ## getPrinterInformationById<sup>14+</sup>
 
-getPrinterInformationById(printerId: string): Promise&lt;void&gt;
+getPrinterInformationById(printerId: string): Promise&lt;PrinterInformation&gt;
 
 根据打印机id获取打印机信息，使用Promise异步回调。
 
@@ -1136,7 +1136,7 @@ getPrinterInformationById(printerId: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 201 | the application does not have permission to call this function. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**

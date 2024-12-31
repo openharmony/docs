@@ -32,7 +32,7 @@ onStartPrintJob(jobInfo: print.PrintJob): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 202 | not system application |
 
 **示例：**
 
@@ -67,7 +67,7 @@ onCancelPrintJob(jobInfo: print.PrintJob): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 202 | not system application |
 
 **示例：**
 
@@ -107,7 +107,7 @@ onRequestPrinterCapability(printerId: number): print.PrinterCapability
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 202 | not system application |
 
 **示例：**
 
@@ -153,7 +153,7 @@ onRequestPreview(jobInfo: print.PrintJob): string
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 202 | not system application |
 
 **示例：**
 

@@ -179,8 +179,8 @@ queryAllPrinterExtensionInfos(callback: AsyncCallback&lt;Array&lt;PrinterExtensi
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **示例：**
 
@@ -220,8 +220,8 @@ queryAllPrinterExtensionInfos(): Promise&lt;Array&lt;PrinterExtensionInfo&gt;&gt
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **示例：**
 
@@ -261,8 +261,8 @@ startDiscoverPrinter(extensionList: Array&lt;string&gt;, callback: AsyncCallback
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -310,8 +310,8 @@ startDiscoverPrinter(extensionList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -352,8 +352,8 @@ stopDiscoverPrinter(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **示例：**
 
@@ -393,8 +393,8 @@ stopDiscoverPrinter(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **示例：**
 
@@ -433,8 +433,8 @@ connectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -481,8 +481,8 @@ connectPrinter(printerId: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -523,8 +523,8 @@ disconnectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -571,8 +571,8 @@ disconnectPrinter(printerId: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -613,8 +613,8 @@ queryPrinterCapability(printerId: string, callback: AsyncCallback&lt;void&gt;): 
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -661,8 +661,8 @@ queryPrinterCapability(printerId: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -703,8 +703,8 @@ startPrintJob(jobInfo: PrintJob, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -767,8 +767,8 @@ startPrintJob(jobInfo: PrintJob): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -825,8 +825,8 @@ cancelPrintJob(jobId: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -873,8 +873,8 @@ cancelPrintJob(jobId: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -915,8 +915,8 @@ requestPrintPreview(jobInfo: PrintJob, callback: Callback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -975,8 +975,8 @@ requestPrintPreview(jobInfo: PrintJob): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1033,8 +1033,8 @@ on(type: 'printerStateChange', callback: (state: PrinterState, info: PrinterInfo
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1077,8 +1077,8 @@ off(type: 'printerStateChange', callback?: Callback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1115,8 +1115,8 @@ on(type: 'jobStateChange', callback: (state: PrintJobState, job: PrintJob) => vo
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1153,8 +1153,8 @@ off(type: 'jobStateChange', callback?: Callback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1191,8 +1191,8 @@ on(type: 'extInfoChange', callback: (extensionId: string, info: string) => void)
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1229,8 +1229,8 @@ off(type: 'extInfoChange', callback?: Callback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1267,8 +1267,8 @@ addPrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;void&
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1323,8 +1323,8 @@ addPrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1373,8 +1373,8 @@ removePrinters(printerIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1421,8 +1421,8 @@ removePrinters(printerIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1463,8 +1463,8 @@ updatePrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;vo
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1519,8 +1519,8 @@ updatePrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1570,8 +1570,8 @@ updatePrinterState(printerId: string, state: PrinterState, callback: AsyncCallba
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1620,8 +1620,8 @@ updatePrinterState(printerId: string, state: PrinterState): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1665,8 +1665,8 @@ updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubSt
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1717,8 +1717,8 @@ updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubSt
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1761,8 +1761,8 @@ updateExtensionInfo(info: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1809,8 +1809,8 @@ updateExtensionInfo(info: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -1853,8 +1853,8 @@ queryAllPrintJobs(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **示例：**
 
@@ -1897,8 +1897,8 @@ queryAllPrintJobs(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **示例：**
 
@@ -1936,8 +1936,8 @@ queryPrintJobList(callback: AsyncCallback&lt;Array&lt;PrintJob&gt;&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **示例：**
 
@@ -1977,8 +1977,8 @@ queryPrintJobList(): Promise&lt;Array&lt;PrintJob&gt;&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **示例：**
 
@@ -2017,8 +2017,8 @@ queryPrintJobById(jobId: string, callback: AsyncCallback&lt;PrintJob&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -2065,8 +2065,8 @@ queryPrintJobById(jobId: string): Promise&lt;PrintJob&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -2109,8 +2109,8 @@ startGettingPrintFile(jobId: string, printAttributes: PrintAttributes, fd: numbe
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -2184,8 +2184,8 @@ notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spoole
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -2233,8 +2233,8 @@ notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spoole
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -2274,8 +2274,8 @@ getAddedPrinters(): Promise&lt;Array&lt;string&gt;&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **示例：**
 
@@ -2319,8 +2319,8 @@ getPrinterInfoById(printerId: string): Promise&lt;PrinterInfo&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -2365,8 +2365,8 @@ notifyPrintServiceEvent(event: ApplicationEvent): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
