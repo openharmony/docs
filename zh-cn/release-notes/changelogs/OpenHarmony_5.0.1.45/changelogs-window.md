@@ -50,8 +50,8 @@ on('windowStatusChange')接口从API version 11开始支持
 
 以下示例以on('windowStatusChange') 接口为例，提供变更前后2in1设备上区分当前窗口最大化状态和全屏状态的指导和适配示例：
 
+API version 13及之前版本区分最大化状态示例：
 ```ts
-// API version 13及之前版本
 // EntryAbility.ets
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -76,8 +76,8 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+API version 14版本区分最大化状态示例：
 ```ts
-// API version 14及之后的版本
 // EntryAbility.ets
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -104,8 +104,8 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+API version 14版本不区分最大化状态示例：
 ```ts
-// API verison 14及之后的版本
 // EntryAbility.ets
 import { BusinessError } from '@kit.BasicServicesKit';
 

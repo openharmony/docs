@@ -353,9 +353,8 @@ export class Sample {
 ### 使用globalConnect存储数据
 
 ```ts
-import { PersistenceV2, Type } from '@kit.ArkUI';
+import { PersistenceV2, Type, ConnectOptions } from '@kit.ArkUI';
 import { contextConstant } from '@kit.AbilityKit';
-import { ConnectOptions } from '@ohos.arkui.StateManagement';
 
 // 接受序列化失败的回调
 PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {

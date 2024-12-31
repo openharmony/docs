@@ -515,6 +515,64 @@ try {
 }
 ```
 
+## certificateManager.installUserTrustedCertificateSync<sup>16+</sup>
+
+installUserTrustedCertificateSync(cert: Uint8Array, certScope: CertScope) : CMResult
+
+表示安装用户CA证书。
+
+**需要权限：** ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT<!--Del-->或ohos.permission.ACCESS_USER_TRUSTED_CERT<!--DelEnd-->
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+**参数**：
+
+| 参数名       | 类型                         | 必填 | 说明           |
+|-----------|----------------------------|----|--------------|
+| cert      | Uint8Array                 | 是  | 表示CA证书数据。    |
+| certScope | [CertScope](#certscope16)  | 是  | 表示CA证书安装的位置。 |
+
+**返回值**：
+
+| 类型                    | 说明                                |
+|-----------------------|-----------------------------------|
+| [CMResult](#cmresult) | 表示CA证书的安装结果，返回值CMResult对象中的uri属性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
+
+| 错误码ID                  | 错误信息                                                                                                                                            |
+|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| 201                    | Permission verification failed. The application does not have the permission required to call the API.                                          |
+| 401                    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001               | Internal error.                                                                                                                                 |
+| 17500003               | Indicates that the certificate is in an invalid format.                                                                                         |
+| 17500004<sup>12+</sup> | Indicates that the number of certificates reaches the maximum allowed.                                                                          |
+| 17500007<sup>16+</sup> | Indicates that the device enters advanced security mode. In this mode, the user CA certificate cannot be installed.                             |
+
+**示例**：
+
+```ts
+import {certificateManager} from '@kit.DeviceCertificateKit';
+
+/* 安装的CA证书数据需要业务赋值，本例数据非CA证书数据 */
+let certData: Uint8Array = new Uint8Array([
+    0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01,
+]);
+try {
+    let result: certificateManager.CMResult = certificateManager.installUserTrustedCertificateSync(certData, certificateManager.CertScope.CURRENT_USER);
+    let certUri = result.uri;
+    if (certUri === undefined) {
+        console.error("The result of install user trusted certificate is undefined.");
+    } else {
+        console.info("Successed to install user trusted certificate.");
+    }
+} catch (error) {
+    console.error(`Failed to install user trusted certificate. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
 ## certificateManager.init
 
 init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>): void

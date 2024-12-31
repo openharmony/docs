@@ -264,6 +264,8 @@
   titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
   //段落首行缩进15vp
   paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });
+  //行高样式对象
+  lineHeightStyle1: LineHeightStyle= new LineHeightStyle(new LengthMetrics(24));
   //创建含段落样式的对象paragraphStyledString1
   paragraphStyledString1: MutableStyledString = new MutableStyledString("段落标题\n正文第一段落开始0123456789正文第一段落结束。", [
     {
@@ -312,7 +314,7 @@
     styledKey: StyledStringKey.PARAGRAPH_STYLE,
     styledValue: this.paragraphStyleAttr3
   })
-  this.controller.setStyledString(this.mutableStyledString3)
+  this.controller.setStyledString(this.paragraphStyledString1)
   ```
 
 ## 使用图片

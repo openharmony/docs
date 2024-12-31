@@ -19,6 +19,8 @@ PersistentStorage的存储路径为module级别，即哪个module调用了Persis
 
 PersistentStorage的存储路径在应用第一个ability启动时就已确定，为该ability所属的module。如果一个ability调用了PersistentStorage，并且该ability能被不同module的拉起， 那么ability存在多少种启动方式，就会有多少份数据副本。
 
+PersistentStorage功能上耦合了AppStorage，并且数据在不同module中使用也会有问题，因此推荐开发者使用PersistenceV2的globalConnect接口替换掉PersistentStorage的persistProp接口。PersistentStorage向PersistenceV2迁移的方案见[PersistentStorage->PersistenceV2](arkts-v1-v2-migration.md#persistentstorage-persistencev2)。PersistenceV2相关介绍参考文档[PersistenceV2](arkts-new-persistencev2.md)。
+
 ## 限制条件
 
 PersistentStorage允许的类型和值有：
