@@ -2956,6 +2956,42 @@ enableFollowSystemFontWeight(follow: boolean)
   }
   ```
 
+### optimizeParserBudget
+
+optimizeParserBudget(optimizeParserBudget: boolean)
+
+设置是否开启分段解析HTML优化，默认不开启。开启优化后，将在HTML分段解析时，使用解析标记数量代替解析时间作为解析分段点，并降低每段解析的个数上限。这将使首帧内容更快进入渲染阶段，并减少首帧渲染量。对于未使用屏幕快照或骨架屏进行白屏时间优化的复杂HTML结构页面，开启优化后将减少其白屏时间。
+
+在FCP(First Contentful Paint 首次内容绘制）触发时会恢复成默认分段解析逻辑，因此优化仅对当前Web组件加载的首个页面生效。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名        | 参数类型    | 必填   | 默认值  | 参数描述                   |
+| ---------- | ------- | ---- | ---- | ---------------------- |
+| optimizeParserBudget | boolean | 是    | false | 设置为true时将使用解析个数代替解析时间作为HTML分段解析的分段点，并减少每段解析的个数上限。设置为false时则使用解析时间作为HTML分段解析的分段点。默认值：false。 |
+
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .optimizeParserBudget(true)
+      }
+    }
+  }
+  ```
+
 ## 事件
 
 通用事件仅支持[onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)、[onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)、[onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur)、[onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus)、[onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend)、[onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)、[onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)、[onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover)、[onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)、[onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent)、[onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
