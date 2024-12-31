@@ -69,6 +69,8 @@ AtomicServiceTabs ({
 
 ## TabContentBuilder
 
+type TabContentBuilder = () => void
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -78,6 +80,12 @@ AtomicServiceTabs ({
 | () => void | 内容视图容器 |
 
 ## TabBarOptions
+
+初始化页签的构造函数，包括icon，text，unselectColor和SelectedColor。
+
+### constructor
+
+constructor(icon: ResourceStr | TabBarSymbol, text: ResourceStr, unselectedColor?: ResourceColor, selectedColor?: ResourceColor);
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -102,6 +110,8 @@ AtomicServiceTabs ({
 | BOTTOM  | 1 | 设置TabBar位于屏幕底部 |
 
 ## OnContentWillChangeCallback
+
+type OnContentWillChangeCallback = (currentIndex: number, comingIndex: number) => boolean
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
