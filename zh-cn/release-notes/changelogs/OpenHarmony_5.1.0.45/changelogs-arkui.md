@@ -203,3 +203,107 @@ Gauge。
 **适配指导**
 
 展示效果变更，无需适配，但应注意变更后的效果是否符合开发者预期。
+
+## cl.arkui.5 Repeat VirtualScroll 支持二级缓存冻结
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+开发者使用Repeat VirtualScroll，进入二级缓存（复用池）中的组件是为了通过更新其各项属性后作为新组件使用，在更新成为新组建之前不应该被刷新。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前:  
+启用组件冻结，状态变量改动会触发二级缓存中的组件刷新，并执行@Monitor对应方法。 
+
+变更后:  
+启用组件冻结，状态变量改动不会触发二级缓存中的组件刷新，不执行@Monitor对应方法。
+
+举例说明，执行以下用例：
+```ts
+@Entry
+@ComponentV2
+struct RepeatVirtualScrollDemo {
+  @Local simpleList: Array<string> = [];
+  @Local bgColor: Color = Color.Pink;
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 7; i++) {
+      this.simpleList.push(`item${i}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Row() {
+        Button(`Reduce length to 5`)
+          .onClick(() => {
+            this.simpleList = this.simpleList.slice(0, 5);
+          })
+        Button(`Change bgColor`)
+          .onClick(() => {
+            this.bgColor = this.bgColor == Color.Pink ? Color.Blue : Color.Pink;
+          })
+      }
+
+      List() {
+        Repeat(this.simpleList)
+          .each((obj: RepeatItem<string>) => {
+          })
+          .key((item: string, index: number) => item)
+          .virtualScroll({ totalCount: this.simpleList.length })
+          .templateId(() => `a`)
+          .template(`a`, (ri) => {
+            ChildComponent({
+              message: ri.item,
+              bgColor: this.bgColor
+            })
+          }, { cachedCount: 2 })
+      }
+      .cachedCount(0)
+      .height(500)
+    }
+    .height(`100%`)
+  }
+}
+
+@ComponentV2({ freezeWhenInactive: true })
+struct ChildComponent {
+  @Param @Require message: string;
+  @Param @Require bgColor: Color;
+  // 支持后二级缓存中的组件不刷新，不会打印相应日志
+  @Monitor(`bgColor`)
+  onMessageChange(monitor: IMonitor) {
+    monitor.dirty.forEach((path: string) => {
+      console.log(`repeat---${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`)
+    })
+  }
+
+  build() {
+    Text(`[a]: ${this.message}`)
+      .fontSize(50)
+      .backgroundColor(this.bgColor)
+  }
+}
+```
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony 5.1.0.45 版本开始。
+
+**变更的接口/组件**
+
+Repeat freezeWhenInactive。
+
+**适配指导**
+
+展示效果不变，@Monitor监听属性变化执行方法次数会减少。
