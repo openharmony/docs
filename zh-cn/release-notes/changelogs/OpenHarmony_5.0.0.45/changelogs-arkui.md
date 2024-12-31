@@ -50,13 +50,11 @@ Counter组件
 
 API version 14及以后，设备宽度在600-840vp间时，默认显示居中弹窗样式，增加跟手弹窗样式。
 
-变更前：设备宽度在600-840vp间时，默认显示居中弹窗样式，可设置为居中弹窗样式和底部弹窗样式。
+变更前：设备宽度在600-840vp间时，SheetOptions中的preferType设置为SheetType.POPUP，实际显示居中弹窗样式。
 
-| 居中弹窗样式                             | 底部弹窗样式                             |
-| ---------------------------------------- | ---------------------------------------- |
-| ![zh-cn_image_alert](figures/45.1.3.png) | ![zh-cn_image_alert](figures/45.1.1.png) |
+![zh-cn_image_alert](figures/45.1.3.png)
 
-变更后：设备宽度在600-840vp间时，增加跟手弹窗样式。
+变更后：设备宽度在600-840vp间时，SheetOptions中的preferType设置为SheetType.POPUP，实际显示气泡弹窗样式。
 
 ![zh-cn_image_alert](figures/45.1.2.png)
 
