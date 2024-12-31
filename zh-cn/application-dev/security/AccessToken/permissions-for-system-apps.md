@@ -4942,3 +4942,15 @@
 **ACL使能**：true
 
 **起始版本**：14
+
+### ohos.permission.PLUGIN_UPDATE
+
+允许应用、服务监听系统升级流程中的关键事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
