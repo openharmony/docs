@@ -958,7 +958,7 @@ onMarqueeStateChange(callback: Callback\<MarqueeState\>)
 
 | 参数名    | 类型                                             | 必填  | 说明                       |
 |--------|---------------------------------------------------|-----|--------------------------|
-| state  | [Callback<MarqueeState>](#marqueestate16枚举说明) | 是   | 开始滚动时、每一次滚动时以及在滚动结束时触发。 |
+| state  | [Callback\<MarqueeState\>](#marqueestate16枚举说明) | 是   | 开始滚动时、每一次滚动时以及在滚动结束时触发。 |
 
 ## TextOptions<sup>11+</sup>
 
