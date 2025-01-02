@@ -87,11 +87,18 @@
      audioSampleRate: 48000, // 音频采样率
      fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前支持MP4，M4A，MP3，WAV
    };
+  
+   const context: Context = getContext(this); // 参考应用文件访问与管理
+   let filePath: string = context.filesDir + '/example.mp3';
+   let audioFile: fs.File = fs.openSync(filePath, OpenMode.READ_WRITE | OpenMode.CREATE);
+   let fileFd = this.audioFile.fd; // 获取文件fd
+
    let avConfig: media.AVRecorderConfig = {
      audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // 音频输入源，这里设置为麦克风
      profile: avProfile,
-     url: 'fd://35', // 参考应用文件访问与管理中的开发示例获取创建的音频文件fd填入此处
+     url: 'fd://' + fileFd.toString(), // 参考应用文件访问与管理中的开发示例获取创建的音频文件fd填入此处
    };
+   
    avRecorder.prepare(avConfig).then(() => {
      console.log('Invoke prepare succeeded.');
    }, (err: BusinessError) => {
@@ -163,7 +170,18 @@ export class AudioRecorderDemo {
     profile: this.avProfile,
     url: 'fd://35', // 参考应用文件访问与管理开发示例新建并读写一个文件
   };
-
+  private uriPath: string = '';
+  private filePath: string = '';
+  
+  // 创建文件以及设置avConfig.url
+  async createAndSetFd(): Promise<void> {
+      const context: Context = getContext(this);
+      const path: string = context.filesDir + '/example.mp3'; // 文件沙箱路径，文件后缀名应与封装格式对应
+      const audioFile: fs.File = fs.openSync(path, OpenMode.READ_WRITE | OpenMode.CREATE);
+      this.avConfig.url = 'fd://' + audioFile.fd; // 更新url
+      this.filePath = path;
+  }
+  
   // 注册audioRecorder回调函数
   setAudioRecorderCallback() {
     if (this.avRecorder != undefined) {
