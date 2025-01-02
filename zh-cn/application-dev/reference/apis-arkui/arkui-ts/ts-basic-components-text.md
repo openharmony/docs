@@ -946,7 +946,7 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 
 ### onMarqueeStateChange<sup>16+</sup>
 
-onMarqueeStateChange(callback: Callback<MarqueeState>)
+onMarqueeStateChange(callback: Callback\<MarqueeState\>)
 
 跑马灯动画进行到某些阶段时，触发该回调。
 
