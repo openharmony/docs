@@ -39,11 +39,7 @@
     "ubsanEnabled": false,
     "cloudFileSyncEnabled": false,
     "configuration": "$profile:configuration",
-    "assetAccessGroups": [
-      "com.assetAccessGroups.www",
-      "com.assetAccessGroups_",
-      "com.assetAccessGroups1_.Www"
-    ]
+    "assetAccessGroups": []
   },
 }
 ```
