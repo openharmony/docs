@@ -212,7 +212,7 @@ Gauge。
 
 **变更原因**
 
-开发者使用Repeat VirtualScroll，进入二级缓存（复用池）中的组件是为了通过更新其各项属性后作为新组件使用，在更新成为新组建之前不应该被刷新。
+开发者使用Repeat VirtualScroll，进入二级缓存（复用池）中的组件是为了通过更新其各项属性后作为新组件使用，在更新成为新组件之前不应该被刷新。
 
 **变更影响**
 
@@ -225,6 +225,7 @@ Gauge。
 启用组件冻结，状态变量改动不会触发二级缓存中的组件刷新，不执行@Monitor对应方法。
 
 举例说明，执行以下用例：
+
 ```ts
 @Entry
 @ComponentV2
@@ -306,4 +307,26 @@ Repeat freezeWhenInactive。
 
 **适配指导**
 
-展示效果不变，@Monitor监听属性变化执行方法次数会减少。
+展示效果不变，@Monitor监听属性变化执行方法次数会减少。如果需要刷新缓存中的数据，可以关闭组件冻结。
+
+```ts
+// 关闭组件冻结，freezeWhenInactive设置为false
+@ComponentV2({ freezeWhenInactive: false })
+struct ChildComponent {
+  @Param @Require message: string;
+  @Param @Require bgColor: Color;
+  // 关闭冻结后，二级缓存中的组件不刷新，不会打印相应日志
+  @Monitor(`bgColor`)
+  onMessageChange(monitor: IMonitor) {
+    monitor.dirty.forEach((path: string) => {
+      console.log(`repeat---${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`)
+    })
+  }
+
+  build() {
+    Text(`[a]: ${this.message}`)
+      .fontSize(50)
+      .backgroundColor(this.bgColor)
+  }
+}
+```
