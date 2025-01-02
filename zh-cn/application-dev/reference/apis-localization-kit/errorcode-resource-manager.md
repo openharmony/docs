@@ -20,7 +20,7 @@ Invalid resource ID.
 
 **处理步骤**
 
-1、检查是否为以下场景：[HAR开启混淆](../../quick-start/har-package.md#编译)、中间码HAR、字节码HAR、跨HAP/HSP包应用资源，API在这几种场景认为资源ID不存在，API不再生效。
+1、检查是否为以下场景：[HAR开启混淆](../../quick-start/har-package.md#编译)、中间码HAR、字节码HAR、跨HAP/HSP包应用资源，API认为这几种场景的资源ID不存在，API不再生效。
 
 2、检查传入参数的资源id是否已有。  
 
