@@ -506,6 +506,41 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 | 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
+## tag.getBarcodeTag<sup>16+</sup>
+
+getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BartcodeTag](js-apis-nfctech.md#barcodetag16)
+
+获取BarcodeTag类型Tag对象，通过该对象可访问BarcodeTag技术类型的Tag。
+
+**需要权限：** ohos.permission.NFC_TAG
+
+**系统能力：** SystemCapability.Communication.NFC.Tag
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**参数：**
+| 参数名  | 类型                | 必填 | 说明                                                          |
+| ------- | ------------------- | ---- | ------------------------------------------------------------- |
+| tagInfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从[tag.getTagInfo(want: Want)](#taggettaginfo9)获取。 |
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| [BartcodeTag](js-apis-nfctech.md#barcodetag16) | BarcodeTag类型Tag对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
+| 3100201 | Tag running state is abnormal in service. |
+
+
 ## tag.getTagInfo<sup>9+</sup>
 
 getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md#want)): [TagInfo](#taginfo)
@@ -1177,6 +1212,7 @@ NFC Tag有多种不同的技术类型，定义常量描述不同的技术类型�
 | NDEF_FORMATABLE<sup>9+</sup> |  number | 7      | 可以格式化的NDEF技术。      |
 | MIFARE_CLASSIC               |  number | 8      | MIFARE Classic技术。        |
 | MIFARE_ULTRALIGHT            |  number | 9      | MIFARE Utralight技术。      |
+| NFC_BARCODE                  |  number | 10     | BARCODE技术。               |
 
 ## TnfType<sup>9+</sup>
 NDEF Record的TNF(Type Name Field)类型值，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。
@@ -1370,6 +1406,18 @@ type NdefFormatableTag = _NdefFormatableTag
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_NdefFormatableTag](./js-apis-nfctech.md#ndefformatabletag9) | NdefFormatableTag为NDEF Formattable的标签提供格式化操作。 |
+
+## BarcodeTag
+
+type BarcodeTag = _BarcodeTag
+
+获取BarcodeTag。
+
+**系统能力**：SystemCapability.Communication.NFC.Tag
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| [_BarcodeTag](./js-apis-nfctech.md#barcodetag16) | 提供对条形码标签的属性和I/O操作的访问。 |
 
 ## NdefMessage
 
