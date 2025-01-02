@@ -60,7 +60,7 @@ struct VirtualScreen {
       Column() {
         XComponent({
           type: XComponentType.SURFACE,
-          controller: this.XComponentController
+          controller: this.xComponentController
         })
       }
       Button('虚拟屏')
@@ -92,7 +92,7 @@ struct VirtualScreen {
             screenVirtualScreen = data;
             console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
             // 获取surfaceId
-            let surfaceId = xComponentController.getXComponentSurfaceId();
+            let surfaceId = this.xComponentController.getXComponentSurfaceId();
             screen.setVirtualScreenSurface(screenVirtualScreen.id, surfaceId, (err: BusinessError) => {
               const errCode: number = err.code;
               if (errCode) {
