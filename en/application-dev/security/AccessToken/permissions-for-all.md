@@ -412,3 +412,17 @@ After the application has this permission, the system JS engine can request anon
 **Authorization mode**: system_grant
 
 **Valid since**: 14
+
+<!--Del-->
+### ohos.permission.PRELOAD_FILE
+
+Allows an application to preload files to improve file opening speed.
+
+This permission is available only to document editing applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+<!--DelEnd-->
