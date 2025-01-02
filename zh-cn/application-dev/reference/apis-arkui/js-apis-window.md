@@ -353,6 +353,18 @@ import { window } from '@kit.ArkUI';
 | ------ | ------ | ---- | ------------------------------------------ |
 | displayId | number | 否 | 目标屏幕ID，该参数应该为整数，非整数输入将向下取整。此参数不填或者传入目标屏幕ID不存在，将默认保持为当前屏幕。 |
 
+## WindowLayoutInfo<sup>16+</sup>
+
+窗口布局信息。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 类型   | 必填 | 说明                                       |
+| ------ | ------ | ---- | ------------------------------------------ |
+| windowRect<sup>16+</sup> | [Rect](#rect7)  | 是 | 窗口尺寸，窗口在屏幕上的实际位置和大小。 |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -795,6 +807,56 @@ try {
     });
 } catch (exception) {
     console.error(`Failed to get window from point. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+## window.getAllWindowLayoutInfo<sup>16+</sup>
+
+getAllWindowLayoutInfo(displayId: number): Promise&lt;Array&lt;WindowLayoutInfo&gt;&gt;
+
+获取指定屏幕上可见的窗口布局信息数组，按当前窗口层级排列，层级最高的对应数组index为0，使用Promise异步回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                                        |
+| ------ | ---------- |----|---------------------------------------------------------------------------|
+| displayId   | number| 是  | 需要获取窗口布局信息的displayId，该参数应为整数，且为当前实际存在屏幕的displayId，可以通过窗口属性[WindowProperties](#windowproperties)获取。 |
+
+**返回值：**
+
+| 类型                             | 说明                      |
+| -------------------------------- |-------------------------|
+| Promise&lt;Array&lt;[WindowLayoutInfo](#windowlayoutinfo16)&gt;&gt; | Promise对象。返回获取到的窗口布局信息对象数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID    | 错误信息 |
+|----------| ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+```ts
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let displayId = 0;
+  let promise = window.getAllWindowLayoutInfo(displayId)
+  promise.then((data) => {
+    console.info('Succeeded in obtaining all window layout info. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to obtain all window layout info. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to obtain all window layout info. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
