@@ -14,10 +14,10 @@ Describes the element name information, which identifies the basic information a
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
-| Name                    | Type    | Readable| Writable| Description                      |
+| Name                    | Type    | Read-Only| Optional| Description                      |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
-| deviceId                | string   | Yes  | Yes  | Device ID.                  |
-| bundleName              | string   | Yes  | Yes  | Bundle name.         |
-| abilityName             | string   | Yes  | Yes  | Ability name.              |
-| uri                     | string   | Yes  | Yes  | Resource ID.                |
-| shortName               | string   | Yes  | Yes  | Short name of the ability.              |
+| deviceId                | string   | No  | Yes  | Device ID.                  |
+| bundleName              | string   | No  | No | Bundle name.         |
+| abilityName             | string   | No  | No | Ability name.              |
+| uri                     | string   | No  | Yes | Resource ID.                |
+| shortName               | string   | No  | Yes | Short name of the ability.              |

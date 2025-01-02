@@ -4,12 +4,12 @@
 ![WidgetPreviewPage](figures/WidgetPreviewPage.png)
 
 
-ArkTS卡片具备JS卡片的全量能力，并且新增了动效能力和自定义绘制的能力，支持[声明式范式](../reference/apis-arkui/arkui-ts/ts-components-summary.md)的部分组件、事件、动效、数据管理、状态管理能力，详见“[ArkTS卡片支持的页面能力](#arkts卡片支持的页面能力)”。
+ArkTS卡片具备JS卡片的全量能力，并且新增了动效能力和自定义绘制的能力，支持[声明式范式](../ui/arkts-ui-development-overview.md)的部分组件、事件、动效、数据管理、状态管理能力，详见“[ArkTS卡片支持的页面能力](#arkts卡片支持的页面能力)”。
 
 
 ## ArkTS卡片支持的页面能力
 
-ArkTS卡片支持的页面能力详见[学习ArkTS语言](../quick-start/arkts-create-custom-components.md)和[ArkTS声明式开发范式](../reference/apis-arkui/arkui-ts/ts-components-summary.md)。
+ArkTS卡片支持的页面能力详见<!--RP1-->[学习ArkTS语言](../quick-start/arkts-get-started.md)<!--RP1End-->和[ArkTS声明式开发范式](../ui/arkts-ui-development-overview.md)。
 
 只有标识“支持在ArkTS卡片中使用”的组件和接口可用于ArkTS卡片，同时请留意卡片场景下的能力差异说明。
 

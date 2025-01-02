@@ -1,6 +1,6 @@
 # @ohos.pasteboard (Pasteboard)
 
-The **pasteboard** module provides the copy and paste support for the system pasteboard. You can use the APIs of this module to operate pasteboard content of the plain text, HTML, URI, Want, pixel map, and other types.
+The **Pasteboard** module provides the copy and paste support for the system pasteboard. You can use the APIs of this module to operate pasteboard content of the plain text, HTML, URI, Want, pixel map, and other types.
 
 > **NOTE**
 >
@@ -9,10 +9,12 @@ The **pasteboard** module provides the copy and paste support for the system pas
 ## Modules to Import
 
 ```ts
-import pasteboard from '@ohos.pasteboard';
+import { pasteboard } from '@kit.BasicServicesKit';
 ```
 
 ## Constants
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -27,7 +29,11 @@ import pasteboard from '@ohos.pasteboard';
 
 ## ValueType<sup>9+</sup>
 
+type ValueType = string | image.PixelMap | Want | ArrayBuffer
+
 Enumerates the value types.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -44,13 +50,15 @@ createData(mimeType: string, value: ValueType): PasteData
 
 Creates a **PasteData** object of a custom type.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Parameters**
 
 | Name| Type| Mandatory| Description                                                                                                    |
 | -------- | -------- | -------- |--------------------------------------------------------------------------------------------------------|
-| mimeType | string | Yes| MIME type of custom data. The value can a predefined MIME type listed in [Constants](#constants), including HTML, WANT, plain text, URI, and pixel map, or a custom MIME type.|
+| mimeType | string | Yes| MIME type of custom data. The value can a predefined MIME type listed in [Constants](#constants), including HTML, WANT, plain text, URI, and pixel map, or a custom MIME type. The value of **mimeType** cannot exceed 1024 bytes.|
 | value | [ValueType](#valuetype9) | Yes| Content of custom data.                                                                                              |
 
 **Return value**
@@ -58,6 +66,14 @@ Creates a **PasteData** object of a custom type.
 | Type| Description|
 | -------- | -------- |
 | [PasteData](#pastedata) |  **PasteData** object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 
 **Example 1**
 
@@ -80,13 +96,15 @@ createRecord(mimeType: string, value: ValueType):PasteDataRecord;
 
 Creates a **PasteDataRecord** object of the custom type.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Parameters**
 
 | Name| Type| Mandatory| Description               |
 | -------- | -------- | -------- |-------------------|
-| mimeType | string | Yes| MIME type of custom data. The value can a predefined MIME type listed in [Constants](#constants), including HTML, WANT, plain text, URI, and pixel map, or a custom MIME type. |
+| mimeType | string | Yes| MIME type of custom data. The value can a predefined MIME type listed in [Constants](#constants), including HTML, WANT, plain text, URI, and pixel map, or a custom MIME type. The value of **mimeType** cannot exceed 1024 bytes. |
 | value | [ValueType](#valuetype9) | Yes| Content of custom data.         |
 
 **Return value**
@@ -94,6 +112,14 @@ Creates a **PasteDataRecord** object of the custom type.
 | Type| Description|
 | -------- | -------- |
 | [PasteDataRecord](#pastedatarecord7) | New **PasteDataRecord** object of the custom type.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types;  3. Parameter verification failed. |
 
 **Example 1**
 
@@ -115,6 +141,8 @@ getSystemPasteboard(): SystemPasteboard
 
 Obtains this **SystemPasteboard** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Return value**
@@ -133,13 +161,15 @@ let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboa
 
 Enumerates the paste options of data.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
-| Name         | Value| Description               |
-|-------------|---|-------------------|
-| INAPP       | 0 | Only intra-application pasting is allowed.     |
-| LOCALDEVICE | 1 | Paste is allowed in any application on the local device.|
-| CROSSDEVICE | 2 | Paste is allowed in any application across devices. |
+| Name                              | Value | Description                                                                                 |
+| ---------------------------------- | --- | ------------------------------------------------------------------------------------- |
+| INAPP                              | 0   | Only intra-application pasting is allowed.                                                             |
+| LOCALDEVICE                        | 1   | Paste is allowed in any application on the local device.                                                   |
+| CROSSDEVICE<sup>(deprecated)</sup> | 2   | Paste is allowed in any application across devices.<br>This API has been deprecated since API Version 12. No alternative API or method is available. You can choose **Settings** > **Multi-Device Collaboration** > **Cross-Device Clipboard Switch** to set whether to allow cross-device pasting.|
 
 ## pasteboard.createHtmlData<sup>(deprecated)</sup>
 
@@ -197,7 +227,7 @@ Creates a **PasteData** object of the Want type.
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let object: Want = {
     bundleName: "com.example.aafwk.test",
@@ -319,7 +349,7 @@ Creates a **PasteDataRecord** object of the Want type.
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let object: Want = {
     bundleName: "com.example.aafwk.test",
@@ -392,6 +422,8 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 Defines the properties of all data records on the pasteboard, including the timestamp, data type, and additional data.
 The defined properties can be applied to the pasteboard only with the [setProperty](#setproperty9) API.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 | Name| Type| Readable| Writable| Description                                                                                                                                                                                                                                      |
@@ -409,6 +441,8 @@ Provides **PasteDataRecord** APIs. A **PasteDataRecord** is an abstract definiti
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 | Name| Type| Readable| Writable| Description|
@@ -419,13 +453,15 @@ Provides **PasteDataRecord** APIs. A **PasteDataRecord** is an abstract definiti
 | plainText<sup>7+</sup> | string | Yes| No| Plain text.|
 | uri<sup>7+</sup> | string | Yes| No| URI content.|
 | pixelMap<sup>9+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes| No| Pixel map.|
-| data<sup>9+</sup> | {[mimeType: string]: ArrayBuffer} | Yes| No| Content of custom data.|
+| data<sup>9+</sup> | {[mimeType:&nbsp;string]:&nbsp;ArrayBuffer} | Yes| No| Content of custom data.|
 
 ### toPlainText<sup>9+</sup>
 
 toPlainText(): string
 
 Forcibly converts the content in a **PasteData** object to text.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -460,10 +496,18 @@ Forcibly converts the content in a **PasteData** object to text. This API uses a
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the text obtained from the conversion. Otherwise, **err** is error information.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: Incorrect parameters types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
 record.convertToText((err: BusinessError, data: string) => {
@@ -495,7 +539,7 @@ Forcibly converts the content in a **PasteData** object to text. This API uses a
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
 record.convertToText().then((data: string) => {
@@ -519,6 +563,8 @@ getPrimaryText(): string
 
 Obtains the plain text of the primary record.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Return value**
@@ -539,6 +585,8 @@ let plainText: string = pasteData.getPrimaryText();
 getPrimaryHtml(): string
 
 Obtains the HTML content of the primary record.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -562,6 +610,8 @@ getPrimaryWant(): Want
 
 Obtains the Want object of the primary record.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Return value**
@@ -573,7 +623,7 @@ Obtains the Want object of the primary record.
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let object: Want = {
     bundleName: "com.example.aafwk.test",
@@ -588,6 +638,8 @@ let want: Want = pasteData.getPrimaryWant();
 getPrimaryUri(): string
 
 Obtains the URI of the primary record.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -610,6 +662,8 @@ getPrimaryPixelMap(): image.PixelMap
 
 Obtains the pixel map of the primary record.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Return value**
@@ -621,7 +675,7 @@ Obtains the pixel map of the primary record.
 **Example**
 
 ```ts
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 let buffer = new ArrayBuffer(128);
 let realSize: image.Size = { height: 3, width: 5 };
@@ -643,6 +697,8 @@ image.createPixelMap(buffer, opt).then((pixelMap: image.PixelMap) => {
 addRecord(record: PasteDataRecord): void
 
 Adds a data record to this pasteboard, and adds its type to **mimeTypes** in [PasteDataProperty](#pastedataproperty7). The parameters cannot be empty. Otherwise, the operation fails.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -668,22 +724,24 @@ addRecord(mimeType: string, value: ValueType): void
 
 Adds a custom-type record to this pasteboard, and adds the custom type to **mimeTypes** in [PasteDataProperty](#pastedataproperty7). The parameters cannot be empty. Otherwise, the operation fails.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| mimeType | string | Yes| MIME type of custom data.|
+| mimeType | string | Yes| MIME type of custom data. The length cannot exceed 1024 bytes.|
 | value | [ValueType](#valuetype9) | Yes| Content of custom data.|
 
 **Error codes**
 
-For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteboard.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Pasteboard Error Codes](errorcode-pasteboard.md).
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900002 | The number of record exceeds the maximum limit. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -698,6 +756,8 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 getMimeTypes(): Array&lt;string&gt;
 
 Obtains a list of **mimeTypes** objects in [PasteDataProperty](#pastedataproperty7) from this pasteboard. If the pasteboard is empty, the returned list is also empty.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -720,6 +780,8 @@ getPrimaryMimeType(): string
 
 Obtains the data type of the primary record in this pasteboard.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Return value**
@@ -740,6 +802,8 @@ let type: string = pasteData.getPrimaryMimeType();
 getProperty(): PasteDataProperty
 
 Obtains the property of the pasteboard data.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -762,6 +826,8 @@ setProperty(property: PasteDataProperty): void
 
 Sets a [PasteDataProperty](#pastedataproperty7) object.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Parameters**
@@ -769,6 +835,14 @@ Sets a [PasteDataProperty](#pastedataproperty7) object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | property | [PasteDataProperty](#pastedataproperty7) | Yes| Property of the pasteboard data.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -831,7 +905,9 @@ The **localOnly** and **shareOption** attributes of [PasteDataProperty](#pasteda
 
 getRecord(index: number): PasteDataRecord
 
-Obtains the specified record in the pasteboard.
+Obtains the record with a specific index from the pasteboard.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -849,11 +925,12 @@ Obtains the specified record in the pasteboard.
 
 **Error codes**
 
-For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteboard.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Pasteboard Error Codes](errorcode-pasteboard.md).
 
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 12900001 | The index is out of the record. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -867,6 +944,8 @@ let record: pasteboard.PasteDataRecord = pasteData.getRecord(0);
 getRecordCount(): number
 
 Obtains the number of records in the pasteboard.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -889,6 +968,8 @@ getTag(): string
 
 Obtains the custom tag from the pasteboard. If no custom tag is set, null is returned.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Return value**
@@ -910,6 +991,8 @@ hasType(mimeType: string): boolean
 
 Checks whether the pasteboard contains data of the specified type.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Parameters**
@@ -924,6 +1007,14 @@ Checks whether the pasteboard contains data of the specified type.
 | -------- | -------- |
 | boolean | Returns **true** if the specified data type exists; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+
 **Example**
 
 ```ts
@@ -935,7 +1026,9 @@ let hasType: boolean = pasteData.hasType(pasteboard.MIMETYPE_TEXT_PLAIN);
 
 removeRecord(index: number): void
 
-Removes the record with the specified index from the pasteboard.
+Removes the record with a specific index from the pasteboard.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -947,11 +1040,12 @@ Removes the record with the specified index from the pasteboard.
 
 **Error codes**
 
-For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteboard.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Pasteboard Error Codes](errorcode-pasteboard.md).
 
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 12900001 | The index is out of the record. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -964,7 +1058,9 @@ pasteData.removeRecord(0);
 
 replaceRecord(index: number, record: PasteDataRecord): void
 
-Replaces the record with the specified index in the pasteboard with a new record.
+Replaces the record with a specific index from the pasteboard.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -977,11 +1073,12 @@ Replaces the record with the specified index in the pasteboard with a new record
 
 **Error codes**
 
-For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteboard.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Pasteboard Error Codes](errorcode-pasteboard.md).
 
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 12900001 | The index is out of the record. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -990,6 +1087,57 @@ let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_
 let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 pasteData.replaceRecord(0, record);
 ```
+
+### pasteStart<sup>12+</sup>
+
+pasteStart(): void
+
+Notifies the clipboard service to retain the cross-device channel before reading data from the clipboard.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
+    if (err) {
+        console.error('Failed to get PasteData. Cause: ' + err.message);
+        return;
+    }
+    pasteData.pasteStart();
+    console.log(`using data: ${pasteData.getPrimaryText()}`);
+    pasteData.pasteComplete();
+});
+```
+
+### pasteComplete<sup>12+</sup>
+
+pasteComplete(): void
+
+Notifies the clipboard service that the paste is complete.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
+    if (err) {
+        console.error('Failed to get PasteData. Cause: ' + err.message);
+        return;
+    }
+    pasteData.pasteStart();
+    console.log(`using data: ${pasteData.getPrimaryText()}`);
+    pasteData.pasteComplete();
+});
+```
+
 ### addHtmlRecord<sup>(deprecated)</sup>
 
 addHtmlRecord(htmlText: string): void
@@ -1037,7 +1185,7 @@ Adds a Want record to this pasteboard, and adds **MIMETYPE_TEXT_WANT** to **mime
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('hello');
 let object: Want = {
@@ -1100,7 +1248,7 @@ pasteData.addUriRecord('dataability:///com.example.myapplication1/user.txt');
 
 getRecordAt(index: number): PasteDataRecord
 
-Obtains the specified record in the pasteboard.
+Obtains the record with a specific index from the pasteboard.
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getRecord](#getrecord9).
@@ -1118,6 +1266,14 @@ Obtains the specified record in the pasteboard.
 | Type| Description|
 | -------- | -------- |
 | [PasteDataRecord](#pastedatarecord7) | Record with the specified index.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1149,6 +1305,14 @@ Checks whether the pasteboard contains data of the specified type.
 | -------- | -------- |
 | boolean | Returns **true** if the specified data type exists; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+
 **Example**
 
 ```ts
@@ -1159,7 +1323,7 @@ let hasType: boolean = pasteData.hasMimeType(pasteboard.MIMETYPE_TEXT_PLAIN);
 
 removeRecordAt(index: number): boolean
 
-Removes the record with the specified index from the pasteboard.
+Removes the record with a specific index from the pasteboard.
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [removeRecord](#removerecord9).
@@ -1178,6 +1342,14 @@ Removes the record with the specified index from the pasteboard.
 | -------- | -------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+
 **Example**
 
 ```ts
@@ -1188,7 +1360,7 @@ let isRemove: boolean = pasteData.removeRecordAt(0);
 
 replaceRecordAt(index: number, record: PasteDataRecord): boolean
 
-Replaces the record with the specified index in the pasteboard with a new record.
+Replaces the record with a specific index from the pasteboard.
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [replaceRecord](#replacerecord9).
@@ -1241,6 +1413,14 @@ Subscribes to the content change event of the system pasteboard.
 | type | string | Yes| Event type. The value **'update'** indicates changes in the pasteboard content.|
 | callback | function | Yes| Callback invoked when the pasteboard content changes.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+
 **Example**
 
 ```ts
@@ -1266,6 +1446,14 @@ Unsubscribes from the system pasteboard content change event.
 | type | string | Yes| Event type. The value **'update'** indicates changes in the pasteboard content.                             |
 | callback | function | No| Callback invoked when the pasteboard content changes. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+
 **Example**
 
 ```ts
@@ -1282,6 +1470,8 @@ clearData(callback: AsyncCallback&lt;void&gt;): void
 
 Clears the system pasteboard. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Parameters**
@@ -1289,6 +1479,14 @@ Clears the system pasteboard. This API uses an asynchronous callback to return t
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1309,6 +1507,8 @@ clearData(): Promise&lt;void&gt;
 
 Clears the system pasteboard. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Return value**
@@ -1320,7 +1520,7 @@ Clears the system pasteboard. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clearData().then((data: void) => {
@@ -1336,6 +1536,8 @@ setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 
 Writes a **PasteData** object to the pasteboard. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Parameters**
@@ -1347,12 +1549,13 @@ Writes a **PasteData** object to the pasteboard. This API uses an asynchronous c
 
 **Error codes**
 
-For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteboard.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Pasteboard Error Codes](errorcode-pasteboard.md).
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
+| 12900003 | Another copy or paste operation is in progress. |
 | 12900004 | Replication is prohibited. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1374,6 +1577,8 @@ setData(data: PasteData): Promise&lt;void&gt;
 
 Writes a **PasteData** object to the pasteboard. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Parameters**
@@ -1390,17 +1595,18 @@ Writes a **PasteData** object to the pasteboard. This API uses a promise to retu
 
 **Error codes**
 
-For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteboard.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Pasteboard Error Codes](errorcode-pasteboard.md).
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
+| 12900003 | Another copy or paste operation is in progress. |
 | 12900004 | Replication is prohibited. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'content');
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
@@ -1417,6 +1623,10 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 Obtains a **PasteData** object from the pasteboard. This API uses an asynchronous callback to return the result.
 
+**Required permissions**: ohos.permission.READ_PASTEBOARD
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Parameters**
@@ -1427,16 +1637,18 @@ Obtains a **PasteData** object from the pasteboard. This API uses an asynchronou
 
 **Error codes**
 
-For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteboard.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Pasteboard Error Codes](errorcode-pasteboard.md).
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
+| 12900003 | Another copy or paste operation is in progress. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
@@ -1454,6 +1666,10 @@ getData(): Promise&lt;PasteData&gt;
 
 Obtains a **PasteData** object from the pasteboard. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.READ_PASTEBOARD
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Return value**
@@ -1464,16 +1680,17 @@ Obtains a **PasteData** object from the pasteboard. This API uses a promise to r
 
 **Error codes**
 
-For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteboard.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Pasteboard Error Codes](errorcode-pasteboard.md).
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
+| 12900003 | Another copy or paste operation is in progress. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
@@ -1489,6 +1706,8 @@ hasData(callback:  AsyncCallback&lt;boolean&gt;): void
 
 Checks whether the system pasteboard contains data. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Parameters**
@@ -1497,10 +1716,18 @@ Checks whether the system pasteboard contains data. This API uses an asynchronou
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. Returns **true** if the system pasteboard contains data; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasData((err: BusinessError, data: boolean) => {
@@ -1518,18 +1745,20 @@ hasData(): Promise&lt;boolean&gt;
 
 Checks whether the system pasteboard contains data. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. Returns **true** if the system pasteboard contains data; returns **false** otherwise.|
+| Promise&lt;boolean&gt; | Callback used to return the result. Returns **true** if the system pasteboard contains data; returns **false** otherwise.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasData().then((data: boolean) => {
@@ -1555,6 +1784,14 @@ Clears the system pasteboard. This API uses an asynchronous callback to return t
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1589,7 +1826,7 @@ Clears the system pasteboard. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clear().then((data) => {
@@ -1616,10 +1853,18 @@ Obtains a **PasteData** object from the pasteboard. This API uses an asynchronou
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;[PasteData](#pastedata)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the system pasteboard data. Otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getPasteData((err: BusinessError, pasteData: pasteboard.PasteData) => {
@@ -1651,7 +1896,7 @@ Obtains a **PasteData** object from the pasteboard. This API uses a promise to r
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getPasteData().then((pasteData: pasteboard.PasteData) => {
@@ -1678,10 +1923,18 @@ Checks whether the system pasteboard contains data. This API uses an asynchronou
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. Returns **true** if the system pasteboard contains data; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasPasteData((err: BusinessError, data: boolean) => {
@@ -1708,12 +1961,12 @@ Checks whether the system pasteboard contains data. This API uses a promise to r
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. Returns **true** if the system pasteboard contains data; returns **false** otherwise.|
+| Promise&lt;boolean&gt; | Callback used to return the result. Returns **true** if the system pasteboard contains data; returns **false** otherwise.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasPasteData().then((data: boolean) => {
@@ -1740,6 +1993,14 @@ Writes a **PasteData** object to the pasteboard. This API uses an asynchronous c
 | -------- | -------- | -------- | -------- |
 | data | [PasteData](#pastedata) | Yes| **PasteData** object.|
 | callback | AsyncCallback&lt;void> | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1780,7 +2041,7 @@ Writes a **PasteData** object to the pasteboard. This API uses a promise to retu
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('content');
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
@@ -1796,6 +2057,8 @@ isRemoteData(): boolean
 
 Checks whether the data in the pasteboard is from another device.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Return value**
@@ -1810,7 +2073,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **Example**
 
@@ -1830,6 +2093,8 @@ getDataSource(): string
 
 Obtains the data source.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Return value**
@@ -1844,7 +2109,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **Example**
 
@@ -1864,6 +2129,8 @@ hasDataType(mimeType: string): boolean
 
 Checks whether the pasteboard contains data of the specified type.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Parameters**
@@ -1880,12 +2147,12 @@ Checks whether the pasteboard contains data of the specified type.
 
 **Error codes**
 
-For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteboard.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Pasteboard Error Codes](errorcode-pasteboard.md).
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Type is not string. |
-| 12900005 | Request time out. |
+| 401 | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+| 12900005 | Request timed out. |
 
 **Example**
 
@@ -1905,6 +2172,8 @@ clearDataSync(): void
 
 Clears the system pasteboard. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Error codes**
@@ -1913,7 +2182,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **Example**
 
@@ -1933,6 +2202,10 @@ getDataSync(): PasteData
 
 Reads data in the system pasteboard. This API returns the result synchronously.
 
+**Required permissions**: ohos.permission.READ_PASTEBOARD
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Return value**
@@ -1943,11 +2216,12 @@ Reads data in the system pasteboard. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteboard.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Pasteboard Error Codes](errorcode-pasteboard.md).
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **Example**
 
@@ -1967,6 +2241,8 @@ setDataSync(data: PasteData): void
 
 Writes data to the system pasteboard. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Parameters**
@@ -1977,12 +2253,12 @@ Writes data to the system pasteboard. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteboard.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Pasteboard Error Codes](errorcode-pasteboard.md).
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Type of data is not PasteData. |
-| 12900005 | Request time out. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+| 12900005 | Request timed out. |
 
 **Example**
 
@@ -2001,7 +2277,9 @@ try {
 
 hasDataSync(): boolean
 
-Check whether the system pasteboard contains data. This API returns the result synchronously.
+Checks whether the system pasteboard contains data. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -2017,7 +2295,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **Example**
 
@@ -2029,4 +2307,288 @@ try {
 } catch (err) {
     console.error('Failed to check the PasteData. Cause:' + err.message);
 };    
+```
+
+### getUnifiedData<sup>12+</sup>
+
+getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
+
+Obtains a **PasteData** object from the pasteboard. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.READ_PASTEBOARD
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata)&gt; | Promise used to return the system pasteboard data.|
+
+**Error codes**
+
+For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteboard.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 12900003 | Another copy or paste operation is in progress. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getUnifiedData().then((data) => {
+    let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
+    for (let j = 0; j < records.length; j++) {
+        if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+            let text = records[j] as unifiedDataChannel.PlainText;
+            console.info(`${j + 1}.${text.textContent}`);
+        }
+    }
+}).catch((err: BusinessError) => {
+    console.error('Failed to get UnifiedData. Cause: ' + err.message);
+});
+```
+
+### getUnifiedDataSync<sup>12+</sup>
+
+getUnifiedDataSync(): unifiedDataChannel.UnifiedData
+
+Reads data in the system pasteboard. This API returns the result synchronously.
+
+**Required permissions**: ohos.permission.READ_PASTEBOARD
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Return value**
+
+| Type                | Description                |
+| -------------------- | -------------------- |
+| [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | Data in the system pasteboard.|
+
+**Error codes**
+
+For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteboard.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 12900005 | Request timed out. |
+
+**Example**
+
+```ts
+import { unifiedDataChannel } from '@kit.ArkData';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    let result: unifiedDataChannel.UnifiedData = systemPasteboard.getUnifiedDataSync();
+    console.info('Succeeded in getting UnifiedData.');
+} catch (err) {
+    console.error('Failed to get UnifiedData. Cause:' + err.message);
+};   
+```
+
+### setUnifiedData<sup>12+</sup>
+
+setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
+
+Writes a **PasteData** object to the pasteboard. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| data | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | Yes| 	Data to be written to the pasteboard.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteboard.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+| 12900003 | Another copy or paste operation is in progress. |
+| 12900004 | Replication is prohibited. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { unifiedDataChannel } from '@kit.ArkData';
+
+let plainTextData = new unifiedDataChannel.UnifiedData();
+let plainText = new unifiedDataChannel.PlainText();
+plainText.details = {
+    Key: 'delayPlaintext',
+    Value: 'delayPlaintext',
+};
+plainText.textContent = 'delayTextContent';
+plainText.abstract = 'delayTextContent';
+plainTextData.addRecord(plainText);
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.setUnifiedData(plainTextData).then((data: void) => {
+    console.info('Succeeded in setting UnifiedData.');
+}).catch((err: BusinessError) => {
+    console.error('Failed to set UnifiedData. Cause: ' + err.message);
+});
+```
+
+### setUnifiedDataSync<sup>12+</sup>
+
+setUnifiedDataSync(data: unifiedDataChannel.UnifiedData): void
+
+Writes data to the system pasteboard. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name| Type       | Mandatory| Description            |
+| ------ | ----------- | ---- | ---------------- |
+| data   | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | Yes  | Data to be written to the pasteboard.|
+
+**Error codes**
+
+For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteboard.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+| 12900005 | Request timed out. |
+
+**Example**
+
+```ts
+import { unifiedDataChannel } from '@kit.ArkData';
+
+let plainTextData = new unifiedDataChannel.UnifiedData();
+let plainText = new unifiedDataChannel.PlainText();
+plainText.details = {
+    Key: 'delayPlaintext',
+    Value: 'delayPlaintext',
+};
+plainText.textContent = 'delayTextContent';
+plainText.abstract = 'delayTextContent';
+plainTextData.addRecord(plainText);
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    systemPasteboard.setUnifiedDataSync(plainTextData);
+    console.info('Succeeded in setting UnifiedData.');
+} catch (err) {
+    console.error('Failed to set UnifiedData. Cause:' + err.message);
+};  
+```
+### Pattern<sup>13+</sup>
+Describes the modes supported by the pasteboard.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+| Name                              | Value | Description                                                                                 |
+| ---------------------------------- | --- | ------------------------------------------------------------------------------------- |
+| URL                              | 0   | URL.                                                             |
+| NUMBER                        | 1   | Number.                                                   |
+| EMAIL_ADDRESS | 2   | Email address.|
+
+### detectPatterns<sup>13+</sup>
+
+detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&gt;
+
+Detects patterns on the **local** pasteboard. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| patterns | [Array&lt;Pattern&gt;](#pattern13) | Yes| 	Pattern to be detected in the pasteboard.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Array&lt;Pattern&gt;&gt; | Promise used to return the detected pattern.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { pasteboard } from '@kit.BasicServicesKit'
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+let patterns: Array<pasteboard.Pattern> = [pasteboard.Pattern.URL, pasteboard.Pattern.EMAIL_ADDRESS];
+
+systemPasteboard.detectPatterns(patterns).then((data: Array<pasteboard.Pattern>) => {
+    if (patterns.sort().join('')==data.sort().join('')) {
+      console.info('All needed patterns detected, next get data');
+      try {
+        let result: pasteboard.PasteData = systemPasteboard.getDataSync();
+        console.info('Succeeded in getting PasteData.');
+      } catch (err) {
+        console.error('Failed to get PasteData. Cause:' + err.message);
+      };
+    } else {
+      console.info("Not all needed patterns detected, no need to get data.");
+    }
+});
+```
+
+### getMimeTypes<sup>14+</sup>
+
+getMimeTypes(): Promise&lt;Array&lt;string&gt;&gt;
+
+Obtains the MIME type from the pasteboard. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
+
+**Example**
+
+```ts
+import { pasteboard } from '@kit.BasicServicesKit'
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getMimeTypes().then((data: Array<String>) => {
+    console.info('Succeeded in getting mimeTypes. mimeTypes: ' + data.sort().join(','));
+}) catch (err) {
+    console.error('Failed to get mimeTypes. Cause:' + err.message);
+};
 ```

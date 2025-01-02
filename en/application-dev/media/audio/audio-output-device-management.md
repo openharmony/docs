@@ -1,4 +1,4 @@
-# Audio Output Device Management
+# Managing Global Audio Output Devices
 
 If a device is connected to multiple audio output devices, you can use **AudioRoutingManager** to specify an audio output device to play audio. For details about the API reference, see [AudioRoutingManager](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9).
 
@@ -7,7 +7,7 @@ If a device is connected to multiple audio output devices, you can use **AudioRo
 Before using **AudioRoutingManager** to manage audio devices, import the audio module and create an **AudioManager** instance.
 
 ```ts
-import audio from '@ohos.multimedia.audio'; // Import the audio module.
+import { audio } from '@kit.AudioKit';  // Import the audio module.
 
 let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
 
@@ -33,7 +33,7 @@ The table below lists the supported audio output devices.
 Use **getDevices()** to obtain information about all the output devices.
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
@@ -45,7 +45,7 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data:
 Set a listener to listen for changes of the device connection state. When a device is connected or disconnected, a callback is triggered.
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 // Listen for connection state changes of audio devices.
 audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged: audio.DeviceChangeAction) => {
@@ -59,6 +59,7 @@ audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (de
 audioRoutingManager.off('deviceChange');
 ```
 
+<!--Del-->
 ## Selecting an Audio Output Device (for System Applications only)
 
 Currently, only one output device can be selected, and the device ID is used as the unique identifier. For details about audio device descriptors, see [AudioDeviceDescriptors](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptors).
@@ -68,8 +69,8 @@ Currently, only one output device can be selected, and the device ID is used as 
 > The user can connect to a group of audio devices (for example, a pair of Bluetooth headsets), but the system treats them as one device (a group of devices that share the same device ID).
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
     deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
@@ -94,6 +95,7 @@ async function selectOutputDevice() {
   });
 }
 ```
+<!--DelEnd-->
 
 ## Obtaining Information About the Output Device with the Highest Priority
 
@@ -104,13 +106,13 @@ Call **getPreferOutputDeviceForRendererInfo()** to obtain the output device with
 > The output device with the highest priority is the device that will output audio.
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
     rendererFlags : 0
-}
+};
 
 async function getPreferOutputDeviceForRendererInfo() {
   audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
@@ -124,12 +126,12 @@ async function getPreferOutputDeviceForRendererInfo() {
 ## Listening for Changes of the Output Device with the Highest Priority
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
     rendererFlags : 0
-}
+};
 
 // Listen for changes of the output device with the highest priority.
 audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {

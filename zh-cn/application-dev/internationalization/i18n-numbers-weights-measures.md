@@ -12,7 +12,7 @@
 
 1. 导入模块。
    ```ts
-   import Intl from '@ohos.intl';
+   import { intl } from '@kit.LocalizationKit';
    ```
 
 2. 创建NumberFormat对象。
@@ -20,7 +20,7 @@
    构造函数支持通过NumberOptions设置不同的数字格式化格式，具体请参考表1-表8。
 
    ```ts
-   let numberFormat: Intl.NumberFormat = new Intl.NumberFormat(locale: string | Array<string>, options?: NumberOptions);
+   let numberFormat: intl.NumberFormat = new intl.NumberFormat(locale: string | Array<string>, options?: NumberOptions);
    ```
 
 3. 数字格式化，根据numberFormat的设置格式化number。
@@ -30,12 +30,12 @@
 
 4. 获取数字格式化选项，查看对象的设置信息。
    ```ts
-   let options: Intl.NumberOptions = formattedNumber.resolvedOptions();
+   let options: intl.NumberOptions = numberFormat.resolvedOptions();
    ```
 
 **数字格式化选项**
 
-对于数字，通过[NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions)参数可以设置最小整数位数、最小小数位数、最大小数位数、最低有效位数、最大有效位数、是否分组显示、数字的格式化规格、紧凑型的显示格式，以及数字的显示格式和数字系统。其中，数字的显示格式包括decimal(十进制)、percent(百分数)、currency(货币)、unit(单位)。
+对于数字，通过[NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions)参数可以设置最小整数位数、最小小数位数、最大小数位数、最低有效位数、最大有效位数、是否分组显示、数字的格式化规格、紧凑型的显示格式、舍入模式、舍入优先级、舍入增量，以及数字的显示格式和数字系统。其中，数字的显示格式包括decimal(十进制)、percent(百分数)、currency(货币)、unit(单位)。
 
 以123000.123为例，各属性参数取值和显示效果如下表所示。
 
@@ -102,23 +102,91 @@
 
 ```ts
 // 导入模块
-import Intl from '@ohos.intl'
+import { intl } from '@kit.LocalizationKit';
 
 // 用科学计数法显示数字
-let numberFormat1 = new Intl.NumberFormat('zh-CN', {notation: 'scientific', maximumSignificantDigits: 3});
+let numberFormat1 = new intl.NumberFormat('zh-CN', {notation: 'scientific', maximumSignificantDigits: 3});
 let formattedNumber1 = numberFormat1.format(123400); // formattedNumber1: 1.23E5
 
 // 用紧凑的格式显示数字
-let numberFormat2 = new Intl.NumberFormat('zh-CN', {notation: 'compact', compactDisplay: 'short'});
+let numberFormat2 = new intl.NumberFormat('zh-CN', {notation: 'compact', compactDisplay: 'short'});
 let formattedNumber2 = numberFormat2.format(123400); // formattedNumber2: 12万
 
 // 显示数字的符号
-let numberFormat3 = new Intl.NumberFormat('zh-CN', {signDisplay: 'always'});
+let numberFormat3 = new intl.NumberFormat('zh-CN', {signDisplay: 'always'});
 let formattedNumber3 = numberFormat3.format(123400); // formattedNumber3: +123,400
 
 // 显示百分数
-let numberFormat4 = new Intl.NumberFormat('zh-CN', {style: 'percent'});
+let numberFormat4 = new intl.NumberFormat('zh-CN', {style: 'percent'});
 let formattedNumber4 = numberFormat4.format(0.25); // formattedNumber4: 25%
+
+// 舍入模式
+let numberFormat5 : intl.NumberFormat = new intl.NumberFormat('en',
+    {
+        roundingMode: 'trunc',
+        maximumSignificantDigits: 2
+    });
+console.log(numberFormat5.format(2.28)); // 2.2
+console.log(numberFormat5.format(-2.25)); // -2.2
+
+// 舍入优先级
+let options : intl.NumberOptions = {
+    roundingPriority: 'lessPrecision',
+    maximumFractionDigits: 3,
+    maximumSignificantDigits: 2
+};
+let numberFormat6 : intl.NumberFormat = new intl.NumberFormat('en', options);
+console.log(numberFormat6.format(1.23456)); // 1.2
+
+// 舍入增量
+let numOptions : intl.NumberOptions = {
+    style: "currency",
+    currency: "USD",
+    roundingIncrement: 5,
+    maximumFractionDigits: 2,
+    roundingMode: "halfCeil"
+};
+let numberFormat7 : intl.NumberFormat = new intl.NumberFormat('en-US', numOptions);
+console.log(numberFormat7.format(11.21)); // $11.20
+```
+
+### 数字范围格式化
+
+数字范围格式化通过[NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat)的[formatRange](../reference/apis-localization-kit/js-apis-intl.md#formatrange-1)接口实现，具体开发步骤如下。
+
+1. 导入模块。
+   ```ts
+   import { intl } from '@kit.LocalizationKit';
+   ```
+
+2. 创建NumberFormat对象。
+   传入locale列表时，使用第一个有效的locale创建对象。不传入locale参数时，使用系统当前的locale创建对象。
+   构造函数支持通过NumberOptions设置不同的数字格式化格式，具体请参考表1-表8。
+
+   ```ts
+   let numberFormat: intl.NumberFormat = new intl.NumberFormat(locale: string | Array<string>, options?: NumberOptions);
+   ```
+
+3. 数字范围格式化，根据numberFormat的设置格式化开始和结束数字。
+   ```ts
+   let formattedNumber: string = numberFormat.formatRange(startRange: number, endRange: number);
+   ```
+
+**开发实例**
+
+```ts
+// 导入模块
+import { intl } from '@kit.LocalizationKit';
+
+// 数字范围格式化
+let options : intl.NumberOptions = {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0
+};
+let numberRangeFormat : intl.NumberFormat = new intl.NumberFormat('es-ES', options);
+console.log(numberRangeFormat.formatRange(2, 8)); // 2-8 €
+console.log(numberRangeFormat.formatRange(2.9, 3.1)); // ~3 €
 ```
 
 
@@ -170,22 +238,22 @@ let formattedNumber4 = numberFormat4.format(0.25); // formattedNumber4: 25%
 **开发实例**
 ```ts
 // 导入模块
-import Intl from '@ohos.intl'
+import { intl } from '@kit.LocalizationKit';
 
 // 格式化货币
-let numberFormat5 = new Intl.NumberFormat('zh-CN', {style: 'currency', currency: 'USD'});
+let numberFormat5 = new intl.NumberFormat('zh-CN', {style: 'currency', currency: 'USD'});
 let formattedNumber5 = numberFormat5.format(123400); // formattedNumber5: US$123,400.00
 
 // 用名称表示货币
-let numberFormat6 = new Intl.NumberFormat('zh-CN', {style: 'currency', currency: 'USD', currencyDisplay: 'name'});
+let numberFormat6 = new intl.NumberFormat('zh-CN', {style: 'currency', currency: 'USD', currencyDisplay: 'name'});
 let formattedNumber6 = numberFormat6.format(123400); // formattedNumber6: 123,400.00美元
 
 // 格式化度量衡
-let numberFormat7 = new Intl.NumberFormat('en-GB', {style: 'unit', unit: 'hectare'});
+let numberFormat7 = new intl.NumberFormat('en-GB', {style: 'unit', unit: 'hectare'});
 let formattedNumber7 = numberFormat7.format(123400); // formattedNumber7: 123,400 ha
 
 // 格式化特定场景下度量衡，如面积-土地-农业
-let numberFormat8 = new Intl.NumberFormat('en-GB', {style: 'unit', unit: 'hectare', unitUsage: 'area-land-agricult'});
+let numberFormat8 = new intl.NumberFormat('en-GB', {style: 'unit', unit: 'hectare', unitUsage: 'area-land-agricult'});
 let formattedNumber8 = numberFormat8.format(123400); // formattedNumber8: 304,928.041 ac
 ```
 
@@ -196,14 +264,14 @@ let formattedNumber8 = numberFormat8.format(123400); // formattedNumber8: 304,92
 
 1. 导入模块。
    ```ts
-   import I18n from '@ohos.i18n';
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. 度量衡转换。
 
    将度量衡从fromUnit转换到toUnit，数值为value，并根据区域和风格进行格式化。style可取不同的值，显示不用效果，具体请参考表13。
    ```ts
-   let convertedUnit: string = I18n.I18NUtil.unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string);
+   let convertedUnit: string = i18n.I18NUtil.unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string);
    ```
 
 **格式化风格**
@@ -222,15 +290,15 @@ let formattedNumber8 = numberFormat8.format(123400); // formattedNumber8: 304,92
 
 ```ts
 // 导入模块
-import I18n from '@ohos.i18n'
+import { i18n } from '@kit.LocalizationKit';
 
 // 设置要转换的单位和目标单位
-let fromUnit: I18n.UnitInfo = {unit: 'cup', measureSystem: 'US'};
-let toUnit: I18n.UnitInfo = {unit: 'liter', measureSystem: 'SI'};
+let fromUnit: i18n.UnitInfo = {unit: 'cup', measureSystem: 'US'};
+let toUnit: i18n.UnitInfo = {unit: 'liter', measureSystem: 'SI'};
 
 // 以en-US区域参数转换度量衡
-let convertedUnit1 = I18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US'); // convertedUnit1: 236.588 L
+let convertedUnit1 = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US'); // convertedUnit1: 236.588 L
 
 // 显示完整的度量衡
-let convertedUnit2 = I18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // convertedUnit2: 236.588 liters
+let convertedUnit2 = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // convertedUnit2: 236.588 liters
 ```

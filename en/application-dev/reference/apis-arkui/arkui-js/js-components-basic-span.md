@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-As a child component of **[\<text>](../arkui-js/js-components-basic-text.md)**, the **\<span>** component is used as a text modifier.
+As a child component of **[\<text>](js-components-basic-text.md)**, the **\<span>** component is used as a text modifier.
 
 ## Required Permissions
 
@@ -18,7 +18,7 @@ Not supported
 
 ## Attributes
 
-The [universal attributes](../arkui-js/js-components-common-attributes.md) are supported.
+The [universal attributes](js-components-common-attributes.md) are supported.
 
 >  **NOTE**
 >
@@ -34,15 +34,15 @@ Only the following styles are supported.
 | color           | &lt;color&gt;              | -          | No   | Font color of the modified text.                            |
 | font-size       | &lt;length&gt;             | 30px       | No   | Font size of the modified text.                            |
 | allow-scale     | boolean                    | true       | No   | Whether the font size of the modified text changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
-| font-style      | string                     | normal     | No   | Font style of the modified text. For details, see **font-style** of the [**\<text>**](../arkui-js/js-components-basic-text.md#styles) component.|
-| font-weight     | number \| string | normal     | No   | Font weight of the modified text. For details, see **font-weight** of the [**\<text>**](../arkui-js/js-components-basic-text.md#styles) component.|
-| text-decoration | string                     | none       | No   | Text decoration of the modified text. For details, see **text-decoration** of the [**\<text>**](../arkui-js/js-components-basic-text.md#styles) component.|
-| font-family     | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
+| font-style      | string                     | normal     | No   | Font style of the modified text. For details, see **font-style** of the [**\<text>**](js-components-basic-text.md#styles) component.|
+| font-weight     | number \| string | normal     | No   | Font weight of the modified text. For details, see **font-weight** of the [**\<text>**](js-components-basic-text.md#styles) component.|
+| text-decoration | string                     | none       | No   | Text decoration of the modified text. For details, see **text-decoration** of the [**\<text>**](js-components-basic-text.md#styles) component.|
+| font-family     | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-components-common-customizing-font.md) is used for the text.|
 
 
 ## Events
 
-Only the click event in [Universal Events](../arkui-js/js-components-common-events.md) is supported.
+Only the click event in [Universal Events](js-components-common-events.md) is supported.
 
 
 ## Methods

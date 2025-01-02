@@ -11,7 +11,7 @@ baseProfile模块提供了基础的profile方法。
 ## 导入模块
 
 ```js
-import baseProfile from '@ohos.bluetooth.baseProfile';
+import { baseProfile } from '@kit.ConnectivityKit';
 ```
 
 
@@ -35,7 +35,7 @@ import baseProfile from '@ohos.bluetooth.baseProfile';
 
 setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy, callback: AsyncCallback&lt;void&gt;): void
 
-设置该设备Profile的连接策略。
+设置该设备Profile的连接策略。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -57,16 +57,20 @@ setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy, callback: 
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.setConnectionStrategy('XX:XX:XX:XX:XX:XX', 0, (err: BusinessError) => {
@@ -81,7 +85,7 @@ try {
 
 setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy): Promise&lt;void&gt;
 
-设置该设备Profile的连接策略。
+设置该设备Profile的连接策略。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -108,16 +112,20 @@ setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy): Promise&l
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.setConnectionStrategy('XX:XX:XX:XX:XX:XX', 1).then(() => {
@@ -134,7 +142,7 @@ try {
 
 getConnectionStrategy(deviceId: string, callback: AsyncCallback&lt;ConnectionStrategy&gt;): void
 
-获取该Profile的连接策略。
+获取该Profile的连接策略。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -155,16 +163,20 @@ getConnectionStrategy(deviceId: string, callback: AsyncCallback&lt;ConnectionStr
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.getConnectionStrategy('XX:XX:XX:XX:XX:XX', 0, (err: BusinessError, data: baseProfile.ConnectionStrategy) => {
@@ -179,7 +191,7 @@ try {
 
 getConnectionStrategy(deviceId: string): Promise&lt;ConnectionStrategy&gt;
 
-获取该Profile的连接策略。
+获取该Profile的连接策略。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -205,16 +217,20 @@ getConnectionStrategy(deviceId: string): Promise&lt;ConnectionStrategy&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900001 | Service stopped.                  
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |       |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.getConnectionStrategy('XX:XX:XX:XX:XX:XX', 1).then((data: baseProfile.ConnectionStrategy) => {

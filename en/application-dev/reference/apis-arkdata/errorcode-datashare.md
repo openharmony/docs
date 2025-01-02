@@ -64,3 +64,21 @@ The input parameter **bundleName** of **publish()** is incorrect.
 **Solution**
 
 Obtain the correct **bundleName** value from the DataShare server provider.
+
+## 15700013 DataShareHelper Instance Closed
+
+**Error Message**
+
+The DataShareHelper instance is already closed.
+
+**Description**
+
+This error code is generated when a closed **DataShareHelper** instance is used.
+
+**Possible Causes**
+
+The closed **DataShareHelper** instance cannot be used.
+
+**Solution**
+
+Create a new **DataShareHelper** instance for use.

@@ -25,7 +25,7 @@ OpenHarmony提供了一套UI开发框架，即方舟开发框架（ArkUI框架�
 
 ### 应用模型
 
-应用模型是OpenHarmony为开发者提供的应用程序所需能力的抽象提炼，它提供了应用程序必备的组件和运行机制。有了应用模型，开发者可以基于一套统一的模型进行应用开发，使应用开发更简单、高效。请见[应用模型的构成要素](../application-models/application-model-composition.md)。
+应用模型是OpenHarmony为开发者提供的应用程序所需能力的抽象提炼，它提供了应用程序必备的组件和运行机制。有了应用模型，开发者可以基于一套统一的模型进行应用开发，使应用开发更简单、高效。请见[应用模型的构成要素](../application-models/application-models.md#应用模型的构成要素)。
 
 随着系统的演进发展，OpenHarmony先后提供了两种应用模型：
 
@@ -40,7 +40,7 @@ FA模型和Stage模型的整体架构和设计思想等更多区别，请见[应
 
 ## 工具准备
 
-1. 安装最新版[DevEco Studio](../../release-notes/OpenHarmony-v4.1-beta1.md#配套关系)。
+1. 安装最新版DevEco Studio。
 
 2. 请参考[配置开发环境](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/environment_config-0000001052902427-V3)，完成**DevEco Studio**的安装和开发环境配置。
 

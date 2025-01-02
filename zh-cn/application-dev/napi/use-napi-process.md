@@ -16,25 +16,7 @@
 
 - 在DevEco Studio中**New &gt; Create Project**，选择**Native C++**模板，点击**Next**，选择API版本，设置好工程名称，点击**Finish**，创建得到新工程。
 
-- 创建工程后工程结构可以分两部分，cpp部分和ets部分，具体可见下文的工程目录介绍。
-
-**主要工程目录介绍**
-
-![cProject](figures/cProject.png)
-
-- **entry &gt; src &gt; main &gt; cpp &gt; types**：用于存放C++的API接口描述文件。
-
-- **entry &gt; src &gt; main &gt; cpp &gt; types &gt; libentry &gt; index.d.ts**：描述C++ API接口行为，如接口名、入参、返回参数等。
-
-- **entry &gt; src &gt; main &gt; cpp &gt; types &gt; libentry &gt; oh-package.json5**：配置.so三方包声明文件的入口及包名。
-
-- **entry &gt; src &gt; main &gt; cpp &gt; CMakeLists.txt**：C++源码编译配置文件，提供CMake构建脚本。
-
-- **entry &gt; src &gt; main &gt; cpp &gt; hello.cpp**：定义C++ API接口的文件。
-
-- **entry &gt; src &gt; main &gt; ets**：用于存放ArkTS源码。
-
-更多工程介绍，请见[C++工程目录结构](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/project_overview-0000001053822398-V3#section3732132312179)。
+- 创建工程后工程结构可以分两部分，cpp部分和ets部分，工程结构具体介绍可见<!--RP1-->[C++工程目录结构](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-project-structure-V5)<!--RP1End-->。
 
 
 ## Native侧方法的实现
@@ -46,7 +28,7 @@
   napi_module有两个关键属性：一个是.nm_register_func，定义模块初始化函数；另一个是.nm_modname，定义模块的名称，也就是ArkTS侧引入的so库的名称，模块系统会根据此名称来区分不同的so。
 
   ```
-  // entry/src/main/cpp/hello.cpp
+  // entry/src/main/cpp/napi_init.cpp
   
   // 准备模块加载相关信息，将上述Init函数与本模块名等信息记录下来。
   static napi_module demoModule = {
@@ -64,20 +46,22 @@
       napi_module_register(&demoModule);
    }
   ```
+注：以上代码无须复制，创建Native C++工程以后在napi_init.cpp代码中已配置好。
 
 - 模块初始化
 
   实现ArkTS接口与C++接口的绑定和映射。
 
   ```
-  // entry/src/main/cpp/hello.cpp
+  // entry/src/main/cpp/napi_init.cpp
   EXTERN_C_START
   // 模块初始化
   static napi_value Init(napi_env env, napi_value exports) {
       // ArkTS接口与C++接口的绑定和映射
       napi_property_descriptor desc[] = {
+          // 注：仅需复制以下两行代码，Init在完成创建Native C++工程以后在napi_init.cpp中已配置好。
           {"callNative", nullptr, CallNative, nullptr, nullptr, nullptr, napi_default, nullptr},
-          {"nativeCallArkTS", nullptr, NativeCallArkTS, nullptr, nullptr, nullptr, napi_default, nullptr},
+          {"nativeCallArkTS", nullptr, NativeCallArkTS, nullptr, nullptr, nullptr, napi_default, nullptr}
       };
       // 在exports对象上挂载CallNative/NativeCallArkTS两个Native方法
       napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
@@ -85,16 +69,6 @@
   }
   EXTERN_C_END
   
-  // 模块基本信息
-  static napi_module demoModule = {
-      .nm_version = 1,
-      .nm_flags = 0,
-      .nm_filename = nullptr,
-      .nm_register_func = Init,
-      .nm_modname = "entry",
-      .nm_priv = nullptr,
-      .reserved = {0},
-  };
   ```
 
 - 在index.d.ts文件中，提供JS侧的接口方法。
@@ -108,6 +82,7 @@
 - 在oh-package.json5文件中将index.d.ts与cpp文件关联起来。
 
   ```
+  // entry/src/main/cpp/types/libentry/oh-package.json5
   {
     "name": "libentry.so",
     "types": "./index.d.ts",
@@ -129,7 +104,7 @@
                       ${NATIVERENDER_ROOT_PATH}/include)
   
   # 添加名为entry的库
-  add_library(entry SHARED hello.cpp)
+  add_library(entry SHARED napi_init.cpp)
   # 构建此可执行文件需要链接的库
   target_link_libraries(entry PUBLIC libace_napi.z.so)
   ```
@@ -137,7 +112,7 @@
 - 实现Native侧的CallNative以及NativeCallArkTS接口。具体代码如下：
 
   ```
-  // entry/src/main/cpp/hello.cpp
+  // entry/src/main/cpp/napi_init.cpp
   static napi_value CallNative(napi_env env, napi_callback_info info)
   {
       size_t argc = 2;

@@ -3,7 +3,7 @@
 
 ## Overview
 
-Provides APIs for creating and modifying tensor information.
+Provides tensor-related APIs, which can be used to create tensors and modify tensor information. These APIs are non-thread-safe.
 
 **Since**
 
@@ -22,6 +22,7 @@ Provides APIs for creating and modifying tensor information.
 | Name| Description|
 | -------- | -------- |
 | [OH_AI_TensorHandle](_mind_spore.md#oh_ai_tensorhandle) | Defines the handle of a tensor object.|
+| [OH_AI_AllocatorHandle](_mind_spore.md#oh_ai_allocatorhandle) | Handle of the memory allocator.|
 
 
 ### Functions
@@ -45,3 +46,5 @@ Provides APIs for creating and modifying tensor information.
 | [OH_AI_TensorGetElementNum](_mind_spore.md#oh_ai_tensorgetelementnum) (const OH_AI_TensorHandle tensor) | Obtains the number of tensor elements.|
 | [OH_AI_TensorGetDataSize](_mind_spore.md#oh_ai_tensorgetdatasize) (const OH_AI_TensorHandle tensor) | Obtains the number of bytes of the tensor data.|
 | [OH_AI_TensorSetUserData](_mind_spore.md#oh_ai_tensorsetuserdata) ([OH_AI_TensorHandle](_mind_spore.md#oh_ai_tensorhandle) tensor, void \*data, size_t data_size) | Sets the tensor as the user data. This function allows you to reuse user data as the model input, which helps to reduce data copy by one time.|
+| [OH_AI_TensorGetAllocator](_mind_spore.md#oh_ai_tensorgetallocator)([OH_AI_TensorHandle](_mind_spore.md#oh_ai_tensorhandle) tensor) | Obtains a memory allocator.|
+| [OH_AI_TensorSetAllocator](_mind_spore.md#oh_ai_tensorsetallocator)([OH_AI_TensorHandle](_mind_spore.md#oh_ai_tensorhandle) tensor, [OH_AI_AllocatorHandle](_mind_spore.md#oh_ai_allocatorhandle) allocator) | Sets the memory allocator.|

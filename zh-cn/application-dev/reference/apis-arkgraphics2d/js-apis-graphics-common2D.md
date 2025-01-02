@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import common2D from '@ohos.graphics.common2D';
+import { common2D } from '@kit.ArkGraphics2D';
 ```
 
 ## Color
@@ -37,3 +37,24 @@ ARGB格式的颜色描述。
 | top    | number | 是   | 是   | 矩形区域的左上角纵坐标，浮点数。 |
 | right  | number | 是   | 是   | 矩形区域的右下角横坐标，浮点数。 |
 | bottom | number | 是   | 是   | 矩形区域的右下角纵坐标，浮点数。 |
+
+## Point<sup>12+</sup>
+
+坐标点。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称   | 类型   | 可读 | 可写 | 说明                           |
+| ------ | ------ | ---- | ---- | ------------------------------ |
+| x      | number | 是   | 是   | 横坐标，浮点数。               |
+| y      | number | 是   | 是   | 纵坐标，浮点数。               |
+
+## Point3d<sup>12+</sup>
+
+三维的坐标点。继承自[Point](#point12)。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称   | 类型   | 可读 | 可写 | 说明                           |
+| ------ | ------ | ---- | ---- | ------------------------------ |
+| z      | number | 是   | 是   | z轴坐标，浮点数。               |

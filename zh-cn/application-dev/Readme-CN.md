@@ -31,7 +31,7 @@
   - [一次开发，多端部署](key-features/multi-device-app-dev/Readme-CN.md)
   - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
   - [Native API的相关指导](napi/Readme-CN.md)
-  - [性能](performance/readme-CN.md)
+  - [性能](performance/Readme-CN)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - [调试工具](tools/Readme-CN.md)

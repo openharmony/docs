@@ -1,6 +1,6 @@
 # @ohos.commonEventManager (公共事件模块)(系统应用)
 
-本模块提供了公共事件相关的能力，包括发布公共事件、订阅公共事件、以及退订公共事件。
+本模块提供了公共事件相关的能力，包括发布公共事件、订阅公共事件以及退订公共事件。
 
 > **说明：**
 >
@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import CommonEventManager from '@ohos.commonEventManager';
+import { commonEventManager } from '@kit.BasicServicesKit';
 ```
 
 ## Support
@@ -20,7 +20,7 @@ import CommonEventManager from '@ohos.commonEventManager';
 
 全部系统公共事件枚举定义请参见[系统公共事件定义](./common_event/commonEventManager-definitions.md)。
 
-## CommonEventManager.publishAsUser<sup>
+## commonEventManager.publishAsUser<sup>
 
 publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): void
 
@@ -40,27 +40,29 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 1500004  | not System services.                |
-| 1500007  | error sending message to Common Event Service. |
-| 1500008  | Common Event Service does not complete initialization. |
-| 1500009  | error obtaining system parameters.  |
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |  
+| 1500004  | A third-party application cannot send system common events.                |
+| 1500007  | Failed to send the message to the common event service. |
+| 1500008  | Failed to initialize the common event service. |
+| 1500009  | Failed to obtain system parameters.  |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-//发布公共事件回调
-function publishCB(err:Base.BusinessError) {
-	if (err) {
-        console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("publishAsUser");
-    }
+// 发布公共事件回调
+function publishCB(err: BusinessError) {
+  if (err) {
+    console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("publishAsUser");
+  }
 }
 
 //指定发送的用户
@@ -68,14 +70,14 @@ let userId = 100;
 
 //发布公共事件
 try {
-    CommonEventManager.publishAsUser("event", userId, publishCB);
+    commonEventManager.publishAsUser("event", userId, publishCB);
 } catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
+    let err: BusinessError = error as BusinessError;
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
-## CommonEventManager.publishAsUser
+## commonEventManager.publishAsUser
 
 publishAsUser(event: string, userId: number, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
@@ -96,49 +98,47 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 1500004  | not System services or System app.                |
-| 1500007  | error sending message to Common Event Service. |
-| 1500008  | Common Event Service does not complete initialization. |
-| 1500009  | error obtaining system parameters.  |
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |  
+| 1500004  | A third-party application cannot send system common events.                |
+| 1500007  | Failed to send the message to the common event service. |
+| 1500008  | Failed to initialize the common event service. |
+| 1500009  | Failed to obtain system parameters.  |
 
 **示例：**
 
-
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-//公共事件相关信息
-let options:CommonEventManager.CommonEventPublishData = {
-	code: 0,			 //公共事件的初始代码
-	data: "initial data",//公共事件的初始数据
+// 公共事件相关信息
+let options:commonEventManager.CommonEventPublishData = {
+  code: 0,			 // 公共事件的初始代码
+  data: "initial data",// 公共事件的初始数据
 }
-
-//发布公共事件回调
-function publishCB(err:Base.BusinessError) {
-	if (err) {
-        console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("publishAsUser");
-    }
-}
-
-//指定发送的用户
-let userId = 100;
-
-//发布公共事件
-try {
-    CommonEventManager.publishAsUser("event", userId, options, publishCB);
-} catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
+// 发布公共事件回调
+function publishCB(err: BusinessError) {
+  if (err) {
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("publishAsUser");
+  }
+}
+// 指定发送的用户
+let userId = 100;
+// 发布公共事件
+try {
+  commonEventManager.publishAsUser("event", userId, options, publishCB);
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
-## CommonEventManager.removeStickyCommonEvent<sup>10+</sup>
+## commonEventManager.removeStickyCommonEvent<sup>10+</sup>
 
 removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void
 
@@ -159,30 +159,32 @@ removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 1500004  | not system service.                 |
-| 1500007  | error sending message to Common Event Service.             |
-| 1500008  | Common Event Service does not complete initialization.     |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |   
+| 1500004  | A third-party application cannot send system common events.                |
+| 1500007  | Failed to send the message to the common event service.             |
+| 1500008  | Failed to initialize the common event service.     |
 
 **示例：**
 
-
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-CommonEventManager.removeStickyCommonEvent("sticky_event", (err:Base.BusinessError) => {
-    if (err) {
-        console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
-        return;
-    }
-    console.info(`Remove sticky event AsyncCallback success`);
+commonEventManager.removeStickyCommonEvent("sticky_event", (err: BusinessError) => {
+  if (err) {
+    console.error(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
+    return;
+  }
+  console.info(`removeStickyCommonEvent success`);
 });
 ```
 
-## CommonEventManager.removeStickyCommonEvent<sup>10+</sup>
+## commonEventManager.removeStickyCommonEvent<sup>10+</sup>
 
 removeStickyCommonEvent(event: string): Promise\<void>
 
@@ -208,28 +210,30 @@ removeStickyCommonEvent(event: string): Promise\<void>
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 1500004  | not system service.                 |
-| 1500007  | error sending message to Common Event Service.             |
-| 1500008  | Common Event Service does not complete initialization.     |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 1500004  | A third-party application cannot send system common events.                |
+| 1500007  | Failed to send the message to the common event service.             |
+| 1500008  | Failed to initialize the common event service.     |
 
 **示例：**
 
-
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-CommonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
-    console.info(`Remove sticky event AsyncCallback success`);
-}).catch ((err:Base.BusinessError) => {
-    console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
+commonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
+  console.info(`removeStickyCommonEvent success`);
+}).catch ((err: BusinessError) => {
+  console.error(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```
 
-## CommonEventManager.setStaticSubscriberState<sup>10+</sup>
+## commonEventManager.setStaticSubscriberState<sup>10+</sup>
 
 setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 
@@ -250,33 +254,30 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 1500007  | error sending message to Common Event Service.             |
-| 1500008  | Common Event Service does not complete initialization.     |
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 1500007  | Failed to send the message to the common event service.             |
+| 1500008  | Failed to initialize the common event service.     |
 
 **示例：**
 
-
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-CommonEventManager.setStaticSubscriberState(true, (err:Base.BusinessError) => {
-    if (!err) {
-        console.info(`Set static subscriber state callback failed, err is null.`);
-        return;
-    }
-    if (err.code !== undefined && err.code != null) {
-        console.info(`Set static subscriber state callback failed, errCode: ${err.code}, errMes: ${err.message}`);
-        return;
-    }
-    console.info(`Set static subscriber state callback success`);
+commonEventManager.setStaticSubscriberState(true, (err: BusinessError) => {
+  if (err.code != 0) {
+    console.error(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
+    return;
+  }
+  console.info(`setStaticSubscriberState success`);
 });
 ```
 
-## CommonEventManager.setStaticSubscriberState<sup>10+</sup>
+## commonEventManager.setStaticSubscriberState<sup>10+</sup>
 
 setStaticSubscriberState(enable: boolean): Promise\<void>;
 
@@ -298,26 +299,86 @@ setStaticSubscriberState(enable: boolean): Promise\<void>;
 
 | 类型           | 说明                         |
 | -------------- | ---------------------------- |
-| Promise\<void> | 表示设置静态订阅事件使能状态的对象。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。|
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 1500007  | error sending message to Common Event Service.             |
-| 1500008  | Common Event Service does not complete initialization.     |
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 1500007  | Failed to send the message to the common event service.             |
+| 1500008  | Failed to initialize the common event service.     |
 
 **示例：**
 
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-CommonEventManager.setStaticSubscriberState(false).then(() => {
-    console.info(`Set static subscriber state promise success`);
-}).catch ((err:Base.BusinessError) => {
-    console.info(`Set static subscriber state promise failed, errCode: ${err.code}, errMes: ${err.message}`);
+commonEventManager.setStaticSubscriberState(false).then(() => {
+  console.info(`setStaticSubscriberState success`);
+}).catch ((err: BusinessError) => {
+  console.error(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
+});
+```
+
+## commonEventManager.setStaticSubscriberState<sup>12+</sup>
+
+setStaticSubscriberState(enable: boolean, events?: Array\<string>): Promise\<void>
+
+为当前应用设置静态订阅事件的使能状态，并且记录事件名称。使用Promise异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                                                 |
+| ------ | ------------- | ---- | ---------------------------------------------------- |
+| enable | boolean       | 是   | 表示静态订阅事件使能状态。 true：使能 false：去使能。|
+| events | Array\<string> | 否   | 表示记录事件名称。                                   |
+
+**返回值：**
+
+| 类型           | 说明                                 |
+| -------------- | ------------------------------------ |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 1500007  | Failed to send the message to the common event service.        |
+| 1500008  | Failed to initialize the common event service. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { promptAction } from '@kit.ArkUI';
+
+let evenName: string[] = ['usual.event.SEND_DATA'];
+commonEventManager.setStaticSubscriberState(true, evenName).then(() => {
+  try {
+    promptAction.showToast({
+      message: 'app.string.static_subscribe_enabled',
+      duration: 2000,
+    });
+  } catch (error) {
+    console.error(`showToast error code is ${error.code}, message is ${error.message}`);
+  }
+  console.info(`setStaticSubscriberState success, state is ${true}`);
+}).catch((err: BusinessError) => {
+  console.error(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```

@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Package manager error.
+Bundle manager error.
 
 **错误描述**
 
@@ -52,17 +52,19 @@ Input method client error.
 
 **可能原因**
 
-三方应用客户端服务异常导致输入法应用与三方应用客户端断链。
+1、三方应用客户端服务异常导致输入法应用与三方应用客户端断链。
+2、三方应用没有获得焦点。
 
 **处理步骤**
 
-重新将输入法应用与三方应用进行绑定：将三方应用后台进程杀死，重新启动三方应用，通过点击对话框等方式触发输入法键盘的显示，若键盘正常显示，则问题解决。
+1、重新将输入法应用与三方应用进行绑定：将三方应用后台进程杀死，重新启动三方应用，通过点击对话框等方式触发输入法键盘的显示，若键盘正常显示，则问题解决。
+2、将三方应用置于前台且确保没有其他应用或者窗口覆盖。通过点击对话框等方式拉起键盘。
 
 ## 12800004 不是输入法应用
 
 **错误信息**
 
-Not an input method extension.
+Not an input method.
 
 **错误描述**
 
@@ -80,7 +82,7 @@ Not an input method extension.
 
 **错误信息**
 
-Configuration persisting error.
+Configuration persistence error.
 
 **错误描述**
 
@@ -116,7 +118,7 @@ Input method controller error.
 
 **错误信息**
 
-Input method settings extension error.
+Input method setter error.
 
 **错误描述**
 
@@ -152,7 +154,7 @@ Input method manager service error.
 
 **错误信息**
 
-Input method client is detached.
+Input method client detached.
 
 **错误描述**
 
@@ -170,7 +172,7 @@ Input method client is detached.
 
 **错误信息**
 
-Not default input method configured by system.
+Not the preconfigured default input method.
 
 **错误描述**
 
@@ -182,4 +184,130 @@ Not default input method configured by system.
 
 **处理步骤**
 
-判断当前应用是否为系统配置的默认输入法，若不是，则不支持调用此接口。
+开发者可以通过接口[getDefaultInputMethod](js-apis-inputmethod.md#inputmethodgetdefaultinputmethod11)查询系统配置默认输入法，判断当前应用是否为默认输入法，若不是，则不支持调用此接口。
+
+## 12800011 当前输入框不支持预上屏
+
+**错误信息**
+
+Text preview not supported.
+
+**错误描述**
+
+当前输入框不支持预上屏。
+
+**可能原因**
+
+当前输入框未支持预上屏功能。
+
+**处理步骤**
+
+开发者可通过接口[getEditorAttributeSync](js-apis-inputmethodengine.md#geteditorattributesync10)获取编辑框属性[EditorAttribute](js-apis-inputmethodengine.md#editorattribute)的isTextPreviewSupported，读取当前输入框是否支持预上屏，若不支持，则此接口不支持调用。
+
+## 12800012 软键盘类型面板未创建
+
+**错误信息**
+
+The input method panel does not exist.
+
+**错误描述**
+
+软键盘类型输入法面板未创建。
+
+**可能原因**
+
+调用者输入法应用未创建软键盘类型面板。
+
+**处理步骤**
+
+开发者可以通过接口[createPanel](js-apis-inputmethodengine.md#createpanel10)创建[软键盘类型](js-apis-inputmethodengine.md#paneltype10)的[面板](js-apis-inputmethodengine.md#panel10)。
+
+## 12800013 窗口管理服务错误
+
+**错误信息**
+
+Window manager service error.
+
+**错误描述**
+
+窗口管理服务错误。
+
+**可能原因**
+
+开发者调用此接口后，系统会使用窗口管理服务模块的能力。若由于系统的窗口管理服务功能问题导致接口功能异常，则抛出此错误码。
+
+**处理步骤**
+
+建议重启设备后重试调用接口。
+
+## 12800014 输入法应用非完全访问模式
+
+**错误信息**
+
+The intput method is basic mode.
+
+**错误描述**
+
+输入法应用非完全访问模式。
+
+**可能原因**
+
+开发者调用要求需开启完全访问模式的接口后，若当前输入法非完全访问模式，则抛出此错误码。
+
+**处理步骤**
+
+在设置中开启当前输入法的完全访问模式。
+
+## 12800015 消息接收端无法接收自定义通信数据
+
+**错误信息**
+
+The another side does not accept the request.
+
+**错误描述**
+
+消息接收端无法接收自定义通信数据。
+
+**可能原因**
+
+开发者调用发送自定义通信数据接口时，若消息接收端未注册[MessageHandler](js-apis-inputmethodengine.md#messagehandler16)接收数据，则抛出此错误码。
+
+**处理步骤**
+
+消息接收端需注册MessageHandler接收自定义通信数据，输入法应用侧调用[recvMessage](js-apis-inputmethodengine.md#recvmessage16)，输入法客户端侧调用[recvMessage](js-apis-inputmethod.md#recvmessage16)。
+
+## 12800016 输入法客户端未处于编辑状态
+
+**错误信息**
+
+The edit mode need enable.
+
+**错误描述**
+
+输入法客户端未处于编辑状态。
+
+**可能原因**
+
+输入法客户端绑定后退出了编辑状态。如：自绘控件调用Attach后又调用了[hideTextInput](js-apis-inputmethod.md#hidetextinput10)操作等。
+
+**处理步骤**
+
+输入法客户端绑定后退出编辑状态，需重新进入编辑状态。如：自绘控件需调用[showTextInput](js-apis-inputmethod.md#showtextinput10)重新进入编辑状态。
+
+## 12800017 无效的面板类型或面板状态
+
+**错误信息**
+
+Invalid panel type or panel flag.
+
+**错误描述**
+
+无效的面板类型或面板状态。
+
+**可能原因**
+
+当前的输入法[面板类型](js-apis-inputmethodengine.md#paneltype10)或[面板状态](js-apis-inputmethodengine.md#panelflag10)不支持其调用此接口，或者此接口不支持开发者传入当前面板类型或面板状态，则抛出此错误码。
+
+**处理步骤**
+
+建议开发者进一步阅读接口使用说明，按要求调整当前输入法面板类型或面板状态、调整传入的参数，或者即当前面板无法使用此接口能力。

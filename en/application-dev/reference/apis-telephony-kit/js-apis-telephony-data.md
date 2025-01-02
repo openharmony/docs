@@ -1,6 +1,6 @@
 # @ohos.telephony.data (Cellular Data)
 
-The **data** module provides basic mobile data management functions. You can obtain and set the default slot of the SIM card used for mobile data, and obtain the uplink and downlink connection status of cellular data services and connection status of the packet switched (PS) domain. Besides, you can check whether cellular data services and data roaming are enabled.
+The **data** module provides basic mobile data management functions. You can obtain the default slot of the SIM card used for mobile data, and obtain the uplink and downlink connection status of cellular data services and connection status of the packet switched (PS) domain. Besides, you can check whether cellular data services and data roaming are enabled.
 
 >**NOTE**
 >
@@ -9,7 +9,7 @@ The **data** module provides basic mobile data management functions. You can obt
 ## Modules to Import
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 ```
 
 ## data.getDefaultCellularDataSlotId
@@ -29,12 +29,12 @@ Obtains the default slot of the SIM card used for mobile data. This API uses an 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-data.getDefaultCellularDataSlotId((err: BusinessError, data: number) => {
+data.getDefaultCellularDataSlotId((err: BusinessError, contextData: number) => {
     if(err){
-        console.error(`getDefaultCellularDataSlotId fail,callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+        console.error(`getDefaultCellularDataSlotId fail,callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
     }else{
         console.log(`getDefaultCellularDataSlotId success`);
     }
@@ -58,11 +58,11 @@ Obtains the default slot of the SIM card used for mobile data. This API uses a p
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-data.getDefaultCellularDataSlotId().then((data: number) => {
-    console.log(`getDefaultCellularDataSlotId success, promise: data->${JSON.stringify(data)}`);
+data.getDefaultCellularDataSlotId().then((contextData: number) => {
+    console.log(`getDefaultCellularDataSlotId success, promise: contextData->${JSON.stringify(contextData)}`);
 }).catch((err: BusinessError) => {
     console.error(`getDefaultCellularDataSlotId fail, promise: err->${JSON.stringify(err)}`);
 });
@@ -85,7 +85,7 @@ Obtains the default SIM card used for mobile data synchronously.
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 
 console.log("Result: "+ data.getDefaultCellularDataSlotIdSync())
 ```
@@ -108,12 +108,12 @@ Obtains the cellular data flow type, which can be uplink or downlink. This API u
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-data.getCellularDataFlowType((err: BusinessError, data: data.DataFlowType) => {
+data.getCellularDataFlowType((err: BusinessError, contextData: data.DataFlowType) => {
     if(err){
-        console.error(`getCellularDataFlowType fail,callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+        console.error(`getCellularDataFlowType fail,callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
     }else{
         console.log(`getCellularDataFlowType success`);
     }
@@ -137,11 +137,11 @@ Obtains the cellular data flow type, which can be uplink or downlink. This API u
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-data.getCellularDataFlowType().then((data: data.DataFlowType) => {
-    console.log(`getCellularDataFlowType success, promise: data->${JSON.stringify(data)}`);
+data.getCellularDataFlowType().then((contextData: data.DataFlowType) => {
+    console.log(`getCellularDataFlowType success, promise: contextData->${JSON.stringify(contextData)}`);
 }).catch((err: BusinessError) => {
     console.error(`getCellularDataFlowType fail, promise: err->${JSON.stringify(err)}`);
 });
@@ -164,12 +164,12 @@ Obtains the connection status of the packet switched (PS) domain. This API uses 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-data.getCellularDataState((err: BusinessError, data: data.DataConnectState) => {
+data.getCellularDataState((err: BusinessError, contextData: data.DataConnectState) => {
     if(err){
-        console.error(`getCellularDataState fail,callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+        console.error(`getCellularDataState fail,callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
     }else{
         console.log(`getCellularDataState success`);
     }
@@ -193,11 +193,11 @@ Obtains the connection status of the PS domain. This API uses a promise to retur
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-data.getCellularDataState().then((data: data.DataConnectState) => {
-    console.log(`getCellularDataState success, promise: data->${JSON.stringify(data)}`);
+data.getCellularDataState().then((contextData: data.DataConnectState) => {
+    console.log(`getCellularDataState success, promise: contextData->${JSON.stringify(contextData)}`);
 }).catch((err: BusinessError) => {
     console.error(`getCellularDataState fail, promise: err->${JSON.stringify(err)}`);
 });
@@ -226,21 +226,21 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-data.isCellularDataEnabled((err: BusinessError, data: boolean) => {
+data.isCellularDataEnabled((err: BusinessError, contextData: boolean) => {
     if(err){
-        console.error(`isCellularDataEnabled fail,callback: callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+        console.error(`isCellularDataEnabled fail,callback: callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
     }else{
         console.log(`isCellularDataEnabled success`);
     }
@@ -270,21 +270,63 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 8300002  | Service connection failed.                   |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error.                               |
+
+**Example**
+
+```ts
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+data.isCellularDataEnabled().then((contextData: boolean) => {
+    console.log(`isCellularDataEnabled success, promise: contextData->${JSON.stringify(contextData)}`);
+}).catch((err: BusinessError) => {
+    console.error(`isCellularDataEnabled fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## data.isCellularDataEnabledSync<sup>12+</sup>
+
+isCellularDataEnabledSync(): boolean
+
+Checks whether the cellular data service is enabled. This API returns the result synchronously.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Return value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | Whether the cellular data service is enabled.<br>**true**: The cellular data service is enabled.<br>**false**: The cellular data service is disabled.|
+
+**Error codes**
+
+For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 | 8300999  | Unknown error code.                          |
 
 **Example**
 
-```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+<!--code_no_check-->
 
-data.isCellularDataEnabled().then((data: boolean) => {
-    console.log(`isCellularDataEnabled success, promise: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`isCellularDataEnabled fail, promise: err->${JSON.stringify(err)}`);
-});
+```ts
+import { data } from '@kit.TelephonyKit';
+
+try {
+    let isEnabled: boolean = data.isCellularDataEnabledSync();
+    console.log(`isCellularDataEnabledSync success : ${isEnabled}`);
+} catch (error) {
+    console.error(`isCellularDataEnabledSync fail : err->${JSON.stringify(error)}`);  
+}
 ```
 
 ## data.isCellularDataRoamingEnabled
@@ -311,21 +353,21 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-data.isCellularDataRoamingEnabled(0, (err: BusinessError, data: boolean) => {
+data.isCellularDataRoamingEnabled(0, (err: BusinessError, contextData: boolean) => {
     if(err){
-        console.error(`isCellularDataRoamingEnabled fail,callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+        console.error(`isCellularDataRoamingEnabled fail,callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
     }else{
         console.log(`isCellularDataRoamingEnabled success`);
     }
@@ -361,25 +403,74 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-data.isCellularDataRoamingEnabled(0).then((data: boolean) => {
-    console.log(`isCellularDataRoamingEnabled success, promise: data->${JSON.stringify(data)}`);
+data.isCellularDataRoamingEnabled(0).then((contextData: boolean) => {
+    console.log(`isCellularDataRoamingEnabled success, promise: contextData->${JSON.stringify(contextData)}`);
 }).catch((err: BusinessError) => {
     console.error(`isCellularDataRoamingEnabled fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
+## data.isCellularDataRoamingEnabledSync<sup>12+</sup>
+
+isCellularDataRoamingEnabledSync(slotId: number): boolean
+
+Checks whether roaming is enabled for the cellular data service. This API returns the result synchronously.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                    |
+| ------ | ------ | ---- | ---------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>**0**: card slot 1.<br>**1**: card slot 2.|
+
+**Return value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | Whether roaming is enabled for the cellular data service.<br>**true**: Roaming is enabled for the cellular data service.<br>**false**: Roaming is disabled for the cellular data service.|
+
+**Error codes**
+
+For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; |
+| 8300001  | Invalid parameter value.                                     |
+| 8300002  | Operation failed. Cannot connect to service.                 |
+| 8300003  | System internal error.                                       |
+| 8300999  | Unknown error code.                                          |
+
+**Example**
+
+<!--code_no_check-->
+
+```ts
+import { data } from '@kit.TelephonyKit';
+
+try {
+    let isEnabled: boolean = data.isCellularDataRoamingEnabledSync(0);
+    console.log(`isCellularDataRoamingEnabledSync success : ${isEnabled}`);
+} catch (error) {
+    console.error(`isCellularDataRoamingEnabledSync fail : err->${JSON.stringify(error)}`);  
+}
+```
 
 ## data.getDefaultCellularDataSimId<sup>10+</sup>
 
@@ -398,7 +489,7 @@ Obtains the default ID of the SIM card used for mobile data.
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 
 console.log("Result: "+ data.getDefaultCellularDataSimId());
 ```

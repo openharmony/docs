@@ -1,6 +1,6 @@
 # 请求自绘制内容绘制帧率
 
-对于基于[XComponent](../ui/arkts-common-components-xcomponent.md)进行Native开发的业务，可以请求独立的绘制帧率进行内容开发，如游戏、自绘制UI框架对接等场景。
+对于基于[XComponent](../ui/napi-xcomponent-guidelines.md)进行Native开发的业务，可以请求独立的绘制帧率进行内容开发，如游戏、自绘制UI框架对接等场景。
 
 ## 接口说明
 
@@ -27,24 +27,31 @@
 2. 定义演示页面，包含两个XComponent组件。
 
    ```ts
+   import XComponentContext from "../interface/XComponentContext";
+
    @Entry
    @Component
    struct Index {
      private xComponentContext1: XComponentContext | undefined = undefined;
      private xComponentContext2: XComponentContext | undefined = undefined;
-      Row() {
-        XComponent({ id: 'xcomponentId_30', type: 'surface', libraryname: 'entry' })
-          .onLoad((xComponentContext) => {
-            this.xComponentContext1 = xComponentContext as XComponentContext;
-          }).width('832px')
-      }.height('40%')
+     
+    build() {
+      Column() {
+        Row() {
+          XComponent({ id: 'xcomponentId_30', type: 'surface', libraryname: 'entry' })
+            .onLoad((xComponentContext) => {
+              this.xComponentContext1 = xComponentContext as XComponentContext;
+            }).width('832px')
+        }.height('40%')
 
-      Row() {
-        XComponent({ id: 'xcomponentId_120', type: 'surface', libraryname: 'entry' })
-          .onLoad((xComponentContext) => {
-            this.xComponentContext2 = xComponentContext as XComponentContext;
-          }).width('832px')// Multiples of 64
-      }.height('40%')
+        Row() {
+          XComponent({ id: 'xcomponentId_120', type: 'surface', libraryname: 'entry' })
+            .onLoad((xComponentContext) => {
+              this.xComponentContext2 = xComponentContext as XComponentContext;
+            }).width('832px') // Multiples of 64
+        }.height('40%')
+      }
+    }
    }
    ```
 

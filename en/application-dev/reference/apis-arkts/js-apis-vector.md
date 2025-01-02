@@ -18,7 +18,7 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import Vector from '@ohos.util.Vector';
+import { Vector } from '@kit.ArkTS';
 ```
 
 
@@ -80,7 +80,7 @@ let result = vector.add("a");
 let result1 = vector.add(1);
 let b = [1, 2, 3];
 let result2 = vector.add(b);
-let c: C1 = {name : "Dylon", age : "13"};
+let c: C1 = {name : "Jack", age : "13"};
 let result3 = vector.add(c);
 ```
 
@@ -839,10 +839,6 @@ Replaces an element at the specified position in this container with a given ele
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 Obtains an iterator. Each item of the iterator is a JavaScript object.
-
-> **NOTE**
->
-> This API cannot be used in .ets files.
 
 **System capability**: SystemCapability.Utils.Lang
 

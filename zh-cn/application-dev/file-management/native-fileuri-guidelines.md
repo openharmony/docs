@@ -18,12 +18,13 @@ FileUri提供了关于文件URI的基本操作，对外提供了URI与沙箱路�
 
 接口的详细说明，请参考[API参考](../reference/apis-core-file-kit/fileuri.md)
 
-| 接口名称 | 描述 |
-| -------- | -------- |
-| FileManagement_ErrCode OH_FileUri_GetUriFromPath(const char *path, unsigned int length, char **result)| 通过传入的路径PATH获取到对应的URI。 |
-| FileManagement_ErrCode OH_FileUri_GetPathFromUri(const char *uri, unsigned int length, char **result) | 通过传入的URI获取到对应的沙箱路径PATH。 |
+| 接口名称 | 描述                                         |
+| -------- |--------------------------------------------|
+| FileManagement_ErrCode OH_FileUri_GetUriFromPath(const char *path, unsigned int length, char **result)| 通过传入的路径PATH获取到对应的URI。                      |
+| FileManagement_ErrCode OH_FileUri_GetPathFromUri(const char *uri, unsigned int length, char **result) | 通过传入的URI获取到对应的沙箱路径PATH。                    |
 | FileManagement_ErrCode OH_FileUri_GetFullDirectoryUri(const char *uri, unsigned int length, char **result) | 获取所在路径URI，文件获取所在路径URI，如果URI指向目录则获取当前路径URI。 |
-| bool OH_FileUri_IsValidUri(const char *uri, unsigned int length) | 判断传人的URI的格式是否正确。 |
+| bool OH_FileUri_IsValidUri(const char *uri, unsigned int length) | 判断传入的URI的格式是否正确。                           |
+| FileManagement_ErrCode OH_FileUri_GetFileName(const char *uri, unsigned int length, char **result) | 通过传入的URI获取到对应的文件名称。                        |
 
 ## 开发步骤
 
@@ -38,12 +39,14 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
 **添加头文件**
 
 ```c++
-#include <filemanagement/file_uri/include/oh_file_uri.h>
+#include <filemanagement/file_uri/oh_file_uri.h>
 ```
 
 1. 调用OH_FileUri_GetUriFromPath接口，在接口中malloc的内存需要在使用完后释放，因此需要free对应的内存。示例代码如下所示：
 
    ```c
+    #include <cstring>
+
     void OH_FileUri_GetUriFromPathExample() {
         char *path = "/data/storage/el2/base/files/test.txt";
         unsigned int length = strlen(path);
@@ -61,11 +64,13 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
 2. 调用OH_FileUri_GetPathFromUri通过URi转成对应的PATH，在接口中malloc的内存需要在使用完后释放，因此需要free对应的内存。示例代码如下所示：
 
    ```c
+    #include <cstring>
+
     void OH_FileUri_GetPathFromUriExample() {
         char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
         unsigned int length = strlen(uri);
         char *pathResult = NULL;
-        FileManagement_ErrCode ret = OH_FileUri_GetPathFromUri(uri, length， &pathResult);
+        FileManagement_ErrCode ret = OH_FileUri_GetPathFromUri(uri, length, &pathResult);
         if (ret == 0 && pathResult != NULL) {
             printf("pathResult=%s", pathResult); // PathResult值为：/data/storage/el2/base/files/test.txt
         }
@@ -78,6 +83,8 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
 3. 调用OH_FileUri_GetFullDirectoryUri获取URI所在路径的URI，在接口中malloc的内存需要在使用完后释放，因此需要free对应的内存。示例代码如下所示：
 
    ```c
+    #include <cstring>
+    
     void OH_FileUri_GetFullDirectoryUriExample() {
         char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
         unsigned int length = strlen(uri);
@@ -95,11 +102,32 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
 4. 可以调用OH_FileUri_IsValidUri接口进行URI格式验证。 示例代码如下所示：
 
    ```c
+    #include <cstring>
+    
     void OH_FileUri_IsValidUriExample() {
         char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
         unsigned int length = strlen(uri);
         bool falgs = OH_FileUri_IsValidUri(uri, length);
         printf("The URI is valid? falgs=%d", falgs);
+    }
+   ```
+   
+5. 调用OH_FileUri_GetFileName获取URI中的文件名称，在接口中malloc的内存需要在使用完后释放，因此需要free对应的内存。示例代码如下所示：
+
+   ```c
+    #include <cstring>
+    
+    void OH_FileUri_GetFileNameExample() {
+        char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
+        unsigned int length = strlen(uri);
+        char *uriResult = NULL;
+        FileManagement_ErrCode ret = OH_FileUri_GetFileName(uri, length, &uriResult);
+        if (ret == 0 && uriResult != NULL) {
+            printf("pathUri=%s",uriResult);//获取到URI中的文件名：test.txt
+        }
+        if (uriResult != NULL) {
+            free(uriResult);
+        }
     }
    ```
 

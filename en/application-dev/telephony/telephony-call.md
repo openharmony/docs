@@ -3,7 +3,9 @@
 ## Scenario Description
 
 You can implement the call service in either of the following ways:
+<!--Del-->
 - For a system application, use the **dialCall** API to make a voice or video call. The call will be displayed on the application page.
+<!--DelEnd-->
 - For a third-party application, use the **makeCall** API to start the system call application. Users can then make calls as needed.
 
 ## Basic Concepts
@@ -27,15 +29,15 @@ You can implement the call service in either of the following ways:
 ## Available APIs
 
 > **NOTE**
-> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [call API Reference](../reference/apis/js-apis-call.md).
+> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [API Reference](../reference/apis-telephony-kit/js-apis-call.md).
 
 |                                  Name                                            | Description                                                        |
 | ----------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | hasVoiceCapability(): boolean;                                                      | Checks whether the voice function is available.                                       |
-| dialCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void                 | Makes a call. This is a system API.                                     |
-| makeCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void                 | Redirects to the dial screen and displays the called number.                                 |
+|<!--DelRow--> dialCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void;                 | Makes a call. This is a system API.                                     |
+| makeCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void;                 | Redirects to the dial screen and displays the called number.                                 |
 
-The **observer** module provides the functions of subscribing to and unsubscribing from the call service status. For details about the APIs, see [observer API Reference](../reference/apis/js-apis-observer.md).
+The **observer** module provides the functions of subscribing to and unsubscribing from the call service status. For details about the APIs, see [API Reference](../reference/apis-telephony-kit/js-apis-observer.md).
 
 | Name                                                      | Description              |
 | ------------------------------------------------------------ | ------------------ |
@@ -43,19 +45,19 @@ The **observer** module provides the functions of subscribing to and unsubscribi
 
 ## How to Develop
 
+<!--Del-->
 ### Making a Call by Using the dialCall API (Only for System Applications)
 
 1. Declare the required permission: **ohos.permission.PLACE_CALL**.
 This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Then, declare the requried permission by referring to [Requesting Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
-2. Import the **call** and **observer** modules.
-3. Invoke the **hasVoiceCapability** API to check whether the device supports the voice call function.
-4. Invoke the **dialCall** API to make a call.
-5. (Optional) Register the observer for call service status changes.
+1. Import the **call** and **observer** modules.
+2. Invoke the **hasVoiceCapability** API to check whether the device supports the voice call function.
+3. Invoke the **dialCall** API to make a call.
+4. (Optional) Register the observer for call service status changes.
    ```ts
     // Import the required modules.
-    import call from '@ohos.telephony.call';
-    import observer from '@ohos.telephony.observer';
-    import { BusinessError } from '@ohos.base';
+    import { call, observer } from '@kit.TelephonyKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     // Check whether the voice call function is supported.
     let isSupport = call.hasVoiceCapability();
@@ -77,7 +79,7 @@ This permission is of the **system\_basic** level. Before applying for the permi
         });
     }
    ```
-
+<!--DelEnd-->
 ### Making a Call by Using the makeCall API
 
 1. Import the **call** and **observer** modules.
@@ -87,9 +89,8 @@ This permission is of the **system\_basic** level. Before applying for the permi
 
    ```ts
     // Import the required modules.
-    import call from '@ohos.telephony.call';
-    import observer from '@ohos.telephony.observer';
-    import { BusinessError } from '@ohos.base';
+    import { call, observer } from '@kit.TelephonyKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
    
     // Check whether the voice call function is supported.
     let isSupport = call.hasVoiceCapability();
@@ -114,4 +115,3 @@ This permission is of the **system\_basic** level. Before applying for the permi
         });
     }
    ```
-

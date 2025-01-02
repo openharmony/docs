@@ -4,35 +4,34 @@
 
 接口不限制PCM数据的来源，开发者可以调用麦克风录制获取、也可以导入编辑后的PCM数据，通过音频编码，输出对应格式的码流，最后封装为目标格式文件。
 
-当前支持的编码能力如下：
-
-| 容器规格 | 音频编码类型       |
-| -------- | :--------------- |
-| mp4      | AAC、Flac        |
-| m4a      | AAC              |
-| flac     | Flac             |
-| aac      | AAC              |
-| amr      | AMR(amrnb、amrwb)|
-| raw      | G711mu           |
+当前支持的编码能力请参考[AVCodec支持的格式](avcodec-support-formats.md#音频编码)。
 
 **适用场景**
 
 - 音频录制
 
-  通过录制传入PCM，然后编码出对应格式的码流，最后封装成想要的格式
+  通过录制传入PCM，然后编码出对应格式的码流，最后封装成想要的格式。
 - 音频编辑
 
-  编辑PCM后导出音频文件的场景，需要编码成对应音频格式后再封装成文件
+  编辑PCM后导出音频文件的场景，需要编码成对应音频格式后再封装成文件。
+> **说明：**
+>
+> AAC编码器默认采用的VBR可变码率模式，与配置的预期参数可能存在偏差。
 
 ## 开发指导
 
 详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_audio_codec.md)。
 
-参考以下示例代码，完成音频编码的全流程，包括：创建编码器，设置编码参数（采样率/码率/声道数等），开始，刷新，重置，销毁资源。
+参考以下示例代码，完成音频编码的全流程，包括：创建编码器、设置编码参数（采样率/码率/声道数等）、开始、刷新、重置、销毁资源。
 
 在应用开发过程中，开发者应按一定顺序调用方法，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
 
 如下为音频编码调用关系图：
+
+- 虚线表示可选。
+
+- 实线表示必选。
+
 ![Invoking relationship of audio encode stream](figures/audio-codec.png)
 
 ### 在 CMake 脚本中链接动态库
@@ -140,9 +139,6 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         unique_lock<mutex> lock(signal->outMutex_);
         signal->outQueue_.push(index);
         signal->outBufferQueue_.push(data);
-        if (attr) {
-            signal->attrQueue_.push(*attr);
-        }
     }
     signal_ = new AEncBufferSignal();
     OH_AVCodecCallback cb_ = {&OnError, &OnOutputFormatChanged, &OnInputBufferAvailable, &OnOutputBufferAvailable};
@@ -159,28 +155,35 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
    可选项：最大输入长度。
 
-   flac编码： 需要额外标识兼容性级别(Compliance Level)和采样精度。
+   flac编码： 需要额外标识兼容性级别(Compliance Level)和采样精度。  
+   
+   各音频编码类型参数范围说明：
+   | 音频编码类型 | 采样率(Hz)                                                                       |       声道数       |
+   | ----------- | ------------------------------------------------------------------------------- | :----------------: |
+   | AAC         | 8000、11025、12000、16000、22050、24000、32000、44100、48000、64000、88200、96000 | 1、2、3、4、5、6、8 |
+   | Flac        | 8000、11025、12000、16000、22050、24000、32000、44100、48000、64000、88200、96000 |        1~8         |
+   | MP3         | 8000、11025、12000、16000、22050、24000、32000、44100、48000                     |        1~2         |
+   | G711mu      | 8000                                                                            |         1          |
+   <!--RP3--><!--RP3End-->
 
-   例AAC调用流程：
-
+   对于44100Hz采样率、2声道立体声、SAMPLE_S16LE采样格式的PCM音频，以32000bps的码率进行AAC编码的调用流程如下：
+    <!--RP4-->
     ```cpp
     int32_t ret;
     // 配置音频采样率（必须）
-    constexpr uint32_t DEFAULT_SAMPLERATE = 44100; 
+    constexpr uint32_t DEFAULT_SAMPLERATE = 44100;
     // 配置音频码率（必须）
     constexpr uint64_t DEFAULT_BITRATE = 32000;
     // 配置音频声道数（必须）
     constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
     // 配置音频声道类型（必须）
-    constexpr AudioChannelLayout CHANNEL_LAYOUT = AudioChannelLayout::STEREO;
-    // 配置音频位深（必须）aac只有SAMPLE_F32P
-    constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_F32LE;
-    // 配置音频compliance level (默认值0，取值范围-2~2)
-    constexpr int32_t COMPLIANCE_LEVEL = 0;
-    // 配置音频精度（必须） SAMPLE_S16LE和SAMPLE_S24LE和SAMPLE_S32LE
-    constexpr OH_BitsPerSample BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
-    // 配置最大输入长度（可选）
-    constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1024 * DEFAULT_CHANNEL_COUNT * sizeof(float); // aac
+    constexpr OH_AudioChannelLayout CHANNEL_LAYOUT = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
+    // 配置音频位深（必须）
+    constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_S16LE;
+    // 每20ms一帧音频数据
+    constexpr float TIME_PER_FRAME = 0.02;
+    // 配置最大输入长度, 每帧音频数据的大小（可选）
+    constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = DEFAULT_SAMPLERATE * TIME_PER_FRAME * DEFAULT_CHANNEL_COUNT * sizeof(short); // aac
     OH_AVFormat *format = OH_AVFormat_Create();
     // 写入format
     OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_CHANNEL_COUNT, DEFAULT_CHANNEL_COUNT);
@@ -195,19 +198,19 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 异常处理
     }
     ```
-
+    <!--RP4End-->
     例FLAC调用流程：
 
     ```cpp
     int32_t ret;
     // 配置音频采样率（必须）
-    constexpr uint32_t DEFAULT_SMAPLERATE = 44100; 
+    constexpr uint32_t DEFAULT_SAMPLERATE = 44100;
     // 配置音频码率（必须）
     constexpr uint64_t DEFAULT_BITRATE = 261000;
     // 配置音频声道数（必须）
     constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
     // 配置音频声道类型（必须）
-    constexpr AudioChannelLayout CHANNEL_LAYOUT = AudioChannelLayout::STEREO;
+    constexpr OH_AudioChannelLayout CHANNEL_LAYOUT = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
     // 配置音频位深（必须） flac 只有SAMPLE_S16LE和SAMPLE_S32LE
     constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_S32LE;
     // 配置音频compliance level (默认值0，取值范围-2~2)
@@ -217,7 +220,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     OH_AVFormat *format = OH_AVFormat_Create();
     // 写入format
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, DEFAULT_CHANNEL_COUNT);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, DEFAULT_SMAPLERATE);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, DEFAULT_SAMPLERATE);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, DEFAULT_BITRATE);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_BITS_PER_CODED_SAMPLE, BITS_PER_CODED_SAMPLE); 
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_FORMAT); 
@@ -229,6 +232,8 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 异常处理
     }
     ```
+
+    <!--RP2--><!--RP2End-->
 
 5. 调用OH_AudioCodec_Prepare()，编码器就绪。
 
@@ -244,9 +249,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```c++
     unique_ptr<ifstream> inputFile_ = make_unique<ifstream>();
     unique_ptr<ofstream> outFile_ = make_unique<ofstream>();
-    // 打开待编码二进制文件路径
+    // 打开待编码二进制文件路径（此处以输入为PCM文件为例）
     inputFile_->open(inputFilePath.data(), ios::in | ios::binary); 
-    // 配置编码文件输出路径
+    // 配置编码文件输出路径（此处以输出为编码码流文件为例）
     outFile_->open(outputFilePath.data(), ios::out | ios::binary);
     // 开始编码
     ret = OH_AudioCodec_Start(audioEnc_);
@@ -256,11 +261,10 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
 
 7. 调用OH_AudioCodec_PushInputBuffer()，写入待编码器的数据。
-   如果是结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
 
-   aac： 样点数(FRAME_SIZE)固定为1024
+   aac： 每帧样点数(SAMPLES_PER_FRAME)建议使用20ms的PCM样点数，即采样率*0.02。
 
-   flac： 样点数(FRAME_SIZE)比较特殊需要，根据如下表格进行设置
+   flac： 每帧样点数(SAMPLES_PER_FRAME)比较特殊需要，根据如下表格进行设置。
 
    | 采样率 | 样点数 |
    | :----: | :----: |
@@ -275,12 +279,15 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    | 96000 |  8192  |
 
    > **说明：**
-   > aac的样点数固定为1024，其他值会直接返回错误码，flac的样点数建议根据采样率按照表格传入，大于这个值也会返回错误码，如果小于有可能出现编码文件损坏问题。
+   > aac编码的每帧样点数建议使用20ms的PCM样点数，即采样率*0.02。flac编码的样点数建议根据采样率按照表格传入，大于这个值也会返回错误码，如果小于有可能出现编码文件损坏问题。
 
    ```c++
-    constexpr int32_t FRAME_SIZE = 1024; // aac
+    // 每帧样点数
+    constexpr int32_t SAMPLES_PER_FRAME = DEFAULT_SAMPLERATE * TIME_PER_FRAME;
+    // 声道数，对于amr编码声道数只支持单声道的音频输入
     constexpr int32_t DEFAULT_CHANNEL_COUNT = 2;
-    constexpr int32_t INPUT_FRAME_BYTES = DEFAULT_CHANNEL_COUNT * FRAME_SIZE * sizeof(float); // aac
+    // 每帧输入数据的长度，声道数 * 每帧样点数 * 每个样点的字节数（以采样格式SAMPLE_S16LE为例）
+    constexpr int32_t INPUT_FRAME_BYTES = DEFAULT_CHANNEL_COUNT * SAMPLES_PER_FRAME * sizeof(short);
     uint32_t index = signal_->inQueue_.front();
     auto buffer = signal_->inBufferQueue_.front();
     OH_AVCodecBufferAttr attr = {0};
@@ -299,8 +306,15 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 异常处理
     }
     ```
+   在上方案例中，attr.flags代表缓冲区标记的类别。  
+   如果是结束，需要将flags标识成AVCODEC_BUFFER_FLAGS_EOS。
+   | 枚举值 | 描述 | 
+   | -------- | -------- |
+   | AVCODEC_BUFFER_FLAGS_NONE | 表示为普通帧。 | 
+   | AVCODEC_BUFFER_FLAGS_EOS | 表示缓冲区是流结束帧。 | 
+   | AVCODEC_BUFFER_FLAGS_CODEC_DATA | 表示缓冲区包含编解码特定数据。 | 
 
-8. 调用OH_AudioCodec_FreeOutputBuffer()，输出编码格式码流
+8. 调用OH_AudioCodec_FreeOutputBuffer()，输出编码格式码流。
 
     ```c++
     uint32_t index = signal_->outQueue_.front();

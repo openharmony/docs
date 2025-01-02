@@ -2,12 +2,12 @@
 
 ## 场景介绍
 
-快捷键可以设置快捷键拉起Ability的延迟时间，比如按下快捷键五秒后截屏等。
+快捷键提供设置快捷键拉起Ability延迟时间的能力。使用场景例如：按下快捷键五秒后截屏。
 
 ## 导入模块
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 ```
 
 ## 接口说明
@@ -23,7 +23,7 @@ import shortKey from '@ohos.multimodalInput.shortKey';
 开发步骤以按下快捷键五秒后截屏为例。
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 try {
   shortKey.setKeyDownDuration("screenshot", 500, (error) => {//设置截屏应用screenshot延迟时间为5秒（500毫秒）
     if (error) {

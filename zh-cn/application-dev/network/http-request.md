@@ -34,7 +34,7 @@ HTTP数据请求功能主要由http模块提供。
 
 ## request接口开发步骤
 
-1. 从@ohos.net.http.d.ts中导入http命名空间。
+1. 从@kit.NetworkKit中导入http命名空间。
 2. 调用createHttp()方法，创建一个HttpRequest对象。
 3. 调用该对象的on()方法，订阅http响应头事件，此接口会比request请求先返回。可以根据业务需要订阅此消息。
 4. 调用该对象的request()方法，传入http请求的url地址和可选参数，发起网络请求。
@@ -44,8 +44,8 @@ HTTP数据请求功能主要由http模块提供。
 
 ```ts
 // 引入包名
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 每一个httpRequest对应一个HTTP请求任务，不可复用
 let httpRequest = http.createHttp();
@@ -63,7 +63,7 @@ httpRequest.request(
     header: {
       'Content-Type': 'application/json'
     },
-    // 当使用POST请求时此字段用于传递内容
+    // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定
     extraData: "data to send",
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
@@ -116,7 +116,7 @@ httpRequest.request(
 
 ## requestInStream接口开发步骤
 
-1. 从@ohos.net.http.d.ts中导入http命名空间。
+1. 从@kit.NetworkKit中导入http命名空间。
 2. 调用createHttp()方法，创建一个HttpRequest对象。
 3. 调用该对象的on()方法，可以根据业务需要订阅HTTP响应头事件、HTTP流式响应数据接收事件、HTTP流式响应数据接收进度事件和HTTP流式响应数据接收完毕事件。
 4. 调用该对象的requestInStream()方法，传入http请求的url地址和可选参数，发起网络请求。
@@ -126,8 +126,8 @@ httpRequest.request(
 
 ```ts
 // 引入包名
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 每一个httpRequest对应一个HTTP请求任务，不可复用
 let httpRequest = http.createHttp();
@@ -136,10 +136,14 @@ httpRequest.on('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 // 用于订阅HTTP流式响应数据接收事件
-let res = '';
+let res = new ArrayBuffer(0);
 httpRequest.on('dataReceive', (data: ArrayBuffer) => {
-  res += data;
-  console.info('res: ' + res);
+   const newRes = new ArrayBuffer(res.byteLength + data.byteLength);
+   const resView = new Uint8Array(newRes);
+   resView.set(new Uint8Array(res));
+   resView.set(new Uint8Array(data), res.byteLength);
+   res = newRes;
+   console.info('res length: ' + res.byteLength);
 });
 // 用于订阅HTTP流式响应数据接收完毕事件
 httpRequest.on('dataEnd', () => {
@@ -160,7 +164,7 @@ let streamInfo: http.HttpRequestOptions = {
   header: {
     'Content-Type': 'application/json'
   },
-  // 当使用POST请求时此字段用于传递内容
+  // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定
   extraData: "data to send",
   expectDataType:  http.HttpDataType.STRING,// 可选，指定返回数据的类型
   usingCache: true, // 可选，默认为true
@@ -170,11 +174,9 @@ let streamInfo: http.HttpRequestOptions = {
   usingProtocol: http.HttpProtocol.HTTP1_1 // 可选，协议类型默认值由系统自动指定
 }
 
-httpRequest.requestInStream(
-  // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
-  "EXAMPLE_URL",
-  streamInfo, (err: BusinessError, data: number) => {
-  console.error('error:' + JSON.stringify(err));
+// 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
+httpRequest.requestInStream("EXAMPLE_URL", streamInfo).then((data: number) => {
+  console.info("requestInStream OK!");
   console.info('ResponseCode :' + JSON.stringify(data));
   // 取消订阅HTTP响应头事件
   httpRequest.off('headersReceive');
@@ -186,9 +188,130 @@ httpRequest.requestInStream(
   httpRequest.off('dataEnd');
   // 当该请求使用完毕时，调用destroy方法主动销毁
   httpRequest.destroy();
-}
-);
+}).catch((err: Error) => {
+  console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+});
 ```
+
+## 证书锁定
+
+可以通过预置应用级证书，或者预置证书公钥哈希值的方式来进行证书锁定，即只有开发者特别指定的证书才能正常建立https连接。
+
+两种方式都是在配置文件中配置的，配置文件在APP中的路径是：`src/main/resources/base/profile/network_config.json`。在该配置中，可以为预置的证书与网络服务器建立对应关系。
+
+如果不知道服务器域名的证书，可以通过以下方式访问该域名获取证书，注意把`www.example.com`改成想要获取域名证书的域名，`www.example.com.pem`改成想保存的证书文件名：
+
+```
+openssl s_client -servername www.example.com -connect www.example.com:443 \
+    < /dev/null | sed -n "/-----BEGIN/,/-----END/p" > www.example.com.pem
+```
+
+如果你的环境是Windows系统，需要注意：
+
+* 将`/dev/null`替换成`NUL`。
+* 和Linux的OpenSSL表现可能不同，OpenSSL可能会等待用户输入才会退出，按Enter键即可。
+* 如果没有sed命令，将输出中从`-----BEGIN CERTIFICATE-----`到`-----END CERTIFICATE-----`之间的部分复制下来保存即可（复制部分包括这两行）。
+
+### 预置应用级证书
+
+直接把证书原文件预置在APP中。目前支持crt和pem格式的证书文件。
+
+> **注意：**
+>
+> 当前ohos.net.http和Image组件的证书锁定，会匹配证书链上所有证书的哈希值，如果服务器更新了任意一本证书，都会导致校验失败。如果服务器出现了更新证书的情况，APP版本应当随之更新并推荐消费者尽快升级APP版本，否则可能导致联网失败。
+
+### 预置证书公钥哈希值
+
+通过在配置中指定域名证书公钥的哈希值来只允许使用公钥哈希值匹配的域名证书访问此域名。
+
+域名证书的公钥哈希值可以用如下的命令计算，这里假设域名证书是通过上面的OpenSSL命令获得的，并保存在`www.example.com.pem`文件。#开头的行是注释，可以不用输入：
+
+```
+# 从证书中提取出公钥
+openssl x509 -in www.example.com.pem -pubkey -noout > www.example.com.pubkey.pem
+# 将pem格式的公钥转换成der格式
+openssl asn1parse -noout -inform pem -in www.example.com.pubkey.pem -out www.example.com.pubkey.der
+# 计算公钥的SHA256并转换成base64编码
+openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
+```
+
+### JSON配置文件示例
+
+预置应用级证书的配置例子如下：
+
+```json
+{
+  "network-security-config": {
+    "base-config": {
+      "trust-anchors": [
+        {
+          "certificates": "/etc/security/certificates"
+        }
+      ]
+    },
+    "domain-config": [
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "example.com"
+          }
+        ],
+        "trust-anchors": [
+          {
+            "certificates": "/data/storage/el1/bundle/entry/resources/resfile"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+预置证书公钥哈希值的配置例子如下:
+```
+{
+  "network-security-config": {
+    "domain-config": [
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "server.com"
+          }
+        ],
+        "pin-set": {
+          "expiration": "2024-11-08",
+          "pin": [
+            {
+              "digest-algorithm": "sha256",
+              "digest": "FEDCBA987654321"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+**各个字段含义:**
+
+| 字段                      | 类型            | 说明                                   |   
+| --------------------------| --------------- | -------------------------------------- |
+|network-security-config    | object          |网络安全配置。可包含0或者1个base-config，必须包含1个domain-config。|
+|base-config                | object          |指示应用程序范围的安全配置。必须包含1个trust-anchors。                          |
+|domain-config              | array           |指示每个域的安全配置。可以包含任意个item。item必须包含1个domains，可以包含0或者1个trust-anchors，可以包含0个或者1个pin-set。|
+|trust-anchors              | array           |受信任的CA。可以包含任意个item。item必须包含1个certificates。|
+|certificates               | string          |CA证书路径。 |
+|domains                    | array           |域。可以包含任意个item。item必须包含1个name(string:指示域名)，可以包含0或者1个include-subdomains。|
+|include-subdomains         | boolean         |指示规则是否适用于子域。 |
+|pin-set                    | object          |证书公钥哈希设置。必须包含1个pin，可以包含0或者1个expiration。|
+|expiration                 | string          |指示证书公钥哈希的过期时间。 |
+|pin                        | array           |证书公钥哈希。可以包含任意个item。item必须包含1个digest-algorithm，item必须包含1个digest。|
+|digest-algorithm           | string          |指示用于生成哈希的摘要算法。目前只支持`sha256`。                                    |
+|digest                     | string          |指示公钥哈希。 |
+
 
 ## 相关实例
 

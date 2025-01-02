@@ -1,9 +1,6 @@
-# 使用AVPlayer开发音频播放功能(ArkTS)
+# 使用AVPlayer播放音频(ArkTS)
 
-使用AVPlayer可以实现端到端播放原始媒体资源，本开发指导将以完整地播放一首音乐作为示例，向开发者讲解AVPlayer音频播放相关功能。
-
-以下指导仅介绍如何实现媒体资源播放，如果要实现后台播放或熄屏播放，需要使用[AVSession（媒体会话）](../avsession/avsession-overview.md)和[申请长时任务](../../task-management/continuous-task.md)，避免播放被系统强制中断。
-
+使用[AVPlayer](media-kit-intro.md#avplayer)可以实现端到端播放原始媒体资源，本开发指导将以完整地播放一首音乐作为示例，向开发者讲解AVPlayer音频播放相关功能。如需播放PCM音频数据，请使用[AudioRenderer](../audio/using-audiorenderer-for-playback.md)。
 
 播放的全流程包含：创建AVPlayer，设置播放资源，设置播放参数（音量/倍速/焦点模式），播放控制（播放/暂停/跳转/停止），重置，销毁资源。
 
@@ -14,7 +11,16 @@
 **图1** 播放状态变化示意图  
 ![Playback status change](figures/playback-status-change.png)
 
-状态的详细说明请参考[AVPlayerState](../../reference/apis-media-kit/js-apis-media.md#avplayerstate9)。当播放处于prepared / playing / paused / completed状态时，播放引擎处于工作状态，这需要占用系统较多的运行内存。当客户端暂时不使用播放器时，调用reset()或release()回收内存资源，做好资源利用。
+状态的详细说明请参考[AVPlayerState](../../reference/apis-media-kit/js-apis-media.md#avplayerstate9)。当播放处于prepared / playing / paused / completed状态时，播放引擎处于工作状态，这需要占用系统较多的运行内存。当客户端暂时不使用播放器时，调用reset()或release()回收内存资源，做好资源利用。.
+
+## 开发建议
+
+当前指导仅介绍如何实现媒体资源播放，在应用开发过程中可能会涉及后台播放、播放冲突等情况，请根据实际需要参考以下说明。
+
+- 如果要实现后台播放或熄屏播放，需要接入[AVSession（媒体会话）](../avsession/avsession-access-scene.md)和[申请长时任务](../../task-management/continuous-task.md)，避免播放被系统强制中断。
+- 应用在播放过程中，若播放的媒体数据涉及音频，根据系统音频管理策略（参考[处理音频焦点事件](../audio/audio-playback-concurrency.md)），可能会被其他应用打断，建议应用主动监听音频打断事件，根据其内容提示，做出相应的处理，避免出现应用状态与预期效果不一致的问题。
+- 面对设备同时连接多个音频输出设备的情况，应用可以通过[on('audioOutputDeviceChangeWithInfo')](../../reference/apis-media-kit/js-apis-media.md#onaudiooutputdevicechangewithinfo11)监听音频输出设备的变化，从而做出相应处理。
+- 如果需要访问在线媒体资源，需要申请 ohos.permission.INTERNET 权限。
 
 ## 开发步骤及注意事项
 
@@ -47,6 +53,8 @@
    > - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)。
    > 
    > - 需要使用[支持的播放格式与协议](media-kit-intro.md#支持的格式与协议)。
+   > 
+   > 此外，如果需要设置音频渲染信息，则只允许在initialized状态下，第一次调用prepare()之前设置，以便音频渲染器信息在之后生效。若媒体源包含视频，则usage默认值为STREAM_USAGE_MOVIE，否则usage默认值为STREAM_USAGE_MUSIC。rendererFlags默认值为0。若默认usage不满足需求，则须主动配置[audio.AudioRendererInfo](../../reference/apis-audio-kit/js-apis-audio.md#audiorendererinfo8)。
 
 4. 准备播放：调用prepare()，AVPlayer进入prepared状态，此时可以获取duration，设置音量。
 
@@ -58,13 +66,14 @@
 
 ## 完整示例
 
-参考以下示例，完整地播放一首音乐。
+参考以下示例，完整地播放一首音乐，实现起播后3s暂停，暂停3s重新播放的效果。
 
 ```ts
-import media from '@ohos.multimedia.media';
-import fs from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { media } from '@kit.MediaKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { audio } from '@kit.AudioKit';
 
 export class AVPlayerDemo {
   private count: number = 0;
@@ -76,12 +85,12 @@ export class AVPlayerDemo {
     // seek操作结果回调函数
     avPlayer.on('seekDone', (seekDoneTime: number) => {
       console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
-    })
+    });
     // error回调监听函数,当avPlayer在操作过程中出现错误时调用 reset接口触发重置流程
     avPlayer.on('error', (err: BusinessError) => {
       console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
       avPlayer.reset(); // 调用reset重置资源，触发idle状态
-    })
+    });
     // 状态机变化回调函数
     avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
       switch (state) {
@@ -91,6 +100,10 @@ export class AVPlayerDemo {
           break;
         case 'initialized': // avplayer 设置播放源后触发该状态上报
           console.info('AVPlayer state initialized called.');
+          avPlayer.audioRendererInfo = {
+            usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+            rendererFlags: 0
+          };
           avPlayer.prepare();
           break;
         case 'prepared': // prepare调用成功后上报该状态机
@@ -108,13 +121,19 @@ export class AVPlayerDemo {
               console.info('AVPlayer wait to play end.');
             }
           } else {
-            avPlayer.pause(); // 调用暂停接口暂停播放
+            setTimeout(() => {
+              console.info('AVPlayer playing wait to pause');
+              avPlayer.pause(); // 播放3s后调用暂停接口暂停播放
+            }, 3000);
           }
           this.count++;
           break;
         case 'paused': // pause成功调用后触发该状态机上报
           console.info('AVPlayer state paused called.');
-          avPlayer.play(); // 再次播放接口开始播放
+          setTimeout(() => {
+              console.info('AVPlayer paused wait to play again');
+              avPlayer.play(); // 暂停3s后再次调用播放接口开始播放
+            }, 3000);
           break;
         case 'completed': // 播放结束后触发该状态机上报
           console.info('AVPlayer state completed called.');
@@ -131,7 +150,7 @@ export class AVPlayerDemo {
           console.info('AVPlayer state unknown called.');
           break;
       }
-    })
+    });
   }
 
   // 以下demo为使用fs文件系统打开沙箱地址获取媒体文件地址并通过url属性进行播放示例
@@ -189,14 +208,14 @@ export class AVPlayerDemo {
         }
         return -1;
       }
-    }
+    };
     let context = getContext(this) as common.UIAbilityContext;
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
     await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
-    })
+    });
     // 获取播放文件的大小
     this.fileSize = fs.statSync(path).size;
     src.fileSize = this.fileSize;
@@ -224,13 +243,13 @@ export class AVPlayerDemo {
         }
         return -1;
       }
-    }
+    };
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
     await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
-    })
+    });
     this.isSeek = false; // 不支持seek操作
     avPlayer.dataSrc = src;
   }
@@ -246,3 +265,6 @@ export class AVPlayerDemo {
   }
 }
 ```
+
+<!--RP1-->
+<!--RP1End-->

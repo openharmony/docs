@@ -11,38 +11,38 @@ AtomicServiceOptions可以作为[openAtomicService()](js-apis-inner-application-
 ## 导入模块
 
 ```ts
-import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
+import { AtomicServiceOptions } from '@kit.AbilityKit';
 ```
 
 ## 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| [flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | number | 否 | 否 | 默认传数字。<br />例如通过wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION表示对URI执行读取操作的授权。 |
-| parameters | Record\<string, Object> | 否 | 否 | 表示WantParams描述，由开发者自行决定传入的键值对。默认会携带以下key值：<br />- ohos.aafwk.callerPid：表示拉起方的pid。<br />- ohos.aafwk.param.callerBundleName：表示拉起方的Bundle Name。<br />- ohos.aafwk.param.callerToken：表示拉起方的token。<br />- ohos.aafwk.param.callerUid：表示[BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1)中的uid，应用包里应用程序的uid。<br />- component.startup.newRules：表示是否启用新的管控规则。<br />- moduleName：表示拉起方的模块名，该字段的值即使定义成其他字符串，在传递到另一端时会被修改为正确的值。<br />- ohos.dlp.params.sandbox：表示dlp文件才会有。<br />- ability.params.backToOtherMissionStack：表示是否支持跨任务链返回。 |
+| [flags](js-apis-app-ability-wantConstant.md#flags) | number | 否 |  是 | 系统处理该次启动的方式。<br />例如通过wantConstant.Flags.FLAG_INSTALL_ON_DEMAND表示使用免安装能力。 |
+| parameters | Record\<string, Object> | 否 |  是 | 表示额外参数描述。具体描述参考[Want](js-apis-app-ability-want.md)中parameters字段描述。 |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { UIAbility, AtomicServiceOptions, common, wantConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let appId: string = '6918661953712445909';
     let options: AtomicServiceOptions = {
       flags: wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
-      parameters: { "demo.result": 123456 }
+      parameters: {
+        "demo.result": 123456
+      }
     };
 
     try {
-      this.context.openAtomicService(want, options)
+      this.context.openAtomicService(appId, options)
         .then((result: common.AbilityResult) => {
           // 执行正常业务
           console.info('openAtomicService succeed');

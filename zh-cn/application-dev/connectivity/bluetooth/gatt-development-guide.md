@@ -60,163 +60,296 @@
 1. import需要的ble模块。
 2. 创建gattClient实例对象。
 3. 连接gattServer。
-4. 获取gattServer的设备名称、services信息、信号强度。
-5. 读取gattServer的特征值和描述符。
-6. 向gattServer写入特征值和描述符。
-7. 断开连接，销毁gattClient实例。
-8. 示例代码:
+4. 读取gattServer的特征值和描述符。
+5. 向gattServer写入特征值和描述符。
+6. 断开连接，销毁gattClient实例。
+7. 示例代码:
 
-```ts
-import ble from '@ohos.bluetooth.ble';
-import { BusinessError } from '@ohos.base';
+    ```ts
+    import { ble } from '@kit.ConnectivityKit';
+    import { constant } from '@kit.ConnectivityKit';
+    import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
-// serverDeviceId的值，是开启ble扫描获取gattServer的deviceId的值。
-let serverDeviceId = 'xx:xx:xx:xx:xx:xx';
+    const TAG: string = 'GattClientManager';
 
-// 创建客户端
-let clientDevice = ble.createGattClientDevice(serverDeviceId);
+    export class GattClientManager {
+      device: string = undefined;
+      gattClient: ble.GattClientDevice = undefined;
+      connectState: ble.ProfileConnectionState = constant.ProfileConnectionState.STATE_DISCONNECTED;
+      myServiceUuid: string = '00001810-0000-1000-8000-00805F9B34FB';
+      myCharacteristicUuid: string = '00001820-0000-1000-8000-00805F9B34FB';
+      myFirstDescriptorUuid: string = '00002902-0000-1000-8000-00805F9B34FB'; // 2902一般用于notification或者indication
+      mySecondDescriptorUuid: string = '00002903-0000-1000-8000-00805F9B34FB';
+      found: boolean = false;
 
-// 连接GattServer服务
-clientDevice.connect();
+      // 构造BLEDescriptor
+      private initDescriptor(des: string, value: ArrayBuffer): ble.BLEDescriptor {
+        let descriptor: ble.BLEDescriptor = {
+          serviceUuid: this.myServiceUuid,
+          characteristicUuid: this.myCharacteristicUuid,
+          descriptorUuid: des,
+          descriptorValue: value
+        };
+        return descriptor;
+      }
 
-// 订阅连接状态改变事件
-clientDevice.on('BLEConnectionStateChange', (bleConnectionState) => {
-  let bleConnectionStateInfo = '';
-  switch (bleConnectionState.state) {
-    case 0:
-      bleConnectionStateInfo = 'DISCONNECTED';
-      break;
-    case 1:
-      bleConnectionStateInfo = 'CONNECTING';
-      break;
-    case 2:
-      bleConnectionStateInfo = 'STATE_CONNECTED';
-      break;
-    case 3:
-      bleConnectionStateInfo = 'STATE_DISCONNECTING';
-      break;
-    default:
-      bleConnectionStateInfo = 'undefined';
-      break;
-  }
-  console.info('status: ' + bleConnectionStateInfo);
-})
+      // 构造BLECharacteristic
+      private initCharacteristic(): ble.BLECharacteristic {
+        let descriptors: Array<ble.BLEDescriptor> = [];
+        let descBuffer = new ArrayBuffer(2);
+        let descValue = new Uint8Array(descBuffer);
+        descValue[0] = 11;
+        descValue[1] = 12;
+        descriptors[0] = this.initDescriptor(this.myFirstDescriptorUuid, new ArrayBuffer(2));
+        descriptors[1] = this.initDescriptor(this.mySecondDescriptorUuid, descBuffer);
+        let charBuffer = new ArrayBuffer(2);
+        let charValue = new Uint8Array(charBuffer);
+        charValue[0] = 1;
+        charValue[1] = 2;
+        let characteristic: ble.BLECharacteristic = {
+          serviceUuid: this.myServiceUuid,
+          characteristicUuid: this.myCharacteristicUuid,
+          characteristicValue: charBuffer,
+          descriptors: descriptors
+        };
+        return characteristic;
+      }
 
-// 获取gattServer设备名称
-clientDevice.getDeviceName((err: BusinessError, data: string) => {
-  console.info('getDeviceName success, deviceName = ' + JSON.stringify(data));
-})
+      private logCharacteristic(char: ble.BLECharacteristic) {
+        let message = 'logCharacteristic uuid:' + char.characteristicUuid + '\n';
+        let value = new Uint8Array(char.characteristicValue);
+        message += 'logCharacteristic value: ';
+        for (let i = 0; i < char.characteristicValue.byteLength; i++) {
+          message += value[i] + ' ';
+        }
+        console.info(TAG, message);
+      }
 
-// 获取server的services信息
-clientDevice.getServices((code, gattServices) => {
-  let message = '';
-  if (code != null) {
-    console.error('getServices error, errCode: ' + (code as BusinessError).code + ', errMessage: ' + (code as BusinessError).message);
-  } else {
-    for (let i = 0; i < gattServices.length; i++) {
-      message += 'serviceUuid is ' + gattServices[i].serviceUuid + '\n';
+      private logDescriptor(des: ble.BLEDescriptor) {
+        let message = 'logDescriptor uuid:' + des.descriptorUuid + '\n';
+        let value = new Uint8Array(des.descriptorValue);
+        message += 'logDescriptor value: ';
+        for (let i = 0; i < des.descriptorValue.byteLength; i++) {
+          message += value[i] + ' ';
+        }
+        console.info(TAG, message);
+      }
+
+      private checkService(services: Array<ble.GattService>): boolean {
+        for (let i = 0; i < services.length; i++) {
+          if (services[i].serviceUuid != this.myServiceUuid) {
+            continue;
+          }
+          for (let j = 0; j < services[i].characteristics.length; j++) {
+            if (services[i].characteristics[j].characteristicUuid != this.myCharacteristicUuid) {
+              continue;
+            }
+            for (let k = 0; k < services[i].characteristics[j].descriptors.length; k++) {
+              if (services[i].characteristics[j].descriptors[k].descriptorUuid == this.myFirstDescriptorUuid) {
+                console.info(TAG, 'find expected service from server');
+                return true;
+              }
+            }
+          }
+        }
+        console.error(TAG, 'no expected service from server');
+        return false;
+      }
+
+      // 1. 订阅连接状态变化事件
+      public onGattClientStateChange() {
+        if (!this.gattClient) {
+          console.error(TAG, 'no gattClient');
+          return;
+        }
+        try {
+          this.gattClient.on('BLEConnectionStateChange', (stateInfo: ble.BLEConnectionChangeState) => {
+            let state = '';
+            switch (stateInfo.state) {
+              case 0:
+                state = 'DISCONNECTED';
+                break;
+              case 1:
+                state = 'CONNECTING';
+                break;
+              case 2:
+                state = 'CONNECTED';
+                break;
+              case 3:
+                state = 'DISCONNECTING';
+                break;
+              default:
+                state = 'undefined';
+                break;
+            }
+            console.info(TAG, 'onGattClientStateChange: device=' + stateInfo.deviceId + ', state=' + state);
+            if (stateInfo.deviceId == this.device) {
+              this.connectState = stateInfo.state;
+            }
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+
+      // 2. client端主动连接时调用
+      public startConnect(peerDevice: string) { // 对端设备一般通过ble scan获取到
+        if (this.connectState != constant.ProfileConnectionState.STATE_DISCONNECTED) {
+          console.error(TAG, 'startConnect failed');
+          return;
+        }
+        console.info(TAG, 'startConnect ' + peerDevice);
+        this.device = peerDevice;
+        // 2.1 使用device构造gattClient，后续的交互都需要使用该实例
+        this.gattClient = ble.createGattClientDevice(peerDevice);
+        try {
+          this.onGattClientStateChange(); // 2.2 订阅连接状态
+          this.gattClient.connect(); // 2.3 发起连接
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+
+      // 3. client端连接成功后，需要进行服务发现
+      public discoverServices() {
+        if (!this.gattClient) {
+          console.info(TAG, 'no gattClient');
+          return;
+        }
+        console.info(TAG, 'discoverServices');
+        try {
+          this.gattClient.getServices().then((result: Array<ble.GattService>) => {
+            console.info(TAG, 'getServices success: ' + JSON.stringify(result));
+            this.found = this.checkService(result); // 要确保server端的服务内容有业务所需要的服务
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+
+      // 4. 在确保拿到了server端的服务结果后，读取server端特定服务的特征值时调用
+      public readCharacteristicValue() {
+        if (!this.gattClient || this.connectState != constant.ProfileConnectionState.STATE_CONNECTED) {
+          console.error(TAG, 'no gattClient or not connected');
+          return;
+        }
+        if (!this.found) { // 要确保server端有对应的characteristic
+          console.error(TAG, 'no characteristic from server');
+          return;
+        }
+
+        let characteristic = this.initCharacteristic();
+        console.info(TAG, 'readCharacteristicValue');
+        try {
+          this.gattClient.readCharacteristicValue(characteristic).then((outData: ble.BLECharacteristic) => {
+            this.logCharacteristic(outData);
+          })
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+
+      // 5. 在确保拿到了server端的服务结果后，写入server端特定服务的特征值时调用
+      public writeCharacteristicValue() {
+        if (!this.gattClient || this.connectState != constant.ProfileConnectionState.STATE_CONNECTED) {
+          console.error(TAG, 'no gattClient or not connected');
+          return;
+        }
+        if (!this.found) { // 要确保server端有对应的characteristic
+          console.error(TAG, 'no characteristic from server');
+          return;
+        }
+
+        let characteristic = this.initCharacteristic();
+        console.info(TAG, 'writeCharacteristicValue');
+        try {
+          this.gattClient.writeCharacteristicValue(characteristic, ble.GattWriteType.WRITE, (err) => {
+            if (err) {
+              console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+              return;
+            }
+            console.info(TAG, 'writeCharacteristicValue success');
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+
+      // 6. 在确保拿到了server端的服务结果后，读取server端特定服务的描述符时调用
+      public readDescriptorValue() {
+        if (!this.gattClient || this.connectState != constant.ProfileConnectionState.STATE_CONNECTED) {
+          console.error(TAG, 'no gattClient or not connected');
+          return;
+        }
+        if (!this.found) { // 要确保server端有对应的descriptor
+          console.error(TAG, 'no descriptor from server');
+          return;
+        }
+
+        let descBuffer = new ArrayBuffer(0);
+        let descriptor = this.initDescriptor(this.mySecondDescriptorUuid, descBuffer);
+        console.info(TAG, 'readDescriptorValue');
+        try {
+          this.gattClient.readDescriptorValue(descriptor).then((outData: ble.BLEDescriptor) => {
+            this.logDescriptor(outData);
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+
+      // 7. 在确保拿到了server端的服务结果后，写入server端特定服务的描述符时调用
+      public writeDescriptorValue() {
+        if (!this.gattClient || this.connectState != constant.ProfileConnectionState.STATE_CONNECTED) {
+          console.error(TAG, 'no gattClient or not connected');
+          return;
+        }
+        if (!this.found) { // 要确保server端有对应的descriptor
+          console.error(TAG, 'no descriptor from server');
+          return;
+        }
+
+        let descBuffer = new ArrayBuffer(2);
+        let descValue = new Uint8Array(descBuffer);
+        descValue[0] = 11;
+        descValue[1] = 12;
+        let descriptor = this.initDescriptor(this.mySecondDescriptorUuid, descBuffer);
+        console.info(TAG, 'writeDescriptorValue');
+        try {
+          this.gattClient.writeDescriptorValue(descriptor, (err) => {
+            if (err) {
+              console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+              return;
+            }
+            console.info(TAG, 'writeDescriptorValue success');
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+
+      // 8.client端主动断开时调用
+      public stopConnect() {
+        if (!this.gattClient || this.connectState != constant.ProfileConnectionState.STATE_CONNECTED) {
+          console.error(TAG, 'no gattClient or not connected');
+          return;
+        }
+
+        console.info(TAG, 'stopConnect ' + this.device);
+        try {
+          this.gattClient.disconnect(); // 8.1 断开连接
+          this.gattClient.off('BLEConnectionStateChange', (stateInfo: ble.BLEConnectionChangeState) => {
+          });
+          this.gattClient.close() // 8.2 如果不再使用此gattClient，则需要close
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
     }
-    console.info('getServices success, ' + message);
-  }
-})
 
-// 读取信号强度
-clientDevice.getRssiValue((err, cbRssi) => {
-  console.info('return code = ' + JSON.stringify(err) + ', RSSI = ' + JSON.stringify(cbRssi))
-});
-
-// 设置最大传输单元，示例为256
-clientDevice.setBLEMtuSize(256);
-
-// 读取特征值
-// 下面字段的值，是getServices之后，从结果中拿到的
-let serviceUuid = 'xxx';
-let characteristicUuid = 'xxx';
-let descriptorUuid = 'xxx';
-let descriptorValue = new Uint8Array('xxx'.length).buffer;
-let characteristicValue = new Uint8Array('xxx'.length).buffer;
-let descriptors: Array<ble.BLEDescriptor> = new Array<ble.BLEDescriptor>();
-let descriptor: ble.BLEDescriptor = {
-  serviceUuid: serviceUuid,
-  characteristicUuid: characteristicUuid,
-  descriptorUuid: descriptorUuid,
-  descriptorValue: descriptorValue
-}
-descriptors.push(descriptor);
-let bleCharacteristicDataIn: ble.BLECharacteristic = {
-  serviceUuid: serviceUuid,
-  characteristicUuid: characteristicUuid,
-  characteristicValue: characteristicValue,
-  descriptors: descriptors
-};
-clientDevice.readCharacteristicValue(bleCharacteristicDataIn, (err, bleCharacteristicDataOut) => {
-  if (err != null) {
-    console.error('readCharacteristicValue error, code = ' + (err as BusinessError).code)
-    return;
-  }
-  let message = 'characteristic value = ';
-  let value = new Uint8Array(bleCharacteristicDataOut.characteristicValue);
-  for (let i = 0; i < bleCharacteristicDataOut.characteristicValue.byteLength; i++) {
-    message += value[i];
-  }
-  console.info(message);
-});
-
-// 读取描述符
-let descriptorIn: ble.BLEDescriptor = {
-  serviceUuid: serviceUuid,
-  characteristicUuid: characteristicUuid,
-  descriptorUuid: descriptorUuid,
-  descriptorValue: descriptorValue
-};
-clientDevice.readDescriptorValue(descriptorIn, (err, descriptorOut) => {
-  if (err != null) {
-    console.error('readDescriptorValue error, code: ' + (err as BusinessError).code)
-    return;
-  }
-  let message = 'descriptor value: ';
-  let value = new Uint8Array(descriptorOut.descriptorValue);
-  for (let i = 0; i < descriptorOut.descriptorValue.byteLength; i++) {
-    message += value[i];
-  }
-  console.info(message);
-});
-
-// 写入特征值
-let string2ArrayBuffer: (str: string) => ArrayBuffer = (str: string): ArrayBuffer => {
-  let array = new Uint8Array(str.length);
-  for (let i = 0; i < str.length; i++) {
-    array[i] = str.charCodeAt(i);
-  }
-  return array.buffer;
-}
-
-let bufferCCC = string2ArrayBuffer('V');
-let characteristic: ble.BLECharacteristic = {
-  serviceUuid: serviceUuid,
-  characteristicUuid: characteristicUuid,
-  characteristicValue: bufferCCC,
-  descriptors: descriptors
-};
-clientDevice.writeCharacteristicValue(characteristic, ble.GattWriteType.WRITE);
-
-// 写入描述符
-let message = '';
-if (clientDevice.writeDescriptorValue(descriptor)) {
-  message = 'writeDescriptorValue success';
-} else {
-  message = 'writeDescriptorValue failed';
-}
-console.info(message);
-
-// 断开连接
-clientDevice.disconnect();
-console.info('disconnect success')
-
-// 关闭GattClient实例
-clientDevice.close();
-console.info('close gattClientDevice success');
-```
+    let gattClientManager = new GattClientManager();
+    export default gattClientManager as GattClientManager;
+    ```
 
 9. 错误码请参见[蓝牙服务子系统错误码](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md)。
 
@@ -230,103 +363,277 @@ console.info('close gattClientDevice success');
 6. 注销gattServer实例。
 7. 示例代码:
 
-```ts
-import ble from '@ohos.bluetooth.ble';
-import { BusinessError } from '@ohos.base';
+    ```ts
+    import { ble } from '@kit.ConnectivityKit';
+    import { constant } from '@kit.ConnectivityKit';
+    import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
-// 创建gattServer实例
-let gattServerInstance = ble.createGattServer();
+    const TAG: string = 'GattServerManager';
 
-// 添加services
-let string2ArrayBuffer: (str: string) => ArrayBuffer = (str: string): ArrayBuffer => {
-  let array = new Uint8Array(str.length);
-  for (let i = 0; i < str.length; i++) {
-    array[i] = str.charCodeAt(i);
-  }
-  return array.buffer;
-}
+    export class GattServerManager {
+      gattServer: ble.GattServer = undefined;
+      connectState: ble.ProfileConnectionState = constant.ProfileConnectionState.STATE_DISCONNECTED;
+      myServiceUuid: string = '00001810-0000-1000-8000-00805F9B34FB';
+      myCharacteristicUuid: string = '00001820-0000-1000-8000-00805F9B34FB';
+      myFirstDescriptorUuid: string = '00002902-0000-1000-8000-00805F9B34FB'; // 2902一般用于notification或者indication
+      mySecondDescriptorUuid: string = '00002903-0000-1000-8000-00805F9B34FB';
 
-let characteristicsArray: Array<ble.BLECharacteristic> = new Array<ble.BLECharacteristic>();
-let descriptorsArray: Array<ble.BLEDescriptor> = new Array<ble.BLEDescriptor>();
-let characteristics1: ble.BLECharacteristic = {
-  serviceUuid: '0000aaaa-0000-1000-8000-00805f9b34fb',
-  characteristicUuid: '00002a10-0000-1000-8000-00805f9b34fb',
-  characteristicValue: string2ArrayBuffer('I am charac1'),
-  descriptors: descriptorsArray
-};
-characteristicsArray.push(characteristics1);
+      // 构造BLEDescriptor
+      private initDescriptor(des: string, value: ArrayBuffer): ble.BLEDescriptor {
+        let descriptor: ble.BLEDescriptor = {
+          serviceUuid: this.myServiceUuid,
+          characteristicUuid: this.myCharacteristicUuid,
+          descriptorUuid: des,
+          descriptorValue: value
+        };
+        return descriptor;
+      }
 
-let descriptors1: ble.BLEDescriptor = {
-  serviceUuid: '0000aaaa-0000-1000-8000-00805f9b34fb',
-  characteristicUuid: '00002a10-0000-1000-8000-00805f9b34fb',
-  descriptorUuid: '00002904-0000-1000-8000-00805f9b34fb',
-  descriptorValue: string2ArrayBuffer('I am Server Descriptor1')
-}
-let descriptors2: ble.BLEDescriptor = {
-  serviceUuid: '0000aaaa-0000-1000-8000-00805f9b34fb',
-  characteristicUuid: '00002a10-0000-1000-8000-00805f9b34fb',
-  descriptorUuid: '00002905-0000-1000-8000-00805f9b34fb',
-  descriptorValue: string2ArrayBuffer('I am Server Descriptor2')
-}
-descriptorsArray.push(descriptors1);
-descriptorsArray.push(descriptors2);
+      // 构造BLECharacteristic
+      private initCharacteristic(): ble.BLECharacteristic {
+        let descriptors: Array<ble.BLEDescriptor> = [];
+        let descBuffer = new ArrayBuffer(2);
+        let descValue = new Uint8Array(descBuffer);
+        descValue[0] = 31;
+        descValue[1] = 32;
+        descriptors[0] = this.initDescriptor(this.myFirstDescriptorUuid, new ArrayBuffer(2));
+        descriptors[1] = this.initDescriptor(this.mySecondDescriptorUuid, descBuffer);
+        let charBuffer = new ArrayBuffer(2);
+        let charValue = new Uint8Array(charBuffer);
+        charValue[0] = 21;
+        charValue[1] = 22;
+        let characteristic: ble.BLECharacteristic = {
+          serviceUuid: this.myServiceUuid,
+          characteristicUuid: this.myCharacteristicUuid,
+          characteristicValue: charBuffer,
+          descriptors: descriptors
+        };
+        return characteristic;
+      }
 
-let service: ble.GattService = {
-  serviceUuid: '0000aaaa-0000-1000-8000-00805f9b34fb',
-  isPrimary: true,
-  characteristics: characteristicsArray
-};
-gattServerInstance.addService(service);
-console.info('addService success');
+      // 1. 订阅连接状态变化事件
+      public onGattServerStateChange() {
+        if (!this.gattServer) {
+          console.error(TAG, 'no gattServer');
+          return;
+        }
+        try {
+          this.gattServer.on('connectionStateChange', (stateInfo: ble.BLEConnectionChangeState) => {
+            let state = '';
+            switch (stateInfo.state) {
+              case 0:
+                state = 'DISCONNECTED';
+                break;
+              case 1:
+                state = 'CONNECTING';
+                break;
+              case 2:
+                state = 'CONNECTED';
+                break;
+              case 3:
+                state = 'DISCONNECTING';
+                break;
+              default:
+                state = 'undefined';
+                break;
+            }
+            console.info(TAG, 'onGattServerStateChange: device=' + stateInfo.deviceId + ', state=' + state);
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
 
-// 订阅写特征值事件，向gattClient发送response
-gattServerInstance.on('characteristicWrite', (characteristicWriteReq) => {
-  let deviceId = characteristicWriteReq.deviceId;
-  let transId = characteristicWriteReq.transId;
-  let offset = characteristicWriteReq.offset;
-  let needRsp = characteristicWriteReq.needRsp;
-  let arrayBufferCCC: ArrayBuffer = string2ArrayBuffer('characteristicWriteForResponse');
-  let serverResponse: ble.ServerResponse = {
-    deviceId: deviceId,
-    transId: transId,
-    status: 0,
-    offset: offset,
-    value: arrayBufferCCC
-  };
-  // 发送response
-  if (needRsp) {
-    gattServerInstance.sendResponse(serverResponse);
-    console.info('sendResponse success, response data: ' + JSON.stringify(serverResponse));
-  }
-  // 关闭订阅写特征值事件
-  gattServerInstance.off('characteristicWrite');
-})
+      // 2. server端注册服务时调用
+      public registerServer() {
+        let characteristics: Array<ble.BLECharacteristic> = [];
+        let characteristic = this.initCharacteristic();
+        characteristics.push(characteristic);
+        let gattService: ble.GattService = {
+          serviceUuid: this.myServiceUuid,
+          isPrimary: true,
+          characteristics: characteristics
+        };
 
-// 订阅写特征值事件，特征值变化，通知gattClient
-gattServerInstance.on('characteristicWrite', (characteristicWriteReq) => {
-  let characteristicUuid = characteristicWriteReq.characteristicUuid;
-  let serviceUuid = characteristicWriteReq.serviceUuid;
-  let deviceId = characteristicWriteReq.deviceId;
-  let notifyCharacteristic: ble.NotifyCharacteristic = {
-    serviceUuid: serviceUuid,
-    characteristicUuid: characteristicUuid,
-    characteristicValue: string2ArrayBuffer('Value4notifyCharacteristic'),
-    confirm: false
-  }
-  // 特征值变化时，通知已连接的client设备
-  gattServerInstance.notifyCharacteristicChanged(deviceId, notifyCharacteristic);
-  console.info('notifyCharacteristicChanged success, deviceId = ' + deviceId);
-  // 关闭订阅写特征值事件
-  gattServerInstance.off('characteristicWrite');
-})
+        console.info(TAG, 'registerServer ' + this.myServiceUuid);
+        try {
+          this.gattServer = ble.createGattServer(); // 2.1 构造gattServer，后续的交互都需要使用该实例
+          this.onGattServerStateChange(); // 2.2 订阅连接状态
+          this.gattServer.addService(gattService);
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
 
-// 移除service
-gattServerInstance.removeService('0000aaaa-0000-1000-8000-00805f9b34fb');
-console.info('removeService success')
+      // 3. 订阅来自gattClient的读取特征值请求时调用
+      public onCharacteristicRead() {
+        if (!this.gattServer) {
+          console.error(TAG, 'no gattServer');
+          return;
+        }
 
-// 注销gattServer实例
-gattServerInstance.close();
-console.info('close gattServerInstance success');
-```
+        console.info(TAG, 'onCharacteristicRead');
+        try {
+          this.gattServer.on('characteristicRead', (charReq: ble.CharacteristicReadRequest) => {
+            let deviceId: string = charReq.deviceId;
+            let transId: number = charReq.transId;
+            let offset: number = charReq.offset;
+            console.info(TAG, 'receive characteristicRead');
+            let rspBuffer = new ArrayBuffer(2);
+            let rspValue = new Uint8Array(rspBuffer);
+            rspValue[0] = 21;
+            rspValue[1] = 22;
+            let serverResponse: ble.ServerResponse = {
+              deviceId: deviceId,
+              transId: transId,
+              status: 0, // 0表示成功
+              offset: offset,
+              value: rspBuffer
+            };
+
+            try {
+              this.gattServer.sendResponse(serverResponse);
+            } catch (err) {
+              console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+            }
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+
+      // 4. 订阅来自gattClient的写入特征值请求时调用
+      public onCharacteristicWrite() {
+        if (!this.gattServer) {
+          console.error(TAG, 'no gattServer');
+          return;
+        }
+
+        console.info(TAG, 'onCharacteristicWrite');
+        try {
+          this.gattServer.on('characteristicWrite', (charReq: ble.CharacteristicWriteRequest) => {
+            let deviceId: string = charReq.deviceId;
+            let transId: number = charReq.transId;
+            let offset: number = charReq.offset;
+            console.info(TAG, 'receive characteristicWrite: needRsp=' + charReq.needRsp);
+            if (!charReq.needRsp) {
+              return;
+            }
+            let rspBuffer = new ArrayBuffer(0);
+            let serverResponse: ble.ServerResponse = {
+              deviceId: deviceId,
+              transId: transId,
+              status: 0, // 0表示成功
+              offset: offset,
+              value: rspBuffer
+            };
+
+            try {
+              this.gattServer.sendResponse(serverResponse);
+            } catch (err) {
+              console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+            }
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+
+      // 5. 订阅来自gattClient的读取描述符请求时调用
+      public onDescriptorRead() {
+        if (!this.gattServer) {
+          console.error(TAG, 'no gattServer');
+          return;
+        }
+
+        console.info(TAG, 'onDescriptorRead');
+        try {
+          this.gattServer.on('descriptorRead', (desReq: ble.DescriptorReadRequest) => {
+            let deviceId: string = desReq.deviceId;
+            let transId: number = desReq.transId;
+            let offset: number = desReq.offset;
+            console.info(TAG, 'receive descriptorRead');
+            let rspBuffer = new ArrayBuffer(2);
+            let rspValue = new Uint8Array(rspBuffer);
+            rspValue[0] = 31;
+            rspValue[1] = 32;
+            let serverResponse: ble.ServerResponse = {
+              deviceId: deviceId,
+              transId: transId,
+              status: 0, // 0表示成功
+              offset: offset,
+              value: rspBuffer
+            };
+
+            try {
+              this.gattServer.sendResponse(serverResponse);
+            } catch (err) {
+              console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+            }
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+
+      // 6. 订阅来自gattClient的写入描述符请求时调用
+      public onDescriptorWrite() {
+        if (!this.gattServer) {
+          console.error(TAG, 'no gattServer');
+          return;
+        }
+
+        console.info(TAG, 'onDescriptorWrite');
+        try {
+          this.gattServer.on('descriptorWrite', (desReq: ble.DescriptorWriteRequest) => {
+            let deviceId: string = desReq.deviceId;
+            let transId: number = desReq.transId;
+            let offset: number = desReq.offset;
+            console.info(TAG, 'receive descriptorWrite: needRsp=' + desReq.needRsp);
+            if (!desReq.needRsp) {
+              return;
+            }
+            let rspBuffer = new ArrayBuffer(0);
+            let serverResponse: ble.ServerResponse = {
+              deviceId: deviceId,
+              transId: transId,
+              status: 0, // 0表示成功
+              offset: offset,
+              value: rspBuffer
+            };
+
+            try {
+              this.gattServer.sendResponse(serverResponse);
+            } catch (err) {
+              console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+            }
+          });
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+
+      // 7. server端删除服务，不再使用时调用
+      public unRegisterServer() {
+        if (!this.gattServer) {
+          console.error(TAG, 'no gattServer');
+          return;
+        }
+
+        console.info(TAG, 'unRegisterServer ' + this.myServiceUuid);
+        try {
+          this.gattServer.removeService(this.myServiceUuid); // 7.1 删除服务
+          this.gattServer.off('connectionStateChange', (stateInfo: ble.BLEConnectionChangeState) => { // 7.2 取消订阅连接状态
+          });
+          this.gattServer.close() // 7.3 如果不再使用此gattServer，则需要close
+        } catch (err) {
+          console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        }
+      }
+    }
+
+    let gattServerManager = new GattServerManager();
+    export default gattServerManager as GattServerManager;
+    ```
 
 8. 错误码请参见[蓝牙服务子系统错误码](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md)。

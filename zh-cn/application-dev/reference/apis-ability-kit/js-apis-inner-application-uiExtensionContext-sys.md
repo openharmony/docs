@@ -11,7 +11,7 @@ UIExtensionContext是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## UIExtensionContext.startAbilityForResultAsCaller
@@ -49,19 +49,21 @@ startAbilityForResultAsCaller(want: Want, options?: StartOptions): Promise&lt;Ab
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist.                   |
-| 16000004 | Can not start invisible component.                      |
+| 16000004 | Failed to start the invisible ability.                      |
 | 16000050 | Internal error.                                         |
-
-以上错误码的详细介绍请参见[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
-import base from '@ohos.base'
+import { UIExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class UIExtension extends UIExtensionAbility {
   onForeground() {
@@ -69,11 +71,11 @@ export default class UIExtension extends UIExtensionAbility {
       bundleName: 'com.example.startabilityforresultascaller',
       abilityName: 'EntryAbility',
       moduleName: 'entry'
-    }).then((data)=>{
+    }).then((data) => {
       console.log('=======>startAbilityForResultAsCaller data Promise ======>' + JSON.stringify(data));
-    }).catch((error: base.BusinessError)=>{
+    }).catch((error: BusinessError) => {
       console.log('=======>startAbilityForResultAsCaller error.code Promise ======>' + error.code);
-    })
+    });
   }
 }
 ```

@@ -558,7 +558,7 @@ vendor
         {
             "component": "ace_engine_lite",
             "features": [
-            "enable_ohos_ace_engine_lite_product_config = true"
+            "ace_engine_lite_feature_product_config = true"
             ]
         }
         ]
@@ -577,7 +577,7 @@ vendor
         {
         "component": "aafwk_lite",
         "features": [
-            "enable_ohos_appexecfwk_feature_ability = true"	 --- 支持FA特性，即包含图形能力。
+            "ability_lite_enable_ohos_appexecfwk_feature_ability = true"	 --- 支持FA特性，即包含图形能力。
         ]
         }
     ]

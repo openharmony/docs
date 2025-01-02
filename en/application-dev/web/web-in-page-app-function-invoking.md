@@ -3,10 +3,8 @@
 
 You can use the **Web** component to register application code with frontend pages. After the registration is done, frontend pages can use the registered object names to call application functions.
 
-Two methods are available for registering the application code:
 
-- Call [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy) during **Web** component initialization.
-- Call [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy) after **Web** component initialization.
+Two methods are available for registering the application code:<br>Call [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy) during **Web** component initialization. Call [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy) after **Web** component initialization.
 
 
 The following example registers the **test()** function with the frontend page. This way, the **test()** function can be triggered and run on the frontend page.
@@ -16,7 +14,7 @@ The following example registers the **test()** function with the frontend page. 
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
+  import { webview } from '@kit.ArkWeb';
 
   class testClass {
     constructor() {
@@ -30,7 +28,7 @@ The following example registers the **test()** function with the frontend page. 
   @Entry
   @Component
   struct WebComponent {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     // Declare the object to be registered.
     @State testObj: testClass = new testClass();
 
@@ -43,7 +41,14 @@ The following example registers the **test()** function with the frontend page. 
             object: this.testObj,
             name: "testObjName",
             methodList: ["test"],
-            controller: this.webviewController
+            controller: this.webviewController,
+            // Optional parameter.
+            asyncMethodList: [],
+            permission: '{"javascriptProxyPermission":{"urlPermissionList":[{"scheme":"resource","host":"rawfile","port":"","path":""},' +
+                        '{"scheme":"e","host":"f","port":"g","path":"h"}],"methodList":[{"methodName":"test","urlPermissionList":' +
+                        '[{"scheme":"https","host":"xxx.com","port":"","path":""},{"scheme":"resource","host":"rawfile","port":"","path":""}]},' +
+                        '{"methodName":"test11","urlPermissionList":[{"scheme":"q","host":"r","port":"","path":"t"},' +
+                        '{"scheme":"u","host":"v","port":"","path":""}]}]}}'
           })
       }
     }
@@ -51,21 +56,21 @@ The following example registers the **test()** function with the frontend page. 
   ```
 
 
-- Sample code for using [registerJavaScriptProxy()](../reference/apis/js-apis-webview.md#registerjavascriptproxy):
+- Sample code for using [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy):
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class testClass {
     constructor() {
     }
-  
+
     test(): string {
       return "ArkUI Web Component";
     }
-  
+
     toString(): void {
       console.log('Web Component toString');
     }
@@ -74,7 +79,7 @@ The following example registers the **test()** function with the frontend page. 
   @Entry
   @Component
   struct Index {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     @State testObj: testClass = new testClass();
 
     build() {
@@ -84,17 +89,24 @@ The following example registers the **test()** function with the frontend page. 
             try {
               this.webviewController.refresh();
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Register JavaScript To Window')
           .onClick(() => {
             try {
-              this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
+              this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"],
+                      // Optional parameter: asyncMethodList
+                      [],
+                      // Optional parameter: permission
+                      '{"javascriptProxyPermission":{"urlPermissionList":[{"scheme":"resource","host":"rawfile","port":"","path":""},' +
+                      '{"scheme":"e","host":"f","port":"g","path":"h"}],"methodList":[{"methodName":"test","urlPermissionList":' +
+                      '[{"scheme":"https","host":"xxx.com","port":"","path":""},{"scheme":"resource","host":"rawfile","port":"","path":""}]},' +
+                      '{"methodName":"test11","urlPermissionList":[{"scheme":"q","host":"r","port":"","path":"t"},' +
+                      '{"scheme":"u","host":"v","port":"","path":""}]}]}}'
+              );
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
@@ -105,8 +117,65 @@ The following example registers the **test()** function with the frontend page. 
 
   > **NOTE**
   >
-  > If you use [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy) to register a function, call [refresh()](../reference/apis-arkweb/js-apis-webview.md#refresh) for the function to take effect.
+  > - If you use [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy) to register a function, call [refresh()](../reference/apis-arkweb/js-apis-webview.md#refresh) for the function to take effect.
 
+- The optional parameter permission is a JSON string. The following is an example:
+  ```json
+  {
+    "javascriptProxyPermission": {
+      "urlPermissionList": [       // Object-level permission. If it is granted, all methods are available.
+        {
+          "scheme": "resource",    // Exact match. The value cannot be empty.
+          "host": "rawfile",       // Exact match. The value cannot be empty.
+          "port": "",              // Exact match. If the value is empty, it is not checked.
+          "path": ""               // Prefix match. If the value is empty, it is not checked.
+        },
+        {
+          "scheme": "https",       // Exact match. The value cannot be empty.
+          "host": "xxx.com",       // Exact match. The value cannot be empty.
+          "port": "",                  // Exact match. If the value is empty, it is not checked.
+          "path": "a/b/c"          // Prefix match. If the value is empty, it is not checked.
+        }
+      ],
+      "methodList": [
+        {
+          "methodName": "test",
+          "urlPermissionList": [   // Method-level permission.
+            {
+              "scheme": "https",   // Exact match. The value cannot be empty.
+              "host": "xxx.com",   // Exact match. The value cannot be empty.
+              "port": "",          // Exact match. If the value is empty, it is not checked.
+              "path": ""           // Prefix match. If the value is empty, it is not checked.
+            },
+            {
+              "scheme": "resource",    // Exact match. The value cannot be empty.
+              "host": "rawfile",   // Exact match. The value cannot be empty.
+              "port": "",          // Exact match. If the value is empty, it is not checked.
+              "path": ""           // Prefix match. If the value is empty, it is not checked.
+            }
+          ]
+        },
+        {
+          "methodName": "test11",
+          "urlPermissionList": [   // Method-level permission.
+            {
+              "scheme": "q",       // Exact match. The value cannot be empty.
+              "host": "r",         // Exact match. The value cannot be empty.
+              "port": "",          // Exact match. If the value is empty, it is not checked.
+              "path": "t"          // Prefix match. If the value is empty, it is not checked.
+            },
+            {
+              "scheme": "u",       // Exact match. The value cannot be empty.
+              "host": "v",         // Exact match. The value cannot be empty.
+              "port": "",          // Exact match. If the value is empty, it is not checked.
+              "path": ""           // Prefix match. If the value is empty, it is not checked.
+            }
+          ]
+        }
+      ]
+    }
+  }
+  ```
 
 - Sample code for invoking application functions on the **index.html** frontend page:
 
@@ -131,18 +200,18 @@ The following example registers the **test()** function with the frontend page. 
 - Sample code for passing arrays between the application side and the frontend page:
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class testClass {
     constructor() {
     }
 
-    test(): Array<Number>{
+    test(): Array<Number> {
       return [1, 2, 3, 4]
     }
 
-    toString(param:String): void {
+    toString(param: String): void {
       console.log('Web Component toString' + param);
     }
   }
@@ -150,7 +219,7 @@ The following example registers the **test()** function with the frontend page. 
   @Entry
   @Component
   struct Index {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     @State testObj: testClass = new testClass();
 
     build() {
@@ -160,8 +229,7 @@ The following example registers the **test()** function with the frontend page. 
             try {
               this.webviewController.refresh();
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Register JavaScript To Window')
@@ -169,8 +237,7 @@ The following example registers the **test()** function with the frontend page. 
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
@@ -194,24 +261,25 @@ The following example registers the **test()** function with the frontend page. 
   </body>
   </html>
   ```
-- Sample code for passing a Dictionary type object without functions between the application side and the frontend page:
+- Sample code for passing data of primitive types (not of Function or any other complex type) between the application side and the frontend page:
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class student {
-    name: string = ''
-    age: string = ''
+    name: string = '';
+    age: string = '';
   }
 
   class testClass {
     constructor() {
     }
 
+    // Data of primitive types to pass: name:"jeck", age:"12"
     test(): student {
-      let st: student = {name:"jeck", age:"12"}
-      return st
+      let st: student = { name: "jeck", age: "12" };
+      return st;
     }
 
     toString(param: ESObject): void {
@@ -222,7 +290,7 @@ The following example registers the **test()** function with the frontend page. 
   @Entry
   @Component
   struct Index {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     @State testObj: testClass = new testClass();
 
     build() {
@@ -232,8 +300,7 @@ The following example registers the **test()** function with the frontend page. 
             try {
               this.webviewController.refresh();
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Register JavaScript To Window')
@@ -241,8 +308,7 @@ The following example registers the **test()** function with the frontend page. 
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
@@ -270,8 +336,8 @@ The following example registers the **test()** function with the frontend page. 
 - Sample code for invoking a callback of the frontend page from the application side:
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class testClass {
     constructor() {
@@ -281,7 +347,7 @@ The following example registers the **test()** function with the frontend page. 
       param("call callback");
     }
 
-    toString(param:String): void {
+    toString(param: String): void {
       console.log('Web Component toString' + param);
     }
   }
@@ -289,7 +355,7 @@ The following example registers the **test()** function with the frontend page. 
   @Entry
   @Component
   struct Index {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     @State testObj: testClass = new testClass();
 
     build() {
@@ -299,8 +365,7 @@ The following example registers the **test()** function with the frontend page. 
             try {
               this.webviewController.refresh();
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Register JavaScript To Window')
@@ -308,8 +373,7 @@ The following example registers the **test()** function with the frontend page. 
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
@@ -337,8 +401,8 @@ The following example registers the **test()** function with the frontend page. 
 - Sample code for calling the function in an object of the frontend page from the application side:
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class testClass {
     constructor() {
@@ -348,7 +412,7 @@ The following example registers the **test()** function with the frontend page. 
       param.hello("call obj func");
     }
 
-    toString(param:String): void {
+    toString(param: String): void {
       console.log('Web Component toString' + param);
     }
   }
@@ -356,7 +420,7 @@ The following example registers the **test()** function with the frontend page. 
   @Entry
   @Component
   struct Index {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     @State testObj: testClass = new testClass();
 
     build() {
@@ -366,8 +430,7 @@ The following example registers the **test()** function with the frontend page. 
             try {
               this.webviewController.refresh();
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Register JavaScript To Window')
@@ -375,8 +438,7 @@ The following example registers the **test()** function with the frontend page. 
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
@@ -428,25 +490,26 @@ The following example registers the **test()** function with the frontend page. 
 - Sample code for calling the function in an object of the application side from the frontend page:
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class ObjOther {
-      methodNameListForJsProxy: string[]
+    methodNameListForJsProxy: string[]
 
-      constructor(list: string[]) {
-          this.methodNameListForJsProxy = list
-      }
+    constructor(list: string[]) {
+      this.methodNameListForJsProxy = list
+    }
 
-      testOther(json:string): void {
-          console.info(json)
-      }
+    testOther(json: string): void {
+      console.info(json)
+    }
   }
 
   class testClass {
-    ObjReturn:ObjOther
+    ObjReturn: ObjOther
+
     constructor() {
-      this.ObjReturn =  new ObjOther(["testOther"]);
+      this.ObjReturn = new ObjOther(["testOther"]);
     }
 
     test(): ESObject {
@@ -461,7 +524,7 @@ The following example registers the **test()** function with the frontend page. 
   @Entry
   @Component
   struct Index {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     @State testObj: testClass = new testClass();
 
     build() {
@@ -471,8 +534,7 @@ The following example registers the **test()** function with the frontend page. 
             try {
               this.webviewController.refresh();
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Register JavaScript To Window')
@@ -480,8 +542,7 @@ The following example registers the **test()** function with the frontend page. 
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
@@ -510,27 +571,32 @@ The following example registers the **test()** function with the frontend page. 
   With the first method, a promise is created on the application side.
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class testClass {
     constructor() {
     }
 
     test(): Promise<string> {
-        let p: Promise<string> = new Promise((resolve, reject) => {  setTimeout(() => {console.log('Execution completed'); reject('fail');}, 10000);});
-        return p;
+      let p: Promise<string> = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log ('Execution completed');
+          reject('fail');
+        }, 10000);
+      });
+      return p;
     }
 
-    toString(param:String): void {
-        console.log(" " + param)
+    toString(param: String): void {
+      console.log(" " + param);
     }
   }
 
   @Entry
   @Component
   struct Index {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     @State testObj: testClass = new testClass();
 
     build() {
@@ -540,8 +606,7 @@ The following example registers the **test()** function with the frontend page. 
             try {
               this.webviewController.refresh();
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Register JavaScript To Window')
@@ -549,8 +614,7 @@ The following example registers the **test()** function with the frontend page. 
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
@@ -577,26 +641,26 @@ The following example registers the **test()** function with the frontend page. 
   With the first method, a promise is created on the frontend page.
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class testClass {
     constructor() {
     }
 
     test(param:Function): void {
-        setTimeout( () => { param("suc") }, 10000)
+      setTimeout( () => { param("suc") }, 10000)
     }
 
     toString(param:String): void {
-        console.log(" " + param)
+      console.log(" " + param);
     }
   }
 
   @Entry
   @Component
   struct Index {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     @State testObj: testClass = new testClass();
 
     build() {
@@ -606,8 +670,7 @@ The following example registers the **test()** function with the frontend page. 
             try {
               this.webviewController.refresh();
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Register JavaScript To Window')
@@ -615,8 +678,7 @@ The following example registers the **test()** function with the frontend page. 
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })

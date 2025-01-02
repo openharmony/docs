@@ -14,8 +14,8 @@ The **NotificationSorting** module provides APIs for defining the sorting inform
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name     | Type                 | Mandatory| Description                    |
-|---------| --------------------- | --- |------------------------|
-| slot    | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Yes | Notification slot type.                 |
-| ranking | number                | Yes | Notification level. If this parameter is not set, the default value is used based on the notification slot type.|
-| hashCode    | string                | Yes | Unique ID of the notification.               |
+| Name     | Type             | Read Only  | Optional| Description                    |
+|-----------| ---------------- | -------|----- |-------------------------|
+| slot        | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Yes| No| Notification slot type.                 |
+| ranking     | number                                                             | Yes| No| Notification level. If this parameter is not set, the default value is used based on the notification slot type.|
+| hashCode    | string                                                             | Yes| No| Unique ID of the notification.               |

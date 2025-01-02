@@ -5,9 +5,9 @@
 
 振动文件描述。
 
-**起始版本：** 11
+**起始版本**：11
 
-**相关模块：**[Vibrator](_vibrator.md)
+**相关模块**：[Vibrator](_vibrator.md)
 
 
 ## 汇总
@@ -30,7 +30,7 @@
 ```
 int32_t Vibrator_FileDescription::fd
 ```
-**描述：**
+**描述**：
 
 自定义振动序列的文件句柄。
 
@@ -40,7 +40,7 @@ int32_t Vibrator_FileDescription::fd
 ```
 int64_t Vibrator_FileDescription::offset
 ```
-**描述：**
+**描述**：
 
  自定义振动序列的偏移地址。
 
@@ -50,6 +50,6 @@ int64_t Vibrator_FileDescription::offset
 int64_t Vibrator_FileDescription::length
 ```
 
-**描述：**
+**描述**：
 
 自定义振动序列的总长度。

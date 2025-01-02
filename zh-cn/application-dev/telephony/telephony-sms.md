@@ -31,32 +31,29 @@
 
 | 接口名                                                       | 描述                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
-| sendShortMessage(options: SendMessageOptions, callback: AsyncCallback\<void\>): void              | 发送文本或数据SMS消息。                                                      |
+| sendShortMessage(options: SendMessageOptions, callback: AsyncCallback\<void\>): void              | 发送文本或数据SMS消息。需要配置ohos.permission.SEND_MESSAGES权限，该权限仅系统应用可申请。      |
 | createMessage(pdu: Array\<number\>, specification: string, callback: AsyncCallback\<ShortMessage\>): void | 基于协议数据单元（PDU）和指定的SMS协议创建SMS消息实例。 |
 | getDefaultSmsSlotId(callback: AsyncCallback\<number\>): void   | 获取用于发送短信的默认SIM卡。                                                |
-| setSmscAddr(slotId: number, smscAddr: string, callback: AsyncCallback\<void\>): void | 根据指定的插槽ID设置短信服务中心的地址。                |
-| getSmscAddr(slotId: number, callback: AsyncCallback\<string>): void | 根据指定的插槽ID获取短信服务中心地址。                                  |
+| <!--DelRow-->setSmscAddr(slotId: number, smscAddr: string, callback: AsyncCallback\<void\>): void | 根据指定的插槽ID设置短信服务中心的地址。                |
+| <!--DelRow-->getSmscAddr(slotId: number, callback: AsyncCallback\<string>): void | 根据指定的插槽ID获取短信服务中心地址。                                  |
 
-
-## 开发步骤
+<!--Del-->
+## 开发步骤（仅供系统应用使用）
 
 1. 声明接口调用所需要的权限：
    - 如果是想发送短信，则调用sendShortMessage接口，需要配置ohos.permission.SEND_MESSAGES权限，权限级别为system_basic。
    - 如果是想设置短信服务中心地址，则调用setSmscAddr接口，需要配置ohos.permission.SET_TELEPHONY_STATE权限，权限级别为system_basic。
    - 如果是想获取短信服务中心地址，则调用getSmscAddr接口，需要配置ohos.permission.GET_TELEPHONY_STATE权限，权限级别为system_basic。
-   在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)声明对应权限。
+   在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)声明对应权限。
 
-2. 但是通常情况下，第三方应用无法获取上述权限，若需要在应用内实现跳转到短信编辑的功能，并且需要携带编辑内容和收件人号码，可以通过调用元能力 startAbility 接口指定号码并跳转到发送短信页面的方式实现，参考示例代码二。
+2. import需要的模块。
 
-3. import需要的模块。
-
-4. 发送SMS消息。
+3. 发送SMS消息。
 
 ```ts
-// 示例代码一：
-import sms from '@ohos.telephony.sms';
-import { AsyncCallback } from '@ohos.base';
-import { BusinessError } from '@ohos.base';
+// 示例代码
+import { sms } from '@kit.TelephonyKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
@@ -74,10 +71,16 @@ sms.sendShortMessage(options, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 
+```
+<!--DelEnd-->
 
-// 示例代码二：
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
+## 开发步骤
+
+发送短信的接口需要系统权限才可调用，三方应用如果有发送短信需求，需要在应用内实现跳转到短信编辑的功能，并且需要携带编辑内容和收件人号码，可以通过调用元能力startAbility接口指定号码并跳转到发送短信页面的方式实现。
+
+```ts
+// 示例代码
+import { common, Want } from '@kit.AbilityKit';
 
 const MMS_BUNDLE_NAME = "com.ohos.mms";
 const MMS_ABILITY_NAME = "com.ohos.mms.MainAbility";
@@ -133,11 +136,11 @@ struct JumpMessage {
         .height('100%')
     }
 }
-```
 
+```
 
 ## 相关实例
 
 针对短信的使用，有以下相关实例可供参考：
 
-- [短信服务（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Telephony/Message)
+- [短信服务（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Telephony/Message)

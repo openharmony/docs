@@ -4,9 +4,9 @@
 属性接口（以下简称属性）包含尺寸属性、布局属性、位置属性等多种类型，用于控制组件的行为。针对当前界面上的组件，其部分属性（如位置属性）的变化会引起UI的变化。添加动画可以让属性值从起点逐渐变化到终点，从而产生连续的动画效果。根据变化时是否能够添加动画，可以将属性分为可动画属性和不可动画属性。判断一种属性是否适合作为可动画属性主要有两个标准：
 
 
-1. 属性变化能够引起UI的变化。例如，[enabled](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md)属性用于控制组件是否可以响应点击、触摸等事件，但enable属性的变化不会引起UI的变化，因此不适合作为可动画属性。
+1. 属性变化能够引起UI的变化。例如，[enabled](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)属性用于控制组件是否可以响应点击、触摸等事件，但enable属性的变化不会引起UI的变化，因此不适合作为可动画属性。
 
-2. 属性在变化时适合添加动画作为过渡。例如，[focusable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md)属性决定当前组件是否可以获得焦点，当focusable属性发生变化时，应立即切换到终点值以响应用户行为，不应该加入动画效果，因此不适合作为可动画属性。
+2. 属性在变化时适合添加动画作为过渡。例如，[focusable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable)属性决定当前组件是否可以获得焦点，当focusable属性发生变化时，应立即切换到终点值以响应用户行为，不应该加入动画效果，因此不适合作为可动画属性。
 
 **属性接口分类说明：**
 
@@ -30,7 +30,7 @@
 - 不可动画属性：zIndex、focusable等。
 
 
-通常，可动画属性的参数数据类型必须具备连续性，即可以通过插值方法来填补数据点之间的空隙，达到视觉上的连续效果。但属性的参数数据类型是否能够进行插值并非决定属性是否可动画的关键因素。例如，对于设置元素水平方向布局的[direction](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md)属性，其参数数据类型是枚举值。但是，由于位置属性是可动画属性，ArkUI同样支持在其属性值改变引起组件位置变化时添加动画。
+通常，可动画属性的参数数据类型必须具备连续性，即可以通过插值方法来填补数据点之间的空隙，达到视觉上的连续效果。但属性的参数数据类型是否能够进行插值并非决定属性是否可动画的关键因素。例如，对于设置元素水平方向布局的[direction](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#direction)属性，其参数数据类型是枚举值。但是，由于位置属性是可动画属性，ArkUI同样支持在其属性值改变引起组件位置变化时添加动画。
 
 
 对于可动画属性，系统不仅提供通用属性，还支持自定义可动画属性。
@@ -38,5 +38,5 @@
 
 - 系统可动画属性：组件自带的支持改变UI界面的属性接口，如位置、缩放、模糊等。
 
-- [自定义可动画属性](../quick-start/arkts-animatable-extend.md)：ArkUI提供[@AnimatableExtend](../quick-start/arkts-animatable-extend.md)装饰器用于自定义可动画属性。开发者可从自定义绘制的内容中抽象出可动画属性，用于控制每帧绘制的内容，如自定义绘制音量图标。通过自定义可动画属性，可以为ArkUI中部分原本不支持动画的属性添加动画。
+- 自定义可动画属性：ArkUI提供[@AnimatableExtend装饰器](../quick-start/arkts-animatable-extend.md)用于自定义可动画属性。开发者可从自定义绘制的内容中抽象出可动画属性，用于控制每帧绘制的内容，如自定义绘制音量图标。通过自定义可动画属性，可以为ArkUI中部分原本不支持动画的属性添加动画。
 

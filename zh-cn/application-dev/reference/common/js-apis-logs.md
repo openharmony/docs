@@ -158,6 +158,8 @@ assert(value?: Object, ...arguments: Object[]): void
 
 断言打印。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -185,6 +187,8 @@ console.assert();
 count(label?: string): void
 
 维护一个内部计数器，调用时，打印此标签名以及对应的计数次数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -218,6 +222,8 @@ countReset(label?: string): void
 
 清除指定标签名的计数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -241,6 +247,8 @@ console.count('abc');
 dir(dir?: Object): void
 
 打印对象内容。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -279,6 +287,8 @@ dirxml(...arguments: Object[]): void
 
 此方法通过内部调用console.log()实现。此方法不会产生任何 XML 格式。使用方法与console.log()一致。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -305,6 +315,8 @@ group(...arguments: Object[]): void
 
 默认将后续行的缩进增加两个空格。
 如果提供需要打印的信息，则首先打印信息，没有额外的缩进。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -335,6 +347,8 @@ groupCollapsed(...arguments: Object[]): void
 
 使用与功能同console.group()一致。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -364,6 +378,8 @@ groupEnd(): void
 
 将后续行的缩进减少两个空格。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 
@@ -386,6 +402,8 @@ console.log("outter");
 table(tableData?: Object): void
 
 以表格形式打印数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -424,6 +442,8 @@ time(label?: string): void
 
 启动可用于计算操作持续时间的计时器。可使用console.timeEnd()关闭计时器并打印经过的时间(单位：ms)。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -443,6 +463,8 @@ console.time('abc');
 timeEnd(label?: string): void
 
 停止之前通过调用 console.time() 启动的计时器并将打印经过的时间(单位：ms)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -465,6 +487,8 @@ console.timeEnd('abc');
 timeLog(label?: string, ...arguments: Object[]): void
 
 对于先前通过调用 console.time() 启动的计时器，打印经过时间和其他data参数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -491,6 +515,8 @@ static trace(...arguments: Object[]): void
 
 打印当前堆栈。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -514,7 +540,9 @@ console.trace("Show the trace");
 
 static traceHybridStack(): void
 
-打印当前混合堆栈。
+在主线程/worker线程中可打印当前线程混合堆栈信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -523,5 +551,5 @@ static traceHybridStack(): void
 ```ts
 console.traceHybridStack();
 // TraceHybridStack:
-//     xxxxxxxxxx(当前混合堆栈信息)
+//     xxxxxxxxxx(当前线程混合堆栈信息)
 ```

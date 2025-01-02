@@ -224,10 +224,10 @@ export default {
 
 | Name                        | Type    | Default Value          | Description                                      |
 | -------------------------- | ------ | ------------- | ---------------------------------------- |
-| transition-enter           | string | -             | Works with **@keyframes** and supports transform and opacity animations. For details, see [Attributes available for the @keyframes rule](../arkui-js/js-components-common-animation.md).|
-| transition-exit            | string | -             | Works with **@keyframes** and supports transform and opacity animations. For details, see [Attributes available for the @keyframes rule](../arkui-js/js-components-common-animation.md).|
+| transition-enter           | string | -             | Works with **@keyframes** and supports transform and opacity animations. For details, see [Attributes available for the @keyframes rule](js-components-common-animation.md).|
+| transition-exit            | string | -             | Works with **@keyframes** and supports transform and opacity animations. For details, see [Attributes available for the @keyframes rule](js-components-common-animation.md).|
 | transition-duration        | string | Follows the default page transition time of the device| The unit can be s|or ms. The default unit is ms. If no value is specified, the default value is used.|
-| transition-timing-function | string | friction      | Speed curve of the transition animation, which makes the animation more fluent. For details, see the description of **animation-timing-function **in [Animation Styles](../arkui-js/js-components-common-animation.md).|
+| transition-timing-function | string | friction      | Speed curve of the transition animation, which makes the animation more fluent. For details, see the description of **animation-timing-function **in [Animation Styles](js-components-common-animation.md).|
 
 
 ### Important Notes

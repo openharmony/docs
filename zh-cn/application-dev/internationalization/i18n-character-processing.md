@@ -16,37 +16,37 @@
 1. 导入模块。
 
    ```ts
-   import I18n from '@ohos.i18n';
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. 判断字符属性。
 
    ```ts
-   let isDigit: boolean = I18n.Unicode.isDigit(char: string);
+   let isDigit: boolean = i18n.Unicode.isDigit(char: string);
    ```
 
 3. 以一般类别值为例，判断字符类类型，具体请参考getType接口文档。
 
    ```ts
-   let type = I18n.Unicode.getType(char: string);
+   let type = i18n.Unicode.getType(char: string);
    ```
 
 **开发实例**
 ```ts
 // 导入模块
-import I18n from '@ohos.i18n'
+import { i18n } from '@kit.LocalizationKit';
 
 // 判断字符是否是数字
-let isDigit = I18n.Unicode.isDigit('1'); // isDigit: true
+let isDigit = i18n.Unicode.isDigit('1'); // isDigit: true
 
 // 判断字符是否是从右到左语言的字符
-let isRTL = I18n.Unicode.isRTL('a'); // isRTL: false
+let isRTL = i18n.Unicode.isRTL('a'); // isRTL: false
 
 // 判断字符是否是表意文字
-let isIdeograph = I18n.Unicode.isIdeograph('华'); // isIdeograph: true
+let isIdeograph = i18n.Unicode.isIdeograph('华'); // isIdeograph: true
 
 // 获取字符的一般类别值
-let type = I18n.Unicode.getType('a'); // type: U_LOWERCASE_LETTER
+let type = i18n.Unicode.getType('a'); // type: U_LOWERCASE_LETTER
 ```
 
 
@@ -59,13 +59,13 @@ let type = I18n.Unicode.getType('a'); // type: U_LOWERCASE_LETTER
 
 1. 导入模块。
    ```ts
-   import I18n from '@ohos.i18n';
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. 创建Transliterator对象，获取音译列表。
    ```ts
-   let transliterator: I18n.Transliterator = I18n.Transliterator.getInstance(id: string);  // 传入音译支持的ID，创建Transliterator对象
-   let ids: string[] = I18n.Transliterator.getAvailableIDs();  // 获取音译支持的ID列表
+   let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance(id: string);  // 传入音译支持的ID，创建Transliterator对象
+   let ids: string[] = i18n.Transliterator.getAvailableIDs();  // 获取音译支持的ID列表
    ```
 
 3. 音译文本。
@@ -77,14 +77,27 @@ let type = I18n.Unicode.getType('a'); // type: U_LOWERCASE_LETTER
 **开发实例**
 ```ts
 // 导入模块
-import I18n from '@ohos.i18n'
+import { i18n } from '@kit.LocalizationKit';
 
 // 音译成Latn格式
-let transliterator = I18n.Transliterator.getInstance('Any-Latn');
-let res = transliterator.transform('中国'); // res: zhōng guó
+let transliterator = i18n.Transliterator.getInstance('Any-Latn');
+let wordArray = ["中国", "德国", "美国", "法国"]
+for (let i = 0; i < wordArray.length; i++) {
+    let res = transliterator.transform(wordArray[i]); // res: zhōng guó, dé guó, měi guó, fǎ guó
+}
+
+// 汉语音译去声调
+let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
+let result = transliter.transform('中国'); // result: zhong guo
+
+// 汉语姓氏读音
+let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
+let result1 = nameTransliter.transform('单老师'); // result1: shàn lǎo shī
+let result2 = nameTransliter.transform('长孙无忌'); // result2: zhǎng sūn wú jì
+
 
 // 获取音译支持的ID列表
-let ids = I18n.Transliterator.getAvailableIDs(); ids: ['ASCII-Latin', 'Accents-Any', ...]
+let ids = i18n.Transliterator.getAvailableIDs(); // ids: ['ASCII-Latin', 'Accents-Any', ...]
 ```
 
 
@@ -94,12 +107,12 @@ let ids = I18n.Transliterator.getAvailableIDs(); ids: ['ASCII-Latin', 'Accents-A
 
 1. 导入模块。
    ```ts
-   import I18n from '@ohos.i18n'
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. 创建标准化对象。传入文本标准化的范式，创建标准化对象，文本标准化的范式包括NFC、NFD、NFKC和NFKD，范式的详细介绍请参考[国际标准](https://www.unicode.org/reports/tr15/#Norm_Forms)。
    ```ts
-   let normalizer: I18n.Normalizer = I18n.Normalizer.getInstance(mode: NormalizerMode);
+   let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(mode: NormalizerMode);
    ```
 
 3. 文本标准化。
@@ -110,10 +123,10 @@ let ids = I18n.Transliterator.getAvailableIDs(); ids: ['ASCII-Latin', 'Accents-A
 **开发实例**
 ```ts
 // 导入模块
-import I18n from '@ohos.i18n'
+import { i18n } from '@kit.LocalizationKit';
 
 // 以NFC范式标准化字符
-let normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
+let normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
 let normalizedText = normalizer.normalize('\u1E9B\u0323'); // normalizedText: \u1E9B\u0323
 ```
 
@@ -124,14 +137,14 @@ let normalizedText = normalizer.normalize('\u1E9B\u0323'); // normalizedText: \u
 
 1. 导入模块。
    ```ts
-   import I18n from '@ohos.i18n'
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. 创建用于断句的对象。
    传入合法的locale参数，生成BreakIterator类型的对象，该对象将按照locale所指定的区域的规则进行断句。
 
    ```ts
-   let iterator: I18n.BreakIterator = I18n.getLineInstance(locale: string);
+   let iterator: i18n.BreakIterator = i18n.getLineInstance(locale: string);
    ```
 
 3. 设置要处理的文本。
@@ -152,10 +165,10 @@ let normalizedText = normalizer.normalize('\u1E9B\u0323'); // normalizedText: \u
 **开发实例**
 ```ts
 // 导入模块
-import I18n from '@ohos.i18n'
+import { i18n } from '@kit.LocalizationKit';
 
 // 断句对象
-let iterator = I18n.getLineInstance('en-GB');
+let iterator = i18n.getLineInstance('en-GB');
 
 // 断句文本
 iterator.setLineBreakText('Apple is my favorite fruit.');
@@ -167,8 +180,9 @@ let firstPos = iterator.first(); // firstPos: 0
 let nextPos = iterator.next(2); // nextPos: 9
 
 // 判断某个位置是否是分割点
-let isBoundary = iterator.isBoundary(9); isBoundary: true
+let isBoundary = iterator.isBoundary(9); // isBoundary: true
 
 // 获取BreakIterator对象处理的文本
 let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite fruit.
 ```
+<!--RP1--><!--RP1End-->

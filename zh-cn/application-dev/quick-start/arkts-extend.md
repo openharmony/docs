@@ -1,12 +1,14 @@
 # \@Extend装饰器：定义扩展组件样式
 
 
-在前文的示例中，可以使用\@Styles用于样式的扩展，在\@Styles的基础上，我们提供了\@Extend，用于扩展原生组件样式。
+在前文的示例中，可以使用[\@Styles](arkts-style.md)用于样式的重用，在\@Styles的基础上，我们提供了\@Extend，用于扩展原生组件样式。
 
 
 > **说明：**
+>
 > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
-
+>
+> 从API version 11开始，该装饰器支持在原子化服务中使用。
 
 ## 装饰器使用说明
 
@@ -20,11 +22,6 @@
 
 
 ### 使用规则
-
-- 和\@Styles不同，\@Extend仅支持在全局定义，不支持在组件内部定义。
-
-> **说明：**
-> 只能在当前文件内使用，不支持export
 
 - 和\@Styles不同，\@Extend支持封装指定组件的私有属性、私有事件和自身定义的全局方法。
 
@@ -113,6 +110,58 @@
     }
   }
   ```
+
+
+## 限制条件
+
+- 和\@Styles不同，\@Extend仅支持在全局定义，不支持在组件内部定义。
+
+> **说明：**
+>
+> 只能在当前文件内使用，不支持export。
+>
+> 如果想实现export功能，推荐使用[AttributeModifier](../ui/arkts-user-defined-extension-attributeModifier.md)。
+
+【反例】
+
+```ts
+@Entry
+@Component
+struct FancyUse {
+  // 错误写法，@Extend仅支持在全局定义，不支持在组件内部定义
+  @Extend(Text) function fancy (fontSize: number) {
+    .fontSize(fontSize)
+  }
+
+  build() {
+    Row({ space: 10 }) {
+      Text('Fancy')
+        .fancy(16)
+    }
+  }
+}
+```
+
+【正例】
+
+```ts
+// 正确写法
+@Extend(Text) function fancy (fontSize: number) {
+  .fontSize(fontSize)
+}
+
+@Entry
+@Component
+struct FancyUse {
+
+  build() {
+    Row({ space: 10 }) {
+      Text('Fancy')
+        .fancy(16)
+    }
+  }
+}
+```
 
 
 ## 使用场景

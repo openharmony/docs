@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import inspector from '@ohos.arkui.inspector'
+import { inspector } from '@kit.ArkUI'
 ```
 
 ## inspector.createComponentObserver
@@ -19,6 +19,8 @@ import inspector from '@ohos.arkui.inspector'
 createComponentObserver(id: string): ComponentObserver
 
 绑定指定组件，返回对应的监听句柄。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -50,6 +52,8 @@ on(type: 'layout', callback: () => void): void
 
 通过句柄向对应的查询条件注册回调，当组件布局完成时会触发该回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -64,6 +68,8 @@ on(type: 'layout', callback: () => void): void
 off(type: 'layout', callback?: () => void): void
 
 通过句柄向对应的查询条件取消注册回调，当组件布局完成时不再触发指定的回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -80,6 +86,8 @@ on(type: 'draw', callback: () => void): void
 
 通过句柄向对应的查询条件注册回调，当组件绘制完成时会触发该回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -95,6 +103,8 @@ off(type: 'draw', callback?: () => void): void
 
 通过句柄向对应的查询条件取消注册回调，当组件绘制完成时不再触发指定的回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -106,8 +116,12 @@ off(type: 'draw', callback?: () => void): void
 
 **示例：**
 
+> **说明：**
+>
+> 推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getUIInspector](./js-apis-arkui-UIContext.md#getuiinspector)方法获取当前UI上下文关联的[UIInspector](./js-apis-arkui-UIContext.md#uiinspector)对象。
+
   ```ts
-  import inspector from '@ohos.arkui.inspector'
+  import { inspector } from '@kit.ArkUI'
 
   @Entry
   @Component
@@ -126,7 +140,7 @@ off(type: 'draw', callback?: () => void): void
       }.height(320).width(360).padding({ right: 10, top: 10 })
     }
 
-    listener:inspector.ComponentObserver = inspector.createComponentObserver('IMAGE_ID')
+    listener:inspector.ComponentObserver = inspector.createComponentObserver('IMAGE_ID') // 建议使用 this.getUIContext().getUIInspector().createComponentObserver()接口
 
     aboutToAppear() {
       let onLayoutComplete:()=>void=():void=>{

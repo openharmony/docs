@@ -8,7 +8,7 @@ The @ohos.graphics.drawing module provides basic drawing capabilities, such as d
 
 The table below lists the common APIs provided by the @ohos.graphics.drawing module. For details about all the APIs, see [@ohos.graphics.drawing](../reference/apis-arkgraphics2d/js-apis-graphics-drawing.md).
 
-| API| Description|
+| API| Description| 
 | -------- | -------- |
 | drawPath(path: Path) : void | Draws a custom path.|
 | drawRect(rect: common2D.Rect): void | Draws a rectangle. By default, black is used for filling.|
@@ -29,23 +29,10 @@ Use the canvas and pen of the @ohos.graphics.drawing module to draw basic 2D gra
 The following walks you through on how to draw and display 2D graphics and text blobs.
 ### Adding Dependencies
 
-**Adding Dynamic Link Libraries**
-
-Add the following libraries to **CMakeLists.txt**.
-
-```txt
-libace_ndk.z.so
-libnative_window.so
-libnative_drawing.so
-```
-
 **Importing Dependency Files**
 ```js
-import { NodeController, FrameNode, RenderNode, DrawContext } from "@ohos.arkui.node"
-import { UIContext } from '@ohos.arkui.UIContext'
-import drawing from "@ohos.graphics.drawing"
-import image from '@ohos.multimedia.image'
-import common2D from '@ohos.graphics.common2D'
+import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI'
+import { common2D, drawing } from '@kit.ArkGraphics2D'
 ```
 
 Now you can use the APIs for drawing.
@@ -55,7 +42,8 @@ Now you can use the APIs for drawing.
 Follow the steps below to draw 2D graphics and text blobs by using the canvas and pen of the @ohos.graphics.drawing module.
 
 1. **Create a child class of RenderNode.**
-    Create the child class **MyRenderNode** and define drawing functions in it. **RenderNode** contains operations on the tree structure and drawing attributes.
+
+    Create the child class **MyRenderNode** and define drawing functions in it. RenderNode contains operations on the tree structure and drawing attributes. The **draw** method called when the RenderNode performs drawing. For details, see [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md).
 
     ```js
     // Create the MyRenderNode class.
@@ -67,7 +55,7 @@ Follow the steps below to draw 2D graphics and text blobs by using the canvas an
     }
     ```
 
-2. **Construct a path shape.** 
+2. **Construct a path shape.**
 
     Use **moveTo**, **lineTo**, and **close** of the path to construct a pentagram.
 
@@ -118,15 +106,15 @@ Follow the steps below to draw 2D graphics and text blobs by using the canvas an
     let pen_color : common2D.Color = { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 }
     pen.setColor(pen_color)
     pen.setStrokeWidth(10.0)
-      
+    
     // Attach the pen to the canvas.
     canvas.attachPen(pen)
-    
+
     // Create a brush object and set the color.
     let brush = new drawing.Brush()
     let brush_color : common2D.Color = { alpha: 0xFF, red: 0x00, green: 0xFF, blue: 0x00 }
     brush.setColor(brush_color)
-    
+
     // Attach the brush to the canvas.
     canvas.attachBrush(brush)
     ```
@@ -258,49 +246,49 @@ Follow the steps below to draw 2D graphics and text blobs by using the canvas an
 
 11. **Draw the graphics and text blob.**
 
-     Create a **MyNodeController** instance and save it to the NodeContainer, add a **<\Button>** component, and call the defined interfaces.
+    Create a **MyNodeController** instance and save it to the NodeContainer, add a **Button** component, and call the defined interfaces.
 
-     ```js
-     @Entry
-     @Component
-     struct RenderTest {
-         private myNodeController: MyNodeController = new MyNodeController()
-         build() {
-             Column() {
-                 Row() {
-                     NodeContainer(this.myNodeController)
-                         .height('100%')
-                     Button("Draw Path")
-                         .margin({ bottom: 200, right: 12 })
-                         .onClick(() => {
-                             this.myNodeController.clearNodes()
-                             this.myNodeController.addNode(newNode)
-                         })
-                     Button("Draw Rect")
-                         .margin({ bottom: 200, right: 12 })
-                         .onClick(() => {
-                             this.myNodeController.clearNodes()
-                             this.myNodeController.addNode(rectNode)
-                         })
-                     Button("Draw Text")
-                         .margin({ bottom: 200, right: 12 })
-                         .onClick(() => {
-                             this.myNodeController.clearNodes()
-                             this.myNodeController.addNode(textNode)
-                         })
-                 }
-                 .width('100%')
-                 .justifyContent(FlexAlign.Center)
-                 .shadow(ShadowStyle.OUTER_DEFAULT_SM)
-                 .alignItems(VerticalAlign.Bottom)
-                 .layoutWeight(1)
-             }
-         }
-     }
-     ```
+    ```js
+    @Entry
+    @Component
+    struct RenderTest {
+        private myNodeController: MyNodeController = new MyNodeController()
+        build() {
+            Column() {
+                Row() {
+                    NodeContainer(this.myNodeController)
+                        .height('100%')
+                    Button("Draw Path")
+                        .margin({ bottom: 200, right: 12 })
+                        .onClick(() => {
+                            this.myNodeController.clearNodes()
+                            this.myNodeController.addNode(newNode)
+                        })
+                    Button("Draw Rect")
+                        .margin({ bottom: 200, right: 12 })
+                        .onClick(() => {
+                            this.myNodeController.clearNodes()
+                            this.myNodeController.addNode(rectNode)
+                        })
+                    Button("Draw Text")
+                        .margin({ bottom: 200, right: 12 })
+                        .onClick(() => {
+                            this.myNodeController.clearNodes()
+                            this.myNodeController.addNode(textNode)
+                        })
+                }
+                .width('100%')
+                .justifyContent(FlexAlign.Center)
+                .shadow(ShadowStyle.OUTER_DEFAULT_SM)
+                .alignItems(VerticalAlign.Bottom)
+                .layoutWeight(1)
+            }
+        }
+    }
+    ```
 
      The following figure shows the drawing and display effect.
 
-     | Home page                                | Pentagram drawn                                           | Rectangle drawn                                           | Text blob drawn                                           |
-     | ------------------------------------ | ----------------------------------------------- | ------------------------------------ | ------------------------------------ |
-     | ![main](./figures/JSMainPage.jpg) | ![Draw Path](figures/JSdrawPath.jpg) | ![Draw Path](figures/JSdrawRect.jpg) | ![Draw Path](figures/JSdrawText.jpg) |
+    | Home page                                | Pentagram drawn                                           | Rectangle drawn                                           | Text blob drawn                                           |
+    | ------------------------------------ | ----------------------------------------------- | ------------------------------------ | ------------------------------------ |
+    | ![main](./figures/JSMainPage.jpg) | ![Draw Path](figures/JSdrawPath.jpg) | ![Draw Path](figures/JSdrawRect.jpg) | ![Draw Path](figures/JSdrawText.jpg) |

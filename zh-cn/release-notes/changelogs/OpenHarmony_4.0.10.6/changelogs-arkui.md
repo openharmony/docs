@@ -192,6 +192,6 @@ OnStateChange调用次数修复：
 
 利用OnStateChange调用时序处理的应用会受到影响。
 
-   更改之前调用时序：目标显示NavRouter触发OnStateChange(true) -> 退出NavRouter触发OnStateChange(false) -> 目标显示Navrouter触发OnStateChange(true)
+   更改之前调用时序：目标显示NavRouter触发OnStateChange(true) -> 退出NavRouter触发OnStateChange(false) -> 目标显示NavRouter触发OnStateChange(true)
 
    更改之后调用时序：目标显示NavRouter触发OnStateChange(true) -> 退出NavRouter触发OnStateChange(false)

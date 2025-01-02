@@ -37,9 +37,10 @@ Core File Kit常见的使用场景：
 - 支持应用文件上传到网络服务器和网络服务器下载网络资源文件到本地应用文件目录。
 - 支持获取当前应用的存储空间大小、指定文件系统的剩余空间大小和指定文件系统的总空间大小。
 - 支持应用分享文件给其它应用和使用其它应用分享的文件。
-- 支持应用接入数据备份恢复，在接入后，应用可通过修改配置文件定制备份恢复框架的行为，包括是否允许备份恢复、备份哪些数据。
+- 支持应用接入数据备份恢复，在接入后，应用可通过修改配置文件定制备份恢复框架的行为，包括是否允许备份恢复、备份哪些数据。<!--Del-->
 - 支持应用触发数据备份恢复（仅对系统应用开放）。
-- 提供[用户文件访问框架](#用户文件访问框架)，用于开发者访问和管理用户文件。例如选择与保存用户文件和开发用户文件管理器（仅对系统应用开放）。
+<!--DelEnd-->
+- 提供[用户文件访问框架](#用户文件访问框架)，用于开发者访问和管理用户文件。例如选择与保存用户文件<!--Del-->和开发用户文件管理器（仅对系统应用开放）<!--DelEnd-->。
 - 支持跨设备的文件访问和拷贝能力。
 
 ## 亮点/特征
@@ -65,14 +66,14 @@ Core File Kit常见的使用场景：
 
 用户文件访问框架（File Access Framework）是一套提供给开发者访问和管理用户文件的基础框架。该框架依托于OpenHarmony的ExtensionAbility组件机制，提供了一套统一访问用户文件的方法和接口。
 
-**图1** 用户文件访问框架示意图  
+**图2** 用户文件访问框架示意图  
 ![User file access framework](figures/user-file-access-framework.png)
 
 - 各类系统应用或三方应用（即图中的文件访问客户端）若需访问用户文件，如选择一张照片或保存多个文档等，可以通过拉起“文件选择器应用”来实现。
 
 - FilePicker：系统预置应用，提供文件访问客户端选择和保存文件的能力，且不需要配置任何权限。FilePicker的使用指导请参见[选择用户文件](select-user-file.md)。
 
-- FileManager：对于设备开发者，还可以按需开发自己的文件选择器或文件管理器应用。其中，选择器功能是管理器的子集，本文目前提供了管理器的开发指导，请参见[开发用户文件管理器（仅对系统应用开放）](dev-user-file-manager.md)。
+- FileManager：对于设备开发者，还可以按需开发自己的文件选择器或文件管理器应用。<!--RP1-->其中，选择器功能是管理器的子集，本文目前提供了管理器的开发指导，请参见[开发用户文件管理器（仅对系统应用开放）](dev-user-file-manager.md)。<!--RP1End-->
 
 - File Access Framework（用户文件访问框架）的主要功能模块如下：
   - File Access Helper：提供给文件管理器和文件选择器访问用户文件的API接口。
@@ -88,4 +89,4 @@ Ability Kit: Core File Kit中用户文件访问框架依赖Ability Kit提供的E
 
 针对Core File Kit开发，有以下相关实例可供参考：
 
-- [文件管理（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileManager)
+- [文件管理（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/FileManagement/FileManager)

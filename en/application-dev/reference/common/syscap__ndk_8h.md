@@ -9,7 +9,7 @@ Provides the API for querying whether a SystemCapability (SysCap) is supported. 
 
 8
 
-**Related Modules**
+**Related module**
 
 [Init](init.md)
 
@@ -21,4 +21,4 @@ Provides the API for querying whether a SystemCapability (SysCap) is supported. 
 
 | Name| Description|
 | -------- | -------- |
-| [canIUse](init.md#caniuse) (const char \*cap) | Checks whether a SysCap is supported. |
+| [canIUse](init.md#caniuse) (const char \*cap) | Checks whether a SysCap is supported.|

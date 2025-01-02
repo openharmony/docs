@@ -9,11 +9,11 @@ Currently, **javaScriptProxy** supports only synchronous invoking. This means th
 
 **Solution**
 
-Encapsulate **javaScriptProxy** and **runJavaScript** to implement the JSBridge communication scheme. This method is applicable to the scenario where HTML5 calls native functions. Use the **\<Web>** component **javaScriptProxy** to inject the native API to the window object of HTML5 pages, use the **runJavaScript** API to execute the JS script on HTML5 pages, and obtain the script execution result from the callback. The following figure shows the invoking process.
+Encapsulate **javaScriptProxy** and **runJavaScript** to implement the JSBridge communication scheme. This method is applicable to the scenario where HTML5 calls native functions. Use the **Web** component **javaScriptProxy** to inject the native API to the window object of HTML5 pages, use the **runJavaScript** API to execute the JS script on HTML5 pages, and obtain the script execution result from the callback. The following figure shows the invoking process.
 
 ![image5](figures/image5.png)
 
-- Use the **javaScriptProxy** attribute of the **\<Web>** component to register the **JSBridgeHandle** object with the HTML5 window as the native channel for HTML5 to call. When the HTML5 page starts to be loaded, the **initJSBridge()** method is called in the **onPageBegin** callback to initialize the JSBridge.
+- Use the **javaScriptProxy** attribute of the **Web** component to register the **JSBridgeHandle** object with the HTML5 window as the native channel for HTML5 to call. When the HTML5 page starts to be loaded, the **initJSBridge()** method is called in the **onPageBegin** callback to initialize the JSBridge.
   ```
   // javaScriptProxy object
   public get javaScriptProxy() {
@@ -46,7 +46,7 @@ Encapsulate **javaScriptProxy** and **runJavaScript** to implement the JSBridge 
   }
   ```
 
-- In the **initJSBridge** method, use **webviewControll.runJavaScript()** to inject the JSBridge initialization script into the HTML5 page for execution. When HTML5 is called, the **window.callID** is generated to identify the callback function, and then the callID and request parameters are transferred to the native side using **JSBridgeHandle.call**. Use **JSBridgeCallback** to receive the execution result from the native side, find the callback based on the ID and execute it, and then release the memory.
+- In the **initJSBridge** method, use **webviewControll.runJavaScript()** to inject the JSBridge initialization script into the HTML5 page for execution. When HTML5 is called, the **window.callID** is generated to identify the callback function, and then the callID and request parameters are transferred to the native side using **JSBridgeHandle.call**. Use **JSBridgeCallback** to receive the execution result from the native side, find the callback based on the ID and execute it, and then free the memory.
   ```
   // bridgeKey and bridgeMethod dynamically generate the entry for invoking on the HTML5 side.
   bridgeKey: string = 'JSBridge'
@@ -94,7 +94,7 @@ Encapsulate **javaScriptProxy** and **runJavaScript** to implement the JSBridge 
   ```
 
 
-## How does the return result of onUrlLoadIntercept affect onInterceptRequest in the \<Web> component? (API version 9)
+## How does the return result of onUrlLoadIntercept affect onInterceptRequest in the Web component? (API version 9)
 
 **Solution**
 
@@ -109,15 +109,15 @@ The operation that follows **onUrlLoadIntercept** is subject to its return resul
 [onUrlloadIntercept](../reference/apis-arkweb/ts-basic-components-web.md#onurlloadinterceptdeprecated)
 
 
-## What should I do if the onKeyEvent event of the \<Web> component is not triggered as expected? (API version 9)
+## What should I do if the onKeyEvent event of the Web component is not triggered as expected? (API version 9)
 
 **Problem**
 
-The **onKeyEvent** event is set for the **\<Web>** component to listen for keyboard events. However, it is not triggered when a key is pressed or lifted.
+The **onKeyEvent** event is set for the **Web** component to listen for keyboard events. However, it is not triggered when a key is pressed or lifted.
 
 **Solution**
 
-Currently, the **\<Web>** component does not support the **onKeyEvent** event. To listen for keyboard events for the **\<Web>** component, you can use the **onInterceptKeyEvent** callback function.
+Currently, the **Web** component does not support the **onKeyEvent** event. To listen for keyboard events for the **Web** component, you can use the **onInterceptKeyEvent** callback function.
 
 **Reference**
 
@@ -250,7 +250,7 @@ Use the **runJavaScript** API in **WebviewController** to asynchronously execute
 [javaScriptProxy](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)
 
 
-## How do I set the domStorageAccess attribute of the \<Web> component? (API version 9)
+## How do I set the domStorageAccess attribute of the Web component? (API version 9)
 
 **Solution**
 
@@ -280,11 +280,11 @@ Configure the permission for the application to obtain network information: ohos
 
 **Solution**
 
-By default, the value of **UserAgent** needs to be obtained through the WebviewController. Specifically, it is obtained by calling the **getUserAgent** API in a **WebviewController** object after it is bound to the **\<Web>** component. Therefore, to set **UserAgent** through string concatenation before page loading:
+By default, the value of **UserAgent** needs to be obtained through the WebviewController. Specifically, it is obtained by calling the **getUserAgent** API in a **WebviewController** object after it is bound to the **Web** component. Therefore, to set **UserAgent** through string concatenation before page loading:
 
-1. Use @State to define the initial **UserAgent** and bind it to the **\<Web>** component.
+1. Use @State to define the initial **UserAgent** and bind it to the **Web** component.
 
-2. In the **onUrlLoadIntercept** callback of the **\<Web>** component, use **WebviewController.getUserAgent()** to obtain the default **UserAgent** and update the bound **UserAgent**.
+2. In the **onUrlLoadIntercept** callback of the **Web** component, use **WebviewController.getUserAgent()** to obtain the default **UserAgent** and update the bound **UserAgent**.
 
 **Example**
 
@@ -319,7 +319,7 @@ struct Index {
 [userAgent](../reference/apis-arkweb/ts-basic-components-web.md#useragentdeprecated), [getUserAgent](../reference/apis-arkweb/js-apis-webview.md#getuseragent)
 
 
-## How do I enable the \<Web> component to return to the previous web page following a swipe gesture? (API version 9)
+## How do I enable the Web component to return to the previous web page following a swipe gesture? (API version 9)
 
 **Solution**
 
@@ -369,7 +369,7 @@ struct Index {
 
 **Solution**
 
-The **\<Web>** component supports debugging of web frontend pages by using DevTools, a web frontend development and debugging tool that allows you to debug an application's frontend pages on a PC. Before you do this, use **setWebDebuggingAccess()** to enable frontend page debugging for the **\<Web>** component and make sure the test device connected to the PC runs 4.1.0 or a later version.
+The **Web** component supports debugging of web frontend pages by using DevTools, a web frontend development and debugging tool that allows you to debug an application's frontend pages on a PC. Before you do this, use **setWebDebuggingAccess()** to enable frontend page debugging for the **Web** component and make sure the test device connected to the 2-in-1 device runs 4.1.0 or a later version.
 
 **Reference**
 
@@ -406,3 +406,58 @@ You can call **onInterceptRequest()** to customize web page responses, file reso
 
 1. Process model: one main process and multiple render processes
 2. Rendering mechanism: web self-rendering
+
+
+## Does the system support WebRTC? What WebRTC features are provided?
+
+**Solution**
+
+1. WebView provides the peer-to-peer (P2P) and audio and video streaming features in WebRTC.
+2. When WebView is not used, the system provides technical support for adaptation, but not direct support for WebRTC. For example, the following are provided to work with WebRTC (RR-30030985):
+   * GN + Ninja cross compilation mode in the SDK
+   * Compilation samples
+
+
+## How do I set the mixed content policy in WebView to load HTTP and HTTPS mixed content?
+
+**Solution**
+
+WebView provides the **mixedMode(mixedMode: MixedMode)** API for specifying whether to enable loading of HTTP and HTTPS mixed content. By default, loading of mixed content is disabled.
+
+**Reference**
+
+[mixedmode](../reference/apis-arkweb/ts-basic-components-web.md#mixedmode)
+
+
+## In addition to setting the cache, is there any other way to speed up rendering in WebView?
+
+**Solution**
+
+You can use the **prepareForPageLoad** API to preconnect to a URL.
+
+**Reference**
+
+[prepareforpageload](../reference/apis-arkweb/js-apis-webview.md#prepareforpageload10)
+
+
+## How do I create a Web component? How do I reuse one?
+
+**Solution**
+
+**Web** components can be pre-created, reclaimed, and reused through dynamic component tree mount and unmount capability provided by ArkUI.
+
+**Reference**
+
+[Dynamically Creating Web Components](../web/web-page-loading-with-web-components.md#dynamically-creating-web-components)
+
+
+## Does OpenHarmony provide JavaScript engine capabilities as other systems?
+
+**Solution**
+
+Yes. For details, see the reference.
+
+**Reference**
+
+[JSVM](../reference/common/_j_s_v_m.md)
+<!--no_check-->

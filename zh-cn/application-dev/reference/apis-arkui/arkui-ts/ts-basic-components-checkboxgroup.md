@@ -16,17 +16,27 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 
 创建多选框群组，可以控制群组内的Checkbox全选或者不全选，group值相同的Checkbox和CheckboxGroup为同一群组。
 
+在结合带缓存组件使用时(如List)，未被创建的Checkbox选中状态需要应用手动控制。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名  | 类型                                                  | 必填 | 描述                 |
+| 参数名  | 类型                                                  | 必填 | 说明                 |
 | ------- | ----------------------------------------------------- | ---- | -------------------- |
 | options | [CheckboxGroupOptions](#checkboxgroupoptions对象说明) | 否   | 配置多选框群组参数。 |
 
 ## CheckboxGroupOptions对象说明
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -38,7 +48,7 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 
 ### selectAll
 
-selectAll(value: boolean)
+selectAll(value: Optional\<boolean>)
 
 设置是否全选。若同组的[Checkbox](ts-basic-components-checkbox.md)显式设置了select属性，则Checkbox的优先级高。
 
@@ -46,21 +56,25 @@ selectAll(value: boolean)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型    | 必填 | 说明                         |
 | ------ | ------- | ---- | ---------------------------- |
-| value  | boolean | 是   | 是否全选。<br/>默认值：false |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否全选。<br/>默认值：false |
 
 ### selectedColor
 
-selectedColor(value: ResourceColor)
+selectedColor(value: Optional\<ResourceColor>)
 
 设置被选中或部分选中状态的颜色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -68,15 +82,15 @@ selectedColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                                         |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 被选中或部分选中状态的颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')<br/>异常值按照默认值处理。 |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 被选中或部分选中状态的颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')<br/>异常值按照默认值处理。 |
 
 ### unselectedColor<sup>10+</sup>
 
-unselectedColor(value: ResourceColor)
+unselectedColor(value: Optional\<ResourceColor>)
 
 设置非选中状态边框颜色。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -84,15 +98,15 @@ unselectedColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                 |
 | ------ | ------------------------------------------ | ---- | -------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 非选中状态边框颜色。<br/>默认值：'#33ffffff'。 |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 非选中状态边框颜色。<br/>默认值：$r('sys.color.ohos_id_color_switch_outline_off')。 |
 
 ### mark<sup>10+</sup>
 
-mark(value: MarkStyle)
+mark(value: Optional\<MarkStyle>)
 
 设置多选框内部图标样式。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -100,7 +114,25 @@ mark(value: MarkStyle)
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| value  | [MarkStyle](#markstyle10对象说明) | 是   | 多选框内部图标样式。 |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[MarkStyle](ts-types.md#markstyle10对象说明)> | 是   | 多选框内部图标样式。 |
+
+### checkboxShape<sup>12+</sup>
+
+checkboxShape(value: Optional\<CheckBoxShape>)
+
+设置CheckboxGroup组件形状， 包括圆形和圆角方形。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | 是   | 设置CheckboxGroup组件形状， 包括圆形和圆角方形。<br/>默认值:CheckBoxShape.CIRCLE。 <br />**说明**：<br/>CheckboxGroup组件形状按照设置显示。<br/>CheckboxGroup内所有没有单独设置shape类型的Checkbox形状和CheckboxGroup的保持一致。<br/>CheckboxGroup内有单独设置shape类型的Checkbox形状则优先于CheckboxGroup，按照设置形状显示。 |
 
 ## 事件
 
@@ -108,11 +140,31 @@ mark(value: MarkStyle)
 
 ### onChange
 
-onChange(callback: (event: CheckboxGroupResult) => void )
+onChange(callback: Optional\<OnCheckboxGroupChangeCallback>)
 
 CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明               |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnCheckboxGroupChangeCallback](#oncheckboxgroupchangecallback14)> | 是   | 多选框群组的信息。 |
+
+## OnCheckboxGroupChangeCallback<sup>14+</sup>
+
+type OnCheckboxGroupChangeCallback  = (value: CheckboxGroupResult) => void
+
+多选框群组的信息。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -120,38 +172,40 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 | 参数名 | 类型                                                | 必填 | 说明               |
 | ------ | --------------------------------------------------- | ---- | ------------------ |
-| event  | [CheckboxGroupResult](#checkboxgroupresult对象说明) | 是   | 多选框群组的信息。 |
+| value  | [CheckboxGroupResult](#checkboxgroupresult对象说明) | 是   | 多选框群组的信息。 |
 
 ## CheckboxGroupResult对象说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称     | 类型   | 描述      |
-| ------ | ------ | ------- |
-| name   | Array&lt;string&gt; | 群组内所有被选中的多选框名称。 |
-| status | [SelectStatus](#selectstatus枚举说明) | 选中状态。 |
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型   | 只读 | 可选 | 说明      |
+| ------ | ------ | ------- | ------- | ------- |
+| name   | Array&lt;string&gt; | 否 | 否 | 群组内所有被选中的多选框名称。 |
+| status | [SelectStatus](#selectstatus枚举说明) | 否 | 否 | 选中状态。 |
 
 ## SelectStatus枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称  | 描述 |
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 说明 |
 | ----- | -------------------- |
 | All   | 群组多选择框全部选择。 |
 | Part  | 群组多选择框部分选择。 |
 | None  | 群组多选择框全部没有选择。 |
 
-## MarkStyle<sup>10+</sup>对象说明
-
-| 名称        | 类型                                       | 必填 | 默认值      | 描述                                                         |
-| ----------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
-| strokeColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.White | 内部图标颜色。                                               |
-| size        | [Length](ts-types.md#length)               | 否   | -           | 内部图标大小，单位vp。默认大小与多选框群组组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
-| strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
-
 ## 示例
 
-### 示例1
+### 示例1（设置多选框群组）
+
+该示例用于控制多选框全选或者不全选状态。
 
 ```ts
 // xxx.ets
@@ -164,6 +218,7 @@ struct CheckboxExample {
         // 全选按钮
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           CheckboxGroup({ group: 'checkboxGroup' })
+            .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
             .selectedColor('#007DFF')
             .onChange((itemName: CheckboxGroupResult) => {
               console.info("checkbox group content" + JSON.stringify(itemName))
@@ -210,7 +265,9 @@ struct CheckboxExample {
 ```
 ![checkboxGroup](figures/checkboxGroup.gif)
 
-### 示例2
+### 示例2（自定义勾选样式）
+
+该示例通过配置mark实现自定义多选框群组的勾选样式。
 
 ```ts
 // xxx.ets
@@ -223,6 +280,7 @@ struct Index {
       Column() {
         Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
           CheckboxGroup({ group: 'checkboxGroup' })
+            .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
             .selectedColor(Color.Orange)
             .onChange((itemName: CheckboxGroupResult) => {
               console.info("checkbox group content" + JSON.stringify(itemName))

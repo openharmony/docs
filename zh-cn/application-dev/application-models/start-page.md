@@ -9,9 +9,10 @@
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import Want from '@ohos.app.ability.Want';
-import Logger from '../../utils/Logger';
+import hilog from '@ohos.hilog';
 
 const TAG: string = 'PagePageAbilityFirst';
+const domain: number = 0xFF00;
 ```
 ```ts
 (async (): Promise<void> => {
@@ -21,7 +22,7 @@ const TAG: string = 'PagePageAbilityFirst';
     parameters: { page: 'pages/second' }
   };
   featureAbility.startAbility({ want: wantInfo }).then((data) => {
-    Logger.debug(TAG, `restartAbility success : ${data}`);
+    hilog.debug(domain, TAG, `restartAbility success : ${data}`);
   });
 })()
 ```
@@ -87,7 +88,7 @@ struct First {
     if (newWant) {
       if (newWant.parameters) {
         if (newWant.parameters.page) {
-          router.push({ url: newWant.parameters.page as string});
+          router.pushUrl({ url: newWant.parameters.page as string});
           GlobalContext.getContext().setObject("newWant", undefined)
         }
       }
@@ -97,7 +98,7 @@ struct First {
   build() {
     Column() {
       Row() {
-        Text($r('app.string.singleton_first_title'))
+        Text('singleton_first_title')
           .fontSize(24)
           .fontWeight(FontWeight.Bold)
           .textAlign(TextAlign.Start)
@@ -107,26 +108,26 @@ struct First {
       .height(56)
       .justifyContent(FlexAlign.Start)
 
-      Image($r('app.media.pic_empty'))
+      Image('pic_empty')
         .width(120)
         .height(120)
         .margin({ top: 224 })
 
-      Text($r('app.string.no_content'))
+      Text('no_content')
         .fontSize(14)
         .margin({ top: 8, bottom: 317, right: 152, left: 152 })
-        .fontColor($r('app.color.text_color'))
+        .fontColor('text_color')
         .opacity(0.4)
     }
     .width('100%')
     .height('100%')
-    .backgroundColor($r('app.color.backGrounding'))
+    .backgroundColor('backGrounding')
   }
 }
 ```
 
 
-当PageAbility的启动模式设置为多实例模式或为首次启动单例模式的PageAbility时（具体设置方法和典型场景示例见[PageAbility的启动模式](pageability-launch-type.md)），在调用方PageAbility中，通过want中的parameters参数传递要启动的指定页面的pages信息，调用startAbility()方法启动PageAbility。被调用方可以在onCreate中使用featureAbility的getWant方法获取want，再通过调用router.push实现启动指定页面。
+当PageAbility的启动模式设置为多实例模式或为首次启动单例模式的PageAbility时（具体设置方法和典型场景示例见[PageAbility的启动模式](pageability-launch-type.md)），在调用方PageAbility中，通过want中的parameters参数传递要启动的指定页面的pages信息，调用startAbility()方法启动PageAbility。被调用方可以在onCreate中使用featureAbility的getWant方法获取want，再通过调用router.pushUrl实现启动指定页面。
 
 
 调用方的页面中实现按钮点击触发startAbility方法启动目标端PageAbility，startAbility方法的入参want中携带指定页面信息，示例代码如下：
@@ -138,41 +139,22 @@ import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs';
 import promptAction from '@ohos.promptAction';
 import worker from '@ohos.worker';
-import Logger from '../../utils/Logger';
+import hilog from '@ohos.hilog';
 
 const TAG: string = 'PagePageAbilityFirst';
+const domain: number = 0xFF00;
 
 @Entry
 @Component
 struct PagePageAbilityFirst {
   build() {
     Column() {
-      Row() {
-        Flex({ justifyContent: FlexAlign.Start, alignContent: FlexAlign.Center }) {
-          Text($r('app.string.pageAbility_first_button'))
-            .fontSize(24)
-            .fontWeight(FontWeight.Bold)
-            .textAlign(TextAlign.Start)
-            .margin({ top: 12, bottom: 11, right: 24, left: 24 })
-        }
-      }
-      .width('100%')
-      .height(56)
-      .justifyContent(FlexAlign.Start)
-      .backgroundColor($r('app.color.backGrounding'))
-
+      //...
       List({ initialIndex: 0 }) {
-        ...
+        //...
         ListItem() {
           Flex({ justifyContent: FlexAlign.SpaceBetween, alignContent: FlexAlign.Center }) {
-            Text($r('app.string.start_standard_first_button'))
-              .textAlign(TextAlign.Start)
-              .fontWeight(FontWeight.Medium)
-              .margin({ top: 17, bottom: 17, left: 12, right: 92 })
-              .fontSize(16)
-              .width(232)
-              .height(22)
-              .fontColor($r('app.color.text_color'))
+          //...
           }
           .onClick(() => {
             let want: Want = {
@@ -181,27 +163,16 @@ struct PagePageAbilityFirst {
               parameters: { page: 'pages/first' }
             };
             featureAbility.startAbility({ want: want }).then((data) => {
-              Logger.info(TAG, `startAbility finish:${data}`);
+              hilog.info(domain, TAG, `startAbility finish:${data}`);
             }).catch((err: BusinessError) => {
-              Logger.info(TAG, `startAbility failed errcode:${err.code}`);
+              hilog.info(domain, TAG, `startAbility failed errcode:${err.code}`);
             })
           })
         }
-        .height(56)
-        .backgroundColor($r('app.color.start_window_background'))
-        .borderRadius(24)
-        .margin({ top: 12, right: 12, left: 12 })
-
+        //...
         ListItem() {
           Flex({ justifyContent: FlexAlign.SpaceBetween, alignContent: FlexAlign.Center }) {
-            Text($r('app.string.start_standard_second_button'))
-              .textAlign(TextAlign.Start)
-              .fontWeight(FontWeight.Medium)
-              .margin({ top: 17, bottom: 17, left: 12, right: 92 })
-              .fontSize(16)
-              .width(232)
-              .height(22)
-              .fontColor($r('app.color.text_color'))
+          //...
           }
           .onClick(() => {
             let want: Want = {
@@ -210,24 +181,17 @@ struct PagePageAbilityFirst {
               parameters: { page: 'pages/second' }
             };
             featureAbility.startAbility({ want: want }).then((data) => {
-              Logger.info(TAG, `startAbility finish:${data}`);
+              hilog.info(domain, TAG, `startAbility finish:${data}`);
             }).catch((err: BusinessError) => {
-              Logger.info(TAG, `startAbility failed errcode:${err.code}`);
+              hilog.info(domain, TAG, `startAbility failed errcode:${err.code}`);
             })
           })
         }
-        .height(56)
-        .backgroundColor($r('app.color.start_window_background'))
-        .borderRadius(24)
-        .margin({ top: 12, right: 12, left: 12 })
-        ...
+        //...
       }
-      .height('100%')
-      .backgroundColor($r('app.color.backGrounding'))
+      //...
     }
-    .width('100%')
-    .margin({ top: 8 })
-    .backgroundColor($r('app.color.backGrounding'))
+    //...
   }
 }
 ```
@@ -244,7 +208,7 @@ class PageAbilityStandard {
     featureAbility.getWant().then((want) => {
       if (want.parameters) {
         if (want.parameters.page) {
-          router.push({ url: want.parameters.page as string });
+          router.pushUrl({ url: want.parameters.page as string });
         }
       }
     })

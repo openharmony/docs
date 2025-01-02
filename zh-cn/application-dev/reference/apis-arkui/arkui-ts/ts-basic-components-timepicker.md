@@ -18,22 +18,30 @@ TimePicker(options?: TimePickerOptions)
 
 默认以24小时的时间区间创建滑动选择器。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
-| 参数名  | 类型                                            | 必填 | 描述                     |
+| 参数名  | 类型                                            | 必填 | 说明                     |
 | ------- | ----------------------------------------------- | ---- | ------------------------ |
 | options | [TimePickerOptions](#timepickeroptions对象说明) | 否   | 配置时间选择组件的参数。 |
 
 ## TimePickerOptions对象说明
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称                 | 类型                                            | 必填 | 说明                                                         |
 | -------------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| selected             | Date                                            | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| format<sup>11+</sup> | [TimePickerFormat](#timepickerformat11枚举说明) | 否   | 指定需要显示的TimePicker的格式。<br/>默认值：TimePickerFormat.HOUR_MINUTE |
+| selected             | Date                                            | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| format<sup>11+</sup> | [TimePickerFormat](#timepickerformat11枚举说明) | 否   | 指定需要显示的TimePicker的格式。<br/>默认值：TimePickerFormat.HOUR_MINUTE <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## TimePickerFormat<sup>11+</sup>枚举说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称               | 说明                     |
 | ------------------ | ------------------------ |
@@ -46,87 +54,111 @@ TimePicker(options?: TimePickerOptions)
 
 ### useMilitaryTime
 
-useMilitaryTime(value: boolean)
+useMilitaryTime(value: Optional\<boolean>)
 
 设置展示时间是否为24小时制。当展示时间为12小时制时，上下午与小时无联动关系。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | 是   | 展示时间是否为24小时制。<br/>默认值：false |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 展示时间是否为24小时制。<br/>默认值：false |
 
 ### disappearTextStyle<sup>10+</sup>
 
-disappearTextStyle(value: PickerTextStyle)
+disappearTextStyle(value: Optional\<PickerTextStyle>)
 
 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ### textStyle<sup>10+</sup>
 
-textStyle(value: PickerTextStyle)
+textStyle(value: Optional\<PickerTextStyle>)
 
 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ### selectedTextStyle<sup>10+</sup>
 
-selectedTextStyle(value: PickerTextStyle)
+selectedTextStyle(value: Optional\<PickerTextStyle>)
 
 设置选中项的文本颜色、字号、字体粗细。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
 
 ### loop<sup>11+</sup>
 
-loop(value: boolean)
+loop(value: Optional\<boolean>)
 
 设置是否启用循环模式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否启用循环模式。<br/>默认值：true，true表示启用循环模式，false表示不启用循环模式。 |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否启用循环模式。<br/>默认值：true，true表示启用循环模式，false表示不启用循环模式。 |
 
 ### dateTimeOptions<sup>12+</sup>
 
-dateTimeOptions(value: DateTimeOptions)
+dateTimeOptions(value: Optional\<DateTimeOptions>)
 
 设置时分秒是否显示前置0。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions) | 是   | 设置时分秒是否显示前置0，目前只支持设置hour、minute和second参数。<br/>默认值：<br/>hour: 24小时制默认为"2-digit"，即有前置0；12小时制默认为"numeric"，即没有前置0。<br/>minute: 默认为"2-digit"，即有前置0。<br/>second: 默认为"2-digit"，即有前置0。<br/> |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions)> | 是   | 设置时分秒是否显示前置0，目前只支持设置hour、minute和second参数。<br/>默认值：<br/>hour: 24小时制默认为"2-digit"，即有前置0；12小时制默认为"numeric"，即没有前置0。<br/>minute: 默认为"2-digit"，即有前置0。<br/>second: 默认为"2-digit"，即有前置0。<br/> |
+
+### enableHapticFeedback<sup>12+</sup>
+
+enableHapticFeedback(enable: Optional\<boolean>)
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                                          | 必填  | 说明                                                                                  |
+| ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
+| enable  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否支持触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。<br/>设置为true后是否生效，还取决于系统的硬件是否支持。 |
 
 ## 事件
 
@@ -134,9 +166,29 @@ dateTimeOptions(value: DateTimeOptions)
 
 ### onChange
 
-onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void)
+onChange(callback: Optional\<OnTimePickerChangeCallback>)
 
 选择时间时触发该事件。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                   |
+| -------- | ------------------------------------------------------------ | ---- | ---------------------- |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnTimePickerChangeCallback](#ontimepickerchangecallback16)> | 是   | 选择时间时触发该回调。 |
+
+## OnTimePickerChangeCallback<sup>16+</sup>
+
+type OnTimePickerChangeCallback = (value: TimePickerResult) => void
+
+选择时间时触发该事件。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -150,14 +202,51 @@ onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void)
 
 返回值为24小时制时间。
 
-| 名称                 | 参数类型 | 描述                                |
-| -------------------- | -------- | ----------------------------------- |
-| hour                 | number   | 选中时间的时。<br/>取值范围：[0-23] |
-| minute               | number   | 选中时间的分。<br/>取值范围：[0-59] |
-| second<sup>11+</sup> | number   | 选中时间的秒。<br/>取值范围：[0-59] |
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                 | 类型   | 只读 | 可选 | 说明                                |
+| -------------------- | ------ | ---- | ---- | ----------------------------------- |
+| hour                 | number | 否   | 否   | 选中时间的时。<br/>取值范围：[0-23] |
+| minute               | number | 否   | 否   | 选中时间的分。<br/>取值范围：[0-59] |
+| second<sup>11+</sup> | number | 否   | 否   | 选中时间的秒。<br/>取值范围：[0-59] |
 
 ## 示例
+
+### 示例1（设置文本样式）
+
+该示例通过配置disappearTextStyle、textStyle、selectedTextStyle实现文本选择器中的文本样式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerExample {
+  private selectedTime: Date = new Date('2022-07-22T08:00:00')
+
+  build() {
+    TimePicker({
+      selected: this.selectedTime
+    })
+      .disappearTextStyle({ color: '#004aaf', font: { size: 24, weight: FontWeight.Lighter } })
+      .textStyle({ color: Color.Black, font: { size: 26, weight: FontWeight.Normal } })
+      .selectedTextStyle({ color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } })
+      .onChange((value: TimePickerResult) => {
+        if (value.hour >= 0) {
+          this.selectedTime.setHours(value.hour, value.minute)
+          console.info('select current date is: ' + JSON.stringify(value))
+        }
+      })
+  }
+}
+```
+
+![timePicker](figures/TimePickerDemo1.png)
+
+### 示例2（切换小时制）
+
+该示例通过配置useMilitaryTime实现12小时制、24小时制的切换。
 
 ```ts
 // xxx.ets
@@ -174,22 +263,92 @@ struct TimePickerExample {
         .onClick(() => {
           this.isMilitaryTime = !this.isMilitaryTime
         })
+
       TimePicker({
-        selected: this.selectedTime,
+        selected: this.selectedTime
       })
         .useMilitaryTime(this.isMilitaryTime)
         .onChange((value: TimePickerResult) => {
-          if(value.hour >= 0) {
+          if (value.hour >= 0) {
             this.selectedTime.setHours(value.hour, value.minute)
             console.info('select current date is: ' + JSON.stringify(value))
           }
         })
-        .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
-        .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
-        .selectedTextStyle({color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}})
     }.width('100%')
   }
 }
 ```
 
-![timePicker](figures/timePicker.gif)
+![timePicker](figures/TimePickerDemo2.gif)
+
+### 示例3（设置时间格式）
+
+该示例使用format、dateTimeOptions设置TimePicker时间格式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerExample {
+  private selectedTime: Date = new Date('2022-07-22T08:00:00')
+
+  build() {
+    Column() {
+      TimePicker({
+        selected: this.selectedTime,
+        format: TimePickerFormat.HOUR_MINUTE_SECOND
+      })
+        .dateTimeOptions({ hour: "numeric", minute: "2-digit", second: "2-digit" })
+        .onChange((value: TimePickerResult) => {
+          if (value.hour >= 0) {
+            this.selectedTime.setHours(value.hour, value.minute)
+            console.info('select current date is: ' + JSON.stringify(value))
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+
+![timePicker](figures/TimePickerDemo3.gif)
+
+### 示例4（设置循环滚动）
+
+该示例使用loop设置TimePicker是否循环滚动。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerExample {
+  @State isLoop: boolean = true
+  private selectedTime: Date = new Date('2022-07-22T12:00:00')
+
+  build() {
+    Column() {
+      TimePicker({
+        selected: this.selectedTime
+      })
+        .loop(this.isLoop)
+        .onChange((value: TimePickerResult) => {
+          if (value.hour >= 0) {
+            this.selectedTime.setHours(value.hour, value.minute)
+            console.info('select current date is: ' + JSON.stringify(value))
+          }
+        })
+
+      Row() {
+        Text('循环滚动').fontSize(20)
+
+        Toggle({ type: ToggleType.Switch, isOn: true })
+          .onChange((isOn: boolean) => {
+            this.isLoop = isOn
+          })
+      }.position({ x: '60%', y: '40%' })
+
+    }.width('100%')
+  }
+}
+```
+
+![timePicker](figures/TimePickerDemo4.gif)

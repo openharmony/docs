@@ -5,7 +5,7 @@
 
 **Solution**
 
-You can obtain the system version of a device through the **osFullName** attribute of the [deviceInfo](../reference/apis/js-apis-device-info.md) object.
+You can obtain the system version of a device through the **osFullName** attribute of the [deviceInfo](../reference/apis-basic-services-kit/js-apis-device-info.md) object.
 
 **Sample Code**
 
@@ -21,7 +21,7 @@ let v = deviceInfo.osFullName
 
 - Method 1: Run the **hdc shell bm get --udid** command.
 
-- Method 2: Obtain the value from the code. For details, see [udid](../reference/apis/js-apis-device-info.md).
+- Method 2: Obtain the UDID from the code. For details, see [udid](../reference/apis-basic-services-kit/js-apis-device-info.md).
 
 
 ##  How do I obtain device information? (API 9)
@@ -30,7 +30,7 @@ You can call **deviceInfo** to obtain device information, such as the device mod
 
 **Reference**
 
-[Device Information](../reference/apis/js-apis-device-info.md)
+[Device Information](../reference/apis-basic-services-kit/js-apis-device-info.md)
 
 
 ## How do I prevent application development from being interrupted by screen saving? (API 9)

@@ -28,7 +28,7 @@ setValue(value: number): void
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| value  | number | 是   | 亮度的值。范围：0~255。 |
+| value  | number | 是   | 亮度的值。范围：0~255；该参数必须为数字类型。 |
 
 **错误码：**
 
@@ -36,7 +36,9 @@ setValue(value: number): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4700101 | If connecting to the service failed. |
+| 4700101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -62,8 +64,8 @@ setValue(value: number, continuous: boolean): void
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| value  | number | 是   | 亮度的值。范围：0~255。 |
-| continuous  | boolean | 是   | 亮度调节是否连续 |
+| value  | number | 是   | 亮度的值。范围：0~255；该参数必须为数字类型。 |
+| continuous  | boolean | 是   | 亮度调节是否连续；该参数必须为布尔类型。 |
 
 **错误码：**
 
@@ -71,7 +73,9 @@ setValue(value: number, continuous: boolean): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4700101 | If connecting to the service failed. |
+| 4700101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 

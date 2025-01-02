@@ -1,20 +1,20 @@
 # Component Animation
 
 
-In addition to universal attribute animation and transition animation APIs, ArkUI provides default animation effects for certain components, for example, the swipe effect for the [\<List>](../reference/arkui-ts/ts-container-list.md) component and the click effect of the [\<Button>](../reference/arkui-ts/ts-basic-components-button.md#button) component. Based on these default animation effects, you can apply custom animations to the child components through the attribute animation and transition animation APIs.
+In addition to universal property animation and transition animation APIs, ArkUI provides default animation effects for certain components, for example, the swipe effect for the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) component and the click effect of the [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md) component. Based on these default animation effects, you can apply custom animations to the child components through the property animation and transition animation APIs.
 
 
 ## Using Default Component Animation
 
 The default animation of a component exhibits the following features:
 
-- Indicate the current state of the component. For example, after the user clicks a **\<Button>** component, the component turns gray, indicating that it is selected.
+- Indicate the current state of the component. For example, after the user clicks a **Button** component, the component turns gray, indicating that it is selected.
 
 - Make UI interactions more intuitive and pleasurable.
 
 - Reduce development workload, as the APIs are readily available.
 
-For more effects, see [Component Overview](../reference/arkui-ts/ts-components-summary.md).
+For more effects, see [Component Overview](../reference/apis-arkui/arkui-ts/ts-container-flex.md).
 
 Below is the sample code and effect:
 
@@ -43,23 +43,20 @@ struct ComponentDemo {
 
 ## Customizing Component Animation
 
-Some components allow for animation customization for their child components through the [attribute animation](arkts-attribute-animation-overview.md) and [transition animation](arkts-transition-overview.md) APIs. For example, you can customize the swipe animation for child components of [\<Scroll>](../reference/arkui-ts/ts-container-scroll.md).
+Some components allow for animation customization for their child components through the [property animation](arkts-attribute-animation-overview.md) and [transition animation](arkts-transition-overview.md) APIs. For example, you can customize the swipe animation for child components of [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md).
 
-- For a scroll or click gesture, you can implement various effects by changing affine attributes of the child component.
+- For a scroll or click gesture, you can implement various effects by changing affine properties of the child component.
 
-- To customize the animation for a scroll , you can add a listener to listen for scroll distance in the **onScroll** callback and calculate the affine attribute of each component. You can also define gestures, monitor positions through the gestures, and manually call **ScrollTo** to change the scrolled-to position.
+- To customize the animation for a scroll , you can add a listener to listen for scroll distance in the **onScroll** callback and calculate the affine property of each component. You can also define gestures, monitor positions through the gestures, and manually call **ScrollTo** to change the scrolled-to position.
 
 - Fine-tune the final scrolled-to position in the **onScrollStop** callback or gesture end callback.
 
-The following is an example of customizing the swipe animation for the **\<Scroll>** component:
+The following is an example of customizing the swipe animation for the **Scroll** component:
 
 
 ```ts
-import curves from '@ohos.curves';
-import window from '@ohos.window';
-import display from '@ohos.display';
-import mediaquery from '@ohos.mediaquery';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { curves, window, display, mediaquery } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class GlobalContext extends AppStorage{
   static mainWin: window.Window|undefined = undefined;
@@ -258,7 +255,7 @@ export struct TaskSwitchMainPage {
               .borderWidth(1)
               .borderColor(0xAFEEEE)
               .borderRadius(15)
-                // Calculate the affine attributes of child components.
+                // Calculate the affine properties of child components.
               .scale((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ?
                 {
                   x: 1.1 - Math.abs(0.5 - this.getProgress(index)),
@@ -303,7 +300,7 @@ export struct TaskSwitchMainPage {
                 if (this.cardOffset < cardOffsetMax) {
                   this.cardOffset = cardOffsetMax;
                 }
-                // When panning right to a position beyond the rightmost position
+                // When panning right to a position beyond the leftmost position
                 if (this.cardOffset > this.displayWidth / 4) {
                   this.cardOffset = this.displayWidth / 4;
                 }
@@ -349,3 +346,4 @@ export struct TaskSwitchMainPage {
 ```
 
 ![en-us_image_0000001599808406](figures/en-us_image_0000001599808406.gif)
+<!--RP1--><!--RP1End-->

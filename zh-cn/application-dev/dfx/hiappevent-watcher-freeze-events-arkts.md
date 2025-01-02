@@ -4,6 +4,14 @@
 
 API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[应用事件打点API文档](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)。
 
+**事件自定义参数设置接口功能介绍：**
+
+| 接口名                                              | 描述                                         |
+| --------------------------------------------------- | -------------------------------------------- |
+| setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: string): Promise&lt;void&gt; | 事件自定义参数设置方法。 |
+
+**订阅接口功能介绍：**
+
 | 接口名                                              | 描述                                         |
 | --------------------------------------------------- | -------------------------------------------- |
 | addWatcher(watcher: Watcher): AppEventPackageHolder | 添加应用事件观察者，以添加对应用事件的订阅。 |
@@ -13,12 +21,34 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 以实现对用户点击按钮触发卡死场景生成的卡死事件订阅为例，说明开发步骤。
 
-1. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，在onCreate函数中添加系统事件的订阅，完整示例代码如下：
+1. 新建一个ArkTS应用工程，编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，导入依赖模块：
+
+   ```ts
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+   ```
+
+2. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，在onCreate函数中设置事件的自定义参数，示例代码如下：
+
+   ```ts
+    // 开发者完成参数键值对赋值
+    let params: Record<string, hiAppEvent.ParamType> = {
+      "test_data": 100,
+    };
+    // 开发者可以设置卡死事件的自定义参数
+    hiAppEvent.setEventParam(params, hiAppEvent.domain.OS, hiAppEvent.event.APP_FREEZE).then(() => {
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to set svent param`);
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
+    });
+   ```
+
+3. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，在onCreate函数中添加系统事件的订阅，示例代码如下：
 
    ```ts
     hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
-      name: "watcher3",
+      name: "watcher",
       // 开发者可以订阅感兴趣的系统事件，此处是订阅了卡死事件
       appEventFilters: [
         {
@@ -68,13 +98,15 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
             // 开发者可以获取到卡死事件发生时的故障日志文件
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.log_over_limit=${eventInfo.params['log_over_limit']}`);
+            // 开发者可以获取到卡死事件的自定义数据test_data
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.test_data=${eventInfo.params['test_data']}`);
           }
         }
       }
     });
    ```
 
-2. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造卡死场景，以触发卡死事件，完整示例代码如下：
+4. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造卡死场景，以触发卡死事件，示例代码如下：
 
    ```ts
     Button("appFreeze").onClick(()=>{
@@ -85,9 +117,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     })
    ```
 
-3. 点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“appFreeze”，触发一次卡死事件。
+5. 点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“appFreeze”，触发一次卡死事件。
 
-4. 应用工程卡死恢复运行后可以在Log窗口看到对系统事件数据的处理日志：
+6. 应用卡死退出后，重新进入应用可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
    HiAppEvent onReceive: domain=OS
@@ -102,7 +134,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    HiAppEvent eventInfo.params.process_name=com.example.myapplication
    HiAppEvent eventInfo.params.pid=3197
    HiAppEvent eventInfo.params.uid=20010043
-   HiAppEvent eventInfo.params.uuid=...
+   HiAppEvent eventInfo.params.uuid=27fac7098da46efe1cae9904946ec06c5acc91689c365efeefb7a23a0c37df77
    HiAppEvent eventInfo.params.exception={"message":"App main thread is not response!","name":"THREAD_BLOCK_6S"}
    HiAppEvent eventInfo.params.hilog.size=77
    HiAppEvent eventInfo.params.event_handler.size=6
@@ -113,4 +145,5 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    HiAppEvent eventInfo.params.memory={"pss":0,"rss":0,"sys_avail_mem":1361464,"sys_free_mem":796232,"sys_total_mem":1992340,"vss":0}
    HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_FREEZE_1711440899240_3197.log"]
    HiAppEvent eventInfo.params.log_over_limit=false
+   HiAppEvent eventInfo.params.test_data=100
    ```

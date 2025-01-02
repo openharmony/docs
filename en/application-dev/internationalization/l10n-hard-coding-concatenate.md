@@ -6,7 +6,7 @@ A key part of localization is the translation of resource files. To improve the 
 
 Different from obtaining data from external systems or generating data during operation, hard coding means to directly embedding data, parameters, and constants into programs to implement specific functions. Hard coding content displayed on the UI, including text in images, audios, and subtitles, is prohibited as this can increase the difficulty and workload in localization. In addition, a complete piece of text on the UI should not be concatenated by multiple segments. Concatenation makes it difficult to obtain the complete sentence, resulting in translation errors or semantic errors. For example, in the following figure, when **Rain tomorrow** and **Bring an umbrella** are directly concatenated, a capitalization error will arise.
 
-![zh-cn_image_0000001784263061](figures/zh-cn_image_0000001784263061.png)
+![image_0000001784263061](figures/image_0000001784263061.png)
 
 ## Constraints
 

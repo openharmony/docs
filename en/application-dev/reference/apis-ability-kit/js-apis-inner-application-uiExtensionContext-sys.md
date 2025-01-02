@@ -11,7 +11,7 @@
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## UIExtensionContext.startAbilityForResultAsCaller
@@ -28,10 +28,9 @@ When this API is used to start an ability, the caller information carried in **w
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -54,19 +53,21 @@ Observe the following when using this API:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist.                   |
-| 16000004 | Can not start invisible component.                      |
+| 16000004 | Failed to start the invisible ability.                      |
 | 16000050 | Internal error.                                         |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
-import base from '@ohos.base'
+import { UIExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class UIExtension extends UIExtensionAbility {
   onForeground() {
@@ -74,11 +75,11 @@ export default class UIExtension extends UIExtensionAbility {
       bundleName: 'com.example.startabilityforresultascaller',
       abilityName: 'EntryAbility',
       moduleName: 'entry'
-    }).then((data)=>{
+    }).then((data) => {
       console.log('=======>startAbilityForResultAsCaller data Promise ======>' + JSON.stringify(data));
-    }).catch((error: base.BusinessError)=>{
+    }).catch((error: BusinessError) => {
       console.log('=======>startAbilityForResultAsCaller error.code Promise ======>' + error.code);
-    })
+    });
   }
 }
 ```

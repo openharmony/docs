@@ -9,7 +9,7 @@ The HiLog subsystem allows your applications or services to output logs based on
 ## Modules to Import
 
 ```js
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 ```
 
 ## hilog.isLoggable
@@ -18,6 +18,8 @@ isLoggable(domain: number, tag: string, level: LogLevel) : boolean
 
 Checks whether logs are printable based on the specified service domain, log tag, and log level.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.HiviewDFX.HiLog
 
 **Parameters**
@@ -25,7 +27,7 @@ Checks whether logs are printable based on the specified service domain, log tag
 | Name| Type                 | Mandatory| Description                                                        |
 | ------ | --------------------- | ---- | ------------------------------------------------------------ |
 | domain | number                | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**.<br>You can define the value as required.|
-| tag    | string                | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
+| tag    | string                | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method. A tag can contain a maximum of 31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.|
 | level  | [LogLevel](#loglevel) | Yes  | Log level.                                                  |
 
 **Return value**
@@ -43,6 +45,8 @@ hilog.isLoggable(0x0001, "testTag", hilog.LogLevel.INFO);
 ## LogLevel
 
 Log level.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.HiviewDFX.HiLog
 
@@ -62,6 +66,8 @@ Prints DEBUG logs.
 
 DEBUG logs are not recorded in official versions by default. They are available in debug versions or in official versions with the debug function enabled.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.HiviewDFX.HiLog
 
 **Parameters**
@@ -69,9 +75,9 @@ DEBUG logs are not recorded in official versions by default. They are available 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**.<br>You can define the value as required.|
-| tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
+| tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method. A tag can contain a maximum of 31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.|
 | format | string | Yes  | Format string used to output logs in a specified format. It can contain several elements, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **\<private>**.|
-| args   | any[]  | Yes  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
+| args   | any[]  | No  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
 
 **Example**
 
@@ -84,7 +90,7 @@ hilog.debug(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 If `"hello"` is filled in `%{public}s` and `3` in `%{private}d`, the output log is as follows:
 
 ```
-08-05 12:21:47.579  2695-2703/com.example.myapplication D 00001/testTag: hello World <private>
+08-05 12:21:47.579  2695 2703 D A00001/testTag: hello World <private>
 ```
 
 ## hilog.info
@@ -93,6 +99,8 @@ info(domain: number, tag: string, format: string, ...args: any[]) : void
 
 Prints INFO logs.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.HiviewDFX.HiLog
 
 **Parameters**
@@ -100,9 +108,9 @@ Prints INFO logs.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**.<br>You can define the value as required. |
-| tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
+| tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method. A tag can contain a maximum of 31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.|
 | format | string | Yes  | Format string used to output logs in a specified format. It can contain several elements, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **\<private>**.|
-| args   | any[]  | Yes  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
+| args   | any[]  | No  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
 
 **Example**
 
@@ -115,7 +123,7 @@ hilog.info(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 If `"hello"` is filled in `%{public}s` and `3` in `%{private}d`, the output log is as follows:
 
 ```
-08-05 12:21:47.579  2695-2703/com.example.myapplication I 00001/testTag: hello World <private>
+08-05 12:21:47.579  2695 2703 I A00001/testTag: hello World <private>
 ```
 
 ## hilog.warn
@@ -124,6 +132,8 @@ warn(domain: number, tag: string, format: string, ...args: any[]) : void
 
 Prints WARN logs.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.HiviewDFX.HiLog
 
 **Parameters**
@@ -131,9 +141,9 @@ Prints WARN logs.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**.<br>You can define the value as required. |
-| tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
+| tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method. A tag can contain a maximum of 31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.|
 | format | string | Yes  | Format string used to output logs in a specified format. It can contain several elements, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **\<private>**.|
-| args   | any[]  | Yes  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
+| args   | any[]  | No  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
 
 **Example**
 
@@ -146,7 +156,7 @@ hilog.warn(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 If `"hello"` is filled in `%{public}s` and `3` in `%{private}d`, the output log is as follows:
 
 ```
-08-05 12:21:47.579  2695-2703/com.example.myapplication W 00001/testTag: hello World <private>
+08-05 12:21:47.579  2695 2703 W A00001/testTag: hello World <private>
 ```
 
 ## hilog.error
@@ -155,6 +165,8 @@ error(domain: number, tag: string, format: string, ...args: any[]) : void
 
 Prints ERROR logs.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.HiviewDFX.HiLog
 
 **Parameters**
@@ -162,9 +174,9 @@ Prints ERROR logs.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**.<br>You can define the value as required. |
-| tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
+| tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method. A tag can contain a maximum of 31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.|
 | format | string | Yes  | Format string used to output logs in a specified format. It can contain several elements, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **\<private>**.|
-| args   | any[]  | Yes  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
+| args   | any[]  | No  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
 
 **Example**
 
@@ -177,7 +189,7 @@ hilog.error(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 If `"hello"` is filled in `%{public}s` and `3` in `%{private}d`, the output log is as follows:
 
 ```
-08-05 12:21:47.579  2695-2703/com.example.myapplication E 00001/testTag: hello World <private>
+08-05 12:21:47.579  2695 2703 E A00001/testTag: hello World <private>
 ```
 
 ## hilog.fatal
@@ -186,6 +198,8 @@ fatal(domain: number, tag: string, format: string, ...args: any[]) : void
 
 Prints FATAL logs.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.HiviewDFX.HiLog
 
 **Parameters**
@@ -193,9 +207,9 @@ Prints FATAL logs.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**.<br>You can define the value as required. |
-| tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
+| tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method. A tag can contain a maximum of 31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.|
 | format | string | Yes  | Format string used to output logs in a specified format. It can contain several elements, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **\<private>**.|
-| args   | any[]  | Yes  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
+| args   | any[]  | No  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
 
 **Example**
 
@@ -208,7 +222,7 @@ hilog.fatal(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 If `"hello"` is filled in `%{public}s` and `3` in `%{private}d`, the output log is as follows:
 
 ```
-08-05 12:21:47.579  2695-2703/com.example.myapplication F 00001/testTag: hello World <private>
+08-05 12:21:47.579  2695 2703 F A00001/testTag: hello World <private>
 ```
 
 ## Parameter Format

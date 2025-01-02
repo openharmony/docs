@@ -13,7 +13,7 @@ dialogSession模块用于支持系统应用弹框功能。
 ## 导入模块
 
 ```ts
-import dialogSession from '@ohos.app.ability.dialogSession';
+import { dialogSession } from '@kit.AbilityKit';
 ```
 
 ## DialogAbilityInfo
@@ -31,6 +31,9 @@ import dialogSession from '@ohos.app.ability.dialogSession';
 | abilityLabelId | number | 是 | 是 | 表示Ability标签ID。 |
 | bundleIconId | number | 是 | 是 | 表示Bundle图标ID。 |
 | bundleLabelId | number | 是 | 是 | 表示Bundle标签ID。 |
+| visible<sup>12+</sup> | boolean | 是 | 是 | 表示Ability是否可见。 |
+| appIndex<sup>12+</sup> | number | 是 | 是 | 表示应用的分身索引。 |
+| multiAppMode<sup>12+</sup> | [MultiAppMode](./js-apis-bundleManager-applicationInfo.md#multiappmode12) | 是 | 是 | 表示应用的多开模式。|
 
 ## DialogSessionInfo
 
@@ -68,19 +71,20 @@ getDialogSessionInfo(dialogSessionId: string): [DialogSessionInfo](#dialogsessio
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006  | Cross-user operations are not allowed. |
 | 16000050  | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 **示例：**
 
 ```ts
-import dialogSession from '@ohos.app.ability.dialogSession';
-import Want from '@ohos.app.ability.Want';
+import { dialogSession, Want } from '@kit.AbilityKit';
 
 // want由系统内部指定，dialogSessionId为内置参数
 let dialogSessionId: string = want?.parameters?.dialogSessionId;
@@ -110,19 +114,21 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean, 
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006  | Cross-user operations are not allowed. |
 | 16000050  | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 **示例：**
 
 ```ts
-import dialogSession from '@ohos.app.ability.dialogSession';
-import Want from '@ohos.app.ability.Want';
+import { dialogSession, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // want由系统内部指定，dialogSessionId为内置参数
 let dialogSessionId: string = want?.parameters?.dialogSessionId;
@@ -130,7 +136,7 @@ let dialogSessionId: string = want?.parameters?.dialogSessionId;
 // 查询DialogSessionInfo
 let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
 
-let isAllow: Boolean = true;
+let isAllow: boolean = true;
 
 // isAllow为true时，用户请求结果targetWant为dialogSessionInfo.targetAbilityInfos之一
 let targetWant: Want = {
@@ -140,14 +146,14 @@ let targetWant: Want = {
 
 try {
   dialogSession.sendDialogResult(dialogSessionId, targetWant, isAllow, (err, data) => {
-    if (data) {
-      console.log(`sendDialogResult success, data: ${data}`);
-    } else {
+    if (err) {
       console.error(`sendDialogResult error, errorCode: ${err.code}`);
+    } else {
+      console.log(`sendDialogResult success`);
     }
   });
 } catch (err) {
-  console.error(`sendDialogResult error, errorCode: ${err.code}`);
+  console.error(`sendDialogResult error, errorCode: ${(err as BusinessError).code}`);
 }
 ```
 
@@ -177,19 +183,21 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean):
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006  | Cross-user operations are not allowed. |
 | 16000050  | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 **示例：**
 
 ```ts
-import dialogSession from '@ohos.app.ability.dialogSession';
-import Want from '@ohos.app.ability.Want';
+import { dialogSession, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // want由系统内部指定，dialogSessionId为内置参数
 let dialogSessionId: string = want?.parameters?.dialogSessionId;
@@ -197,7 +205,7 @@ let dialogSessionId: string = want?.parameters?.dialogSessionId;
 // 查询DialogSessionInfo
 let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
 
-let isAllow: Boolean = true;
+let isAllow: boolean = true;
 
 // isAllow为true时，用户请求结果targetWant为dialogSessionInfo.targetAbilityInfos之一
 let targetWant: Want = {
@@ -213,6 +221,6 @@ try {
       console.error(`startChildProcess error, errorCode: ${err.code}`);
     })
 } catch (err) {
-  console.error(`sendDialogResult error, errorCode: ${err.code}`);
+  console.error(`sendDialogResult error, errorCode: ${(err as BusinessError).code}`);
 }
 ```

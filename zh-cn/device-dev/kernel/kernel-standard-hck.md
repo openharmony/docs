@@ -107,7 +107,7 @@ int foo(...)
 
 ### 示例模块参考
 
-示例代码位置：kernel/linux/linux-5.10/samples/hck
+示例代码位置：kernel/linux/linux-5.10(or linux-6.6)/samples/hck
 
 启用示例代码，请打开以下config配置（请勿在正式版本中开启）：
 

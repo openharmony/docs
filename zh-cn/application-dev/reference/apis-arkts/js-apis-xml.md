@@ -1,4 +1,4 @@
-# @ohos.xml (xml解析与生成)
+# @ohos.xml (XML解析与生成)
 
 本模块提供了将XML文本转换为JavaScript对象、以及XML文件生成和解析的一系列接口。
 
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import xml from '@ohos.xml';
+import { xml } from '@kit.ArkTS';
 ```
 
 ## XmlSerializer
@@ -23,36 +23,47 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 XmlSerializer的构造函数。
 
+> **说明：**
+>
+> buffer是一个用户根据需要自定义大小的缓存区域，用于临时存储生成的XML文本。在使用过程中务必确保所设置的缓存区足够大，使其可以容纳生成文本的所有内容。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名   | 类型                              | 必填 | 说明                                             |
 | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-| buffer   | ArrayBuffer \| DataView | 是   | 用于接收写入xml信息的ArrayBuffer或DataView内存。 |
+| buffer   | ArrayBuffer \| DataView | 是   | 用于接收写入XML信息的ArrayBuffer或DataView内存。 |
 | encoding | string                            | 否   | 编码格式 , 默认'utf-8'(目前仅支持'utf-8')。               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
 let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer, "utf-8");
-thatSer.setDeclaration();
-let result = '<?xml version="1.0" encoding="utf-8"?>';
-let view = new Uint8Array(arrayBuffer);
-let view1 = "";
-for (let i = 0; i < result.length; ++i) {
-    view1 = view1 + String.fromCodePoint(view[i]);
-}
-console.log(view1) // <?xml version="1.0" encoding="utf-8"?>
 ```
-
 
 ### setAttributes
 
 setAttributes(name: string, value: string): void
 
 写入元素的属性和属性值。
+
+> **说明：**
+>
+> 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的属性名称以及添加多个同名的属性名称。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -63,30 +74,40 @@ setAttributes(name: string, value: string): void
 | name   | string | 是   | 属性。   |
 | value  | string | 是   | 属性值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-const MY_MAX = 2048;
-let arrayBuffer = new ArrayBuffer(MY_MAX);
+import { util } from '@kit.ArkTS';
+
+let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("note");
-thatSer.setAttributes("importance1", "high1");
+thatSer.setAttributes("importance", "high");
 thatSer.endElement();
-let result = '<note importance1="high1"/>';
-let view = new Uint8Array(arrayBuffer);
-let view1 = "";
-for (let i = 0; i < result.length; ++i) {
-    view1 = view1 + String.fromCodePoint(view[i]);
-}
-console.log(view1) // <note importance1="high1"/>
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <note importance="high"/>
 ```
-
 
 ### addEmptyElement
 
 addEmptyElement(name: string): void
 
 写入一个空元素。
+
+> **说明：**
+>
+> 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的元素名称。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -96,22 +117,26 @@ addEmptyElement(name: string): void
 | ------ | ------ | ---- | ------------------ |
 | name   | string | 是   | 该空元素的元素名。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-const MY_MAX = 2048;
-let arrayBuffer = new ArrayBuffer(MY_MAX);
+import { util } from '@kit.ArkTS';
+
+let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.addEmptyElement("d");
-let result = '<d/>';
-let view = new Uint8Array(arrayBuffer);
-let view1 = "";
-for (let i = 0; i < result.length; ++i) {
-    view1 = view1 + String.fromCodePoint(view[i]);
-}
-console.log(view1) // <d/>
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <d/>
 ```
-
 
 ### setDeclaration
 
@@ -119,35 +144,37 @@ setDeclaration(): void
 
 编写带有编码的文件声明。
 
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
 
 ```ts
-const MY_MAX = 2048;
-let arrayBuffer = new ArrayBuffer(MY_MAX);
+import { util } from '@kit.ArkTS';
+
+let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
-thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
-thatSer.startElement("note");
-thatSer.endElement();
-let result = '<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>';
-let view = new Uint8Array(arrayBuffer);
-let view1 = "";
-for (let i = 0; i < result.length; ++i) {
-    view1 = view1 + String.fromCodePoint(view[i]);
-}
-console.log(view1)
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result);
 // <?xml version="1.0" encoding="utf-8"?>
-// <h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
-
 
 ### startElement
 
 startElement(name: string): void
 
 根据给定名称写入元素开始标记。
+
+> **说明：**
+>
+>- 调用该接口后须调用[endElement](#endelement)写入元素结束标记，以确保节点正确闭合。
+>
+>- 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的元素名称。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -157,23 +184,28 @@ startElement(name: string): void
 | ------ | ------ | ---- | ------------------ |
 | name   | string | 是   | 当前元素的元素名。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-const MY_MAX = 2048;
-let arrayBuffer = new ArrayBuffer(MY_MAX);
+import { util } from '@kit.ArkTS';
+
+let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
-thatSer.setDeclaration();
-thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("note");
+thatSer.setText("Happy");
 thatSer.endElement();
-let result = '<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>';
-let view = new Uint8Array(arrayBuffer);
-let view1 = "";
-for (let i = 0; i < result.length; ++i) {
-    view1 = view1 + String.fromCodePoint(view[i]);
-}
-console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result);
+// <note>Happy</note>
 ```
 
 ### endElement
@@ -182,33 +214,41 @@ endElement(): void
 
 写入元素结束标记。
 
+> **说明：**
+>
+> 调用该接口前必须先调用[startElement](#startelement)接口写入元素开始标记。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
 
 ```ts
-const MY_MAX = 2048;
-let arrayBuffer = new ArrayBuffer(MY_MAX);
-let thatSer = new xml.XmlSerializer(arrayBuffer);
-thatSer.setDeclaration();
-thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
-thatSer.startElement("note");
-thatSer.endElement();
-let result = '<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>';
-let view = new Uint8Array(arrayBuffer);
-let view1 = "";
-for (let i = 0; i < result.length; ++i) {
-    view1 = view1 + String.fromCodePoint(view[i]);
-}
-console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
-```
+import { util } from '@kit.ArkTS';
 
+let arrayBuffer = new ArrayBuffer(2048);
+let thatSer = new xml.XmlSerializer(arrayBuffer);
+thatSer.startElement("note");
+thatSer.setText("Happy");
+thatSer.endElement();
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result);
+// <note>Happy</note>
+```
 
 ### setNamespace
 
 setNamespace(prefix: string, namespace: string): void
 
 写入当前元素标记的命名空间。
+
+> **说明：**
+>
+> 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的前缀以及对同一个元素设置多个命名空间。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -219,23 +259,28 @@ setNamespace(prefix: string, namespace: string): void
 | prefix    | string | 是   | 当前元素及其子元素的前缀。     |
 | namespace | string | 是   | 当前元素及其子元素的命名空间。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-const MY_MAX = 2048;
-let arrayBuffer = new ArrayBuffer(MY_MAX);
+import { util } from '@kit.ArkTS';
+
+let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
-thatSer.setDeclaration();
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("note");
 thatSer.endElement();
-let result = '<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>';
-let view = new Uint8Array(arrayBuffer);
-let view1 = "";
-for (let i = 0; i < result.length; ++i) {
-    view1 = view1 + String.fromCodePoint(view[i]);
-}
-console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result);
+// <h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 ### setComment
@@ -243,6 +288,8 @@ console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n
 setComment(text: string): void
 
 写入注释内容。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -252,28 +299,38 @@ setComment(text: string): void
 | ------ | ------ | ---- | -------------------- |
 | text   | string | 是   | 当前元素的注释内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-const MY_MAX = 2048;
-let arrayBuffer = new ArrayBuffer(MY_MAX);
+import { util } from '@kit.ArkTS';
+
+let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setComment("Hello, World!");
-let result = '<!--Hello, World!-->';
-let view = new Uint8Array(arrayBuffer);
-let view1 = "";
-for (let i = 0; i < result.length; ++i) {
-    view1 = view1 + String.fromCodePoint(view[i]);
-}
-console.log(view1) // <!--Hello, World!-->
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <!--Hello, World!-->
 ```
-
 
 ### setCDATA
 
 setCDATA(text: string): void
 
-写入CDATA数据。
+提供在CDATA标签中添加数据的能力，所生成的CDATA标签结构为："\<!\[CDATA\[" + 所添加的数据 + "\]\]\>"。
+
+> **说明：**
+>
+> 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许在CDATA标签中添加包含"\]\]\>"字符串的数据。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -283,28 +340,34 @@ setCDATA(text: string): void
 | ------ | ------ | ---- | ----------------- |
 | text   | string | 是   | CDATA属性的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-const MY_MAX = 2048;
-let arrayBuffer = new ArrayBuffer(MY_MAX);
+import { util } from '@kit.ArkTS';
+
+let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setCDATA('root SYSTEM')
-let result = '<![CDATA[root SYSTEM]]>';
-let view = new Uint8Array(arrayBuffer);
-let view1 = "";
-for (let i = 0; i < result.length; ++i) {
-    view1 = view1 + String.fromCodePoint(view[i]);
-}
-console.log(view1) // <![CDATA[root SYSTEM]]>
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <![CDATA[root SYSTEM]]>
 ```
-
 
 ### setText
 
 setText(text: string): void
 
 写入标签值。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -314,31 +377,37 @@ setText(text: string): void
 | ------ | ------ | ---- | ---------------- |
 | text   | string | 是   | text属性的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-const MY_MAX = 2048;
-let arrayBuffer = new ArrayBuffer(MY_MAX);
+import { util } from '@kit.ArkTS';
+
+let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("note");
 thatSer.setAttributes("importance", "high");
-thatSer.setText("Happy1");
+thatSer.setText("Happy");
 thatSer.endElement();
-let result = '<note importance="high">Happy1</note>';
-let view = new Uint8Array(arrayBuffer);
-let view1 = "";
-for (let i = 0; i < result.length; ++i) {
-    view1 = view1 + String.fromCodePoint(view[i]);
-}
-console.log(view1) // <note importance="high">Happy1</note>
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <note importance="high">Happy</note>
 ```
-
 
 ### setDocType
 
 setDocType(text: string): void
 
 写入文档类型。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -348,22 +417,26 @@ setDocType(text: string): void
 | ------ | ------ | ---- | ------------------- |
 | text   | string | 是   | DocType属性的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-const MY_MAX = 2048;
-let arrayBuffer = new ArrayBuffer(MY_MAX);
+import { util } from '@kit.ArkTS';
+
+let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDocType('root SYSTEM "http://www.test.org/test.dtd"');
-let result = '<!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">';
-let view = new Uint8Array(arrayBuffer);
-let view1 = "";
-for (let i = 0; i < result.length; ++i) {
-    view1 = view1 + String.fromCodePoint(view[i]);
-}
-console.log(view1) // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
 ```
-
 
 ## XmlPullParser
 
@@ -375,60 +448,96 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 构造并返回一个XmlPullParser对象。
 
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名   | 类型                              | 必填 | 说明                                       |
 | -------- | --------------------------------- | ---- | ------------------------------------------ |
-| buffer   | ArrayBuffer \| DataView | 是   | 需要解析的xml文本信息。 |
+| buffer   | ArrayBuffer \| DataView | 是   | 需要解析的XML文本信息。 |
 | encoding | string                            | 否   | 编码格式 , 默认'utf-8'(目前仅支持'utf-8')。         |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
-let strXml =
-  '<?xml version="1.0" encoding="utf-8"?>' +
-    '<!DOCTYPE note [\n<!ENTITY foo "baa">]>' +
-    '<note importance="high" logged="true">' +
-    '    <![CDATA[\r\nfuncrion matchwo(a,6)\r\n{\r\nreturn 1;\r\n}\r\n]]>' +
-    '    <!--Hello, World!-->' +
-    '    <company>John &amp; Hans</company>' +
-    '    <title>Happy</title>' +
-    '    <title>Happy</title>' +
-    '    <lens>Work</lens>' +
-    '    <lens>Play</lens>' +
-    '    <?go there?>' +
-    '    <a><b/></a>' +
-    '    <h:table xmlns:h="http://www.w3.org/TR/html4/">' +
-    '        <h:tr>' +
-    '            <h:td>Apples</h:td>' +
-    '            <h:td>Bananas</h:td>' +
-    '        </h:tr>' +
-    '    </h:table>' +
-    '</note>';
+let strXml = '<title>Happy</title>'
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer, 'UTF-8');
-let str1 = '';
-function func1(name: string, value: string) {
-  str1 += name + value;
-  return true;
-}
-let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func1}
-that.parse(options);
-console.log(str1)
-//   note [<!ENTITY foo "baa">]note    funcrion matchwo(a,6){return 1;}    Hello, World!    companyJohn amp;amp; Hanscompany    titleHappytitle    titleHappytitle    lensWorklens    lensPlaylens    go there    abba    h:table        h:tr            h:tdApplesh:td            h:tdBananash:td        h:tr    h:tablenote
+let uint8Array = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(uint8Array.buffer as object as ArrayBuffer, 'UTF-8');
 ```
 
+### parseXml<sup>14+</sup>
 
-### parse
+parseXml(option: ParseOptions): void
+
+解析XML。
+
+**原子化服务API**：从API version 14 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明          |
+| ------ | ----------------------------- | ---- | ------------- |
+| option | [ParseOptions](#parseoptions) | 是   | XML解析选项。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { xml, util } from '@kit.ArkTS';
+
+let strxml =
+  '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title><![CDATA[测试\n测试]]></title>' +
+    '</note>';
+let textEncoder = new util.TextEncoder();
+let uint8 = textEncoder.encodeInto(strxml);
+
+function func(key: xml.EventType, value: xml.ParseInfo) {
+  if (key == xml.EventType.CDSECT) {
+    console.log(JSON.stringify(value.getText()));
+  }
+  return true;
+}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let pullParser = new xml.XmlPullParser(uint8.buffer as object as ArrayBuffer);
+pullParser.parseXml(options);
+// "测试\n测试"
+```
+
+### parse<sup>(deprecated)</sup>
 
 parse(option: ParseOptions): void
 
 该接口用于解析xml。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，建议使用[parseXml<sup>14+</sup>](#parsexml14)替代。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -438,55 +547,66 @@ parse(option: ParseOptions): void
 | ------ | ----------------------------- | ---- | -------------------------------- |
 | option | [ParseOptions](#parseoptions) | 是   | 用户控制以及获取解析信息的选项。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
-    '<note importance="high" logged="true">' +
-    '    <title>Happy</title>' +
-    '    <todo>Work</todo>' +
-    '    <todo>Play</todo>' +
-    '</note>';
+  '<note importance="high" logged="true">' +
+    '<company>John &amp; Hans</company>' +
+    '<title>Happy</title>' +
+  '</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer );
-let str = "";
-function func(key: xml.EventType, value: xml.ParseInfo) {
-  str += 'key:' + key + ' value:' + value.getDepth() + ' ';
-  return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
+let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer, 'UTF-8');
+let str = '';
+function func(name: string, value: string) {
+  str = name + value;
+  console.log(str);
+  return true;
 }
-let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func}
 that.parse(options);
-console.log(str);
-// 输出:
-// key:0 value:0 key:2 value:1 key:10 value:1 key:2 value:2 key:4 value:2 key:3 value:2 key:10 value:1 key:2 value:2 key:4 value:2 key:3 value:2 key:10 value:1 key:2 value:2 key:4 value:2 key:3 value:2 key:3 value:1 key:1 value:0
-// 解析:
-// key代表了当前事件类型，value为当前解析的深度。你可以根据EVENTTYPE来知道具体的解析事件。例如本示例结果key: value代表含义为:
-// 0(START_DOCUMENT):0(起始深度为0), 2(START_TAG):1(解析到开始标签node, 对应深度为1), 10(WHITESPACE):1(解析到空白标签空格, 对应深度为1), 2(START_TAG):2(解析到开始标签title, 对应深度为2), ...
+// note
+// company
+// John & Hans
+// company
+// title
+// Happy
+// title
+// note
 ```
-
 
 ## ParseOptions
 
-xml解析选项。
+XML解析选项。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
 
 
 | 名称                           | 类型                                                         | 必填 | 说明                                    |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------------- |
-| supportDoctype                 | boolean                                                      | 否   | 是否忽略文档类型，默认false，表示解析文档类型。 |
-| ignoreNameSpace                | boolean                                                      | 否   | 是否忽略命名空间，默认false，表示解析命名空间。 |
-| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 获取tagValue回调函数，解析标签和标签值，默认null，表示不解析标签和标签值。  |
-| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 获取attributeValue回调函数，解析属性和属性值，默认null，表示不解析属性和属性值。|
-| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | 否   | 获取tokenValue回调函数,，解析元素事件类型([EventType](#eventtype))和[ParseInfo](#parseinfo)属性，默认null，表示不解析元素事件类型和ParseInfo属性。|
+| supportDoctype                 | boolean                                                      | 否   | 是否解析文档类型，默认false，表示不解析。 |
+| ignoreNameSpace                | boolean                                                      | 否   | 是否忽略命名空间，默认false，表示不忽略。 |
+| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 解析开始标签、标签值和结束标签，默认undefined，表示不解析。 |
+| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 解析属性和属性值，默认undefined，表示不解析。 |
+| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | 否   | 解析元素事件类型([EventType](#eventtype))和[ParseInfo](#parseinfo)属性，默认undefined，表示不解析。 |
 
 ## ParseInfo
 
-当前xml解析信息。
+当前XML解析信息。
 
 
 ### getColumnNumber
@@ -494,6 +614,8 @@ xml解析选项。
 getColumnNumber(): number
 
 获取当前列号，从1开始。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -506,15 +628,9 @@ getColumnNumber(): number
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
-let strXml =
-  '<?xml version="1.0" encoding="utf-8"?>' +
-    '<note importance="high" logged="true">' +
-    '    <title>Happy</title>' +
-    '    <todo>Work</todo>' +
-    '    <todo>Play</todo>' +
-    '</note>';
+let strXml = '<?xml version="1.0" encoding="utf-8"?><note>Happy</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
@@ -526,8 +642,7 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
-// 输出:
-// key:0 value:1 key:2 value:77 key:10 value:81 key:2 value:88 key:4 value:93 key:3 value:101 key:10 value:105 key:2 value:111 key:4 value:115 key:3 value:122 key:10 value:126 key:2 value:132 key:4 value:136 key:3 value:143 key:3 value:150 key:1 value:299
+// key:0 value:1 key:2 value:45 key:4 value:50 key:3 value:57 key:1 value:57
 ```
 
 ### getDepth
@@ -535,6 +650,12 @@ console.log(str);
 getDepth(): number
 
 获取元素的当前深度。
+
+> **说明：**
+>
+> 标签内的空白事件深度与标签的深度保持一致。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -547,15 +668,13 @@ getDepth(): number
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
-    '<note importance="high" logged="true">' +
-    '    <title>Happy</title>' +
-    '    <todo>Work</todo>' +
-    '    <todo>Play</todo>' +
-    '</note>';
+  '<note importance="high">' +
+    '<title>Happy</title>' +
+  '</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
@@ -567,11 +686,7 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
-// 输出:
-// key:0 value:0 key:2 value:1 key:10 value:1 key:2 value:2 key:4 value:2 key:3 value:2 key:10 value:1 key:2 value:2 key:4 value:2 key:3 value:2 key:10 value:1 key:2 value:2 key:4 value:2 key:3 value:2 key:3 value:1 key:1 value:0
-// 解析:
-// key代表了当前事件类型，value为当前解析的深度。你可以根据EVENTTYPE来知道具体的解析事件。例如本示例结果key: value代表含义为:
-// 0(START_DOCUMENT):0(起始深度为0), 2(START_TAG):1(解析到开始标签node, 对应深度为1), 10(WHITESPACE):1(解析到空白标签空格, 对应深度为1), 2(START_TAG):2(解析到开始标签title, 对应深度为2), ...
+// key:0 value:0 key:2 value:1 key:2 value:2 key:4 value:2 key:3 value:2 key:3 value:1 key:1 value:0
 ```
 
 ### getLineNumber
@@ -579,6 +694,8 @@ console.log(str);
 getLineNumber(): number
 
 获取当前行号，从1开始。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -591,15 +708,9 @@ getLineNumber(): number
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
-let strXml =
-  '<?xml version="1.0" encoding="utf-8"?>' +
-    '<note importance="high" logged="true">' +
-    '    <title>Happy</title>' +
-    '    <todo>Work</todo>' +
-    '    <todo>Play</todo>' +
-    '</note>';
+let strXml = '<?xml version="1.0" encoding="utf-8"?><note>Work</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
@@ -611,8 +722,7 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
-// 输出:
-// key:0 value:1 key:2 value:1 key:10 value:1 key:2 value:1 key:4 value:1 key:3 value:1 key:10 value:1 key:2 value:1 key:4 value:1 key:3 value:1 key:10 value:1 key:2 value:1 key:4 value:1 key:3 value:1 key:3 value:1 key:1 value:1
+// key:0 value:1 key:2 value:1 key:4 value:1 key:3 value:1 key:1 value:1
 ```
 
 ### getName
@@ -620,6 +730,8 @@ console.log(str);
 getName(): string
 
 获取当前元素名称。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -632,15 +744,9 @@ getName(): string
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
-let strXml =
-  '<?xml version="1.0" encoding="utf-8"?>' +
-    '<note importance="high" logged="true">' +
-    '    <title>Happy</title>' +
-    '    <todo>Work</todo>' +
-    '    <todo>Play</todo>' +
-    '</note>';
+let strXml = '<?xml version="1.0" encoding="utf-8"?><note>Happy</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
@@ -652,14 +758,15 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
-// 输出:
-// key:0 value: key:2 value:note key:10 value: key:2 value:title key:4 value: key:3 value:title key:10 value: key:2 value:todo key:4 value: key:3 value:todo key:10 value: key:2 value:todo key:4 value: key:3 value:todo key:3 value:note key:1 value:
+// key:0 value: key:2 value:note key:4 value: key:3 value:note key:1 value:
 ```
 ### getNamespace
 
 getNamespace(): string
 
 获取当前元素的命名空间。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -672,15 +779,13 @@ getNamespace(): string
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
-    '<note importance="high" logged="true">' +
-    '    <title>Happy</title>' +
-    '    <todo>Work</todo>' +
-    '    <todo>Play</todo>' +
-    '</note>';
+  '<note xmlns:h="http://www.w3.org">' +
+    '<h:title>Happy</h:title>' +
+  '</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
@@ -689,17 +794,18 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getNamespace() + ' ';
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
-let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:false, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
-// 输出:
-// key:0 value: key:2 value: key:10 value: key:2 value: key:4 value: key:3 value: key:10 value: key:2 value: key:4 value: key:3 value: key:10 value: key:2 value: key:4 value: key:3 value: key:3 value: key:1 value:
+// key:0 value: key:2 value: key:2 value:http://www.w3.org key:4 value: key:3 value:http://www.w3.org key:3 value: key:1 value:
 ```
 ### getPrefix
 
 getPrefix(): string
 
 获取当前元素前缀。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -712,15 +818,13 @@ getPrefix(): string
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
-    '<note importance="high" logged="true">' +
-    '    <title>Happy</title>' +
-    '    <todo>Work</todo>' +
-    '    <todo>Play</todo>' +
-    '</note>';
+  '<note xmlns:h="http://www.w3.org/TR/html4">' +
+    '<h:title>Happy</h:title>' +
+  '</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
@@ -729,11 +833,10 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getPrefix() + ' ';
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
-let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:false, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
-// 输出:
-// key:0 value: key:2 value: key:10 value: key:2 value: key:4 value: key:3 value: key:10 value: key:2 value: key:4 value: key:3 value: key:10 value: key:2 value: key:4 value: key:3 value: key:3 value: key:1 value:
+// key:0 value: key:2 value: key:2 value:h key:4 value: key:3 value:h key:3 value: key:1 value:
 ```
 
 ### getText
@@ -741,6 +844,8 @@ console.log(str);
 getText(): string
 
 获取当前事件的文本内容。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -753,34 +858,29 @@ getText(): string
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
-let strXml =
-  '<?xml version="1.0" encoding="utf-8"?>' +
-    '<note importance="high" logged="true">' +
-    '    <title>Happy</title>' +
-    '    <todo>Work</todo>' +
-    '    <todo>Play</todo>' +
-    '</note>';
+let strXml = '<?xml version="1.0" encoding="utf-8"?><note>Happy</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
-  str += ' key:' + key + ' value:' + value.getText() + ' ';
+  str += 'key:' + key + ' value:' + value.getText() + ' ';
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
-// 输出:
-// key:0 value:  key:2 value:  key:10 value:      key:2 value:  key:4 value:Happy  key:3 value:  key:10 value:      key:2 value:  key:4 value:Work  key:3 value:  key:10 value:      key:2 value:  key:4 value:Play  key:3 value:  key:3 value:  key:1 value:
+// key:0 value: key:2 value: key:4 value:Happy key:3 value: key:1 value:
 ```
 ### isEmptyElementTag
 
 isEmptyElementTag(): boolean
 
 判断当前元素是否为空元素。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -793,15 +893,13 @@ isEmptyElementTag(): boolean
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
-    '<note importance="high" logged="true">' +
-    '    <title>Happy</title>' +
-    '    <todo>Work</todo>' +
-    '    <todo>Play</todo>' +
-    '</note>';
+  '<note importance="high" logged="true">' +
+    '<title/>' +
+  '</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
@@ -813,14 +911,15 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
-// 输出:
-// key:0 value:false key:2 value:false key:10 value:false key:2 value:false key:4 value:false key:3 value:false key:10 value:false key:2 value:false key:4 value:false key:3 value:false key:10 value:false key:2 value:false key:4 value:false key:3 value:false key:3 value:false key:1 value:false
+// key:0 value:false key:2 value:false key:2 value:true key:3 value:false key:3 value:false key:1 value:false
 ```
 ### isWhitespace
 
 isWhitespace(): boolean
 
-判断当前文本事件是否仅包含空格字符。
+判断当前事件是否仅包含空格字符。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -833,15 +932,13 @@ isWhitespace(): boolean
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
-    '<note importance="high" logged="true">' +
-    '    <title>Happy</title>' +
-    '    <todo>Work</todo>' +
-    '    <todo>Play</todo>' +
-    '</note>';
+  '<note importance="high" logged="true">' +
+    '<title> </title>' +
+  '</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
@@ -853,14 +950,15 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
-// 输出:
-// key:0 value:true key:2 value:false key:10 value:true key:2 value:true key:4 value:false key:3 value:true key:10 value:true key:2 value:true key:4 value:false key:3 value:true key:10 value:true key:2 value:true key:4 value:false key:3 value:true key:3 value:true key:1 value:true
+// key:0 value:true key:2 value:false key:2 value:true key:10 value:true key:3 value:true key:3 value:true key:1 value:true
 ```
 ### getAttributeCount
 
 getAttributeCount(): number
 
 获取当前开始标记的属性数。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -872,15 +970,9 @@ getAttributeCount(): number
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
-let strXml =
-  '<?xml version="1.0" encoding="utf-8"?>' +
-    '<note importance="high" logged="true">' +
-    '    <title>Happy</title>' +
-    '    <todo>Work</todo>' +
-    '    <todo>Play</todo>' +
-    '</note>';
+let strXml = '<?xml version="1.0" encoding="utf-8"?><note importance="high" logged="true"/>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
@@ -892,13 +984,14 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
-// 输出:
-// key:0 value:0 key:2 value:2 key:10 value:0 key:2 value:0 key:4 value:0 key:3 value:0 key:10 value:0 key:2 value:0 key:4 value:0 key:3 value:0 key:10 value:0 key:2 value:0 key:4 value:0 key:3 value:0 key:3 value:0 key:1 value:0
+// key:0 value:0 key:2 value:2 key:3 value:2 key:1 value:0
 ```
 
 ## EventType
 
 事件类型枚举。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
 

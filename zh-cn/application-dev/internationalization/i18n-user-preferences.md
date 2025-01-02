@@ -11,44 +11,40 @@
 
 1. 导入模块。
    ```ts
-   import Intl from '@ohos.intl';
-   import I18n from '@ohos.i18n';
-   import { BusinessError } from '@ohos.base';
+   import { i18n, intl } from '@kit.LocalizationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 获取应用偏好语言。
    ```ts
-   try {
-     // 获取应用偏好语言，假设当前偏好语言为 ar
-     let appPreferredLanguage: string = I18n.System.getAppPreferredLanguage();
-   } catch(error) {
-     let err: BusinessError = error as BusinessError;
-     console.error(`call System.getAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
-   }
+   // 获取应用偏好语言
+   let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage();
    ```
 
 3. 设置应用界面数字。
    ```ts
    try {  
-     I18n.System.setUsingLocalDigit(true); // 打开本地化数字开关
+     i18n.System.setUsingLocalDigit(true); // 打开本地化数字开关
    } catch(error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
    }
    let date = new Date(2023, 9, 25);
-   let dateTimeFmt = new Intl.DateTimeFormat(appPreferredLanguage);
+   let appPreferredLanguage = "ar";
+   let dateTimeFmt = new intl.DateTimeFormat(appPreferredLanguage);
    let result = dateTimeFmt.format(date); // result = "٢٠٢٣/١٠/٢٥"（采用阿语本地数字表示）
    ```
 
 4. 设置格式化的24小时制。
    ```ts
    try {  
-     I18n.System.set24HourClock(true); // true表示打开24小时制开关，false表示打开12小时制开关
+     i18n.System.set24HourClock(true); // true表示打开24小时制开关，false表示打开12小时制开关
    } catch(error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.set24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
    }
    let date = new Date(2023, 9, 25, 16, 48, 0);
-   let dateTimeFmt = new Intl.DateTimeFormat(appPreferredLanguage, { timeStyle: "medium" });
+   let appPreferredLanguage = "zh";
+   let dateTimeFmt = new intl.DateTimeFormat(appPreferredLanguage, { timeStyle: "medium" });
    let result = dateTimeFmt.format(date); // result = "16:48:00"
    ```

@@ -1,4 +1,4 @@
-# 使用分布式媒体会话
+# 使用分布式媒体会话(仅对系统应用开放)
 
 ## 基本概念
 
@@ -23,16 +23,16 @@
 1. 导入模块接口。由于在进行投播之前，需要从audio模块获取音频设备描述符AudioDeviceDescriptor，所以除了导入AVSessionManager模块外，还需要导入audio模块。
      
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
-import audio from '@ohos.multimedia.audio';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { audio } from '@kit.AudioKit';
 ```
 
 2. 通过AVSessionManager的castAudio接口将当前设备所有会话投播到其他设备。
      
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function castAudio() {
   // 投播到其他设备

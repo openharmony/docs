@@ -23,7 +23,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[JSVM_CallbackStruct](_j_s_v_m___callback_struct.md) | 用户提供的native函数的回调函数指针和数据，这些函数通过JSVM-API接口暴露给JavaScript。  | 
+| struct&nbsp;&nbsp;[JSVM_CallbackStruct](_j_s_v_m___callback_struct.md) | 用户提供的native回调函数的指针和数据，这些函数通过JSVM-API接口暴露给JavaScript。  | 
 | struct&nbsp;&nbsp;[JSVM_HeapStatistics](_j_s_v_m___heap_statistics.md) | Heapstatisics结构体，用于保存有关JavaScript堆内存使用情况的统计信息。  | 
 | struct&nbsp;&nbsp;[JSVM_InitOptions](_j_s_v_m___init_options.md) | 初始化选项，用于初始化JavaScript虚拟机。  | 
 | struct&nbsp;&nbsp;[JSVM_CreateVMOptions](_j_s_v_m___create_v_m_options.md) | 创建JavaScript虚拟机的选项。  | 
@@ -31,6 +31,8 @@
 | struct&nbsp;&nbsp;[JSVM_PropertyDescriptor](_j_s_v_m___property_descriptor.md) | 属性描述符。  | 
 | struct&nbsp;&nbsp;[JSVM_ExtendedErrorInfo](_j_s_v_m___extended_error_info.md) | 扩展的异常信息。  | 
 | struct&nbsp;&nbsp;[JSVM_TypeTag](_j_s_v_m___type_tag.md) | 类型标记，存储为两个无符号64位整数的128位值。 作为一个UUID，通过它，JavaScript对象可以是"tagged"， 以确保它们的类型保持不变。  | 
+| struct&nbsp;&nbsp;[JSVM_PropertyHandlerConfigurationStruct](_j_s_v_m___property_handler_configuration_struct.md) | 当执行对象的getter、setter、deleter和enumerator操作时，该结构体中对应的函数回调将会触发。  | 
+| struct&nbsp;&nbsp;[JSVM_ScriptOrigin](_j_s_v_m___script_origin.md) | Source code information.  | 
 
 
 ### 类型定义
@@ -53,6 +55,7 @@
 | typedef [JSVM_CallbackStruct](_j_s_v_m___callback_struct.md) \* [JSVM_Callback](_j_s_v_m.md#jsvm_callback) | 用户提供的native函数的函数指针类型，这些函数通过JSVM-API接口暴露给JavaScript。  | 
 | typedef void(JSVM_CDECL \* [JSVM_Finalize](_j_s_v_m.md#jsvm_finalize)) ([JSVM_Env](_j_s_v_m.md#jsvm_env) env, void \*finalizeData, void \*finalizeHint) | 函数指针类型，当native类型对象或数据与JS对象被关联时，传入该指针。该函数将会 在关联的JS对象被GC回收时被调用，用以执行native的清理动作。  | 
 | typedef bool(JSVM_CDECL \* [JSVM_OutputStream](_j_s_v_m.md#jsvm_outputstream)) (const char \*data, int size, void \*streamData) | ASCII输出流回调的函数指针类型。参数data是指输出的数据指针。参数size是指输出的数据大小。 空数据指针指示流的结尾。参数streamData是指与回调一起传递给API函数的指针，该API函数向输出流生成数据。回 调返回true表示流可以继续接受数据。否则，它将中止流。  | 
+| typedef [JSVM_PropertyHandlerConfigurationStruct](_j_s_v_m___property_handler_configuration_struct.md) \* [JSVM_PropertyHandlerCfg](_j_s_v_m.md#jsvm_propertyhandlercfg) | 包含属性监听回调的结构的指针类型。  | 
 
 
 ### 枚举
@@ -67,3 +70,7 @@
 | [JSVM_KeyFilter](_j_s_v_m.md#jsvm_keyfilter) {<br/>[JSVM_KEY_ALL_PROPERTIES](_j_s_v_m.md) = 0, [JSVM_KEY_WRITABLE](_j_s_v_m.md) = 1, [JSVM_KEY_ENUMERABLE](_j_s_v_m.md) = 1 &lt;&lt; 1, [JSVM_KEY_CONFIGURABLE](_j_s_v_m.md) = 1 &lt;&lt; 2,<br/>[JSVM_KEY_SKIP_STRINGS](_j_s_v_m.md) = 1 &lt;&lt; 3, [JSVM_KEY_SKIP_SYMBOLS](_j_s_v_m.md) = 1 &lt;&lt; 4<br/>} | 属性过滤器，可以通过使用or来构造一个复合过滤器。  | 
 | [JSVM_KeyConversion](_j_s_v_m.md#jsvm_keyconversion) { [JSVM_KEY_KEEP_NUMBERS](_j_s_v_m.md), [JSVM_KEY_NUMBERS_TO_STRINGS](_j_s_v_m.md) } | 键转换选项。  | 
 | [JSVM_MemoryPressureLevel](_j_s_v_m.md#jsvm_memorypressurelevel) { [JSVM_MEMORY_PRESSURE_LEVEL_NONE](_j_s_v_m.md), [JSVM_MEMORY_PRESSURE_LEVEL_MODERATE](_j_s_v_m.md), [JSVM_MEMORY_PRESSURE_LEVEL_CRITICAL](_j_s_v_m.md) } | 内存压力水平。  | 
+| [JSVM_RegExpFlags](_j_s_v_m.md#jsvm_regexpflags) {<br/>[JSVM_REGEXP_NONE](_j_s_v_m.md) = 0, [JSVM_REGEXP_GLOBAL](_j_s_v_m.md) = 1 &lt;&lt; 0, [JSVM_REGEXP_IGNORE_CASE](_j_s_v_m.md) = 1 &lt;&lt; 1, [JSVM_REGEXP_MULTILINE](_j_s_v_m.md) = 1 &lt;&lt; 2,<br/>[JSVM_REGEXP_STICKY](_j_s_v_m.md) = 1 &lt;&lt; 3, [JSVM_REGEXP_UNICODE](_j_s_v_m.md) = 1 &lt;&lt; 4, [JSVM_REGEXP_DOT_ALL](_j_s_v_m.md) = 1 &lt;&lt; 5, [JSVM_REGEXP_LINEAR](_j_s_v_m.md) = 1 &lt;&lt; 6,<br/>[JSVM_REGEXP_HAS_INDICES](_j_s_v_m.md) = 1 &lt;&lt; 7, [JSVM_REGEXP_UNICODE_SETS](_j_s_v_m.md) = 1 &lt;&lt; 8<br/>} | 正则表达式标志位。它们可以用来启用一组标志。  | 
+| [JSVM_InitializedFlag](_j_s_v_m.md#jsvm_initializedflag) { [JSVM_ZERO_INITIALIZED](_j_s_v_m.md), [JSVM_UNINITIALIZED](_j_s_v_m.md) } | 初始化方式的标志位  | 
+| [JSVM_WasmOptLevel](_j_s_v_m.md#jsvm_wasmoptlevel) { [JSVM_WASM_OPT_BASELINE](_j_s_v_m.md) = 10, [JSVM_WASM_OPT_HIGH](_j_s_v_m.md) = 20 } | WebAssembly 函数优化等级  | 
+| [JSVM_CacheType](_j_s_v_m.md#jsvm_cachetype) { [JSVM_CACHE_TYPE_JS](_j_s_v_m.md), [JSVM_CACHE_TYPE_WASM](_j_s_v_m.md) } | 缓存类型  | 

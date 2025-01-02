@@ -9,7 +9,7 @@ The **gestureEvent** module provides APIs for gesture events reported by devices
 ## Modules to Import
 
 ```js
-import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '@ohos.multimodalInput.gestureEvent';
+import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '@kit.InputKit';
 ```
 
 ## Pinch

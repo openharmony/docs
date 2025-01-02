@@ -12,7 +12,8 @@ Importing a key in plaintext may expose the plaintext to a non-secure environmen
 - Plaintext import is recommended to import the public key of an asymmetric key pair.
 
 - It is not recommended to import symmetric keys or asymmetric key pairs.
-
+  > **NOTE**<br>
+  > The mini-system devices support plaintext import but not encrypted import.
 
 ## Encrypted Import
 
@@ -28,53 +29,82 @@ To import an encrypted key, you need to use the HUKS APIs to generate a key pair
 
 The [public key material](huks-concepts.md#public-key-material-format) exported is encapsulated in X.509 format. The encrypted key material to be imported must be encapsulated in **Length<sub>Data< /sub>-Data** format.
 
+> **NOTE**
+>
+> - The encrypted import supports key agreement algorithms ECDH and X25519. The generated **Shared_Key** uses the AES-GCM algorithm to encrypt **Caller_Kek**. For details about the cipher suites, see [HuksUnwrapSuite](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksunwrapsuite9).
+> - The mini-system devices support plaintext import but not encrypted import.
 
 ### Key Material Format for Encrypted Import
 
-| Content| Length| 
+| Content| Length|
 | -------- | -------- |
-| Service public key **Caller_Pk** length (L<sub>Caller_Pk</sub>)| 4 bytes| 
-| Service public key **Caller_Pk**| L<sub>Caller_Pk</sub> bytes| 
-| Shared_Key **AAD2** length (L<sub>AAD2</sub>)| 4 bytes| 
-| Shared_Key **AAD2**| L<sub>AAD2</sub> bytes| 
-| Shared_Key **Nonce2** length (L<sub>Nonce2</sub>)| 4 bytes| 
-| Shared_Key **Nonce2**| L<sub>Nonce2</sub> bytes| 
-| Shared_Key **AEAD2** length (L<sub>AEAD2</sub>)| 4 bytes| 
-| Shared_Key **AEAD2**| L<sub>AEAD2</sub> bytes| 
-| **Caller_Kek_enc** length (L<sub>Caller_Kek_enc</sub>)| 4 bytes| 
-| Caller_Kek ciphertext **Caller_Kek_enc**| L<sub>Caller_Kek_enc</sub> bytes| 
-| Caller_Kek **AAD3** length (L<sub>AAD3</sub>)| 4 bytes| 
-| Caller_Kek **AAD3**| L<sub>AAD3</sub> bytes| 
-| Caller_Kek **Nonce3** length (L<sub>Nonce3</sub>)| 4 bytes| 
-| Caller_Kek **Nonce3**| L<sub>Nonce3</sub> bytes| 
-| Caller_Kek **AEAD3** length (L<sub>AEAD3</sub>)| 4 bytes| 
-| Caller_Kek **AEAD3**| L<sub>AEAD3</sub> bytes| 
-| **To_Import_Key_size** length (L<sub>To_Import_Key_size</sub>)| 4 bytes| 
-| Key plaintext material length **To_Import_Key_size**| L<sub>To_Import_Key_size</sub> bytes| 
-| **To_Import_Key_enc** length (L<sub>To_Import_Key_enc</sub>)| 4 bytes| 
-| To_Import_Key ciphertext **To_Import_Key_enc**| L<sub>To_Import_Key_enc</sub> bytes| 
+| Service public key **Caller_Pk** length (L<sub>Caller_Pk</sub>)| 4 bytes|
+| Service public key **Caller_Pk**| L<sub>Caller_Pk</sub> bytes|
+| Shared_Key **AAD2** length (L<sub>AAD2</sub>)| 4 bytes|
+| Shared_Key **AAD2**| L<sub>AAD2</sub> bytes|
+| Shared_Key **Nonce2** length (L<sub>Nonce2</sub>)| 4 bytes|
+| Shared_Key **Nonce2**| L<sub>Nonce2</sub> bytes|
+| Shared_Key **AEAD2** length (L<sub>AEAD2</sub>)| 4 bytes|
+| Shared_Key **AEAD2**| L<sub>AEAD2</sub> bytes|
+| **Caller_Kek_enc** length (L<sub>Caller_Kek_enc</sub>)| 4 bytes|
+| Caller_Kek ciphertext **Caller_Kek_enc**| L<sub>Caller_Kek_enc</sub> bytes|
+| Caller_Kek **AAD3** length (L<sub>AAD3</sub>)| 4 bytes|
+| Caller_Kek **AAD3**| L<sub>AAD3</sub> bytes|
+| Caller_Kek **Nonce3** length (L<sub>Nonce3</sub>)| 4 bytes|
+| Caller_Kek **Nonce3**| L<sub>Nonce3</sub> bytes|
+| Caller_Kek **AEAD3** length (L<sub>AEAD3</sub>)| 4 bytes|
+| Caller_Kek **AEAD3**| L<sub>AEAD3</sub> bytes|
+| **To_Import_Key_size** length (L<sub>To_Import_Key_size</sub>)| 4 bytes|
+| Key plaintext material length **To_Import_Key_size**| L<sub>To_Import_Key_size</sub> bytes|
+| **To_Import_Key_enc** length (L<sub>To_Import_Key_enc</sub>)| 4 bytes|
+| To_Import_Key ciphertext **To_Import_Key_enc**| L<sub>To_Import_Key_enc</sub> bytes|
 
 
 ## Supported Algorithms
 
 The following table lists the supported key import specifications.
-
+<!--Del-->
 The key management service specifications include mandatory specifications and optional specifications. Mandatory specifications are algorithm specifications that must be supported. Optional specifications can be used based on actual situation. Before using the optional specifications, refer to the documents provided by the vendor to ensure that the specifications are supported.
 
 **You are advised to use mandatory specifications in your development for compatibility purposes.**
-
-| Algorithm| Supported Key Length (Bit)| API Level| Mandatory| 
+<!--DelEnd-->
+**Specifications for Standard-System Devices**
+| Algorithm| Supported Key Length (Bit)| API Version| <!--DelCol4-->Mandatory|
 | -------- | -------- | -------- | -------- |
 | AES | 128, 192, 256| 8+ | Yes|
-| RSA | 512, 768, 1024| 8+ | No| 
-| RSA | 2048, 3072, 4096| 8+ | Yes| 
+| <!--DelRow-->RSA | 512, 768, 1024| 8+ | No|
+| RSA | 2048, 3072, 4096| 8+ | Yes|
 | HMAC | An integer multiple of 8, ranging from 8 to 1024 (inclusive)| 8+ | Yes|
-| ECC | 224 | 8+ | No| 
-| ECC | 256, 384, 521| 8+ | Yes| 
-| ED25519 | 256 | 8+ | Yes| 
+| <!--DelRow-->ECC | 224 | 8+ | No|
+| ECC | 256, 384, 521| 8+ | Yes|
+| ED25519 | 256 | 8+ | Yes|
 | X25519 | 256 | 8+ | Yes|
-| DSA | An integer multiple of 8, ranging from 512 to 1024 (inclusive) | 8+ | No| 
+| <!--DelRow-->DSA | An integer multiple of 8, ranging from 512 to 1024 (inclusive) | 8+ | No|
 | DH | 2048 | 8+ | Yes|
-| DH | 3072, 4096| 8+ | No| 
-| SM2 | 256 | 9+ | Yes| 
-| SM4 | 128 | 9+ | Yes| 
+| <!--DelRow-->DH | 3072, 4096| 8+ | No|
+| SM2 | 256 | 9+ | Yes|
+| SM4 | 128 | 9+ | Yes|
+
+**Specifications for Mimi-System Devices**
+
+<!--Del-->
+Before implementing the specifications for mini-system devices, determine whether your device supports the related specifications.
+<!--DelEnd-->
+
+| Algorithm| Supported Key Length (Bit)| API Version|
+| -------- | -------- | -------- |
+| AES | 128, 192, 256| 12+ |
+| DES | 64 | 12+ |
+| 3DES | 128, 192| 12+ |
+| RSA |  An integer multiple of 8, ranging from 1024 to 2048 (inclusive)| 12+ |
+| HMAC | An integer multiple of 8, ranging from 8 to 1024 (inclusive)| 12+ |
+| CMAC | 128 | 12+ |
+
+## Key Import Formats
+HUKS supports various types of keys in different formats. The following table lists the key types and key material formats supported by HUKS.
+| Key Type| Algorithm| Import Format|
+| -------- | -------- | -------- |
+| Symmetric key| - | Raw data|
+| Asymmetric key pair| - | [Key pair material format](huks-concepts.md#key-pair-material-format)|
+| Public key of an asymmetric key pair| Ed25519, X25519| Raw data. For details, see [Importing the X25519 Key and Public Key] (huks-import-key-in-plaintext-arkts.md#importing-the-public-key-of-an-x25519-key-pair).|
+| Public key of an asymmetric key pair| RSA, ECC, ECDH, DSA, DH, SM2| DER format defined in X.509|

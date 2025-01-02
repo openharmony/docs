@@ -1,10 +1,14 @@
 # Using OHAudio for Audio Recording (C/C++)
 
-**OHAudio** is a set of native APIs introduced in API version 10. These APIs are normalized in design and support both common and low-latency audio channels.
+**OHAudio** is a set of C APIs introduced in API version 10. These APIs are normalized in design and support both common and low-latency audio channels. They support the PCM format only. They are suitable for playback applications that implement audio input at the native layer.
+
+OHAudio audio recording state transition
+
+![OHAudioCapturer status change](figures/ohaudiocapturer-status-change.png)
 
 ## Prerequisites
 
-To use the playback or recording capability of **OHAudio**, you must first import the corresponding header files.
+To use the recording capability of **OHAudio**, you must first import the corresponding header files.
 
 ### Linking the Dynamic Library in the CMake Script
 
@@ -75,7 +79,7 @@ The following walks you through how to implement simple recording:
 
 3. Set the callback functions.
 
-    For details about concurrent processing of multiple audio streams, see [Audio Playback Concurrency Policy](audio-playback-concurrency.md). Only the interface language is different.
+    For details about concurrent processing of multiple audio streams, see [Processing Audio Interruption Events](audio-playback-concurrency.md). The procedure is similar, and the only difference is the API programming language in use.
 
     ```c++
     // Customize a data writing function.
@@ -131,7 +135,34 @@ The following walks you through how to implement simple recording:
     To avoid unexpected behavior, ensure that each callback of [OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks) is initialized by a custom callback method or null pointer when being set.
 
     ```c++
-    // (Optional) Use a null pointer to initialize the OnError callback.
+    // Customize a data writing function.
+    int32_t MyOnReadData(
+        OH_AudioCapturer* capturer,
+        void* userData,
+        void* buffer,
+        int32_t length)
+    {
+        // Obtain the recording data of the specified length from the buffer.
+        return 0;
+    }
+    // Customize an audio interruption event function.
+    int32_t MyOnInterruptEvent(
+        OH_AudioCapturer* capturer,
+        void* userData,
+        OH_AudioInterrupt_ForceType type,
+        OH_AudioInterrupt_Hint hint)
+    {
+        // Update the capturer status and UI based on the audio interruption information indicated by type and hint.
+        return 0;
+    }
+    OH_AudioCapturer_Callbacks callbacks;
+
+    // Configure a callback function. If listening is required, assign a value.
+    callbacks.OH_AudioCapturer_OnReadData = MyOnReadData;
+    callbacks.OH_AudioCapturer_OnInterruptEvent = MyOnInterruptEvent;
+
+    // (Mandatory) If listening is not required, use a null pointer for initialization.
+    callbacks.OH_AudioCapturer_OnStreamEvent = nullptr;
     callbacks.OH_AudioCapturer_OnError = nullptr;
     ```
 
@@ -174,3 +205,5 @@ Code snippet:
 OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
 OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
 ```
+<!--RP1-->
+<!--RP1End-->

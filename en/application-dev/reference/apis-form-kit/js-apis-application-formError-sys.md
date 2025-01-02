@@ -11,7 +11,7 @@ The **formError** module provides error codes for widgets.
 ## Modules to Import
 
 ```ts
-import formError from '@ohos.application.formError';
+import { formError } from '@kit.FormKit'
 ```
 
 ## Required Permissions

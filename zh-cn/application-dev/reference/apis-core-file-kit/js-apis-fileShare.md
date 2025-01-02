@@ -42,11 +42,11 @@ import fileShare from '@ohos.fileshare';
 
 **系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
-| 名称      | 类型                                   | 说明                |
-|---------|--------------------------------------|-------------------|
-| uri     | string                               | 授予或使能权限失败的URI。         |
-| code    | [PolicyErrorCode](#policyerrorcode11) | 授权策略失败的URI对应的错误码。 |
-| message | string                               | 授权策略失败的URI对应的原因。  |
+| 名称      | 类型                                   | 必填 | 说明                |
+|---------|--------------------------------------|-----|-----------------------|
+| uri     | string                               | 是  | 授予或使能权限失败的URI。         |
+| code    | [PolicyErrorCode](#policyerrorcode11) | 是  | 授权策略失败的URI对应的错误码。 |
+| message | string                               | 是   | 授权策略失败的URI对应的原因。  |
 
 ## PolicyInfo<sup>11+</sup>
 
@@ -63,7 +63,7 @@ import fileShare from '@ohos.fileshare';
 
 persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法对所选择的多个文件或目录URI持久化授权，以promise形式返回结果，该接口仅对特定设备开放。
+异步方法对所选择的多个文件或目录URI持久化授权，以promise形式返回结果，该接口仅对具有该系统能力的设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -89,7 +89,7 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 | 错误码ID    | 错误信息       |
 |----------| --------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
-| 401      | Parameter error. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported. |
 | 13900001 | Operation not permitted.            |
 | 13900042 | Unknown error                          |
@@ -113,12 +113,12 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
       fileShare.persistPermission(policies).then(() => {
         console.info("persistPermission successfully");
       }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
-        console.info("persistPermission failed with error message: " + err.message + ", error code: " + err.code);
+        console.error("persistPermission failed with error message: " + err.message + ", error code: " + err.code);
         if (err.code == 13900001 && err.data) {
           for (let i = 0; i < err.data.length; i++) {
-            console.log("error code : " + JSON.stringify(err.data[i].code));
-            console.log("error uri : " + JSON.stringify(err.data[i].uri));
-            console.log("error reason : " + JSON.stringify(err.data[i].message));
+            console.error("error code : " + JSON.stringify(err.data[i].code));
+            console.error("error uri : " + JSON.stringify(err.data[i].uri));
+            console.error("error reason : " + JSON.stringify(err.data[i].message));
           }
         }
       });
@@ -133,7 +133,7 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
-异步方法对所选择的多个文件或目录uri取消持久化授权，以promise形式返回结果，该接口仅对特定设备开放。
+异步方法对所选择的多个文件或目录uri取消持久化授权，以promise形式返回结果，该接口仅对具有该系统能力的设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -159,7 +159,7 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 | 错误码ID    | 错误信息       |
 |----------| --------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
-| 401      | Parameter error. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported. |
 | 13900001 | Operation not permitted.            |
 | 13900042 | Unknown error                          |
@@ -183,12 +183,12 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
       fileShare.revokePermission(policies).then(() => {
         console.info("revokePermission successfully");
       }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
-        console.info("revokePermission failed with error message: " + err.message + ", error code: " + err.code);
+        console.error("revokePermission failed with error message: " + err.message + ", error code: " + err.code);
           if (err.code == 13900001 && err.data) {
             for (let i = 0; i < err.data.length; i++) {
-              console.log("error code : " + JSON.stringify(err.data[i].code));
-              console.log("error uri : " + JSON.stringify(err.data[i].uri));
-              console.log("error reason : " + JSON.stringify(err.data[i].message));
+              console.error("error code : " + JSON.stringify(err.data[i].code));
+              console.error("error uri : " + JSON.stringify(err.data[i].uri));
+              console.error("error reason : " + JSON.stringify(err.data[i].message));
             }
           }
       });
@@ -203,7 +203,7 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法使能多个已经永久授权过的文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
+异步方法使能多个已经永久授权过的文件或目录，以promise形式返回结果，该接口仅对具有该系统能力的设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -229,7 +229,7 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 | 错误码ID    | 错误信息       |
 |----------| --------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
-| 401      | Parameter error. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported. |
 | 13900001 | Operation not permitted.            |
 | 13900042 | Unknown error                          |
@@ -250,15 +250,15 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
       let policies: Array<fileShare.PolicyInfo> = [policyInfo];
       fileShare.activatePermission(policies).then(() => {
         console.info("activatePermission successfully");
-      }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
-        console.info("activatePermission failed with error message: " + err.message + ", error code: " + err.code);
+      }).catch(async (err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
+        console.error("activatePermission failed with error message: " + err.message + ", error code: " + err.code);
           if (err.code == 13900001 && err.data) {
             for (let i = 0; i < err.data.length; i++) {
-              console.log("error code : " + JSON.stringify(err.data[i].code));
-              console.log("error uri : " + JSON.stringify(err.data[i].uri));
-              console.log("error reason : " + JSON.stringify(err.data[i].message));
-              if(err.data[i].code == fileshare.PolicyErrorCode.PERMISSION_NOT_PERSISTED){
-                await fileshare.persistPermission(policies);
+              console.error("error code : " + JSON.stringify(err.data[i].code));
+              console.error("error uri : " + JSON.stringify(err.data[i].uri));
+              console.error("error reason : " + JSON.stringify(err.data[i].message));
+              if(err.data[i].code == fileShare.PolicyErrorCode.PERMISSION_NOT_PERSISTED){
+                await fileShare.persistPermission(policies);
               }
             }
           }
@@ -274,7 +274,7 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法取消使能授权过的多个文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
+异步方法取消使能授权过的多个文件或目录，以promise形式返回结果，该接口仅对具有该系统能力的设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -300,7 +300,7 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 | 错误码ID    | 错误信息       |
 |----------| --------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
-| 401      | Parameter error. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported. |
 | 13900001 | Operation not permitted.            |
 | 13900042 | Unknown error                          |
@@ -322,12 +322,12 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
       fileShare.deactivatePermission(policies).then(() => {
         console.info("deactivatePermission successfully");
       }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
-        console.info("deactivatePermission failed with error message: " + err.message + ", error code: " + err.code);
+        console.error("deactivatePermission failed with error message: " + err.message + ", error code: " + err.code);
           if (err.code == 13900001 && err.data) {
             for (let i = 0; i < err.data.length; i++) {
-              console.log("error code : " + JSON.stringify(err.data[i].code));
-              console.log("error uri : " + JSON.stringify(err.data[i].uri));
-              console.log("error reason : " + JSON.stringify(err.data[i].message));
+              console.error("error code : " + JSON.stringify(err.data[i].code));
+              console.error("error uri : " + JSON.stringify(err.data[i].uri));
+              console.error("error reason : " + JSON.stringify(err.data[i].message));
             }
           }
       });
@@ -358,7 +358,7 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
 
 |              类型                   |               说明                    |
 | ----------------------------------- | ------------------------------------- |
-| Promise&lt;Array&lt;boolean&gt;&gt; | Promise对象，返回true表示有持久化授权。 |
+| Promise&lt;Array&lt;boolean&gt;&gt; | Promise对象，返回true表示有持久化授权，false表示不具有持久化授权。 |
 
 **错误码：**
 
@@ -367,7 +367,7 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
 | 错误码ID    | 错误信息       |
 |----------| --------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
-| 401      | Parameter error. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported. |
 | 13900042 | Unknown error                          |
 
@@ -401,7 +401,7 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
           }
         }
       }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
-        console.info("checkPersistentPermission failed with error message: " + err.message + ", error code: " + err.code);
+        console.error("checkPersistentPermission failed with error message: " + err.message + ", error code: " + err.code);
       });
     } catch (error) {
       let err: BusinessError = error as BusinessError;

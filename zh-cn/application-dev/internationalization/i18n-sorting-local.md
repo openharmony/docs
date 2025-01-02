@@ -10,19 +10,18 @@
 
 1. 导入模块。
    ```ts
-   import Intl from '@ohos.intl';
+   import { intl } from '@kit.LocalizationKit';
    ```
 
 2. 创建collator排序对象。
    构造函数支持通过CollatorOptions设置不同的排序格式，具体请参考表1。
    ```ts
-   let collator = new Intl.Collator(locale: string | Array<string>, options?: CollatorOptions);
+   let collator = new intl.Collator(locale: string | Array<string>, options?: CollatorOptions);
    ```
 
-3. 比较字串。
+3. 比较字符串。
    ```ts
-   let compareResult = collator.compare("first", "second");
-   
+   let compareResult = collator.compare(first: string, second: string);
    // compareResult 为负数，表示第一个参数排在第二个参数之前
    // compareResult 为0，表示第一个参数与第二个参数排序不分先后
    // compareResult 为正数，表示第一个参数排在第二个参数之后
@@ -70,16 +69,15 @@
 
 ```ts
 // 导入模块
-import I18n from '@ohos.i18n';
-import Intl from '@ohos.intl';
+import { intl } from '@kit.LocalizationKit';
 
 // 创建排序对象
-let options: Intl.CollatorOptions = {
+let options: intl.CollatorOptions = {
     localeMatcher: "lookup", 
     usage: "sort",
     sensitivity: "case" // 区分大小写
 };
-let collator = new Intl.Collator("zh-CN", options);
+let collator = new intl.Collator("zh-CN", options);
 
 // 区分大小写排序
 let array = ["app", "App", "Apple", "ANIMAL", "animal", "apple", "APPLE"];
@@ -101,10 +99,21 @@ options = {
     usage: "sort",
     collation: "stroke"
 };
-collator = new Intl.Collator("zh-CN", options);
+collator = new intl.Collator("zh-CN", options);
 array = ["苹果", "梨", "香蕉", "石榴", "甘蔗", "葡萄", "橘子"];
 array.sort((a, b) => {
     return collator.compare(a, b);
 })
 console.log("result: ", array);  // 甘蔗,石榴,苹果,香蕉,梨,葡萄,橘子
+
+// 搜索匹配的字符串
+options = {
+    usage: "search",
+    sensitivity: "base"
+};
+collator = new intl.Collator("tr", options);
+let sourceArray = ['Türkiye', 'TüRkiye', 'salt', 'bright'];
+let s = 'türkiye';
+let matches = sourceArray.filter(item => collator.compare(item, s) === 0);
+console.log(matches.toString());  // Türkiye,TüRkiye
 ```

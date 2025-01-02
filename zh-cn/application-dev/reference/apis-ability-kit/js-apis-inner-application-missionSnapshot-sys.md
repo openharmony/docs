@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import missionManager from '@ohos.app.ability.missionManager';
+import { missionManager } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -30,31 +30,29 @@ import missionManager from '@ohos.app.ability.missionManager';
 
 **示例：**
 ```ts
-  import ElementName from '@ohos.bundle.bundleManager';
-  import image from '@ohos.multimedia.image';
-  import missionManager from '@ohos.app.ability.missionManager';
+import { missionManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    missionManager.getMissionInfos('', 10, (error, missions) => {
-      if (error) {
-          console.error(`getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
-          return;
+try {
+  missionManager.getMissionInfos('', 10, (error, missions) => {
+    if (error) {
+      console.error(`getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
+      return;
+    }
+    console.log(`size = ${missions.length}`);
+    console.log(`missions = ${JSON.stringify(missions)}`);
+    let id = missions[0].missionId;
+
+    missionManager.getMissionSnapShot('', id, (err, snapshot) => {
+      if (err) {
+        console.error(`getMissionInfos failed, err.code: ${JSON.stringify(err.code)}, err.message: ${JSON.stringify(err.message)}`);
+        return;
       }
-      console.log(`size = ${missions.length}`);
-      console.log(`missions = ${JSON.stringify(missions)}`);
-      let id = missions[0].missionId;
-
-      missionManager.getMissionSnapShot('', id, (err, snapshot) => {
-        if (err) {
-          console.error(`getMissionInfos failed, err.code: ${JSON.stringify(err.code)}, err.message: ${JSON.stringify(err.message)}`);
-          return;
-        }
-
-        // 执行正常业务
-        console.log(`bundleName = ${snapshot.ability.bundleName}`);
-      });
+      // 执行正常业务
+      console.log(`bundleName = ${snapshot.ability.bundleName}`);
     });
-  } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
-  }
+  });
+} catch (paramError) {
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+}
 ```

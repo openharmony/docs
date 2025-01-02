@@ -9,8 +9,9 @@
 1. 导入media模块。创建录像输出流的SurfaceId以及录像输出的数据，都需要用到系统提供的[media接口](../../reference/apis-media-kit/js-apis-media.md)能力，导入media接口的方法如下。
      
    ```ts
-   import { BusinessError } from '@ohos.base';
-   import media from '@ohos.multimedia.media';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { camera } from '@kit.CameraKit';
+   import { media } from '@kit.MediaKit';
    ```
 
 2. 创建Surface。
@@ -47,6 +48,8 @@
 
    > **说明：**
    > 预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为640:480 = 4:3，则需要预览流中的分辨率的宽高比也为4:3，如分辨率选择640:480，或960:720，或1440:1080，以此类推
+   >
+   > 获取录像旋转角度的方法：通过[VideoOutput](../../reference/apis-camera-kit/js-apis-camera.md#videooutput)类中的[getVideoRotation](../../reference/apis-camera-kit/js-apis-camera.md#getvideorotation12)方法获取rotation实际的值
 
    ```ts
    async function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): Promise<camera.VideoOutput | undefined> {
@@ -69,7 +72,7 @@
        videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
        profile: aVRecorderProfile,
        url: 'fd://35',
-       rotation: 90 // 90°为默认竖屏显示角度，如果由于设备原因或应用期望以其他方式显示等原因，请根据实际情况调整该参数
+       rotation: 90 // rotation的值90，是通过getPhotoRotation接口获取到的值，具体请参考说明中获取录像旋转角度的方法
      };
      // 创建avRecorder
      let avRecorder: media.AVRecorder | undefined = undefined;
@@ -157,7 +160,10 @@
     
   ```ts
   function onVideoOutputFrameStart(videoOutput: camera.VideoOutput): void {
-    videoOutput.on('frameStart', () => {
+    videoOutput.on('frameStart', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('Video frame started');
     });
   }
@@ -167,13 +173,16 @@
     
   ```ts
   function onVideoOutputFrameEnd(videoOutput: camera.VideoOutput): void {
-    videoOutput.on('frameEnd', () => {
+    videoOutput.on('frameEnd', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('Video frame ended');
     });
   }
   ```
 
-- 通过注册固定的error回调函数获取监听录像输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
+- 通过注册固定的error回调函数获取监听录像输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
     
   ```ts
   function onVideoOutputError(videoOutput: camera.VideoOutput): void {
@@ -182,3 +191,6 @@
     });
   }
   ```
+
+<!--RP1-->
+<!--RP1End-->

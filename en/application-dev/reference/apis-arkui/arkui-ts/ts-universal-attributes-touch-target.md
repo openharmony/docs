@@ -21,12 +21,12 @@ Sets one or more touch targets.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | Array&lt;[Rectangle](#rectangle)&gt; \| [Rectangle](#rectangle) | Yes  | One or more touch targets, including their location and size.<br>The default touch target is the entire component. Default value:<br>{<br>x: 0,<br>y: 0,<br>width: '100%',<br>height: '100%'<br>}<br>Since API version 9, this API is supported in ArkTS widgets.|
+| value  | Array&lt;[Rectangle](#rectangle)&gt; \| [Rectangle](#rectangle) | Yes  | One or more touch targets, including their location and size.<br>The default touch target is the entire component. Default value:<br>{<br>x: 0,<br>y: 0,<br>width: '100%',<br>height: '100%'<br>}<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
 
 
 ## Rectangle
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 | Name       | Type                      | Mandatory  | Description                            |
 | ------ | ----------------------------- | -----| -------------------------------- |

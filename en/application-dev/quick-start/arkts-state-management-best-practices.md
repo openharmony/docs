@@ -7,7 +7,7 @@ This guide outlines best practices for state management in ArkUI applications. R
 
 When you need to pass values between parent and child components, choosing the right decorator can significantly improve application performance. If the value of a state variable is not changed in the child component, using @Prop to decorate the state variable will mean more time required in component creation.
 
-[Nonexample]
+[Incorrect Usage]
 
 ```ts
 @Observed
@@ -47,9 +47,9 @@ struct Parent {
 }
 ```
 
-In the preceding example, the **PropChild** component does not change the value of **\@Prop testNum: ClassA**. Therefore, \@ObjectLink is a better choice, because \@Prop makes a deep copy and increases performance overhead.
+In the preceding example, the **PropChild** component does not change the value of **\@Prop testNum: ClassA**. In this case, \@ObjectLink is a better choice, because \@Prop makes a deep copy and increases performance overhead.
 
-[Example]
+[Correct Usage]
 
 ```ts
 @Observed
@@ -92,7 +92,7 @@ struct Parent {
 
 ## Avoiding Forcibly Updating Unassociated Components Through State Variables
 
-[Nonexample]
+[Incorrect Usage]
 
 
 ```ts
@@ -147,7 +147,7 @@ The preceding example has the following pitfalls:
 
 - However, in this application, an attempt is made to update these two regular variables through **this.needsUpdate**. This approach is nonviable and may result in poor re-render performance.
 
-[Example]
+[Correct Usage]
 
 To address this issue, decorate the **realState1** and **realState2** variables with \@State. Then, the variable **needsUpdate** is no longer required.
 
@@ -182,9 +182,9 @@ struct CompA {
 
 ## Precisely Controlling the Number of Components Associated with State Variables
 
-When components are associated with state variables, they are re-rendered when the state value changes. The more components associated, the more components re-rendered, and the heavier the UI thread load, which causes a drop in application performance. Things can get worse when the associated components are complex. Therefore, it is critical to precisely control the number of associated components. For example, instead of associating a state variable with multiple components at the same level, associating it with these components' parent can greatly reduce the number of components to be re-rendered, thereby improving UI responsiveness.
+It is recommended that the number of components associated with each state variable be less than 20. When components are associated with a state variable, they are re-rendered when the state value changes. The more components associated, the more components re-rendered, and the heavier the UI thread load, which causes a drop in application performance. Things can get worse when the associated components are complex. Therefore, it is critical to precisely control the number of associated components. For example, instead of associating a state variable with multiple components at the same level, associating it with these components' parent can greatly reduce the number of components to be re-rendered, thereby improving UI responsiveness.
 
-[Nonexample]
+[Incorrect Usage]
 
 ```ts
 @Observed
@@ -200,7 +200,7 @@ struct Title {
         .width(50)
         .height(50)
         .translate({
-          x:this.translateObj.translateX // this.translateObj.translateX used in two component both in Row
+          x:this.translateObj.translateX // this.translateObj.translateX is bound to the Image and Text components.
         })
       Text("Title")
         .fontSize(20)
@@ -225,7 +225,7 @@ struct Page {
       .width(200)
       .height(400)
       .translate({
-        x:this.translateObj.translateX //this.translateObj.translateX used in two components both in Column
+        x:this.translateObj.translateX // this.translateObj.translateX is bound to the Stack and Button components.
       })
       Button("move")
         .translate({
@@ -243,9 +243,9 @@ struct Page {
 }
 ```
 
-In the preceding example, the state variable **this.translateObj.translateX** is used in multiple child components at the same level. When it changes, all these associated components are re-rendered. Since the changes of these components are the same, you can associate the state variable with their parent component to reduce the number of components re-rendered. Analysis reveals that all these child components are located in the **\<Column>** component under strcut **Page**. Therefore, you can associate the **translate** attribute to the **\<Column>** component instead.
+In the preceding example, the state variable **this.translateObj.translateX** is used in multiple child components at the same level. When it changes, all these associated components are re-rendered. Since the changes of these components are the same, you can associate the state variable with their parent component to reduce the number of components re-rendered. Analysis reveals that all these child components are located in the **Column** component under struct **Page**. Therefore, you can associate the **translate** attribute to the **Column** component instead.
 
-[Example]
+[Correct Usage]
 
 ```ts
 @Observed
@@ -285,9 +285,193 @@ struct Page1 {
           })
         })
     }
-    .translate({ // the component in Column shares the same property translate
+    .translate({ // The same translate attribute is set for both the Stack and Button child components on the Column layer.
       x: this.translateObj.translateX
     })
   }
 }
 ```
+
+## Properly Controlling the Number of Components Associated with Object State Variables
+
+
+When a complex object is defined as a state variable, take care to control the number of components associated with the object - a change to any property of the object will cause a re-render of these components, even when they do not directly use the changed property. To reduce redundant re-renders and help deliver a smooth experience, split the complex object as appropriate and control the number of components associated with the object. For details, see [Precisely Controlling Render Scope](https://gitee.com/openharmony/docs/blob/master/en/application-dev/performance/precisely-control-render-scope.md) and [Proper Use of State Management](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/properly-use-state-management-to-develope.md).
+
+## Querying the Number of Components Associated with a State Variable
+
+During application development, you can use HiDumper to view the number of components associated with a state variable for performance optimization. For details, see [State Variable Component Location Tool Practice](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/performance/state_variable_dfx_pratice.md).
+
+
+## Avoid Frequent Reads of State Variables in a Loop
+
+Avoid frequent reads of state variables inside a loop, such as the **for** and **while** loop. A best practice is to read state variables outside a loop.
+
+[Incorrect Usage]
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = '';
+
+  build() {
+    Column() {
+      Button ('Print Log')
+        .onClick(() => {
+          for (let i = 0; i < 10; i++) {
+            hilog.info(0x0000, 'TAG', '%{public}s', this.message);
+          }
+        })
+        .width('90%')
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .margin({
+          top: 10
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .alignItems(HorizontalAlign.Center)
+    .margin({
+      top: 15
+    })
+  }
+}
+```
+
+[Correct Usage]
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = '';
+
+  build() {
+    Column() {
+      Button ('Print Log')
+        .onClick(() => {
+          let logMessage: string = this.message;
+          for (let i = 0; i < 10; i++) {
+            hilog.info(0x0000, 'TAG', '%{public}s', logMessage);
+          }
+        })
+        .width('90%')
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .margin({
+          top: 10
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .alignItems(HorizontalAlign.Center)
+    .margin({
+      top: 15
+    })
+  }
+}
+```
+
+## Using Temporary Variables instead of State Variables
+
+During application development, you should reduce direct value changes to the state variables and compute data by using temporary variables.
+
+When a state variable changes, ArkUI queries the components that require the use of state variables and executes an update method to render the components. However, by computing the temporary variables instead of directly changing the state variables, ArkUI can query and render components only when the last state variable changes, reducing unnecessary behaviors and improving application performance. For details about the behavior of state variables, see [@State Decorator: State Owned by Component](arkts-state.md).
+
+[Incorrect Usage]
+
+```ts
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = '';
+
+  appendMsg(newMsg: string) {
+    // Performance Tracing
+    hiTraceMeter.startTrace('StateVariable', 1);
+    this.message += newMsg;
+    this.message += ';';
+    this.message += '<br/>';
+    hiTraceMeter.finishTrace('StateVariable', 1);
+  }
+
+  build() {
+    Column() {
+      Button ('Print Log')
+        .onClick(() => {
+          this.appendMsg('Change State Variables');
+        })
+        .width('90%')
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .margin({
+          top: 10
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .alignItems(HorizontalAlign.Center)
+    .margin({
+      top: 15
+    })
+  }
+}
+```
+
+In this case, state variables are directly changed, triggering the computation for three times. The running duration is as follows.
+
+![](figures/hp_arkui_use_state_var.png)
+
+[Correct Usage]
+
+```ts
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = '';
+
+  appendMsg(newMsg: string) {
+    // Performance Tracing
+    hiTraceMeter.startTrace('TemporaryVariable', 2);
+    let message = this.message;
+    message += newMsg;
+    message += ';';
+    message += '<br/>';
+    this.message = message;
+    hiTraceMeter.finishTrace('TemporaryVariable', 2);
+  }
+
+  build() {
+    Column() {
+      Button ('Print Log')
+        .onClick(() => {
+          this.appendMsg('Change Temporary Variables');
+        })
+        .width('90%')
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .margin({
+          top: 10
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .alignItems(HorizontalAlign.Center)
+    .margin({
+      top: 15
+    })
+  }
+}
+```
+
+In this case, temporary variables are used instead of state variables, triggering the computation for three times. The running duration is as follows.
+
+![](figures/hp_arkui_use_local_var.png)
+
+[Summary]
+| **Computation Method**| **Time Required (for Reference Only)** | **Description**|
+| ------ | ------- | ------------------------------------- |
+| Changing state variables | 1.01ms | Increases unnecessary query and rendering of ArkUI, causing poor performance.|
+| Using temporary variables for computing | 0.63ms | Streamlines ArkUI behaviors and improve application performance.|
+<!--no_check-->

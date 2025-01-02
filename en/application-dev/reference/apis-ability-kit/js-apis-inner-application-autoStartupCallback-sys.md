@@ -21,15 +21,15 @@ Called when auto-startup is set for an application component.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| info | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)   | Yes| Information about the target application component.|
+| info | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)   | Yes | Information about the target application component. |
 
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
-import common from '@ohos.app.ability.common';
+import { autoStartupManager, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let autoStartupCallback: common.AutoStartupCallback = {
   onAutoStartupOn(data: common.AutoStartupInfo) {
@@ -39,10 +39,11 @@ let autoStartupCallback: common.AutoStartupCallback = {
     console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
   }
 }
+
 try {
-  AutoStartupManager.on('systemAutoStartup', autoStartupCallback)
+  autoStartupManager.on('systemAutoStartup', autoStartupCallback)
 } catch (err) {
-  console.info('===> autostartupmanager on callback err: ' + JSON.stringify(err));
+  console.info('===> autostartupmanager on callback err: ' + JSON.stringify(err as BusinessError));
 }
 ```
 
@@ -58,15 +59,15 @@ Called when the auto-startup setting of an application component is canceled.
 
 **Parameters**
 
-| Name| Type           | Mandatory| Description                |
+| Name | Type           | Mandatory | Description                |
 | ------ | --------------- | ---- | -------------------- |
-| info   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)   | Yes  | Information about the target application component.|
+| info   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)   | Yes  | Information about the target application component. |
 
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
-import common from '@ohos.app.ability.common';
+import { autoStartupManager, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let autoStartupCallback: common.AutoStartupCallback = {
   onAutoStartupOn(data: common.AutoStartupInfo) {
@@ -76,9 +77,10 @@ let autoStartupCallback: common.AutoStartupCallback = {
     console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
   }
 }
+
 try {
-  AutoStartupManager.on('systemAutoStartup', autoStartupCallback)
+  autoStartupManager.on('systemAutoStartup', autoStartupCallback)
 } catch (err) {
-  console.info('===> autostartupmanager on callback err: ' + JSON.stringify(err));
+  console.info('===> autostartupmanager on callback err: ' + JSON.stringify(err as BusinessError));
 }
 ```

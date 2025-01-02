@@ -9,10 +9,12 @@ BaseContext抽象类用于表示继承的子类Context是Stage模型还是FA模�
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## 属性
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -25,14 +27,12 @@ import common from '@ohos.app.ability.common';
 以Stage模型为例，用户可通过UIAbilityContext访问stageMode字段。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
 
 class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        // EntryAbility onCreate, isStageMode: true
-        console.log(`EntryAbility onCreate, isStageMode: ${this.context.stageMode}`);
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // EntryAbility onCreate, isStageMode: true
+    console.log(`EntryAbility onCreate, isStageMode: ${this.context.stageMode}`);
+  }
 }
 ```

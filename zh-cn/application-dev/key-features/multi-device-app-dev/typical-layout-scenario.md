@@ -9,9 +9,9 @@
 | [页签栏](#页签栏) | Tab组件&nbsp;+&nbsp;响应式布局 |
 | [运营横幅（Banner）](#运营横幅banner) | Swiper组件&nbsp;+&nbsp;响应式布局 |
 | [网格](#网格) | Grid组件&nbsp;/&nbsp;List组件&nbsp;+&nbsp;响应式布局 |
-| [侧边栏](#侧边栏) | SiderBar组件&nbsp;+&nbsp;响应式布局 |
+| [侧边栏](#侧边栏) | SideBar组件&nbsp;+&nbsp;响应式布局 |
 | [单/双栏](#单双栏) | Navigation组件&nbsp;+&nbsp;响应式布局 |
-| [三分栏](#三分栏) | SiderBar组件&nbsp;+&nbsp;Navigation组件&nbsp;+&nbsp;响应式布局 |
+| [三分栏](#三分栏) | SideBar组件&nbsp;+&nbsp;Navigation组件&nbsp;+&nbsp;响应式布局 |
 | [自定义弹窗](#自定义弹窗) | CustomDialogController组件&nbsp;+&nbsp;响应式布局 |
 | [大图浏览](#大图浏览) | Image组件 |
 | [操作入口](#操作入口) | Scroll组件+Row组件横向均分 |
@@ -46,12 +46,16 @@
 
 
 ```ts
-import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
+import { BreakpointSystem, BreakpointState } from '../common/breakpointsystem'
 
 interface TabBar  {
   name: string
   icon: Resource
   selectIcon: Resource
+}
+interface marginGenerate {
+  top: number,
+  left?:number
 }
 
 @Entry
@@ -71,14 +75,37 @@ struct Home {
                                   icon: $r('app.media.ic_music_me_nor'),
                                   selectIcon: $r('app.media.ic_music_me_selected')
                                 }]
+  @State compStr: BreakpointState<string> = BreakpointState.of({ sm: "sm", md: "md", lg: "lg" })
+  @State compDirection: BreakpointState<FlexDirection> = BreakpointState.of({
+    sm: FlexDirection.Column,
+    md: FlexDirection.Row,
+    lg: FlexDirection.Column
+  });
+  @State compBarPose: BreakpointState<BarPosition> = BreakpointState.of({
+    sm: BarPosition.End,
+    md: BarPosition.End,
+    lg: BarPosition.Start
+  });
+  @State compVertical: BreakpointState<boolean> = BreakpointState.of({
+    sm: false,
+    md: false,
+    lg: true
+  });
+  @State compBarWidth: BreakpointState<string> = BreakpointState.of({
+    sm: '100%', md: '100%', lg: '96vp'
+  });
+  @State compBarHeight: BreakpointState<string> = BreakpointState.of({
+    sm: '72vp', md: '56vp', lg: '60%'
+  });
+  @State compMargin: BreakpointState<marginGenerate> = BreakpointState.of({
+    sm: ({ top: 4 } as marginGenerate),
+    md: ({ left: 8 } as marginGenerate),
+    lg: ({ top: 4 } as marginGenerate)
+  });
 
   @Builder TabBarBuilder(index: number, tabBar: TabBar) {
     Flex({
-      direction: new BreakPointType({
-        sm: FlexDirection.Column,
-        md: FlexDirection.Row,
-        lg: FlexDirection.Column
-      }).getValue(this.currentBreakpoint),
+      direction: this.compDirection.value,
       justifyContent: FlexAlign.Center,
       alignItems: ItemAlign.Center
     }) {
@@ -86,34 +113,37 @@ struct Home {
         .size({ width: 36, height: 36 })
       Text(tabBar.name)
         .fontColor(this.currentIndex === index ? '#FF1948' : '#999')
-        .margin(new BreakPointType<(Length|Padding)>({
-          sm: { top: 4 },
-          md: { left: 8 },
-          lg: { top: 4 } }).getValue(this.currentBreakpoint)!)
+        .margin(this.compMargin.value)
         .fontSize(16)
     }
     .width('100%')
     .height('100%')
   }
-
-  @StorageLink('currentBreakpoint') currentBreakpoint: string = 'md'
-  private breakpointSystem: BreakpointSystem = new BreakpointSystem()
-
   aboutToAppear() {
-    this.breakpointSystem.register()
+    BreakpointSystem.getInstance().attach(this.compStr)
+    BreakpointSystem.getInstance().attach(this.compDirection)
+    BreakpointSystem.getInstance().attach(this.compBarPose)
+    BreakpointSystem.getInstance().attach(this.compVertical)
+    BreakpointSystem.getInstance().attach(this.compBarWidth)
+    BreakpointSystem.getInstance().attach(this.compBarHeight)
+    BreakpointSystem.getInstance().attach(this.compMargin)
+    BreakpointSystem.getInstance().start()
   }
 
   aboutToDisappear() {
-    this.breakpointSystem.unregister()
+    BreakpointSystem.getInstance().detach(this.compStr)
+    BreakpointSystem.getInstance().detach(this.compDirection)
+    BreakpointSystem.getInstance().detach(this.compBarPose)
+    BreakpointSystem.getInstance().detach(this.compVertical)
+    BreakpointSystem.getInstance().detach(this.compBarWidth)
+    BreakpointSystem.getInstance().detach(this.compBarHeight)
+    BreakpointSystem.getInstance().detach(this.compMargin)
+    BreakpointSystem.getInstance().stop()
   }
 
   build() {
     Tabs({
-      barPosition: new BreakPointType({
-        sm: BarPosition.End,
-        md: BarPosition.End,
-        lg: BarPosition.Start
-      }).getValue(this.currentBreakpoint)
+      barPosition:this.compBarPose.value
     }) {
       ForEach(this.tabs, (item:TabBar, index) => {
         TabContent() {
@@ -123,9 +153,9 @@ struct Home {
         }.tabBar(this.TabBarBuilder(index!, item))
       })
     }
-    .vertical(new BreakPointType({ sm: false, md: false, lg: true }).getValue(this.currentBreakpoint)!)
-    .barWidth(new BreakPointType({ sm: '100%', md: '100%', lg: '96vp' }).getValue(this.currentBreakpoint)!)
-    .barHeight(new BreakPointType({ sm: '72vp', md: '56vp', lg: '60%' }).getValue(this.currentBreakpoint)!)
+    .vertical(this.compVertical.value)
+    .barWidth(this.compBarWidth.value)
+    .barHeight(this.compBarHeight.value)
     .animationDuration(0)
     .onChange((index: number) => {
       this.currentIndex = index
@@ -152,7 +182,7 @@ struct Home {
 
 
 ```ts
-import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
+import { BreakpointSystem, BreakPointType } from '../common/breakpointsystem'
 
 @Entry
 @Component
@@ -215,7 +245,7 @@ export default struct Banner {
 
 
 ```ts
-import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
+import { BreakpointSystem, BreakPointType } from '../common/breakpointsystem'
 
 interface GridItemInfo {
   name: string
@@ -277,7 +307,7 @@ struct MultiLaneList {
 
 
 ```ts
-import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
+import { BreakpointSystem, BreakPointType } from '../common/breakpointsystem'
 
 interface ListItemInfo {
   name: string
@@ -343,13 +373,13 @@ struct MultiLaneList {
 
 **实现方案**
 
-侧边栏通常通过[SideBarContainer组件](../../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)实现，结合响应式布局能力，在不同断点下为SiderBarConContainer组件的sideBarWidth、showControlButton等属性配置不同的值，即可实现目标效果。
+侧边栏通常通过[SideBarContainer组件](../../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)实现，结合响应式布局能力，在不同断点下为SideBarConContainer组件的sideBarWidth、showControlButton等属性配置不同的值，即可实现目标效果。
 
 **参考代码**
 
 
 ```ts
-import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
+import { BreakpointSystem, BreakPointType } from '../common/breakpointsystem'
 
 interface imagesInfo{
   label:string,
@@ -450,10 +480,38 @@ struct SideBarSample {
 **参考代码**
 
 ```ts
+
+// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
+// route_map.json
+{
+  "routerMap": [
+    {
+      "name": "Moon",
+      "pageSourceFile": "src/main/ets/pages/Moon.ets",
+      "buildFunction": "MoonBuilder",
+      "data": {
+        "description": "this is Moon"
+      }
+    },
+    {
+      "name": "Sun",
+      "pageSourceFile": "src/main/ets/pages/Sun.ets",
+      "buildFunction": "SunBuilder"
+    }
+  ]
+}
+// Moon.ets
+@Builder
+export function MoonBuilder(name: string, param: Object) {
+  Moon()
+}
 @Component
-struct Details {
+export struct Moon {
   private imageSrc: Resource=$r('app.media.my_image_moon')
+  private label: string='moon'
   build() {
+    Column(){
+    NavDestination(){
     Column() {
       Image(this.imageSrc)
         .objectFit(ImageFit.Contain)
@@ -463,17 +521,60 @@ struct Details {
     .justifyContent(FlexAlign.Center)
     .width('100%')
     .height('100%')
+     }.title(this.label)
+     }
   }
 }
-
+// Sun.ets
+@Builder
+export function SunBuilder(name: string, param: Object) {
+  Sun()
+}
 @Component
-struct Item {
-  private imageSrc?: Resource
-  private label?: string
-
+export struct Sun {
+  private imageSrc: Resource=$r('app.media.my_image')
+  private label: string='Sun'
   build() {
-    NavRouter() {
-      Text(this.label)
+    Column(){
+    NavDestination(){
+    Column() {
+      Image(this.imageSrc)
+        .objectFit(ImageFit.Contain)
+        .height(300)
+        .width(300)
+    }
+    .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
+     }.title(this.label)
+     }
+  }
+}
+//NavigationSample.ets
+interface arrSample{
+  label:string,
+  pagePath:string
+}
+
+@Entry
+@Component
+struct NavigationSample {
+  pageInfos: NavPathStack = new NavPathStack();
+  private arr:arrSample[]=[
+    {
+      label:'moon',
+      pagePath:'Moon'
+    },
+    {
+      label:'sun',
+      pagePath:'Sun'
+    }
+  ]
+  build() {
+    Navigation(this.pageInfos) {
+      Column({space: 30}) { 
+      ForEach(this.arr, (item: arrSample) => {
+         Text(item.label)
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
         .borderRadius(5)
@@ -481,22 +582,11 @@ struct Item {
         .textAlign(TextAlign.Center)
         .width(180)
         .height(36)
-      NavDestination() {
-        Details({imageSrc: this.imageSrc})
-      }.title(this.label)
-      .backgroundColor('#FFFFFF')
-    }
-  }
-}
-
-@Entry
-@Component
-struct NavigationSample {
-  build() {
-    Navigation() {
-      Column({space: 30}) {
-        Item({label: 'moon', imageSrc: $r('app.media.my_image_moon')})
-        Item({label: 'sun', imageSrc: $r('app.media.my_image')})
+        .onClick(()=>{
+          this.pageInfos.clear();
+          this.pageInfos.pushPath({name:item.pagePath})
+        })
+        })
       }
       .justifyContent(FlexAlign.Center)
       .height('100%')
@@ -531,17 +621,36 @@ struct NavigationSample {
 
 **实现方案**
 
-三分栏场景可以组合使用[SideBarContainer](../../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)组件与[Navigation组件](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)实现，SideBarContainer组件可以通过侧边栏控制按钮控制显示/隐藏，Navigation组件可以根据窗口宽度自动切换该组件内单/双栏显示，结合响应式布局能力，在不同断点下为SiderBarConContainer组件的minContentWidth属性配置不同的值，即可实现目标效果。设置minContentWidth属性的值可以通过[断点](../multi-device-app-dev/responsive-layout.md#断点)监听窗口尺寸变化的同时设置不同的值并储存成一个全局对象。
+三分栏场景可以组合使用[SideBarContainer](../../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)组件与[Navigation组件](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)实现，SideBarContainer组件可以通过侧边栏控制按钮控制显示/隐藏，Navigation组件可以根据窗口宽度自动切换该组件内单/双栏显示，结合响应式布局能力，在不同断点下为SideBarConContainer组件的minContentWidth属性配置不同的值，即可实现目标效果。设置minContentWidth属性的值可以通过[断点](../multi-device-app-dev/responsive-layout.md#断点)监听窗口尺寸变化的同时设置不同的值并储存成一个全局对象。
 
 **参考代码**
 
 ```ts
-// MainAbility.ts
-import window from '@ohos.window'
-import display from '@ohos.display'
-import Ability from '@ohos.app.ability.Ability'
 
-export default class MainAbility extends Ability {
+// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
+// route_map.json
+{
+  "routerMap": [
+    {
+      "name": "B1Page",
+      "pageSourceFile": "src/main/ets/pages/B1Page.ets",
+      "buildFunction": "B1PageBuilder",
+      "data": {
+        "description": "this is B1Page"
+      }
+    },
+    {
+      "name": "B2Page",
+      "pageSourceFile": "src/main/ets/pages/B2Page.ets",
+      "buildFunction": "B2PageBuilder"
+    }
+  ]
+}
+// EntryAbility.ts
+import { window, display } from '@kit.ArkUI'
+import { Ability,UIAbility } from '@kit.AbilityKit'
+
+export default class EntryAbility extends UIAbility {
   private windowObj?: window.Window
   private curBp?: string
   private myWidth?: number
@@ -585,7 +694,12 @@ export default class MainAbility extends Ability {
         this.updateBreakpoint(windowSize.width)
       })
     });
-   // ...
+   // ...应用启动页面
+   windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {      
+        return;
+      }
+    });
   }
     
   // 窗口销毁时，取消窗口尺寸变化监听
@@ -598,52 +712,78 @@ export default class MainAbility extends Ability {
 }
 
 
-// tripleColumn.ets
+// B1Page.ets
+@Builder
+export function B1PageBuilder() {
+  B1Page()
+}
 @Component
-struct Details {
-  private imageSrc: Resource=$r('app.media.icon')
+export struct B1Page {
+  private imageSrc: Resource = $r('app.media.startIcon');
+  private label: string = "B1"
   build() {
     Column() {
-      Image(this.imageSrc)
-        .objectFit(ImageFit.Contain)
-        .height(300)
-        .width(300)
-    }
-    .justifyContent(FlexAlign.Center)
-    .width('100%')
-    .height('100%')
-  }
-}
-
-@Component
-struct Item {
-  private imageSrc?: Resource
-  private label?: string
-
-  build() {
-    NavRouter() {
-      Text(this.label)
-        .fontSize(24)
-        .fontWeight(FontWeight.Bold)
-        .backgroundColor('#66000000')
-        .textAlign(TextAlign.Center)
-        .width('100%')
-        .height('30%')
       NavDestination() {
-        Details({imageSrc: this.imageSrc})
+        Column() {
+          Image(this.imageSrc)
+            .objectFit(ImageFit.Contain)
+            .height(300)
+            .width(300)
+        }
+        .justifyContent(FlexAlign.Center)
+        .width('100%')
+        .height('100%')
       }.title(this.label)
-      .hideTitleBar(false)
-      .backgroundColor('#FFFFFF')
     }
-    .margin(10)
+  }
+}
+// B2Page.ets
+@Builder
+export function B2PageBuilder() {
+  B2Page()
+}
+@Component
+export struct B2Page {
+  private imageSrc: Resource = $r('app.media.startIcon');
+  private label: string = "B2"
+  build() {
+    Column() {
+      NavDestination() {
+        Column() {
+          Image(this.imageSrc)
+            .objectFit(ImageFit.Contain)
+            .height(300)
+            .width(300)
+        }
+        .justifyContent(FlexAlign.Center)
+        .width('100%')
+        .height('100%')
+      }.title(this.label)
+    }
   }
 }
 
+//TripleColumnSample.ets
+interface arrSampleObj{
+  label:string,
+  pagePath:string
+}
 @Entry
 @Component
 struct TripleColumnSample {
-  @State arr: number[] = [1, 2, 3]
-  @StorageProp('myWidth') myWidth: number = 360
+  @State arr: number[] = [1, 2, 3];
+  @StorageProp('myWidth') myWidth: number = 360;
+  pageInfos:NavPathStack = new NavPathStack();
+  @State arrSample: arrSampleObj[] = [
+    {
+        label:'B1',
+        pagePath:'B1Page'
+    },
+    {
+        label:'B2',
+        pagePath:'B2Page'
+    }
+  ];
 
   @Builder NavigationTitle() {
     Column() {
@@ -661,12 +801,15 @@ struct TripleColumnSample {
     SideBarContainer() {
       Column() {
         List() {
-          ForEach(this.arr, (item:number, index) => {
+          ForEach(this.arr, (item: number, index) => {
             ListItem() {
-              Text('A'+item)
-                .width('100%').height("20%").fontSize(24)
+              Text('A' + item)
+                .width('100%')
+                .height("20%")
+                .fontSize(24)
                 .fontWeight(FontWeight.Bold)
-                .textAlign(TextAlign.Center).backgroundColor('#66000000')
+                .textAlign(TextAlign.Center)
+                .backgroundColor('#66000000')
             }
           })
         }.divider({ strokeWidth: 5, color: '#F1F3F5' })
@@ -676,12 +819,27 @@ struct TripleColumnSample {
       .backgroundColor('#F1F3F5')
 
       Column() {
-        Navigation() {
-          List(){
+        Navigation(this.pageInfos) {
+          List() {
             ListItem() {
               Column() {
-                Item({ label: 'B1', imageSrc: $r('app.media.icon') })
-                Item({ label: 'B2', imageSrc: $r('app.media.icon') })
+                ForEach(this.arrSample, (item: arrSampleObj, index) => {
+                  ListItem() {
+                    Text(item.label)
+                      .fontSize(24)
+                      .fontWeight(FontWeight.Bold)
+                      .backgroundColor('#66000000')
+                      .textAlign(TextAlign.Center)
+                      .width('100%')
+                      .height('30%')
+                      .margin({
+                        bottom:10
+                      })
+                  }.onClick(() => {
+                    this.pageInfos.clear();
+                    this.pageInfos.pushPath({ name: item.pagePath })
+                  })
+                })
               }
             }.width('100%')
           }
@@ -709,7 +867,7 @@ struct TripleColumnSample {
 
 | sm                                           | md                                      | lg                                      |
 | -------------------------------------------- | --------------------------------------- | --------------------------------------- |
-| 弹窗横向居中，纵向位于底部显示，与窗口左右两侧各间距24vp。 | 弹窗居中显示，其宽度约为窗口宽度的1/2。 | 弹窗居中显示，其宽度约为窗口宽度的1/3。 |
+| 弹窗横向居中，纵向位于底部显示，与窗口左右两侧各间距24vp。 | 弹窗横向居中，纵向位于底部显示。 | 弹窗居中显示，其宽度约为窗口宽度的1/3。 |
 | ![](figures/custom_dialog_sm.png)            | ![](figures/custom_dialog_md.png)       | ![](figures/custom_dialog_lg.png)       |
 
 **实现方案**

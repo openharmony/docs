@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import missionManager from '@ohos.app.ability.missionManager';
+import { missionManager } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -34,14 +34,15 @@ import missionManager from '@ohos.app.ability.missionManager';
 
 **示例：**
 ```ts
-import missionManager from '@ohos.app.ability.missionManager';
+import { missionManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   missionManager.getMissionInfo('', 1, (error, data) => {
     if (error) {
-        // 处理业务逻辑错误
-        console.error(`getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}`);
-        return;
+      // 处理业务逻辑错误
+      console.error(`getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}`);
+      return;
     }
 
     console.log(`getMissionInfo missionId is: ${JSON.stringify(data.missionId)}`);
@@ -53,8 +54,8 @@ try {
     console.log(`getMissionInfo iconPath is: ${JSON.stringify(data.iconPath)}`);
     console.log(`getMissionInfo continuable is: ${JSON.stringify(data.continuable)}`);
     console.log(`getMissionInfo unclearable is: ${JSON.stringify(data.unclearable)}`);
-    });
+  });
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
 }
 ```

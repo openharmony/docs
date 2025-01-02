@@ -4,25 +4,18 @@
 
 The following figure shows the context structure of the Startup subsystem.
 
-**Figure 1** Context structure of the Startup subsystem
+  **Figure 1** Context structure of the Startup subsystem
 
-![Context structure of the startup subsystem](figures/context-structure.png)
-
+  ![Context structure of the Startup subsystem](figures/context-structure-of-the-startup-subsystem.png)
 
 When the system is powered on, the kernel loads and starts services and applications as follows:
 
 1. The kernel loads the init process, which is specified by cmdline of the kernel when the bootloader starts the kernel.
-
 2. After the init process is started, tmpfs and procfs are mounted and basic dev nodes are created to establish a basic root file system.
-
 3. The init process starts the ueventd process to listen for device hot-swap events in the kernel and creates dev nodes for related devices as well as partitions for the block device.
-
 4. After mounting partitions (system and vendor) of the block device, the init process scans for the init startup script of each system service and starts the respective system ability (SA).
-
 5. Each SA registers with the samgr process, which serves as the service registration center. The samgr process assigns each SA with an ID, which will be used by an application to access the desired SA.
-
 6. The foundation process implements application lifecycle management. It is a special SA service process that provides the user program management framework and basic services. This process manages the lifecycle of applications.
-
 7. For an application, loading of the JS running environment involves a great deal of preparations. To reduce the application startup time, the appspawn process directly spawns an application process once receiving an application startup request from the foundation process.
 
 
@@ -363,7 +356,7 @@ After mounting required partitions, the init process scans each script file in t
   | mnt_point             | Mount point in the root file system.                                      |
   | type                  | File system type. Common file systems are **ext2**, **vfat**, and **NTFS**.                    |
   | mnt_flags and options | Mounting parameters.                                   |
-  | fs_mgr_flags          | File system manager flags (introduced in Android 10).<br>Available values include **check**, **wait**, **required**, **nofail**, and **hvb**.|
+  | fs_mgr_flags          | File system manager flags.<br>Available values include **check**, **wait**, **required**, **nofail**, and **hvb**.|
 
 - Description of mnt_flags and options
 

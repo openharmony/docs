@@ -74,6 +74,8 @@ onTouch(event: (event?: TouchEvent) => void)
 
 - event.type为TouchType.Move：表示手指按住移动。
 
+- event.type为TouchType.Cancel：表示打断取消当前手指操作。
+
 触摸事件可以同时多指触发，通过event参数可获取触发的手指位置、手指唯一标志、当前发生变化的手指和输入的设备源等信息。
 
 
@@ -137,3 +139,5 @@ struct TouchExample {
 针对触屏事件开发，有以下相关实例可供参考：
 
 - [ArkTS组件集（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/ComponentCollection)
+
+<!--RP1--><!--RP1End-->

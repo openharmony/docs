@@ -6,7 +6,7 @@ ArkGraphics 2D（方舟2D图形服务 ）主要提供图形绘制与显示相关
 
 - 提供图像处理的一些基本能力，包括对当前图像的亮度调节、模糊化、灰度调节、智能取色等。具体可见[@ohos.effectKit (图像效果)](../reference/apis-arkgraphics2d/js-apis-effectKit.md)。
 
-- 提供管理抽象化色域对象的基础能力，包括色域的创建、色域基础属性的获取等。具体可见[@ohos.graphics.colorSpaceManager (色彩管理)](../reference/apis-arkgraphics2d/js-apis-colorSpaceManager.md)。
+- 提供管理抽象化色域对象的基础能力，包括色域的创建、色域基础属性的获取等。具体可见[@ohos.graphics.colorSpaceManager (色彩管理)](../reference/apis-arkgraphics2d/js-apis-colorSpaceManager.md)与[@ohos.graphics.sendableColorSpaceManager (可共享的色彩管理)](../reference/apis-arkgraphics2d/js-apis-sendableColorSpaceManager.md)。
 
 - 提供可针对不同形式的内容指定帧率的能力，可用于开发者自绘制内容。具体可见[可变帧率简介](displaysync-overview.md)。
 
@@ -30,7 +30,7 @@ ArkGraphics 2D（方舟2D图形服务 ）主要提供图形绘制与显示相关
 
 - 同个窗口支持多个帧率：支持为同个窗口的不同内容，比如动画或自绘制UI，定制不同的绘制帧率，不同内容之间独立运行。
 
-- 支持帧率动态配置，兼顾体验与功耗：支持三方框架根据UI场景，动态请求绘制帧率，比如游戏、视频等业务，兼顾流畅体验与功耗体验
+- 支持帧率动态配置，兼顾体验与功耗：支持三方框架根据UI场景，动态请求绘制帧率，比如游戏、视频等业务，兼顾流畅体验与功耗体验。
   
 - 支持录制回放机制，提升交互体验：支持录制命令的缓存，可对绘制指令进行回放，以提升UI绘制的跟手性。
   

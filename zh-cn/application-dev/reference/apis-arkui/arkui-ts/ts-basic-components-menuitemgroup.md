@@ -14,16 +14,24 @@
 
 MenuItemGroup(value?: MenuItemGroupOptions)
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数  | 类型                                                                                   | 必填 | 参数描述                                    |
-| ----- | -------------------------------------------------------------------------------------- | ---- | ------------------------------------------- |
-| value | [MenuItemGroupOptions](ts-basic-components-menuitemgroup.md#menuitemgroupoptions类型说明) | 否   | 包含设置MenuItemGroup的标题和尾部显示信息。 |
+| 参数名 | 类型                                                  | 必填 | 说明                                        |
+| ------ | ----------------------------------------------------- | ---- | ------------------------------------------- |
+| value  | [MenuItemGroupOptions](#menuitemgroupoptions对象说明) | 否   | 包含设置MenuItemGroup的标题和尾部显示信息。 |
 
-## MenuItemGroupOptions类型说明
+## MenuItemGroupOptions对象说明
 
-| 名称   | 类型                                                                                      | 必填 | 描述                          |
-| ------ | ----------------------------------------------------------------------------------------- | ---- | ----------------------------- |
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型                                                         | 必填 | 说明                          |
+| ------ | ------------------------------------------------------------ | ---- | ----------------------------- |
 | header | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置对应group的标题显示信息。 |
 | footer | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置对应group的尾部显示信息。 |
 

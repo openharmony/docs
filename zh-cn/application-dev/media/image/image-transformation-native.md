@@ -1,4 +1,4 @@
-# 图像变换(C/C++)
+# 使用Image完成图像变换
 
 开发者可以通过本指导了解如何使用Native Image的接口。
 
@@ -6,7 +6,7 @@
 
 **添加依赖**
 
-在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加image的libpixelmap_ndk.z.so以及日志依赖libhilog_ndk.z.so。
+在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加image的libace_napi.z.so、libpixelmap_ndk.z.so以及日志依赖libhilog_ndk.z.so。
 
 ```txt
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelmap_ndk.z.so)
@@ -32,19 +32,20 @@ static napi_value Init(napi_env env, napi_value exports)
 EXTERN_C_END
 ```
 
-
 **Native接口调用**
 
-具体接口说明请参考[API文档](../../reference/apis-image-kit/image.md)
+具体接口说明请参考[API文档](../../reference/apis-image-kit/image.md)。
 
 在hello.cpp文件中获取JS的资源对象，并转为Native的资源对象，即可调用Native接口，调用方式示例代码如下：
 
-打开src/main/cpp/hello.cpp，添加引用文件
+打开src/main/cpp/hello.cpp，添加引用文件。
+
 ```c++
 #include<multimedia/image_framework/image_pixel_map_napi.h>
 ```
-    
+
 1. 获取**PixelMap**的信息，并记录信息到**OhosPixelMapInfo**结构中。
+
    ```c++
    static napi_value TestGetImageInfo(napi_env env, napi_callback_info info)
     {
@@ -62,7 +63,9 @@ EXTERN_C_END
         return result;
     }
     ```
+
 2. 获取**PixelMap**对象数据的内存地址，并锁定该内存。
+
     ```c++
     static napi_value TestAccessPixels(napi_env env, napi_callback_info info)
     {
@@ -80,7 +83,9 @@ EXTERN_C_END
         return result;
     }
     ```
+
 3. 释放**PixelMap**对象数据的内存锁。
+
     ```c++
     static napi_value TestUnAccessPixels(napi_env env, napi_callback_info info)
     {
@@ -101,8 +106,9 @@ EXTERN_C_END
 **JS侧调用**
 
 1. 打开src\main\cpp\types\libentry\index.d.ts(其中libentry根据工程名生成)，导入如下引用文件:
+
     ```js
-    import image from '@ohos.multimedia.image'
+    import { image } from '@kit.ImageKit';
     export const add:(a: number, b: number) => image.PixelMap;
     export const transform: (a: image.PixelMap) => image.PixelMap;
     export const testGetImageInfo: (a: image.PixelMap) => image.PixelMap;
@@ -114,7 +120,7 @@ EXTERN_C_END
 
     ```js
     import testNapi from 'libentry.so'
-    import image from '@ohos.multimedia.image';
+    import { image } from '@kit.ImageKit';
 
     @Entry
     @Component

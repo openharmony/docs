@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import audioHaptic from '@ohos.multimedia.audioHaptic';
+import { audioHaptic } from '@kit.AudioKit';
 ```
 
 ## audioHaptic.getAudioHapticManager
@@ -79,10 +79,18 @@ registerSource(audioUri: string, hapticUri: string): Promise&lt;number&gt;
 | ------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise回调返回注册资源的source id。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息                              |
+| ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioUri = 'data/audioTest.wav'; // 需更改为目标音频资源的Uri
 let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri
@@ -110,10 +118,29 @@ unregisterSource(id: number): Promise&lt;void&gt;
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | id       | number                                   | 是   | 已注册资源的source id。    |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息                              |
+| ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let audioUri = 'data/audioTest.wav'; // 需更改为目标音频资源的Uri
+let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri
+let id = 0;
+
+audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
+  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+  id = value;
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to register source ${err}`);
+});
 
 audioHapticManagerInstance.unregisterSource(id).then(() => {
   console.info(`Promise returned to indicate that unregister source successfully`);
@@ -143,11 +170,25 @@ setAudioLatencyMode(id:number, latencyMode: AudioLatencyMode): void
 
 | 错误码ID | 错误信息                              |
 | ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed.            |
 
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let audioUri = 'data/audioTest.wav'; // 需更改为目标音频资源的Uri
+let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri
+let id = 0;
+
+audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
+  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+  id = value;
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to register source ${err}`);
+});
+
 let latencyMode: audioHaptic.AudioLatencyMode = audioHaptic.AudioLatencyMode.AUDIO_LATENCY_MODE_FAST;
 
 audioHapticManagerInstance.setAudioLatencyMode(id, latencyMode);
@@ -174,12 +215,25 @@ setStreamUsage(id: number, usage: audio.StreamUsage): void
 
 | 错误码ID | 错误信息                              |
 | ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 5400102 | Operation not allowed.            |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let audioUri = 'data/audioTest.wav'; // 需更改为目标音频资源的Uri
+let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri
+let id = 0;
+
+audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
+  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+  id = value;
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to register source ${err}`);
+});
 
 let usage: audio.StreamUsage = audio.StreamUsage.STREAM_USAGE_NOTIFICATION;
 
@@ -217,6 +271,8 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHa
 
 | 错误码ID | 错误信息                              |
 | ------- |-----------------------------------|
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed. |
 | 5400103 | I/O error. |
 | 5400106 | Unsupport format. |
@@ -224,7 +280,18 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHa
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let audioUri = 'data/audioTest.wav'; // 需更改为目标音频资源的Uri
+let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri
+let id = 0;
+
+audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
+  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+  id = value;
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to register source ${err}`);
+});
 
 let options: audioHaptic.AudioHapticPlayerOptions = {muteAudio: false, muteHaptics: false};
 let audioHapticPlayerInstance: audioHaptic.AudioHapticPlayer | undefined = undefined;
@@ -272,6 +339,14 @@ isMuted(type: AudioHapticType): boolean
 | ------------------- | ------------------------------- |
 | boolean             | 查询的音振类型是否被静音。        |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息                              |
+| ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -308,7 +383,7 @@ start(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.start().then(() => {
   console.info(`Promise returned to indicate that start playing successfully.`);
@@ -343,7 +418,7 @@ stop(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.stop().then(() => {
   console.info(`Promise returned to indicate that stop playing successfully.`);
@@ -377,7 +452,7 @@ release(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.release().then(() => {
   console.info(`Promise returned to indicate that release the audio haptic player successfully.`);
@@ -390,7 +465,7 @@ audioHapticPlayerInstance.release().then(() => {
 
 on(type: 'endOfStream', callback: Callback&lt;void&gt;): void
 
-监听流结束事件。使用callback获取事件。
+监听流结束事件（音频流播放结束时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -399,12 +474,12 @@ on(type: 'endOfStream', callback: Callback&lt;void&gt;): void
 | 参数名   | 类型                     | 必填 | 说明                                                                       |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
 | type     | string                  | 是   | 事件回调类型，支持的事件为：'endOfStream'（流结束事件）。 |
-| callback | Callback&lt;void&gt;    | 是   | 收到监听事件时会触发的回调。                           |
+| callback | Callback&lt;void&gt;    | 是   | 回调函数，无返回结果。 |
 
 **示例：**
 
 ```ts
-audioHapticPlayerInstance.on('endOfStream', async() => {
+audioHapticPlayerInstance.on('endOfStream', () => {
   console.info(`Receive the callback of endOfStream.`);
 });
 ```
@@ -413,7 +488,7 @@ audioHapticPlayerInstance.on('endOfStream', async() => {
 
 off(type: 'endOfStream', callback?: Callback&lt;void&gt;): void
 
-取消监听流结束事件。
+取消监听流结束事件，使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -422,19 +497,29 @@ off(type: 'endOfStream', callback?: Callback&lt;void&gt;): void
 | 参数名 | 类型   | 必填 | 说明                                              |
 | ----- | ----- | ---- | ------------------------------------------------ |
 | type   | string | 是   | 要取消订阅事件的类型。支持的事件为：'endOfStream'。 |
-| callback | Callback&lt;void&gt;    | 否   | 要取消订阅的回调函数。          |
+| callback | Callback&lt;void&gt;    | 否   | 回调函数，无返回结果。 |
 
 **示例：**
 
 ```ts
+// 取消该事件的所有监听
 audioHapticPlayerInstance.off('endOfStream');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let endOfStreamCallback = () => {
+  console.info(`Receive the callback of endOfStream.`);
+};
+
+audioHapticPlayerInstance.on('endOfStream', endOfStreamCallback);
+
+audioHapticPlayerInstance.off('endOfStream', endOfStreamCallback);
 ```
 
 ### on('audioInterrupt')
 
 on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 
-监听音频中断事件。使用callback获取中断事件。
+监听音频中断事件（当音频焦点发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -443,17 +528,23 @@ on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 | 参数名   | 类型                     | 必填 | 说明                                                                       |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
 | type     | string                  | 是   | 事件回调类型，支持的事件为：'audioInterrupt'（音频中断事件）。                     |
-| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | 是   | 收到音频中断事件时触发的回调。    |
+| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | 是   | 回调函数，返回播放中断时，应用接收的中断事件信息。 |
 
 **示例：**
 
 ```ts
+import { audio } from '@kit.AudioKit';
+
 let isPlaying: boolean; // 标识符，表示是否正在渲染
 let isDucked: boolean; // 标识符，表示是否被降低音量
 
-audioHapticPlayerInstance.on('audioInterrupt', async(interruptEvent: audio.InterruptEvent) => {
+audioHapticPlayerInstance.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
+  // 在发生音频打断事件时，audioHapticPlayerInstance收到interruptEvent回调，此处根据其内容做相应处理。
+  // 1、可选：读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作。
+  // 注：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
+  // 2、必选：读取interruptEvent.hintType的类型，做出相应的处理。
   if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-    // 由系统进行操作，强制打断音频渲染，应用需更新自身状态及显示内容等
+    // 音频焦点事件已由系统强制执行，应用需更新自身状态及显示内容等
     switch (interruptEvent.hintType) {
       case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
         // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent
@@ -479,10 +570,11 @@ audioHapticPlayerInstance.on('audioInterrupt', async(interruptEvent: audio.Inter
         break;
     }
   } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-    // 由应用进行操作，应用可以自主选择响应操作或忽略该事件
+    // 音频焦点事件需由应用进行操作，应用可以自主选择如何处理该事件，建议应用遵从InterruptHint提示处理
     switch (interruptEvent.hintType) {
       case audio.InterruptHint.INTERRUPT_HINT_RESUME:
         // 建议应用继续渲染（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复渲染）
+        // 由于INTERRUPT_HINT_RESUME操作需要应用主动执行，系统无法强制，故INTERRUPT_HINT_RESUME事件一定为INTERRUPT_SHARE类型
         console.info('Resume force paused renderer or ignore');
         // 若选择继续渲染，需在此处主动执行开始渲染的若干操作
         break;
@@ -497,7 +589,7 @@ audioHapticPlayerInstance.on('audioInterrupt', async(interruptEvent: audio.Inter
 
 off(type: 'audioInterrupt', callback?: Callback&lt;audio.InterruptEvent&gt;): void
 
-取消订阅音频中断事件。
+取消监听音频中断事件，使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -506,10 +598,66 @@ off(type: 'audioInterrupt', callback?: Callback&lt;audio.InterruptEvent&gt;): vo
 | 参数名 | 类型   | 必填 | 说明                                              |
 | ----- | ----- | ---- | ------------------------------------------------- |
 | type   | string | 是   | 要取消订阅事件的类型。支持的事件为：'audioInterrupt'。 |
-| callback | Callback&lt;void&gt;    | 否   | 要取消订阅的回调函数。            |
+| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | 否   | 回调函数，取消监听时，返回应用中断事件信息。 |
 
 **示例：**
 
 ```ts
+import { audio } from '@kit.AudioKit';
+
+// 取消该事件的所有监听
 audioHapticPlayerInstance.off('audioInterrupt');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let isPlaying: boolean; // 标识符，表示是否正在渲染
+let isDucked: boolean; // 标识符，表示是否被降低音量
+let audioInterruptCallback = (interruptEvent: audio.InterruptEvent) => {
+  // 在发生音频打断事件时，audioHapticPlayerInstance收到interruptEvent回调，此处根据其内容做相应处理。
+  // 1、可选：读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作。
+  // 注：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
+  // 2、必选：读取interruptEvent.hintType的类型，做出相应的处理。
+  if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+    // 音频焦点事件已由系统强制执行，应用需更新自身状态及显示内容等
+    switch (interruptEvent.hintType) {
+      case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+        // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent
+        console.info('Force paused. Update playing status and stop writing');
+        isPlaying = false; // 简化处理，代表应用切换至暂停状态的若干操作
+        break;
+      case audio.InterruptHint.INTERRUPT_HINT_STOP:
+        // 音频流已被停止，永久失去焦点，若想恢复渲染，需用户主动触发
+        console.info('Force stopped. Update playing status and stop writing');
+        isPlaying = false; // 简化处理，代表应用切换至暂停状态的若干操作
+        break;
+      case audio.InterruptHint.INTERRUPT_HINT_DUCK:
+        // 音频流已被降低音量渲染
+        console.info('Force ducked. Update volume status');
+        isDucked = true; // 简化处理，代表应用更新音量状态的若干操作
+        break;
+      case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
+        // 音频流已被恢复正常音量渲染
+        console.info('Force ducked. Update volume status');
+        isDucked = false; // 简化处理，代表应用更新音量状态的若干操作
+        break;
+      default:
+        break;
+    }
+  } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+    // 音频焦点事件需由应用进行操作，应用可以自主选择如何处理该事件，建议应用遵从InterruptHint提示处理
+    switch (interruptEvent.hintType) {
+      case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+        // 建议应用继续渲染（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复渲染）
+        // 由于INTERRUPT_HINT_RESUME操作需要应用主动执行，系统无法强制，故INTERRUPT_HINT_RESUME事件一定为INTERRUPT_SHARE类型
+        console.info('Resume force paused renderer or ignore');
+        // 若选择继续渲染，需在此处主动执行开始渲染的若干操作
+        break;
+      default:
+        break;
+    }
+  }
+};
+
+audioHapticPlayerInstance.on('audioInterrupt', audioInterruptCallback);
+
+audioHapticPlayerInstance.off('audioInterrupt', audioInterruptCallback);
 ```

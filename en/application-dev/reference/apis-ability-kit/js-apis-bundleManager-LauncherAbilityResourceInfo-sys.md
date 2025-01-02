@@ -14,10 +14,12 @@ The **LauncherAbilityResourceInfo** module provides resource information of the 
 
 **System API**: This is a system API.
 
-| Name                     | Type  | Readable| Writable| Description                |
+| Name                     | Type  | Read-Only| Optional| Description                |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
 | bundleName              | string | Yes  | No  | Bundle name of the application.|
 | moduleName              | string | Yes  | No  | Module name of the application.|
 | abilityName              | string | Yes  | No  | Name of the entry ability.|
 | icon              | string | Yes  | No  | Application icon, which is encoded using Base64. |
 | label                     | string | Yes  | No  | Application label.|
+| drawableDescriptor<sup>12+</sup>                     | [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor-sys.md) | Yes  | No  | **drawableDescriptor** object of the application icon.|
+| appIndex<sup>12+</sup>           | number | Yes  | No  | Index of an application clone.|

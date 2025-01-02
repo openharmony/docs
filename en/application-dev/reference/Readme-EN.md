@@ -1,5 +1,5 @@
 # Development References
-
+- [API Reference Document Description](development-intro.md)
 - [SystemCapability](syscap.md)
 - [SystemCapability List](syscap-list.md)
 - [Universal Error Codes](errorcode-universal.md)
@@ -8,7 +8,8 @@
 - [Ads Kit API Reference](apis-ads-kit/Readme-EN.md)
 - [ArkData API Reference](apis-arkdata/Readme-EN.md)
 - [ArkGraphics 2D API Reference](apis-arkgraphics2d/Readme-EN.md)
-- [ArkTS API Reference](apis/Readme-EN.md)
+- [ArkGraphics 3D API Reference](apis-arkgraphics3d/Readme-EN.md)
+- [ArkTS API Reference](apis-arkts/Readme-EN.md)
 - [ArkUI API Reference](apis-arkui/Readme-EN.md)
 - [ArkWeb API Reference](apis-arkweb/Readme-EN.md)
 - [Asset Store Kit API Reference](apis-asset-store-kit/Readme-EN.md)
@@ -23,7 +24,7 @@
 - [Contacts Kit API Reference](apis-contacts-kit/Readme-EN.md)
 - [Core File Kit API Reference](apis-core-file-kit/Readme-EN.md)
 - [Crypto Architecture Kit API Reference](apis-crypto-architecture-kit/Readme-EN.md)
-- [Data Loss Prevention Kit API Reference](apis-data-loss-prevention-kit/Readme-EN.md)
+- [Data Protection Kit API Reference](apis-data-protection-kit/Readme-EN.md)
 - [Device Certificate Kit API Reference](apis-device-certificate-kit/Readme-EN.md)
 - [Distributed Service Kit API Reference](apis-distributedservice-kit/Readme-EN.md)
 - [Driver Development Kit API Reference](apis-driverdevelopment-kit/Readme-EN.md)
@@ -52,4 +53,3 @@
 - [User Authentication Kit API Reference](apis-user-authentication-kit/Readme-EN.md)
 - [Common Capabilities](common/Readme-EN.md)
 - [Native API Standard Libraries](native-lib/Readme-EN.md)
-<!--no_check-->

@@ -13,7 +13,7 @@ WindowExtensionAbility基于ExtensionAbility。WindowExtensionAbility中展示�
 ## 导入模块
 
 ```ts
-import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
+import { WindowExtensionAbility } from '@kit.ArkUI';
 ```
 
 ## 属性
@@ -41,8 +41,8 @@ onConnect(want: Want): void
 **示例：**
 
 ```ts
-import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import { WindowExtensionAbility } from '@kit.ArkUI';
+import { Want } from '@kit.AbilityKit';
 
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
   onConnect(want: Want) {
@@ -69,8 +69,8 @@ onDisconnect(want: Want): void
 **示例：**
 
 ```ts
-import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import { WindowExtensionAbility } from '@kit.ArkUI';
+import { Want } from '@kit.AbilityKit';
 
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
   onDisconnect(want: Want) {
@@ -97,9 +97,8 @@ onWindowReady(window: window.Window): void
 **示例：**
 
 ```ts
-import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
-import window from '@ohos.window';
-import {BusinessError} from '@ohos.base';
+import { WindowExtensionAbility, window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
   onWindowReady(window: window.Window) {

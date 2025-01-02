@@ -20,6 +20,7 @@
       - [HAP编译构建指导](subsys-build-gn-hap-compilation-guide.md)
       - Rust编译构建指导
         - [Rust模块配置规则和指导](subsys-build-rust-compilation.md)
+        - [Rust工具链使用说明](subsys-build-rust-toolchain.md)
         - [交互工具使用指导](subsys-build-bindgen-cxx-guide.md)
         - [Cargo2gn工具操作指导](subsys-build-cargo2gn-guide.md)
       - [ 常见问题](subsys-build-FAQ.md)

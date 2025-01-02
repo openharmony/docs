@@ -1,4 +1,4 @@
-# Encryption and Decryption with an AES Symmetric Key (CBC Mode)
+# Encryption and Decryption with an AES Symmetric Key (CBC Mode) (ArkTS)
 
 
 For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
@@ -29,23 +29,27 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 - Example (using asynchronous APIs):
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
+
+  function generateRandom(len: number) {
+    let rand = cryptoFramework.createRandom();
+    let generateRandSync = rand.generateRandomSync(len);
+    return generateRandSync;
+  }
 
   function genIvParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
+    let ivBlob = generateRandom(16);
     let ivParamsSpec: cryptoFramework.IvParamsSpec = {
       algName: "IvParamsSpec",
       iv: ivBlob
     };
     return ivParamsSpec;
   }
+  let iv = genIvParamsSpec();
   // Encrypt the message.
   async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('AES128|CBC|PKCS7');
-    let iv = genIvParamsSpec();
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, iv);
     let cipherData = await cipher.doFinal(plainText);
     return cipherData;
@@ -53,7 +57,6 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
   // Decrypt the message.
   async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('AES128|CBC|PKCS7');
-    let iv = genIvParamsSpec();
     await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, iv);
     let decryptData = await decoder.doFinal(cipherText);
     return decryptData;
@@ -68,76 +71,85 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
   }
 
   async function aesCBC() {
-    let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
-    let symKey = await genSymKeyByData(keyData);
-    let message = "This is a test";
-    let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
-    let encryptText = await encryptMessagePromise(symKey, plainText);
-    let decryptText = await decryptMessagePromise(symKey, encryptText);
-    if (plainText.data.toString() === decryptText.data.toString()) {
-      console.info('decrypt ok');
-      console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
-    } else {
-      console.error('decrypt failed');
+    try {
+      let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
+      let symKey = await genSymKeyByData(keyData);
+      let message = "This is a test";
+      let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
+      let encryptText = await encryptMessagePromise(symKey, plainText);
+      let decryptText = await decryptMessagePromise(symKey, encryptText);
+      if (plainText.data.toString() === decryptText.data.toString()) {
+        console.info('decrypt ok');
+        console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
+      } else {
+        console.error('decrypt failed');
+      }
+    } catch (error) {
+      console.error(`AES CBC "${error}", error code: ${error.code}`);
     }
-    console.info('main step success');
   }
   ```
 
 - Example (using synchronous APIs):
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
+
+  function generateRandom(len: number) {
+    let rand = cryptoFramework.createRandom();
+    let generateRandSync = rand.generateRandomSync(len);
+    return generateRandSync;
+  }
 
   function genIvParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
+    let ivBlob = generateRandom(16);
     let ivParamsSpec: cryptoFramework.IvParamsSpec = {
       algName: "IvParamsSpec",
       iv: ivBlob
     };
     return ivParamsSpec;
   }
+  let iv = genIvParamsSpec();
   // Encrypt the message.
-  async function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
+  function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('AES128|CBC|PKCS7');
-    let iv = genIvParamsSpec();
-    await cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, iv);
-    let cipherData = await cipher.doFinalSync(plainText);
+    cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, iv);
+    let cipherData = cipher.doFinalSync(plainText);
     return cipherData;
   }
   // Decrypt the message.
-  async function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
+  function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('AES128|CBC|PKCS7');
-    let iv = genIvParamsSpec();
-    await decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, iv);
-    let decryptData = await decoder.doFinalSync(cipherText);
+    decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, iv);
+    let decryptData = decoder.doFinalSync(cipherText);
     return decryptData;
   }
 
-  async function genSymKeyByData(symKeyData: Uint8Array) {
+  function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
     let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
-    let symKey = await aesGenerator.convertKey(symKeyBlob);
-    console.info('convertKey success');
+    let symKey = aesGenerator.convertKeySync(symKeyBlob);
+    console.info('convertKeySync success');
     return symKey;
   }
 
-  async function main() {
-    let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
-    let symKey = await genSymKeyByData(keyData);
-    let message = "This is a test";
-    let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
-    let encryptText = await encryptMessage(symKey, plainText);
-    let decryptText = await decryptMessage(symKey, encryptText);
-    if (plainText.data.toString() === decryptText.data.toString()) {
-      console.info('decrypt ok');
-      console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
-    } else {
-      console.error('decrypt failed');
+  function main() {
+    try {
+      let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
+      let symKey = genSymKeyByData(keyData);
+      let message = "This is a test";
+      let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
+      let encryptText = encryptMessage(symKey, plainText);
+      let decryptText = decryptMessage(symKey, encryptText);
+      if (plainText.data.toString() === decryptText.data.toString()) {
+        console.info('decrypt ok');
+        console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
+      } else {
+        console.error('decrypt failed');
+      }
+    } catch (error) {
+      console.error(`AES CBC "${error}", error code: ${error.code}`);
     }
-    console.info('main step success');
   }
   ```

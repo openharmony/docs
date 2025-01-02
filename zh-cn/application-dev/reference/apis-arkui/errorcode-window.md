@@ -85,7 +85,7 @@ This window context is abnormal.
 ## 1300007 WindowExtension拉起应用失败
 
 **错误信息**<br>
-Start ability failed.
+Failed to start the ability.
 
 **错误描述**<br>
 WindowExtension拉起应用失败。
@@ -98,7 +98,7 @@ WindowExtension拉起应用的参数异常。
 
 ## 1300008 显示设备异常
 
-**错误信息**<br>The operation is on invalid display.
+**错误信息**<br>The display device is abnormal.
 
 **错误描述**<br>显示设备异常。
 
@@ -123,23 +123,23 @@ WindowExtension拉起应用的参数异常。
 1. 检查确保子窗口成功绑定父窗口。<br>
 2. 检查子窗口绑定的父窗口状态，确保父窗口状态正常。
 
-## 1300010 全屏窗口的无效操作
+## 1300010 当前窗口模式不支持该操作
 
-**错误信息**<br>This operation is not support in fullscreen.
+**错误信息**<br>The operation in the current window status is invalid.
 
-**错误描述**<br>全屏窗口下的无效操作。
+**错误描述**<br>当前窗口模式不支持该操作。
 
 **可能原因**<br>
-1. 对全屏窗口进行move操作。<br>
-2. 对全屏窗口进行resize操作。
+1. 对全屏或分屏窗口进行move操作。<br>
+2. 对全屏或分屏窗口进行resize操作。
 
 **处理步骤**<br>
-1. 不要对全屏窗口进行move操作。<br>
-2. 不要对全屏窗口进行resize操作。
+1. 不要对全屏或分屏窗口进行move操作。<br>
+2. 不要对全屏或分屏窗口进行resize操作。
 
 ## 1300011 销毁画中画窗口失败
 
-**错误信息**<br>Destroy pip window failed.
+**错误信息**<br>Failed to destroy the PiP window.
 
 **错误描述**<br>销毁画中画窗口失败。
 
@@ -151,7 +151,7 @@ WindowExtension拉起应用的参数异常。
 
 ## 1300012 画中画窗口状态异常
 
-**错误信息**<br>Abnormal state of pip window.
+**错误信息**<br>The PiP window state is abnormal.
 
 **错误描述**<br>画中画窗口状态异常。
 
@@ -163,7 +163,7 @@ WindowExtension拉起应用的参数异常。
 
 ## 1300013 创建画中画窗口失败
 
-**错误信息**<br>Create pip window failed.
+**错误信息**<br>Failed to create the PiP window.
 
 **错误描述**<br>创建画中画窗口失败。
 
@@ -177,7 +177,7 @@ WindowExtension拉起应用的参数异常。
 
 ## 1300014 画中画内部错误
 
-**错误信息**<br>Pip internal error.
+**错误信息**<br>PiP internal error.
 
 **错误描述**<br>画中画内部错误。
 
@@ -189,7 +189,7 @@ WindowExtension拉起应用的参数异常。
 
 ## 1300015 重复操作画中画
 
-**错误信息**<br>Repeat operation of pip.
+**错误信息**<br>Repeated PiP operation.
 
 **错误描述**<br>重复操作画中画。
 
@@ -201,7 +201,7 @@ WindowExtension拉起应用的参数异常。
 
 ## 1001 窗口空指针异常<sup>(deprecated)</sup>
 **错误信息**<br>
-This window nullptr occurs.
+A window null pointer occurs.
 
 **错误描述**<br>
 窗口空指针异常，如出现空指针时，操作该窗口，会报此错误码。
@@ -266,7 +266,7 @@ This window IPC failed.
 
 ## 1007 WindowExtension拉起应用失败<sup>(deprecated)</sup>
 **错误信息**<br>
-Start ability failed.
+Failed to start the ability.
 
 **错误描述**<br>
 WindowExtension拉起应用失败。

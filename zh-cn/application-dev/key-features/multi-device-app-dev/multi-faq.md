@@ -6,7 +6,7 @@
 设备类型分为default（默认设备）、tablet、tv、wearable、2in1等，有多种查询设备类型的方式。
 
 1. 通过命令行的方式查询设备类型。
-   通过命令行查询指定系统参数（const.product.devicetype）进而确定设备类型，详见[系统参数介绍](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)。
+   通过命令行查询指定系统参数（const.product.devicetype）进而确定设备类型<!--Del-->，详见[系统参数介绍](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)<!--DelEnd-->。
 
    
    ```shell
@@ -20,7 +20,7 @@
    - 通过deviceInfo查询设备类型，deviceInfo中各个字段的含义请参考[设备信息](../../reference/apis-basic-services-kit/js-apis-device-info.md)。
      
       ```ts
-       import deviceInfo from'@ohos.deviceInfo'
+       import { deviceInfo } from'@kit.BasicServicesKit'
       
        @Entry
        @Component
@@ -67,12 +67,11 @@ launchType字段配置为specified时，系统会根据AbilityStage的onAcceptWa
   
 ```ts
 // MyAbilityStage.ts
-import AbilityStage from "@ohos.app.ability.AbilityStage"
-import deviceInfo from'@ohos.deviceInfo'
-import Want from '@ohos.app.ability.Want'
+import { AbilityStage, Want } from "@kit.AbilityKit"
+import { deviceInfo } from'@kit.BasicServicesKit'
 
 export default class MyAbilityStage extends AbilityStage {
-    ...
+    //...
     private generateKey(): string {
         // 如果是平板，则将设备类型和毫秒级时间戳叠加作为key，保证每次启动的key都不同
         if (deviceInfo.deviceType === 'tablet') {
@@ -90,20 +89,20 @@ export default class MyAbilityStage extends AbilityStage {
 
 ## 如何开启自由窗口
 
-开发板上的自由窗口功能默认是关闭的，可以通过如下方式开启自由窗口功能。
+自由窗口功能默认是关闭的，可以通过如下方式开启自由窗口功能。
 
 
 ```shell
-# 取出开发板中的窗口配置文件，并将文件中的<decor enable="false"></decor>修改为<decor enable="true"></decor>
+# 取出窗口配置文件，并将文件中的<decor enable="false"></decor>修改为<decor enable="true"></decor>
 hdc file recv system/etc/window/resources/window_manager_config.xml ./
-# 以可读写的模式重新挂载根目录，并更新开发板中的配置文件
+# 以可读写的模式重新挂载根目录，并更新配置文件
 hdc shell mount -o rw,remount /
 hdc file send window_manager_config.xml system/etc/window/resources/window_manager_config.xml
-# 重启开发板，配置生效
+# 重启设备，配置生效
 hdc shell reboot
 ```
 
-开发板屏幕较小，通过手指操作窗口较为不便，建议外接鼠标进行操作。
+屏幕较小，通过手指操作窗口较为不便时，建议外接鼠标进行操作。
 
 - 鼠标在应用顶部悬停，即可召唤出窗口工具栏。
 
@@ -138,10 +137,10 @@ hdc shell reboot
 ```json
 {
   "module": {
-    ...
+    //...
     "abilities": [
       {
-        ...        
+        //...        
         "minWindowWidth": 320,
         "minWindowHeight": 240,
         "maxWindowWidth": 1440,

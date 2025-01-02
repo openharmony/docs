@@ -9,7 +9,7 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
 ## 导入模块
 
 ```ts
-import hichecker from '@ohos.hichecker';
+import { hichecker } from '@kit.PerformanceAnalysisKit';
 ```
 
 
@@ -25,12 +25,13 @@ import hichecker from '@ohos.hichecker';
 | RULE_CAUTION_TRIGGER_CRASH         | bigint   | 告警规则，当有告警时让应用退出。                       |
 | RULE_THREAD_CHECK_SLOW_PROCESS     | bigint   | 检测规则，检测是否有耗时函数被调用。                   |
 | RULE_CHECK_ABILITY_CONNECTION_LEAK | bigint   | 检测规则，检测是否发生ability泄露。                    |
+| RULE_CHECK_ARKUI_PERFORMANCE       | bigint   | 检测规则，检测arkui性能。                    |
 
 ## hichecker.addCheckRule<sup>9+</sup>
 
 addCheckRule(rule: bigint): void
 
-添加一条或多条规则到系统，系统根据添加的规则进行检测或反馈。
+添加一条或多条规则到系统，系统根据添加的规则进行检测或反馈，当有相应规则触发时可在hilog中grep HiChecker查看运行信息。
 
 **系统能力：** SystemCapability.HiviewDFX.HiChecker
 
@@ -40,10 +41,16 @@ addCheckRule(rule: bigint): void
 | ------ | ------ | ---- | ---------------- |
 | rule   | bigint | 是   | 需要添加的规则。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed, only one bigint type parameter is needed  |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     // 添加一条规则
@@ -70,10 +77,16 @@ removeCheckRule(rule: bigint): void
 | ------ | ------ | ---- | ---------------- |
 | rule   | bigint | 是   | 需要删除的规则。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed, only one bigint type parameter is needed  |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     // 删除一条规则
@@ -106,10 +119,16 @@ containsCheckRule(rule: bigint): boolean
 | ------- | ---------------------------------------------------------- |
 | boolean | 查询结果，true&nbsp;表示规则已添加，false 表示规则未添加。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed, only one bigint type parameter is needed  |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     // 添加一条规则

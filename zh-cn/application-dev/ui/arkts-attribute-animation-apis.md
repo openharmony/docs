@@ -1,4 +1,4 @@
-# 属性动画接口说明
+# 实现属性动画
 
 
 通过可动画属性改变引起UI上产生的连续视觉效果，即为属性动画。属性动画是最基础易懂的动画，ArkUI提供两种属性动画接口[animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)和[animation](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md)驱动组件属性按照动画曲线等动画参数进行连续的变化，产生属性动画。
@@ -16,11 +16,14 @@
 animateTo(value: AnimateParam, event: () => void): void
 ```
 
-[animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)接口参数中，value指定[动画参数](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md#animateparam对象说明)（包括时长、[曲线](../reference/apis-arkui/js-apis-curve.md#curve)等）event为动画的闭包函数，闭包内变量改变产生的属性动画将遵循相同的动画参数。
+[animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)接口参数中，value指定[AnimateParam对象](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md#animateparam对象说明)（包括时长、[Curve](../reference/apis-arkui/js-apis-curve.md#curve)等）event为动画的闭包函数，闭包内变量改变产生的属性动画将遵循相同的动画参数。
 
+> **说明：**
+> 
+> 直接使用animateTo可能导致实例不明确的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[animateTo](../reference/apis-arkui/js-apis-arkui-UIContext.md#animateto)调用绑定实例的animateTo。
 
 ```ts
-import curves from '@ohos.curves'
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -38,23 +41,21 @@ struct AnimateToDemo {
       Column() {
       }
       .rotate({ angle: this.rotateValue })
-      // 第三步：通过属性动画接口开启属性动画
-      .animation({ curve: curves.springMotion() })
       .backgroundColor('#317AF7')
       .justifyContent(FlexAlign.Center)
       .width(100)
       .height(100)
       .borderRadius(30)
       .onClick(() => {
-        animateTo({ curve: curves.springMotion() }, () => {
+        this.getUIContext()?.animateTo({ curve: curves.springMotion() }, () => {
           this.animate = !this.animate;
-          // 第四步：闭包内通过状态变量改变UI界面
+          // 第三步：闭包内通过状态变量改变UI界面
           // 这里可以写任何能改变UI的逻辑比如数组添加，显隐控制，系统会检测改变后的UI界面与之前的UI界面的差异，对有差异的部分添加动画
           // 组件一的rotate属性发生变化，所以会给组件一添加rotate旋转动画
           this.rotateValue = this.animate ? 90 : 0;
           // 组件二的透明度发生变化，所以会给组件二添加透明度的动画
           this.opacityValue = this.animate ? 0.6 : 1;
-          // 组件二的offset属性发生变化，所以会给组件二添加offset偏移动画
+          // 组件二的translate属性发生变化，所以会给组件二添加translate偏移动画
           this.translateX = this.animate ? 50 : 0;
         })
       })
@@ -87,7 +88,7 @@ struct AnimateToDemo {
 
 
 ```ts
-import curves from '@ohos.curves'
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -119,7 +120,7 @@ struct AnimationDemo {
         // 这里可以写任何能改变UI的逻辑比如数组添加，显隐控制，系统会检测改变后的UI界面与之前的UI界面的差异，对有差异的部分添加动画
         // 组件一的rotate属性发生变化，所以会给组件一添加rotate旋转动画
         this.rotateValue = this.animate ? 90 : 0;
-        // 组件二的offset属性发生变化，所以会给组件二添加offset偏移动画
+        // 组件二的translate属性发生变化，所以会给组件二添加translate偏移动画
         this.translateX = this.animate ? 50 : 0;
         // 父组件column的opacity属性有变化，会导致其子节点的透明度也变化，所以这里会给column和其子节点的透明度属性都加动画
         this.opacityValue = this.animate ? 0.6 : 1;
@@ -147,7 +148,7 @@ struct AnimationDemo {
 ![zh-cn_image_0000001649279705](figures/zh-cn_image_0000001649279705.gif)
 
 > **说明：**
-> - 在对组件的位置大小的变化做动画的时候，由于布局属性的改变会触发测量布局，性能开销大。[scale](../reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md)属性的改变不会触发测量布局，性能开销小。因此，在组件位置大小持续发生变化的场景，如跟手触发组件大小变化的场景，推荐适用scale。
+> - 在对组件的位置大小的变化做动画的时候，由于布局属性的改变会触发测量布局，性能开销大。[scale](../reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)属性的改变不会触发测量布局，性能开销小。因此，在组件位置大小持续发生变化的场景，如跟手触发组件大小变化的场景，推荐适用scale。
 > 
 > - 属性动画应该作用于始终存在的组件，对于将要出现或者将要消失的组件的动画应该使用[转场动画](arkts-transition-overview.md)。
 > 

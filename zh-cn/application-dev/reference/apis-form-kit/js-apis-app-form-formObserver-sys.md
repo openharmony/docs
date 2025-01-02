@@ -10,7 +10,7 @@ formObserver模块提供了卡片监听方相关接口的能力，包括对同�
 ## 导入模块
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
+import { formObserver } from '@kit.FormKit';
 ```
 
 ## on('formAdd')
@@ -30,11 +30,19 @@ import formObserver from '@ohos.app.form.formObserver';
 | type | string | 是   | 填写'formAdd'，表示卡片新增事件。 |
 | observerCallback | Callback&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | 是 | 回调函数。返回当前新增卡片的信息。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log(`a new form added, data: ${JSON.stringify(data)}`);
@@ -61,12 +69,17 @@ formObserver.on('formAdd', callback);
 | hostBundleName | string | 是 | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片新增事件。 |
 | observerCallback | Callback&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | 是 | 回调函数。返回指定卡片使用方应用新增卡片的信息。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -95,12 +108,17 @@ formObserver.on('formAdd', bundleName, callback);
 | hostBundleName | string | 否 | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
 | observerCallback | Callback&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | 否 | 回调函数。返回当前新增卡片信息。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('formAdd')的callback一致。|
 
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -134,11 +152,17 @@ formObserver.off('formAdd', bundleName, callback);
 | type | string | 是   | 填写'formRemove'，表示卡片删除事件。 |
 | observerCallback | Callback&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | 是 | 回调函数。返回当前删除卡片的信息。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log(`form deleted, data: ${JSON.stringify(data)}`);
@@ -165,11 +189,17 @@ formObserver.on('formRemove', callback);
 | hostBundleName | string | 是 | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片删除事件。 |
 | observerCallback | Callback&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | 是 | 回调函数。返回指定卡片使用方应用被删除卡片的信息。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -198,11 +228,17 @@ off(type: "formRemove", hostBundleName?: string, observerCallback?: Callback&lt;
 | hostBundleName | string | 否 | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
 | observerCallback | Callback&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | 否 | 回调函数。返回当前删除卡片的信息。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('formRemove')的callback一致。|
 
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -237,11 +273,17 @@ formObserver.off('formRemove', bundleName, callback);
 | type       | string                                                       | 是   | 仅允许填写'notifyVisible'，表示订阅通知卡片可见的事件。      |
 | observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | 是   | 回调函数。返回订阅该事件的卡片信息列表。            |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo[]) => {
   console.log(`form change visibility, data: ${JSON.stringify(data)}`);
@@ -271,12 +313,18 @@ formObserver.on('notifyVisible', callback);
 | hostBundleName | string                                                       | 是   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。 |
 | observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | 是   | 回调函数。返回订阅该事件的卡片信息列表。            |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -305,12 +353,17 @@ formObserver.on('notifyVisible', bundleName, callback);
 | hostBundleName | string                                                       | 否   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。<br> 填写该参数时，与注册时填写bundleName的on接口对应。 |
 | observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | 否   | 回调函数。返回取消订阅该事件的卡片信息列表。缺省时，表示注销对应已注册订阅的回调。<br> 需与对应on('notifyVisible')的callback一致。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -346,11 +399,17 @@ formObserver.off('notifyVisible', bundleName, callback);
 | type       | string                                                       | 是   | 仅允许填写'notifyInvisible'，表示订阅卡片不可见的事件。      |
 | observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | 是   | 回调函数。返回订阅通知卡片不可见的卡片信息列表。          |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo[]) => {
   console.log(`form change invisibility, data: ${JSON.stringify(data)}`);
@@ -380,11 +439,17 @@ formObserver.on('notifyInvisible', callback);
 | hostBundleName | string                                                       | 是   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。 |
 | observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | 是   | 回调函数。返回订阅通知卡片不可见的卡片信息列表。          |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -413,11 +478,17 @@ formObserver.on('notifyInvisible', bundleName, callback);
 | hostBundleName | string                                                       | 否   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br>  |
 | observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | 否   | 回调函数。返回取消订阅通知卡片不可见的卡片信息列表。缺省时，表示注销对应已注册事件回调。<br/> 需与对应on('notifyInvisible')的callback一致。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -457,18 +528,20 @@ getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. ||
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  formObserver.getRunningFormInfos((error: Base.BusinessError, data: formInfo.RunningFormInfo[]) => {
+  formObserver.getRunningFormInfos((error: BusinessError, data: formInfo.RunningFormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -476,7 +549,7 @@ try {
     }
   }, 'com.example.ohos.formjsdemo');
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -503,18 +576,20 @@ getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. ||
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  formObserver.getRunningFormInfos((error: Base.BusinessError, data: formInfo.RunningFormInfo[]) => {
+  formObserver.getRunningFormInfos((error: BusinessError, data: formInfo.RunningFormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -522,7 +597,7 @@ try {
     }
   }, true, 'com.example.ohos.formjsdemo');
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -549,28 +624,31 @@ getRunningFormInfos(hostBundleName?: string):  Promise&lt;Array&lt;formInfo.Runn
 | Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Promise对象。返回设备上正在运行的所有非临时卡片信息。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. ||
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formObserver.getRunningFormInfos('com.example.ohos.formjsdemo').then((data: formInfo.RunningFormInfo[]) => {
     console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -598,28 +676,31 @@ getRunningFormInfos(isUnusedIncluded: boolean, hostBundleName?: string):  Promis
 | Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Promise对象。返回设备上正在运行的所有非临时卡片信息。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. ||
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formObserver.getRunningFormInfos(true, 'com.example.ohos.formjsdemo').then((data: formInfo.RunningFormInfo[]) => {
     console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -655,16 +736,15 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Pr
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formInstanceFilter: formInfo.FormProviderFilter = {
   bundleName: "com.example.formprovide",
@@ -675,11 +755,11 @@ let formInstanceFilter: formInfo.FormProviderFilter = {
 try {
   formObserver.getRunningFormInfosByFilter(formInstanceFilter).then((data: formInfo.RunningFormInfo[]) => {
     console.info('formObserver getRunningFormInfosByFilter success, data:' + JSON.stringify(data));
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -710,17 +790,16 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, cal
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formInstanceFilter: formInfo.FormProviderFilter = {
   bundleName: "com.example.formprovide",
@@ -729,7 +808,7 @@ let formInstanceFilter: formInfo.FormProviderFilter = {
   moduleName: "entry"
 }
 try {
-  formObserver.getRunningFormInfosByFilter(formInstanceFilter,(error: Base.BusinessError, data: formInfo.RunningFormInfo[]) => {
+  formObserver.getRunningFormInfosByFilter(formInstanceFilter,(error: BusinessError, data: formInfo.RunningFormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -737,7 +816,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -773,27 +852,26 @@ getRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
   formObserver.getRunningFormInfoById(formId).then((data: formInfo.RunningFormInfo) => {
     console.info('formObserver getRunningFormInfoById success, data:' + JSON.stringify(data));
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -828,26 +906,28 @@ getRunningFormInfoById(formId: string, isUnusedIncluded: boolean): Promise&lt;fo
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16500050 | An IPC connection error happened. |
+| 201      | Permissions denied.                             |
+| 202      | The application is not a system application.                       |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
   formObserver.getRunningFormInfoById(formId, true).then((data: formInfo.RunningFormInfo) => {
     console.info('formObserver getRunningFormInfoById success, data:' + JSON.stringify(data));
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -878,21 +958,20 @@ getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;formInfo.Runni
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
-  formObserver.getRunningFormInfoById(formId,(error: Base.BusinessError, data: formInfo.RunningFormInfo) => {
+  formObserver.getRunningFormInfoById(formId,(error: BusinessError, data: formInfo.RunningFormInfo) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -900,7 +979,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -930,20 +1009,22 @@ getRunningFormInfoById(formId: string, isUnusedIncluded: boolean, callback: Asyn
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16500050 | An IPC connection error happened. |
+| 201      | Permissions denied.                             |
+| 202      | The application is not a system application.                       |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
-  formObserver.getRunningFormInfoById(formId, true, (error: Base.BusinessError, data: formInfo.RunningFormInfo) => {
+  formObserver.getRunningFormInfoById(formId, true, (error: BusinessError, data: formInfo.RunningFormInfo) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -951,7 +1032,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -972,11 +1053,19 @@ try {
 | type             | string                                   | 是   | 填写'router'，表示订阅卡片的router事件。          |
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | 是   | 回调函数。返回触发router事件的卡片信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log('Router event listening in registered form.' + JSON.stringify(data));
@@ -1002,11 +1091,19 @@ formObserver.on('router', callback);
 | hostBundleName   | string                                   | 是   | 指定卡片使用方的bundleName。缺省则订阅所有卡片使用方的卡片的router事件。 |
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | 是   | 回调函数。返回触发router事件的卡片信息。                    |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
@@ -1033,11 +1130,19 @@ formObserver.on('router', hostBundleName, callback);
 | hostBundleName   | string                                   | 否   | 指定订阅卡片使用方包的bundleName。<br>填写该参数时，与注册时填写bundleName的on接口对应。<br>缺省则订阅所有卡片使用方点击router类型卡片的事件，与注册时未填写bundleName的on接口相对应。 |
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | 否   | 回调函数。返回触发router事件的卡片信息。缺省时，表示注销对应bundleName下已注册事件回调。<br>需与对应on('router')的callback一致。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
@@ -1063,11 +1168,19 @@ formObserver.off('router', hostBundleName, callback);
 | type             | string                                   | 是   | 填写'message'，表示订阅卡片的message事件。         |
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | 是   | 回调函数。返回触发message事件的卡片信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log('Message event listening in registered form.' + JSON.stringify(data));
@@ -1093,11 +1206,19 @@ formObserver.on('message', callback);
 | hostBundleName   | string                                   | 是   | 指定卡片使用方的bundleName。缺省则订阅所有卡片使用方的卡片的message事件。 |
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | 是   | 回调函数。返回触发message事件的卡片的信息。                    |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
@@ -1124,11 +1245,19 @@ formObserver.on('message', hostBundleName, callback);
 | hostBundleName   | string                                   | 否   | 指定订阅卡片使用方包的bundleName。<br>填写该参数时，与注册时填写bundleName的on接口对应。<br>缺省则取消订阅所有卡片使用方的点击事件，与注册时未填写bundleName的on接口相对应。 |
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | 否   | 回调函数。返回触发message事件的卡片的信息。缺省时，表示注销对应已注册事件回调。<br>需与对应on('message')的callback一致。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
@@ -1154,11 +1283,19 @@ formObserver.off('message', hostBundleName, callback);
 | type             | string                                   | 是   | 填写'call'，表示订阅卡片的call事件。            |
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | 是   | 回调函数。返回触发call事件的卡片信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log('Call event listening in registered form.' + JSON.stringify(data));
@@ -1184,11 +1321,19 @@ formObserver.on('call', callback);
 | hostBundleName   | string                                   | 是   | 指定卡片使用方的bundleName。缺省则订阅所有卡片使用方的卡片的call事件。 |
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | 是   | 回调函数。返回触发call事件的卡片信息。                    |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
@@ -1215,11 +1360,19 @@ formObserver.on('call', hostBundleName, callback);
 | hostBundleName   | string                                   | 否   | 指定订阅卡片使用方包的bundleName。<br>填写该参数时，与注册时填写bundleName的on接口对应。<br>缺省则取消订阅所有卡片使用方的点击事件，与注册时未填写bundleName的on接口相对应。 |
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | 否   | 回调函数。返回触发call事件的卡片信息。缺省时，表示注销对应已注册事件回调。<br>需与对应on('call')的callback一致。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {

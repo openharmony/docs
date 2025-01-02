@@ -1,4 +1,4 @@
-# 媒体会话控制方
+# 媒体会话控制方(仅对系统应用开放)
 
 OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频应用进行交互，包括获取媒体信息进行展示以及下发播控命令等。
 
@@ -66,8 +66,8 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
 
    ```ts
    //导入AVSessionManager模块
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    // 全局变量定义
    let g_controller = new Array<AVSessionManager.AVSessionController>();
@@ -112,8 +112,8 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    AVSession服务状态事件指sessionServiceDie，在AVSession服务异常时产生该事件。
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let g_controller = new Array<AVSessionManager.AVSessionController>();
    // 注册会话创建监听，创建控制器
@@ -173,8 +173,8 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    媒体会话控制方可以根据实际需要监听对应的事件。
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let g_controller = new Array<AVSessionManager.AVSessionController>();
    let controller = g_controller[0];
@@ -243,7 +243,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
 4. 获取媒体会话提供方传递的媒体信息，可以用于界面展示，例如在播控中心展示当前播放的曲目及对应的播放状态。
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
    async function getInfoFromSessionByController() {
      // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例
      let controller = await AVSessionManager.createController("")
@@ -287,8 +287,8 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    作为媒体会话提供方的音视频应用在监听到相关的播控命令事件后，在相应的逻辑中可以完成对应的操作动作。
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    async function  sendCommandToSessionByController() {
      // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例
@@ -337,8 +337,8 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
 6. 在媒体会话控制方应用退出时及时取消事件监听，并释放资源。
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    async function destroyController() {
      // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例
@@ -359,4 +359,4 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
 
 针对媒体会话控制方开发，有以下相关实例可供参考：
 
-- [媒体会话——控制方（仅对系统应用开放）（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVSession/MediaController)
+- [媒体会话——控制方（仅对系统应用开放）（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/AVSession/MediaController)

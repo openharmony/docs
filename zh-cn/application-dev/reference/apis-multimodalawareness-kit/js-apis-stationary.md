@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import stationary from '@ohos.stationary'
+import { stationary } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## ActivityResponse
@@ -20,22 +20,22 @@ import stationary from '@ohos.stationary'
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Stationary
 
-### 属性
-
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | state | [ActivityState](#activitystate) | 是 | 否 | 设备状态变化返回值。 |
 
 ## ActivityType
 
+type ActivityType = 'still' | 'relativeStill'
+
 设备状态类型。
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Stationary
 
-| 名称 | 说明 |
+| 类型 | 说明 |
 | -------- | -------- |
-| still | 绝对静止。 |
-| relativeStill | 相对静止。 |
+| 'still' | 绝对静止。 |
+| 'relativeStill' | 相对静止。 |
 
 ## ActivityEvent
 

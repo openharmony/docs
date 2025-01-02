@@ -33,7 +33,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            - jsoncpp.cpp
          ets:
            - entryability:
-               - EntryAbility.ts
+               - EntryAbility.ets
            - pages:
                - Index.ets
    ```
@@ -50,6 +50,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 3. 编辑"napi_init.cpp"文件，导入依赖的文件，并定义LOG_TAG：
 
    ```c++
+   #include "napi/native_api.h"
    #include "json/json.h"
    #include "hilog/log.h"
    #include "hiappevent/hiappevent.h"
@@ -58,7 +59,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    #define LOG_TAG "testTag"
    ```
 
-4. 订阅应用事件：
+4. 订阅系统事件：
 
    - onReceive类型观察者：
 
@@ -125,9 +126,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
          // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
          systemEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
-         // 设置订阅的事件类型为EVENT_APP_FREEZE。
+         // 设置订阅的事件为EVENT_APP_FREEZE。
          const char *names[] = {EVENT_APP_FREEZE};
-         // 开发者订阅感兴趣的应用事件，此处订阅了系统事件。
+         // 开发者订阅感兴趣的事件，此处订阅了系统事件。
          OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
          // 开发者设置已实现的回调函数，观察者接收到事件后回立即触发OnReceive回调。
          OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcher, OnReceive);
@@ -209,9 +210,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
          // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
          systemEventWatcher = OH_HiAppEvent_CreateWatcher("onTriggerWatcher");
-         // 设置订阅的事件类型为EVENT_APP_FREEZE。
+         // 设置订阅的事件为EVENT_APP_FREEZE。
          const char *names[] = {EVENT_APP_FREEZE};
-         // 开发者订阅感兴趣的应用事件，此处订阅了按钮相关事件。
+         // 开发者订阅感兴趣的事件，此处订阅了系统事件。
          OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
          // 开发者设置已实现的回调函数，需OH_HiAppEvent_SetTriggerCondition设置的条件满足方可触发。
          OH_HiAppEvent_SetWatcherOnTrigger(systemEventWatcher, OnTrigger);
@@ -223,7 +224,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      }
      ```
 
-5. 将RegisterWathcer注册为ArkTS接口：
+5. 将RegisterWatcher注册为ArkTS接口：
 
    编辑"napi_init.cpp"文件，将RegisterWatcher注册为ArkTS接口：
 
@@ -244,16 +245,15 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    export const registerWatcher: () => void;
    ```
 
-6. 编辑"EntryAbility.ts"文件，在onCreate()函数中新增接口调用：
+6. 编辑"EntryAbility.ets"文件，在onCreate()函数中新增接口调用：
 
    ```typescript
+   // 导入依赖模块
    import testNapi from 'libentry.so'
-   export default class EntryAbility extends UIAbility {
-     onCreate(want, launchParam) {
-       // 启动时，注册系统事件观察者
-       testNapi.registerWatcher();
-     }
-   }
+
+   // 在onCreate()函数中新增接口调用
+   // 启动时，注册系统事件观察者
+   testNapi.registerWatcher();
    ```
 
 7. 编辑"Index.ets"文件，新增按钮触发卡顿事件：
@@ -266,35 +266,35 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    })
    ```
 
-8. 点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“appFreeze”，触发一次崩溃事件。
+8. 点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“appFreeze”，触发一次卡死事件。
 
 9. 应用工程崩溃退出后再次运行可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
-   08-07 03:53:35.314 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.domain=OS
-   08-07 03:53:35.314 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.name=APP_FREEZE
-   08-07 03:53:35.314 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.eventType=1
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.time=1502049167732
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.foreground=1
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_version=1.0.0
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.process_name=com.example.myapplication
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.pid=1587
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.uid=20010043
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.uuid=a78a23b20f3dd9730f18a5cfa2304deac1104ac4086755c4a59cf7c72d414e2e
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.exception={"message":"App main thread is not response!","name":"THREAD_BLOCK_6S"}
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.hilog.size=6
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.event_handler.size=16
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.event_handler_3s.size=15
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.event_handler_6s.size=16
-   08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.peer_binder.size=0
-   08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.threads.size=28
-   08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.memory={"pss":0,"rss":0,"sys_avail_mem":1326520,"sys_free_mem":940588,"sys_total_mem":1992340,"vss":0}
-   08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_FREEZE_1502049185239_1587.log"]
-   08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.log_over_limit=0
+   HiAppEvent eventInfo.domain=OS
+   HiAppEvent eventInfo.name=APP_FREEZE
+   HiAppEvent eventInfo.eventType=1
+   HiAppEvent eventInfo.params.time=1502049167732
+   HiAppEvent eventInfo.params.foreground=1
+   HiAppEvent eventInfo.params.bundle_version=1.0.0
+   HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
+   HiAppEvent eventInfo.params.process_name=com.example.myapplication
+   HiAppEvent eventInfo.params.pid=1587
+   HiAppEvent eventInfo.params.uid=20010043
+   HiAppEvent eventInfo.params.uuid=a78a23b20f3dd9730f18a5cfa2304deac1104ac4086755c4a59cf7c72d414e2e
+   HiAppEvent eventInfo.params.exception={"message":"App main thread is not response!","name":"THREAD_BLOCK_6S"}
+   HiAppEvent eventInfo.params.hilog.size=6
+   HiAppEvent eventInfo.params.event_handler.size=16
+   HiAppEvent eventInfo.params.event_handler_3s.size=15
+   HiAppEvent eventInfo.params.event_handler_6s.size=16
+   HiAppEvent eventInfo.params.peer_binder.size=0
+   HiAppEvent eventInfo.params.threads.size=28
+   HiAppEvent eventInfo.params.memory={"pss":0,"rss":0,"sys_avail_mem":1326520,"sys_free_mem":940588,"sys_total_mem":1992340,"vss":0}
+   HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_FREEZE_1502049185239_1587.log"]
+   HiAppEvent eventInfo.params.log_over_limit=0
    ```
-   
-10. 移除应用事件观察者：
+
+10. 移除事件观察者：
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -304,13 +304,13 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     }
     ```
 
-11. 销毁应用事件观察者：
+11. 销毁事件观察者：
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
-        // 销毁创建的观察者，并置onReceiverWatcher为nullptr。
+        // 销毁创建的观察者，并置systemEventWatcher为nullptr。
         OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
-        onTriggerWatcher = nullptr;
+        systemEventWatcher = nullptr;
         return {};
     }
     ```

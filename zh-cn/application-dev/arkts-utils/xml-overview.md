@@ -21,3 +21,24 @@ XML还支持命名空间、实体引用、注释、处理指令等特性，使�
 
 
 语言基础类库提供了XML相关的基础能力，包括：[XML的生成](xml-generation.md)、[XML的解析](xml-parsing.md)和[XML的转换](xml-conversion.md)。
+
+以下是一个简单的XML样例及对应说明，更多XML的接口和具体使用，请见[@ohos.xml](../reference/apis-arkts/js-apis-xml.md)。
+
+```XML
+<?xml version="1.0" encoding="utf-8"?> <!-- 声明 -->
+<!-- 处理指令 -->
+<?xml-stylesheet type="text/css" href="style.css"?>
+<!-- 元素、属性及属性值 -->
+<note importance="high">
+    <title>Happy</title>
+    <!-- 实体引用 -->
+    <todo>&amp;</todo>
+    <!-- 命名空间的声明及统一资源标识符 -->
+    <h:table xmlns:h="http://www.w3.org/TR/html4/">
+        <h:tr>
+            <h:td>Apples</h:td>
+            <h:td>Bananas</h:td>
+        </h:tr>
+    </h:table>
+</note>
+```

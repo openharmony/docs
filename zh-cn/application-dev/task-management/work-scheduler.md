@@ -1,4 +1,4 @@
-# 延迟任务
+# 延迟任务(ArkTS)
 
 ## 概述
 
@@ -20,7 +20,7 @@
 
 - **数量限制**：一个应用同一时刻最多申请10个延迟任务。
 
-- **执行频率限制**：系统会根据[应用的活跃分组](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)，对延迟任务做分级管控，限制延迟任务调度的执行频率。通过能效资源接口申请了WORK_SCHEDULER资源的应用，会被放在能效资源豁免分组中。
+- **执行频率限制**：系统会根据<!--RP1-->[设备使用信息统计](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)应用的活跃分组<!--RP1End-->，对延迟任务做分级管控，限制延迟任务调度的执行频率。<!--Del-->通过能效资源接口申请了WORK_SCHEDULER资源的应用，会被放在能效资源豁免分组中。<!--DelEnd-->
 
   **表1** 应用活跃程度分组   
   | 应用活跃分组 | 延迟任务执行频率 |
@@ -30,10 +30,10 @@
   | 常用使用 | 最小间隔24小时 |
   | 极少使用分组 | 最小间隔48小时 |
   | 受限使用分组 | 禁止 |
-  | 从未使用分组 | 禁止 |
-  | 能效资源豁免分组 | 不受限制 |
+  | 从未使用分组 | 禁止 |<!--Del-->
+  | 能效资源豁免分组 | 不受限制 |<!--DelEnd-->
   
-- **超时**：WorkSchedulerExtensionAbility单次回调最长运行2分钟。如果超时不取消，系统会终止对应的Extension进程。对于系统特权应用，可以通过能效资源接口申请WORK_SCHEDULER资源，扩展单次回调运行时长，扩展后在充电状态下为20分钟，非充电状态下为10分钟。
+- **超时**：WorkSchedulerExtensionAbility单次回调最长运行2分钟。如果超时不取消，系统会终止对应的Extension进程。<!--Del-->对于系统特权应用，可以通过能效资源接口申请WORK_SCHEDULER资源，扩展单次回调运行时长，扩展后在充电状态下为20分钟，非充电状态下为10分钟。<!--DelEnd-->
 
 - **调度延迟**：系统会根据内存、功耗、设备温度、用户使用习惯等统一调度，如当系统内存资源不足或温度达到一定挡位时，系统将延迟调度该任务。
 
@@ -54,7 +54,7 @@
 
 **表2** 延迟任务主要接口
 
-以下是延迟任务开发使用的相关接口，更多接口及使用方式请见[延迟任务](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md)文档。
+以下是延迟任务开发使用的相关接口，更多接口及使用方式请见[延迟任务调度](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md)文档。
 | 接口名 | 接口描述 |
 | -------- | -------- |
 | startWork(work: WorkInfo): void; | 申请延迟任务 |
@@ -82,7 +82,7 @@
 | isRepeat        | boolean                           | 否    | 是否循环任务。<br>- true表示循环任务，false表示非循环任务。 |
 | repeatCycleTime | number                            | 否    | 循环间隔，单位为毫秒。             |
 | repeatCount     | number                            | 否    | 循环次数。             |
-| isPersisted     | boolean                           | 否    | 是否持久化保存工作。<br>- true表示持久化保存工作。false表示非持久化保存工作。|
+| isPersisted     | boolean                           | 否    | 注册的延迟任务是否可保存在系统中。<br>- true表示可保存，即系统重启后，任务可恢复。false表示不可保存。|
 | isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态。<br>- true表示需要，false表示不需要。   |
 | idleWaitTime    | number                            | 否    | 空闲等待时间，单位为毫秒。           |
 | parameters      | [key: string]: number \| string \| boolean  | 否    | 携带参数信息。 |
@@ -95,11 +95,11 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 
 - 至少设置一个满足的条件，包括网络类型、充电类型、存储状态、电池状态、定时状态等。
 
-- 对于重复任务，任务执行间隔至少20分钟。设置重复任务时间间隔时，须同时设置是否循环或循环次数中的一个。
+- 对于重复任务，任务执行间隔至少2小时。设置重复任务时间间隔时，须同时设置是否循环或循环次数中的一个。
 
 **表4** 延迟任务回调接口
 
-以下是延迟任务回调开发使用的相关接口，更多接口及使用方式请见[延迟任务回调](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)文档。
+以下是延迟任务回调开发使用的相关接口，更多接口及使用方式请见[延迟任务调度回调](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)文档。
 | 接口名 | 接口描述 |
 | -------- | -------- |
 | onWorkStart(work: workScheduler.WorkInfo): void | 延迟调度任务开始的回调 |
@@ -123,8 +123,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 2. 导入模块。
    
    ```ts
-   import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
-   import workScheduler from '@ohos.resourceschedule.workScheduler';
+   import { WorkSchedulerExtensionAbility, workScheduler } from '@kit.BackgroundTasksKit';
    ```
 
 3. 实现WorkSchedulerExtension生命周期接口。
@@ -134,6 +133,8 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
      // 延迟任务开始回调
      onWorkStart(workInfo: workScheduler.WorkInfo) {
        console.info(`onWorkStart, workInfo = ${JSON.stringify(workInfo)}`);
+       // 打印 parameters中的参数，如：参数key1
+       // console.info(`work info parameters: ${JSON.parse(workInfo.parameters?.toString()).key1}`)
      }
    
      // 延迟任务结束回调
@@ -171,8 +172,8 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 1. 导入模块。
    
    ```ts
-   import workScheduler from '@ohos.resourceschedule.workScheduler';
-   import { BusinessError } from '@ohos.base';
+   import { workScheduler } from '@kit.BackgroundTasksKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 申请延迟任务。
@@ -217,4 +218,4 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 
 针对延迟任务调度的开发，有以下相关示例可供参考：
 
-- [延迟任务调度（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/WorkScheduler)
+- [延迟任务调度（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/TaskManagement/WorkScheduler)

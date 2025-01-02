@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import bytrace from '@ohos.bytrace';
+import { bytrace } from '@kit.PerformanceAnalysisKit';
 ```
 
 ## bytrace.startTrace

@@ -13,7 +13,7 @@ The **autoStartupManager** module provides APIs for listening for auto-startup s
 ## Modules to Import
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import { autoStartupManager } from '@kit.AbilityKit';
 ```
 
 ## on
@@ -36,11 +36,10 @@ Subscribes to auto-startup status change events of an application component.
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
-import common from '@ohos.app.ability.common';
+import { autoStartupManager, common } from '@kit.AbilityKit';
 
 try {
-  AutoStartupManager.on('systemAutoStartup', {
+  autoStartupManager.on('systemAutoStartup', {
     onAutoStartupOn(data: common.AutoStartupInfo) {
       console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
     },
@@ -73,11 +72,10 @@ Unsubscribes from auto-startup status change events of an application component.
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
-import common from '@ohos.app.ability.common';
+import { autoStartupManager, common } from '@kit.AbilityKit';
 
 try {
-  AutoStartupManager.off('systemAutoStartup', {
+  autoStartupManager.off('systemAutoStartup', {
     onAutoStartupOn(data: common.AutoStartupInfo) {
       console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
     },
@@ -111,7 +109,7 @@ Sets an application component to automatically start upon system boot. This API 
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
-| 16000004 | Can not start invisible component.           |
+| 16000004 | Failed to start the invisible ability.           |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
@@ -120,10 +118,10 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import { autoStartupManager } from '@kit.AbilityKit';
 
 try {
-  AutoStartupManager.setApplicationAutoStartup({
+  autoStartupManager.setApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
   }, (err, data) => {
@@ -160,7 +158,7 @@ Sets an application component to automatically start upon system boot. This API 
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
-| 16000004 | Can not start invisible component.           |
+| 16000004 | Failed to start the invisible ability.           |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
@@ -169,11 +167,11 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
-import { BusinessError } from '@ohos.base';
+import { autoStartupManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  AutoStartupManager.setApplicationAutoStartup({
+  autoStartupManager.setApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
   }).then((data: void) => {
@@ -207,7 +205,7 @@ Cancels the auto-startup setting for an application component. This API uses an 
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
-| 16000004 | Can not start invisible component.           |
+| 16000004 | Failed to start the invisible ability.           |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
@@ -216,10 +214,10 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import { autoStartupManager } from '@kit.AbilityKit';
 
 try {
-  AutoStartupManager.cancelApplicationAutoStartup({
+  autoStartupManager.cancelApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
   }, (err, data) => {
@@ -256,7 +254,7 @@ Cancels the auto-startup setting for an application component. This API uses a p
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
-| 16000004 | Can not start invisible component.           |
+| 16000004 | Failed to start the invisible ability.           |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
@@ -265,11 +263,11 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
-import { BusinessError } from '@ohos.base';
+import { autoStartupManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  AutoStartupManager.cancelApplicationAutoStartup({
+  autoStartupManager.cancelApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
   }).then((data: void) => {
@@ -309,10 +307,10 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import { autoStartupManager } from '@kit.AbilityKit';
 
 try {
-  AutoStartupManager.queryAllAutoStartupApplications((err, data) => {
+  autoStartupManager.queryAllAutoStartupApplications((err, data) => {
     console.info('====> queryAllAutoStartupApplications err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
   });
 } catch (err) {
@@ -347,12 +345,11 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { autoStartupManager, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  AutoStartupManager.queryAllAutoStartupApplications().then((autoStartupInfo: common.AutoStartupInfo[]) => {
+  autoStartupManager.queryAllAutoStartupApplications().then((autoStartupInfo: common.AutoStartupInfo[]) => {
     console.info('====> queryAllAutoStartupApplications data: ' + JSON.stringify(autoStartupInfo));
   }).catch((err: BusinessError) => {
     console.info('====> queryAllAutoStartupApplications err: ' + JSON.stringify(err));

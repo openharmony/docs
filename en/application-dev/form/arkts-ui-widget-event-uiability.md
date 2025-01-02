@@ -1,7 +1,7 @@
 # Updating Widget Content Through the router or call Event
 
 
-On the widget page, the [postCardAction()](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction) API can be used to trigger a router or call event to start a UIAbility, which then updates the widget content. The following is an example of this widget update mode.
+On the widget page, the [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction) API can be used to trigger a router or call event to start a UIAbility, which then updates the widget content. The following is an example of this widget update mode.
 
 > **NOTE**
 >
@@ -9,7 +9,7 @@ On the widget page, the [postCardAction()](../reference/apis-arkui/js-apis-postC
 
 ## Updating Widget Content Through the router Event
 
-- On the widget page, register the **onClick** event callback of the button and call the [postCardAction()](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction) API in the callback to trigger the router event to start the UIAbility.
+- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the router event to start the UIAbility.
   
   ```ts
   let storageUpdateRouter = new LocalStorage();
@@ -64,68 +64,52 @@ On the widget page, the [postCardAction()](../reference/apis-arkui/js-apis-postC
   }
   ```
   
-- In the **onCreate()** or **onNewWant()** lifecycle callback of the UIAbility, use the input parameter **want** to obtain the ID (**formID**) and other information of the widget, and then call the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform) API to update the widget.
+- In the **onCreate** or **onNewWant** lifecycle callback of the UIAbility, use the input parameter **want** to obtain the ID (**formID**) and other information of the widget, and then call the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform) API to update the widget.
   
   ```ts
-  import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import type Base from '@ohos.base';
-  import formBindingData from '@ohos.app.form.formBindingData';
-  import formInfo from '@ohos.app.form.formInfo';
-  import formProvider from '@ohos.app.form.formProvider';
-  import hilog from '@ohos.hilog';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import type Want from '@ohos.app.ability.Want';
-  import type window from '@ohos.window';
-  
+  import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { formBindingData, formInfo, formProvider } from '@kit.FormKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
   const TAG: string = 'WidgetEventRouterEntryAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
-  
+
   export default class WidgetEventRouterEntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-      this.handleFormRouterEvent(want);
+      this.handleFormRouterEvent(want, 'onCreate');
     }
-  
-    handleFormRouterEvent(want: Want): void {
-      hilog.info(DOMAIN_NUMBER, TAG, 'handleFormRouterEvent, Want:', JSON.stringify(want));
+
+    handleFormRouterEvent(want: Want, source: string): void {
+      hilog.info(DOMAIN_NUMBER, TAG, `handleFormRouterEvent ${source}, Want: ${JSON.stringify(want)}`);
       if (want.parameters && want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
-        let curFormId = JSON.stringify(want.parameters[formInfo.FormParam.IDENTITY_KEY]);
-        let message: string = JSON.stringify(want.parameters.routerDetail);
+        let curFormId = want.parameters[formInfo.FormParam.IDENTITY_KEY].toString();
+        // want.parameters.params corresponds to params in postCardAction().
+        let message: string = (JSON.parse(want.parameters?.params as string))?.routerDetail;
         hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
         let formData: Record<string, string> = {
-          'routerDetail': message + 'UIAbility.', // It matches the widget layout.
+          'routerDetail': message + ' ' + source + ' UIAbility', // It matches the widget layout.
         };
         let formMsg = formBindingData.createFormBindingData(formData);
-        formProvider.updateForm(want.parameters[formInfo.FormParam.IDENTITY_KEY] + '', formMsg).then((data) => {
+        formProvider.updateForm(curFormId, formMsg).then((data) => {
           hilog.info(DOMAIN_NUMBER, TAG, 'updateForm success.', JSON.stringify(data));
-        }).catch((error: Base.BusinessError) => {
+        }).catch((error: BusinessError) => {
           hilog.info(DOMAIN_NUMBER, TAG, 'updateForm failed.', JSON.stringify(error));
         });
       }
     }
-  
+
     // If the UIAbility is running in the background, onNewWant is triggered after the router event is received.
     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant Want:', JSON.stringify(want));
-      if (want.parameters && want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
-        let curFormId = JSON.stringify(want.parameters[formInfo.FormParam.IDENTITY_KEY]);
-        let message: string = JSON.stringify(want.parameters.routerDetail);
-        hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
-        let formData: Record<string, string> = {
-          'routerDetail': message + 'onNewWant UIAbility.', // It matches the widget layout.
-        };
-        let formMsg = formBindingData.createFormBindingData(formData);
-        formProvider.updateForm(want.parameters[formInfo.FormParam.IDENTITY_KEY] + '', formMsg).then((data) => {
-          hilog.info(DOMAIN_NUMBER, TAG, 'updateForm success.', JSON.stringify(data));
-        }).catch((error: Base.BusinessError) => {
-          hilog.info(DOMAIN_NUMBER, TAG, 'updateForm failed.', JSON.stringify(error));
-        });
-      }
+      this.handleFormRouterEvent(want, 'onNewWant');
     }
-  
+
     onWindowStageCreate(windowStage: window.WindowStage): void {
       // Main window is created, set main page for this ability
       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onWindowStageCreate');
-  
+
       windowStage.loadContent('pages/Index', (err, data) => {
         if (err.code) {
           hilog.error(DOMAIN_NUMBER, TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -134,10 +118,9 @@ On the widget page, the [postCardAction()](../reference/apis-arkui/js-apis-postC
         hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
       });
     }
-    ...
+    // ...
   }
   ```
-
 
 
 ## Updating Widget Content Through the call Event
@@ -145,9 +128,8 @@ On the widget page, the [postCardAction()](../reference/apis-arkui/js-apis-postC
 - When using the call event of the **postCardAction** API, the value of **formId** must be updated in the **onAddForm** callback of the FormExtensionAbility.
 
   ```ts
-  import formBindingData from '@ohos.app.form.formBindingData';
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import type Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
+  import { formBindingData, FormExtensionAbility } from '@kit.FormKit';
   
   export default class WidgetCalleeFormAbility extends FormExtensionAbility {
     onAddForm(want: Want): formBindingData.FormBindingData {
@@ -163,7 +145,7 @@ On the widget page, the [postCardAction()](../reference/apis-arkui/js-apis-postC
       let obj1 = formBindingData.createFormBindingData(dataObj1);
       return obj1;
     }
-    ...
+    // ...
   }
   ```
 
@@ -226,15 +208,12 @@ On the widget page, the [postCardAction()](../reference/apis-arkui/js-apis-postC
 - Listen for the method required by the call event in the **onCreate** callback of the UIAbility, and then call the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform) API in the corresponding method to update the widget.
   
   ```ts
-  import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import type Base from '@ohos.base';
-  import formBindingData from '@ohos.app.form.formBindingData';
-  import formProvider from '@ohos.app.form.formProvider';
-  import hilog from '@ohos.hilog';
-  import type rpc from '@ohos.rpc';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import type Want from '@ohos.app.ability.Want';
-  import type window from '@ohos.window';
+  import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { formBindingData, formProvider } from '@kit.FormKit';
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   
   const TAG: string = 'WidgetCalleeEntryAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -277,7 +256,7 @@ On the widget page, the [postCardAction()](../reference/apis-arkui/js-apis-postC
       let formMsg: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
       formProvider.updateForm(curFormId, formMsg).then((data) => {
         hilog.info(DOMAIN_NUMBER, TAG, `updateForm success. ${JSON.stringify(data)}`);
-      }).catch((error: Base.BusinessError) => {
+      }).catch((error: BusinessError) => {
         hilog.error(DOMAIN_NUMBER, TAG, `updateForm failed: ${JSON.stringify(error)}`);
       });
     }
@@ -291,7 +270,7 @@ On the widget page, the [postCardAction()](../reference/apis-arkui/js-apis-postC
         this.callee.on(MSG_SEND_METHOD, funACall);
       } catch (error) {
         hilog.error(DOMAIN_NUMBER, TAG, `${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`);
-      };
+      }
     }
   
     onWindowStageCreate(windowStage: window.WindowStage): void {

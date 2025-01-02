@@ -14,7 +14,7 @@ Not supported
 
 ## Attributes
 
-In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
 | Name                    | Type                        | Default Value     | Mandatory  | Description                                      |
 | ---------------------- | -------------------------- | -------- | ---- | ---------------------------------------- |
@@ -30,7 +30,7 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 
 | Name                   | Type            | Default Value | Mandatory  | Description                    |
 | --------------------- | -------------- | ---- | ---- | ---------------------- |
-| src                   | &lt;uri&gt;    | -    | Yes   | Image path. The image format can be SVG, PNG, or JPG.|
+| src                   | &lt;uri&gt;    | -    | Yes   | Image path. The image format can be SVG, PNG, JPG, or HEIF.|
 | width                 | &lt;length&gt; | 0    | No   | Image width.                 |
 | height                | &lt;length&gt; | 0    | No   | Image height.                 |
 | top                   | &lt;length&gt; | 0    | No   | Vertical coordinate of the image relative to the upper left corner of the component.      |
@@ -40,12 +40,12 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 
 ## Styles
 
-The [universal styles](../arkui-js/js-components-common-styles.md) are supported.
+The [universal styles](js-components-common-styles.md) are supported.
 
 
 ## Events
 
-In addition to the [universal events](../arkui-js/js-components-common-events.md), the following events are supported.
+In addition to the [universal events](js-components-common-events.md), the following events are supported.
 
 | Name    | Parameter  | Description       |
 | ------ | ---- | --------- |
@@ -57,7 +57,7 @@ In addition to the [universal events](../arkui-js/js-components-common-events.md
 
 ## Methods
 
-In addition to the [universal methods](../arkui-js/js-components-common-methods.md), the following methods are supported.
+In addition to the [universal methods](js-components-common-methods.md), the following methods are supported.
 
 | Name      | Parameter  | Description                                      |
 | -------- | ---- | ---------------------------------------- |

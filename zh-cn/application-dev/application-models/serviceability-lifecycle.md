@@ -1,7 +1,7 @@
 # ServiceAbility的生命周期
 
 
-开发者可以根据业务场景重写生命周期相关接口。ServiceAbility生命周期接口说明见下表。
+开发者可以根据业务场景实现service.js/service.ets中的生命周期相关接口。ServiceAbility生命周期接口说明见下表。
 
 
   **表1** ServiceAbility生命周期接口说明

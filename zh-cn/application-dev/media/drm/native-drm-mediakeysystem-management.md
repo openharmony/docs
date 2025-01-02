@@ -1,6 +1,6 @@
-# 系统管理(C/C++)
+# DRM系统管理(C/C++)
 
-DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证书申请与处理、会话创建、离线许可证管理、获取DRM度量统计信息、设备属性等。
+DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM证书申请与处理、会话实例管理、离线媒体密钥管理、获取DRM度量统计信息、设备属性等。在使用DRM Kit功能时，先查询设备是否支持对应DRM解决方案的DRM功能。在DRM Kit里DRM解决方案以插件形式存在，所以也叫DRM插件。
 
 ## 开发步骤
 
@@ -9,10 +9,10 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 1. 导入NDK相关接口，导入方法如下。
 
    ```c++
-    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/common/native_drm_common.h"
-    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/common/native_drm_err.h"
-    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/include/native_mediakeysession.h"
-    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/include/native_mediakeysystem.h"
+    #include "multimedia/drm_framework/native_drm_common.h"
+    #include "multimedia/drm_framework/native_drm_err.h"
+    #include "multimedia/drm_framework/native_mediakeysession.h"
+    #include "multimedia/drm_framework/native_mediakeysystem.h"
    ```
 
 2. 在CMake脚本中链接Drm NDK动态库。
@@ -21,314 +21,190 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     target_link_libraries(PUBLIC libnative_drm.so)
    ```
 
-3. 调用MediaKeySystem类中的OH_MediaKeySystem_IsSupported方法查询设备是否支持对应名称、对应媒体类型、安全保护级别的DRM方案。
+3. 查询设备是否支持对应DRM解决方案名称、媒体类型、安全保护级别的DRM解决方案。
 
    ```c++
-    const char *uuid = "com.wiseplay.drm";
-    const char *mimeType = "video/mp4";
-    DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
-    ret = OH_MediaKeySystem_IsSupported(uuid);
-    if (ret != true) {
-        OH_LOG_ERROR(LOG_APP, "The device does not support the DRM scheme.");
-    }
-    ret = OH_MediaKeySystem_IsSupported2(uuid, mimeType);
-    if (ret != true) {
-        OH_LOG_ERROR(LOG_APP, "The device does not support the DRM scheme.");
-    }
-    ret = OH_MediaKeySystem_IsSupported3(uuid, mimeType, level);
-    if (ret != true) {
-        OH_LOG_ERROR(LOG_APP, "The device does not support the DRM scheme.");
+    bool isSupported = OH_MediaKeySystem_IsSupported3("com.clearplay.drm", "video/avc", CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+    if (isSupported != true) {
+        printf("The device does not support the content protection level.");
     }
    ```
 
-4. 调用MediaKeySystem类中的OH_MediaKeySystem_Create方法创建MediaKeySystem实例。
+4.（可选）获取设备支持的DRM解决方案的名称和唯一标识的列表。
 
    ```c++
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-     OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-     return ret;
+    uint32_t count = 1; // count是当前设备实际支持的DRM插件的个数，用户根据实际情况设置
+    DRM_MediaKeySystemDescription descriptions[1];
+    memset(descriptions, 0, sizeof(descriptions));
+    Drm_ErrCode ret = OH_MediaKeySystem_GetMediaKeySystems(descriptions, &count);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySystem_GetMediaKeySystems failed.");
     }
    ```
 
-5. 调用MediaKeySystem类中的OH_MediaKeySystem_SetConfigurationString和OH_MediaKeySystem_GetConfigurationString方法设置和获取设备的配置属性信息，不同的DRM方案的配置属性信息可能存在差别，一般分为三类：设备属性、会话属性、输出保护状态属性。
-
-   属性名一般包含："vendor"、"version"、"description"、"algorithms"、"maxSessionNum"、"maxHDCPLevel"、"currentHDCPLevel"、"maxADCPLevel"、"currentADCPLevel"等。
+5. 创建MediaKeySystem实例。
 
    ```c++
-    // 创建MediaKeySystem实例
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
+    MediaKeySystem *mediaKeySystem = NULL;
+    Drm_ErrCode ret = OH_MediaKeySystem_Create("com.clearplay.drm", &mediaKeySystem);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySystem_Create failed.");
     }
-    // 设置字符串类型的配置信息
-    ret = OH_MediaKeySystem_SetConfigurationString(keySystem, "version", "2.0");
-    if (ret == DRM_OK) {
-        OH_LOG_INFO(LOG_APP, "MediaKeySystem_SetConfigurationString success ");
+   ```
+
+6.（可选）声明MediaKeySystem事件监听回调。
+
+   ```c++
+     // 适用于多个MediaKeySystem实例的场景
+    static Drm_ErrCode SystemCallBack(DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)
+    {
+        printf("SystemCallBack");
+    }
+    // 适用于单个MediaKeySystem实例的场景。
+    static Drm_ErrCode SystemCallBackWithObj(MediaKeySystem *mediaKeySystem, DRM_EventType eventType,
+    uint8_t *info, int32_t infoLen, char *extra)
+    {
+        printf("TestSystemCallBackWithObj");
+    }
+   ```
+
+7.（可选）设置MediaKeySystem事件监听回调。
+
+   ```c++
+     // 适用于多个MediaKeySystem实例的场景
+    Drm_ErrCode ret = OH_MediaKeySystem_SetMediaKeySystemCallback(mediaKeySystem, SystemCallBack);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySystem_SetMediaKeySystemCallback failed.");
+    }
+
+    // 适用于单个MediaKeySystem实例的场景。
+    ret = OH_MediaKeySystem_SetCallback(mediaKeySystem, SystemCallBackWithObj);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySystem_SetCallback failed.");
+    }
+   ```
+
+8. 创建MediaKeySession会话实例。
+
+   ```c++
+    MediaKeySession *mediaKeySession = nullptr;
+    DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
+    ret = OH_MediaKeySystem_CreateMediaKeySession(mediaKeySystem, &contentProtectionLevel, &mediaKeySession);
+    if (ret != DRM_ERR_OK || mediaKeySession == nullptr) {
+        printf("OH_MediaKeySystem_CreateMediaKeySession failed.");
+    }
+   ```
+
+9. 检查设备DRM证书状态，设备DRM证书不存在或状态异常，则生成设备DRM证书请求，处理设备DRM证书响应。
+
+   ```c++
+    unsigned char request[12288] = { 0x00 };  // 设备DRM证书request最大长度为12288，按实际大小申请
+    int32_t requestLen = 12288;
+    // DRM服务URL的最大长度为2048
+    char defaultUrl[2048] = { 0x00 };
+    int32_t defaultUrlLen = 2048;
+    DRM_CertificateStatus certStatus = CERT_STATUS_INVALID;
+    // 检查设备DRM证书状态
+    ret = OH_MediaKeySystem_GetCertificateStatus(mediaKeySystem, &certStatus);
+    if (ret == DRM_ERR_OK && certStatus == CERT_STATUS_NOT_PROVISIONED) {
+        ret = OH_MediaKeySystem_GenerateKeySystemRequest(mediaKeySystem, request, &requestLen, defaultUrl,
+            defaultUrlLen);
+        /* 
+          应用通过网络请求，将设备DRM证书请求信息传到DRM服务获取设备DRM证书请求响应keySystemResponse，
+          再将设备DRM证书请求响应设置到设备上，请根据实际值和长度传入
+        */
+        unsigned char KeySystemResponse[12288] = {0x00};
+        ret = OH_MediaKeySystem_ProcessKeySystemResponse(mediaKeySystem, KeySystemResponse, sizeof(KeySystemResponse));
+        if (ret != DRM_ERR_OK) {
+            printf("OH_MediaKeySystem_ProcessKeySystemResponse failed.");
+        }
+    }
+   ```
+
+10. (可选)获取离线媒体密钥标识，获取离线媒体密钥状态、清理离线媒体密钥。
+
+   ```c++
+    DRM_OfflineMediakeyIdArray offlineMediaKeyIds;
+    ret = OH_MediaKeySystem_GetOfflineMediaKeyIds(mediaKeySystem, &offlineMediaKeyIds);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySystem_GetOfflineMediaKeyIds failed.");
+    }
+    DRM_OfflineMediaKeyStatus OfflineMediaKeyStatus = OFFLINE_MEDIA_KEY_STATUS_UNKNOWN;
+    ret = OH_MediaKeySystem_GetOfflineMediaKeyStatus(mediaKeySystem, offlineMediaKeyIds.ids[0], offlineMediaKeyIds.idsLen[0], &OfflineMediaKeyStatus);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySystem_GetOfflineMediaKeyStatus failed.");
+    }
+    ret = OH_MediaKeySystem_ClearOfflineMediaKeys(mediaKeySystem, offlineMediaKeyIds.ids[0], offlineMediaKeyIds.idsLen[0]);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySystem_ClearOfflineMediaKeys failed.");
+    }
+   ```
+
+11. (可选)设置和获取DRM配置属性信息。
+
+   > **说明：**
+   >
+   > 不同的DRM方案的配置属性信息可能存在差别，支持的属性名包含："vendor"、"version"、"description"、"algorithms"、"maxSessionNum"、"currentHDCPLevel"。需解决方案支持属性值设置能力才能设置DRM配置属性信息。
+
+   ```c++
+    ret = OH_MediaKeySystem_SetConfigurationString(mediaKeySystem, "version", "2.0"); // 设置字符串类型的配置信息
+    if (ret == DRM_ERR_OK) {
+        printf("MediaKeySystem_SetConfigurationString success");
     } else {
-        OH_LOG_ERROR(LOG_APP, "MediaKeySystem_SetConfigurationString failed. %d ", ret);
+        printf("MediaKeySystem_SetConfigurationString failed. %d ", ret);
     }
     char value[32];
     int32_t valueLen = 32;
-     // 获取字符串类型的配置信息
-    ret = OH_MediaKeySystem_GetConfigurationString(keySystem, "version", value, valueLen);
-    if (ret == DRM_OK) {
-        OH_LOG_INFO(LOG_APP, "OH_MediaKeySystem_GetConfigurationString success ");
+    // 获取字符串类型的配置信息
+    ret = OH_MediaKeySystem_GetConfigurationString(mediaKeySystem, "version", value, valueLen);
+    if (ret == DRM_ERR_OK) {
+        printf("OH_MediaKeySystem_GetConfigurationString success");
     } else {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_GetConfigurationString failed. %d ", ret);
+        printf("OH_MediaKeySystem_GetConfigurationString failed. %d ", ret);
     }
-    // 设置字符数组类型的配置信息
-    char description[5] = {1, 2, 3, 4, 5};
-    ret = OH_MediaKeySystem_SetConfigurationByteArray(keySystem, "description", description, 5);
-    if (ret == DRM_OK) {
-        OH_LOG_INFO(LOG_APP, "OH_MediaKeySystem_SetConfigurationByteArray success ");
+    // 设置字符数组类型的配置信息，请根据实际数据和长度传入
+    uint8_t description[4] = {0x00, 0x00, 0x00, 0x00};
+    ret = OH_MediaKeySystem_SetConfigurationByteArray(mediaKeySystem, "description", description, sizeof(description)/sizeof(uint8_t));
+    if (ret == DRM_ERR_OK) {
+        printf("OH_MediaKeySystem_SetConfigurationByteArray success ");
     } else {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_SetConfigurationByteArray failed. %d ", ret);
+        printf("OH_MediaKeySystem_SetConfigurationByteArray failed. %d ", ret);
     }
-     // 获取字符数组类型的配置信息
-    unsigned char descriptionValue[32];
-    uint32_t descriptionValueLen = 32;
-    ret = OH_MediaKeySystem_GetConfigurationByteArray(keySystem, "description", descriptionValue, &descriptionValueLen);
-    if (ret == DRM_OK) {
-        OH_LOG_INFO(LOG_APP, "OH_MediaKeySystem_GetConfigurationByteArray success ");
+     // 获取字符数组类型的配置信息，根据DRM解决方案实际情况填入
+    uint8_t descriptionValue[32];
+    int32_t descriptionValueLen = 32;
+    ret = OH_MediaKeySystem_GetConfigurationByteArray(mediaKeySystem, "description", descriptionValue, &descriptionValueLen);
+    if (ret == DRM_ERR_OK) {
+        printf("OH_MediaKeySystem_GetConfigurationByteArray success ");
     } else {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_GetConfigurationByteArray failed. %d ", ret);
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-     OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-     return ret;
+        printf("OH_MediaKeySystem_GetConfigurationByteArray failed. %d ", ret);
     }
    ```
 
-6. 调用MediaKeySystem类中的OH_MediaKeySystem_GetMaxContentProtectionLevel方法获取最大的内容保护级别。
+12. （可选）获取设备支持的最大内容保护级别。
 
    ```c++
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-    }
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_UNKNOWN;
-    ret = OH_MediaKeySystem_GetMaxContentProtectionLevel(keySystem, &contentProtectionLevel);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_GetMaxContentProtectionLevel failed.");
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-     OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-     return ret;
+    ret = OH_MediaKeySystem_GetMaxContentProtectionLevel(mediaKeySystem, &contentProtectionLevel);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySystem_GetMaxContentProtectionLevel failed.");
     }
    ```
 
-7. 调用MediaKeySystem类中的OH_MediaKeySystem_SetMediaKeySystemCallback方法设置MediaKeySystem监听回调。
+13. 销毁MediaKeySession实例。
 
    ```c++
-    DRM_ErrCode TestSystemCallBack(DRM_EventType eventType, uint8_t *info,
-        int32_t infoLen, char *extra)
-    {
-        OH_LOG_INFO(LOG_APP, "TestSystemCallBack");
+    ret = OH_MediaKeySession_Destroy(mediaKeySession);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySession_Destroy failed.");
     }
-    DRM_ErrCode MediaKeySystem_SetMediaKeySystemCallback()
-    {
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-    }
-    ret = OH_MediaKeySystem_SetMediaKeySystemCallback(keySystem,
-        TestSystemCallBack);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_SetMediaKeySystemCallback failed.");
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-     OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-     return ret;
-    }
-    return ret;
-   }
    ```
 
-8. 调用MediaKeySystem类中的OH_MediaKeySystem_CreateMediaKeySession方法创建MediaKeySession会话实例。
+14. 销毁MediaKeySystem实例。
 
    ```c++
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-    }
-    DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
-    MediaKeySession *keySession = NULL;
-    ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
-    }
-    ret = OH_MediaKeySession_Destroy(keySession);
-    if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
-      return ret;
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-     OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-     return ret;
+    ret = OH_MediaKeySystem_Destroy(mediaKeySystem);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySystem_Destroy failed.");
     }
    ```
-
-9. 调用MediaKeySystem类中的OH_MediaKeySystem_GenerateKeySystemRequest方法生成设备证书请求，调用MediaKeySystem类中的OH_MediaKeySystem_ProcessKeySystemResponse方法生成设备证书响应。
-
-    ```c++
-    DRM_ErrCode MediaKeySystem_SetAndProcessMediaKeySystem()
-    {
-     unsigned char *request = NULL;
-     int32_t requestLen;
-     char defaultUrl[MAX_DEFAULT_URL_LEN];
-     MediaKeySystem *keySystem = NULL;
-     const char *name = "com.wiseplay.drm";
-     ret = OH_MediaKeySystem_Create(name, &keySystem);
-     if (ret != DRM_OK) {
-       OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-       return ret;
-     }
-
-     ret = OH_MediaKeySystem_GenerateKeySystemRequest(keySystem, &request,
-      &requestLen, &defaultUrl, MAX_DEFAULT_URL_LEN);
-     if (ret != DRM_OK) {
-       OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_GenerateKeySystemRequest failed.");
-       return ret;
-     }
-     unsigned char keySystemResponse[50] = {0};
-     size_t keySystemResponseLen = sizeof(keySystemResponse);
-     ret = OH_MediaKeySystem_ProcessKeySystemResponse(keySystem, keySystemResponse, keySystemResponseLen);
-     if (ret != DRM_OK) {
-       OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_GenerateKeySystemRequest failed.");
-       return ret;
-     }
-     ret = OH_MediaKeySystem_Destroy(keySystem);
-     if (ret != DRM_OK) {
-       OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-       return ret;
-     }
-     return ret;
-    }
-    ```
-
-10. 调用MediaKeySystem类中的OH_MediaKeySystem_GetOfflineMediaKeyIds方法获取离线许可证Id。
-
-    ```c++
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-      return ret;
-    }
-    DRM_OfflineMediakeyIdArray offlineMediaKeyIds;
-    ret = OH_MediaKeySystem_GetOfflineMediaKeyIds(keySystem, &offlineMediaKeyIds);
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-      return ret;
-    }
-    ```
-
-11. 调用MediaKeySystem类中的OH_MediaKeySystem_GetOfflineMediaKeyStatus方法获取对应离线许可证状态。
-
-    ```c++
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-      return ret;
-    }
-    DRM_OfflineMediaKeyStatus OfflineMediaKeyStatus = OFFLINE_MEDIA_KEY_STATUS_UNKNOWN;
-    uint8_t offlineMediaKeyId[16] = "mediaKeyIdTest01";
-    ret = OH_MediaKeySystem_GetOfflineMediaKeyStatus(keySystem, offlineMediaKeyId, sizeof(offlineMediaKeyId)/sizeof(uint8_t), &OfflineMediaKeyStatus);
-    if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_GetOfflineMediaKeyStatus failed.");
-      return ret;
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-      return ret;
-    }
-    ```
-
-12. 调用MediaKeySystem类中的OH_MediaKeySystem_ClearOfflineMediaKeys方法清理离线许可证。
-
-    ```c++
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-      return ret;
-    }
-    uint8_t meidaKeyId[8] = {1, 2, 3, 4, 5, 6, 7, 8};
-    ret = OH_MediaKeySystem_ClearOfflineMediaKeys(keySystem,
-        meidaKeyId, sizeof(meidaKeyId)/sizeof(uint8_t));
-    if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_ClearOfflineMediaKeys failed.");
-      return ret;
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-      return ret;
-    }
-    ```
-
-13. 调用MediaKeySystem类中的OH_MediaKeySystem_GetCertificateStatus方法获取设备证书状态。
-
-    ```c++
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-      return ret;
-    }
-    DRM_CertificateStatus certStatus = CERT_STATUS_INVALID;
-    ret = OH_MediaKeySystem_GetCertificateStatus(mediaKeySystem,
-        &certStatus);
-    if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_GetCertificateStatus failed.");
-      return ret;
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-      return ret;
-    }
-    ```
-
-14. 调用MediaKeySystem类中的OH_MediaKeySystem_Destroy方法销毁MediaKeySystem实例。
-
-    ```c++
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-      return ret;
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-      return ret;
-    }
-    ```

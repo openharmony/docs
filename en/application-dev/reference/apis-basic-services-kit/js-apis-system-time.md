@@ -4,16 +4,560 @@ The **systemTime** module provides system time and time zone features. You can u
 
 > **NOTE**
 >
-> - The APIs of this module are deprecated since API version 9. You are advised to use the APIs of the [@ohos.systemDateTime (System Time and Time Zone)](js-apis-system-date-time-sys.md) module.
+> - The APIs of this module are no longer maintained since API version 9. You are advised to use [@ohos.systemDateTime (system time and time zone)](js-apis-date-time.md).
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```ts
-import systemTime from '@ohos.systemTime';
+import { systemTime } from '@kit.BasicServicesKit';
 ```
 
-## systemTime.setTime
+## systemTime.getCurrentTime<sup>8+(deprecated)</sup>
+
+getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the time elapsed since the Unix epoch. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name  | Type      | Mandatory| Description                            |
+| -------- | -------------- | ---- | ------------------ |
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time elapsed since the Unix epoch.        |
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemTime.getCurrentTime(true, (error: BusinessError, time: number) => {
+    if (error) {
+      console.info(`Failed to getting currentTime. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting currentTime: ${time}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.getCurrentTime<sup>8+(deprecated)</sup>
+
+getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the time elapsed since the Unix epoch. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name  | Type              | Mandatory| Description                           |
+| -------- | ----------- | ---- | ---------------------------------- |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time elapsed since the Unix epoch.        |
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemTime.getCurrentTime((error: BusinessError, time: number) => {
+    if (error) {
+      console.info(`Failed to getting currentTime. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting currentTime : ${time}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.getCurrentTime<sup>8+(deprecated)</sup>
+
+getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
+
+Obtains the time elapsed since the Unix epoch. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                    |
+| ------ | ------- | ---- | ------------------------- |
+| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>The default value is false.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+
+**Return value**
+
+| Type       | Description                              |
+| --------------------- | --------------------------- |
+| Promise&lt;number&gt; | Promise used to return the time elapsed since the Unix epoch.|
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemTime.getCurrentTime().then((time: number) => {
+    console.info(`Succeeded in getting currentTime : ${time}`);
+  }).catch((error: BusinessError) => {
+    console.info(`Failed to getting currentTime. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.getRealActiveTime<sup>8+(deprecated)</sup>
+
+getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the time elapsed since system startup, excluding the deep sleep time. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description  |
+| -------- | ---------- | ---- | -------------------------- |
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.|
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemTime.getRealActiveTime(true, (error: BusinessError, time: number) => {
+    if (error) {
+      console.info(`Failed to getting real active time. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting real active time : ${time}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.getRealActiveTime<sup>8+(deprecated)</sup>
+
+getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the time elapsed since system startup, excluding the deep sleep time. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description   |
+| -------- | -------------- | ---- | --------------------- |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.|
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemTime.getRealActiveTime((error: BusinessError, time: number) => {
+    if (error) {
+      console.info(`Failed to getting real active time. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting real active time : ${time}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.getRealActiveTime<sup>8+(deprecated)</sup>
+
+getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
+
+Obtains the time elapsed since system startup, excluding the deep sleep time. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                             |
+| ------ | ------- | ---- | ----------------------------------- |
+| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>The default value is false.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+
+**Return value**
+
+| Type                 | Description        |
+| -------------- | -------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the time elapsed since system startup, excluding the deep sleep time.|
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemTime.getRealActiveTime().then((time: number) => {
+    console.info(`Succeeded in getting real active time : ${time}`);
+  }).catch((error: BusinessError) => {
+    console.info(`Failed to getting real active time. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.getRealTime<sup>8+(deprecated)</sup>
+
+getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the time elapsed since system startup, including the deep sleep time. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description  |
+| -------- | --------------- | ---- | ------------------------------- |
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.  |
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemTime.getRealTime(true, (error: BusinessError, time: number) => {
+    if (error) {
+      console.info(`Failed to getting real time. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting real time : ${time}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.getRealTime<sup>8+(deprecated)</sup>
+
+getRealTime(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the time elapsed since system startup, including the deep sleep time. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description     |
+| -------- | --------- | ---- | --------------------------- |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.  |
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemTime.getRealTime((error: BusinessError, time: number) => {
+    if (error) {
+      console.info(`Failed to getting real time. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting real time : ${time}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.getRealTime<sup>8+(deprecated)</sup>
+
+getRealTime(isNano?: boolean): Promise&lt;number&gt;
+
+Obtains the time elapsed since system startup, including the deep sleep time. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                              |
+| ------ | ------- | ---- | ------------------------------- |
+| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>The default value is false.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+
+**Return value**
+
+| Type                 | Description      |
+| --------------------- | ------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the time elapsed since system startup, including the deep sleep time.|
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemTime.getRealTime().then((time: number) => {
+    console.info(`Succeeded in getting real time : ${time}`);
+  }).catch((error: BusinessError) => {
+    console.info(`Failed to getting real time. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.getDate<sup>8+(deprecated)</sup>
+
+getDate(callback: AsyncCallback&lt;Date&gt;): void
+
+Obtains the current system date. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name  | Type          | Mandatory| Description                  |
+| -------- | -------------- | ---- | --------------------- |
+| callback | AsyncCallback&lt;Date&gt; | Yes  | Callback used to return the current system date.|
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemTime.getDate((error: BusinessError, date: Date) => {
+    if (error) {
+      console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in get date : ${date}`);;
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.getDate<sup>8+(deprecated)</sup>
+
+getDate(): Promise&lt;Date&gt;
+
+Obtains the current system date. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Return value**
+
+| Type               | Description                                     |
+| ------------------- | ----------------------------------------- |
+| Promise&lt;Date&gt; | Promise used to return the current system date.|
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemTime.getDate().then((date: Date) => {
+    console.info(`Succeeded in getting date : ${date}`);
+  }).catch((error: BusinessError) => {
+    console.info(`Failed to getting date. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.getTimezone<sup>8+(deprecated)</sup>
+
+getTimezone(callback: AsyncCallback&lt;string&gt;): void
+
+Obtains the system time zone. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name  | Type             | Mandatory| Description                |
+| -------- | --------- | ---- | ------------------------ |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the system time zone. For details, see [Supported System Time Zones](#supported-system-time-zones).|
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemTime.getTimezone((error: BusinessError, data: string) => {
+    if (error) {
+      console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in get timezone : ${data}`);;
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.getTimezone<sup>8+(deprecated)</sup>
+
+getTimezone(): Promise&lt;string&gt;
+
+Obtains the system time zone. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Return value**
+
+| Type                 | Description                                 |
+| --------------------- | ------------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the system time zone. For details, see [Supported System Time Zones](#supported-system-time-zones).|
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | Parameter check failed, permission denied, or system error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemTime.getTimezone().then((data: string) => {
+    console.info(`Succeeded in getting timezone: ${data}`);
+  }).catch((error: BusinessError) => {
+    console.info(`Failed to getting timezone. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemTime.setTime<sup>(deprecated)</sup>
 
 setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
@@ -36,12 +580,12 @@ For details about the error codes, see [Time and Time Zone Service Error Codes](
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Set the system time to 2021-01-20 02:36:25.
 let time = 1611081385000;
@@ -59,7 +603,7 @@ try {
 }
 ```
 
-## systemTime.setTime
+## systemTime.setTime<sup>(deprecated)</sup>
 
 setTime(time : number) : Promise&lt;void&gt;
 
@@ -87,12 +631,12 @@ For details about the error codes, see [Time and Time Zone Service Error Codes](
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Set the system time to 2021-01-20 02:36:25.
 let time = 1611081385000;
@@ -108,7 +652,7 @@ try {
 }
 ```
 
-## systemTime.setDate
+## systemTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
@@ -131,12 +675,12 @@ For details about the error codes, see [Time and Time Zone Service Error Codes](
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let date = new Date();
 try {
@@ -153,7 +697,7 @@ try {
 }
 ```
 
-## systemTime.setDate
+## systemTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date): Promise&lt;void&gt;
 
@@ -181,12 +725,12 @@ For details about the error codes, see [Time and Time Zone Service Error Codes](
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let date = new Date(); 
 try {
@@ -201,7 +745,7 @@ try {
 }
 ```
 
-## systemTime.setTimezone
+## systemTime.setTimezone<sup>(deprecated)</sup>
 
 setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -224,12 +768,12 @@ For details about the error codes, see [Time and Time Zone Service Error Codes](
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemTime.setTimezone('Asia/Shanghai', (error: BusinessError) => {
@@ -245,7 +789,7 @@ try {
 }
 ```
 
-## systemTime.setTimezon
+## systemTime.setTimezone<sup>(deprecated)</sup>
 
 setTimezone(timezone: string): Promise&lt;void&gt;
 
@@ -273,12 +817,12 @@ For details about the error codes, see [Time and Time Zone Service Error Codes](
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemTime.setTimezone('Asia/Shanghai').then(() => {

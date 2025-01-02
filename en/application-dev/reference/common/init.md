@@ -3,7 +3,7 @@
 
 ## Overview
 
-Provides an API for querying the support for a SystemCapability (SysCap), which refers to a standalone feature in the operating system. Different devices support different SysCap sets. Each SysCap corresponds to one or more APIs. You can determine whether an API can be used by checking SysCap support.
+Provides the API for querying the support for a SystemCapability (SysCap), which refers to a standalone feature in the operating system. Different devices support different SysCap sets. Each SysCap corresponds to one or more APIs.
 
 The result is returned by checking the SysCap configuration file.
 

@@ -6,26 +6,11 @@
 
 2. 在具备设备环境时，可以使用另一种更为灵活的方式，通过hdc工具来向设备中应用沙箱路径推送文件。即本文介绍的内容。
 
-但是hdc shell看到的调试进程下的文件路径与应用视角的应用沙箱路径不同，开发者需要先了解如下路径映射关系。
-
-## 应用沙箱路径和调试进程视角下的真实物理路径
-
-在应用沙箱路径下读写文件，经过映射转换，实际读写的是在hdc进程视角下看到真实物理路径中的应用文件，应用沙箱路径与真实物理路径对应关系如下表所示。
-
-其中&lt;USERID&gt;当前固定为100。
-
-| 应用沙箱路径 | 调试进程（hdc）视角下的实际路径 | 说明 |
-| -------- | -------- | -------- |
-| /data/storage/el1/bundle | /data/app/el1/bundle/public/&lt;PACKAGENAME&gt; | 应用安装包目录 |
-| /data/storage/el1/base | /data/app/el1/&lt;USERID&gt;/base/&lt;PACKAGENAME&gt; | 应用el1级别加密数据目录 |
-| /data/storage/el2/base | /data/app/el2/&lt;USERID&gt;/base/&lt;PACKAGENAME&gt; | 应用el2级别加密数据目录 |
-| /data/storage/el1/database | /data/app/el1/&lt;USERID&gt;/database/&lt;PACKAGENAME&gt; | 应用el1级别加密数据库目录 |
-| /data/storage/el2/database | /data/app/el2/&lt;USERID&gt;/database/&lt;PACKAGENAME&gt; | 应用el2级别加密数据库目录 |
-| /data/storage/el2/distributedfiles | /mnt/hmdfs/&lt;USERID&gt;/account/merge_view/data/&lt;PACKAGENAME&gt; | 应用el2加密级别有帐号分布式数据融合目录 |
+但是hdc shell看到的调试进程下的文件路径与应用视角的应用沙箱路径不同，开发者需要先了解[应用沙箱路径和真实物理路径的对应关系](./app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)。
 
 ## 开发示例
 
-以应用包com.ohos.example为例，如果是在example的应用沙箱路径“/data/storage/el1/bundle”下读写文件，从上表可知，对应的真实物理路径为“/data/app/el1/bundle/public/&lt;PACKAGENAME&gt;”，即“/data/app/el1/bundle/public/com.ohos.example”。
+以应用包com.ohos.example为例，如果是在example的应用沙箱路径“/data/storage/el1/bundle”下读写文件，[应用沙箱路径和真实物理路径的对应关系](./app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)这个文档可知，对应的真实物理路径为“/data/app/el1/bundle/public/&lt;PACKAGENAME&gt;”，即“/data/app/el1/bundle/public/com.ohos.example”。
 
 推送命令示例如下：
 

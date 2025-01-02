@@ -1,7 +1,7 @@
 # \<rating> Development
 
 
-The **\<rating>** component provides a rating bar used for reviews and ratings. For details, see [rating](../reference/arkui-js/js-components-basic-rating.md).
+The **\<rating>** component provides a rating bar used for reviews and ratings. For details, see [rating](../reference/apis-arkui/arkui-js/js-components-basic-rating.md).
 
 
 ## Creating a \<rating> Component

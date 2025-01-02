@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import commonType from '@ohos.data.commonType';
+import { commonType } from '@kit.ArkData';
 ```
 
 ## AssetStatus
@@ -29,7 +29,7 @@ import commonType from '@ohos.data.commonType';
 
 ## Asset
 
-记录资产附件（文件、图片、视频等类型文件）的相关信息。资产类型的相关接口暂不支持Datashare。
+记录资产附件（文件、图片、视频等类型文件）的相关信息。
 
 **系统能力：** SystemCapability.DistributedDataManager.CommonType
 
@@ -45,6 +45,8 @@ import commonType from '@ohos.data.commonType';
 
 ## Assets
 
+type Assets = Array\<Asset>
+
 表示[Asset](#asset)类型的数组。
 
 **系统能力：** SystemCapability.DistributedDataManager.CommonType
@@ -54,6 +56,8 @@ import commonType from '@ohos.data.commonType';
 | Array&lt;[Asset](#asset)&gt; | 表示Asset类型的数组。 |
 
 ## ValueType
+
+type ValueType = null | number | string | boolean | Uint8Array | Asset | Assets
 
 用于表示允许的数据字段类型，接口参数具体类型根据其功能而定。
 
@@ -71,10 +75,12 @@ import commonType from '@ohos.data.commonType';
 
 ## ValuesBucket
 
+type ValuesBucket = Record<string, ValueType>
+
 用于存储键值对的类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
 **系统能力：** SystemCapability.DistributedDataManager.CommonType
 
-| 键类型 | 值类型                  |
+| 类型 | 说明                  |
 | ------ | ----------------------- |
-| string | [ValueType](#valuetype) |
+| Record<string, [ValueType](#valuetype)> | 表示键值对类型。键的类型为string，值的类型为[ValueType](#valuetype)。|

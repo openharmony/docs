@@ -19,12 +19,14 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import ArrayList from '@ohos.util.ArrayList';
+import { ArrayList } from '@kit.ArkTS';
 ```
 
 ## ArrayList
 
 ### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -38,6 +40,8 @@ import ArrayList from '@ohos.util.ArrayList';
 constructor()
 
 A constructor used to create an **ArrayList** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -61,6 +65,8 @@ let arrayList: ArrayList<string | number> = new ArrayList();
 add(element: T): boolean
 
 Adds an element at the end of this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -97,7 +103,7 @@ let arrayList1: ArrayList<number> = new ArrayList();
 let result2 = arrayList.add(1);
 let b = [1, 2, 3];
 let result3 = arrayList.add(b);
-let c : C1 = {name: "Dylon", age: "13"}
+let c : C1 = {name: "Dylan", age: "13"}
 let result4 = arrayList.add(c);
 let result5 = arrayList.add(false);
 ```
@@ -108,6 +114,8 @@ insert(element: T, index: number): void
 
 Inserts an element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -115,16 +123,17 @@ Inserts an element at the specified position in this container.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
-| index | number | Yes| Index of the position where the element is to be inserted.|
+| index | number | Yes| Index of the position where the element is to be inserted. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The insert method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The insert method cannot be bound. |
 
 **Example**
 
@@ -140,6 +149,8 @@ arrayList.insert(true, 2);
 has(element: T): boolean
 
 Checks whether this container has the specified element.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -176,6 +187,8 @@ let result: boolean = arrayList.has("squirrel");
 getIndexOf(element: T): number
 
 Obtains the index of the first occurrence of the specified element in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -219,6 +232,8 @@ getLastIndexOf(element: T): number
 
 Obtains the index of the last occurrence of the specified element in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -261,13 +276,15 @@ removeByIndex(index: number): T
 
 Removes an element with the specified position from this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -277,12 +294,13 @@ Removes an element with the specified position from this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The removeByIndex method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The removeByIndex method cannot be bound. |
 
 **Example**
 
@@ -301,6 +319,8 @@ let result: number = arrayList.removeByIndex(2);
 remove(element: T): boolean
 
 Removes the first occurrence of the specified element from this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -341,6 +361,8 @@ removeByRange(fromIndex: number, toIndex: number): void
 
 Removes from this container all of the elements within a range, including the element at the start position but not that at the end position.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -352,12 +374,13 @@ Removes from this container all of the elements within a range, including the el
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The removeByRange method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of fromIndex or toIndex is out of range. |
+| 10200011 | The removeByRange method cannot be bound. |
 
 **Example**
 
@@ -376,6 +399,8 @@ replaceAllElements(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt
 thisArg?: Object): void
 
 Replaces all elements in this container with new elements, and returns the new ones.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -396,10 +421,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The replaceAllElements method cannot be bound. |
 
 **Example**
@@ -423,6 +449,8 @@ thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -442,10 +470,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **Example**
@@ -467,6 +496,8 @@ sort(comparator?: (firstValue: T, secondValue: T) => number): void
 
 Sorts elements in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -484,10 +515,11 @@ comparator
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 10200011 | The sort method cannot be bound. |
 
 **Example**
@@ -509,6 +541,8 @@ subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 
 Obtains elements within a range in this container, including the element at the start position but not that at the end position, and returns these elements as a new **ArrayList** instance.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -526,12 +560,13 @@ Obtains elements within a range in this container, including the element at the 
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The subArrayList method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of fromIndex or toIndex is out of range. |
+| 10200011 | The subArrayList method cannot be bound. |
 
 **Example**
 
@@ -549,6 +584,8 @@ let result: ArrayList<number> = arrayList.subArrayList(2, 4);
 clear(): void
 
 Clears this container and sets its length to **0**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -573,9 +610,11 @@ arrayList.clear();
 
 ### clone
 
-clone(): ArrayList&lt;T&gt; 
+clone(): ArrayList&lt;T&gt;
 
 Clones this container and returns a copy. The modification to the copy does not affect the original instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -611,6 +650,8 @@ getCapacity(): number
 
 Obtains the capacity of this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -643,6 +684,8 @@ let result: number = arrayList.getCapacity();
 convertToArray(): Array&lt;T&gt;
 
 Converts this container into an array.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -677,6 +720,8 @@ isEmpty(): boolean
 
 Checks whether this container is empty (contains no element).
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -704,11 +749,55 @@ arrayList.add(4);
 let result: boolean = arrayList.isEmpty();
 ```
 
+### \[index: number\]<sup>12+</sup>
+
+\[index: number\]: T
+
+Returns the element at the given index.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| index | number | Yes| Index. The value must be less than or equal to int32_max, that is, 2147483647.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Element obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. |
+| 10200001 | The value of index is out of range. |
+
+**Example**
+
+```ts
+let arrayList: ArrayList<number> = new ArrayList();
+arrayList.add(2);
+arrayList.add(4);
+arrayList.add(5);
+arrayList.add(4);
+let result: number = arrayList[2];
+```
+
 ### increaseCapacityTo
 
 increaseCapacityTo(newCapacity: number): void
 
 Increases the capacity of this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -720,10 +809,11 @@ Increases the capacity of this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The increaseCapacityTo method cannot be bound. |
 
 **Example**
@@ -742,7 +832,9 @@ arrayList.increaseCapacityTo(8);
 
 trimToCurrentLength(): void
 
-Trims the capacity of this container to its current length.
+Releases the reserved space in this container by adjusting the container capacity to the actual number of elements in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -771,9 +863,7 @@ arrayList.trimToCurrentLength();
 
 Obtains an iterator, each item of which is a JavaScript object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 

@@ -12,18 +12,20 @@ This module provides APIs for accessing resources of a specific Extension abilit
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Readable| Writable| Description| 
+| Name | Type | Readable | Writable | Description | 
 | -------- | -------- | -------- | -------- | -------- |
-| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | Yes| No| Information about the HAP file.<br>(See **api\bundle\hapModuleInfo.d.ts** in the **SDK** directory.) |
-| config   | [Configuration](js-apis-app-ability-configuration.md) | Yes| No| Module configuration information.<br>(See **api\@ohos.app.ability.Configuration.d.ts** in the **SDK** directory.)|
-| extensionAbilityInfo | [ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md) | Yes| No| Extension ability information.<br>(See **api\bundle\extensionAbilityInfo.d.ts** in the **SDK** directory.)|
+| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | Yes | No | Information about the HAP file.<br>(See **api\bundle\hapModuleInfo.d.ts** in the **SDK** directory.) |
+| config   | [Configuration](js-apis-app-ability-configuration.md) | Yes | No | Module configuration information.<br>(See **api\@ohos.app.ability.Configuration.d.ts** in the **SDK** directory.) |
+| extensionAbilityInfo | [ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md) | Yes | No | Extension ability information.<br>(See **api\bundle\extensionAbilityInfo.d.ts** in the **SDK** directory.) |
 
 ## When to Use
 **ExtensionContext** provides information about an Extension ability, module, and HAP file. You can use the information based on service requirements.
@@ -57,9 +59,8 @@ export class GlobalContext {
 ```
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import formBindingData from '@ohos.app.form.formBindingData';
+import { FormExtensionAbility, formBindingData } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
 import { GlobalContext } from '../GlobalContext';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {

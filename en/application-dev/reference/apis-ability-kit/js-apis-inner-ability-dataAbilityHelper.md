@@ -4,8 +4,9 @@ The **DataAbilityHelper** object is obtained through [acquireDataAbilityHelper](
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
-> Except [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap), the APIs of this module can be used only in the FA model. In the stage model, use the APIs provided by the [dataAbility](../apis-arkdata/js-apis-data-ability.md) and [dataShare](../apis-arkdata/js-apis-data-dataShare-sys.md) modules instead.
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
+> Except [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap), the APIs of this module can be used only in the FA model.
 
 ## Modules to Import
 
@@ -25,11 +26,11 @@ import relationalStore from '@ohos.data.relationalStore';
 
 openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
-Opens a file with a specified URI. This API uses an asynchronous callback to return a file descriptor.
+Opens a file with a specified URI. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [FileAccessHelper.openFile](../apis-core-file-kit/js-apis-fileAccess-sys.md#openfile-1) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -41,6 +42,7 @@ Opens a file with a specified URI. This API uses an asynchronous callback to ret
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -62,11 +64,11 @@ DAHelper.openFile('dataability:///com.example.DataAbility', mode, (error, data) 
 
 openFile(uri: string, mode: string): Promise\<number>
 
-Opens a file with a specified URI. This API uses a promise to return a file descriptor.
+Opens a file with a specified URI. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [FileAccessHelper.openFile](../apis-core-file-kit/js-apis-fileAccess-sys.md#openfile) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -83,6 +85,7 @@ Opens a file with a specified URI. This API uses a promise to return a file desc
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -96,15 +99,15 @@ DAHelper.openFile('dataability:///com.example.DataAbility', mode).then((data) =>
 });
 ```
 
-## DataAbilityHelper.on
+## DataAbilityHelper.on('dataChange')
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
-Registers an observer to listen for changes in the data specified by a given URI.
+Registers an observer to listen for changes in the data specified by a given URI. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.on('dataChange')](../apis-arkdata/js-apis-data-dataShare-sys.md#ondatachange) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -112,10 +115,11 @@ Registers an observer to listen for changes in the data specified by a given URI
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | Yes  | The value **'dataChange'** means data changes.              |
 | uri      | string               | Yes  | URI of the data.|
-| callback | AsyncCallback\<void> | Yes  | Callback invoked when the data is changed.  |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the observer is registered, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -133,15 +137,15 @@ DAHelper.on(
 );
 ```
 
-## DataAbilityHelper.off
+## DataAbilityHelper.off('dataChange')
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
-Deregisters the observer that listens for changes in the data specified by a given URI.
+Deregisters the observer that listens for changes in the data specified by a given URI. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.off('dataChange')](../apis-arkdata/js-apis-data-dataShare-sys.md#offdatachange) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -149,10 +153,11 @@ Deregisters the observer that listens for changes in the data specified by a giv
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | Yes  | The value **'dataChange'** means data changes.              |
 | uri      | string               | Yes  | URI of the data.|
-| callback | AsyncCallback\<void> | No  | Callback of the listener to deregister. If the callback is set to **null**, all data change listeners are canceled.      |
+| callback | AsyncCallback\<void> | No  | Callback used to return the result. If the observer is deregistered, **err** is **undefined**. Otherwise, **err** is an error object.      |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -193,6 +198,7 @@ Obtains the media resource type of the data specified by a given URI. This API u
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -233,6 +239,7 @@ Obtains the media resource type of the data specified by a given URI. This API u
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -261,10 +268,11 @@ Obtains the supported media resource types of a specified file. This API uses an
 | -------------- | ------------------------------ | ---- | ---------------------------------- |
 | uri            | string                         | Yes  | URI of the file.          |
 | mimeTypeFilter | string                         | Yes  | Media resource type of the file to obtain.      |
-| callback       | AsyncCallback\<Array\<string>> | Yes  | Callback used to return an array holding the media resource type.|
+| callback       | AsyncCallback\<Array\<string>> | Yes  | Callback used to return an array holding the media resource types.|
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -302,10 +310,11 @@ Obtains the supported media resource types of a specified file. This API uses a 
 
 | Type                    | Description                    |
 | ------------------------ | ------------------------ |
-| Promise\<Array\<string>> | Promise used to return an array holding the media resource type.|
+| Promise\<Array\<string>> | Promise used to return an array holding the media resource types.|
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -322,11 +331,11 @@ DAHelper.getFileTypes('dataability:///com.example.DataAbility', 'image/*').then(
 
 normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
-Converts the URI that refers to a Data ability into a normalized URI. This API uses an asynchronous callback to return the result.
+Converts the URI that refers to a DataAbility into a normalized URI. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.normalizeUri](../apis-arkdata/js-apis-data-dataShare-sys.md#normalizeuri) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -337,6 +346,7 @@ Converts the URI that refers to a Data ability into a normalized URI. This API u
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -357,11 +367,11 @@ DAHelper.normalizeUri('dataability:///com.example.DataAbility', (error, data) =>
 
 normalizeUri(uri: string): Promise\<string>
 
-Converts the URI that refers to a Data ability into a normalized URI. This API uses a promise to return the result.
+Converts the URI that refers to a DataAbility into a normalized URI. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.normalizeUri](../apis-arkdata/js-apis-data-dataShare-sys.md#normalizeuri-1) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -377,6 +387,7 @@ Converts the URI that refers to a Data ability into a normalized URI. This API u
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -393,11 +404,11 @@ DAHelper.normalizeUri('dataability:///com.example.DataAbility',).then((data) => 
 
 denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
-Converts a normalized URI generated by **DataAbilityHelper.normalizeUri(uri: string, callback: AsyncCallback\<string>)** to a denormalized one. This API uses an asynchronous callback to return the result.
+Converts a normalized URI generated by **normalizeUri** to a denormalized one. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.denormalizeUri](../apis-arkdata/js-apis-data-dataShare-sys.md#denormalizeuri) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -408,6 +419,7 @@ Converts a normalized URI generated by **DataAbilityHelper.normalizeUri(uri: str
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -428,26 +440,27 @@ DAHelper.denormalizeUri('dataability:///com.example.DataAbility', (error, data) 
 
 denormalizeUri(uri: string): Promise\<string>
 
-Converts a normalized URI generated by **DataAbilityHelper.normalizeUri(uri: string)** to a denormalized one. This API uses a promise to return the result.
+Converts a normalized URI generated by **normalizeUri** to a denormalized one. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.denormalizeUri](../apis-arkdata/js-apis-data-dataShare-sys.md#denormalizeuri-1) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description                   |
 | ---- | ------ | ---- | ----------------------- |
-| uri  | string | Yes  | URI object to denormalize.|
+| uri  | string | Yes  | URI object to normalize.|
 
 **Return value**
 
 | Type            | Description                                     |
 | ---------------- | ----------------------------------------- |
-| Promise\<string> | Promise used to return the denormalized URI object.|
+| Promise\<string> |Promise used to return the denormalized URI object.|
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -468,17 +481,18 @@ Notifies the registered observer of a change to the data specified by the URI. T
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.notifyChange](../apis-arkdata/js-apis-data-dataShare-sys.md#notifychange) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
 | Name    | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
 | uri      | string               | Yes  | URI of the data that changes.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.              |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the observer is registered, **err** is **undefined**. Otherwise, **err** is an error object.              |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -503,7 +517,7 @@ Notifies the registered observer of a change to the data specified by the URI. T
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.notifyChange](../apis-arkdata/js-apis-data-dataShare-sys.md#notifychange-1) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -515,10 +529,11 @@ Notifies the registered observer of a change to the data specified by the URI. T
 
 | Type          | Description                 |
 | -------------- | --------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -539,7 +554,7 @@ Inserts a single data record into the database. This API uses an asynchronous ca
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.insert](../apis-arkdata/js-apis-data-dataShare-sys.md#insert) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -551,6 +566,7 @@ Inserts a single data record into the database. This API uses an asynchronous ca
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -582,7 +598,7 @@ Inserts a single data record into the database. This API uses a promise to retur
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.insert](../apis-arkdata/js-apis-data-dataShare-sys.md#insert-1) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -599,6 +615,7 @@ Inserts a single data record into the database. This API uses a promise to retur
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -626,18 +643,18 @@ Inserts multiple data records into the database. This API uses an asynchronous c
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.batchInsert](../apis-arkdata/js-apis-data-dataShare-sys.md#batchinsert) instead.
-
+**Model restriction**: This API can be used only in the FA model.
 **Parameters**
 
 | Name        | Type                   | Mandatory| Description                            |
 | ------------ | ----------------------- | ---- | -------------------------------- |
 | uri          | string                  | Yes  | URI of the data to insert.        |
-| valuesBucket | Array\<rdb.ValuesBucket> | Yes  | Data records to insert.          |
+| valuesBuckets | Array\<[rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)> | Yes  | Data records to insert.          |
 | callback     | AsyncCallback\<number>  | Yes  | Callback used to return the number of inserted data records.|
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -666,14 +683,14 @@ Inserts multiple data records into the database. This API uses a promise to retu
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.batchInsert](../apis-arkdata/js-apis-data-dataShare-sys.md#batchinsert-1) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
 | Name        | Type                   | Mandatory| Description                    |
 | ------------ | ----------------------- | ---- | ------------------------ |
 | uri          | string                  | Yes  | URI of the data to insert.|
-| valuesBucket | Array<rdb.ValuesBucket> | Yes  | Data records to insert.  |
+| valuesBuckets | Array<[rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)> | Yes  | Data records to insert.  |
 
 **Return value**
 
@@ -683,6 +700,7 @@ Inserts multiple data records into the database. This API uses a promise to retu
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -707,7 +725,7 @@ Deletes one or more data records from the database. This API uses an asynchronou
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.delete](../apis-arkdata/js-apis-data-dataShare-sys.md#delete) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -719,6 +737,7 @@ Deletes one or more data records from the database. This API uses an asynchronou
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -745,7 +764,7 @@ Deletes one or more data records from the database. This API uses a promise to r
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.delete](../apis-arkdata/js-apis-data-dataShare-sys.md#delete-1) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -762,6 +781,7 @@ Deletes one or more data records from the database. This API uses a promise to r
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -784,7 +804,7 @@ Uses a custom processing logic to delete data records from the database. This AP
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.delete](../apis-arkdata/js-apis-data-dataShare-sys.md#delete) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -795,6 +815,7 @@ Uses a custom processing logic to delete data records from the database. This AP
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -815,11 +836,11 @@ DAHelper.delete('dataability:///com.example.DataAbility', (error, data) => {
 
 update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
 
-Updates data records in the database. This API uses an asynchronous callback to return the result.
+Updates data in the database. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.update](../apis-arkdata/js-apis-data-dataShare-sys.md#update) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -832,6 +853,7 @@ Updates data records in the database. This API uses an asynchronous callback to 
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -861,11 +883,11 @@ DAHelper.update('dataability:///com.example.DataAbility', va, da, (error, data) 
 
 update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>
 
-Updates data records in the database. This API uses a promise to return the result.
+Updates data in the database. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.update](../apis-arkdata/js-apis-data-dataShare-sys.md#update-1) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -879,10 +901,11 @@ Updates data records in the database. This API uses a promise to return the resu
 
 | Type            | Description                                        |
 | ---------------- | -------------------------------------------- |
-| Promise\<number> | Promise used to return the number of updated data records.  |
+| Promise\<number> | Promise used to return the number of updated data records.|
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -912,7 +935,7 @@ Uses a custom processing logic to update data records in the database. This API 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.update](../apis-arkdata/js-apis-data-dataShare-sys.md#update) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -924,6 +947,7 @@ Uses a custom processing logic to update data records in the database. This API 
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -955,7 +979,7 @@ Queries data in the database. This API uses an asynchronous callback to return t
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.query](../apis-arkdata/js-apis-data-dataShare-sys.md#query) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -964,10 +988,11 @@ Queries data in the database. This API uses an asynchronous callback to return t
 | uri        | string                            | Yes  | URI of the data to query.                        |
 | columns    | Array\<string>                | Yes  | Columns to query. If this parameter is **null**, all columns will be queried.  |
 | predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. When **null** is passed in, you need to customize the logic for querying data in the database.|
-| callback   | AsyncCallback\<ResultSet>         | Yes  | Callback used to return the data queried.                        |
+| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)>         | Yes  | Callback used to return the result.                        |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -995,17 +1020,18 @@ Queries data in the database. This API uses an asynchronous callback to return t
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.query](../apis-arkdata/js-apis-data-dataShare-sys.md#query) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
 | Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | Yes  | URI of the data to query.                        |
-| callback   | AsyncCallback\<ResultSet>         | Yes  | Callback used to return the data queried.                        |
+| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)>         | Yes  | Callback used to return the result.                        |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1030,7 +1056,7 @@ Queries data in the database. This API uses an asynchronous callback to return t
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.query](../apis-arkdata/js-apis-data-dataShare-sys.md#query) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -1038,10 +1064,11 @@ Queries data in the database. This API uses an asynchronous callback to return t
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | Yes  | URI of the data to query.                        |
 | columns    | Array\<string>                | Yes  | Columns to query. If this parameter is **null**, all columns will be queried.  |
-| callback   | AsyncCallback\<ResultSet>         | Yes  | Callback used to return the data queried.                        |
+| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)>         | Yes  | Callback used to return the result.                        |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1067,7 +1094,7 @@ Queries data in the database. This API uses an asynchronous callback to return t
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.query](../apis-arkdata/js-apis-data-dataShare-sys.md#query) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -1075,10 +1102,11 @@ Queries data in the database. This API uses an asynchronous callback to return t
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | Yes  | URI of the data to query.                        |
 | predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. When **null** is passed in, you need to customize the logic for querying data in the database.|
-| callback   | AsyncCallback\<ResultSet>         | Yes  | Callback used to return the data queried.                        |
+| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)>         | Yes  | Callback used to return the result.                        |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1105,7 +1133,7 @@ Queries data in the database. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Model restriction**: This API can be used only in the FA model. In the stage model, use [DataShareHelper.query](../apis-arkdata/js-apis-data-dataShare-sys.md#query-1) instead.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -1119,10 +1147,11 @@ Queries data in the database. This API uses a promise to return the result.
 
 | Type               | Description          |
 | ------------------- | -------------- |
-| Promise\<ResultSet> | Promise used to return the data queried.|
+| Promise\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)> | Promise used to return the result.|
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1142,7 +1171,7 @@ DAHelper.query('dataability:///com.example.DataAbility', cars, da).then((data) =
 
 call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCallback\<PacMap>): void
 
-Calls an extended API of the DataAbility. This API uses an asynchronous callback to return the result.
+Calls an extended method defined by the DataAbility. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -1156,10 +1185,11 @@ Calls an extended API of the DataAbility. This API uses an asynchronous callback
 | method    | string                  | Yes  | Name of the API to call.  |
 | arg      | string                   | Yes  | Parameter to pass in.     |
 | extras   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)        | Yes  | Key-value pair parameter.      |
-| callback | AsyncCallback\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | Yes| Callback used to return the result.    |
+| callback | AsyncCallback\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | Yes| Callback used to return the extended parameters in the format of key-value pairs.    |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1181,7 +1211,7 @@ dataAbilityHelper.call('dataability:///com.example.jsapidemo.UserDataAbility',
 
 call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 
-Calls an extended API of the DataAbility. This API uses a promise to return the result.
+Calls an extended method defined by the DataAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -1200,10 +1230,11 @@ Calls an extended API of the DataAbility. This API uses a promise to return the 
 
 | Type| Description|
 |------ | ------- |
-|Promise\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | Promise used to return the result.|
+|Promise\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | Promise used to return the extended parameters in the format of key-value pairs.|
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1240,6 +1271,7 @@ Operates data in the database in batches. This API uses an asynchronous callback
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1283,6 +1315,7 @@ Operates data in the database in batches. This API uses a promise to return the 
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1312,5 +1345,3 @@ Defines the **PacMap** type used for data storage.
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ------ | ------ |
 | [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | Yes| Data stored in key-value pairs.|
-
- <!--no_check--> 

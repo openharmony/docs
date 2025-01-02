@@ -10,7 +10,7 @@ The **access** module provides APIs for enabling and disabling Bluetooth and obt
 ## Modules to Import
 
 ```js
-import access from '@ohos.bluetooth.access';
+import { access } from '@kit.ConnectivityKit';
 ```
 
 
@@ -22,6 +22,8 @@ Enables Bluetooth.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Error codes**
@@ -30,13 +32,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message           |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     access.enableBluetooth();
 } catch (err) {
@@ -53,6 +57,8 @@ Disables Bluetooth.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Error codes**
@@ -61,13 +67,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 |ID  | Error Message          |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     access.disableBluetooth();
 } catch (err) {
@@ -82,7 +90,7 @@ getState(): BluetoothState
 
 Obtains the Bluetooth state.
 
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -98,13 +106,14 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 |ID  | Error Message          |
 | -------- | ------------------ |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let state = access.getState();
 } catch (err) {
@@ -114,11 +123,13 @@ try {
 
 ## access.on('stateChange')<a name="stateChange"></a>
 
-on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
+on(type: 'stateChange', callback: Callback&lt;BluetoothState&gt;): void
 
-Subscribes to Bluetooth state changes.
+Subscribes to Bluetooth state changes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -126,8 +137,8 @@ Subscribes to Bluetooth state changes.
 
 | Name  | Type                                              | Mandatory | Description                                                      |
 | -------- | ------------------------------------------------- | ----- | ---------------------------------------------------------- |
-| type     | string                                            | Yes   | Event type. The value is **stateChange**, which indicates Bluetooth state changes.             |
-| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | Yes   | Callback invoked to return the Bluetooth state. You need to implement this callback.|
+| type     | string                                            | Yes   | Event type. The value is **stateChange**, which indicates Bluetooth state changes.              |
+| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | Yes   | Callback used to return the Bluetooth state. You need to implement this callback.|
 
 **Error codes**
 
@@ -135,12 +146,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 |ID  | Error Message          |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099   | Operation failed.  |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: access.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
@@ -154,11 +168,13 @@ try {
 
 ## access.off('stateChange')
 
-off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
+off(type: 'stateChange', callback?: Callback&lt;BluetoothState&gt;): void
 
 Unsubscribes from Bluetooth state changes.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -166,8 +182,8 @@ Unsubscribes from Bluetooth state changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **stateChange**, which indicates a Bluetooth state change event.          |
-| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | No   | Callback to unregister. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
+| type     | string                                   | Yes   | Event type. The value is **stateChange**, which indicates Bluetooth state changes.          |
+| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for Bluetooth state changes.|
 
 **Error codes**
 
@@ -175,12 +191,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: access.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
@@ -197,11 +216,13 @@ try {
 
 Enumerates the Bluetooth states.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name                   | Value | Description                |
 | --------------------- | ---- | ------------------ |
-| STATE_OFF             | 0    | Bluetooth is turned off.          |
+| STATE_OFF             | 0    | Bluetooth is turned off.         |
 | STATE_TURNING_ON      | 1    | Bluetooth is being turned on.         |
 | STATE_ON              | 2    | Bluetooth is turned on.          |
 | STATE_TURNING_OFF     | 3    | Bluetooth is being turned off.         |

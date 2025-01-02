@@ -31,12 +31,11 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 以实现对用户点击按钮行为的事件打点并由处理者进行事件上报为例，说明开发步骤。
 
-1. 编辑工程中的“entry > src > main > ets  > pages > Index.ets” 文件，添加一个按钮并在其onClick函数中添加数据处理者。analytics_demo为预置在设备里面的数据处理者lib库，具体实现可以参考[《HiAppEvent数据处理者lib库概述》](../../device-dev/subsystems/subsys-dfx-hiappevent-extend-so.md)。完整示例代码如下：
+1. 编辑工程中的“entry > src > main > ets  > pages > Index.ets” 文件，添加一个按钮并在其onClick函数中添加数据处理者。analytics_demo为预置在设备里面的数据处理者lib库<!--Del-->，具体实现可以参考[《HiAppEvent数据处理者lib库概述》](../../device-dev/subsystems/subsys-dfx-hiappevent-extend-so.md)<!--DelEnd-->。完整示例代码如下：
 
    ```ts
-   import { BusinessError } from '@ohos.base'
-   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent'
-   import hilog from '@ohos.hilog'
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
    
    @Entry
    @Component
@@ -98,10 +97,10 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
    ```ts
      Button("userPropertyTest").onClick(()=>{
-       // 在按钮点击函数中设置用户ID
+       // 在按钮点击函数中设置用户属性值
        hiAppEvent.setUserProperty('testUserPropertyName', '123456');
 
-       // 在按钮点击函数中获取刚设置的用户ID
+       // 在按钮点击函数中获取刚设置的用户属性值
        let userProperty = hiAppEvent.getUserProperty('testUserPropertyName');
        hilog.info(0x0000, 'testTag', `userProperty: ${userProperty}`)
      })

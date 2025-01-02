@@ -19,18 +19,19 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_AVCodec \* [OH_AudioCodec_CreateByMime](_audio_codec.md#oh_audiocodec_createbymime) (const char \*mime, bool isEncoder) | 根据MIME类型创建音频编解码器实例。 | 
-| OH_AVCodec \* [OH_AudioCodec_CreateByName](_audio_codec.md#oh_audiocodec_createbyname) (const char \*name) | 通过音频编解码器名称创建音频编解码器实例。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Destroy](_audio_codec.md#oh_audiocodec_destroy) (OH_AVCodec \*codec) | 清理编解码器内部资源，销毁编解码器实例。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_RegisterCallback](_audio_codec.md#oh_audiocodec_registercallback) (OH_AVCodec \*codec, [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) callback, void \*userData) | 设置异步回调函数，使应用可以响应音频编解码器生成的事件。在调用Prepare之前，必须调用此接口。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Configure](_audio_codec.md#oh_audiocodec_configure) (OH_AVCodec \*codec, const OH_AVFormat \*format) | 要配置音频编解码器，通常需要配置音频描述信息。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Prepare](_audio_codec.md#oh_audiocodec_prepare) (OH_AVCodec \*codec) | 准备编解码器的内部资源。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Start](_audio_codec.md#oh_audiocodec_start) (OH_AVCodec \*codec) | Prepare成功后调用此接口启动编解码器。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Stop](_audio_codec.md#oh_audiocodec_stop) (OH_AVCodec \*codec) | 停止编解码器。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Flush](_audio_codec.md#oh_audiocodec_flush) (OH_AVCodec \*codec) | 清除编解码器中缓存的输入和输出数据。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Reset](_audio_codec.md#oh_audiocodec_reset) (OH_AVCodec \*codec) | 重置编解码器。如果要继续编解码，需要再次调用Configure接口配置编解码器实例。 | 
-| OH_AVFormat \* [OH_AudioCodec_GetOutputDescription](_audio_codec.md#oh_audiocodec_getoutputdescription) (OH_AVCodec \*codec) | 获取编解码器输出数据的描述信息。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_SetParameter](_audio_codec.md#oh_audiocodec_setparameter) (OH_AVCodec \*codec, const OH_AVFormat \*format) | 配置编解码器的动态参数。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_PushInputBuffer](_audio_codec.md#oh_audiocodec_pushinputbuffer) (OH_AVCodec \*codec, uint32_t index) | 将填充有数据的输入缓冲区提交给音频编解码器。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_FreeOutputBuffer](_audio_codec.md#oh_audiocodec_freeoutputbuffer) (OH_AVCodec \*codec, uint32_t index) | 将处理后的输出缓冲区返回给编解码器。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_IsValid](_audio_codec.md#oh_audiocodec_isvalid) (OH_AVCodec \*codec, bool \*isValid) | 检查当前编解码器实例是否有效，可用于后台故障恢复或应用程序从后台恢复时检测编解码器有效状态。 | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) \* [OH_AudioCodec_CreateByMime](_audio_codec.md#oh_audiocodec_createbymime) (const char \*mime, bool isEncoder) | 根据MIME类型创建音频编解码器实例。  | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) \* [OH_AudioCodec_CreateByName](_audio_codec.md#oh_audiocodec_createbyname) (const char \*name) | 通过音频编解码器名称创建音频编解码器实例。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Destroy](_audio_codec.md#oh_audiocodec_destroy) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 清理编解码器内部资源，销毁编解码器实例。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_RegisterCallback](_audio_codec.md#oh_audiocodec_registercallback) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) callback, void \*userData) | 设置异步回调函数，让应用可以响应音频编解码器生成的事件。在调用Prepare之前，必须调用此接口。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Configure](_audio_codec.md#oh_audiocodec_configure) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, const OH_AVFormat \*format) | 配置音频描述信息。音频编解码器通常会根据音频描述信息进行配置。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Prepare](_audio_codec.md#oh_audiocodec_prepare) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 准备编解码器的内部资源。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Start](_audio_codec.md#oh_audiocodec_start) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 调用此接口启动编解码器，在Prepare成功后执行。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Stop](_audio_codec.md#oh_audiocodec_stop) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 停止编解码器。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Flush](_audio_codec.md#oh_audiocodec_flush) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 清除编解码器中缓存的输入和输出数据。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Reset](_audio_codec.md#oh_audiocodec_reset) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 重置编解码器。如果要继续编解码，需要再次调用Configure接口配置编解码器实例。  | 
+| OH_AVFormat \* [OH_AudioCodec_GetOutputDescription](_audio_codec.md#oh_audiocodec_getoutputdescription) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 获取编解码器输出数据的描述信息。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_SetParameter](_audio_codec.md#oh_audiocodec_setparameter) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, const OH_AVFormat \*format) | 配置编解码器的动态参数。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_PushInputBuffer](_audio_codec.md#oh_audiocodec_pushinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将填充有数据的输入缓冲区提交给音频编解码器。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_FreeOutputBuffer](_audio_codec.md#oh_audiocodec_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲区返回给编解码器。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_IsValid](_audio_codec.md#oh_audiocodec_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | 检查当前编解码器实例是否有效。<br>可用于后台故障恢复或应用程序从后台恢复时检测编解码器有效状态。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_SetDecryptionConfig](_audio_codec.md#oh_audiocodec_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureAudio) | 设置解密信息。  | 

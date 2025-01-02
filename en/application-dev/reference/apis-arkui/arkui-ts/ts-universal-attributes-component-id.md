@@ -6,12 +6,41 @@
 >
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
-
 ## Attributes
 
-| Name  | Type    | Description                        |
-| -----| -------- | ----------------------------- |
-| id   | string   | Unique ID you assigned to the component.<br>Default value: **''**<br>Since API version 9, this API is supported in ArkTS widgets.|
+### id
+
+id(value: string): T
+
+Sets a unique identifier for this component, with uniqueness guaranteed by the user.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type     | Mandatory| Description                      |
+| ------ | -------- | -----|---------------------- |
+| value  | string   |  Yes | Unique identifier for the component, with uniqueness guaranteed by the user.<br>Default value: **''**<br>|
+
+### key<sup>12+</sup>
+
+key(value: string): T
+
+Sets a unique identifier for this component, with uniqueness guaranteed by the user.
+
+This API is used only for test purposes. When this attribute is used in conjunction with **id**, the value assigned later will override the one assigned earlier. You are advised to set only **id**.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type     | Mandatory| Description                      |
+| ------ | -------- | -----|---------------------- |
+| value   | string   | Yes| Unique identifier for the component, with uniqueness guaranteed by the user.<br>Default value: **''**<br>|
 
 
 ## APIs
@@ -24,6 +53,8 @@ getInspectorByKey(id: string): string
 Obtains all attributes of the component with the specified ID, excluding the information about child components.
 
 This API is used only for test purposes. It is time consuming and not recommended.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
@@ -45,6 +76,8 @@ Obtains the component tree and component attributes.
 
 This API is used only for test purposes. It is time consuming and not recommended.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Return value**
 
 | Type    | Description                           |
@@ -58,6 +91,8 @@ sendEventByKey(id: string, action: number, params: string): boolean
 Sends an event to the component with the specified ID.
 
 This API is used only for test purposes. It is time consuming and not recommended.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
@@ -81,6 +116,8 @@ Sends a touch event.
 
 This API is used only for test purposes. It is time consuming and not recommended.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name     | Type           | Mandatory | Description                                                        |
@@ -100,6 +137,8 @@ sendKeyEvent(event: KeyEvent): boolean
 Sends a key event.
 
 This API is used only for test purposes. It is time consuming and not recommended.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
@@ -121,6 +160,8 @@ Sends a mouse event.
 
 This API is used only for test purposes. It is time consuming and not recommended.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name    | Type      | Mandatory      | Description                                    |
@@ -137,7 +178,7 @@ This API is used only for test purposes. It is time consuming and not recommende
 
 ```ts
 // xxx.ets
-import { IntentionCode } from '@ohos.multimodalInput.intentionCode'
+import { IntentionCode } from '@kit.InputKit'
 
 class Utils {
   static rect_left: number

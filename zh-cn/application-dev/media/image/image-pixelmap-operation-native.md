@@ -1,4 +1,4 @@
-# PixelMap数据处理(C/C++)
+# 使用Image处理PixelMap数据
 
 开发者可以通过本指导了解如何使用Native Image的接口。
 
@@ -6,7 +6,7 @@
 
 **添加依赖**
 
-在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加image的libpixelmap_ndk.z.so以及日志依赖libhilog_ndk.z.so。
+在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加image的libace_napi.z.so、libpixelmap_ndk.z.so以及日志依赖libhilog_ndk.z.so。
 
 ```txt
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelmap_ndk.z.so)
@@ -32,20 +32,22 @@ static napi_value Init(napi_env env, napi_value exports)
 EXTERN_C_END
 ```
 
-
 **Native接口调用**
 
-具体接口说明请参考[API文档](../../reference/apis-image-kit/image.md)
+具体接口说明请参考[API文档](../../reference/apis-image-kit/image.md)。
 
 在hello.cpp文件中获取JS的资源对象，并转为Native的资源对象，即可调用Native接口，调用方式示例代码如下：
 
 **添加引用文件**
 
-    #include <multimedia/image_framework/image_mdk_common.h>
-    #include <multimedia/image_framework/image_pixel_map_mdk.h>
-    #include <stdlib.h>
-    
+```c++
+#include <multimedia/image_framework/image_mdk_common.h>
+#include <multimedia/image_framework/image_pixel_map_mdk.h>
+#include <stdlib.h>
+```
+
 1. 创建一个 **PixelMap** 对象。
+
     ```c++
     napi_value CreatePixelMapTest(napi_env env, napi_callback_info info) {
         napi_value udfVar = nullptr;
@@ -58,19 +60,25 @@ EXTERN_C_END
         createOps.alphaType = 0;
         size_t bufferSize = createOps.width * createOps.height * 4;
         void *buff = malloc(bufferSize);
+        if (buff == nullptr) {
+            return udfVar;
+        }
 
         char *cc = (char *)buff;
         for (int i = 0; i < 96; i++) {
             *(cc++) = (char)i;
         }
         int32_t res = OH_PixelMap_CreatePixelMap(env, createOps, (uint8_t *)buff, bufferSize, &pixelMap);
+        free(buff);
         if (res != IMAGE_RESULT_SUCCESS || pixelMap == nullptr) {
             return udfVar;
         }
         return pixelMap;
     }
     ```
+
 2. 根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的 **PixelMap** 对象。
+
     ```c++
     napi_value CreateAlphaPixelMap(napi_env env, napi_callback_info info) {
         napi_value udfVar = nullptr;
@@ -93,7 +101,9 @@ EXTERN_C_END
         return alphaPixelMap;
     }
     ```
+
 3. 对 **PixelMap** 数据进行处理。
+
     ```c++
     napi_value Transform(napi_env env, napi_callback_info info) {
         napi_value thisVar = nullptr;
@@ -107,7 +117,7 @@ EXTERN_C_END
         napi_value result = nullptr;
         napi_get_undefined(env, &result);
         
-        // 初始化PixelMap对象数据。
+        // 初始化NativePixelMap对象。
         NativePixelMap *native = OH_PixelMap_InitNativePixelMap(env, argValue[0]);
         if (native == nullptr) {
             return result;
@@ -192,28 +202,27 @@ EXTERN_C_END
     }
     ```
 
-
 **JS侧调用**
 
 1. 打开src\main\cpp\types\libentry\index.d.ts（其中libentry根据工程名生成），导入如下引用文件:
 
     ```js
-    import image from '@ohos.multimedia.image'
+    import { image } from '@kit.ImageKit';
 
     export const createPixelMapTest: () => image.PixelMap;
-    export const transform: (a: image.PixelMap) => image.PixelMap;
+    export const transform: (a: image.PixelMap) => void;
     ```
 
-2. 打开src\main\ets\pages\index.ets, 导入"libentry.so"(根据工程名生成)；调用Native接口，传入JS的资源对象。示例如下:
+2. 打开src\main\ets\pages\index.ets, 导入"libentry.so"(根据工程名生成)，调用Native接口，传入JS的资源对象。示例如下:
 
     ```js
-    import testNapi from 'libentry.so'
-    import image from '@ohos.multimedia.image'
+    import testNapi from 'libentry.so';
+    import { image } from '@kit.ImageKit';
 
     @Entry
     @Component
     struct Index {
-    @State _pixelMap: image.PixelMap = undefined;
+    @State _pixelMap : image.PixelMap | undefined = undefined;
 
     build() {
         Row() {

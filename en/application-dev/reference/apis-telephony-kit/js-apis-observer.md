@@ -10,7 +10,7 @@ The **observer** module provides event subscription management functions. You ca
 ## Modules to Import
 
 ```ts
-import observer from '@ohos.telephony.observer';
+import { observer } from '@kit.TelephonyKit';
 ```
 
 ## observer.on('networkStateChange')
@@ -37,11 +37,11 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
@@ -77,11 +77,11 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
@@ -120,11 +120,11 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
@@ -159,16 +159,16 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 
 observer.on('signalInfoChange', (data: Array<radio.SignalInformation>) => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
@@ -198,16 +198,16 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 
 let options: observer.ObserverOptions = {
     slotId: 0
@@ -243,16 +243,16 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 
 let callback: (data: Array<radio.SignalInformation>) => void = (data: Array<radio.SignalInformation>) => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
@@ -270,6 +270,10 @@ on(type: 'callStateChange', callback: Callback\<CallStateInfo\>): void
 
 Registers an observer for call status change events. This API uses an asynchronous callback to return the execution result.
 
+>**NOTE**
+>
+>Before using this API, you must declare the **ohos.permission.READ_CALL_LOG** permission (a system permission).
+
 **System capability**: SystemCapability.Telephony.StateRegistry
 
 **Parameters**
@@ -285,11 +289,11 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
@@ -305,6 +309,10 @@ observer.on('callStateChange', (data: observer.CallStateInfo) => {
 on(type: 'callStateChange', options: ObserverOptions, callback: Callback\<CallStateInfo\>): void
 
 Registers an observer for call status change events. This API uses an asynchronous callback to return the execution result.
+
+>**NOTE**
+>
+>Before using this API, you must declare the **ohos.permission.READ_CALL_LOG** permission (a system permission).
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 
@@ -322,11 +330,11 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
@@ -365,11 +373,11 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
@@ -405,11 +413,11 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
@@ -442,11 +450,11 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
@@ -485,11 +493,11 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
@@ -525,16 +533,16 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 
 observer.on('cellularDataFlowChange', (data: data.DataFlowType) => {
     console.log("on cellularDataFlowChange, data:" + JSON.stringify(data));
@@ -564,16 +572,16 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 
 let options: observer.ObserverOptions = {
     slotId: 0
@@ -609,16 +617,16 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 
 let callback: (data: data.DataFlowType) => void = (data: data.DataFlowType) => {
     console.log("on cellularDataFlowChange, data:" + JSON.stringify(data));
@@ -651,11 +659,11 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
@@ -688,11 +696,11 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
@@ -731,11 +739,11 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
@@ -770,11 +778,11 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
@@ -810,11 +818,11 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 

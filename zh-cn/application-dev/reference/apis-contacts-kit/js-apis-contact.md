@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import contact from '@ohos.contact';
+import { contact } from '@kit.ContactsKit';
 ```
 
 ## contact.addContact<sup>10+</sup>
@@ -18,6 +18,8 @@ import contact from '@ohos.contact';
 addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number&gt;): void 
 
 添加联系人，使用callback方式作为异步方法。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -29,35 +31,40 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | contact  | [Contact](#contact)         | 是   | 联系人信息。                                                 |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，成功返回添加的联系人id,失败返回联系人无效id。                               |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。成功返回添加的联系人id；失败返回失败的错误码。     |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.addContact(
     context,
-    {name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+    {
+	  name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
     }, (err: BusinessError, data) => {
       if (err) {
-        console.log(`addContact callback: err->${JSON.stringify(err)}`);
+        console.error(`Failed to add Contact. Code:${err.code}, message: ${err.message}`);
         return;
       }
-      console.log(`addContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   });
 ```
 
-## contact.addContact(deprecated)<sup>7+</sup>
+## contact.addContact<sup>(deprecated)7+</sup>
 
 addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 
@@ -73,24 +80,28 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明                           |
-| -------- | --------------------------- | ---- | ------------------------------ |
-| contact  | [Contact](#contact)         | 是   | 联系人信息。                   |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回添加的联系人id。 |
+| 参数名   | 类型                        | 必填 | 说明                                                     |
+| -------- | --------------------------- | ---- | -------------------------------------------------------- |
+| contact  | [Contact](#contact)         | 是   | 联系人信息。                                             |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。成功返回添加的联系人id；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.addContact({
-      name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+      name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`addContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`addContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   });
   ```
 
@@ -99,6 +110,8 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 addContact(context: Context, contact: Contact): Promise<number&gt;
 
 添加联系人，使用Promise方式作为异步方法。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -113,36 +126,41 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 
 **返回值：**
 
-| 类型                  | 说明                                        |
-| --------------------- | ------------------------------------------- |
-| Promise&lt;number&gt; | 以Promise形式返回结果，返回添加的联系人id。 |
+| 类型                  | 说明                              |
+| --------------------- | --------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回添加的联系人id。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.addContact(
     context,
-    {name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+    {
+	  name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   });
   promise.then((data) => {
-    console.log(`addContact success: data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-    console.error(`addContact fail: err->${JSON.stringify(err)}`);
+    console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
-## contact.addContact(deprecated)<sup>7+</sup>
+## contact.addContact<sup>(deprecated)7+</sup>
 
 addContact(contact: Contact): Promise&lt;number&gt;
 
@@ -164,22 +182,26 @@ addContact(contact: Contact): Promise&lt;number&gt;
 
 **返回值：**
 
-| 类型                  | 说明                                        |
-| --------------------- | ------------------------------------------- |
-| Promise&lt;number&gt; | 以Promise形式返回结果，返回添加的联系人id。 |
+| 类型                  | 说明                              |
+| --------------------- | --------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回添加的联系人id。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.addContact({
-      name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+      name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   });
   promise.then((data) => {
-      console.log(`addContact success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`addContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -198,32 +220,32 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| key      | string                    | 是   | 联系人的唯一查询键key值，一个联系人对应一个key。                         |
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步删除联系人之后的回调。                             |
+| key      | string                    | 是   | 联系人的唯一查询键key值，一个联系人对应一个key。             |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。成功返回删除的联系人id；失败返回失败的错误码。     |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context; 
   contact.deleteContact(context, 'xxx', (err: BusinessError) => {
       if (err) {
-          console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log('deleteContact success');
+      console.info('Succeeded in deleting Contact.');
   });
 ```
 
-## contact.deleteContact(deprecated)<sup>7+</sup>
+## contact.deleteContact<sup>(deprecated)7+</sup>
 
 deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -242,18 +264,18 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                 |
 | -------- | ------------------------- | ---- | ------------------------------------ |
 | key      | string                    | 是   | 联系人的唯一查询键key值，一个联系人对应一个key。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步删除联系人之后的回调。     |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。成功返回删除的联系人id；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.deleteContact('xxx', (err: BusinessError) => {
       if (err) {
-          console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log('deleteContact success');
+      console.info('Succeeded in deleting Contact.');
   });
   ```
 
@@ -277,32 +299,32 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
 
 **返回值：**
 
-| 类型                | 说明                                          |
-| ------------------- | --------------------------------------------- |
-| Promise&lt;void&gt; | 返回一个Promise对象。 |
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.deleteContact(context, 'xxx');
   promise.then(() => {
-      console.log(`deleteContact success`);
+      console.info(`Succeeded in deleting Contact.`);
   }).catch((err: BusinessError) => {
-      console.error(`deleteContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
-## contact.deleteContact(deprecated)<sup>7+</sup>
+## contact.deleteContact<sup>(deprecated)7+</sup>
 
 deleteContact(key: string): Promise&lt;void&gt;
 
@@ -324,19 +346,19 @@ deleteContact(key: string): Promise&lt;void&gt;
 
 **返回值：**
 
-| 类型                | 说明                                          |
-| ------------------- | --------------------------------------------- |
-| Promise&lt;void&gt; | 返回一个Promise对象。 |
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.deleteContact('xxx');
   promise.then(() => {
-      console.log(`deleteContact success`);
+      console.info(`Succeeded in deleting Contact.`);
   }).catch((err: BusinessError) => {
-      console.error(`deleteContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -347,7 +369,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 
 更新联系人，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -356,36 +378,40 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| contact  | [Contact](#contact)       | 是   | 联系人信息。id必填。                                                 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步更新联系人之后的回调。                         |
+| contact  | [Contact](#contact)       | 是   | 联系人信息。id必填。                                         |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。成功返回更新的联系人id；失败返回失败的错误码。     |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.updateContact(context, {
       id: 1,
-      name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+      name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   }, (err: BusinessError) => {
       if (err) {
-          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log('updateContact success');
+      console.info('Succeeded in updating Contact.');
   });
   ```
 
-## contact.updateContact(deprecated)<sup>7+</sup>
+## contact.updateContact<sup>(deprecated)7+</sup>
 
 updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
@@ -395,7 +421,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 >
 > 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -404,22 +430,26 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                 |
 | -------- | ------------------------- | ---- | ------------------------------------ |
 | contact  | [Contact](#contact)       | 是   | 联系人信息。id必填。                         |
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步更新联系人之后的回调。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。成功返回更新的联系人id；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.updateContact({
       id: 1,
-      name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+      name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   }, (err: BusinessError) => {
       if (err) {
-          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log('updateContact success');
+      console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -430,7 +460,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 
 更新联系人，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -439,39 +469,43 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| contact  | [Contact](#contact)                     | 是   | 联系人信息。id必填。                                                 |
-| attrs    | [ContactAttributes](#contactattributes) | 是   | 联系人的属性列表。                                           |
-| callback | AsyncCallback&lt;void&gt;               | 是   | 异步更新联系人之后的回调。                         |
+| contact  | [Contact](#contact)                     | 是   | 联系人信息。id必填。                                         |
+| attrs    | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;void&gt;               | 是   | 回调函数。成功返回更新的联系人id；失败返回失败的错误码。     |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.updateContact(context, {
       id: 1,
-      name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+      name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError) => {
       if (err) {
-          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log('updateContact success');
+      console.info('Succeeded in updating Contact.');
   });
   ```
 
-## contact.updateContact(deprecated)<sup>7+</sup>
+## contact.updateContact<sup>(deprecated)7+</sup>
 
 updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallback&lt;void&gt;): void
 
@@ -481,7 +515,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 >
 > 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-1)
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -491,24 +525,28 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 | -------- | --------------------------------------- | ---- | ------------------------------------ |
 | contact  | [Contact](#contact)                     | 是   | 联系人信息。id必填。                         |
 | attrs    | [ContactAttributes](#contactattributes) | 是   | 联系人的属性列表。                   |
-| callback | AsyncCallback&lt;void&gt;               | 是   | 异步更新联系人之后的回调。 |
+| callback | AsyncCallback&lt;void&gt;               | 是   | 回调函数。成功返回更新的联系人id；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.updateContact({
       id: 1,
-      name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+      name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError) => {
       if (err) {
-          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log('updateContact success');
+      console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -519,7 +557,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 
 更新联系人，使用Promise方式作为异步方法。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -533,38 +571,42 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 
 **返回值：**
 
-| 类型                | 说明                                              |
-| ------------------- | ------------------------------------------------- |
-| Promise&lt;void&gt; | 返回一个Promise对象。 |
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.updateContact(context, {
       id: 1,
-      name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+      name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then(() => {
-      console.log('updateContact success');
+      console.info('Succeeded in updating Contact.');
   }).catch((err: BusinessError) => {
-      console.error(`updateContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
-## contact.updateContact(deprecated)<sup>7+</sup>
+## contact.updateContact<sup>(deprecated)7+</sup>
 
 updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
@@ -574,7 +616,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 >
 > 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-2)
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -586,25 +628,29 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。 |
 
 **返回值：**
-| 类型                | 说明                                              |
-| ------------------- | ------------------------------------------------- |
-| Promise&lt;void&gt; | 返回一个Promise对象。 |
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.updateContact({
       id: 1,
-      name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+      name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then(() => {
-      console.log('updateContact success');
+      console.info('Succeeded in updating Contact.');
   }).catch((err: BusinessError) => {
-      console.error(`updateContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -625,31 +671,31 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                      | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | id       | number                       | 是   | 联系人对象的id属性，一个联系人对应一个id。                   |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回布尔值。true代表联系人id在本地电话簿中，false则代表联系人id不在本地电话簿中。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。成功返回布尔值，true代表联系人id在本地电话簿中，false则代表联系人id不在本地电话簿中；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.isLocalContact(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`isLocalContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`isLocalContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in isLocalContact.`);
   });
   ```
 
-## contact.isLocalContact(deprecated)<sup>7+</sup>
+## contact.isLocalContact<sup>(deprecated)7+</sup>
 
 isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -668,18 +714,18 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名   | 类型                         | 必填 | 说明                                                         |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | id       | number                       | 是   | 联系人对象的id属性，一个联系人对应一个id。                   |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回布尔值。true代表联系人id在本地电话簿中，false则代表联系人id不在本地电话簿中。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。成功返回布尔值，true代表联系人id在本地电话簿中，false则代表联系人id不在本地电话簿中；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.isLocalContact(/*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`isLocalContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`isLocalContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in isLocalContact.`);
   });
   ```
 
@@ -704,30 +750,30 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 
 | 类型                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | 以Promise形式返回结果，返回布尔值。true代表联系人id在本地电话簿中，false则代表联系人id不在本地电话簿中。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示联系人id在本地电话簿中，返回false表示联系人id不在本地电话簿中。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.isLocalContact(context, /*id*/1);
   promise.then((data) => {
-      console.log(`isLocalContact success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`isLocalContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
-## contact.isLocalContact(deprecated)<sup>7+</sup>
+## contact.isLocalContact<sup>(deprecated)7+</sup>
 
 isLocalContact(id: number): Promise&lt;boolean&gt;
 
@@ -751,17 +797,17 @@ isLocalContact(id: number): Promise&lt;boolean&gt;
 
 | 类型                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | 以Promise形式返回结果，返回布尔值。true代表联系人id在本地电话簿中，false则代表联系人id不在本地电话簿中。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示联系人id在本地电话簿中，返回false表示联系人id不在本地电话簿中。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.isLocalContact(/*id*/1);
   promise.then((data) => {
-      console.log(`isLocalContact success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`isLocalContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -780,32 +826,32 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 | 参数名   | 类型                         | 必填 | 说明                                                         |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                      | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| id       | number                       | 是   | 联系人对象的id属性。                                         |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回是否为“我的名片”的布尔值。true代表此联系人是“我的名片”，false则代表不是。 |
+| id       | number                       | 是   | 名片对象的id属性。                                           |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。成功返回是否为“我的名片”的布尔值。true代表的是“我的名片”，false则代表不是；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.isMyCard(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`isMyCard callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   });
 ```
 
-## contact.isMyCard(deprecated)<sup>7+</sup>
+## contact.isMyCard<sup>(deprecated)7+</sup>
 
 isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -823,19 +869,19 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名   | 类型                         | 必填 | 说明                                                         |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| id       | number                       | 是   | 联系人对象的id属性。                                         |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回是否为“我的名片”的布尔值。true代表此联系人是“我的名片”，false则代表不是。 |
+| id       | number                       | 是   | 名片对象的id属性。                                           |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。成功返回是否为“我的名片”的布尔值。true代表的是“我的名片”，false则代表不是；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.isMyCard(/*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`isMyCard callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -855,36 +901,36 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| id      | number  | 是   | 联系人对象的id属性。                                         |
+| id      | number  | 是   | 名片对象的id属性。                                         |
 
 **返回值：**
 
-| 类型                   | 说明                                                         |
-| ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | 以Promise形式返回结果，返回是否为“我的名片”的布尔值。true代表此联系人是“我的名片”，false则代表不是。 |
+| 类型                   | 说明                                                       |
+| ---------------------- | ---------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示是“我的名片”，返回false表示不是。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.isMyCard(context, /*id*/1);
   promise.then((data) => {
-      console.log(`isMyCard success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`isMyCard fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
-## contact.isMyCard(deprecated)<sup>7+</sup>
+## contact.isMyCard<sup>(deprecated)7+</sup>
 
 isMyCard(id: number): Promise&lt;boolean&gt;
 
@@ -902,23 +948,23 @@ isMyCard(id: number): Promise&lt;boolean&gt;
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| id     | number | 是   | 联系人对象的id属性。 |
+| id     | number | 是   | 名片对象的id属性。 |
 
 **返回值：**
 
-| 类型                   | 说明                                                         |
-| ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | 以Promise形式返回结果，返回是否为“我的名片”的布尔值。true代表此联系人是“我的名片”，false则代表不是。 |
+| 类型                   | 说明                                                       |
+| ---------------------- | ---------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示是“我的名片”，返回false表示不是。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.isMyCard(/*id*/1);
   promise.then((data) => {
-      console.log(`isMyCard success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`isMyCard fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -937,31 +983,31 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回“我的名片”信息。                               |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数。成功返回“我的名片”信息；失败返回失败的错误码。     |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryMyCard(context, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
 ```
 
-## contact.queryMyCard(deprecated)<sup>7+</sup>
+## contact.queryMyCard<sup>(deprecated)7+</sup>
 
 queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -977,20 +1023,20 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                                     | 必填 | 说明                           |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回“我的名片”信息。 |
+| 参数名   | 类型                                     | 必填 | 说明                                                     |
+| -------- | ---------------------------------------- | ---- | -------------------------------------------------------- |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数。成功返回“我的名片”信息；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryMyCard((err: BusinessError, data) => {
       if (err) {
-          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1010,33 +1056,33 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                           |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回“我的名片”信息。                               |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数。成功返回“我的名片”信息；失败返回失败的错误码。     |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryMyCard(context, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
 ```
 
-## contact.queryMyCard(deprecated)<sup>7+</sup>
+## contact.queryMyCard<sup>(deprecated)7+</sup>
 
 queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1052,23 +1098,23 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
 
 **参数：**
 
-| 参数名   | 类型                                     | 必填 | 说明                           |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
-| attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。             |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回“我的名片”信息。 |
+| 参数名   | 类型                                     | 必填 | 说明                                                     |
+| -------- | ---------------------------------------- | ---- | -------------------------------------------------------- |
+| attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                       |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数。成功返回“我的名片”信息；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryMyCard({
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1091,34 +1137,34 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
 
 **返回值：**
 
-| 类型                               | 说明                                        |
-| ---------------------------------- | ------------------------------------------- |
-| Promise&lt;[Contact](#contact)&gt; | 以Promise形式返回结果，返回“我的名片”信息。 |
+| 类型                               | 说明                                    |
+| ---------------------------------- | --------------------------------------- |
+| Promise&lt;[Contact](#contact)&gt; | Promise对象。返回“我的名片”联系人对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryMyCard(context, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.log(`queryMyCard success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryMyCard fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
-## contact.queryMyCard(deprecated)<sup>7+</sup>
+## contact.queryMyCard<sup>(deprecated)7+</sup>
 
 queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
@@ -1139,26 +1185,26 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 | attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。 |
 
 **返回值：**
-| 类型                               | 说明                                        |
-| ---------------------------------- | ------------------------------------------- |
-| Promise&lt;[Contact](#contact)&gt; | 以Promise形式返回结果，返回“我的名片”信息。 |
+| 类型                               | 说明                                    |
+| ---------------------------------- | --------------------------------------- |
+| Promise&lt;[Contact](#contact)&gt; | Promise对象。返回“我的名片”联系人对象。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryMyCard({
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.log(`queryMyCard success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryMyCard fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
 
-## contact.selectContact(deprecated)<sup>7+</sup>
+## contact.selectContact<sup>(deprecated)7+</sup>
 
 selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1168,31 +1214,29 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 >
 > 从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10)
 
-**需要权限**：ohos.permission.READ_CONTACTS
-
 **系统能力**：SystemCapability.Applications.Contacts
 
 **参数：**
 
-| 参数名   | 类型                                                  | 必填 | 说明                                 |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回选择的联系人对象数组。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回选择的联系人对象数组；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.selectContact((err: BusinessError, data) => {
       if (err) {
-          console.log(`selectContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
 
-## contact.selectContact(deprecated)<sup>7+</sup>
+## contact.selectContact<sup>(deprecated)7+</sup>
 
 selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -1202,25 +1246,23 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 >
 > 从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10-1)
 
-**需要权限**：ohos.permission.READ_CONTACTS
-
 **系统能力**：SystemCapability.Applications.Contacts
 
 **返回值：**
 
-| 类型                                            | 说明                                              |
-| ----------------------------------------------- | ------------------------------------------------- |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回选择的联系人对象数组。 |
+| 类型                                            | 说明                                    |
+| ----------------------------------------------- | --------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise对象。返回选择的联系人数组对象。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.selectContact();
   promise.then((data) => {
-      console.log(`selectContact success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`selectContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1230,30 +1272,32 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback方式作为异步方法。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Applications.Contacts
 
 **参数：**
 
-| 参数名   | 类型                                                  | 必填 | 说明                                 |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回选择的联系人对象数组。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回选择的联系人对象数组；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.selectContacts((err: BusinessError, data) => {
       if (err) {
-          console.log(`selectContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1263,29 +1307,26 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise方式作为异步方法。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Applications.Contacts
 
 **返回值：**
 
-| 类型                                            | 说明                                              |
-| ----------------------------------------------- | ------------------------------------------------- |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回选择的联系人对象数组。 |
+| 类型                                            | 说明                                    |
+| ----------------------------------------------- | --------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise对象。返回选择的联系人数组对象。 |
 
-**错误码：**
-
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 401      | Parameter error.   |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.selectContacts();
   promise.then((data) => {
-      console.log(`selectContact success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`selectContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1295,6 +1336,8 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback方式作为异步方法。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Applications.Contacts
 
 **参数：**
@@ -1302,26 +1345,26 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 | 参数名   | 类型                                                  | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
 | options | [ContactSelectionOptions](#contactselectionoptions10) | 是   | 选择联系人时的筛选条件 |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回选择的联系人对象数组。 |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回选择的联系人对象数组；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.selectContacts({
     isMultiSelect:false
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`selectContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1331,30 +1374,37 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise方式作为异步方法。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Applications.Contacts
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                 |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
+| options | [ContactSelectionOptions](#contactselectionoptions10) | 是   | 选择联系人时的筛选条件 |
 
 **返回值：**
 
-| 类型                                            | 说明                                              |
-| ----------------------------------------------- | ------------------------------------------------- |
-| options | [ContactSelectionOptions](#contactselectionoptions10) | 是   | 选择联系人时的筛选条件 |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回选择的联系人对象数组。 |
+| 类型                                            | 说明                                    |
+| ----------------------------------------------- | --------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise对象。返回选择的联系人数组对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.selectContacts({isMultiSelect:false});
   promise.then((data) => {
-      console.log(`selectContact success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`selectContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1374,31 +1424,31 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数。成功返回查询的联系人对象；失败返回失败的错误码。   |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1414,21 +1464,21 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                                     | 必填 | 说明                                   |
-| -------- | ---------------------------------------- | ---- | -------------------------------------- |
-| key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。 |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。       |
+| 参数名   | 类型                                     | 必填 | 说明                                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------------------------- |
+| key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                     |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数。成功返回查询的联系人对象；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContact('xxx', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1437,7 +1487,7 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
 queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
-根据key查询联系人，使用callback方式作为异步方法。
+根据key和holder查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1449,40 +1499,40 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
-| holder   | [Holder](#holder)                        | 是   | 创建联系人的应用信息。                                       |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
+| holder   | [Holder](#holder)                        | 否   | 创建联系人的应用信息。                                       |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数。成功返回查询的联系人对象；失败返回失败的错误码。   |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
-根据key查询联系人，使用callback方式作为异步方法。
+根据key和holder查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -1494,26 +1544,26 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
 
 **参数：**
 
-| 参数名   | 类型                                     | 必填 | 说明                                   |
-| -------- | ---------------------------------------- | ---- | -------------------------------------- |
-| key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。 |
-| holder   | [Holder](#holder)                        | 是   | 创建联系人的应用信息。                 |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。       |
+| 参数名   | 类型                                     | 必填 | 说明                                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------------------------- |
+| key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                     |
+| holder   | [Holder](#holder)                        | 是   | 创建联系人的应用信息。                                     |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数。成功返回查询的联系人对象；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContact('xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1521,7 +1571,7 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
 
 queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
-根据key查询联系人，使用callback方式作为异步方法。
+根据key和attrs查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1534,37 +1584,37 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
 | context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
 | attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                           |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数。成功返回查询的联系人对象；失败返回失败的错误码。   |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
-根据key查询联系人，使用callback方式作为异步方法。
+根据key和attrs查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -1576,24 +1626,24 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 
 **参数：**
 
-| 参数名   | 类型                                     | 必填 | 说明                                   |
-| -------- | ---------------------------------------- | ---- | -------------------------------------- |
-| key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。 |
-| attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                     |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。       |
+| 参数名   | 类型                                     | 必填 | 说明                                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------------------------- |
+| key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                     |
+| attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                         |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数。成功返回查询的联系人对象；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContact('xxx', {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1601,7 +1651,7 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 
 queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
-根据key查询联系人，使用callback方式作为异步方法。
+根据key、holder和attrs查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1615,41 +1665,41 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
 | holder   | [Holder](#holder)                        | 是   | 创建联系人的应用信息。                                       |
 | attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                           |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数。成功返回查询的联系人对象；失败返回失败的错误码。   |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
 ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
-根据key查询联系人，使用callback方式作为异步方法。
+根据key、holder和attrs查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -1661,29 +1711,29 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 
 **参数：**
 
-| 参数名   | 类型                                     | 必填 | 说明                                   |
-| -------- | ---------------------------------------- | ---- | -------------------------------------- |
-| key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。 |
-| holder   | [Holder](#holder)                        | 是   | 创建联系人的应用信息。                 |
-| attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                     |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。       |
+| 参数名   | 类型                                     | 必填 | 说明                                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------------------------- |
+| key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                     |
+| holder   | [Holder](#holder)                        | 是   | 创建联系人的应用信息。                                     |
+| attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                         |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数。成功返回查询的联系人对象；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContact('xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1692,7 +1742,7 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 
 queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
-根据key查询联系人，使用Promise方式作为异步方法。
+根据key、holder和attrs查询联系人，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1704,46 +1754,46 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | key     | string                                  | 是   | 联系人的key值，一个联系人对应一个key。                       |
-| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
-| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。       |
+| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。           |
 
 **返回值：**
-| 类型                               | 说明                                            |
-| ---------------------------------- | ----------------------------------------------- |
-| Promise&lt;[Contact](#contact)&gt; | 以Promise形式返回结果，返回查询到的联系人对象。 |
+| 类型                               | 说明                                  |
+| ---------------------------------- | ------------------------------------- |
+| Promise&lt;[Contact](#contact)&gt; | Promise对象。返回查询到的联系人对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryContact(context, 'xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.log(`queryContact success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
-根据key查询联系人，使用Promise方式作为异步方法。
+根据key、holder和attrs查询联系人，使用Promise方式作为异步方法。
 
 > **说明**
 >
@@ -1758,29 +1808,29 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 | 参数名 | 类型                                    | 必填 | 说明                                   |
 | ------ | --------------------------------------- | ---- | -------------------------------------- |
 | key    | string                                  | 是   | 联系人的key值，一个联系人对应一个key。 |
-| holder | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                 |
-| attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                     |
+| holder | [Holder](#holder)                       | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。                |
+| attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。                    |
 
 **返回值：**
-| 类型                               | 说明                                            |
-| ---------------------------------- | ----------------------------------------------- |
-| Promise&lt;[Contact](#contact)&gt; | 以Promise形式返回结果，返回查询到的联系人对象。 |
+| 类型                               | 说明                                  |
+| ---------------------------------- | ------------------------------------- |
+| Promise&lt;[Contact](#contact)&gt; | Promise对象。返回查询到的联系人对象。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryContact('xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.log(`queryContact success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1799,31 +1849,31 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContacts(context, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1839,20 +1889,20 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                                                  | 必填 | 说明                                   |
-| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContacts((err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1860,7 +1910,7 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-查询所有联系人，使用callback方式作为异步方法。
+根据holder查询所有联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1872,39 +1922,39 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContacts(context, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-查询所有联系人，使用callback方式作为异步方法。
+根据holder查询所有联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -1916,25 +1966,25 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
 
 **参数：**
 
-| 参数名   | 类型                                                  | 必填 | 说明                                   |
-| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                 |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContacts({
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1942,7 +1992,7 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
 
 queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-查询所有联系人，使用callback方式作为异步方法。
+根据attrs查询所有联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1954,37 +2004,37 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContacts(context, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-查询所有联系人，使用callback方式作为异步方法。
+根据attrs查询所有联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -1996,23 +2046,23 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 
 **参数：**
 
-| 参数名   | 类型                                                  | 必填 | 说明                                   |
-| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                     |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContacts({
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2020,7 +2070,7 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 
 queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-查询所有联系人，使用callback方式作为异步方法。
+根据holder和attrs查询所有联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2033,41 +2083,41 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
 | context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
 | attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContacts(context, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-查询所有联系人，使用callback方式作为异步方法。
+根据holder和attrs查询所有联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -2079,28 +2129,28 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 
 **参数：**
 
-| 参数名   | 类型                                                  | 必填 | 说明                                   |
-| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                 |
-| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                     |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContacts({
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2108,7 +2158,7 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 
 queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-查询所有联系人，使用Promise方式作为异步方法。
+根据holder和attrs查询所有联系人，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2119,46 +2169,46 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
-| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。       |
+| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。               |
 
 **返回值：**
-| 类型                                            | 说明                                                |
-| ----------------------------------------------- | --------------------------------------------------- |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回查询到的联系人对象数组。 |
+| 类型                                            | 说明                                      |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise对象。返回查询到的联系人数组对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryContacts(context, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.log(`queryContacts success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryContacts fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-查询所有联系人，使用Promise方式作为异步方法。
+根据holder和attrs查询所有联系人，使用Promise方式作为异步方法。
 
 > **说明**
 >
@@ -2172,30 +2222,30 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 
 | 参数名 | 类型                                    | 必填 | 说明                   |
 | ------ | --------------------------------------- | ---- | ---------------------- |
-| holder | [Holder](#holder)                       | 否   | 创建联系人的应用信息。 |
-| attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。     |
+| holder | [Holder](#holder)                       | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。 |
+| attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。     |
 
 **返回值：**
 
-| 类型                                            | 说明                                                |
-| ----------------------------------------------- | --------------------------------------------------- |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回查询到的联系人对象数组。 |
+| 类型                                            | 说明                                      |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise对象。返回查询到的联系人数组对象。 |
 
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryContacts({
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.log(`queryContacts success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryContacts fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -2215,31 +2265,31 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
 | ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
-| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2255,21 +2305,21 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 
 **参数：**
 
-| 参数名      | 类型                                                  | 必填 | 说明                                   |
-| ----------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| phoneNumber | string                                                | 是   | 联系人的电话号码。                     |
-| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。 |
+| 参数名      | 类型                                                  | 必填 | 说明                                                         |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2278,7 +2328,7 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码查询联系人，使用callback方式作为异步方法。
+根据电话号码和holder查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2291,39 +2341,39 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 | context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
 | holder      | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
-| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码查询联系人，使用callback方式作为异步方法。
+根据电话号码和holder查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -2335,26 +2385,26 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 
 **参数：**
 
-| 参数名      | 类型                                                  | 必填 | 说明                                   |
-| ----------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| phoneNumber | string                                                | 是   | 联系人的电话号码。                     |
-| holder      | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                 |
-| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。 |
+| 参数名      | 类型                                                  | 必填 | 说明                                                         |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
+| holder      | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2362,7 +2412,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码查询联系人，使用callback方式作为异步方法。
+根据电话号码和attrs查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2375,37 +2425,37 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
 | context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
 | attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
-| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码查询联系人，使用callback方式作为异步方法。
+根据电话号码和attrs查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -2417,24 +2467,24 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 
 **参数：**
 
-| 参数名      | 类型                                                  | 必填 | 说明                                   |
-| ----------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| phoneNumber | string                                                | 是   | 联系人的电话号码。                     |
-| attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                     |
-| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。 |
+| 参数名      | 类型                                                  | 必填 | 说明                                                         |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
+| attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2442,7 +2492,7 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码查询联系人，使用callback方式作为异步方法。
+根据电话号码、holder和attrs查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2456,41 +2506,41 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 | phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
 | holder      | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
 | attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
-| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码查询联系人，使用callback方式作为异步方法。
+根据电话号码、holder和attrs查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -2502,29 +2552,29 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 
 **参数：**
 
-| 参数名      | 类型                                                  | 必填 | 说明                                   |
-| ----------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| phoneNumber | string                                                | 是   | 联系人的电话号码。                     |
-| holder      | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                 |
-| attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                     |
-| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。 |
+| 参数名      | 类型                                                  | 必填 | 说明                                                         |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
+| holder      | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2532,7 +2582,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-根据电话号码查询联系人，使用Promise方式作为异步方法。
+根据电话号码、holder和attrs查询联系人，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2544,47 +2594,47 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 | ----------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context     | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | phoneNumber | string                                  | 是   | 联系人的电话号码。                                           |
-| holder      | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
-| attrs       | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+| holder      | [Holder](#holder)                       | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。       |
+| attrs       | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。               |
 
 **返回值：**
 
-| 类型                                            | 说明                                                |
-| ----------------------------------------------- | --------------------------------------------------- |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回查询到的联系人对象数组。 |
+| 类型                                            | 说明                                      |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise对象。返回查询到的联系人数组对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.log(`queryContactsByPhoneNumber success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryContactsByPhoneNumber fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-根据电话号码查询联系人，使用Promise方式作为异步方法。
+根据电话号码、holder和attrs查询联系人，使用Promise方式作为异步方法。
 
 > **说明**
 >
@@ -2599,30 +2649,30 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 | 参数名      | 类型                                    | 必填 | 说明                   |
 | ----------- | --------------------------------------- | ---- | ---------------------- |
 | phoneNumber | string                                  | 是   | 联系人的电话号码。     |
-| holder      | [Holder](#holder)                       | 否   | 创建联系人的应用信息。 |
-| attrs       | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。     |
+| holder      | [Holder](#holder)                       | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。 |
+| attrs       | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。     |
 
 **返回值：**
 
-| 类型                                            | 说明                                                |
-| ----------------------------------------------- | --------------------------------------------------- |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回查询到的联系人对象数组。 |
+| 类型                                            | 说明                                      |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise对象。返回查询到的联系人数组对象。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.log(`queryContactsByPhoneNumber success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryContactsByPhoneNumber fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2642,31 +2692,31 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | email    | string                                                | 是   | 联系人的邮箱地址。                                           |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2682,21 +2732,21 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 
 **参数：**
 
-| 参数名   | 类型                                                  | 必填 | 说明                                   |
-| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| email    | string                                                | 是   | 联系人的邮箱地址。                     |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| email    | string                                                | 是   | 联系人的邮箱地址。                                           |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByEmail('xxx@email.com', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2704,7 +2754,7 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 
 queryContactsByEmail(context: Context,  email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email查询联系人，使用callback方式作为异步方法。
+根据email和holder查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2717,39 +2767,39 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
 | context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | email    | string                                                | 是   | 联系人的邮箱地址。                                           |
 | holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email查询联系人，使用callback方式作为异步方法。
+根据email和holder查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -2761,26 +2811,26 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 
 **参数：**
 
-| 参数名   | 类型                                                  | 必填 | 说明                                   |
-| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| email    | string                                                | 是   | 联系人的邮箱地址。                     |
-| holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                 |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| email    | string                                                | 是   | 联系人的邮箱地址。                                           |
+| holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2788,7 +2838,7 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 
 queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email查询联系人，使用callback方式作为异步方法。
+根据email和attrs查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2801,37 +2851,37 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
 | context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | email    | string                                                | 是   | 联系人的邮箱地址。                                           |
 | attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到联系人对象数组。                         |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email查询联系人，使用callback方式作为异步方法。
+根据email和attrs查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -2843,24 +2893,24 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 
 **参数：**
 
-| 参数名   | 类型                                                  | 必填 | 说明                                 |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| email    | string                                                | 是   | 联系人的邮箱地址。                   |
-| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                   |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到联系人对象数组。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| email    | string                                                | 是   | 联系人的邮箱地址。                                           |
+| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByEmail('xxx@email.com', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2868,7 +2918,7 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 
 queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email查询联系人，使用callback方式作为异步方法。
+根据email、holder和attrs查询联系人，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2882,41 +2932,41 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
 | email    | string                                                | 是   | 联系人的邮箱地址。                                           |
 | holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
 | attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到联系人对象数组。                         |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email查询联系人，使用callback方式作为异步方法。
+根据email、holder和attrs查询联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -2928,29 +2978,29 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 
 **参数：**
 
-| 参数名   | 类型                                                  | 必填 | 说明                                 |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| email    | string                                                | 是   | 联系人的邮箱地址。                   |
-| holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。               |
-| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                   |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到联系人对象数组。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| email    | string                                                | 是   | 联系人的邮箱地址。                                           |
+| holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回查询到的联系人对象数组；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2958,7 +3008,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 
 queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-根据email查询联系人，使用Promise方式作为异步方法。
+根据email、holder和attrs查询联系人，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2970,47 +3020,47 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | email   | string                                  | 是   | 联系人的邮箱地址。                                           |
-| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
-| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。                                       |
+| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。                                           |
 
 **返回值：**
 
-| 类型                                            | 说明                                                |
-| ----------------------------------------------- | --------------------------------------------------- |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回查询到的联系人对象数组。 |
+| 类型                                            | 说明                                      |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise对象。返回查询到的联系人数组对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
-      console.log(`queryContactsByEmail success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryContactsByEmail fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-根据email查询联系人，使用Promise方式作为异步方法。
+根据email、holder和attrs查询联系人，使用Promise方式作为异步方法。
 
 > **说明**
 >
@@ -3025,30 +3075,30 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 | 参数名 | 类型                                    | 必填 | 说明                   |
 | ------ | --------------------------------------- | ---- | ---------------------- |
 | email  | string                                  | 是   | 联系人的邮箱地址。     |
-| holder | [Holder](#holder)                       | 否   | 创建联系人的应用信息。 |
-| attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。     |
+| holder | [Holder](#holder)                       | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。 |
+| attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。     |
 
 **返回值：**
 
-| 类型                                            | 说明                                                |
-| ----------------------------------------------- | --------------------------------------------------- |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回查询到的联系人对象数组。 |
+| 类型                                            | 说明                                      |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise对象。返回查询到的联系人数组对象。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
-      console.log(`queryContactsByEmail success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryContactsByEmail fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3067,31 +3117,31 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
 | 参数名   | 类型                                              | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数，返回查询到的群组对象数组。                         |
+| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数。成功返回查询到的群组对象数组；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryGroups(context, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryGroups(deprecated)<sup>7+</sup>
+## contact.queryGroups<sup>(deprecated)7+</sup>
 
 queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
@@ -3107,20 +3157,20 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                                              | 必填 | 说明                                 |
-| -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数，返回查询到的群组对象数组。 |
+| 参数名   | 类型                                              | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数。成功返回查询到的群组对象数组；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryGroups((err: BusinessError, data) => {
       if (err) {
-          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups.. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3128,7 +3178,7 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
 queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
-查询联系人的所有群组，使用callback方式作为异步方法。
+根据holder查询联系人的所有群组，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3140,39 +3190,39 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | holder   | [Holder](#holder)                                 | 是   | 创建联系人的应用信息。                                       |
-| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数，返回查询到的群组对象数组。                         |
+| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数。成功返回查询到的群组对象数组；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryGroups(context, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryGroups(deprecated)<sup>7+</sup>
+## contact.queryGroups<sup>(deprecated)7+</sup>
 
 queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
-查询联系人的所有群组，使用callback方式作为异步方法。
+根据holder查询联系人的所有群组，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -3184,25 +3234,25 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 
 **参数：**
 
-| 参数名   | 类型                                              | 必填 | 说明                                 |
-| -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-| holder   | [Holder](#holder)                                 | 是   | 创建联系人的应用信息。               |
-| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数，返回查询到的群组对象数组。 |
+| 参数名   | 类型                                              | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| holder   | [Holder](#holder)                                 | 是   | 创建联系人的应用信息。                                       |
+| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数。成功返回查询到的群组对象数组；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryGroups({
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3210,7 +3260,7 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 
 queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
-查询联系人的所有群组，使用Promise方式作为异步方法。
+根据holder查询联系人的所有群组，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3221,44 +3271,44 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
 | 参数名  | 类型              | 必填 | 说明                                                         |
 | ------- | ----------------- | ---- | ------------------------------------------------------------ |
 | context | Context           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| holder  | [Holder](#holder) | 否   | 创建联系人的应用信息。                                       |
+| holder  | [Holder](#holder) | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人群组。                                       |
 
 **返回值：**
 
-| 类型                                        | 说明                                              |
-| ------------------------------------------- | ------------------------------------------------- |
-| Promise&lt;Array&lt;[Group](#group)&gt;&gt; | 以Promise形式返回结果，返回查询到的群组对象数组。 |
+| 类型                                        | 说明                                    |
+| ------------------------------------------- | --------------------------------------- |
+| Promise&lt;Array&lt;[Group](#group)&gt;&gt; | Promise对象。返回查询到的群组对象数组。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryGroups(context, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   });
   promise.then((data) => {
-      console.log(`queryGroups success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryGroups fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
-## contact.queryGroups(deprecated)<sup>7+</sup>
+## contact.queryGroups<sup>(deprecated)7+</sup>
 
 queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
-查询联系人的所有群组，使用Promise方式作为异步方法。
+根据holder查询联系人的所有群组，使用Promise方式作为异步方法。
 
 > **说明**
 >
@@ -3272,27 +3322,27 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
 | 参数名 | 类型              | 必填 | 说明                   |
 | ------ | ----------------- | ---- | ---------------------- |
-| holder | [Holder](#holder) | 否   | 创建联系人的应用信息。 |
+| holder | [Holder](#holder) | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人群组。 |
 
 **返回值：**
 
-| 类型                                        | 说明                                              |
-| ------------------------------------------- | ------------------------------------------------- |
-| Promise&lt;Array&lt;[Group](#group)&gt;&gt; | 以Promise形式返回结果，返回查询到的群组对象数组。 |
+| 类型                                        | 说明                                    |
+| ------------------------------------------- | --------------------------------------- |
+| Promise&lt;Array&lt;[Group](#group)&gt;&gt; | Promise对象。返回查询到的群组对象数组。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryGroups({
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   });
   promise.then((data) => {
-      console.log(`queryGroups success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryGroups fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3311,31 +3361,31 @@ queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt
 | 参数名   | 类型                                                | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                             | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| callback | AsyncCallback&lt;Array&lt;[Holder](#holder)&gt;&gt; | 是   | 回调函数，返回查询到的创建联系人应用信息的对象数组。         |
+| callback | AsyncCallback&lt;Array&lt;[Holder](#holder)&gt;&gt; | 是   | 回调函数。成功返回查询到的创建联系人应用信息的对象数组；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryHolders(context, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryHolders callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryHolders(deprecated)<sup>7+</sup>
+## contact.queryHolders<sup>(deprecated)7+</sup>
 
 queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
@@ -3351,20 +3401,20 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                                                | 必填 | 说明                                                 |
-| -------- | --------------------------------------------------- | ---- | ---------------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[Holder](#holder)&gt;&gt; | 是   | 回调函数，返回查询到的创建联系人应用信息的对象数组。 |
+| 参数名   | 类型                                                | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;Array&lt;[Holder](#holder)&gt;&gt; | 是   | 回调函数。成功返回查询到的创建联系人应用信息的对象数组；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryHolders((err: BusinessError, data) => {
       if (err) {
-          console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryHolders callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3386,32 +3436,32 @@ queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
 
 **返回值：**
 
-| 类型                                          | 说明                                                         |
-| --------------------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;[Holder](#holder)&gt;&gt; | 以Promise形式返回结果，返回查询到的创建联系人应用信息的对象数组。 |
+| 类型                                          | 说明                                                    |
+| --------------------------------------------- | ------------------------------------------------------- |
+| Promise&lt;Array&lt;[Holder](#holder)&gt;&gt; | Promise对象。返回查询到的创建联系人应用信息的对象数组。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryHolders(context);
   promise.then((data) => {
-      console.log(`queryHolders success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryHolders fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
-## contact.queryHolders(deprecated)<sup>7+</sup>
+## contact.queryHolders<sup>(deprecated)7+</sup>
 
 queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
@@ -3427,19 +3477,19 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
 **返回值：**
 
-| 类型                                          | 说明                                                         |
-| --------------------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;[Holder](#holder)&gt;&gt; | 以Promise形式返回结果，返回查询到的创建联系人应用信息的对象数组。 |
+| 类型                                          | 说明                                                    |
+| --------------------------------------------- | ------------------------------------------------------- |
+| Promise&lt;Array&lt;[Holder](#holder)&gt;&gt; | Promise对象。返回查询到的创建联系人应用信息的对象数组。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryHolders();
   promise.then((data) => {
-      console.log(`queryHolders success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryHolders fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3459,31 +3509,31 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | id       | number                      | 是   | 联系人对象的id属性。                                         |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回查询到的联系人对应的key。                      |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。成功返回查询到的联系人对应的key；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryKey(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryKey(deprecated)<sup>7+</sup>
+## contact.queryKey<sup>(deprecated)7+</sup>
 
 queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
@@ -3499,21 +3549,21 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明                                    |
-| -------- | --------------------------- | ---- | --------------------------------------- |
-| id       | number                      | 是   | 联系人对象的id属性。                    |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回查询到的联系人对应的key。 |
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| id       | number                      | 是   | 联系人对象的id属性。                                         |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。成功返回查询到的联系人对应的key；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryKey(/*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3521,7 +3571,7 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
 queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
-根据联系人的id查询联系人的key，使用callback方式作为异步方法。
+根据联系人的id和holder查询联系人的key，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3534,39 +3584,39 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
 | context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | id       | number                      | 是   | 联系人对象的id属性。                                         |
 | holder   | [Holder](#holder)           | 是   | 创建联系人的应用信息。                                       |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回查询到的联系人对应的key。                      |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。成功返回查询到的联系人对应的key；失败返回失败的错误码。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryKey(context, /*id*/1, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryKey(deprecated)<sup>7+</sup>
+## contact.queryKey<sup>(deprecated)7+</sup>
 
 queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
-根据联系人的id查询联系人的key，使用callback方式作为异步方法。
+根据联系人的id和holder查询联系人的key，使用callback方式作为异步方法。
 
 > **说明**
 >
@@ -3578,26 +3628,26 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明                                    |
-| -------- | --------------------------- | ---- | --------------------------------------- |
-| id       | number                      | 是   | 联系人对象的id属性。                    |
-| holder   | [Holder](#holder)           | 是   | 创建联系人的应用信息。                  |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回查询到的联系人对应的key。 |
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| id       | number                      | 是   | 联系人对象的id属性。                                         |
+| holder   | [Holder](#holder)           | 是   | 创建联系人的应用信息。                                       |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。成功返回查询到的联系人对应的key；失败返回失败的错误码。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryKey(/*id*/1, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3605,7 +3655,7 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 
 queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 
-根据联系人的id查询联系人的key，使用Promise方式作为异步方法。
+根据联系人的id和holder查询联系人的key，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3617,44 +3667,44 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 | ------- | ----------------- | ---- | ------------------------------------------------------------ |
 | context | Context           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | id      | number            | 是   | 联系人对象的id属性。                                         |
-| holder  | [Holder](#holder) | 否   | 创建联系人的应用信息。                                       |
+| holder  | [Holder](#holder) | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。                                       |
 
 **返回值：**
 
-| 类型                  | 说明                                                 |
-| --------------------- | ---------------------------------------------------- |
-| Promise&lt;string&gt; | 以Promise形式返回结果，返回查询到的联系人对应的key。 |
+| 类型                  | 说明                                       |
+| --------------------- | ------------------------------------------ |
+| Promise&lt;string&gt; | Promise对象。返回查询到的联系人对应的key。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryKey(context, /*id*/1, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   });
   promise.then((data) => {
-      console.log(`queryKey success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryKey fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
-## contact.queryKey(deprecated)<sup>7+</sup>
+## contact.queryKey<sup>(deprecated)7+</sup>
 
 queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
-根据联系人的id查询联系人的key，使用Promise方式作为异步方法。
+根据联系人的id和holder查询联系人的key，使用Promise方式作为异步方法。
 
 > **说明**
 >
@@ -3669,33 +3719,35 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 | 参数名 | 类型              | 必填 | 说明                   |
 | ------ | ----------------- | ---- | ---------------------- |
 | id     | number            | 是   | 联系人对象的id属性。   |
-| holder | [Holder](#holder) | 否   | 创建联系人的应用信息。 |
+| holder | [Holder](#holder) | 否   | 创建联系人的应用信息，不传默认不使用该条件过滤联系人。 |
 
 **返回值：**
 
-| 类型                  | 说明                                                 |
-| --------------------- | ---------------------------------------------------- |
-| Promise&lt;string&gt; | 以Promise形式返回结果，返回查询到的联系人对应的key。 |
+| 类型                  | 说明                                       |
+| --------------------- | ------------------------------------------ |
+| Promise&lt;string&gt; | Promise对象。返回查询到的联系人对应的key。 |
 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryKey(/*id*/1, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   });
   promise.then((data) => {
-      console.log(`queryKey success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryKey fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
 ## ContactSelectionOptions<sup>10+</sup>
 
 选择联系人条件。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -3709,13 +3761,15 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 联系人对象类。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
 ### 常量
 
-| 名称               | 值   | 说明             |
-| ------------------ | ---- | ---------------- |
-| INVALID_CONTACT_ID | -1   | 默认联系人的id。 |
+| 名称               | 值   |只读   | 说明             |
+| ------------------ | ---- | ---- | ---------------- |
+| INVALID_CONTACT_ID | -1   |是   | 默认联系人的id。 |
 
 
 ### 属性
@@ -3762,23 +3816,13 @@ let myContact: contact.Contact = {
 ```
 
 
-  或使用new一个Contact对象的方式创建数据：
-
-```js
-let myContact = new contact.Contact();
-let name = new contact.Name();
-name.fullName = "fullName";
-let phoneNumber = new contact.PhoneNumber();
-phoneNumber.phoneNumber = "138xxxxxxxx";
-myContact.name = name;
-myContact.phoneNumbers = [phoneNumber];
-```
-
 
 ## ContactAttributes
 
 联系人属性列表，一般作为入参用来标识希望查询的联系人属性。
 当传入为null时，默认查询全部属性。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -3802,18 +3846,12 @@ let contactAttributes: contact.ContactAttributes = {
 };
 ```
 
-或使用new一个ContactAttributes对象的方式创建数据：
-
-
-```js
-let contactAttributes = new contact.ContactAttributes();
-contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
-```
-
 
 ## Attribute
 
 枚举，联系人属性列表。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -3847,6 +3885,8 @@ let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, con
 ## Email
 
 联系人的邮箱。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -3897,11 +3937,11 @@ email.email = "xxx@email.com";
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
-| 名称        | 类型   | 可读 | 可写 | 说明         |
-| ----------- | ------ | ---- | ---- | ------------ |
-| bundleName  | string | 是   | 否   | Bundle名称。 |
-| displayName | string | 是   | 否   | 应用名称。   |
-| holderId    | number | 是   | 是   | 应用ID。     |
+| 名称        | 类型   | 可读 | 可写 | 必填 | 说明         |
+| ----------- | ------ | ---- | ---- | ---- | ------------ |
+| bundleName  | string | 是   | 否   | 是   | Bundle名称，值为com.ohos.contacts。 |
+| displayName | string | 是   | 否   | 否   | 应用名称。   |
+| holderId    | number | 是   | 是   | 否   | 应用ID。     |
 
 
 **对象创建示例：**
@@ -3912,21 +3952,16 @@ email.email = "xxx@email.com";
 let holder: contact.Holder = {
   bundleName: "com.ohos.contacts",
   displayName: "displayName",
-  holderId: 0
+  holderId: 1
 };
-```
-
-  或使用new一个Holder对象的方式创建数据：
-
-```js
-let holder = new contact.Holder();
-holder.holderId = 0;
 ```
 
 
 ## Event
 
 联系人事件类。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -3972,6 +4007,8 @@ event.eventDate = "xxxxxx";
 
 联系人的群组类。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
 | 名称    |   类型   | 可读 | 可写 | 说明               |
@@ -3991,17 +4028,12 @@ let group: contact.Group = {
 };
 ```
 
-  或使用new一个Group对象的方式创建数据：
-
-```js
-let group = new contact.Group();
-group.title = "title";
-```
-
 
 ## ImAddress
 
 联系人的即时消息地址。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4053,6 +4085,8 @@ imAddress.imAddress = "imAddress";
 
 联系人的名字类。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
 | 名称               |   类型   | 可读 | 可写 | 说明                        |
@@ -4079,18 +4113,12 @@ let name: contact.Name = {
 };
 ```
 
-  或使用new一个name对象的方式创建数据：
-
-```js
-let name = new contact.Name();
-name.familyName = "familyName";
-name.fullName = "fullName";
-```
-
 
 ## NickName
 
 联系人的昵称类。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4109,17 +4137,11 @@ let nickName: contact.NickName = {
 };
 ```
 
-  或使用new一个NickName对象的方式创建数据：
-
-```js
-let nickName = new contact.NickName();
-nickName.nickName = "nickName";
-```
-
-
 ## Note
 
 联系人的备注类。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4138,17 +4160,12 @@ let note: contact.Note = {
 };
 ```
 
-  或使用new一个Note对象的方式创建数据：
-
-```js
-let note = new contact.Note();
-note.noteContent = "noteContent";
-```
-
 
 ## Organization
 
 联系人的组织类。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4169,18 +4186,12 @@ let organization: contact.Organization = {
 };
 ```
 
-  或使用new一个Organization对象的方式创建数据：
-
-```js
-let organization = new contact.Organization();
-organization.name = "name";
-organization.title = "title";
-```
-
 
 ## PhoneNumber
 
 联系人电话号码类。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4244,6 +4255,8 @@ phoneNumber.phoneNumber = "138xxxxxxxx";
 
 联系人的头像类。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
 | 名称 |   类型   | 可读 | 可写 | 说明           |
@@ -4261,17 +4274,12 @@ let portrait: contact.Portrait = {
 };
 ```
 
-  或使用new一个Portrait对象的方式创建数据：
-
-```js
-let portrait = new contact.Portrait();
-portrait.uri = "uri";
-```
-
 
 ## PostalAddress
 
 联系人的邮政地址类。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4325,6 +4333,8 @@ postalAddress.postalAddress = "postalAddress";
 ## Relation
 
 联系人的关系类。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4383,6 +4393,8 @@ relation.labelId = contact.Relation.RELATION_ASSISTANT;
 
 联系人的会话发起协议（SIP）地址类。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
 ### 常量
@@ -4426,6 +4438,8 @@ sipAddress.sipAddress = "sipAddress";
 
 联系人的网站信息类。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
 | 名称    |   类型   | 可读 | 可写 | 说明               |
@@ -4443,9 +4457,3 @@ let website: contact.Website = {
 };
 ```
 
-  或使用new一个Website对象的方式创建数据：
-
-```js
-let website = new contact.Website();
-website.website = "website";
-```

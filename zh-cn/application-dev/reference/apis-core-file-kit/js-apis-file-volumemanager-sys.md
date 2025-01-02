@@ -37,7 +37,7 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -48,7 +48,7 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
     // do something with volumes, which is an array
   }).catch((error: BusinessError) => {
-    console.info("getAllVolumes failed");
+    console.error("getAllVolumes failed");
   });
   ```
 
@@ -76,7 +76,7 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -119,7 +119,7 @@ mount(volumeId: string): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600003 | Failed to mount. |
@@ -135,7 +135,7 @@ mount(volumeId: string): Promise&lt;void&gt;
   volumemanager.mount(volumeId).then(() => {
     // do something
   }).catch((error: BusinessError) => {
-    console.info("mount failed");
+    console.error("mount failed");
   });
   ```
 
@@ -164,7 +164,7 @@ mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600003 | Failed to mount. |
@@ -212,7 +212,7 @@ unmount(volumeId: string): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600004 | Failed to unmount. |
@@ -228,7 +228,7 @@ unmount(volumeId: string): Promise&lt;void&gt;
   volumemanager.unmount(volumeId).then(() => {
     // do something
   }).catch((error: BusinessError) => {
-    console.info("mount failed");
+    console.error("mount failed");
   });
   ```
 
@@ -257,7 +257,7 @@ unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600004 | Failed to unmount. |
@@ -305,7 +305,7 @@ getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -318,7 +318,7 @@ getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
   volumemanager.getVolumeByUuid(uuid).then((volume: volumemanager.Volume) => {
     console.info("getVolumeByUuid successfully:" + JSON.stringify(volume));
   }).catch((error: BusinessError) => {
-    console.info("getVolumeByUuid failed with error:" + JSON.stringify(error));
+    console.error("getVolumeByUuid failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -347,7 +347,7 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -392,7 +392,7 @@ getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -405,7 +405,7 @@ getVolumeById(volumeId: string): Promise&lt;Volume&gt;
   volumemanager.getVolumeById(volumeId).then((volume: volumemanager.Volume) => {
     console.info("getVolumeById successfully:" + JSON.stringify(volume));
   }).catch((error: BusinessError) => {
-    console.info("getVolumeById failed with error:" + JSON.stringify(error));
+    console.error("getVolumeById failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -434,7 +434,7 @@ getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -480,7 +480,7 @@ setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
@@ -496,7 +496,7 @@ setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
   volumemanager.setVolumeDescription(uuid, description).then(() => {
     console.info("setVolumeDescription successfully");
   }).catch((error: BusinessError) => {
-    console.info("setVolumeDescription failed with error:" + JSON.stringify(error));
+    console.error("setVolumeDescription failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -526,7 +526,7 @@ setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
@@ -575,7 +575,7 @@ format(volumeId: string, fsType: string): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
@@ -591,7 +591,7 @@ format(volumeId: string, fsType: string): Promise&lt;void&gt;
   volumemanager.format(volumeId, fsType).then(() => {
     console.info("format successfully");
   }).catch((error: BusinessError) => {
-    console.info("format failed with error:" + JSON.stringify(error));
+    console.error("format failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -621,7 +621,7 @@ format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): v
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
@@ -670,7 +670,7 @@ partition(diskId: string, type: number): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -684,7 +684,7 @@ partition(diskId: string, type: number): Promise&lt;void&gt;
   volumemanager.partition(diskId, type).then(() => {
     console.info("partition successfully");
   }).catch((error: BusinessError) => {
-    console.info("partition failed with error:" + JSON.stringify(error));
+    console.error("partition failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -714,7 +714,7 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -736,12 +736,13 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
 
 ### 属性
 
-| 名称         | 类型    | 可读   | 可写   | 说明                 |
+| 名称         | 类型    | 只读   | 可写   | 说明                 |
 | ----------- | ------- | ------- | ----- | -------------------- |
 | id          | string  | 是 | 否 | 卷设备ID的格式为vol-{主设备号}-{次设备号}，主设备号用来区分不同种类的设备，次设备号用来区分同一类型的多个设备，卷设备ID会随着插卡顺序不同而变化。                 |
 | uuid        | string  | 是 | 否 | 卷设备uuid是卷设备的通用唯一识别码，不会随着插卡顺序变化而变化，但是卷设备的格式化会改变卷设备的uuid。               |
 | diskId      | string  | 是 | 否 | 卷设备所属的磁盘ID，一个磁盘可以有一个或者多个卷设备。磁盘设备ID的格式为disk-{主设备号}-{次设备号}，与卷设备ID相似。        |
 | description | string  | 是 | 否 | 卷设备描述。           |
-| removable   | boolean | 是 | 否 | 表示卷设备是否可移除，当前仅支持可移除存储设备。 |
+| removable   | boolean | 是 | 否 | 表示卷设备是否可移除，当前仅支持可移除存储设备。true为可移除，false为不可移除 |
 | state       | number  | 是 | 否 | 卷设备状态标识：<br>0：卸载状态 UNMOUNTED<br> 1：检查状态 CHECKING<br> 2：挂载状态 MOUNTED<br> 3：正在弹出状态 EJECTING          |
 | path        | string  | 是 | 否 | 卷设备的挂载地址，一般为/mnt/data/external/{uuid}         |
+| fsType<sup>12+</sup>        | string  | 是 | 否 | 文件系统的类型，常见有ext2、vfat、NTFS等。       |

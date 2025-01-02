@@ -1349,7 +1349,7 @@ APP_FEATURE_INIT(AppEntry);
         {
           "component": "ace_engine_lite",
           "features": [
-            "enable_ohos_ace_engine_lite_product_config = true"
+            "ace_engine_lite_feature_product_config = true"
           ]
         }
       ]
@@ -1384,8 +1384,8 @@ APP_FEATURE_INIT(AppEntry);
         {
           "component": "aafwk_lite",
           "features": [
-            "enable_ohos_appexecfwk_feature_ability = true",	 --- 支持FA特性，即包含图形能力
-            "config_ohos_aafwk_ams_task_size = 4096"			 --- 配置aafwk栈的大小
+            "ability_lite_enable_ohos_appexecfwk_feature_ability = true",	 --- 支持FA特性，即包含图形能力
+            "ability_lite_config_ohos_aafwk_ams_task_size = 4096"			 --- 配置aafwk栈的大小
           ]
         }
       ]

@@ -1,6 +1,6 @@
 # Certificate Management Overview
 
-The **certManager** module provides system-level certificate management capabilities to implement management and secure use of certificates throughout their [lifecycle](certManager-guidelines.md#scenarios) (installation, storage, use, and destruction).
+The **certManager** module provides system-level certificate management capabilities to implement management and secure use of certificates throughout their lifecycle (installation, storage, use, and destruction).
 
 ## Basic Concepts
 

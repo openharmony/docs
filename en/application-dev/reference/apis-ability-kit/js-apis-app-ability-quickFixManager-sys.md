@@ -10,7 +10,7 @@ The **quickFixManager** module provides APIs for quick fix. With quick fix, you 
 ## Modules to Import
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { quickFixManager } from '@kit.AbilityKit';
 ```
 
 ## HapModuleQuickFixInfo
@@ -58,21 +58,24 @@ Applies a quick fix patch. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the quick fix patch is installed, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the quick fix patch is installed, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](../apis-basic-services-kit/common_event/commonEvent-definitions.md#common_event_quick_fix_apply_result9).
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
 | 18500008 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 > **NOTE**
 >
@@ -81,20 +84,20 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { quickFixManager } from '@kit.AbilityKit';
 
-  try {
-    let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
-    quickFixManager.applyQuickFix(hapModuleQuickFixFiles, (error) => {
-      if (error) {
-          console.error( `applyQuickFix failed with error: ${error}`);
-      } else {
-          console.info( 'applyQuickFix success');
-      }
-    });
-  } catch (paramError) {
-    console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
-  }
+try {
+  let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
+  quickFixManager.applyQuickFix(hapModuleQuickFixFiles, (error) => {
+    if (error) {
+      console.error( `applyQuickFix failed with error: ${error}`);
+    } else {
+      console.info( 'applyQuickFix success');
+    }
+  });
+} catch (paramError) {
+  console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+}
 ```
 
 ## quickFixManager.applyQuickFix
@@ -111,43 +114,47 @@ Applies a quick fix patch. This API uses a promise to return the result.
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise\<void> | Promise that returns no value.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](../apis-basic-services-kit/common_event/commonEvent-definitions.md#common_event_quick_fix_apply_result9).
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
 | 18500008 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
-import { BusinessError } from '@ohos.base';
+import { quickFixManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
-  try {
-    quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
-      console.info('applyQuickFix success');
-    }).catch((error: BusinessError) => {
-      console.error(`applyQuickFix err: ${error}`);
-    });
-  } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
-  }
+let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
+
+try {
+  quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
+    console.info('applyQuickFix success');
+  }).catch((error: BusinessError) => {
+    console.error(`applyQuickFix err: ${error}`);
+  });
+} catch (paramError) {
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+}
 ```
 
 ## quickFixManager.getApplicationQuickFixInfo
@@ -171,30 +178,34 @@ Obtains the quick fix information of the application. This API uses an asynchron
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
-| 18500001 | The specified bundleName is invalid. |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
 | 18500008 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { quickFixManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    let bundleName = 'bundleName';
-    quickFixManager.getApplicationQuickFixInfo(bundleName, (error, data) => {
-      if (error) {
-        console.error(`getApplicationQuickFixInfo error: ${error}`);
-      } else {
-        console.info(`getApplicationQuickFixInfo success: ${data}`);
-      }
-    });
-  } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
-  }
+try {
+  let bundleName = 'bundleName';
+  quickFixManager.getApplicationQuickFixInfo(bundleName, (error, data) => {
+    if (error) {
+      console.error(`getApplicationQuickFixInfo error: ${error}`);
+    } else {
+      console.info(`getApplicationQuickFixInfo success: ${data}`);
+    }
+  });
+} catch (paramError) {
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+}
 ```
 
 ## quickFixManager.getApplicationQuickFixInfo
@@ -217,36 +228,39 @@ Obtains the quick fix information of the application. This API uses a promise to
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Promise used to return the quick fix information.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Promise used to return the quick fix information.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
-| 18500001 | The specified bundleName is invalid. |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
 | 18500008 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
-  ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
-import { BusinessError } from '@ohos.base';
+```ts
+import { quickFixManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    let bundleName = 'bundleName';
-    quickFixManager.getApplicationQuickFixInfo(bundleName).then((data) => {
-      console.info(`getApplicationQuickFixInfo success: ${data}`);
-    }).catch((error: BusinessError) => {
-      console.error(`getApplicationQuickFixInfo err: ${error}`);
-    });
-  } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
-  }
-  ```
+try {
+  let bundleName = 'bundleName';
+  quickFixManager.getApplicationQuickFixInfo(bundleName).then((data) => {
+    console.info(`getApplicationQuickFixInfo success: ${data}`);
+  }).catch((error: BusinessError) => {
+    console.error(`getApplicationQuickFixInfo err: ${error}`);
+  });
+} catch (paramError) {
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+}
+```
 
 ## quickFixManager.revokeQuickFix<sup>10+<sup>
 
@@ -262,31 +276,35 @@ Revokes quick fix. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Name of the bundle for which the patch needs to be revoked.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If quick fix is revoked, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | Yes| Name of the bundle for which the patch needs to be revoked.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If quick fix is revoked, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
-| 18500001 | The bundle is not exist or no patch has applied. |
-| 18500009 | The application has a apply quick fix task that is being processed. |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
+| 18500009 | The application has an ongoing quick fix task. |
 
-If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10).
-
-
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_revoke_result10).
 
 **Example**
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { quickFixManager } from '@kit.AbilityKit';
 
-  let bundleName = "com.example.myapplication";
-  quickFixManager.revokeQuickFix(bundleName, (err) => {
-    console.info("revokeQuickFix " + bundleName + " " + JSON.stringify(err));
-  });
+let bundleName = "com.example.myapplication";
+
+quickFixManager.revokeQuickFix(bundleName, (err) => {
+  console.info("revokeQuickFix " + bundleName + " " + JSON.stringify(err));
+});
 ```
 
 ## quickFixManager.revokeQuickFix<sup>10+<sup>
@@ -303,39 +321,41 @@ Revokes quick fix. This API uses a promise to return the result.
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Name of the bundle for which the patch needs to be revoked.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | Yes| Name of the bundle for which the patch needs to be revoked.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise\<void> | Promise that returns no value.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
-| 18500001 | The bundle is not exist or no patch has applied. |
-| 18500009 | The application has a apply quick fix task that is being processed. |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
+| 18500009 | The application has an ongoing quick fix task. |
 
-If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10). The table below lists the possible error codes and messages.
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_revoke_result10). The table below lists the possible error codes and messages.
 
 **Example**
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
-import { BusinessError } from '@ohos.base';
+import { quickFixManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let bundleName = "com.example.myapplication";
-  quickFixManager.revokeQuickFix(bundleName).then(() => {
-    console.info("revokeQuickFix " + bundleName +" ok");
-  }).catch((err: BusinessError) => {
-    console.info("revokeQuickFix " + bundleName +" failed, error code is ", JSON.stringify((err)));
-  });
+let bundleName = "com.example.myapplication";
+
+quickFixManager.revokeQuickFix(bundleName).then(() => {
+  console.info("revokeQuickFix " + bundleName +" ok");
+}).catch((err: BusinessError) => {
+  console.info("revokeQuickFix " + bundleName +" failed, error code is ", JSON.stringify((err)));
+});
 ```
-
- <!--no_check--> 

@@ -30,6 +30,7 @@
 | @systemapi | 系统接口 | **系统接口：** 此接口为系统接口。 |
 | @syscap | 系统能力 | **系统能力**：SystemCapability.xxx.xxx |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B |
 | @permission | 权限 |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B |
+| @extends | 继承 |  带有该标签或实际存在extends关系但未带该标签时，在相关描述处应明确说明“xxx继承自xxx（提供链接）。” |
 
 下面进入具体每个API的写作。
 
@@ -92,12 +93,12 @@ ArrayList和LinkedList相比，ArrayList的随机访问效率更高。但由于A
 >    在使用AbilityContext的功能前，需要通过\[getContext()]\(链接到对应的接口说明文件中.md)先获取Context对象。
 >
 > ```js
->    import ability_featureAbility from '@ohos.ability.featureAbility';
->    var context = ability_featureAbility.getContext();
+>    import { featureAbility } from '@kit.AbilityKit';
+>    let context = featureAbility.getContext();
 > ```
 
 ```js
-import call from '@ohos.telephony.call';
+import { call } from '@kit.TelephonyKit';
 ```
 
 ## 属性
@@ -110,11 +111,11 @@ import call from '@ohos.telephony.call';
 >
 > 3. 对于只读属性：d.ts中标有`readonly`字样。如果取值为有特殊含义的有限值，需要在说明里枚举，或是通过类型链接到对应枚举类型。
 >
-> 4. 对于必填属性：如果仅支持固定字段，需要进行说明。如该属性不作为入参类型的取值，可填写N/A。
+> 4. 对于可选属性：如果仅支持固定字段，需要进行说明。如该属性定义时，带有?，即为可选。
 
 **系统能力：** SystemCapability.xxx.xxx。（必选）
 
-| 名称             | 类型                                      | 只读 | 必填 | 说明                                       |
+| 名称             | 类型                                      | 只读 | 可选 | 说明                                       |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
 | pluggedType      | [BatteryPluggedType](#batterypluggedtype) | 是   | 否   | 表示当前设备连接的充电器类型。             |
 | isBatteryPresent | boolean                                   | 是   | 否   | 表示当前设备是否支持电池或者电池是否在位。 |
@@ -124,8 +125,8 @@ import call from '@ohos.telephony.call';
 > *写作说明*
 >
 > 1. 可选，如果没有常量可删除此二级标题，对应d.ts中的const。
->
-> 2. 类型如果为自定义类型，需要建立链接到对应的interface或enum中。
+> 2. 部分const用于定义只读变量，无对应值，此时表格为：名称、类型、只读、说明，四列。
+> 3. 类型如果为自定义类型，需要建立链接到对应的interface或enum中。
 
 **系统能力：** SystemCapability.xxx.xxx。（必选）
 
@@ -145,9 +146,17 @@ import call from '@ohos.telephony.call';
 >    示例： sim.getSimIccId
 >    订阅方法：sim.on('exampleEvent')
 >
-> 3. **方法具体调用形式**：和d.ts保持一致，需要包括参数类型、参数名、返回值类型。
->    示例：getNetworkState(slotId: number, callback: AsyncCallback\<NetworkState>): void
->    注意：尖括号<>可能会被识别为标签，导致界面显示失效，可增加一个\，以保证界面正常显示，如“\\<>”或使用转义字符\&lt; \&gt; 。
+> 3. **方法具体调用形式**：和d.ts保持一致，需要包括关键字（static、abstract、set、get等）、参数类型、参数名、返回值类型。
+>
+>    示例：
+>    
+>    getNetworkState(slotId: number, callback: AsyncCallback\<NetworkState>): void
+>
+>       abstract makeNode(uiContext: UIContext): FrameNode | null
+>
+>    注意1：尖括号<>可能会被识别为标签，导致界面显示失效，可增加一个\，以保证界面正常显示，如“\\<>”或使用转义字符\&lt; \&gt; 。
+>
+>    注意2：如果set和get关键字声明的方法成对出现，名称相同。则共用同一标题，顺序描述方法具体调用形式、标签、参数、返回值等说明。建议set方法在前，get方法在后。请参考[backgroundColor](../../application-dev/reference/apis-arkui/js-apis-arkui-renderNode.md#backgroundcolor)。
 >
 > 4. **方法描述**：对方法实现的功能进行描述，包括其使用的前提条件（*如：在xx方法调用后才能调用、需要确保网络已连接……*）、使用之后的影响（*如：调用该接口后再进行xx将不起效*）、**权限限制**、**系统能力**等。
 >
@@ -155,7 +164,7 @@ import call from '@ohos.telephony.call';
 >
 > 6. **表格内换行**：markdown语法中，换行采用特殊标记\<br>
 
-*（在此处给出方法的具体调用形式。如果是静态方法需说明）* 方法名称(参数1名称：参数1类型，参数2名称：参数2类型，……)：返回值类型
+*（在此处给出方法的具体调用形式。如果存在关键字需说明）* 方法名称(参数1名称：参数1类型，参数2名称：参数2类型，……)：返回值类型
 
 在此处给出方法描述。说明请参考上述写作说明第4、5点。
 
@@ -171,7 +180,7 @@ import call from '@ohos.telephony.call';
 
 | 参数名       | 类型                                          | 必填 | 说明                                                         |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| parameterOne | number \| string \| [CustomType](#classinterface) | 是   | 参数描述。给出取值范围、建议值。如果有固定格式，需要给出格式样例，尤其是URI。<br/>自定义类型需要进行建链说明。 |
+| parameterOne | number \| string \| [CustomType](#classinterface) | 是   | 参数描述（包括参数的含义与用途、什么场景下使用该参数、选取建议、参数间关联关系等）。<br/>参数取值说明（包括取值范围、单位、默认值、取值原则或建议值；边界值涉及限制/异常时，需讲明具体场景；如果有固定格式，需要给出格式样例，尤其是URI）。<br/>自定义类型需要进行建链说明。 |
 | callback     | Callback\<Array<[CustomType](#classinterface)>>   | 否   | 参数描述。可选参数需要说明不填写该参数的后果。<br/>如：不填该参数则取消该type对应的所有回调。<br/>callback写法参考总体写作说明第14项。 |
 
 **返回值**：（可选，如不涉及可删除）
@@ -200,7 +209,7 @@ import call from '@ohos.telephony.call';
 // 所有使用到的变量要进行声明。
 
 // 不允许直接写参数名，必须是可使用、易替代的实际用例。如果非用户自定义填写，需通过注释进行说明。
-// 例如：var result = xxx.createExample(parameterOne); // parameterOne由扫描自动获取
+// 例如：let result = xxx.createExample(parameterOne); // parameterOne由扫描自动获取
 
 // 注释要精简、突出要点。需提供注释的典型场景还有：
 // 1. 当代码不能说明变量命名的具体含义，或不能说明代码逻辑时，必须提供注释。
@@ -255,7 +264,7 @@ import call from '@ohos.telephony.call';
 // 所有使用到的变量要进行声明。
 
 // 不允许直接写参数名，必须是可使用、易替代的实际用例。如果非用户自定义填写，需通过注释进行说明。
-// 例如：var result = xxx.createExample(parameterOne); // parameterOne由扫描自动获取
+// 例如：let result = xxx.createExample(parameterOne); // parameterOne由扫描自动获取
 
 // 注释要精简、突出要点。需提供注释的典型场景还有：
 // 1. 当代码不能说明变量命名的具体含义，或不能说明代码逻辑时，必须提供注释。
@@ -279,7 +288,7 @@ import call from '@ohos.telephony.call';
 
 > *写作说明*
 >
-> 除标题使用三级标题外，其余要求同[属性](#属性)，如仅有属性，可删除。
+> 除标题使用三级标题外，其余要求同[属性](#属性)，如仅有属性，可删除“属性”小标题，直接写interface名称作为二级标题。
 
 ### Class/Interface中的方法
 
@@ -310,24 +319,62 @@ import call from '@ohos.telephony.call';
 
 > *写作说明*
 >
-> 1. 可选，如果没有可删除此二级标题，对应d.ts中的type联合类型。
+> 1. 可选，如果没有可删除此二级标题，对应d.ts中的type定义。
 >
-> 2. 如果为取值范围为具体取值，如固定的字符串、枚举值等，需要说明其数据类型和指定取值；如果取值范围为指定类型，需说明是否取类型下任意值，还是有取值范围。
+> 2. 当前type分为两种情况，不同情况使用不同模板。
+>     
+>    - 当type为联合类型、交叉类型，其定义形如：type Xxx = number | string | 'xxx'，或 type AB = InterfaceA & InterfaceB ，参考[模板一](#type模板一)。
+>    - 当type的定义为某个函数、interface的别名，形如：type Xxx\<Aaa, Bbb> = (param1: number, param2: string) => void 或是 type Xxx = (param1: number, param2: string)，按函数、interface的模板解释其参数，并在列表前给出type的定义，参考[模板二](#type模板二)。
 >
-> 3. 类型如果为自定义类型，需要建立链接到对应的interface或enum中。
+> 3. 如果为取值范围为具体取值，如固定的字符串、枚举值等，需要说明其数据类型和指定取值；如果取值范围为指定类型，需说明是否取类型下任意值，还是有取值范围。
+>
+> 4. 类型如果为自定义类型，需要建立链接到对应的interface或enum中。
 
-在此处给出该联合类型的简要描述。如：表示允许的数据字段类型。
+
+### Type模板一
+
+type Xxx = number | string | 'xxx'  
+
+在此处给出该类型的简要描述。如：表示允许的数据字段类型。
+
+在此处给出该类型实际取值的逻辑。如：取值类型为下表类型中的并集/交集。
 
 **系统能力：** SystemCapability.xxx.xxx（必选）
 
-| 取值范围    | 说明                          |
+| 类型      | 说明                          |
 | -----------| ---------------------------- |
 | number     | 表示值类型为数字，可取任意值。     |
 | string     | 表示值类型为字符，可取任意值。     |
+| 'xxx'      | 表示xxx（此处写值的含义），值固定为'xxx'字符串。     |
+
+### Type模板二
+
+*（此处以函数别名为例，如果是interface别名同理，参考interface的模板写作）*
+
+*（在此处给出type的具体定义形式）* type Xxx\<Aaa, Bbb> = (param1: number, param2: string) => Interface1
+
+**系统能力：** SystemCapability.xxx.xxx（必选）
+
+**参数：** （可选，如不涉及可删除）
+
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| param1    | number                              | 是   | 参数描述。与[方法](#方法)要求一致。          |
+| param2 | string | 否   | 参数描述。与[方法](#方法)要求一致。                          |
+
+**返回值：**（可选，如不涉及可删除）
+
+| 类型   | 说明                                  |
+| ------ | ------------------------------------- |
+| [Interface1](#interface1) | 返回值描述。与[方法](#方法)要求一致。 |
 
 ## 变更日志
+
 | 变更说明                                                                 | 日期         |
 | ----------------------------------------------------------------------- | ------------ |
+| 针对const定义的只读变量，增加模板。 |   2024/12/31  |
+| 1. 修改方法模板，增加static等关键字声明的方法描述说明。 |  2024/05/16  |
+| 1. 修改Type模板，除原来的联合类型外，增加交叉类型，以及type作为函数、interface等别名的情况。<br/>2. 修改属性模板，仅针对interface和接口定义而言，明确规则，如果有?，则判定为“可选”。 |  2024/05/10  |
 | 1. 修改属性的模板，将“可读”、“可写”、“必填”，统一为“只读”、“必填”。<br/>2. 修改Type的模板，模板修改为“取值范围/说明”，并增加相关说明。<br/>3. 删除自定义类型，合并进class和interface的模板中。 |  2023/02/01  |
 | 1. 总体写作说明整理为表格。<br/>2. “图片路径”中，增加图片的引用方式说明。<br/>3. 增加“文档结构”，对文档各节点顺序进行说明。<br/>4. “权限说明”中，增加多权限的描述方式。<br/>5. 增加@FAModelOnly/@StageModelOnly标记在文档的描述方式。<br/>6. 增加异步接口说明（callback、Promise）。<br/>7. 增加示例代码语言的标准和规范。<br/>8. 增加文档链接的标准写法。<br/>9. 增加模块描述的固定句式、示例。<br/>10. 增加“on/off”等订阅方法的说明。<br/>11. 修改@syscap的描述方式，除表格内的差异项，其余保持一致。 <br/>12. 修改@systemapi的描述方式，仅保留“该系统为系统接口。”。<br/>13. 删除MR版本说明。                                                                 |  2022/6/24  |
 | 增加错误码说明。                                                          | 2022/10/11  |

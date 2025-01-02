@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import displaySync from '@ohos.graphics.displaySync';
+import { displaySync } from '@kit.ArkGraphics2D';
 ```
 
 ## displaySync.create
@@ -36,7 +36,7 @@ let backDisplaySync: displaySync.DisplaySync = displaySync.create();
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称             | 类型                                      | 只读 | 必填 | 说明                                       |
+| 名称             | 类型                                      | 只读 | 可选 | 说明                                       |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
 | timestamp      | number | 是   | 否   | 当前帧到达的时间（单位：纳秒）。 |
 | targetTimestamp | number| 是   | 否   | 下一帧预期到达的时间（单位：纳秒）。 |
@@ -61,6 +61,13 @@ setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange) : void
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | rateRange       | [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11)| 是   | 设置DisplaySync期望的帧率。|
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameters types. 3. Parameter verification failed. or check ExpectedFrameRateRange if valid.|
 
 **示例：**
 
@@ -158,6 +165,40 @@ backDisplaySync?.on("frame", callback)
 
 // 开始每帧回调
 backDisplaySync?.start()
+```
+
+> **说明：**
+>
+> start接口是将DisplaySync关联到UI实例和窗口，若在非UI页面中或者一些异步回调中进行start操作，可能无法跟踪到当前UI的上下文，导致start接口失败，会进一步导致订阅函数无法执行。
+> 因此可以使用UIContext的[runScopedTask](../apis-arkui/js-apis-arkui-UIContext.md#runscopedtask)接口来指定start函数执行的UI上下文。
+
+**示例：**
+
+```ts
+import { displaySync } from '@kit.ArkGraphics2D';
+import { UIContext } from '@kit.ArkUI';
+
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  // 创建DisplaySync实例
+  backDisplaySync: displaySync.DisplaySync = displaySync.create();
+
+  aboutToAppear() {
+    // 获取UIContext实例
+    let uiContext: UIContext = this.getUIContext();
+    // 在当前UI上下文中执行DisplaySync的start接口
+    uiContext?.runScopedTask(() => {
+      this.backDisplaySync?.start();
+    })
+  }
+
+  build() {
+    // ...
+  }
+}
+
 ```
 
 ### stop

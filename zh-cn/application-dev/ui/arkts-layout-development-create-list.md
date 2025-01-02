@@ -5,7 +5,7 @@
 
 列表是一种复杂的容器，当列表项达到一定数量，内容超过屏幕大小时，可以自动提供滚动功能。它适合用于呈现同类数据类型或数据类型集，例如图片和文本。在列表中显示数据集合是许多应用程序中的常见要求（如通讯录、音乐列表、购物清单等）。
 
-使用列表可以轻松高效地显示结构化、可滚动的信息。通过在[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)组件中按垂直或者水平方向线性排列子组件[ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)或[ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md)，为列表中的行或列提供单个视图，或使用[循环渲染](../quick-start/arkts-rendering-control-foreach.md)迭代一组行或列，或混合任意数量的单个视图和ForEach结构，构建一个列表。List组件支持使用条件渲染、循环渲染、懒加载等[渲染控制](../quick-start/arkts-rendering-control-ifelse.md)方式生成子组件。
+使用列表可以轻松高效地显示结构化、可滚动的信息。通过在[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)组件中按垂直或者水平方向线性排列子组件[ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)或[ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md)，为列表中的行或列提供单个视图，或使用[循环渲染](../quick-start/arkts-rendering-control-foreach.md)迭代一组行或列，或混合任意数量的单个视图和ForEach结构，构建一个列表。List组件支持使用条件渲染、循环渲染、懒加载等[渲染控制](../quick-start/arkts-rendering-control-overview.md)方式生成子组件。
 
 
 ## 布局与约束
@@ -41,6 +41,8 @@ List除了提供垂直和水平布局能力、超出屏幕时可以滚动的自�
 
 ![zh-cn_image_0000001511421344](figures/zh-cn_image_0000001511421344.png)
 
+
+Grid和WaterFlow也可以实现单列、多列布局，如果布局每列等宽，且不需要跨行跨列布局，相比Gird和WaterFlow，则更推荐使用List。
 
 ### 约束
 
@@ -217,7 +219,7 @@ ArkTS通过[ForEach](../quick-start/arkts-rendering-control-foreach.md)提供了
 
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS'
 
 class Contact {
   key: string = util.generateRandomUUID(true);
@@ -252,7 +254,7 @@ struct SimpleContacts {
           .width('100%')
           .justifyContent(FlexAlign.Start)
         }
-      }, (item: Contact) => item.key.toString())
+      }, (item: Contact) => JSON.stringify(item))
     }
     .width('100%')
   }
@@ -406,7 +408,7 @@ List组件的sticky属性配合ListItemGroup组件使用，用于设置ListItemG
 
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS'
 class Contact {
   key: string = util.generateRandomUUID(true);
   name: string;
@@ -465,10 +467,10 @@ struct ContactsList {
               ListItem() {
                 // ...
               }
-            }, (item: Contact) => item.key.toString())
+            }, (item: Contact) => JSON.stringify(item))
           }
         }
-      }, (itemGroup: ContactsGroup) => itemGroup.key.toString())
+      }, (itemGroup: ContactsGroup) => JSON.stringify(itemGroup))
     }.sticky(StickyStyle.Header)  // 设置吸顶，实现粘性标题效果
   }
 }
@@ -565,7 +567,7 @@ struct ContactsList {
 
 ![zh-cn_image_0000001563060773](figures/zh-cn_image_0000001563060773.gif)
 
-ListItem的[swipeAction属性](../reference/apis-arkui/arkui-ts/ts-container-listitem.md#属性)可用于实现列表项的左右滑动功能。swipeAction属性方法初始化时有必填参数SwipeActionOptions，其中，start参数表示设置列表项右滑时起始端滑出的组件，end参数表示设置列表项左滑时尾端滑出的组件。
+ListItem的[swipeAction属性](../reference/apis-arkui/arkui-ts/ts-container-listitem.md#swipeaction9)可用于实现列表项的左右滑动功能。swipeAction属性方法初始化时有必填参数SwipeActionOptions，其中，start参数表示设置列表项右滑时起始端滑出的组件，end参数表示设置列表项左滑时尾端滑出的组件。
 
 在消息列表中，end参数表示设置ListItem左滑时尾端划出自定义组件，即删除按钮。在初始化end方法时，将滑动列表项的索引传入删除按钮组件，当用户点击删除按钮时，可以根据索引值来删除列表项对应的数据，从而实现侧滑删除功能。
 
@@ -642,7 +644,14 @@ ListItem() {
 
 3. 监听手指抬起事件，若此时移动达到最大值，则触发数据加载并显示刷新视图，加载完成后将此视图隐藏。
 
-下拉刷新与上拉加载的具体实现可参考[相关实例](#相关实例)中新闻数据加载。若开发者希望快速实现此功能，也可使用三方组件[PullToRefresh](https://gitee.com/openharmony-sig/PullToRefresh)。
+> **说明：** 
+>
+> 页面的下拉刷新操作推荐使用[Refresh](../reference/apis-arkui/arkui-ts/ts-container-refresh.md)组件实现。
+
+<!--RP1--><!--RP1End-->
+
+<!--Del-->
+下拉刷新与上拉加载的具体实现可参考[相关实例](#相关实例)中新闻数据加载。若开发者希望快速实现此功能，也可使用三方组件[PullToRefresh](https://gitee.com/openharmony-sig/PullToRefresh)。<!--DelEnd-->
 
 
 ## 编辑列表
@@ -666,7 +675,7 @@ ListItem() {
 
    ```ts
    //ToDo.ets
-   import util from '@ohos.util';
+   import { util } from '@kit.ArkTS'
 
    export class ToDo {
      key: string = util.generateRandomUUID(true);
@@ -748,7 +757,7 @@ ListItem() {
              Blank()
              Text('+') //提供新增列表项入口，即给新增按钮添加点击事件
                .onClick(() => {
-                 TextPickerDialog.show({
+                 this.getUIContext().showTextPickerDialog({
                    range: this.availableThings,
                    onAccept: (value: TextPickerResult) => {
                      let arr = Array.isArray(value.index) ? value.index : [value.index];
@@ -824,7 +833,7 @@ ListItem() {
 
     ```ts
    // 结构参考
-   import util from '@ohos.util';
+   import { util } from '@kit.ArkTS'
    export class ToDo {
      key: string = util.generateRandomUUID(true);
      name: string;
@@ -856,7 +865,7 @@ ListItem() {
 
     ```ts
     // 结构参考
-    import util from '@ohos.util';
+    import { util } from '@kit.ArkTS'
     export class ToDo {
       key: string = util.generateRandomUUID(true);
       name: string;
@@ -908,6 +917,180 @@ List() {
 >
 >2. 列表使用数据懒加载时，除了显示区域的列表项和前后缓存的列表项，其他列表项会被销毁。
 
+
+## 折叠与展开
+
+列表项的折叠与展开用途广泛，常用于信息清单的展示、填写等应用场景。
+
+  **图19** 列表项的折叠与展开 
+
+![zh-cn_image_0000001949866104](figures/zh-cn_image_0000001949866104.gif)
+
+列表项折叠与展开效果实现主要流程如下：
+
+1. 定义列表项数据结构。
+
+    ```ts
+    interface ItemInfo {
+      index: number,
+      name: string,
+      label: ResourceStr,
+      type?: string,
+    }
+
+    interface ItemGroupInfo extends ItemInfo {
+      children: ItemInfo[]
+    }
+    ```
+
+2. 构造列表结构。
+
+    ```ts
+    @State routes: ItemGroupInfo[] = [
+      {
+        index: 0,
+        name: 'basicInfo',
+        label: '个人基本资料',
+        children: [
+          {
+            index: 0,
+            name: '昵称',
+            label: 'xxxx',
+            type: 'Text'
+          },
+          {
+            index: 1,
+            name: '头像',
+            label: $r('sys.media.ohos_user_auth_icon_face'),
+            type: 'Image'
+          },
+          {
+            index: 2,
+            name: '年龄',
+            label: 'xxxx',
+            type: 'Text'
+          },
+          {
+            index: 3,
+            name: '生日',
+            label: 'xxxxxxxxx',
+            type: 'Text'
+          },
+          {
+            index: 4,
+            name: '性别',
+            label: 'xxxxxxxx',
+            type: 'Text'
+          },
+        ]
+      },
+      {
+        index: 1,
+        name: 'equipInfo',
+        label: '设备信息',
+        children: []
+      },
+      {
+        index: 2,
+        name: 'appInfo',
+        label: '应用使用信息',
+        children: []
+      },
+      {
+        index: 3,
+        name: 'uploadInfo',
+        label: '您主动上传的数据',
+        children: []
+      },
+      {
+        index: 4,
+        name: 'tradeInfo',
+        label: '交易与资产信息',
+        children: []
+      },
+      {
+        index: 5,
+        name: 'otherInfo',
+        label: '其他资料',
+        children: []
+      },
+    ];
+    @State expandedItems: boolean[] = Array(this.routes.length).fill(false);
+    @State selection: string | null = null;
+    build() {
+      Column() {
+        // ...
+
+        List({ space: 10 }) {
+          ForEach(this.routes, (itemGroup: ItemGroupInfo) => {
+            ListItemGroup({
+              header: this.ListItemGroupHeader(itemGroup),
+              style: ListItemGroupStyle.CARD,
+            }) {
+              if (this.expandedItems[itemGroup.index] && itemGroup.children) {
+                ForEach(itemGroup.children, (item: ItemInfo) => {
+                  ListItem({ style: ListItemStyle.CARD }) {
+                    Row() {
+                      Text(item.name)
+                      Blank()
+                      if (item.type === 'Image') {
+                        Image(item.label)
+                          .height(20)
+                          .width(20)
+                      } else {
+                        Text(item.label)
+                      }
+                      Image($r('sys.media.ohos_ic_public_arrow_right'))
+                        .fillColor($r('sys.color.ohos_id_color_fourth'))
+                        .height(30)
+                        .width(30)
+                    }
+                    .width("100%")
+                  }
+                  .width("100%")
+                  .animation({ curve: curves.interpolatingSpring(0, 1, 528, 39) })
+                })
+              }
+            }.clip(true)
+          })
+        }
+        .width("100%")
+      }
+      .width('100%')
+      .height('100%')
+      .justifyContent(FlexAlign.Start)
+      .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
+    }
+    ```
+
+3. 通过改变ListItem的状态，来控制每个列表项是否展开，并通过animation和animateTo来实现展开与折叠过程中的动效效果。
+
+    ```ts
+    @Builder
+    ListItemGroupHeader(itemGroup: ItemGroupInfo) {
+      Row() {
+        Text(itemGroup.label)
+        Blank()
+        Image($r('sys.media.ohos_ic_public_arrow_down'))
+          .fillColor($r('sys.color.ohos_id_color_fourth'))
+          .height(30)
+          .width(30)
+          .rotate({ angle: !!itemGroup.children.length ? (this.expandedItems[itemGroup.index] ? 180 : 0) : 180 })
+          .animation({ curve: curves.interpolatingSpring(0, 1, 228, 22) })
+      }
+      .width("100%")
+      .padding(10)
+      .animation({ curve: curves.interpolatingSpring(0, 1, 528, 39) })
+      .onClick(() => {
+        if (itemGroup.children.length) {
+          this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 528, 39) }, () => {
+            this.expandedItems[itemGroup.index] = !this.expandedItems[itemGroup.index]
+          })
+        }
+      })
+    }
+    ```
+
 ## 相关实例
 
 如需详细了解ArkUI中列表的创建与使用，请参考以下示例：
@@ -925,3 +1108,5 @@ List() {
 - [List组件的使用之设置项（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/List_HDC)
 
 - [PullToRefresh](https://gitee.com/openharmony-sig/PullToRefresh)
+
+<!--RP2--><!--RP2End-->

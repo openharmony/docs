@@ -3,7 +3,7 @@
 
 ## 概述
 
-LLDB（Low Lever Debugger）是新一代高性能调试器。详细说明参考[LLDB官方文档](https://lldb.llvm.org/)。
+LLDB（Low Level Debugger）是新一代高性能调试器。详细说明参考[LLDB官方文档](https://lldb.llvm.org/)。
 
 当前OpenHarmony中的LLDB工具是在[llvm15.0.4](https://github.com/llvm/llvm-project/releases/tag/llvmorg-15.0.4)基础上适配演进出来的工具，是HUAWEI DevEco Studio工具中默认的调试器，支持调试C和C++应用。
 

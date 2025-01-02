@@ -353,8 +353,8 @@ console.log(t.createController()!.value);
 **应用代码**
 
 ```typescript
-import myRouter from '@ohos.router';
-let params: Object = myRouter.getParams();
+import { router } from '@kit.ArkUI';
+let params: Object = router.getParams();
 let funNum: number = params['funNum'];
 let target: string = params['target'];
 ```
@@ -362,8 +362,8 @@ let target: string = params['target'];
 **建议改法**
 
 ```typescript
-import myRouter from '@ohos.router';
-let params = myRouter.getParams() as Record<string, string | number>;
+import { router } from '@kit.ArkUI';
+let params = router.getParams() as Record<string, string | number>;
 let funNum: number = params.funNum as number;
 let target: string = params.target as string;
 ```
@@ -438,7 +438,7 @@ const area = {
 **建议改法**
 
 ```typescript
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 const area: image.PositionArea = {
   pixels: new ArrayBuffer(8),
@@ -660,14 +660,12 @@ class/interface中声明的方法应该被所有class的实例共享。ArkTS不�
 **应用代码**
 
 ```typescript
-import hilog from '@ohos.hilog'
-
 export default {
   onCreate() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onCreate');
+    // ...
   },
   onDestroy() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onDestroy');
+    // ...
   }
 }
 ```
@@ -675,14 +673,12 @@ export default {
 **建议改法**
 
 ```typescript
-import hilog from '@ohos.hilog'
-
 class Test {
   onCreate() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onCreate');
+    // ...
   }
   onDestroy() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onDestroy');
+    // ...
   }
 }
 
@@ -694,43 +690,51 @@ export default new Test()
 **应用代码**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
-import bluetooth from '@ohos.bluetooth';
-let serverNumber = -1;
-function serverSocket(code: BusinessError, num: number) {
-  console.log('bluetooth error code: ' + code.code);
-  if (code.code == 0) {
-    console.log('bluetooth serverSocket Number: ' + num);
-    serverNumber = num;
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
   }
+
+  function foo(name: string, option: I): void;
 }
 
-let sppOption = { uuid: '', secure: false, type: 0 };
-bluetooth.sppListen('', sppOption, serverSocket);
+export default test;
+
+// app.ets
+import { test } from 'test';
+
+let option = { id: '', type: 0 };
+test.foo('', option);
 ```
 
 **建议改法**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
-import bluetooth from '@ohos.bluetooth';
-let serverNumber = -1;
-function serverSocket(code: BusinessError, num: number) {
-  console.log('bluetooth error code: ' + code.code);
-  if (code.code == 0) {
-    console.log('bluetooth serverSocket Number: ' + num);
-    serverNumber = num;
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
   }
+
+  function foo(name: string, option: I): void;
 }
 
-let sppOption: bluetooth.SppOption = { uuid: '', secure: false, type: 0 };
-bluetooth.sppListen('', sppOption, serverSocket);
+export default test;
+
+// app.ets
+import { test } from 'test';
+
+let option: test.I = { id: '', type: 0 };
+test.foo('', option);
 ```
 
 **原因**
 
-对象字面量缺少类型，根据`bluetooth.sppListen`分析可以得知，`sppOption`的类型来源于SDK，那么只需要将类型导入即可。
-注意到在`@ohos.bluetooth`中，`sppOption`是定义在namespace中的，所以在ets文件中，先导入namespace，再通过名称获取相应的类型。
+对象字面量缺少类型，根据`test.foo`分析可以得知，`option`的类型来源于声明文件，那么只需要将类型导入即可。
+注意到在`test.d.ets`中，`I`是定义在namespace中的，所以在ets文件中，先导入namespace，再通过名称获取相应的类型。
 
 ### object literal传参给Object类型
 
@@ -949,25 +953,25 @@ for (let arr of map) {
 **应用代码**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   // ...
 } catch (e: BusinessError) {
-  logger.error(e.code, e.message);
+  console.error(e.message, e.code);
 }
 ```
 
 **建议改法**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   // ...
 } catch (error) {
   let e: BusinessError = error as BusinessError;
-  logger.error(e.code, e.message);
+  console.error(e.message, e.code);
 }
 ```
 
@@ -985,7 +989,7 @@ let p: Person = {
 };
 
 for (let t in p) {
-  console.log(p[t]);
+  console.log(p[t]);  // log: "tom", "18" 
 }
 ```
 
@@ -998,7 +1002,7 @@ let p: Record<string, string> = {
 };
 
 for (let ele of Object.entries(p)) {
-  console.log(ele[1]);
+  console.log(ele[1]);  // log: "tom", "18" 
 }
 ```
 
@@ -1034,7 +1038,7 @@ type OptionsFlags = Record<keyof C, string>
 **应用代码**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function ThrowError(error: BusinessError) {
   throw error;
@@ -1044,7 +1048,7 @@ function ThrowError(error: BusinessError) {
 **建议改法**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function ThrowError(error: BusinessError) {
   throw error as Error;
@@ -1152,29 +1156,47 @@ class Test {
 **应用代码**
 
 ```typescript
-import notification from '@ohos.notificationManager';
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
+  }
 
-function buildNotifyLongRequest(): notification.NotificationRequest {
-  // ...
+  function foo(): I;
 }
 
-let notificationRequest: notification.NotificationRequest = {
-  ...buildNotifyLongRequest(),
-  deliveryTime: new Date().getTime()
+export default test
+
+// app.ets
+import test from 'test';
+
+let t: test.I = {
+  ...test.foo(),
+  type: 0
 }
 ```
 
 **建议改法**
 
 ```typescript
-import notification from '@ohos.notificationManager';
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
+  }
 
-function buildNotifyLongRequest():notification.NotificationRequest {
-    // ...
+  function foo(): I;
 }
 
-let notificationRequest: notification.NotificationRequest = buildNotifyLongRequest();
-notificationRequest.deliveryTime = new Date().getTime();
+export default test
+
+// app.ets
+import test from 'test';
+
+let t: test.I = test.foo();
+t.type = 0;
 ```
 
 **原因**
@@ -1734,7 +1756,7 @@ try {
 **建议改法**
 
 ```typescript
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   
@@ -2127,6 +2149,103 @@ class Foo {
 }
 ```
 
+## arkts-limited-esobj
+
+**应用代码**
+
+```typescript
+// lib.d.ts
+declare function foo(): any;
+
+// main.ets
+let e0: ESObject = foo();
+
+function f() {
+  let e1 = foo();
+  let e2: ESObject = 1;
+  let e3: ESObject = {};
+  let e4: ESObject = '';
+}
+```
+
+**建议改法**
+
+```typescript
+// lib.d.ts
+declare function foo(): any;
+
+// main.ets
+interface I {}
+
+function f() {
+  let e0: ESObject = foo();
+  let e1: ESObject = foo();
+  let e2: number = 1;
+  let e3: I = {};
+  let e4: string = '';
+}
+```
+
+## 拷贝
+
+### 浅拷贝
+
+**TypeScript**
+
+```typescript
+function shallowCopy(obj: object): object {
+  let newObj = {};
+  Object.assign(newObj, obj);
+  return newObj;
+}
+```
+
+**ArkTS**
+
+```typescript
+function shallowCopy(obj: object): object {
+  let newObj: Record<string, Object> = {};
+  for (let key of Object.keys(obj)) {
+    newObj[key] = obj[key];
+  }
+  return newObj;
+}
+```
+
+### 深拷贝
+
+**TypeScript**
+
+```typescript
+function deepCopy(obj: object): object {
+  let newObj = Array.isArray(obj) ? [] : {};
+  for (let key in obj) {
+    if (typeof obj[key] === 'object') {
+      newObj[key] = deepCopy(obj[key]);
+    } else {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
+}
+```
+
+**ArkTS**
+
+```typescript
+function deepCopy(obj: object): object {
+  let newObj: Record<string, Object> | Object[] = Array.isArray(obj) ? [] : {};
+  for (let key of Object.keys(obj)) {
+    if (typeof obj[key] === 'object') {
+      newObj[key] = deepCopy(obj[key]);
+    } else {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
+}
+```
+
 ## 状态管理使用典型场景
 
 ### Struct组件外使用状态变量
@@ -2162,7 +2281,7 @@ export default struct MyComponent {
 
   aboutToAppear() {
     if (this.controller)
-      this.controller.setItem(this);
+      this.controller.setItem(this); // 不建议把this作为参数传递到struct外部使用
   }
 }
 
@@ -2208,7 +2327,7 @@ export class MyComponentController {
 @Component
 export default struct MyComponent {
   public controller: MyComponentController | null = null;
-  @State value: CC = new CC('Hello World')
+  @State value: CC = new CC('Hello World');
 
   build() {
     Column() {
@@ -2232,7 +2351,7 @@ struct StyleExample {
     Column() {
       MyComponent({ controller: this.controller })
       Button('change value').onClick(() => {
-        this.controller.changeText('Text')
+        this.controller.changeText('Text');
       })
     }
   }
@@ -2241,7 +2360,7 @@ struct StyleExample {
 
 ### Struct支持联合类型的方案
 
-下面这段代码有arkts-no-any-unknown的报错，由于strcut不支持泛型，建议使用联合类型，实现自定义组件类似泛型的功能。
+下面这段代码有arkts-no-any-unknown的报错，由于struct不支持泛型，建议使用联合类型，实现自定义组件类似泛型的功能。
 
 **不推荐用法**
 
@@ -2273,8 +2392,8 @@ struct DatauionOldPage {
 
 @Component
 export struct ForEachCom {
-  arrayList: any[]
-  @BuilderParam closer: (data: any) => void = this.componentCloser
+  arrayList: any[]; // struct不支持泛型，有arkts-no-any-unknown报错
+  @BuilderParam closer: (data: any) => void = this.componentCloser; // struct不支持泛型，有arkts-no-any-unknown报错
 
   @Builder
   componentCloser() {
@@ -2282,7 +2401,7 @@ export struct ForEachCom {
 
   build() {
     Column() {
-      ForEach(this.arrayList, (item: any) => {
+      ForEach(this.arrayList, (item: any) => { // struct不支持泛型，有arkts-no-any-unknown报错
         Row() {
           this.closer(item)
         }.width('100%').height(200).backgroundColor('#eee')
@@ -2303,7 +2422,7 @@ class Model {
   aa: string = '11';
 }
 
-type UnionData = Data | Model
+type UnionData = Data | Model;
 
 @Entry
 @Component
@@ -2331,7 +2450,7 @@ struct DatauionPage {
 @Component
 export struct ForEachCom {
   arrayList: UnionData[] = [new Data(), new Data(), new Data()];
-  @BuilderParam closer: (data: UnionData) => void = this.componentCloser
+  @BuilderParam closer: (data: UnionData) => void = this.componentCloser;
 
   @Builder
   componentCloser() {

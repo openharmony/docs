@@ -9,30 +9,30 @@
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name      | Type  | Readable  | Writable  | Description     |
 | -------- | ------ | ---- | ---- | ------- |
-| stageMode | boolean | Yes   | Yes   | Whether the child class **Context** is used for the stage model.<br>**true**: used for the stage model.<br>**false**: used for the FA model.|
+| stageMode | boolean | Yes   | Yes   | Whether the child class **Context** is used for the stage model.<br>**true**: used for the stage model.<br>**false**: used for the FA model. |
 
 **Example**
 
 Take the stage model as an example. You can access the **stageMode** field through **UIAbilityContext**.
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
 
 class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        // EntryAbility onCreate, isStageMode: true
-        console.log(`EntryAbility onCreate, isStageMode: ${this.context.stageMode}`);
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // EntryAbility onCreate, isStageMode: true
+    console.log(`EntryAbility onCreate, isStageMode: ${this.context.stageMode}`);
+  }
 }
 ```

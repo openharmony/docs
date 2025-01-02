@@ -4,37 +4,34 @@
 属性动画是可动画属性的参数值发生变化时，引起UI上产生的连续视觉效果。当参数值发生连续变化，且设置到可以引起UI发生变化的属性接口上时，就可以实现属性动画。
 
 
-ArkUI提供[@AnimatableExtend](../quick-start/arkts-animatable-extend.md)装饰器，用于自定义可动画属性接口。由于参数的数据类型必须具备一定程度的连续性，自定义可动画属性接口的参数类型仅支持number类型和实现[AnimtableArithmetic\<T>](../quick-start/arkts-animatable-extend.md)接口的自定义类型。通过自定义可动画属性接口和可动画数据类型，在使用animateTo或animation执行动画时，通过逐帧回调函数修改不可动画属性接口的值，能够让不可动画属性接口实现动画效果。
+ArkUI提供[@AnimatableExtend装饰器](../quick-start/arkts-animatable-extend.md)，用于自定义可动画属性接口。由于参数的数据类型必须具备一定程度的连续性，自定义可动画属性接口的参数类型仅支持number类型和实现[AnimatableArithmetic\<T>接口](../quick-start/arkts-animatable-extend.md#animatablearithmetict接口说明)的自定义类型。通过自定义可动画属性接口和可动画数据类型，在使用animateTo或animation执行动画时，通过逐帧回调函数修改不可动画属性接口的值，能够让不可动画属性接口实现动画效果。也可通过逐帧回调函数每帧修改可动画属性的值，实现逐帧布局的效果。
 
 
-## 使用number数据类型和\@AnimatableExtend装饰器改变字体大小
+## 使用number数据类型和\@AnimatableExtend装饰器改变Text组件宽度实现逐帧布局的效果
 
 
 ```ts
 // 第一步：使用@AnimatableExtend装饰器，自定义可动画属性接口
 @AnimatableExtend(Text)
-function animatableFontSize(size: number) {
-  .fontSize(size) // 调用系统属性接口
+function animatableWidth(width: number) {
+  .width(width)// 调用系统属性接口，逐帧回调函数每帧修改可动画属性的值，实现逐帧布局的效果。
 }
 
 @Entry
 @Component
-struct AnimatablePropertyExample  {
-  @State fontSize: number = 20;
+struct AnimatablePropertyExample {
+  @State textWidth: number = 80;
 
   build() {
-    Row() {
+    Column() {
       Text("AnimatableProperty")
-        .backgroundColor("#0C000000")
-        .animatableFontSize(this.fontSize)// 第二步：将自定义可动画属性接口设置到组件上
-        .animation({ duration: 1000, curve: "ease" })// 第三步:为自定义可动画属性接口绑定动画
-        .width(300)
-        .height(140)
-        .textAlign(TextAlign.Center)
+        .animatableWidth(this.textWidth)// 第二步：将自定义可动画属性接口设置到组件上
+        .animation({ duration: 2000, curve: Curve.Ease })// 第三步:为自定义可动画属性接口绑定动画
+      Button("Play")
         .onClick(() => {
-          this.fontSize = this.fontSize == 20 ? 30 : 20; // 第四步：改变自定义可动画属性的参数，产生动画
+          this.textWidth = this.textWidth == 80 ? 160 : 80;// 第四步：改变自定义可动画属性的参数，产生动画
         })
-    }.width("100%").height('100%').justifyContent(FlexAlign.Center)
+    }.width("100%")
     .padding(10)
   }
 }
@@ -51,7 +48,7 @@ struct AnimatablePropertyExample  {
 ```ts
 declare type Point = number[];
 
-// 定义可动画属性接口的参数类型，实现AnimtableArithmetic<T>接口中加法、减法、乘法和判断相等函数
+// 定义可动画属性接口的参数类型，实现AnimatableArithmetic<T>接口中加法、减法、乘法和判断相等函数
 class PointClass extends Array<number> {
   constructor(value: Point) {
     super(value[0], value[1])
@@ -82,8 +79,8 @@ class PointClass extends Array<number> {
   }
 }
 
-// 定义可动画属性接口的参数类型，实现AnimtableArithmetic<T>接口中加法、减法、乘法和判断相等函数
-// 模板T支持嵌套实现AnimtableArithmetic<T>的类型
+// 定义可动画属性接口的参数类型，实现AnimatableArithmetic<T>接口中加法、减法、乘法和判断相等函数
+// 模板T支持嵌套实现AnimatableArithmetic<T>的类型
 class PointVector extends Array<PointClass> implements AnimatableArithmetic<Array<Point>> {
   constructor(initialValue: Array<Point>) {
     super();

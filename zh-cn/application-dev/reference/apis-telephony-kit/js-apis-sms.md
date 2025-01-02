@@ -1,6 +1,6 @@
 # @ohos.telephony.sms (短信服务)
 
-短信服务提供了管理短信的一些基础能力，包括创建、发送短信，获取、设置发送短信的默认SIM卡槽ID，获取、设置短信服务中心（SMSC）地址，以及检查当前设备是否具备短信发送和接收能力等。
+短信服务提供了管理短信的一些基础能力，包括创建、发送短信，获取发送短信的默认SIM卡槽ID，以及检查当前设备是否具备短信发送和接收能力等。
 
 >**说明：**
 >
@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import sms from '@ohos.telephony.sms';
+import { sms } from '@kit.TelephonyKit';
 ```
 
 ## sms.createMessage
@@ -34,7 +34,7 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncC
 
 | 错误码ID |                  错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -43,8 +43,8 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncC
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const specification: string = '3gpp';
 // 以数组的形式显示协议数据单元（PDU），类型为number。
@@ -82,7 +82,7 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise\<Short
 
 | 错误码ID |                  错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -91,8 +91,8 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise\<Short
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const specification: string = '3gpp';
 // 以数组的形式显示协议数据单元（PDU），类型为number。
@@ -114,7 +114,7 @@ sendMessage\(options: SendMessageOptions\): void
 >
 > 从 API version 6开始支持，从API version 10开始废弃。建议使用[sendShortMessage](#smssendshortmessage10)替代。
 
-**需要权限**：ohos.permission.SEND_MESSAGES
+**需要权限**：ohos.permission.SEND_MESSAGES（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -131,7 +131,7 @@ sendMessage\(options: SendMessageOptions\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -140,9 +140,8 @@ sendMessage\(options: SendMessageOptions\): void
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { AsyncCallback } from '@ohos.base';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
@@ -168,7 +167,7 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 
 发送短信。使用callback异步回调。
 
-**需要权限**：ohos.permission.SEND_MESSAGES
+**需要权限**：ohos.permission.SEND_MESSAGES（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -186,7 +185,7 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -195,9 +194,8 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { AsyncCallback } from '@ohos.base';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -225,7 +223,7 @@ sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
 
 发送短信。使用Promise异步回调。
 
-**需要权限**：ohos.permission.SEND_MESSAGES
+**需要权限**：ohos.permission.SEND_MESSAGES（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -248,7 +246,7 @@ sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -257,9 +255,8 @@ sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { AsyncCallback } from '@ohos.base';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -303,8 +300,8 @@ getDefaultSmsSlotId\(callback: AsyncCallback&lt;number&gt;\): void
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sms.getDefaultSmsSlotId((err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -329,8 +326,8 @@ getDefaultSmsSlotId\(\): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sms.getDefaultSmsSlotId().then((data: number) => {
     console.log(`getDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
@@ -354,7 +351,7 @@ hasSmsCapability\(\): boolean
 | boolean | - true：设备具备短信发送和接收能力。<br/>- false：设备不具备短信发送和接收能力。 |
 
 ```ts
-import sms from '@ohos.telephony.sms';
+import { sms } from '@kit.TelephonyKit';
 
 let result = sms.hasSmsCapability(); 
 console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
@@ -372,7 +369,7 @@ getDefaultSmsSimId\(callback: AsyncCallback&lt;number&gt;\): void
 
 | 参数名   | 类型                        | 必填 | 说明                                     |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是   | 获取默认短信SIM的SIM ID的回调函数。<br/>与SIM卡绑定，从1开始递增。 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 获取默认短信SIM的SIM ID的回调函数。<br/>与SIM卡绑定，从1开始递增。<br/>无卡时返回值为-1。 |
 
 **错误码：**
 
@@ -380,7 +377,7 @@ getDefaultSmsSimId\(callback: AsyncCallback&lt;number&gt;\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -391,8 +388,8 @@ getDefaultSmsSimId\(callback: AsyncCallback&lt;number&gt;\): void
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sms.getDefaultSmsSimId((err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -412,7 +409,7 @@ getDefaultSmsSimId\(\): Promise&lt;number&gt;
 
 | 类型            | 说明                                                         |
 | --------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | 以Promise形式返回发送短信的默认SIM卡ID：<br/>与SIM卡绑定，从1开始递增。 |
+| Promise&lt;number&gt; | 以Promise形式返回发送短信的默认SIM卡ID：<br/>与SIM卡绑定，从1开始递增。<br/>无卡时返回值为-1。 |
 
 **错误码：**
 
@@ -430,8 +427,8 @@ getDefaultSmsSimId\(\): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = sms.getDefaultSmsSimId();
 promise.then((data: number) => {
@@ -491,8 +488,8 @@ promise.then((data: number) => {
 | content          | string \| Array&lt;number&gt;                                | 是   | 如果内容是字符串，则这是一条文本短信。如果内容是字节数组，则这是一条数据短信。 |
 | serviceCenter    | string                                                       | 否   | 短信中心地址。默认使用SIM卡中的短信中心地址。                |
 | destinationPort  | number                                                       | 否   | 如果发送数据消息，destinationPort 是必需的。否则是可选的。   |
-| sendCallback     | AsyncCallback&lt;[ISendShortMessageCallback](#isendshortmessagecallback)&gt; | 否   | 短信发送结果回调，返回短信发送的结果，参考[ISendShortMessageCallback](#isendshortmessagecallback)。 |
-| deliveryCallback | AsyncCallback&lt;[IDeliveryShortMessageCallback](#ideliveryshortmessagecallback)&gt; | 否   | 短信送达结果回调，返回短信递送报告，参考[IDeliveryShortMessageCallback](#ideliveryshortmessagecallback)。 |
+| sendCallback     | AsyncCallback&lt;[ISendShortMessageCallback](#isendshortmessagecallback)&gt; | 否   | 短信发送结果回调，返回短信发送的结果，参考[ISendShortMessageCallback](#isendshortmessagecallback)。发送数据短信时，此项必填。|
+| deliveryCallback | AsyncCallback&lt;[IDeliveryShortMessageCallback](#ideliveryshortmessagecallback)&gt; | 否   | 短信送达结果回调，返回短信递送报告，参考[IDeliveryShortMessageCallback](#ideliveryshortmessagecallback)。发送数据短信时，此项必填。|
 
 
 

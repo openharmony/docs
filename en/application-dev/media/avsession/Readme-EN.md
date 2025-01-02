@@ -4,8 +4,14 @@
 - Local AVSession
   - [Local AVSession Overview](local-avsession-overview.md)
   - [AVSession Provider](using-avsession-developer.md)
+  - [AVSession Provider (C/C++)](using-ohavsession-developer.md)
   - [Accessing AVSession](avsession-access-scene.md)
-  - [AVSession Controller](using-avsession-controller.md)
+  <!--Del-->
+  - [AVSession Controller (for System Applications Only)](using-avsession-controller.md)
+  <!--DelEnd-->
 - Distributed AVSession
-  - [Distributed AVSession Overview](distributed-avsession-overview.md)
-  - [Using Distributed AVSession](using-distributed-avsession.md)
+  <!--Del-->
+  - [Distributed AVSession Overview (for System Applications Only)](distributed-avsession-overview.md)
+  - [Using Distributed AVSession (for System Applications Only)](using-distributed-avsession.md)
+  <!--DelEnd-->
+  - [Using the Call Device Switching Component](using-switch-call-devices.md)

@@ -63,9 +63,9 @@
 >
 > 开发者需要根据dstAbilityMode来选择action、metadata的配置。
 >
-> - 如果被拉起的页面时UIAbility，则需配置到“ abilities ”中，
+> - 如果被拉起的页面是UIAbility，则需配置到“ abilities ”中，
 >
-> - 如果是如果是UIExtensionAbility，则需配置到“ extensionAbilities ” 中。
+> - 如果是UIExtensionAbility，则需配置到“ extensionAbilities ” 中。
 >
 >   **在配置extensionAbilities时，其中type类型需配置成"sys/commonUI"。**
 
@@ -116,7 +116,7 @@
 
 ### 配置权限
 
-业务接入方需申请权限[ohos.permission.ACCESS_SECURITY_PRIVACY_CENTER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionaccess_security_privacy_center)，来确保应用可以接入框架菜单。
+业务接入方需申请权限[ohos.permission.ACCESS_SECURITY_PRIVACY_CENTER](../AccessToken/permissions-for-system-apps.md#ohospermissionaccess_security_privacy_center)，来确保应用可以接入框架菜单。
 
 申请方式请参考[访问控制开发指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/determine-application-mode.md)。
 

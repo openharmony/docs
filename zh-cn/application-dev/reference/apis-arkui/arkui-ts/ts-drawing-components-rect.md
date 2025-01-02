@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -14,20 +14,50 @@
 
 ## 接口
 
-Rect(value?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |
-  {width?: string | number,height?: string | number,radiusWidth?: string | number,radiusHeight?: string | number})
+Rect(options?: RectOptions | RoundedRectOptions)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| width | string&nbsp;\|&nbsp;number | 否 | 0 | 宽度。<br/>**说明：**  <br/>异常值按照默认值处理。 |
-| height | string&nbsp;\|&nbsp;number | 否 | 0 | 高度。<br/>**说明：**  <br/>异常值按照默认值处理。 |
-| radius | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 否 | 0 | 圆角半径，支持分别设置四个角的圆角度数。<br/>该属性和radiusWidth/radiusHeight属性效果类似，在组合使用时优先于radiusWidth/radiusHeight生效<br/>**说明：**  <br/>异常值按照默认值处理。 |
-| radiusWidth | string&nbsp;\|&nbsp;number | 否 | 0 | 圆角宽度。<br/>**说明：**  <br/>异常值按照默认值处理。 |
-| radiusHeight | string&nbsp;\|&nbsp;number | 否 | 0 | 圆角高度。<br/>**说明：**  <br/>异常值按照默认值处理。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options | [RectOptions](ts-drawing-components-rect.md#rectoptions14对象说明) \| [RoundedRectOptions](ts-drawing-components-rect.md#roundedrectoptions14对象说明)  | 否 | Rect绘制属性。 |
+
+## RectOptions<sup>14+</sup>对象说明
+用于描述Rect绘制属性。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| width | string \| number | 否 | 宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | string \| number | 否 | 高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| radius | string \| number \| Array&lt;string \| number&gt; | 否 | 圆角半径，支持分别设置四个角的圆角度数。<br/>该属性和radiusWidth/radiusHeight属性效果类似，在组合使用时优先于radiusWidth/radiusHeight生效。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+
+## RoundedRectOptions<sup>14+</sup>对象说明
+用于描述Rect绘制属性。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| width | string \| number | 否 | 宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | string \| number | 否 | 高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| radiusWidth | string \| number | 否 | 圆角宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |圆角宽度。<br/>默认值：0<br/>异常值按照默认值处理。
+| radiusHeight | string \| number | 否 | 圆角高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |圆角高度。<br/>默认值：0<br/>异常值按照默认值处理。
 
 ## 属性
 
@@ -39,7 +69,9 @@ radiusWidth(value: number | string)
 
 设置圆角的宽度，仅设置宽时宽高一致。 异常值按照默认值处理。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 7开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -47,7 +79,7 @@ radiusWidth(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                       |
 | ------ | -------------------------- | ---- | -------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 圆角的宽度。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 圆角的宽度。<br/>默认值：0<br/>默认单位：vp |
 
 ### radiusHeight
 
@@ -55,7 +87,9 @@ radiusHeight(value: number | string)
 
 设置圆角的高度，仅设置高时宽高一致。  异常值按照默认值处理。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 7开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -63,7 +97,7 @@ radiusHeight(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                       |
 | ------ | -------------------------- | ---- | -------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 圆角的高度。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 圆角的高度。<br/>默认值：0<br/>默认单位：vp |
 
 ### radius
 
@@ -73,21 +107,25 @@ radius(value: number | string | Array&lt;string&nbsp;|&nbsp;number&gt;)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                         | 必填 | 说明                         |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 是   | 圆角半径大小。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 是   | 圆角半径大小。<br/>默认值：0<br/>默认单位：vp |
 
 ### fill
 
 fill(value: ResourceColor)
 
-设置填充区域颜色。异常值按照默认值处理。
+设置填充区域的颜色，异常值按照默认值处理。与通用属性foregroundColor同时设置时，后设置的属性生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -105,6 +143,8 @@ fillOpacity(value: number | string | Resource)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -120,6 +160,8 @@ stroke(value: ResourceColor)
 设置边框颜色，不设置时，默认没有边框。异常值不会绘制边框。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -137,13 +179,15 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型             | 必填 | 说明                      |
 | ------ | ---------------- | ---- | ------------------------- |
-| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[] |
+| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[]<br/>默认单位：vp |
 
 ### strokeDashOffset
 
@@ -153,13 +197,15 @@ strokeDashOffset(value: number | string)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                       | 必填 | 说明                                 |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
 
 ### strokeLineCap
 
@@ -168,6 +214,8 @@ strokeLineCap(value: LineCapStyle)
 设置边框端点绘制样式。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -184,6 +232,8 @@ strokeLineJoin(value: LineJoinStyle)
 设置边框拐角绘制样式。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -203,6 +253,8 @@ strokeMiterLimit(value: number | string)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -218,6 +270,8 @@ strokeOpacity(value: number | string | Resource)
 设置边框透明度。该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理 。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -235,13 +289,15 @@ strokeWidth(value: Length)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1 |
+| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1<br/>默认单位：vp |
 
 ### antiAlias
 
@@ -250,6 +306,8 @@ antiAlias(value: boolean)
 设置是否开启抗锯齿效果。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -260,7 +318,9 @@ antiAlias(value: boolean)
 | value  | boolean | 是   | 是否开启抗锯齿效果。<br/>默认值：true |
 
 ## 示例
-### 示例1
+### 示例1（组件属性绘制）
+
+使用fill、fillOpacity、stroke、radius属性分别绘制矩形的填充颜色、透明度、边框颜色、圆角。
 
 ```ts
 // xxx.ets
@@ -307,7 +367,9 @@ struct RectExample {
 
 ![zh-cn_image_0000001174264386](figures/zh-cn_image_0000001174264386.png)
 
-### 示例2
+### 示例2（绘制渐变色矩形）
+
+使用通用属性linearGradient、clipShape绘制渐变色的矩形。
 
 ```ts
 // xxx.ets
@@ -323,16 +385,16 @@ struct RectExample {
           direction: GradientDirection.Right,
           colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]
         })
-        .clip(new Rect({ width: 100, height: 100, radius: 40 }))
+        .clipShape(new Rect({ width: 100, height: 100, radius: 40 }))
       Rect()
         .width(100)
         .height(100)
-        // 设置矩形填充，如果需要显示背景的渐变色，请设置区域透明度.fillOpacity(0.0)
+          // 设置矩形填充，如果需要显示背景的渐变色，请设置区域透明度.fillOpacity(0.0)
         .fill(Color.Pink)
-        // 设置倒角为40
+          // 设置倒角为40
         .radius(40)
         .stroke(Color.Black)
-        // 设置渐变色，仅100*100的矩形区域生效，渐变色的边界不包含倒角
+          // 设置渐变色，仅100*100的矩形区域生效，渐变色的边界不包含倒角
         .linearGradient({
           direction: GradientDirection.Right,
           colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]

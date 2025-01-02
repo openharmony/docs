@@ -55,7 +55,8 @@ Radio({ value: 'Radio2', group: 'radioGroup' })
 
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct RadioExample {

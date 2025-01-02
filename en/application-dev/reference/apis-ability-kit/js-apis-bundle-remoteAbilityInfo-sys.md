@@ -16,9 +16,8 @@ The **RemoteAbilityInfo** module provides information about a remote ability.
 
 **System API**: This is a system API.
 
-| Name       | Type                                        | Readable| Writable| Description                   |
+| Name       | Type                                        | Read-Only| Optional| Description                   |
 | ----------- | -------------------------------------------- | ---- | ---- | ----------------------- |
 | elementName | [ElementName](js-apis-bundle-ElementName.md) | Yes  | No  | Element name information of the ability.      |
 | label       | string                                       | Yes  | No  | Ability name.  |
 | icon        | string                                       | Yes  | No  | Icon of the ability.|
-

@@ -117,3 +117,43 @@ struct CustomDialogUser {
   }
 }
 ```
+
+## cl.arkui.3  Image组件按照syncLoad来同步/异步加载PixelMap格式图片
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+应用侧的某些实现场景需要Image组件支持异步加载pixelMap。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+syncLoad为Image组件的属性，用于设置是否同步加载图片。
+
+API version 12之前，无论开发者设置syncLoad为false或者true。Image组件加载PixelMap始终为同步加载，在主线程加载。
+
+API version 12之后，Image组件按照syncLoad来同步/异步加载PixelMap格式图片，若没有设置则按照syncLoad属性的默认值false进行异步加载。其中异步加载将在 **异步线程** 加载PixelMap格式图片，加载时会有“一闪”的现象。
+
+**API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.17 版本开始。
+
+**示例：**
+
+无
+
+**变更的接口/组件**
+
+Image组件
+
+**适配指导**
+
+若应用侧需要Image组件同步加载pixelmap，则需要设置syncLoad为true。

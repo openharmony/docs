@@ -10,6 +10,8 @@
 
 GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名  | 参数类型                                                     | 必填 | 参数描述                                                     |
@@ -18,6 +20,8 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 | gesture | [TapGesture](ts-basic-gestures-tapgesture.md)<br/>\|&nbsp;[LongPressGesture](ts-basic-gestures-longpressgesture.md)<br/>\|&nbsp;[PanGesture](ts-basic-gestures-pangesture.md)<br/>\|&nbsp;[PinchGesture](ts-basic-gestures-pinchgesture.md)<br/>\|&nbsp;[RotationGesture](ts-basic-gestures-rotationgesture.md)<br/>\|&nbsp;[SwipeGesture](ts-basic-gestures-swipegesture.md)<br/>\|&nbsp;[GestureGroup](#组合手势) | 否   | 设置1个或者多个基础手势类型时，这些手势会被识别为组合手势。若此参数不填则组合手势识别功能不生效。<br/>**说明：**  <br/>当需要为一个组件同时添加单击和双击手势时，可在组合手势中添加两个TapGesture，需要双击手势在前，单击手势在后，否则不生效。 |
 
 ## GestureMode枚举说明
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称        | 描述                                       |
 | --------- | ---------------------------------------- |
@@ -30,10 +34,12 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 | 名称                                       | 功能描述                                 |
 | ---------------------------------------- | ------------------------------------ |
-| onCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 顺序组合手势（GestureMode.Sequence）取消后触发回调。 <br/>**说明：** <br/>在窗口失焦的时候会触发。|
+| onCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 顺序组合手势（GestureMode.Sequence）取消后触发回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 
 
 ## 示例
+
+该示例通过配置GestureGroup实现了长按和拖动的组合手势顺序识别。
 
 ```ts
 // xxx.ets

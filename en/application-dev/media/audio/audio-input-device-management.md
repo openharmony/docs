@@ -1,4 +1,4 @@
-# Audio Input Device Management
+# Managing Global Audio Input Devices
 
 If a device is connected to multiple audio input devices, you can use **AudioRoutingManager** to specify an audio input device to record audio. For details about the API reference, see [AudioRoutingManager](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9).
 
@@ -7,7 +7,7 @@ If a device is connected to multiple audio input devices, you can use **AudioRou
 Before using **AudioRoutingManager** to manage audio devices, import the audio module and create an **AudioManager** instance.
 
 ```ts
-import audio from '@ohos.multimedia.audio'; // Import the audio module.
+import { audio } from '@kit.AudioKit';  // Import the audio module.
 
 let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
 let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of AudioManager to create an AudioRoutingManager instance.
@@ -29,7 +29,7 @@ The table below lists the supported audio input devices.
 Use **getDevices()** to obtain information about all the input devices.
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 audioRoutingManager.getDevices(audio.DeviceFlag.INPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
@@ -41,7 +41,7 @@ audioRoutingManager.getDevices(audio.DeviceFlag.INPUT_DEVICES_FLAG).then((data: 
 Set a listener to listen for changes of the device connection state. When a device is connected or disconnected, a callback is triggered.
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 // Listen for connection state changes of audio devices.
 audioRoutingManager.on('deviceChange', audio.DeviceFlag.INPUT_DEVICES_FLAG, (deviceChanged: audio.DeviceChangeAction) => {
@@ -56,7 +56,7 @@ audioRoutingManager.off('deviceChange', (deviceChanged: audio.DeviceChangeAction
   console.info('Should be no callback.');
 });
 ```
-
+<!--Del-->
 ## Selecting an Audio Input Device (for System Applications only)
 
 Currently, only one input device can be selected, and the device ID is used as the unique identifier. For details about audio device descriptors, see [AudioDeviceDescriptors](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptors).
@@ -66,8 +66,8 @@ Currently, only one input device can be selected, and the device ID is used as t
 > The user can connect to a group of audio devices (for example, a pair of Bluetooth headsets), but the system treats them as one device (a group of devices that share the same device ID).
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
     deviceRole : audio.DeviceRole.INPUT_DEVICE,
@@ -93,3 +93,4 @@ async function getRoutingManager() {
 }
 
 ```
+<!--DelEnd-->

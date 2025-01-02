@@ -1,9 +1,6 @@
 # 编译
 
 
-OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.sh脚本编译方式请参考[使用build.sh脚本编译源码](quickstart-pkg-common-build.md#使用buildsh脚本编译源码)。
-
-
 想要详细了解OpenHarmony编译构建模块功能的开发者可参考[编译构建指南](../subsystems/subsys-build-all.md)。
 
 
@@ -19,6 +16,8 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
 
 
 ## 操作步骤
+
+方法一：hb编译(请先[安装编译工具](quickstart-pkg-install-tool.md))
 
 在Ubuntu环境下进入源码根目录，执行如下命令进行编译：
 
@@ -70,3 +69,7 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
 6. 编译结束后，出现“rk3568 build success”字样，则证明构建成功。
    > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
    > 编译结果文件及编译日志文件获取路径：out/rk3568。
+
+方法二：build.sh脚本编译
+
+build.sh脚本编译方式请参考[使用build.sh脚本编译源码](quickstart-pkg-common-build.md#使用buildsh脚本编译源码)。

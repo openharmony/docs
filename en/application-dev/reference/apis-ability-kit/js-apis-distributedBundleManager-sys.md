@@ -22,9 +22,9 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 | Permission                                      | APL    | Description              |
 | ------------------------------------------ | ------------ | ------------------ |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to obtain basic information and other sensitive information about a bundle.|
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to obtain basic information and other sensitive information about a bundle. |
 
-For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
+For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
 ## distributedBundle.getRemoteAbilityInfo
 
@@ -40,17 +40,21 @@ Obtains information about the remote ability that matches the given element name
 
 **Parameters**
 
-| Name     | Type                                                        | Mandatory| Description                                                        |
+| Name     | Type                                                        | Mandatory | Description                                                        |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md)          | Yes  | Target element name.                                           |
-| callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **RemoteAbilityInfo** object obtained. Otherwise, **err** is an error object and **data** is **undefined**.|
+| callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **RemoteAbilityInfo** object obtained. Otherwise, **err** is an error object and **data** is **undefined**. |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID|    Error Message                  |
+| ID |    Error Message                  |
 |----------|--------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -96,22 +100,26 @@ Obtains information about the remote ability that matches the given element name
 
 **Parameters**
 
-| Name      | Type                                        | Mandatory| Description                   |
+| Name      | Type                                        | Mandatory | Description                   |
 | ----------- | -------------------------------------------- | ---- | ----------------------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes  | Target element name.|
+| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes  | Target element name. |
 
 **Return value**
 
 | Type                                                        | Description                             |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)> | Promise used to return the result. If the operation is successful, the **RemoteAbilityInfo** object is returned. Otherwise, an error object is returned.|
+| Promise\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)> | Promise used to return the result. If the operation is successful, the **RemoteAbilityInfo** object is returned. Otherwise, an error object is returned. |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID|    Error Message                  |
+| ID |    Error Message                  |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -155,17 +163,21 @@ Obtains information about the remote abilities that match the given element name
 
 **Parameters**
 
-| Name      | Type                                                        | Mandatory| Description                                                        |
+| Name      | Type                                                        | Mandatory | Description                                                        |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>   | Yes  | **ElementName** array, whose maximum length is 10.                            |
-| callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of **RemoteAbilityInfo** objects obtained. Otherwise, **err** is an error object and **data** is **undefined**.|
+| callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of **RemoteAbilityInfo** objects obtained. Otherwise, **err** is an error object and **data** is **undefined**. |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID|    Error Message                  |
+| ID |    Error Message                  |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -218,22 +230,26 @@ Obtains information about the remote abilities that match the given element name
 
 **Parameters**
 
-| Name       | Type                                               | Mandatory| Description                   |
+| Name       | Type                                               | Mandatory | Description                   |
 | ------------ | --------------------------------------------------- | ---- | ----------------------- |
-| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)> | Yes  | **ElementName** array, whose maximum length is 10.|
+| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)> | Yes  | **ElementName** array, whose maximum length is 10. |
 
 **Return value**
 
 | Type                                                        | Description                             |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<Array<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Promise used to return the result. If the operation is successful, an array of **RemoteAbilityInfo** objects is returned. Otherwise, an error object is returned.|
+| Promise\<Array<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Promise used to return the result. If the operation is successful, an array of **RemoteAbilityInfo** objects is returned. Otherwise, an error object is returned. |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID|    Error Message                  |
+| ID |    Error Message                  |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -284,18 +300,22 @@ Obtains information about the remote ability that matches the given element name
 
 **Parameters**
 
-| Name      | Type                                                        | Mandatory| Description                                              |
+| Name      | Type                                                        | Mandatory | Description                                              |
 | ----------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md)                 | Yes  | Target element name.                           |
-| locale  | string |Yes| Target locale.|
-| callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **RemoteAbilityInfo** object obtained. Otherwise, **err** is an error object and **data** is **undefined**.|
+| locale  | string |Yes | Target locale. |
+| callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **RemoteAbilityInfo** object obtained. Otherwise, **err** is an error object and **data** is **undefined**. |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID|    Error Message                  |
+| ID |    Error Message                  |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -341,23 +361,27 @@ Obtains information about the remote ability that matches the given element name
 
 **Parameters**
 
-| Name      | Type                                        | Mandatory| Description                   |
+| Name      | Type                                        | Mandatory | Description                   |
 | ----------- | -------------------------------------------- | ---- | ----------------------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes  | Target element name.|
-| locale  | string |Yes| Target locale.|
+| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes  | Target element name. |
+| locale  | string |Yes | Target locale. |
 
 **Return value**
 
 | Type                                                        | Description                             |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)> | Promise used to return the result. If the operation is successful, the **RemoteAbilityInfo** object is returned. Otherwise, an error object is returned.|
+| Promise\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)> | Promise used to return the result. If the operation is successful, the **RemoteAbilityInfo** object is returned. Otherwise, an error object is returned. |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID|    Error Message                  |
+| ID |    Error Message                  |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -401,18 +425,22 @@ Obtains information about the remote abilities that match the given element name
 
 **Parameters**
 
-| Name       | Type                                                        | Mandatory| Description                                              |
+| Name       | Type                                                        | Mandatory | Description                                              |
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>          | Yes  | **ElementName** array, whose maximum length is 10.                  |
-| locale  | string |Yes| Target locale.|
-| callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of **RemoteAbilityInfo** objects obtained. Otherwise, **err** is an error object and **data** is **undefined**.|
+| locale  | string |Yes | Target locale. |
+| callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of **RemoteAbilityInfo** objects obtained. Otherwise, **err** is an error object and **data** is **undefined**. |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID       |    Error Message                  |
 |---------------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -465,23 +493,27 @@ Obtains information about the remote abilities that match the given element name
 
 **Parameters**
 
-| Name       | Type                                               | Mandatory| Description                   |
+| Name       | Type                                               | Mandatory | Description                   |
 | ------------ | --------------------------------------------------- | ---- | ----------------------- |
-| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)> | Yes  | **ElementName** array, whose maximum length is 10.|
-| locale  | string |Yes| Target locale.|
+| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)> | Yes  | **ElementName** array, whose maximum length is 10. |
+| locale  | string |Yes | Target locale. |
 
 **Return value**
 
 | Type                                                        | Description                             |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<Array<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Promise used to return the result. If the operation is successful, an array of **RemoteAbilityInfo** objects is returned. Otherwise, an error object is returned.|
+| Promise\<Array<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Promise used to return the result. If the operation is successful, an array of **RemoteAbilityInfo** objects is returned. Otherwise, an error object is returned. |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID|    Error Message                  |
+| ID |    Error Message                  |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |

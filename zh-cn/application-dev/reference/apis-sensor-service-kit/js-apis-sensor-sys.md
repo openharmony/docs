@@ -12,7 +12,7 @@ sensor模块提供了获取传感器数据的能力，包括获取传感器属�
 ## 导入模块
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 ```
 
 ## sensor.on
@@ -23,31 +23,33 @@ on(type: SensorId.COLOR, callback: Callback&lt;ColorResponse&gt;, options?: Opti
 
 订阅颜色传感器数据。
 
-**系统能力：** SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
-**系统API：** 此接口为系统接口
+**系统API**：此接口为系统接口
 
-**参数：**
+**参数**：
 
 | 参数名   | 类型                                              | 必填 | 说明                                                        |
 | -------- | ------------------------------------------------- | ---- | ----------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).COLOR                      | 是   | 传感器类型，该值固定为SensorId.COLOR。                      |
 | callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ColorResponse。         |
-| options  | [Options](#options)                               | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+| options  | [Options](js-apis-sensor.md#options)              | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
-**错误码：** 
+**错误码**：
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission check failed. A non-system application uses the system API. |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
-**示例：** 
+**示例**：
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
   sensor.on(sensor.SensorId.COLOR, (data: sensor.ColorResponse) => {
@@ -58,7 +60,7 @@ try{
         sensor.off(sensor.SensorId.COLOR);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -69,31 +71,33 @@ on(type: SensorId.SAR, callback: Callback&lt;SarResponse&gt;, options?: Options)
 
 订阅吸收比率传感器数据。
 
-**系统能力：** SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
-**系统API：** 此接口为系统接口
+**系统API**：此接口为系统接口
 
-**参数：**
+**参数**：
 
 | 参数名   | 类型                                          | 必填 | 说明                                                        |
 | -------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).SAR                    | 是   | 传感器类型，该值固定为SensorId.SAR。                        |
 | callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 是   | 回调函数，异步上报的传感器数据固定为SarResponse。           |
-| options  | [Options](#options)                           | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+| options  | [Options](js-apis-sensor.md#options)          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
-**错误码：** 
+**错误码**：
 
-以下错误码的详细介绍请参见[ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission check failed. A non-system application uses the system API. |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
-**示例：** 
+**示例**：
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.SAR, (data: sensor.SarResponse) => {
@@ -103,7 +107,7 @@ try {
     sensor.off(sensor.SensorId.SAR);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -116,22 +120,31 @@ off(type: SensorId.COLOR, callback?: Callback&lt;ColorResponse&gt;): void
 
 取消订阅颜色传感器数据。
 
-**系统能力：** SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
-**系统API：** 此接口为系统接口
+**系统API**：此接口为系统接口
 
-**参数：** 
+**参数**：
 
 | 参数名   | 类型                                              | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).COLOR                      | 是   | 传感器类型，该值固定为SensorId.COLOR。                       |
 | callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
-**示例：** 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission check failed. A non-system application uses the system API. |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+
+**示例**：
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -149,7 +162,7 @@ try {
   // 取消注册SensorId.COLOR的所有回调
   sensor.off(sensor.SensorId.COLOR);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -160,22 +173,31 @@ off(type: SensorId.SAR, callback?: Callback&lt;SarResponse&gt;): void
 
 取消订阅吸收比率传感器数据。
 
-**系统能力：** SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
-**系统API：** 此接口为系统接口
+**系统API**：此接口为系统接口
 
-**参数：**
+**参数**：
 
 | 参数名   | 类型                                          | 必填 | 说明                                                         |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).SAR                    | 是   | 传感器类型，该值固定为SensorId.SAR。                         |
 | callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
-**示例：**
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission check failed. A non-system application uses the system API. |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+
+**示例**：
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -193,7 +215,7 @@ try {
   // 取消注册SensorId.SAR的所有回调
   sensor.off(sensor.SensorId.SAR);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -202,44 +224,20 @@ try {
 
 表示当前支持订阅或取消订阅的传感器类型。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称                | 值   | 说明                                          |
 | ------------------- | ---- | --------------------------------------------- |
 | COLOR<sup>10+</sup> | 14   | 颜色传感器。<br>系统API：此接口为系统接口     |
 | SAR<sup>10+</sup>   | 15   | 吸收比率传感器。<br>系统API：此接口为系统接口 |
 
-## SensorAccuracy<sup>11+</sup>
-
-传感器数据的精度。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-| 名称                | 值   | 说明               |
-| ------------------- | ---- | ------------------ |
-| ACCURACY_UNRELIABLE | 0    | 传感器数据不可信。 |
-| ACCURACY_LOW        | 1    | 传感器低挡位精度。 |
-| ACCURACY_MEDIUM     | 2    | 传感器中挡位精度。 |
-| ACCURACY_HIGH       | 3    | 传感器高挡位精度。 |
-
-## Response
-
-传感器数据的时间戳。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-| 名称                   | 类型                                              | 可读 | 可写 | 说明                         |
-| ---------------------- | ------------------------------------------------- | ---- | ---- | ---------------------------- |
-| timestamp              | number                                            | 是   | 是   | 传感器数据上报的时间戳。     |
-| accuracy<sup>11+</sup> | [SensorAccuracy](#sensoraccuracy11)<sup>11+</sup> | 是   | 否   | 传感器数据上报的精度挡位值。 |
-
 ## ColorResponse<sup>10+</sup>
 
-颜色传感器数据，继承于[Response](#response)。
+颜色传感器数据，继承于[Response](js-apis-sensor.md#response)。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-**系统API：** 此接口为系统接口
+**系统API**：此接口为系统接口
 
 
 | 名称             | 类型   | 可读 | 可写 | 说明                          |
@@ -249,23 +247,13 @@ try {
 
 ## SarResponse<sup>10+ </sup>
 
-吸收比率传感器数据，继承于[Response](#response)。
+吸收比率传感器数据，继承于[Response](js-apis-sensor.md#response)。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-**系统API：** 此接口为系统接口
+**系统API**：此接口为系统接口
 
 
 | 名称            | 类型   | 可读 | 可写 | 说明                            |
 | --------------- | ------ | ---- | ---- | ------------------------------- |
 | absorptionRatio | number | 是   | 是   | 表示具体的吸收率，单位 : W/kg。 |
-
-## Options
-
-设置传感器上报频率。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-| 名称     | 类型                                                     | 可读 | 可写 | 说明                                                         |
-| -------- | -------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| interval | number/[SensorAccuracy](#sensoraccuracy11)<sup>11+</sup> | 是   | 是   | 表示传感器的上报频率，默认值为200000000ns。该属性有最小值和最大值的限制，由硬件支持的上报频率决定。 |

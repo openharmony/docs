@@ -3,8 +3,8 @@
 
 | API in the FA Model| Corresponding .d.ts File in the Stage Model| Corresponding API in the Stage Model|
 | -------- | -------- | -------- |
-| onShow?(): void; | \@ohos.window.d.ts | [on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void;](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9)<br>Listens for the switching to the [foreground](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9).|
-| onHide?(): void; | \@ohos.window.d.ts | [on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void;](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9)<br>Listens for the switching to the [background](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9).|
+| onShow?(): void; | \@ohos.window.d.ts | [on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void;](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9)<br>Listens for SHOWN, indicating a switching to the foreground.|
+| onHide?(): void; | \@ohos.window.d.ts | [on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void;](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9)<br>Listens for HIDDEN, indicating a switching to the background.|
 | onDestroy?(): void; | \@ohos.app.ability.UIAbility.d.ts | [onDestroy(): void;](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityondestroy) |
 | onCreate?(): void; | \@ohos.app.ability.UIAbility.d.ts | [onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void;](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) |
 | onWindowDisplayModeChanged?(isShownInMultiWindow: boolean, newConfig: resourceManager.Configuration): void; | There is no corresponding API in the stage model.| No corresponding API is provided.|

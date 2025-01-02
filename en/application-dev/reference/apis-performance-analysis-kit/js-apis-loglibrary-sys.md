@@ -10,7 +10,7 @@ The **logLibrary** module provides APIs for obtaining various system maintenance
 ## Modules to Import
 
 ```ts
-import logLibrary from '@ohos.logLibrary';
+import { logLibrary } from '@kit.PerformanceAnalysisKit';
 ```
 
 ## LogEntry
@@ -60,7 +60,7 @@ For details about the error codes, see [Log Library Error Codes](errorcode-logli
 **Example**
 
 ```ts
-import logLibrary from '@ohos.logLibrary';
+import { logLibrary } from '@kit.PerformanceAnalysisKit';
 
 try {
     let logObj = logLibrary.list('HILOG');
@@ -108,8 +108,8 @@ For details about the error codes, see [Log Library Error Codes](errorcode-logli
 **Example**
 
 ```ts
-import logLibrary from '@ohos.logLibrary';
-import { BusinessError } from '@ohos.base';
+import { logLibrary } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     logLibrary.copy('HILOG', 'hiapplogcat-1.zip', ''
@@ -160,7 +160,7 @@ For details about the error codes, see [Log Library Error Codes](errorcode-logli
 **Example**
 
 ```ts
-import logLibrary from '@ohos.logLibrary';
+import { logLibrary } from '@kit.PerformanceAnalysisKit';
 
 try {
     logLibrary.copy('HILOG', 'hiapplogcat-1.zip', 'dir1', (error, val) => {
@@ -213,8 +213,8 @@ For details about the error codes, see [Log Library Error Codes](errorcode-logli
 **Example**
 
 ```ts
-import logLibrary from '@ohos.logLibrary';
-import { BusinessError } from '@ohos.base';
+import { logLibrary } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     logLibrary.move('FAULTLOG', 'fault_log_test.zip', ''
@@ -265,7 +265,7 @@ For details about the error codes, see [Log Library Error Codes](errorcode-logli
 **Example**
 
 ```ts
-import logLibrary from '@ohos.logLibrary';
+import { logLibrary } from '@kit.PerformanceAnalysisKit';
 
 try {
     logLibrary.move('FAULTLOG', 'fault_log_test.zip', 'dir1/dir2', (error, val) => {
@@ -311,7 +311,7 @@ For details about the error codes, see [Log Library Error Codes](errorcode-logli
 **Example**
 
 ```ts
-import logLibrary from '@ohos.logLibrary';
+import { logLibrary } from '@kit.PerformanceAnalysisKit';
 
 try {
   logLibrary.remove('FAULTLOG', 'fault_log_test.zip');

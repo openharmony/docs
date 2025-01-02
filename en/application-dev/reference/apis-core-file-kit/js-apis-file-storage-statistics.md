@@ -9,7 +9,7 @@ The **storageStatistics** module provides APIs for obtaining storage space infor
 ## Modules to Import
 
 ```ts
-import storageStatistics from "@ohos.file.storageStatistics";
+import  { storageStatistics } from '@kit.CoreFileKit';
 ```
 
 ## storageStatistics.getCurrentBundleStats<sup>9+</sup>
@@ -32,14 +32,14 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   storageStatistics.getCurrentBundleStats().then((BundleStats: storageStatistics.BundleStats) => {
     console.info("getCurrentBundleStats successfully:" + JSON.stringify(BundleStats));
   }).catch((err: BusinessError) => {
@@ -59,7 +59,7 @@ Obtains the storage space of this application, in bytes. This API uses an asynch
 
   | Name   | Type                                                      | Mandatory | Description                                |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | AsyncCallback&lt;[BundleStats](#bundlestats9)&gt;          | Yes  | Callback invoked to return the application space obtained.       |
+  | callback | AsyncCallback&lt;[BundleStats](#bundlestats9)&gt;          | Yes  | Callback used to return the application space obtained.       |
 
 **Error codes**
 
@@ -67,14 +67,14 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   storageStatistics.getCurrentBundleStats((error: BusinessError, bundleStats: storageStatistics.BundleStats) => {
     if (error) {
       console.error("getCurrentBundleStats failed with error:" + JSON.stringify(error));
@@ -89,8 +89,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-| Name     | Type  | Readable| Writable| Description          |
-| --------- | ------ | --- | ---- | -------------- |
-| appSize   | number | Yes| No| Size of the application (excluding empty folders), in bytes.   |
-| cacheSize | number | Yes| No| Size of the cache data, in bytes.  |
-| dataSize  | number | Yes| No| Total size of the application, in bytes.|
+| Name     | Type  | Mandatory| Description          |
+| --------- | ------ | --- | -------------- |
+| appSize   | number | Yes| Size of the application (excluding empty folders), in bytes.   |
+| cacheSize | number | Yes| Size of the cache data, in bytes.  |
+| dataSize  | number | Yes| Total size of the application, in bytes.|

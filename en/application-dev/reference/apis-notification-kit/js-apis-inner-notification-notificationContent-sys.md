@@ -12,9 +12,9 @@ The **NotificationContent** module provides APIs for defining the notification c
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name          | Type                                                                       | Read-only| Mandatory| Description              |
+| Name          | Type                                                                       | Read Only| Optional| Description              |
 | -----------   | --------------------------------------------------------------------------- | ---- | --- | ------------------ |
-| liveView<sup>11+</sup>       | [NotificationLiveViewContent](#notificationliveviewcontent11)              | No | No | Common live view.<br>**System API**: This is a system API.|
+| liveView<sup>11+</sup>       | [NotificationLiveViewContent](#notificationliveviewcontent11)              | No | Yes | Common live view.<br>**System API**: This is a system API.|
 
 ## NotificationLiveViewContent<sup>11+</sup>
 
@@ -24,16 +24,29 @@ Describes the common live view.
 
 **System API**: This is a system API.
 
-| Name          | Type                                                               | Read-only| Mandatory| Description                                                 |
+| Name          | Type                                                               | Read Only| Optional| Description                                                 |
 | -------------- | ------------------------------------------------------------------ | --- | --- | ------------------------------------------------------|
-| status         | [LiveViewStatus](#liveviewstatus11)                                | No | Yes | Notification status.                 |
-| version        | number                                                             | No | No | Version number of the notification. If the version number stored in the database is 0xffffffff, the value of this parameter is not verified for the update and ended states. Otherwise, it needs to be verified and it must be greater than the version number stored in the database to pass the verification. If this parameter is left blank, the default value **0xffffffff** is used.|
-| extraInfo      | [key: string] object                                               | No | No | Extra information of the live view.          |
-| pictureInfo    | [key: string] Array\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | No | No | Extra image information of the live view.|
+| status         | [LiveViewStatus](#liveviewstatus11)                                | No | No | Notification status.                 |
+| version        | number                                                             | No | Yes | If the version number stored in the database is not **0xffffffff**, the version number needs to be verified when the live view is updated or ended to ensure that the current version number is greater than the version number stored in the database. The default value is **0xffffffff**.|
+| extraInfo      | Record<string, Object\>                                               | No | Yes | Extra information of the live view.          |
+| pictureInfo    | Record<string, Array<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)\>\> | No | Yes | Extra image information of the live view.|
+| isLocalUpdateOnly<sup>12+</sup> | boolean                                           | No | Yes | Whether the live view is updated only locally.    |
+
+## NotificationCapsule<sup>11+</sup>
+
+Describe the notification capsule.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API.
+
+| Name                 |  Type                        | Read Only| Optional| Description                             |
+| --------------------- | ---------------------------- | ---- | ---- | -------------------------------- |
+| content<sup>12+</sup> | string                       |  No |  Yes | Extended text of the capsule.                  |
 
 ## LiveViewStatus<sup>11+</sup>
 
-Describes the status of the common live view.
+Enumerates the statuses of the common live view.
 
 **System capability**: SystemCapability.Security.AccessToken
 

@@ -14,31 +14,30 @@ vibrator模块提供控制马达振动的能力，主要包含灯的列表查询
 ## 导入模块
 
 
-```
-import vibrator from '@system.vibrator';
+```ts
+import { Vibrator } from '@kit.SensorServiceKit';
 ```
 
-## vibrator.vibrate
+## Vibrator.vibrate
 
  vibrate(options?: VibrateOptions): void
 
 触发设备振动。
 
-**需要权限：** ohos.permission.VIBRATE
+**需要权限**：ohos.permission.VIBRATE
 
-**系统能力：** SystemCapability.Sensors.MiscDevice.Lite
+**系统能力**：SystemCapability.Sensors.MiscDevice.Lite
 
-**参数：** 
+**参数**：
 
 | 参数名  | 类型                              | 必填 | 说明       |
 | ------- | --------------------------------- | ---- | ---------- |
 | options | [VibrateOptions](#vibrateoptions) | 否   | 振动模式。 |
 
-**示例：** 
+**示例**：
 
 ```ts
-import vibrator from '@system.vibrator';
-import { VibrateOptions } from '@system.vibrator';
+import { Vibrator, VibrateOptions } from '@kit.SensorServiceKit';
 
 let vibrateOptions: VibrateOptions = {
   mode: 'short',
@@ -52,16 +51,16 @@ let vibrateOptions: VibrateOptions = {
     console.info('completed in vibrating');
   }
 };
-vibrator.vibrate(vibrateOptions);
+Vibrator.vibrate(vibrateOptions);
 ```
 
 ## VibrateOptions
 
 振动模式。
 
-**需要权限：** ohos.permission.VIBRATE
+**需要权限**：ohos.permission.VIBRATE
 
-**系统能力：** SystemCapability.Sensors.MiscDevice.Lite
+**系统能力**：SystemCapability.Sensors.MiscDevice.Lite
 
 | 名称     | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |

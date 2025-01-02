@@ -7,7 +7,9 @@ CPU intensive tasks are tasks that occupy a significant amount of system computi
 To improve CPU utilization and application response speeds, use multithread concurrency in processing CPU intensive tasks.
 
 
-If a task can be completed in a background thread within 3 minutes, you are advised to use TaskPool. Otherwise, use Worker. The following uses histogram processing and a time-consuming model prediction task in the background as examples.
+If a task can be completed in a background thread within 3 minutes, you are advised to use TaskPool. Otherwise, use Worker.
+
+The following uses histogram processing and a time-consuming model prediction task in the background as examples.
 
 
 ## Using TaskPool to Process Histograms
@@ -15,13 +17,12 @@ If a task can be completed in a background thread within 3 minutes, you are advi
 1. Implement the logic of image processing.
 
 2. Segment the data, and initiate associated task scheduling through task groups.
-
    Create a [task group](../reference/apis-arkts/js-apis-taskpool.md#taskgroup10), call [addTask()](../reference/apis-arkts/js-apis-taskpool.md#addtask10) to add tasks, and call [execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute10) to execute the tasks in the task group at a [a high priority](../reference/apis-arkts/js-apis-taskpool.md#priority). After all the tasks in the task group are complete, the histogram processing result is returned simultaneously.
 
 3. Summarize and process the result arrays.
 
 ```ts
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function imageProcessing(dataSlice: ArrayBuffer): ArrayBuffer {
@@ -81,19 +82,17 @@ The following uses the training of a region-specific house price prediction mode
 2. In the main thread, call [constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9) of **ThreadWorker** to create a **Worker** object. The calling thread is the host thread.
 
     ```ts
-    import worker from '@ohos.worker';
+    // Index.ets
+    import { worker } from '@kit.ArkTS';
 
     const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
     ```
 
 3. In the host thread, call [onmessage()](../reference/apis-arkts/js-apis-worker.md#onmessage9) to receive messages from the worker thread, and call [postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9) to send messages to the worker thread.
-
    For example, the host thread sends training and prediction messages to the worker thread, and receives messages sent back by the worker thread.
 
     ```ts
-    import worker  from '@ohos.worker';
-
-    const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
+    // Index.ets
     let done = false;
 
     // Receive the result from the worker thread.
@@ -116,18 +115,17 @@ The following uses the training of a region-specific house price prediction mode
 4. Bind the **Worker** object in the **MyWorker.ts** file. The calling thread is the worker thread.
 
    ```ts
-   import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
+   // MyWorker.ts
+   import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
    let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
    ```
 
 5. In the worker thread, call [onmessage()](../reference/apis-arkts/js-apis-worker.md#onmessage9-1) to receive messages sent by the host thread, and call [postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9-2) to send messages to the host thread.
-
     For example, the prediction model and its training process are defined in the worker thread, and messages are exchanged with the main thread.
 
     ```ts
-    import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
-    let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+    // MyWorker.ts
     // Define the training model and result.
     let result: Array<number>;
     // Define the prediction function.
@@ -161,25 +159,27 @@ The following uses the training of a region-specific house price prediction mode
     }
     ```
 
-6. After the task is completed in the worker thread, destroy the worker thread. The worker thread can be destroyed by itself or the host thread. Then, call [onexit()](../reference/apis-arkts/js-apis-worker.md#onexit9) in the host thread to define the processing logic after the worker thread is destroyed.
+6. After the task is completed in the worker thread, destroy the worker thread. The worker thread can be destroyed by itself or the host thread.
+
+    Then, call [onexit()](../reference/apis-arkts/js-apis-worker.md#onexit9) in the host thread to define the processing logic after the worker thread is destroyed.
 
     ```ts
-// After the worker thread is destroyed, execute the onexit() callback.
+    // After the worker thread is destroyed, execute the onexit() callback.
     workerInstance.onexit = (): void => {
      console.info("main thread terminate");
     }
     ```
-    
+
     Method 1: In the host thread, call [terminate()](../reference/apis-arkts/js-apis-worker.md#terminate9) to destroy the worker thread and stop the worker thread from receiving messages.
 
     ```ts
-// Destroy the worker thread.
+    // Destroy the worker thread.
     workerInstance.terminate();
     ```
-    
+
     Method 2: In the worker thread, call [close()](../reference/apis-arkts/js-apis-worker.md#close9) to destroy the worker thread and stop the worker thread from receiving messages.
 
     ```ts
-// Destroy the worker thread.
+    // Destroy the worker thread.
     workerPort.close();
     ```

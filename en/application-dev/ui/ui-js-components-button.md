@@ -1,11 +1,11 @@
-# \<button> Development
+# Button Development
 
-The **\<button>** component can be used to set a capsule, circle, text, arc, or download button. For details, see [button](../reference/arkui-js/js-components-basic-button.md).
+The **Button** component can be used to set a capsule, circle, text, arc, or download button. For details, see [button](../reference/apis-arkui/arkui-js/js-components-basic-button.md).
 
 
-## Creating a \<button> Component
+## Creating a Button Component
 
-Create a **\<button>** component in the .hml file under **pages/index**.
+Create a **Button** component in the .hml file under **pages/index**.
 
 ```html
 <!-- xxx.hml -->
@@ -31,7 +31,7 @@ Create a **\<button>** component in the .hml file under **pages/index**.
 
 ## Setting the Button Type
 
-Set the **type** attribute of the **\<button>** component to **circle**, **text**, or any other supported value.
+Set the **type** attribute of the **Button** component to **circle**, **text**, or any other supported value.
 
 
 ```html
@@ -75,7 +75,7 @@ Set the **type** attribute of the **\<button>** component to **circle**, **text*
 
 > **NOTE**
 > 
->If the icon used by the **\<button>** component is from the cloud, you must declare the **ohos.permission.INTERNET** permission in the **config.json** file under the **resources** folder.
+>If the icon used by the **Button** component is from the cloud, you must declare the **ohos.permission.INTERNET** permission in the **config.json** file under the **resources** folder.
 
 
 Sample code for declaring the **ohos.permission.INTERNET** permission in the **config.json** file under the **resources** folder:
@@ -93,7 +93,7 @@ Sample code for declaring the **ohos.permission.INTERNET** permission in the **c
 
 ## Showing the Download Progress
 
-Add the **progress** method to the **\<button>** component to display the download progress in real time.
+Add the **progress** method to the **Button** component to display the download progress in real time.
 
 ```html
 <!-- xxx.hml -->

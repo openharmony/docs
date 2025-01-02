@@ -24,27 +24,33 @@ You can use **napi_wrap** to wrap a C++ object in an ArkTS object, and use **nap
    **Configure compile settings.**
 
    ```
-   // CMakeLists.txt
    # Minimum version of CMake.
-   cmake_minimum_required(VERSION 3.4.1)
-   project(object_wrap)
-   
+   cmake_minimum_required(VERSION 3.5.0)
+   project(napi_wrap_demo)
+
    set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
-   
+
+   if(DEFINED PACKAGE_FIND_FILE)
+       include(${PACKAGE_FIND_FILE})
+   endif()
+
    include_directories(${NATIVERENDER_ROOT_PATH}
                        ${NATIVERENDER_ROOT_PATH}/include)
-   
+
    add_definitions("-DLOG_DOMAIN=0x0000")
    add_definitions("-DLOG_TAG=\"testTag\"")
-   
-   add_library(object_wrap SHARED object_wrap.cpp)
-   target_link_libraries(object_wrap PUBLIC libace_napi.z.so libhilog_ndk.z.so)
+
+   add_library(entry SHARED napi_init.cpp)
+   target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
    ```
 
-   **Register the module.**
+   **Register modules.**
 
    ```cpp
-   // object_wrap.cpp
+   // napi_init.cpp
+   #include "napi/native_api.h"
+   #include "hilog/log.h"
+
    class MyObject {
     public:
      static napi_value Init(napi_env env, napi_value exports);
@@ -79,22 +85,22 @@ You can use **napi_wrap** to wrap a C++ object in an ArkTS object, and use **nap
                              [[maybe_unused]] void* finalize_hint)
    {
      OH_LOG_INFO(LOG_APP, "MyObject::Destructor called");
-     reinterpret_cast<MyObject*>(nativeObject)->~MyObject();
+     delete reinterpret_cast<MyObject*>(nativeObject);
    }
    
    napi_value MyObject::Init(napi_env env, napi_value exports)
    {
      napi_property_descriptor properties[] = {
-         {"value", 0, 0, GetValue, SetValue, 0, napi_default, 0},
+         { "value", 0, 0, GetValue, SetValue, 0, napi_default, 0 },
          { "plusOne", nullptr, PlusOne, nullptr, nullptr, nullptr, napi_default, nullptr }
      };
    
      napi_value cons;
-     assert(napi_define_class(env, "MyObject", NAPI_AUTO_LENGTH, New, nullptr, 2,
-                              properties, &cons) == napi_ok);
+     napi_define_class(env, "MyObject", NAPI_AUTO_LENGTH, New, nullptr, 2,
+                              properties, &cons);
    
-     assert(napi_create_reference(env, cons, 1, &g_ref) == napi_ok);
-     assert(napi_set_named_property(env, exports, "MyObject", cons) == napi_ok);
+     napi_create_reference(env, cons, 1, &g_ref);
+     napi_set_named_property(env, exports, "MyObject", cons);
      return exports;
    }
    
@@ -111,7 +117,7 @@ You can use **napi_wrap** to wrap a C++ object in an ArkTS object, and use **nap
        .nm_flags = 0,
        .nm_filename = nullptr,
        .nm_register_func = Init,
-       .nm_modname = "object_wrap",
+       .nm_modname = "entry",
        .nm_priv = nullptr,
        .reserved = { 0 },
    };
@@ -122,7 +128,7 @@ You can use **napi_wrap** to wrap a C++ object in an ArkTS object, and use **nap
    }
    ```
 
-2. Wrap a C++ object in an ArkJS object in a constructor.
+2. Wrap a C++ object in an ArkTS object in a constructor.
 
    ```cpp
    napi_value MyObject::New(napi_env env, napi_callback_info info)
@@ -130,43 +136,55 @@ You can use **napi_wrap** to wrap a C++ object in an ArkTS object, and use **nap
      OH_LOG_INFO(LOG_APP, "MyObject::New called");
    
      napi_value newTarget;
-     assert(napi_get_new_target(env, info, &newTarget) == napi_ok);
+     napi_get_new_target(env, info, &newTarget);
      if (newTarget != nullptr) {
        // Invoked as the constructor `new MyObject(...)`.
        size_t argc = 1;
        napi_value args[1];
        napi_value jsThis;
-       assert(napi_get_cb_info(env, info, &argc, args, &jsThis, nullptr) == napi_ok);
+       napi_get_cb_info(env, info, &argc, args, &jsThis, nullptr);
    
        double value = 0.0;
        napi_valuetype valuetype;
-       assert(napi_typeof(env, args[0], &valuetype) == napi_ok);
+       napi_typeof(env, args[0], &valuetype);
        if (valuetype != napi_undefined) {
-         assert(napi_get_value_double(env, args[0], &value) == napi_ok);
+         napi_get_value_double(env, args[0], &value);
        }
    
        MyObject* obj = new MyObject(value);
    
        obj->env_ = env;
        // Use napi_wrap to wrap the C++ object obj in the ArkTS object jsThis.
-       assert(napi_wrap(env,
-                        jsThis,
-                        reinterpret_cast<void*>(obj),
-                        MyObject::Destructor,
-                        nullptr,  // finalize_hint
-                        &obj->wrapper_) == napi_ok);
+       napi_status status = napi_wrap(env,
+                                      jsThis,
+                                      reinterpret_cast<void*>(obj),
+                                      MyObject::Destructor,
+                                      nullptr,  // finalize_hint
+                                      &obj->wrapper_);
+       // If napi_wrap fails, the allocated memory must be manually released to prevent memory leaks.
+       if (status != napi_ok) {
+         OH_LOG_INFO(LOG_APP, "Failed to bind native object to js object"
+                     ", return code: %{public}d", status);
+         delete obj;
+         return jsThis;
+       }
+       // Obtain the napi_ref behavior from result of napi_wrap() to create a strong reference to jsThis.
+       // If you do not want to manage the lifecycle of jsThis, pass nullptr in the last parameter of napi_wrap
+       // or call napi_reference_unref to convert napi_ref to a weak reference.
+       uint32_t refCount = 0;
+       napi_reference_unref(env, obj->wrapper, &refCount);
    
        return jsThis;
      } else {
        // Invoked as the plain function `MyObject(...)`.
        size_t argc = 1;
        napi_value args[1];
-       assert(napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) == napi_ok && argc == 1);
+       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
    
        napi_value cons;
-       assert(napi_get_reference_value(env, g_ref, &cons) == napi_ok);
+       napi_get_reference_value(env, g_ref, &cons);
        napi_value instance;
-       assert(napi_new_instance(env, cons, argc, args, &instance) == napi_ok);
+       napi_new_instance(env, cons, argc, args, &instance);
    
        return instance;
      }
@@ -181,13 +199,13 @@ You can use **napi_wrap** to wrap a C++ object in an ArkTS object, and use **nap
      OH_LOG_INFO(LOG_APP, "MyObject::GetValue called");
    
      napi_value jsThis;
-     assert(napi_get_cb_info(env, info, nullptr, nullptr, &jsThis, nullptr) == napi_ok);
+     napi_get_cb_info(env, info, nullptr, nullptr, &jsThis, nullptr);
    
      MyObject* obj;
      // Use napi_unwrap to retrieve obj (the C++ object) previously wrapped in jsThis (the ArkTS object), and perform subsequent operations.
-     assert(napi_unwrap(env, jsThis, reinterpret_cast<void**>(&obj)) == napi_ok);
+     napi_unwrap(env, jsThis, reinterpret_cast<void**>(&obj));
      napi_value num;
-     assert(napi_create_double(env, obj->value_, &num) == napi_ok);
+     napi_create_double(env, obj->value_, &num);
    
      return num;
    }
@@ -200,12 +218,12 @@ You can use **napi_wrap** to wrap a C++ object in an ArkTS object, and use **nap
      napi_value value;
      napi_value jsThis;
    
-     assert(napi_get_cb_info(env, info, &argc, &value, &jsThis, nullptr) == napi_ok);
+     napi_get_cb_info(env, info, &argc, &value, &jsThis, nullptr);
    
      MyObject* obj;
      // Use napi_unwrap to retrieve obj (the C++ object) previously wrapped in jsThis (the ArkTS object), and perform subsequent operations.
-     assert(napi_unwrap(env, jsThis, reinterpret_cast<void**>(&obj)) == napi_ok);
-     assert(napi_get_value_double(env, value, &obj->value_) == napi_ok);
+     napi_unwrap(env, jsThis, reinterpret_cast<void**>(&obj));
+     napi_get_value_double(env, value, &obj->value_);
    
      return nullptr;
    }
@@ -215,14 +233,14 @@ You can use **napi_wrap** to wrap a C++ object in an ArkTS object, and use **nap
      OH_LOG_INFO(LOG_APP, "MyObject::PlusOne called");
    
      napi_value jsThis;
-     assert(napi_get_cb_info(env, info, nullptr, nullptr, &jsThis, nullptr) == napi_ok);
+     napi_get_cb_info(env, info, nullptr, nullptr, &jsThis, nullptr);
    
      MyObject* obj;
      // Use napi_unwrap to retrieve obj (the C++ object) previously wrapped in jsThis (the ArkTS object), and perform subsequent operations.
-     assert(napi_unwrap(env, jsThis, reinterpret_cast<void**>(&obj)) == napi_ok);
+     napi_unwrap(env, jsThis, reinterpret_cast<void**>(&obj));
      obj->value_ += 1;
      napi_value num;
-     assert(napi_create_double(env, obj->value_, &num) == napi_ok);
+     napi_create_double(env, obj->value_, &num);
    
      return num;
    }
@@ -232,7 +250,7 @@ You can use **napi_wrap** to wrap a C++ object in an ArkTS object, and use **nap
 
    ```ts
    import hilog from '@ohos.hilog';
-   import { MyObject } from 'libobject_wrap.so'
+   import { MyObject } from 'libentry.so';
    
    let object : MyObject = new MyObject(0);
    object.value = 1023;

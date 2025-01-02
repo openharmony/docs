@@ -9,12 +9,14 @@ The **inputEvent** module provides the basic events reported by the device.
 ## Modules to Import
 
 ```js
-import InputEvent from '@ohos.multimodalInput.inputEvent';
+import { InputEvent } from '@kit.InputKit';
 ```
 
 ## InputEvent 
 
 Represents an input event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 

@@ -12,6 +12,8 @@ obscured(reasons: Array&lt;ObscuredReasons&gt;)
 
 Sets how the component content is obscured.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -19,7 +21,7 @@ Sets how the component content is obscured.
 
 | Name| Type                                    | Mandatory                                  | Description                                 |
 | -----| ------------------------------------------ | ------------------------------------ | ------------------------------------ |
-| reasons | Array<[ObscuredReasons](ts-appendix-enums.md#obscuredreasons10)> | Yes| How the component content is obscured.<br>Default value: **[]**<br>This API is supported in ArkTS widgets.<br>This API only works for the [\<Image>](ts-basic-components-image.md) and [\<Text>](ts-basic-components-text.md) components.<br>**NOTE**<br>To obscure an image when it is being loaded, you must set the width and height of the **\<Image>** component.<br>Obscuring is not available for **\<Text>** components that have child components.|
+| reasons | Array<[ObscuredReasons](ts-appendix-enums.md#obscuredreasons10)> | Yes| How the component content is obscured.<br>Default value: **[]**<br>This API is supported in ArkTS widgets.<br>This API only works for the [Image](ts-basic-components-image.md)<!--Del-->, [Formcompnent](ts-basic-components-formcomponent-sys.md)<sup>12+</sup>,<!--DelEnd--> and [Text](ts-basic-components-text.md) components.<br>**NOTE**<br>To obscure an image when it is being loaded, you must set the width and height of the **Image** component.<br>Obscuring is not available for **Text** components that have child components or have any [styled string](ts-universal-styled-string.md#styled-string) configured.|
 
 ## Example
 

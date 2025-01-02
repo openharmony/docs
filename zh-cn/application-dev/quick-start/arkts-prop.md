@@ -3,11 +3,13 @@
 
 \@Prop装饰的变量可以和父组件建立单向的同步关系。\@Prop装饰的变量是可变的，但是变化不会同步回其父组件。
 
+在阅读\@Prop文档前，建议开发者首先了解[\@State](./arkts-state.md)的基本用法。
 
 > **说明：**
 >
 > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
-
+>
+> 从API version 11开始，该装饰器支持在原子化服务中使用。
 
 ## 概述
 
@@ -32,19 +34,18 @@
 | ----------- | ---------------------------------------- |
 | 装饰器参数       | 无                                        |
 | 同步类型        | 单向同步：对父组件状态变量值的修改，将同步给子组件\@Prop装饰的变量，子组件\@Prop变量的修改不会同步到父组件的状态变量上。嵌套类型的场景请参考[观察变化](#观察变化)。 |
-| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，支持undefined和null。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Prop支持联合类型实例](#prop支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Prop a : string \| undefined = undefined`是推荐的，不推荐`@Prop a: string = undefined`。 |
-| 支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。| 必须指定类型。<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)。<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 |
+| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，支持undefined和null。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>必须指定类型。<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)。<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Prop支持联合类型实例](#prop支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Prop a : string \| undefined = undefined`是推荐的，不推荐`@Prop a: string = undefined`。 |
 | 嵌套传递层数        | 在组件复用场景，建议@Prop深度嵌套数据不要超过5层，嵌套太多会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题，此时更建议使用[\@ObjectLink](arkts-observed-and-objectlink.md)。 |
 | 被装饰变量的初始值   | 允许本地初始化。如果在API 11中和[\@Require](arkts-require.md)结合使用，则必须父组件构造传参。 |
 
 
 ## 变量的传递/访问规则说明
 
-| 传递/访问     | 说明                                       |
-| --------- | ---------------------------------------- |
-| 从父组件初始化   | 如果本地有初始化，则是可选的。没有的话，则必选，支持父组件中的常规变量（常规变量对@Prop赋值，只是数值的初始化，常规变量的变化不会触发UI刷新。只有状态变量才能触发UI刷新）、\@State、\@Link、\@Prop、\@Provide、\@Consume、\@ObjectLink、\@StorageLink、\@StorageProp、\@LocalStorageLink和\@LocalStorageProp去初始化子组件中的\@Prop变量。 |
-| 用于初始化子组件  | \@Prop支持去初始化子组件中的常规变量、\@State、\@Link、\@Prop、\@Provide。 |
-| 是否支持组件外访问 | \@Prop装饰的变量是私有的，只能在组件内访问。                |
+| 传递/访问          | 说明                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| 从父组件初始化     | 如果本地有初始化，则是可选的，初始化行为和[\@State](./arkts-state.md#变量的传递访问规则说明)保持一致。没有的话，则必选，支持父组件中的常规变量（常规变量对@Prop赋值，只是数值的初始化，常规变量的变化不会触发UI刷新。只有状态变量才能触发UI刷新）、[\@State](arkts-state.md)、[\@Link](arkts-link.md)、\@Prop、[\@Provide](arkts-provide-and-consume.md)、[\@Consume](arkts-provide-and-consume.md)、[\@ObjectLink](arkts-observed-and-objectlink.md)、[\@StorageLink](arkts-appstorage.md#storagelink)、[\@StorageProp](arkts-appstorage.md#storageprop)、[\@LocalStorageLink](arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp](arkts-localstorage.md#localstorageprop)去初始化子组件中的\@Prop变量。 |
+| 用于初始化子组件   | \@Prop支持去初始化子组件中的常规变量、\@State、\@Link、\@Prop、\@Provide。 |
+| 是否支持组件外访问 | \@Prop装饰的变量是私有的，只能在组件内访问。                 |
 
 
   **图1** 初始化规则图示  
@@ -75,8 +76,8 @@
 
 - 当装饰的类型是Object或者class复杂类型时，可以观察到第一层的属性的变化，属性即Object.keys(observedObject)返回的所有属性；
 
-```
-class ClassA {
+```ts
+class Info {
   public value: string;
   constructor(value: string) {
     this.value = value;
@@ -84,10 +85,10 @@ class ClassA {
 }
 class Model {
   public value: string;
-  public a: ClassA;
-  constructor(value: string, a: ClassA) {
+  public info: Info;
+  constructor(value: string, info: Info) {
     this.value = value;
-    this.a = a;
+    this.info = info;
   }
 }
 
@@ -95,14 +96,14 @@ class Model {
 // 可以观察到第一层的变化
 this.title.value = 'Hi'
 // 观察不到第二层的变化
-this.title.a.value = 'ArkUi' 
+this.title.info.value = 'ArkUI' 
 ```
 
 对于嵌套场景，如果class是被\@Observed装饰的，可以观察到class属性的变化，示例请参考[@Prop嵌套场景](#prop嵌套场景)。
 
 - 当装饰的类型是数组的时候，可以观察到数组本身的赋值和数组项的添加、删除和更新。
 
-```
+```ts
 // @State装饰的对象为数组时
 @Prop title: string[]
 // 数组自身的赋值可以观察到
@@ -310,7 +311,7 @@ struct Index {
           (item: number) => {
             Child({ value: item })
           },
-          (item: string) => item.toString()
+          (item: number) => item.toString()
         )
         Text('replace entire arr')
           .fontSize(50)
@@ -473,7 +474,7 @@ struct Library {
         .borderRadius(20)
         .colorBlend('#e6000000')
       Divider()
-      Text('Books on loaan to a reader')
+      Text('Books on loan to a reader')
         .width(312)
         .height(40)
         .backgroundColor('#0d000000')
@@ -629,7 +630,7 @@ struct MainProgram {
 ```ts
 // 以下是嵌套类对象的数据结构。
 @Observed
-class ClassA {
+class Son {
   public title: string;
 
   constructor(title: string) {
@@ -638,13 +639,13 @@ class ClassA {
 }
 
 @Observed
-class ClassB {
+class Father {
   public name: string;
-  public a: ClassA;
+  public son: Son;
 
-  constructor(name: string, a: ClassA) {
+  constructor(name: string, son: Son) {
     this.name = name;
-    this.a = a;
+    this.son = son;
   }
 }
 ```
@@ -654,29 +655,29 @@ class ClassB {
 ```ts
 @Entry
 @Component
-struct Parent {
-  @State votes: ClassB = new ClassB('Hello', new ClassA('world'))
+struct Person {
+  @State person: Father = new Father('Hello', new Son('world'))
 
   build() {
     Column() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
-        Button('change ClassB name')
+        Button('change Father name')
           .width(312)
           .height(40)
           .margin(12)
           .fontColor('#FFFFFF，90%')
           .onClick(() => {
-            this.votes.name = "aaaaa"
+            this.person.name = "Hi";
           })
-        Button('change ClassA title')
+        Button('change Son title')
           .width(312)
           .height(40)
           .margin(12)
           .fontColor('#FFFFFF，90%')
           .onClick(() => {
-            this.votes.a.title = "wwwww"
+            this.person.son.title = "ArkUI";
           })
-        Text(this.votes.name)
+        Text(this.person.name)
           .fontSize(16)
           .margin(12)
           .width(312)
@@ -686,9 +687,9 @@ struct Parent {
           .textAlign(TextAlign.Center)
           .fontColor('#e6000000')
           .onClick(() => {
-            this.votes.name = 'Bye'
+            this.person.name = 'Bye';
           })
-        Text(this.votes.a.title)
+        Text(this.person.son.title)
           .fontSize(16)
           .margin(12)
           .width(312)
@@ -697,9 +698,9 @@ struct Parent {
           .borderRadius(20)
           .textAlign(TextAlign.Center)
           .onClick(() => {
-            this.votes.a.title = "openHarmony"
+            this.person.son.title = "openHarmony";
           })
-        Child1({ vote1: this.votes.a })
+        Child({ child: this.person.son })
       }
 
     }
@@ -709,12 +710,12 @@ struct Parent {
 
 
 @Component
-struct Child1 {
-  @Prop vote1: ClassA = new ClassA('');
+struct Child {
+  @Prop child: Son = new Son('');
 
   build() {
     Column() {
-      Text(this.vote1.title)
+      Text(this.child.title)
         .fontSize(16)
         .margin(12)
         .width(312)
@@ -723,7 +724,7 @@ struct Child1 {
         .borderRadius(20)
         .textAlign(TextAlign.Center)
         .onClick(() => {
-          this.vote1.title = 'Bye Bye'
+          this.child.title = 'Bye Bye'
         })
     }
   }
@@ -774,7 +775,7 @@ struct Child {
 
 @Entry
 @Component
-struct MapSample2 {
+struct MapSample {
   @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
 
   build() {
@@ -828,7 +829,7 @@ struct Child {
 
 @Entry
 @Component
-struct SetSample11 {
+struct SetSample {
   @State message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {
@@ -1019,4 +1020,127 @@ struct Parent {
 }
 ```
 
+### 使用a.b(this.object)形式调用，不会触发UI刷新
+
+在build方法内，当@Prop装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法Score.changeScore1或者this.changeScore2修改自定义组件Child中的this.score.value时，UI不会刷新。
+
+【反例】
+
+```ts
+class Score {
+  value: number;
+  constructor(value: number) {
+    this.value = value;
+  }
+
+  static changeScore1(param1:Score) {
+    param1.value += 1;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State score: Score = new Score(1);
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Parent is ${this.score.value}.`)
+        .fontSize(30)
+        .fontColor(Color.Red)
+      Child({ score: this.score })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Component
+struct Child {
+  @Prop score: Score;
+
+  changeScore2(param2:Score) {
+    param2.value += 2;
+  }
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Child is ${this.score.value}.`)
+        .fontSize(30)
+      Button(`changeScore1`)
+        .onClick(()=>{
+          // 通过静态方法调用，无法触发UI刷新
+          Score.changeScore1(this.score);
+        })
+      Button(`changeScore2`)
+        .onClick(()=>{
+          // 使用this通过自定义组件内部方法调用，无法触发UI刷新
+          this.changeScore2(this.score);
+        })
+    }
+  }
+}
+```
+
+可以通过如下先赋值、再调用新赋值的变量的方式为this.score加上Proxy代理，实现UI刷新。
+
+【正例】
+
+```ts
+class Score {
+  value: number;
+  constructor(value: number) {
+    this.value = value;
+  }
+
+  static changeScore1(score:Score) {
+    score.value += 1;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State score: Score = new Score(1);
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Parent is ${this.score.value}.`)
+        .fontSize(30)
+        .fontColor(Color.Red)
+      Child({ score: this.score })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Component
+struct Child {
+  @Prop score: Score;
+
+  changeScore2(score:Score) {
+    score.value += 2;
+  }
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Child is ${this.score.value}.`)
+        .fontSize(30)
+      Button(`changeScore1`)
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let score1 = this.score;
+          Score.changeScore1(score1);
+        })
+      Button(`changeScore2`)
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let score2 = this.score;
+          this.changeScore2(score2);
+        })
+    }
+  }
+}
+```
 <!--no_check-->

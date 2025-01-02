@@ -8,20 +8,20 @@
 
 1. 导入[证书算法库框架模块](../../reference/apis-device-certificate-kit/js-apis-cert.md)。
    ```ts
-   import certFramework from '@ohos.security.cert';
+   import { cert } from '@kit.DeviceCertificateKit';
    ```
 
-2. 解析证书扩展域段数据，调用[cryptoCert.createCertExtension](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatecertextension10)创建证书扩展域段对象。
+2. 解析证书扩展域段数据，调用[cert.createCertExtension](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatecertextension10)创建证书扩展域段对象。
 
 3. 调用[CertExtension.getEntry](../../reference/apis-device-certificate-kit/js-apis-cert.md#getentry10)获取指定OID证书扩展域段信息。
    比如，证书扩展域段对象标识符列表，根据对象标识符获取具体数据等。
 
-4. 调用[CertExtension.checkCA](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkca10)，判断证书是否为CA证书。
+4. 调用[CertExtension.checkCA](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkca10)判断证书是否为CA证书。
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
-import util from '@ohos.util';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
 
 // 证书扩展数据，以下只是一个示例。需要根据具体业务来赋值
 let extData = new Uint8Array([
@@ -39,14 +39,14 @@ let extData = new Uint8Array([
 // 证书扩展示例
 function certExtensionSample(): void {
   let textEncoder = new util.TextEncoder();
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: extData,
     // 证书扩展格式，目前仅支持DER格式
-    encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_DER
   };
 
   // 创建一个证书扩展实例
-  certFramework.createCertExtension(encodingBlob, (err, certExtension) => {
+  cert.createCertExtension(encodingBlob, (err, certExtension) => {
     if (err != null) {
       // 证书扩展实例创建失败
       console.error(`createCertExtension failed, errCode:${err.code}, errMsg:${err.message} `);
@@ -58,10 +58,10 @@ function certExtensionSample(): void {
     try {
       // 根据OID获取证书扩展信息
       let oidData = '2.5.29.14';
-      let oid: certFramework.DataBlob = {
+      let oid: cert.DataBlob = {
         data: textEncoder.encodeInto(oidData),
       }
-      let entry = certExtension.getEntry(certFramework.ExtensionEntryType.EXTENSION_ENTRY_TYPE_ENTRY, oid);
+      let entry = certExtension.getEntry(cert.ExtensionEntryType.EXTENSION_ENTRY_TYPE_ENTRY, oid);
 
       // 检查证书是否为CA证书
       let pathLen = certExtension.checkCA();

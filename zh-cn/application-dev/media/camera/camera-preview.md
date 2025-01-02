@@ -1,5 +1,7 @@
 # 预览(ArkTS)
 
+在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+
 预览是启动相机后看见的画面，通常在拍照和录像前执行。
 
 ## 开发步骤
@@ -9,48 +11,16 @@
 1. 导入camera接口，接口中提供了相机相关的属性和方法，导入方法如下。
      
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 创建Surface。
 
-    XComponent组件为预览流提供的Surface，而XComponent的能力由UI提供，相关介绍可参考[XComponent组件参考](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
+    XComponent组件为预览流提供的Surface（获取surfaceId请参考[getXcomponentSurfaceId](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9)方法），而XComponent的能力由UI提供，相关介绍可参考[XComponent组件参考](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
     > **说明：**
-    > 预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为1920:1080 = 16:9，则需要预览流中的分辨率的宽高比也为16:9，如分辨率选择640:360，或960:540，或1920:1080，以此类推。
-
-   ```ets
-   // xxx.ets
-   // 创建XComponentController 
-   @Component
-   struct XComponentPage {
-     // 创建XComponentController
-     mXComponentController: XComponentController = new XComponentController;
-     surfaceId: string = '';
-
-     build() {
-       Flex() {
-         // 创建XComponent
-         XComponent({
-           id: '',
-           type: 'surface',
-           libraryname: '',
-           controller: this.mXComponentController
-         })
-           .onLoad(() => {
-             // 设置Surface宽高（1920*1080），预览尺寸设置参考前面 previewProfilesArray 获取的当前设备所支持的预览分辨率大小去设置
-             // 预览流与录像输出流的分辨率的宽高比要保持一致
-             this.mXComponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080});
-             // 获取Surface ID
-             this.surfaceId = this.mXComponentController.getXComponentSurfaceId();
-           })
-           .width('1920px')
-           .height('1080px')
-       }
-     }
-   }
-   ```
+    > 预览流与录像输出流的分辨率的宽高比要保持一致，如果设置XComponent组件中的Surface显示区域宽高比为1920:1080 = 16:9，则需要预览流中的分辨率的宽高比也为16:9，如分辨率选择640:360，或960:540，或1920:1080，以此类推。
 
 3. 通过[CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability)类中的previewProfiles属性获取当前设备支持的预览能力，返回previewProfilesArray数组 。通过[createPreviewOutput](../../reference/apis-camera-kit/js-apis-camera.md#createpreviewoutput)方法创建预览输出流，其中，[createPreviewOutput](../../reference/apis-camera-kit/js-apis-camera.md#createpreviewoutput)方法中的两个参数分别是previewProfilesArray数组中的第一项和步骤二中获取的surfaceId。
      
@@ -68,7 +38,7 @@
    }
    ```
 
-4. 使能。通过[Session.start](../../reference/apis-camera-kit/js-apis-camera.md#start11)方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
+4. 使能。通过[Session.start](../../reference/apis-camera-kit/js-apis-camera.md#start11)方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
    async function startPreviewOutput(cameraManager: camera.CameraManager, previewOutput: camera.PreviewOutput): Promise<void> {
@@ -111,7 +81,10 @@
     
   ```ts
   function onPreviewOutputFrameStart(previewOutput: camera.PreviewOutput): void {
-    previewOutput.on('frameStart', () => {
+    previewOutput.on('frameStart', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('Preview frame started');
     });
   }
@@ -121,13 +94,16 @@
     
   ```ts
   function onPreviewOutputFrameEnd(previewOutput: camera.PreviewOutput): void {
-    previewOutput.on('frameEnd', () => {
+    previewOutput.on('frameEnd', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('Preview frame ended');
     });
   }
   ```
 
-- 通过注册固定的error回调函数获取监听预览输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
+- 通过注册固定的error回调函数获取监听预览输出错误结果，回调返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
     
   ```ts
   function onPreviewOutputError(previewOutput: camera.PreviewOutput): void {

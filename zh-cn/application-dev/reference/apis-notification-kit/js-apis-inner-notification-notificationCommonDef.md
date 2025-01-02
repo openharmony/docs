@@ -1,6 +1,6 @@
 # NotificationCommonDef
 
-描述BundleOption信息。
+描述BundleOption信息，即指定应用的包信息。
 
 > **说明：**
 >
@@ -8,12 +8,9 @@
 
 ## BundleOption
 
-BundleOption模块为指定应用的包信息。
-
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称   | 类型   | 必填 | 说明   |
-| ------ | ------ | ------ |  ------ |
-| bundle | string | 是 | 应用的包信息。 |
-| uid    | number | 否 | 用户ID，默认为0。 |
-
+| 名称   | 类型   | 只读 | 可选 | 说明   |
+| ------ | ------ | ----| -- |  ------ |
+| bundle | string | 否  | 否 | 应用程序的名称。 |
+| uid    | number | 否  | 是 | 应用程序的UID。从[ApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md)获取，默认为0。 |

@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import autoFillManager from '@ohos.app.ability.autoFillManager';
+import { autoFillManager } from '@kit.AbilityKit';
 ```
 
 ## AutoFillType
@@ -26,3 +26,21 @@ import autoFillManager from '@ohos.app.ability.autoFillManager';
 | PASSWORD      | 1   | 密码类型。                     |
 | USER_NAME     | 2   | 用户名类型。                     |
 | NEW_PASSWORD     | 3   | 新密码类型。                     |
+| FULL_STREET_ADDRESS<sup>12+</sup>        | 4    | 详细地址类型。 |
+| HOUSE_NUMBER<sup>12+</sup>               | 5    | 门牌号类型。 |
+| DISTRICT_ADDRESS<sup>12+</sup>           | 6    | 区/县类型。 |
+| CITY_ADDRESS<sup>12+</sup>               | 7    | 市类型。 |
+| PROVINCE_ADDRESS<sup>12+</sup>           | 8    | 省类型。 |
+| COUNTRY_ADDRESS<sup>12+</sup>            | 9    | 国家类型。 |
+| PERSON_FULL_NAME<sup>12+</sup>           | 10   | 姓名类型。 |
+| PERSON_LAST_NAME<sup>12+</sup>           | 11   | 姓氏类型。 |
+| PERSON_FIRST_NAME<sup>12+</sup>          | 12   | 名字类型。 |
+| PHONE_NUMBER<sup>12+</sup>               | 13   | 手机号类型。 |
+| PHONE_COUNTRY_CODE<sup>12+</sup>         | 14   | 国家和地区代码类型。 |
+| FULL_PHONE_NUMBER<sup>12+</sup>          | 15   | 包含国家和地区代码的手机号类型。 |
+| EMAIL_ADDRESS<sup>12+</sup>              | 16   | 邮箱地址类型。 |
+| BANK_CARD_NUMBER<sup>12+</sup>           | 17   | 银行卡号类型。 |
+| ID_CARD_NUMBER<sup>12+</sup>             | 18   | 身份证号类型。 |
+| NICKNAME<sup>12+</sup>                   | 24   | 昵称类型。 |
+| DETAIL_INFO_WITHOUT_STREET<sup>12+</sup> | 25   | 无街道地址类型。 |
+| FORMAT_ADDRESS<sup>12+</sup>             | 26   | 标准地址类型。 |

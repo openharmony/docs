@@ -6,6 +6,10 @@ This topic walks you through on how to import an ECDH key pair. However, the exa
 
 For details about the scenarios and supported algorithm specifications, see [Supported Algorithms](huks-key-import-overview.md#supported-algorithms).
 
+## Add the dynamic library in the CMake script.
+```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+```
 
 ## How to Develop
 

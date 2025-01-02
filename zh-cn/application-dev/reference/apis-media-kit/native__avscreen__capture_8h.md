@@ -7,6 +7,8 @@
 
 **库：** libnative_avscreen_capture.so
 
+**引用文件：** <multimedia/player_framework/native_avscreen_capture.h>
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 10
@@ -23,7 +25,7 @@
 | -------- | -------- |
 | struct [OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \* [OH_AVScreenCapture_Create](_a_v_screen_capture.md#oh_avscreencapture_create) (void) | 实例化对象，创建OH_AVScreenCapture。 | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](_a_v_screen_capture.md#oh_avscreen_capture_errcode) [OH_AVScreenCapture_Init](_a_v_screen_capture.md#oh_avscreencapture_init) (struct [OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture, [OH_AVScreenCaptureConfig](_o_h___a_v_screen_capture_config.md) config) | 初始化OH_AVScreenCapture相关参数，包括下发的音频麦克风采样相关参数（可选），音频内录采样相关参数，视频分辨率相关参数。 | 
-| [OH_AVSCREEN_CAPTURE_ErrCode](_a_v_screen_capture.md#oh_avscreen_capture_errcode) [OH_AVScreenCapture_StartScreenCapture](_a_v_screen_capture.md#oh_avscreencapture_startscreencapture) (struct [OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture) | 开始录屏，采集原始码流。调用后可以通过回调的监听(OH_AVScreenCaptureOnAudioBufferAvailable，OH_AVScreenCaptureOnVideoBufferAvailable)来监听当前是否有码流的产生。 | 
+| [OH_AVSCREEN_CAPTURE_ErrCode](_a_v_screen_capture.md#oh_avscreen_capture_errcode) [OH_AVScreenCapture_StartScreenCapture](_a_v_screen_capture.md#oh_avscreencapture_startscreencapture) (struct [OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture) | 开始录屏，采集原始码流。 | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](_a_v_screen_capture.md#oh_avscreen_capture_errcode) [OH_AVScreenCapture_StartScreenCaptureWithSurface](_a_v_screen_capture.md#oh_avscreencapture_startscreencapturewithsurface) (struct [OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture, OHNativeWindow \*window) | 使用Surface模式录屏。 | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](_a_v_screen_capture.md#oh_avscreen_capture_errcode) [OH_AVScreenCapture_StopScreenCapture](_a_v_screen_capture.md#oh_avscreencapture_stopscreencapture) (struct [OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture) | 结束录屏，与OH_AVScreenCapture_StartScreenCapture配合使用。 | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](_a_v_screen_capture.md#oh_avscreen_capture_errcode) [OH_AVScreenCapture_StartScreenRecording](_a_v_screen_capture.md#oh_avscreencapture_startscreenrecording) (struct [OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture) | 启动录屏，调用此接口，可将录屏文件保存。 | 
@@ -43,3 +45,7 @@
 | [OH_AVSCREEN_CAPTURE_ErrCode](_a_v_screen_capture.md#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ReleaseContentFilter](_a_v_screen_capture.md#oh_avscreencapture_releasecontentfilter) (struct [OH_AVScreenCapture_ContentFilter](_a_v_screen_capture.md#oh_avscreencapture_contentfilter) \*filter) | 释放ContentFilter。 | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](_a_v_screen_capture.md#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ContentFilter_AddAudioContent](_a_v_screen_capture.md#oh_avscreencapture_contentfilter_addaudiocontent) (struct [OH_AVScreenCapture_ContentFilter](_a_v_screen_capture.md#oh_avscreencapture_contentfilter) \*filter, [OH_AVScreenCaptureFilterableAudioContent](_a_v_screen_capture.md#oh_avscreencapturefilterableaudiocontent) content) | 向ContentFilter实例添加可被过滤的声音类型。 | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](_a_v_screen_capture.md#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ExcludeContent](_a_v_screen_capture.md#oh_avscreencapture_excludecontent) (struct [OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture, struct [OH_AVScreenCapture_ContentFilter](_a_v_screen_capture.md#oh_avscreencapture_contentfilter) \*filter) | 向OH_AVScreenCapture实例设置内容过滤器ContentFilter。 | 
+| OH_AVSCREEN_CAPTURE_ErrCode [OH_AVScreenCapture_ContentFilter_AddWindowContent](_a_v_screen_capture.md#oh_avscreencapture_contentfilter_addwindowcontent) (struct [OH_AVScreenCapture_ContentFilter](_a_v_screen_capture.md#oh_avscreencapture_contentfilter) \*filter, int32_t \*windowIDs, int32_t windowCount) | 向ContentFilter实例添加可被过滤的窗口ID列表  | 
+| [OH_AVSCREEN_CAPTURE_ErrCode](_a_v_screen_capture.md#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ResizeCanvas](_a_v_screen_capture.md#oh_avscreencapture_resizecanvas) (struct [OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture, int32_t width, int32_t height) | 调整屏幕的分辨率。 |  
+| [OH_AVSCREEN_CAPTURE_ErrCode](_a_v_screen_capture.md#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SkipPrivacyMode](_a_v_screen_capture.md#oh_avscreencapture_skipprivacymode) (struct [OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture, int32_t \*windowIDs, int32_t windowCount) | 录屏时豁免隐私窗口。 | 
+| [OH_AVSCREEN_CAPTURE_ErrCode](_a_v_screen_capture.md#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetMaxVideoFrameRate](_a_v_screen_capture.md#oh_avscreencapture_setmaxvideoframerate) (struct [OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture, int32_t frameRate) | 设置录屏的最大帧率。 | 

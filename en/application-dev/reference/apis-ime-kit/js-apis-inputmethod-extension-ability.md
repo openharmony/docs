@@ -10,16 +10,16 @@ The **InputMethodExtensionAbility** module provides APIs for developing input me
 ## Modules to Import
 
 ```ts
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
 ```
 
 ## Attributes
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name| Type| Readable| Writable| Description|
+| Name | Type | Read-Only | Optional | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [InputMethodExtensionContext](js-apis-inputmethod-extension-context.md) | Yes| No| Context of the **InputMethodExtension**, which is inherited from **ExtensionContext**.|
+| context | [InputMethodExtensionContext](js-apis-inputmethod-extension-context.md) | Yes | No | Context of the **InputMethodExtension**, which is inherited from **ExtensionContext**. |
 
 ## InputMethodExtensionAbility.onCreate
 
@@ -31,15 +31,15 @@ Called when the **InputMethodExtension** ability is started to implement initial
 
 **Parameters**
 
-| Name| Type         | Mandatory| Description                            |
+| Name | Type         | Mandatory | Description                            |
 | ------ | ----------- | ---- | ------------------------------- |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Information related to the **InputMethodExtension** ability, including the ability name and bundle name.|
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Information related to the **InputMethodExtension** ability, including the ability name and bundle name. |
 
 **Example**
 
 ```ts
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { Want } from '@kit.AbilityKit';
 class InputMethodExt extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
     console.log('onCreate, want:' + want.abilityName);
@@ -58,11 +58,10 @@ Called when this **InputMethodExtension** ability is destroyed to clear resource
 **Example**
 
 ```ts
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
 class InputMethodExt extends InputMethodExtensionAbility {
   onDestroy(): void {
     console.log('onDestroy');
   }
 }
 ```
-<!--no_check-->

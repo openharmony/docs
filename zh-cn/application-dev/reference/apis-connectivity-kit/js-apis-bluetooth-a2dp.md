@@ -10,7 +10,7 @@ a2dp模块提供了访问蓝牙音频接口的方法。
 ## 导入模块
 
 ```js
-import a2dp from '@ohos.bluetooth.a2dp';
+import { a2dp } from '@kit.ConnectivityKit';
 ```
 
 ## a2dp.createA2dpSrcProfile
@@ -25,12 +25,22 @@ createA2dpSrcProfile(): A2dpSourceProfile
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| A2dpSourceProfile | 返回该profile的实例。 |
+| [A2dpSourceProfile](#a2dpsourceprofile) | 返回该profile的实例。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                         |
+|801 | Capability not supported.                |
+
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpProfile = a2dp.createA2dpSrcProfile();
     console.info('a2dp success');
@@ -73,15 +83,18 @@ getPlayingState(deviceId: string): PlayingState
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
@@ -129,6 +142,8 @@ try {
 | CODEC_TYPE_SBC<sup>11+</sup>     | 0 | SBC。 |
 | CODEC_TYPE_AAC<sup>11+</sup>     | 1 | AAC。 |
 | CODEC_TYPE_L2HC<sup>11+</sup>    | 2 | L2HC。|
+| CODEC_TYPE_L2HCST<sup>13+</sup>  | 3 | L2HCST。 |
+| CODEC_TYPE_LDAC<sup>13+</sup>    | 4 | LDAC。|
 
 
 ## CodecChannelMode<sup>11+</sup>

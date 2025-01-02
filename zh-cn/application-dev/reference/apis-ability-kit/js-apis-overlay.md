@@ -9,7 +9,7 @@
 ## 导入模块
 
 ``` ts
-import overlay from '@ohos.bundle.overlay';
+import { overlay } from '@kit.AbilityKit';
 ```
 
 ## overlay.setOverlayEnabled
@@ -35,32 +35,34 @@ setOverlayEnabled(moduleName:string, isEnabled: boolean): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700033 | The specified module is not an overlay module. |
 
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let moduleName = "feature";
 let isEnabled = false;
 
 try {
-    overlay.setOverlayEnabled(moduleName, isEnabled)
-        .then(() => {
-            console.info('setOverlayEnabled success');
-        }).catch((err: BusinessError) => {
-            console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
-        });
+  overlay.setOverlayEnabled(moduleName, isEnabled)
+    .then(() => {
+      console.info('setOverlayEnabled success');
+    }).catch((err: BusinessError) => {
+      console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+    });
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
@@ -82,33 +84,35 @@ setOverlayEnabled(moduleName:string, isEnabled: boolean, callback: AsyncCallback
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700033 | The specified module is not an overlay module. |
 
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let moduleName = "feature";
 let isEnabled = false;
 
 try {
-    overlay.setOverlayEnabled(moduleName, isEnabled, (err, data) => {
-        if (err) {
-            console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
-            return;
-        }
-        console.info('setOverlayEnabled success');
-    });
+  overlay.setOverlayEnabled(moduleName, isEnabled, (err, data) => {
+    if (err) {
+      console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+      return;
+    }
+    console.info('setOverlayEnabled success');
+  });
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
@@ -134,10 +138,11 @@ getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
@@ -145,19 +150,20 @@ getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let moduleName = "feature";
 
-(async() => {
-    try {
-        let overlayModuleInfo = await overlay.getOverlayModuleInfo(moduleName);
-        console.log('overlayModuleInfo is ' + JSON.stringify(overlayModuleInfo));
-    } catch(err) {
-        let code = (err as BusinessError).code;
-        let message = (err as BusinessError).message;
-        console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
-    }
+(async () => {
+  try {
+    let overlayModuleInfo = await overlay.getOverlayModuleInfo(moduleName);
+    console.log('overlayModuleInfo is ' + JSON.stringify(overlayModuleInfo));
+  } catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
+  }
 })();
 ```
 
@@ -178,10 +184,11 @@ getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleI
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
@@ -189,21 +196,23 @@ getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleI
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let moduleName = "feature";
+
 try {
-    overlay.getOverlayModuleInfo(moduleName, (err, data) => {
-        if (err) {
-            console.log('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
-            return;
-        }
-        console.log('overlayModuleInfo is ' + JSON.stringify(data));
-    });
+  overlay.getOverlayModuleInfo(moduleName, (err, data) => {
+    if (err) {
+      console.log('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+      return;
+    }
+    console.log('overlayModuleInfo is ' + JSON.stringify(data));
+  });
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -229,29 +238,31 @@ getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayMo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700034 | The specified module is an overlay module. |
 
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let targetModuleName = "feature";
 
-(async() => {
-    try {
-        let overlayModuleInfos = await overlay.getTargetOverlayModuleInfos(targetModuleName);
-        console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
-    } catch(err) {
-        let code = (err as BusinessError).code;
-        let message = (err as BusinessError).message;
-        console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
-    }
+(async () => {
+  try {
+    let overlayModuleInfos = await overlay.getTargetOverlayModuleInfos(targetModuleName);
+    console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
+  } catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
+  }
 })();
 ```
 
@@ -272,31 +283,34 @@ getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<A
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found.  |
 | 17700034 | The specified module is an overlay module. |
 
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let targetModuleName = "feature";
+
 try {
-    overlay.getTargetOverlayModuleInfos(targetModuleName, (err, data) => {
-        if (err) {
-            console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
-            return;
-        }
-        console.log('overlayModuleInfo is ' + JSON.stringify(data));
-    });
+  overlay.getTargetOverlayModuleInfos(targetModuleName, (err, data) => {
+    if (err) {
+      console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+      return;
+    }
+    console.log('overlayModuleInfo is ' + JSON.stringify(data));
+  });
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -306,4 +320,4 @@ try {
 overlay特征应用指的是应用中包含有overlay特征的module。该特征module一般是为设备上存在的非overlay特征的module提供额外的资源文件，以便于目标module在运行阶段可以使用这些额外的资源文件来展示不同的颜色，标签，主题等等。overlay特征仅适用于stage模型。
 
 **如何识别overlay特征的module**
-在IDE中创建应用工程时, module的配置文件module.json5中包含targetModuleName和targetPriority字段时，该module将会在安装阶段被识别为overlay特征的module。
+在DevEco Studio中创建应用工程时, module的配置文件module.json5中包含targetModuleName和targetPriority字段时，该module将会在安装阶段被识别为overlay特征的module。

@@ -1,26 +1,33 @@
-# Using AVPlayer for Audio Playback (ArkTS)
+# Using AVPlayer to Play Audio (ArkTS)
 
-The AVPlayer is used to play raw media assets in an end-to-end manner. In this topic, you will learn how to use the AVPlayer to play a complete piece of music.
+The AVPlayer is used to play raw media assets in an end-to-end manner. In this topic, you will learn how to use the AVPlayer to play a complete piece of music. To play PCM audio data, call [AudioRenderer](../audio/using-audiorenderer-for-playback.md).
 
-If you want the application to continue playing the music in the background or when the screen is off, you must use the [AVSession](../avsession/avsession-overview.md) and [continuous task](../../task-management/continuous-task.md) to prevent the playback from being forcibly interrupted by the system.
-
-
-The full playback process includes creating an **AVPlayer** instance, setting the media asset to play, setting playback parameters (volume, speed, and focus mode), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the instance.
+The full playback process includes creating an AVPlayer instance, setting the media asset to play, setting playback parameters (volume, speed, and focus mode), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the instance.
 
 
 During application development, you can use the **state** attribute of the AVPlayer to obtain the AVPlayer state or call **on('stateChange')** to listen for state changes. If the application performs an operation when the AVPlayer is not in the given state, the system may throw an exception or generate other undefined behavior.
 
 
-**Figure 1** Playback state transition 
+**Figure 1** Playback state transition
+
 ![Playback status change](figures/playback-status-change.png)
 
-For details about the state, see [AVPlayerState](../../reference/apis-media-kit/js-apis-media.md#avplayerstate9). When the AVPlayer is in the **prepared**, **playing**, **paused**, or **completed** state, the playback engine is working and a large amount of RAM is occupied. If your application does not need to use the AVPlayer, call **reset()** or **release()** to release the instance.
+For details about the state, see [AVPlayerState](../../reference/apis-media-kit/js-apis-media.md#avplayerstate9). When the AVPlayer is in the **prepared**, **playing**, **paused**, or **completed** state, the playback engine is working and a large amount of RAM is occupied. If your application does not need to use the AVPlayer, call **reset()** or **release()** to release the instance..
+
+## Developer's Tips
+
+This topic describes only how to implement the playback of a media asset. In practice, background playback and playback conflicts may be involved. You can refer to the following description to handle the situation based on your service requirements.
+
+- If you want the application to continue playing the media asset in the background or when the screen is off, use the [AVSession](../avsession/avsession-access-scene.md) and [continuous task](../../task-management/continuous-task.md) to prevent the playback from being forcibly interrupted by the system.
+- If the media asset being played involves audio, the playback may be interrupted by other applications based on the system audio management policy. (For details, see [Processing Audio Interruption Events](../audio/audio-playback-concurrency.md).) It is recommended that the player application proactively listen for audio interruption events and handle the events accordingly to avoid the inconsistency between the application status and the expected effect.
+- When a device is connected to multiple audio output devices, the application can listen for audio output device changes through [on('audioOutputDeviceChangeWithInfo')](../../reference/apis-media-kit/js-apis-media.md#onaudiooutputdevicechangewithinfo11) and perform the processing accordingly.
+- To access online media resources, you must request the ohos.permission.INTERNET permission.
 
 ## How to Develop
 
 Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for the API reference.
 
-1. Call **createAVPlayer()** to create an **AVPlayer** instance. The AVPlayer is the **idle** state.
+1. Call **createAVPlayer()** to create an AVPlayer instance. The AVPlayer is the **idle** state.
 
 2. Set the events to listen for, which will be used in the full-process scenario. The table below lists the supported events.
    | Event Type| Description|
@@ -47,6 +54,8 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
    > - You can also use **ResourceManager.getRawFd** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9).
    > 
    > - The [playback formats and protocols](media-kit-intro.md#supported-formats-and-protocols) in use must be those supported by the system.
+   > 
+   > In addition, the audio renderer information (if required) must be set only when the AVPlayer is in the initialized state, that is, before **prepare()** is called for the first time. If the media source contains videos, the default value of **usage** is **STREAM_USAGE_MOVIE**. Otherwise, the default value of **usage** is **STREAM_USAGE_MUSIC**. The default value of **rendererFlags** is 0. If the default value of **usage** does not meet the requirements, configure [audio.AudioRendererInfo](../../reference/apis-audio-kit/js-apis-audio.md#audiorendererinfo8).
 
 4. Call **prepare()** to switch the AVPlayer to the **prepared** state. In this state, you can obtain the duration of the media asset to play and set the volume.
 
@@ -58,13 +67,13 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
 
 ## Sample Code
 
-Refer to the sample code below to play a complete piece of music.
+Refer to the sample code below to play a complete piece of music. In this example, 3 seconds after the playback starts, the playback is paused for 3 seconds and then resumed.
 
 ```ts
-import media from '@ohos.multimedia.media';
-import fs from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { media } from '@kit.MediaKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export class AVPlayerDemo {
   private count: number = 0;
@@ -91,6 +100,10 @@ export class AVPlayerDemo {
           break;
         case 'initialized': // This state is reported when the AVPlayer sets the playback source.
           console.info('AVPlayer state initialized called.');
+          this.avPlayer.audioRendererInfo = {
+            usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+            rendererFlags: 0
+          }
           avPlayer.prepare();
           break;
         case 'prepared': // This state is reported upon a successful callback of prepare().
@@ -108,13 +121,19 @@ export class AVPlayerDemo {
               console.info('AVPlayer wait to play end.');
             }
           } else {
-            avPlayer.pause(); // Call pause() to pause the playback.
+            setTimeout(() => {
+              console.info('AVPlayer playing wait to pause');
+              avPlayer.pause(); // Call the pause API to pause the playback 3 seconds later.
+            }, 3000)
           }
           this.count++;
           break;
         case 'paused': // This state is reported upon a successful callback of pause().
           console.info('AVPlayer state paused called.');
-          avPlayer.play(); // Call play() again to start playback.
+          setTimeout(() => {
+              console.info('AVPlayer paused wait to play again');
+              avPlayer.play(); // After the playback is paused for 3 seconds, call the play API again to start playback.
+            }, 3000)
           break;
         case 'completed': // This state is reported upon the completion of the playback.
           console.info('AVPlayer state completed called.');
@@ -246,3 +265,6 @@ export class AVPlayerDemo {
   }
 }
 ```
+
+<!--RP1-->
+<!--RP1End-->

@@ -34,7 +34,7 @@ The specified ability does not exist.
 
 **错误信息**
 
-Incorrect Ability type.
+Incorrect ability type.
 
 **错误描述**
 
@@ -47,13 +47,13 @@ Incorrect Ability type.
 **处理步骤**
 
 1. 检查want中的bundleName、moduleName和abilityName是否正确。
-2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动或[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接。
+2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接。
 
 ## 16000003 指定的ID不存在
 
 **错误信息**
 
-Id does not exist.
+The specified ID does not exist.
 
 **错误描述**
 
@@ -71,7 +71,7 @@ Id does not exist.
 
 **错误信息**
 
-Can not start invisible component.
+Failed to start the invisible ability.
 
 **错误描述**
 
@@ -126,7 +126,7 @@ Cross-user operations are not allowed.
 
 **错误信息**
 
-Service busy, there are concurrent tasks, waiting for retry.
+Service busy. There are concurrent tasks. Try again later.
 
 **错误描述**
 
@@ -238,7 +238,7 @@ The application is controlled by EDM.
 
 **错误描述**
 
-当应用受到企业设备管理[Enterprise Device Manager](../apis-mdm-kit/enterpriseDeviceManagement-overview.md)管控时，方法将返回该错误码。
+当应用受到企业设备管理[Enterprise Device Manager](../../mdm/mdm-kit-admin.md)管控时，方法将返回该错误码。
 
 **可能原因**
 
@@ -270,7 +270,7 @@ Service timeout.
 
 **错误信息**
 
-The previous ability is starting, wait start later.
+Another ability is being started. Wait until it finishes starting.
 
 **错误描述**
 
@@ -283,6 +283,40 @@ The previous ability is starting, wait start later.
 **处理步骤**
 
 无需处理，等待启动即可。
+
+## 16000018 限制API 11以上版本三方应用跳转
+
+**错误信息**
+
+Redirection to a third-party application is not allowed in API version 11 or later.
+
+**错误描述**
+
+当应用API版本大于11的时候，不允许显式跳转到其他三方应用。
+
+**处理步骤**
+
+使用隐式启动方式或通过[openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)跳转其他应用。
+
+## 16000019 隐式启动未查找到匹配应用
+
+**错误信息**
+
+No matching ability is found.
+
+**错误描述**
+
+隐式启动无法查找到匹配的Ability。
+
+**可能原因**
+
+1. 隐式启动的参数配置有误。
+2. 指定的HAP包未安装。
+
+**处理步骤**
+
+1. 确保隐式启动的参数配置正确。
+2. 确保对应的HAP包已安装。
 
 ## 16000050 内部错误
 
@@ -362,7 +396,7 @@ The ability is not on the top of the UI.
 
 **错误信息**
 
-Installation-free service is busy, please wait and try again later.
+The installation-free service is busy. Try again later.
 
 **错误描述**
 
@@ -370,7 +404,7 @@ Installation-free service is busy, please wait and try again later.
 
 **可能原因**
 
-已有相同免安装任务在执行。
+已有相同原子化服务的下载安装任务在执行。
 
 **处理步骤**
 
@@ -470,7 +504,7 @@ Invalid URI type.
 
 **错误信息**
 
-Sandbox application can not grant URI permission.
+A sandbox application cannot grant URI permission.
 
 **错误描述**
 
@@ -506,7 +540,7 @@ Operation not supported.
 
 **错误信息**
 
-The number of child process exceeds upper bound.
+The number of child processes exceeds the upper limit.
 
 **错误描述**
 
@@ -518,13 +552,13 @@ The number of child process exceeds upper bound.
 
 **处理步骤**
 
-确认创建的子进程数量是否已经达到上限。子进程数量上限为128个。
+确认创建的子进程数量是否已经达到上限。子进程数量上限为512个。
 
 ## 16000063 重启应用指定组件无效
 
 **错误信息**
 
-The target to restart does not belong to the current app or is not a UIAbility.
+The target to restart does not belong to the current application or is not a UIAbility.
 
 **错误描述**
 
@@ -542,11 +576,11 @@ The target to restart does not belong to the current app or is not a UIAbility.
 
 **错误信息**
 
-Restart too frequently. Try again at least 10s later.
+Restart too frequently. Try again at least 3s later.
 
 **错误描述**
 
-当重启应用拉起指定组件时，10s内再次调用，返回该错误码。
+当重启应用拉起指定组件时，3s内再次调用，返回该错误码。
 
 **可能原因**
 
@@ -554,13 +588,13 @@ Restart too frequently. Try again at least 10s later.
 
 **处理步骤**
 
-间隔10s后再次调用。
+间隔3s后再次调用。
 
 ## 16000065 接口只支持Ability在前台时调用
 
 **错误信息**
 
-The interface can be called only when ability is foreground.
+The API can be called only when the ability is running in the foreground.
 
 **错误描述**
 
@@ -578,7 +612,7 @@ The interface can be called only when ability is foreground.
 
 **错误信息**
 
-An ability cannot move to foreground or background in Wukong mode.
+An ability cannot switch to the foreground or background in Wukong mode.
 
 **错误描述**
 
@@ -596,7 +630,7 @@ wukong模式，不允许移动Ability到前台/后台。
 
 **错误信息**
 
-Start options check failed.
+The StartOptions check failed.
 
 **错误描述**
 
@@ -604,8 +638,8 @@ Start options check failed.
 
 **可能原因**
 
-1. 调用startAbility时，processMode设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM，但是应用在状态栏没有图标，则返回该错误码。
-2. 调用showAbility/hideAbility时，如果调用方不是以NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM模式启动，则返回该错误码。
+1. 调用startAbility时，processMode设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM或者ATTACH_TO_STATUS_BAR_ITEM，但是应用在状态栏没有图标，则返回该错误码。
+2. 调用showAbility/hideAbility时，如果调用方不是以NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM或者ATTACH_TO_STATUS_BAR_ITEM模式启动，则返回该错误码。
 
 **处理步骤**
 
@@ -615,7 +649,7 @@ Start options check failed.
 
 **错误信息**
 
-Ability already running.
+The ability is already running.
 
 **错误描述**
 
@@ -629,37 +663,307 @@ Ability already running.
 
 当目标Ability的launchType是singleton或者specified时，避免通过指定processMode和startupVisibility的方式重复startAbility。
 
+## 16000069 严格模式下不允许该类型Extension启动三方应用
+
+**错误信息**
+
+The extension cannot start the third party application.
+
+**错误描述**
+
+严格模式下，不允许该类型Extension启动三方应用。
+
+**可能原因**
+
+当前Extension处于严格模式，且对应的Extension类型不允许严格模式下启动其他三方应用。
+
+**处理步骤**
+
+1. 查看[对应Extension类型](../../application-models/extensionability-overview.md)严格模式开启条件。
+2. 以非严格模式启动当前Extension。
+
+## 16000070 严格模式下不允许该类型Extension启动指定ServiceExtensionAbility
+
+**错误信息**
+
+The extension cannot start the service.
+
+**错误描述**
+
+严格模式下，不允许该类型Extension启动指定ServiceExtensionAbility。
+
+**可能原因**
+
+当前Extension处于严格模式，且对应的Extension类型不允许严格模式下启动指定ServiceExtensionAbility。
+
+**处理步骤**
+
+1. 查看[对应Extension类型](../../application-models/extensionability-overview.md)严格模式开启条件。
+2. 以非严格模式启动当前Extension。
+
+## 16000071 不支持应用分身模式
+
+**错误信息**
+
+App clone is not supported.
+
+**错误描述**
+
+当应用不支持分身模式时，返回该错误码。
+
+**可能原因**
+
+在不支持应用分身的应用中调用getCurrentAppCloneIndex时，则返回该错误码。
+
+**处理步骤**
+
+在不支持应用分身的应用中，避免调用getCurrentAppCloneIndex。
+
+<!--Del-->
+## 16000072 不支持应用多开
+
+**错误信息**
+
+App clone or multi-instance is not supported.
+
+**错误描述**
+
+当应用不支持多开时，返回该错误码。
+
+**可能原因**
+
+调用getRunningMultiAppInfo查询不支持应用多开的应用多开信息，则返回该错误码。
+
+**处理步骤**
+
+调用getCurrentAppCloneIndex时确保查询的应用支持应用多开。
+<!--DelEnd-->
+
+## 16000073 传入的appCloneIndex是一个无效值
+
+**错误信息**
+
+The app clone index is invalid.
+
+**错误描述**
+
+传入一个无效的appCloneIndex，返回该错误码。
+
+**可能原因**
+
+1.调用startAbility时，使用ohos.extra.param.key.appCloneIndex携带的appCloneIndex是一个无效值，则返回该错误码。
+<!--Del-->
+2.调用isAppRunning是，入参appCloneIndex是一个无效值，则返回该错误码。
+<!--DelEnd-->
+
+**处理步骤**
+
+确认appCloneIndex的约束条件是否满足。
+
+## 16000074 返回结果时requestCode对应的调用方不存在
+
+**错误信息**
+
+The caller does not exist.
+
+**错误描述**
+
+通过backTocallerAbilityResult接口向调用方返回结果时，如果根据传入的requestCode无法找到调用方，返回该错误码。
+
+**可能原因**
+
+1. requestCode不是通过want中的CALLER_REQUEST_CODE字段获取的。
+
+2. requestCode对应的调用方已经被销毁或结果已经返回。
+
+**处理步骤**
+
+1. 确认requestCode是否是通过want中的CALLER_REQUEST_CODE获取的。
+
+2. 确认调用方是否被销毁或结果已经返回。
+
+## 16000075 不支持返回结果时拉起调用方
+
+**错误信息**
+
+Not support back to caller.
+
+**错误描述**
+
+不支持通过backToCallerAbilityWithResult接口返回到调用方时，返回该错误码。
+
+**可能原因**
+
+当前应用未进行linkFeature配置或未通过系统审核。
+
+**处理步骤**
+
+1. 确认当前应用已在module.json5文件中配置linkFeature字段。
+2. 确认当前应用声明的linkFeature取值正确，linkFeature描述的功能与应用链接对应的实际功能一致，且应用通过系统审核。
+
+## 16000076 指定的APP_INSTANCE_KEY不存在
+
+**错误信息**
+
+The APP_INSTANCE_KEY is invalid.
+
+**错误描述**
+
+指定的[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)不存在时，返回该错误码。
+
+**可能原因**
+
+应用的实例中不存在该[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)指定的实例。
+
+**处理步骤**
+
+确保传入的[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)是一个有效值。
+
+## 16000077 应用的实例数量已达到上限
+
+**错误信息**
+
+The number of app instances reaches the limit.
+
+**错误描述**
+
+当应用的实例数量达到上限后，继续创建应用实例，返回该错误码。
+
+**可能原因**
+
+创建应用实例前未判断应用实例数量是否已达到应用自己设置的上限值。
+
+**处理步骤**
+
+调整设置的应用实例上限，或者删除已有应用实例后，才能继续创建新的应用实例。
+
+## 16000078 不支持应用多实例
+
+**错误信息**
+
+The multi-instance is not supported.
+
+**错误描述**
+
+应用不支持多实例。
+
+**可能原因**
+
+1. 目标应用未配置多实例。
+2. 当前设备类型不支持多实例。
+
+**处理步骤**
+
+1. 对目标应用配置多实例。
+2. 在2in1设备上调用该方法。
+
+## 16000079 不支持指定APP_INSTANCE_KEY
+
+**错误信息**
+
+The APP_INSTANCE_KEY cannot be specified.
+
+**错误描述**
+
+[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)和[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)不支持同时指定。当指定[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)的同时指定[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)，返回该错误码。
+
+**可能原因**
+
+参数传入过多。
+
+**处理步骤**
+
+参数[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)和[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)只支持二选一。
+
+## 16000080 不支持创建新实例
+
+**错误信息**
+
+Creating an instance is not supported.
+
+**错误描述**
+
+只允许应用使用[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)创建自己的实例，不允许应用间启动时为其他应用创建实例。否则，返回该错误码。
+
+**可能原因**
+
+参数使用场景有误。
+
+**处理步骤**
+
+删除参数[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)。
+
+## 16000081 获取目标应用信息失败
+
+**错误信息**
+
+Get target application info failed.
+
+**错误描述**
+
+调用<!--Del-->[<!--DelEnd-->URI授权相关接口<!--Del-->](js-apis-uripermissionmanager-sys.md)<!--DelEnd-->时，无法根据应用包名和分身索引获取到目标应用的相关信息。
+
+**可能原因**
+
+1. 没有安装目标应用。
+2. 分身索引超出允许的范围。
+3. 目标应用没有该索引的分身。
+
+**处理步骤**
+
+1. 检查目标应用是否已经安装。
+2. 检查分身应用索引是否在允许范围内。
+3. 检查目标应用是否创建了该索引对应的分身应用。
+
+## 16000082 单实例模式下的UIAbility未完成启动
+
+**错误信息**
+
+The UIAbility is being started.
+
+**错误描述**
+
+如果UIAbility启动模式为“singleton”，在UIAbility启动完成之前不能再次调用启动接口，否则将返回该错误码。
+
+**可能原因**
+
+该UIAbility为singleton模式，正在启动过程中。
+
+**处理步骤**
+
+确保该UIAbility启动完成，再执行新的启动任务。
+
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
 **错误信息**
 
- - AddAbilityMonitor failed.
+ - Calling AddAbilityMonitor failed.
 
- - AddAbilityMonitorSync failed.
+ - Calling AddAbilityMonitorSync failed.
 
- - RemoveAbilityMonitor failed.
+ - Calling RemoveAbilityMonitor failed.
 
- - RemoveAbilityMonitorSync failed.
+ - Calling RemoveAbilityMonitorSync failed.
 
- - WaitAbilityMonitor failed.
+ - Calling WaitAbilityMonitor failed.
 
- - GetCurrentTopAbility failed.
+ - Calling GetCurrentTopAbility failed.
 
- - DoAbilityForeground failed.
+ - Calling DoAbilityForeground failed.
 
- - DoAbilityBackground failed.
+ - Calling DoAbilityBackground failed.
 
- - FinishTest failed.
+ - Calling FinishTest failed.
 
- - AddAbilityStageMonitor failed.
+ - Calling AddAbilityStageMonitor failed.
 
- - AddAbilityStageMonitorSync failed.
+ - Calling AddAbilityStageMonitorSync failed.
 
- - RemoveAbilityStageMonitor failed.
+ - Calling RemoveAbilityStageMonitor failed.
 
- - RemoveAbilityStageMonitorSync failed.
+ - Calling RemoveAbilityStageMonitorSync failed.
 
- - WaitAbilityStageMonitor failed.
+ - Calling WaitAbilityStageMonitor failed.
 
 **错误描述**
 
@@ -713,7 +1017,7 @@ Invalid wantAgent object.
 
 **错误信息**
 
-the wantAgent object does not exist.
+The wantAgent object does not exist.
 
 **错误描述**
 
@@ -731,7 +1035,7 @@ the wantAgent object does not exist.
 
 **错误信息**
 
-wangAgent object has been canceled.
+The wantAgent object has been canceled.
 
 **错误描述**
 
@@ -806,7 +1110,7 @@ The caller has been released.
 
 **错误信息**
 
-Callee invalid. The callee does not exist.
+The callee does not exist.
 
 **错误描述**
 
@@ -842,7 +1146,7 @@ Release error. The caller does not call any callee.
 
 **错误信息**
 
-Method registered. The method has registered.
+The method has been registered.
 
 **错误描述**
 
@@ -860,7 +1164,7 @@ Method registered. The method has registered.
 
 **错误信息**
 
-Method not registered. The method has not registered.
+The method has not been registered.
 
 **错误描述**
 
@@ -873,6 +1177,24 @@ Method not registered. The method has not registered.
 **处理步骤**
 
 请检查是否未注册该方法。
+
+## 16200006 没有权限设置常驻进程使能状态
+
+**错误信息**
+
+The caller application can only set the resident status of the configured process.
+
+**错误描述**
+
+当调用者没有权限设置常驻进程使能状态时返回。
+
+**可能原因**
+
+调用者没有常驻进程使能配置权限。
+
+**处理步骤**
+
+接口调用时从数据库查询调用者的常驻进程使能配置权限。
 
 ## 16300001 指定的任务不存在
 
@@ -896,7 +1218,7 @@ Mission not found.
 
 **错误信息**
 
-Input error. The specified mission listener does not exist.
+The specified mission listener does not exist.
 
 **错误描述**
 
@@ -914,7 +1236,7 @@ Input error. The specified mission listener does not exist.
 
 **错误信息**
 
-The target application is not self application.
+The target application is not the current application.
 
 **错误描述**
 
@@ -932,7 +1254,7 @@ The target application is not self application.
 
 **错误信息**
 
-The bundle is not exist or no patch has applied.
+The bundle does not exist or no patch has been applied.
 
 **错误描述**
 
@@ -1011,7 +1333,7 @@ Failed to enable the patch package.
 
 **错误信息**
 
-Failed to enable the patch package.
+Failed to remove the patch package.
 
 **错误描述**
 
@@ -1083,7 +1405,7 @@ Internal error.
 
 **错误信息**
 
-The application has a apply quick fix task that is being processed.
+The application has an ongoing quick fix task.
 
 **错误描述**
 
@@ -1114,3 +1436,148 @@ observer not found.
 **处理步骤**
 
 请检查是否有重复注销监听器。
+
+## 16300005 指定的包信息不存在。
+
+**错误信息**
+
+The target bundle does not exist.
+
+**错误描述**
+
+预加载应用的包信息不存在时，方法将返回该错误码。
+
+**可能原因**
+
+预加载的bundleName、userId或appIndex错误，导致查询不到相关包信息。
+
+**处理步骤**
+
+检查传入的bundleName、userId和appIndex参数是否正确。
+
+## 16300008 指定的包不存在主UIAbility。
+
+**错误信息**
+
+The target bundle has no main uiability.
+
+**错误描述**
+
+应用不存在主UIAbility。
+
+**可能原因**
+
+应用的mainElement不是UIAbility。
+
+**处理步骤**
+
+检查应用module.json中的mainElement对应的ability是否是UIAbility。
+
+## 16300009 指定的包不存在状态栏。
+
+**错误信息**
+
+The target bundle has no status-bar ability.
+
+**错误描述**
+
+应用不存在状态栏。
+
+**可能原因**
+
+应用不存在状态栏。
+
+**处理步骤**
+
+检查应用是否有状态栏。
+
+## 16300010 指定的应用在运行中但没有绑定状态栏。
+
+**错误信息**
+
+The target application is not attached to status bar.
+
+**错误描述**
+
+应用运行后没有绑定状态栏。
+
+**可能原因**
+
+应用有状态栏，但在运行过程中没有绑定状态栏。
+
+**处理步骤**
+
+检查应用是否绑定状态栏。
+
+## 29600001 图片编辑内部错误。
+
+**错误信息**
+
+Internal error.
+
+**错误描述**
+
+当图片保存时发生内存申请、多线程处理异常等内部错误时，方法将返回该错误码。
+
+**可能原因**
+
+内存申请、多线程处理等内核通用错误。具体原因可能包括：内部对象为空、处理超时等等。
+
+**处理步骤**
+
+1. 确认系统内存是否足够，设备使用的系统版本是否存在异常。
+2. 尝试重启设备。
+
+## 29600002 图片编辑内部错误。
+
+**错误信息**
+
+Image input error.
+
+**错误描述**
+
+当图片uri不存在或无法解析图片时，方法将返回该错误码。
+
+**可能原因**
+
+uri不存在或uri非图片类型文件。
+
+**处理步骤**
+
+检查文件是否存在以及文件类型是否为图片。
+
+## 29600002 图片大小过大。
+
+**错误信息**
+
+Image too big.
+
+**错误描述**
+
+入参所传入的图片大小过大。
+
+**可能原因**
+
+当入参图片大小超过50M时，方法将返回该错误码。
+
+**处理步骤**
+
+1. 尝试将图片编辑后大小控制在50M以内。
+2. 对图片大小进行校验。
+## 16300007 指定的原子化服务的下载安装任务信息不存在。
+
+**错误信息**
+
+The target free install task does not exist.
+
+**错误描述**
+
+为原子化服务窗口打开窗口时，指定的原子化服务的下载安装任务不存在时，方法将返回该错误码。
+
+**可能原因**
+
+传入的bundleName、moduleName、abilityName或startTime错误，导致查询不到相关原子化服务原子化服务的下载安装任务信息。
+
+**处理步骤**
+
+检查传入的bundleName、moduleName、abilityName或startTime参数是否正确。

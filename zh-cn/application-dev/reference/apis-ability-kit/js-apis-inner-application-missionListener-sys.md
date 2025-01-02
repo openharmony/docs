@@ -1,6 +1,6 @@
 # MissionListener (系统接口)
 
-定义系统任务状态监听，可以通过[on](js-apis-app-ability-missionManager-sys.md#missionmanageron)注册。
+定义系统任务状态监听，可以通过[on](js-apis-app-ability-missionManager-sys.md#missionmanageronmission)注册。
 
 > **说明：**
 > 
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import missionManager from '@ohos.app.ability.missionManager';
+import { missionManager } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -31,7 +31,8 @@ import missionManager from '@ohos.app.ability.missionManager';
 
 **示例：**
 ```ts
-import missionManager from '@ohos.app.ability.missionManager';
+import { missionManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let listener: missionManager.MissionListener = {
   onMissionCreated: (mission) => {
@@ -51,16 +52,16 @@ let listener: missionManager.MissionListener = {
   },
   onMissionIconUpdated: (mission, icon) => {
     console.log(`onMissionIconUpdated mission: ${JSON.stringify(mission)}`);
-    console.log(`onMissionIconUpdated icon: ${JSON.stringify(mission)}`);
+    console.log(`onMissionIconUpdated icon: ${JSON.stringify(icon)}`);
   },
   onMissionClosed: (mission) => {
     console.log(`onMissionClosed mission: ${JSON.stringify(mission)}`);
-    }
+  }
 };
 
 try {
   let listenerId = missionManager.on('mission', listener);
 } catch (paramError) {
-  console.error(`error: ${paramError.code}, ${paramError.message}`);
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
 }
 ```

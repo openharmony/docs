@@ -12,7 +12,7 @@ systemTonePlayer需要和[@ohos.multimedia.systemSoundManager](js-apis-systemSou
 ## 导入模块
 
 ```ts
-import systemSoundManager from '@ohos.multimedia.systemSoundManager';
+import { systemSoundManager } from '@kit.AudioKit';
 ```
 
 ## SystemToneOptions
@@ -23,10 +23,10 @@ import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
-| 名称      | 类型            | 必填 | 说明                        |
-| --------- | -------------- |---|---------------------------|
-| muteAudio | boolean | 否 | 是否静音，true表示静音，false表示正常发声。 |
-| muteHaptics | boolean | 否 | 是否震动，true表示无振动，false表示正常振动。 |
+| 名称        | 类型    | 必填 | 说明                                          |
+| ----------- | ------- | ---- | --------------------------------------------- |
+| muteAudio   | boolean | 否   | 是否静音，true表示静音，false表示正常发声。   |
+| muteHaptics | boolean | 否   | 是否震动，true表示无振动，false表示正常振动。 |
 
 ## SystemTonePlayer
 
@@ -44,22 +44,23 @@ getTitle(): Promise&lt;string&gt;
 
 **返回值：**
 
-| 类型                  | 说明                              |
-| --------------------- | -------------------------------- |
+| 类型    | 说明                                  |
+| ------- | ------------------------------------- |
 | Promise&lt;string&gt; | Promise回调返回获取的系统提示音标题。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
-| 错误码ID | 错误信息              |
-| ------- | --------------------- |
-| 5400103 | I/O error. |
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 202      | Caller is not a system application. |
+| 5400103  | I/O error.                          |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemTonePlayer.getTitle().then((value: string) => {
   console.info(`Promise returned to indicate that the value of the system tone player title is obtained ${value}.`);
@@ -80,23 +81,24 @@ prepare(): Promise&lt;void&gt;
 
 **返回值：**
 
-| 类型                | 说明                              |
-| ------------------- | -------------------------------- |
+| 类型    | 说明                            |
+| ------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise回调返回准备成功或失败。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
-| 错误码ID | 错误信息              |
-| ------- | --------------------- |
-| 5400102 | Operation not allowed. |
-| 5400103 | I/O error. |
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 202      | Caller is not a system application. |
+| 5400102  | Operation not allowed.              |
+| 5400103  | I/O error.                          |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemTonePlayer.prepare().then(() => {
   console.info(`Promise returned to indicate a successful prepareing of system tone player.`);
@@ -119,28 +121,31 @@ start(toneOptions?: SystemToneOptions): Promise&lt;number&gt;
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                       |
-| -------- |-----------------------------------------|--| ------------------------- |
-| toneOptions  | [SystemToneOptions](#systemtoneoptions) | 否 | 系统提示音选项。 |
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ----------- | --------------------------------------- | ---- | ---------------- |
+| toneOptions | [SystemToneOptions](#systemtoneoptions) | 否   | 系统提示音选项。 |
 
 **返回值：**
 
-| 类型                | 说明                            |
-| ------------------- | ------------------------------- |
+| 类型    | 说明                      |
+| ------- | ------------------------- |
 | Promise&lt;number&gt; | Promise回调返回streamID。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
-| 错误码ID | 错误信息              |
-| ------- | --------------------- |
-| 5400102 | Operation not allowed. |
+| 错误码ID | 错误信息                                                                                                    |
+| -------- | ----------------------------------------------------------------------------------------------------------- |
+| 201      | Permission denied.                                                                                          |
+| 202      | Caller is not a system application.                                                                         |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 5400102  | Operation not allowed.                                                                                      |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class SystemToneOptions {
   muteAudio: boolean = false;
@@ -167,28 +172,30 @@ stop(id: number): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                       |
-| -------- |-----------------------------------------|--| ------------------------- |
-| id  | number | 是 | start方法返回的streamID。 |
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | ------------------------- |
+| id     | number | 是   | start方法返回的streamID。 |
 
 **返回值：**
 
-| 类型                | 说明                              |
-| ------------------- | -------------------------------- |
+| 类型    | 说明                                |
+| ------- | ----------------------------------- |
 | Promise&lt;void&gt; | Promise回调返回停止播放成功或失败。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
-| 错误码ID | 错误信息              |
-| ------- | --------------------- |
-| 5400102 | Operation not allowed. |
+| 错误码ID | 错误信息                                                                                                    |
+| -------- | ----------------------------------------------------------------------------------------------------------- |
+| 202      | Caller is not a system application.                                                                         |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 5400102  | Operation not allowed.                                                                                      |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let streamID: number = 0; //streamID为start方法返回的streamID,此处只做初始化。
 systemTonePlayer.stop(streamID).then(() => {
@@ -210,18 +217,223 @@ release(): Promise&lt;void&gt;
 
 **返回值：**
 
-| 类型                | 说明                            |
-| ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回释放成功或失败。   |
+| 类型    | 说明                            |
+| ------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise回调返回释放成功或失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 202      | Caller is not a system application. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemTonePlayer.release().then(() => {
   console.info(`Promise returned to indicate a successful releasing of system tone player.`);
 }).catch ((err: BusinessError) => {
   console.error(`Failed to release system tone player. ${err}`);
 });
+```
+
+### setAudioVolumeScale<sup>13+</sup>
+
+setAudioVolumeScale(scale: number): void
+
+设置音频音量大小，无返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                 |
+| ------ | ------ | ---- | ------------------------------------ |
+| scale  | number | 是   | 音频音量大小，必须在[0, 1]之间取值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                                                                                    |
+| -------- | ----------------------------------------------------------------------------------------------------------- |
+| 202      | Caller is not a system application.                                                                         |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 5400102  | Operation not allowed.                                                                                      |
+| 20700002 | Parameter check error, For example, value is out side [0, 1]                                                |
+
+**示例：**
+
+```ts
+let scale: number = 0.5;
+try {
+  systemTonePlayer.setAudioVolumeScale(scale);
+} catch (err) {
+  console.error(`Failed to set audio volume scale. ${err}`);
+}
+```
+
+### getAudioVolumeScale<sup>13+</sup>
+
+getAudioVolumeScale(): number;
+
+获取当前音频音量大小，同步返回当前音量。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**返回值：**
+
+
+| 类型   | 说明         |
+| ------ | ------------ |
+| number | 当前音频音量。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 202      | Caller is not a system application. |
+
+**示例：**
+
+```ts
+try {
+  let scale: number = systemTonePlayer.getAudioVolumeScale();
+  console.info(` get audio volume scale. ${scale}`);
+} catch (err) {
+  console.error(`Failed to get audio volume scale. ${err}`);
+}
+```
+
+### getSupportedHapticsFeatures<sup>13+</sup>
+
+getSupportedHapticsFeatures(): Promise&lt;Array&lt;systemSoundManager.ToneHapticsFeature&gt;&gt;
+
+获取当前支持的振动风格，使用Promise方式异步返回支持的振动风格列表。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**返回值：**
+
+
+| 类型                                                                                                                          | 说明                                                                                                                  |
+|-----------------------------------------------------------------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------- |
+| Promise&lt;Array&lt;[systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13)&gt;&gt; | Promise回调返回当前支持的振动风格。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 202      | Caller is not a system application. |
+| 20700003 | Unsupported operation.              |
+
+**示例：**
+
+```ts
+try {
+  let features: Array<systemSoundManager.ToneHapticsFeature> = await systemTonePlayer.getSupportedHapticsFeatures();
+  console.info(` get supported haptics features. ${features}`);
+} catch (err) {
+  console.error(`Failed to get supported haptics features. ${err}`);
+}
+```
+
+### setHapticsFeature<sup>13+</sup>
+
+setHapticsFeature(hapticsFeature: systemSoundManager.ToneHapticsFeature): void
+
+设置播放铃音时的振动风格。
+
+调用本接口前，应该先调用[getSupportedHapticsFeatures](#getsupportedhapticsfeatures13)查询支持的振动风格，如果设置不支持的振动风格，则设置失败。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+**参数：**
+
+
+| 参数名         | 类型                                                                                              | 必填 | 说明             |
+| -------------- |-------------------------------------------------------------------------------------------------| ---- | ---------------- |
+| hapticsFeature | [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13) | 是   | 振动风格。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+
+| 错误码ID | 错误信息                                                                                                    |
+| -------- | ----------------------------------------------------------------------------------------------------------- |
+| 202      | Caller is not a system application.                                                                         |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 5400102  | Operation not allowed.                                                                                      |
+| 20700003 | Unsupported operation.                                                                                      |
+
+**示例：**
+
+```ts
+try {
+  let features: Array<systemSoundManager.ToneHapticsFeature> = await systemTonePlayer.getSupportedHapticsFeatures();
+  if (features.lenght == 0) {
+    return;
+  }
+  let feature: systemSoundManager.ToneHapticsFeature = features[0];
+  systemTonePlayer.setHapticsFeature(feature);
+  console.info(` set haptics feature success`);
+} catch (err) {
+  console.error(`Failed to set haptics feature. ${err}`);
+}
+```
+
+### getHapticsFeature<sup>13+</sup>
+
+getHapticsFeature(): systemSoundManager.ToneHapticsFeature
+
+获取播放铃音时的振动风格，同步返回振动风格枚举值。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**返回值：**
+
+
+| 类型                                                                                              | 说明     |
+|-------------------------------------------------------------------------------------------------| -------- |
+| [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13) | 振动风格 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 202      | Caller is not a system application. |
+| 20700003 | Unsupported operation.              |
+
+**示例：**
+
+```ts
+try {
+  let feature: systemSoundManager.ToneHapticsFeature = systemTonePlayer.getHapticsFeature();
+  console.info(` get haptics feature success. ${features}`);
+} catch (err) {
+  console.error(`Failed to get haptics feature. ${err}`);
+}
 ```

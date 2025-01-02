@@ -128,7 +128,7 @@ completelyDelete(uri: string): void
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-| 名称 | 类型   | 可读 | 可写 | 说明     |
+| 名称 | 类型   | 只读 | 可写 | 说明     |
 | ------ | ------ | -------- | ------ | -------- |
 | uri | string | 是 | 否 | 文件/目录uri |
 | srcPath | string | 是 | 否 | 文件/目录删除前原路径 |

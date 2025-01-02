@@ -28,171 +28,172 @@
 - 将一个指定的任务切换到前台。
 
 
-一个UIAbility实例对应一个单独的任务，因此应用调用[`startAbility()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动一个UIAbility时，就是创建了一个任务。
+一个UIAbility实例对应一个单独的任务，因此应用调用[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动一个UIAbility时，就是创建了一个任务。
 
-1. 桌面应用调用[missionManager](../reference/apis-ability-kit/js-apis-application-missionManager-sys.md)的接口管理任务，需要申请`ohos.permission.MANAGE_MISSIONS`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+1. 桌面应用调用[missionManager](../reference/apis-ability-kit/js-apis-application-missionManager-sys.md)的接口管理任务，需要申请`ohos.permission.MANAGE_MISSIONS`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 
 2. 利用missionManager进行任务管理（监听任务变化、获取任务信息、获取任务快照、清理任务、任务加锁/解锁等）。
 
-   ```ts
-   import missionManager from '@ohos.app.ability.missionManager';
-   import { BusinessError } from '@ohos.base';
-   import image from '@ohos.multimedia.image';
-   import promptAction from '@ohos.promptAction';
-   import Logger from '../utils/Logger';
+    ```ts
+    import { missionManager } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { image } from '@kit.ImageKit';
+    import { promptAction } from '@kit.ArkUI';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
 
-   const TAG: string = 'TaskManager';
-   ```
-   ```ts
-   private listenerId: number = 0;
-   private missionId: number = 0;
-   private listener: missionManager.MissionListener = {
-     // 任务创建
-     onMissionCreated: (mission: number) => {
-       Logger.info(TAG, '--------onMissionCreated-------');
-     },
-     // 任务销毁
-     onMissionDestroyed: (mission: number) => {
-       Logger.info(TAG, '--------onMissionDestroyed-------');
-     },
-     // 任务快照变化
-     onMissionSnapshotChanged: (mission: number) => {
-       Logger.info(TAG, '--------onMissionSnapshotChanged-------');
-     },
-     // 任务被移动到前台
-     onMissionMovedToFront: (mission: number) => {
-       Logger.info(TAG, '--------onMissionMovedToFront-------');
-     },
-     // 任务图标变化
-     onMissionIconUpdated: (mission: number, icon: image.PixelMap) => {
-       Logger.info(TAG, '--------onMissionIconUpdated-------');
-     },
-     // 任务名称变化
-     onMissionLabelUpdated: (mission: number) => {
-       Logger.info(TAG, '--------onMissionLabelUpdated-------');
-     },
-     // 任务实例被关闭
-     onMissionClosed: (mission: number) => {
-       Logger.info(TAG, '--------onMissionClosed-------');
-     }
-   };
-   ```
-   ```ts
-   // 1.注册任务变化通知
-   this.listenerId = missionManager.on('mission', this.listener);
-   promptAction.showToast({
-     message: $r('app.string.register_success_toast')
-   });
-   Logger.info(TAG, `missionManager.on success, listenerId = ${this.listenerId}`);
-   ```
-   ```ts
-   // 2.获取系统最近20个任务
-   missionManager.getMissionInfos('', 20, (error: BusinessError, missions: Array<missionManager.MissionInfo>) => {
-     Logger.info(TAG, 'getMissionInfos is called, error = ' + JSON.stringify(error));
-     Logger.info(TAG, 'size = ' + missions.length);
-     Logger.info(TAG, 'missions = ' + JSON.stringify(missions));
-     
-     // 判断系统最近任务中是否包含etsclock
-     for (let i = 0;i < missions.length; i++) {
-       if (missions[i].want.bundleName === 'ohos.samples.etsclock') {
-         promptAction.showToast({
-           message: $r('app.string.obtain_success_toast')
-         });
-         Logger.info(TAG, `getMissionInfos.find etsclock, missionId  = ${missions[i].missionId}`);
-         this.missionId = missions[i].missionId;
-         return;
-       }
-     }
-     promptAction.showToast({
-       message: $r('app.string.obtain_failed_toast')
-     });
-   });
-   ```
-   ```ts
-   // 3.获取单个任务的详细信息()
-   missionManager.getMissionInfo('', this.missionId).then((data: missionManager.MissionInfo) => {
-     promptAction.showToast({
-       message: JSON.stringify(data.want.bundleName)
-     });
-     Logger.info(TAG, `getMissionInfo successfully. Data: ${JSON.stringify(data)}`);
-   }).catch((error: BusinessError) => {
-     Logger.error(TAG, `getMissionInfo failed. Cause: ${error.message}`);
-   });
-   ```
-   ```ts
-   // 4.获取任务快照
-   missionManager.getMissionSnapShot('', this.missionId, (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
-     if (error === null) {
-       promptAction.showToast({
-         message: $r('app.string.obtain_snapshot_success_toast')
-       });
-     }
-     Logger.info(TAG, 'getMissionSnapShot is called, error = ' + JSON.stringify(error));
-     Logger.info(TAG, 'bundleName = ' + snapshot.ability.bundleName);
-   })
-   ```
-   ```ts
-   // 5.获取低分辨任务快照
-   missionManager.getLowResolutionMissionSnapShot('', this.missionId, (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
-     if (error === null) {
-       promptAction.showToast({
-         message: $r('app.string.obtain_low_snapshot_success_toast')
-       });
-     }
-     Logger.info(TAG, 'getLowResolutionMissionSnapShot is called, error = ' + JSON.stringify(error));
-     Logger.info(TAG, 'bundleName = ' + snapshot.ability.bundleName);
-   })
-   ```
-   ```ts
-   // 6-1 加锁任务
-   missionManager.lockMission(this.missionId).then(() => {
-     promptAction.showToast({
-       message: $r('app.string.lock_success_toast')
-     });
-     Logger.info(TAG, 'lockMission is called ');
-   });
-   ```
-   ```ts
-   // 6-2 解锁任务
-   missionManager.unlockMission(this.missionId).then(() => {
-     promptAction.showToast({
-       message: $r('app.string.unlock_success_toast')
-     });
-     Logger.info(TAG, 'unlockMission is called ');
-   });
-   ```
-   ```ts
-   // 7.把任务切到前台
-   missionManager.moveMissionToFront(this.missionId).then(() => {
-     Logger.info(TAG, 'moveMissionToFront is called ');
-   });
-   ```
-   ```ts
-   // 8.删除单个任务
-   missionManager.clearMission(this.missionId).then(() => {
-     promptAction.showToast({
-       message: $r('app.string.delete_success_toast')
-     });
-     Logger.info(TAG, 'clearMission is called ');
-   });
-   ```
-   ```ts
-   // 9.删除全部任务
-   missionManager.clearAllMissions().catch((err: BusinessError) => {
-     Logger.info(TAG, `${err.code}`);
-   });
-   ```
-   ```ts
-   // 10.解注册任务变化通知
-   missionManager.off('mission', this.listenerId, (error: BusinessError) => {
-     if (error === null) {
-       promptAction.showToast({
-         message: $r('app.string.unregister_success_toast')
-       });
-     }
-     Logger.info(TAG, 'unregisterMissionListener');
-   })
-   ```
+    const TAG: string = 'TaskManager';
+    const DOMAIN_NUMBER: number = 0xFF00;
+    ```
+    ```ts
+    private listenerId: number = 0;
+    private missionId: number = 0;
+    private listener: missionManager.MissionListener = {
+      // 任务创建
+      onMissionCreated: (mission: number) => {
+        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionCreated-------');
+      },
+      // 任务销毁
+      onMissionDestroyed: (mission: number) => {
+        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionDestroyed-------');
+      },
+      // 任务快照变化
+      onMissionSnapshotChanged: (mission: number) => {
+        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionMovedToFront-------');
+      },
+      // 任务被移动到前台
+      onMissionMovedToFront: (mission: number) => {
+        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionClosed-------');
+      },
+      // 任务图标变化
+      onMissionIconUpdated: (mission: number, icon: image.PixelMap) => {
+        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionIconUpdated-------');
+      },
+      // 任务名称变化
+      onMissionLabelUpdated: (mission: number) => {
+        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionLabelUpdated-------');
+      },
+      // 任务实例被关闭
+      onMissionClosed: (mission: number) => {
+        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionClosed-------');
+      }
+    };
+    ```
+    ```ts
+    // 1.注册任务变化通知
+    this.listenerId = missionManager.on('mission', this.listener);
+    promptAction.showToast({
+      message: 'register_success_toast'
+    });
+    hilog.info(DOMAIN_NUMBER, TAG, `missionManager.on success, listenerId = ${this.listenerId}`);
+    ```
+    ```ts
+    // 2.获取系统最近20个任务
+    missionManager.getMissionInfos('', 20, (error: BusinessError, missions: Array<missionManager.MissionInfo>) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'getMissionInfos is called, error = ' + JSON.stringify(error));
+      hilog.info(DOMAIN_NUMBER, TAG, 'size = ' + missions.length);
+      hilog.info(DOMAIN_NUMBER, TAG, 'missions = ' + JSON.stringify(missions));
+      
+      // 判断系统最近任务中是否包含etsclock
+      for (let i = 0;i < missions.length; i++) {
+        if (missions[i].want.bundleName === 'ohos.samples.etsclock') {
+          promptAction.showToast({
+            message: 'obtain_success_toast'
+          });
+          hilog.info(DOMAIN_NUMBER, TAG, `getMissionInfos.find etsclock, missionId  = ${missions[i].missionId}`);
+          this.missionId = missions[i].missionId;
+          return;
+        }
+      }
+      promptAction.showToast({
+        message: 'obtain_failed_toast'
+      });
+    });
+    ```
+    ```ts
+    // 3.获取单个任务的详细信息()
+    missionManager.getMissionInfo('', this.missionId).then((data: missionManager.MissionInfo) => {
+      promptAction.showToast({
+        message: JSON.stringify(data.want.bundleName)
+      });
+      hilog.info(DOMAIN_NUMBER, TAG, `getMissionInfo successfully. Data: ${JSON.stringify(data)}`);
+    }).catch((error: BusinessError) => {
+      hilog.info(DOMAIN_NUMBER, TAG, `getMissionInfo failed. Cause: ${error.message}`);
+    });
+    ```
+    ```ts
+    // 4.获取任务快照
+    missionManager.getMissionSnapShot('', this.missionId, (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
+      if (error === null) {
+        promptAction.showToast({
+          message: 'obtain_snapshot_success_toast'
+        });
+      }
+      hilog.info(DOMAIN_NUMBER, TAG, 'getMissionSnapShot is called, error = ' + JSON.stringify(error));
+      hilog.info(DOMAIN_NUMBER, TAG, 'bundleName = ' + snapshot.ability.bundleName);
+    })
+    ```
+    ```ts
+    // 5.获取低分辨任务快照
+    missionManager.getLowResolutionMissionSnapShot('', this.missionId, (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
+      if (error === null) {
+        promptAction.showToast({
+          message: 'obtain_low_snapshot_success_toast'
+        });
+      }
+      hilog.info(DOMAIN_NUMBER, TAG, 'getLowResolutionMissionSnapShot is called, error = ' + JSON.stringify(error));
+      hilog.info(DOMAIN_NUMBER, TAG, 'bundleName = ' + snapshot.ability.bundleName);
+    })
+    ```
+    ```ts
+    // 6-1 加锁任务
+    missionManager.lockMission(this.missionId).then(() => {
+      promptAction.showToast({
+        message: 'lock_success_toast'
+      });
+      hilog.info(DOMAIN_NUMBER, TAG, 'lockMission is called ');
+    });
+    ```
+    ```ts
+    // 6-2 解锁任务
+    missionManager.unlockMission(this.missionId).then(() => {
+      promptAction.showToast({
+        message: 'unlock_success_toast'
+      });
+      hilog.info(DOMAIN_NUMBER, TAG, 'unlockMission is called ');
+    });
+    ```
+    ```ts
+    // 7.把任务切到前台
+    missionManager.moveMissionToFront(this.missionId).then(() => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'moveMissionToFront is called ');
+    });
+    ```
+    ```ts
+    // 8.删除单个任务
+    missionManager.clearMission(this.missionId).then(() => {
+      promptAction.showToast({
+        message: 'delete_success_toast'
+      });
+      hilog.info(DOMAIN_NUMBER, TAG, 'clearMission is called ');
+    });
+    ```
+    ```ts
+    // 9.删除全部任务
+    missionManager.clearAllMissions().catch((err: BusinessError) => {
+      hilog.info(DOMAIN_NUMBER, TAG, `${err.code}`);
+    });
+    ```
+    ```ts
+    // 10.解注册任务变化通知
+    missionManager.off('mission', this.listenerId, (error: BusinessError) => {
+      if (error === null) {
+        promptAction.showToast({
+          message: 'unregister_success_toast'
+        });
+      }
+      hilog.info(DOMAIN_NUMBER, TAG, 'unregisterMissionListener');
+    })
+    ```
 
 ## 相关实例
 

@@ -12,7 +12,7 @@ ringtonePlayer需要和[@ohos.multimedia.systemSoundManager](js-apis-systemSound
 ## 导入模块
 
 ```ts
-import systemSoundManager from '@ohos.multimedia.systemSoundManager';
+import { systemSoundManager } from '@kit.AudioKit';
 ```
 
 ## RingtoneOptions
@@ -45,7 +45,7 @@ import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 **示例：**
 
 ```ts
-import media from '@ohos.multimedia.media';
+import { media } from '@kit.MediaKit';
 let state: media.AVPlayerState = systemRingtonePlayer.state;
 ```
 
@@ -68,7 +68,7 @@ getTitle(callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.getTitle((err: BusinessError, value: string) => {
   if (err) {
@@ -98,7 +98,7 @@ getTitle(): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.getTitle().then((value: string) => {
   console.info(`Promise returned to indicate that the value of the system ringtone title is obtained ${value}.`);
@@ -126,8 +126,8 @@ getAudioRendererInfo(callback: AsyncCallback&lt;audio.AudioRendererInfo&gt;): vo
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioRendererInfo: audio.AudioRendererInfo | undefined = undefined;
 
@@ -160,8 +160,8 @@ getAudioRendererInfo(): Promise&lt;audio.AudioRendererInfo&gt;
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioRendererInfo: audio.AudioRendererInfo | undefined = undefined;
 
@@ -193,7 +193,7 @@ configure(options: RingtoneOptions, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class RingtoneOptions {
   volume: number = 0;
@@ -235,7 +235,7 @@ configure(options: RingtoneOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class RingtoneOptions {
   volume: number = 0;
@@ -269,7 +269,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.start((err: BusinessError) => {
   if (err) {
@@ -299,7 +299,7 @@ start(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.start().then(() => {
   console.info(`Promise returned to indicate a successful starting of ringtone.`);
@@ -327,7 +327,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.stop((err: BusinessError) => {
   if (err) {
@@ -357,7 +357,7 @@ stop(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.stop().then(() => {
   console.info(`Promise returned to indicate a successful stopping of ringtone.`);
@@ -385,7 +385,7 @@ release(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.release((err: BusinessError) => {
   if (err) {
@@ -415,7 +415,7 @@ release(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemRingtonePlayer.release().then(() => {
   console.info(`Promise returned to indicate a successful releasing of ringtone player.`);
@@ -428,7 +428,7 @@ systemRingtonePlayer.release().then(() => {
 
 on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 
-监听音频中断事件。使用callback获取中断事件。
+监听音频中断事件（当音频焦点发生变化时触发），使用callback方式返回结果。
 
 **系统接口：** 该接口为系统接口
 
@@ -438,8 +438,8 @@ on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 
 | 参数名   | 类型                     | 必填 | 说明                                                                       |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
-| type     | string                  | 是   | 事件回调类型，支持的事件为：'audioInterrupt'（中断事件被触发，音频渲染被中断）。 |
-| callback | Callback&lt;[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)&gt; | 是   | 被监听的中断事件的回调。    |
+| type     | string                  | 是   | 监听事件，固定为：'audioInterrupt'。 |
+| callback | Callback&lt;[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)&gt; | 是   | 回调函数，返回播放中断时，应用接收的中断事件信息。 |
 
 **错误码：**
 
@@ -447,13 +447,13 @@ on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401     | if input parameter type or number mismatch  |
-| 6800101 | if input parameter value error              |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let isPlaying: boolean; // 标识符，表示是否正在渲染
 let isDucked: boolean; // 标识符，表示是否被降低音量
@@ -504,7 +504,7 @@ systemRingtonePlayer.on('audioInterrupt', async(interruptEvent: audio.InterruptE
 
 off(type: 'audioInterrupt'): void
 
-取消订阅音频中断事件。
+取消监听音频中断事件。
 
 **系统接口：** 该接口为系统接口
 
@@ -514,7 +514,7 @@ off(type: 'audioInterrupt'): void
 
 | 参数名 | 类型   | 必填 | 说明                                              |
 | :----- | :----- | :--- | :------------------------------------------------ |
-| type   | string | 是   | 要取消订阅事件的类型。支持的事件为：'audioInterrupt'。 |
+| type   | string | 是   | 监听事件，固定为：'audioInterrupt'。 |
 
 **错误码：**
 
@@ -522,8 +522,8 @@ off(type: 'audioInterrupt'): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401     | if input parameter type or number mismatch  |
-| 6800101 | if input parameter value error              |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 

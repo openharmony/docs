@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 ```
 
 ## display.hasPrivateWindow<sup>9+</sup>
@@ -28,7 +28,7 @@ hasPrivateWindow(displayId: number): boolean
 
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- |----------|
-| id     | number                    | 是   | 显示设备的id，该参数仅支持整数输入。 |
+| id     | number                    | 是   | 显示设备的id，该参数仅支持整数输入。该参数大于等于0。 |
 
 **返回值：**
 
@@ -38,16 +38,18 @@ hasPrivateWindow(displayId: number): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
 try {
@@ -89,10 +91,19 @@ on(type: 'privateModeChange', callback: Callback&lt;boolean&gt;): void
 | type     | string                                   | 是   | 监听事件，固定为'privateModeChange'，表示屏幕隐私模式状态发生变化。 |
 | callback | Callback&lt;boolean&gt; | 是   | 回调函数。表示屏幕隐私模式是否改变。true表示屏幕由非隐私窗口模式变为隐私模式，false表示屏幕由隐私模式变为非隐私模式。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+
 **示例：**
 
 ```ts
-import { Callback } from '@ohos.base';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<boolean> = (data: boolean) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
@@ -121,6 +132,15 @@ off(type: 'privateModeChange', callback?: Callback&lt;boolean&gt;): void
 | type     | string                                   | 是   | 监听事件，固定为'privateModeChange'，表示屏幕隐私模式状态发生变化。 |
 | callback | Callback&lt;boolean&gt; | 否   | 回调函数。表示屏幕隐私模式是否改变。true表示屏幕由非隐私模式变为隐私模式，false表示屏幕由隐私模式变为非隐私模式。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+
 **示例：**
 
 ```ts
@@ -148,16 +168,18 @@ setFoldDisplayMode(mode: FoldDisplayMode): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 try {
   let mode: display.FoldDisplayMode = display.FoldDisplayMode.FOLD_DISPLAY_MODE_FULL;
@@ -184,16 +206,18 @@ setFoldStatusLocked(locked: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 try {
   let locked: boolean = false;
@@ -225,38 +249,31 @@ hasImmersiveWindow(callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 801 | Capability not supported on this device. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import display from '@ohos.display'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
-
-try {
-  displayClass.hasImmersiveWindow((err: BusinessError, data) => {
+displayClass = display.getDefaultDisplaySync();
+displayClass.hasImmersiveWindow((err: BusinessError, data) => {
     const errCode: number = err.code;
     if (errCode) {
       console.error('Failed to check whether there is immersive window. Code: ' + JSON.stringify(err));
       return;
     }
     console.info('Succeeded in checking whether there is immersive window. data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error('Failed to check whether there is immersive window. Code: ' + JSON.stringify(exception));
-}
+});
 ```
 ### hasImmersiveWindow<sup>11+</sup>
 hasImmersiveWindow(): Promise&lt;boolean&gt;
@@ -275,158 +292,27 @@ hasImmersiveWindow(): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 801 | Capability not supported on this device. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import display from '@ohos.display'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
-
+displayClass = display.getDefaultDisplaySync();
 let promise = displayClass.hasImmersiveWindow();
 promise.then((data) => {
   console.info('Succeeded in checking whether there is immersive window. data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
   console.error('Failed to check whether there is immersive window. Code: ' + JSON.stringify(err));
 })
-```
-
-### getAvailableArea<sup>11+</sup>
-getAvailableArea(): Promise&lt;Rect&gt;
-
-获取当前屏幕的可用区域，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;[Rect](js-apis-display.md#rect9)&gt; | Promise对象。返回当前屏幕可用矩形区域。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ----------------------- |
-| 1400001 | Invalid display or screen. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import display from '@ohos.display'
-
-let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-  let promise = displayClass.getAvailableArea();
-  promise.then((data) => {
-    console.info('Succeeded get the available area in this display. data: ' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error('Failed to get the available area in this display. Code: ' + JSON.stringify(err));
-  })
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
-```
-
-### on('availableAreaChange')<sup>11+</sup>
-on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
-
-开启当前屏幕的可用区域监听。当前屏幕有可用区域变化时，触发回调函数，返回可用区域。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名   | 类型                                       | 必填 | 说明                                                    |
-| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | 是   | 监听事件，固定为'availableAreaChange'，表示屏幕可用区域变更。 |
-| callback | Callback&lt;[Rect](js-apis-display.md#rect9)&gt; | 是   | 回调函数，返回改变后的可用区域。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ----------------------- |
-| 1400003 | This display manager service works abnormally. |
-
-**示例：**
-
-```ts
-import { Callback } from '@ohos.base';
-import display from '@ohos.display'
-
-let callback: Callback<display.Rect> = (data: display.Rect) => {
-  console.info('Listening enabled. Data: ' + JSON.stringify(data));
-};
-let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-  displayClass.on("availableAreaChange", callback);
-} catch (exception) {
-  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
-}
-```
-
-### off('availableAreaChange')<sup>11+</sup>
-
-off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
-
-关闭屏幕可用区域变化的监听。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名   | 类型                                       | 必填 | 说明                                                    |
-| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | 是   | 监听事件，固定为'availableAreaChange'，表示屏幕可用区域变更。 |
-| callback | Callback&lt;[Rect](js-apis-display.md#rect9)&gt; | 否   | 回调函数，已经注册的回调函数，不填默认删除所有回调 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ----------------------- |
-| 1400003 | This display manager service works abnormally. |
-
-**示例：**
-
-```ts
-import { Callback } from '@ohos.base';
-import display from '@ohos.display'
-
-let callback: Callback<display.Rect> = (data: display.Rect) => {
-  console.info('Listening enabled. Data: ' + JSON.stringify(data));
-};
-let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-  displayClass.off("availableAreaChange", callback);
-} catch (exception) {
-  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
-}
 ```

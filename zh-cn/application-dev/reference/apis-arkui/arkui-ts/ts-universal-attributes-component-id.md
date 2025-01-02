@@ -4,14 +4,45 @@ id为组件的唯一标识，在整个应用内唯一。本模块提供组件标
 
 >  **说明：**
 >
-> 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
+> - 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 若同一个组件设置了多个id或者key，最后设置的生效。
 
 ## 属性
 
-| 名称   | 类型    | 说明                       |
-| -----| -------- | ----------------------------- |
-| id   | string   | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+### id
+
+id(value: string): T
+
+组件的唯一标识，唯一性由使用者保证。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称   | 类型      | 必填 | 说明                       |
+| ------ | -------- | -----|---------------------- |
+| value  | string   |  是  | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''<br/> |
+
+### key<sup>12+</sup>
+
+key(value: string): T
+
+组件的唯一标识，唯一性由使用者保证。
+
+此接口仅用于对应用的测试。与id同时使用时，后赋值的属性会覆盖先赋值的属性，建议仅设置id。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称   | 类型      | 必填 | 说明                       |
+| ------ | -------- | -----|---------------------- |
+| value   | string   | 是 | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''<br/> |
 
 
 ## 接口
@@ -24,6 +55,8 @@ getInspectorByKey(id: string): string
 获取指定id的组件的所有属性，不包括子组件信息。
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数:**
 
@@ -45,6 +78,8 @@ getInspectorTree(): Object
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **返回值:**
 
 | 类型     | 说明                            |
@@ -58,6 +93,8 @@ sendEventByKey(id: string, action: number, params: string): boolean
 给指定id的组件发送事件。
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数:**
 
@@ -81,6 +118,8 @@ sendTouchEvent(event: TouchObject): boolean
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **参数:**
 
 | 参数名      | 类型            | 必填  | 说明                                                         |
@@ -100,6 +139,8 @@ sendKeyEvent(event: KeyEvent): boolean
 发送按键事件。
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数:**
 
@@ -121,6 +162,8 @@ sendMouseEvent(event: MouseEvent): boolean
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名     | 类型       | 必填       | 说明                                     |
@@ -135,9 +178,11 @@ sendMouseEvent(event: MouseEvent): boolean
 
 ## 示例
 
+该示例主要展示如何通过组件标识接口，获取特定id组件的属性，以及如何向该id的组件触发事件。
+
 ```ts
 // xxx.ets
-import { IntentionCode } from '@ohos.multimodalInput.intentionCode'
+import { IntentionCode } from '@kit.InputKit'
 
 class Utils {
   static rect_left: number
@@ -153,10 +198,10 @@ class Utils {
     console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj))
     let rectInfo:string[] = JSON.parse('[' + obj.$rect + ']')
     console.info("[getInspectorByKey] rectInfo is: " + rectInfo)
-    Utils.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
-    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
-    Utils.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]
-    Utils.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1]
+    Utils.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]     // 相对于组件左上角的水平方向坐标
+    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]      // 相对于组件左上角的垂直方向坐标
+    Utils.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]    // 相对于组件右下角的水平方向坐标
+    Utils.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1]   // 相对于组件右下角的垂直方向坐标
     return Utils.rect_value = {
       "left": Utils.rect_left, "top": Utils.rect_top, "right": Utils.rect_right, "bottom": Utils.rect_bottom
     }

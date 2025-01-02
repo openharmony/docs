@@ -8,187 +8,32 @@
 
 ## blur
 
-blur(value: number, options?: BlurOptions)
+blur(blurRadius: Optional\<number>, options?: BlurOptions)
 
 为组件添加内容模糊效果。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名                | 类型                                              | 必填 | 说明                                                         |
-| --------------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value                 | number                                            | 是   | 当前组件添加内容模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。 |
-| options<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11) | 否   | 灰阶梯参数。                                                 |
-
-## backdropBlur
-
-backdropBlur(value: number, options?: BlurOptions)
-
-为组件添加背景模糊效果。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名                | 类型                                              | 必填 | 说明                                                         |
-| --------------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value                 | number                                            | 是   | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。 |
-| options<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11) | 否   | 灰阶梯参数。                                                 |
+| 参数名                | 类型                                                         | 必填 | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| blurRadius            | Optional\<number>                                            | 是   | 当前组件添加内容模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。 |
+| options<sup>11+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶梯参数。                                                 |
 
 ## shadow
 
-shadow(value: ShadowOptions | ShadowStyle)
+shadow(options: Optional\<ShadowOptions | ShadowStyle>)
 
 为组件添加阴影效果。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，ArkTS卡片上不支持参数为 [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)类型。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ShadowOptions](#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](#shadowstyle10枚举说明)<sup>10+</sup> | 是   | 为当前组件添加阴影效果。<br/>入参类型为ShadowOptions时，可以指定模糊半径、阴影的颜色、X轴和Y轴的偏移量。<br/>入参类型为ShadowStyle时，可指定不同阴影样式。 |
-
-## grayscale
-
-grayscale(value: number)
-
-为组件添加灰度效果。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 为当前组件添加灰度效果。值定义为灰度转换的比例，入参1.0则完全转为灰度图像，入参则0.0图像无变化，入参在0.0和1.0之间时，效果呈线性变化。（百分比)<br/>默认值：0.0<br/>取值范围：[0.0, 1.0]<br/>**说明：**<br/>设置小于0.0的值时，按值为0.0处理，设置大于1.0的值时，按值为1.0处理。 |
-
-## brightness
-
-brightness(value: number)
-
-为组件添加高光效果。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 为当前组件添加高光效果，入参为高光比例，值为1时没有效果，小于1时亮度变暗，0为全黑，大于1时亮度增加，数值越大亮度越大，但大于2后亮度效果变化不明显。<br/>默认值：1.0<br/>推荐取值范围：[0, 2]<br/>**说明：**<br/>设置小于0的值时，按值为0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-
-## saturate
-
-saturate(value: number)
-
-为组件添加饱和度效果。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 为当前组件添加饱和度效果，饱和度为颜色中的含色成分和消色成分(灰)的比例，入参为1时，显示原图像，大于1时含色成分越大，饱和度越大，小于1时消色成分越大，饱和度越小。（百分比）<br/>默认值：1.0<br/>推荐取值范围：[0, 50)<br/>**说明：**<br/>设置小于0的值时，按值为0处理。 |
-
-## contrast
-
-contrast(value: number)
-
-为组件添加对比度效果。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 为当前组件添加对比度效果，入参为对比度的值。值为1时，显示原图，大于1时，值越大对比度越高，图像越清晰醒目，小于1时，值越小对比度越低，当对比度为0时，图像变为全灰。（百分比）<br/>默认值：1.0<br/>推荐取值范围：[0, 10)<br/>**说明：**<br/>设置小于0的值时，按值为0处理。 |
-
-## invert
-
-invert(value: number | InvertOptions)
-
-反转输入的图像。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number&nbsp;\|&nbsp;[InvertOptions](#invertoptions11对象说明)<sup>11+</sup> | 是   | 反转输入的图像。<br/>入参对象为number时,入参为图像反转的比例，值为1时完全反转，值为0则图像无变化。（百分比）<br/>取值范围：[0, 1]<br/>设置小于0的值时，按值为0处理。<br/>入参对象为 InvertOptions时，对比背景颜色灰度值和阈值区间，背景颜色灰度值小于阈值区间时反色取high值，当背景颜色灰度值大于阈值区间时反色取low值，背景颜色灰度值在阈值区间内取值由high线性渐变到low。 |
-
-## sepia
-
-sepia(value: number)
-
-将图像转换为深褐色。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 将图像转换为深褐色。入参为图像反转的比例，值为1则完全是深褐色的，值为0图像无变化。 （百分比） |
-
-## hueRotate
-
-hueRotate(value: number | string)
-
-色相旋转效果。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                       | 必填 | 说明                                                         |
-| ------ | -------------------------- | ---- | ------------------------------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 色相旋转效果，输入参数为旋转角度。<br/>默认值：'0deg'<br/>取值范围：(-∞, +∞)<br/>**说明：**<br/>色调旋转360度会显示原始颜色。先将色调旋转180 度，然后再旋转-180度会显示原始颜色。数据类型为number时，值为90和'90deg'效果一致。 |
-
-## colorBlend<sup>7+</sup>
-
-colorBlend(value: Color | string | Resource)
-
-为组件添加颜色叠加效果。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                                         | 必填 | 说明                                           |
-| ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
-| value  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 为当前组件添加颜色叠加效果，入参为叠加的颜色。 |
-
-## linearGradientBlur<sup>10+</sup> 
-
-linearGradientBlur(value: number, options: LinearGradientBlurOptions)
-
-为组件添加内容线性渐变模糊效果。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -196,30 +41,194 @@ linearGradientBlur(value: number, options: LinearGradientBlurOptions)
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | number                                                       | 是   | 为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, 60]<br/>线性梯度模糊包含两个部分fractionStops和direction。 |
-| options | [LinearGradientBlurOptions](#lineargradientbluroptions10对象说明) | 是   | 设置线性渐变模糊效果。                                       |
+| options | Optional\<[ShadowOptions](#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](#shadowstyle10枚举说明)<sup>10+</sup>> | 是   | 为当前组件添加阴影效果。<br/>入参类型为ShadowOptions时，可以指定模糊半径、阴影的颜色、X轴和Y轴的偏移量。<br/>入参类型为ShadowStyle时，可指定不同阴影样式。 |
 
-## renderGroup<sup>10+</sup>
+## grayscale
 
-renderGroup(value: boolean)
+grayscale(grayscale: Optional\<number>)
 
-设置当前控件和子控件是否先整体离屏渲染绘制后再与父控件融合绘制。
+为组件添加灰度效果。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 说明                                                         |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 设置当前控件和子控件是否先整体离屏渲染绘制后再与父控件融合绘制。当前控件的不透明度不为1时绘制效果可能有差异。<br/>默认值：false |
+| 参数名    | 类型              | 必填 | 说明                                                         |
+| --------- | ----------------- | ---- | ------------------------------------------------------------ |
+| grayscale | Optional\<number> | 是   | 为当前组件添加灰度效果。值定义为灰度转换的比例，入参1.0则完全转为灰度图像，入参0.0则图像无变化，入参在0.0和1.0之间时，效果呈线性变化。（百分比)<br/>默认值：0.0<br/>取值范围：[0.0, 1.0]<br/>**说明：**<br/>设置小于0.0的值时，按值为0.0处理，设置大于1.0的值时，按值为1.0处理。 |
+
+## brightness
+
+brightness(brightness: Optional\<number>)
+
+为组件添加高光效果。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型              | 必填 | 说明                                                         |
+| ---------- | ----------------- | ---- | ------------------------------------------------------------ |
+| brightness | Optional\<number> | 是   | 为当前组件添加高光效果，入参为高光比例，值为1时没有效果，小于1时亮度变暗，0为全黑，大于1时亮度增加，数值越大亮度越大，亮度为2时会变为全白。<br/>默认值：1.0<br/>推荐取值范围：[0, 2]<br/>**说明：**<br/>设置小于0的值时，按值为0处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+
+## saturate
+
+saturate(saturate: Optional\<number>)
+
+为组件添加饱和度效果。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型              | 必填 | 说明                                                         |
+| -------- | ----------------- | ---- | ------------------------------------------------------------ |
+| saturate | Optional\<number> | 是   | 为当前组件添加饱和度效果，饱和度为颜色中的含色成分和消色成分(灰)的比例，入参为1时，显示原图像，大于1时含色成分越大，饱和度越大，小于1时消色成分越大，饱和度越小。（百分比）<br/>默认值：1.0<br/>推荐取值范围：[0, 50)<br/>**说明：**<br/>设置小于0的值时，按值为0处理。 |
+
+## contrast
+
+contrast(contrast: Optional\<number>)
+
+为组件添加对比度效果。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型              | 必填 | 说明                                                         |
+| -------- | ----------------- | ---- | ------------------------------------------------------------ |
+| contrast | Optional\<number> | 是   | 为当前组件添加对比度效果，入参为对比度的值。值为1时，显示原图，大于1时，值越大对比度越高，图像越清晰醒目，小于1时，值越小对比度越低，当对比度为0时，图像变为全灰。（百分比）<br/>默认值：1.0<br/>推荐取值范围：[0, 10)<br/>**说明：**<br/>设置小于0的值时，按值为0处理。 |
+
+## invert
+
+invert(options: Optional\<number | InvertOptions>)
+
+反转输入的图像。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| options | Optional\<number&nbsp;\|&nbsp;[InvertOptions](#invertoptions11对象说明)<sup>11+</sup>> | 是   | 反转输入的图像。<br/>入参对象为number时,入参为图像反转的比例，值为1时完全反转，值为0则图像无变化。（百分比）<br/>取值范围：[0, 1]<br/>设置小于0的值时，按值为0处理。<br/>入参对象为 InvertOptions时，对比背景颜色灰度值和阈值区间，背景颜色灰度值小于阈值区间时反色取high值，当背景颜色灰度值大于阈值区间时反色取low值，背景颜色灰度值在阈值区间内取值由high线性渐变到low。 |
+
+## sepia
+
+sepia(sepia: Optional\<number>)
+
+将图像转换为深褐色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型              | 必填 | 说明                                                         |
+| ------ | ----------------- | ---- | ------------------------------------------------------------ |
+| sepia  | Optional\<number> | 是   | 将图像转换为深褐色。入参为图像反转的比例，值为1则完全是深褐色的，值为0图像无变化。 （百分比） |
+
+## hueRotate
+
+hueRotate(rotation: Optional\<number | string>)
+
+色相旋转效果。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                  | 必填 | 说明                                                         |
+| -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| rotation | Optional\<number&nbsp;\|&nbsp;string> | 是   | 色相旋转效果，输入参数为旋转角度。<br/>默认值：'0deg'<br/>取值范围：(-∞, +∞)<br/>**说明：**<br/>色调旋转360度会显示原始颜色。先将色调旋转180 度，然后再旋转-180度会显示原始颜色。数据类型为number时，值为90和'90deg'效果一致。 |
+
+## colorBlend<sup>7+</sup>
+
+colorBlend(color: Optional\<Color | string | Resource>)
+
+为组件添加颜色叠加效果。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                           |
+| ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
+| color  | Optional\<[Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)> | 是   | 为当前组件添加颜色叠加效果，入参为叠加的颜色。 |
+
+## linearGradientBlur<sup>12+</sup> 
+
+linearGradientBlur(value: Optional\<number>, options: Optional\<LinearGradientBlurOptions>)
+
+为组件添加内容线性渐变模糊效果。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | Optional\<number>                                                       | 是   | 为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, 1000]<br/>线性梯度模糊包含两个部分fractionStops和direction。 |
+| options | Optional\<[LinearGradientBlurOptions](#lineargradientbluroptions12对象说明)> | 是   | 设置线性渐变模糊效果。                                       |
+
+## renderGroup<sup>10+</sup>
+
+renderGroup(value: Optional\<boolean>)
+
+设置当前控件和子控件是否先整体离屏渲染绘制后再与父控件融合绘制。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型               | 必填 | 说明                                                         |
+| ------ | ------------------ | ---- | ------------------------------------------------------------ |
+| value  | Optional\<boolean> | 是   | 设置当前控件和子控件是否先整体离屏渲染绘制后再与父控件融合绘制。当前控件的不透明度不为1时绘制效果可能有差异。<br/>默认值：false |
 
 ## blendMode<sup>11+</sup> 
 
-blendMode(value: BlendMode, type?: BlendApplyType)
+blendMode(mode: Optional\<BlendMode>, type?: BlendApplyType)
 
 将当前控件的内容（包含子节点内容）与下方画布（可能为离屏画布）已有内容进行混合。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -227,41 +236,148 @@ blendMode(value: BlendMode, type?: BlendApplyType)
 
 | 参数名 | 类型                            | 必填 | 说明                                                         |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlendMode](#blendmode11枚举说明)  | 是   | 混合模式。<br/>默认值：BlendMode.NONE   |
-| type   | [BlendApplyType](ts-appendix-enums.md#blendapplytype11)  |    否    | blendMode实现方式是否离屏。<br/>默认值：BlendApplyType.FAST<br/>**说明：**<br/>1. 设置BlendApplyType.FAST时，不离屏。<br/>2. 设置BlendApplyType.OFFSCREEN时，会先将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。     |
+| mode | Optional\<[BlendMode](#blendmode11枚举说明)> | 是   | 混合模式。<br/>默认值：BlendMode.NONE   |
+| type   | [BlendApplyType](#blendapplytype11)  |    否    | blendMode实现方式是否离屏。<br/>默认值：BlendApplyType.FAST<br/>**说明：**<br/>1. 设置BlendApplyType.FAST时，不离屏。<br/>2. 设置BlendApplyType.OFFSCREEN时，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。     |
+
+## BlendApplyType<sup>11+</sup>
+
+指示如何将指定的混合模式应用于视图的内容。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 描述                                                             |
+| ---------------| ---------------------------------------------------------------- |
+| FAST           |   在目标图像上按顺序混合视图的内容。                        |
+| OFFSCREEN      |   将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。    |
 
 ## useShadowBatching<sup>11+</sup> 
 
-useShadowBatching(value: boolean)
+useShadowBatching(use: Optional\<boolean>)
 
 控件内部子节点的阴影进行同层绘制，同层元素阴影重叠。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**参数：** 
+
+| 参数名 | 类型               | 必填 | 说明                                                         |
+| ------ | ------------------ | ---- | ------------------------------------------------------------ |
+| use    | Optional\<boolean> | 是   | 控件内部子节点的阴影进行同层绘制，同层元素阴影重叠。<br/>默认值：false<br/>**说明：**<br/>1. 默认不开启，如果子节点的阴影半径较大，节点各自的阴影会互相重叠。 当开启时，元素的阴影将不会重叠。<br/>2. 不推荐useShadowBatching嵌套使用，如果嵌套使用，只会对当前的子节点生效，无法递推。 |
+
+## sphericalEffect<sup>12+</sup>
+
+sphericalEffect(effect: Optional\<number>)
+
+设置组件的图像球面化程度。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 说明                                                         |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 控件内部子节点的阴影进行同层绘制，同层元素阴影重叠。<br/>默认值：false<br/>**说明：**<br/>1. 默认不开启，如果子节点的阴影半径较大，节点各自的阴影会互相重叠。 当开启时，元素的阴影将不会重叠。<br/>2. 不推荐useShadowBatching嵌套使用，如果嵌套使用，只会对当前的子节点生效，无法递推。 |
+| 参数名 | 类型              | 必填 | 说明                                                         |
+| ------ | ----------------- | ---- | ------------------------------------------------------------ |
+| effect | Optional\<number> | 是   | 设置组件的图像球面化程度。<br/>取值范围：[0,1]。<br/>**说明：**<br/>1. 如果value等于0则图像保持原样，如果value等于1则图像为完全球面化效果。在0和1之间，数值越大，则球面化程度越高。<br/>`value < 0 `或者` value > 1`为异常情况，`value < 0`按0处理，`value > 1`按1处理。<br/>2. 组件阴影和外描边不支持球面效果。<br>3. 设置value大于0时，组件冻屏不更新并且把组件内容绘制到透明离屏buffer上，如果要更新组件属性则需要把value设置为0。 |
+
+## lightUpEffect<sup>12+</sup> 
+
+lightUpEffect(degree: Optional\<number>)
+
+设置组件图像亮起程度。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型              | 必填 | 说明                                                         |
+| ------ | ----------------- | ---- | ------------------------------------------------------------ |
+| degree | Optional\<number> | 是   | 设置组件图像亮起程度。<br/>取值范围：[0,1]。<br/>如果value等于0则图像为全黑，如果value等于1则图像为全亮效果。0到1之间数值越大，表示图像亮度越高。`value < 0` 或者 `value > 1`为异常情况，`value < 0`按0处理，`value > 1`按1处理。 |
+
+## pixelStretchEffect<sup>12+</sup> 
+
+pixelStretchEffect(options: Optional\<PixelStretchEffectOptions>)
+
+设置组件的图像边缘像素扩展距离。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| options | Optional\<[PixelStretchEffectOptions](#pixelstretcheffectoptions10)> | 是   | 设置组件的图像边缘像素扩展距离。<br/>参数`options`包括上下左右四个方向的边缘像素扩展距离。<br/>**说明：**<br/>1. 如果距离为正值，表示向外扩展，放大原来图像大小。上下左右四个方向分别用边缘像素填充，填充的距离即为设置的边缘扩展的距离。<br/>2. 如果距离为负值，表示内缩，但是最终图像大小不变。<br/>内缩方式：<br/>图像根据`options`的设置缩小，缩小大小为四个方向边缘扩展距离的绝对值。<br/>图像用边缘像素扩展到原来大小。<br/>3. 对`options`的输入约束：<br/>上下左右四个方向的扩展统一为非正值或者非负值。即四个边同时向外扩或者内缩，方向一致。<br/>所有方向的输入均为百分比或者具体值，不支持百分比和具体值混用。<br/>所有异常情况下，显示为{0，0，0，0}效果，即跟原图保持一致。 |
+
+## PixelStretchEffectOptions<sup>10+</sup>
+
+像素扩展属性集合,用于描述像素扩展的信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型                | 必填   | 说明             |
+| ------ | ----------------- | ---- | -------------- |
+| left   | [Length](ts-types.md#length) | 否    | 组件图像左边沿像素扩展距离。 |
+| right  | [Length](ts-types.md#length) | 否    | 组件图像右边沿像素扩展距离。 |
+| top    | [Length](ts-types.md#length) | 否    | 组件图像上边沿像素扩展距离。 |
+| bottom | [Length](ts-types.md#length) | 否    | 组件图像下边沿像素扩展距离。 |
+
+## systemBarEffect<sup>12+</sup>
+
+systemBarEffect()
+
+根据背景进行智能反色并且带有模糊效果。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+## ShadowType<sup>10+<sup>
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 描述                                   |
+| -------- | ---------------------------------------- |
+| COLOR    | 颜色。                                    |
+| BLUR     | 模糊。                                    |
+
 
 ## ShadowOptions对象说明
 
 阴影属性集合，用于设置阴影的模糊半径、阴影的颜色、X轴和Y轴的偏移量。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称      | 类型                                       | 必填   | 说明                                       |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| radius  | number \| [Resource](ts-types.md#resource) | 是    | 阴影模糊半径。<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。 |
-| type<sup>10+</sup> | [ShadowType<sup>10+</sup>](ts-appendix-enums.md#shadowtype10)  |      否    | 阴影类型。<br/>默认为COLOR。        |
-| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-types.md#coloringstrategy10) | 否    | 阴影的颜色。<br/>默认为黑色。 <br/>**说明：** <br/>从API version 11开始，该接口支持使用ColoringStrategy实现智能取色，智能取色功能不支持在ArkTS卡片、[textShadow](ts-basic-components-text.md#属性)中使用。<br/>当前仅支持平均取色和主色取色，智能取色区域为shadow绘制区域。<br/>支持使用'average'字符串触发智能平均取色模式，支持使用'primary'字符串触发智能主色模式。                       |
-| offsetX | number \| [Resource](ts-types.md#resource) | 否    | 阴影的X轴偏移量。<br/>默认为0。                      |
-| offsetY | number \| [Resource](ts-types.md#resource) | 否    | 阴影的Y轴偏移量。<br/>默认为0。                      |
-| fill<sup>11+</sup>     | boolean                                    | 否    | 阴影是否内部填充。<br/>默认为false。<br/>**说明：**<br/>[textShadow](ts-basic-components-text.md#属性)中该字段不生效                 |
+| radius  | number \| [Resource](ts-types.md#resource) | 是    | 阴影模糊半径。<br/>取值范围：[0, +∞)<br/>单位：px<br/>**说明：**  <br/>设置小于0的值时，按值为0处理。<br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果radius为Resource类型，则传入的值需为number类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| type<sup>10+</sup> | [ShadowType<sup>10+</sup>](#shadowtype10)  |      否    | 阴影类型。<br/>默认为COLOR。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-appendix-enums.md#coloringstrategy10) | 否    | 阴影的颜色。<br/>默认为黑色。 <br/>**说明：** <br/>从API version 11开始，该接口支持使用ColoringStrategy实现智能取色，智能取色功能不支持在ArkTS卡片、[textShadow](ts-basic-components-text.md#textshadow10)中使用。<br/>当前仅支持平均取色和主色取色，智能取色区域为shadow绘制区域。<br/>支持使用'average'字符串触发智能平均取色模式，支持使用'primary'字符串触发智能主色模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| offsetX | number \| [Resource](ts-types.md#resource) | 否    | 阴影的X轴偏移量。<br/>默认值：0<br/>单位：px<br/>**说明：** <br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果offsetX为Resource类型，则传入的值需为number类型。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| offsetY | number \| [Resource](ts-types.md#resource) | 否    | 阴影的Y轴偏移量。<br/>默认值：0<br/>单位：px<br/>**说明：** <br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果offsetY为Resource类型，则传入的值需为number类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| fill<sup>11+</sup>     | boolean                                    | 否    | 阴影是否内部填充。<br/>默认为false。<br/>**说明：**<br/>[textShadow](ts-basic-components-text.md#textshadow10)中该字段不生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## ShadowStyle<sup>10+</sup>枚举说明
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称                | 描述     |
 | ----------------- | ------ |
@@ -277,6 +393,10 @@ useShadowBatching(value: boolean)
 >  **说明：**
 >
 >  blendMode枚举中，s表示源像素，d表示目标像素，sa表示原像素透明度，da表示目标像素透明度，r表示混合后像素，ra表示混合后像素透明度。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称           | 描述                                                             |
 | ---------------| ------                                                        |
@@ -311,22 +431,35 @@ useShadowBatching(value: boolean)
 | COLOR           | 保留源像素的饱和度和色调，但会使用目标像素的亮度来替换源像素的亮度。                                   |
 | LUMINOSITY      | 保留目标像素的色调和饱和度，但会用源像素的亮度替换目标像素的亮度。                                     |
 
-## LinearGradientBlurOptions<sup>10+</sup>对象说明
+## LinearGradientBlurOptions<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称          | 类型                                                        | 必填  | 说明                                                         |
 | ------------- | ----------------------------------------------------------- | ----- | ------------------------------------------------------------ |
-| fractionStops | Array\<[FractionStop](#fractionstop)>                                    | 是    | 数组中保存的每一个二元数组（取值0-1，小于0则为0，大于0则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效。 |
+| fractionStops | Array\<[FractionStop](#fractionstop12)>                                    | 是    | 数组中保存的每一个二元数组（取值0-1，小于0则为0，大于1则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效。 |
 | direction     | [GradientDirection](ts-appendix-enums.md#gradientdirection) | 是    | 渐变模糊方向。<br/>默认值：<br/>GradientDirection.Bottom |
 
-## FractionStop
+## FractionStop<sup>12+</sup>
 
 FractionStop = [ number, number ]
 
-定义模糊段。元组中的第一个元素表示分数。该值的范围为[0,1]。值1表示不透明，0表示完全透明。第二个元素表示停止位置。该值的范围为[0,1]。值1表示区域结束位置，0表示区域开始位置。
+定义模糊段。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 取值范围       | 说明                                                       |
+| ------------- | ---------------------------------------------------------- |
+| number        |   分数,值1表示不透明，0表示完全透明。<br/>取值范围：[0,1]      |
+| number        |   停止位置,值1表示区域结束位置，0表示区域开始位置。<br/> 取值范围:[0,1] |
 
 ## InvertOptions<sup>11+</sup>对象说明
 
 前景智能取反色。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称            |  类型  | 必填  | 说明                                       |
 | -------------- | ------ | ----- | ------------------------------------------ |
@@ -335,48 +468,25 @@ FractionStop = [ number, number ]
 | threshold      | number | 是    | 灰度阈值。                                  |
 | thresholdRange | number | 是    | 阈值范围。<br/>**说明：**<br/>灰度阈值上下偏移thresholdRange构成阈值区间，背景颜色灰度值在区间内取值由high线性渐变到low。|
 
+## freeze<sup>12+</sup>
+
+freeze(freeze: Optional\<boolean>)
+
+设置当前控件和子控件是否整体离屏渲染绘制后重复绘制缓存，不再进行内部属性更新。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型               | 必填 | 说明                                                         |
+| ------ | ------------------ | ---- | ------------------------------------------------------------ |
+| freeze | Optional\<boolean> | 是   | 设置当前控件和子控件是否整体离屏渲染绘制后重复绘制缓存，不再进行内部属性更新。当前控件的不透明度不为1时绘制效果可能有差异。<br/>默认值：false |
+
 ## 示例
 
-### 示例1
-模糊属性的用法，blur内容模糊，backdropBlur背景模糊。
-```ts
-// xxx.ets
-@Entry
-@Component
-struct BlurEffectsExample {
-  build() {
-    Column({ space: 10 }) {
-      // 对字体进行模糊
-      Text('font blur').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Flex({ alignItems: ItemAlign.Center }) {
-        Text('original text').margin(10)
-        Text('blur text')
-          .blur(5).margin(10)
-        Text('blur text')
-          .blur(10).margin(10)
-        Text('blur text')
-          .blur(15).margin(10)
-      }.width('90%').height(40)
-      .backgroundColor(0xF9CF93)
-
-
-      // 对背景进行模糊
-      Text('backdropBlur').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Text()
-        .width('90%')
-        .height(40)
-        .fontSize(16)
-        .backdropBlur(3)
-        .backgroundImage($r('app.media.image'))
-        .backgroundImageSize({ width: 1200, height: 160 })
-    }.width('100%').margin({ top: 5 })
-  }
-}
-```
-
-![textblur](figures/textblur.png)
-
-### 示例2
+### 示例1（设置图片不同属性效果）
 设置图片的效果，包括阴影，灰度，高光，饱和度，对比度，图像反转，叠色，色相旋转等。
 ```ts
 // xxx.ets
@@ -443,9 +553,9 @@ struct ImageEffectsExample {
 ![imageeffect](figures/imageeffect.png)
 
 
-### 示例3
+### 示例2（设置组件线性渐变模糊效果）
 
-设置组件的内容线性渐变模糊效果。
+该示例主要演示通过linearGradientBlur设置组件的内容线性渐变模糊效果。
 
 ```ts
 // xxx.ets
@@ -470,8 +580,10 @@ struct ImageExample1 {
 
 ![testlinearGradientBlur](figures/testlinearGradientBlur.png)
 
-### 示例4
-renderGroup示例
+### 示例3（设置离屏渲染效果）
+
+该示例主要演示通过renderGroup来设置组件是否先整体离屏渲染绘制后，再与父控件融合绘制。
+
 ```ts
 // xxx.ets
 @Component
@@ -519,8 +631,10 @@ struct RenderGroupExample {
 
 ![renderGroup](figures/renderGroup.png)
 
-### 示例5
-单独使用blendMode
+### 示例4（当前组件内容与下方画布内容混合）
+
+该示例主要演示通过blendMode将当前组件内容与下方画布内容混合。
+
 ```ts
 // xxx.ets
 @Entry
@@ -561,103 +675,10 @@ struct Index {
 ![zh-cn_image_effect_blendMode2](figures/zh-cn_image_effect_blendMode.png)
 <br/>不同的混合模式搭配是否需要离屏从而产生不同的效果。
 
-### 示例6
+### 示例5（前景智能取反色）
 
-blendMode搭配backgroundEffect实现文字异形模糊效果。<br/>
-如果出现漏线问题，开发者应首先确保两个blendMode所在组件大小严格相同。如果确认相同，可能是组件边界落在浮点数坐标上导致，可尝试设置[pixelRound](ts-universal-attributes-layout-constraints.md#pixelRound11)通用属性，使产生的白线、暗线两侧的组件边界对齐到整数像素坐标上。
+该示例主要通过InvertOptions来实现前景智能取反色。
 
-```ts
-// xxx.ets
-@Entry
-@Component
-struct Index {
-  @State shColor: Color = Color.White;
-  @State sizeDate: number = 20;
-  @State rVal: number = 255;
-  @State gVal: number = 255;
-  @State bVal: number = 255;
-  @State aVal: number = 0.1;
-  @State rad: number = 40;
-  @State satVal: number = 0.8;
-  @State briVal: number = 1.5;
-  build() {
-    Stack() {
-      Image($r('app.media.image'))
-      Column() {
-        Column({ space: 0 }) {
-          Column() {
-            Text('11')
-              .fontSize(144)
-              .fontWeight(FontWeight.Bold)
-              .fontColor('rgba(255,255,255,1)')
-              .fontFamily('HarmonyOS-Sans-Digit')
-              .maxLines(1)
-              .lineHeight(120 * 1.25)
-              .height(120 * 1.25)
-              .letterSpacing(4 * 1.25)
-            Text('42')
-              .fontSize(144)
-              .fontWeight(FontWeight.Bold)
-              .fontColor('rgba(255,255,255,1)')
-              .fontFamily('HarmonyOS-Sans-Digit')
-              .maxLines(1)
-              .lineHeight(120 * 1.25)
-              .height(120 * 1.25)
-              .letterSpacing(4 * 1.25)
-              .shadow({
-                color: 'rgba(0,0,0,0)',
-                radius: 20,
-                offsetX: 0,
-                offsetY: 0
-              })
-            Row() {
-              Text('10月16日')
-                .fontSize(this.sizeDate)
-                .height(22)
-                .fontWeight('medium')
-                .fontColor('rgba(255,255,255,1)')
-              Text('星期一')
-                .fontSize(this.sizeDate)
-                .height(22)
-                .fontWeight('medium')
-                .fontColor('rgba(255,255,255,1)')
-            }
-          }
-          .blendMode(BlendMode.DST_IN, BlendApplyType.OFFSCREEN)
-          .pixelRound({
-            start: PixelRoundCalcPolicy.FORCE_FLOOR ,
-            top: PixelRoundCalcPolicy.FORCE_FLOOR ,
-            end: PixelRoundCalcPolicy.FORCE_CEIL,
-            bottom: PixelRoundCalcPolicy.FORCE_CEIL
-          })
-        }
-        .blendMode(BlendMode.SRC_OVER, BlendApplyType.OFFSCREEN)
-        .backgroundEffect({
-          radius: this.rad,
-          saturation: this.satVal,
-          brightness: this.briVal,
-          color: this.getVolumeDialogWindowColor()
-        })
-        .justifyContent(FlexAlign.Center)
-        .pixelRound({
-          start: PixelRoundCalcPolicy.FORCE_FLOOR ,
-          top: PixelRoundCalcPolicy.FORCE_FLOOR ,
-          end: PixelRoundCalcPolicy.FORCE_CEIL,
-          bottom: PixelRoundCalcPolicy.FORCE_CEIL
-        })
-      }
-    }
-  }
-  getVolumeDialogWindowColor(): ResourceColor | string {
-    return `rgba(${this.rVal.toFixed(0)}, ${this.gVal.toFixed(0)}, ${this.bVal.toFixed(0)}, ${this.aVal.toFixed(0)})`;
-  }
-}
-```
-
-![testDestinationIn_lockDemo](figures/testDestinationIn_lockDemo.jpeg)
-
-### 示例7
-通过 InvertOptions 实现反色。
 ```ts
 // xxx.ets
  @Entry
@@ -693,8 +714,10 @@ struct Index {
 
 ![testDestinationIn_lockDemo](figures/testInvertOptions.png)
 
-### 示例8
-useShadowBatching搭配shadow实现同层阴影不重叠效果。
+### 示例6（设置同层阴影不重叠效果）
+
+该示例主要通过useShadowBatching搭配shadow实现同层阴影不重叠效果。
+
 ```ts
 // xxx.ets
 @Entry
@@ -751,3 +774,139 @@ struct UseShadowBatchingExample {
 ```
 
 ![testUseShadowBatchingDemo](figures/testUseShadowBatching.png)
+
+### 示例7（设置组件图像球面效果）
+
+该示例主要演示通过sphericalEffect设置组件的图像球面效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SphericalEffectExample {
+  build() {
+    Stack() {
+      TextInput({ placeholder: "请输入变化范围百分比（[0%,100%]）"})
+        .width('50%')
+        .height(35)
+        .type(InputType.Number)
+        .enterKeyType(EnterKeyType.Done)
+        .caretColor(Color.Red)
+        .placeholderColor(Color.Blue)
+        .placeholderFont({
+          size: 20,
+          style: FontStyle.Italic,
+          weight: FontWeight.Bold
+        })
+        .sphericalEffect(0.5)
+    }.alignContent(Alignment.Center).width("100%").height("100%")
+  }
+}
+
+```
+
+效果图如下：
+
+![textInputSpherical1](figures/textInputSpherical1.png)
+
+去掉sphericalEffect的设置，效果如下：
+
+![textInputSpherical2](figures/textInputSpherical2.png)
+
+### 示例8（设置组件图像渐亮效果）
+
+该示例主要演示通过lightUpEffect设置组件的图像渐亮效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct LightUpExample {
+  build() {
+    Stack() {
+      Text('This is the text content with letterSpacing 0.')
+        .letterSpacing(0)
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .width('50%')
+        .lightUpEffect(0.6)
+    }.alignContent(Alignment.Center).width("100%").height("100%")
+  }
+}
+
+```
+
+效果图如下：
+
+![textLightUp3](figures/textLightUp3.png)
+
+修改lightUpEffect参数值为0.2：
+
+![textLightUp2](figures/textLightUp2.png)
+
+去掉lightUpEffect的设置，效果如下：
+
+![textLightUp1](figures/textLightUp1.png)
+
+### 示例9（设置组件图像边缘像素扩展效果）
+
+该示例主要演示通过pixelStretchEffect设置组件的图像边缘像素扩展效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct PixelStretchExample {
+  build() {
+    Stack() {
+      Text('This is the text content with letterSpacing 0.')
+        .letterSpacing(0)
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .clip(false)
+        .width('50%')
+        .pixelStretchEffect({top:10,left:10,right:10,bottom:10 })
+    }.alignContent(Alignment.Center).width("100%").height("100%")
+  }
+}
+
+```
+
+效果图如下：
+
+![textPixelStretch1](figures/textPixelStretch1.png)
+
+去掉pixelStretchEffect的设置，原图效果如下：
+
+![textPixelStretch2](figures/textPixelStretch2.png)
+
+
+### 示例10（系统导航条智能反色）
+
+该示例主要演示通过systemBarEffect来实现系统导航条智能反色。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Stack(){
+        Image($r('app.media.testImage')).width('100%').height('100%')
+         Column().width(150).height(10)
+          .systemBarEffect()
+           .border({radius:5})
+           .margin({bottom:80})
+      }.alignContent(Alignment.Center)
+    }
+  }
+}
+
+```
+
+效果图如下：
+
+![systemBarEffect](figures/systemBarEffect.png)

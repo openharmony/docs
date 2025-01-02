@@ -17,8 +17,6 @@ The custom component has the following features:
 
 The following example shows the basic usage of a custom component.
 
-
-
 ```ts
 @Component
 struct HelloComponent {
@@ -42,26 +40,16 @@ struct HelloComponent {
 
 Multiple **HelloComponent** instances can be created in the **build()** function of other custom components. In this way, **HelloComponent** is reused by those custom components.
 
-
-
 ```ts
-class HelloComponentParam {
-  message: string = ""
-}
-
 @Entry
 @Component
 struct ParentComponent {
-  param: HelloComponentParam = {
-    message: 'Hello, World!'
-  }
-
   build() {
     Column() {
       Text('ArkUI message')
-      HelloComponent(this.param);
+      HelloComponent({ message: 'Hello World!' });
       Divider()
-      HelloComponent(this.param);
+      HelloComponent({message: 'Hello, World!'});
     }
   }
 }
@@ -77,7 +65,7 @@ To fully understand the preceding example, a knowledge of the following concepts
 
 - [Rules for Custom Component Parameters](#rules-for-custom-component-parameters)
 
-- [build() Function](#build-function)
+- [build Function](#build-function)
 
 - [Universal Style of a Custom Component](#universal-style-of-a-custom-component)
 
@@ -89,12 +77,12 @@ To fully understand the preceding example, a knowledge of the following concepts
   >
   > The name or its class or function name of a custom component must be different from that of any built-in components.
 
-- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. When being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. Each struct can be decorated by only one \@Component. \@Component can accept an optional parameter of the Boolean type.
+- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. When being decorated by \@Component, a struct has the componentization capability. You must implement the **build** function for it to describe the UI. Each struct can be decorated by only one \@Component. \@Component can accept an optional parameter of the Boolean type.
   > **NOTE**
   >
-  > Since API version 9, this decorator is supported in ArkTS widgets.
+  > This decorator can be used in ArkTS widgets since API version 9.
   > 
-  > Since API version 11, \@Component can accept an optional parameter of the Boolean type.
+  > An optional parameter of the Boolean type can be used in the \@Component since API version 11.
 
   ```ts
   @Component
@@ -103,11 +91,11 @@ To fully understand the preceding example, a knowledge of the following concepts
   ```
 
   ### freezeWhenInactive<sup>11+</sup>
-  Describes [component freezing](arkts-custom-components-freeze.md) options.
+  Describes the [custom component freezing](arkts-custom-components-freeze.md) option.
 
   | Name  | Type  | Mandatory| Description                                                        |
   | ------ | ------ | ---- | ------------------------------------------------------------ |
-  | freezeWhenInactive | bool | No| Whether to enable component freezing.|
+  | freezeWhenInactive | bool | No| Whether to enable the component freezing.|
 
   ```ts
   @Component({ freezeWhenInactive: true })
@@ -125,13 +113,15 @@ To fully understand the preceding example, a knowledge of the following concepts
   }
   ```
 
-- \@Entry: A custom component decorated with \@Entry is used as the default entry component of the page. Only one component can be decorated with \@Entry in a single source file. The \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md).
+- \@Entry: A custom component decorated with \@Entry is used as the default entry component of the page. Only one component can be decorated with \@Entry in a single page. The \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md).
 
   > **NOTE**
   >
-  > Since API version 9, this decorator is supported in ArkTS widgets.
+  > This decorator can be used in ArkTS widgets since API version 9.
   >
-  > Since API version 10, the \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md) or type [EntryOptions](#entryoptions10).
+  > Since API version 10, the \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md) or type [EntryOptions](#entryOptions).
+  >
+  > This decorator can be used in atomic services since API version 11.
 
   ```ts
   @Entry
@@ -148,6 +138,11 @@ To fully understand the preceding example, a knowledge of the following concepts
   | ------ | ------ | ---- | ------------------------------------------------------------ |
   | routeName | string | No| Name of the target named route.|
   | storage | [LocalStorage](arkts-localstorage.md) | No| Storage of the page-level UI state.|
+  | useSharedStorage<sup>12+</sup> | boolean | No| Whether to use the [LocalStorage](arkts-localstorage.md) object returned by the **LocalStorage.getShared()** API.<br>Default value: **false**|
+
+  > **NOTE**
+  >
+  > When **useSharedStorage** is set to **true** and **storage** is assigned a value, the value of **useSharedStorage** has a higher priority.
 
   ```ts
   @Entry({ routeName : 'myPage' })
@@ -161,7 +156,7 @@ To fully understand the preceding example, a knowledge of the following concepts
 
   > **NOTE**
   >
-  > Since API version 10, this decorator is supported in ArkTS widgets.
+  > This decorator can be used in ArkTS widgets since API version 10.
 
   ```ts
   @Reusable
@@ -216,6 +211,44 @@ struct ParentComponent {
 }
 ```
 
+In the following example, a function in the parent component is passed to the child component and called therein.
+
+```ts
+@Entry
+@Component
+struct Parent {
+  @State cnt: number = 0
+  submit: () => void = () => {
+    this.cnt++;
+  }
+
+  build() {
+    Column() {
+      Text(`${this.cnt}`)
+      Son({ submitArrow: this.submit })
+    }
+  }
+}
+
+@Component
+struct Son {
+  submitArrow?: () => void
+
+  build() {
+    Row() {
+      Button('add')
+        .width(80)
+        .onClick(() => {
+          if (this.submitArrow) {
+            this.submitArrow()
+          }
+        })
+    }
+    .justifyContent(FlexAlign.SpaceBetween)
+    .height(56)
+  }
+}
+```
 
 ## build() Function
 
@@ -303,7 +336,7 @@ Whatever declared in the **build()** function are called UI descriptions. UI des
   }
   ```
 
-- The **switch** syntax is not allowed. Use **if** instead. The following example should be avoided:
+- The **switch** syntax is not allowed. Use **if** instead. The following is an example:
 
   ```ts
   build() {
@@ -320,6 +353,14 @@ Whatever declared in the **build()** function are called UI descriptions. UI des
           Text('...')
           break;
       }
+      // Correct usage: Use if.
+      if(expression == 1) {
+        Text('...')
+      } else if(expression == 2) {
+        Image('...')
+      } else {
+        Text('...')
+      }
     }
   }
   ```
@@ -335,7 +376,7 @@ Whatever declared in the **build()** function are called UI descriptions. UI des
   }
   ```
 
-- Directly changing a state variable is not allowed. The following example should be avoided:
+- Directly changing a state variable is not allowed. The following example should be avoided: For details, see [State Variables Modification in build() Is Forbidden](./arkts-state.md#state-variables-modification-in-build()-is-forbidden).
 
   ```ts
   @Component
@@ -368,8 +409,8 @@ Whatever declared in the **build()** function are called UI descriptions. UI des
 
   Therefore, do not change any state variable in the **build()** or \@Builder decorated method of a custom component. Otherwise, loop rendering may result. Depending on the update mode (full update or minimum update), **Text('${this.count++}')** imposes different effects:
 
-  - Full update: ArkUI may fall into an infinite re-rendering loop because each rendering of the **Text** component changes the application state and causes a new round of re-renders. When **this.col2** is changed, the entire **build** function is executed. As a result, the text bound to **Text(${this.count++})** is also changed. Each time **Text(${this.count++})** is re-rendered, the **this.count** state variable is updated, and a new round of **build** execution follows, resulting in an infinite loop.
-  - Minimum update: When **this.col2** is changed, only the **Column** component is updated, and the **Text** component remains unchanged. When **this.col1** is changed, the entire **Text** component is updated and all of its attribute functions are executed. As a result, the value of **${this.count++}** in the **Text** component is changed. Currently, the UI is updated by component. If an attribute of a component changes, the entire component is updated. Therefore, the overall update link is as follows: **this.col1** = **Color.Pink** - > **Text** component re-render - > **this.count++** - > **Text** component re-render. It should be noted that this way of writing causes the **Text** component to be rendered twice during the initial render, which affects the performance.
+  - Full update (API version 8 or before): ArkUI may fall into an infinite re-rendering loop because each rendering of the **Text** component changes the application state and causes a new round of re-renders. When **this.col2** is changed, the entire **build** function is executed. As a result, the text bound to **Text(${this.count++})** is also changed. Each time **Text(${this.count++})** is re-rendered, the **this.count** state variable is updated, and a new round of **build** execution follows, resulting in an infinite loop.
+  - Minimized update (API version 9 or later): When **this.col2** is changed, only the **Column** component is updated, and the **Text** component is not changed. When **this.col1** is changed, the entire **Text** component is updated and all of its attribute functions are executed. As a result, the value of **${this.count++}** in the **Text** component is changed. Currently, the UI is updated by component. If an attribute of a component changes, the entire component is updated. Therefore, the overall update link is as follows: **this.col1** = **Color.Pink** - > **Text** component re-render - > **this.count++** - > **Text** component re-render. It should be noted that this way of writing causes the **Text** component to be rendered twice during the initial render, which affects the performance.
 
   The behavior of changing the application state in the **build** function may be more covert than that in the preceding example. The following are some examples:
 
@@ -395,7 +436,7 @@ Whatever declared in the **build()** function are called UI descriptions. UI des
 
 ## Universal Style of a Custom Component
 
-The universal style of a custom component is configured by invoking chainable attribute methods.
+The universal style of a custom component is configured by the chain call.
 
 
 ```ts
@@ -422,6 +463,4 @@ struct MyComponent {
 
 > **NOTE**
 >
-> When ArkUI sets styles for custom components, an invisible container component is set for **MyComponent2**. These styles are set on the container component instead of the **\<Button>** component of **MyComponent2**. As seen from the rendering result, the red background color is not directly applied to the button. Instead, it is applied to the container component that is invisible to users where the button is located.
-
-<!--no_check-->
+> When ArkUI sets styles for custom components, an invisible container component is set for **MyComponent2**. These styles are set on the container component instead of the **Button** component of **MyComponent2**. As seen from the rendering result, the red background color is not directly applied to the button. Instead, it is applied to the container component that is invisible to users where the button is located.

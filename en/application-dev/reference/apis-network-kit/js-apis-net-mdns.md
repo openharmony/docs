@@ -8,7 +8,7 @@ Multicast DNS (MDNS) provides functions such as adding, removing, discovering, a
 ## Modules to Import
 
 ```ts
-import mdns from '@ohos.net.mdns'
+import { mdns } from '@kit.NetworkKit';
 ```
 
 ## mdns.addLocalService
@@ -16,6 +16,8 @@ import mdns from '@ohos.net.mdns'
 addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
 Adds an MDNS service. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -32,11 +34,11 @@ Adds an MDNS service. This API uses an asynchronous callback to return the resul
 | ID     | Error Message|
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204003 | Callback duplicated. |
-| 2204008 | Service instance duplicated. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
@@ -46,10 +48,10 @@ Adds an MDNS service. This API uses an asynchronous callback to return the resul
 Stage model:
 
 ```ts
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// Obtain the context.
 let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -74,6 +76,8 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 
 Adds an MDNS service. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Parameters**
@@ -94,11 +98,11 @@ Adds an MDNS service. This API uses a promise to return the result.
 | ID     | Error Message|
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204003 | Callback duplicated. |
-| 2204008 | Service instance duplicated. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
@@ -108,10 +112,10 @@ Adds an MDNS service. This API uses a promise to return the result.
 Stage model:
 
 ```ts
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// Obtain the context.
 let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -135,6 +139,8 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 
 Removes an MDNS service. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Parameters**
@@ -150,11 +156,11 @@ Removes an MDNS service. This API uses an asynchronous callback to return the re
 | ID     | Error Message|
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204002 | Callback not found. |
-| 2204008 | Service instance not found. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
@@ -164,10 +170,10 @@ Removes an MDNS service. This API uses an asynchronous callback to return the re
 Stage model:
 
 ```ts
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// Obtain the context.
 let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -192,6 +198,8 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 
 Removes an MDNS service. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Parameters**
@@ -212,11 +220,11 @@ Removes an MDNS service. This API uses a promise to return the result.
 | ID     | Error Message|
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204002 | Callback not found. |
-| 2204008 | Service instance not found. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
@@ -226,8 +234,8 @@ Removes an MDNS service. This API uses a promise to return the result.
 Stage model:
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = getContext(this) as Context;
 
@@ -251,6 +259,8 @@ mdns.removeLocalService(context, localServiceInfo).then((data: mdns.LocalService
 createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
 Creates a **DiscoveryService** object, which is used to discover MDNS services of the specified type.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -278,10 +288,10 @@ Creates a **DiscoveryService** object, which is used to discover MDNS services o
 Stage model:
 
 ```ts
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// Obtain the context.
 let context = getContext(this) as Context;
 
 let serviceType = "_print._tcp";
@@ -293,6 +303,8 @@ let discoveryService : Object = mdns.createDiscoveryService(context, serviceType
 resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
 Resolves an MDNS service. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -309,11 +321,11 @@ Resolves an MDNS service. This API uses an asynchronous callback to return the r
 | ID     | Error Message|
 |---------|----------------------------------------------|
 | 401     | Parameter error.                             |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service.            |
 | 2100003 | System internal error.                       |
 | 2204003 | Callback duplicated.                         |
 | 2204006 | Request timeout.                |
-| 2204010 | Send packet failed.                          |
+| 2204010 | Failed to send the message.                  |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
@@ -323,10 +335,10 @@ Resolves an MDNS service. This API uses an asynchronous callback to return the r
 Stage model:
 
 ```ts
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// Obtain the context.
 let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -351,6 +363,8 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 
 Resolves an MDNS service. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Parameters**
@@ -371,11 +385,11 @@ Resolves an MDNS service. This API uses a promise to return the result.
 | ID     | Error Message|
 |---------|----------------------------------------------|
 | 401     | Parameter error.                             |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service.            |
 | 2100003 | System internal error.                       |
 | 2204003 | Callback duplicated.                         |
 | 2204006 | Request timeout.                |
-| 2204010 | Send packet failed.                          |
+| 2204010 | Failed to send the message.                  |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
@@ -385,10 +399,10 @@ Resolves an MDNS service. This API uses a promise to return the result.
 Stage model:
 
 ```ts
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// Obtain the context.
 let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -415,6 +429,8 @@ startSearchingMDNS(): void
 
 Searches for MDNS services on the LAN.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Example**
@@ -422,10 +438,10 @@ Searches for MDNS services on the LAN.
 Stage model:
 
 ```ts
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// Obtain the context.
 let context = getContext(this) as Context;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
@@ -438,6 +454,8 @@ stopSearchingMDNS(): void
 
 Stops searching for MDNS services on the LAN.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Example**
@@ -445,10 +463,10 @@ Stops searching for MDNS services on the LAN.
 Stage model:
 
 ```ts
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// Obtain the context.
 let context = getContext(this) as Context;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
@@ -460,6 +478,8 @@ discoveryService.stopSearchingMDNS();
 on(type: 'discoveryStart', callback: Callback\<DiscoveryEventInfo\>): void
 
 Enables listening for **discoveryStart** events.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -473,8 +493,8 @@ Enables listening for **discoveryStart** events.
 **Example**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // See mdns.createDiscoveryService.
 let context = getContext(this) as Context;
@@ -495,6 +515,8 @@ off(type: 'discoveryStart', callback?: Callback\<DiscoveryEventInfo\>): void
 
 Disables listening for **discoveryStart** events.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Parameters**
@@ -507,8 +529,8 @@ Disables listening for **discoveryStart** events.
 **Example**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // See mdns.createDiscoveryService.
 let context = getContext(this) as Context;
@@ -533,6 +555,8 @@ on(type: 'discoveryStop', callback: Callback\<DiscoveryEventInfo\>): void
 
 Enables listening for **discoveryStop** events.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Parameters**
@@ -545,8 +569,8 @@ Enables listening for **discoveryStop** events.
 **Example**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // See mdns.createDiscoveryService.
 let context = getContext(this) as Context;
@@ -567,6 +591,8 @@ off(type: 'discoveryStop', callback?: Callback\<DiscoveryEventInfo\>): void
 
 Disables listening for **discoveryStop** events.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Parameters**
@@ -579,8 +605,8 @@ Disables listening for **discoveryStop** events.
 **Example**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // See mdns.createDiscoveryService.
 let context = getContext(this) as Context;
@@ -605,6 +631,8 @@ on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 
 Enables listening for **serviceFound** events.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Parameters**
@@ -612,13 +640,13 @@ Enables listening for **serviceFound** events.
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | Yes      |Event type. This field has a fixed value of **serviceFound**.<br>**serviceFound**: event indicating an MDNS service is found.|
-| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | Yes       |   MDNS service information.     |
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | Yes       |   Callback used to return the MDNS service information. You need to call **resolveLocalService** to parse the information.     |
 
 **Example**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // See mdns.createDiscoveryService.
 let context = getContext(this) as Context;
@@ -627,7 +655,10 @@ let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('serviceFound', (data: mdns.LocalServiceInfo) => {
-  console.log(JSON.stringify(data));
+  console.info('serviceFound', JSON.stringify(data));
+  mdns.resolveLocalService(context, data, (error: BusinessError, resolveData: mdns.LocalServiceInfo) =>  {
+    console.info('serviceFound', JSON.stringify(resolveData));
+  });
 });
 
 discoveryService.stopSearchingMDNS();
@@ -638,6 +669,8 @@ discoveryService.stopSearchingMDNS();
 off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void
 
 Disables listening for **serviceFound** events.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -651,8 +684,8 @@ Disables listening for **serviceFound** events.
 **Example**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // See mdns.createDiscoveryService.
 let context = getContext(this) as Context;
@@ -661,7 +694,10 @@ let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('serviceFound', (data: mdns.LocalServiceInfo) => {
-  console.log(JSON.stringify(data));
+  console.info('serviceFound', JSON.stringify(data));
+  mdns.resolveLocalService(context, data, (error: BusinessError, resolveData: mdns.LocalServiceInfo) =>  {
+    console.info('serviceFound', JSON.stringify(resolveData));
+  });
 });
 
 discoveryService.stopSearchingMDNS();
@@ -677,6 +713,8 @@ on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
 
 Enables listening for **serviceLost** events.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Parameters**
@@ -689,8 +727,8 @@ Enables listening for **serviceLost** events.
 **Example**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // See mdns.createDiscoveryService.
 let context = getContext(this) as Context;
@@ -711,6 +749,8 @@ off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void
 
 Disables listening for **serviceLost** events.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Parameters**
@@ -723,8 +763,8 @@ Disables listening for **serviceLost** events.
 **Example**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // See mdns.createDiscoveryService.
 let context = getContext(this) as Context;
@@ -747,6 +787,8 @@ discoveryService.off('serviceLost', (data: mdns.LocalServiceInfo) => {
 
 Defines the MDNS service information.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 | Name                 | Type                               | Mandatory| Description                    |
@@ -755,11 +797,13 @@ Defines the MDNS service information.
 | serviceName | string                             |  Yes|  Name of the MDNS service.  |
 | port            | number           |  No|  Port number of the MDNS server.          |
 | host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  No|  IP address of the device that provides the MDNS service. The IP address is not effective when an MDNS service is added or removed.              |
-| serviceAttribute     | serviceAttribute\<[ServiceAttribute](#serviceattribute)> |  No|  MDNS service attribute information.              |
+| serviceAttribute     | Array\<[ServiceAttribute](#serviceattribute)> |  No|  MDNS service attribute information.              |
 
 ## ServiceAttribute
 
 Defines the MDNS service attribute information.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -772,6 +816,8 @@ Defines the MDNS service attribute information.
 
 Defines the MDNS service event information.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 |    Name    |            Type                    | Mandatory| Description                 |
@@ -783,12 +829,12 @@ Defines the MDNS service event information.
 
 Defines the MDNS error information.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 | Name        | Value  | Description       |
 | --------------- | ---- | ----------- |
-| INTERNAL_ERROR  | 0    | Operation failed because of an internal error. (not supported currently) |
-| ALREADY_ACTIVE      | 1    | Operation failed because the service already exists. (not supported currently)|
-| MAX_LIMIT  | 2 | Operation failed because the number of requests exceeds the maximum value. (not supported currently)|
-
-<!--no_check-->
+| INTERNAL_ERROR  | 0    | Operation failed because of an internal error. |
+| ALREADY_ACTIVE      | 1    | Operation failed because the service already exists.|
+| MAX_LIMIT  | 2 | Operation failed because the number of requests exceeds the maximum value.|

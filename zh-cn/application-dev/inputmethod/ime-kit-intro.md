@@ -16,16 +16,16 @@ IME Kit提供输入法框架和输入法服务两类API。用于实现输入法�
 
 - 输入法应用：
 
-  支持创建固定态、悬浮态和状态栏三种类型的Panel，可支持开发一个输入法应用同时部署在手机、平板、PC多设备中。
+  支持创建固定态、悬浮态和状态栏三种类型的Panel，可支持开发一个输入法应用同时部署在手机、平板等多设备中。
 
 - 自定义编辑框：
 
-  支持开发者自定义编辑框，实现绑定输入法应用，并实现输入法应用的文输入、删除、选中、光标移动等操作。
+  支持开发者自定义编辑框，实现绑定输入法应用，并实现输入法应用的文字输入、删除、选中、光标移动等操作。
 
 
 ## 能力范围
 
-- 提供输入法服务相关API，用于输入法应用，包括：创建软键盘窗口、插入/删除字符、选中文本、监听物理键盘按键事件等；
+- 提供输入法服务相关API，用于输入法应用，包括：创建软键盘窗口、插入/删除字符、选中文本、监听物理键盘按键事件等。
 
 - 提供输入法框架相关API，可用于自绘编辑框，包括绑定输入法，实现输入、删除、选中、光标移动等。
 
@@ -42,7 +42,7 @@ ArkUI: IME Kit在输入法软键盘和自绘编辑框时使用ArkUI提供的部�
 针对切换输入法应用的系统API，需要申请系统权限，部分API仅支持当前输入法应用调用。
 
 
-# IME Kit API参考
+## IME Kit API参考
 
 - [inputMethodEngine](../reference/apis-ime-kit/js-apis-inputmethodengine.md)
 
@@ -56,4 +56,4 @@ ArkUI: IME Kit在输入法软键盘和自绘编辑框时使用ArkUI提供的部�
 
 - [InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md)
 
-- [inputMethod.Pane](../reference/apis-ime-kit/js-apis-inputmethod-panel.md)
+- [inputMethod.Panel](../reference/apis-ime-kit/js-apis-inputmethod-panel.md)

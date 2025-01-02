@@ -1,5 +1,7 @@
 # 性能提升方案(仅对系统应用开放)(ArkTS)
 
+在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+
 相机启动性能受限于底层器件上电、流程Pipeline初始化等耗时操作影响，本文档将为开发者提供更进一步的指导，提升相机启动速度以及拍照返回缩略图速度。相关能力与底层器件相关，请开发者在使用前需确认是否支持相关特性。
 
 ​相关特性分别在打开相机设备过程、配流过程以及拍照过程中。本文档针对三个场景分别进行介绍。
@@ -34,8 +36,8 @@
 Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
-import camera from '@ohos.multimedia.camera';
-import common from '@ohos.app.ability.common';
+import { camera } from '@kit.CameraKit';
+import { common } from '@kit.AbilityKit';
 
 async function preview(baseContext: common.BaseContext, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, previewSurfaceId: string): Promise<void> {
   const cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
@@ -74,7 +76,7 @@ async function preview(baseContext: common.BaseContext, cameraInfo: camera.Camer
 > **说明：**
 >
 > - [isQuickThumbnailSupported](../../reference/apis-camera-kit/js-apis-camera-sys.md#isquickthumbnailsupported)及[enableQuickThumbnail](../../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail)接口的调用需要在[addOutput](../../reference/apis-camera-kit/js-apis-camera.md#addoutput11)、[addInput](../../reference/apis-camera-kit/js-apis-camera.md#addinput11)后，[commitConfig](../../reference/apis-camera-kit/js-apis-camera.md#commitconfig11)之前。
-> - on接口需要在enableQuickThumbnail(true)之后生效。
+> - on接口需要在[enableQuickThumbnail(true)](../../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail)之后生效。
 
 ### 开发示例
 
@@ -84,10 +86,10 @@ async function preview(baseContext: common.BaseContext, cameraInfo: camera.Camer
 
 Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 ```ts
-import camera from '@ohos.multimedia.camera';
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
-import common from '@ohos.app.ability.common';
+import { camera } from '@kit.CameraKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+import { common } from '@kit.AbilityKit';
 
 async function enableQuickThumbnail(baseContext: common.BaseContext, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
@@ -153,9 +155,9 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
 - **桌面应用**
 
   ```ts
-  import camera from '@ohos.multimedia.camera';
-  import { BusinessError } from '@ohos.base';
-  import common from '@ohos.app.ability.common';
+  import { camera } from '@kit.CameraKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
   function preLaunch(baseContext: common.BaseContext): void {
     let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
@@ -175,9 +177,9 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
   具体申请方式及校验方式，请参考[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
   ```ts
-  import camera from '@ohos.multimedia.camera';
-  import { BusinessError } from '@ohos.base';
-  import common from '@ohos.app.ability.common';
+  import { camera } from '@kit.CameraKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
   function setPreLaunchConfig(baseContext: common.BaseContext): void {
     let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);

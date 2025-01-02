@@ -1,4 +1,4 @@
-# Randomly Generating a Symmetric Key
+# Randomly Generating a Symmetric Key (ArkTS)
 
 
 This topic uses AES and SM4 as an example to describe how to generate a symmetric key and obtain the binary data.
@@ -20,7 +20,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-key-generat
 - Example: Randomly generate a 256-bit AES key (using promise-based APIs).
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function testGenerateAesKey() {
     // Create a SymKeyGenerator instance.
@@ -37,7 +37,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-key-generat
 
 - Example using synchronous API [generateSymKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkeysync12):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function testSyncGenerateAesKey() {
     // Create a SymKeyGenerator instance.
@@ -65,7 +65,7 @@ For details about the algorithm specifications, see [SM4](crypto-sym-key-generat
 - Example: Randomly generate a 128-bit SM4 key (using promise-based APIs).
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function testGenerateSM4Key() {
     // Create a SymKeyGenerator instance.
@@ -82,9 +82,9 @@ For details about the algorithm specifications, see [SM4](crypto-sym-key-generat
 
 - Example using synchronous API [generateSymKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkeysync12):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
-  function testSyncGenerateAesKey() {
+  function testSyncGenerateSm4Key() {
     // Create a SymKeyGenerator instance.
     let symKeyGenerator = cryptoFramework.createSymKeyGenerator('SM4_128');
     // Use SymKeyGenerator to randomly generate a symmetric key.

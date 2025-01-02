@@ -11,7 +11,7 @@ hfp模块提供了访问蓝牙呼叫接口的方法。
 ## 导入模块
 
 ```js
-import hfp from '@ohos.bluetooth.hfp';
+import { hfp } from '@kit.ConnectivityKit';
 ```
 
 
@@ -29,10 +29,19 @@ createHfpAgProfile(): HandsFreeAudioGatewayProfile
 | ----------------------------- | ---------- |
 | HandsFreeAudioGatewayProfile | 返回该profile的实例。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let hfpAgProfile = hfp.createHfpAgProfile();
     console.info('hfpAg success');

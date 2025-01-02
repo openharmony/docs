@@ -1,6 +1,6 @@
 # 使用router事件跳转到指定UIAbility
 
-在卡片中使用**postCardAction**接口的router能力，能够快速拉起卡片提供方应用的指定UIAbility，因此UIAbility较多的应用往往会通过卡片提供不同的跳转按钮，实现一键直达的效果。例如相机卡片，卡片上提供拍照、录像等按钮，点击不同按钮将拉起相机应用的不同UIAbility，从而提高用户的体验。
+在卡片中使用[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口的router能力，能够快速拉起卡片提供方应用的指定UIAbility，因此UIAbility较多的应用往往会通过卡片提供不同的跳转按钮，实现一键直达的效果。例如相机卡片，卡片上提供拍照、录像等按钮，点击不同按钮将拉起相机应用的不同UIAbility，从而提高用户的体验。
 
 ![WidgerCameraCard](figures/WidgerCameraCard.png)
 
@@ -78,11 +78,9 @@
 - 在UIAbility中接收router事件并获取参数，根据传递的params不同，选择拉起不同的页面。
   
   ```ts
-  import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import hilog from '@ohos.hilog';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import type Want from '@ohos.app.ability.Want';
-  import type window from '@ohos.window';
+  import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   
   const TAG: string = 'EntryAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -93,19 +91,23 @@
   
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       // 获取router事件中传递的targetPage参数
-      hilog.info(DOMAIN_NUMBER, TAG, `Ability onCreate, ${JSON.stringify(want)}`);
-      if (want.parameters !== undefined) {
-        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters));
-        this.selectPage = params.targetPage;
+      hilog.info(DOMAIN_NUMBER, TAG, `Ability onCreate: ${JSON.stringify(want?.parameters)}`);
+      if (want?.parameters?.params) {
+        // want.parameters.params 对应 postCardAction() 中 params 内容
+        let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
+        this.selectPage = params.targetPage as string;
+        hilog.info(DOMAIN_NUMBER, TAG, `onCreate selectPage: ${this.selectPage}`);
       }
     }
   
     // 如果UIAbility已在后台运行，在收到Router事件后会触发onNewWant生命周期回调
     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-      hilog.info(DOMAIN_NUMBER, TAG, `onNewWant Want: ${JSON.stringify(want)}`);
-      if (want.parameters?.params !== undefined) {
-        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters));
-        this.selectPage = params.targetPage;
+      hilog.info(DOMAIN_NUMBER, TAG, `Ability onNewWant: ${JSON.stringify(want?.parameters)}`);
+      if (want?.parameters?.params) {
+        // want.parameters.params 对应 postCardAction() 中 params 内容
+        let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
+        this.selectPage = params.targetPage as string;
+        hilog.info(DOMAIN_NUMBER, TAG, `onNewWant selectPage: ${this.selectPage}`);
       }
       if (this.currentWindowStage !== null) {
         this.onWindowStageCreate(this.currentWindowStage);

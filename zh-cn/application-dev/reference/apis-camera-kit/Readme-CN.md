@@ -1,25 +1,31 @@
-# Camera Kit API参考
+# Camera Kit（相机服务）
 
 - ArkTS API
   - [@ohos.multimedia.camera (相机管理)](js-apis-camera.md)
   - [@ohos.multimedia.cameraPicker (相机选择器)](js-apis-cameraPicker.md)
+  <!--Del-->
   - [@ohos.multimedia.camera (相机管理)(系统接口)](js-apis-camera-sys.md)
+  <!--DelEnd-->
 - C API
   - 模块
     - [OH_Camera](_o_h___camera.md)
   - 头文件
     - [camera.h](camera_8h.md)
+    - [camera_device.h](camera__device_8h.md)
     - [camera_input.h](camera__input_8h.md)
     - [camera_manager.h](camera__manager_8h.md)
     - [capture_session.h](capture__session_8h.md)
     - [metadata_output.h](metadata__output_8h.md)
+    - [photo_native.h](photo__native_8h.md)
     - [photo_output.h](photo__output_8h.md)
     - [preview_output.h](preview__output_8h.md)
     - [video_output.h](video__output_8h.md)
   - 结构体
     - [Camera_CaptureEndInfo](_camera___capture_end_info.md)
+    - [Camera_CaptureStartInfo](_camera___capture_start_info.md)
     - [Camera_Device](_camera___device.md)
     - [Camera_FrameRateRange](_camera___frame_rate_range.md)
+    - [Camera_FrameShutterEndInfo](_camera___frame_shutter_end_info.md)
     - [Camera_FrameShutterInfo](_camera___frame_shutter_info.md)
     - [Camera_Location](_camera___location.md)
     - [Camera_MetadataObject](_camera___metadata_object.md)
@@ -29,7 +35,9 @@
     - [Camera_Profile](_camera___profile.md)
     - [Camera_Rect](_camera___rect.md)
     - [Camera_Size](_camera___size.md)
+    - [Camera_SmoothZoomInfo](_camera___smooth_zoom_info.md)
     - [Camera_StatusInfo](_camera___status_info.md)
+    - [Camera_TorchStatusInfo](_camera___torch_status_info.md)
     - [Camera_VideoProfile](_camera___video_profile.md)
     - [CameraInput_Callbacks](_camera_input___callbacks.md)
     - [CameraManager_Callbacks](_camera_manager___callbacks.md)

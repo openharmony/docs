@@ -1,4 +1,4 @@
-# RelationalStore开发指导
+# RelationalStore开发指导 (C/C++)
 
 
 ## 场景介绍
@@ -104,7 +104,7 @@ libnative_rdb_ndk.z.so
    // 应用模块名
    config.moduleName = "xxx";
    // 数据库文件安全等级
-   config.securityLevel = OH_Rdb_SecurityLevel::S1;
+   config.securityLevel = OH_Rdb_SecurityLevel::S3;
    // 数据库是否加密
    config.isEncrypt = false;
    // config所占内存大小
@@ -113,7 +113,7 @@ libnative_rdb_ndk.z.so
    config.area = RDB_SECURITY_AREA_EL1;
    
    int errCode = 0;
-   // 获取获取OH_Rdb_Store实例
+   // 获取OH_Rdb_Store实例
    OH_Rdb_Store *store_ = OH_Rdb_GetOrOpen(&config, &errCode);
    ```
 
@@ -216,7 +216,7 @@ libnative_rdb_ndk.z.so
    ```c
    // 列的属性为单个资产类型时，sql语句中应指定为asset，多个资产类型应指定为assets。
    char createAssetTableSql[] = "CREATE TABLE IF NOT EXISTS asset_table (id INTEGER PRIMARY KEY AUTOINCREMENT, data1 asset, data2 assets );";
-   errCode = OH_Rdb_Execute(storeTestRdbStore_, createAssetTableSql);
+   errCode = OH_Rdb_Execute(store_, createAssetTableSql);
    Data_Asset *asset = OH_Data_Asset_CreateOne();
    OH_Data_Asset_SetName(asset, "name0");
    OH_Data_Asset_SetUri(asset, "uri0");
@@ -303,7 +303,7 @@ libnative_rdb_ndk.z.so
    int64_t keys[] = { 1 };
    values->putInt64(values, keys, 1);
    OH_Cursor *cursor;
-   cursor = OH_Rdb_FindModifyTime(storeTestRdbStore_, "EMPLOYEE", "ROWID", values);
+   cursor = OH_Rdb_FindModifyTime(store_, "EMPLOYEE", "ROWID", values);
    ```
 
 8. 创建分布式表。调用OH_Rdb_Execute接口创建表之后，可以将已创建的表设置成分布式表，并配置相关的分布式选项。使用该接口需要实现云服务功能。示例代码如下所示：
@@ -312,7 +312,7 @@ libnative_rdb_ndk.z.so
    constexpr int TABLE_COUNT = 1;
    const char *table[TABLE_COUNT];
    table[0] = "EMPLOYEE";
-   int errcode = OH_Rdb_SetDistributedTables(storeTestRdbStore_, table, TABLE_COUNT, Rdb_DistributedType::DISTRIBUTED_CLOUD, &config);
+   int errcode = OH_Rdb_SetDistributedTables(store_, table, TABLE_COUNT, Rdb_DistributedType::DISTRIBUTED_CLOUD, &config);
    ```
 
 9. 对分布式表手动执行端云同步。调用OH_Rdb_SetDistributedTables创建分布式表之后，可以对该表进行手动端云同步。使用该接口需要实现云服务功能。示例代码如下所示：
@@ -324,7 +324,7 @@ libnative_rdb_ndk.z.so
     // do something
    }
    const Rdb_ProgressObserver observer = { .context = nullptr, .callback = CloudSyncObserverCallback };
-   OH_Rdb_CloudSync(storeTestRdbStore_, Rdb_SyncMode::SYNC_MODE_TIME_FIRST, table, TABLE_COUNT, &observer);
+   OH_Rdb_CloudSync(store_, Rdb_SyncMode::SYNC_MODE_TIME_FIRST, table, TABLE_COUNT, &observer);
    ```
 
 10. 将数据观察者注册到指定的存储对象(store)上，并订阅指定类型(type)的事件。在数据发生变化时，系统会调用相应的回调函数来处理进度观察。调用OH_Rdb_Subscribe接口订阅数据变化事件。使用该接口需要实现云服务功能。示例代码如下所示：
@@ -337,7 +337,45 @@ libnative_rdb_ndk.z.so
     }
     Rdb_BriefObserver briefObserver;
     const Rdb_BriefObserver briefObserver = { .context = nullptr, .callback = RdbSubscribeBriefCallback };
-    OH_Rdb_Subscribe(storeTestRdbStore_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_CLOUD, &briefObserver);
+    // 订阅数据变化
+    OH_Rdb_Subscribe(store_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_CLOUD, &briefObserver);
+    ```
+
+    调用OH_Rdb_Subscribe接口订阅本地数据库数据变更的事件。示例代码如下所示：
+
+    ```c
+    // 定义回调函数
+    void LocalDataChangeObserverCallback1(void *context, const Rdb_ChangeInfo **changeInfo, uint32_t count)
+    {
+       for (uint32_t i = 0; i < count; i++) {
+          EXPECT_EQ(DISTRIBUTED_CHANGE_INFO_VERSION, changeInfo[i]->version);
+          // 表名为employee
+          changeInfo[i]->tableName;
+          changeInfo[i]->ChangeType;
+          // 添加行数为1
+          changeInfo[i]->inserted.count;
+          // 修改行数为0
+          changeInfo[i]->updated.count;
+          // 删除行数为0
+          changeInfo[i]->deleted.count;
+       }
+    }
+    Rdb_DetailsObserver callback = LocalDataChangeObserverCallback1;
+    Rdb_DataObserver observer = { nullptr, { callback } };
+    // 订阅本地数据库数据变更的事件
+    OH_Rdb_Subscribe(store_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_LOCAL_DETAILS, &observer);
+ 
+    OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
+    valueBucket->putText(valueBucket, "NAME", "Lisa");
+    valueBucket->putInt64(valueBucket, "AGE", 18);
+    valueBucket->putReal(valueBucket, "SALARY", 100.5);
+    uint8_t arr[] = {1, 2, 3, 4, 5};
+    int len = sizeof(arr) / sizeof(arr[0]);
+    valueBucket->putBlob(valueBucket, "CODES", arr, len);
+    // 插入数据
+    int rowId = OH_Rdb_Insert(store_, "EMPLOYEE", valueBucket);
+    // 销毁键值对实例
+    valueBucket->destroy(valueBucket);
     ```
 
 11. 从指定的存储对象(store)中取消对指定类型(type)的事件的订阅。取消后，系统将不再调用相应的回调函数来处理进度观察。调用OH_Rdb_Unsubscribe接口取消订阅数据变化事件。使用该接口需要实现云服务功能。示例代码如下所示：
@@ -350,8 +388,22 @@ libnative_rdb_ndk.z.so
     }
     Rdb_BriefObserver briefObserver = RdbSubscribeBriefCallback;
     const Rdb_DataObserver briefObs = { .context = nullptr, .callback.briefObserver = briefObserver };
-    OH_Rdb_Unsubscribe(storeTestRdbStore_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_CLOUD, &briefObs);
+    // 取消订阅数据变化事件
+    OH_Rdb_Unsubscribe(store_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_CLOUD, &briefObs);
     ```
+    调用OH_Rdb_Unsubscribe接口取消订阅本地数据库数据变更的事件。示例代码如下所示：
+    ```c
+    // 定义回调函数
+    void LocalDataChangeObserverCallback1(void *context, const Rdb_ChangeInfo **changeInfo, uint32_t count)
+    {
+    // do something
+    }
+    Rdb_DetailsObserver callback = LocalDataChangeObserverCallback1;
+    Rdb_DataObserver observer = { nullptr, { callback } };
+    // 取消订阅本地数据库数据变更的事件
+    OH_Rdb_Unsubscribe(store_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_LOCAL_DETAILS, &observer);
+    ```
+
 
 12. 将进度观察者注册到指定的存储对象(store)上，以便订阅自动同步进度的事件。当存储对象进行自动同步时，系统会调用相应的回调函数处理进度观察。调用OH_Rdb_SubscribeAutoSyncProgress接口订阅自动同步进度事件。使用该接口需要实现云服务功能。示例代码如下所示：
     
@@ -362,7 +414,7 @@ libnative_rdb_ndk.z.so
     // do something
     }
     const Rdb_ProgressObserver observer = { .context = nullptr, .callback = RdbProgressObserverCallback };
-    OH_Rdb_SubscribeAutoSyncProgress(storeTestRdbStore_, &observer);
+    OH_Rdb_SubscribeAutoSyncProgress(store_, &observer);
     ```
 
 13. 从指定的存储对象(store)中取消订阅自动同步进度的事件。取消后，系统将不再调用相应的回调函数来处理进度观察。调用OH_Rdb_UnsubscribeAutoSyncProgress接口取消订阅自动同步进度事件。使用该接口需要实现云服务功能。示例代码如下所示：
@@ -374,7 +426,7 @@ libnative_rdb_ndk.z.so
     // do something
     }
     const Rdb_ProgressObserver observer = { .context = nullptr, .callback = RdbProgressObserverCallback };
-    OH_Rdb_UnsubscribeAutoSyncProgress(storeTestRdbStore_, &observer);
+    OH_Rdb_UnsubscribeAutoSyncProgress(store_, &observer);
     ```
 
 14. 删除数据库。调用OH_Rdb_DeleteStore方法，删除数据库及数据库相关文件。示例代码如下：

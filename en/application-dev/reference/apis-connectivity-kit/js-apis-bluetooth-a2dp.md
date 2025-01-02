@@ -10,7 +10,7 @@ The **a2dp** module provides APIs for using the Bluetooth Advanced Audio Distrib
 ## Modules to Import
 
 ```js
-import a2dp from '@ohos.bluetooth.a2dp';
+import { a2dp } from '@kit.ConnectivityKit';
 ```
 
 ## a2dp.createA2dpSrcProfile
@@ -25,12 +25,22 @@ Creates an **A2dpSrcProfile** instance.
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| A2dpSourceProfile | **A2dpSrcProfile** instance created.|
+| [A2dpSourceProfile](#a2dpsourceprofile) | **A2dpSrcProfile** instance created.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                         |
+|801 | Capability not supported.                |
+
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpProfile = a2dp.createA2dpSrcProfile();
     console.info('a2dp success');
@@ -73,15 +83,18 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
@@ -129,6 +142,8 @@ Enumerates the Bluetooth codec types.
 | CODEC_TYPE_SBC<sup>11+</sup>     | 0 | SBC.|
 | CODEC_TYPE_AAC<sup>11+</sup>     | 1 | AAC.|
 | CODEC_TYPE_L2HC<sup>11+</sup>    | 2 | L2HC.|
+| CODEC_TYPE_L2HCST<sup>13+</sup>  | 3 | L2HCST.|
+| CODEC_TYPE_LDAC<sup>13+</sup>    | 4 | LDAC.|
 
 
 ## CodecChannelMode<sup>11+</sup>

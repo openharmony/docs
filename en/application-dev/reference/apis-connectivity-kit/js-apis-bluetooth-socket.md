@@ -11,14 +11,14 @@ The **socket** module provides APIs for operating and managing Bluetooth sockets
 ## Modules to Import
 
 ```js
-import socket from '@ohos.bluetooth.socket';
+import { socket } from '@kit.ConnectivityKit';
 ```
 
 ## socket.sppListen
 
 sppListen(name: string, options: SppOptions, callback: AsyncCallback&lt;number&gt;): void
 
-Creates a Serial Port Profile (SPP) listening socket for the server.
+Creates a Serial Port Profile (SPP) listening socket for the server. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -29,8 +29,8 @@ Creates a Serial Port Profile (SPP) listening socket for the server.
 | Name     | Type                         | Mandatory  | Description                     |
 | -------- | --------------------------- | ---- | ----------------------- |
 | name     | string                      | Yes   | Name of the service.                 |
-| option   | [SppOptions](#sppoptions)     | Yes   | SPP listening configuration.             |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the server socket ID.|
+| options   | [SppOptions](#sppoptions)     | Yes   | SPP listening configuration.             |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the server socket ID.|
 
 **Error codes**
 
@@ -38,15 +38,18 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let serverNumber = -1;
 let serverSocket = (code: BusinessError, number: number) => {
   if (code) {
@@ -71,7 +74,7 @@ try {
 
 sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
-Accepts a connection request from the client over a socket of the server.
+Accepts a connection request from the client over a socket of the server. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -80,7 +83,7 @@ Accepts a connection request from the client over a socket of the server.
 | Name         | Type                         | Mandatory  | Description                     |
 | ------------ | --------------------------- | ---- | ----------------------- |
 | serverSocket | number                      | Yes   | Server socket ID.          |
-| callback     | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the client socket ID.|
+| callback     | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the client socket ID.|
 
 **Error codes**
 
@@ -88,19 +91,21 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 let serverNumber = -1;
 let acceptClientSocket = (code: BusinessError, number: number) => {
-  console.log('bluetooth error code: ' + code.code);
+  console.info('bluetooth error code: ' + code.code);
   if (code) {
     console.error('sppListen error, code is ' + code);
     return;
@@ -121,7 +126,7 @@ try {
 
 sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;number&gt;): void
 
-Initiates an SPP connection to a remote device from the client.
+Initiates an SPP connection to a remote device from the client. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -132,8 +137,8 @@ Initiates an SPP connection to a remote device from the client.
 | Name     | Type                         | Mandatory  | Description                            |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | deviceId | string                      | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
-| option   | [SppOptions](#sppoptions)     | Yes   | SPP listening configuration for the connection.                 |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the client socket ID.       |
+| options   | [SppOptions](#sppoptions)     | Yes   | SPP listening configuration for the connection.                 |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the client socket ID.       |
 
 **Error codes**
 
@@ -141,15 +146,18 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 let clientNumber = -1;
 let clientSocket = (code: BusinessError, number: number) => {
@@ -157,7 +165,7 @@ let clientSocket = (code: BusinessError, number: number) => {
     console.error('sppListen error, code is ' + code);
     return;
   } else {
-    console.log('bluetooth serverSocket Number: ' + number);
+    console.info('bluetooth serverSocket Number: ' + number);
     // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
     clientNumber = number;
   }
@@ -191,13 +199,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.             |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let serverNumber = -1; // Set serverNumber to the value of serverNumber returned by the sppListen callback.
 try {
     socket.sppCloseServerSocket(serverNumber);
@@ -227,13 +237,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // clientNumber is obtained by sppAccept or sppConnect.
 try {
     socket.sppCloseClientSocket(clientNumber);
@@ -264,13 +276,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.             |
+|801 | Capability not supported.          |
 |2901054 | IO error.                                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // clientNumber is obtained by sppAccept or sppConnect.
 let arrayBuffer = new ArrayBuffer(8);
 let data = new Uint8Array(arrayBuffer);
@@ -287,7 +301,7 @@ try {
 
 on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;): void
 
-Subscribes to SPP read request events.
+Subscribes to the SPP read request events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -297,7 +311,7 @@ Subscribes to SPP read request events.
 | ------------ | --------------------------- | ---- | -------------------------- |
 | type         | string                      | Yes   | Event type. The value is **sppRead**, which indicates an SPP read request event.|
 | clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.             |
-| callback     | Callback&lt;ArrayBuffer&gt; | Yes   | Callback invoked to return the data read.         |
+| callback     | Callback&lt;ArrayBuffer&gt; | Yes   | Callback used to return the data read.         |
 
 **Error codes**
 
@@ -305,17 +319,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.            |
+|801 | Capability not supported.          |
 |2901054 | IO error.                                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // clientNumber is obtained by sppAccept or sppConnect.
 let dataRead = (dataBuffer: ArrayBuffer) => {
-  let data = new Uint8Array(dataBuffer);
-  console.log('bluetooth data is: ' + data[0]);
+    let data = new Uint8Array(dataBuffer);
+    console.info('bluetooth data is: ' + data[0]);
 }
 try {
     socket.on('sppRead', clientNumber, dataRead);
@@ -339,12 +355,21 @@ Unsubscribes from SPP read request events.
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
 | type         | string                      | Yes   | Event type. The value is **sppRead**, which indicates an SPP read request event.              |
 | clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.                       |
-| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**. |
+| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
+|801 | Capability not supported.          |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // clientNumber is obtained by sppAccept or sppConnect.
 try {
     socket.off('sppRead', clientNumber);
@@ -363,7 +388,7 @@ Defines the SPP configuration.
 | Name    | Type               | Readable  | Writable  | Description         |
 | ------ | ------------------- | ---- | ---- | ----------- |
 | uuid   | string              | Yes   | Yes   | UUID of the SPP.|
-| secure | boolean             | Yes   | Yes   | Whether it is a secure channel.   |
+| secure | boolean             | Yes   | Yes   | Whether it is a secure channel. The value **true** indicates a secure channel, and the value **false** indicates a non-secure channel.   |
 | type   | [SppType](#spptype)            | Yes   | Yes   | Type of the SPP link.   |
 
 

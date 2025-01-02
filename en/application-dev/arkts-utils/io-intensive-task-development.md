@@ -9,25 +9,33 @@ The performance focus of I/O intensive tasks is not the CPU processing capabilit
 
 1. Define a concurrency function that internally calls I/O capabilities intensively.
     ```ts
-    // a.ts
-    import fs from '@ohos.file.fs';
+    // write.ets
+    import { fileIo } from '@kit.CoreFileKit'
 
     // Define a concurrency function that internally calls I/O capabilities intensively.
     // Write data to the file.
     export async function write(data: string, filePath: string): Promise<void> {
-      let file: fs.File = await fs.open(filePath, fs.OpenMode.READ_WRITE);
-      await fs.write(file.fd, data);
-      fs.close(file);
+      let file: fileIo.File = await fileIo.open(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+      await fileIo.write(file.fd, data);
+      fileIo.close(file);
     }
     ```
 
 	```ts
-    import { write } from './a'
-    import { BusinessError } from '@ohos.base';
+    // Index.ets
+    import { write } from './write'
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { taskpool } from '@kit.ArkTS';
+    import { common } from '@kit.AbilityKit';
 
     @Concurrent
-    async function concurrentTest(fileList: string[]): Promise<boolean> {
+    async function concurrentTest(context: common.UIAbilityContext): Promise<boolean> {
+      let filePath1: string = context.filesDir + "/path1.txt"; // Application file path
+      let filePath2: string = context.filesDir + "/path2.txt";
       // Write data to the file cyclically.
+      let fileList: Array<string> = [];
+      fileList.push(filePath1);
+      fileList.push(filePath2)
       for (let i: number = 0; i < fileList.length; i++) {
         write('Hello World!', fileList[i]).then(() => {
           console.info(`Succeeded in writing the file. FileList: ${fileList[i]}`);
@@ -40,17 +48,34 @@ The performance focus of I/O intensive tasks is not the CPU processing capabilit
     }
 	```
 
-2. Use **TaskPool** to execute the concurrency function that contains the intensive I/O operations. Specifically, call [execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute) to execute the tasks and process the scheduling result in a callback. For details about how to obtain **filePath1** and **filePath2** in the example, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths).
+2. Use **TaskPool** to execute the concurrency function that contains the intensive I/O operations. Specifically, call [execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute) to execute the tasks and process the scheduling result in a callback. For details about how to obtain **filePath1** and **filePath2** in the example, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths). To use the context in **TaskPool**, prepare the context outside the concurrent function and pass in the context to the concurrent function as an input parameter.
 
     ```ts
-    import taskpool from '@ohos.taskpool';
-
-    let filePath1: string = "path1"; // Application file path.
-    let filePath2: string = "path2";
-
-    // Use TaskPool to execute the concurrency function that contains the intensive I/O operations.
-    // In the case of a large array, the distribution of I/O intensive tasks also preempts the main thread. Therefore, multiple threads are required.
-    taskpool.execute(concurrentTest, [filePath1, filePath2]).then(() => {
-      // Process the scheduling result.
-    })
+    // Index.ets
+    @Entry
+    @Component
+    struct Index {
+      @State message: string = 'Hello World';
+      build() {
+        Row() {
+          Column() {
+            Text(this.message)
+              .fontSize(50)
+              .fontWeight(FontWeight.Bold)
+              .onClick(() => {
+                let context = getContext() as common.UIAbilityContext;
+    
+                // Use TaskPool to execute the concurrency function that contains the intensive I/O operations.
+                // In the case of a large array, the distribution of I/O intensive tasks also preempts the UI main thread. Therefore, multiple threads are required.
+                taskpool.execute(concurrentTest, context).then(() => {
+                  // Process the scheduling result.
+                  console.info("taskpool: execute success")
+                })
+              })
+          }
+          .width('100%')
+        }
+        .height('100%')
+      }
+    }
     ```

@@ -1,4 +1,4 @@
-# Encryption and Decryption by Segment with an AES Symmetric Key (GCM Mode)
+# Encryption and Decryption by Segment with an AES Symmetric Key (GCM Mode) (ArkTS)
 
 
 For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
@@ -17,7 +17,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 
 4. Set the size of the data to be passed in each time to 20 bytes, and call [Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1) multiple times to pass in the data (plaintext) to be encrypted.
    
-   - Currently, the data to be passed in by a single **update()** is not size bound. You can determine how to pass in data based on the data volume.
+   - Currently, the amount of data to be passed in by a single **update()** is not limited. You can determine how to pass in data based on the data volume.
    - You are advised to check the result of each **update()**. If the result is not **null**, obtain the data and combine the data segments into complete ciphertext. The **update()** result may vary with the key specifications.
       
       If a block cipher mode (ECB or CBC) is used, data is encrypted and output based on the block size. That is, if the data of an **update()** operation matches the block size, the ciphertext is output. Otherwise, **null** is output, and the plaintext will be combined with the input data of the next **update()** to form a block. When **doFinal()** is called, the unencrypted data is padded to the block size based on the specified padding mode, and then encrypted. The **update()** API works in the same way in decryption.
@@ -29,7 +29,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
    - If data has been passed in by **update()**, pass in **null** in the **data** parameter of **Cipher.doFinal**.
    - The output of **doFinal** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
 
-6. Obtain **GcmParamsSpec.authTag** as the authentication information for decryption.
+6. Obtain [GcmParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#gcmparamsspec).authTag as the authentication information for decryption.
    
    In GCM mode, extract the last 16 bytes from the encrypted data as the authentication information for initializing the **Cipher** instance in decryption. In the example, **authTag** is of 16 bytes.
 
@@ -47,13 +47,18 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 - Example (using asynchronous APIs):
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
+
+  function generateRandom(len: number) {
+    let rand = cryptoFramework.createRandom();
+    let generateRandSync = rand.generateRandomSync(len);
+    return generateRandSync;
+  }
+
   function genGcmParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-    arr = [0, 0, 0, 0, 0, 0, 0, 0]; // 8 bytes
+    let ivBlob = generateRandom(12);
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8]; // 8 bytes
     let dataAad = new Uint8Array(arr);
     let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
     arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
@@ -96,7 +101,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
   async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('AES128|GCM|PKCS7');
     await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, gcmParams);
-    let updateLength = 20; // Set the data chunk to be passed in each time to 20 bytes. You can set this parameter as required.
+    let updateLength = 20; // Set the data length to be passed in each time to 20 bytes. You can set this parameter as required.
     let decryptText = new Uint8Array();
     for (let i = 0; i < cipherText.data.length; i += updateLength) {
       let updateMessage = cipherText.data.subarray(i, i + updateLength);
@@ -142,14 +147,18 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 - Example (using synchronous APIs):
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
+  function generateRandom(len: number) {
+    let rand = cryptoFramework.createRandom();
+    let generateRandSync = rand.generateRandomSync(len);
+    return generateRandSync;
+  }
+  
   function genGcmParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-    arr = [0, 0, 0, 0, 0, 0, 0, 0]; // 8 bytes
+    let ivBlob = generateRandom(12);
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8]; // 8 bytes
     let dataAad = new Uint8Array(arr);
     let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
     arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
@@ -192,7 +201,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
   function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('AES128|GCM|PKCS7');
     decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, gcmParams);
-    let updateLength = 20; // Set the data chunk to be passed in each time to 20 bytes. You can set this parameter as required.
+    let updateLength = 20; // Set the data length to be passed in each time to 20 bytes. You can set this parameter as required.
     let decryptText = new Uint8Array();
     for (let i = 0; i < cipherText.data.length; i += updateLength) {
       let updateMessage = cipherText.data.subarray(i, i + updateLength);
@@ -212,16 +221,16 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
     let decryptBlob: cryptoFramework.DataBlob = { data: decryptText };
     return decryptBlob;
   }
-  async function genSymKeyByData(symKeyData: Uint8Array) {
+  function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
     let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
-    let symKey = await aesGenerator.convertKey(symKeyBlob);
-    console.info('convertKey success');
+    let symKey = aesGenerator.convertKeySync(symKeyBlob);
+    console.info('convertKeySync success');
     return symKey;
   }
-  async function main() {
+  function main() {
     let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
-    let symKey = await genSymKeyByData(keyData);
+    let symKey = genSymKeyByData(keyData);
     let message = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // The message is of 43 bytes. After decoded in UTF-8 format, the message is also of 43 bytes.
     let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
     let encryptText = encryptMessageUpdateBySegment(symKey, plainText);

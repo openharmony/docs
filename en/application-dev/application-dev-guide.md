@@ -12,37 +12,15 @@ In this part, you will learn the application package structure, resource file us
 
 ## Development
 
-To facilitate your application development, we provide development guidelines for key features.
+You can refer to development guidances of key features in the application framework, application service, system, multimedia, and graphics fields.
 
-First, familiarize yourself with the two cornerstone frameworks in OpenHarmony applications:
 
-- Application framework: [Application Models](application-models/application-model-composition.md)
-- UI framework: [UI Development](ui/arkui-overview.md)
+- Open kit capabilities related to the application framework: Ability Kit, ArkUI, and more
+- Open kit capabilities related to application services: Account Kit, Location Kit, and more
+- Open kit capabilities related to the system: Network Kit, Universal Keystore Kit, and more
+- Open kit capabilities related to multimedia: Audio Kit, Media Library Kit, and more
+- Open kit capabilities related to graphics: ArkGraphics 2D and more
 
-All applications should be developed on top of these frameworks.
-
-Then, equip yourself for developing the key features, with the following guidelines:
-
-- [ArkTS Common Library](arkts-utils/arkts-commonlibrary-overview.md)
-- [Web](web/web-component-overview.md)
-- [Notification](notification/notification-overview.md)
-- [Window Manager](windowmanager/window-overview.md)
-- [WebGL](webgl/webgl-overview.md)
-- [Media](media/media-application-overview.md)
-- [Security](security/AccessToken/access-token-overview.md)
-- [AI](ai/ai-overview.md)
-- [Connectivity](connectivity/ipc-rpc-overview.md)
-- [Telephony Service](telephony/telephony-overview.md)
-- [Data Management](database/data-mgmt-overview.md)
-- [File Management](file-management/core-file-kit-intro.md)
-- [Background Task Management](task-management/background-task-overview.md)
-- [Device Management](device/usb-overview.md)
-- [Device Usage Statistics](device-usage-statistics/device-usage-statistics-overview.md)
-- [DFX](dfx/hiappevent-guidelines.md)
-- [Internationalization](internationalization/i18n-l10n.md)
-- [Application Test](application-test/arkxtest-guidelines.md)
-- [IDL Specifications and User Guide](IDL/idl-guidelines.md)
-- [Using Native APIs in Application Projects](napi/napi-guidelines.md)
 
 ## Tools
 
@@ -56,5 +34,3 @@ To make you better understand how functions work together and jumpstart your app
 ## API References
 
 [API References](reference/development-intro.md) encompass all components and APIs provided by every kit in the OpenHarmony SDK, helping you use and integrate APIs more effectively.
-
- <!--no_check--> 

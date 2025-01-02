@@ -32,7 +32,7 @@ The DataShareHelper is not initialized successfully.
 
 **错误信息**
 
-The uri is not exist.
+The URI does not exist.
 
 **错误描述**
 
@@ -51,7 +51,7 @@ The uri is not exist.
 
 **错误信息**
 
-The data area is not exist.
+The data area does not exist.
 
 **错误描述**
 
@@ -64,3 +64,21 @@ The data area is not exist.
 **处理步骤**
 
 咨询DataShare服务端提供者，获取正确的bundleName。
+
+## 15700013 DataShareHelper实例被关闭
+
+**错误信息**
+
+The DataShareHelper instance is already closed.
+
+**错误描述**
+
+DataShareHelper实例被关闭后，继续使用该实例会产生此错误码。
+
+**可能原因**
+
+调用close接口关闭了DataShareHelper实例后，继续使用该实例。
+
+**处理步骤**
+
+重新创建DataShareHelper实例，再进行使用。

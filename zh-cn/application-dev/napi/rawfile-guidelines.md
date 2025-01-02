@@ -3,7 +3,7 @@
 ## 场景介绍
 
 开发者可以通过本指导了解在OpenHarmony应用中，如何使用Native Rawfile接口操作Rawfile目录和文件。功能包括文件列表遍历、文件打开、搜索、读取和关闭Rawfile。  
-64后缀相关接口属于新增接口，新接口支持打开更大的rawfile文件(超过2G以上建议使用)，具体请参考：[Rawfile接口介绍](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-localization-kit/rawfile.md)。64相关的开发步骤和非64一致，将非64接口替换为64接口即可，例如：OH_ResourceManager_OpenRawFile替换为OH_ResourceManager_OpenRawFile64。
+64后缀相关接口属于新增接口，新接口支持打开更大的rawfile文件(超过2G以上建议使用)，具体请参考：[Rawfile接口介绍](../reference/apis-localization-kit/rawfile.md)。64相关的开发步骤和非64一致，将非64接口替换为64接口即可，例如：OH_ResourceManager_OpenRawFile替换为OH_ResourceManager_OpenRawFile64。
 
 ## 接口说明
 
@@ -26,105 +26,7 @@
 | void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr) | 释放native resource manager相关资源。    |
 | bool OH_ResourceManager_IsRawDir(const NativeResourceManager *mgr, const char *path) | 判断路径是否是rawfile下的目录    |
 
-
-
-## 函数介绍
-
-1. 根据NativeResourceManager实例，使用OH_ResourceManager_OpenRawDir接口获取RawDir实例。
-
-    ```c++
-    RawDir* rawDir = OH_ResourceManager_OpenRawDir(nativeResourceManager, path.c_str());
-    ```
-
-2. 根据RawDir实例，使用OH_ResourceManager_GetRawFileCount接口获取对应目录下的rawfile文件总数 。
-
-    ```c++
-    int count = OH_ResourceManager_GetRawFileCount(rawDir);
-    ```
-
-3. 根据RawDir实例，使用OH_ResourceManager_GetRawFileName接口获取目录下对应index的rawfile文件名。
-
-    ```c++
-    for (int index = 0; index < count; index++) {
-        std::string fileName = OH_ResourceManager_GetRawFileName(rawDir, index);
-    }
-    ```
-
-4. 根据NativeResourceManager实例，使用OH_ResourceManager_OpenRawFile接口获取指定文件名的RawFile实例
-
-    ```c++
-    RawFile* rawFile = OH_ResourceManager_OpenRawFile(nativeResourceManager, fileName.c_str());
-    ```
-
-5. 根据RawFile实例，使用OH_ResourceManager_GetRawFileSize接口获取对应rawfile文件大小。
-
-    ```c++
-    long rawFileSize = OH_ResourceManager_GetRawFileSize(rawFile);
-    ```
-
-6. 根据RawFile实例，使用OH_ResourceManager_SeekRawFile接口指定rawfile偏移量。
-
-    ```c++
-    int position = OH_ResourceManager_SeekRawFile(rawFile, 10, 0);
-    int position = OH_ResourceManager_SeekRawFile(rawFile, 0 , 1);
-    int position = OH_ResourceManager_SeekRawFile(rawFile, -10, 2);
-    ```
-
-7. 根据RawFile实例，使用OH_ResourceManager_GetRawFileOffset接口获取rawfile偏移量。
-
-    ```c++
-    long rawFileOffset = OH_ResourceManager_GetRawFileOffset(rawFile)
-    ```
-
-8. 根据RawFile实例，使用OH_ResourceManager_ReadRawFile接口读取rawfile文件内容。
-
-    ```c++
-    std::unique_ptr<char[]> mediaData = std::make_unique<char[]>(rawFileSize);
-    long rawFileOffset = OH_ResourceManager_ReadRawFile(rawFile, mediaData.get(), rawFileSize);
-    ```
-
-9. 根据RawFile实例，使用OH_ResourceManager_GetRawFileRemainingLength接口读取rawfile文件的剩余长度。
-
-    ```c++
-    int64_t rawFileRemainingSize = OH_ResourceManager_GetRawFileRemainingLength(rawFile);
-    ```
-
-10. 根据RawFile实例，使用OH_ResourceManager_CloseRawFile接口释放rawfile文件相关资源。
-
-    ```c++
-    OH_ResourceManager_CloseRawFile(rawFile);
-    ```
-
-11. 根据RawDir实例，使用OH_ResourceManager_CloseRawDir接口释放rawfile目录相关资源。
-
-    ```c++
-    OH_ResourceManager_CloseRawDir(rawDir);
-    ```
-
-12. 根据RawFile实例，使用OH_ResourceManager_GetRawFileDescriptor接口获取rawfile的RawFileDescriptor。
-
-    ```c++
-    RawFileDescriptor descriptor;
-    bool result = OH_ResourceManager_GetRawFileDescriptor(rawFile, descriptor);
-    ```
-
-13. 根据RawFileDescriptor实例，使用OH_ResourceManager_ReleaseRawFileDescriptor接口关闭rawfile的fd。
-
-    ```c++
-    OH_ResourceManager_ReleaseRawFileDescriptor(descriptor);
-    ```
-
-14. 根据NativeResourceManager实例，使用OH_ResourceManager_ReleaseNativeResourceManager接口释放native resource manager。
-
-    ```c++
-    OH_ResourceManager_ReleaseNativeResourceManager(nativeResourceManager);
-    ```
-
-14. 根据传入的rawfile路径，使用OH_ResourceManager_IsRawDir接口判断是否是目录。
-
-    ```c++
-    OH_ResourceManager_IsRawDir(nativeResourceManager, path);
-    ```
+详细的接口说明请参考[rawfile函数说明](../reference/apis-localization-kit/rawfile.md#函数说明)。
 
 ## 开发步骤
 
@@ -136,7 +38,7 @@
 
 **2. 添加依赖**
 
-创建完成后，IDE会在工程生成cpp目录，目录有libentry/index.d.ts、hello.cpp、CMakeLists.txt等文件。
+创建完成后，DevEco Studio会在工程生成cpp目录，目录有libentry/index.d.ts、hello.cpp、CMakeLists.txt等文件。
 
 1. 打开src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加资源的librawfile.z.so以及日志依赖libhilog_ndk.z.so。
 
@@ -286,7 +188,7 @@
         // 一次性读取rawfile全部内容
         int res = OH_ResourceManager_ReadRawFile(rawFile, data.get(), len);
 
-        // 多次部分读取rawfile, 每次读取100 Byte。获取全部内容
+        // 多次部分读取rawfile, 每次读取100 Bytes。获取全部内容
         // long offset = 0;
         // while (OH_ResourceManager_GetRawFileRemainingLength(rawFile) > 0) {
         //     OH_ResourceManager_ReadRawFile(rawFile, data.get() + offset, 100);

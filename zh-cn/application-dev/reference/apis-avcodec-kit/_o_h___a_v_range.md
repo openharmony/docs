@@ -9,9 +9,7 @@
 
 **起始版本：** 10
 
-**相关模块：**
-
-[AVCapability](_a_v_capability.md)
+**相关模块：**[AVCapability](_a_v_capability.md)
 
 
 ## 汇总

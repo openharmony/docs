@@ -9,10 +9,10 @@
 ## 导入模块
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+import { defaultAppManager } from '@kit.AbilityKit';
 ```
 
-## defaultAppMgr.ApplicationType
+## defaultAppManager.ApplicationType
 
 默认应用的应用类型。
 
@@ -30,11 +30,11 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 | PPT      | 'PPT Viewer' | 默认PPT文档查看器。                      |
 | EMAIL<sup>12+</sup>    | 'Email' | 默认邮件。                      |
 
-## defaultAppMgr.isDefaultApplication
+## defaultAppManager.isDefaultApplication
 
 isDefaultApplication(type: string): Promise\<boolean>
 
-以异步方法根据系统已定义的应用类型判断当前应用是否是该应用类型的默认应用，使用Promise形式返回结果。
+以异步方法根据系统已定义的应用类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型判断当前应用是否是该类型的默认应用，使用Promise形式返回结果。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
@@ -42,7 +42,7 @@ isDefaultApplication(type: string): Promise\<boolean>
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要查询的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值。                           |
+| type  | string | 是    | 要查询的应用类型，取[ApplicationType](#defaultappmanagerapplicationtype)或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型中的值。                           |
 
 **返回值：**
 
@@ -50,26 +50,34 @@ isDefaultApplication(type: string): Promise\<boolean>
 | ------------------------- | ------------------ |
 | Promise\<boolean> | Promise形式返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                    |
+| -------- | ---------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
 
 **示例：**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-import { BusinessError } from '@ohos.base';
+import { defaultAppManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
+defaultAppManager.isDefaultApplication(defaultAppManager.ApplicationType.BROWSER)
   .then((data) => {
     console.info('Operation successful. IsDefaultApplication ? ' + JSON.stringify(data));
   }).catch((error: BusinessError) => {
-  console.error('Operation failed. Cause: ' + JSON.stringify(error));
-});
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+  });
 ```
 
-## defaultAppMgr.isDefaultApplication
+## defaultAppManager.isDefaultApplication
 
 isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void
 
-以异步方法根据系统已定义的应用类型判断当前应用是否是该应用类型的默认应用，使用callback形式返回结果。
+以异步方法根据系统已定义的应用类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型判断当前应用是否是该类型的默认应用，使用callback形式返回结果。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
@@ -77,16 +85,25 @@ isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void
 
 | 参数名         | 类型                              | 必填   | 说明                                      |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
-| type  | string                          | 是    | 要查询的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值。                            |
+| type  | string                          | 是    | 要查询的应用类型，取[ApplicationType](#defaultappmanagerapplicationtype)或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型中的值。                            |
 | callback    | AsyncCallback\<boolean> | 是    | 程序启动作为入参的回调函数，返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                    |
+| -------- | ---------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
 
 **示例：**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-import { BusinessError } from '@ohos.base';
+import { defaultAppManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err: BusinessError, data) => {
+defaultAppManager.isDefaultApplication(defaultAppManager.ApplicationType.BROWSER, (err: BusinessError, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
     return;
@@ -95,11 +112,11 @@ defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err: 
 });
 ```
 
-## defaultAppMgr.isDefaultApplicationSync<sup>10+</sup>
+## defaultAppManager.isDefaultApplicationSync<sup>10+</sup>
 
 isDefaultApplicationSync(type: string): boolean
 
-以同步方法根据系统已定义的应用类型判断当前应用是否是该应用类型的默认应用，使用boolean形式返回结果。
+以同步方法根据系统已定义的应用类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型判断当前应用是否是该类型的默认应用，使用boolean形式返回结果。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
@@ -107,7 +124,7 @@ isDefaultApplicationSync(type: string): boolean
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | -------| ------ | ---- | --------------------------------------- |
-|  type  | string | 是   | 要查询的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值。   |
+|  type  | string | 是   | 要查询的应用类型，取[ApplicationType](#defaultappmanagerapplicationtype)或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型中的值。   |
 
 **返回值：**
 
@@ -115,13 +132,22 @@ isDefaultApplicationSync(type: string): boolean
 | ------- | -------------------- |
 | boolean | 返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                    |
+| -------- | ---------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
 
 **示例：**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+import { defaultAppManager } from '@kit.AbilityKit';
+
 try {
-  let data = defaultAppMgr.isDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER)
+  let data = defaultAppManager.isDefaultApplicationSync(defaultAppManager.ApplicationType.BROWSER)
   console.info('Operation successful. IsDefaultApplicationSync ? ' + JSON.stringify(data));
 } catch(error) {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));

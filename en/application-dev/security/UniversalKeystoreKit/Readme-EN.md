@@ -1,4 +1,4 @@
-# Universal Keystore Kit (Key Management Service)
+# Universal Keystore Kit
 
 - [Introduction to Universal Keystore Kit](huks-overview.md)
 - [Basic Concepts of HUKS](huks-concepts.md)
@@ -42,6 +42,9 @@
     - Development
       - [HUKS Access Control Development](huks-user-identity-authentication.md)
       - [Refined Access Control Development](huks-refined-user-identity-authentication.md)
+  - HMAC
+    - [HMAC (ArkTS)](huks-hmac-arkts.md)
+    - [HMAC (C/C++)](huks-hmac-ndk.md)
 - Key Deletion
   - [Deleting a Key (ArkTS)](huks-delete-key-arkts.md)
   - [Deleting a Key (C/C++)](huks-delete-key-ndk.md)
@@ -50,8 +53,10 @@
   - Development
     - [Anonymous Key Attestation (ArkTS)](huks-key-anon-attestation-arkts.md)
     - [Anonymous Key Attestation (C/C++)](huks-key-anon-attestation-ndk.md)
+    <!--Del-->
     - [Non-anonymous Key Attestation (ArkTS)](huks-key-attestation-arkts.md)
     - [Non-anonymous Key attestation (C/C++)](huks-key-attestation-ndk.md)
+    <!--DelEnd-->
 - Other Operations
   - Checking Key Existence
     - [Checking a Key (ArkTS)](huks-check-key-arkts.md)
@@ -62,3 +67,9 @@
   - Exporting a Key
     - [Exporting a Key (ArkTS)](huks-export-key-arkts.md)
     - [Exporting a Key (C/C++)](huks-export-key-ndk.md)
+  - Querying Key Aliases
+    - [Querying Key Aliases (ArkTS)](huks-list-aliases-arkts.md)
+    - [Querying Key Aliases (C/C++)](huks-list-aliases-ndk.md)
+  <!--Del-->
+  - [Specifying the User for Key Operations (for System Applications Only)](huks-as-user-sys.md)
+  <!--DelEnd-->

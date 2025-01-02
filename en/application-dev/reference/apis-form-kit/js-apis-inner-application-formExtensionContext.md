@@ -12,5 +12,5 @@ You can use the APIs of this module to start a FormExtensionAbility.
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```

@@ -1,106 +1,140 @@
 # 焦点事件
 
+## 基础概念与规范
 
-## 基本概念
+### 基础概念
 
-- 焦点
+**焦点、焦点链和走焦**
 
-  指向当前应用界面上唯一的一个可交互元素，当用户使用键盘、电视遥控器、车机摇杆/旋钮等非指向性输入设备与应用程序进行间接交互时，基于焦点的导航和交互是重要的输入手段。
-
-- 默认焦点
-
-  应用打开或切换页面后，若当前页上存在可获焦的组件，则树形结构的组件树中第一个可获焦的组件默认获得焦点。可以使用[自定义默认焦点](#自定义默认焦点)指定。
-
-- 获焦
-
-  指组件获得了焦点，同一时刻，应用中最多只有1个末端组件是获焦的，且此时它的所有祖宗组件（整个组件链）均是获焦的。当期望某个组件获焦，须确保该组件及其所有的祖宗节点均是可获焦的（[focusable](#设置组件是否获焦)属性为true）。
-
-- 失焦
-
-  指组件从获焦状态变成了非获焦状态，失去了焦点。组件失焦时，它的所有祖宗组件（失焦组件链）与新的获焦组件链不相同的节点都会失焦。
-
-- 走焦
-
-  表示焦点在当前应用中转移的过程，走焦会带来原焦点组件的失焦和新焦点组件的获焦。应用中焦点发生变化的方式按行为可分为两类：
-
-  - 主动走焦：指开发者/用户主观的行为导致焦点移动，包含：外接键盘上按下TAB/方向键、使用[requestFocus](#focuscontrolrequestfocus)主动给指定组件申请焦点、组件[focusOnTouch](#focusontouch)属性为true后点击组件。
-  - 被动走焦：指组件焦点因其他操作被动的转移焦点，此特性为焦点系统默认行为，无法由开发者自由设定，例如当使用if-else语句将处于获焦的组件删除/将处于获焦的组件（或其父组件）置成不可获焦时、当页面切换时。
-
-- 焦点态
-
-  获焦组件的样式，不同组件的焦点态样式大同小异，默认情况下焦点态不显示，仅使用外接键盘按下TAB键/方向键时才会触发焦点态样式出现。首次触发焦点态显示的TAB键/方向键不会触发走焦。当应用接收到点击事件时（包括手指触屏的按下事件和鼠标左键的按下事件），自动隐藏焦点态样式。焦点态样式由后端组件定义，开发者无法修改。
+- 焦点：指向当前应用界面上唯一的一个可交互元素，当用户使用键盘、电视遥控器、车机摇杆/旋钮等非指向性输入设备与应用程序进行间接交互时，基于焦点的导航和交互是重要的输入手段。
+- 焦点链：在应用的组件树形结构中，当一个组件获得焦点时，从根节点到该组件节点的整条路径上的所有节点都会被视为处于焦点状态，形成一条连续的焦点链。
+- 走焦：指焦点在应用内的组件之间转移的行为。这一过程对用户是透明的，但开发者可以通过监听onFocus（焦点获取）和onBlur（焦点失去）事件来捕捉这些变化。关于走焦的具体方式和规则，详见[走焦规范](#走焦规范)。
 
 
-## 走焦规则
+**焦点态**
 
-走焦规则是指用户使用“TAB键/SHIFT+TAB键/方向键”主动进行走焦，或焦点系统在执行被动走焦时的顺序规则。组件的走焦规则默认由走焦系统定义，由焦点所在的容器决定。
+用来指向当前获焦组件的样式。
 
-- 线性走焦：常见的容器有Flex、Row、Column、List，这些都是典型的单方向容器，组件在这些容器内的排列都是线性的，那么走焦规则也是线性的。走焦的方向和方向键的方向一致。
-
-  **图1** 线性走焦示意图  
-
-  ![zh-cn_image_0000001562700537](figures/zh-cn_image_0000001562700537.png)
-
-  例如Row容器，使用方向键左右（←/→）即可将焦点在相邻的2个可获焦组件之间来回切换。
-
-- 十字走焦：使用方向键上(↑)下(↓)左(←)右(→)可以使焦点在相邻的组件上切换。典型的是Grid容器，如下图：
-
-  **图2** Grid组件十字走焦示意图  
-
-  ![zh-cn_image_0000001511740580](figures/zh-cn_image_0000001511740580.png)
-
-  >**说明：**
-  >
-  > - TAB/SHIFT+TAB键在以上两种走焦规则上的功能和方向键一致。TAB键等同于“先执行方向键右，若无法走焦，再执行方向键下”，SHIFT+TAB键等同于“先执行方向键左，若无法走焦，再执行方向键上”。
-  >
-  > - 触发走焦的按键是按下事件（DOWN事件）。
-  >
-  > - 删除组件、设置组件无法获焦后，会使用线性走焦规则，自动先往被删除/Unfocusable组件的前置兄弟组件上走焦，无法走焦的话，再向后置兄弟组件上走焦。
-
-- tabIndex走焦：给组件设置[tabIndex](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9)通用属性，自定义组件的TAB键/SHIFT+TAB键的走焦顺序。
-
-- 区域走焦：给容器组件设置tabIndex通用属性，再结合[groupDefaultFocus](#groupdefaultfocus)通用属性，自定义容器区域的TAB键/SHIFT+TAB键的走焦顺序和默认获焦组件。
-
-- 走焦至容器组件规则
-  - 容器组件内有可获焦子组件时。当焦点走焦到容器（该容器没有配置groupDefaultFocus）上时，若该容器组件为首次获焦，则会先计算目标容器组件的子组件的区域位置，得到距离目标容器中心点最近的子组件，焦点会走到目标容器上的该子组件上。若该容器非首次获焦，焦点会自动走焦到上一次目标容器中获焦的子组件。
-  - 容器组件没有可获焦子组件时。如果该容器组件配置了onClick或是单指单击的Tap事件，焦点会走到该容器上。
-
-- 焦点交互：当某组件获焦时，该组件的固有点击任务或开发者绑定的onClick回调任务，会自动挂载到空格/回车按键上，当按下按键时，任务就和手指/鼠标点击一样被执行。
+- 显示规则：默认情况下焦点态不会显示，只有当应用进入激活态后，焦点态才会显示。因此，虽然获得焦点的组件不一定显示焦点态（取决于是否处于激活态），但显示焦点态的组件必然是获得焦点的。大部分组件内置了焦点态样式，开发者同样可以使用样式接口进行自定义，一旦自定义，组件将不再显示内置的焦点态样式。在焦点链中，若多个组件同时拥有焦点态，系统将采用子组件优先的策略，优先显示子组件的焦点态，并且仅显示一个焦点态。
+- 进入激活态：使用外接键盘按下TAB键/使用FocusController的activate(true)方法才会进入焦点的激活态，进入激活态后，才可以使用键盘TAB键/方向键进行走焦。首次用来激活焦点态的TAB键不会触发走焦。
+- 退出激活态：当应用收到FocusController的active(false)方法/点击事件时（包括手指触屏的按下事件和鼠标左键的按下事件），焦点的激活态会退出。
 
 
->**说明：**
+**层级页面**
+
+层级页面是焦点框架中特定容器组件的统称，涵盖Page、Dialog、SheetPage、ModalPage、Menu、Popup、NavBar、NavDestination等。这些组件通常具有以下关键特性：
+
+- 视觉层级独立性：从视觉呈现上看，这些组件独立于其他页面内容，并通常位于其上方，形成视觉上的层级差异。
+- 焦点跟随：此类组件在首次创建并展示之后，会立即将应用内焦点抢占。
+- 走焦范围限制：当焦点位于这些组件内部时，用户无法通过键盘按键将焦点转移到组件外部的其他元素上，焦点移动仅限于组件内部。
+
+在一个应用程序中，任何时候都至少存在一个层级页面组件，并且该组件会持有当前焦点。当该层级页面关闭或不再可见时，焦点会自动转移到下一个可用的层级页面组件上，确保用户交互的连贯性和一致性。
+
+> **说明：**
 >
->本文涉及到的焦点均为组件焦点，另外一个焦点的概念是：窗口焦点，指向当前获焦的窗口。当窗口失焦时，该窗口应用中的所有获焦组件全部失焦。
+> Popup组件在focusable属性（组件属性，非通用属性）为false的时候，不会有第2条特性。
+>
+> NavBar、NavDestination没有第3条特性，对于它们的走焦范围，是与它们的首个父层级页面相同的。
+
+**根容器**
+
+根容器是层级页面内的概念，当某个层级页面首次创建并展示时，根据层级页面的特性，焦点会立即被该页面抢占。此时，该层级页面所在焦点链的末端节点将成为默认焦点，而这个默认焦点通常位于该层级页面的根容器上。
+
+在缺省状态下，层级页面的默认焦点位于其根容器上，但开发者可以通过defaultFocus属性来自定义这一行为。
+
+当焦点位于根容器时，首次按下TAB键不仅会使焦点进入激活状态，还会触发焦点向子组件的传递。如果子组件本身也是一个容器，则焦点会继续向下传递，直至到达叶子节点。传递规则是：优先传递给上一次获得焦点的子节点，如果不存在这样的节点，则默认传递给第一个子节点。
+
+### 走焦规范
+
+根据走焦的触发方式，可以分为主动走焦和被动走焦。
+
+**主动走焦**
 
 
-## 监听组件的焦点变化
+指开发者/用户主观行为导致的焦点移动，包括：使用外接键盘的按键走焦（TAB键/Shift+TAB键/方向键）、使用requestFocus申请焦点、clearFocus清除焦点、focusOnTouch点击申请焦点等接口导致的焦点转移。
 
+
+- 按键走焦
+1. 前提：当前应用需处于焦点激活态。
+2. 范围限制：按键走焦仅在当前获得焦点的层级页面内进行，具体参见“层级页面”中的“走焦范围限制”部分。
+3. 按键类型：
+TAB键：遵循Z字型遍历逻辑，完成当前范围内所有叶子节点的遍历，到达当前范围内的最后一个组件后，继续按下TAB键，焦点将循环至范围内的第一个可获焦组件，实现循环走焦。
+Shift+TAB键：与TAB键具有相反的焦点转移效果。
+方向键（上、下、左、右）：遵循十字型移动策略，在单层容器中，焦点的转移由该容器的特定走焦算法决定。若算法判定下一个焦点应落在某个容器组件上，系统将采用中心点距离优先的算法来进一步确定容器内的目标子节点。
+4. 走焦算法：每个可获焦的容器组件都有其特定的走焦算法，用于定义焦点转移的规则。
+5. 子组件优先：当子组件处理按键走焦事件，父组件将不再介入。
+
+- requestFocus
+详见[主动获焦失焦](#主动获焦失焦)，可以主动将焦点转移到指定组件上。
+不可跨窗口，不可跨ArkUI实例申请焦点，可以跨层级页面申请焦点。
+
+- clearFocus
+详见[clearFocus](../reference/apis-arkui/js-apis-arkui-UIContext.md#clearfocus12)，会清除当前层级页面中的焦点，最终焦点停留在根容器上。
+
+- focusOnTouch
+详见[focusOnTouch](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9)，使绑定组件具备点击后获得焦点的能力。若组件本身不可获焦，则此功能无效。若绑定的是容器组件，点击后优先将焦点转移给上一次获焦的子组件，否则转移给第一个可获焦的子组件。
+
+
+**被动走焦**
+
+被动走焦是指组件焦点因系统或其他操作而自动转移，无需开发者直接干预，这是焦点系统的默认行为。
+
+
+目前会被动走焦的机制有：
+
+- 组件删除：当处于焦点状态的组件被删除时，焦点框架首先尝试将焦点转移到相邻的兄弟组件上，遵循先向后再向前的顺序。若所有兄弟组件均不可获焦，则焦点将释放，并通知其父组件进行焦点处理。
+- 属性变更：若将处于焦点状态的组件的focusable或enabled属性设置为false，或者将visibility属性设置为不可见，系统将自动转移焦点至其他可获焦组件，转移方式与1中相同。
+- 层级页面切换：当发生层级页面切换时，如从一个页面跳转到另一个页面，当前页面的焦点将自动释放，新页面可能会根据预设逻辑自动获得焦点。
+- Web组件初始化：对于Web组件，当其被创建时，若其设计需要立即获得焦点（如某些弹出框或输入框），则可能触发焦点转移至该Web组件，其行为属于组件自身的行为逻辑，不属于焦点框架的规格范围。
+
+### 走焦算法
+
+在焦点管理系统中，每个可获焦的容器都配备有特定的走焦算法，这些算法定义了当使用TAB键、Shift+TAB键或方向键时，焦点如何从当前获焦的子组件转移到下一个可获焦的子组件。
+
+容器采用何种走焦算法取决于其UX（用户体验）规格，并由容器组件进行适配。目前，焦点框架支持三种走焦算法：线性走焦、投影走焦和自定义走焦。
+
+**线性走焦算法**
+
+
+线性走焦算法是默认的走焦策略，它基于容器中子节点在节点树中的挂载顺序进行走焦，常用于单方向布局的容器，如Row、Column和Flex容器。运行规则如下：
+
+
+- 顺序依赖：走焦顺序完全基于子节点在节点树中的挂载顺序，与它们在界面上的实际布局位置无关。
+- TAB键走焦：使用TAB键时，焦点将按照子节点的挂载顺序依次遍历。
+- 方向键走焦：当使用与容器定义方向垂直的方向键时，容器不接受该方向的走焦请求。例如，在横向的Row容器中，无法使用方向键进行上下移动。
+- 边界处理：当焦点位于容器的首尾子节点时，容器将拒绝与当前焦点方向相反的方向键走焦请求。例如，焦点在一个横向的Row容器的第一个子节点上时，该容器无法处理方向键左的走焦请求。
+
+
+**投影走焦算法**
+
+投影走焦算法基于当前获焦组件在走焦方向上的投影，结合子组件与投影的重叠面积和中心点距离进行胜出判定。该算法特别适用于子组件大小不一的容器，目前仅有配置了wrap属性的Flex组件。运行规则如下：
+
+
+- 方向键走焦时，判断投影与子组件区域的重叠面积，在所有面积不为0的子组件中，计算它们与当前获焦组件的中心点直线距离，距离最短的胜出，若存在多个备选，则节点树上更靠前的胜出。若无任何子组件与投影由重叠，说明该容器已经无法处理该方向键的走焦请求。
+- TAB键走焦时，先使用规格1，按照方向键右进行判定，若找到则成功退出，若无法找到，则将当前获焦子组件的位置模拟往下移动该获焦子组件的高度，然后再按照方向键左进行投影判定，有投影重叠且中心点直线距离最远的子组件胜出，若无投影重叠的子组件，则表示该容器无法处理本次TAB键走焦请求。
+- Shift+TAB键走焦时，先使用规格1，按照方向键左进行判定，找到则成功退出。若无法找到，则将当前获焦子组件的位置模拟向上移动该获焦子组件的高度，然后再按照方向键右进行投影判定，有投影重叠且中心点直线距离最远的子组件胜出，若无投影重叠的子组件，则表示该容器无法处理本次的Shift+TAB键走焦请求。
+
+
+**自定义走焦算法**
+
+由组件自定义的走焦算法，规格由组件定义。
+
+## 获焦/失焦事件
 
 ```ts
-import List from '@ohos.util.List';
-import promptAction from '@ohos.promptAction';
 onFocus(event: () => void)
 ```
 
 
-获焦事件回调，绑定该API的组件获焦时，回调响应。
-
-
+获焦事件回调，绑定该接口的组件获焦时，回调响应。
 
 ```ts
 onBlur(event:() => void)
 ```
 
-
-失焦事件回调，绑定该API的组件失焦时，回调响应。
-
+失焦事件回调，绑定该接口的组件失焦时，回调响应。
 
 onFocus和onBlur两个接口通常成对使用，来监听组件的焦点变化。
-
-
-以下示例代码展示获焦/失焦回调的使用方法：
-
-
 
 ```ts
 // xxx.ets
@@ -115,7 +149,6 @@ struct FocusEventExample {
     Column({ space: 20 }) {
       // 通过外接键盘的上下键可以让焦点在三个按钮间移动，按钮获焦时颜色变化，失焦时变回原背景色
       Button('First Button')
-        .defaultFocus(true)
         .width(260)
         .height(70)
         .backgroundColor(this.oneButtonColor)
@@ -165,139 +198,53 @@ struct FocusEventExample {
 ![zh-cn_image_0000001511740584](figures/zh-cn_image_0000001511740584.gif)
 
 
-上述示例包含以下4步：
+上述示例包含以下3步：
 
+- 应用打开，按下TAB键激活走焦，“First Button”显示焦点态样式：组件外围有一个蓝色的闭合框，onFocus回调响应，背景色变成绿色。
+- 按下TAB键，触发走焦，“Second Button”获焦，onFocus回调响应，背景色变成绿色；“First Button”失焦，onBlur回调响应，背景色变回灰色。
+- 按下TAB键，触发走焦，“Third Button”获焦，onFocus回调响应，背景色变成绿色；“Second Button”失焦，onBlur回调响应，背景色变回灰色。
 
-1. 应用打开时，“First Button”默认获取焦点，onFocus回调响应，背景色变成绿色。
-
-2. 按下TAB键（或方向键下↓），“First Button”显示焦点态样式：组件外围有一个蓝色的闭合框。不触发走焦，焦点仍然在“First Button”上。
-
-3. 按下TAB键（或方向键下↓），触发走焦，“Second Button”获焦，onFocus回调响应，背景色变成绿色；“First Button”失焦、onBlur回调响应，背景色变回灰色。
-
-4. 按下TAB键（或方向键下↓），触发走焦，“Third Button”获焦，onFocus回调响应，背景色变成绿色；“Second Button”失焦、onBlur回调响应，背景色变回灰色。
-
-
-## 设置组件是否获焦
-
-通过focusable接口设置组件是否可获焦：
-
+## 设置组件是否可获焦
 
 ```ts
 focusable(value: boolean)
 ```
 
+设置组件是否可获焦。
+
 按照组件的获焦能力可大致分为三类：
 
-- 默认可获焦的组件，通常是有交互行为的组件，例如Button、Checkbox，TextInput组件，此类组件无需设置任何属性，默认即可获焦。
+- 默认可获焦的组件，通常是有交互行为的组件，例如Button、Checkbox、TextInput组件，此类组件无需设置任何属性，默认即可获焦。
 
-- 有获焦能力，但默认不可获焦的组件，典型的是Text、Image组件，此类组件缺省情况下无法获焦，若需要使其获焦，可使用通用属性focusable(true)使能。
+- 有获焦能力，但默认不可获焦的组件，典型的是Text、Image组件，此类组件缺省情况下无法获焦，若需要使其获焦，可使用通用属性focusable(true)使能。对于没有配置focusable属性，有获焦能力但默认不可获焦的组件，为其配置onClick或是单指单击的Tap手势，该组件会隐式地成为可获焦组件。如果其focusable属性被设置为false，即使配置了上述事件，该组件依然不可获焦。
 
 - 无获焦能力的组件，通常是无任何交互行为的展示类组件，例如Blank、Circle组件，此类组件即使使用focusable属性也无法使其可获焦。
 
 
+```ts
+enabled(value: boolean)
+```
+
+设置组件可交互性属性[enabled](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)为`false`，则组件不可交互，无法获焦。
+
+
+```ts
+visibility(value: Visibility)
+```
+
+设置组件可见性属性[visibility](../reference/apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)为`Visibility.None`或`Visibility.Hidden`，则组件不可见，无法获焦。
+
+
+```ts
+focusOnTouch(value: boolean)
+```
+
+设置当前组件是否支持点击获焦能力。
+
+
 >**说明：**
-> - focusable为false表示组件不可获焦，同样可以使组件变成不可获焦的还有通用属性[enabled](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md)。
 >
-> - 当某组件处于获焦状态时，将其的focusable属性或enabled属性设置为false，会自动使该组件失焦，然后焦点按照[走焦规则](#走焦规则)将焦点转移给其他组件。
->
-> - 对于没有配置focusable属性，有获焦能力但默认不可获焦的组件，为其配置onClick或是单指单击的Tap手势，该组件会隐式地成为可获焦组件。如果其focusable属性被设置为false，即使配置了上述事件，该组件依然不可获焦。
-
-
-  **表1** 基础组件获焦能力
-
-| 基础组件                                     | 是否有获焦能力 | focusable默认值 | 走焦规则     |
-| ---------------------------------------- | ------- | ------------ | -------- |
-| [AlphabetIndexer](../reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) | 是       | true         | 线性走焦     |
-| [Blank](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md) | 否       | false        | /        |
-| [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md) | 是       | true         | /        |
-| [Checkbox](../reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md) | 是       | true         | /        |
-| [CheckboxGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md) | 是       | true         | /        |
-| [DataPanel](../reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md) | 否       | false        | /        |
-| [DatePicker](../reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md) | 是       | true         | 线性走焦     |
-| [Divider](../reference/apis-arkui/arkui-ts/ts-basic-components-divider.md) | 否       | false        | /        |
-| [Formcomponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md) | 否       | false        | /        |
-| [Gauge](../reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md) | 否       | false        | /        |
-| [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md) | 是       | false        | /        |
-| [ImageAnimator](../reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md) | 是       | false        | /        |
-| [LoadingProgress](../reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md) | 否       | false        | /        |
-| [Marquee](../reference/apis-arkui/arkui-ts/ts-basic-components-marquee.md) | 否       | false        | /        |
-| [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md) | 是       | true         | 线性走焦     |
-| [MenuItem](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md) | 是       | true         | /        |
-| [MenuItemGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitemgroup.md) | 是       | true         | 线性走焦     |
-| [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) | 否       | false        | 组件自定义    |
-| [NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md) | 否       | false        | 跟随子容器    |
-| [NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md) | 否       | false        | 线性走焦     |
-| [PatternLock](../reference/apis-arkui/arkui-ts/ts-basic-components-patternlock.md) | 否       | false        | /        |
-| [PluginComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md) | 否       | false        | /        |
-| [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md) | 否       | false        | /        |
-| [QRCode](../reference/apis-arkui/arkui-ts/ts-basic-components-qrcode.md) | 否       | false        | /        |
-| [Radio](../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md) | 是       | true         | /        |
-| [Rating](../reference/apis-arkui/arkui-ts/ts-basic-components-rating.md) | 是       | true         | /        |
-| [RemoteWindow](../reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md) | 否       | false        | /        |
-| [RichText](../reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md) | 否       | false        | /        |
-| [ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md) | 否       | false        | /        |
-| [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md) | 是       | true         | /        |
-| [Select](../reference/apis-arkui/arkui-ts/ts-basic-components-select.md) | 是       | true         | 线性走焦     |
-| [Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md) | 是       | true         | /        |
-| [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) | 否       | false        | /        |
-| [Stepper](../reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md) | 是       | true         | /        |
-| [StepperItem](../reference/apis-arkui/arkui-ts/ts-basic-components-stepperitem.md) | 是       | true         | /        |
-| [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md) | 是       | false        | /        |
-| [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md) | 是       | true         | /        |
-| [TextClock](../reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md) | 否       | false        | /        |
-| [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) | 是       | true         | /        |
-| [TextPicker](../reference/apis-arkui/arkui-ts/ts-basic-components-textpicker.md) | 是       | true         | 线性走焦     |
-| [TextTimer](../reference/apis-arkui/arkui-ts/ts-basic-components-texttimer.md) | 否       | false        | /        |
-| [TimePicker](../reference/apis-arkui/arkui-ts/ts-basic-components-timepicker.md) | 是       | true         | 线性走焦     |
-| [Toggle](../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md) | 是       | true         | /        |
-| [Web](../reference/apis-arkweb/ts-basic-components-web.md) | 是       | true         | Web组件自定义 |
-| [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) | 否       | false        | /        |
-
-  **表2** 容器组件获焦能力
-
-| 容器组件                                     | 是否可获焦 | focusable默认值 | 走焦规则     |
-| ---------------------------------------- | ----- | ------------ | -------- |
-| [AbilityComponent](../reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md) | 否     | false        | /        |
-| [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) | 否     | false        | /        |
-| [Column](../reference/apis-arkui/arkui-ts/ts-container-column.md) | 是     | true         | 线性走焦     |
-| [ColumnSplit](../reference/apis-arkui/arkui-ts/ts-container-columnsplit.md) | 是     | true         | /        |
-| [Counter](../reference/apis-arkui/arkui-ts/ts-container-counter.md) | 是     | true         | 线性走焦     |
-| [Flex](../reference/apis-arkui/arkui-ts/ts-container-flex.md) | 是     | true         | 线性走焦     |
-| [GridCol](../reference/apis-arkui/arkui-ts/ts-container-gridcol.md) | 是     | true         | 容器组件自定义  |
-| [GridRow](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md) | 是     | true         | 容器组件自定义  |
-| [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) | 是     | true         | 容器组件自定义  |
-| [GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md) | 是     | true         | 跟随子组件    |
-| [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) | 是     | true         | 线性走焦     |
-| [ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) | 是     | true         | 跟随子组件    |
-| [ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md) | 是     | true         | 跟随List组件 |
-| [Navigator](../reference/apis-arkui/arkui-ts/ts-container-navigator.md) | 否     | true         | 容器组件自定义  |
-| [Panel](../reference/apis-arkui/arkui-ts/ts-container-panel.md) | 否     | true         | 跟随子组件    |
-| [Refresh](../reference/apis-arkui/arkui-ts/ts-container-refresh.md) | 否     | false        | /        |
-| [RelativeContainer](../reference/apis-arkui/arkui-ts/ts-container-relativecontainer.md) | 否     | true         | 容器组件自定义  |
-| [Row](../reference/apis-arkui/arkui-ts/ts-container-row.md) | 是     | true         | 线性走焦     |
-| [RowSplit](../reference/apis-arkui/arkui-ts/ts-container-rowsplit.md) | 是     | true         | /        |
-| [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md) | 是     | true         | 线性走焦     |
-| [SideBarContainer](../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md) | 是     | true         | 线性走焦     |
-| [Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md) | 是     | true         | 线性走焦     |
-| [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) | 是     | true         | 容器组件自定义  |
-| [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) | 是     | true         | 容器组件自定义  |
-| [TabContent](../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) | 是     | true         | 跟随子组件    |
-
-  **表3** 媒体组件获焦能力
-
-| 媒体组件                                     | 是否可获焦 | focusable默认值 | 走焦规则 |
-| ---------------------------------------- | ----- | ------------ | ---- |
-| [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md) | 是     | true         | /    |
-
-  **表4** 画布组件获焦能力
-
-| 画布组件                                     | 是否可获焦 | focusable默认值 | 走焦规则 |
-| ---------------------------------------- | ----- | ------------ | ---- |
-| [Canvas](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md) | 否     | false        | /    |
-
-
-以下示例展示focusable接口的使用方法：
-
+>当某组件处于获焦状态时，将其的focusable属性或enabled属性设置为false，会自动使该组件失焦，然后焦点按照[走焦规范](#走焦规范)将焦点转移给其他组件。
 
 
 ```ts
@@ -306,8 +253,10 @@ focusable(value: boolean)
 @Component
 struct FocusableExample {
   @State textFocusable: boolean = true;
+  @State textEnabled: boolean = true;
   @State color1: Color = Color.Yellow;
   @State color2: Color = Color.Yellow;
+  @State color3: Color = Color.Yellow;
 
   build() {
     Column({ space: 5 }) {
@@ -324,17 +273,33 @@ struct FocusableExample {
         })
       Divider()
 
-      Text('focusable: ' + this.textFocusable)    // 第二个Text设置了focusable属性，初始值为true
+      Text('focusable: ' + this.textFocusable)    // 第二个Text设置了focusable初始为true，focusableOnTouch为true
         .borderColor(this.color2)
         .borderWidth(2)
         .width(300)
         .height(70)
         .focusable(this.textFocusable)
+        .focusOnTouch(true)
         .onFocus(() => {
           this.color2 = Color.Blue;
         })
         .onBlur(() => {
           this.color2 = Color.Yellow;
+        })
+
+      Text('enabled: ' + this.textEnabled)    // 第三个Text设置了focusable为true，enabled初始为true
+        .borderColor(this.color3)
+        .borderWidth(2)
+        .width(300)
+        .height(70)
+        .focusable(true)
+        .enabled(this.textEnabled)
+        .focusOnTouch(true)
+        .onFocus(() => {
+          this.color3 = Color.Blue;
+        })
+        .onBlur(() => {
+          this.color3 = Color.Yellow;
         })
 
       Divider()
@@ -352,11 +317,14 @@ struct FocusableExample {
 
       Divider()
     }.width('100%').justifyContent(FlexAlign.Center)
-    .onKeyEvent((e) => {    // 绑定onKeyEvent，在该Column组件获焦时，按下'F'键，可将第二个Text的focusable置反
-      if(e){
-        if (e.keyCode === 2022 && e.type === KeyType.Down) {
-          this.textFocusable = !this.textFocusable;
-        }
+    .onKeyEvent((e) => {
+      // 绑定onKeyEvent，在该Column组件获焦时，按下'F'键，可将第二个Text的focusable置反
+      if (e.keyCode === 2022 && e.type === KeyType.Down) {
+        this.textFocusable = !this.textFocusable;
+      }
+      // 绑定onKeyEvent，在该Column组件获焦时，按下'G'键，可将第三个Text的enabled置反
+      if (e.keyCode === 2023 && e.type === KeyType.Down) {
+        this.textEnabled = !this.textEnabled;
       }
     })
   }
@@ -367,784 +335,574 @@ struct FocusableExample {
 运行效果：
 
 
-![zh-cn_image_0000001511900540](figures/zh-cn_image_0000001511900540.gif)
+![focus-1.gif](figures/focus-1.gif)
 
+上述示例包含以下3步：
 
-上述示例包含默认获焦和主动走焦两部分：
-
-
-**默认获焦：**
-
-
-- 根据默认焦点的说明，该应用打开后，默认第一个可获焦元素获焦。
 
 - 第一个Text组件没有设置focusable(true)属性，该Text组件无法获焦。
+- 点击第二个Text组件，由于设置了focusOnTouch(true)，第二个组件获焦。按下TAB键，触发走焦，仍然是第二个Text组件获焦。按键盘F键，触发onKeyEvent，focusable置为false，第二个Text组件变成不可获焦，焦点自动转移，会自动从Text组件寻找下一个可获焦组件，焦点转移到第三个Text组件上。
+- 按键盘G键，触发onKeyEvent，enabled置为false，第三个Text组件变成不可获焦，焦点自动转移，使焦点转移到Row容器上，容器中使用的是默认配置，会转移到Button1上。
 
-- 第二个Text组件的focusable属性显式设置为true，说明该组件可获焦，那么默认焦点将置到它身上。
+## 默认焦点
 
-
-**主动走焦：**
-
-
-按键盘F键，触发onKeyEvent，focusable置为false，Text组件变成不可获焦，焦点自动转移。按照被动走焦中的说明项，焦点会自动从Text组件先向上寻找下一个可获焦组件，由于上一个组件是一个不可获焦的Text，所以向下寻找下一个可获焦的组件，找到并使焦点转移到Row容器上。根据[走焦至容器规则](#走焦规则)，使用Tab键走焦时应该满足Z字型走焦顺序，因此焦点会自动转移到Button1上。
-
-
-## 自定义默认焦点
-
+### 页面的默认焦点
 
 ```ts
 defaultFocus(value: boolean)
 ```
 
-焦点系统在页面初次构建完成时，会搜索当前页下的所有组件，找到第一个绑定了defaultFocus(true)的组件，然后将该组件置为默认焦点，若无任何组件绑定defaultFocus(true)，则将第一个找到的可获焦的组件置为默认焦点。
-
-以如下应用为例，应用布局如下：
-
-![zh-cn_image_0000001563060793](figures/zh-cn_image_0000001563060793.png)
-
-以下是实现该应用的示例代码，且示例代码中没有设置defaultFocus：
+设置当前组件是否为当前页面上的默认焦点。
 
 
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction';
-
-class MyDataSource implements IDataSource {
-  private list: number[] = [];
-  private listener: DataChangeListener | undefined = undefined;
-
-  constructor(list: number[]) {
-    this.list = list;
-  }
-
-  totalCount(): number {
-    return this.list.length;
-  }
-
-  getData(index: number): number {
-    return this.list[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    this.listener = listener;
-  }
-
-  unregisterDataChangeListener() {
-  }
-}
-
-class swcf {
-  swiperController: SwiperController | undefined
-
-  fun(index: number) {
-    if (this.swiperController) {
-      if (index == 0) {
-        this.swiperController.showPrevious();
-      } else {
-        this.swiperController.showNext();
-      }
-    }
-  }
-}
-
-class TmpM {
-  left: number = 20
-  bottom: number = 20
-  right: number = 20
-}
-
-let MarginTmp: TmpM = new TmpM()
-
 @Entry
 @Component
-struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  @State tmp: promptAction.ShowToastOptions = { 'message': 'Button OK on clicked' }
-  private data: MyDataSource = new MyDataSource([])
-
-  aboutToAppear(): void {
-    let list: number[] = []
-    for (let i = 1; i <= 4; i++) {
-      list.push(i);
-    }
-    this.data = new MyDataSource(list);
-  }
+struct morenjiaodian {
+  @State oneButtonColor: Color = Color.Gray;
+  @State twoButtonColor: Color = Color.Gray;
+  @State threeButtonColor: Color = Color.Gray;
 
   build() {
-    Column({ space: 5 }) {
-      Swiper(this.swiperController) {
-        LazyForEach(this.data, (item: string) => {
-          Row({ space: 10 }) {
-            Column() {
-              Button('1').width(120).height(120)
-                .fontSize(40)
-                .backgroundColor('#dadbd9')
-            }
-
-            Column({ space: 20 }) {
-              Row({ space: 20 }) {
-                Button('2')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-                Button('3')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-              }
-
-              Row({ space: 20 }) {
-                Button('4')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-                Button('5')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-              }
-
-              Row({ space: 20 }) {
-                Button('6')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-                Button('7')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-              }
-            }
-          }
-          .width(320)
-          .height(300)
-          .justifyContent(FlexAlign.Center)
-          .borderWidth(2)
-          .borderColor(Color.Gray)
-          .backgroundColor(Color.White)
-        }, (item: string): string => item)
-      }
-      .cachedCount(2)
-      .index(0)
-      .interval(4000)
-      .indicator(true)
-      .loop(true)
-      .duration(1000)
-      .itemSpace(0)
-      .curve(Curve.Linear)
-      .onChange((index: number) => {
-        console.info(index.toString());
-      })
-      .margin({ left: 20, top: 20, right: 20 })
-
-      Row({ space: 40 }) {
-        Button('←')
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-          .fontColor(Color.Black)
-          .backgroundColor(Color.Transparent)
-          .onClick(() => {
-            let swf = new swcf()
-            swf.fun(0)
-          })
-        Button('→')
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-          .fontColor(Color.Black)
-          .backgroundColor(Color.Transparent)
-          .onClick(() => {
-            let swf = new swcf()
-            swf.fun(1)
-          })
-      }
-      .width(320)
-      .height(50)
-      .justifyContent(FlexAlign.Center)
-      .borderWidth(2)
-      .borderColor(Color.Gray)
-      .backgroundColor('#f7f6dc')
-
-      Row({ space: 20 }) {
-        Button('Cancel')
-          .fontSize(30)
-          .fontColor('#787878')
-          .type(ButtonType.Normal)
-          .width(140)
-          .height(50)
-          .backgroundColor('#dadbd9')
-
-        Button('OK')
-          .fontSize(30)
-          .fontColor('#787878')
-          .type(ButtonType.Normal)
-          .width(140)
-          .height(50)
-          .backgroundColor('#dadbd9')
-          .onClick(() => {
-            promptAction.showToast(this.tmp);
-          })
-      }
-      .width(320)
-      .height(80)
-      .justifyContent(FlexAlign.Center)
-      .borderWidth(2)
-      .borderColor(Color.Gray)
-      .backgroundColor('#dff2e4')
-      .margin(MarginTmp)
-    }.backgroundColor('#f2f2f2')
-    .margin({ left: 50, top: 50, right: 50 })
-  }
-}
-```
-
-
-当前应用上无任何defaultFocus设置，所以第一个可获焦的组件默认获取焦点，按下TAB键/方向键让获焦的组件显示焦点态样式：
-
-
-![zh-cn_image_0000001511421360](figures/zh-cn_image_0000001511421360.gif)
-
-
-假设开发者想让应用打开的时候，无需执行多余的切换焦点操作，直接点击按键的空格/回车键，就可以执行Button-OK的onClick回调操作，那么就可以给这个Button绑定defaultFocus(true)，让它成为该页面上的默认焦点：
-
-
-
-```ts
-import promptAction from '@ohos.promptAction';
-@Entry
-@Component
-struct MouseExample {
-  @State Tmp: promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
-  build() {
-    Column() {
-      Button('OK')
-        .defaultFocus(true)    // 设置Button-OK为defaultFocus
-        .fontSize(30)
-        .fontColor('#787878')
-        .type(ButtonType.Normal)
-        .width(140).height(50).backgroundColor('#dadbd9')
-        .onClick(() => {
-          promptAction.showToast(this.Tmp);
-        })
-    }
-  }
-}
-
-```
-
-
-![zh-cn_image_0000001562940617](figures/zh-cn_image_0000001562940617.gif)
-
-
-打开应用后按TAB键，Button-OK显示了焦点态，说明默认焦点变更到了Button-OK上。然后按下空格，响应了Button-OK的onClick事件。
-
-
-## 自定义TAB键走焦顺序
-
-
-```ts
-tabIndex(index: number)
-```
-
-tabIndex用于设置自定义TAB键走焦顺序，默认值为0。使用“TAB/Shift+TAB键”走焦时（方向键不影响），系统会自动获取到所有配置了tabIndex大于0的组件，然后按照递增/递减排序进行走焦。
-
-
-以[defaultFocus](#自定义默认焦点)提供的示例为例，默认情况下的走焦顺序如下：
-
-
-![zh-cn_image_0000001511421364](figures/zh-cn_image_0000001511421364.gif)
-
-
-默认的走焦顺序从第一个获焦组件一路走到最后一个获焦组件，会经历Button1-&gt;Button2-&gt;Button3-&gt;Button4-&gt;Button5-&gt;Button6-&gt;Button7-&gt;左箭头-&gt;右箭头-&gt;ButtonCancel-&gt;ButtonOK。这种走焦队列比较完整，遍历了大部分的组件。但缺点是从第一个走到最后一个所经历的路径较长。
-
-
-如果想实现快速的从第一个走到最后一个，又不想牺牲太多的遍历完整性，就可以使用tabIndex通用属性。
-
-
-比如：开发者把白色的区域当为一个整体，黄色的区域当为一个整体，绿色的区域当为一个整体，实现Button1-&gt;左箭头-&gt;ButtonOK这种队列的走焦顺序，只需要在Button1、左箭头、ButtonOK这三个组件上依次增加tabIndex(1)、tabIndex(2)、tabIndex(3)。tabIndex的参数表示TAB走焦的顺序（从大于0的数字开始，从小到大排列）。
-
-
-
-```ts
-@Entry
-@Component
-struct MouseExample {
-  build() {
-    Column() {
-      Button('1').width(120).height(120)
-        .fontSize(40)
-        .backgroundColor('#dadbd9')
-        .tabIndex(1)    // Button-1设置为第一个tabIndex节点
-    }
-  }
-}
-```
-
-
-
-```ts
-class swcf{
-  swiperController:SwiperController|undefined
-  fun(){
-    if(this.swiperController){
-      this.swiperController.showPrevious();
-    }
-  }
-}
-@Entry
-@Component
-struct MouseExample {
-  build() {
-    Column() {
-      Button('←')
-        .fontSize(40)
-        .fontWeight(FontWeight.Bold)
+    Column({ space: 20 }) {
+      // 通过外接键盘的上下键可以让焦点在三个按钮间移动，按钮获焦时颜色变化，失焦时变回原背景色
+      Button('First Button')
+        .width(260)
+        .height(70)
+        .backgroundColor(this.oneButtonColor)
         .fontColor(Color.Black)
-        .backgroundColor(Color.Transparent)
-        .onClick(() => {
-          let swf = new swcf()
-          swf.fun()
+          // 监听第一个组件的获焦事件，获焦后改变颜色
+        .onFocus(() => {
+          this.oneButtonColor = Color.Green;
         })
-        .tabIndex(2)    // Button-左箭头设置为第二个tabIndex节点
+          // 监听第一个组件的失焦事件，失焦后改变颜色
+        .onBlur(() => {
+          this.oneButtonColor = Color.Gray;
+        })
+
+      Button('Second Button')
+        .width(260)
+        .height(70)
+        .backgroundColor(this.twoButtonColor)
+        .fontColor(Color.Black)
+          // 监听第二个组件的获焦事件，获焦后改变颜色
+        .onFocus(() => {
+          this.twoButtonColor = Color.Green;
+        })
+          // 监听第二个组件的失焦事件，失焦后改变颜色
+        .onBlur(() => {
+          this.twoButtonColor = Color.Grey;
+        })
+
+      Button('Third Button')
+        .width(260)
+        .height(70)
+        .backgroundColor(this.threeButtonColor)
+        .fontColor(Color.Black)
+          // 设置默认焦点
+        .defaultFocus(true)
+          // 监听第三个组件的获焦事件，获焦后改变颜色
+        .onFocus(() => {
+          this.threeButtonColor = Color.Green;
+        })
+          // 监听第三个组件的失焦事件，失焦后改变颜色
+        .onBlur(() => {
+          this.threeButtonColor = Color.Gray ;
+        })
+    }.width('100%').margin({ top: 20 })
+  }
+}
+```
+
+![defaultFocus.gif](figures/defaultFocus.gif)
+
+上述示例包含以下2步：
+
+- 在第三个Button组件上设置了defaultFocus(true)，进入页面后第三个Button默认获焦，显示为绿色。
+- 按下TAB键，触发走焦，第三个Button正处于获焦状态，会出现焦点框。
+
+### 容器的默认焦点
+
+容器的默认焦点受到[获焦优先级](#焦点组与获焦优先级)的影响。
+
+**defaultFocus与FocusPriority的区别**
+
+[defaultFocus](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9)是用于指定页面首次展示时的默认获焦节点，[FocusPriority](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focuspriority12)是用于指定某个容器首次获焦时其子节点的获焦优先级。上述两个属性在某些场景同时配置时行为未定义，例如下面的场景，页面首次展示无法同时满足defaultFocus获焦和高优先级组件获焦。
+
+示例
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button('Button1')
+        .defaultFocus(true)
+      Button('Button2')
+        .focusScopePriority('RowScope', FocusPriority.PREVIOUS)
+    }.focusScopeId('RowScope')
+  }
+}
+```
+
+### 页面/容器整体获焦时的焦点链
+
+**整体获焦与非整体获焦**
+
+- 整体获焦是页面/容器自身作为焦点链的叶节点获焦，获焦后再把焦点链叶节点转移到子孙组件。例如，页面切换、Navigation组件中的路由切换、焦点组走焦、容器组件主动调用requestFocusById等。
+
+- 非整体获焦是某个组件作为焦点链叶节点获焦，导致其祖先节点跟着获焦。例如TextInput组件主动获取焦点、Tab键在非焦点组场景下走焦等。
+
+**整体获焦的焦点链形成**
+
+1.页面首次获焦：
+
+- 焦点链叶节点为配置了defaultFocus的节点。
+
+- 未配置defaultFocus时，焦点停留在页面的根容器上。
+
+2.页面非首次获焦：由上次获焦的节点获焦。
+
+3.获焦链上存在配置了获焦优先级的组件和容器：
+
+- 容器内存在优先级大于PREVIOUS的组件，由优先级最高的组件获焦。
+
+- 容器内不存在优先级大于PREVIOUS的组件，由上次获焦的节点获焦。例如，窗口失焦后重新获焦。
+
+
+## 焦点样式
+
+
+```ts
+focusBox(style: FocusBoxStyle)
+```
+
+设置当前组件系统焦点框样式。
+
+```ts
+import { ColorMetrics, LengthMetrics } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct RequestFocusExample {
+  build() {
+    Column({ space: 30 }) {
+      Button("small black focus box")
+        .focusBox({
+          margin: new LengthMetrics(0),
+          strokeColor: ColorMetrics.rgba(0, 0, 0),
+        })
+      Button("large red focus box")
+        .focusBox({
+          margin: LengthMetrics.px(20),
+          strokeColor: ColorMetrics.rgba(255, 0, 0),
+          strokeWidth: LengthMetrics.px(10)
+        })
+    }
+    .alignItems(HorizontalAlign.Center)
+    .width('100%')
+  }
+}
+```
+
+![focusBox](figures/focusBox.gif)
+
+
+上述示例包含以下2步：
+
+- 进入页面，按下TAB触发走焦，第一个Button获焦，焦点框样式为紧贴边缘的蓝色细框。
+- 按下TAB键，走焦到第二个Button，焦点框样式为远离边缘的红色粗框。
+
+## 主动获焦/失焦
+
+- 使用FocusController中的方法
+
+  更推荐使用FocusController中的requestFocus主动获取焦点。优势如下：
+  - 当前帧生效，避免被下一帧组件树变化影响。
+  - 有异常值返回，便于排查主动获取焦点失败的原因。
+  - 避免多实例场景中取到错误实例。
+
+  需先使用UIContext中的[getFocusController()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取实例，再通过此实例调用对应方法。
+
+  ```ts
+  requestFocus(key: string): void
+  ```
+  通过组件的id将焦点转移到组件树对应的实体节点，生效时间为当帧生效。
+
+  ```ts
+  clearFocus(): void
+  ```
+  清除焦点，将焦点强制转移到页面根容器节点，焦点链路上其他节点失焦。
+
+- 使用focusControl中的方法
+  ```ts
+  requestFocus(value: string): boolean
+  ```
+
+  调用此接口可以主动让焦点转移至参数指定的组件上，焦点转移生效时间为下一个帧信号。
+
+
+```ts
+// focusTest.ets
+@Entry
+@Component
+struct RequestExample {
+  @State btColor: string = '#ff2787d9'
+  @State btColor2: string = '#ff2787d9'
+
+  build() {
+    Column({ space: 20 }) {
+      Column({ space: 5 }) {
+        Button('Button')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(this.btColor)
+          .onFocus(() => {
+            this.btColor = '#ffd5d5d5'
+          })
+          .onBlur(() => {
+            this.btColor = '#ff2787d9'
+          })
+          .id("testButton")
+
+        Button('Button')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(this.btColor2)
+          .onFocus(() => {
+            this.btColor2 = '#ffd5d5d5'
+          })
+          .onBlur(() => {
+            this.btColor2 = '#ff2787d9'
+          })
+          .id("testButton2")
+
+        Divider()
+          .vertical(false)
+          .width("80%")
+          .backgroundColor('#ff707070')
+          .height(10)
+
+        Button('FocusController.requestFocus')
+          .width(200).height(70).fontColor(Color.White)
+          .onClick(() => {
+            this.getUIContext().getFocusController().requestFocus("testButton")
+          })
+          .backgroundColor('#ff2787d9')
+
+        Button("focusControl.requestFocus")
+          .width(200).height(70).fontColor(Color.White)
+          .onClick(() => {
+            focusControl.requestFocus("testButton2")
+          })
+          .backgroundColor('#ff2787d9')
+
+        Button("clearFocus")
+          .width(200).height(70).fontColor(Color.White)
+          .onClick(() => {
+            this.getUIContext().getFocusController().clearFocus()
+          })
+          .backgroundColor('#ff2787d9')
+      }
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![focus-2](figures/focus-2.gif)
+
+上述示例包含以下3步：
+
+- 点击FocusController.requestFocus按钮，第一个Button获焦。
+- 点击focusControl.requestFocus按钮，第二个Button获焦。
+- 点击clearFocus按钮，第二个Button失焦。
+
+## 焦点组与获焦优先级
+
+```ts
+focusScopePriority(scopeId: string, priority?: FocusPriority)
+```
+
+设置当前组件在指定容器内获焦的优先级。需要配合focusScopeId一起使用。
+
+
+```ts
+focusScopeId(id: string, isGroup?: boolean)
+```
+
+设置当前容器组件的id标识，设置当前容器组件是否为焦点组。焦点组与tabIndex不能混用。
+
+```ts
+// focusTest.ets
+@Entry
+@Component
+struct FocusableExample {
+  @State inputValue: string = ''
+
+  build() {
+    Scroll() {
+      Row({ space: 20 }) {
+        Column({ space: 20 }) {  // 标记为Column1
+          Column({ space: 5 }) {
+            Button('Group1')
+              .width(165)
+              .height(40)
+              .fontColor(Color.White)
+            Row({ space: 5 }) {
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+            }
+            Row({ space: 5 }) {
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+            }
+          }.borderWidth(2).borderColor(Color.Red).borderStyle(BorderStyle.Dashed)
+          Column({ space: 5 }) {
+            Button('Group2')
+              .width(165)
+              .height(40)
+              .fontColor(Color.White)
+            Row({ space: 5 }) {
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+                .focusScopePriority('ColumnScope1', FocusPriority.PRIOR)  // Column1首次获焦时获焦
+            }
+            Row({ space: 5 }) {
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+            }
+          }.borderWidth(2).borderColor(Color.Green).borderStyle(BorderStyle.Dashed)
+        }
+        .focusScopeId('ColumnScope1')
+        Column({ space: 5 }) {  // 标记为Column2
+          TextInput({placeholder: 'input', text: this.inputValue})
+            .onChange((value: string) => {
+              this.inputValue = value
+            })
+            .width(156)
+          Button('Group3')
+            .width(165)
+            .height(40)
+            .fontColor(Color.White)
+          Row({ space: 5 }) {
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
+          }
+          Button()
+            .width(165)
+            .height(40)
+            .fontColor(Color.White)
+            .focusScopePriority('ColumnScope2', FocusPriority.PREVIOUS)  // Column2获焦时获焦
+          Row({ space: 5 }) {
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
+          }
+          Button()
+            .width(165)
+            .height(40)
+            .fontColor(Color.White)
+          Row({ space: 5 }) {
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
+          }
+        }.borderWidth(2).borderColor(Color.Orange).borderStyle(BorderStyle.Dashed)
+        .focusScopeId('ColumnScope2', true)  // Column2为焦点组
+      }.alignItems(VerticalAlign.Top)
     }
   }
 }
 ```
 
 
+![focus-3](figures/focus-3.gif)
 
-```ts
-import promptAction from '@ohos.promptAction';
+
+
+上述示例包含以下2步：
+
+- input方框内设置了焦点组，因此按下TAB键后焦点会快速从input中走出去，而按下方向键后可以在input内走焦。
+- 左上角的Column没有设置焦点组，因此只能通过Tab键一个一个地走焦。
+
+## 焦点与按键事件
+
+当组件获焦且存在点击事件（`onClick`）或单指单击事件（`TapGesture`）时，回车和空格会触发对应的事件回调。
+
+>  **说明：**
+>
+>  1. 点击事件（`onClick`）或单指单击事件（`TapGesture`）在回车、空格触发对应事件回调时，默认不冒泡传递，即父组件对应[按键事件](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md)不会被同步触发。
+>  2. 按键事件（`onKeyEvent`）默认冒泡传递，即同时会触发父组件的按键事件回调。
+>  3. 组件同时存在点击事件（`onClick`）和按键事件（`onKeyEvent`），在回车、空格触发时，两者都会响应。
+>  4. 获焦组件响应点击事件（`onClick`），与焦点激活态无关。
+
+```
 @Entry
 @Component
-struct MouseExample {
-  @State Tmp:promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
+struct FocusOnclickExample {
+  @State count: number = 0
+  @State name: string = 'Button'
+
   build() {
     Column() {
-    Button('OK')
-      .fontSize(30)
-      .fontColor('#787878')
-      .type(ButtonType.Normal)
-      .width(140).height(50).backgroundColor('#dadbd9')
-      .onClick(() => {
-        promptAction.showToast(this.Tmp);
-      })
-      .tabIndex(3)    // Button-OK设置为第三个tabIndex节点
-    }
-  }
-}
-```
-
-
-![zh-cn_image_0000001511580976](figures/zh-cn_image_0000001511580976.gif)
-
-
->**说明：**
-> - 当焦点处于tabIndex(大于0)节点上时，TAB/ShiftTAB会优先在tabIndex(大于0)的队列中寻找后置/前置的节点，存在则走焦至相应的tabIndex节点。若不存在，则使用默认的走焦逻辑继续往后/往前走焦。
->
-> - 当焦点处于tabIndex(等于0)节点上时，TAB/ShiftTAB使用默认的走焦逻辑走焦，走焦的过程中会跳过tabIndex(大于0)和tabIndex(小于0）的节点。
->
-> - 当焦点处于tabIndex(小于0)节点上时，TAB/ShiftTAB无法走焦。
-
-
-### groupDefaultFocus
-
-
-```ts
-groupDefaultFocus(value: boolean)
-```
-
-[自定义TAB键走焦顺序](#自定义tab键走焦顺序)中所展示的使用tabIndex完成快速走焦的能力有如下问题：
-
-每个区域（白色/黄色/绿色三个区域）都设置了某个组件为tabIndex节点（白色-Button1、黄色-左箭头、绿色-ButtonOK），但这样设置之后，只能在这3个组件上按TAB/ShiftTab键走焦时会有快速走焦的效果。
-
-解决方案是给每个区域的容器设置tabIndex，但是这样设置的问题是：第一次走焦到容器上时，获焦的子组件是默认的第一个可获焦组件，并不是自己想要的组件（Button1、左箭头、ButtonOK）。
-
-这样便引入了groupDefaultFocus通用属性，参数：boolean，默认值：false。
-
-用法需和tabIndex组合使用，使用tabIndex给区域（容器）绑定走焦顺序，然后给Button1、左箭头、ButtonOK绑定groupDefaultFocus(true)，这样在首次走焦到目标区域（容器）上时，它的绑定了groupDefaultFocus(true)的子组件同时获得焦点。
-
-
-```ts
-// xxx.ets
-import promptAction from '@ohos.promptAction';
-
-class MyDataSource implements IDataSource {
-  private list: number[] = [];
-  private listener: DataChangeListener|undefined = undefined;
-
-  constructor(list: number[]) {
-    this.list = list;
-  }
-
-  totalCount(): number {
-    return this.list.length;
-  }
-
-  getData(index: number): number {
-    return this.list[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    this.listener = listener;
-  }
-
-  unregisterDataChangeListener() {
-  }
-}
-
-@Entry
-@Component
-struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
-  @State tmp:promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
-
-  aboutToAppear(): void {
-    let list: number[] = []
-    for (let i = 1; i <= 4; i++) {
-      list.push(i);
-    }
-    this.data = new MyDataSource(list);
-  }
-
-  build() {
-    Column({ space: 5 }) {
-      Swiper(this.swiperController) {
-        LazyForEach(this.data, (item: string) => {
-          Row({ space: 10 }) {    // 设置该Row组件为tabIndex的第一个节点
-            Column() {
-              Button('1').width(120).height(120)
-                .fontSize(40)
-                .backgroundColor('#dadbd9')
-                .groupDefaultFocus(true)    // 设置Button-1为第一个tabIndex的默认焦点
-            }
-
-            Column({ space: 20 }) {
-              Row({ space: 20 }) {
-                Button('2')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-                Button('3')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-              }
-
-              Row({ space: 20 }) {
-                Button('4')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-                Button('5')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-              }
-
-              Row({ space: 20 }) {
-                Button('6')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-                Button('7')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-              }
-            }
+      Button(this.name)
+        .fontSize(30)
+        .onClick(() => {
+          this.count++
+          if (this.count <= 0) {
+            this.name = "count is negative number"
+          } else if (this.count % 2 === 0) {
+            this.name = "count is even number"
+          } else {
+            this.name = "count is odd number"
           }
-          .width(320)
-          .height(300)
-          .justifyContent(FlexAlign.Center)
-          .borderWidth(2)
-          .borderColor(Color.Gray)
-          .backgroundColor(Color.White)
-          .tabIndex(1)
-        }, (item:string):string => item)
-      }
-      .cachedCount(2)
-      .index(0)
-      .interval(4000)
-      .indicator(true)
-      .loop(true)
-      .duration(1000)
-      .itemSpace(0)
-      .curve(Curve.Linear)
-      .onChange((index: number) => {
-        console.info(index.toString());
-      })
-      .margin({ left: 20, top: 20, right: 20 })
-
-      Row({ space: 40 }) {    // 设置该Row组件为第二个tabIndex节点
-        Button('←')
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-          .fontColor(Color.Black)
-          .backgroundColor(Color.Transparent)
-          .onClick(() => {
-            this.swiperController.showPrevious();
-          })
-          .groupDefaultFocus(true)    // 设置Button-左箭头为第二个tabIndex节点的默认焦点
-        Button('→')
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-          .fontColor(Color.Black)
-          .backgroundColor(Color.Transparent)
-          .onClick(() => {
-            this.swiperController.showNext();
-          })
-      }
-      .width(320)
-      .height(50)
-      .justifyContent(FlexAlign.Center)
-      .borderWidth(2)
-      .borderColor(Color.Gray)
-      .backgroundColor('#f7f6dc')
-      .tabIndex(2)
-
-      Row({ space: 20 }) {    // 设置该Row组件为第三个tabIndex节点
-        Button('Cancel')
-          .fontSize(30)
-          .fontColor('#787878')
-          .type(ButtonType.Normal)
-          .width(140)
-          .height(50)
-          .backgroundColor('#dadbd9')
-
-        Button('OK')
-          .fontSize(30)
-          .fontColor('#787878')
-          .type(ButtonType.Normal)
-          .width(140)
-          .height(50)
-          .backgroundColor('#dadbd9')
-          .defaultFocus(true)
-          .onClick(() => {
-            promptAction.showToast(this.tmp);
-          })
-          .groupDefaultFocus(true)    // 设置Button-OK为第三个tabIndex节点的默认焦点
-      }
-      .width(320)
-      .height(80)
-      .justifyContent(FlexAlign.Center)
-      .borderWidth(2)
-      .borderColor(Color.Gray)
-      .backgroundColor('#dff2e4')
-      .margin({ left: 20, bottom: 20, right: 20 })
-      .tabIndex(3)
-    }.backgroundColor('#f2f2f2')
-    .margin({ left: 50, top: 50, right: 50 })
+        }).height(60)
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
   }
 }
 ```
+![focus-4](figures/focus-4.gif)
 
-![zh-cn_image_0000001562700533](figures/zh-cn_image_0000001562700533.gif)
-
-
-### focusOnTouch
+## 组件获焦能力说明
 
 
-```ts
-focusOnTouch(value: boolean)
-```
+  **表1** 基础组件获焦能力
 
-点击获焦能力，参数：boolean，默认值：false（输入类组件：TextInput、TextArea、Search、Web默认值是true）。
+| 基础组件                                     | 是否有获焦能力 | focusable默认值 |
+| ---------------------------------------- | ------- | ------------ |
+| [AlphabetIndexer](../reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) | 是       | true         |
+| [Blank](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md) | 否       | false        |
+| [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md) | 是       | true         |
+| [CalendarPicker](../reference/apis-arkui/arkui-ts/ts-basic-components-calendarpicker.md) | 是       | true         |
+| [Checkbox](../reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md) | 是       | true         |
+| [CheckboxGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md) | 是       | true         |
+| [ContainerSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-containerspan.md) | 否       | false         |
+| [DataPanel](../reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md) | 是       | false        |
+| [DatePicker](../reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md) | 是       | true         |
+| [Divider](../reference/apis-arkui/arkui-ts/ts-basic-components-divider.md) | 是       | false        |
+| [Gauge](../reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md) | 是       | false        |
+| [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md) | 是       | false        |
+| [ImageAnimator](../reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md) | 否       | false        |
+| [ImageSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-imagespan.md)                 | 否       | false        |
+| [LoadingProgress](../reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md) | 是       | true        |
+| [Marquee](../reference/apis-arkui/arkui-ts/ts-basic-components-marquee.md) | 否       | false        |
+| [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md) | 是       | true         |
+| [MenuItem](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md) | 是       | true         |
+| [MenuItemGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitemgroup.md) | 否       | false         |
+| [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) | 是       | true       |
+| [NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md) | 否       | false        |
+| [NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md) | 是       | true        |
+| [PatternLock](../reference/apis-arkui/arkui-ts/ts-basic-components-patternlock.md) | 是       | true        |
+| [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md) | 是       | true        |
+| [QRCode](../reference/apis-arkui/arkui-ts/ts-basic-components-qrcode.md) | 是       | true        |
+| [Radio](../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md) | 是       | true         |
+| [Rating](../reference/apis-arkui/arkui-ts/ts-basic-components-rating.md) | 是       | true         |
+| [RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md) | 是       | true         |
+| [RichText](../reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md) | 否       | false        |
+| [ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md) | 否       | false        |
+| [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md) | 是       | true         |
+| [Select](../reference/apis-arkui/arkui-ts/ts-basic-components-select.md) | 是       | true         |
+| [Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md) | 是       | true         |
+| [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) | 否       | false        |
+| [Stepper](../reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md) | 是       | true         |
+| [StepperItem](../reference/apis-arkui/arkui-ts/ts-basic-components-stepperitem.md) | 是       | true         |
+| [SymbolSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md) | 否       | false         |
+| [SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md) | 否       | false         |
+| [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md) | 是       | false        |
+| [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md) | 否       | false         |
+| [TextClock](../reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md) | 否       | false        |
+| [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) | 是       | true         |
+| [TextPicker](../reference/apis-arkui/arkui-ts/ts-basic-components-textpicker.md) | 是       | true         |
+| [TextTimer](../reference/apis-arkui/arkui-ts/ts-basic-components-texttimer.md) | 否       | false        |
+| [TimePicker](../reference/apis-arkui/arkui-ts/ts-basic-components-timepicker.md) | 否       | false         |
+| [Toggle](../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md) | 是       | true         |
+| [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) | 是       | false        |
 
-点击是指使用触屏或鼠标左键进行单击，默认为false的组件，例如Button，不绑定该API时，点击Button不会使其获焦，当给Button绑定focusOnTouch(true)时，点击Button会使Button立即获得焦点。
+  **表2** 容器组件获焦能力
 
-给容器绑定focusOnTouch(true)时，点击容器区域，会立即使容器的第一个可获焦组件获得焦点。
+| 容器组件                                     | 是否可获焦 | focusable默认值 |
+| ---------------------------------------- | ----- | ------------ |
+| [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) | 否     | false        |
+| [Column](../reference/apis-arkui/arkui-ts/ts-container-column.md) | 是     | true         |
+| [ColumnSplit](../reference/apis-arkui/arkui-ts/ts-container-columnsplit.md) | 是     | true         |
+| [Counter](../reference/apis-arkui/arkui-ts/ts-container-counter.md) | 是     | false         |
+| [EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md)    | 否     | false         |
+| [Flex](../reference/apis-arkui/arkui-ts/ts-container-flex.md) | 是     | true         |
+| [FlowItem](../reference/apis-arkui/arkui-ts/ts-container-flowitem.md)             | 是     | true         |
+| [FolderStack](../reference/apis-arkui/arkui-ts/ts-container-folderstack.md)             | 是     | true         |
+| [FormLink](../reference/apis-arkui/arkui-ts/ts-container-formlink.md)               | 否     | false         |
+| [GridCol](../reference/apis-arkui/arkui-ts/ts-container-gridcol.md) | 是     | true         |
+| [GridRow](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md) | 是     | true         |
+| [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) | 是     | true         |
+| [GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md) | 是     | true         |
+| [Hyperlink](../reference/apis-arkui/arkui-ts/ts-container-hyperlink.md)         | 是     | true         |
+| [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) | 是     | true         |
+| [ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) | 是     | true         |
+| [ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md) | 是     | true         |
+| [Navigator](../reference/apis-arkui/arkui-ts/ts-container-navigator.md) | 是     | true         |
+| [Refresh](../reference/apis-arkui/arkui-ts/ts-container-refresh.md) | 是     | true        |
+| [RelativeContainer](../reference/apis-arkui/arkui-ts/ts-container-relativecontainer.md) | 否     | false         |
+| [Row](../reference/apis-arkui/arkui-ts/ts-container-row.md) | 是    | true         |
+| [RowSplit](../reference/apis-arkui/arkui-ts/ts-container-rowsplit.md) | 是     | true         |
+| [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md) | 是     | true         |
+| [SideBarContainer](../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md) | 是     | true         |
+| [Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md) | 是     | true         |
+| [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) | 是     | true         |
+| [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) | 是     | true         |
+| [TabContent](../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) | 是     | true         |
+| [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)         | 否     | false         |
+| [WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md)         | 是     | true         |
 
-示例代码：
+  **表3** 媒体组件获焦能力
 
-
-```ts
-// requestFocus.ets
-@Entry
-@Component
-struct RequestFocusExample {
-  @State idList: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'N']
-
-  build() {
-    Column({ space:20 }){
-      Button("id: " + this.idList[0] + " focusOnTouch(true) + focusable(false)")
-        .width(400).height(70).fontColor(Color.White).focusOnTouch(true)
-        .hoverEffect(HoverEffect.Scale)
-        .focusable(false)
-      Button("id: " + this.idList[1] + " default")
-        .width(400).height(70).fontColor(Color.White)
-        .hoverEffect(HoverEffect.Scale)
-      Button("id: " + this.idList[2] + " focusOnTouch(false)")
-        .width(400).height(70).fontColor(Color.White).focusOnTouch(false)
-        .hoverEffect(HoverEffect.Scale)
-      Button("id: " + this.idList[3] + " focusOnTouch(true)")
-        .width(400).height(70).fontColor(Color.White).focusOnTouch(true)
-        .hoverEffect(HoverEffect.Scale)
-    }.width('100%').margin({ top:20 })
-  }
-}
-```
-
-
-![zh-cn_image_0000001511580980](figures/zh-cn_image_0000001511580980.gif)
-
-
-解读：
-
-
-Button-A虽然设置了focusOnTouch(true)，但是同时也设置了focusable(false)，该组件无法获焦，因此点击后也无法获焦；
-
-
-Button-B不设置相关属性，点击后不会获焦；
-
-
-Button-C设置了focusOnTouch(false)，同Button-B，点击后也不会获焦；
-
-
-Button-D设置了focusOnTouch(true)，点击即可使其获焦；
-
-
->**说明：**
->
->焦点态在屏幕接收点击事件后会立即清除，因此该示例代码在每次点击后，需要再次按下TAB键使焦点态再次显示，才可知道当前焦点所在的组件。
-
-
-### focusControl.requestFocus
-
-
-```ts
-focusControl.requestFocus(id: string)
-```
-
-主动申请焦点能力的全局方法，参数：string，参数表示被申请组件的id（通用属性id设置的字符串）。
-
-
-使用方法为：在任意执行语句中调用该API，指定目标组件的id为方法参数，当程序执行到该语句时，会立即给指定的目标组件申请焦点。
-
-
-代码示例：
-
-
-
-```ts
-// requestFocus.ets
-import promptAction from '@ohos.promptAction';
-
-@Entry
-@Component
-struct RequestFocusExample {
-  @State idList: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'N']
-  @State requestId: number = 0
-
-  build() {
-    Column({ space:20 }){
-      Row({space: 5}) {
-        Button("id: " + this.idList[0] + " focusable(false)")
-          .width(200).height(70).fontColor(Color.White)
-          .id(this.idList[0])
-          .focusable(false)
-        Button("id: " + this.idList[1])
-          .width(200).height(70).fontColor(Color.White)
-          .id(this.idList[1])
-      }
-      Row({space: 5}) {
-        Button("id: " + this.idList[2])
-          .width(200).height(70).fontColor(Color.White)
-          .id(this.idList[2])
-        Button("id: " + this.idList[3])
-          .width(200).height(70).fontColor(Color.White)
-          .id(this.idList[3])
-      }
-      Row({space: 5}) {
-        Button("id: " + this.idList[4])
-          .width(200).height(70).fontColor(Color.White)
-          .id(this.idList[4])
-        Button("id: " + this.idList[5])
-          .width(200).height(70).fontColor(Color.White)
-          .id(this.idList[5])
-      }
-    }.width('100%').margin({ top:20 })
-    .onKeyEvent((e) => {
-      if(e){
-        if (e.keyCode >= 2017 && e.keyCode <= 2022) {
-          this.requestId = e.keyCode - 2017;
-        } else if (e.keyCode === 2030) {
-          this.requestId = 6;
-        } else {
-          return;
-        }
-        if (e.type !== KeyType.Down) {
-          return;
-        }
-      }
-      let res = focusControl.requestFocus(this.idList[this.requestId]);
-      let tmps:promptAction.ShowToastOptions = {'message':'Request success'}
-      let tmpf:promptAction.ShowToastOptions = {'message':'Request failed'}
-      if (res) {
-        promptAction.showToast(tmps);
-      } else {
-        promptAction.showToast(tmpf);
-      }
-    })
-  }
-}
-```
-
-
-![zh-cn_image_0000001562820905](figures/zh-cn_image_0000001562820905.gif)
-
-
-解读：页面中共6个Button组件，其中Button-A组件设置了focusable(false)，表示其不可获焦，在外部容器的onKeyEvent中，监听按键事件，当按下A ~ F按键时，分别去申请Button A ~ F 的焦点，另外按下N键，是给当前页面上不存在的id的组件去申请焦点。
-
-
-1. 按下TAB键，由于第一个组件Button-A设置了无法获焦，那么默认第二个组件Button-B获焦，Button-B展示焦点态样式；
-
-2. 键盘上按下A键，申请Button-A的焦点，气泡显示Request failed，表示无法获取到焦点，焦点位置未改变；
-
-3. 键盘上按下B键，申请Button-B的焦点，气泡显示Request success，表示获焦到了焦点，焦点位置原本就在Button-B，位置未改变；
-
-4. 键盘上按下C键，申请Button-C的焦点，气泡显示Request success，表示获焦到了焦点，焦点位置从Button-B变更为Button-C；
-
-5. 键盘上按下D键，申请Button-D的焦点，气泡显示Request success，表示获焦到了焦点，焦点位置从Button-C变更为Button-D；
-
-6. 键盘上按下E键，申请Button-E的焦点，气泡显示Request success，表示获焦到了焦点，焦点位置从Button-D变更为Button-E；
-
-7. 键盘上按下F键，申请Button-F的焦点，气泡显示Request success，表示获焦到了焦点，焦点位置从Button-E变更为Button-F；
-
-8. 键盘上按下N键，申请未知组件的焦点，气泡显示Request failed，表示无法获取到焦点，焦点位置不变；
+| 媒体组件                                     | 是否可获焦 | focusable默认值 |
+| ---------------------------------------- | ----- | ------------ |
+| [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md) | 是     | true         |

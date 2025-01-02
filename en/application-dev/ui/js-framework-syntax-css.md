@@ -1,6 +1,6 @@
 # CSS
 
-Cascading Style Sheets (CSS) is a language used to describe the HML page structure. All HML components have default styles. You can customize styles for these components using CSS to design various pages. For details, see [Universal Styles](../reference/arkui-js/js-components-common-styles.md).
+Cascading Style Sheets (CSS) is a language used to describe the HML page structure. All HML components have default styles. You can customize styles for these components using CSS to design various pages. For details, see [Universal Styles](../reference/apis-arkui/arkui-js/js-components-common-styles.md).
 
 ## Size Unit
 
@@ -61,9 +61,9 @@ A CSS selector is used to select elements for which styles need to be added to. 
 | ------------------------- | ------------------------------------- | ---------------------------------------- |
 | .class                    | .container                            | Selects all components whose **class** is **container**.               |
 | \#id                      | \#titleId                             | Selects all components whose **id** is **titleId**.                    |
-| tag                       | text                                  | Selects all **\<text>** components.                             |
+| tag                       | text                                  | Selects all **Text** components.                             |
 | ,                         | .title, .content                 | Selects all components whose **class** is **title** or **content**.   |
-| \#id .class tag | \#containerId .content text | Selects all grandchild **\<text>** components whose grandparent components are identified as **containerId** and whose parent components are of the **content** class. To select child components, use **>** to replace the space between **\#id** and **.class**, for example, **\#containerId>.content**.|
+| \#id .class tag | \#containerId .content text | Selects all grandchild **Text** components whose grandparent components are identified as **containerId** and whose parent components are of the **content** class. To select child components, use **>** to replace the space between **\#id** and **.class**, for example, **\#containerId>.content**.|
 
 Example:
 

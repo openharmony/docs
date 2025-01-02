@@ -1,4 +1,4 @@
-# Function Flow Runtime Kit API参考
+# Function Flow Runtime Kit（任务并发调度服务）
 
 - C API
   - 模块
@@ -6,10 +6,12 @@
   - 头文件和结构体
     - 头文件
       - [condition_variable.h](condition__variable_8h.md)
+      - [loop.h](loop_8h.md)
       - [mutex.h](mutex_8h.md)
       - [queue.h](queue_8h.md)
       - [sleep.h](sleep_8h.md)
       - [task.h](task_8h.md)
+      - [timer.h](timer_8h.md)
       - [type_def.h](type__def_8h.md)
     - 结构体
       - [ffrt_cond_t](ffrt__cond__t.md)

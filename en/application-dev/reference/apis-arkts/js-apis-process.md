@@ -10,7 +10,7 @@ The **process** module provides process management APIs, for example, APIs for o
 ## Modules to Import
 
 ```ts
-import process from '@ohos.process';
+import { process } from '@kit.ArkTS';
 ```
 
 
@@ -18,21 +18,30 @@ import process from '@ohos.process';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| uid | number | Yes| No| User identifier (UID) of the process.|
-| pid | number | Yes| No| Process ID (PID) of the process.|
-| tid<sup>8+</sup> | number | Yes| No| Thread ID (TID) of the thread.|
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+| Name            | Type  | Readable | Writable | Description            |
+| ---------------- | ------ | ---- | ---- | ---------------- |
+| uid              | number | Yes  | No  | User identifier (UID) of the process. |
+| pid              | number | Yes  | No  | Process ID (PID) of the process. |
+| tid<sup>8+</sup> | number | Yes  | No  | Thread ID (TID) of the thread. |
 
 
 ## EventListener
 
+type EventListener = (evt: Object) => void
+
+Describes the event to store.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Description|
-| -------- | -------- |
-| EventListener&nbsp;=&nbsp;(evt: &nbsp;Object)&nbsp;=&gt;&nbsp;void | Event to store.|
+**Parameters**
 
+| Name | Type  | Mandatory | Description           |
+| ------ | ------ | ---- | --------------- |
+| evt   | Object | Yes | Event.|
 
 ## process.isIsolatedProcess<sup>8+</sup>
 
@@ -40,13 +49,15 @@ isIsolatedProcess(): boolean
 
 Checks whether this process is isolated.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the process is isolated; returns **false** otherwise.|
+| Type   | Description                                                   |
+| ------- | ------------------------------------------------------- |
+| boolean | **true**: The process is isolated.<br>**false**: The process is not isolated. |
 
 **Example**
 
@@ -61,13 +72,15 @@ is64Bit(): boolean
 
 Checks whether this process is running in a 64-bit environment.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the process is running in a 64-bit environment; returns **false** otherwise.|
+| Type   | Description                                                       |
+| ------- | ----------------------------------------------------------- |
+| boolean | **true**: The process is running in a 64-bit environment.<br>**false**: The process is not running in a 64-bit environment. |
 
 **Example**
 
@@ -82,13 +95,15 @@ getStartRealtime(): number
 
 Obtains the duration, in milliseconds, from the time the system starts to the time the process starts.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| number | Duration obtained, in millisecond.|
+| Type  | Description                          |
+| ------ | ------------------------------ |
+| number | Duration obtained, in millisecond. |
 
 **Example**
 
@@ -102,13 +117,15 @@ getPastCpuTime(): number
 
 Obtains the CPU time (in milliseconds) from the time the process starts to the current time.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| number | CPU time obtained, in millisecond.|
+| Type  | Description                         |
+| ------ | ----------------------------- |
+| number | CPU time obtained, in millisecond. |
 
 **Example**
 
@@ -122,6 +139,8 @@ let result = process.getPastCpuTime() ;
 abort(): void
 
 Aborts a process and generates a core file. This method will cause a process to exit immediately. Exercise caution when using this method.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -138,13 +157,15 @@ uptime(): number
 
 Obtains the running time of this process.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| number | Running time of the process, in seconds.|
+| Type  | Description                  |
+| ------ | ---------------------- |
+| number | Running time of the process, in seconds. |
 
 **Example**
 
@@ -167,16 +188,16 @@ Sends a signal to the specified process to terminate it.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| signal | number | Yes| Signal to send.|
-| pid | number | Yes| PID of the process, to which the signal will be sent.|
+| Name | Type  | Mandatory | Description        |
+| ------ | ------ | ---- | ------------ |
+| signal | number | Yes  | Signal to send. |
+| pid    | number | Yes  | PID of the process, to which the signal will be sent.  |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the signal is sent successfully; returns **false** otherwise.  |
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean |  **true**: The signal is sent successfully.<br>**false**: The signal fails to be sent. |
 
 **Example**
 
@@ -202,9 +223,9 @@ Exercise caution when using this API. After this API is called, the application 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| code | number | Yes| Exit code of the process.|
+| Name | Type  | Mandatory | Description          |
+| ------ | ------ | ---- | -------------- |
+| code   | number | Yes  | Exit code of the process. |
 
 **Example**
 
@@ -217,7 +238,7 @@ process.exit(0);
 
 getUidForName(v: string): number
 
-Obtains the process UID based on the process name.
+Obtains the UID of a user from the user database of the system based on the specified user name.
 
 > **NOTE**
 >
@@ -227,15 +248,15 @@ Obtains the process UID based on the process name.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| v | string | Yes| Name of a process.|
+| Name | Type  | Mandatory | Description    |
+| ------ | ------ | ---- | -------- |
+| v      | string | Yes  | User name. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| number | Process UID.|
+| Type  | Description         |
+| ------ | ------------- |
+| number | UID of the user. |
 
 **Example**
 
@@ -258,15 +279,15 @@ Obtains the thread priority based on the specified TID.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| v | number | Yes| TID.|
+| Name | Type  | Mandatory | Description           |
+| ------ | ------ | ---- | --------------- |
+| v      | number | Yes  | TID. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| number | Priority of the thread. The priority depends on the operating system.|
+| Type  | Description                                            |
+| ------ | ------------------------------------------------ |
+| number | Priority of the thread. The priority depends on the operating system. |
 
 **Example**
 
@@ -290,15 +311,15 @@ Checks whether a UID belongs to this application.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| v | number | Yes| UID.|
+| Name | Type  | Mandatory | Description           |
+| ------ | ------ | ---- | --------------- |
+| v      | number | Yes  | UID. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the UID belongs to the application; returns **false** otherwise.|
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | **true**: The UID belongs to the application.<br>**false**: The UID does not belong to the application. |
 
 **Example**
 
@@ -321,15 +342,15 @@ Obtains the system configuration.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | number | Yes| System configuration parameter name.|
+| Name | Type  | Mandatory | Description                |
+| ------ | ------ | ---- | -------------------- |
+| name   | number | Yes  | System configuration parameter name. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| number | System configuration obtained.|
+| Type  | Description              |
+| ------ | ------------------ |
+| number | System configuration obtained. |
 
 **Example**
 
@@ -353,15 +374,15 @@ Obtains the value of an environment variable.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Environment variable name.|
+| Name | Type  | Mandatory | Description        |
+| ------ | ------ | ---- | ------------ |
+| name   | string | Yes  | Environment variable name. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| string | Value of the environment variable.|
+| Type  | Description                       |
+| ------ | --------------------------- |
+| string | Value of the environment variable. |
 
 **Example**
 
@@ -382,25 +403,38 @@ isAppUid(v: number): boolean
 
 Checks whether a UID belongs to this application.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| v | number | Yes| UID.|
+| Name | Type  | Mandatory | Description           |
+| ------ | ------ | ---- | --------------- |
+| v      | number | Yes  | UID, which can be obtained by running **process.uid**. |
 
 **Return value**
 
-| Type| Description|
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | **true**: The UID belongs to the application.<br>**false**: The UID does not belong to the application. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message |
 | -------- | -------- |
-| boolean | Returns **true** if the UID belongs to the application; returns **false** otherwise.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
 ```js
 let pro = new process.ProcessManager();
-let result = pro.isAppUid(688);
+// Use process.uid to obtain the UID.
+let pres = process.uid;
+let result = pro.isAppUid(pres);
+console.log("result: " + result); // result: true
 ```
 
 
@@ -408,21 +442,31 @@ let result = pro.isAppUid(688);
 
 getUidForName(v: string): number
 
-Obtains the process UID based on the process name.
+Obtains the UID of a user from the user database of the system based on the specified user name.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| v | string | Yes| Name of a process.|
+| Name | Type  | Mandatory | Description    |
+| ------ | ------ | ---- | -------- |
+| v      | string | Yes  | User name. |
 
 **Return value**
 
-| Type| Description|
+| Type  | Description         |
+| ------ | ------------- |
+| number | UID of the user. If the user does not exist, **-1** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message |
 | -------- | -------- |
-| number | Process UID.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -438,19 +482,29 @@ getThreadPriority(v: number): number
 
 Obtains the thread priority based on the specified TID.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| v | number | Yes| TID.|
+| Name | Type  | Mandatory | Description           |
+| ------ | ------ | ---- | --------------- |
+| v      | number | Yes  | TID. |
 
 **Return value**
 
-| Type| Description|
+| Type  | Description                                            |
+| ------ | ------------------------------------------------ |
+| number | Priority of the thread. The priority depends on the operating system. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message |
 | -------- | -------- |
-| number | Priority of the thread. The priority depends on the operating system.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -467,19 +521,29 @@ getSystemConfig(name: number): number
 
 Obtains the system configuration.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | number | Yes| System configuration parameter name.|
+| Name | Type  | Mandatory | Description                |
+| ------ | ------ | ---- | -------------------- |
+| name   | number | Yes  | System configuration parameter name. |
 
 **Return value**
 
-| Type| Description|
+| Type  | Description              |
+| ------ | ------------------ |
+| number | System configuration obtained. If the system configuration does not exist, **-1** is returned. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message |
 | -------- | -------- |
-| number | System configuration obtained.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -496,19 +560,33 @@ getEnvironmentVar(name: string): string
 
 Obtains the value of an environment variable.
 
+> **NOTE**
+>
+>  If the environment variable does not exist, **undefined** is returned.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Environment variable name.|
+| Name | Type  | Mandatory | Description        |
+| ------ | ------ | ---- | ------------ |
+| name   | string | Yes  | Environment variable name. |
 
 **Return value**
 
-| Type| Description|
+| Type  | Description                    |
+| ------ | ------------------------ |
+| string | Value of the environment variable. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message |
 | -------- | -------- |
-| string | Value of the environment variable.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -526,13 +604,23 @@ Terminates this process.
 
 Exercise caution when using this API. After this API is called, the application exits. If the input parameter is not 0, data loss or exceptions may occur.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| code | number | Yes| Exit code of the process.|
+| Name | Type  | Mandatory | Description          |
+| ------ | ------ | ---- | -------------- |
+| code   | number | Yes  | Exit code of the process. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -548,20 +636,30 @@ kill(signal: number, pid: number): boolean
 
 Sends a signal to the specified process to terminate it.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| signal | number | Yes| Signal to send.|
-| pid | number | Yes| PID of the process, to which the signal will be sent.|
+| Name | Type  | Mandatory | Description        |
+| ------ | ------ | ---- | ------------ |
+| signal | number | Yes  | Signal to send. |
+| pid    | number | Yes  | PID of the process, to which the signal will be sent.  |
 
 **Return value**
 
-| Type| Description|
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean |  **true**: The signal is sent successfully.<br>**false**: The signal fails to be sent. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message |
 | -------- | -------- |
-| boolean | Returns **true** if the signal is sent successfully; returns **false** otherwise.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 

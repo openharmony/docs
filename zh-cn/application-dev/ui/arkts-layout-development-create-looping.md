@@ -3,7 +3,7 @@
 
 [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)组件提供滑动轮播显示的能力。Swiper本身是一个容器组件，当设置了多个子组件后，可以对这些子组件进行轮播显示。通常，在一些应用首页显示推荐的内容时，需要用到轮播显示的能力。
 
-针对复杂页面场景，可以使用 Swiper 组件的预加载机制，利用主线程的空闲时间来提前构建和布局绘制组件，优化滑动体验。详细指导见[Swiper高性能开发指导](../performance/swiper_optimization.md)。
+针对复杂页面场景，可以使用 Swiper 组件的预加载机制，利用主线程的空闲时间来提前构建和布局绘制组件，优化滑动体验。<!--Del-->详细指导见[Swiper高性能开发指导](../performance/swiper_optimization.md)。<!--DelEnd-->
 
 
 ## 布局与约束
@@ -20,10 +20,7 @@ Swiper作为一个容器组件，如果设置了自身尺寸属性，则在轮�
 - loop为true
 
 ```ts
-...
-private swiperController: SwiperController = new SwiperController()
-...
-Swiper(this.swiperController) {
+Swiper() {
   Text('0')
     .width('90%')
     .height('100%')
@@ -53,27 +50,8 @@ Swiper(this.swiperController) {
 - loop为false
 
 ```ts
-Swiper(this.swiperController) {
-  Text('0')
-    .width('90%')
-    .height('100%')
-    .backgroundColor(Color.Gray)
-    .textAlign(TextAlign.Center)
-    .fontSize(30)
-
-  Text('1')
-    .width('90%')
-    .height('100%')
-    .backgroundColor(Color.Green)
-    .textAlign(TextAlign.Center)
-    .fontSize(30)
-
-  Text('2')
-    .width('90%')
-    .height('100%')
-    .backgroundColor(Color.Pink)
-    .textAlign(TextAlign.Center)
-    .fontSize(30)
+Swiper() {
+  // ...
 }
 .loop(false)
 ```
@@ -88,27 +66,8 @@ Swiper通过设置autoPlay属性，控制是否自动轮播子组件。该属性
 autoPlay为true时，会自动切换播放子组件，子组件与子组件之间的播放间隔通过interval属性设置。interval属性默认值为3000，单位毫秒。
 
 ```ts
-Swiper(this.swiperController) {
-  Text('0')
-    .width('90%')
-    .height('100%')
-    .backgroundColor(Color.Gray)
-    .textAlign(TextAlign.Center)
-    .fontSize(30)
-
-  Text('1')
-    .width('90%')
-    .height('100%')
-    .backgroundColor(Color.Green)
-    .textAlign(TextAlign.Center)
-    .fontSize(30)
-
-  Text('2')
-    .width('90%')
-    .height('100%')
-    .backgroundColor(Color.Pink)
-    .textAlign(TextAlign.Center)
-    .fontSize(30)
+Swiper() {
+  // ...
 }
 .loop(true)
 .autoPlay(true)
@@ -120,14 +79,14 @@ Swiper(this.swiperController) {
 
 ## 导航点样式
 
-Swiper提供了默认的导航点样式，导航点默认显示在Swiper下方居中位置，开发者也可以通过indicatorStyle属性自定义导航点的位置和样式。
+Swiper提供了默认的导航点样式和导航点箭头样式，导航点默认显示在Swiper下方居中位置，开发者也可以通过indicator属性自定义导航点的位置和样式，导航点箭头默认不显示。
 
-通过indicatorStyle属性，开发者可以设置导航点相对于Swiper组件上下左右四个方位的位置，同时也可以设置每个导航点的尺寸、颜色、蒙层和被选中导航点的颜色。
+通过indicator属性，开发者可以设置导航点相对于Swiper组件上下左右四个方位的位置，同时也可以设置每个导航点的尺寸、颜色、蒙层和被选中导航点的颜色。
 
 - 导航点使用默认样式
 
 ```ts
-Swiper(this.swiperController) {
+Swiper() {
   Text('0')
     .width('90%')
     .height('100%')
@@ -158,27 +117,8 @@ Swiper(this.swiperController) {
 导航点直径设为30vp，左边距为0，导航点颜色设为红色。
 
 ```ts
-Swiper(this.swiperController) {
-  Text('0')
-    .width('90%')
-    .height('100%')
-    .backgroundColor(Color.Gray)
-    .textAlign(TextAlign.Center)
-    .fontSize(30)
-
-  Text('1')
-    .width('90%')
-    .height('100%')
-    .backgroundColor(Color.Green)
-    .textAlign(TextAlign.Center)
-    .fontSize(30)
-
-  Text('2')
-    .width('90%')
-    .height('100%')
-    .backgroundColor(Color.Pink)
-    .textAlign(TextAlign.Center)
-    .fontSize(30)
+Swiper() {
+  // ...
 }
 .indicator(
   Indicator.dot()
@@ -194,6 +134,38 @@ Swiper(this.swiperController) {
 
 ![ind](figures/ind.PNG)
 
+Swiper通过设置[displayArrow](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#displayarrow10)属性，可以控制导航点箭头的大小、位置、颜色，底板的大小及颜色，以及鼠标悬停时是否显示箭头。
+
+- 箭头使用默认样式
+
+```ts
+Swiper() {
+  // ...
+}
+.displayArrow(true, false)
+```
+
+![arrow1](figures/arrow1.gif)
+
+- 自定义箭头样式
+
+箭头显示在组件两侧，大小为18vp，导航点箭头颜色设为蓝色。
+
+```ts
+Swiper() {
+  // ...
+}
+.displayArrow({ 
+  showBackground: true,
+  isSidebarMiddle: true,
+  backgroundSize: 24,
+  backgroundColor: Color.White,
+  arrowSize: 18,
+  arrowColor: Color.Blue
+  }, false)
+```
+
+![arrow2](figures/arrow2.gif)
 
 ## 页面切换方式
 
@@ -258,8 +230,8 @@ Swiper支持水平和垂直方向上进行轮播，主要通过vertical属性控
 - 设置水平方向上轮播。
 
 ```ts
-Swiper(this.swiperController) {
-  ...
+Swiper() {
+  // ...
 }
 .indicator(true)
 .vertical(false)
@@ -272,8 +244,8 @@ Swiper(this.swiperController) {
 - 设置垂直方向轮播。
 
 ```ts
-Swiper(this.swiperController) {
-  ...
+Swiper() {
+  // ...
 }
 .indicator(true)
 .vertical(true)
@@ -285,10 +257,10 @@ Swiper(this.swiperController) {
 
 ## 每页显示多个子页面
 
-Swiper支持在一个页面内同时显示多个子组件，通过[displayCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#属性)属性设置。
+Swiper支持在一个页面内同时显示多个子组件，通过[displayCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#displaycount8)属性设置。
 
 ```ts
-Swiper(this.swiperController) {
+Swiper() {
   Text('0')
     .width(250)
     .height(250)
@@ -320,6 +292,78 @@ Swiper(this.swiperController) {
 
 ![two](figures/two.PNG)
 
+## 自定义切换动画
+
+Swiper支持通过[customContentTransition](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#customcontenttransition12)设置自定义切换动画，可以在回调中对视窗内所有页面逐帧设置透明度、缩放比例、位移、渲染层级等属性实现自定义切换动画。
+
+```ts
+@Entry
+@Component
+struct SwiperCustomAnimationExample {
+  private DISPLAY_COUNT: number = 2
+  private MIN_SCALE: number = 0.75
+
+  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange]
+  @State opacityList: number[] = []
+  @State scaleList: number[] = []
+  @State translateList: number[] = []
+  @State zIndexList: number[] = []
+
+  aboutToAppear(): void {
+    for (let i = 0; i < this.backgroundColors.length; i++) {
+      this.opacityList.push(1.0)
+      this.scaleList.push(1.0)
+      this.translateList.push(0.0)
+      this.zIndexList.push(0)
+    }
+  }
+
+  build() {
+    Column() {
+      Swiper() {
+        ForEach(this.backgroundColors, (backgroundColor: Color, index: number) => {
+          Text(index.toString()).width('100%').height('100%').fontSize(50).textAlign(TextAlign.Center)
+            .backgroundColor(backgroundColor)
+            .opacity(this.opacityList[index])
+            .scale({ x: this.scaleList[index], y: this.scaleList[index] })
+            .translate({ x: this.translateList[index] })
+            .zIndex(this.zIndexList[index])
+        })
+      }
+      .height(300)
+      .indicator(false)
+      .displayCount(this.DISPLAY_COUNT, true)
+      .customContentTransition({
+        timeout: 1000,
+        transition: (proxy: SwiperContentTransitionProxy) => {
+          if (proxy.position <= proxy.index % this.DISPLAY_COUNT || proxy.position >= this.DISPLAY_COUNT + proxy.index % this.DISPLAY_COUNT) {
+            // 同组页面完全滑出视窗外时，重置属性值
+            this.opacityList[proxy.index] = 1.0
+            this.scaleList[proxy.index] = 1.0
+            this.translateList[proxy.index] = 0.0
+            this.zIndexList[proxy.index] = 0
+          } else {
+            // 同组页面未滑出视窗外时，对同组中左右两个页面，逐帧根据position修改属性值
+            if (proxy.index % this.DISPLAY_COUNT === 0) {
+              this.opacityList[proxy.index] = 1 - proxy.position / this.DISPLAY_COUNT
+              this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - proxy.position / this.DISPLAY_COUNT)
+              this.translateList[proxy.index] = - proxy.position * proxy.mainAxisLength + (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0
+            } else {
+              this.opacityList[proxy.index] = 1 - (proxy.position - 1) / this.DISPLAY_COUNT
+              this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - (proxy.position - 1) / this.DISPLAY_COUNT)
+              this.translateList[proxy.index] = - (proxy.position - 1) * proxy.mainAxisLength - (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0
+            }
+            this.zIndexList[proxy.index] = -1
+          }
+        }
+      })
+    }.width('100%')
+  }
+}
+```
+
+![customAnimation](figures/swiper-custom-animation.gif)
+
 ## 相关实例
 
 针对Swiper组件开发，有以下相关实例可供参考：
@@ -327,3 +371,4 @@ Swiper(this.swiperController) {
 - [电子相册（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ElectronicAlbum)
 
 - [Swiper的使用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SwiperArkTS)
+<!--RP1--><!--RP1End-->

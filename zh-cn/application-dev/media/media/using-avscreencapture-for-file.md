@@ -1,14 +1,20 @@
-# 使用AVScreenCapture录屏保存到文件(C/C++)
+# 使用AVScreenCapture录屏写文件(C/C++)
 
 屏幕录制主要为主屏幕录屏功能。
 
-开发者可以调用录屏（AVScreenCapture）模块的C API接口，完成屏幕录制，采集设备内、麦克风等的音视频源数据。可以调用录屏模块获取音视频文件，然后通过文件的形式流转到其他模块进行播放或处理，达成文件形式分享屏幕内容的场景。
+开发者可以调用录屏（[AVScreenCapture](media-kit-intro.md#avscreencapture)）模块的C API接口，完成屏幕录制，采集设备内、麦克风等的音视频源数据。可以调用录屏模块获取音视频文件，然后通过文件的形式流转到其他模块进行播放或处理，达成文件形式分享屏幕内容的场景。
 
 录屏模块和窗口（Window）、图形（Graphic）等模块协同完成整个视频采集的流程。
 
 使用AVScreenCapture录制屏幕涉及到AVScreenCapture实例的创建、音视频采集参数的配置、采集的开始与停止、资源的释放等。
 
+开始屏幕录制时正在通话中或者屏幕录制过程中来电，录屏将自动停止。因通话中断的录屏会上报OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL状态。
+
+屏幕录制过程中发生系统用户切换事件时，录屏将自动停止。因系统用户切换中断的录屏会上报OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES状态。
+
 本开发指导将以完成一次屏幕数据录制的过程为例，向开发者讲解如何使用AVScreenCapture进行屏幕录制，详细的API声明请参考[AVScreenCapture API参考](../../reference/apis-media-kit/_a_v_screen_capture.md)。
+
+如果配置了采集麦克风音频数据，需对应配置麦克风权限ohos.permission.MICROPHONE和申请长时任务，配置方式请参见[向用户申请权限](../../security/AccessToken/request-user-authorization.md)、[申请长时任务](../../task-management/continuous-task.md)。
 
 ## 开发步骤及注意事项
 
@@ -43,9 +49,9 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 
     创建AVScreenCapture实例capture后，可以设置屏幕录制所需要的参数。
 
-    其中，录屏存文件仅仅能够在OH_AVScreenCapture_Init时期设置是否录制麦克风音频，在录制的过程中，无法控制麦克风的开启与关闭。
+    其中，录屏存文件时默认录制内录，麦克风可以动态开关，可以同时内外录制。
 
-    同时，录屏存文件无需设置回调函数。
+    同时，录屏存文件需要设置状态回调，感知录制状态。
 
     ```c++
     //录屏时获取麦克风或者内录，内录参数必填，如果都设置了，内录和麦克风的参数设置需要一致
@@ -67,8 +73,8 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     };
 
     OH_VideoCaptureInfo videoCapInfo = {
-        .videoFrameWidth = 720,
-        .videoFrameHeight = 1080,
+        .videoFrameWidth = 768,
+        .videoFrameHeight = 1280,
         .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
     };
 
@@ -101,13 +107,13 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 4. 调用StartScreenRecording()方法开始进行屏幕录制。
 
     ```c++
-    OH_AVScreenCapture_StartScreenCapture(capture);
+    OH_AVScreenCapture_StartScreenRecording(capture);
     ```
 
 5. 调用StopScreenRecording()方法停止录制。
 
     ```c++
-    OH_AVScreenCapture_StopScreenCapture(capture);
+    OH_AVScreenCapture_StopScreenRecording(capture);
     ```
 
 6. 调用Release()方法销毁实例，释放资源。
@@ -130,6 +136,22 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 #include "string"
 #include "unistd.h"
 
+void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+    (void)capture;
+    
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
+        // 处理状态变更
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL ||
+        stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES) {
+        // 录屏中断状态处理
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
+        // 处理状态变更
+    }
+    (void)userData;
+}
+
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCaptureConfig config;
     OH_AudioCaptureInfo micCapInfo = {
@@ -150,8 +172,8 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     };
 
     OH_VideoCaptureInfo videoCapInfo = {
-        .videoFrameWidth = 720, 
-        .videoFrameHeight = 1080, 
+        .videoFrameWidth = 768, 
+        .videoFrameHeight = 1280, 
         .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
     };
 
@@ -162,7 +184,8 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     };
 
     OH_AudioInfo audioInfo = {
-        .micCapInfo = micCapInfo, 
+        .micCapInfo = micCapInfo,
+        .innerCapInfo = innerCapInfo,
         .audioEncInfo = audioEncInfo
     };
 
@@ -188,6 +211,9 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     recorderInfo.url = const_cast<char *>(fileUrl.c_str());
     recorderInfo.fileFormat = OH_ContainerFormatType::CFT_MPEG_4;
     config.recorderInfo = recorderInfo;
+
+    //设置状态回调
+    OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
 
     // 进行初始化操作
     int32_t retInit = OH_AVScreenCapture_Init(capture, config);

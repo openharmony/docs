@@ -20,7 +20,7 @@ OH_NativeBuffer的图像平面格式信息。
 | 名称 | 描述 | 
 | -------- | -------- |
 | uint32_t [planeCount](#planecount) | 不同平面的数量。 | 
-| [OH_NativeBuffer_Plane](_o_h___native_buffer___plane.md)[planes](#planes) [4] | 图像平面格式信息数组。 | 
+| [OH_NativeBuffer_Plane](_o_h___native_buffer___plane.md) [planes](#planes) [4] | 图像平面格式信息数组。 | 
 
 
 ## 结构体成员变量说明

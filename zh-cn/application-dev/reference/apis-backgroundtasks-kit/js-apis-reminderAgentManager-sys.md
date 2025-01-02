@@ -33,23 +33,8 @@ import reminderAgentManager from '@ohos.reminderAgentManager';
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wantAgent<sup>10+</sup> | [WantAgent](#wantagent) | 否 | 点击按钮跳转的ability信息。 |
+| wantAgent<sup>10+</sup> | [WantAgent](./js-apis-reminderAgentManager.md#wantagent) | 否 | 点击按钮跳转的ability信息。 |
 | dataShareUpdate<sup>11+</sup> | [DataShareUpdate](#datashareupdate11) | 否 | 点击按钮将更新应用数据库。 |
-
-
-## WantAgent
-
-跳转目标的ability信息。
-
-> **说明**
->
-> 从API version12开始，uri对所有应用开放。
-
-**系统能力**：SystemCapability.Notification.ReminderAgent
-
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| uri<sup>10+</sup> | string | 否 | 指明跳转目标的uri信息。 |
 
 ## DataShareUpdate<sup>11+</sup>
 
@@ -71,6 +56,6 @@ import reminderAgentManager from '@ohos.reminderAgentManager';
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
-| 名称                         | 类型                    | 必填 | 说明                                               |
-| ---------------------------- | ----------------------- | ---- | -------------------------------------------------- |
-| rruleWantAgent<sup>12+</sup> | [WantAgent](#wantagent) | 否   | 自定义重复日程，指明需要拉起的 Service Extension。 |
+| 名称                         | 类型                                                     | 必填 | 说明                                               |
+| ---------------------------- | -------------------------------------------------------- | ---- | -------------------------------------------------- |
+| rruleWantAgent<sup>12+</sup> | [WantAgent](./js-apis-reminderAgentManager.md#wantagent) | 否   | 自定义重复日程，指明需要拉起的 Service Extension。 |

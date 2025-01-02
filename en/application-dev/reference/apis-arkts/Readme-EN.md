@@ -1,6 +1,10 @@
-# ArkTS API References
+# ArkTS
 
 - ArkTS APIs
+  - [@arkts.collections (ArkTS Collections)](js-apis-arkts-collections.md)
+  - [@arkts.lang (ArkTS Base Capability)](js-apis-arkts-lang.md)
+  - [@arkts.math.Decimal (High-Precision Math Library Decimal)](js-apis-arkts-decimal.md)
+  - [@arkts.utils (ArkTS Utils)](js-apis-arkts-utils.md)
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml (XML-to-JavaScript Conversion)](js-apis-convertxml.md)
   - [@ohos.process (Obtaining Process Information)](js-apis-process.md)
@@ -12,6 +16,7 @@
   - [@ohos.util.Deque (Linear Container Deque)](js-apis-deque.md)
   - [@ohos.util.HashMap (Nonlinear Container HashMap)](js-apis-hashmap.md)
   - [@ohos.util.HashSet (Nonlinear Container HashSet)](js-apis-hashset.md)
+  - [@ohos.util.json (JSON Parsing and Generation)](js-apis-json.md)
   - [@ohos.util.LightWeightMap (Nonlinear Container LightWeightMap)](js-apis-lightweightmap.md)
   - [@ohos.util.LightWeightSet (Nonlinear Container LightWeightSet)](js-apis-lightweightset.md)
   - [@ohos.util.LinkedList (Linear Container LinkedList)](js-apis-linkedlist.md)
@@ -19,6 +24,7 @@
   - [@ohos.util.PlainArray (Nonlinear Container PlainArray)](js-apis-plainarray.md)
   - [@ohos.util.Queue (Linear Container Queue)](js-apis-queue.md)
   - [@ohos.util.Stack (Linear Container Stack)](js-apis-stack.md)
+  - [@ohos.util.stream (Data Stream Base Class)](js-apis-stream.md)
   - [@ohos.util.TreeMap (Nonlinear Container TreeMap)](js-apis-treemap.md)
   - [@ohos.util.TreeSet (Nonlinear Container TreeSet)](js-apis-treeset.md)
   - [@ohos.worker (Starting the Worker)](js-apis-worker.md)

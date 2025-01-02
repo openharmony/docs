@@ -16,6 +16,8 @@ stateStyles(value: StateStyles)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -26,7 +28,9 @@ stateStyles(value: StateStyles)
 
 ## StateStyles接口说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。只支持[通用属性](ts-universal-attributes-size.md)。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。只支持[通用属性](ts-universal-attributes-size.md)。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 状态名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -55,7 +59,9 @@ stateStyles(value: StateStyles)
 
 ## 示例
 
-### 示例1
+### 示例1（设置Text多态样式）
+
+该示例展示了状态为pressed和disabled时Text组件的样式变化。
 
 ```ts
 // xxx.ets
@@ -153,7 +159,9 @@ struct StyleExample {
 
 ![zh-cn_image_0000001188742468](figures/zh-cn_image_0000001188742468.gif)
 
-### 示例2
+### 示例2（设置Radio多态样式）
+
+该示例展示了状态为selected时Radio组件的样式变化。
 
 ```ts
 // xxx.ets

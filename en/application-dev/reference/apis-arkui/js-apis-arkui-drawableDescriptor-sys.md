@@ -13,7 +13,7 @@ The **DrawableDescriptor** module provides APIs for obtaining **pixelMap** objec
 ## Modules to Import
 
 ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor';
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 ```
 
 ## DrawableDescriptor

@@ -11,7 +11,7 @@ The **stationary** module provides APIs to report the device status, including a
 ## Modules to Import
 
 ```ts
-import stationary from '@ohos.stationary'
+import { stationary } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## ActivityResponse
@@ -20,22 +20,22 @@ Defines the response interface to receive the device status.
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
 
-### Name
-
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | state | [ActivityState](#activitystate) | Yes| No| New device status.|
 
 ## ActivityType
 
+type ActivityType = 'still' | 'relativeStill'
+
 Enumerates the device status types.
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
 
-| Name| Description|
+| Type| Description|
 | -------- | -------- |
-| still | Absolutely still.|
-| relativeStill | Relatively still.|
+| 'still' | Absolutely still.|
+| 'relativeStill' | Relatively still.|
 
 ## ActivityEvent
 

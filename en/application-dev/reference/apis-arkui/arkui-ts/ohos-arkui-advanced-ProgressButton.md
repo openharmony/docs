@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.ProgressButton (Download Button with Progress Indicator)
+# ProgressButton
 
 
 The download button with progress indicator is a component that shows the download progress.
@@ -12,7 +12,7 @@ The download button with progress indicator is a component that shows the downlo
 ## Modules to Import
 
 ```
-import { ProgressButton } from '@ohos.arkui.advanced.ProgressButton'
+import { ProgressButton } from '@kit.ArkUI'
 ```
 
 ## Attributes
@@ -24,17 +24,19 @@ ProgressButton({progress: number, content: string, progressButtonWidth?: Length,
 
 **Decorator**: @Component
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type| Mandatory| Decorator| Description| 
+| Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| progress | number | Yes| \@Prop | Current download progress.| 
-| content | string | Yes| \@Prop | Button text.| 
-| progressButtonWidth | [Length](ts-types.md#length) | No| - | Width of the button.<br>Default value: **44**| 
-| clickCallback | () =&gt; void | Yes| - | Callback invoked when the button is clicked.| 
-| enable | boolean | Yes| \@Prop | Whether the button can be clicked.<br> **true**: The button can be clicked.<br> I**false**: The button cannot be clicked.| 
+| progress | number | Yes| \@Prop | Current download progress.|
+| content | string | Yes| \@Prop | Button text.|
+| progressButtonWidth | [Length](ts-types.md#length) | No| - | Width of the button.<br>Default value: **44**|
+| clickCallback | () =&gt; void | Yes| - | Callback invoked when the button is clicked.|
+| enable | boolean | Yes| \@Prop | Whether the button can be clicked.<br> **true**: The button can be clicked.<br> **false**: The button cannot be clicked.|
 
 ## Events
 The [universal events](ts-universal-events-click.md) are supported.
@@ -42,7 +44,8 @@ The [universal events](ts-universal-events-click.md) are supported.
 ## Example
 
 ```ts
-import { ProgressButton } from '@ohos.arkui.advanced.ProgressButton'
+import { ProgressButton } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
@@ -59,7 +62,7 @@ struct Index {
   @State isEnd: boolean = false
   build() {
     Column({space: 20}) {
-      Text ('Download button with progress indicator')
+      Text('Download button with progress indicator')
       Button(this.buttonText)
         .fontSize($r('sys.float.ohos_id_text_size_button3'))
         .fontWeight(FontWeight.Medium)

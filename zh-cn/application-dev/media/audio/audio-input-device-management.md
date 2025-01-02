@@ -1,4 +1,4 @@
-# 音频输入设备管理
+# 管理全局音频输入设备
 
 有时设备同时连接多个音频输入设备，需要指定音频输入设备进行音频录制，此时需要使用AudioRoutingManager接口进行输入设备的管理，API说明可以参考[AudioRoutingManager API文档](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9)。
 
@@ -7,7 +7,7 @@
 在使用AudioRoutingManager管理音频设备前，需要先导入模块并创建实例。
 
 ```ts
-import audio from '@ohos.multimedia.audio';  // 导入audio模块
+import { audio } from '@kit.AudioKit';  // 导入audio模块
 
 let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
 let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例
@@ -29,7 +29,7 @@ let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioMa
 使用getDevices()方法可以获取当前所有输入设备的信息。
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 audioRoutingManager.getDevices(audio.DeviceFlag.INPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
@@ -41,7 +41,7 @@ audioRoutingManager.getDevices(audio.DeviceFlag.INPUT_DEVICES_FLAG).then((data: 
 可以设置监听事件来监听设备连接状态的变化，当有设备连接或断开时触发回调：
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 // 监听音频设备状态变化
 audioRoutingManager.on('deviceChange', audio.DeviceFlag.INPUT_DEVICES_FLAG, (deviceChanged: audio.DeviceChangeAction) => {
@@ -56,7 +56,7 @@ audioRoutingManager.off('deviceChange', (deviceChanged: audio.DeviceChangeAction
   console.info('Should be no callback.');
 });
 ```
-
+<!--Del-->
 ## 选择音频输入设备（仅对系统应用开放）
 
 选择音频输入设备，当前只能选择一个输入设备，以设备id作为唯一标识。AudioDeviceDescriptors的具体信息可以参考[AudioDeviceDescriptors](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptors)。
@@ -66,8 +66,8 @@ audioRoutingManager.off('deviceChange', (deviceChanged: audio.DeviceChangeAction
 > 用户可以选择连接一组音频设备（如一对蓝牙耳机），但系统侧只感知为一个设备，该组设备共用一个设备id。
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
     deviceRole : audio.DeviceRole.INPUT_DEVICE,
@@ -93,3 +93,4 @@ async function getRoutingManager() {
 }
 
 ```
+<!--DelEnd-->

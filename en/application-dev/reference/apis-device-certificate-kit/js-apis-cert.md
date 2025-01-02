@@ -1,6 +1,6 @@
 # @ohos.security.cert (Certificate)
 
-The certificate algorithm library framework provides certificate-related APIs. For details about the APIs for implementing the basic algorithm capabilities based on the cryptographic (crypto) framework, see [Crypto Framework](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md).
+The certificate algorithm library framework provides certificate-related APIs. The **certFramework** module depends on the basic algorithm capabilities of the Crypto framework. For details, see [Crypto Framework](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md).
 
 > **NOTE**
 >
@@ -9,13 +9,15 @@ The certificate algorithm library framework provides certificate-related APIs. F
 ## Modules to Import
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import cryptoFramework from '@ohos.security.cryptoFramework';
+import { cert } from '@kit.DeviceCertificateKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 ```
 
 ## CertResult
 
  Enumerates the error codes.
+
+ **Atomic service API**: This API can be used in atomic services since API version 12.
 
  **System capability**: SystemCapability.Security.Cert
 
@@ -35,6 +37,9 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 
 ## DataBlob
 Defines a binary data array.
+
+ **Atomic service API**: This API can be used in atomic services since API version 12.
+
  **System capability**: SystemCapability.Security.Cert
 | Name          | Type          | Readable| Writable| Description             |
 | -------------- | -------------- | ---- | ---- | ----------------|
@@ -43,6 +48,9 @@ Defines a binary data array.
 ## DataArray
 
 Defines a list of data arrays.
+
+ **Atomic service API**: This API can be used in atomic services since API version 12.
+
  **System capability**: SystemCapability.Security.Cert
 | Name          | Type          | Readable| Writable| Description              |
 | -------------- | -------------- | ---- | ---- | ----------------|
@@ -52,17 +60,21 @@ Defines a list of data arrays.
 
  Enumerates the certificate encoding formats.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
  **System capability**: SystemCapability.Security.Cert
 
 | Name      | Value|  Description     |
 | ---------- | ------ | --------- |
 | FORMAT_DER | 0      | Distinguished Encoding Rules (DER) format.|
 | FORMAT_PEM | 1      | Privacy-Enhanced Mail (PEM) format.|
-| FORMAT_PKCS7<sup>11+</sup> | 2 | PKCS7 format.|
+| FORMAT_PKCS7<sup>11+</sup> | 2 | PKCS #7 format.|
 
 ## CertItemType<sup>10+</sup>
 
  Enumerates the certificate fields that can be obtained.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
  **System capability**: SystemCapability.Security.Cert
 
@@ -78,6 +90,8 @@ Defines a list of data arrays.
 
  Enumerates the OID types of the certificate extensions that can be obtained.
 
+ **Atomic service API**: This API can be used in atomic services since API version 12.
+
  **System capability**: SystemCapability.Security.Cert
 
 | Name                         | Value  | Description                                         |
@@ -90,6 +104,8 @@ Defines a list of data arrays.
 
  Enumerates the object types in certificate extensions that can be obtained.
 
+ **Atomic service API**: This API can be used in atomic services since API version 12.
+
  **System capability**: SystemCapability.Security.Cert
 
 | Name                               | Value  | Description                        |
@@ -98,11 +114,25 @@ Defines a list of data arrays.
 | EXTENSION_ENTRY_TYPE_ENTRY_CRITICAL | 1    | Critical attribute of the object.|
 | EXTENSION_ENTRY_TYPE_ENTRY_VALUE    | 2    | Data of the object.        |
 
+## EncodingType<sup>12+</sup>
+
+ Enumerates the encoding formats of the subject name in an X.509 certificate.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+ **System capability**: SystemCapability.Security.Cert
+
+| Name      | Value|  Description     |
+| ---------- | ------ | --------- |
+| ENCODING_UTF8 | 0      | UTF-8.|
+
 ## EncodingBlob
 
 Defines a certificate binary array in encoding format.
 
-### Attributes
+### Properties
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -116,7 +146,9 @@ Defines a certificate binary array in encoding format.
 
 Defines the certificate chain data, which is passed in as input parameters during certificate chain verification.
 
-### Attributes
+### Properties
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -126,9 +158,44 @@ Defines the certificate chain data, which is passed in as input parameters durin
 | count          | number                            | Yes  | Yes  | Number of certificates contained in the input data.                              |
 | encodingFormat | [EncodingFormat](#encodingformat) | Yes  | Yes  | Certificate encoding format.                                          |
 
+## GeneralNameType<sup>12+</sup>
+
+Enumerates the types of the common name (CN), which uniquely identifies the subject of the certificate.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+| Name          | Value                             | Description              |
+| -------------- | --------------------------------- | ------------------ |
+| GENERAL_NAME_TYPE_OTHER_NAME | 0 |  Indicates others. |
+| GENERAL_NAME_TYPE_RFC822_NAME | 1 |  Indicates an email address. |
+| GENERAL_NAME_TYPE_DNS_NAME | 2 |  Indicates a DNS name. |
+| GENERAL_NAME_TYPE_X400_ADDRESS | 3 |  Indicates an X.400 address. |
+| GENERAL_NAME_TYPE_DIRECTORY_NAME | 4 |  Indicates a directory name. |
+| GENERAL_NAME_TYPE_EDI_PARTY_NAME | 5 |  Indicates an Electronic Data Interchange (EDI) entity. |
+| GENERAL_NAME_TYPE_UNIFORM_RESOURCE_ID | 6 |  Indicates a uniform resource identifier. |
+| GENERAL_NAME_TYPE_IP_ADDRESS | 7 |  Indicates an IP address. |
+| GENERAL_NAME_TYPE_REGISTERED_ID | 8 |  Indicates a registered object identifier. |
+
+## GeneralName<sup>12+</sup>
+
+Represents the CN information of a certificate.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+| Name          | Type                             | Mandatory| Description              |
+| -------------- | --------------------------------- | ---- | ------------------ |
+| type | [GeneralNameType](#generalname12)    | Yes|  Type of the certificate subject. |
+| name | Uint8Array    | No |  DER format of the certificate subject. |
+
 ## X509CertMatchParameters<sup>11+</sup>
 
 Defines the parameters used to match a certificate. If no parameter is specified, all certificates are matched.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -137,27 +204,69 @@ Defines the parameters used to match a certificate. If no parameter is specified
 | x509Cert | [X509Cert](#x509cert)    | No|  Certificate object. |
 | validDate | string    | No |  Certificate validity period. |
 | issuer | Uint8Array | No | Certificate issuer, in DER format.|
-| keyUsage | Array\<boolean> | No | Key usage.|
+| keyUsage | Array\<boolean> | No | Whether to match the key usage.|
 | serialNumber | bigint    | No |  Serial number of the certificate. |
 | subject | Uint8Array | No | Certificate subject, in DER format.|
 | publicKey | [DataBlob](#datablob) | No | Public key of the certificate, in DER format.|
 | publicKeyAlgID | string | No | Algorithm of the certificate public key.|
+| subjectAlternativeNames<sup>12+</sup> | Array\<[GeneralName](#generalname12)> | No | Subject Alternative Names (SANs) of the certificate.|
+| matchAllSubjectAltNames<sup>12+</sup> | boolean | No | Whether to match all SANs of the certificate.|
+| authorityKeyIdentifier<sup>12+</sup> | Uint8Array | No | Key of the certificate authority (CA).|
+| minPathLenConstraint<sup>12+</sup> | number | No | Minimum length of the certification path (chain of trust) that can be built from the certificate to a trusted root CA.|
+| extendedKeyUsage<sup>12+</sup> | Array\<string> | No | Usage of the certificate.|
+| nameConstraints<sup>12+</sup> | Uint8Array | No | Constraints on the subject names that can be included in certificates.|
+| certPolicy<sup>12+</sup> | Array\<string> | No | Certificate policy.|
+| privateKeyValid<sup>12+</sup> | string | No | Validity period of the certificate private key.|
+| subjectKeyIdentifier<sup>12+</sup> | Uint8Array | No | Identifier of the public key of the certificate's subject.|
 
 ## X509CRLMatchParameters<sup>11+</sup>
 
-Defines the parameters used to match a CRL. If no parameter is specified, all CRLs are matched.
+Represents the parameters used to match a certificate revocation list (CRL). If no parameter is specified, all CRLs are matched.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
 | Name          | Type                             | Mandatory| Description              |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | issuer | Array\<Uint8Array> | No | Issuers of the certificates. At least one issuer must be matched.|
-| x509Cert | [X509Cert](#x509cert)        | No | Certificate object used to determine whether the certificate is in the CRL.|
+| x509Cert | [X509Cert](#x509cert) | No | Certificate object used to determine whether the certificate is in the CRL.|
+| updateDateTime<sup>12+</sup> | string | No | Certificate update time.|
+| maxCRL<sup>12+</sup> | bigint | No | Maximum number of CRLs.|
+| minCRL<sup>12+</sup> | bigint | No | Minimum number of CRLs.|
+
+## CertChainBuildParameters<sup>12+</sup>
+
+Represents the parameters for building a certificate chain.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+| Name          | Type                             | Mandatory| Description              |
+| -------------- | --------------------------------- | ---- | ------------------ |
+| certMatchParameters | [X509CertMatchParameters](#x509certmatchparameters11) | Yes | Filter criteria.|
+| maxLength | number | No | Maximum length of the CA certificate in the certificate chain.|
+| validationParameters | [CertChainValidationParameters](#certchainvalidationparameters11) | Yes | Parameters for certificate chain validation.|
+
+## CertChainBuildResult<sup>12+</sup>
+
+Represents the certificate chain build result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+| Name          | Type                             | Mandatory| Description              |
+| -------------- | --------------------------------- | ---- | ------------------ |
+| certChain | [X509CertChain](#x509certchain11) | Yes | Certificate chain object created.|
+| validationResult | [CertChainValidationResult](#certchainvalidationresult11) | Yes | Result of the certificate chain validation.|
 
 ## X509TrustAnchor<sup>11+</sup>
 
 Represents an X.509 trust anchor, which is used to verify the certificate chain. The certificate or public key in the trust anchor is used as the trusted root to verify the certificate chain.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -166,10 +275,78 @@ Represents an X.509 trust anchor, which is used to verify the certificate chain.
 | CACert    | [X509Cert](#x509cert) | Yes  | Yes  | Trusted CA certificate.             |
 | CAPubKey  | Uint8Array            | Yes  | Yes  | Public key of the trusted CA certificate, in DER format.|
 | CASubject | Uint8Array            | Yes  | Yes  | Subject of the trusted CA certificate, in DER format.|
+| nameConstraints<sup>12+</sup> | Uint8Array      | Yes  | Yes  | Name constraints, in DER format.|
+
+## RevocationCheckOptions<sup>12+</sup>
+
+ Enumerates the options for checking the certificate revocation status.
+
+ **Atomic service API**: This API can be used in atomic services since API version 12.
+
+ **System capability**: SystemCapability.Security.Cert
+
+| Name                                 | Value  | Description                         |
+| --------------------------------------| -------- | -----------------------------|
+| REVOCATION_CHECK_OPTION_PREFER_OCSP | 0 | Use OCSP over CRL (default).|
+| REVOCATION_CHECK_OPTION_ACCESS_NETWORK | 1 | Obtain the CRL/OCSP response over the network. By default, it is disabled.|
+| REVOCATION_CHECK_OPTION_FALLBACK_NO_PREFER | 2 | This parameter is valid when the **ACCESS_NETWORK** option is enabled. It allows the alternative solution to be used to obtain the certificate revocation status if the preferred solution cannot be used due to network problems.|
+| REVOCATION_CHECK_OPTION_FALLBACK_LOCAL | 3 | This parameter is valid when the **ACCESS_NETWORK** option is enabled. It allows the locally configured CRL/OCSP response to be used to check the certificate revocation status if the online CRL/OCSP response cannot be used due to network problems.|
+
+## ValidationPolicyType<sup>12+</sup>
+
+ Enumerates the types of the online certificate chain validation policy.
+
+ **Atomic service API**: This API can be used in atomic services since API version 12.
+
+ **System capability**: SystemCapability.Security.Cert
+
+| Name                                 | Value  | Description                         |
+| --------------------------------------| -------- | -----------------------------|
+| VALIDATION_POLICY_TYPE_X509 | 0 | Do not verify **sslHostname** or **dNSName** in the certificate. It is the default value.|
+| VALIDATION_POLICY_TYPE_SSL | 1 | Verify **sslHostname** or **dNSName** in the certificate.|
+
+## KeyUsageType<sup>12+</sup>
+
+ Enumerates the purposes, for which the key in the certificate is used.
+ **Atomic service API**: This API can be used in atomic services since API version 12.
+
+ **System capability**: SystemCapability.Security.Cert
+
+| Name                                 | Value  | Description                         |
+| --------------------------------------| -------- | -----------------------------|
+| KEYUSAGE_DIGITAL_SIGNATURE | 0 | The certificate holder can use the private key contained in the certificate to generate a digital signature.|
+| KEYUSAGE_NON_REPUDIATION | 1 | The certificate holder can use the key to verify a digital signature as part of a nonrepudiation service.|
+| KEYUSAGE_KEY_ENCIPHERMENT | 2 | The certificate holder can use the public key contained in the certificate for key encryption.|
+| KEYUSAGE_DATA_ENCIPHERMENT | 3 | The certificate holder can use the public key contained in the certificate for data encryption.|
+| KEYUSAGE_KEY_AGREEMENT | 4 | The certificate holder can use the private key contained in the certificate to perform key agreement operations.|
+| KEYUSAGE_KEY_CERT_SIGN | 5 | The certificate holder can use the private key contained in the certificate to sign other certificates.|
+| KEYUSAGE_CRL_SIGN | 6 | The certificate holder can use the private key contained in the certificate to sign CRLs.|
+| KEYUSAGE_ENCIPHER_ONLY | 7 | The certificate holder can use the key to perform encryption operations only.|
+| KEYUSAGE_DECIPHER_ONLY | 8 | The certificate holder can use the key to perform decryption operations only.|
+
+## RevocationCheckParameter<sup>12+</sup>
+
+Represents the parameters for checking the certificate revocation status for a certificate chain.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+| Name        | Type                                             | Mandatory| Description                                  |
+| ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
+| ocspRequestExtension | Array\<Uint8Array> | No  | OCSP request extensions.|
+| ocspResponderURI | string | No  | URL of the alternative server used to send OCSP requests. HTTP and HTTPS are supported. The specific configuration is determined via the negotiation with the server.|
+| ocspResponderCert | [X509Cert](#x509cert)  | No  | Signing certificate used for verifying the signature of the OCSP response.|
+| ocspResponses | Uint8Array | No  | Alternative OCSP responses.|
+| crlDownloadURI | string | No  | Address used to download the CRLs.|
+| options | Array\<[RevocationCheckOptions](#revocationcheckoptions12)> | No  | A set of rules for obtaining the certificate revocation status.|
+| ocspDigest | string | No  | Hash algorithm used to create a certificate ID during OCSP communication. The options **MD5**, **SHA1**, **SHA224**, **SHA256**, **SHA384**, and **SHA512** are supported. The default value is **SHA256**.|
 
 ## CertChainValidationParameters<sup>11+</sup>
 
-Defines the parameters for certificate chain validation.
+Represents the parameters for certificate chain validation.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -178,10 +355,16 @@ Defines the parameters for certificate chain validation.
 | date         | string                                            | No  | Validity period of the certificate to validate.            |
 | trustAnchors | Array\<[X509TrustAnchor](#x509trustanchor11)>     | Yes  | List of trusted anchors.                      |
 | certCRLs     | Array\<[CertCRLCollection](#certcrlcollection11)> | No  | Check whether the certificate is in a CRL.|
+| revocationCheckParam<sup>12+</sup>      | [RevocationCheckParameter](#revocationcheckparameter12) | No  | Parameters for checking the certificate revocation status online.|
+| policy<sup>12+</sup>     | [ValidationPolicyType](#validationpolicytype12) | No  | Type of the policy for certificate validation.|
+| sslHostname<sup>12+</sup> | string | No  | Host name in the certificate to be verified. This parameter must be used with **policy** together.|
+| keyUsage<sup>12+</sup>     | Array\<[KeyUsageType](#keyusagetype12)> | No  | Usage of the key in the certificate to be validated.|
 
 ## CertChainValidationResult<sup>11+</sup>
 
 Represents the return value of certificate chain validation.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -190,11 +373,13 @@ Represents the return value of certificate chain validation.
 | trustAnchor | [X509TrustAnchor](#x509trustanchor11) | Yes  | No  | Trust anchor.  |
 | entityCert  | [X509Cert](#x509cert)                 | Yes  | No  | Entity certificate.|
 
-## cryptoCert.createX509Cert
+## cert.createX509Cert
 
 createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : void
 
-Creates an **X509Cert** instance. This API uses an asynchronous callback to return the result.
+Creates an X.509 certificate instance. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -203,7 +388,7 @@ Creates an **X509Cert** instance. This API uses an asynchronous callback to retu
 | Name  | Type                                 | Mandatory| Description                      |
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | inStream | [EncodingBlob](#encodingblob)         | Yes  | X.509 certificate serialization data.        |
-| callback | AsyncCallback\<[X509Cert](#x509cert)> | Yes  | Callback invoked to return the **X509Cert** instance created.|
+| callback | AsyncCallback\<[X509Cert](#x509cert)> | Yes  | Callback used to return the **X509Cert** instance created.|
 
 **Error codes**
 
@@ -211,12 +396,14 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
 | 19020001 | memory error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -227,7 +414,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -238,14 +425,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -253,11 +440,13 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 });
 ```
 
-## cryptoCert.createX509Cert
+## cert.createX509Cert
 
 createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 
-Creates an **X509Cert** instance. This API uses a promise to return the result.
+Creates an X.509 certificate instance. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -271,7 +460,7 @@ Creates an **X509Cert** instance. This API uses a promise to return the result.
 
 | Type    | Description            |
 | ------- | ---------------- |
-| Promise\<[X509Cert](#x509cert)> | **X509Cert** instance created.|
+| Promise\<[X509Cert](#x509cert)> | Promise used to return the **X509Cert** instance created.|
 
 **Error codes**
 
@@ -279,13 +468,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
 | 19020001 | memory error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -296,7 +487,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -307,13 +498,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob).then(x509Cert => {
+cert.createX509Cert(encodingBlob).then(x509Cert => {
   console.log('createX509Cert success');
 }).catch((error: BusinessError) => {
   console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
@@ -330,14 +521,16 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 Verifies the signature of an X.509 certificate. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Parameters**
 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| key      | cryptoFramework.PubKey     | Yes  | Public key used for signature verification.                                          |
-| callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails.|
+| key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Yes  | Public key used for signature verification.                                          |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails.|
 
 **Error codes**
 
@@ -345,13 +538,14 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message          |
 | -------- | ------------------ |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error.      |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -362,7 +556,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -373,14 +567,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -391,10 +585,10 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 
       // Verify the certificate signature.
       x509Cert.verify(pubKey, (err, data) => {
-        if (err == null) {
-          console.log('verify success');
-        } else {
+        if (err) {
           console.error('verify failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+        } else {
+          console.log('verify success');
         }
       });
     } catch (error) {
@@ -411,13 +605,15 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 Verifies the signature of an X.509 certificate. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| key    | cryptoFramework.PubKey | Yes  | Public key used for signature verification.|
+| key    | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Yes  | Public key used for signature verification.|
 
 **Return value**
 
@@ -431,13 +627,14 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message          |
 | -------- | ------------------ |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error.      |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -448,7 +645,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -459,13 +656,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob).then(x509Cert => {
+cert.createX509Cert(encodingBlob).then(x509Cert => {
   console.log('createX509Cert success');
 
   try {
@@ -490,13 +687,15 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 Obtains the serialized X.509 certificate data. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Parameters**
 
 | Name  | Type                                         | Mandatory| Description                            |
 | -------- | --------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the serialized X.509 certificate data obtained. |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback used to return the serialized X.509 certificate data obtained.|
 
 **Error codes**
 
@@ -504,6 +703,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
 | 19030001 | crypto operation error.|
@@ -511,7 +711,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -522,7 +722,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -533,19 +733,19 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
     x509Cert.getEncoded((error, data) => {
-      if (error != null) {
+      if (error) {
         console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('getEncoded success');
@@ -561,6 +761,8 @@ getEncoded() : Promise\<EncodingBlob>
 
 Obtains the serialized X.509 certificate data. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Return value**
@@ -575,6 +777,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
 | 19030001 | crypto operation error.|
@@ -582,8 +785,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -594,7 +797,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBLzCB1QIUO/QDVJwZLIpeJyPjyTvE43xvE5cwCgYIKoZIzj0EAwIwGjEYMBYG\n' +
   'A1UEAwwPRXhhbXBsZSBSb290IENBMB4XDTIzMDkwNDExMjAxOVoXDTI2MDUzMDEx\n' +
@@ -605,13 +808,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'BetUokslUfjT6+s/X4ByaxycAA==\n' +
   '-----END CERTIFICATE-----\n';
 
-// Certificate binary data, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Certificate binary data, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
-certFramework.createX509Cert(encodingBlob).then(x509Cert => {
+cert.createX509Cert(encodingBlob).then(x509Cert => {
   console.log('createX509Cert success');
   x509Cert.getEncoded().then(result => {
     console.log('getEncoded success');
@@ -627,7 +830,9 @@ certFramework.createX509Cert(encodingBlob).then(x509Cert => {
 
 getPublicKey() : cryptoFramework.PubKey
 
-Obtains the public key of this X.509 certificate. This API uses an asynchronous callback to return the result.
+Obtains the public key of this X.509 certificate.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -635,7 +840,7 @@ Obtains the public key of this X.509 certificate. This API uses an asynchronous 
 
 | Type  | Description            |
 | ------ | ---------------- |
-| cryptoFramework.PubKey | Public key of the X509 certificate obtained. This object is used only for **verify()** of **X509Cert**.|
+| [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Public key of the X509 certificate obtained. This object is used only for **verify()** of **X509Cert**.|
 
 **Error codes**
 
@@ -649,8 +854,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -661,7 +866,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -672,14 +877,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -697,7 +902,9 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 
 checkValidityWithDate(date: string) : void
 
-Checks the validity period of this X.509 certificate. This API uses an asynchronous callback to return the result.
+Checks the validity period of this X.509 certificate.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -705,7 +912,7 @@ Checks the validity period of this X.509 certificate. This API uses an asynchron
 
 | Name  | Type           | Mandatory| Description       |
 | -------- | -------------- | ---- | ---------- |
-| date     | string         | Yes  | Date in the YYMMDDHHMMSSZ or YYYYMMDDHHMMSSZ format. The date must end with **Z**, which indicates the UTC.|
+| date     | string         | Yes  | Date in the ASN.1 format.|
 
 **Error codes**
 
@@ -713,6 +920,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.                                     |
 | 19030001 | crypto operation error.|
 | 19030003 | the certificate has not taken effect.                                     |
@@ -721,8 +929,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -733,7 +941,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -744,14 +952,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -774,6 +982,8 @@ getVersion() : number
 
 Obtains the X.509 certificate version.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Return value**
@@ -785,7 +995,7 @@ Obtains the X.509 certificate version.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -796,7 +1006,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -807,13 +1017,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -830,7 +1040,7 @@ Obtains the X.509 certificate serial number.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [getCertSerialNumber](#getcertserialnumber10).
+> This API is supported since API version 9 and deprecated since API version 10. Use [getCertSerialNumber](#getcertserialnumber10) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -843,7 +1053,7 @@ Obtains the X.509 certificate serial number.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -854,7 +1064,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -865,14 +1075,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -886,6 +1096,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getCertSerialNumber() : bigint
 
 Obtains the X.509 certificate serial number.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -906,8 +1118,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -918,7 +1130,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -929,14 +1141,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -955,6 +1167,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getIssuerName() : DataBlob
 
 Obtains the X.509 certificate issuer.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -977,8 +1191,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -989,7 +1203,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1000,14 +1214,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1023,11 +1237,19 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 
 ### getSubjectName
 
-getSubjectName() : DataBlob
+getSubjectName(encodingType?: EncodingType) : DataBlob
 
 Obtains the subject of this X.509 certificate.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                          |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| encodingType | [EncodingType](#encodingtype12)     | No  |  Encoding type. If this parameter is set, the subject name in UTF-8 format is to be obtained. If this parameter is not set, the subject name in ASCII encoding format is obtained by default.<br>This parameter is available since API version 12. |
 
 **Return value**
 
@@ -1041,6 +1263,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401 | invalid parameters.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
 | 19030001 | crypto operation error.|
@@ -1048,8 +1271,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -1060,7 +1283,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1071,14 +1294,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1087,6 +1310,12 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error('getSubjectName failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+    try {
+      let subjectNameutf8 = x509Cert.getSubjectName(cert.EncodingType.ENCODING_UTF8);
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getSubjectNameUtf8 failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
   }
 });
@@ -1098,13 +1327,15 @@ getNotBeforeTime() : string
 
 Obtains the start time of this X.509 certificate.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Return value**
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| string | Start time of the X509 certificate validity period, in the YYMMDDHHMMSSZ or YYYYMMDDHHMMSSZ format. The value must end with **Z**, which indicates the UTC.|
+| string | Certificate start time obtained, in ASN.1 format.|
 
 **Error codes**
 
@@ -1119,8 +1350,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -1131,7 +1362,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1142,14 +1373,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1169,13 +1400,15 @@ getNotAfterTime() : string
 
 Obtains the expiration time of this X.509 certificate.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Return value**
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| string | Expiration time of the X509 certificate validity period, in the YYMMDDHHMMSSZ or YYYYMMDDHHMMSSZ format. The value must end with **Z**, which indicates the UTC.|
+| string | Certificate expiration time obtained, in ASN.1 format.|
 
 **Error codes**
 
@@ -1190,9 +1423,9 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -1203,7 +1436,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1214,14 +1447,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1240,6 +1473,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getSignature() : DataBlob
 
 Obtains the signature data of this X.509 certificate.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -1262,9 +1497,9 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -1275,7 +1510,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1286,14 +1521,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1312,6 +1547,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getSignatureAlgName() : string
 
 Obtains the signing algorithm of this X.509 certificate.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -1334,9 +1571,9 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -1347,7 +1584,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1358,14 +1595,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1384,6 +1621,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getSignatureAlgOid() : string
 
 Obtains the object identifier (OID) of the X.509 certificate signing algorithm. OIDs are allocated by the International Organization for Standardization (ISO).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -1406,8 +1645,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -1418,7 +1657,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1429,14 +1668,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1456,6 +1695,8 @@ getSignatureAlgParams() : DataBlob
 
 Obtains the signing algorithm parameters of this X.509 certificate.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Return value**
@@ -1470,6 +1711,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 801 | this operation is not supported. |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
 | 19030001 | crypto operation error.|
@@ -1477,8 +1719,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -1489,7 +1731,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1500,14 +1742,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1526,6 +1768,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getKeyUsage() : DataBlob
 
 Obtains the key usage of this X.509 certificate.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -1547,8 +1791,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -1559,7 +1803,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1570,14 +1814,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1596,6 +1840,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getExtKeyUsage() : DataArray
 
 Obtains the usage of the extended key of this X.509 certificate.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -1618,8 +1864,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -1630,7 +1876,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1641,14 +1887,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1668,6 +1914,8 @@ getBasicConstraints() : number
 
 Obtains the basic constraints for obtaining this X.509 certificate.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Return value**
@@ -1679,7 +1927,7 @@ Obtains the basic constraints for obtaining this X.509 certificate.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -1690,7 +1938,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1701,14 +1949,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1722,6 +1970,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getSubjectAltNames() : DataArray
 
 Obtains the Subject Alternative Names (SANs) of this X.509 certificate.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -1744,8 +1994,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -1756,7 +2006,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1767,14 +2017,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1793,6 +2043,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getIssuerAltNames() : DataArray
 
 Obtains the Issuer Alternative Names (IANs) of this X.509 certificate.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -1815,8 +2067,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -1827,7 +2079,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1838,14 +2090,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1865,13 +2117,15 @@ getItem(itemType: CertItemType) : DataBlob
 
 Obtains the fields in the X.509 certificate.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Return value**
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| [DataBlob](#datablob) | Returns the obtained fields in DER format.|
+| [DataBlob](#datablob) | Fields in DER format.|
 
 **Error codes**
 
@@ -1879,6 +2133,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -1886,8 +2141,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -1898,7 +2153,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Certificate binary data, which must be set based on the service.
+// Certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1909,20 +2164,20 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
     try {
-      let tbs = x509Cert.getItem(certFramework.CertItemType.CERT_ITEM_TYPE_TBS);
-      let pubKey = x509Cert.getItem(certFramework.CertItemType.CERT_ITEM_TYPE_PUBLIC_KEY);
+      let tbs = x509Cert.getItem(cert.CertItemType.CERT_ITEM_TYPE_TBS);
+      let pubKey = x509Cert.getItem(cert.CertItemType.CERT_ITEM_TYPE_PUBLIC_KEY);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error('getItem failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -1934,7 +2189,9 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 
 match(param: X509CertMatchParameters): boolean
 
-Matches a certificate.
+Checks whether this certificate matches the specified parameters.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -1942,13 +2199,13 @@ Matches a certificate.
 
 | Name   | Type  | Mandatory| Description                                      |
 | --------- | ------ | ---- | ------------------------------------------ |
-| param | [X509CertMatchParameters](#x509certmatchparameters11) | Yes  | Parameters used to match the certificate.|
+| param | [X509CertMatchParameters](#x509certmatchparameters11) | Yes  | Parameters specified for matching the certificate.|
 
 **Return value**
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| boolean | Returns **true** if a certificate is matched; returns **false** otherwise.|
+| boolean | Returns **true** if the certificate matches the parameters specified; returns **false** otherwise.|
 
 **Error codes**
 
@@ -1956,14 +2213,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -1974,26 +2232,37 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-async function createX509Cert(): Promise<certFramework.X509Cert> {
-  let certData = '-----BEGIN CERTIFICATE-----\n' +
-    'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
-    'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
-    'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
-    'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
-    'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
-    'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
-    'Qw==\n' +
-    '-----END CERTIFICATE-----\n';
+async function createX509Cert(): Promise<cert.X509Cert> {
+  let certData =  '-----BEGIN CERTIFICATE-----\n' +
+  'MIIDTTCCAjWgAwIBAgIBAzANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
+  'IENBMB4XDTI0MDMxOTAyMDM1NFoXDTM0MDMxNzAyMDM1NFowETEPMA0GA1UEAwwG\n' +
+  'ZGV2aWNlMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuoGk2J0aKWTP\n' +
+  'J3D7lS3oFdME3MMA1z0Y0ftthrtUKybE2xh8P90ztMV73bewmgAPqiApqhaWEZM/\n' +
+  '6DSLc/MxbOeYjg6njveJIu721gchiuB2PFikDFSWlcLOJNw+CgBx77Ct3KllivHs\n' +
+  'oi/gjuxrWiF/3VhbBErPNj/fw9se3pVrFRXIFdkcybtom2mUmkcxDfSg587SO14i\n' +
+  'ZzXGM6nhMzYWXxLho6SJrsnzfs4pD6ifksWmY4089zitqsN+9jQXafY1+/sh1mgu\n' +
+  'FvAwg9IbigGOBIiF8t5qdNGpqCHXbEHblNCWfT4fVNDV0Vc9pByjZaMYEGMhpz+6\n' +
+  'lxlc2CqbNQIDAQABo4GuMIGrMAkGA1UdEwQCMAAwHQYDVR0OBBYEFAEVpuP+pPpg\n' +
+  'kr3dA3aV2XdFZ9rGMB8GA1UdIwQYMBaAFHRb+SgJu8O0UYdRBkszePocqxbYMB0G\n' +
+  'A1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjALBgNVHQ8EBAMCB4AwMgYIKwYB\n' +
+  'BQUHAQEEJjAkMCIGCCsGAQUFBzABhhZodHRwczovLzEyNy4wLjAuMTo5OTk5MA0G\n' +
+  'CSqGSIb3DQEBCwUAA4IBAQBjM1agcDcgVHsD0dS39gxtlyRbZRvDcW3YsdwgpN6S\n' +
+  'e4wGzdZbhsiZv7y3+PSuozKwp5Yjn+UqnnEz7QuTGJRt/pzHDVY3QceNvlx2HPRe\n' +
+  'fECS4bpGLcM5B17oZZjE4HenIrGmigXnnwYL5TjhC4ybtddXPYv/M6z2eFCnfQNa\n' +
+  'zFwz8LJ7ukWvf5koBqcHq2zsuVByOIPXLIrAJPtMmBb/pHCFt8hxOxwqujdrxz16\n' +
+  'pe5LQUYzvG1YCxw3Ye9OrM1yXJQr/4KYncQC1yQQo+UK7NsDRK30PsMEYxhierLA\n' +
+  'JKyPn1xSlOJiGa2rRn/uevmEOhfagj5TtprU9Gu1+nZo\n' +
+  '-----END CERTIFICATE-----\n';
 
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
     // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
-    x509Cert = await certFramework.createX509Cert(encodingBlob);
+    x509Cert = await cert.createX509Cert(encodingBlob);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -2004,17 +2273,11 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
 async function matchX509Cert() {
   const x509Cert = await createX509Cert();
   try {
-    // The value should be assigned by the service side.
-    const param: certFramework.X509CertMatchParameters = {
+    // The data varies with the service.
+    const param: cert.X509CertMatchParameters = {
       x509Cert,
-      validDate: '20231121074700Z',
-      issuer: new Uint8Array([0x30, 0x64, 0x31]), // The values need to be assigned by the service side.
-      keyUsage: [false, false, false, false, false, false, true, true, true],
-      serialNumber: BigInt('232100834349818463'),
-      subject: new Uint8Array([0x30, 0x6c, 0x31]), // The values need to be assigned by the service side.
-      publicKey: {
-        data: new Uint8Array([0x30, 0x82, 0x01]) // The values need to be assigned by the service side.
-      },
+      validDate: '20241121074700Z',
+      keyUsage: [true, false, false, false, false, false, false, false, false],
       publicKeyAlgID: '1.2.840.113549.1.1.1'
     };
     const result = x509Cert.match(param);
@@ -2024,20 +2287,22 @@ async function matchX509Cert() {
   }
 }
 ```
-## cryptoCert.createCertExtension<sup>10+</sup>
 
-createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExtension>) : void
+### getCRLDistributionPoint<sup>12+</sup>
 
-Creates a **CertExtension** instance. This API uses an asynchronous callback to return the result.
+getCRLDistributionPoint(): DataArray
+
+Obtains the CRL distribution points of this X.509 certificate.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
-**Parameters**
+**Return value**
 
-| Name  | Type                                             | Mandatory| Description                      |
-| -------- | ------------------------------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob)                     | Yes  | Serialized data of the certificate extension.|
-| callback | AsyncCallback\<[CertExtension](#certextension10)> | Yes  | Callback invoked to return the **CertExtension** instance created.|
+| Type                   | Description                      |
+| ----------------------- | -------------------------- |
+| [DataArray](#dataarray) | URIs of the CRL distribution points obtained.|
 
 **Error codes**
 
@@ -2046,13 +2311,516 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 | ID| Error Message     |
 | -------- | ------------- |
 | 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// Binary data of the certificate extensions, which must be assigned based on the service.
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certData = "-----BEGIN CERTIFICATE-----\n" +
+  "MIIB/jCCAaSgAwIBAgICA+gwCgYIKoZIzj0EAwIwLDELMAkGA1UEBhMCQ04xDTAL\n" +
+  "BgNVBAoMBHRlc3QxDjAMBgNVBAMMBXN1YmNhMB4XDTIzMTAwNzA0MDEwOFoXDTMz\n" +
+  "MTAwNDA0MDEwOFowLDELMAkGA1UEBhMCQ04xDTALBgNVBAoMBHRlc3QxDjAMBgNV\n" +
+  "BAMMBWxvY2FsMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEZDPvdlJI6Yv4fiaR\n" +
+  "nQHcusXVbukk90mQ0rBGOYRikFvgvm5cjTdaUGcQKEtwYIKDQl5n6Pf7ElCJ7GRz\n" +
+  "raWZ+qOBtTCBsjAJBgNVHRMEAjAAMCwGCWCGSAGG+EIBDQQfFh1PcGVuU1NMIEdl\n" +
+  "bmVyYXRlZCBDZXJ0aWZpY2F0ZTAdBgNVHQ4EFgQU63Gbl8gIsUn0VyZ4rya3PCjm\n" +
+  "sfEwHwYDVR0jBBgwFoAU77mynM0rz1SD43DQjleWM7bF+MEwNwYDVR0fBDAwLjAs\n" +
+  "oCqgKIYmaHR0cDovL3Rlc3QudGVzdENSTGRwLmNvbS9DUkxfRFBfMS5jcmwwCgYI\n" +
+  "KoZIzj0EAwIDSAAwRQIhAISKHH9u221mBgdDWfll3loLvEHJ3or9NUO5Zn6SrX6L\n" +
+  "AiAtRlOa6/mTD68faQTdhsAaQP955QfW34B4yFqU2Bq72A==\n" +
+  "-----END CERTIFICATE-----\n";
+
+  // Certificate binary data, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function certGetCRLDistributionPoint() {
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
+  try {
+    x509Cert = await cert.createX509Cert(encodingBlob);
+    console.log('createX509Cert success');
+    let point = x509Cert.getCRLDistributionPoint();
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### getIssuerX500DistinguishedName<sup>12+</sup>
+
+getIssuerX500DistinguishedName(): X500DistinguishedName
+
+Obtains the distinguished name (DN) of the X.509 certificate issuer.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type                 | Description                                     |
+| --------------------- | ----------------------------------------- |
+| [X500DistinguishedName](#x500distinguishedname12) | DN object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certData = "-----BEGIN CERTIFICATE-----\n" +
+    "MIID1TCCAr2gAwIBAgIITXr1++kFUU4wDQYJKoZIhvcNAQELBQAwcDELMAkGA1UE\n" +
+    "BhMCQ04xEjAQBgNVBAgTCWd1YW5nZG9uZzERMA8GA1UEBxMIc2hlbnpoZW4xEjAQ\n" +
+    "BgNVBAoTCXRlc3RTZWNDYTESMBAGA1UECxMJdGVzdFNlY0NhMRIwEAYDVQQDEwl0\n" +
+    "ZXN0U2VjQ2EwHhcNMjMxMjIxMDAwMDAwWhcNMjcxMjIwMjM1OTU5WjBxMQswCQYD\n" +
+    "VQQGEwJDTjEOMAwGA1UECBMFZ2Fuc3UxEDAOBgNVBAcTB2xhbnpob3UxFDASBgNV\n" +
+    "BAoTC3Rlc3RUaGlyZENhMRQwEgYDVQQLEwt0ZXN0VGhpcmRDYTEUMBIGA1UEAxML\n" +
+    "dGVzdFRoaXJkQ2EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDJMKSq\n" +
+    "Fn4G4EJATauw+4s+n/JbINBAiuhzURzzdt2T8JJQLDV9RHj4mZt84yv6lqEpl2fm\n" +
+    "gIClfu173pEV51/PSq5IaV481u/Dz/OTy9TwfxmIXAWdNpyodDOg4I9K7LC01ge8\n" +
+    "xxyKFi7k7m2eTGA4dYQM0E0AEXzCpg2JN3IIIPhzHCIVJmYjcbVxiaFkvT4ZFFUk\n" +
+    "4rDSbAQdn6dJ29msrFm8iGhMGC/bzq9Bii38Qg4y4o89QYiboRWCxv3XfuibT+jw\n" +
+    "O3pmfsFuT8/bKOWVm94FmRxiKuj6iE8UVewxtByzDgAsBtJKDjaCv3IkqfbIu+sq\n" +
+    "/eeJkVJRJXAP3ZpLAgMBAAGjcjBwMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYE\n" +
+    "FIxvPSwEmjOMW10H+gn2gy5HvMmMMAsGA1UdDwQEAwIBBjARBglghkgBhvhCAQEE\n" +
+    "BAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0ZTANBgkqhkiG9w0B\n" +
+    "AQsFAAOCAQEAWu0u72g5y1weexPoJQnUgcwVtuC+/tTS9YvyCtKYE91gn97LSWn9\n" +
+    "mXXGmLceU27B8JwhER9JeiQO1SUdDcvlfb5vt6eB+5cbZcgeERUBP8t0znh7DbMg\n" +
+    "4TFjt9gZ970PZ1OlTBNPoZNRBKIox61KVUhiVKTVSbXlVP1yUF1uSlSq+0NYayHw\n" +
+    "MnX1BeLxbAcAsTPYHjoeFJIrGkKlydLyt/8hDQzpLRW5uEUTjjqLh7vef0OaOP80\n" +
+    "MmADt6ojRYvwdMDHF0ASJyupLQ+hiRLVadciK8Z5W34JGN2jwEw5X3nXyAgErIJZ\n" +
+    "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
+    "-----END CERTIFICATE-----\n"
+
+  // Certificate binary data, which varies with the service.
+  let encodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+
+async function certGetIssuerX500DistinguishedName() {
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
+  try {
+    x509Cert = await cert.createX509Cert(encodingBlob);
+    console.log('createX509Cert success');
+    let name = x509Cert.getIssuerX500DistinguishedName();
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### getSubjectX500DistinguishedName<sup>12+</sup>
+
+getSubjectX500DistinguishedName(): X500DistinguishedName
+
+Obtains the DN of the X.509 certificate subject (holder).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type                 | Description                                     |
+| --------------------- | ----------------------------------------- |
+| [X500DistinguishedName](#x500distinguishedname12) | DN object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certData = "-----BEGIN CERTIFICATE-----\n" +
+    "MIID1TCCAr2gAwIBAgIITXr1++kFUU4wDQYJKoZIhvcNAQELBQAwcDELMAkGA1UE\n" +
+    "BhMCQ04xEjAQBgNVBAgTCWd1YW5nZG9uZzERMA8GA1UEBxMIc2hlbnpoZW4xEjAQ\n" +
+    "BgNVBAoTCXRlc3RTZWNDYTESMBAGA1UECxMJdGVzdFNlY0NhMRIwEAYDVQQDEwl0\n" +
+    "ZXN0U2VjQ2EwHhcNMjMxMjIxMDAwMDAwWhcNMjcxMjIwMjM1OTU5WjBxMQswCQYD\n" +
+    "VQQGEwJDTjEOMAwGA1UECBMFZ2Fuc3UxEDAOBgNVBAcTB2xhbnpob3UxFDASBgNV\n" +
+    "BAoTC3Rlc3RUaGlyZENhMRQwEgYDVQQLEwt0ZXN0VGhpcmRDYTEUMBIGA1UEAxML\n" +
+    "dGVzdFRoaXJkQ2EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDJMKSq\n" +
+    "Fn4G4EJATauw+4s+n/JbINBAiuhzURzzdt2T8JJQLDV9RHj4mZt84yv6lqEpl2fm\n" +
+    "gIClfu173pEV51/PSq5IaV481u/Dz/OTy9TwfxmIXAWdNpyodDOg4I9K7LC01ge8\n" +
+    "xxyKFi7k7m2eTGA4dYQM0E0AEXzCpg2JN3IIIPhzHCIVJmYjcbVxiaFkvT4ZFFUk\n" +
+    "4rDSbAQdn6dJ29msrFm8iGhMGC/bzq9Bii38Qg4y4o89QYiboRWCxv3XfuibT+jw\n" +
+    "O3pmfsFuT8/bKOWVm94FmRxiKuj6iE8UVewxtByzDgAsBtJKDjaCv3IkqfbIu+sq\n" +
+    "/eeJkVJRJXAP3ZpLAgMBAAGjcjBwMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYE\n" +
+    "FIxvPSwEmjOMW10H+gn2gy5HvMmMMAsGA1UdDwQEAwIBBjARBglghkgBhvhCAQEE\n" +
+    "BAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0ZTANBgkqhkiG9w0B\n" +
+    "AQsFAAOCAQEAWu0u72g5y1weexPoJQnUgcwVtuC+/tTS9YvyCtKYE91gn97LSWn9\n" +
+    "mXXGmLceU27B8JwhER9JeiQO1SUdDcvlfb5vt6eB+5cbZcgeERUBP8t0znh7DbMg\n" +
+    "4TFjt9gZ970PZ1OlTBNPoZNRBKIox61KVUhiVKTVSbXlVP1yUF1uSlSq+0NYayHw\n" +
+    "MnX1BeLxbAcAsTPYHjoeFJIrGkKlydLyt/8hDQzpLRW5uEUTjjqLh7vef0OaOP80\n" +
+    "MmADt6ojRYvwdMDHF0ASJyupLQ+hiRLVadciK8Z5W34JGN2jwEw5X3nXyAgErIJZ\n" +
+    "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
+    "-----END CERTIFICATE-----\n"
+
+  // Certificate binary data, which varies with the service.
+  let encodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+
+async function certGetSubjectX500DistinguishedName() {
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
+  try {
+    x509Cert = await cert.createX509Cert(encodingBlob);
+    console.log('createX509Cert success');
+    let name = x509Cert.getSubjectX500DistinguishedName();
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### toString<sup>12+</sup>
+
+toString(): string
+
+Converts the object data into a string.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type                 | Description                                     |
+| --------------------- | ----------------------------------------- |
+| string | String obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certData = "-----BEGIN CERTIFICATE-----\n" +
+    "MIID1TCCAr2gAwIBAgIITXr1++kFUU4wDQYJKoZIhvcNAQELBQAwcDELMAkGA1UE\n" +
+    "BhMCQ04xEjAQBgNVBAgTCWd1YW5nZG9uZzERMA8GA1UEBxMIc2hlbnpoZW4xEjAQ\n" +
+    "BgNVBAoTCXRlc3RTZWNDYTESMBAGA1UECxMJdGVzdFNlY0NhMRIwEAYDVQQDEwl0\n" +
+    "ZXN0U2VjQ2EwHhcNMjMxMjIxMDAwMDAwWhcNMjcxMjIwMjM1OTU5WjBxMQswCQYD\n" +
+    "VQQGEwJDTjEOMAwGA1UECBMFZ2Fuc3UxEDAOBgNVBAcTB2xhbnpob3UxFDASBgNV\n" +
+    "BAoTC3Rlc3RUaGlyZENhMRQwEgYDVQQLEwt0ZXN0VGhpcmRDYTEUMBIGA1UEAxML\n" +
+    "dGVzdFRoaXJkQ2EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDJMKSq\n" +
+    "Fn4G4EJATauw+4s+n/JbINBAiuhzURzzdt2T8JJQLDV9RHj4mZt84yv6lqEpl2fm\n" +
+    "gIClfu173pEV51/PSq5IaV481u/Dz/OTy9TwfxmIXAWdNpyodDOg4I9K7LC01ge8\n" +
+    "xxyKFi7k7m2eTGA4dYQM0E0AEXzCpg2JN3IIIPhzHCIVJmYjcbVxiaFkvT4ZFFUk\n" +
+    "4rDSbAQdn6dJ29msrFm8iGhMGC/bzq9Bii38Qg4y4o89QYiboRWCxv3XfuibT+jw\n" +
+    "O3pmfsFuT8/bKOWVm94FmRxiKuj6iE8UVewxtByzDgAsBtJKDjaCv3IkqfbIu+sq\n" +
+    "/eeJkVJRJXAP3ZpLAgMBAAGjcjBwMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYE\n" +
+    "FIxvPSwEmjOMW10H+gn2gy5HvMmMMAsGA1UdDwQEAwIBBjARBglghkgBhvhCAQEE\n" +
+    "BAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0ZTANBgkqhkiG9w0B\n" +
+    "AQsFAAOCAQEAWu0u72g5y1weexPoJQnUgcwVtuC+/tTS9YvyCtKYE91gn97LSWn9\n" +
+    "mXXGmLceU27B8JwhER9JeiQO1SUdDcvlfb5vt6eB+5cbZcgeERUBP8t0znh7DbMg\n" +
+    "4TFjt9gZ970PZ1OlTBNPoZNRBKIox61KVUhiVKTVSbXlVP1yUF1uSlSq+0NYayHw\n" +
+    "MnX1BeLxbAcAsTPYHjoeFJIrGkKlydLyt/8hDQzpLRW5uEUTjjqLh7vef0OaOP80\n" +
+    "MmADt6ojRYvwdMDHF0ASJyupLQ+hiRLVadciK8Z5W34JGN2jwEw5X3nXyAgErIJZ\n" +
+    "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
+    "-----END CERTIFICATE-----\n"
+
+  // Certificate binary data, which varies with the service.
+  let encodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+
+async function certToString() {
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
+  try {
+    x509Cert = await cert.createX509Cert(encodingBlob);
+    console.log('createX509Cert success');
+    console.info('certToString success: ' + JSON.stringify(x509Cert.toString()));
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### hashCode<sup>12+</sup>
+
+hashCode(): Uint8Array
+
+Obtains the hash value of the data in DER format.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type                 | Description                                     |
+| --------------------- | ----------------------------------------- |
+| Uint8Array | Hash value obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certData = "-----BEGIN CERTIFICATE-----\n" +
+    "MIID1TCCAr2gAwIBAgIITXr1++kFUU4wDQYJKoZIhvcNAQELBQAwcDELMAkGA1UE\n" +
+    "BhMCQ04xEjAQBgNVBAgTCWd1YW5nZG9uZzERMA8GA1UEBxMIc2hlbnpoZW4xEjAQ\n" +
+    "BgNVBAoTCXRlc3RTZWNDYTESMBAGA1UECxMJdGVzdFNlY0NhMRIwEAYDVQQDEwl0\n" +
+    "ZXN0U2VjQ2EwHhcNMjMxMjIxMDAwMDAwWhcNMjcxMjIwMjM1OTU5WjBxMQswCQYD\n" +
+    "VQQGEwJDTjEOMAwGA1UECBMFZ2Fuc3UxEDAOBgNVBAcTB2xhbnpob3UxFDASBgNV\n" +
+    "BAoTC3Rlc3RUaGlyZENhMRQwEgYDVQQLEwt0ZXN0VGhpcmRDYTEUMBIGA1UEAxML\n" +
+    "dGVzdFRoaXJkQ2EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDJMKSq\n" +
+    "Fn4G4EJATauw+4s+n/JbINBAiuhzURzzdt2T8JJQLDV9RHj4mZt84yv6lqEpl2fm\n" +
+    "gIClfu173pEV51/PSq5IaV481u/Dz/OTy9TwfxmIXAWdNpyodDOg4I9K7LC01ge8\n" +
+    "xxyKFi7k7m2eTGA4dYQM0E0AEXzCpg2JN3IIIPhzHCIVJmYjcbVxiaFkvT4ZFFUk\n" +
+    "4rDSbAQdn6dJ29msrFm8iGhMGC/bzq9Bii38Qg4y4o89QYiboRWCxv3XfuibT+jw\n" +
+    "O3pmfsFuT8/bKOWVm94FmRxiKuj6iE8UVewxtByzDgAsBtJKDjaCv3IkqfbIu+sq\n" +
+    "/eeJkVJRJXAP3ZpLAgMBAAGjcjBwMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYE\n" +
+    "FIxvPSwEmjOMW10H+gn2gy5HvMmMMAsGA1UdDwQEAwIBBjARBglghkgBhvhCAQEE\n" +
+    "BAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0ZTANBgkqhkiG9w0B\n" +
+    "AQsFAAOCAQEAWu0u72g5y1weexPoJQnUgcwVtuC+/tTS9YvyCtKYE91gn97LSWn9\n" +
+    "mXXGmLceU27B8JwhER9JeiQO1SUdDcvlfb5vt6eB+5cbZcgeERUBP8t0znh7DbMg\n" +
+    "4TFjt9gZ970PZ1OlTBNPoZNRBKIox61KVUhiVKTVSbXlVP1yUF1uSlSq+0NYayHw\n" +
+    "MnX1BeLxbAcAsTPYHjoeFJIrGkKlydLyt/8hDQzpLRW5uEUTjjqLh7vef0OaOP80\n" +
+    "MmADt6ojRYvwdMDHF0ASJyupLQ+hiRLVadciK8Z5W34JGN2jwEw5X3nXyAgErIJZ\n" +
+    "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
+    "-----END CERTIFICATE-----\n"
+
+  // Certificate binary data, which varies with the service.
+  let encodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+
+async function certHashCode() {
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
+  try {
+    x509Cert = await cert.createX509Cert(encodingBlob);
+    console.log('createX509Cert success');
+    console.info('certHashCode success: ' + JSON.stringify(x509Cert.hashCode()));
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### getExtensionsObject<sup>12+</sup>
+
+getExtensionsObject(): CertExtension
+
+Obtains the certification extensions in DER format.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type                 | Description                                     |
+| --------------------- | ----------------------------------------- |
+| [CertExtension](#certextension10) | Certificate extensions object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certData = "-----BEGIN CERTIFICATE-----\n" +
+    "MIID1TCCAr2gAwIBAgIITXr1++kFUU4wDQYJKoZIhvcNAQELBQAwcDELMAkGA1UE\n" +
+    "BhMCQ04xEjAQBgNVBAgTCWd1YW5nZG9uZzERMA8GA1UEBxMIc2hlbnpoZW4xEjAQ\n" +
+    "BgNVBAoTCXRlc3RTZWNDYTESMBAGA1UECxMJdGVzdFNlY0NhMRIwEAYDVQQDEwl0\n" +
+    "ZXN0U2VjQ2EwHhcNMjMxMjIxMDAwMDAwWhcNMjcxMjIwMjM1OTU5WjBxMQswCQYD\n" +
+    "VQQGEwJDTjEOMAwGA1UECBMFZ2Fuc3UxEDAOBgNVBAcTB2xhbnpob3UxFDASBgNV\n" +
+    "BAoTC3Rlc3RUaGlyZENhMRQwEgYDVQQLEwt0ZXN0VGhpcmRDYTEUMBIGA1UEAxML\n" +
+    "dGVzdFRoaXJkQ2EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDJMKSq\n" +
+    "Fn4G4EJATauw+4s+n/JbINBAiuhzURzzdt2T8JJQLDV9RHj4mZt84yv6lqEpl2fm\n" +
+    "gIClfu173pEV51/PSq5IaV481u/Dz/OTy9TwfxmIXAWdNpyodDOg4I9K7LC01ge8\n" +
+    "xxyKFi7k7m2eTGA4dYQM0E0AEXzCpg2JN3IIIPhzHCIVJmYjcbVxiaFkvT4ZFFUk\n" +
+    "4rDSbAQdn6dJ29msrFm8iGhMGC/bzq9Bii38Qg4y4o89QYiboRWCxv3XfuibT+jw\n" +
+    "O3pmfsFuT8/bKOWVm94FmRxiKuj6iE8UVewxtByzDgAsBtJKDjaCv3IkqfbIu+sq\n" +
+    "/eeJkVJRJXAP3ZpLAgMBAAGjcjBwMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYE\n" +
+    "FIxvPSwEmjOMW10H+gn2gy5HvMmMMAsGA1UdDwQEAwIBBjARBglghkgBhvhCAQEE\n" +
+    "BAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0ZTANBgkqhkiG9w0B\n" +
+    "AQsFAAOCAQEAWu0u72g5y1weexPoJQnUgcwVtuC+/tTS9YvyCtKYE91gn97LSWn9\n" +
+    "mXXGmLceU27B8JwhER9JeiQO1SUdDcvlfb5vt6eB+5cbZcgeERUBP8t0znh7DbMg\n" +
+    "4TFjt9gZ970PZ1OlTBNPoZNRBKIox61KVUhiVKTVSbXlVP1yUF1uSlSq+0NYayHw\n" +
+    "MnX1BeLxbAcAsTPYHjoeFJIrGkKlydLyt/8hDQzpLRW5uEUTjjqLh7vef0OaOP80\n" +
+    "MmADt6ojRYvwdMDHF0ASJyupLQ+hiRLVadciK8Z5W34JGN2jwEw5X3nXyAgErIJZ\n" +
+    "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
+    "-----END CERTIFICATE-----\n"
+
+  // Certificate binary data, which varies with the service.
+  let encodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+
+async function certGetExtensionsObject() {
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
+  try {
+    x509Cert = await cert.createX509Cert(encodingBlob);
+    console.log('createX509Cert success');
+    let object = x509Cert.getExtensionsObject();
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+## cert.createCertExtension<sup>10+</sup>
+
+createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExtension>) : void
+
+Creates a **CertExtension** instance. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                      |
+| -------- | ------------------------------------------------- | ---- | -------------------------- |
+| inStream | [EncodingBlob](#encodingblob)                     | Yes  | Serialized data of the certificate extension.|
+| callback | AsyncCallback\<[CertExtension](#certextension10)> | Yes  | Callback used to return the **CertExtension** instance created.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
+| 19020001 | memory error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+
+// Binary data of the certificate extension, which varies with the services.
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -2065,14 +2833,14 @@ let extData = new Uint8Array([
   0xD9, 0xE4
 ]);
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: extData,
   // Assign a value based on the encodingData format. Currently, only FORMAT_DER is supported.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
-certFramework.createCertExtension(encodingBlob, (error, certExt) => {
-  if (error != null) {
+cert.createCertExtension(encodingBlob, (error, certExt) => {
+  if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createCertExtension success');
@@ -2080,11 +2848,13 @@ certFramework.createCertExtension(encodingBlob, (error, certExt) => {
 });
 ```
 
-## cryptoCert.createCertExtension<sup>10+</sup>
+## cert.createCertExtension<sup>10+</sup>
 
 createCertExtension(inStream : EncodingBlob) : Promise\<CertExtension>
 
 Creates a **CertExtension** instance. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -2106,15 +2876,17 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
 | 19020001 | memory error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// Binary data of the certificate extensions, which must be assigned based on the service.
+// Binary data of the certificate extension, which varies with the services.
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -2127,13 +2899,13 @@ let extData = new Uint8Array([
   0xD9, 0xE4
 ]);
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: extData,
   // Assign a value based on the encodingData format. Currently, only FORMAT_DER is supported.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
-certFramework.createCertExtension(encodingBlob).then(certExt => {
+cert.createCertExtension(encodingBlob).then(certExt => {
   console.log('createCertExtension success');
 }).catch((error: BusinessError) => {
   console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
@@ -2150,13 +2922,15 @@ getEncoded() : EncodingBlob
 
 Obtains the serialized data of the certificate extensions.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Return value**
 
 | Type                         | Description                        |
 | ----------------------------- | ---------------------------- |
-| [EncodingBlob](#encodingblob) | Serialized data obtained. |
+| [EncodingBlob](#encodingblob) | Serialized data obtained.|
 
 **Error codes**
 
@@ -2171,10 +2945,10 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// Binary data of the certificate extensions, which must be assigned based on the service.
+// Binary data of the certificate extension, which varies with the services.
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -2187,14 +2961,14 @@ let extData = new Uint8Array([
   0xD9, 0xE4
 ]);
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: extData,
   // Assign a value based on the encodingData format. Currently, only FORMAT_DER is supported.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
-certFramework.createCertExtension(encodingBlob, (error, certExt) => {
-  if (error != null) {
+cert.createCertExtension(encodingBlob, (error, certExt) => {
+  if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createCertExtension success');
@@ -2214,6 +2988,8 @@ getOidList(valueType : ExtensionOidType) : DataArray
 
 Obtains the OIDs of the certificate extensions.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Parameters**
@@ -2226,7 +3002,7 @@ Obtains the OIDs of the certificate extensions.
 
 | Type                   | Description                            |
 | ----------------------- | -------------------------------- |
-| [DataArray](#dataarray) | A list of the OIDs obtained. |
+| [DataArray](#dataarray) | OIDs obtained.|
 
 **Error codes**
 
@@ -2234,6 +3010,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -2241,10 +3018,10 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// Binary data of the certificate extensions, which must be assigned based on the service.
+// Binary data of the certificate extension, which varies with the services.
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -2257,19 +3034,19 @@ let extData = new Uint8Array([
   0xD9, 0xE4
 ]);
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: extData,
   // Assign a value based on the encodingData format. Currently, only FORMAT_DER is supported.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
-certFramework.createCertExtension(encodingBlob, (error, certExt) => {
-  if (error != null) {
+cert.createCertExtension(encodingBlob, (error, certExt) => {
+  if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createCertExtension success');
     try {
-      let oidList = certExt.getOidList(certFramework.ExtensionOidType.EXTENSION_OID_TYPE_ALL);
+      let oidList = certExt.getOidList(cert.ExtensionOidType.EXTENSION_OID_TYPE_ALL);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error('ext getOidList failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -2284,6 +3061,8 @@ getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob
 
 Obtains the certificate extension object information.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Parameters**
@@ -2297,7 +3076,7 @@ Obtains the certificate extension object information.
 
 | Type                 | Description                        |
 | --------------------- | ---------------------------- |
-| [DataBlob](#datablob) | Certificate extension object information obtained. |
+| [DataBlob](#datablob) | Certificate extension object information obtained.|
 
 **Error codes**
 
@@ -2305,6 +3084,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -2312,10 +3092,10 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// Binary data of the certificate extensions, which must be assigned based on the service.
+// Binary data of the certificate extension, which varies with the services.
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -2328,23 +3108,23 @@ let extData = new Uint8Array([
   0xD9, 0xE4
 ]);
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: extData,
   // Assign a value based on the encodingData format. Currently, only FORMAT_DER is supported.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
-certFramework.createCertExtension(encodingBlob, (error, certExt) => {
-  if (error != null) {
+cert.createCertExtension(encodingBlob, (error, certExt) => {
+  if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createCertExtension success');
     let oid = new Uint8Array([0x32, 0x2e, 0x35, 0x2e, 0x32, 0x39, 0x2e, 0x31, 0x35]);
-    let oidBlob: certFramework.DataBlob = {
+    let oidBlob: cert.DataBlob = {
       data: oid
     }
     try {
-      let entry = certExt.getEntry(certFramework.ExtensionEntryType.EXTENSION_ENTRY_TYPE_ENTRY, oidBlob);
+      let entry = certExt.getEntry(cert.ExtensionEntryType.EXTENSION_ENTRY_TYPE_ENTRY, oidBlob);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error('ext getEntry failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -2359,6 +3139,8 @@ certFramework.createCertExtension(encodingBlob, (error, certExt) => {
 checkCA() : number
 
 Checks whether the certificate is a CA certificate.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -2381,10 +3163,10 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// Binary data of the certificate extensions, which must be assigned based on the service.
+// Binary data of the certificate extension, which varies with the services.
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -2397,13 +3179,13 @@ let extData = new Uint8Array([
   0xD9, 0xE4
 ]);
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: extData,
   // Assign a value based on the encodingData format. Currently, only FORMAT_DER is supported.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
-certFramework.createCertExtension(encodingBlob, (error, certExt) => {
-  if (error != null) {
+cert.createCertExtension(encodingBlob, (error, certExt) => {
+  if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createCertExtension success');
@@ -2422,6 +3204,8 @@ certFramework.createCertExtension(encodingBlob, (error, certExt) => {
 hasUnsupportedCriticalExtension(): boolean
 
 Checks whether there is critical extension that is not supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -2444,13 +3228,20 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import cert from "@ohos.security.cert";
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-const encodingData = [
-  0x30, 0x40, 0x30, 0x0f, 0x06, 0x03, 0x55, 0x1d, 0x13, 0x01, 0x01, 0xff, 0x04,
-  0x05, 0x30, 0x03, 0x01, 0x01, 0xff, 0x30, 0x0e, 0x06, 0x03, 0x55, 0x1d, 0x0f,
-];
+let encodingData = new Uint8Array([
+  0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
+  0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
+  0x01, 0x01, 0xFF, 0x30, 0x0E, 0x06, 0x03, 0x55,
+  0x1D, 0x0F, 0x01, 0x01, 0xFF, 0x04, 0x04, 0x03,
+  0x02, 0x01, 0xC6, 0x30, 0x1D, 0x06, 0x03, 0x55,
+  0x1D, 0x0E, 0x04, 0x16, 0x04, 0x14, 0xE0, 0x8C,
+  0x9B, 0xDB, 0x25, 0x49, 0xB3, 0xF1, 0x7C, 0x86,
+  0xD6, 0xB2, 0x42, 0x87, 0x0B, 0xD0, 0x6B, 0xA0,
+  0xD9, 0xE4
+]);
 let encodingBlob: cert.EncodingBlob = {
   data: new Uint8Array(encodingData),
   encodingFormat: cert.EncodingFormat.FORMAT_DER
@@ -2465,7 +3256,7 @@ cert.createCertExtension(encodingBlob).then((extensionObj) => {
 });
 ```
 
-## cryptoCert.createX509Crl<sup>(deprecated)</sup>
+## cert.createX509Crl<sup>(deprecated)</sup>
 
 createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : void
 
@@ -2473,7 +3264,7 @@ Creates an **X509Crl** instance. This API uses an asynchronous callback to retur
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [cryptoCert.createX509CRL](#cryptocertcreatex509crl11).
+> This API is deprecated since API version 11. Use [cert.createX509CRL](#certcreatex509crl11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -2481,8 +3272,8 @@ Creates an **X509Crl** instance. This API uses an asynchronous callback to retur
 
 | Name  | Type                               | Mandatory| Description                          |
 | -------- | ----------------------------------- | ---- | ------------------------------ |
-| inStream | [EncodingBlob](#encodingblob)       | Yes  | Serialized certificate revocation list (CRL) data.    |
-| callback | AsyncCallback\<[X509Crl](#x509crl)> | Yes  | Callback invoked to return the **X509Crl** instance created. |
+| inStream | [EncodingBlob](#encodingblob)       | Yes  | Serialized CRL data.    |
+| callback | AsyncCallback\<[X509Crl](#x509crldeprecated)> | Yes  | Callback used to return the **X509Crl** instance created.|
 
 **Error codes**
 
@@ -2490,12 +3281,14 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
 | 19020001 | memory error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -2515,15 +3308,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -2531,7 +3324,7 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-## cryptoCert.createX509Crl<sup>(deprecated)</sup>
+## cert.createX509Crl<sup>(deprecated)</sup>
 
 createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 
@@ -2539,7 +3332,7 @@ Creates an **X509Crl** instance. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [cryptoCert.createX509CRL](#cryptocertcreatex509crl11-1).
+> This API is deprecated since API version 11. Use [cert.createX509CRL](#certcreatex509crl11-1) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -2561,13 +3354,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
 | 19020001 | memory error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -2587,25 +3382,27 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob).then(x509Crl => {
+cert.createX509Crl(encodingBlob).then(x509Crl => {
   console.log('createX509Crl success');
 }).catch((error: BusinessError) => {
   console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
 });
 ```
 
-## cryptoCert.createX509CRL<sup>11+</sup>
+## cert.createX509CRL<sup>11+</sup>
 
 createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : void
 
 Creates an **X509Crl** instance. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -2613,8 +3410,8 @@ Creates an **X509Crl** instance. This API uses an asynchronous callback to retur
 
 | Name  | Type                                 | Mandatory| Description                          |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
-| inStream | [EncodingBlob](#encodingblob)         | Yes  | Serialized certificate revocation list (CRL) data.    |
-| callback | AsyncCallback\<[X509CRL](#x509crl11)> | Yes  | Callback invoked to return the **X509Crl** instance created.|
+| inStream | [EncodingBlob](#encodingblob)         | Yes  | Serialized CRL data.    |
+| callback | AsyncCallback\<[X509CRL](#x509crl11)> | Yes  | Callback used to return the **X509Crl** instance created.|
 
 **Error codes**
 
@@ -2622,12 +3419,14 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
 | 19020001 | memory error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -2647,15 +3446,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, X509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, X509CRL) => {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -2663,11 +3462,13 @@ certFramework.createX509CRL(encodingBlob, (error, X509CRL) => {
 });
 ```
 
-## cryptoCert.createX509CRL<sup>11+</sup>
+## cert.createX509CRL<sup>11+</sup>
 
 createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
 
 Creates an **X509Crl** instance. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -2689,13 +3490,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
 | 19020001 | memory error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -2715,14 +3518,14 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob).then(X509CRL => {
+cert.createX509CRL(encodingBlob).then(X509CRL => {
   console.log('createX509CRL success');
 }).catch((error: BusinessError) => {
   console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
@@ -2735,7 +3538,7 @@ Provides APIs for X.509 certificate CRL operations.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL](#x509crl11).
+> This API is deprecated since API version 11. Use [X509CRL](#x509crl11) instead.
 
 ### isRevoked<sup>(deprecated)</sup>
 
@@ -2745,7 +3548,7 @@ Checks whether an X.509 certificate is revoked.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.isRevoked](#isrevoked11).
+> This API is deprecated since API version 11. Use [X509CRL.isRevoked](#isrevoked11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -2759,13 +3562,21 @@ Checks whether an X.509 certificate is revoked.
 
 | Type     | Description                                          |
 | --------- | --------------------------------------------- |
-| boolean   | Returns **true** if the certificate is revoked; returns **false** otherwise. |
+| boolean   | Returns **true** if the certificate is revoked; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -2795,27 +3606,29 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'BetUokslUfjT6+s/X4ByaxycAA==\n' +
   '-----END CERTIFICATE-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-let certEncodingBlob: certFramework.EncodingBlob = {
+let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
     // Create an X509Cert instance.
-    certFramework.createX509Cert(certEncodingBlob, (error, x509Cert) => {
-      if (error == null) {
+    cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
+      if (error) {
+        console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+      } else {
         try {
           let revokedFlag = x509Crl.isRevoked(x509Cert);
         } catch (error) {
@@ -2836,7 +3649,7 @@ Obtains the CRL type.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.getType](#gettype11).
+> This API is deprecated since API version 11. Use [X509CRL.getType](#gettype11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -2849,7 +3662,7 @@ Obtains the CRL type.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -2869,15 +3682,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -2894,7 +3707,7 @@ Obtains the serialized X.509 CRL data. This API uses an asynchronous callback to
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.getEncoded](#getencoded11).
+> This API is deprecated since API version 11. Use [X509CRL.getEncoded](#getencoded11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -2902,7 +3715,7 @@ Obtains the serialized X.509 CRL data. This API uses an asynchronous callback to
 
 | Name  | Type                        | Mandatory| Description                                      |
 | -------- | ---------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<EncodingBlob> | Yes  | Callback invoked to return the serialized X.509 CRL data obtained.|
+| callback | AsyncCallback\<EncodingBlob> | Yes  | Callback used to return the serialized X.509 CRL data obtained.|
 
 **Error codes**
 
@@ -2910,6 +3723,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -2917,7 +3731,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -2937,20 +3751,20 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
     x509Crl.getEncoded((error, data) => {
-      if (error != null) {
+      if (error) {
         console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('getEncoded success');
@@ -2968,7 +3782,7 @@ Obtains the serialized X.509 CRL data. This API uses a promise to return the res
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.getEncoded](#getencoded11-1).
+> This API is deprecated since API version 11. Use [X509CRL.getEncoded](#getencoded11-1) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -2984,6 +3798,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -2991,8 +3806,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -3012,14 +3827,14 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob).then(x509Crl => {
+cert.createX509Crl(encodingBlob).then(x509Crl => {
   console.log('createX509Crl success');
   x509Crl.getEncoded().then(result => {
     console.log('getEncoded success');
@@ -3039,7 +3854,7 @@ Verifies the signature of the X.509 CRL. This API uses an asynchronous callback 
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.verify](#verify11).
+> This API is deprecated since API version 11. Use [X509CRL.verify](#verify11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -3047,8 +3862,8 @@ Verifies the signature of the X.509 CRL. This API uses an asynchronous callback 
 
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| key      | cryptoFramework.PubKey | Yes  | Public key used for signature verification.                                      |
-| callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails.|
+| key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Yes  | Public key used for signature verification.                                      |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails.|
 
 **Error codes**
 
@@ -3056,14 +3871,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -3140,15 +3956,15 @@ let priKeyData = new Uint8Array([
   0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
 ]);
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -3163,17 +3979,17 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
         data: pubKeyData,
       };
       keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob, (e, keyPair) => {
-        if (e == null) {
+        if (e) {
+          console.error('convert key failed, message: ' + e.message + 'code: ' + e.code);
+        } else {
           console.log('convert key success');
           x509Crl.verify(keyPair.pubKey, (err, data) => {
-            if (err == null) {
-              console.log('verify success');
-            } else {
+            if (err) {
               console.error('verify failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+            } else  {
+              console.log('verify success');
             }
           });
-        } else {
-          console.error('convert key failed, message: ' + e.message + 'code: ' + e.code);
         }
       })
     } catch (error) {
@@ -3192,7 +4008,7 @@ Verifies the signature of the X.509 CRL. This API uses a promise to return the r
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.verify](#verify11-1).
+> This API is deprecated since API version 11. Use [X509CRL.verify](#verify11-1) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -3200,7 +4016,7 @@ Verifies the signature of the X.509 CRL. This API uses a promise to return the r
 
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
-| key    | cryptoFramework.PubKey | Yes  | Public key used for signature verification.|
+| key    | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Yes  | Public key used for signature verification.|
 
 **Return value**
 
@@ -3214,14 +4030,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import cryptoFramework from '@ohos.security.cryptoFramework'
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -3298,14 +4115,14 @@ let priKeyData = new Uint8Array([
   0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
 ]);
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob).then(x509Crl => {
+cert.createX509Crl(encodingBlob).then(x509Crl => {
   console.log('createX509Crl success');
 
   try {
@@ -3345,7 +4162,7 @@ Obtains the version of the X.509 CRL.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.getVersion](#getversion11).
+> This API is deprecated since API version 11. Use [X509CRL.getVersion](#getversion11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -3358,7 +4175,7 @@ Obtains the version of the X.509 CRL.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -3378,15 +4195,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -3403,7 +4220,7 @@ Obtains the issuer of the X.509 CRL.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.getIssuerName](#getissuername11).
+> This API is deprecated since API version 11. Use [X509CRL.getIssuerName](#getissuername11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -3426,8 +4243,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -3447,15 +4264,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -3473,11 +4290,11 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 getLastUpdate() : string
 
-Obtains the date when the X.509 CRL was last updated.
+Obtains the last update date of this X.509 CRL.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.getLastUpdate](#getlastupdate11).
+> This API is deprecated since API version 11. Use [X509CRL.getLastUpdate](#getlastupdate11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -3485,7 +4302,7 @@ Obtains the date when the X.509 CRL was last updated.
 
 | Type  | Description                                |
 | ------ | ------------------------------------ |
-| string | Last update date of the X.509 CRL.|
+| string | Last update date of the X.509 CRL obtained, in ASN.1 format.|
 
 **Error codes**
 
@@ -3500,8 +4317,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -3521,15 +4338,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -3547,11 +4364,11 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 getNextUpdate() : string
 
-Obtains the date when the CRL will be updated the next time.
+Obtains the next update date of this CRL.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.getNextUpdate](#getnextupdate11).
+> This API is deprecated since API version 11. Use [X509CRL.getNextUpdate](#getnextupdate11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -3559,7 +4376,7 @@ Obtains the date when the CRL will be updated the next time.
 
 | Type  | Description                                |
 | ------ | ------------------------------------ |
-| string | Next update date obtained.|
+| string | Next update date of the CRL obtained, in ASN.1 format.|
 
 **Error codes**
 
@@ -3574,8 +4391,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -3595,15 +4412,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -3621,11 +4438,11 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 getRevokedCert(serialNumber : number) : X509CrlEntry
 
-Obtains the revoked X.509 certificate based on the specified serial number of the certificate. This API uses an asynchronous callback to return the result.
+Obtains the revoked X.509 certificate based on the specified serial number of the certificate.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.getRevokedCert](#getrevokedcert11).
+> This API is deprecated since API version 11. Use [X509CRL.getRevokedCert](#getrevokedcert11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -3639,7 +4456,7 @@ Obtains the revoked X.509 certificate based on the specified serial number of th
 
 | Type                  | Description                  |
 | ---------------------- | --------------------- |
-| [X509CrlEntry](#x509crlentrydeprecated) | Promise used to return the revoked X.509 certificate obtained.|
+| [X509CrlEntry](#x509crlentrydeprecated) | Revoked X.509 certificate obtained.|
 
 **Error codes**
 
@@ -3647,14 +4464,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -3674,15 +4492,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -3701,11 +4519,11 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry
 
-Obtains the revoked X.509 certificate based on the specified certificate. This API uses an asynchronous callback to return the result.
+Obtains the revoked X.509 certificate based on the specified certificate.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.getRevokedCertWithCert](#getrevokedcertwithcert11).
+> This API is deprecated since API version 11. Use [X509CRL.getRevokedCertWithCert](#getrevokedcertwithcert11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -3727,14 +4545,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -3746,47 +4565,62 @@ function stringToUint8Array(str: string): Uint8Array {
 }
 
 let crlData = '-----BEGIN X509 CRL-----\n' +
-  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
-  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
-  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
-  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
-  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
-  'eavsH0Q3\n' +
+  'MIIBjjB4AgEBMA0GCSqGSIb3DQEBCwUAMBIxEDAOBgNVBAMMB1Jvb3QgQ0EXDTI0\n' +
+  'MDMxOTAyMDQwN1oXDTI0MDQxODAyMDQwN1owIjAgAgEEFw0yNDAzMTkwMjA0MDZa\n' +
+  'MAwwCgYDVR0VBAMKAQGgDjAMMAoGA1UdFAQDAgEAMA0GCSqGSIb3DQEBCwUAA4IB\n' +
+  'AQCbjvmHxC8dW6WCS/ga73kx2b7f8I/2eVuDYyReuBiGWeJ9vDmGqimJ9VwOk+ph\n' +
+  'LvG/2Zvh9I8qXxnOWeseA2C0bEshJGvXpquIjm00OUyLlK6jdfRbhXT8OyvDjqZs\n' +
+  'e1IsMV7Zo11SUc8nR2d0QQ7EVDCN/XFKPsmoK7PhJnRh5gc8W3FKQ6b8H9kdjgTa\n' +
+  'KQUap1OIDReVsjPBmRAbwMMLtbrAMllF7E6x7uHgHTGaK1ZPJDtsnCJ45ur3mk/o\n' +
+  'HAJFwHNjNDltiEfvMSs76/X0cwitpeW4dFk6c3QtqhxJrHDD4gl8di+xHOyHXpzX\n' +
+  '+i2osvdPWRia0dJCL1PCA14k\n' +
   '-----END X509 CRL-----\n';
 
-// Certificate binary data, which must be set based on the service.
-let certData = '-----BEGIN CERTIFICATE-----\n'
-  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n'
-  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n'
-  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n'
-  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n'
-  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n'
-  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n'
-  'Qw==\n'
+// Certificate binary data, which varies with the service.
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIDTjCCAjagAwIBAgIBBDANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
+  'IENBMB4XDTI0MDMxOTAyMDQwMVoXDTM0MDMxNzAyMDQwMVowEjEQMA4GA1UEAwwH\n' +
+  'ZGV2aWNlMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMIXL3e7UE/c\n' +
+  'Z1dPVgRZ5L8gsQ/azuYVBvoFf7o8ksYrL7G1+qZIJjVRqZkuTirLW4GicbkIkPNW\n' +
+  'eix5cDhkjkC+q5SBCOrSSTTlvX3xcOY1gMlA5MgeBfGixFusq4d5VPF2KceZ20/a\n' +
+  'ygwGD0Uv0X81OERyPom/dYdJUvfaD9ifPFJ1fKIj/cPFG3yJK/ojpEfndZNdESQL\n' +
+  'TkoDekilg2UGOLtY6fb9Ns37ncuIj33gCS/R9m1tgtmqCTcgOQ4hwKhjVF3InmPO\n' +
+  '2BbWKvD1RUX+rHC2a2HHDQILOOtDTy8dHvE+qZlK0efrpRgoFEERJAGPi1GDGWiA\n' +
+  '7UX1c4MCxIECAwEAAaOBrjCBqzAJBgNVHRMEAjAAMB0GA1UdDgQWBBQbkAcMT7ND\n' +
+  'fGp3VPFzYHppZ1zxLTAfBgNVHSMEGDAWgBR0W/koCbvDtFGHUQZLM3j6HKsW2DAd\n' +
+  'BgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwCwYDVR0PBAQDAgeAMDIGCCsG\n' +
+  'AQUFBwEBBCYwJDAiBggrBgEFBQcwAYYWaHR0cHM6Ly8xMjcuMC4wLjE6OTk5OTAN\n' +
+  'BgkqhkiG9w0BAQsFAAOCAQEAF1OTzTmbklFOdZCxrF3zg9owUPJR5RB+PbuBlUfI\n' +
+  '8tkGXkMltQ8PN1dv6Cq+d8BluiJdWEzqVoJa/e5SHHJyYQSOhlurRG0GBXllVQ1I\n' +
+  'n1PFaI40+9X2X6wrEcdC5nbzogR1jSiksCiTcARMddj0Xrp5FMrFaaGY8M/xqzdW\n' +
+  'LTDl4nfbuxtA71cIjnE4kOcaemly9/S2wYWdPktsPxQPY1nPUOeJFI7o0sH3rK0c\n' +
+  'JSqtgAG8vnjK+jbx9RpkgqCsXgUbIahL573VTgxrNrsRjCuVal7XVxl/xOKXr6Er\n' +
+  'Gpc+OCrXbHNZkUQE5fZH3yL2tXd7EASEb6J3aEWHfF8YBA==\n' +
   '-----END CERTIFICATE-----\n';
 
-let certEncodingBlob: certFramework.EncodingBlob = {
+let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
     // Create an X.509 certificate object.
-    certFramework.createX509Cert(certEncodingBlob).then((x509Cert) => {
+    cert.createX509Cert(certEncodingBlob).then((x509Cert) => {
       try {
         let entry = x509Crl.getRevokedCertWithCert(x509Cert);
+        console.log('getRevokedCertWithCert success');
       } catch (error) {
         let e: BusinessError = error as BusinessError;
         console.error('getRevokedCertWithCert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -3806,7 +4640,7 @@ Obtains the revoked X.509 certificates. This API uses an asynchronous callback t
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.getRevokedCerts](#getrevokedcerts11).
+> This API is deprecated since API version 11. Use [X509CRL.getRevokedCerts](#getrevokedcerts11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -3814,7 +4648,7 @@ Obtains the revoked X.509 certificates. This API uses an asynchronous callback t
 
 | Name  | Type                                                | Mandatory| Description                            |
 | -------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | Yes  | Callback invoked to return a list of revoked X.509 certificates. |
+| callback | AsyncCallback<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | Yes  | Callback used to return a list of revoked X.509 certificates.|
 
 **Error codes**
 
@@ -3822,14 +4656,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -3849,20 +4684,20 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
     x509Crl.getRevokedCerts((error, array) => {
-      if (error != null) {
+      if (error) {
         console.error('getRevokedCerts failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('getRevokedCerts success');
@@ -3880,7 +4715,7 @@ Obtains the revoked X.509 certificates. This API uses a promise to return the re
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.getRevokedCerts](#getrevokedcerts11-1).
+> This API is deprecated since API version 11. Use [X509CRL.getRevokedCerts](#getrevokedcerts11-1) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -3896,14 +4731,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -3923,14 +4759,14 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob).then(x509Crl => {
+cert.createX509Crl(encodingBlob).then(x509Crl => {
   console.log('createX509Crl success');
   x509Crl.getRevokedCerts().then(array => {
     console.log('getRevokedCerts success');
@@ -3946,11 +4782,11 @@ certFramework.createX509Crl(encodingBlob).then(x509Crl => {
 
 getTbsInfo() : DataBlob
 
-Obtains the DER-encoded CRL information, the **tbsCertList** from this CRL. This API uses an asynchronous callback to return the result.
+Obtains the DER-encoded CRL information, that is, **tbsCertList** from this CRL.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.getTBSInfo](#gettbsinfo11).
+> This API is deprecated since API version 11. Use [X509CRL.getTBSInfo](#gettbsinfo11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -3958,7 +4794,7 @@ Obtains the DER-encoded CRL information, the **tbsCertList** from this CRL. This
 
 | Type                 | Description                           |
 | --------------------- | ------------------------------- |
-| [DataBlob](#datablob) | **tbsCertList** information obtained. |
+| [DataBlob](#datablob) | **tbsCertList** information obtained.|
 
 **Error codes**
 
@@ -3973,8 +4809,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -3994,15 +4830,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4024,7 +4860,7 @@ Obtains the signature data of the X.509 CRL.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.getSignature](#getsignature11).
+> This API is deprecated since API version 11. Use [X509CRL.getSignature](#getsignature11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -4047,8 +4883,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -4068,15 +4904,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4098,7 +4934,7 @@ Obtains the signing algorithm of the X.509 CRL.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.getSignatureAlgName](#getsignaturealgname11).
+> This API is deprecated since API version 11. Use [X509CRL.getSignatureAlgName](#getsignaturealgname11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -4121,8 +4957,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -4142,15 +4978,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4172,7 +5008,7 @@ Obtains the OID of the X.509 CRL signing algorithm. OIDs are allocated by the In
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.getSignatureAlgOid](#getsignaturealgoid11).
+> This API is deprecated since API version 11. Use [X509CRL.getSignatureAlgOid](#getsignaturealgoid11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -4195,8 +5031,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -4216,15 +5052,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4246,7 +5082,7 @@ Obtains the parameters of the X.509 CRL signing algorithm.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [X509CRL.getSignatureAlgParams](#getsignaturealgparams11).
+> This API is deprecated since API version 11. Use [X509CRL.getSignatureAlgParams](#getsignaturealgparams11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -4262,6 +5098,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 801 | this operation is not supported. |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -4269,8 +5106,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -4290,22 +5127,22 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
     try {
       let sigAlgParams = x509Crl.getSignatureAlgParams();
     } catch (err) {
-      let e: BusinessError = error as BusinessError;
+      let e: BusinessError = err as BusinessError;
       console.error('getSignatureAlgParams failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
   }
@@ -4321,6 +5158,8 @@ isRevoked(cert : X509Cert) : boolean
 
 Checks whether an X.509 certificate is revoked.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Parameters**
@@ -4335,11 +5174,19 @@ Checks whether an X.509 certificate is revoked.
 | ------- | ------------------------------------------------- |
 | boolean | Returns **true** if the certificate is revoked; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -4369,27 +5216,29 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'BetUokslUfjT6+s/X4ByaxycAA==\n' +
   '-----END CERTIFICATE-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-let certEncodingBlob: certFramework.EncodingBlob = {
+let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
     // Create an X509Cert instance.
-    certFramework.createX509Cert(certEncodingBlob, (error, x509Cert) => {
-      if (error == null) {
+    cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
+      if (error) {
+        console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+      } else {
         try {
           let revokedFlag = x509CRL.isRevoked(x509Cert);
         } catch (error) {
@@ -4408,6 +5257,8 @@ getType() : string
 
 Obtains the CRL type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Return value**
@@ -4419,7 +5270,7 @@ Obtains the CRL type.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -4439,15 +5290,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -4462,13 +5313,15 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 Obtains the serialized X.509 CRL data. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Parameters**
 
 | Name  | Type                                         | Mandatory| Description                                      |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the serialized X.509 CRL data obtained.|
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback used to return the serialized X.509 CRL data obtained.|
 
 **Error codes**
 
@@ -4476,6 +5329,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -4483,7 +5337,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -4503,20 +5357,20 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
     x509CRL.getEncoded((error, data) => {
-      if (error != null) {
+      if (error) {
         console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('getEncoded success');
@@ -4532,6 +5386,8 @@ getEncoded() : Promise\<EncodingBlob>
 
 Obtains the serialized X.509 CRL data. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Return value**
@@ -4545,6 +5401,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -4552,8 +5409,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -4573,14 +5430,14 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob).then(x509CRL => {
+cert.createX509CRL(encodingBlob).then(x509CRL => {
   console.log('createX509CRL success');
   x509CRL.getEncoded().then(result => {
     console.log('getEncoded success');
@@ -4598,6 +5455,8 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 Verifies the signature of the X.509 CRL. This API uses an asynchronous callback to return the result. The RSA algorithm is supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Parameters**
@@ -4605,7 +5464,7 @@ Verifies the signature of the X.509 CRL. This API uses an asynchronous callback 
 | Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Yes  | Public key used for signature verification.                                      |
-| callback | AsyncCallback\<void>                                        | Yes  | Callback invoked to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails.|
+| callback | AsyncCallback\<void>                                        | Yes  | Callback used to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails.|
 
 **Error codes**
 
@@ -4613,14 +5472,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -4644,23 +5504,68 @@ let pubKeyData = new Uint8Array([
   0x30, 0x81, 0x9F, 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x01, 0x01,
   0x05, 0x00, 0x03, 0x81, 0x8D, 0x00, 0x30, 0x81, 0x89, 0x02, 0x81, 0x81, 0x00, 0xDC, 0x4C, 0x2D,
   0x57, 0x49, 0x3D, 0x42, 0x52, 0x1A, 0x09, 0xED, 0x3E, 0x90, 0x29, 0x51, 0xF7, 0x70, 0x15, 0xFE,
+  0x76, 0xB0, 0xDB, 0xDF, 0xA1, 0x2C, 0x6C, 0x67, 0x95, 0xDA, 0x63, 0x3D, 0x4F, 0x71, 0x48, 0x8C,
+  0x3E, 0xFA, 0x24, 0x79, 0xE9, 0xF2, 0xF2, 0x20, 0xCB, 0xF1, 0x59, 0x6B, 0xED, 0xC8, 0x72, 0x66,
+  0x6E, 0x31, 0xD4, 0xF3, 0xCE, 0x0B, 0x12, 0xC4, 0x17, 0x39, 0xB4, 0x52, 0x16, 0xD3, 0xE3, 0xC0,
+  0xF8, 0x48, 0xB3, 0xF6, 0x40, 0xD5, 0x47, 0x23, 0x30, 0x7F, 0xA7, 0xC5, 0x5A, 0x5A, 0xBB, 0x5C,
+  0x7B, 0xEF, 0x69, 0xE2, 0x74, 0x35, 0x24, 0x22, 0x25, 0x45, 0x7E, 0xFC, 0xE8, 0xC4, 0x52, 0x65,
+  0xA0, 0x4E, 0xBC, 0xFD, 0x3F, 0xD9, 0x85, 0x14, 0x8A, 0x5A, 0x93, 0x02, 0x24, 0x6C, 0x19, 0xBA,
+  0x81, 0xBE, 0x65, 0x2E, 0xCB, 0xBB, 0xE9, 0x91, 0x7B, 0x7C, 0x47, 0xC2, 0x61, 0x02, 0x03, 0x01,
+  0x00, 0x01
 ]);
 
 let priKeyData = new Uint8Array([
   0x30, 0x82, 0x02, 0x77, 0x02, 0x01, 0x00, 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7,
   0x0D, 0x01, 0x01, 0x01, 0x05, 0x00, 0x04, 0x82, 0x02, 0x61, 0x30, 0x82, 0x02, 0x5D, 0x02, 0x01,
   0x00, 0x02, 0x81, 0x81, 0x00, 0xDC, 0x4C, 0x2D, 0x57, 0x49, 0x3D, 0x42, 0x52, 0x1A, 0x09, 0xED,
+  0x3E, 0x90, 0x29, 0x51, 0xF7, 0x70, 0x15, 0xFE, 0x76, 0xB0, 0xDB, 0xDF, 0xA1, 0x2C, 0x6C, 0x67,
+  0x95, 0xDA, 0x63, 0x3D, 0x4F, 0x71, 0x48, 0x8C, 0x3E, 0xFA, 0x24, 0x79, 0xE9, 0xF2, 0xF2, 0x20,
+  0xCB, 0xF1, 0x59, 0x6B, 0xED, 0xC8, 0x72, 0x66, 0x6E, 0x31, 0xD4, 0xF3, 0xCE, 0x0B, 0x12, 0xC4,
+  0x17, 0x39, 0xB4, 0x52, 0x16, 0xD3, 0xE3, 0xC0, 0xF8, 0x48, 0xB3, 0xF6, 0x40, 0xD5, 0x47, 0x23,
+  0x30, 0x7F, 0xA7, 0xC5, 0x5A, 0x5A, 0xBB, 0x5C, 0x7B, 0xEF, 0x69, 0xE2, 0x74, 0x35, 0x24, 0x22,
+  0x25, 0x45, 0x7E, 0xFC, 0xE8, 0xC4, 0x52, 0x65, 0xA0, 0x4E, 0xBC, 0xFD, 0x3F, 0xD9, 0x85, 0x14,
+  0x8A, 0x5A, 0x93, 0x02, 0x24, 0x6C, 0x19, 0xBA, 0x81, 0xBE, 0x65, 0x2E, 0xCB, 0xBB, 0xE9, 0x91,
+  0x7B, 0x7C, 0x47, 0xC2, 0x61, 0x02, 0x03, 0x01, 0x00, 0x01, 0x02, 0x81, 0x80, 0x5A, 0xCF, 0x0F,
+  0xF5, 0xA6, 0x1C, 0x19, 0x65, 0x8C, 0x94, 0x40, 0xF6, 0x84, 0x28, 0x74, 0x40, 0x42, 0x34, 0xDE,
+  0xC3, 0x00, 0x5E, 0x72, 0x4D, 0x96, 0xE9, 0x4C, 0xBD, 0xC9, 0xDB, 0x14, 0x9F, 0xD5, 0xBB, 0xA9,
+  0x0C, 0x20, 0xC2, 0xBE, 0x7A, 0x80, 0x89, 0xEC, 0x99, 0x04, 0xF0, 0xEE, 0x7B, 0x83, 0x20, 0x1D,
+  0x37, 0x19, 0x55, 0x85, 0xF6, 0x8E, 0x3B, 0xFB, 0x16, 0xF3, 0xD3, 0x6F, 0xEE, 0x73, 0x12, 0x53,
+  0xCA, 0x77, 0xD7, 0x6C, 0x29, 0xF5, 0x08, 0xA3, 0x09, 0x01, 0x0B, 0x00, 0x05, 0x57, 0xAD, 0x4D,
+  0xF0, 0x92, 0xB2, 0x5A, 0x8B, 0x19, 0x09, 0x81, 0x86, 0xFE, 0x66, 0xB9, 0x33, 0x88, 0x28, 0xF3,
+  0x37, 0x73, 0x09, 0x5F, 0xD7, 0xC9, 0xC6, 0xFA, 0x13, 0x74, 0xFE, 0xAE, 0x53, 0xA9, 0x71, 0x67,
+  0xCE, 0x3A, 0xE6, 0x8D, 0x35, 0xD1, 0xB8, 0xFD, 0x6F, 0x0D, 0x43, 0xC2, 0xD1, 0x02, 0x41, 0x00,
+  0xF7, 0x33, 0xE5, 0x6C, 0x29, 0x5A, 0x30, 0x58, 0xA4, 0x52, 0x65, 0xA0, 0x39, 0xC2, 0xE8, 0xAE,
+  0x5F, 0xA3, 0x2D, 0x0C, 0x65, 0xB1, 0x7B, 0xFD, 0x92, 0xBF, 0x47, 0x87, 0x97, 0x40, 0xCB, 0x54,
+  0xF9, 0xBB, 0x50, 0x27, 0x70, 0x51, 0xD0, 0xD8, 0x48, 0x0D, 0xC6, 0x47, 0x60, 0xF8, 0x4E, 0x0A,
+  0x32, 0x76, 0x6D, 0xA4, 0xBA, 0x40, 0xE5, 0x58, 0xF8, 0x4A, 0x39, 0x4E, 0xF8, 0x3F, 0x4E, 0x2D,
+  0x02, 0x41, 0x00, 0xE4, 0x23, 0x2A, 0x5F, 0x59, 0xCF, 0x7C, 0x91, 0x24, 0x0D, 0xA2, 0x44, 0x17,
+  0xCD, 0x37, 0xDE, 0x1F, 0x53, 0x4D, 0x33, 0x9F, 0x90, 0x4D, 0xD9, 0x72, 0x64, 0x25, 0xBA, 0xAB,
+  0x47, 0x91, 0xC4, 0x99, 0x95, 0x86, 0xB5, 0x8A, 0xEA, 0x77, 0xF7, 0x64, 0x72, 0x5E, 0xB7, 0xBB,
+  0x16, 0xA1, 0x64, 0xA4, 0xE1, 0x2D, 0x76, 0x6D, 0xEF, 0xB1, 0x5E, 0xD6, 0x17, 0xE8, 0xAA, 0xB6,
+  0xA0, 0xD9, 0x85, 0x02, 0x41, 0x00, 0xDF, 0xC8, 0x5B, 0x28, 0x4F, 0x47, 0x15, 0xFD, 0x28, 0xC4,
+  0x6E, 0xBB, 0x5D, 0x8E, 0xD4, 0x95, 0x06, 0x7E, 0xF1, 0x89, 0x07, 0x86, 0x64, 0x78, 0x69, 0x20,
+  0x3F, 0xE0, 0xBF, 0x4C, 0x28, 0xC6, 0x04, 0x4D, 0x4D, 0x82, 0x66, 0x6B, 0xAA, 0x64, 0x20, 0xD6,
+  0x57, 0x68, 0xC6, 0xA0, 0x02, 0x05, 0xB9, 0x28, 0xFC, 0x98, 0xE3, 0x03, 0x5C, 0x9B, 0xEE, 0x29,
+  0x43, 0x37, 0xFA, 0x03, 0x55, 0x01, 0x02, 0x40, 0x69, 0x5B, 0x7C, 0x24, 0x10, 0xDB, 0xEB, 0x91,
+  0x33, 0xEF, 0x3F, 0xF2, 0xE6, 0x73, 0x15, 0xCB, 0xF4, 0xF7, 0x89, 0x7D, 0xBF, 0xC0, 0xEA, 0xD2,
+  0xF3, 0x2B, 0x20, 0xE9, 0x76, 0x54, 0x55, 0x13, 0x50, 0x42, 0x67, 0xB5, 0xCB, 0x73, 0xC0, 0xF7,
+  0x75, 0x62, 0x04, 0x30, 0x21, 0xAC, 0xAF, 0xD8, 0x44, 0xF4, 0xE1, 0x04, 0x02, 0x7D, 0x61, 0x92,
+  0x84, 0x99, 0x02, 0x10, 0x64, 0xCB, 0x1F, 0xE9, 0x02, 0x41, 0x00, 0xAB, 0x4B, 0x7D, 0x90, 0x7C,
+  0x57, 0x08, 0x6B, 0xC0, 0x43, 0x72, 0x09, 0x8A, 0x18, 0x35, 0x36, 0x64, 0x9D, 0x84, 0x8D, 0xF1,
+  0x84, 0x94, 0x48, 0xC6, 0x80, 0x9D, 0xB9, 0xA2, 0x58, 0x0A, 0x4D, 0x0A, 0xCA, 0x1E, 0xD6, 0x05,
+  0x55, 0x5B, 0xFE, 0xD7, 0xAA, 0x70, 0xED, 0x76, 0xB3, 0x40, 0x2E, 0xA0, 0xB3, 0x32, 0x37, 0xB0,
+  0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
 ]);
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4675,17 +5580,17 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
         data: pubKeyData,
       };
       keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob, (e, keyPair) => {
-        if (e == null) {
+        if (e) {
+          console.error('convert key failed, message: ' + e.message + 'code: ' + e.code);
+        } else {
           console.log('convert key success');
           x509CRL.verify(keyPair.pubKey, (err, data) => {
-            if (err == null) {
-              console.log('verify success');
-            } else {
+            if (err) {
               console.error('verify failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+            } else {
+              console.log('verify success');
             }
           });
-        } else {
-          console.error('convert key failed, message: ' + e.message + 'code: ' + e.code);
         }
       })
     } catch (error) {
@@ -4701,6 +5606,8 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 Verifies the signature of the X.509 CRL. This API uses a promise to return the result. The RSA algorithm is supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -4722,14 +5629,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import cryptoFramework from '@ohos.security.cryptoFramework'
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -4753,22 +5661,67 @@ let pubKeyData = new Uint8Array([
   0x30, 0x81, 0x9F, 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x01, 0x01,
   0x05, 0x00, 0x03, 0x81, 0x8D, 0x00, 0x30, 0x81, 0x89, 0x02, 0x81, 0x81, 0x00, 0xDC, 0x4C, 0x2D,
   0x57, 0x49, 0x3D, 0x42, 0x52, 0x1A, 0x09, 0xED, 0x3E, 0x90, 0x29, 0x51, 0xF7, 0x70, 0x15, 0xFE,
+  0x76, 0xB0, 0xDB, 0xDF, 0xA1, 0x2C, 0x6C, 0x67, 0x95, 0xDA, 0x63, 0x3D, 0x4F, 0x71, 0x48, 0x8C,
+  0x3E, 0xFA, 0x24, 0x79, 0xE9, 0xF2, 0xF2, 0x20, 0xCB, 0xF1, 0x59, 0x6B, 0xED, 0xC8, 0x72, 0x66,
+  0x6E, 0x31, 0xD4, 0xF3, 0xCE, 0x0B, 0x12, 0xC4, 0x17, 0x39, 0xB4, 0x52, 0x16, 0xD3, 0xE3, 0xC0,
+  0xF8, 0x48, 0xB3, 0xF6, 0x40, 0xD5, 0x47, 0x23, 0x30, 0x7F, 0xA7, 0xC5, 0x5A, 0x5A, 0xBB, 0x5C,
+  0x7B, 0xEF, 0x69, 0xE2, 0x74, 0x35, 0x24, 0x22, 0x25, 0x45, 0x7E, 0xFC, 0xE8, 0xC4, 0x52, 0x65,
+  0xA0, 0x4E, 0xBC, 0xFD, 0x3F, 0xD9, 0x85, 0x14, 0x8A, 0x5A, 0x93, 0x02, 0x24, 0x6C, 0x19, 0xBA,
+  0x81, 0xBE, 0x65, 0x2E, 0xCB, 0xBB, 0xE9, 0x91, 0x7B, 0x7C, 0x47, 0xC2, 0x61, 0x02, 0x03, 0x01,
+  0x00, 0x01
 ]);
 
 let priKeyData = new Uint8Array([
   0x30, 0x82, 0x02, 0x77, 0x02, 0x01, 0x00, 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7,
   0x0D, 0x01, 0x01, 0x01, 0x05, 0x00, 0x04, 0x82, 0x02, 0x61, 0x30, 0x82, 0x02, 0x5D, 0x02, 0x01,
   0x00, 0x02, 0x81, 0x81, 0x00, 0xDC, 0x4C, 0x2D, 0x57, 0x49, 0x3D, 0x42, 0x52, 0x1A, 0x09, 0xED,
+  0x3E, 0x90, 0x29, 0x51, 0xF7, 0x70, 0x15, 0xFE, 0x76, 0xB0, 0xDB, 0xDF, 0xA1, 0x2C, 0x6C, 0x67,
+  0x95, 0xDA, 0x63, 0x3D, 0x4F, 0x71, 0x48, 0x8C, 0x3E, 0xFA, 0x24, 0x79, 0xE9, 0xF2, 0xF2, 0x20,
+  0xCB, 0xF1, 0x59, 0x6B, 0xED, 0xC8, 0x72, 0x66, 0x6E, 0x31, 0xD4, 0xF3, 0xCE, 0x0B, 0x12, 0xC4,
+  0x17, 0x39, 0xB4, 0x52, 0x16, 0xD3, 0xE3, 0xC0, 0xF8, 0x48, 0xB3, 0xF6, 0x40, 0xD5, 0x47, 0x23,
+  0x30, 0x7F, 0xA7, 0xC5, 0x5A, 0x5A, 0xBB, 0x5C, 0x7B, 0xEF, 0x69, 0xE2, 0x74, 0x35, 0x24, 0x22,
+  0x25, 0x45, 0x7E, 0xFC, 0xE8, 0xC4, 0x52, 0x65, 0xA0, 0x4E, 0xBC, 0xFD, 0x3F, 0xD9, 0x85, 0x14,
+  0x8A, 0x5A, 0x93, 0x02, 0x24, 0x6C, 0x19, 0xBA, 0x81, 0xBE, 0x65, 0x2E, 0xCB, 0xBB, 0xE9, 0x91,
+  0x7B, 0x7C, 0x47, 0xC2, 0x61, 0x02, 0x03, 0x01, 0x00, 0x01, 0x02, 0x81, 0x80, 0x5A, 0xCF, 0x0F,
+  0xF5, 0xA6, 0x1C, 0x19, 0x65, 0x8C, 0x94, 0x40, 0xF6, 0x84, 0x28, 0x74, 0x40, 0x42, 0x34, 0xDE,
+  0xC3, 0x00, 0x5E, 0x72, 0x4D, 0x96, 0xE9, 0x4C, 0xBD, 0xC9, 0xDB, 0x14, 0x9F, 0xD5, 0xBB, 0xA9,
+  0x0C, 0x20, 0xC2, 0xBE, 0x7A, 0x80, 0x89, 0xEC, 0x99, 0x04, 0xF0, 0xEE, 0x7B, 0x83, 0x20, 0x1D,
+  0x37, 0x19, 0x55, 0x85, 0xF6, 0x8E, 0x3B, 0xFB, 0x16, 0xF3, 0xD3, 0x6F, 0xEE, 0x73, 0x12, 0x53,
+  0xCA, 0x77, 0xD7, 0x6C, 0x29, 0xF5, 0x08, 0xA3, 0x09, 0x01, 0x0B, 0x00, 0x05, 0x57, 0xAD, 0x4D,
+  0xF0, 0x92, 0xB2, 0x5A, 0x8B, 0x19, 0x09, 0x81, 0x86, 0xFE, 0x66, 0xB9, 0x33, 0x88, 0x28, 0xF3,
+  0x37, 0x73, 0x09, 0x5F, 0xD7, 0xC9, 0xC6, 0xFA, 0x13, 0x74, 0xFE, 0xAE, 0x53, 0xA9, 0x71, 0x67,
+  0xCE, 0x3A, 0xE6, 0x8D, 0x35, 0xD1, 0xB8, 0xFD, 0x6F, 0x0D, 0x43, 0xC2, 0xD1, 0x02, 0x41, 0x00,
+  0xF7, 0x33, 0xE5, 0x6C, 0x29, 0x5A, 0x30, 0x58, 0xA4, 0x52, 0x65, 0xA0, 0x39, 0xC2, 0xE8, 0xAE,
+  0x5F, 0xA3, 0x2D, 0x0C, 0x65, 0xB1, 0x7B, 0xFD, 0x92, 0xBF, 0x47, 0x87, 0x97, 0x40, 0xCB, 0x54,
+  0xF9, 0xBB, 0x50, 0x27, 0x70, 0x51, 0xD0, 0xD8, 0x48, 0x0D, 0xC6, 0x47, 0x60, 0xF8, 0x4E, 0x0A,
+  0x32, 0x76, 0x6D, 0xA4, 0xBA, 0x40, 0xE5, 0x58, 0xF8, 0x4A, 0x39, 0x4E, 0xF8, 0x3F, 0x4E, 0x2D,
+  0x02, 0x41, 0x00, 0xE4, 0x23, 0x2A, 0x5F, 0x59, 0xCF, 0x7C, 0x91, 0x24, 0x0D, 0xA2, 0x44, 0x17,
+  0xCD, 0x37, 0xDE, 0x1F, 0x53, 0x4D, 0x33, 0x9F, 0x90, 0x4D, 0xD9, 0x72, 0x64, 0x25, 0xBA, 0xAB,
+  0x47, 0x91, 0xC4, 0x99, 0x95, 0x86, 0xB5, 0x8A, 0xEA, 0x77, 0xF7, 0x64, 0x72, 0x5E, 0xB7, 0xBB,
+  0x16, 0xA1, 0x64, 0xA4, 0xE1, 0x2D, 0x76, 0x6D, 0xEF, 0xB1, 0x5E, 0xD6, 0x17, 0xE8, 0xAA, 0xB6,
+  0xA0, 0xD9, 0x85, 0x02, 0x41, 0x00, 0xDF, 0xC8, 0x5B, 0x28, 0x4F, 0x47, 0x15, 0xFD, 0x28, 0xC4,
+  0x6E, 0xBB, 0x5D, 0x8E, 0xD4, 0x95, 0x06, 0x7E, 0xF1, 0x89, 0x07, 0x86, 0x64, 0x78, 0x69, 0x20,
+  0x3F, 0xE0, 0xBF, 0x4C, 0x28, 0xC6, 0x04, 0x4D, 0x4D, 0x82, 0x66, 0x6B, 0xAA, 0x64, 0x20, 0xD6,
+  0x57, 0x68, 0xC6, 0xA0, 0x02, 0x05, 0xB9, 0x28, 0xFC, 0x98, 0xE3, 0x03, 0x5C, 0x9B, 0xEE, 0x29,
+  0x43, 0x37, 0xFA, 0x03, 0x55, 0x01, 0x02, 0x40, 0x69, 0x5B, 0x7C, 0x24, 0x10, 0xDB, 0xEB, 0x91,
+  0x33, 0xEF, 0x3F, 0xF2, 0xE6, 0x73, 0x15, 0xCB, 0xF4, 0xF7, 0x89, 0x7D, 0xBF, 0xC0, 0xEA, 0xD2,
+  0xF3, 0x2B, 0x20, 0xE9, 0x76, 0x54, 0x55, 0x13, 0x50, 0x42, 0x67, 0xB5, 0xCB, 0x73, 0xC0, 0xF7,
+  0x75, 0x62, 0x04, 0x30, 0x21, 0xAC, 0xAF, 0xD8, 0x44, 0xF4, 0xE1, 0x04, 0x02, 0x7D, 0x61, 0x92,
+  0x84, 0x99, 0x02, 0x10, 0x64, 0xCB, 0x1F, 0xE9, 0x02, 0x41, 0x00, 0xAB, 0x4B, 0x7D, 0x90, 0x7C,
+  0x57, 0x08, 0x6B, 0xC0, 0x43, 0x72, 0x09, 0x8A, 0x18, 0x35, 0x36, 0x64, 0x9D, 0x84, 0x8D, 0xF1,
+  0x84, 0x94, 0x48, 0xC6, 0x80, 0x9D, 0xB9, 0xA2, 0x58, 0x0A, 0x4D, 0x0A, 0xCA, 0x1E, 0xD6, 0x05,
+  0x55, 0x5B, 0xFE, 0xD7, 0xAA, 0x70, 0xED, 0x76, 0xB3, 0x40, 0x2E, 0xA0, 0xB3, 0x32, 0x37, 0xB0,
+  0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
 ]);
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob).then(x509CRL => {
+cert.createX509CRL(encodingBlob).then(x509CRL => {
   console.log('createX509Crl success');
 
   try {
@@ -4806,6 +5759,8 @@ getVersion() : number
 
 Obtains the version of the X.509 CRL.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Return value**
@@ -4817,7 +5772,7 @@ Obtains the version of the X.509 CRL.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -4837,15 +5792,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -4859,6 +5814,8 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 getIssuerName() : DataBlob
 
 Obtains the issuer of the X.509 CRL.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -4881,8 +5838,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -4902,15 +5859,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -4928,7 +5885,9 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 
 getLastUpdate() : string
 
-Obtains the date when the X.509 CRL was last updated.
+Obtains the last update date of this X.509 CRL.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -4936,7 +5895,7 @@ Obtains the date when the X.509 CRL was last updated.
 
 | Type  | Description                                |
 | ------ | ------------------------------------ |
-| string | Last update date of the X.509 CRL.|
+| string | Last update date of the X.509 CRL obtained, in ASN.1 format.|
 
 **Error codes**
 
@@ -4951,8 +5910,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -4972,15 +5931,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -4998,7 +5957,9 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 
 getNextUpdate() : string
 
-Obtains the date when the CRL will be updated the next time.
+Obtains the next update date of this CRL.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -5006,7 +5967,7 @@ Obtains the date when the CRL will be updated the next time.
 
 | Type  | Description                                |
 | ------ | ------------------------------------ |
-| string | Next update date obtained.|
+| string | Next update date of the CRL obtained, in ASN.1 format.|
 
 **Error codes**
 
@@ -5021,8 +5982,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -5042,15 +6003,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -5070,6 +6031,8 @@ getRevokedCert(serialNumber : bigint) : X509CRLEntry
 
 Obtains the revoked X.509 certificate based on the specified serial number of the certificate.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Parameters**
@@ -5082,7 +6045,7 @@ Obtains the revoked X.509 certificate based on the specified serial number of th
 
 | Type                           | Description                  |
 | ------------------------------- | ---------------------- |
-| [X509CRLEntry](#x509crlentry11) | Revoked X.509 certificate obtained. |
+| [X509CRLEntry](#x509crlentry11) | Revoked X.509 certificate obtained.|
 
 **Error codes**
 
@@ -5090,14 +6053,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -5117,15 +6081,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -5146,6 +6110,8 @@ getRevokedCertWithCert(cert : X509Cert) : X509CRLEntry
 
 Obtains the revoked X.509 certificate based on the specified certificate.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Parameters**
@@ -5158,7 +6124,7 @@ Obtains the revoked X.509 certificate based on the specified certificate.
 
 | Type                           | Description                  |
 | ------------------------------- | ---------------------- |
-| [X509CRLEntry](#x509crlentry11) | Revoked X.509 certificate obtained. |
+| [X509CRLEntry](#x509crlentry11) | Revoked X.509 certificate obtained.|
 
 **Error codes**
 
@@ -5166,14 +6132,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -5185,47 +6152,62 @@ function stringToUint8Array(str: string): Uint8Array {
 }
 
 let crlData = '-----BEGIN X509 CRL-----\n' +
-  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
-  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
-  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
-  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
-  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
-  'eavsH0Q3\n' +
+  'MIIBjjB4AgEBMA0GCSqGSIb3DQEBCwUAMBIxEDAOBgNVBAMMB1Jvb3QgQ0EXDTI0\n' +
+  'MDMxOTAyMDQwN1oXDTI0MDQxODAyMDQwN1owIjAgAgEEFw0yNDAzMTkwMjA0MDZa\n' +
+  'MAwwCgYDVR0VBAMKAQGgDjAMMAoGA1UdFAQDAgEAMA0GCSqGSIb3DQEBCwUAA4IB\n' +
+  'AQCbjvmHxC8dW6WCS/ga73kx2b7f8I/2eVuDYyReuBiGWeJ9vDmGqimJ9VwOk+ph\n' +
+  'LvG/2Zvh9I8qXxnOWeseA2C0bEshJGvXpquIjm00OUyLlK6jdfRbhXT8OyvDjqZs\n' +
+  'e1IsMV7Zo11SUc8nR2d0QQ7EVDCN/XFKPsmoK7PhJnRh5gc8W3FKQ6b8H9kdjgTa\n' +
+  'KQUap1OIDReVsjPBmRAbwMMLtbrAMllF7E6x7uHgHTGaK1ZPJDtsnCJ45ur3mk/o\n' +
+  'HAJFwHNjNDltiEfvMSs76/X0cwitpeW4dFk6c3QtqhxJrHDD4gl8di+xHOyHXpzX\n' +
+  '+i2osvdPWRia0dJCL1PCA14k\n' +
   '-----END X509 CRL-----\n';
 
-// Certificate binary data, which must be set based on the service.
-let certData = '-----BEGIN CERTIFICATE-----\n'
-'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n'
-'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n'
-'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n'
-'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n'
-'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n'
-'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n'
-'Qw==\n'
-'-----END CERTIFICATE-----\n';
+// Certificate binary data, which varies with the service.
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIDTjCCAjagAwIBAgIBBDANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
+  'IENBMB4XDTI0MDMxOTAyMDQwMVoXDTM0MDMxNzAyMDQwMVowEjEQMA4GA1UEAwwH\n' +
+  'ZGV2aWNlMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMIXL3e7UE/c\n' +
+  'Z1dPVgRZ5L8gsQ/azuYVBvoFf7o8ksYrL7G1+qZIJjVRqZkuTirLW4GicbkIkPNW\n' +
+  'eix5cDhkjkC+q5SBCOrSSTTlvX3xcOY1gMlA5MgeBfGixFusq4d5VPF2KceZ20/a\n' +
+  'ygwGD0Uv0X81OERyPom/dYdJUvfaD9ifPFJ1fKIj/cPFG3yJK/ojpEfndZNdESQL\n' +
+  'TkoDekilg2UGOLtY6fb9Ns37ncuIj33gCS/R9m1tgtmqCTcgOQ4hwKhjVF3InmPO\n' +
+  '2BbWKvD1RUX+rHC2a2HHDQILOOtDTy8dHvE+qZlK0efrpRgoFEERJAGPi1GDGWiA\n' +
+  '7UX1c4MCxIECAwEAAaOBrjCBqzAJBgNVHRMEAjAAMB0GA1UdDgQWBBQbkAcMT7ND\n' +
+  'fGp3VPFzYHppZ1zxLTAfBgNVHSMEGDAWgBR0W/koCbvDtFGHUQZLM3j6HKsW2DAd\n' +
+  'BgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwCwYDVR0PBAQDAgeAMDIGCCsG\n' +
+  'AQUFBwEBBCYwJDAiBggrBgEFBQcwAYYWaHR0cHM6Ly8xMjcuMC4wLjE6OTk5OTAN\n' +
+  'BgkqhkiG9w0BAQsFAAOCAQEAF1OTzTmbklFOdZCxrF3zg9owUPJR5RB+PbuBlUfI\n' +
+  '8tkGXkMltQ8PN1dv6Cq+d8BluiJdWEzqVoJa/e5SHHJyYQSOhlurRG0GBXllVQ1I\n' +
+  'n1PFaI40+9X2X6wrEcdC5nbzogR1jSiksCiTcARMddj0Xrp5FMrFaaGY8M/xqzdW\n' +
+  'LTDl4nfbuxtA71cIjnE4kOcaemly9/S2wYWdPktsPxQPY1nPUOeJFI7o0sH3rK0c\n' +
+  'JSqtgAG8vnjK+jbx9RpkgqCsXgUbIahL573VTgxrNrsRjCuVal7XVxl/xOKXr6Er\n' +
+  'Gpc+OCrXbHNZkUQE5fZH3yL2tXd7EASEb6J3aEWHfF8YBA==\n' +
+  '-----END CERTIFICATE-----\n';
 
-let certEncodingBlob: certFramework.EncodingBlob = {
+let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
     // Create an X.509 certificate object.
-    certFramework.createX509Cert(certEncodingBlob).then((x509Cert) => {
+    cert.createX509Cert(certEncodingBlob).then((x509Cert) => {
       try {
         let entry = x509CRL.getRevokedCertWithCert(x509Cert);
+        console.log('getRevokedCertWithCert success');
       } catch (error) {
         let e: BusinessError = error as BusinessError;
         console.error('getRevokedCertWithCert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -5243,13 +6225,15 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CRLEntry>>) : void
 
 Obtains the revoked X.509 certificates. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Parameters**
 
 | Name  | Type                                                  | Mandatory| Description                            |
 | -------- | ------------------------------------------------------ | ---- | -------------------------------- |
-| callback | AsyncCallback<Array\<[X509CRLEntry](#x509crlentry11)>> | Yes  | Callback invoked to return a list of revoked X.509 certificates. |
+| callback | AsyncCallback<Array\<[X509CRLEntry](#x509crlentry11)>> | Yes  | Callback used to return a list of revoked X.509 certificates.|
 
 **Error codes**
 
@@ -5257,14 +6241,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -5284,20 +6269,20 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
     x509CRL.getRevokedCerts((error, array) => {
-      if (error != null) {
+      if (error) {
         console.error('getRevokedCerts failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('getRevokedCerts success');
@@ -5313,6 +6298,8 @@ getRevokedCerts() : Promise<Array\<X509CRLEntry>>
 
 Obtains the revoked X.509 certificates. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Return value**
@@ -5327,14 +6314,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -5354,14 +6342,14 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob).then(x509CRL => {
+cert.createX509CRL(encodingBlob).then(x509CRL => {
   console.log('createX509CRL success');
   x509CRL.getRevokedCerts().then(array => {
     console.log('getRevokedCerts success');
@@ -5378,6 +6366,8 @@ certFramework.createX509CRL(encodingBlob).then(x509CRL => {
 getSignature() : DataBlob
 
 Obtains the signature data of the X.509 CRL.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -5400,8 +6390,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -5421,15 +6411,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -5448,6 +6438,8 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 getSignatureAlgName() : string
 
 Obtains the signing algorithm of the X.509 CRL.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -5470,8 +6462,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -5491,15 +6483,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -5518,6 +6510,8 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 getSignatureAlgOid() : string
 
 Obtains the OID of the X.509 CRL signing algorithm. OIDs are allocated by the International Organization for Standardization (ISO).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -5540,8 +6534,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -5561,15 +6555,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -5589,6 +6583,8 @@ getSignatureAlgParams() : DataBlob
 
 Obtains the parameters of the X.509 CRL signing algorithm.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Return value**
@@ -5603,6 +6599,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 801 | this operation is not supported. |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -5610,8 +6607,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -5631,22 +6628,22 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
     try {
       let sigAlgParams = x509CRL.getSignatureAlgParams();
     } catch (err) {
-      let e: BusinessError = error as BusinessError;
+      let e: BusinessError = err as BusinessError;
       console.error('getSignatureAlgParams failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
   }
@@ -5657,7 +6654,9 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 
 getTBSInfo() : DataBlob
 
-Obtains the DER-encoded CRL information, the **tbsCertList** from this CRL.
+Obtains the DER-encoded CRL information, that is, **tbsCertList** from this CRL.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -5680,8 +6679,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -5701,15 +6700,15 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -5728,6 +6727,8 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 getExtensions(): DataBlob
 
 Obtains the CRL extensions.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -5750,8 +6751,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -5763,23 +6764,26 @@ function stringToUint8Array(str: string): Uint8Array {
 }
 
 let crlData = '-----BEGIN X509 CRL-----\n' +
-  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
-  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
-  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
-  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
-  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
-  'eavsH0Q3\n' +
+  'MIIBjjB4AgEBMA0GCSqGSIb3DQEBCwUAMBIxEDAOBgNVBAMMB1Jvb3QgQ0EXDTI0\n' +
+  'MDMxOTAyMDQwN1oXDTI0MDQxODAyMDQwN1owIjAgAgEEFw0yNDAzMTkwMjA0MDZa\n' +
+  'MAwwCgYDVR0VBAMKAQGgDjAMMAoGA1UdFAQDAgEAMA0GCSqGSIb3DQEBCwUAA4IB\n' +
+  'AQCbjvmHxC8dW6WCS/ga73kx2b7f8I/2eVuDYyReuBiGWeJ9vDmGqimJ9VwOk+ph\n' +
+  'LvG/2Zvh9I8qXxnOWeseA2C0bEshJGvXpquIjm00OUyLlK6jdfRbhXT8OyvDjqZs\n' +
+  'e1IsMV7Zo11SUc8nR2d0QQ7EVDCN/XFKPsmoK7PhJnRh5gc8W3FKQ6b8H9kdjgTa\n' +
+  'KQUap1OIDReVsjPBmRAbwMMLtbrAMllF7E6x7uHgHTGaK1ZPJDtsnCJ45ur3mk/o\n' +
+  'HAJFwHNjNDltiEfvMSs76/X0cwitpeW4dFk6c3QtqhxJrHDD4gl8di+xHOyHXpzX\n' +
+  '+i2osvdPWRia0dJCL1PCA14k\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -5797,7 +6801,9 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 
 match(param: X509CRLMatchParameters): boolean
 
-Matches a CRL.
+Checks whether this CRL matches the specified parameters.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -5805,13 +6811,13 @@ Matches a CRL.
 
 | Name   | Type  | Mandatory| Description                                      |
 | --------- | ------ | ---- | ------------------------------------------ |
-| param | [X509CRLMatchParameters](#x509crlmatchparameters11)| Yes  | Parameters specified for matching the CRL.|
+| param | [X509CRLMatchParameters](#x509crlmatchparameters11)| Yes  | Parameters specified for matching the CRL. |
 
 **Return value**
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| boolean | Returns **true** if a CRL is matched; returns **false** otherwise.|
+| boolean | Returns **true** if the CRL matches the parameters specified; returns **false** otherwise. |
 
 **Error codes**
 
@@ -5819,14 +6825,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message      |
 | -------- | -------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.  |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -5846,11 +6853,11 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// Binary data of the CRL, which must be set based on the service.
-let crlEncodingBlob: certFramework.EncodingBlob = {
+// Binary data of the CRL, which varies with the service.
+let crlEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 const certData = "-----BEGIN CERTIFICATE-----\r\n" +
@@ -5871,27 +6878,27 @@ const certData = "-----BEGIN CERTIFICATE-----\r\n" +
   "V4SYZIO7ihr8+n4LQDQP+spvX4cf925a3kyZrftfvGCJ2ZNwvsPhyumYhaBqAgSy\r\n" +
   "Up2BImymAqPi157q9EeYcQz170TtDZHGmjYzdQxhOAHRb6/IdQ==\r\n" +
   "-----END CERTIFICATE-----\r\n";
-const certEncodingBlob: certFramework.EncodingBlob = {
+const certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM,
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM,
 };
 
 async function crlMatch() {
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
-    x509Cert = await certFramework.createX509Cert(certEncodingBlob);
+    x509Cert = await cert.createX509Cert(certEncodingBlob);
     console.log('createX509Cert success');
   } catch (err) {
     console.error('createX509Cert failed');
   }
 
-  certFramework.createX509CRL(crlEncodingBlob, (error, x509CRL) => {
-    if (error != null) {
+  cert.createX509CRL(crlEncodingBlob, (error, x509CRL) => {
+    if (error) {
       console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
     } else {
       console.log('createX509CRL success');
       try {
-        const param: certFramework.X509CRLMatchParameters = {
+        const param: cert.X509CRLMatchParameters = {
           issuer: [new Uint8Array([0x30, 0x58, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x06, 0x13, 0x02, 0x43, 0x4E, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x08, 0x13, 0x07, 0x4A, 0x69, 0x61, 0x6E, 0x67, 0x73, 0x75, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x07, 0x13, 0x07, 0x4E, 0x61, 0x6E, 0x6A, 0x69, 0x6E, 0x67, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0A, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0B, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x03, 0x13, 0x02, 0x74, 0x73])],
           x509Cert: x509Cert
         }
@@ -5905,11 +6912,298 @@ async function crlMatch() {
 }
 ```
 
-## cryptoCert.createCertChainValidator
+### getIssuerX500DistinguishedName<sup>12+</sup>
+
+getIssuerX500DistinguishedName(): X500DistinguishedName
+
+Obtains the DN of the X.509 certificate issuer.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type                 | Description                                     |
+| --------------------- | ----------------------------------------- |
+| [X500DistinguishedName](#x500distinguishedname12) | DN object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message      |
+| -------- | -------------- |
+| 19020001 | memory error.  |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// Binary data of the CRL, which varies with the service.
+let crlEncodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function crlGetIssuerX500DistinguishedName() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(crlEncodingBlob);
+    console.log('createX509CRL success');
+    let name = x509Crl.getIssuerX500DistinguishedName();
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### toString<sup>12+</sup>
+
+toString(): string
+
+Converts the object data into a string.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type                 | Description                                     |
+| --------------------- | ----------------------------------------- |
+| string | String obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message      |
+| -------- | -------------- |
+| 19020001 | memory error.  |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// Binary data of the CRL, which varies with the service.
+let crlEncodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function crlToString() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(crlEncodingBlob);
+    console.log('createX509CRL success');
+    console.info('crlToString success: ' + JSON.stringify(x509Crl.toString()));
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### hashCode<sup>12+</sup>
+
+hashCode(): Uint8Array
+
+Obtains the hash value of the data in DER format.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type                 | Description                                     |
+| --------------------- | ----------------------------------------- |
+| Uint8Array | Hash value obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message      |
+| -------- | -------------- |
+| 19020001 | memory error.  |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// Binary data of the CRL, which varies with the service.
+let crlEncodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function crlHashCode() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(crlEncodingBlob);
+    console.log('createX509CRL success');
+    console.info('crlHashCode success: ' + JSON.stringify(x509Crl.hashCode()));
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### getExtensionsObject<sup>12+</sup>
+
+getExtensionsObject(): CertExtension
+
+Obtains the certification extensions in DER format.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type                 | Description                                     |
+| --------------------- | ----------------------------------------- |
+| [CertExtension](#certextension10) | Certificate extensions object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message      |
+| -------- | -------------- |
+| 19020001 | memory error.  |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+    'MIIB6DCB0QIBATANBgkqhkiG9w0BAQsFADCBjjELMAkGA1UEBhMCUlUxFTATBgNV\n' +
+    'BAgMDNCc0L7RgdC60LLQsDELMAkGA1UECgwC0K8xCzAJBgNVBAsMAtCvMSowKAYD\n' +
+    'VQQDDCHQlNC80LjRgtGA0LjQuSDQkdC10LvRj9Cy0YHQutC40LkxIjAgBgkqhkiG\n' +
+    '9w0BCQEWE2JlbGRtaXRAZXhhbXBsZS5jb20XDTE3MDQyNDEzMjUzMVoXDTE3MDUy\n' +
+    'NDEzMjUzMVqgDjAMMAoGA1UdFAQDAgEBMA0GCSqGSIb3DQEBCwUAA4IBAQCF5eX+\n' +
+    '1BM/BxoHU2/3pQHJgPSKevN0/K/daiFHiJl7Kb9GCwKY14B1RvbN2rUP/58Mt+aq\n' +
+    'jvauf1yBzlaJQeJKZcsCmG9p6Tr1y0BJXhrq5kC0SLyNDsfGUTfuxnwmo+clHXRU\n' +
+    '+gKuk+h0WkJL022ZYbJ38w588k4NT3CWVHeE23EDC264p942mlDE7en6MyL152Pe\n' +
+    'Ld9YrWiq5iOIOrIbQLErq0EjwxvHG9sMiYFUa6VrwmRf26nyZ7u9RKJDP+o2dltw\n' +
+    'diBaSXC3Qt3pZ8BIfv/l81lwp8Dr63SwCII2pIRplyICdQqmX/a+1q8kThXIP2Kx\n' +
+    '+X48g7VE2o2X4cfy\n' +
+    '-----END X509 CRL-----\n';
+
+// Binary data of the CRL, which varies with the service.
+let crlEncodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function crlHashCode() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(crlEncodingBlob);
+    console.log('createX509CRL success');
+    let object = x509Crl.getExtensionsObject();
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+## cert.createCertChainValidator
 
 createCertChainValidator(algorithm :string) : CertChainValidator
 
 Creates a **CertChainValidator** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -5923,7 +7217,7 @@ Creates a **CertChainValidator** object.
 
 | Type              | Description                |
 | ------------------ | -------------------- |
-| CertChainValidator | **CertChainValidator** object created.|
+| [CertChainValidator](#certchainvalidator) | **CertChainValidator** object created.|
 
 **Error codes**
 
@@ -5931,6 +7225,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -5938,11 +7234,11 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let validator = certFramework.createCertChainValidator('PKIX');
+  let validator = cert.createCertChainValidator('PKIX');
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error('createCertChainValidator failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -5954,7 +7250,9 @@ try {
 Provides APIs for certificate chain validator operations.
 
 
-### Attributes
+### Properties
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -5968,7 +7266,9 @@ Provides APIs for certificate chain validator operations.
 validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 
 Validates an X.509 certificate chain. This API uses an asynchronous callback to return the result.
-The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details, see [Certificate Specifications](../../security/DeviceCertificateKit/certificate-framework-overview.md#certificate-specifications).
+The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details about certificate specifications, see [Certificate Specifications](../../security/DeviceCertificateKit/certificate-framework-overview.md#certificate-specifications).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -5977,7 +7277,7 @@ The certificate chain validator does not verify the certificate validity period 
 | Name   | Type                           | Mandatory| Description                                                        |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | certChain | [CertChainData](#certchaindata) | Yes  | Serialized X.509 certificate chain data.                                    |
-| callback  | AsyncCallback\<void>            | Yes  | Callback invoked to return the result. If **error** is **null**, the X.509 certificate chain is valid. If **error** is not **null**, the X.509 certificate chain is not valid.|
+| callback  | AsyncCallback\<void>            | Yes  | Callback used to return the result. If **error** is **null**, the X.509 certificate chain is valid. If **error** is not **null**, the X.509 certificate chain is not valid.|
 
 **Error codes**
 
@@ -5985,6 +7285,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
 | 19030001 | crypto operation error.                           |
@@ -5998,24 +7299,84 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// Certificate chain binary data, which must be set based on the service.
-let certChainBuff = new Uint8Array([0x30, 0x82, 0x44]);
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
-let certChainData: certFramework.CertChainData = {
+// Binary data of the certificate chain.
+let certPem = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIDTjCCAjagAwIBAgIBBDANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
+  'IENBMB4XDTI0MDMxOTAyMDQwMVoXDTM0MDMxNzAyMDQwMVowEjEQMA4GA1UEAwwH\n' +
+  'ZGV2aWNlMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMIXL3e7UE/c\n' +
+  'Z1dPVgRZ5L8gsQ/azuYVBvoFf7o8ksYrL7G1+qZIJjVRqZkuTirLW4GicbkIkPNW\n' +
+  'eix5cDhkjkC+q5SBCOrSSTTlvX3xcOY1gMlA5MgeBfGixFusq4d5VPF2KceZ20/a\n' +
+  'ygwGD0Uv0X81OERyPom/dYdJUvfaD9ifPFJ1fKIj/cPFG3yJK/ojpEfndZNdESQL\n' +
+  'TkoDekilg2UGOLtY6fb9Ns37ncuIj33gCS/R9m1tgtmqCTcgOQ4hwKhjVF3InmPO\n' +
+  '2BbWKvD1RUX+rHC2a2HHDQILOOtDTy8dHvE+qZlK0efrpRgoFEERJAGPi1GDGWiA\n' +
+  '7UX1c4MCxIECAwEAAaOBrjCBqzAJBgNVHRMEAjAAMB0GA1UdDgQWBBQbkAcMT7ND\n' +
+  'fGp3VPFzYHppZ1zxLTAfBgNVHSMEGDAWgBR0W/koCbvDtFGHUQZLM3j6HKsW2DAd\n' +
+  'BgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwCwYDVR0PBAQDAgeAMDIGCCsG\n' +
+  'AQUFBwEBBCYwJDAiBggrBgEFBQcwAYYWaHR0cHM6Ly8xMjcuMC4wLjE6OTk5OTAN\n' +
+  'BgkqhkiG9w0BAQsFAAOCAQEAF1OTzTmbklFOdZCxrF3zg9owUPJR5RB+PbuBlUfI\n' +
+  '8tkGXkMltQ8PN1dv6Cq+d8BluiJdWEzqVoJa/e5SHHJyYQSOhlurRG0GBXllVQ1I\n' +
+  'n1PFaI40+9X2X6wrEcdC5nbzogR1jSiksCiTcARMddj0Xrp5FMrFaaGY8M/xqzdW\n' +
+  'LTDl4nfbuxtA71cIjnE4kOcaemly9/S2wYWdPktsPxQPY1nPUOeJFI7o0sH3rK0c\n' +
+  'JSqtgAG8vnjK+jbx9RpkgqCsXgUbIahL573VTgxrNrsRjCuVal7XVxl/xOKXr6Er\n' +
+  'Gpc+OCrXbHNZkUQE5fZH3yL2tXd7EASEb6J3aEWHfF8YBA==\n' +
+  '-----END CERTIFICATE-----';
+
+let caPem = '-----BEGIN CERTIFICATE-----\n' +
+'MIIC/zCCAeegAwIBAgIBATANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
+'IENBMB4XDTI0MDMxOTAyMDIyNFoXDTM0MDMxNzAyMDIyNFowEjEQMA4GA1UEAwwH\n' +
+'Um9vdCBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALxI5SDvRfKU\n' +
+'6XaTeyh2LHlUK0rVSeYfXkYf5Mc3Pgucg+ewzQjxkACMx5NYaW1zfGDNPG1i5IZl\n' +
+'cPeWNz1Tm2g6wTd+LyNoNOOmwfLV8pLXSfAukgNrBREf3BzVrbu7hvPd2MmLH23H\n' +
+'OBM9uDPTIqu3n2CDN2EzwULjaSk2g+jvhVKsDLInu5uKPmZBFhs1FWKgcnVnlbi1\n' +
+'AyAx4efheits6EO70oV6UufCEtS1VsBXQHZRAG4ogshWldRBVNxkU6yHAfg0mM/5\n' +
+'EhrZsfh51fWqlrhNWrInjgNV3xIt5ebTIgKZWUlSVHEA/UqDoGfY+CsAJdteZWOW\n' +
+'KjsrC/DK2O0CAwEAAaNgMF4wHQYDVR0OBBYEFHRb+SgJu8O0UYdRBkszePocqxbY\n' +
+'MB8GA1UdIwQYMBaAFHRb+SgJu8O0UYdRBkszePocqxbYMA8GA1UdEwEB/wQFMAMB\n' +
+'Af8wCwYDVR0PBAQDAgEGMA0GCSqGSIb3DQEBCwUAA4IBAQAKOT1ObfQNMN2wdfHq\n' +
+'PQgFDDp6rBMbZe70LswPirSXljo4S/vfbG+gBoWCdu/SfsV+lyP75kg1wX0IQvzW\n' +
+'xYNh864dgqPmGd0v8TIfM0UT0PpnowUyBHQ+E7LNYIOh/kjHbl3oERdEFA2PUyE9\n' +
+'j3GLdg8oe/LqhEQCSAlH+v2RQgBZ9eVN+mSdUxwywm9U3acb0uqVkGiWK/ywumpg\n' +
+'AmIZLMJtMVvg8uDkfy16Z4lChTEdNaJVUqPczUNk2kHXIF4we4be9HoOuTVz/SD/\n' +
+'IsOhXn/BjS3jnhyS9fxo+opJf9zVTWI02Hlh1WVVtH/m3nIZblyAJhcjCHA2wZSz\n' +
+'sSus\n' +
+'-----END CERTIFICATE-----';
+
+let certPemData = stringToUint8Array(certPem);
+let caPemData = stringToUint8Array(caPem);
+
+let certPemDataLenData = new Uint8Array(new Uint16Array([certPemData.length]).buffer)
+let caPemDataLenData = new Uint8Array(new Uint16Array([caPemData.length]).buffer)
+
+let certChainBuff = new Uint8Array(certPemDataLenData.length + certPemData.length + caPemDataLenData.length + caPemData.length)
+certChainBuff.set(certPemDataLenData)
+certChainBuff.set(certPemData, certPemDataLenData.length)
+certChainBuff.set(caPemDataLenData, certPemDataLenData.length + certPemData.length)
+certChainBuff.set(caPemData, certPemDataLenData.length + certPemData.length + caPemDataLenData.length)
+
+let certChainData: cert.CertChainData = {
   data: certChainBuff,
   // Number of certificates in the certificate chain. It must be set based on the service.
   count: 2,
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 try {
-  let validator = certFramework.createCertChainValidator('PKIX');
+  let validator = cert.createCertChainValidator('PKIX');
   validator.validate(certChainData, (error, data) => {
-    if (error != null) {
+    if (error) {
       console.error('validate failed, errCode: ' + error.code + ', errMsg: ' + error.message);
     } else {
       console.log('validate success');
@@ -6031,8 +7392,10 @@ try {
 
 validate(certChain : CertChainData) : Promise\<void>
 
-Validates the X.509 certificate chain. This API uses a promise to return the result.
-The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details, see [Certificate Specifications](../../security/DeviceCertificateKit/certificate-framework-overview.md#certificate-specifications).
+Validates an X.509 certificate chain. This API uses a promise to return the result.
+The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details about certificate specifications, see [Certificate Specifications](../../security/DeviceCertificateKit/certificate-framework-overview.md#certificate-specifications).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -6054,6 +7417,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
 | 19030001 | crypto operation error.                           |
@@ -6067,22 +7431,82 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// Certificate chain binary data, which must be set based on the service.
-let certChainBuff = new Uint8Array([0x30, 0x82, 0x44]);
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
-let certChainData: certFramework.CertChainData = {
+// Certificate chain data.
+let certPem = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIDTjCCAjagAwIBAgIBBDANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
+  'IENBMB4XDTI0MDMxOTAyMDQwMVoXDTM0MDMxNzAyMDQwMVowEjEQMA4GA1UEAwwH\n' +
+  'ZGV2aWNlMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMIXL3e7UE/c\n' +
+  'Z1dPVgRZ5L8gsQ/azuYVBvoFf7o8ksYrL7G1+qZIJjVRqZkuTirLW4GicbkIkPNW\n' +
+  'eix5cDhkjkC+q5SBCOrSSTTlvX3xcOY1gMlA5MgeBfGixFusq4d5VPF2KceZ20/a\n' +
+  'ygwGD0Uv0X81OERyPom/dYdJUvfaD9ifPFJ1fKIj/cPFG3yJK/ojpEfndZNdESQL\n' +
+  'TkoDekilg2UGOLtY6fb9Ns37ncuIj33gCS/R9m1tgtmqCTcgOQ4hwKhjVF3InmPO\n' +
+  '2BbWKvD1RUX+rHC2a2HHDQILOOtDTy8dHvE+qZlK0efrpRgoFEERJAGPi1GDGWiA\n' +
+  '7UX1c4MCxIECAwEAAaOBrjCBqzAJBgNVHRMEAjAAMB0GA1UdDgQWBBQbkAcMT7ND\n' +
+  'fGp3VPFzYHppZ1zxLTAfBgNVHSMEGDAWgBR0W/koCbvDtFGHUQZLM3j6HKsW2DAd\n' +
+  'BgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwCwYDVR0PBAQDAgeAMDIGCCsG\n' +
+  'AQUFBwEBBCYwJDAiBggrBgEFBQcwAYYWaHR0cHM6Ly8xMjcuMC4wLjE6OTk5OTAN\n' +
+  'BgkqhkiG9w0BAQsFAAOCAQEAF1OTzTmbklFOdZCxrF3zg9owUPJR5RB+PbuBlUfI\n' +
+  '8tkGXkMltQ8PN1dv6Cq+d8BluiJdWEzqVoJa/e5SHHJyYQSOhlurRG0GBXllVQ1I\n' +
+  'n1PFaI40+9X2X6wrEcdC5nbzogR1jSiksCiTcARMddj0Xrp5FMrFaaGY8M/xqzdW\n' +
+  'LTDl4nfbuxtA71cIjnE4kOcaemly9/S2wYWdPktsPxQPY1nPUOeJFI7o0sH3rK0c\n' +
+  'JSqtgAG8vnjK+jbx9RpkgqCsXgUbIahL573VTgxrNrsRjCuVal7XVxl/xOKXr6Er\n' +
+  'Gpc+OCrXbHNZkUQE5fZH3yL2tXd7EASEb6J3aEWHfF8YBA==\n' +
+  '-----END CERTIFICATE-----';
+
+let caPem = '-----BEGIN CERTIFICATE-----\n' +
+'MIIC/zCCAeegAwIBAgIBATANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
+'IENBMB4XDTI0MDMxOTAyMDIyNFoXDTM0MDMxNzAyMDIyNFowEjEQMA4GA1UEAwwH\n' +
+'Um9vdCBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALxI5SDvRfKU\n' +
+'6XaTeyh2LHlUK0rVSeYfXkYf5Mc3Pgucg+ewzQjxkACMx5NYaW1zfGDNPG1i5IZl\n' +
+'cPeWNz1Tm2g6wTd+LyNoNOOmwfLV8pLXSfAukgNrBREf3BzVrbu7hvPd2MmLH23H\n' +
+'OBM9uDPTIqu3n2CDN2EzwULjaSk2g+jvhVKsDLInu5uKPmZBFhs1FWKgcnVnlbi1\n' +
+'AyAx4efheits6EO70oV6UufCEtS1VsBXQHZRAG4ogshWldRBVNxkU6yHAfg0mM/5\n' +
+'EhrZsfh51fWqlrhNWrInjgNV3xIt5ebTIgKZWUlSVHEA/UqDoGfY+CsAJdteZWOW\n' +
+'KjsrC/DK2O0CAwEAAaNgMF4wHQYDVR0OBBYEFHRb+SgJu8O0UYdRBkszePocqxbY\n' +
+'MB8GA1UdIwQYMBaAFHRb+SgJu8O0UYdRBkszePocqxbYMA8GA1UdEwEB/wQFMAMB\n' +
+'Af8wCwYDVR0PBAQDAgEGMA0GCSqGSIb3DQEBCwUAA4IBAQAKOT1ObfQNMN2wdfHq\n' +
+'PQgFDDp6rBMbZe70LswPirSXljo4S/vfbG+gBoWCdu/SfsV+lyP75kg1wX0IQvzW\n' +
+'xYNh864dgqPmGd0v8TIfM0UT0PpnowUyBHQ+E7LNYIOh/kjHbl3oERdEFA2PUyE9\n' +
+'j3GLdg8oe/LqhEQCSAlH+v2RQgBZ9eVN+mSdUxwywm9U3acb0uqVkGiWK/ywumpg\n' +
+'AmIZLMJtMVvg8uDkfy16Z4lChTEdNaJVUqPczUNk2kHXIF4we4be9HoOuTVz/SD/\n' +
+'IsOhXn/BjS3jnhyS9fxo+opJf9zVTWI02Hlh1WVVtH/m3nIZblyAJhcjCHA2wZSz\n' +
+'sSus\n' +
+'-----END CERTIFICATE-----';
+
+let certPemData = stringToUint8Array(certPem);
+let caPemData = stringToUint8Array(caPem);
+
+let certPemDataLenData = new Uint8Array(new Uint16Array([certPemData.length]).buffer)
+let caPemDataLenData = new Uint8Array(new Uint16Array([caPemData.length]).buffer)
+
+let certChainBuff = new Uint8Array(certPemDataLenData.length + certPemData.length + caPemDataLenData.length + caPemData.length)
+certChainBuff.set(certPemDataLenData)
+certChainBuff.set(certPemData, certPemDataLenData.length)
+certChainBuff.set(caPemDataLenData, certPemDataLenData.length + certPemData.length)
+certChainBuff.set(caPemData, certPemDataLenData.length + certPemData.length + caPemDataLenData.length)
+
+let certChainData: cert.CertChainData = {
   data: certChainBuff,
   // Number of certificates in the certificate chain. It must be set based on the service.
   count: 2,
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 try {
-  let validator = certFramework.createCertChainValidator('PKIX');
+  let validator = cert.createCertChainValidator('PKIX');
   validator.validate(certChainData).then(result => {
     console.log('validate success');
   }).catch((error: BusinessError) => {
@@ -6094,43 +7518,13 @@ try {
 }
 ```
 
-### algorithm
-
-algorithm : string
-
-Obtains the algorithm of the X.509 certificate chain validator.
-
-**System capability**: SystemCapability.Security.Cert
-
-**Return value**
-
-| Type  | Description                    |
-| ------ | ------------------------ |
-| string | Algorithm of the X.509 certificate chain validator obtained.|
-
-**Example**
-
-```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
-
-try {
-  let validator = certFramework.createCertChainValidator('PKIX');
-  let algorithm = validator.algorithm;
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error('createCertChainValidator failed, errCode: ' + e.code + ', errMsg: ' + e.message);
-}
-```
-
-
 ## X509CrlEntry<sup>(deprecated)</sup>
 
 Provides APIs for operating the revoked certificates.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use[X509CrlEntry](#x509crlentry11).
+> This API is deprecated since API version 11. Use [X509CrlEntry](#x509crlentry11) instead.
 
 ### getEncoded<sup>(deprecated)</sup>
 
@@ -6140,7 +7534,7 @@ Obtains the serialized data of the revoked certificate. This API uses an asynchr
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use[X509CRLEntry.getEncoded](#getencoded11-2).
+> This API is deprecated since API version 11. Use [X509CRLEntry.getEncoded](#getencoded11-2) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -6148,7 +7542,7 @@ Obtains the serialized data of the revoked certificate. This API uses an asynchr
 
 | Name  | Type                                         | Mandatory| Description                                |
 | -------- | --------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the serialized data of the revoked certificate obtained. |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback used to return the serialized data of the revoked certificate obtained.|
 
 **Error codes**
 
@@ -6156,6 +7550,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -6163,8 +7558,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -6184,14 +7579,14 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
-  if (err != null) {
+cert.createX509Crl(encodingBlob, (err, x509Crl) => {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -6200,7 +7595,7 @@ certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
       let serialNumber = 1000;
       let crlEntry = x509Crl.getRevokedCert(serialNumber);
       crlEntry.getEncoded((error, data) => {
-        if (error != null) {
+        if (error) {
           console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
         } else {
           console.log('getEncoded success');
@@ -6222,7 +7617,7 @@ Obtains the serialized data of the revoked certificate. This API uses a promise 
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use[X509CRLEntry.getEncoded](#getencoded11-3).
+> This API is deprecated since API version 11. Use [X509CRLEntry.getEncoded](#getencoded11-3) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -6238,6 +7633,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -6245,8 +7641,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -6266,14 +7662,14 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
-  if (err != null) {
+cert.createX509Crl(encodingBlob, (err, x509Crl) => {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -6302,7 +7698,7 @@ Obtains the serial number of this revoked certificate.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use[X509CRLEntry.getSerialNumber](#getserialnumber11).
+> This API is deprecated since API version 11. Use [X509CRLEntry.getSerialNumber](#getserialnumber11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -6315,8 +7711,8 @@ Obtains the serial number of this revoked certificate.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -6336,14 +7732,14 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
-  if (err != null) {
+cert.createX509Crl(encodingBlob, (err, x509Crl) => {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -6368,7 +7764,7 @@ Obtains the issuer of this revoked certificate. This API uses an asynchronous ca
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use[X509CRLEntry.getCertIssuer](#getcertissuer11).
+> This API is deprecated since API version 11. Use [X509CRLEntry.getCertIssuer](#getcertissuer11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -6376,7 +7772,7 @@ Obtains the issuer of this revoked certificate. This API uses an asynchronous ca
 
 | Type                 | Description                    |
 | --------------------- | ----------------------- |
-| [DataBlob](#datablob) | Promise used to return the issuer of the revoked certificate obtained.|
+| [DataBlob](#datablob) | Issuer of the revoked certificate obtained.|
 
 **Error codes**
 
@@ -6384,14 +7780,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message      |
 | -------- | -------------- |
+| 801 | this operation is not supported. |
 | 19020001 | memory error.  |
 | 19020002 | runtime error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -6411,14 +7808,14 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
-  if (err != null) {
+cert.createX509Crl(encodingBlob, (err, x509Crl) => {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -6439,11 +7836,11 @@ certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
 
 getRevocationDate() : string
 
-Obtains the date when the certificate was revoked. This API uses an asynchronous callback to return the result.
+Obtains the date when the certificate is revoked.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use[X509CRLEntry.getRevocationDate](#getrevocationdate11).
+> This API is deprecated since API version 11. Use [X509CRLEntry.getRevocationDate](#getrevocationdate11) instead.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -6451,7 +7848,7 @@ Obtains the date when the certificate was revoked. This API uses an asynchronous
 
 | Type  | Description               |
 | ------ | ------------------ |
-| string | Promise used to return the certificate revocation date obtained.|
+| string | Certificate revocation date obtained, in ASN.1 format.|
 
 **Error codes**
 
@@ -6466,8 +7863,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -6487,14 +7884,14 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
-  if (err != null) {
+cert.createX509Crl(encodingBlob, (err, x509Crl) => {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -6521,13 +7918,15 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 Obtains the serialized data of the revoked certificate. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Parameters**
 
 | Name  | Type                                         | Mandatory| Description                                |
 | -------- | --------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the serialized data of the revoked certificate obtained. |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback used to return the serialized data of the revoked certificate obtained.|
 
 **Error codes**
 
@@ -6535,6 +7934,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -6542,8 +7942,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -6563,14 +7963,14 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+cert.createX509CRL(encodingBlob, (err, x509CRL) => {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
@@ -6579,7 +7979,7 @@ certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
       let serialNumber = BigInt(1000);
       let crlEntry = x509CRL.getRevokedCert(serialNumber);
       crlEntry.getEncoded((error, data) => {
-        if (error != null) {
+        if (error) {
           console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
         } else {
           console.log('getEncoded success');
@@ -6599,6 +7999,8 @@ getEncoded() : Promise\<EncodingBlob>
 
 Obtains the serialized data of the revoked certificate. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Return value**
@@ -6613,6 +8015,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -6620,8 +8023,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -6641,14 +8044,14 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+cert.createX509CRL(encodingBlob, (err, x509CRL) => {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
@@ -6675,6 +8078,8 @@ getSerialNumber() : bigint
 
 Obtains the serial number of this revoked certificate.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Return value**
@@ -6696,8 +8101,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -6717,14 +8122,14 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+cert.createX509CRL(encodingBlob, (err, x509CRL) => {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -6747,13 +8152,15 @@ getCertIssuer() : DataBlob
 
 Obtains the issuer of this revoked certificate.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Return value**
 
 | Type                 | Description                      |
 | --------------------- | -------------------------- |
-| [DataBlob](#datablob) | Issuer of the revoked certificate obtained. |
+| [DataBlob](#datablob) | Issuer of the revoked certificate obtained.|
 
 **Error codes**
 
@@ -6761,6 +8168,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 801 | this operation is not supported. |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -6768,8 +8176,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -6789,14 +8197,14 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+cert.createX509CRL(encodingBlob, (err, x509CRL) => {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
@@ -6817,7 +8225,9 @@ certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
 
 getRevocationDate() : string
 
-Obtains the date when the certificate was revoked.
+Obtains the date when the certificate is revoked.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -6825,7 +8235,7 @@ Obtains the date when the certificate was revoked.
 
 | Type  | Description                |
 | ------ | -------------------- |
-| string | Certificate revocation date obtained. |
+| string | Certificate revocation date obtained, in ASN.1 format.|
 
 **Error codes**
 
@@ -6840,8 +8250,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -6861,14 +8271,14 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+cert.createX509CRL(encodingBlob, (err, x509CRL) => {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
@@ -6891,13 +8301,15 @@ getExtensions(): DataBlob
 
 Obtains the CRL extensions.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Return value**
 
 | Type                 | Description                    |
 | --------------------- | ------------------------ |
-| [DataBlob](#datablob) | CRL extensions obtained. |
+| [DataBlob](#datablob) | CRL extensions obtained.|
 
 **Error codes**
 
@@ -6912,8 +8324,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -6925,28 +8337,31 @@ function stringToUint8Array(str: string): Uint8Array {
 }
 
 let crlData = '-----BEGIN X509 CRL-----\n' +
-  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
-  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
-  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
-  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
-  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
-  'eavsH0Q3\n' +
-  '-----END X509 CRL-----\n'
+  'MIIBjjB4AgEBMA0GCSqGSIb3DQEBCwUAMBIxEDAOBgNVBAMMB1Jvb3QgQ0EXDTI0\n' +
+  'MDMxOTAyMDQwN1oXDTI0MDQxODAyMDQwN1owIjAgAgEEFw0yNDAzMTkwMjA0MDZa\n' +
+  'MAwwCgYDVR0VBAMKAQGgDjAMMAoGA1UdFAQDAgEAMA0GCSqGSIb3DQEBCwUAA4IB\n' +
+  'AQCbjvmHxC8dW6WCS/ga73kx2b7f8I/2eVuDYyReuBiGWeJ9vDmGqimJ9VwOk+ph\n' +
+  'LvG/2Zvh9I8qXxnOWeseA2C0bEshJGvXpquIjm00OUyLlK6jdfRbhXT8OyvDjqZs\n' +
+  'e1IsMV7Zo11SUc8nR2d0QQ7EVDCN/XFKPsmoK7PhJnRh5gc8W3FKQ6b8H9kdjgTa\n' +
+  'KQUap1OIDReVsjPBmRAbwMMLtbrAMllF7E6x7uHgHTGaK1ZPJDtsnCJ45ur3mk/o\n' +
+  'HAJFwHNjNDltiEfvMSs76/X0cwitpeW4dFk6c3QtqhxJrHDD4gl8di+xHOyHXpzX\n' +
+  '+i2osvdPWRia0dJCL1PCA14k\n' +
+  '-----END X509 CRL-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+cert.createX509CRL(encodingBlob, (err, x509CRL) => {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
 
     try {
-      let serialNumber = BigInt(1000);
+      let serialNumber = BigInt(4);
       let crlEntry = x509CRL.getRevokedCert(serialNumber);
       let extensions = crlEntry.getExtensions();
     } catch (error) {
@@ -6962,6 +8377,8 @@ certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
 hasExtensions(): boolean
 
 Checks whether this CRL entry has extensions.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -6984,8 +8401,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -7005,14 +8422,14 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+cert.createX509CRL(encodingBlob, (err, x509CRL) => {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
@@ -7028,11 +8445,357 @@ certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
   }
 })
 ```
-## cryptoCert.createCertCRLCollection<sup>11+</sup>
+
+### getCertIssuerX500DistinguishedName<sup>12+</sup>
+
+getCertIssuerX500DistinguishedName(): X500DistinguishedName
+
+Obtains the DN of the certificate issuer.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type   | Description                                                |
+| ------- | ---------------------------------------------------- |
+| [X500DistinguishedName](#x500distinguishedname12) | DN object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function certGetCertIssuerX500DistinguishedName() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(encodingBlob);
+    console.log('createX509CRL success');
+    let name = x509Crl.getRevokedCert(BigInt(1000)).getCertIssuerX500DistinguishedName();
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### toString<sup>12+</sup>
+
+toString(): string
+
+Converts the object data into a string.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type   | Description                                                |
+| ------- | ---------------------------------------------------- |
+| string | String obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function certToString() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(encodingBlob);
+    console.log('createX509CRL success');
+    console.info('toString success: ' + JSON.stringify(x509Crl.getRevokedCert(BigInt(1000)).toString()));
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### hashCode<sup>12+</sup>
+
+hashCode(): Uint8Array
+
+Obtains the hash value of the data in DER format.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type   | Description                                                |
+| ------- | ---------------------------------------------------- |
+| Uint8Array | Hash value obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function certHashCode() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(encodingBlob);
+    console.log('createX509CRL success');
+    console.info('hashCode success: ' + JSON.stringify(x509Crl.getRevokedCert(BigInt(1000)).hashCode()));
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### getExtensionsObject<sup>12+</sup>
+
+getExtensionsObject(): CertExtension
+
+Obtains the certification extensions in DER format.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type   | Description                                                |
+| ------- | ---------------------------------------------------- |
+| [CertExtension](#certextension10) | Certificate extensions object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIINlTCCDH0CAQEwDQYJKoZIhvcNAQELBQAwTDELMAkGA1UEBhMCVVMxFTATBgNV\n' +
+  'BAoTDERpZ2lDZXJ0IEluYzEmMCQGA1UEAxMdRGlnaUNlcnQgU2VjdXJlIFNpdGUg\n' +
+  'Q04gQ0EgRzMXDTI0MDMxMjE4NDQ0NVoXDTI0MDMxOTE4NDQ0NVowggvJMCECEAbk\n' +
+  'wC/+N2YXfpw7vgDJ2xAXDTIzMDIwNzA1NTg1OFowIQIQDonqcHww7uhlmWH+OfIe\n' +
+  'PhcNMjMwMzA5MDcwMzI1WjAvAhAM4CTrULrJUEinWgT9AFPvFw0yMzAzMjAxOTE4\n' +
+  'NTRaMAwwCgYDVR0VBAMKAQQwIQIQBQP4xflKkcRehoJ2NaA/jhcNMjMwMzIyMDk0\n' +
+  'NTI5WjAvAhAOmgzoiIqznAaFec53PVPUFw0yMzAzMjcyMDI4MDNaMAwwCgYDVR0V\n' +
+  'BAMKAQQwLwIQBaC2Z3D4dcQ/O7HnzFU9KBcNMjMwMzI5MTc1OTQ1WjAMMAoGA1Ud\n' +
+  'FQQDCgEFMCECEAlz9Rg1b+9La4oFqsHUc4AXDTIzMDMzMTAyMzk0MVowIQIQD9yW\n' +
+  '92pX6BinUKVBVSSTmBcNMjMwNDExMDExNjI5WjAvAhAIIarHUWWee4V9W/Yzm86k\n' +
+  'Fw0yMzA0MTQyMDE5MTJaMAwwCgYDVR0VBAMKAQQwIQIQC2OiM3VIJX2dEe8/pf8f\n' +
+  'hRcNMjMwNDIxMDMzMDIyWjAhAhAP0ueyg5n/7b2Hotml7f42Fw0yMzA0MjYwMjU3\n' +
+  'NDJaMCECEAqMu61nkOEmTOdMbUZTMrkXDTIzMDUxNzAxMzI0NVowLwIQDYv1rt0K\n' +
+  'olvP+nQoi5LeLRcNMjMwNTIzMTc0MDE4WjAMMAoGA1UdFQQDCgEEMC8CEA8WMKlw\n' +
+  'iCK36PruJvup5bUXDTIzMDUyMzE3NDA1M1owDDAKBgNVHRUEAwoBBDAvAhAJ5uwT\n' +
+  'aqwgLzNVpxh4u9EPFw0yMzA1MjUxNzEwNTBaMAwwCgYDVR0VBAMKAQQwIQIQCg0k\n' +
+  '5UadwDH5xm14yxcgLRcNMjMwNjA3MDcyNDAwWjAhAhAEByUhbBR6/pZRFUH2PTxE\n' +
+  'Fw0yMzA2MDgwMjIwMzBaMCECEATquAQcy3W1kUOkb4VoOvEXDTIzMDYyNjA5MDIw\n' +
+  'NlowIQIQBrF5sueIjk1snKdO0ISOXhcNMjMwNjMwMDI0MDA0WjAhAhAJEG72WQtV\n' +
+  'lTOYiA0xjVk5Fw0yMzA3MDUwMjEyMzdaMCECEAmXIuCMJv9gllYuKfCHm5EXDTIz\n' +
+  'MDcwNTAyMTIzN1owIQIQAotQots0ngzRwACzrS9mCBcNMjMwNzA2MDU0NDU3WjAh\n' +
+  'AhAG2hyGc9SfXrLc0Uk2J1BeFw0yMzA3MjQwMTUwNDBaMCECEAJhm5FSlVyTG9UK\n' +
+  'zS+ecUgXDTIzMDcyNjA2NDQzM1owIQIQC4mlxBQuFxWC4pF7/P8BDxcNMjMwNzMx\n' +
+  'MTAzMjU0WjAhAhADCEp333/avF3m6HZtBImOFw0yMzA3MzExMDMzNTBaMCECEAKd\n' +
+  'P7fydlXUcS4v/YnZMMwXDTIzMDczMTEwMzQzOFowIQIQC+m5EUcRd1E0lEIPj17Z\n' +
+  'rRcNMjMwODAxMDYwNDE4WjAvAhAF4QcgQQlWpAi4FVflzbKxFw0yMzA4MDMxNjIz\n' +
+  'MTdaMAwwCgYDVR0VBAMKAQQwIQIQAn01GEZ50Y5ugIcEuGfF9BcNMjMwODA4MDE1\n' +
+  'NzM1WjAhAhAFHj3FDKeP9q9CM924d8RIFw0yMzA4MDgwMTU5NDhaMC8CEAnkNPSD\n' +
+  'U5yiMsV3fU06a6oXDTIzMDgwODE5MjIwMlowDDAKBgNVHRUEAwoBBDAvAhAETU4z\n' +
+  '13iMKiwQujsxJDRhFw0yMzA4MTAyMDU4NDdaMAwwCgYDVR0VBAMKAQQwIQIQB1oD\n' +
+  'M2mOYuse7e/nTqx+8xcNMjMwOTA0MDUwOTU3WjAhAhALf3Bp63so6O+R5QbWPWu6\n' +
+  'Fw0yMzEwMDkwNjE5NTVaMCECEAKFHdXcy/zBXRtMj3BVhO0XDTIzMTAwOTA2MTk1\n' +
+  'N1owIQIQDNNmVHN4tMu1xth6IAe4ZhcNMjMxMDEyMDc0MjQ1WjAhAhACNNJA2oMM\n' +
+  'pr+giIgczvHOFw0yMzEwMTYwNTEyMzdaMCECEAoQun7uSHhvy6GBoxG7XOkXDTIz\n' +
+  'MTExNjA3MDAzN1owLwIQA1NsI22PLvohCvKwdtAJwBcNMjMxMjA2MTgyNzUzWjAM\n' +
+  'MAoGA1UdFQQDCgEEMCECEAWagozDt4jfBzi+aDGFr88XDTIzMTIxMTA3MjM1OFow\n' +
+  'IQIQD1g7NdEk7t05zg6yweYc5hcNMjMxMjExMDcyNTM3WjAhAhAMJnRjUQAzFQFH\n' +
+  'kwIguRz2Fw0yMzEyMTEwNzI2NDJaMCECEAT0bVxyPKkeTV8JQuPxfcwXDTIzMTIx\n' +
+  'MTA3MjcyNlowIQIQA/5BlE0Ushtw24Ol9L2sexcNMjMxMjExMDcyODA2WjAhAhAL\n' +
+  'Ij6FAKVJDnKAwwt19+/RFw0yMzEyMTEwNzI5MDJaMCECEAmPyfX3FuOHgryS2i8c\n' +
+  'SrUXDTIzMTIxMTA3Mjk0M1owIQIQC+uGa6tmPRPCB0jW+6WWUhcNMjMxMjExMDcz\n' +
+  'MDIzWjAhAhAJCq59mFZj6SWLH/m18Fq2Fw0yMzEyMTEwNzMwNTJaMCECEAp0Po24\n' +
+  'WHmdEMTVyp9AMssXDTIzMTIxMTA3MzEyNlowIQIQAcf+793qPEHipkAhjf7MghcN\n' +
+  'MjMxMjExMDczMTQ5WjAhAhAElLuCARMBoDIH0Y2D1DpSFw0yMzEyMTEwNzMyMTla\n' +
+  'MCECEAWlgWhTXqKOB61zA7Ao8vQXDTIzMTIxMTA3MzI0OFowIQIQAeZqfkFYc/6t\n' +
+  'zO7j/FVYwBcNMjMxMjExMDczMzM1WjAhAhAHzftyRhskxV6opTfHb59OFw0yMzEy\n' +
+  'MTEwNzM0MDNaMCECEASXrBHdRYUm9VIZ1wN4qAsXDTIzMTIxMTA3MzQyN1owIQIQ\n' +
+  'BDFb/OY65CZ1sTdMPAc+IhcNMjMxMjExMDczNTEzWjAhAhAFg7mRyWvWXc+KT014\n' +
+  'Ro5AFw0yMzEyMTEwNzM1NDhaMCECEA+wAstqfBUEkSvinYlWeOwXDTIzMTIxMTA3\n' +
+  'MzYyNVowIQIQB3Z75ksHGnvGmuHbvwbheRcNMjMxMjExMDczNjU5WjAhAhALfrIn\n' +
+  'OGRVeePivKkJ+d1xFw0yMzEyMTEwNzM4MDFaMCECEAnm5NfU36m+FXNlJiUsXpMX\n' +
+  'DTIzMTIxMTA3MzgzNVowIQIQCrBoHo4X2md3Amteqh7h3RcNMjMxMjExMDczOTA3\n' +
+  'WjAhAhAGxHlqrHu66ifOwTTMhHHFFw0yMzEyMTEwNzM5NDNaMCECEA2BDG1SI7Se\n' +
+  '2GAt+b9UnF8XDTIzMTIxMTA3NDAyNFowLwIQDZvl5jkmAwjTweDCtrXbLRcNMjMx\n' +
+  'MjExMjA0NDQ3WjAMMAoGA1UdFQQDCgEEMCECEAzgcwGVpyXXZSmLLF4MExQXDTIz\n' +
+  'MTIxOTE3MjczMlowIQIQARB9nVoMuE5GSFeb3U553hcNMjMxMjE5MTcyODA1WjAh\n' +
+  'AhAD+JIH7lFcX9UNqTogrMcPFw0yMzEyMTkxNzI5MDZaMCECEAux1kd8ugXs4mI+\n' +
+  'xMfXgpsXDTIzMTIxOTE3MjkyOFowIQIQCUO5VqAmbxA8Jdly97msLhcNMjMxMjE5\n' +
+  'MTcyOTU0WjAhAhAFyzrU1JtsiPNPeWrfdvGvFw0yMzEyMTkxNzMwNDlaMCECEAwT\n' +
+  'tMq5EsBTUhQwm6nWhnAXDTIzMTIyMDE3NDc1NlowIQIQBx3qL8rMclE9gxamaa14\n' +
+  'xBcNMjMxMjIwMTc0ODM2WjAhAhAOnKUlrCaxs+lRqLrBmk2PFw0yNDAxMzAxOTMw\n' +
+  'MTVaMCECEAtYs/5ZRsrMAxQVDA44eWYXDTI0MDIwNjA2MjYwMFowIQIQDjrMV1d3\n' +
+  '0NhxngX5rqqxjBcNMjQwMjIxMDc0ODEwWjAhAhAPGohz3+JyS6H4JzHCjLrXFw0y\n' +
+  'NDAyMjgyMDQxMjZaMC8CEAqZ2QktAMprzZmtolbOXlgXDTI0MDIyOTE4MDYzMVow\n' +
+  'DDAKBgNVHRUEAwoBBDAhAhAMAHgNfiburtKDp8OJuzRCFw0yNDAzMDQwNjA3MzJa\n' +
+  'MCECEA/HgrXcSBqkb2JdfrFDAfgXDTI0MDMwNDA2MDczMlqgMDAuMB8GA1UdIwQY\n' +
+  'MBaAFETZyEozjtNSjaeSlGEfmsilt+zLMAsGA1UdFAQEAgIFrDANBgkqhkiG9w0B\n' +
+  'AQsFAAOCAQEAJ5rSr0Av5sH59J2LXW5hZ8SJTzDbR8ADdi/CCLolbUUnE0oaAZ+2\n' +
+  '9z0niAD5m8HQikNz8K+FKAsQatN/CAj4bzRMeF37hQCiZpqNtxP69JDGeWpGPiH2\n' +
+  'K/YfpzL9iSbBOxFmosxUX8J/iX36mCUl+3OUHh+qSYeElboxeAmTCnY5Pl5Bq9is\n' +
+  'gp0MmzNYCo7GEFrtS03p2msK25uRqQl6Qn0NZS0yGjdUG7RTZe4xua5drjEkB1o/\n' +
+  '15f+mtYj6DtWM1twi1q3VYVxhRSsk6XmmS0BViTEl+MT0BRAPwBSdlyt++1Pnnrd\n' +
+  'BsQoO8O2EVpJ54fxKMCSDOkJf1hNCxi3eQ==\n' +
+  '-----END X509 CRL-----\n';
+
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function certGetExtensionsObject() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(encodingBlob);
+    console.log('createX509CRL success');
+    let object = x509Crl.getRevokedCert(BigInt('14091103387070223745671018446433705560')).getExtensionsObject();
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+## cert.createCertCRLCollection<sup>11+</sup>
 
 createCertCRLCollection(certs: Array\<X509Cert>, crls?: Array\<X509CRL>): CertCRLCollection
 
 Creates an object for a collection of X.509 certificates and CRLs.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -7055,13 +8818,14 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -7072,7 +8836,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-async function createX509CRL(): Promise<certFramework.X509CRL> {
+async function createX509CRL(): Promise<cert.X509CRL> {
   let crlData = '-----BEGIN X509 CRL-----\n' +
     'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
     'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
@@ -7082,15 +8846,15 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
     'eavsH0Q3\n' +
     '-----END X509 CRL-----\n';
 
-  // Binary data of the CRL, which must be set based on the service.
-  let encodingBlob: certFramework.EncodingBlob = {
+  // Binary data of the CRL, which varies with the service.
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(crlData),
     // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
-  let x509CRL: certFramework.X509CRL = {} as certFramework.X509CRL;
+  let x509CRL: cert.X509CRL = {} as cert.X509CRL;
   try {
-    x509CRL = await certFramework.createX509CRL(encodingBlob);
+    x509CRL = await cert.createX509CRL(encodingBlob);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -7098,7 +8862,7 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
   return x509CRL;
 }
 
-async function createX509Cert(): Promise<certFramework.X509Cert> {
+async function createX509Cert(): Promise<cert.X509Cert> {
   let certData = '-----BEGIN CERTIFICATE-----\n' +
     'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
     'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -7109,15 +8873,15 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     'Qw==\n' +
     '-----END CERTIFICATE-----\n';
 
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
     // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
-    x509Cert = await certFramework.createX509Cert(encodingBlob);
+    x509Cert = await cert.createX509Cert(encodingBlob);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -7129,7 +8893,7 @@ async function createCollection() {
   const x509Cert = await createX509Cert();
   const x509CRL = await createX509CRL();
   try {
-    const collection: certFramework.CertCRLCollection = certFramework.createCertCRLCollection([x509Cert], [x509CRL]);
+    const collection: cert.CertCRLCollection = cert.createCertCRLCollection([x509Cert], [x509CRL]);
     console.log('createCertCRLCollection success');
   } catch (err) {
     console.error('createCertCRLCollection failed');
@@ -7146,6 +8910,8 @@ Provides APIs for locating certificates or CRLs in a **CertCRLCollection** objec
 selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>>
 
 Selects certificates that match the specified parameters. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -7167,14 +8933,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -7185,7 +8952,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-async function createX509Cert(): Promise<certFramework.X509Cert> {
+async function createX509Cert(): Promise<cert.X509Cert> {
   let certData = '-----BEGIN CERTIFICATE-----\n' +
     'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
     'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -7196,17 +8963,17 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     'Qw==\n' +
     '-----END CERTIFICATE-----\n';
 
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
     // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
-    x509Cert = await certFramework.createX509Cert(encodingBlob);
+    x509Cert = await cert.createX509Cert(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509Cert;
@@ -7214,20 +8981,15 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
 
 async function selectCerts() {
   const x509Cert = await createX509Cert();
-  const collection = certFramework.createCertCRLCollection([x509Cert]);
+  const collection = cert.createCertCRLCollection([x509Cert]);
 
   try {
-    const param: certFramework.X509CertMatchParameters = {
+    const param: cert.X509CertMatchParameters = {
       x509Cert,
       validDate: '20231121074700Z',
-      issuer: new Uint8Array([0x30, 0x64, 0x31]), // The values must be assigned based on the service.     
-      keyUsage: [false, false, false, false, false, false, true, true, true],
-      serialNumber: BigInt('232100834349818463'),
-      subject: new Uint8Array([0x30, 0x6c, 0x31]), // The values must be assigned based on the service.
-      publicKey: {
-        data: new Uint8Array([0x30, 0x82, 0x01]) // The values must be assigned based on the service.
-      },
-      publicKeyAlgID: '1.2.840.113549.1.1.1'
+      issuer: new Uint8Array([0x30, 0x1a, 0x31, 0x18, 0x30, 0x16, 0x06, 0x03, 0x55, 0x04, 0x03, 0x0C, 0x0F, 0x45, 0x78, 0x61, 0x6D, 0x70, 0x6C, 0x65, 0x20, 0x52, 0x6F, 0x6F, 0x74, 0x20, 0x43, 0x41]),
+      subject: new Uint8Array([0x30, 0x1a, 0x31, 0x18, 0x30, 0x16, 0x06, 0x03, 0x55, 0x04, 0x03, 0x0C, 0x0F, 0x45, 0x78, 0x61, 0x6D, 0x70, 0x6C, 0x65, 0x20, 0x52, 0x6F, 0x6F, 0x74, 0x20, 0x43, 0x41]),
+      publicKeyAlgID: '1.2.840.10045.2.1'
     };
     const certs = await collection.selectCerts(param);
     console.log('call selectCerts success');
@@ -7243,6 +9005,8 @@ selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509
 
 Selects certificates that match the specified parameters. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Parameters**
@@ -7250,7 +9014,7 @@ Selects certificates that match the specified parameters. This API uses an async
 | Name   | Type                           | Mandatory| Description           |
 | --------- | ------------------------------- | ---- | ----------------- |
 | param | [X509CertMatchParameters](#x509certmatchparameters11) | Yes  | Parameters used to match the certificates.  |
-| callback  | AsyncCallback\<Array\<[X509Cert](#x509cert)>>    | Yes  | Callback invoked to return the matched certificates.|
+| callback  | AsyncCallback\<Array\<[X509Cert](#x509cert)>>    | Yes  | Callback used to return the matched certificates.|
 
 **Error codes**
 
@@ -7258,14 +9022,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -7276,7 +9041,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-async function createX509Cert(): Promise<certFramework.X509Cert> {
+async function createX509Cert(): Promise<cert.X509Cert> {
   let certData = '-----BEGIN CERTIFICATE-----\n' +
     'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
     'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -7287,17 +9052,17 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     'Qw==\n' +
     '-----END CERTIFICATE-----\n';
 
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
     // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
-    x509Cert = await certFramework.createX509Cert(encodingBlob);
+    x509Cert = await cert.createX509Cert(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509Cert;
@@ -7305,22 +9070,17 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
 
 async function selectCerts() {
   const x509Cert = await createX509Cert();
-  const collection = certFramework.createCertCRLCollection([x509Cert]);
-  // The values must be assigned based on the service.
-  const param: certFramework.X509CertMatchParameters = {
-    x509Cert,
-    validDate: '20231121074700Z',
-    issuer: new Uint8Array([0x30, 0x64, 0x31]), // The values must be assigned based on the service.
-    keyUsage: [false, false, false, false, false, false, true, true, true],
-    serialNumber: BigInt('232100834349818463'),
-    subject: new Uint8Array([0x30, 0x6c, 0x31]), // The values must be assigned based on the service.
-    publicKey: {
-      data: new Uint8Array([0x30, 0x82, 0x01]) // The values must be assigned based on the service.
-    },
-    publicKeyAlgID: '1.2.840.113549.1.1.1'
-  };
+  const collection = cert.createCertCRLCollection([x509Cert]);
+  // The value varies with the service.
+    const param: cert.X509CertMatchParameters = {
+      x509Cert,
+      validDate: '20231121074700Z',
+      issuer: new Uint8Array([0x30, 0x1a, 0x31, 0x18, 0x30, 0x16, 0x06, 0x03, 0x55, 0x04, 0x03, 0x0C, 0x0F, 0x45, 0x78, 0x61, 0x6D, 0x70, 0x6C, 0x65, 0x20, 0x52, 0x6F, 0x6F, 0x74, 0x20, 0x43, 0x41]),
+      subject: new Uint8Array([0x30, 0x1a, 0x31, 0x18, 0x30, 0x16, 0x06, 0x03, 0x55, 0x04, 0x03, 0x0C, 0x0F, 0x45, 0x78, 0x61, 0x6D, 0x70, 0x6C, 0x65, 0x20, 0x52, 0x6F, 0x6F, 0x74, 0x20, 0x43, 0x41]),
+      publicKeyAlgID: '1.2.840.10045.2.1'
+    };
   collection.selectCerts(param, (err, certs) => {
-    if (err != null) {
+    if (err) {
       console.error('selectCerts failed, errCode: ' + err.code + ', errMsg: ' + err.message);
     } else {
       console.log('selectCerts success');
@@ -7335,6 +9095,8 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 
 Selects CRLs that match the specified parameters. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Parameters**
@@ -7347,7 +9109,7 @@ Selects CRLs that match the specified parameters. This API uses a promise to ret
 
 | Type          | Description       |
 | -------------- | ----------- |
-| Promise\<Array\<[X509CRL](#x509crldeprecated)>> | Promise used to return the matched CRLs.|
+| Promise\<Array\<[X509CRL](#x509crl11)>> | Promise used to return the matched CRLs.|
 
 **Error codes**
 
@@ -7355,14 +9117,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -7373,7 +9136,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-async function createX509CRL(): Promise<certFramework.X509CRL> {
+async function createX509CRL(): Promise<cert.X509CRL> {
   let crlData = '-----BEGIN X509 CRL-----\n' +
     'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
     'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
@@ -7383,23 +9146,23 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
     'eavsH0Q3\n' +
     '-----END X509 CRL-----\n';
 
-  // Binary data of the CRL, which must be set based on the service.
-  let encodingBlob: certFramework.EncodingBlob = {
+  // Binary data of the CRL, which varies with the service.
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(crlData),
     // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
-  let x509CRL: certFramework.X509CRL = {} as certFramework.X509CRL;
+  let x509CRL: cert.X509CRL = {} as cert.X509CRL;
   try {
-    x509CRL = await certFramework.createX509CRL(encodingBlob);
+    x509CRL = await cert.createX509CRL(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509CRL;
 }
 
-async function createX509Cert(): Promise<certFramework.X509Cert> {
+async function createX509Cert(): Promise<cert.X509Cert> {
   const certData = "-----BEGIN CERTIFICATE-----\r\n" +
     "MIIC8TCCAdmgAwIBAgIIFB75m06RTHwwDQYJKoZIhvcNAQELBQAwWDELMAkGA1UE\r\n" +
     "BhMCQ04xEDAOBgNVBAgTB0ppYW5nc3UxEDAOBgNVBAcTB05hbmppbmcxCzAJBgNV\r\n" +
@@ -7418,14 +9181,14 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     "V4SYZIO7ihr8+n4LQDQP+spvX4cf925a3kyZrftfvGCJ2ZNwvsPhyumYhaBqAgSy\r\n" +
     "Up2BImymAqPi157q9EeYcQz170TtDZHGmjYzdQxhOAHRb6/IdQ==\r\n" +
     "-----END CERTIFICATE-----\r\n";
-  const certEncodingBlob: certFramework.EncodingBlob = {
+  const certEncodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM,
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM,
   };
 
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
-    x509Cert = await certFramework.createX509Cert(certEncodingBlob);
+    x509Cert = await cert.createX509Cert(certEncodingBlob);
     console.log('createX509Cert success');
   } catch (err) {
     console.error('createX509Cert failed');
@@ -7436,9 +9199,9 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
 async function selectCRLs() {
   const x509CRL = await createX509CRL();
   const x509Cert = await createX509Cert();
-  const collection = certFramework.createCertCRLCollection([], [x509CRL]);
+  const collection = cert.createCertCRLCollection([], [x509CRL]);
 
-  const param: certFramework.X509CRLMatchParameters = {
+  const param: cert.X509CRLMatchParameters = {
     issuer: [new Uint8Array([0x30, 0x58, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x06, 0x13, 0x02, 0x43, 0x4E, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x08, 0x13, 0x07, 0x4A, 0x69, 0x61, 0x6E, 0x67, 0x73, 0x75, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x07, 0x13, 0x07, 0x4E, 0x61, 0x6E, 0x6A, 0x69, 0x6E, 0x67, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0A, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0B, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x03, 0x13, 0x02, 0x74, 0x73])],
     x509Cert: x509Cert
   }
@@ -7457,6 +9220,8 @@ selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CR
 
 Selects CRLs that match the specified parameters. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Parameters**
@@ -7464,7 +9229,7 @@ Selects CRLs that match the specified parameters. This API uses an asynchronous 
 | Name   | Type                           | Mandatory| Description           |
 | --------- | ------------------------------- | ---- | ----------------- |
 | param | [X509CRLMatchParameters](#x509crlmatchparameters11) | Yes  | Parameters used to match the CRLs.|
-| callback  | AsyncCallback\<Array\<[X509CRL](#x509crldeprecated)>>    | Yes  | Callback invoked to return the matched CRLs.|
+| callback  | AsyncCallback\<Array\<[X509CRL](#x509crl11)>>    | Yes  | Callback used to return the matched CRLs.|
 
 **Error codes**
 
@@ -7472,14 +9237,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -7490,7 +9256,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-async function createX509CRL(): Promise<certFramework.X509CRL> {
+async function createX509CRL(): Promise<cert.X509CRL> {
   let crlData = '-----BEGIN X509 CRL-----\n' +
     'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
     'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
@@ -7500,23 +9266,23 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
     'eavsH0Q3\n' +
     '-----END X509 CRL-----\n';
 
-  // Binary data of the CRL, which must be set based on the service.
-  let encodingBlob: certFramework.EncodingBlob = {
+  // Binary data of the CRL, which varies with the service.
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(crlData),
     // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
-  let x509CRL: certFramework.X509CRL = {} as certFramework.X509CRL;
+  let x509CRL: cert.X509CRL = {} as cert.X509CRL;
   try {
-    x509CRL = await certFramework.createX509CRL(encodingBlob);
+    x509CRL = await cert.createX509CRL(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509CRL;
 }
 
-async function createX509Cert(): Promise<certFramework.X509Cert> {
+async function createX509Cert(): Promise<cert.X509Cert> {
   const certData = "-----BEGIN CERTIFICATE-----\r\n" +
     "MIIC8TCCAdmgAwIBAgIIFB75m06RTHwwDQYJKoZIhvcNAQELBQAwWDELMAkGA1UE\r\n" +
     "BhMCQ04xEDAOBgNVBAgTB0ppYW5nc3UxEDAOBgNVBAcTB05hbmppbmcxCzAJBgNV\r\n" +
@@ -7535,14 +9301,14 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     "V4SYZIO7ihr8+n4LQDQP+spvX4cf925a3kyZrftfvGCJ2ZNwvsPhyumYhaBqAgSy\r\n" +
     "Up2BImymAqPi157q9EeYcQz170TtDZHGmjYzdQxhOAHRb6/IdQ==\r\n" +
     "-----END CERTIFICATE-----\r\n";
-  const certEncodingBlob: certFramework.EncodingBlob = {
+  const certEncodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM,
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM,
   };
 
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
-    x509Cert = await certFramework.createX509Cert(certEncodingBlob);
+    x509Cert = await cert.createX509Cert(certEncodingBlob);
     console.log('createX509Cert success');
   } catch (err) {
     console.error('createX509Cert failed');
@@ -7553,14 +9319,14 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
 async function selectCRLs() {
   const x509CRL = await createX509CRL();
   const x509Cert = await createX509Cert();
-  const collection = certFramework.createCertCRLCollection([], [x509CRL]);
+  const collection = cert.createCertCRLCollection([], [x509CRL]);
 
-  const param: certFramework.X509CRLMatchParameters = {
+  const param: cert.X509CRLMatchParameters = {
     issuer: [new Uint8Array([0x30, 0x58, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x06, 0x13, 0x02, 0x43, 0x4E, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x08, 0x13, 0x07, 0x4A, 0x69, 0x61, 0x6E, 0x67, 0x73, 0x75, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x07, 0x13, 0x07, 0x4E, 0x61, 0x6E, 0x6A, 0x69, 0x6E, 0x67, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0A, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0B, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x03, 0x13, 0x02, 0x74, 0x73])],
     x509Cert: x509Cert
   }
   collection.selectCRLs(param, (err, crls) => {
-    if (err != null) {
+    if (err) {
       console.error('selectCRLs failed, errCode: ' + err.code + ', errMsg: ' + err.message);
     } else {
       console.log('selectCRLs success');
@@ -7569,11 +9335,13 @@ async function selectCRLs() {
 }
 ```
 
-## cryptoCert.createX509CertChain<sup>11+</sup>
+## cert.createX509CertChain<sup>11+</sup>
 
 createX509CertChain(inStream: EncodingBlob): Promise\<X509CertChain>
 
 Creates an X.509 certificate chain instance. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -7595,14 +9363,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -7613,7 +9382,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-async function createX509CertChain(): Promise<certFramework.X509CertChain> {
+async function createX509CertChain(): Promise<cert.X509CertChain> {
   let certChainData = "-----BEGIN CERTIFICATE-----\n" +
     "MIID6jCCAtKgAwIBAgIIIM2q/TmRoLcwDQYJKoZIhvcNAQELBQAwWjELMAkGA1UE\n" +
     "BhMCRU4xEDAOBgNVBAgTB0VuZ2xhbmQxDzANBgNVBAcTBkxvbmRvbjEMMAoGA1UE\n" +
@@ -7669,15 +9438,15 @@ async function createX509CertChain(): Promise<certFramework.X509CertChain> {
     "xjoE\n" +
     "-----END CERTIFICATE-----\n";
 
-  // Certificate chain binary data, which must be set based on the service.
-  let encodingBlob: certFramework.EncodingBlob = {
+  // Certificate chain binary data, which varies with the service.
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certChainData),
     // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
-  let x509CertChain: certFramework.X509CertChain = {} as certFramework.X509CertChain;
+  let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
   try {
-    x509CertChain = await certFramework.createX509CertChain(encodingBlob);
+    x509CertChain = await cert.createX509CertChain(encodingBlob);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -7688,11 +9457,13 @@ async function createX509CertChain(): Promise<certFramework.X509CertChain> {
 createX509CertChain();
 ```
 
-## cryptoCert.createX509CertChain<sup>11+</sup>
+## cert.createX509CertChain<sup>11+</sup>
 
 createX509CertChain(inStream: EncodingBlob, callback: AsyncCallback\<X509CertChain>): void
 
 Creates an X.509 certificate chain instance. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -7701,7 +9472,7 @@ Creates an X.509 certificate chain instance. This API uses an asynchronous callb
 | Name  | Type                                 | Mandatory| Description                      |
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | inStream | [EncodingBlob](#encodingblob)         | Yes  | X.509 certificate serialization data.       |
-| callback | AsyncCallback\<[X509CertChain](#x509certchain11)> | Yes  | Callback invoked to return the **X509CertChain** object created.|
+| callback | AsyncCallback\<[X509CertChain](#x509certchain11)> | Yes  | Callback used to return the **X509CertChain** object created.|
 
 **Error codes**
 
@@ -7709,13 +9480,14 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -7781,15 +9553,15 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
   "xjoE\n" +
   "-----END CERTIFICATE-----\n";
 
-// Certificate chain binary data, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Certificate chain binary data, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
   // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CertChain(encodingBlob, (err, certChain) => {
-  if (err != null) {
+cert.createX509CertChain(encodingBlob, (err, certChain) => {
+  if (err) {
     console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('createX509CertChain success');
@@ -7797,11 +9569,13 @@ certFramework.createX509CertChain(encodingBlob, (err, certChain) => {
 });
 ```
 
-## cryptoCert.createX509CertChain<sup>11+</sup>
+## cert.createX509CertChain<sup>11+</sup>
 
 createX509CertChain(certs: Array\<X509Cert>): X509CertChain
 
 Creates an X.509 certificate chain object based on the specified certificates. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -7823,14 +9597,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -7841,7 +9616,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-async function createX509Cert(): Promise<certFramework.X509Cert> {
+async function createX509Cert(): Promise<cert.X509Cert> {
   let certData = '-----BEGIN CERTIFICATE-----\n' +
     'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
     'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -7852,16 +9627,16 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     'Qw==\n' +
     '-----END CERTIFICATE-----\n';
 
-  // Certificate binary data, which must be set based on the service.
-  let encodingBlob: certFramework.EncodingBlob = {
+  // Certificate binary data, which varies with the service.
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
     // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
-    x509Cert = await certFramework.createX509Cert(encodingBlob);
+    x509Cert = await cert.createX509Cert(encodingBlob);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -7869,11 +9644,11 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
   return x509Cert;
 }
 
-async function createX509CertChain(): Promise<certFramework.X509CertChain> {
+async function createX509CertChain(): Promise<cert.X509CertChain> {
   const x509Cert = await createX509Cert();
-  let x509CertChain: certFramework.X509CertChain = {} as certFramework.X509CertChain;
+  let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
   try {
-    x509CertChain = certFramework.createX509CertChain([x509Cert]);
+    x509CertChain = cert.createX509CertChain([x509Cert]);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -7882,6 +9657,205 @@ async function createX509CertChain(): Promise<certFramework.X509CertChain> {
 }
 
 createX509CertChain();
+```
+
+## cert.buildX509CertChain<sup>12+</sup>
+
+buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12)): Promise\<CertChainBuildResult>
+
+Builds an X.509 certificate chain with a **CertChainBuildParameters** object. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                      |
+| -------- | -------------------- | ---- | -------------------------- |
+| param | [CertChainBuildParameters](#certchainbuildparameters12) | Yes  | Object used to build the certificate chain.|
+
+**Return value**
+
+| Type                             | Description                |
+| --------------------------------- | -------------------- |
+| [CertChainBuildResult](#certchainbuildresult12) | **X509CertChain** object created.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.                           |
+| 19030002 | the certificate signature verification failed.    |
+| 19030003 | the certificate has not taken effect.             |
+| 19030004 | the certificate has expired.                      |
+| 19030005 | failed to obtain the certificate issuer.          |
+| 19030006 | the key cannot be used for signing a certificate. |
+| 19030007 | the key cannot be used for digital signature.     |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+// Certificate chain data.
+let certPem = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIDTjCCAjagAwIBAgIBBDANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
+  'IENBMB4XDTI0MDMxOTAyMDQwMVoXDTM0MDMxNzAyMDQwMVowEjEQMA4GA1UEAwwH\n' +
+  'ZGV2aWNlMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMIXL3e7UE/c\n' +
+  'Z1dPVgRZ5L8gsQ/azuYVBvoFf7o8ksYrL7G1+qZIJjVRqZkuTirLW4GicbkIkPNW\n' +
+  'eix5cDhkjkC+q5SBCOrSSTTlvX3xcOY1gMlA5MgeBfGixFusq4d5VPF2KceZ20/a\n' +
+  'ygwGD0Uv0X81OERyPom/dYdJUvfaD9ifPFJ1fKIj/cPFG3yJK/ojpEfndZNdESQL\n' +
+  'TkoDekilg2UGOLtY6fb9Ns37ncuIj33gCS/R9m1tgtmqCTcgOQ4hwKhjVF3InmPO\n' +
+  '2BbWKvD1RUX+rHC2a2HHDQILOOtDTy8dHvE+qZlK0efrpRgoFEERJAGPi1GDGWiA\n' +
+  '7UX1c4MCxIECAwEAAaOBrjCBqzAJBgNVHRMEAjAAMB0GA1UdDgQWBBQbkAcMT7ND\n' +
+  'fGp3VPFzYHppZ1zxLTAfBgNVHSMEGDAWgBR0W/koCbvDtFGHUQZLM3j6HKsW2DAd\n' +
+  'BgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwCwYDVR0PBAQDAgeAMDIGCCsG\n' +
+  'AQUFBwEBBCYwJDAiBggrBgEFBQcwAYYWaHR0cHM6Ly8xMjcuMC4wLjE6OTk5OTAN\n' +
+  'BgkqhkiG9w0BAQsFAAOCAQEAF1OTzTmbklFOdZCxrF3zg9owUPJR5RB+PbuBlUfI\n' +
+  '8tkGXkMltQ8PN1dv6Cq+d8BluiJdWEzqVoJa/e5SHHJyYQSOhlurRG0GBXllVQ1I\n' +
+  'n1PFaI40+9X2X6wrEcdC5nbzogR1jSiksCiTcARMddj0Xrp5FMrFaaGY8M/xqzdW\n' +
+  'LTDl4nfbuxtA71cIjnE4kOcaemly9/S2wYWdPktsPxQPY1nPUOeJFI7o0sH3rK0c\n' +
+  'JSqtgAG8vnjK+jbx9RpkgqCsXgUbIahL573VTgxrNrsRjCuVal7XVxl/xOKXr6Er\n' +
+  'Gpc+OCrXbHNZkUQE5fZH3yL2tXd7EASEb6J3aEWHfF8YBA==\n' +
+  '-----END CERTIFICATE-----';
+
+let caPem = '-----BEGIN CERTIFICATE-----\n' +
+'MIIC/zCCAeegAwIBAgIBATANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
+'IENBMB4XDTI0MDMxOTAyMDIyNFoXDTM0MDMxNzAyMDIyNFowEjEQMA4GA1UEAwwH\n' +
+'Um9vdCBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALxI5SDvRfKU\n' +
+'6XaTeyh2LHlUK0rVSeYfXkYf5Mc3Pgucg+ewzQjxkACMx5NYaW1zfGDNPG1i5IZl\n' +
+'cPeWNz1Tm2g6wTd+LyNoNOOmwfLV8pLXSfAukgNrBREf3BzVrbu7hvPd2MmLH23H\n' +
+'OBM9uDPTIqu3n2CDN2EzwULjaSk2g+jvhVKsDLInu5uKPmZBFhs1FWKgcnVnlbi1\n' +
+'AyAx4efheits6EO70oV6UufCEtS1VsBXQHZRAG4ogshWldRBVNxkU6yHAfg0mM/5\n' +
+'EhrZsfh51fWqlrhNWrInjgNV3xIt5ebTIgKZWUlSVHEA/UqDoGfY+CsAJdteZWOW\n' +
+'KjsrC/DK2O0CAwEAAaNgMF4wHQYDVR0OBBYEFHRb+SgJu8O0UYdRBkszePocqxbY\n' +
+'MB8GA1UdIwQYMBaAFHRb+SgJu8O0UYdRBkszePocqxbYMA8GA1UdEwEB/wQFMAMB\n' +
+'Af8wCwYDVR0PBAQDAgEGMA0GCSqGSIb3DQEBCwUAA4IBAQAKOT1ObfQNMN2wdfHq\n' +
+'PQgFDDp6rBMbZe70LswPirSXljo4S/vfbG+gBoWCdu/SfsV+lyP75kg1wX0IQvzW\n' +
+'xYNh864dgqPmGd0v8TIfM0UT0PpnowUyBHQ+E7LNYIOh/kjHbl3oERdEFA2PUyE9\n' +
+'j3GLdg8oe/LqhEQCSAlH+v2RQgBZ9eVN+mSdUxwywm9U3acb0uqVkGiWK/ywumpg\n' +
+'AmIZLMJtMVvg8uDkfy16Z4lChTEdNaJVUqPczUNk2kHXIF4we4be9HoOuTVz/SD/\n' +
+'IsOhXn/BjS3jnhyS9fxo+opJf9zVTWI02Hlh1WVVtH/m3nIZblyAJhcjCHA2wZSz\n' +
+'sSus\n' +
+'-----END CERTIFICATE-----';
+
+async function createX509Cert(certData: string): Promise<cert.X509Cert> {
+  // Certificate binary data, which varies with the service.
+  let encodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
+  try {
+    x509Cert = await cert.createX509Cert(encodingBlob);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+  return x509Cert;
+}
+
+async function buildX509CertChain() {
+  try {
+    const caCert = await createX509Cert(caPem);
+    const x509Cert = await createX509Cert(certPem);
+    let certCrlCollection = await cert.createCertCRLCollection([x509Cert]);
+    let param: cert.CertChainBuildParameters = {
+      certMatchParameters: {validDate:'20240812080000Z'},
+      maxLength: 3,
+      validationParameters: {
+        date: '20240812080000Z',
+        certCRLs: [certCrlCollection],
+        trustAnchors: [{CACert:caCert}, {CACert:caCert}],
+      }
+    }
+    let certChainBuildResult = await cert.buildX509CertChain(param);
+    console.info("cert issuer name: " + certChainBuildResult.validationResult.entityCert.getIssuerName().data)
+    console.info("ca subject name: " + certChainBuildResult.validationResult.trustAnchor.CACert?.getSubjectName().data)
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+
+buildX509CertChain();
+```
+
+## cert.createTrustAnchorsWithKeyStore<sup>12+</sup>
+
+createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array\<[X509TrustAnchor](#x509trustanchor11)>>
+
+Creates a [TrustAnchor](#x509trustanchor11) object array from a .p12 keystore file. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                      |
+| -------- | -------------------- | ---- | -------------------------- |
+| keystore | Uint8Array | Yes| .p12 file in DER format.|
+| pwd | string | Yes| Password of the .p12 file.|
+
+**Return value**
+
+| Type                             | Description                |
+| --------------------------------- | -------------------- |
+| Array\<[X509TrustAnchor](#x509trustanchor11)> | **X509TrustAnchor** object array created.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.                           |
+| 19030002 | the certificate signature verification failed.    |
+| 19030003 | the certificate has not taken effect.             |
+| 19030004 | the certificate has expired.                      |
+| 19030005 | failed to obtain the certificate issuer.          |
+| 19030006 | the key cannot be used for signing a certificate. |
+| 19030007 | the key cannot be used for digital signature.     |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  cert.createTrustAnchorsWithKeyStore(
+    new Uint8Array([0x30, 0x82, 0x07, 0x5C, 0x02, 0x01, 0x03, 0x30, 0x82, 0x07, 0x12, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x07, 0x01, 0xA0, 0x82, 0x07, 0x03, 0x04, 0x82, 0x06, 0xFF, 0x30, 0x82, 0x06, 0xFB, 0x30, 0x82, 0x05, 0xB2, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x07, 0x06, 0xA0, 0x82, 0x05, 0xA3, 0x30, 0x82, 0x05, 0x9F, 0x02, 0x01, 0x00, 0x30, 0x82, 0x05, 0x98, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x07, 0x01, 0x30, 0x57, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x05, 0x0D, 0x30, 0x4A, 0x30, 0x29, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x05, 0x0C, 0x30, 0x1C, 0x04, 0x08, 0xA9, 0x1C, 0x1B, 0x19, 0x36, 0xDE, 0xD4, 0x20, 0x02, 0x02, 0x08, 0x00, 0x30, 0x0C, 0x06, 0x08, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x02, 0x09, 0x05, 0x00, 0x30, 0x1D, 0x06, 0x09, 0x60, 0x86, 0x48, 0x01, 0x65, 0x03, 0x04, 0x01, 0x2A, 0x04, 0x10, 0x7D, 0xE5, 0x23, 0x96, 0x18, 0x8B, 0xF4, 0xBC, 0x9F, 0x4E, 0xE8, 0xE9, 0xAA, 0x52, 0x18, 0x39, 0x80, 0x82, 0x05, 0x30, 0x02, 0x2D, 0x59, 0xA9, 0x96, 0x5A, 0xFE, 0x20, 0x18, 0xB2, 0x25, 0xEA, 0xFC, 0x86, 0x0F, 0xA8, 0x3C, 0x2B, 0x26, 0x2F, 0x44, 0x6E, 0xF3, 0x15, 0xB7, 0x94, 0xE4, 0x43, 0xEE, 0xE6, 0xC3, 0xBB, 0x3C, 0x9E, 0x60, 0x08, 0xF8, 0x15, 0x61, 0x44, 0xD0, 0xEA, 0xD5, 0x6D, 0x1A, 0x3B, 0x9F, 0x4E, 0x2A, 0x1E, 0xBB, 0xB9, 0x4E, 0x15, 0x43, 0xB8, 0x68, 0xDB, 0x1A, 0x4E, 0x41, 0xBA, 0x29, 0x8E, 0x75, 0xEB, 0x12, 0xC1, 0xF0, 0x4B, 0x0D, 0x13, 0xB2, 0xC2, 0x48, 0x6F, 0xC4, 0xC4, 0x82, 0xF2, 0x26, 0xD4, 0x3D, 0x1F, 0x42, 0x7D, 0x67, 0xB0, 0x37, 0x55, 0x9E, 0xD9, 0x46, 0x99, 0x98, 0xB4, 0xE7, 0x4B, 0x07, 0x08, 0x3F, 0xD3, 0x96, 0x9A, 0xC5, 0xDA, 0x37, 0x74, 0x08, 0x5D, 0x3B, 0x06, 0x8A, 0x16, 0x6D, 0x81, 0x63, 0x01, 0x83, 0x94, 0xDA, 0x1B, 0x0E, 0x04, 0xCE, 0x18, 0xF0, 0x51, 0x22, 0xD8, 0x2D, 0xF1, 0x69, 0x0C, 0xCB, 0xC9, 0x51, 0x17, 0x07, 0x1F, 0x2B, 0xCF, 0x74, 0x26, 0xD7, 0x73, 0xB3, 0x2D, 0xF2, 0x82, 0xF0, 0x38, 0x5B, 0x8A, 0x8F, 0xCD, 0x84, 0x69, 0x40, 0x59, 0xCE, 0xB3, 0x39, 0xFE, 0xF6, 0xB7, 0x24, 0x89, 0x34, 0xFF, 0xF4, 0x40, 0x50, 0x06, 0x4D, 0xC6, 0x13, 0x82, 0xAF, 0x7F, 0x84, 0xB1, 0x67, 0x3C, 0x89, 0xBB, 0x5D, 0x32, 0xC3, 0xA6, 0xF1, 0x7D, 0xF5, 0x72, 0x68, 0x75, 0xCE, 0x69, 0xAB, 0x6C, 0x32, 0xDA, 0x16, 0x3B, 0xC4, 0xCA, 0x47, 0x45, 0xE9, 0x59, 0x1E, 0xB1, 0x70, 0xDA, 0x8A, 0x00, 0x69, 0x80, 0x40, 0xCA, 0x60, 0xE6, 0x07, 0x16, 0xF0, 0xA2, 0xF9, 0x12, 0x7D, 0x09, 0x43, 0x66, 0x46, 0x78, 0x35, 0xA6, 0x94, 0x35, 0x60, 0x82, 0xFC, 0xB8, 0x5E, 0x39, 0xE7, 0xA1, 0x22, 0xAD, 0xCC, 0x6F, 0x5E, 0xCE, 0x01, 0x6B, 0xA1, 0xDD, 0xE5, 0xDD, 0x79, 0x9B, 0xA1, 0x28, 0xC4, 0x03, 0x84, 0x8D, 0x6C, 0x07, 0xD4, 0xFE, 0x57, 0xFB, 0x89, 0x3F, 0x43, 0x44, 0x69, 0xF1, 0x9E, 0x53, 0x6C, 0x11, 0x11, 0x96, 0x79, 0xE4, 0xB8, 0x3B, 0x49, 0x2E, 0xF6, 0x3B, 0xC5, 0x6C, 0x76, 0x21, 0x22, 0x15, 0x85, 0x77, 0x8A, 0xDD, 0xD2, 0x43, 0x85, 0x73, 0x39, 0x77, 0x9F, 0xFA, 0x8F, 0xCF, 0xCB, 0xEA, 0x62, 0xBD, 0x5C, 0x66, 0x45, 0xCD, 0xB0, 0xCA, 0x42, 0xCC, 0xB9, 0xCF, 0xE3, 0x84, 0x63, 0x9F, 0x63, 0xCE, 0x49, 0xE9, 0x74, 0x26, 0xCC, 0x26, 0x78, 0xCE, 0x9F, 0x4E, 0x38, 0xA2, 0x9C, 0xEB, 0x75, 0xC5, 0x33, 0x6B, 0x00, 0x83, 0x85, 0xA3, 0x0F, 0xE7, 0xE1, 0x11, 0xA6, 0x48, 0xDC, 0xEF, 0x0C, 0x05, 0xB3, 0xDE, 0x94, 0xB9, 0x69, 0xCB, 0x27, 0x09, 0xAB, 0x27, 0xD8, 0x06, 0xED, 0x25, 0xBC, 0xA6, 0x2E, 0xB7, 0xF9, 0x2E, 0xAD, 0x84, 0x1D, 0xDD, 0x73, 0xD8, 0xC0, 0x46, 0x8A, 0xFE, 0x9A, 0xDF, 0x07, 0xE1, 0x33, 0xE2, 0x1C, 0x37, 0x6A, 0x8E, 0xA2, 0x91, 0x0B, 0xD7, 0x76, 0xEF, 0x3C, 0x87, 0x4A, 0x53, 0x84, 0xFA, 0xFA, 0xC5, 0x71, 0x76, 0xC0, 0x75, 0x70, 0x67, 0x67, 0x71, 0x9D, 0x8B, 0x81, 0x6F, 0x68, 0xC5, 0xB1, 0xFC, 0xA3, 0x59, 0xB5, 0xD0, 0x03, 0x56, 0xE7, 0x89, 0x03, 0xD7, 0x99, 0xDE, 0x66, 0x33, 0xFA, 0x53, 0x50, 0x5F, 0xB4, 0x9D, 0xB3, 0x90, 0x8F, 0x57, 0x20, 0xF0, 0x8B, 0xDB, 0x73, 0xCA, 0xA4, 0x71, 0x61, 0x67, 0x6A, 0x6D, 0xA5, 0xCA, 0x88, 0xD4, 0xCC, 0x82, 0x34, 0xC9, 0x3E, 0x10, 0x10, 0x57, 0xD1, 0x08, 0x96, 0x80, 0x09, 0xA8, 0xBB, 0x6F, 0x53, 0x8F, 0xFD, 0x87, 0xCF, 0x73, 0xFC, 0xE1, 0x3A, 0x92, 0x2E, 0x78, 0x66, 0xFB, 0x86, 0x5D, 0x62, 0xE0, 0xC4, 0x58, 0x55, 0x3F, 0xA4, 0xEA, 0xA1, 0xBE, 0x5B, 0x5E, 0x8E, 0x46, 0x50, 0x5E, 0x7C, 0x01, 0xD6, 0x63, 0xAA, 0x6F, 0xD5, 0xFD, 0xAF, 0xC5, 0x1D, 0xB3, 0x90, 0x9C, 0xD8, 0x5F, 0x8D, 0xF2, 0x81, 0xEB, 0xBF, 0xA1, 0xDE, 0xB7, 0x9D, 0xCD, 0x24, 0x82, 0x06, 0x0B, 0x63, 0xE6, 0xBF, 0x57, 0x51, 0xF0, 0xB6, 0xE9, 0x7F, 0xAA, 0x7B, 0x10, 0xBD, 0xCD, 0x85, 0x41, 0xE0, 0xD7, 0xF1, 0x53, 0xB7, 0xF8, 0x46, 0x91, 0x9E, 0x8D, 0x4B, 0xCB, 0x28, 0x35, 0x40, 0x37, 0x1E, 0x83, 0x64, 0x6A, 0x70, 0x01, 0x9D, 0xBF, 0xF1, 0x0E, 0xB6, 0x2E, 0x7A, 0xB7, 0x8F, 0x0F, 0x8C, 0x69, 0xD6, 0xF2, 0xD1, 0xF6, 0x1E, 0xCD, 0x08, 0xA8, 0xD4, 0x1B, 0xCB, 0x38, 0xEA, 0x26, 0x37, 0x5C, 0x60, 0x3A, 0x38, 0x5B, 0x12, 0x1D, 0x00, 0x7B, 0xEC, 0xCE, 0xFB, 0x89, 0x23, 0x8A, 0x11, 0xE1, 0x1B, 0xDE, 0x54, 0x91, 0x6A, 0x26, 0x22, 0xD0, 0x1C, 0x2E, 0xBA, 0xD0, 0x92, 0x87, 0xDA, 0xF0, 0x93, 0xBB, 0x3A, 0x2C, 0x52, 0xFB, 0xB2, 0xA9, 0xA8, 0x92, 0x19, 0xE3, 0x19, 0xDC, 0xB0, 0x0E, 0xC5, 0xE7, 0x9D, 0xFB, 0xF9, 0xA3, 0x23, 0x32, 0xD0, 0x4E, 0x2C, 0x05, 0x2D, 0x76, 0xDB, 0x93, 0x53, 0x5B, 0x0E, 0x2A, 0xA3, 0xDD, 0x5F, 0xD3, 0x1A, 0x3B, 0x1E, 0x1F, 0x26, 0x88, 0x43, 0xAD, 0x10, 0x1F, 0xA9, 0xC4, 0xF9, 0x1F, 0xCD, 0xA5, 0xD2, 0xDC, 0x24, 0x95, 0x1D, 0xE7, 0x57, 0xE1, 0x02, 0x0A, 0x20, 0xEA, 0x6A, 0x78, 0x4E, 0x96, 0xE2, 0xE5, 0x6D, 0x6F, 0xFD, 0x81, 0x7B, 0x61, 0x85, 0xA3, 0x3D, 0xC5, 0x7B, 0xEF, 0xAE, 0x58, 0xA2, 0xDB, 0x91, 0x73, 0xDB, 0x47, 0x8E, 0xD1, 0x7D, 0xD7, 0x8F, 0x56, 0x06, 0x28, 0x8C, 0x78, 0x73, 0x02, 0x65, 0xB0, 0x16, 0x4B, 0xE6, 0xA3, 0xD7, 0x06, 0x7C, 0xEA, 0x7D, 0xE2, 0xAE, 0xBB, 0xE5, 0xD2, 0xEB, 0xF0, 0x91, 0x71, 0x7C, 0xBC, 0xA6, 0x1A, 0xE8, 0x9F, 0xD3, 0xA9, 0x3C, 0x5D, 0x60, 0xCF, 0x59, 0x26, 0x46, 0x45, 0xF2, 0x7F, 0x85, 0x6B, 0xE7, 0xC2, 0x58, 0x52, 0x90, 0x12, 0x07, 0xBA, 0xE6, 0xB8, 0xE5, 0xD7, 0x24, 0x93, 0xD5, 0x6E, 0xB1, 0x74, 0x6C, 0xAA, 0xA0, 0x60, 0xBF, 0xF3, 0x32, 0x41, 0x0B, 0xA2, 0x01, 0x84, 0x0D, 0x83, 0xE4, 0x43, 0xD1, 0xBA, 0xC1, 0x92, 0x84, 0x26, 0xF8, 0xF2, 0x77, 0x20, 0x1B, 0xF2, 0x8F, 0x00, 0x69, 0x18, 0x2F, 0x6C, 0xA8, 0x58, 0xB5, 0x5D, 0xFA, 0x27, 0xD2, 0x38, 0xD2, 0x49, 0x6E, 0xDF, 0x55, 0x79, 0xAF, 0x1C, 0x44, 0xDA, 0x5A, 0xD7, 0x44, 0x53, 0x50, 0x8B, 0x77, 0x70, 0x4D, 0x91, 0xEC, 0x07, 0xA5, 0x64, 0x21, 0x3C, 0x31, 0x09, 0x68, 0x65, 0xB4, 0xFA, 0xBE, 0x23, 0xF9, 0xDF, 0x77, 0x46, 0xA2, 0x9A, 0x5D, 0xE3, 0xBE, 0x1E, 0xE3, 0x84, 0xEF, 0xAE, 0x7D, 0xF8, 0x1C, 0x54, 0xE8, 0x4E, 0xAE, 0xB5, 0xBB, 0xD6, 0xC3, 0x8D, 0x56, 0x79, 0xE8, 0x7C, 0x43, 0xDC, 0xF3, 0xB3, 0x7A, 0x30, 0x22, 0x09, 0xBC, 0x10, 0xD6, 0x84, 0xC4, 0x0F, 0x4C, 0x0B, 0xA2, 0xD1, 0xCB, 0xCD, 0x1F, 0x50, 0x3D, 0xF7, 0x23, 0x45, 0x55, 0x18, 0x21, 0x3D, 0x64, 0x05, 0x2E, 0x52, 0x3A, 0x73, 0xFD, 0xF2, 0xA9, 0xCA, 0x3F, 0xF6, 0x7F, 0x87, 0xE8, 0x56, 0x9B, 0x68, 0x6B, 0x20, 0xB0, 0x1D, 0x83, 0x04, 0x2F, 0x59, 0xFD, 0x84, 0x57, 0x7D, 0x82, 0x97, 0x96, 0xE8, 0xFB, 0xDF, 0x71, 0x8C, 0x26, 0x47, 0x85, 0xA5, 0xBE, 0xFB, 0xF5, 0x05, 0x4C, 0xD3, 0x3D, 0x73, 0xF4, 0xA5, 0xF1, 0xA3, 0x99, 0x98, 0x1B, 0x84, 0x8B, 0xB3, 0x53, 0xCE, 0x4D, 0xEA, 0x5A, 0x48, 0xD2, 0xB9, 0x7E, 0xB6, 0xEB, 0x9B, 0x94, 0x6F, 0xDD, 0x44, 0x80, 0x89, 0xD2, 0x78, 0x6D, 0xB9, 0xDA, 0x8B, 0x83, 0x49, 0xE0, 0x4D, 0x49, 0xDF, 0x6B, 0xFF, 0xF7, 0x04, 0x00, 0x32, 0xAA, 0x1D, 0x4F, 0x8D, 0x4B, 0xDE, 0xB8, 0x0D, 0xC6, 0x54, 0x1C, 0xB2, 0xCD, 0x60, 0x29, 0x72, 0x0A, 0x7E, 0xE7, 0xEB, 0x7A, 0xF6, 0x5B, 0x04, 0x3F, 0x5B, 0x93, 0x12, 0x0D, 0xD5, 0xFF, 0x7A, 0x41, 0x44, 0x0B, 0x37, 0x12, 0x82, 0x3D, 0xDD, 0x1E, 0x59, 0xB9, 0xBE, 0x0F, 0x9E, 0xD6, 0xD0, 0x68, 0x69, 0x74, 0xF9, 0xB1, 0x21, 0xA3, 0x70, 0x4F, 0xDA, 0xF8, 0x9F, 0xB9, 0x49, 0x3F, 0xC6, 0xB2, 0x69, 0xC8, 0xD8, 0x60, 0xF1, 0x6A, 0x52, 0x07, 0xFA, 0x42, 0xFD, 0xA9, 0x06, 0xCF, 0x97, 0x4A, 0x0E, 0xC5, 0xFC, 0x63, 0x27, 0x54, 0xC8, 0xBE, 0x8B, 0x4F, 0xB6, 0x42, 0xBC, 0xA2, 0xCC, 0x70, 0x4A, 0x6B, 0x24, 0x5B, 0x68, 0x28, 0x47, 0xFA, 0x6B, 0x89, 0x28, 0x07, 0x5D, 0xE0, 0x2C, 0x4A, 0xD9, 0x22, 0xE3, 0xB3, 0x2F, 0xAA, 0xC2, 0xA0, 0x7C, 0x0F, 0x92, 0xC5, 0xDD, 0xB6, 0x23, 0x8F, 0x73, 0x73, 0x0F, 0xD7, 0x73, 0x71, 0x2F, 0x0A, 0x78, 0xE8, 0x5B, 0xDB, 0xC2, 0xE0, 0xDB, 0xC9, 0x3E, 0xC3, 0x72, 0x9C, 0x14, 0xD7, 0xD1, 0x28, 0xFD, 0xF4, 0xEE, 0xBC, 0x0E, 0x13, 0x37, 0xCA, 0x85, 0x9F, 0xB9, 0xA2, 0x0E, 0xF6, 0xE7, 0x49, 0xD1, 0xD0, 0x11, 0x76, 0x53, 0xA3, 0x73, 0x95, 0x2A, 0x23, 0xC8, 0x0E, 0x97, 0x83, 0x07, 0x64, 0xB2, 0x51, 0xB7, 0xC8, 0x51, 0x9F, 0xA4, 0x3E, 0x7B, 0xA4, 0x18, 0x6D, 0x99, 0xF0, 0x6E, 0xC3, 0x97, 0xAE, 0xF4, 0xB7, 0x66, 0x37, 0xFA, 0x65, 0xFC, 0x5E, 0xE2, 0x57, 0xFA, 0x8B, 0x4C, 0x86, 0x10, 0xB4, 0x5C, 0xA4, 0xD2, 0x60, 0x83, 0x69, 0x1E, 0xFF, 0x36, 0x9B, 0xF9, 0x84, 0xFB, 0xB8, 0x83, 0x64, 0xF1, 0x41, 0xA5, 0x25, 0x56, 0x21, 0xBA, 0x13, 0x98, 0x0C, 0x3B, 0x04, 0xAA, 0x6C, 0x9A, 0xD4, 0xE3, 0x13, 0x15, 0x54, 0x05, 0x4C, 0x5C, 0xE1, 0x7A, 0x31, 0x5E, 0x90, 0xCF, 0x48, 0x4E, 0x83, 0xD7, 0x7F, 0xED, 0x93, 0x22, 0xAB, 0x67, 0xE7, 0x76, 0x32, 0x64, 0xBA, 0x5A, 0x21, 0x3E, 0x30, 0x82, 0x01, 0x41, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x07, 0x01, 0xA0, 0x82, 0x01, 0x32, 0x04, 0x82, 0x01, 0x2E, 0x30, 0x82, 0x01, 0x2A, 0x30, 0x82, 0x01, 0x26, 0x06, 0x0B, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x0C, 0x0A, 0x01, 0x02, 0xA0, 0x81, 0xEF, 0x30, 0x81, 0xEC, 0x30, 0x57, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x05, 0x0D, 0x30, 0x4A, 0x30, 0x29, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x05, 0x0C, 0x30, 0x1C, 0x04, 0x08, 0xED, 0x3E, 0xED, 0x07, 0x5C, 0x1F, 0x71, 0xAD, 0x02, 0x02, 0x08, 0x00, 0x30, 0x0C, 0x06, 0x08, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x02, 0x09, 0x05, 0x00, 0x30, 0x1D, 0x06, 0x09, 0x60, 0x86, 0x48, 0x01, 0x65, 0x03, 0x04, 0x01, 0x2A, 0x04, 0x10, 0xA7, 0x49, 0xA4, 0x6E, 0x00, 0x19, 0x75, 0x59, 0x75, 0x59, 0xBA, 0x4B, 0xC7, 0x24, 0x88, 0x34, 0x04, 0x81, 0x90, 0xCA, 0x23, 0x82, 0xAA, 0x16, 0x57, 0x99, 0xFA, 0x94, 0x9F, 0xAE, 0x32, 0x5C, 0x5B, 0xE7, 0x01, 0xD0, 0xED, 0xA7, 0x58, 0x57, 0x52, 0xBF, 0x57, 0x13, 0xD4, 0x15, 0xB0, 0x06, 0xF5, 0x38, 0xCC, 0x64, 0x23, 0x09, 0xD5, 0x8C, 0x0D, 0x64, 0x31, 0xFA, 0x74, 0xAA, 0x96, 0x7E, 0x9B, 0x16, 0xCA, 0x21, 0xFD, 0xC0, 0x54, 0x91, 0x40, 0x7F, 0xB3, 0xF2, 0xA3, 0xEC, 0xA1, 0x4A, 0x07, 0xF0, 0x87, 0x22, 0xDB, 0x8A, 0x49, 0x89, 0xF7, 0xF2, 0x6A, 0xFC, 0x8D, 0x03, 0x6E, 0x32, 0x4F, 0xD0, 0xD8, 0x93, 0x92, 0xA5, 0xF1, 0x41, 0xBD, 0xEA, 0xE1, 0x38, 0xA9, 0xD8, 0x9D, 0xAB, 0xB4, 0x8E, 0x4A, 0x40, 0x0E, 0xC7, 0xE3, 0xE9, 0xBF, 0x0E, 0xBA, 0x8D, 0xAA, 0x3E, 0x93, 0x53, 0x88, 0xEE, 0x0A, 0x2C, 0x71, 0xF1, 0x61, 0x44, 0xA5, 0xAD, 0xED, 0x3E, 0xAB, 0x32, 0x9A, 0x32, 0x85, 0x08, 0xF5, 0x8B, 0xCC, 0x15, 0x35, 0xEE, 0xFA, 0x17, 0x27, 0x97, 0x8D, 0xD9, 0x1C, 0x5E, 0x74, 0x9D, 0x7B, 0x31, 0x25, 0x30, 0x23, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x09, 0x15, 0x31, 0x16, 0x04, 0x14, 0x5F, 0x8E, 0xAB, 0x9C, 0x5F, 0xE2, 0x3B, 0xB1, 0x5C, 0x1A, 0x36, 0x1D, 0x7D, 0xCB, 0x90, 0x45, 0x20, 0x3C, 0x3B, 0xAC, 0x30, 0x41, 0x30, 0x31, 0x30, 0x0D, 0x06, 0x09, 0x60, 0x86, 0x48, 0x01, 0x65, 0x03, 0x04, 0x02, 0x01, 0x05, 0x00, 0x04, 0x20, 0x93, 0x25, 0xC4, 0x3E, 0x2A, 0x6D, 0x4C, 0x30, 0x87, 0x0F, 0xE3, 0x5A, 0x95, 0xB0, 0xF2, 0x6C, 0xBA, 0x07, 0x89, 0x7D, 0xFB, 0xCF, 0xCF, 0x1D, 0x54, 0xA3, 0x36, 0x24, 0x7B, 0x30, 0x97, 0xB5, 0x04, 0x08, 0xE7, 0x96, 0x59, 0xCC, 0x42, 0x9F, 0xEF, 0xFC, 0x02, 0x02, 0x08, 0x00]),
+    '123456').then((data) => {
+      console.log('createTrustAnchorsWithKeyStore sucess, number of the result is: ' + JSON.stringify(data.length));
+  }).catch((err : BusinessError) => {
+    console.error('createTrustAnchorsWithKeyStore failed:' + JSON.stringify(err));
+  })
+} catch (error) {
+  console.error('createTrustAnchorsWithKeyStore failed:' + JSON.stringify(error));
+}
 ```
 
 ## X509CertChain<sup>11+</sup>
@@ -7893,6 +9867,8 @@ Provides APIs for managing the X.509 certificate chain.
 getCertList(): Array\<X509Cert>
 
 Obtains the X.509 certificate list.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -7908,14 +9884,15 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -7981,15 +9958,15 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
   "xjoE\n" +
   "-----END CERTIFICATE-----\n";
 
-// Certificate chain binary data, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Certificate chain binary data, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
   // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CertChain(encodingBlob, (err, certChain) => {
-  if (err != null) {
+cert.createX509CertChain(encodingBlob, (err, certChain) => {
+  if (err) {
     console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('createX509CertChain success');
@@ -8008,6 +9985,8 @@ certFramework.createX509CertChain(encodingBlob, (err, certChain) => {
 validate(param: CertChainValidationParameters): Promise\<CertChainValidationResult>
 
 Validates a certificate chain. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -8029,6 +10008,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error. |
 | 19030001 | crypto operation error.           |
@@ -8042,8 +10022,8 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -8054,7 +10034,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-async function createX509CertChain(): Promise<certFramework.X509CertChain> {
+async function createX509CertChain(): Promise<cert.X509CertChain> {
   let certChainData = "-----BEGIN CERTIFICATE-----\n" +
     "MIID6jCCAtKgAwIBAgIIIM2q/TmRoLcwDQYJKoZIhvcNAQELBQAwWjELMAkGA1UE\n" +
     "BhMCRU4xEDAOBgNVBAgTB0VuZ2xhbmQxDzANBgNVBAcTBkxvbmRvbjEMMAoGA1UE\n" +
@@ -8110,15 +10090,15 @@ async function createX509CertChain(): Promise<certFramework.X509CertChain> {
     "xjoE\n" +
     "-----END CERTIFICATE-----\n";
 
-  // Certificate chain binary data, which must be set based on the service.
-  let encodingBlob: certFramework.EncodingBlob = {
+  // Certificate chain binary data, which varies with the service.
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certChainData),
     // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
-  let x509CertChain: certFramework.X509CertChain = {} as certFramework.X509CertChain;
+  let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
   try {
-    x509CertChain = await certFramework.createX509CertChain(encodingBlob);
+    x509CertChain = await cert.createX509CertChain(encodingBlob);
   }
   catch (error) {
     let e: BusinessError = error as BusinessError;
@@ -8129,8 +10109,8 @@ async function createX509CertChain(): Promise<certFramework.X509CertChain> {
 
 async function validate() {
   const certChain = await createX509CertChain();
-  // Certificate chain validation data, which must be assigned based on the service.
-  const param: certFramework.CertChainValidationParameters = {
+  // Certificate chain validation data, which varies with the service.
+  const param: cert.CertChainValidationParameters = {
     date: '20231212080000Z',
     trustAnchors: [{
         CAPubKey: new Uint8Array([0x30, 0x2a, 0x30, 0x05, 0x06, 0x03, 0x2b, 0x65, 0x70, 0x03, 0x21, 0x00, 0xbb, 0x16,0x9d, 0x8f, 0x5c, 0x30, 0xd0, 0xba, 0x8f, 0x37, 0x6e, 0x33, 0xaf, 0x6f, 0x23, 0x71, 0x23, 0xa5, 0x49, 0x60,0x1e, 0xd1, 0x07, 0x4b, 0xc9, 0x11, 0x7e, 0x66, 0x01, 0xba, 0x92, 0x52]),
@@ -8155,6 +10135,8 @@ validate(param: CertChainValidationParameters, callback: AsyncCallback\<CertChai
 
 Validates a certificate chain. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Security.Cert
 
 **Parameters**
@@ -8162,7 +10144,7 @@ Validates a certificate chain. This API uses an asynchronous callback to return 
 | Name   | Type                           | Mandatory| Description     |
 | --------- | ------------------------------- | ---- | ------------ |
 | param | [CertChainValidationParameters](#certchainvalidationparameters11) | Yes  | Parameters for validating the X.509 certificate chain.|
-| callback  | AsyncCallback\<[CertChainValidationResult](#certchainvalidationresult11)> | Yes  | Callback invoked to return the certificate chain validation result.|
+| callback  | AsyncCallback\<[CertChainValidationResult](#certchainvalidationresult11)> | Yes  | Callback used to return the certificate chain validation result.|
 
 **Error codes**
 
@@ -8170,6 +10152,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 
 | ID| Error Message               |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error. |
 | 19030001 | crypto operation error.           |
@@ -8183,7 +10166,7 @@ For details about the error codes, see [Certificate Error Codes](errorcode-cert.
 **Example**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // Convert the string into a Uint8Array.
 function stringToUint8Array(str: string): Uint8Array {
@@ -8249,15 +10232,15 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
   "xjoE\n" +
   "-----END CERTIFICATE-----\n";
 
-// Certificate chain binary data, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
+// Certificate chain binary data, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
   // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-// Certificate chain validation data, which must be assigned based on the service.
-let param: certFramework.CertChainValidationParameters = {
+// Certificate chain validation data, which varies with the service.
+let param: cert.CertChainValidationParameters = {
   date: '20231212080000Z',
   trustAnchors: [{
     CAPubKey: new Uint8Array([0x30, 0x2a, 0x30, 0x05, 0x06, 0x03, 0x2b, 0x65, 0x70, 0x03, 0x21, 0x00, 0xbb, 0x16,0x9d, 0x8f, 0x5c, 0x30, 0xd0, 0xba, 0x8f, 0x37, 0x6e, 0x33, 0xaf, 0x6f, 0x23, 0x71, 0x23, 0xa5, 0x49, 0x60,0x1e, 0xd1, 0x07, 0x4b, 0xc9, 0x11, 0x7e, 0x66, 0x01, 0xba, 0x92, 0x52]),
@@ -8265,13 +10248,13 @@ let param: certFramework.CertChainValidationParameters = {
   }]
 };
 
-certFramework.createX509CertChain(encodingBlob, (err, certChain) => {
-  if (err != null) {
+cert.createX509CertChain(encodingBlob, (err, certChain) => {
+  if (err) {
     console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('createX509CertChain success');
     certChain.validate(param, (error, validationRes) => {
-      if (error != null) {
+      if (error) {
         console.error('X509CertChain validate failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('X509CertChain validate success');
@@ -8279,4 +10262,551 @@ certFramework.createX509CertChain(encodingBlob, (err, certChain) => {
     });
   }
 });
+```
+
+### toString<sup>12+</sup>
+
+toString(): string
+
+Converts the object data into a string.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type   | Description                                                |
+| ------- | ---------------------------------------------------- |
+| string | String obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certChainData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIGVjCCBT6gAwIBAgIQBMO0W3CU9LWVw1bE/jqYojANBgkqhkiG9w0BAQsFADBE\n' +
+  'MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMR4wHAYDVQQDExVH\n' +
+  'ZW9UcnVzdCBSU0EgQ04gQ0EgRzIwHhcNMjMwMzIzMDAwMDAwWhcNMjQwNDIyMjM1\n' +
+  'OTU5WjB1MQswCQYDVQQGEwJDTjERMA8GA1UECBMIemhlamlhbmcxETAPBgNVBAcT\n' +
+  'CGhhbmd6aG91MSwwKgYDVQQKEyNOZXRFYXNlIChIYW5nemhvdSkgTmV0d29yayBD\n' +
+  'by4sIEx0ZDESMBAGA1UEAwwJKi4xNjMuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC\n' +
+  'AQ8AMIIBCgKCAQEAwELks0Q1Z81u1OpbGdEFE2Snm/WpLfmiC5YFj5nFrinSX+UZ\n' +
+  'MIk42euBdjYSsWFxbljmWDdUCjstMhG8vRAjz3Nt1QniMCunHHFGujR5rSNLWYHE\n' +
+  'vCPhfptIhqOaE/rvkWGZZr2KjTQQN0dRf8dm9Oewy8DHu95c9jW6c9AVgKWUVOni\n' +
+  'tTOcJCnrndWjgCIPfKmKgrwaNaMnuQyy5nPIUHl/5EGzuGHrwjwlF+w+cT+Fwdix\n' +
+  'C3msEOCwX6wzo6baDs4og2EzuPNyTp4n4UqH5aHhLePgBFboOAyJwWp3+XJNpNGw\n' +
+  'GkU56cUUy7+AAn268EVvUNr7uQ65t2t+Ys32bQIDAQABo4IDETCCAw0wHwYDVR0j\n' +
+  'BBgwFoAUJG+RP4mHhw4ywkAY38VM60/ISTIwHQYDVR0OBBYEFD1HyRYJ5jqkvYL7\n' +
+  'C6TSt8/y3e7hMB0GA1UdEQQWMBSCCSouMTYzLmNvbYIHMTYzLmNvbTAOBgNVHQ8B\n' +
+  'Af8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMD0GA1UdHwQ2\n' +
+  'MDQwMqAwoC6GLGh0dHA6Ly9jcmwuZGlnaWNlcnQuY24vR2VvVHJ1c3RSU0FDTkNB\n' +
+  'RzIuY3JsMD4GA1UdIAQ3MDUwMwYGZ4EMAQICMCkwJwYIKwYBBQUHAgEWG2h0dHA6\n' +
+  'Ly93d3cuZGlnaWNlcnQuY29tL0NQUzBxBggrBgEFBQcBAQRlMGMwIwYIKwYBBQUH\n' +
+  'MAGGF2h0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNuMDwGCCsGAQUFBzAChjBodHRwOi8v\n' +
+  'Y2FjZXJ0cy5kaWdpY2VydC5jbi9HZW9UcnVzdFJTQUNOQ0FHMi5jcnQwCQYDVR0T\n' +
+  'BAIwADCCAX4GCisGAQQB1nkCBAIEggFuBIIBagFoAHUA7s3QZNXbGs7FXLedtM0T\n' +
+  'ojKHRny87N7DUUhZRnEftZsAAAGHDSE15QAABAMARjBEAiBRpmsJ3F9AI8wFxqOQ\n' +
+  'bHp+RL6F8cvNydajQ0Bqxjvd3AIgefAU/po3jBm+96dFVdbX+AG1uss67DL3VL5I\n' +
+  'nUmVva8AdgBz2Z6JG0yWeKAgfUed5rLGHNBRXnEZKoxrgBB6wXdytQAAAYcNITZS\n' +
+  'AAAEAwBHMEUCID/sUP12odF7uTTEyE0PjCpKo3nF7A3ba3b5wJJsZrDrAiEAxrat\n' +
+  'W2eeZTD458LPSPrMMBb1/o6zibWXqJCQye+bVFwAdwBIsONr2qZHNA/lagL6nTDr\n' +
+  'HFIBy1bdLIHZu7+rOdiEcwAAAYcNITYeAAAEAwBIMEYCIQCCJ2ktM1F+d1I5mQju\n' +
+  'Tn7oDYxy3GCGyG3u/yhu8k7EaAIhANSP8cAaMQFV6y8B2tubKY5eSQtgkF3a6NNq\n' +
+  'QJjtPnoHMA0GCSqGSIb3DQEBCwUAA4IBAQC8dK/G4nvs/SyQe/mnK+rUYIdSFs+4\n' +
+  'lgzatmq8V/I1tBly+Sv/FPhnn4F3iCrqy9j8y202FP51ev95DGbjlJRTIFPqVAO8\n' +
+  'ywYrLhvl1SJhV0b/8NF0Pr3dZVnK5Vfn11+LSBUg0cBB2hcVV30nv3IuVhz3d12n\n' +
+  'P+VseYQgMpQf7ad+ttpZtA7yqHzrUm4fzr03G7q88GztACRSHoYiPbOlz99SeTgW\n' +
+  '7bzZl1I4taxy2Q3b0ZBGfUt/kPY05tpKzKwDTbbqSErYszCt5X1RfVvf3coxF8Mo\n' +
+  '9bHbs2wYIzQBdujDQ/hU0u6ItERer3SUItZoxaSIxdrZ9eXFwVvXsT/g\n' +
+  '-----END CERTIFICATE-----\n' +
+  '-----BEGIN CERTIFICATE-----\n' +
+  'MIIFDzCCA/egAwIBAgIQCxNitu5qnT6WiTDxbiB9OTANBgkqhkiG9w0BAQsFADBh\n' +
+  'MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3\n' +
+  'd3cuZGlnaWNlcnQuY29tMSAwHgYDVQQDExdEaWdpQ2VydCBHbG9iYWwgUm9vdCBD\n' +
+  'QTAeFw0yMDAzMDQxMjA0NDBaFw0zMDAzMDQxMjA0NDBaMEQxCzAJBgNVBAYTAlVT\n' +
+  'MRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxHjAcBgNVBAMTFUdlb1RydXN0IFJTQSBD\n' +
+  'TiBDQSBHMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANA1OZJJtZUI\n' +
+  '7zj4qFHT79g+Otks4TEfmUEDhrNKBEEjb/i29GBfnpvFdT36azCg2VODJRSjIzFn\n' +
+  '4qADcc84EmfKiDEM97HFsQPp9RRkqxH5cB51EU2eBE9Ua95x+wQp/KSdCqITCQ/v\n' +
+  'yvm3J4Upjl0wlW8wRCPCWcYw3pKClGRkNzVtI1KXnfpn7fG3N84n7wlBb9IGKJFa\n' +
+  'c/6+hxvZx2qnfLsxdIKR0Q/biGoU6Z8Iy/R/p7GoPO8vamV090+QHEL5AdSzKtEh\n' +
+  'U9vdvcuWjjLxVnaJLfj/6WoGZj8UWn3zFbEoTVaAfp2xqdzW7yRvi2r148m9ev7l\n' +
+  'jDqHo8UX69sCAwEAAaOCAd4wggHaMB0GA1UdDgQWBBQkb5E/iYeHDjLCQBjfxUzr\n' +
+  'T8hJMjAfBgNVHSMEGDAWgBQD3lA1VtFMu2bwo+IbG8OXsj3RVTAOBgNVHQ8BAf8E\n' +
+  'BAMCAYYwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMBIGA1UdEwEB/wQI\n' +
+  'MAYBAf8CAQAwMwYIKwYBBQUHAQEEJzAlMCMGCCsGAQUFBzABhhdodHRwOi8vb2Nz\n' +
+  'cC5kaWdpY2VydC5jbjBABgNVHR8EOTA3MDWgM6Axhi9odHRwOi8vY3JsLmRpZ2lj\n' +
+  'ZXJ0LmNuL0RpZ2lDZXJ0R2xvYmFsUm9vdENBLmNybDCB3QYDVR0gBIHVMIHSMIHF\n' +
+  'BglghkgBhv1sAQEwgbcwKAYIKwYBBQUHAgEWHGh0dHBzOi8vd3d3LmRpZ2ljZXJ0\n' +
+  'LmNvbS9DUFMwgYoGCCsGAQUFBwICMH4MfEFueSB1c2Ugb2YgdGhpcyBDZXJ0aWZp\n' +
+  'Y2F0ZSBjb25zdGl0dXRlcyBhY2NlcHRhbmNlIG9mIHRoZSBSZWx5aW5nIFBhcnR5\n' +
+  'IEFncmVlbWVudCBsb2NhdGVkIGF0IGh0dHBzOi8vd3d3LmRpZ2ljZXJ0LmNvbS9y\n' +
+  'cGEtdWEwCAYGZ4EMAQICMA0GCSqGSIb3DQEBCwUAA4IBAQCzkcXq0TN0oSn4UeXp\n' +
+  'FBW7U8zrHBIhH9MXHNBp+Yy/yN19133UY05uuHXHaU2Uv0hxefckjPdkaX7ARso+\n' +
+  'O3Ar6nf7YfBwCqSpqsNckKT7KKtf3Ot95wYFpKDa64jcRUfxzRWnmq12IVzczqHI\n' +
+  'sIvUZQINw/UHSQcWekdUnMg58bQSHyTjwkj9jcX2RURxaVZkr15wxo/Z3Ydo2PVK\n' +
+  '3afEr0/vcuFvE7QeGXiI2DJdVt3JefatZ3rj4VTW2aUZwHGUiWWIUudBfQKR0JEp\n' +
+  'lJ8MFaKDh4/A2VEJnXILu1iwvc1m3jCaPuzZKdoHM/1234bznJI2aAfhfIhoHw90\n' +
+  'tPO+\n' +
+  '-----END CERTIFICATE-----\n';
+
+// Certificate chain binary data, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(certChainData),
+  // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function certChainToString() {
+  let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
+  try {
+    x509CertChain = await cert.createX509CertChain(encodingBlob);
+    console.log('createX509CertChain success');
+    console.info('toString success: ' + JSON.stringify(x509CertChain.toString()));
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+### hashCode<sup>12+</sup>
+
+hashCode(): Uint8Array
+
+Obtains the hash value of the data in DER format.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type   | Description                                                |
+| ------- | ---------------------------------------------------- |
+| Uint8Array | Hash value obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certChainData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIGVjCCBT6gAwIBAgIQBMO0W3CU9LWVw1bE/jqYojANBgkqhkiG9w0BAQsFADBE\n' +
+  'MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMR4wHAYDVQQDExVH\n' +
+  'ZW9UcnVzdCBSU0EgQ04gQ0EgRzIwHhcNMjMwMzIzMDAwMDAwWhcNMjQwNDIyMjM1\n' +
+  'OTU5WjB1MQswCQYDVQQGEwJDTjERMA8GA1UECBMIemhlamlhbmcxETAPBgNVBAcT\n' +
+  'CGhhbmd6aG91MSwwKgYDVQQKEyNOZXRFYXNlIChIYW5nemhvdSkgTmV0d29yayBD\n' +
+  'by4sIEx0ZDESMBAGA1UEAwwJKi4xNjMuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC\n' +
+  'AQ8AMIIBCgKCAQEAwELks0Q1Z81u1OpbGdEFE2Snm/WpLfmiC5YFj5nFrinSX+UZ\n' +
+  'MIk42euBdjYSsWFxbljmWDdUCjstMhG8vRAjz3Nt1QniMCunHHFGujR5rSNLWYHE\n' +
+  'vCPhfptIhqOaE/rvkWGZZr2KjTQQN0dRf8dm9Oewy8DHu95c9jW6c9AVgKWUVOni\n' +
+  'tTOcJCnrndWjgCIPfKmKgrwaNaMnuQyy5nPIUHl/5EGzuGHrwjwlF+w+cT+Fwdix\n' +
+  'C3msEOCwX6wzo6baDs4og2EzuPNyTp4n4UqH5aHhLePgBFboOAyJwWp3+XJNpNGw\n' +
+  'GkU56cUUy7+AAn268EVvUNr7uQ65t2t+Ys32bQIDAQABo4IDETCCAw0wHwYDVR0j\n' +
+  'BBgwFoAUJG+RP4mHhw4ywkAY38VM60/ISTIwHQYDVR0OBBYEFD1HyRYJ5jqkvYL7\n' +
+  'C6TSt8/y3e7hMB0GA1UdEQQWMBSCCSouMTYzLmNvbYIHMTYzLmNvbTAOBgNVHQ8B\n' +
+  'Af8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMD0GA1UdHwQ2\n' +
+  'MDQwMqAwoC6GLGh0dHA6Ly9jcmwuZGlnaWNlcnQuY24vR2VvVHJ1c3RSU0FDTkNB\n' +
+  'RzIuY3JsMD4GA1UdIAQ3MDUwMwYGZ4EMAQICMCkwJwYIKwYBBQUHAgEWG2h0dHA6\n' +
+  'Ly93d3cuZGlnaWNlcnQuY29tL0NQUzBxBggrBgEFBQcBAQRlMGMwIwYIKwYBBQUH\n' +
+  'MAGGF2h0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNuMDwGCCsGAQUFBzAChjBodHRwOi8v\n' +
+  'Y2FjZXJ0cy5kaWdpY2VydC5jbi9HZW9UcnVzdFJTQUNOQ0FHMi5jcnQwCQYDVR0T\n' +
+  'BAIwADCCAX4GCisGAQQB1nkCBAIEggFuBIIBagFoAHUA7s3QZNXbGs7FXLedtM0T\n' +
+  'ojKHRny87N7DUUhZRnEftZsAAAGHDSE15QAABAMARjBEAiBRpmsJ3F9AI8wFxqOQ\n' +
+  'bHp+RL6F8cvNydajQ0Bqxjvd3AIgefAU/po3jBm+96dFVdbX+AG1uss67DL3VL5I\n' +
+  'nUmVva8AdgBz2Z6JG0yWeKAgfUed5rLGHNBRXnEZKoxrgBB6wXdytQAAAYcNITZS\n' +
+  'AAAEAwBHMEUCID/sUP12odF7uTTEyE0PjCpKo3nF7A3ba3b5wJJsZrDrAiEAxrat\n' +
+  'W2eeZTD458LPSPrMMBb1/o6zibWXqJCQye+bVFwAdwBIsONr2qZHNA/lagL6nTDr\n' +
+  'HFIBy1bdLIHZu7+rOdiEcwAAAYcNITYeAAAEAwBIMEYCIQCCJ2ktM1F+d1I5mQju\n' +
+  'Tn7oDYxy3GCGyG3u/yhu8k7EaAIhANSP8cAaMQFV6y8B2tubKY5eSQtgkF3a6NNq\n' +
+  'QJjtPnoHMA0GCSqGSIb3DQEBCwUAA4IBAQC8dK/G4nvs/SyQe/mnK+rUYIdSFs+4\n' +
+  'lgzatmq8V/I1tBly+Sv/FPhnn4F3iCrqy9j8y202FP51ev95DGbjlJRTIFPqVAO8\n' +
+  'ywYrLhvl1SJhV0b/8NF0Pr3dZVnK5Vfn11+LSBUg0cBB2hcVV30nv3IuVhz3d12n\n' +
+  'P+VseYQgMpQf7ad+ttpZtA7yqHzrUm4fzr03G7q88GztACRSHoYiPbOlz99SeTgW\n' +
+  '7bzZl1I4taxy2Q3b0ZBGfUt/kPY05tpKzKwDTbbqSErYszCt5X1RfVvf3coxF8Mo\n' +
+  '9bHbs2wYIzQBdujDQ/hU0u6ItERer3SUItZoxaSIxdrZ9eXFwVvXsT/g\n' +
+  '-----END CERTIFICATE-----\n' +
+  '-----BEGIN CERTIFICATE-----\n' +
+  'MIIFDzCCA/egAwIBAgIQCxNitu5qnT6WiTDxbiB9OTANBgkqhkiG9w0BAQsFADBh\n' +
+  'MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3\n' +
+  'd3cuZGlnaWNlcnQuY29tMSAwHgYDVQQDExdEaWdpQ2VydCBHbG9iYWwgUm9vdCBD\n' +
+  'QTAeFw0yMDAzMDQxMjA0NDBaFw0zMDAzMDQxMjA0NDBaMEQxCzAJBgNVBAYTAlVT\n' +
+  'MRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxHjAcBgNVBAMTFUdlb1RydXN0IFJTQSBD\n' +
+  'TiBDQSBHMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANA1OZJJtZUI\n' +
+  '7zj4qFHT79g+Otks4TEfmUEDhrNKBEEjb/i29GBfnpvFdT36azCg2VODJRSjIzFn\n' +
+  '4qADcc84EmfKiDEM97HFsQPp9RRkqxH5cB51EU2eBE9Ua95x+wQp/KSdCqITCQ/v\n' +
+  'yvm3J4Upjl0wlW8wRCPCWcYw3pKClGRkNzVtI1KXnfpn7fG3N84n7wlBb9IGKJFa\n' +
+  'c/6+hxvZx2qnfLsxdIKR0Q/biGoU6Z8Iy/R/p7GoPO8vamV090+QHEL5AdSzKtEh\n' +
+  'U9vdvcuWjjLxVnaJLfj/6WoGZj8UWn3zFbEoTVaAfp2xqdzW7yRvi2r148m9ev7l\n' +
+  'jDqHo8UX69sCAwEAAaOCAd4wggHaMB0GA1UdDgQWBBQkb5E/iYeHDjLCQBjfxUzr\n' +
+  'T8hJMjAfBgNVHSMEGDAWgBQD3lA1VtFMu2bwo+IbG8OXsj3RVTAOBgNVHQ8BAf8E\n' +
+  'BAMCAYYwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMBIGA1UdEwEB/wQI\n' +
+  'MAYBAf8CAQAwMwYIKwYBBQUHAQEEJzAlMCMGCCsGAQUFBzABhhdodHRwOi8vb2Nz\n' +
+  'cC5kaWdpY2VydC5jbjBABgNVHR8EOTA3MDWgM6Axhi9odHRwOi8vY3JsLmRpZ2lj\n' +
+  'ZXJ0LmNuL0RpZ2lDZXJ0R2xvYmFsUm9vdENBLmNybDCB3QYDVR0gBIHVMIHSMIHF\n' +
+  'BglghkgBhv1sAQEwgbcwKAYIKwYBBQUHAgEWHGh0dHBzOi8vd3d3LmRpZ2ljZXJ0\n' +
+  'LmNvbS9DUFMwgYoGCCsGAQUFBwICMH4MfEFueSB1c2Ugb2YgdGhpcyBDZXJ0aWZp\n' +
+  'Y2F0ZSBjb25zdGl0dXRlcyBhY2NlcHRhbmNlIG9mIHRoZSBSZWx5aW5nIFBhcnR5\n' +
+  'IEFncmVlbWVudCBsb2NhdGVkIGF0IGh0dHBzOi8vd3d3LmRpZ2ljZXJ0LmNvbS9y\n' +
+  'cGEtdWEwCAYGZ4EMAQICMA0GCSqGSIb3DQEBCwUAA4IBAQCzkcXq0TN0oSn4UeXp\n' +
+  'FBW7U8zrHBIhH9MXHNBp+Yy/yN19133UY05uuHXHaU2Uv0hxefckjPdkaX7ARso+\n' +
+  'O3Ar6nf7YfBwCqSpqsNckKT7KKtf3Ot95wYFpKDa64jcRUfxzRWnmq12IVzczqHI\n' +
+  'sIvUZQINw/UHSQcWekdUnMg58bQSHyTjwkj9jcX2RURxaVZkr15wxo/Z3Ydo2PVK\n' +
+  '3afEr0/vcuFvE7QeGXiI2DJdVt3JefatZ3rj4VTW2aUZwHGUiWWIUudBfQKR0JEp\n' +
+  'lJ8MFaKDh4/A2VEJnXILu1iwvc1m3jCaPuzZKdoHM/1234bznJI2aAfhfIhoHw90\n' +
+  'tPO+\n' +
+  '-----END CERTIFICATE-----\n';
+
+// Certificate chain binary data, which varies with the service.
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(certChainData),
+  // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function certChainHashCode() {
+  let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
+  try {
+    x509CertChain = await cert.createX509CertChain(encodingBlob);
+    console.log('createX509CertChain success');
+    console.info('hashCode success: ' + JSON.stringify(x509CertChain.hashCode()));
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+## cert.createX500DistinguishedName<sup>12+</sup>
+
+createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
+
+Creates an **X500DistinguishedName** object in the form of a string. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Parameters**
+
+| Name  | Type                         | Mandatory| Description                |
+| -------- | ----------------------------- | ---- | -------------------- |
+| nameStr | string | Yes|DN of the string type defined by X.509.|
+
+**Return value**
+
+| Type                           | Description            |
+| ------------------------------- | ---------------- |
+| Promise\<[X500DistinguishedName](#x500distinguishedname12)> | Promise used to return the **X500DistinguishedName** object created.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+| 19030002 | the certificate signature verification failed. |
+| 19030003 | the certificate has not taken effect. |
+| 19030004 | the certificate has expired. |
+| 19030005 | failed to obtain the certificate issuer. |
+| 19030006 | the key cannot be used for signing a certificate. |
+| 19030007 | the key cannot be used for digital signature. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let nameStr = '/CN=John Doe/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';
+async function createX500DistinguishedName() {
+  try {
+    cert.createX500DistinguishedName(nameStr)
+      .then((data) => {
+        console.log('createX500DistinguishedName success');
+      })
+      .catch((err: BusinessError) => {
+        console.error('createX500DistinguishedName catch, errCode: ' + err.code + ', errMsg: ' + err.message);
+      })
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+## cert.createX500DistinguishedName<sup>12+</sup>
+
+createX500DistinguishedName(nameDer: Uint8Array): Promise\<X500DistinguishedName>
+
+Creates an **X500DistinguishedName** object in DER format. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Parameters**
+
+| Name  | Type                         | Mandatory| Description                |
+| -------- | ----------------------------- | ---- | -------------------- |
+| nameDer | Uint8Array | Yes|Name of the Uint8Array type in DER format defined by X.509.|
+
+**Return value**
+
+| Type                           | Description            |
+| ------------------------------- | ---------------- |
+| Promise\<[X500DistinguishedName](#x500distinguishedname12)> | Promise used to return the **X500DistinguishedName** object created.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+| 19030002 | the certificate signature verification failed. |
+| 19030003 | the certificate has not taken effect. |
+| 19030004 | the certificate has expired. |
+| 19030005 | failed to obtain the certificate issuer. |
+| 19030006 | the key cannot be used for signing a certificate. |
+| 19030007 | the key cannot be used for digital signature. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let nameDer = new Uint8Array([48,41,49,11,48,9,6,3,85,4,3,12,2,67,65,49,13,48,11,6,3,85,4,10,12,4,116,101,115,116,49,11,48,9,6,3,85,4,6,19,2,67,78]);
+async function createX500DistinguishedName() {
+  try {
+    cert.createX500DistinguishedName(nameDer)
+      .then((data) => {
+        console.log('createX500DistinguishedName success');
+      })
+      .catch((err: BusinessError) => {
+        console.error('createX500DistinguishedName catch, errCode: ' + err.code + ', errMsg: ' + err.message);
+      })
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+## X500DistinguishedName<sup>12+</sup>
+
+Provides APIs for managing the **X500DistinguishedName** instance.
+
+### getName<sup>12+</sup>
+
+getName(): string
+
+Obtains the DN in the form of a string.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type   | Description                                             |
+| ------- | ------------------------------------------------- |
+| string | DN in the form of a string obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let nameDer = new Uint8Array([48,41,49,11,48,9,6,3,85,4,3,12,2,67,65,49,13,48,11,6,3,85,4,10,12,4,116,101,115,116,49,11,48,9,6,3,85,4,6,19,2,67,78]);
+async function getName() {
+  try {
+    cert.createX500DistinguishedName(nameDer)
+      .then((data) => {
+        console.log('createX500DistinguishedName success');
+        console.info('createX500DistinguishedName getName: ' + JSON.stringify(data.getName()))
+      })
+      .catch((err: BusinessError) => {
+        console.error('createX500DistinguishedName catch, errCode: ' + err.code + ', errMsg: ' + err.message);
+      })
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### getName<sup>12+</sup>
+
+getName(type: string): Array\<string>
+
+Obtains DNs of the specified type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Parameters**
+
+| Name      | Type  | Mandatory| Description          |
+| ------------ | ------ | ---- | -------------- |
+| type | string | Yes| Type of the DNs to obtain.|
+
+**Return value**
+
+| Type   | Description                                             |
+| ------- | ------------------------------------------------- |
+| Array\<string> | DNs obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let nameStr = '/CN=Example CA/OU=test cert/O=test/L=XA/ST=SX/C=CN/CN=RSA CA/CN=XTS';
+async function getName() {
+  try {
+    cert.createX500DistinguishedName(nameStr)
+      .then((data) => {
+        console.log('createX500DistinguishedName success');
+        console.info('createX500DistinguishedName getName: ' + JSON.stringify(data.getName("CN")))
+      })
+      .catch((err: BusinessError) => {
+        console.error('createX500DistinguishedName catch, errCode: ' + err.code + ', errMsg: ' + err.message);
+      })
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### getEncoded<sup>12+</sup>
+
+getEncoded(): EncodingBlob
+
+Obtains the data of the X.509 certificate **extensions** field.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Security.Cert
+
+**Return value**
+
+| Type   | Description                                             |
+| ------- | ------------------------------------------------- |
+| [EncodingBlob](#encodingblob) | X.509 certificate extensions data obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let nameStr = '/CN=Example CA/OU=test cert/O=test/L=XA/ST=SX/C=CN/CN=RSA CA/CN=XTS';
+async function getEncoded() {
+  try {
+    cert.createX500DistinguishedName(nameStr)
+      .then((data) => {
+        console.log('createX500DistinguishedName success');
+        let encodingBlobData = data.getEncoded();
+      })
+      .catch((err: BusinessError) => {
+        console.error('createX500DistinguishedName catch, errCode: ' + err.code + ', errMsg: ' + err.message);
+      })
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
 ```

@@ -3,20 +3,17 @@
 
 子组件中被\@Link装饰的变量与其父组件中对应的数据源建立双向数据绑定。
 
+在阅读\@Link文档前，建议开发者首先了解[\@State](./arkts-state.md)的基本用法。
 
 > **说明：**
 >
 > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
-
+>
+> 从API version 11开始，该装饰器支持在原子化服务中使用。
 
 ## 概述
 
 \@Link装饰的变量与其父组件中的数据源共享相同的值。
-
-
-## 限制条件
-
-- \@Link装饰器不能在\@Entry装饰的自定义组件中使用。
 
 
 ## 装饰器使用规则说明
@@ -24,9 +21,8 @@
 | \@Link变量装饰器                                             | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 装饰器参数                                                   | 无                                                           |
-| 同步类型                                                     | 双向同步。<br/>父组件中\@State,&nbsp;\@StorageLink和\@Link&nbsp;和子组件\@Link可以建立双向数据同步，反之亦然。 |
-| 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Link a : string \| undefined`。 |
-| <br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>类型必须被指定，且和双向绑定状态变量的类型相同。<br/>不支持any。 |                                                              |
+| 同步类型                                                     | 双向同步。<br/>父组件中的状态变量可以与子组件\@Link建立双向同步，当其中一方改变时，另外一方能够感知到变化。 |
+| 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>类型必须被指定，且和双向绑定状态变量的类型相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Link a : string \| undefined`。 |
 | 被装饰变量的初始值                                           | 无，禁止本地初始化。                                         |
 
 
@@ -34,7 +30,7 @@
 
 | 传递/访问      | 说明                                       |
 | ---------- | ---------------------------------------- |
-| 从父组件初始化和更新 | 必选。与父组件\@State,&nbsp;\@StorageLink和\@Link&nbsp;建立双向绑定。允许父组件中\@State、\@Link、\@Prop、\@Provide、\@Consume、\@ObjectLink、\@StorageLink、\@StorageProp、\@LocalStorageLink和\@LocalStorageProp装饰变量初始化子组件\@Link。<br/>从API&nbsp;version&nbsp;9开始，\@Link子组件从父组件初始化\@State的语法为Comp({&nbsp;aLink:&nbsp;this.aState&nbsp;})。同样Comp({aLink:&nbsp;$aState})也支持。 |
+| 从父组件初始化和更新 | 必选。与父组件\@State,&nbsp;\@StorageLink和\@Link&nbsp;建立双向绑定。允许父组件中[\@State](./arkts-state.md)、\@Link、[\@Prop](./arkts-prop.md)、[\@Provide](./arkts-provide-and-consume.md)、[\@Consume](./arkts-provide-and-consume.md)、[\@ObjectLink](./arkts-observed-and-objectlink.md)、[\@StorageLink](./arkts-appstorage.md#storagelink)、[\@StorageProp](./arkts-appstorage.md#storageprop)、[\@LocalStorageLink](./arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp](./arkts-localstorage.md#localstorageprop)装饰变量初始化子组件\@Link。<br/>从API&nbsp;version&nbsp;9开始，\@Link子组件从父组件初始化\@State的语法为Comp({&nbsp;aLink:&nbsp;this.aState&nbsp;})。同样Comp({aLink:&nbsp;$aState})也支持。 |
 | 用于初始化子组件   | 允许，可用于初始化常规变量、\@State、\@Link、\@Prop、\@Provide。 |
 | 是否支持组件外访问  | 私有，只能在所属组件内访问。                           |
 
@@ -131,6 +127,157 @@ struct ParentComponent {
 3. \@Link的更新：当子组件中\@Link更新后，处理步骤如下（以父组件为\@State为例）：
    1. \@Link更新后，调用父组件的\@State包装类的set方法，将更新后的数值同步回父组件。
    2. 子组件\@Link和父组件\@State分别遍历依赖的系统组件，进行对应的UI的更新。以此实现子组件\@Link同步回父组件\@State。
+
+
+## 限制条件
+
+1. \@Link装饰器不能在[\@Entry](./arkts-create-custom-components.md#自定义组件的基本结构)装饰的自定义组件中使用。
+
+2. \@Link装饰的变量禁止本地初始化，否则编译期会报错。
+
+```ts
+// 错误写法，编译报错
+@Link count: number = 10;
+
+// 正确写法
+@Link count: number;
+```
+
+3. \@Link装饰的变量的类型要和数据源类型保持一致，否则框架会抛出运行时错误。
+
+【反例】
+
+```ts
+class Info {
+  info: string = 'Hello';
+}
+
+class Cousin {
+  name: string = 'Hello';
+}
+
+@Component
+struct Child {
+  // 错误写法，@Link与@State数据源类型不一致
+  @Link test: Cousin;
+
+  build() {
+    Text(this.test.name)
+  }
+}
+
+@Entry
+@Component
+struct LinkExample {
+  @State info: Info = new Info();
+
+  build() {
+    Column() {
+      // 错误写法，@Link与@State数据源类型不一致
+      Child({test: new Cousin()})
+    }
+  }
+}
+```
+
+【正例】
+
+```ts
+class Info {
+  info: string = 'Hello';
+}
+
+@Component
+struct Child {
+  // 正确写法
+  @Link test: Info;
+
+  build() {
+    Text(this.test.info)
+  }
+}
+
+@Entry
+@Component
+struct LinkExample {
+  @State info: Info = new Info();
+
+  build() {
+    Column() {
+      // 正确写法
+      Child({test: this.info})
+    }
+  }
+}
+```
+
+4. \@Link装饰的变量仅能被状态变量初始化，不能用常量初始化，编译期会有warn告警，运行时会抛出is not callable运行时错误。
+
+【反例】
+
+```ts
+class Info {
+  info: string = 'Hello';
+}
+
+@Component
+struct Child {
+  @Link msg: string;
+  @Link info: string;
+
+  build() {
+    Text(this.msg + this.info)
+  }
+}
+
+@Entry
+@Component
+struct LinkExample {
+  @State message: string = 'Hello';
+  @State info: Info = new Info();
+
+  build() {
+    Column() {
+      // 错误写法，常规变量不能初始化@Link
+      Child({msg: 'World', info: this.info.info})
+    }
+  }
+}
+```
+
+【正例】
+
+```ts
+class Info {
+  info: string = 'Hello';
+}
+
+@Component
+struct Child {
+  @Link msg: string;
+  @Link info: Info;
+
+  build() {
+    Text(this.msg + this.info.info)
+  }
+}
+
+@Entry
+@Component
+struct LinkExample {
+  @State message: string = 'Hello';
+  @State info: Info = new Info();
+
+  build() {
+    Column() {
+      // 正确写法
+      Child({msg: this.message, info: this.info})
+    }
+  }
+}
+```
+
+5. \@Link不支持装饰Function类型的变量，框架会抛出运行时错误。
 
 
 ## 使用场景
@@ -288,7 +435,7 @@ struct Parent {
 
 ![Video-link-UsageScenario-two](figures/Video-link-UsageScenario-two.gif)
 
-上文所述，ArkUI框架可以观察到数组元素的添加，删除和替换。在该示例中\@State和\@Link的类型是相同的number[]，不允许将\@Link定义成number类型（\@Link item : number），并在父组件中用\@State数组中每个数据项创建子组件。如果要使用这个场景，可以参考[\@Prop](arkts-prop.md)和\@Observed。
+上文所述，ArkUI框架可以观察到数组元素的添加，删除和替换。在该示例中\@State和\@Link的类型是相同的number[]，不允许将\@Link定义成number类型（\@Link item : number），并在父组件中用\@State数组中每个数据项创建子组件。如果要使用这个场景，可以参考[\@Prop](arkts-prop.md)和[\@Observed](./arkts-observed-and-objectlink.md)。
 
 ### 装饰Map类型变量
 
@@ -332,7 +479,7 @@ struct Child {
 
 @Entry
 @Component
-struct MapSample2 {
+struct MapSample {
   @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
 
   build() {
@@ -386,7 +533,7 @@ struct Child {
 
 @Entry
 @Component
-struct SetSample1 {
+struct SetSample {
   @State message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {
@@ -397,6 +544,54 @@ struct SetSample1 {
       .width('100%')
     }
     .height('100%')
+  }
+}
+```
+
+### 使用双向同步机制更改本地其他变量
+
+使用[\@Watch](./arkts-watch.md)可以在双向同步时，更改本地变量。
+
+下面的示例中，在\@Link的\@Watch里面修改了一个\@State装饰的变量sourceNumber，实现了父子组件间的变量同步。但是\@State装饰的变量memberMessage在本地修改又不会影响到父组件中的变量改变。
+
+```ts
+@Entry
+@Component
+struct Parent {
+  @State sourceNumber: number = 0;
+
+  build() {
+    Column() {
+      Text(`父组件的sourceNumber：` + this.sourceNumber)
+      Child({ sourceNumber: this.sourceNumber })
+      Button('父组件更改sourceNumber')
+        .onClick(() => {
+          this.sourceNumber++;
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Component
+struct Child {
+  @State memberMessage: string = 'Hello World';
+  @Link @Watch('onSourceChange') sourceNumber: number;
+
+  onSourceChange() {
+    this.memberMessage = this.sourceNumber.toString();
+  }
+
+  build() {
+    Column() {
+      Text(this.memberMessage)
+      Text(`子组件的sourceNumber：` + this.sourceNumber.toString())
+      Button('子组件更改memberMessage')
+        .onClick(() => {
+          this.memberMessage = 'Hello memberMessage';
+        })
+    }
   }
 }
 ```
@@ -418,7 +613,7 @@ struct Child {
           this.name = "Bob"
         })
 
-      Button('Child change animal to undefined')
+      Button('Child change name to undefined')
         .onClick(() => {
           this.name = undefined
         })
@@ -462,11 +657,11 @@ struct Index {
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class Info {
+  public age: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(age: number) {
+    this.age = age;
   }
 }
 
@@ -482,43 +677,43 @@ struct LinkChild {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA = new ClassA(1);
+  @State info: Info = new Info(1);
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum.c}`)
+      Text(`Parent testNum ${this.info.age}`)
         .onClick(() => {
-          this.testNum.c += 1;
+          this.info.age += 1;
         })
       // @Link装饰的变量需要和数据源@State类型一致
-      LinkChild({ testNum: this.testNum.c })
+      LinkChild({ testNum: this.info.age })
     }
   }
 }
 ```
 
-\@Link testNum: number从父组件的LinkChild({testNum:this.testNum.c})初始化。\@Link的数据源必须是装饰器装饰的状态变量，简而言之，\@Link装饰的数据必须和数据源类型相同，比如\@Link: T和\@State : T。所以，这里应该改为\@Link testNum: ClassA，从父组件初始化的方式为LinkChild({testNum: $testNum})
+\@Link testNum: number从父组件的LinkChild({testNum:this.info.age})初始化。\@Link的数据源必须是装饰器装饰的状态变量，简而言之，\@Link装饰的数据必须和数据源类型相同，比如\@Link: T和\@State : T。所以，这里应该改为\@Link testNum: Info，从父组件初始化的方式为LinkChild({testNum: this.info})
 
 【正例】
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class Info {
+  public age: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(age: number) {
+    this.age = age;
   }
 }
 
 @Component
 struct LinkChild {
-  @Link testNum: ClassA;
+  @Link testNum: Info;
 
   build() {
-    Text(`LinkChild testNum ${this.testNum?.c}`)
+    Text(`LinkChild testNum ${this.testNum?.age}`)
       .onClick(() => {
-        this.testNum.c += 1;
+        this.testNum.age += 1;
       })
   }
 }
@@ -526,16 +721,140 @@ struct LinkChild {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA = new ClassA(1);
+  @State info: Info = new Info(1);
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum.c}`)
+      Text(`Parent testNum ${this.info.age}`)
         .onClick(() => {
-          this.testNum.c += 1;
+          this.info.age += 1;
         })
       // @Link装饰的变量需要和数据源@State类型一致
-      LinkChild({ testNum: this.testNum })
+      LinkChild({ testNum: this.info })
+    }
+  }
+}
+```
+
+### 使用a.b(this.object)形式调用，不会触发UI刷新
+
+在build方法内，当@Link装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法Score.changeScore1或者this.changeScore2修改Child组件中的this.score.value时，UI不会刷新。
+
+【反例】
+
+```ts
+class Score {
+  value: number;
+  constructor(value: number) {
+    this.value = value;
+  }
+
+  static changeScore1(score:Score) {
+    score.value += 1;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State score: Score = new Score(1);
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Parent is ${this.score.value}.`)
+        .fontSize(30)
+        .fontColor(Color.Red)
+      Child({ score: this.score })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Component
+struct Child {
+  @Link score: Score;
+
+  changeScore2(score:Score) {
+    score.value += 2;
+  }
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Child is ${this.score.value}.`)
+        .fontSize(30)
+      Button(`changeScore1`)
+        .onClick(()=>{
+          // 通过静态方法调用，无法触发UI刷新
+          Score.changeScore1(this.score);
+        })
+      Button(`changeScore2`)
+        .onClick(()=>{
+          // 使用this通过自定义组件内部方法调用，无法触发UI刷新
+          this.changeScore2(this.score);
+        })
+    }
+  }
+}
+```
+
+可以通过如下先赋值、再调用新赋值的变量的方式为this.score加上Proxy代理，实现UI刷新。
+
+【正例】
+
+```ts
+class Score {
+  value: number;
+  constructor(value: number) {
+    this.value = value;
+  }
+
+  static changeScore1(score:Score) {
+    score.value += 1;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State score: Score = new Score(1);
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Parent is ${this.score.value}.`)
+        .fontSize(30)
+        .fontColor(Color.Red)
+      Child({ score: this.score })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Component
+struct Child {
+  @Link score: Score;
+
+  changeScore2(score:Score) {
+    score.value += 2;
+  }
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Child is ${this.score.value}.`)
+        .fontSize(30)
+      Button(`changeScore1`)
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let score1 = this.score;
+          Score.changeScore1(score1);
+        })
+      Button(`changeScore2`)
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let score2 = this.score;
+          this.changeScore2(score2);
+        })
     }
   }
 }

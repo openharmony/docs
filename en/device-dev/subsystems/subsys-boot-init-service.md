@@ -28,7 +28,7 @@ Service management is implemented by using the init process to parse the service
    | once          | Optional| Small and standard systems| Whether the current service process is a one-off process.| **1**: The current service process is a one-off process. If the process exits, the init process does not restart it.<br>**0**: The current service process is not a one-off process. If the process exits, the init process restarts it upon receiving the SIGCHLD signal.|
    | importance    | Optional| Small and standard systems| <br>Standard system: service priority<br>Small system: service importance| <br>Standard system: The service priority ranges from **-20** to **19**. A smaller value indicates a higher priority. A value beyond the range is invalid.<br>Small system: The value **0** indicates an unimportant process and a value greater than **0** indicates an important process.|
    | caps          | Optional| Small and standard systems| Capabilities required by the current service. They are evaluated based on the capabilities supported by the security subsystem and configured in accordance with the principle of least permission.| Type: number or string array. If you set the value to a number, use the standard Linux capability. If you set the value to a string array, use the standard macro name.|
-   | critical      | Optional| Standard system| Suppression mechanism for services. If the number of times a service is restarted exceeds the value N within the specified period T, the system will be restarted.| <br>Standard system:<br>Type: int array, for example, **"critical": [M, N, T]**.<br>- **M**: enable flag (**0**: disable; **1**: enable).<br>- **N**: number of times the service is started.<br>- **T**: period of time, in seconds.<br> Both **M** and **N** are greater than **0**.<br> Small and standard systems:<br>Type: int, for example, **critical: M**.<br>**M**: enable flag (**0**: disable; **1**: enable).<br> By default, **N** is **4** and **T** is **20**.|
+   | critical      | Optional| Small and standard systems| Suppression mechanism for services. If the number of times a service is restarted exceeds the value N within the specified period T, the system will be restarted.| <br> Type: int[], for example, "critical": [M, N, T].<br>- **M**: enable flag (**0**: disable; **1**: enable).<br>- **N**: number of times the service is started.<br>- **T**: period of time, in seconds.<br> By default, **N** is **4** and **T** is **240**.|
    | cpucore      | Optional| Standard system| Number of CPU cores bound to the service.| Type: int array, for example, **"cpucore": [N1, N2, ...]**. **N1** and **N2** indicate the indices of the CPU cores to be bound. For a single-core device, **cpucore** is **0**.|
    | d-caps       | Optional| Standard system| Distributed service capability.| Type: string array, for example, **"d-caps": ["OHOS_DMS"]**.|
    | apl          | Optional| Standard system| Ability privilege level.| Type: string, for example, **"apl": "system_core"**.<br> The value can be **system_core** (default), **normal**, or **system_basic**.|
@@ -37,6 +37,8 @@ Service management is implemented by using the init process to parse the service
    | disable | Optional| Small and standard systems| Reserved.| None.|
    | sandbox | Optional| Standard system| Whether the sandbox function is enabled.| **1** (default): Enable the sandbox function.<br>**0**: Disable the sandbox function.|
    | socket | Optional| Standard system| Socket attribute configuration.| This field is required for services that uses a socket connection.|
+   | env | Optional| Standard system| Environment variable configuration.| Type: key-value pair array.<br>Multiple environment variables can be configured. For example:<br>"env" : [{<br> "name" : "SERVICE_NALE", <br>"value" : "ueventd"},{<br> "name" : "TEST",<br> "value" : "test_value" <br>}]|
+   | period | Optional| Standard system| Scheduled startup upon service exit.| Type: int, for example, 60. This field specifies the interval for starting a scheduled task, in seconds.<br>If this function is enabled, a timer is started to periodically start the service upon service exit. For example, **"period": 60** indicates that the service is started 60 seconds upon service exit.|
 
    **Table 2** Description of socket fields
    | Field| Description|
@@ -72,7 +74,6 @@ Service management is implemented by using the init process to parse the service
           "name" : "serviceName",
           "path" : ["/system/bin/serviceName"]
           "jobs" : {
-              "on-boot" : "boot",
               "on-start" : "services:serviceName_start",
               "on-stop" : "services:serviceName_stop",
               "on-restart" : "services:serviceName_restart"

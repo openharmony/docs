@@ -3,7 +3,7 @@
 This topic explores the structure of an application package in different phases of application development – development phase, build phase, and release phase.
 
 ## Package Structure in the Development Phase
-To have a clearer idea on the application package structure, it would be helpful if you have a project directory at hand. As such, first [create a project](start-with-ets-stage.md#creating-an-arkts-project) in DevEco Studio and add modules of different types to the project.
+To have a clearer idea on the application package structure, it would be helpful if you have a project directory at hand. As such, first create a project in DevEco Studio and add modules of different types to the project.
 
 **Figure 1** Project structure (for reference only)
 
@@ -61,10 +61,10 @@ The following table compares the HAP, HAR, and HSP regarding their functionality
 | Module Type| File Type| Description| 
 | -------- | -------- | -------- | 
 | Ability | [HAP](hap-package.md)| Functional module of an application, which can be installed and run independently. An application must contain at least one entry HAP and zero, one, or more feature HAPs.| 
-| Static Library | [HAR](har-package.md) | Static shared package, which is reused in the build phase.<br> - Supports intra-application sharing or, after being released, intra-application sharing.<br> &ensp; - As a second-party library for internal applications, by being released to an OHPM private repository.<br> &ensp; - As a third-party library for external applications, by being released to the OHPM central repository.<br> - When multiple HAPs or HSPs reference the same HAR, the application package may contain multiple copies of code and resource files for the HAPs or HSPs, resulting in an unwelcome large package size.| 
+| Static Library | [HAR](har-package.md) | Static shared package, which is reused in the build phase.<br> - Supports intra-application sharing or, after being released, intra-application sharing.<br> &ensp; - As a second-party library for internal applications, by being released to an OHPM private repository.<br> &ensp; - As a third-party library for external applications, by being released to the OHPM central repository.<br> - When multiple HAPs or HSPs reference the same HAR, the application package may contain multiple copies of code and resource files for the HAPs or HSPs, resulting in an unwelcome large package size.<br> - When [building a HAR](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/har-package.md#building-a-har), you are advised to enable the obfuscation capability to protect code assets.| 
 | Shared Library | [HSP](in-app-hsp.md)| Dynamic shared package, which is reused in the running phase.<br> - Supports intra-application sharing.<br> - For multiple HAPs or HSPs to reference the same shared package, using an HSP instead of HAR as the shared package can avoid the unnecessary copies of code and resource files and thereby reduce the application package size.| 
 
-The following table compares the HAP, HSP, and HAR regarding their specifications. The symbol "√" means that the item is supported, and "x" means otherwise.
+The following table compares the HAP, HSP, and HAR regarding their specifications. The symbol "√" means that the item is supported, and "x" means the opposite.
 
 During your development, select a file type that best meets the actual requirements. For more details, see [HAP](hap-package.md), [HAR](har-package.md), and [HSP](in-app-hsp.md).
 
@@ -74,10 +74,11 @@ During your development, select a file type that best meets the actual requireme
 | Declaring the [pages](./module-configuration-file.md#pages) tag in the configuration file| √  |x|√ |
 | Including resource files and .so files| √  |√ |√|
 | Depending on other HARs| √ |√  |√  |
-| Depending on other HSPs| √ |x |√  |
+| Depending on other HSPs| √ |√  |√  |
 | Being installed or run on a device| √ |x|x|
 
 > **NOTE**
 > 
 > - The configuration file of a HAR does not support declaration of the **pages** tag. Still, it can include pages, which can be redirected through a [named route](../ui/arkts-routing.md#named-route).
+> - As the HSP supports only intra-application sharing, a HAR that depends on any HSP can be shared only within the same application. Do not release such a HAR to a second-party or third-party repository for other applications to use: Using it in other applications will result in build failures.
 > - Neither the HAR nor HSP supports cyclic dependency or dependency transfer.

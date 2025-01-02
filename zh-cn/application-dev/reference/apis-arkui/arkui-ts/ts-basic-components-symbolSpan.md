@@ -18,9 +18,15 @@
 
 SymbolSpan(value: Resource)
 
-**参数：**
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [Resource](ts-types.md#resource)| 是 | SymbolSpan组件的资源名，如 $r('sys.symbol.ohos_wifi')。 |
 
@@ -38,6 +44,10 @@ fontColor(value: Array&lt;ResourceColor&gt;)
 
 设置SymbolSpan组件颜色。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -51,6 +61,10 @@ fontColor(value: Array&lt;ResourceColor&gt;)
 fontSize(value: number | string | Resource)
 
 设置SymbolSpan组件大小。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -66,19 +80,29 @@ fontWeight(value: number | FontWeight | string)
 
 设置SymbolSpan组件粗细。number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。
 
+sys.symbol.ohos_lungs图标不支持设置fontWeight。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                         | 必填 | 说明                                               |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight) | 是   | SymbolSpan组件粗细。<br/>默认值：FontWeight.Normal |
+| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | SymbolSpan组件粗细。<br/>默认值：FontWeight.Normal |
 
 ### renderingStrategy
 
 renderingStrategy(value: SymbolRenderingStrategy)
 
-设置SymbolSpan渲染策略。$r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式。
+设置SymbolSpan渲染策略。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -86,13 +110,21 @@ renderingStrategy(value: SymbolRenderingStrategy)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11) | 是   | SymbolSpan渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE |
+| value  | [SymbolRenderingStrategy](ts-basic-components-symbolGlyph.md#symbolrenderingstrategy11枚举说明) | 是   | SymbolSpan渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE |
+
+不同渲染策略效果可参考以下示意图。
+
+![renderingStrategy](figures/renderingStrategy.png)
 
 ### effectStrategy
 
 effectStrategy(value: SymbolEffectStrategy)
 
-设置SymbolSpan动效策略。$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。
+设置SymbolSpan动效策略。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -100,11 +132,23 @@ effectStrategy(value: SymbolEffectStrategy)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                       |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------------- |
-| value  | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11) | 是   | SymbolSpan动效策略。<br/>默认值：SymbolEffectStrategy.NONE |
+| value  | [SymbolEffectStrategy](ts-basic-components-symbolGlyph.md#symboleffectstrategy11枚举说明) | 是   | SymbolSpan动效策略。<br/>默认值：SymbolEffectStrategy.NONE |
 
-SymbolSpan多色模式下各个组件的默认颜色与层数展示图。
+### attributeModifier<sup>12+</sup>
 
-![renderingStrategy](figures/renderingStrategy.png)
+attributeModifier(modifier: AttributeModifier\<SymbolSpanAttribute>)
+
+设置组件的动态属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                | 必填 | 说明                                                         |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| modifier  | [AttributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifiert)\<SymbolSpanAttribute> | 是   | 动态设置组件的属性。 |
 
 ## 事件
 
@@ -112,36 +156,38 @@ SymbolSpan多色模式下各个组件的默认颜色与层数展示图。
 
 ## 示例
 
+该示例通过renderingStrategy、effectStrategy属性展示了不同的渲染和动效策略。
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct Index {
-  @State scaleplay:boolean = false
-  @State hieraplay:boolean = false
   build() {
     Column() {
       Row() {
-        Column(){
-          Text("细")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+        Column() {
+          Text("Light")
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_trash'))
               .fontWeight(FontWeight.Lighter)
               .fontSize(96)
           }
         }
-        Column(){
-          Text("标准")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+
+        Column() {
+          Text("Normal")
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_trash'))
               .fontWeight(FontWeight.Normal)
               .fontSize(96)
           }
         }
-        Column(){
-          Text("粗")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+
+        Column() {
+          Text("Bold")
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_trash'))
               .fontWeight(FontWeight.Bold)
               .fontSize(96)
           }
@@ -149,36 +195,39 @@ struct Index {
       }
 
       Row() {
-        Column(){
+        Column() {
           Text("单色")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
               .fontSize(96)
               .renderingStrategy(SymbolRenderingStrategy.SINGLE)
-              .fontColor([Color.Blue,Color.Grey,Color.Green])
+              .fontColor([Color.Black, Color.Green, Color.White])
           }
         }
-        Column(){
+
+        Column() {
           Text("多色")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
               .fontSize(96)
               .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR)
-              .fontColor([Color.Blue,Color.Grey,Color.Green])
+              .fontColor([Color.Black, Color.Green, Color.White])
           }
         }
-        Column(){
-          Text("透明度")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+
+        Column() {
+          Text("分层")
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
               .fontSize(96)
               .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_OPACITY)
-              .fontColor([Color.Blue,Color.Grey,Color.Green])
+              .fontColor([Color.Black, Color.Green, Color.White])
           }
         }
       }
+
       Row() {
-        Column(){
+        Column() {
           Text("无动效")
           Text() {
             SymbolSpan($r('sys.symbol.ohos_wifi'))
@@ -186,23 +235,23 @@ struct Index {
               .effectStrategy(SymbolEffectStrategy.NONE)
           }
         }
-        Column(){
+
+        Column() {
           Text("整体缩放动效")
-          Text(){
+          Text() {
             SymbolSpan($r('sys.symbol.ohos_wifi'))
               .fontSize(96)
-              .effectStrategy(this.scaleplay ? 1 : 0)
+              .effectStrategy(1)
           }
-          Button(this.scaleplay? '关闭':'播放').onClick(()=>{this.scaleplay = !this.scaleplay})
         }
-        Column(){
+
+        Column() {
           Text("层级动效")
-          Text(){
+          Text() {
             SymbolSpan($r('sys.symbol.ohos_wifi'))
               .fontSize(96)
-              .effectStrategy(this.hieraplay ? 2 : 0)
+              .effectStrategy(2)
           }
-          Button(this.hieraplay? '关闭':'播放').onClick(()=>{this.hieraplay = !this.hieraplay})
         }
       }
     }

@@ -11,7 +11,7 @@ The **notificationSubscribe** module provides APIs for notification subscription
 ## Modules to Import
 
 ```ts
-import notificationSubscribe from '@ohos.notificationSubscribe';
+import { notificationSubscribe } from '@kit.NotificationKit';
 ```
 
 ## notificationSubscribe.subscribe
@@ -31,15 +31,18 @@ Subscribes to a notification with the subscription information specified. This A
 | Name      | Type                     | Mandatory| Description            |
 | ---------- | ------------------------- | ---- | ---------------- |
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber)    | Yes  | Notification subscriber.    |
-| info       | [NotificationSubscribeInfo](js-apis-notification-sys.md#notificationsubscribeinfo) | Yes  | Notification subscription information.|
+| info       | [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo-sys.md#notificationsubscribeinfo) | Yes  | Notification subscription information.|
 | callback   | AsyncCallback\<void\>     | Yes  | Callback used to return the result.|
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 | ID| Error Message                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -48,10 +51,10 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // subscribe callback
-let subscribeCallback = (err: Base.BusinessError) => {
+let subscribeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -92,10 +95,13 @@ Subscribes to notifications of all applications under this user. This API uses a
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -104,9 +110,9 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscribeCallback = (err: Base.BusinessError) => {
+let subscribeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -141,7 +147,7 @@ Subscribes to a notification with the subscription information specified. This A
 | Name      | Type                     | Mandatory| Description        |
 | ---------- | ------------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber)    | Yes  | Notification subscriber.|
-| info       | [NotificationSubscribeInfo](js-apis-notification-sys.md#notificationsubscribeinfo) | No  | Notification subscription information. By default, this parameter is left empty, which means to subscribe to notifications of all applications under this user.  |
+| info       | [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo-sys.md#notificationsubscribeinfo) | No  | Notification subscription information. By default, this parameter is left empty, which means to subscribe to notifications of all applications under this user.  |
 
 **Return value**
 
@@ -151,10 +157,13 @@ Subscribes to a notification with the subscription information specified. This A
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -163,7 +172,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
   console.info("Consume callback: " + JSON.stringify(data));
@@ -173,7 +182,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 };
 notificationSubscribe.subscribe(subscriber).then(() => {
   console.info("subscribe success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error("subscribe fail: " + JSON.stringify(err));
 });
 ```
@@ -183,7 +192,7 @@ notificationSubscribe.subscribe(subscriber).then(() => {
 
 subscribeSelf(subscriber: NotificationSubscriber): Promise\<void\>
 
-Subscribes to a notification with the subscription information specified. This API uses a promise to return the result.
+Subscribes to notifications of the application and specifies subscription information. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -203,10 +212,12 @@ Subscribes to a notification with the subscription information specified. This A
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 | ID| Error Message                           |
-| -------- | ----------------------------------- |
+| -------- | ----------------------------------- | 
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -215,7 +226,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
   console.info("Consume callback: " + JSON.stringify(data));
@@ -225,7 +236,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 };
 notificationSubscribe.subscribeSelf(subscriber).then(() => {
   console.info("subscribeSelf success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error("subscribeSelf fail: " + JSON.stringify(err));
 });
 ```
@@ -253,10 +264,13 @@ Unsubscribes from a notification. This API uses an asynchronous callback to retu
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -264,9 +278,9 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let unsubscribeCallback = (err: Base.BusinessError) => {
+let unsubscribeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -308,10 +322,13 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -319,7 +336,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let onDisconnectCallback = () => {
   console.info("subscribe disconnect");
@@ -329,7 +346,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 };
 notificationSubscribe.unsubscribe(subscriber).then(() => {
   console.info("unsubscribe success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error("unsubscribe fail: " + JSON.stringify(err));
 });
 ```
@@ -357,10 +374,13 @@ Removes a notification based on the bundle information and notification key. Thi
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -370,17 +390,17 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 **Example**
 
 ```ts
-import Base from '@ohos.base';
-import NotificationManager from '@ohos.notificationManager';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { notificationManager } from '@kit.NotificationKit';
 
-let removeCallback = (err: Base.BusinessError) => {
+let removeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
   } else {
     console.info("remove success");
   }
 }
-let bundle: NotificationManager.BundleOption = {
+let bundle: notificationManager.BundleOption = {
   bundle: "bundleName1",
 };
 let notificationKey: notificationSubscribe.NotificationKey = {
@@ -397,7 +417,7 @@ notificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
 
 remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason): Promise\<void\>
 
-Removes a notification based on the specified bundle information and notification key. This API uses a promise to return the result.
+Removes a notification based on the bundle information and notification key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -421,10 +441,13 @@ Removes a notification based on the specified bundle information and notificatio
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -434,10 +457,10 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 **Example**
 
 ```ts
-import Base from '@ohos.base';
-import NotificationManager from '@ohos.notificationManager';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { notificationManager } from '@kit.NotificationKit';
 
-let bundle: NotificationManager.BundleOption = {
+let bundle: notificationManager.BundleOption = {
   bundle: "bundleName1",
 };
 let notificationKey: notificationSubscribe.NotificationKey = {
@@ -447,7 +470,7 @@ let notificationKey: notificationSubscribe.NotificationKey = {
 let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 notificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
   console.info("remove success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error("remove fail: " + JSON.stringify(err));
 });
 ```
@@ -468,16 +491,19 @@ Removes a notification based on the specified unique notification ID. This API u
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| hashCode | string                | Yes  | Unique notification ID. It is the **hashCode** in the[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) object of [SubscribeCallbackData](js-apis-notification-sys.md#subscribecallbackdata) of the [onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onConsume) callback.|
+| hashCode | string                | Yes  | Unique notification ID. It is the value of **hashCode** in the [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) object of [SubscribeCallbackData](js-apis-inner-notification-notificationSubscriber-sys.md#subscribecallbackdata) in the [onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume) callback.|
 | reason   | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.        |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -486,10 +512,10 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let hashCode: string = 'hashCode';
-let removeCallback = (err: Base.BusinessError) => {
+let removeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -516,7 +542,7 @@ Removes a notification based on the specified unique notification ID. This API u
 
 | Name    | Type      | Mandatory| Description      |
 | -------- | ---------- | ---- | ---------- |
-| hashCode | string | Yes  | Unique notification ID.|
+| hashCode | string | Yes  | Unique notification ID. It is the value of **hashCode** in the [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) object of [SubscribeCallbackData](js-apis-inner-notification-notificationSubscriber-sys.md#subscribecallbackdata) in the [onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume) callback.|
 | reason   | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.        |
 
 **Return value**
@@ -527,10 +553,13 @@ Removes a notification based on the specified unique notification ID. This API u
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -539,17 +568,18 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let hashCode: string = 'hashCode';
 let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 notificationSubscribe.remove(hashCode, reason).then(() => {
 	console.info("remove success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error("remove fail: " + JSON.stringify(err));
 });
 ```
-## notificationSubscribe.remove<sup>10+<sup>
+
+## notificationSubscribe.remove<sup>10+</sup>
 
 remove(hashCodes: Array\<String\>, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
@@ -565,16 +595,19 @@ Removes specified notifications. This API uses an asynchronous callback to retur
 
 | Name      | Type                           | Mandatory| Description                                                                                                                                                                                                                                                                                 |
 |-----------|-------------------------------| ---- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| hashCodes | Array\<String\>               | Yes  | Array of unique notification IDs. It is the **hashCode** in the[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) object of [SubscribeCallbackData](js-apis-notification-sys.md#subscribecallbackdata) of the [onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onConsume) callback.|
+| hashCodes | Array\<String\>               | Yes  | Array of unique notification IDs. It is the value of **hashCode** in the [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) object of [SubscribeCallbackData](js-apis-inner-notification-notificationSubscriber-sys.md#subscribecallbackdata) in the [onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume) callback.|
 | reason    | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.                                                                                                                                                                                                                                                                            |
 | callback  | AsyncCallback\<void\>         | Yes  | Callback used to return the result.                                                                                                                                                                                                                                                                        |
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -582,10 +615,10 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let hashCodes: string[] = ['hashCode1', 'hashCode2'];
-let removeCallback = (err: Base.BusinessError) => {
+let removeCallback = (err: BusinessError) => {
   if (err) {
     console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -596,7 +629,7 @@ let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveRea
 notificationSubscribe.remove(hashCodes, reason, removeCallback);
 ```
 
-## notificationSubscribe.remove<sup>10+<sup>
+## notificationSubscribe.remove<sup>10+</sup>
 
 remove(hashCodes: Array\<String\>, reason: RemoveReason): Promise\<void\>
 
@@ -623,10 +656,13 @@ Removes specified notifications. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -634,13 +670,13 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let hashCodes: string[] = ['hashCode1','hashCode2'];
 let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 notificationSubscribe.remove(hashCodes, reason).then(() => {
   console.info("remove success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error("remove fail: " + JSON.stringify(err));
 });
 ```
@@ -666,10 +702,13 @@ Removes all notifications for a specified application. This API uses an asynchro
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -678,9 +717,9 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let removeAllCallback = (err: Base.BusinessError) => {
+let removeAllCallback = (err: BusinessError) => {
   if (err) {
     console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
   } else {
@@ -713,10 +752,13 @@ Removes all notifications. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -724,9 +766,9 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let removeAllCallback = (err: Base.BusinessError) => {
+let removeAllCallback = (err: BusinessError) => {
     if (err) {
         console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -762,10 +804,13 @@ Removes all notifications for a specified application. This API uses a promise t
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -774,12 +819,12 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // If no application is specified, notifications of all applications are deleted.
 notificationSubscribe.removeAll().then(() => {
 	console.info("removeAll success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error("removeAll fail: " + JSON.stringify(err));
 });
 ```
@@ -805,27 +850,31 @@ Removes all notifications for a specified user. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let removeAllCallback = (err: Base.BusinessError) => {
+let removeAllCallback = (err: BusinessError) => {
   if (err) {
     console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
   } else {
     console.info("removeAll success");
   }
 }
+// Use the actual user ID when calling the API.
 let userId: number = 1;
 notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
@@ -850,24 +899,27 @@ Removes all notifications for a specified user. This API uses a promise to retur
 
 **Error codes**
 
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let userId: number = 1;
 notificationSubscribe.removeAll(userId).then(() => {
 	console.info("removeAll success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error("removeAll fail: " + JSON.stringify(err));
 });
 ```

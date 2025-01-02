@@ -5,6 +5,10 @@
 窗口沉浸式能力：指对状态栏、导航栏等系统窗口进行控制，减少状态栏导航栏等系统界面的突兀感，从而使用户获得最佳体验的能力。
 沉浸式能力只在应用主窗口作为全屏窗口时生效。通常情况下，应用子窗口（弹窗、悬浮窗口等辅助窗口）和处于自由窗口下的应用主窗口无法使用沉浸式能力。
 
+> **说明：**
+>
+> 当前沉浸式界面开发仅支持window级别的配置，暂不支持Page级别的配置。若有Page级别切换的需要，可以在页面生命周期开始，例如onPageShow中设置沉浸模式，然后在页面退出，例如onPageHide中恢复默认设置来实现。
+
 ## 场景介绍
 
 在FA模型下，管理应用窗口的典型场景有：
@@ -28,9 +32,9 @@
 | Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口。                                               |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。                                             |
 | Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | 改变当前窗口大小。                                           |
-| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口布局是否为全屏布局。                                 |
+| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | 设置窗口布局是否为全屏布局。                                 |
 | Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | 设置导航栏、状态栏是否显示。                                 |
-| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | 设置窗口内导航栏、状态栏属性。<br/>`systemBarProperties`：导航栏、状态栏的属性集合。 |
+| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt; | 设置窗口内导航栏、状态栏属性。<br/>`systemBarProperties`：导航栏、状态栏的属性集合。 |
 | Window         | showWindow(callback: AsyncCallback\<void>): void             | 显示当前窗口。                                               |
 | Window         | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | 开启本窗口区域外的点击事件的监听。                           |
 | Window         | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | 销毁当前窗口。                                               |
@@ -40,6 +44,11 @@
 
 开发者可以按需创建应用子窗口，如弹窗等，并对其进行属性设置等操作。
 
+> **说明：**  
+> 由于以下几种情况，移动设备场景下不推荐使用子窗口，优先推荐使用控件[overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md)能力实现。  
+> - 移动设备场景下子窗不能超出主窗口范围，与控件一致。  
+> - 分屏窗口与自由窗口模式下，主窗口位置大小发生改变时控件实时跟随变化能力优于子窗。  
+> - 部分设备平台下根据实际的系统配置限制，子窗只有系统默认的动效和圆角阴影，应用无法设置，自由度低。
 
 ### 开发步骤
 
@@ -49,8 +58,8 @@
    - 也可以通过`window.findWindow`接口来查找已经创建的窗口从而得到子窗口。
 
    ```ts
-   import window from '@ohos.window';
-   import { BusinessError } from '@ohos.base';
+   import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let windowClass: window.Window | null = null;
    // 方式一：创建子窗口。
@@ -157,8 +166,8 @@
    > 确保应用内最后显示的窗口为主窗口，然后再使用`window.getLastWindow`接口来获取得到主窗口。
 
    ```ts
-   import window from '@ohos.window';
-   import { BusinessError } from '@ohos.base';
+   import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let mainWindowClass: window.Window | null = null;
    
@@ -188,25 +197,23 @@
    // 实现沉浸式效果。方式一：设置导航栏、状态栏不显示。
    let names: Array<'status' | 'navigation'> = [];
    let mainWindowClass: window.Window = window.findWindow("test");
-   mainWindowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
-     let errCode: number = err.code;
-     if (errCode) {
-       console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
-       return;
-     }
-     console.info('Succeeded in setting the system bar to be visible.');
-   });
+   mainWindowClass.setWindowSystemBarEnable(names)
+    .then(() => {
+      console.info('Succeeded in setting the system bar to be visible.');
+    })
+    .catch((err: BusinessError) => {
+      console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
+    });
    // 实现沉浸式效果。
    // 方式二：设置窗口为全屏布局，配合设置状态栏、导航栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
    let isLayoutFullScreen: boolean = true;
-   mainWindowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
-     let errCode: number = err.code;
-     if (errCode) {
-       console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
-       return;
-     }
-     console.info('Succeeded in setting the window layout to full-screen mode.');
-   });
+   mainWindowClass.setWindowLayoutFullScreen(isLayoutFullScreen)
+    .then(() => {
+      console.info('Succeeded in setting the window layout to full-screen mode.');
+    })
+    .catch((err: BusinessError) => {
+      console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
+    });
    let sysBarProps: window.SystemBarProperties = {
      statusBarColor: '#ff00ff',
      navigationBarColor: '#00ff00',
@@ -214,14 +221,13 @@
      statusBarContentColor: '#ffffff',
      navigationBarContentColor: '#ffffff'
    };
-   mainWindowClass.setWindowSystemBarProperties(sysBarProps, (err: BusinessError) => {
-     let errCode: number = err.code;
-     if (errCode) {
-       console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
-       return;
-     }
-     console.info('Succeeded in setting the system bar properties.');
-   });
+   mainWindowClass.setWindowSystemBarProperties(sysBarProps)
+    .then(() => {
+      console.info('Succeeded in setting the system bar properties.');
+    })
+    .catch((err: BusinessError) => {
+      console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+    });
    ```
 
 3. 加载显示沉浸式窗口的具体内容。

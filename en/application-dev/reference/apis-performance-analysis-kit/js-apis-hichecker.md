@@ -9,7 +9,7 @@ The HiChecker module allows you to check issues that may be easily ignored durin
 ## Modules to Import
 
 ```ts
-import hichecker from '@ohos.hichecker';
+import { hichecker } from '@kit.PerformanceAnalysisKit';
 ```
 
 
@@ -19,7 +19,7 @@ Provides the constants of all rule types.
 
 **System capability**: SystemCapability.HiviewDFX.HiChecker
 
-| Name                              | Type| Description                                                  |
+| Name                              | Type | Description                                                  |
 | ---------------------------------- | -------- | ------------------------------------------------------ |
 | RULE_CAUTION_PRINT_LOG             | bigint   | Alarm rule, which is programmed to print a log when an alarm is generated.                        |
 | RULE_CAUTION_TRIGGER_CRASH         | bigint   | Alarm rule, which is programmed to force the application to exit when an alarm is generated.                      |
@@ -30,20 +30,26 @@ Provides the constants of all rule types.
 
 addCheckRule(rule: bigint): void
 
-Adds one or more rules. HiChecker detects unexpected operations or gives feedback based on the added rules.
+Adds one or more check rules. HiChecker detects unexpected operations or gives feedback based on the added rules. You can use **grep HiChecker** to check for the application running information in the hilog.
 
 **System capability**: SystemCapability.HiviewDFX.HiChecker
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
+| Name | Type  | Mandatory | Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | bigint | Yes  | Rule to be added.|
+| rule   | bigint | Yes  | Rule to be added. |
+
+**Error codes**
+
+| ID | Error Message |
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed, only one bigint type parameter is needed  |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     // Add a rule.
@@ -66,14 +72,20 @@ Removes one or more rules. The removed rules will become ineffective.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
+| Name | Type  | Mandatory | Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | bigint | Yes  | Rule to be removed.|
+| rule   | bigint | Yes  | Rule to be removed. |
+
+**Error codes**
+
+| ID | Error Message |
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed, only one bigint type parameter is needed  |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     // Remove a rule.
@@ -96,20 +108,26 @@ Checks whether the specified rule exists in the collection of added rules. If th
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
+| Name | Type  | Mandatory | Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | bigint | Yes  | Rule to be checked.|
+| rule   | bigint | Yes  | Rule to be checked. |
 
 **Return value**
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise.|
+| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise. |
+
+**Error codes**
+
+| ID | Error Message |
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed, only one bigint type parameter is needed  |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     // Add a rule.
@@ -137,9 +155,9 @@ Adds one or more rules. HiChecker detects unexpected operations or gives feedbac
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
+| Name | Type  | Mandatory | Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | bigint | Yes  | Rule to be added.|
+| rule   | bigint | Yes  | Rule to be added. |
 
 **Example**
 
@@ -166,9 +184,9 @@ Removes one or more rules. The removed rules will become ineffective.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
+| Name | Type  | Mandatory | Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | bigint | Yes  | Rule to be removed.|
+| rule   | bigint | Yes  | Rule to be removed. |
 
 **Example**
 
@@ -193,7 +211,7 @@ Obtains a collection of thread, process, and alarm rules that have been added.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| bigint | Collection of added rules.|
+| bigint | Collection of added rules. |
 
 **Example**
 
@@ -219,15 +237,15 @@ Checks whether the specified rule exists in the collection of added rules. If th
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
+| Name | Type  | Mandatory | Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | bigint | Yes  | Rule to be checked.|
+| rule   | bigint | Yes  | Rule to be checked. |
 
 **Return value**
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise.|
+| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise. |
 
 **Example**
 

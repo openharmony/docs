@@ -1,6 +1,6 @@
 # Button
 
-The **\<Button>** component can be used to create different types of buttons.
+The **Button** component can be used to create different types of buttons.
 
 >  **NOTE**
 >
@@ -20,41 +20,48 @@ Button(options: ButtonOptions)
 
 Creates a button that can contain a single child component.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name | Type                                   | Mandatory| Description                |
+| Name | Type                                   | Mandatory | Description                |
 | ------- | --------------------------------------- | ---- | -------------------- |
-| options | [ButtonOptions](#buttonoptions) | Yes  | Button settings.|
+| options | [ButtonOptions](#buttonoptions)  | Yes  | Button settings. |
 
 ### Button
 
 Button(label: ResourceStr, options?: ButtonOptions)
 
-Creates a button component based on text content. In this case, the component cannot contain child components.
+Creates a button based on text content. In this case, the component cannot contain child components.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+By default, the text content is displayed in a one line.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name | Type                                   | Mandatory| Description                |
+| Name | Type                                   | Mandatory | Description                |
 | ------- | --------------------------------------- | ---- | -------------------- |
 | label   | [ResourceStr](ts-types.md#resourcestr)  | Yes  | Button text.      |
-| options | [ButtonOptions](#buttonoptions) | No  | Button settings.|
+| options | [ButtonOptions](#buttonoptions)  | No  | Button settings. |
 
 ## ButtonOptions
 
-| Name                     | Type                                         | Mandatory| Description                                                        |
+| Name                     | Type                                         | Mandatory | Description                                                        |
 | ------------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type                      | [ButtonType](#buttontype)             | No  | Button type.<br>Default value: **ButtonType.Capsule**           |
-| stateEffect               | boolean                                       | No  | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**<br>**NOTE**<br>When the pressed effect is enabled on the click of the button and the state style is set, the background color is applied based on the state style.|
-| buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11) | No  | Style and primacy of the button.<br>Default value: **ButtonStyleMode.EMPHASIZED**<br>**NOTE**<br>The button primacy is as follows: emphasized button (high emphasis) > normal button (medium emphasis) > text button (low emphasis).|
-| controlSize<sup>11+</sup> | [ControlSize](#controlsize11)         | No  | Size of the button.<br>Default value: **ControlSize.NORMAL**             |
+| type                      | [ButtonType](#buttontype)             | No  | Button type.<br>Default value: **ButtonType.Capsule**<br>**Atomic service API**: This API can be used in atomic services since API version 11.           |
+| stateEffect               | boolean                                       | No  | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**<br>**NOTE**<br>When the pressed effect is enabled on the click of the button and the state style is set, the background color is applied based on the state style.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11)  | No  | Style and primacy of the button.<br>Default value: **ButtonStyleMode.EMPHASIZED**<br>**NOTE**<br>The button primacy is as follows, from high to low: emphasized button, normal button, text button.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| controlSize<sup>11+</sup> | [ControlSize](#controlsize11)         | No  | Size of the button.<br>Default value: **ControlSize.NORMAL**<br>**Atomic service API**: This API can be used in atomic services since API version 12.             |
+| role<sup>12+</sup> | [ButtonRole](#buttonrole12)         | No  | Role of the button.<br>Default value: **ButtonRole.NORMAL**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## Attributes
 
@@ -66,15 +73,17 @@ type(value: ButtonType)
 
 Sets the button type.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                             | Mandatory| Description                                       |
+| Name | Type                             | Mandatory | Description                                       |
 | ------ | --------------------------------- | ---- | ------------------------------------------- |
-| value  | [ButtonType](#buttontype) | Yes  | Button type.<br>Default value: **ButtonType.Capsule**|
+| value  | [ButtonType](#buttontype)  | Yes  | Button type.<br>Default value: **ButtonType.Capsule** |
 
 ### fontSize
 
@@ -82,15 +91,17 @@ fontSize(value: Length)
 
 Sets the font size for the button.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                        | Mandatory| Description                             |
+| Name | Type                        | Mandatory | Description                             |
 | ------ | ---------------------------- | ---- | --------------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Font size of the button.<br>Default value: **'16fp'**|
+| value  | [Length](ts-types.md#length) | Yes  | Font size of the button.<br>Default value: **'16fp'** if **controlSize** is set to **controlSize.NORMAL** and **'12fp'** if **controlSize** is set to **controlSize.SMALL** |
 
 ### fontColor
 
@@ -98,15 +109,17 @@ fontColor(value: ResourceColor)
 
 Sets the font color for the button.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                      | Mandatory| Description                                 |
+| Name | Type                                      | Mandatory | Description                                 |
 | ------ | ------------------------------------------ | ---- | ------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of the button.<br>Default value: **'\#ffffff'**|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of the button.<br>Default value: **'\#ffffff'** |
 
 ### fontWeight
 
@@ -114,15 +127,17 @@ fontWeight(value: number | FontWeight | string)
 
 Sets the font weight for the button.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                                        | Mandatory| Description                                                        |
+| Name | Type                                                        | Mandatory | Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | Yes  | Font weight of the button. For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a thicker font.<br>Default value: **400**|
+| value  | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | Yes  | Font weight of the button. For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a thicker font.<br>Default value: **400** |
 
 ### fontStyle
 
@@ -130,15 +145,17 @@ fontStyle(value: FontStyle)
 
 Sets the font style for the button.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                       | Mandatory| Description                                           |
+| Name | Type                                       | Mandatory | Description                                           |
 | ------ | ------------------------------------------- | ---- | ----------------------------------------------- |
-| value  | [FontStyle](ts-appendix-enums.md#fontstyle) | Yes  | Font style of the button.<br>Default value: **FontStyle.Normal**|
+| value  | [FontStyle](ts-appendix-enums.md#fontstyle) | Yes  | Font style of the button.<br>Default value: **FontStyle.Normal** |
 
 ### stateEffect
 
@@ -146,15 +163,35 @@ stateEffect(value: boolean)
 
 Specifies whether to enable the pressed effect on the click of the button.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type   | Mandatory| Description                                                        |
+| Name | Type   | Mandatory | Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true** |
+
+### fontFamily
+
+fontFamily(value: string | Resource)
+
+Sets the font family.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type                                                | Mandatory | Description                                                        |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Resource](ts-types.md#resource) \| string | Yes  | Font family. The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported. |
 
 ### labelStyle<sup>10+</sup>
 
@@ -162,13 +199,15 @@ labelStyle(value: LabelStyle)
 
 Sets the label style for the button.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                               | Mandatory| Description                             |
+| Name | Type                               | Mandatory | Description                             |
 | ------ | ----------------------------------- | ---- | --------------------------------- |
-| value  | [LabelStyle](#labelstyle10) | Yes  | Label style of the button.|
+| value  | [LabelStyle](#labelstyle10)  | Yes  | Label style of the button. |
 
 ### buttonStyle<sup>11+</sup>
 
@@ -176,15 +215,17 @@ buttonStyle(value: ButtonStyleMode)
 
 Sets the style and primacy for the button.
 
-**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                         | Mandatory| Description                                                        |
+| Name | Type                                         | Mandatory | Description                                                        |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ButtonStyleMode](#buttonstylemode11) | Yes  | Style and primacy of the button<br>Default value: **ButtonStyleMode.EMPHASIZED**|
+| value  | [ButtonStyleMode](#buttonstylemode11)  | Yes  | Style and primacy of the button<br>Default value: **ButtonStyleMode.EMPHASIZED** |
 
 ### controlSize<sup>11+</sup>
 
@@ -192,23 +233,61 @@ controlSize(value: ControlSize)
 
 Sets the size for the button.
 
-**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type                                 | Mandatory | Description                                            |
+| ------ | ------------------------------------- | ---- | ------------------------------------------------ |
+| value  | [ControlSize](#controlsize11)  | Yes  | Size of the button.<br>Default value: **ControlSize.NORMAL** |
+
+### role<sup>12+</sup>
+
+role(value: ButtonRole)
+
+Sets the role of the button.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name | Type                                         | Mandatory | Description                                            |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
+| value  | [ButtonRole](#buttonrole12)  | Yes  | Role of the button.<br>Default value: **ButtonRole.NORMAL** |
+
+### contentModifier<sup>12+</sup>
+
+contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
+
+Creates a content modifier.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type                                         | Mandatory| Description                                            |
+| Name | Type                                         | Mandatory | Description                                            |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| value  | [ButtonStyleMode](#buttonstylemode11) | Yes  | Size of the button.<br>Default value: **ControlSize.NORMAL**|
+| modifier  | [ContentModifier\<ButtonConfiguration>](#buttonconfiguration12)  | Yes  | Content modifier to apply to the button.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API. |
 
 ## ButtonType
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name     | Description                |
 | ------- | ------------------ |
-| Capsule | Capsule-type button (the round corner is half of the height by default).|
+| Capsule | Capsule-type button (the round corner is half of the height by default). |
 | Circle  | Circle button.             |
 | Normal  | Normal button (without rounded corners by default).     |
 
@@ -221,33 +300,73 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## LabelStyle<sup>10+</sup>
 
-| Name                | Type                                                    | Mandatory| Description                                                        |
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+| Name                | Type                                                    | Mandatory | Description                                                        |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | No  | Display mode when the label text is too long. Text is clipped at the transition between words. To clip text in the middle of a word, add zero-width spaces between characters.<br>Default value: **TextOverflow.Ellipsis**|
-| maxLines             | number                                                       | No  | Maximum number of lines in the label text. By default, text is automatically folded. If this attribute is specified, the text will not exceed the specified number of lines. If there is extra text, you can use **overflow** to specify how it is displayed.<br>Default value: **1**|
-| minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | No  | Minimum font size of the label text. For the setting to take effect, this attribute must be used together with **maxFontSize**, **maxLines**, or layout constraint settings.|
-| maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | No  | Maximum font size of the label text. For the setting to take effect, this attribute must be used together with **minFontSize**, **maxLines**, or layout constraint settings.|
-| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | No  | How the adaptive height is determined for the label text.                            |
-| font                 | [Font](ts-types.md#font)                                     | No  | Font of the label text.<br>Default value: See [Font](ts-types.md#font).    |
+| overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | No  | Display mode when the label text is too long. Text is clipped at the transition between words. To clip text in the middle of a word, add zero-width spaces between characters.<br>Default value: **TextOverflow.Ellipsis** |
+| maxLines             | number                                                       | No  | Maximum number of lines in the label text. By default, text is automatically folded. If this attribute is specified, the text will not exceed the specified number of lines. If there is extra text, you can use **overflow** to specify how it is displayed.<br>Default value: **1** |
+| minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | No  | Minimum font size of the label text. For the setting to take effect, this attribute must be used together with **maxFontSize**, **maxLines**, or layout constraint settings.<br>**NOTE**<br>If the value of **minFontSize** is less than or equal to 0, the adaptive font size does not take effect. |
+| maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | No  | Maximum font size of the label text. For the setting to take effect, this attribute must be used together with **minFontSize**, **maxLines**, or layout constraint settings. |
+| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | No  | How the adaptive height is determined for the label text.<br>Default value: **TextHeightAdaptivePolicy.MAX_LINES_FIRST** |
+| font                 | [Font](ts-types.md#font)                                     | No  | Font of the label text.<br>Default value: See [Font](ts-types.md#font). |
 
 ## ButtonStyleMode<sup>11+</sup>
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name     | Description                |
 | ------- | ------------------ |
-| EMPHASIZED | Emphasized button (used to direct the user to the most important task).|
+| EMPHASIZED | Emphasized button (used to direct the user to the most important task). |
 | NORMAL  | Normal button (used to direct the user to a common task).             |
 | TEXTUAL  | Text button (displayed as simple text without any background color).     |
 
 ## ControlSize<sup>11+</sup>
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name     | Description                |
 | ------- | ------------------ |
-| SMALL | Small button.|
+| SMALL | Small button. |
 | NORMAL  | Normal button.             |
+
+## ButtonRole<sup>12+</sup>
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Name     | Description                |
+| ------- | ------------------ |
+| NORMAL | Normal button. |
+| ERROR  | Warning button.             |
+
+## ButtonConfiguration<sup>12+</sup>
+
+You need a custom class to implement the **ContentModifier** API.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Name | Type   | Description             |
+| ------ | ------ | ---------------- |
+| label | string | Text label of the button. |
+| pressed | boolean | Whether the button is pressed.<br>**NOTE**<br>The button here refers to the original button, not the new component constructed using the builder. If the new component is larger than the original button, this parameter does not signify the pressed state of the excess part. |
+| triggerClick | [ButtonTriggerClickCallback](#buttontriggerclickcallback12)  | Click event of the new component constructed using the builder. |
+
+## ButtonTriggerClickCallback<sup>12+</sup>
+
+Defines the callback type used in **ButtonConfiguration**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Name | Type   | Mandatory | Description             |
+| ------ | ------ | ---- | ---------------- |
+| xPos | number | Yes | X-coordinate of the click point. |
+| yPos | number | Yes | Y-coordinate of the click point. |
 
 ## Events
 
@@ -314,7 +433,7 @@ struct ButtonExample {
 
 ![button](figures/button.gif)
 
-### Example 2
+### Example 2 
 
 ```ts
 // xxx.ets
@@ -344,7 +463,7 @@ struct SwipeGestureExample {
 
 ![ifButton](figures/ifButton.gif)
 
-### Example 3
+### Example 3 
 
 ```ts
 // xxx.ets
@@ -416,3 +535,95 @@ struct ButtonExample {
 }
 ```
 ![image-20230711171138661](figures/buttonstyleandsize.jpeg)
+
+### Example 5
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ButtonExample {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+      Text('Role is Normal button').fontSize(9).fontColor(0xCCCCCC)
+      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Button('Emphasized', { buttonStyle: ButtonStyleMode.EMPHASIZED, role: ButtonRole.NORMAL });
+        Button('Normal', { buttonStyle: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL });
+        Button('Textual', { buttonStyle: ButtonStyleMode.TEXTUAL, role: ButtonRole.NORMAL });
+      }
+      Text('Role is Error button').fontSize(9).fontColor(0xCCCCCC)
+      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Button('Emphasized', { buttonStyle: ButtonStyleMode.EMPHASIZED, role: ButtonRole.ERROR});
+        Button('Normal', { buttonStyle: ButtonStyleMode.NORMAL, role: ButtonRole.ERROR });
+        Button('Textual', { buttonStyle: ButtonStyleMode.TEXTUAL, role: ButtonRole.ERROR });
+      }
+    }.height(200).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+![buttonrole](figures/buttonrole.jpeg)
+
+### Example 6
+This example implements a custom button in the shape of a circle. The circle is red when pressed, accompanied by the text "Pressed" in the title. It is black when not pressed, accompanied by the text "Not pressed" in the title.
+```ts
+class MyButtonStyle implements ContentModifier<ButtonConfiguration> {
+  x: number = 0
+  y: number = 0
+  selectedColor:Color = Color.Black
+
+  constructor(x : number, y: number,ColorType:Color) {
+    this.x = x
+    this.y = y
+    this.selectedColor = ColorType
+  }
+  applyContent() : WrappedBuilder<[ButtonConfiguration]>
+  {
+    return wrapBuilder(buildButton1)
+  }
+}
+
+@Builder function buildButton1(config: ButtonConfiguration) {
+  Column({space:30}) {
+    Text(config.enabled ? "enabled true" : "enabled false")
+    Text ('Circle state' + (config.pressed? "(Pressed)": "(Not pressed)"))
+    Text('X-coordinate of the click point:' + (config.enabled ? (config.contentModifier as MyButtonStyle).x : "0"))
+    Text('Y-coordinate of the click point:' + (config.enabled ? (config.contentModifier as MyButtonStyle).y : "0"))
+    Circle({ width: 50, height: 50 })
+      .fill(config.pressed ? (config.contentModifier as MyButtonStyle).selectedColor : Color.Black)
+      .gesture(
+        TapGesture({count:1}).onAction((event: GestureEvent)=>{
+          config.triggerClick(event.fingerList[0].localX,event.fingerList[0].localY)
+        })).opacity(config.enabled ? 1 : 0.1)
+  }
+}
+
+@Entry
+@Component
+struct ButtonExample {
+  @State buttonEnabled: boolean = true;
+  @State positionX: number = 0
+  @State positionY: number = 0
+  @State state : boolean[] = [true,false]
+  @State index:number = 0
+  build() {
+    Column() {
+      Button('OK')
+        .contentModifier(new MyButtonStyle(this.positionX,this.positionY,Color.Red))
+        .onClick((event) => {
+          console.info('change' + JSON.stringify(event))
+          this.positionX = event.displayX
+          this.positionY = event.displayY
+        }).enabled(this.buttonEnabled)
+      Row() {
+        Toggle({ type: ToggleType.Switch, isOn: true }).onChange((value: boolean) => {
+          if (value) {
+            this.buttonEnabled = true
+          } else {
+            this.buttonEnabled = false
+          }
+        }).margin({left:-80})
+      }
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+![buttonrole](figures/buttonbuilder.gif)

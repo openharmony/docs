@@ -10,7 +10,7 @@ quickFixManager模块提供快速修复的能力，快速修复是系统提供�
 ## 导入模块
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { quickFixManager } from '@kit.AbilityKit';
 ```
 
 ## HapModuleQuickFixInfo
@@ -67,32 +67,35 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 
 在打补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_APPLY_RESULT](../apis-basic-services-kit/common_event/commonEvent-definitions.md#common_event_quick_fix_apply_result9)的参数返回给应用开发者。
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
 | 18500008 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 > 说明：调用applyQuickFix接口时，补丁文件所在路径为应用沙箱路径。沙箱路径的获取参考[获取应用的沙箱路径](js-apis-bundle-BundleInstaller-sys.md#获取应用的沙箱路径)，映射到设备上的路径为/proc/&lt;应用进程Id&gt;/root/沙箱路径。
 
 **示例：**
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { quickFixManager } from '@kit.AbilityKit';
 
-  try {
-    let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
-    quickFixManager.applyQuickFix(hapModuleQuickFixFiles, (error) => {
-      if (error) {
-          console.error( `applyQuickFix failed with error: ${error}`);
-      } else {
-          console.info( 'applyQuickFix success');
-      }
-    });
-  } catch (paramError) {
-    console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
-  }
+try {
+  let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
+  quickFixManager.applyQuickFix(hapModuleQuickFixFiles, (error) => {
+    if (error) {
+      console.error( `applyQuickFix failed with error: ${error}`);
+    } else {
+      console.info( 'applyQuickFix success');
+    }
+  });
+} catch (paramError) {
+  console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+}
 ```
 
 ## quickFixManager.applyQuickFix
@@ -123,29 +126,33 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 
 在打补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_APPLY_RESULT](../apis-basic-services-kit/common_event/commonEvent-definitions.md#common_event_quick_fix_apply_result9)的参数返回给应用开发者。
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
 | 18500008 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
-import { BusinessError } from '@ohos.base';
+import { quickFixManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
-  try {
-    quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
-      console.info('applyQuickFix success');
-    }).catch((error: BusinessError) => {
-      console.error(`applyQuickFix err: ${error}`);
-    });
-  } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
-  }
+let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
+
+try {
+  quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
+    console.info('applyQuickFix success');
+  }).catch((error: BusinessError) => {
+    console.error(`applyQuickFix err: ${error}`);
+  });
+} catch (paramError) {
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+}
 ```
 
 ## quickFixManager.getApplicationQuickFixInfo
@@ -169,30 +176,34 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 18500001 | The specified bundleName is invalid. |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
 | 18500008 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { quickFixManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    let bundleName = 'bundleName';
-    quickFixManager.getApplicationQuickFixInfo(bundleName, (error, data) => {
-      if (error) {
-        console.error(`getApplicationQuickFixInfo error: ${error}`);
-      } else {
-        console.info(`getApplicationQuickFixInfo success: ${data}`);
-      }
-    });
-  } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
-  }
+try {
+  let bundleName = 'bundleName';
+  quickFixManager.getApplicationQuickFixInfo(bundleName, (error, data) => {
+    if (error) {
+      console.error(`getApplicationQuickFixInfo error: ${error}`);
+    } else {
+      console.info(`getApplicationQuickFixInfo success: ${data}`);
+    }
+  });
+} catch (paramError) {
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+}
 ```
 
 ## quickFixManager.getApplicationQuickFixInfo
@@ -221,30 +232,33 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 18500001 | The specified bundleName is invalid. |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
 | 18500008 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
-  ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
-import { BusinessError } from '@ohos.base';
+```ts
+import { quickFixManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    let bundleName = 'bundleName';
-    quickFixManager.getApplicationQuickFixInfo(bundleName).then((data) => {
-      console.info(`getApplicationQuickFixInfo success: ${data}`);
-    }).catch((error: BusinessError) => {
-      console.error(`getApplicationQuickFixInfo err: ${error}`);
-    });
-  } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
-  }
-  ```
+try {
+  let bundleName = 'bundleName';
+  quickFixManager.getApplicationQuickFixInfo(bundleName).then((data) => {
+    console.info(`getApplicationQuickFixInfo success: ${data}`);
+  }).catch((error: BusinessError) => {
+    console.error(`getApplicationQuickFixInfo err: ${error}`);
+  });
+} catch (paramError) {
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+}
+```
 
 ## quickFixManager.revokeQuickFix<sup>10+<sup>
 
@@ -267,24 +281,28 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 18500001 | The bundle is not exist or no patch has applied. |
-| 18500009 | The application has a apply quick fix task that is being processed. |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
+| 18500009 | The application has an ongoing quick fix task. |
 
-在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。
-
-
+在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。
 
 **示例：**
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { quickFixManager } from '@kit.AbilityKit';
 
-  let bundleName = "com.example.myapplication";
-  quickFixManager.revokeQuickFix(bundleName, (err) => {
-    console.info("revokeQuickFix " + bundleName + " " + JSON.stringify(err));
-  });
+let bundleName = "com.example.myapplication";
+
+quickFixManager.revokeQuickFix(bundleName, (err) => {
+  console.info("revokeQuickFix " + bundleName + " " + JSON.stringify(err));
+});
 ```
 
 ## quickFixManager.revokeQuickFix<sup>10+<sup>
@@ -313,25 +331,29 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 
 **错误码**：
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 18500001 | The bundle is not exist or no patch has applied. |
-| 18500009 | The application has a apply quick fix task that is being processed. |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
+| 18500009 | The application has an ongoing quick fix task. |
 
-在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。这部分错误码及错误信息如下：
+在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。这部分错误码及错误信息如下：
 
 **示例：**
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
-import { BusinessError } from '@ohos.base';
+import { quickFixManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let bundleName = "com.example.myapplication";
-  quickFixManager.revokeQuickFix(bundleName).then(() => {
-    console.info("revokeQuickFix " + bundleName +" ok");
-  }).catch((err: BusinessError) => {
-    console.info("revokeQuickFix " + bundleName +" failed, error code is ", JSON.stringify((err)));
-  });
+let bundleName = "com.example.myapplication";
+
+quickFixManager.revokeQuickFix(bundleName).then(() => {
+  console.info("revokeQuickFix " + bundleName +" ok");
+}).catch((err: BusinessError) => {
+  console.info("revokeQuickFix " + bundleName +" failed, error code is ", JSON.stringify((err)));
+});
 ```

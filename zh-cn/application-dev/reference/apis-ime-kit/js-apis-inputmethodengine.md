@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import inputMethodEngine from '@ohos.inputMethodEngine';
+import { inputMethodEngine } from '@kit.IMEKit';
 ```
 
 ## 常量
@@ -27,6 +27,7 @@ import inputMethodEngine from '@ohos.inputMethodEngine';
 | ENTER_KEY_TYPE_NEXT | number | 5 | “下一个”功能键。 |
 | ENTER_KEY_TYPE_DONE | number | 6 | “回车”功能键。 |
 | ENTER_KEY_TYPE_PREVIOUS | number | 7 | “前一个”功能键。 |
+| ENTER_KEY_TYPE_NEWLINE<sup>12+</sup> | number | 8 | “换行”功能键。 |
 | PATTERN_NULL | number | -1 | 无特殊性编辑框。 |
 | PATTERN_TEXT | number | 0 | 文本编辑框。 |
 | PATTERN_NUMBER | number | 2 | 数字编辑框。 |
@@ -140,6 +141,42 @@ createKeyboardDelegate(): KeyboardDelegate
 
 ```ts
 let keyboardDelegate = inputMethodEngine.createKeyboardDelegate();
+```
+
+## CommandDataType<sup>12+</sup>
+
+type CommandDataType = number | string | boolean;
+
+表示私有数据类型，接口参数具体类型根据其功能而定。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 类型    | 说明                 |
+| ------- | -------------------- |
+| string  | 表示值类型为字符串。  |
+| number  | 表示值类型为数字。   |
+| boolean | 表示值类型为布尔值。 |
+
+**示例：**
+
+```ts
+import { inputMethodEngine } from '@kit.IMEKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let record: Record<string, inputMethodEngine.CommandDataType> = {
+    "valueString1": "abcdefg",
+    "valueString2": true,
+    "valueString3": 500,
+  }
+  inputClient.sendPrivateCommand(record).then(() => {
+  }).catch((err: BusinessError) => {
+    console.error(`sendPrivateCommand catch error: ${JSON.stringify(err)}`);
+  });
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+}
 ```
 
 ## InputMethodEngine
@@ -495,7 +532,7 @@ on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => voi
 **示例：**
 
 ```ts
-import InputMethodSubtype from '@ohos.InputMethodSubtype';
+import { InputMethodSubtype } from '@kit.IMEKit';
 
 try {
   inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
@@ -564,7 +601,7 @@ try {
 
 off(type: 'securityModeChange', callback?: Callback< SecurityMode>): void
 
-取消订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
+取消订阅输入法安全模式改变类型事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -590,6 +627,92 @@ try {
 }
 ```
 
+### on('privateCommand')<sup>12+</sup>
+
+on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>): void;
+
+订阅输入法私有数据事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                          | 必填 | 说明                                       |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                        | 是   | 设置监听类型，固定取值为'privateCommand'。 |
+| callback | Callback<Record<string, [CommandDataType](#commanddatatype12)>> | 是   | 回调函数，返回向输入法应用发送的私有数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 12800010 | not the preconfigured default input method. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { inputMethodEngine } from '@kit.IMEKit';
+
+let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
+  for (let i = 0; i < record.length; i++) {
+    console.log(`private command key: ${i}, value: ${record[i]}`);
+  }
+}
+try {
+  console.log(`regist private command `);
+  inputMethodEngine.getInputMethodAbility().on('privateCommand', privateCommandCallback);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`regist private command error: ${error.code} ${error.message}`);
+}
+```
+
+### off('privateCommand')<sup>12+</sup>
+
+off(type: 'privateCommand', callback?: Callback<Record<string, CommandDataType>>): void
+
+取消订阅输入法私有数据事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                        | 必填 | 说明                                                         |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                      | 是   | 设置监听类型，固定取值为'privateCommand'。                   |
+| callback | Callback<Record<string, [CommandDataType](#commanddatatype12)>> | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 12800010 | not the preconfigured default input method. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { inputMethodEngine } from '@kit.IMEKit';
+
+let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
+  for (let i = 0; i < record.length; i++) {
+    console.log(`private command key: ${i}, value: ${record[i]}`);
+  }
+}
+try {
+  console.log(`regist private command `);
+  inputMethodEngine.getInputMethodAbility().off('privateCommand', privateCommandCallback);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`regist private command error: ${error.code} ${error.message}`);
+}
+```
+
 ### getSecurityMode<sup>11+</sup>
 
 getSecurityMode(): SecurityMode
@@ -608,7 +731,7 @@ getSecurityMode(): SecurityMode
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 12800004 | not an input method extension. |
+| 12800004 | not an input method. |
 
 **示例：**
 
@@ -641,12 +764,13 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 12800004   | not an input method extension. |
+| 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12800004   | not an input method. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
@@ -690,12 +814,13 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 12800004   | not an input method extension. |
+| 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12800004   | not an input method. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
@@ -724,10 +849,18 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void
 | panel     | [Panel](#panel10) | 是   | 要销毁的面板对象。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当输入法面板销毁成功，err为undefined，否则为错误对象。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
@@ -781,10 +914,18 @@ destroyPanel(panel: Panel): Promise\<void>
 | ------- | -------------------------------------------------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
@@ -842,13 +983,13 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 ```ts
 try {
   inputMethodEngine.getKeyboardDelegate().on('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
-    console.log('inputMethodEngine keyCode.(keyUp):' + JSON.stringify(keyEvent.keyCode));
-    console.log('inputMethodEngine keyAction.(keyUp):' + JSON.stringify(keyEvent.keyAction));
+    console.log(`inputMethodEngine keyCode.(keyDown): ${keyEvent.keyCode}`);
+    console.log(`inputMethodEngine keyAction.(keyDown): ${keyEvent.keyAction}`);
     return true;
   });
   inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
-    console.log('inputMethodEngine keyCode.(keyDown):' + JSON.stringify(keyEvent.keyCode));
-    console.log('inputMethodEngine keyAction.(keyDown):' + JSON.stringify(keyEvent.keyAction));
+    console.log(`inputMethodEngine keyCode.(keyDown): ${keyEvent.keyCode}`);
+    console.log(`inputMethodEngine keyAction.(keyDown): ${keyEvent.keyAction}`);
     return true;
   });
 } catch(err) {
@@ -901,18 +1042,19 @@ on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 设置监听类型，固定取值为'keyEvent'。 |
-| callback | function | 是   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#KeyEvent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。|
+| callback | (event: [InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent)) => boolean | 是   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。|
 
 **示例：**
 
 ```ts
-import type { KeyEvent } from '@ohos.multimodalInput.keyEvent';
+import type { KeyEvent } from '@kit.InputKit';
 
 try {
   inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent: KeyEvent) => {
     console.log('inputMethodEngine keyEvent.action:' + JSON.stringify(keyEvent.action));
     console.log('inputMethodEngine keyEvent.key.code:' + JSON.stringify(keyEvent.key.code));
-    console.log('inputMethodEngine keyEvent.ctrlKey:' + JSON.stringify(keyEvent.ctrlKey));
+    console.log(`inputMethodEngine keyEvent.ctrlKey: ${keyEvent.ctrlKey}`);
+    console.log(`inputMethodEngine keyEvent.unicodeChar: ${keyEvent.unicodeChar}`);
     return true;
   });
 } catch(err) {
@@ -938,7 +1080,7 @@ off(type: 'keyEvent', callback?: (event: InputKeyEvent) => boolean): void
 **示例：**
 
 ```ts
-import type { KeyEvent } from '@ohos.multimodalInput.keyEvent';
+import type { KeyEvent } from '@kit.InputKit';
 
 try {
   inputMethodEngine.getKeyboardDelegate().off('keyEvent', (keyEvent: KeyEvent) => {
@@ -1188,10 +1330,18 @@ setUiContent(path: string, callback: AsyncCallback\<void>): void
 | path | string | 是   | 具体页面的路径。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   panel.setUiContent('pages/page2/page2', (err: BusinessError) => {
@@ -1226,10 +1376,18 @@ setUiContent(path: string): Promise\<void>
 | ------- | ------------------------------ |
 | Promise\<void> | 无返回结果的Promise对象。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   panel.setUiContent('pages/page2/page2').then(() => {
@@ -1258,10 +1416,18 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 | storage | [LocalStorage](../apis-arkui/arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变和不可变状态属性提供存储。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
@@ -1299,15 +1465,23 @@ setUiContent(path: string, storage: LocalStorage): Promise\<void>
 | ------- | ------------------------------ |
 | Promise\<void> | 无返回结果的Promise对象。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
-  panel.setUiContent('pages/page2/page2').then(() => {
+  panel.setUiContent('pages/page2/page2', storage).then(() => {
     console.log('Succeeded in setting the content.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
@@ -1325,7 +1499,7 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 
 > **说明**
 >
-> 面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的0.6倍。
+> 面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的0.7倍。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1337,10 +1511,18 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 | height | number | 是   | 目标面板的高度，单位为px。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板大小改变成功，err为undefined，否则err为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   panel.resize(500, 1000, (err: BusinessError) => {
@@ -1363,7 +1545,7 @@ resize(width: number, height: number): Promise\<void>
 
 > **说明**
 >
-> 面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的0.6倍。
+> 面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的0.7倍。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1380,10 +1562,18 @@ resize(width: number, height: number): Promise\<void>
 | ------- | ------------------------------ |
 | Promise\<void> | 无返回结果的Promise对象。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   panel.resize(500, 1000).then(() => {
@@ -1412,10 +1602,18 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 | y | number | 是   | y轴方向移动的值，值大于0表示下移，单位为px。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板位置移动成功，err为undefined，否则err为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   panel.moveTo(300, 300, (err: BusinessError) =>{
@@ -1451,10 +1649,18 @@ moveTo(x: number, y: number): Promise\<void>
 | ------- | ------------------------------ |
 | Promise\<void> | 无返回结果的Promise对象。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   panel.moveTo(300, 300).then(() => {
@@ -1484,7 +1690,7 @@ show(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 panel.show((err: BusinessError) => {
   if (err) {
@@ -1512,7 +1718,7 @@ show(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 panel.show().then(() => {
   console.log('Succeeded in showing the panel.');
@@ -1538,7 +1744,7 @@ hide(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 panel.hide((err: BusinessError) => {
   if (err) {
@@ -1566,13 +1772,54 @@ hide(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 panel.hide().then(() => {
   console.log('Succeeded in hiding the panel.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to hide panel: ${JSON.stringify(err)}`);
 });
+```
+
+### adjustPanelRect<sup>12+</sup>
+
+adjustPanelRect(flag: PanelFlag, rect: PanelRect): void
+
+预设置输入法应用横竖屏大小。接口调用完毕表示adjust请求已提交到输入法框架，不表示执行完毕。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| flag | [PanelFlag](#panelflag10) | 是 | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING |
+| rect | [PanelRect](#panelrect12) | 是   | 目标面板横屏状态及竖屏状态的横坐标，纵坐标，宽度以及高度。固定态：高度不能超过屏幕高度的70%，宽度不能超过屏幕宽度；悬浮态：高度不能超过屏幕高度，宽度不能超过屏幕宽度。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800013 | window manager service error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let panelFlag = inputMethodEngine.PanelFlag.FLG_FIXED;
+  let panelRect:inputMethodEngine.PanelRect = {
+    landscapeRect:{left:100, top:100, width:400, height:400},
+    portraitRect:{left:200, top:200, width:300, height:300}
+  };
+  panel.adjustPanelRect(panelFlag, panelRect);
+} catch(err) {
+  console.error(`Failed to adjustPanelRect: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('show')<sup>10+</sup>
@@ -1629,6 +1876,38 @@ try {
 }
 ```
 
+### on('sizeChange')<sup>12+</sup>
+
+on(type: 'sizeChange', callback: Callback&lt;window.Size&gt;): void;
+
+监听当前面板大小变化，使用callback异步回调。
+
+>**说明:**
+>
+> 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。由于输入法通过adjustPanelRect等接口对面板大小调节时，系统往往要根据一定规则校验计算得出最终的数值(例如超出屏幕等场景)，输入法应用可通过该回调做最终的面板布局刷新。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| type | string | 是 | 监听当前面板的大小是否产生变化，固定取值为'sizeChange'。 |
+| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#size7)> |  是  | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。 |
+
+**示例：**
+
+```ts
+import { window } from '@kit.ArkUI';
+try {
+  panel.on('sizeChange', (windowSize: window.Size) => {
+    console.info(`panel is size changes, width: ${windowSize.width}, height: ${windowSize.height}`);
+  });
+} catch(err) {
+  console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);
+}
+```
+
 ### off('show')<sup>10+</sup>
 
 off(type: 'show', callback?: () => void): void
@@ -1643,6 +1922,14 @@ off(type: 'show', callback?: () => void): void
 | -------- | ---------------------- | ---- | -------- |
 | type | string | 是 | 取消监听当前面板的状态类型，固定取值为'show'。 |
 | callback | () => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -1669,6 +1956,14 @@ off(type: 'hide', callback?: () => void): void
 | type | string | 是 | 要取消监听的当前面板状态类型，固定取值为'hide'。 |
 | callback | () => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
 **示例：**
 
 ```ts
@@ -1676,6 +1971,34 @@ try {
   panel.off('hide');
 } catch(err) {
     console.error(`Failed to hide: ${JSON.stringify(err)}`);
+}
+```
+
+### off('sizeChange')<sup>12+</sup>
+
+off(type: 'sizeChange', callback?: Callback&lt;window.Size&gt;): void;
+
+取消监听当前面板大小变化，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| type | string | 是 | 监听当前面板的大小是否产生变化，固定取值为'sizeChange'。 |
+| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#size7)> | 否   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。 |
+
+**示例：**
+
+```ts
+import { window } from '@kit.ArkUI';
+try {
+  panel.off('sizeChange', (windowSize: window.Size) => {
+    console.info(`panel is size changes, width: ${windowSize.width}, height: ${windowSize.height}`);
+  });
+} catch(err) {
+    console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1692,6 +2015,14 @@ changeFlag(flag: PanelFlag): void
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | flag | [PanelFlag](#panelflag10) | 是 | 目标面板状态类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -1719,6 +2050,15 @@ setPrivacyMode(isPrivacyMode: boolean): void
 | 参数名        | 类型    | 必填 | 说明               |
 | ------------- | ------- | ---- | ------------------ |
 | isPrivacyMode | boolean | 是   | 是否设置隐私模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 201      | permissions check fails.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1760,7 +2100,7 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 keyboardController.hide((err: BusinessError) => {
   if (err) {
@@ -1796,7 +2136,7 @@ hide(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 keyboardController.hide().then(() => {
   console.log('Succeeded in hiding keyboard.');
@@ -1826,7 +2166,7 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 keyboardController.hideKeyboard((err: BusinessError) => {
   if (err) {
@@ -1858,7 +2198,7 @@ hideKeyboard(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 keyboardController.hideKeyboard().then(() => {
   console.log('Succeeded in hiding keyboard.');
@@ -1888,12 +2228,12 @@ exitCurrentInputType(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
 | 12800008 | input method manager service error.            |
-| 12800010 | not default input method configured by system. |
+| 12800010 | not the preconfigured default input method. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 keyboardController.exitCurrentInputType((err: BusinessError) => {
   if (err) {
@@ -1925,12 +2265,12 @@ exitCurrentInputType(): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
 | 12800008 | input method manager service error.            |
-| 12800010 | not default input method configured by system. |
+| 12800010 | not the preconfigured default input method. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 keyboardController.exitCurrentInputType().then(() => {
   console.log('Succeeded in exiting current input type.');
@@ -1982,10 +2322,10 @@ keyboardController.exitCurrentInputType().then(() => {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| start  | number | 是 | 是 | 选中文本的首字符在编辑框的索引值。|
-| end  | number | 是 | 是 | 选中文本的末字符在编辑框的索引值。|
+| start  | number | 否 | 否 | 选中文本的首字符在编辑框的索引值。|
+| end  | number | 否 | 否 | 选中文本的末字符在编辑框的索引值。|
 
 ## Movement<sup>10+</sup>
 
@@ -1993,9 +2333,103 @@ keyboardController.exitCurrentInputType().then(() => {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| direction  | [Direction](#direction10) | 是 | 是 | 选中文本时，光标的移动方向。|
+| direction  | [Direction](#direction10) | 否 | 否 | 选中文本时，光标的移动方向。|
+
+## MessageHandler<sup>16+</sup>
+
+自定义通信对象。
+
+> **说明**
+>
+> 开发者可通过注册此对象来接收已绑定当前输入法应用的编辑框应用所发送的自定义通信数据，接收到自定义通信数据时会触发此对象中[onMessage](#messagehandleronmessage16)回调函数。
+>
+> 此对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated16)回调函数。
+>
+> 若取消注册全局已注册的对象时，会触发被取消对象中[onTerminated](#messagehandleronterminated16)回调函数。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称         | 类型     | 可选 | 说明                               |
+| ------------ | -------- | ---- | ---------------------------------- |
+| onTerminated | function | 否   | 对象终止接收的回调函数。           |
+| onMessage    | function | 否   | 对象接收自定义通信数据的回调函数。 |
+
+## MessageHandler.onMessage<sup>16+</sup>
+
+onMessage(msgId: string, msgParam?: ArrayBuffer): void
+
+接收已绑定当前输入法应用的编辑框应用发送的自定义数据回调函数。
+
+> **说明**
+>
+> 当已注册的MeesageHandler接收到来自已绑定当前输入法应用的编辑框应用所发送的自定义通信数据时，会触发该回调函数。
+>
+> msgId为必选参数，msgParam为可选参数。存在收到仅有msgId自定义数据的可能，需与数据发送方确认自定义数据。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型        | 可选 | 说明                             |
+| -------- | ----------- | ---- | -------------------------------- |
+| msgId    | string      | 否   | 接收到的自定义通信数据的标识符。 |
+| msgParam | ArrayBuffer | 是   | 接收到的自定义通信数据的消息体。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let messageHandler: inputmethod.MessageHandler = {
+        onTerminated(): void {
+            console.log('OnTerminated.');
+        },
+        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+        }
+    }
+    inputMethodController.recvMessage(messageHandler);
+} catch(err) {
+  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+}
+```
+
+## MessageHandler.onTerminated<sup>16+</sup>
+
+onTerminated(): void
+
+监听对象终止回调函数。
+
+> **说明**
+>
+> 当应用注册新的MessageHandler对象时，会触发上一个已注册MessageHandler对象的OnTerminated回调函数。
+>
+> 当应用取消注册时，会触发当前已注册MessageHandler对象的OnTerminated回调函数。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let messageHandler: inputmethod.MessageHandler = {
+        onTerminated(): void {
+            console.log('OnTerminated.');
+        },
+        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+        }
+    }
+    inputMethodController.recvMessage(messageHandler);
+} catch(err) {
+  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+}
+```
 
 ## InputClient<sup>9+</sup>
 
@@ -2018,16 +2452,17 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error. |
 
  **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let action = 1;
 try {
@@ -2069,16 +2504,17 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let action = 1;
 try {
@@ -2108,22 +2544,23 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| length | number | 是 | 文本长度。 |
+| length | number | 是 | 文本长度。不能小于0。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。当光标前固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 try {
@@ -2151,7 +2588,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| length | number | 是 | 文本长度。 |
+| length | number | 是 | 文本长度。不能小于0 |
 
 **返回值：**
 
@@ -2161,17 +2598,18 @@ getForward(length:number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 try {
@@ -2197,7 +2635,7 @@ getForwardSync(length:number): string
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| length | number | 是   | 文本长度。 |
+| length | number | 是   | 文本长度。不能小于0。 |
 
 **返回值：**
 
@@ -2207,10 +2645,11 @@ getForwardSync(length:number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.     |
 | 12800006 | input method controller error. |
 
@@ -2238,22 +2677,23 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| length | number | 是 | 文本长度。 |
+| length | number | 是 | 文本长度。不能小于0。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。当光标后固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 try {
@@ -2281,7 +2721,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| length | number | 是 | 文本长度。 |
+| length | number | 是 | 文本长度。不能小于0。 |
 
 **返回值：**
 
@@ -2291,17 +2731,18 @@ getBackward(length:number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 try {
@@ -2327,7 +2768,7 @@ getBackwardSync(length:number): string
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| length | number | 是   | 文本长度。 |
+| length | number | 是   | 文本长度。不能小于0。 |
 
 **返回值：**
 
@@ -2337,10 +2778,11 @@ getBackwardSync(length:number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.     |
 | 12800006 | input method controller error. |
 
@@ -2368,22 +2810,23 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| length | number | 是 | 文本长度。 |
+| length | number | 是 | 文本长度。不能小于0。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当光标前固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 try {
@@ -2415,7 +2858,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| length | number | 是   | 文本长度。 |
+| length | number | 是   | 文本长度。不能小于0。 |
 
 **返回值：**  
 
@@ -2425,17 +2868,18 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 try {
@@ -2465,14 +2909,15 @@ deleteForwardSync(length:number): void
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| length | number | 是   | 文本长度。 |
+| length | number | 是   | 文本长度。不能小于0。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800002 | input method engine error. |
 | 12800003 | input method client error. |
 
@@ -2500,22 +2945,23 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名   | 类型                         | 必填 | 说明           |
 | -------- | ---------------------------- | ---- | -------------- |
-| length   | number                       | 是   | 文本长度。     |
+| length   | number                       | 是   | 文本长度。不能小于0。     |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当光标后固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 try {
@@ -2547,7 +2993,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| length | number | 是 | 文本长度。 |
+| length | number | 是 | 文本长度。不能小于0。    |
 
 **返回值：** 
 
@@ -2557,17 +3003,18 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 inputClient.deleteBackward(length).then((result: boolean) => {
@@ -2593,14 +3040,15 @@ deleteBackwardSync(length:number): void
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| length | number | 是   | 文本长度。 |
+| length | number | 是   | 文本长度。不能小于0。  |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800002 | input method engine error. |
 | 12800003 | input method client error. |
 
@@ -2633,17 +3081,18 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputClient.insertText('test', (err: BusinessError, result: boolean) => {
   if (err) {
@@ -2680,17 +3129,18 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputClient.insertText('test').then((result: boolean) => {
@@ -2723,10 +3173,11 @@ insertTextSync(text: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | input method engine error. |
 | 12800003 | input method client error. |
 
@@ -2766,15 +3217,15 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMethodEngine.EditorAttribute) => {
   if (err) {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  console.log(`editorAttribute.inputPattern:  ${editorAttribute.inputPattern}`);
+  console.log(`editorAttribute.enterKeyType:  ${editorAttribute.enterKeyType}`);
 });
 ```
 
@@ -2803,12 +3254,12 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
-    console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-    console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+    console.log(`editorAttribute.inputPattern:  ${editorAttribute.inputPattern}`);
+    console.log(`editorAttribute.enterKeyType:  ${editorAttribute.enterKeyType}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
   });
@@ -2844,7 +3295,8 @@ getEditorAttributeSync(): EditorAttribute
 ```ts
 try {
   let editorAttribute: inputMethodEngine.EditorAttribute = inputClient.getEditorAttributeSync();
-  console.log(`Succeeded in getEditorAttributeSync, editorAttribute = ${JSON.stringify(editorAttribute)}`);
+    console.log(`editorAttribute.inputPattern:  ${editorAttribute.inputPattern}`);
+    console.log(`editorAttribute.enterKeyType:  ${editorAttribute.enterKeyType}`);
 } catch (err) {
   console.error(`Failed to getEditorAttributeSync: ${JSON.stringify(err)}`);
 }
@@ -2862,21 +3314,22 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名    | 类型                      | 必填 | 说明           |
 | --------- | ------------------------- | ---- | -------------- |
-| direction | number                    | 是   | 光标移动方向。<br/>- 当值为1时，表示向上。<br/>- 当值为2时，表示向下。<br/>- 当值为3时，表示向左。<br/>- 当值为4时，表示向右。 |
+| direction | number                    | 是   | 光标移动方向。<br/>- 当值为1时，表示向上。<br/>- 当值为2时，表示向下。<br/>- 当值为3时，表示向左。<br/>- 当值为4时，表示向右。不能小于0。 |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当光标移动成功，err为undefined，否则为错误对象。    |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputClient.moveCursor(inputMethodEngine.Direction.CURSOR_UP, (err: BusinessError) => {
@@ -2903,7 +3356,7 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明                                                         |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
-| direction | number | 是   | 光标移动方向。<br/>- 当值为1时，表示向上。<br/>- 当值为2时，表示向下。<br/>- 当值为3时，表示向左。<br/>- 当值为4时，表示向右。 |
+| direction | number | 是   | 光标移动方向。<br/>- 当值为1时，表示向上。<br/>- 当值为2时，表示向下。<br/>- 当值为3时，表示向左。<br/>- 当值为4时，表示向右。不能小于0。 |
 
 **返回值：**  
 
@@ -2913,16 +3366,17 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputClient.moveCursor(inputMethodEngine.Direction.CURSOR_UP).then(() => {
@@ -2947,14 +3401,15 @@ moveCursorSync(direction: number): void
 
 | 参数名    | 类型   | 必填 | 说明                                                         |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
-| direction | number | 是   | 光标移动方向。<br/>- 当值为1时，表示向上。<br/>- 当值为2时，表示向下。<br/>- 当值为3时，表示向左。<br/>- 当值为4时，表示向右。 |
+| direction | number | 是   | 光标移动方向。<br/>- 当值为1时，表示向上。<br/>- 当值为2时，表示向下。<br/>- 当值为3时，表示向左。<br/>- 当值为4时，表示向右。不能小于0。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -2985,17 +3440,17 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | parameter error.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let range: inputMethodEngine.Range = { start: 0, end: 1 };
@@ -3033,17 +3488,17 @@ selectByRange(range: Range): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | parameter error.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let range: inputMethodEngine.Range = { start: 0, end: 1 };
@@ -3073,11 +3528,11 @@ selectByRangeSync(range: Range): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | parameter error.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -3109,17 +3564,17 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | parameter error.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let movement: inputMethodEngine.Movement = { direction: 1 };
@@ -3157,17 +3612,17 @@ selectByMovement(movement: Movement): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | parameter error.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let movement: inputMethodEngine.Movement = { direction: 1 };
@@ -3197,11 +3652,11 @@ selectByMovementSync(movement: Movement): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | parameter error.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -3242,7 +3697,7 @@ getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputClient.getTextIndexAtCursor((err: BusinessError, index: number) => {
   if (err) {
@@ -3279,7 +3734,7 @@ getTextIndexAtCursor(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputClient.getTextIndexAtCursor().then((index: number) => {
   console.log('Succeeded in getTextIndexAtCursor: ' + index);
@@ -3343,17 +3798,18 @@ sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY, (err: BusinessError) => {
@@ -3394,17 +3850,18 @@ sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY).then(() => {
@@ -3417,16 +3874,389 @@ try {
 }
 ```
 
-## EditorAttribute
+### sendPrivateCommand<sup>12+</sup>
+
+sendPrivateCommand(commandData: Record&lt;string, CommandDataType&gt;): Promise&lt;void&gt;
+
+发送私有数据至需要与输入法应用通信的系统其他部分。
+
+>**说明:**
+>
+> - 私有数据通道是系统预置输入法应用与系统特定组件（如文本框、桌面应用等）的通信机制，常用于设备级厂商在特定设备上实现自定义的输入法功能。
+> - 私有数据规格限制：总大小32KB，数量限制5条。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名      | 类型                            | 必填 | 说明       |
+| ----------- | ------------------------------- | ---- | ---------- |
+| commandData | Record<string, [CommandDataType](#commanddatatype12)> | 是   | 私有数据。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800003 | input method client error.                     |
+| 12800010 | not the preconfigured default input method. |
+
+**示例：**
+
+```ts
+import { inputMethodEngine } from '@kit.IMEKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, textInputClient) => {
+  try {
+    let record: Record<string, inputMethodEngine.CommandDataType> = {
+      "valueString1": "abcdefg",
+      "valueString2": true,
+      "valueString3": 500,
+    }
+    textInputClient.sendPrivateCommand(record).then(() => {
+    }).catch((err: BusinessError) => {
+      if (err !== undefined) {
+        let error = err as BusinessError;
+        console.error(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+      }
+    });
+  } catch (err) {
+    let error = err as BusinessError;
+    console.error(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+  }
+})
+```
+
+### getCallingWindowInfo<sup>12+</sup>
+
+getCallingWindowInfo(): Promise&lt;WindowInfo&gt;
+
+获取当前拉起输入法的输入框所在应用窗口信息。使用promise异步回调。
+
+>**说明：**
+>
+>本接口仅适用于适配使用[Panel](#panel10)作为软键盘窗口的输入法应用。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                                       | 说明                                                  |
+| ------------------------------------------ | ----------------------------------------------------- |
+| Promise&lt;[WindowInfo](#windowinfo12)&gt; | Promise对象，返回拉起输入法的输入框所在应用窗口信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 12800003 | input method client error.        |
+| 12800012 | the input method panel does not exist. |
+| 12800013 | window manager service error.     |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  inputClient.getCallingWindowInfo().then((windowInfo: inputMethodEngine.WindowInfo) => {
+    console.log(`windowInfo.rect: ${JSON.stringify(windowInfo.rect)}`);
+    console.log('windowInfo.status: ' + JSON.stringify(windowInfo.status));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to getCallingWindowInfo: ${JSON.stringify(err)}`);
+  });
+} catch(err) {
+    console.error(`Failed to getCallingWindowInfo: ${JSON.stringify(err)}`);
+}
+```
+
+### setPreviewText<sup>12+</sup>
+
+setPreviewText(text: string, range: Range): Promise&lt;void&gt;
+
+设置预上屏文本。使用promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明                                                         |
+| ------ | ----------------- | ---- | ------------------------------------------------------------ |
+| text   | string            | 是   | 将被预上屏的文本。                                           |
+| range  | [Range](#range10) | 是   | 目标替换的文本范围。<br/>- 当值为{ start: -1, end: -1 }时，默认将参数text替换当前预上屏区域全部文本。<br/>- 当start等于end，默认将参数text插入start对应的光标位置。<br/>- 当start不等于end，将参数text替换range对应区域的文本。<br/>- 当start与end为其他含有负数值的组合，按照参数错误返回。<br/>- 当输入框已有预上屏文本，参数range不得超过预上屏文本范围，否则按照参数错误返回。<br/>- 当输入框无预上屏文本，参数range不得超过输入框文本范围，否则按照参数错误返回。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800003 | input method client error.                                   |
+| 12800011 | text preview not supported.                               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let range: inputMethodEngine.Range = { start: 0, end: 1 };
+  inputClient.setPreviewText('test', range).then(() => {
+    console.log('Succeeded in setting preview text.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to setPreviewText: ${JSON.stringify(err)}`);
+  });
+} catch(err) {
+    console.error(`Failed to setPreviewText: ${JSON.stringify(err)}`);
+}
+```
+
+### setPreviewTextSync<sup>12+</sup>
+
+setPreviewTextSync(text: string, range: Range): void
+
+设置预上屏文本。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明                                                         |
+| ------ | ----------------- | ---- | ------------------------------------------------------------ |
+| text   | string            | 是   | 将被预上屏的文本。                                           |
+| range  | [Range](#range10) | 是   | 目标替换的文本范围。<br/>- 当值为{ start: -1, end: -1 }时，默认将参数text替换当前预上屏区域全部文本。<br/>- 当start等于end，默认将参数text插入start对应的光标位置。<br/>- 当start不等于end，将参数text替换range对应区域的文本。<br/>- 当start与end为其他含有负数值的组合，按照参数错误返回。<br/>- 当输入框已有预上屏文本，参数range不得超过预上屏文本范围，否则按照参数错误返回。<br/>- 当输入框无预上屏文本，参数range不得超过输入框文本范围，否则按照参数错误返回。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800003 | input method client error.                                   |
+| 12800011 | text preview not supported.                               |
+
+**示例：**
+
+```ts
+try {
+  let range: inputMethodEngine.Range = { start: 0, end: 1 };
+  inputClient.setPreviewTextSync('test', range);
+  console.log('Succeeded in setting preview text with synchronized method.');
+} catch (err) {
+  console.error(`Failed to setPreviewTextSync: ${JSON.stringify(err)}`);
+}
+```
+
+### finishTextPreview<sup>12+</sup>
+
+finishTextPreview(): Promise&lt;void&gt;
+
+结束预上屏。使用promise异步回调。
+
+>**说明：**
+>
+>若当前输入框已有预上屏状态文本，调用此接口后，预上屏内容将被系统正式上屏。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 12800003 | input method client error.     |
+| 12800011 | text preview not supported. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  inputClient.finishTextPreview().then(() => {
+    console.log('Succeeded in finishing text preview.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to finishTextPreview: ${JSON.stringify(err)}`);
+  });
+} catch(err) {
+    console.error(`Failed to finishTextPreview: ${JSON.stringify(err)}`);
+}
+```
+
+### finishTextPreviewSync<sup>12+</sup>
+
+finishTextPreviewSync(): void
+
+结束预上屏。
+
+>**说明：**
+>
+>若当前输入框已有预上屏状态文本，调用此接口后，预上屏内容将被系统正式上屏。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 12800003 | input method client error.     |
+| 12800011 | text preview not supported. |
+
+**示例：**
+
+```ts
+try {
+  inputClient.finishTextPreviewSync();
+  console.log('Succeeded in finishing text preview with synchronized method.');
+} catch (err) {
+  console.error(`Failed to finishTextPreviewSync: ${JSON.stringify(err)}`);
+}
+```
+
+### sendMessage<sup>16+</sup>
+
+sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
+
+发送自定义通信至已绑定当前输入法应用的编辑框应用。使用Promise异步回调。
+
+> **说明：**
+>
+> 该接口需要编辑框与输入法绑定并进入编辑状态，且输入法应用处于完整体验模式时才能调用。
+>
+> msgId最大限制256B，msgParam最大限制128KB。
+
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型        | 可选 | 说明                                                         |
+| -------- | ----------- | ---- | ------------------------------------------------------------ |
+| msgId    | string      | 否   | 需要发送至已绑定当前输入法应用的编辑框应用的自定义数据的标识符。 |
+| msgParam | ArrayBuffer | 是   | 需要发送至已绑定当前输入法应用的编辑框应用的自定义数据的消息体。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 401      | parameter error.                            |
+| 12800003 | input method client error.                  |
+| 12800009 | input method client detached.               |
+| 12800014 | the input method is in basic mode.          |
+| 12800015 | the other side does not accept the request. |
+| 12800016 | input method client is not editable.        |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let msgId: string = "testMsgId";
+let msgParam: ArrayBuffer = new ArrayBuffer(128);
+inputMethodController.sendMessage(msgId, msgParam).then(() => {
+  console.log('Succeeded send message.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to send message: ${JSON.stringify(err)}`);
+});
+```
+
+### recvMessage<sup>16+</sup>
+
+recvMessage(msgHandler?: MessageHandler): void;
+
+注册或取消注册Messagehandler。
+
+> **说明：**
+>
+> [MessageHandler](#messagehandler16)对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated16)回调函数。
+>
+> 未填写参数，则取消全局已注册的[MessageHandler](#messagehandler16)，并会触发被取消注册对象中[onTerminated](#messagehandleronterminated16)回调函数。
+
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                         |
+| ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| msgHandler | [MessageHandler](#messagehandler16) | 否   | 该对象将通过[onMessage](#messagehandleronmessage16)接收来自已绑定当前输入法应用的编辑框应用所发送的自定义通信数据，以及[onTerminated](#messagehandleronterminated16)接收终止此对象订阅的消息。若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler16)对象，并触发其[onTerminated](#messagehandleronterminated16)回调函数。 |
+
+**返回值：**
+
+| 类型 | 说明         |
+| ---- | ------------ |
+| void | 无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | parameter error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+let messageHandler: inputmethod.MessageHandler = {
+    onTerminated(): void {
+        console.log('OnTerminated.');
+    },
+    onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+        console.log('recv message.');
+    }
+}
+inputMethodController.recvMessage(messageHandler);
+inputMethodController.recvMessage();
+```
+
+### EditorAttribute
 
 编辑框属性值。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称         | 类型 | 可读 | 可写 | 说明               |
+| 名称         | 类型 | 只读 | 可选 | 说明               |
 | ------------ | -------- | ---- | ---- | ------------------ |
 | enterKeyType | number   | 是   | 否   | 编辑框的功能属性。 |
 | inputPattern | number   | 是   | 否   | 编辑框的文本属性。 |
+| isTextPreviewSupported<sup>12+</sup> | boolean | 否 | 否 | 编辑框是否支持预上屏。 |
+| bundleName<sup>14+</sup> | string | 是 | 是 | 编辑框所属应用包名；该值可能为""，使用该属性时需要考虑为""的场景。 |
 
 ## KeyEvent
 
@@ -3434,7 +4264,7 @@ try {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称      | 类型 | 可读 | 可写 | 说明         |
+| 名称      | 类型 | 只读 | 可选 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
 | keyCode   | number   | 是   | 否   | 按键的键值。键码值说明参考[KeyCode](../apis-input-kit/js-apis-keycode.md#keycode)。 |
 | keyAction | number   | 是   | 否   | 按键事件类型。<br/>- 当值为2时，表示按下事件；<br/>- 当值为3时，表示抬起事件。 |
@@ -3463,14 +4293,36 @@ try {
 
 ## PanelInfo<sup>10+</sup>
 
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
 输入法面板属性。
 
-| 名称      | 类型 | 可读 | 可写 | 说明         |
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称      | 类型 | 只读 | 可选 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
-| type   	| number   | 是   | 是   | 面板的类型。 |
-| flag	    | number   | 是   | 是   | 面板的状态类型。 |
+| type   	| [PanelType](#paneltype10)   | 否   | 否   | 面板的类型。 |
+| flag	    | [PanelFlag](#panelflag10)   | 否   | 是   | 面板的状态类型。 |
+
+## PanelRect<sup>12+</sup>
+
+输入法面板位置大小信息。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称         | 类型 | 只读 | 可选 | 说明               |
+| ------------ | -------- | ---- | ---- | ------------------ |
+| landscapeRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 否   | 否   | 横屏状态时输入法面板窗口的位置大小。 |
+| portraitRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 否   | 否   | 竖屏状态时输入法面板窗口的位置大小。 |
+
+## WindowInfo<sup>12+</sup>
+
+窗口信息。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称   | 类型                                                         | 只读 | 可选 | 说明           |
+| ------ | ------------------------------------------------------------ | ---- | ---- | -------------- |
+| rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 否   | 否   | 窗口矩形区域。 |
+| status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | 否   | 否   | 窗口模式类型。 |
 
 ## TextInputClient<sup>(deprecated)</sup>
 
@@ -3496,13 +4348,13 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| length | number | 是 | 文本长度。 |
+| length | number | 是 | 文本长度。不能小于0。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。当光标前固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 textInputClient.getForward(length, (err: BusinessError, text: string) => {
@@ -3530,7 +4382,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| length | number | 是 | 文本长度。 |
+| length | number | 是 | 文本长度。不能小于0。|
 
 **返回值：**
 
@@ -3541,7 +4393,7 @@ getForward(length:number): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 textInputClient.getForward(length).then((text: string) => {
@@ -3567,13 +4419,13 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| length | number | 是 | 文本长度。 |
+| length | number | 是 | 文本长度。不能小于0。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。当光标后固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 textInputClient.getBackward(length, (err: BusinessError, text: string) => {
@@ -3601,7 +4453,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| length | number | 是 | 文本长度。 |
+| length | number | 是 | 文本长度。不能小于0。 |
 
 **返回值：**
 
@@ -3612,7 +4464,7 @@ getBackward(length:number): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 textInputClient.getBackward(length).then((text: string) => {
@@ -3638,13 +4490,13 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| length | number | 是 | 文本长度。 |
+| length | number | 是 | 文本长度。不能小于0。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当光标前固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 textInputClient.deleteForward(length, (err: BusinessError, result: boolean) => {
@@ -3676,7 +4528,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| length | number | 是   | 文本长度。 |
+| length | number | 是   | 文本长度。不能小于0。 |
 
 **返回值：**  
 
@@ -3687,7 +4539,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 textInputClient.deleteForward(length).then((result: boolean) => {
@@ -3717,13 +4569,13 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名   | 类型                         | 必填 | 说明           |
 | -------- | ---------------------------- | ---- | -------------- |
-| length   | number                       | 是   | 文本长度。     |
+| length   | number                       | 是   | 文本长度。不能小于0。      |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当光标后固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 textInputClient.deleteBackward(length, (err: BusinessError, result: boolean) => {
@@ -3755,7 +4607,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| length | number | 是 | 文本长度。 |
+| length | number | 是 | 文本长度。不能小于0。  |
 
 **返回值：** 
 
@@ -3766,7 +4618,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 textInputClient.deleteBackward(length).then((result: boolean) => {
@@ -3801,7 +4653,7 @@ sendKeyFunction(action: number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let action = 1;
 textInputClient.sendKeyFunction(action, (err: BusinessError, result: boolean) => {
@@ -3844,7 +4696,7 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let action = 1;
 textInputClient.sendKeyFunction(action).then((result: boolean) => {
@@ -3880,7 +4732,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 textInputClient.insertText('test', (err: BusinessError, result: boolean) => {
   if (err) {
@@ -3922,7 +4774,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 textInputClient.insertText('test').then((result: boolean) => {
   if (result) {
@@ -3956,15 +4808,15 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 textInputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMethodEngine.EditorAttribute) => {
   if (err) {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  console.log(`editorAttribute.inputPattern: ${editorAttribute.inputPattern}`;
+  console.log(`editorAttribute.enterKeyType: ${editorAttribute.enterKeyType}`);
 });
 ```
 
@@ -3989,7 +4841,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 textInputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
   console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));

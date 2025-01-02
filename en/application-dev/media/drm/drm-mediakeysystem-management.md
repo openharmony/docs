@@ -1,6 +1,10 @@
-# Media Key System Management (ArkTS)
+# DRM Media Key System Management (ArkTS)
 
-Using the **MediaKeySystem** class of the DRM module, you can manage **MediaKeySystem** instances, generate media key system requests, process responses to these requests, create media key sessions, manage offline media keys, and obtain DRM statistics and device configuration information.
+Using the **MediaKeySystem** class of the DRM module, you can manage **MediaKeySystem** instances, generate media key system requests to obtain DRM certificates, process responses to these requests, manage media key sessions, manage offline media keys, and obtain DRM statistics and device configuration information.
+
+Before using DRM Kit, check whether the device supports the DRM capabilities of a specific DRM scheme.
+
+In DRM Kit, the DRM scheme exists as a plug-in.
 
 ## How to Develop
 
@@ -8,258 +12,185 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
 
 1. Import the module.
 
+    ```ts
+    import { drm } from '@kit.DrmKit';
+    ```
+
+2. Import the **BusinessError** module, which provides the error codes thrown by the APIs of the DRM module.
+
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
+    ```
+
+3. Check whether the device supports the specified DRM scheme.
+
+   > **NOTE**
+   >
+   > The value **false** means that the device does not support the specified DRM scheme.
+
    ```ts
-   import drm from '@ohos.multimedia.drm';
+   let isSupported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/avc", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
    ```
 
-2. Call **setConfigurationString** in the **MediaKeySystem** class to set a configuration item in the form of a string. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).
+4. (Optional) Obtain the name and ID list of the DRM schemes on the device.
+
+   > **NOTE**
+   >
+   > If the returned array is empty, no DRM scheme is supported by the device.
 
    ```ts
-   function setConfigurationString(configName: string, value: string): void {
-     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-     try {
-       mediaKeysystem.setConfigurationString(configName, value);
+   let description: drm.MediaKeySystemDescription[] = drm.getMediaKeySystems();
+   ```
+
+5. Create a **MediaKeySystem** instance.
+
+   > **NOTE**
+   >
+   > If the creation fails, **undefined** is returned, indicating that the device does not support the DRM capability.
+
+   ```ts
+   let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+   ```
+
+6. (Optional) Obtain the UUID corresponding to the specified DRM scheme name.
+
+   > **NOTE**
+   >
+   > If the length of the returned UUID is 0, no DRM scheme is supported by the device.
+
+   ```ts
+   let uuid: string = drm.getMediaKeySystemUuid("com.clearplay.drm");
+   ```
+
+7. (Optional) Set and obtain the configuration items supported by the DRM scheme.
+
+    ```ts
+    // If the DRM scheme supports configuration item setting, set the value of a configuration item of the string type supported by the DRM scheme.
+    mediaKeySystem.setConfigurationString("configName", "configValue");
+    // Obtain the value of a configuration item in the form of a string.
+    let configValueString : string = mediaKeySystem.getConfigurationString("version");
+    let configValueUint8ArrayA: Uint8Array = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+    // If the DRM scheme supports configuration item setting, set the value of a configuration item of the array type supported by the DRM scheme.
+    mediaKeySystem.setConfigurationByteArray("Uint8ArrayConfigName", configValueUint8ArrayA);
+    // Obtain the value of a configuration item in the form of an array.
+    let configValueUint8ArrayB: Uint8Array = mediaKeySystem.getConfigurationByteArray("Uint8ArrayConfigName");
+    ```
+
+8. (Optional) Obtain the maximum content protection level supported by the device.
+
+    ```ts
+    let contentProtectionLevel: drm.ContentProtectionLevel = drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN;
+    try {
+      contentProtectionLevel = mediaKeySystem.getMaxContentProtectionLevel();
     } catch (err) {
-       let error = err as BusinessError;
-       console.error(`setConfigurationString ERROR: ${error}`);
+      let error = err as BusinessError;
+      console.error(`getMaxContentProtectionLevel ERROR: ${error}`);
     }
-     return ;
-   }
-   ```
+    ```
 
-3. Call **getConfigurationString** in the **MediaKeySystem** class to obtain the value of a configuration item in the form of a string. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).
+9. Start listening.
 
-   ```ts
-   function getConfigurationString(configName: string): string {
-     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-     try {
-       let configValue: string = mediaKeysystem.getConfigurationString(configName);
-     } catch (err) {
-       let error = err as BusinessError;
-       console.error(`getConfigurationString ERROR: ${error}`);  
-     }
-     return configValue;
-   }
-   ```
+    Listen for the event indicating that the application requests a DRM certificate.
 
-4. Call **setConfigurationByteArray** in the **MediaKeySystem** class to set a configuration item in the form of a byte array. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).
+    Register the event **'keySystemRequired'**. This event can be listened for when a **MediaKeySystem** instance is created and is triggered when the application requests a DRM certificate.
 
-   ```ts
-   function setConfigurationByteArray(configName: string, value: Uint8Array): void {
-     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-     try {
-       mediaKeysystem.setConfigurationByteArray(configName, value);
-     } catch (err) {
-       let error = err as BusinessError;
-       console.error(`setConfigurationByteArray ERROR: ${error}`);  
-     }
-     return;
-   }
-   ```
+    ```ts
+    mediaKeySystem.on('keySystemRequired', (eventInfo: drm.EventInfo) => {
+      console.log('keySystemRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
+    });
+    ```
 
-5. Call **getConfigurationByteArray** in the **MediaKeySystem** class to obtain the value of a configuration item in the form of a byte array. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).
+10. (Optional) Obtain the status of the DRM certificate.
 
-   ```ts
-   function getConfigurationByteArray(configName: string): Uint8Array {
-     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-     try {
-       let configValue: Uint8Array = mediaKeysystem.getConfigurationByteArray(configName);
-     } catch (err) {
-       let error = err as BusinessError;
-       console.error(`getConfigurationByteArray ERROR: ${error}`);  
-     }
-     return configValue;
-   }
-   ```
+    ```ts
+    let certificateStatus: drm.CertificateStatus = mediaKeySystem.getCertificateStatus();
+    ```
 
-6. Call **getMetrics()** in the **MediaKeySystem** class to obtain the statistics information, including the number of current sessions, decryption times, and decryption failures, as well as the plug-in version. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).
+11. Generate a provision request.
 
-   ```ts
-   function getStatistics(): StatisticKeyValue[] {
-     try {
-       let statisticKeyValue: StatisticKeyValue[] = mediaKeysystem.getStatistics();
-     } catch (err) {
-       let error = err as BusinessError;
-       console.error(`getConfigurationByteArray ERROR: ${error}`);
-     }
-     return statisticKeyValue;
-   }
-   ```
+    During the creation of a **MediaKeySession** session, if no DRM certificate is available, the **keySystemRequired** event is triggered. In this case, the DRM certificate status on the device is obtained first. If the device does not have a DRM certificate or the DRM certificate status is abnormal (not **drm.CertificateStatus.CERT_STATUS_PROVISIONED**), a provision request is generated to obtain a DRM certificate.
 
-7. Obtains the maximum content protection level.
+       ```ts
+         if(certificateStatus != drm.CertificateStatus.CERT_STATUS_PROVISIONED){
+           mediaKeySystem.generateKeySystemRequest().then(async (drmRequest: drm.ProvisionRequest) => {
+             console.info("generateKeySystemRequest success", drmRequest.data, drmRequest.defaultURL);
+           }).catch((err:BusinessError) =>{
+               console.info("generateKeySystemRequest err end", err.code);
+            });
+         } else {
+           console.info("The certificate already exists.");
+         }
+       ```
 
-   Call **getMaxContentProtectionLevel** in the **MediaKeySystem** class to obtain the maximum content protection level supported by the device. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).
+12. Process the provision response.
 
+    A response to the provision request is received. You need to process this response.
+
+       ```ts
+         // Send drmRequest.data returned by the provision request to the DRM certificate service through a network request to obtain a provision response and process the response.
+         let provisionResponseByte = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+         mediaKeySystem.processKeySystemResponse(provisionResponseByte).then(() => {
+           console.info("processKeySystemResponse success");
+         }).catch((err:BusinessError) =>{
+           console.info("processKeySystemResponse err end", err.code);
+         });
+       ```
+
+13. Create a **MediaKeySession** instance.
+
+    Create a **MediaKeySession** instance with the specified content protection level or a **MediaKeySession** instance with the default content protection level of the DRM scheme.
      ```ts
-   function getMaxContentProtectionLevel(): ContentProtectionLevel {
-     try {
-       let contentProtectionLevel: drm.ContentProtectionLevel = mediaKeysystem.getMaxContentProtectionLevel();
-     } catch (err) {
-       let error = err as BusinessError;
-       console.error(`getConfigurationByteArray ERROR: ${error}`);
-     }
-     return contentProtectionLevel;
-   }
+     let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
      ```
 
-8. Generate a media key system request to obtain a provision request.
-
-   Call **generateKeySystemRequest** method in the **MediaKeySystem** class to generate a media key system request. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).
+14. (Optional) Obtain the list of offline media key IDs, which are used to manage offline media keys.
 
      ```ts
-   function generateKeySystemRequest(): Promise<ProvisionRequest> {
-     generateKeySystemRequest().then((ProvisionRequest: drm.ProvisionRequest) => {
-       console.log("generateKeySystemRequest");
-     }).catch((err: BusinessError) => {
-       console.error(`generateKeySystemRequest: ERROR: ${err}`);
-     });
-     return provisionRequest;
-   }
+     let offlineMediaKeyIds: Uint8Array[] = mediaKeySystem.getOfflineMediaKeyIds();
      ```
 
-9. Process the response to the media key system request.
-
-   Call **processKeySystemResponse** in the **MediaKeySystem** class to process the response. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).
+15. (Optional) Obtain the status of offline media keys.
 
      ```ts
-   function processKeySystemResponse(response: Uint8Array): Promise<void> {
-     processKeySystemResponse(response).then(() => {
-       console.log("processKeySystemResponse");
-     }).catch((err: BusinessError) => {
-       console.error(`processKeySystemResponse: ERROR: ${err}`);
-     });
-     return;
-   }
+     try {
+       let offlineMediaKeyStatus: drm.OfflineMediaKeyStatus = mediaKeySystem.getOfflineMediaKeyStatus(offlineMediaKeyIds[0]);
+     } catch (err) {
+       let error = err as BusinessError;
+       console.error(`getOfflineMediaKeyStatus ERROR: ${error}`);
+     }
      ```
 
-10. Obtain the status of the device certificate.
+16. (Optional) Clear offline media keys.
 
-    Call **getCertificateStatus** in the **MediaKeySystem** class to obtain the device certificate status. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).
+     ```ts
+     try {
+       mediaKeySystem.clearOfflineMediaKeys(offlineMediaKeyIds[0]);
+     } catch (err) {
+       let error = err as BusinessError;
+       console.error(`clearOfflineMediaKeys ERROR: ${error}`);
+     }
+     ```
 
-    ```ts
-    function getCertificateStatus(): CertificateStatus {
-      try {
-        let certificateStatus: drm.CertificateStatus = mediaKeysystem.getCertificateStatus();
-      } catch (err) {
-        let error = err as BusinessError;
-        console.error(`getCertificateStatus ERROR: ${error}`);
-      }
-      return certificateStatus;
-    }
-    ```
+17. (Optional) Obtain DRM statistical information, including the number of current sessions, decryption times, and decryption failures, as well as the plug-in version.
 
-11. Create a DRM session.
+     ```ts
+     let statisticKeyValue: drm.StatisticKeyValue[] = mediaKeySystem.getStatistics();
+     ```
 
-    Call **createMediaKeySession** in the **MediaKeySystem** class to create a session based on the given content protection level. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).
+18. Destroy the **MediaKeySession** instance.
 
-    ```ts
-    function createMediaKeySession(level: ContentProtectionLevel): MediaKeySession {
-      try {
-        let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession(drm.level.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
-      } catch (err) {
-        let error = err as BusinessError;
-        console.error(`getCertificateStatus ERROR: ${error}`);
-      }
-      return mediaKeySession;
-    }
-    ```
+    Destroy the **MediaKeySession** instance when the encrypted content is decrypted and the instance is no longer needed.
 
-12. Create a DRM session.
+     ```ts
+     // Release resources when the MediaKeySession instance is no longer needed.
+     mediaKeySession.destroy();
+     ```
 
-    Call **createMediaKeySession** in the **MediaKeySystem** class to create a session. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).
+19. Destroy this **MediaKeySystem** instance.
 
-    ```ts
-    function createMediaKeySession(): MediaKeySession {
-      try {
-        let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-      } catch (err) {
-        let error = err as BusinessError;
-        console.error(`getCertificateStatus ERROR: ${error}`);
-      }
-      return mediaKeySession;
-    }
-    ```
+    Destroy the **MediaKeySystem** instance when it is no longer used.
 
-13. Obtain the IDs of offline media keys.
-
-    Call **getOfflineMediaKeyIds** in the **MediaKeySystem** class to obtain the IDs of offline media keys. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).
-
-    ```ts
-    function getOfflineMediaKeyIds(): Uint8Array[] {
-      try {
-        let offlineMediaKeyIds: Uint8Array[] = mediaKeysystem.getOfflineMediaKeyIds();
-      } catch (err) {
-        let error = err as BusinessError;
-        console.error(`getOfflineMediaKeyIds ERROR: ${error}`);
-      }
-      return offlineMediaKeyIds;
-    }
-    ```
-
-14. Obtain the status of the offline media keys.
-
-    Call **getOfflineMediaKeyStatus** in the **MediaKeySystem** class to obtain the status of the offline media keys. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).
-
-    ```ts
-    function getOfflineMediaKeyStatus(mediakeyId: Uint8Array): OfflineMediaKeyStatus {
-      try {
-        let offlineMediaKeyStatus: drm.OfflineMediaKeyStatus = mediaKeysystem.getOfflineMediaKeyStatus(mediakeyId);
-      } catch (err) {
-        let error = err as BusinessError;
-        console.error(`getOfflineMediaKeyStatus ERROR: ${error}`);
-      }
-      return offlineMediaKeyStatus;
-    }
-    ```
-
-15. Clear the offline media keys.
-
-    Call **clearOfflineMediaKeys** in the **MediaKeySystem** class to clear the offline media keys. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).
-
-    ```ts
-    function clearOfflineMediaKeys(mediakeyId: Uint8Array): void {
-      try {
-        mediaKeysystem.clearOfflineMediaKeys(mediakeyId);
-      } catch (err) {
-        let error = err as BusinessError;
-        console.error(`clearOfflineMediaKeys ERROR: ${error}`);
-      }
-      return;
-    }
-    ```
-
-16. Destroy this **MediaKeySystem** instance.
-
-    Call **destroy** in the **MediaKeySystem** class to destroy this **MediaKeySystem** instance. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).
-
-    ```ts
-    function destroy(mediaKeySyste: MediaKeySyste): void {
-      try {
-        mediaKeysystem.destroy();
-      } catch (err) {
-        let error = err as BusinessError;
-        console.error(`mediaKeysystem destroy ERROR: ${error}`);
-      }
-      return;
-    }
-    ```
-
-17. Listen for the media key system status.
-
-    You can listen for the following events: device certificate request events.
-
-    To listen for key request events, register the **keySystemRequired** callback function. This event can be listened for when a **MediaKeySystem** instance is created. If this event callback is returned, a media key system request starts. You can use **off** to deregister the callback function when listening is no longer required.
-
-    ```ts
-    function onRegisterkeySystemRequired(mediaKeysystem: drm.MediaKeySystem): void {
-      mediaKeysystem.on('keySystemRequired', (eventInfo: EventInfo) => {
-        console.log('keySystemRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
-      });
-    }
-    ```
-
-    ```ts
-    function unregisterkeySystemRequired(mediaKeysystem: drm.MediaKeySystem): void {
-      mediaKeysystem.off('keySystemRequired');
-    }
-    ```
+     ```ts
+     // Release resources when the MediaKeySystem instance is no longer needed.
+     mediaKeySystem.destroy();
+     ```

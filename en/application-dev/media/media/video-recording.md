@@ -1,4 +1,4 @@
-# Video Recording
+# Using AVRecorder to Record Videos (ArkTS)
 
 The system provides the AVRecorder for you to develop the video recording service. The AVRecorder supports audio recording, audio encoding, video encoding, audio encapsulation, and video encapsulation. It is applicable to simple video recording scenarios and can be used to generate local video files directly.
 
@@ -20,15 +20,16 @@ For details about the state, see [AVRecorderState](../../reference/apis-media-ki
 
 Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) for the API reference.
 
-1. Create an **AVRecorder** instance. The AVRecorder is in the **idle** state.
+1. Create an AVRecorder instance. The AVRecorder is in the **idle** state.
      
    ```ts
-   import media from '@ohos.multimedia.media';
+   import { media } from '@kit.MediaKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let avRecorder: media.AVRecorder;
    media.createAVRecorder().then((recorder: media.AVRecorder) => {
      avRecorder = recorder;
-   }, (error: Error) => {
+   }, (error: BusinessError) => {
      console.error('createAVRecorder failed');
    })
    ```
@@ -40,7 +41,8 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    | error | Mandatory; used to listen for AVRecorder errors.| 
 
    ```ts
-   import media from '@ohos.multimedia.media';
+   import { media } from '@kit.MediaKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    // Callback function for state changes.
    avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
@@ -65,11 +67,11 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../../file-management/app-file-access.md).
 
    ```ts
-   import media from '@ohos.multimedia.media';
-   import { BusinessError } from '@ohos.base';
+   import { media } from '@kit.MediaKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let avProfile: media.AVRecorderProfile = {
-     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
+     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file container format. Only MP4 is supported.
      videoBitrate: 200000, // Video bit rate.
      videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. AVC is supported.
      videoFrameWidth: 640, // Video frame width.
@@ -96,7 +98,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    The video data collection module obtains the surface based on the surface ID and transmits video data to the AVRecorder through the surface. Then the AVRecorder processes the video data.
      
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    avRecorder.getInputSurface().then((surfaceId: string) => {
      console.info('avRecorder getInputSurface success');
@@ -107,7 +109,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
 
 5. Initialize the video data input source.
 
-   This step is performed in the video data collection module. For the camera module, you need to create a **Camera** instance, obtain the camera list, create a camera input stream, and create a video output stream. For details, see [Camera Recording](../camera/camera-recording.md).
+   This step is performed in the video data collection module. For the camera module, you need to create a Camera instance, obtain the camera list, create a camera input stream, and create a video output stream. For details, see [Camera Recording](../camera/camera-recording.md).
 
 6. Start recording.
 
@@ -130,15 +132,15 @@ Refer to the sample code below to complete the process of starting, pausing, res
 
   
 ```ts
-import media from '@ohos.multimedia.media';
-import { BusinessError } from '@ohos.base';
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG = 'VideoRecorderDemo:';
 export class VideoRecorderDemo {
   private avRecorder: media.AVRecorder | undefined = undefined;
   private videoOutSurfaceId: string = "";
   private avProfile: media.AVRecorderProfile = {
-    fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
+    fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file container format. Only MP4 is supported.
     videoBitrate : 100000, // Video bit rate.
     videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. AVC is supported.
     videoFrameWidth: 640, // Video frame width.
@@ -188,21 +190,22 @@ export class VideoRecorderDemo {
 
   // Process of starting recording.
   async startRecordingProcess() {
-    if (this.avRecorder != undefined) {
+    if (this.avRecorder === undefined) {
       // 1. Create an AVRecorder instance.
       this.avRecorder = await media.createAVRecorder();
       this.setAvRecorderCallback();
-      // 2. Obtain the file descriptor of the recorded file. The obtained file descriptor is passed in to the URL in avConfig. The implementation is omitted here.
-      // 3. Set recording parameters to complete the preparations.
-      await this.avRecorder.prepare(this.avConfig);
-      this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
-      // 4. Complete camera-related preparations.
-      await this.prepareCamera();
-      // 5. Start the camera stream output.
-      await this.startCameraOutput();
-      // 6. Start recording.
-      await this.avRecorder.start();
     }
+    // 2. Obtain the file descriptor of the recorded file. The obtained file descriptor is passed in to the URL in avConfig. The implementation is omitted here.
+    // 3. Set recording parameters to complete the preparations.
+    await this.avRecorder.prepare(this.avConfig);
+    this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
+    // 4. Complete camera-related preparations.
+    await this.prepareCamera();
+    // 5. Start the camera stream output.
+    await this.startCameraOutput();
+    // 6. Start recording.
+    await this.avRecorder.start();
+    
   }
 
   // Process of pausing recording.

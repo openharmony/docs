@@ -2,7 +2,7 @@
 
 端云服务提供端云协同、端云共享和端云策略。
 
-端云协同提供结构化数据（RDB Store）端云同步的能力。即：云作为数据的中心节点，通过与云的数据同步，实现数据云备份、同帐号设备间的数据一致性。
+端云协同提供结构化数据（RDB Store）端云同步的能力。即：云作为数据的中心节点，通过与云的数据同步，实现数据云备份、同账号设备间的数据一致性。
 端云配置提供端云同步策略配置的能力。
 
 > **说明：**
@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 ```
 
 ## StrategyType
@@ -39,7 +39,8 @@ import cloudData from '@ohos.data.cloudData';
 ## cloudData.setCloudStrategy
 setCloudStrategy(strategy: StrategyType, param?: Array&lt;commonType.ValueType&gt;): Promise&lt;void&gt;
 
-设置应用自身的云同步策略，若未设置，则执行全局策略[setGlobalCloudStrategy<sup>12+</sup>](js-apis-data-cloudData-sys.md#setglobalcloudstrategy12)，全局策略若未设置，默认使用WIFI和蜂窝策略。使用Promise异步回调。
+<!--RP1-->
+设置应用自身的云同步策略，若未设置，则执行全局策略[setGlobalCloudStrategy<sup>12+</sup>](js-apis-data-cloudData-sys.md#setglobalcloudstrategy12)，全局策略若未设置，默认使用WIFI和蜂窝策略。使用Promise异步回调。<!--RP1End-->
  
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -54,11 +55,19 @@ setCloudStrategy(strategy: StrategyType, param?: Array&lt;commonType.ValueType&g
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+|-----------| ------------------------------------------------------------ |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801       | Capability not supported.|
 
 **样例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 仅WIFI同步
 cloudData.setCloudStrategy(cloudData.StrategyType.NETWORK, [cloudData.NetWorkStrategy.WIFI]).then(() => {

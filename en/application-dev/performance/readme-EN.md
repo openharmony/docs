@@ -17,7 +17,6 @@
     - [Speeding Up Application Response](improve-application-response.md)
     - [Flex Layout Performance Improvement](flex-development-performance-boost.md)
     - [Improving Layout Performance](reduce-view-nesting-levels.md)
-    - [IPC Usage](reasonable-using-ipc.md)
     - [Improving File Upload and Download Performance](improve-file-upload-and-download-performance.md)
     - [Reducing Redundant Operations on First Frame Drawing](reduce-redundant-operations-when-render-first-frame.md)
     - [Application Animation Practice](animation_practice.md)

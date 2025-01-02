@@ -10,30 +10,39 @@
       - [Flex Layout (Flex)](arkts-layout-development-flex-layout.md)
       - [Relative Layout (RelativeContainer)](arkts-layout-development-relative-layout.md)
       - [Responsive Grid Layout (GridRow/GridCol)](arkts-layout-development-grid-layout.md)
-      - [Media Query (mediaquery)](arkts-layout-development-media-query.md)
+      - [Media Query (@ohos.mediaquery)](arkts-layout-development-media-query.md)
       - [Creating a List (List)](arkts-layout-development-create-list.md)
       - [Creating a Grid (Grid/GridItem)](arkts-layout-development-create-grid.md)
       - [Creating a Swiper (Swiper)](arkts-layout-development-create-looping.md)
+      - [Using Tabs (Tabs)](arkts-navigation-tabs.md)
   - Adding a Component
     - Adding a Common Component
       - [Button](arkts-common-components-button.md)
       - [Radio Button (Radio)](arkts-common-components-radio-button.md)
       - [Toggle](arkts-common-components-switch.md)
       - [Progress Indicator (Progress)](arkts-common-components-progress-indicator.md)
-      - [Text Display (Text/Span)](arkts-common-components-text-display.md)
-      - [Text Input (TextInput/TextArea)](arkts-common-components-text-input.md)
-      - [Displaying Images (Image)](arkts-graphics-display.md)
-      - [Custom Dialog Box (CustomDialog)](arkts-common-components-custom-dialog.md)
-      - [Video Playback (Video](arkts-common-components-video-player.md)
-      - [XComponent](arkts-common-components-xcomponent.md)
+      - [Image Display](arkts-graphics-display.md)
+      - [Video Playback (Video)](arkts-common-components-video-player.md)
+      - [Custom Rendering (XComponent)](napi-xcomponent-guidelines.md)
     - Adding a Popup and Menu
       - [Popup](arkts-popup-and-menu-components-popup.md)
       - [Menu](arkts-popup-and-menu-components-menu.md)
-  - Setting Page Routing and Component Navigation
-    - Component Navigation
-      - [Navigation](arkts-navigation-navigation.md)
-      - [Tabs](arkts-navigation-tabs.md)
-    - [Page Routing (@ohos.router)](arkts-routing.md)
+  - Setting Component Navigation and Page Routing
+    - [Component Navigation and Page Routing Overview](arkts-navigation-introduction.md)
+    - [Component Navigation (Navigation) (Recommended)](arkts-navigation-navigation.md)
+    - [Navigation Transition](arkts-navigation-transition.md)
+    - [Page Routing (@ohos.router) (Not Recommended)](arkts-routing.md)
+    - [Transition from Router to Navigation](arkts-router-to-navigation.md)
+  - Using Text
+    - [Text Display (Text/Span)](arkts-common-components-text-display.md)
+    - [Text Input (TextInput/TextArea)](arkts-common-components-text-input.md)
+    - [Rich Text (RichEditor)](arkts-common-components-richeditor.md)
+    - [Symbol Glyph (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
+    - [Styled String (StyledString/MutableStyledString)](arkts-styled-string.md)
+  - Using Dialog Boxes
+    - [Modal Dialog Box (ModalDialog)](arkts-modal-dialog.md)
+    - [Global Custom Dialog Box Independent of UI Components (Recommended)](arkts-uicontext-custom-dialog.md)
+    - [Custom Dialog Box (CustomDialog)](arkts-common-components-custom-dialog.md)
   - Using Graphics
     - [Drawing Geometric Shapes (Shape)](arkts-geometric-shape-drawing.md)
     - [Drawing Custom Graphics on the Canvas (Canvas)](arkts-drawing-customization-on-canvas.md)
@@ -41,15 +50,16 @@
     - [Animation Overview](arkts-animation.md)
     - Property Animation
       - [Property Animation Overview](arkts-attribute-animation-overview.md)
-      - [Property Animation APIs](arkts-attribute-animation-apis.md)
+      - [Implementing Property Animation](arkts-attribute-animation-apis.md)
       - [Custom Property Animation](arkts-custom-attribute-animation.md)
     - Transition Animation
       - [Transition Animation Overview](arkts-transition-overview.md)
       - [Enter/Exit Transition](arkts-enter-exit-transition.md)
-      - [Navigation Transition](arkts-navigation-transition.md)
       - [Modal Transition](arkts-modal-transition.md)
       - [Shared Element Transition](arkts-shared-element-transition.md)
+      - [Screen Rotation Animation Enhancement](arkts-rotation-transition-animation.md)   
       - [Page Transition Animation (Not Recommended)](arkts-page-transition-animation.md)
+    - [Particle Animation](arkts-particle-animation.md)
     - [Component Animation](arkts-component-animation.md)
     - Animation Curve
       - [Animation Curve Overview](arkts-curve-overview.md)
@@ -60,17 +70,55 @@
       - [Blur Effect](arkts-blur-effect.md)
       - [Shadow Effect](arkts-shadow-effect.md)
       - [Color Effect](arkts-color-effect.md)
+    - [Frame Animation](arkts-animator.md)
   - Using Interaction Events
     - [Interaction Event Overview](arkts-event-overview.md)
     - Universal Events
+      - [Event Distribution](arkts-common-events-distribute.md)
       - [Touchscreen Event](arkts-common-events-touch-screen-event.md)
       - [Keyboard and Mouse Event](arkts-common-events-device-input-event.md)
       - [Focus Event](arkts-common-events-focus-event.md)
+      - [Drag Event](arkts-common-events-drag-event.md)
     - Gesture Events
       - [Gesture Binding](arkts-gesture-events-binding.md)
       - [Single Gesture](arkts-gesture-events-single-gesture.md)
       - [Combined Gestures](arkts-gesture-events-combined-gestures.md)
-- UI Development (JavaScript-compatible Web-like Development Paradigm)
+      - [Multi-level Gesture Events](arkts-gesture-events-multi-level-gesture.md)
+  - Using Customization Capabilities
+    - [Customization Capability Overview](arkts-user-defined.md)
+    - Custom Nodes
+      - [Custom Node Overview](arkts-user-defined-node.md)
+      - [Custom Placeholder Node](arkts-user-defined-place-hoder.md)
+      - [FrameNode](arkts-user-defined-arktsNode-frameNode.md)
+      - [RenderNode](arkts-user-defined-arktsNode-renderNode.md)
+      - [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)
+    - Custom Extension
+      - [Custom Extension Capability Overview](arkts-user-defined-modifier.md)
+      - [AttributeModifier](arkts-user-defined-extension-attributeModifier.md)
+      - [AttributeUpdater](arkts-user-defined-extension-attributeUpdater.md)
+  - [Using the Mirroring Capability](arkts-mirroring-display.md)
+  - [Supporting Aging-Friendly Design](arkui-support-for-aging-adaptation.md)
+  - Setting the Theme
+    - [Configuring In-Application Theme Skinning](theme_skinning.md)
+  - [Using the UI Context API for UI Operations (UIContext)](arkts-global-interface.md)
+  - Launching Pages Across Processes
+    - [Atomic Service Full Screen Launch Component (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)
+    <!--Del-->
+    - [Cross-Process Application Capability Extension (UIExtension, for System Applications Only)](arkts-ui-extension-components.md)
+    <!--DelEnd-->
+  - Using NDK APIs to Build UIs
+    - [NDK API Overview](ndk-build-ui-overview.md)
+    - [Integrating with ArkTS Pages](ndk-access-the-arkts-page.md)
+    - Adding Interaction Events
+      - [Listening for Component Events](ndk-listen-to-component-events.md)
+      - [Binding Gesture Events](ndk-bind-gesture-events.md)
+    - [Using Animations](ndk-use-animation.md)
+    - [Developing a Long List with Lazy Loading](ndk-loading-long-list.md)
+    - [Building Dialog Boxes](ndk-build-pop-up-window.md)
+    - [Building Custom Components](ndk-build-custom-components.md)
+    - [Embedding ArkTS Components](ndk-embed-arkts-components.md)
+    - [Integrating Accessibility Through XComponent](ndk-accessibility-xcomponent.md)
+- UI Development with JavaScript-compatible Web-like Development Paradigm
   - [UI Development (JavaScript-compatible Web-like Development Paradigm) Overview](ui-js-overview.md)
   - Framework Overview
     - [File Organization](js-framework-file.md)
@@ -85,7 +133,7 @@
     - [Multi-Language Capability](js-framework-multiple-languages.md)
   - Building the UI
     - [Component Overview](ui-js-building-ui-component.md)
-    - Building the Layout
+    - Building a Layout
       - [Layout Description](ui-js-building-ui-layout-intro.md)
       - [Adding Title and Paragraph Text](ui-js-building-ui-layout-text.md)
       - [Adding an Image](ui-js-building-ui-layout-image.md)
@@ -95,7 +143,7 @@
     - [Developing Animations](ui-js-building-ui-animation.md)
     - [Defining Gesture Events](ui-js-building-ui-event.md)
     - [Defining Page Routes](ui-js-building-ui-routes.md)
-  - Common Component Development Guidelines
+  - Common Component Development
     - Container Component Development
       - [List Development](ui-js-components-list.md)
       - [Dialog Development](ui-js-components-dialog.md)
@@ -123,22 +171,25 @@
       - [Canvas](ui-js-components-canvas.md)
       - [CanvasRenderingContext2D](ui-js-components-canvasrenderingcontext2d.md)
       - [Path2D](ui-js-components-path2d.md)
-      - [OffscreenCanvas](ui-js-components-offscreencanvas.md)
+      - [OffscreenCanvasRenderingContext2D](ui-js-components-offscreencanvas.md)
     - [Grid Container Development](ui-js-components-grid.md)
     - SVG Development
       - [Basics](ui-js-components-svg-overview.md)
       - [Graph Drawing](ui-js-components-svg-graphics.md)
       - [Path Drawing](ui-js-components-svg-path.md)
       - [Text Drawing](ui-js-components-svg-text.md)
-  - Animation Development Guidelines
+  - Animation Development
     - CSS Animation
-      - [Defining Attribute Style Animations](ui-js-animate-attribute-style.md)
-      - [Defining Animations with the transform Attribute](ui-js-animate-transform.md)
-      - [Defining Animations with the background-position Attribute](ui-js-animate-background-position-style.md)
-      - [Defining Animations for SVG Components](ui-js-animate-svg.md)
+      - [Attribute Style Animation](ui-js-animate-attribute-style.md)
+      - [Animation with the transform Attribute](ui-js-animate-transform.md)
+      - [Animation with the background-position Attribute](ui-js-animate-background-position-style.md)
+      - [Animation for SVG Components](ui-js-animate-svg.md)
     - JavaScript Animation
       - [Component Animation](ui-js-animate-component.md)
       - Interpolator Animation
         - [Animation Effect](ui-js-animate-dynamic-effects.md)
         - [Animation Frame](ui-js-animate-frame.md)
   - [Custom Components](ui-js-custom-components.md)
+  - [WebGL](../webgl/Readme-EN.md)
+- [Window Manager](../windowmanager/Readme-EN.md)
+- [Display Management](../displaymanager/Readme-EN.md)

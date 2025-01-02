@@ -9,7 +9,7 @@ FormProvider模块提供了卡片提供方相关接口的能力，开发者在�
 ## 导入模块
 
 ```ts
-import formProvider from '@ohos.app.form.formProvider';
+import { formProvider } from '@kit.FormKit';
 ```
 
 ## setFormNextRefreshTime
@@ -17,6 +17,8 @@ import formProvider from '@ohos.app.form.formProvider';
 setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置指定卡片的下一次更新时间，使用callback异步回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -32,26 +34,26 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501002 | The number of forms exceeds upper bound. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501002 | The number of forms exceeds the maximum allowed. |
+| 16501003 | The form cannot be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+以上错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-import formProvider from '@ohos.app.form.formProvider';
+import { formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
-  formProvider.setFormNextRefreshTime(formId, 5, (error: Base.BusinessError) => {
+  formProvider.setFormNextRefreshTime(formId, 5, (error: BusinessError) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
       return;
@@ -59,7 +61,7 @@ try {
     console.log(`formProvider setFormNextRefreshTime success`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -68,6 +70,8 @@ try {
 setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
 设置指定卡片的下一次更新时间，使用Promise异步回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -88,32 +92,32 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501002 | The number of forms exceeds upper bound. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501002 | The number of forms exceeds the maximum allowed. |
+| 16501003 | The form cannot be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+以上错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-import formProvider from '@ohos.app.form.formProvider';
+import { formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
     console.log(`formProvider setFormNextRefreshTime success`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -123,6 +127,8 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 
 更新指定的卡片，使用callback异步回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 **参数：**
@@ -130,29 +136,28 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 | 参数名 | 类型                                                                    | 必填 | 说明             |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
 | formId | string                                                                 | 是   | 请求更新的卡片标识。 |
-| formBindingData.FormBindingData | [FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 是   | 用于更新的数据。    |
+| formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 是   | 用于更新的数据。    |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+以上错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import formBindingData from '@ohos.app.form.formBindingData';
-import Base from '@ohos.base';
-import formProvider from '@ohos.app.form.formProvider';
+import { formBindingData, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
@@ -161,7 +166,7 @@ try {
     'time': '22:00'
   }
   let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
-  formProvider.updateForm(formId, obj, (error: Base.BusinessError) => {
+  formProvider.updateForm(formId, obj, (error: BusinessError) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
       return;
@@ -169,7 +174,7 @@ try {
     console.log(`formProvider updateForm success`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -179,6 +184,8 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 
 更新指定的卡片，使用Promise异步回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 **参数：**
@@ -186,7 +193,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 | 参数名 | 类型                                                                    | 必填 | 说明             |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
 | formId | string                                                                 | 是   | 请求更新的卡片标识。 |
-| formBindingData.FormBindingData | [FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 是   | 用于更新的数据。    |
+| formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 是   | 用于更新的数据。    |
 
 **返回值：**
 
@@ -198,22 +205,21 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+以上错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import formBindingData from '@ohos.app.form.formBindingData';
-import Base from '@ohos.base';
-import formProvider from '@ohos.app.form.formProvider';
+import { formBindingData, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 let param: Record<string, string> = {
@@ -224,11 +230,11 @@ let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData
 try {
   formProvider.updateForm(formId, obj).then(() => {
     console.log(`formProvider updateForm success`);
-  }).catch((error: Base.BusinessError) => {
-    console.error(`promise error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  }).catch((error: BusinessError) => {
+    console.error(`promise error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -237,6 +243,8 @@ try {
 getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
 获取设备上当前应用程序的卡片信息，使用callback异步回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -249,19 +257,19 @@ getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): voi
 **错误码：**
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+以上错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
 
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-import formProvider from '@ohos.app.form.formProvider';
+import { formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formProvider.getFormsInfo((error, data) => {
@@ -272,7 +280,7 @@ try {
     console.log(`formProvider getFormsInfo, data: ${JSON.stringify(data)}`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 ## getFormsInfo
@@ -280,6 +288,8 @@ try {
 getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
 获取设备上当前应用程序的卡片信息，并筛选符合条件的信息，使用callback异步回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -294,19 +304,18 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+以上错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-import formInfo from '@ohos.app.form.formInfo';
-import formProvider from '@ohos.app.form.formProvider';
+import { formInfo, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -321,7 +330,7 @@ try {
     console.log(`formProvider getFormsInfo, data: ${JSON.stringify(data)}`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -330,6 +339,8 @@ try {
 getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 
 获取设备上当前应用程序的卡片信息，使用Promise异步回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -349,19 +360,18 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+以上错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
-import formProvider from '@ohos.app.form.formProvider';
+import { formInfo, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -370,57 +380,10 @@ const filter: formInfo.FormInfoFilter = {
 try {
   formProvider.getFormsInfo(filter).then((data: formInfo.FormInfo[]) => {
     console.log(`formProvider getFormsInfo, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
-}
-```
-
-## setConfigurationUpdateEnabled
-
-setConfigurationUpdateEnabled(formId: string, enableFlags: formInfo.ConfigurationUpdateFlags) : void
-
-设置配置信息更新时，是否允许配置信息在卡片页面中生效。
-
-**系统能力：** SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| enableFlags | [formInfo.ConfigurationUpdateFlags](js-apis-app-form-formInfo.md#configurationupdateflags) | 否 | 卡片配置信息更新开关标志位。 |
-
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
-| 16500100 | Failed to obtain the configuration information. |
-| 16501000 | An internal functional error occurred. |
-| 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](../apis-form-kit/errorcode-form.md)。
-
-**示例：**
-
-```ts
-import Base from '@ohos.base';
-import formInfo from '@ohos.app.form.formInfo';
-import formProvider from '@ohos.app.form.formProvider';
-
-let formId: string = '12400633174999288';
-const enableFlags: formInfo.ConfigurationUpdateFlags = {
-  fontEnabled : false
-};
-try {
-    formProvider.setConfigurationUpdateEnabled(formId, enableFlags);
-} catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```

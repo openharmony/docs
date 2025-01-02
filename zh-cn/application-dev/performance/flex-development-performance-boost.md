@@ -4,19 +4,19 @@
 Flex为采用弹性布局的容器。容器内部的所有子元素，会自动参与弹性布局。子元素默认沿主轴排列，子元素在主轴方向的尺寸称为主轴尺寸。
 
 
-在单行布局场景下，容器里子组件的主轴尺寸长度总和可能存在不等于容器主轴尺寸长度的情况。例如，三个子组件的宽均为200px，容器宽为500px，当第一个子组件和第二个子组件布局完成后，为了显示第三个子组件，需要给第二个子组件和第三个子组件设置压缩属性[flexShrink](../reference/arkui-ts/ts-universal-attributes-flex-layout.md)，此时第二个子组件会被再布局一次，导致布局效率下降。
+在单行布局场景下，容器里子组件的主轴尺寸长度总和可能存在不等于容器主轴尺寸长度的情况。例如，三个子组件的宽均为200px，容器宽为500px，当第一个子组件和第二个子组件布局完成后，为了显示第三个子组件，需要给第二个子组件和第三个子组件设置压缩属性[flexShrink](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink)，此时第二个子组件会被再布局一次，导致布局效率下降。
 
 
 ## 场景一
 
-所有子组件未设置[displayPriority](../reference/arkui-ts/ts-universal-attributes-layout-constraints.md)属性（或displayPriority设置为默认值1）和[layoutWeight](../reference/arkui-ts/ts-universal-attributes-flex-layout.md)属性（或layoutWeight设置为默认值0）时，所有子组件先按序布局一次。
+所有子组件未设置[displayPriority](../reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority)属性（或displayPriority设置为默认值1）和[layoutWeight](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight)属性（或layoutWeight设置为默认值0）时，所有子组件先按序布局一次。
 
 
 - 第一次布局子组件主轴尺寸长度总和等于容器主轴尺寸长度，不需要二次布局。
 
   ![layout-performance-1](figures/layout-performance-1.png)
 
-- 第一次布局子组件主轴尺寸长度总和小于容器主轴尺寸长度，且包含设置有效的[flexGrow](../reference/arkui-ts/ts-universal-attributes-flex-layout.md)属性的子组件，设置有效的flexGrow属性的子组件会触发二次布局，拉伸布局填满容器。
+- 第一次布局子组件主轴尺寸长度总和小于容器主轴尺寸长度，且包含设置有效的[flexGrow](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow)属性的子组件，设置有效的flexGrow属性的子组件会触发二次布局，拉伸布局填满容器。
 
   ![layout-performace-2](figures/layout-performace-2.gif)
 

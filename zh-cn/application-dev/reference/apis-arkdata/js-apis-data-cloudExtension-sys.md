@@ -8,9 +8,9 @@
 
 端云共享邀请码是指： 共享发起后，在共享的服务端会生成当前共享操作的邀请码，并将该邀请码附加到当前共享邀请中，通过push消息推送到被邀请者的设备端，被邀请者可以通过该邀请码进行邀请的确认。
 
-同步云是指： 端云同步的服务端，是同应用同帐号跨设备的同步。
+同步云是指： 端云同步的服务端，是同应用同账号跨设备的同步。
 
-共享云是指： 端云共享的服务端，是同应用跨帐号跨设备的共享。
+共享云是指： 端云共享的服务端，是同应用跨账号跨设备的共享。
 
 > **说明：** 
 >
@@ -21,7 +21,7 @@
 ## 导入模块
 
 ```ts
-import cloudExtension from '@ohos.data.cloudExtension';
+import { cloudExtension } from '@kit.ArkData';
 ```
 
 ## Result&lt;T&gt;
@@ -66,9 +66,9 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | 名称           | 类型    | 必填 | 说明                                                         |
 | -------------- | ------- | ---- | ------------------------------------------------------------ |
 | enableCloud    | boolean | 是   | 表示是否启用了云服务，为true时是启用云服务，为false时是未启用。 |
-| id             | string  | 是   | 使用哈希函数SHA256生成的云帐户ID。                           |
-| totalSpace     | number  | 是   | 服务器上帐户的总空间（KB）。                                 |
-| remainingSpace | number  | 是   | 服务器上帐户的可用空间（KB）。                               |
+| id             | string  | 是   | 使用哈希函数SHA256生成的云账号ID。                           |
+| totalSpace     | number  | 是   | 服务器上账号的总空间（KB）。                                 |
+| remainingSpace | number  | 是   | 服务器上账号的可用空间（KB）。                               |
 | user           | number  | 是   | 设备的当前用户ID。                                           |
 
 ## Flag
@@ -89,12 +89,12 @@ import cloudExtension from '@ohos.data.cloudExtension';
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
-| 名称       | 类型            | 必填 | 说明                                       |
-| ---------- | --------------- | ---- | ------------------------------------------ |
-| id         | string          | 是   | 执行插入操作时生成，只读数据不可手动更改。 |
-| createTime | number          | 是   | 创建行数据的时间。只读数据不可手动更改。   |
-| modifyTime | number          | 是   | 修改行数据的时间。只读数据不可手动更改。   |
-| operation  | [Flag](#flag) | 是   | 对行数据所作的操作。                         |
+| 名称       | 类型            | 只读 | 可选 | 说明                 |
+| ---------- | --------------- | ---- | ---- | ------------------ |
+| id         | string          | 是   | 否   | 执行插入操作时生成。 |
+| createTime | number          | 是   | 否   | 创建行数据的时间。   |
+| modifyTime | number          | 是   | 否   | 修改行数据的时间。   |
+| operation  | [Flag](#flag)   | 是   | 否   | 对行数据所作的操作。 |
 
 ## CloudType
 
@@ -259,7 +259,7 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | SUCCESS               | 0    | 表示端云同步过程成功。                                       |
 | UNKNOWN_ERROR         | 1    | 表示端云同步过程中遇到未知错误。                             |
 | NETWORK_ERROR         | 2    | 表示端云同步过程中遇到网络错误。                             |
-| CLOUD_DISABLED        | 3    | 表示云端不可用。                                             |
+| CLOUD_DISABLED        | 3    | 表示云同步开关未开启，请检查云空间同步开关状态。             |
 | LOCKED_BY_OTHERS      | 4    | 表示有其他设备正在进行端云同步，本设备无法进行端云同步。请确保无其他设备占用端云资源后，在使用本设备进行端云同步任务。 |
 | RECORD_LIMIT_EXCEEDED | 5    | 表示本次端云同步需要同步的条目或大小超出最大值。由云端配置最大值。 |
 | NO_SPACE_FOR_ASSET    | 6    | 表示云空间剩余空间小于待同步的资产大小。                     |
@@ -287,9 +287,8 @@ createCloudServiceStub(instance: CloudService): Promise&lt;rpc.RemoteObject&gt;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import rpc from '@ohos.rpc';
+import { Want, ServiceExtensionAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
 
 export default class MyCloudService implements cloudExtension.CloudService {
   constructor() {}
@@ -341,7 +340,7 @@ createShareServiceStub(instance: ShareCenter): Promise&lt;rpc.RemoteObject&gt;
 **示例：**
 
 ```ts
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 
 export default class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
@@ -378,7 +377,7 @@ createCloudDBStub(instance: CloudDB): Promise&lt;rpc.RemoteObject&gt;
 | Promise&lt;[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[CloudDB](#clouddb)的[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象。 |
 
 ```ts
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 
 export default class MyCloudDB implements cloudExtension.CloudDB {
   // ...
@@ -417,7 +416,7 @@ createAssetLoaderStub(instance: AssetLoader): Promise&lt;rpc.RemoteObject&gt;
 **示例：**
 
 ```ts
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 
 export default class MyAssetLoader implements cloudExtension.AssetLoader {
   // ...
@@ -618,7 +617,7 @@ query(table: string, fields: Array&lt;string&gt;, queryCount: number, queryCurso
 ```ts
 export default class MyCloudDB implements cloudExtension.CloudDB {
   // ...
-    async query(table: string, fields: Array<string>, queryCount: number, queryCursor: string): Promise<cloudExtension.Result<cloudExtension.CloudData>> {
+  async query(table: string, fields: Array<string>, queryCount: number, queryCursor: string): Promise<cloudExtension.Result<cloudExtension.CloudData>> {
     console.info(`query, table: ${table}`);
     // ...
     // 返回插入数据的结果
@@ -653,9 +652,9 @@ lock(): Promise&lt;Result&lt;LockInfo&gt;&gt;
 **示例：**
 
 ```ts
+let test_time: number = 10;
+let test_lockId: number = 1;
 export default class MyCloudDB implements cloudExtension.CloudDB {
-  let test_time: number = 10;
-  let test_lockId: number = 1;
   // ...
   async lock(): Promise<cloudExtension.Result<cloudExtension.LockInfo>> {
     console.info(`DB lock`);
@@ -697,9 +696,9 @@ heartbeat(lockId: number): Promise&lt;Result&lt;LockInfo&gt;&gt;
 **示例：**
 
 ```ts
+let test_lockId: number = 1;
+let test_time: number = 10;
 export default class MyCloudDB implements cloudExtension.CloudDB {
-  let test_lockId: number = 1;
-  let test_time: number = 10;
   // ...
   async heartbeat(lockId: number): Promise<cloudExtension.Result<cloudExtension.LockInfo>> {
     console.info(`heartbeat lock`);
@@ -778,7 +777,7 @@ getServiceInfo(): Promise<ServiceInfo&gt;
 **示例：**
 
 ```ts
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 
 let test_space: number = 100;
 let test_userId: number = 1;
@@ -981,7 +980,7 @@ export default class MyCloudService implements cloudExtension.CloudService {
 | Promise&lt;[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[CloudDB](#clouddb)的[RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象。 |
 
 ```ts
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 
 export default class MyCloudDB implements cloudExtension.CloudDB {
   // ...
@@ -1021,7 +1020,7 @@ connectAssetLoader(bundleName: string, database: Database): Promise&lt;rpc.Remot
 | Promise&lt;[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[AssetLoader](#assetloader)的[RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象。 |
 
 ```ts
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 
 export default class MyAssetLoader implements cloudExtension.AssetLoader {
   // ...
@@ -1061,7 +1060,7 @@ connectShareCenter(userId: number, bundleName: string): Promise&lt;rpc.RemoteObj
 **示例：**
 
 ```ts
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 
 export default class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
@@ -1183,7 +1182,7 @@ share(userId: number, bundleName: string, sharingResource: string, participants:
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 
 type Participant = cloudData.sharing.Participant;
 
@@ -1238,7 +1237,7 @@ unshare(userId: number, bundleName: string, sharingResource: string, participant
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 
 type Participant = cloudData.sharing.Participant;
 
@@ -1292,7 +1291,7 @@ exit(userId: number, bundleName: string, sharingResource: string): Promise&lt;Re
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 
 export default class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
@@ -1337,7 +1336,7 @@ changePrivilege(userId: number, bundleName: string, sharingResource: string, par
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 
 type Participant = cloudData.sharing.Participant;
 
@@ -1391,7 +1390,7 @@ queryParticipants(userId: number, bundleName: string, sharingResource: string): 
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 
 type Participant = cloudData.sharing.Participant;
 
@@ -1465,7 +1464,7 @@ queryParticipantsByInvitation(userId: number, bundleName: string, invitationCode
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 
 type Participant = cloudData.sharing.Participant;
 
@@ -1540,7 +1539,7 @@ confirmInvitation(userId: number, bundleName: string, invitationCode: string, st
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 
 export default class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
@@ -1586,7 +1585,7 @@ changeConfirmation(userId: number, bundleName: string, sharingResource: string, 
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 
 export default class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
@@ -1609,11 +1608,9 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 以上示例中的类均采用implements实现，示例代码不能单独编译，需要实现父类中的所有方法才能使用，提供完整示例以作参考。
 
 ```ts
-import cloudExtension from '@ohos.data.cloudExtension';
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import rpc from '@ohos.rpc';
-import cloudData from '@ohos.data.cloudData';
+import { Want, ServiceExtensionAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { cloudData, cloudExtension } from '@kit.ArkData';
 
 type Participant = cloudData.sharing.Participant;
 let test_lockId: number = 1;

@@ -12,7 +12,7 @@ Number formatting is implemented through the [format](../reference/apis-localiza
 
 1. Import the **intl** module.
    ```ts
-   import Intl from '@ohos.intl';
+   import { intl } from '@kit.LocalizationKit';
    ```
 
 2. Create a **NumberFormat** object.
@@ -20,7 +20,7 @@ Number formatting is implemented through the [format](../reference/apis-localiza
    The **NumberFormat** constructor allows you to set different number formatting formats by using **NumberOptions**. For details, see Table 1 to Table 8.
 
    ```ts
-   let numberFormat: Intl.NumberFormat = new Intl.NumberFormat(locale: string | Array<string>, options?: NumberOptions);
+   let numberFormat: intl.NumberFormat = new intl.NumberFormat(locale: string | Array<string>, options?: NumberOptions);
    ```
 
 3. Format numbers based on the configuration of **numberFormat**.
@@ -30,12 +30,12 @@ Number formatting is implemented through the [format](../reference/apis-localiza
 
 4. Obtain **NumberOptions** and view the configuration of formatting options.
    ```ts
-   let options: Intl.NumberOptions = formattedNumber.resolvedOptions();
+   let options: intl.NumberOptions = numberFormat.resolvedOptions();
    ```
 
 **Number Formatting Options**
 
-You can use [NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions) to configure number formatting options, including minimum number of integer digits, minimum and maximum numbers of fraction digits, minimum and maximum numbers of significant digits, use of grouping for display, number notation, and compact display. Supported number display formats include decimal, percent, currency, and unit.
+You can use [NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions) to configure number formatting options, including minimum number of integer digits, minimum and maximum numbers of fraction digits, minimum and maximum numbers of significant digits, use of grouping for display, number notation, compact display, rounding mode, rounding priority, rounding increment, number display format, and numbering system. Supported number display formats include decimal, percent, currency, and unit.
 
 The following uses **123000.123** as an example to show the parameter values and corresponding display effects.
 
@@ -102,23 +102,91 @@ The following uses **123000.123** as an example to show the parameter values and
 
 ```ts
 // Import the intl module.
-import Intl from '@ohos.intl'
+import { intl } from '@kit.LocalizationKit';
 
 // Display numbers in scientific notation.
-let numberFormat1 = new Intl.NumberFormat('zh-CN', {notation: 'scientific', maximumSignificantDigits: 3});
+let numberFormat1 = new intl.NumberFormat('zh-CN', {notation: 'scientific', maximumSignificantDigits: 3});
 let formattedNumber1 = numberFormat1.format(123400); // formattedNumber1: 1.23E5
 
 // Display numbers in the compact format.
-let numberFormat2 = new Intl.NumberFormat('zh-CN', {notation: 'compact', compactDisplay: 'short'});
+let numberFormat2 = new intl.NumberFormat('zh-CN', {notation: 'compact', compactDisplay: 'short'});
 let formattedNumber2 = numberFormat2.format(123400); // formattedNumber2: 120 thousand
 
 // Display the signs in numbers.
-let numberFormat3 = new Intl.NumberFormat('zh-CN', {signDisplay: 'always'});
+let numberFormat3 = new intl.NumberFormat('zh-CN', {signDisplay: 'always'});
 let formattedNumber3 = numberFormat3.format(123400); // formattedNumber3: +123,400
 
 // Display numbers in the percentage format.
-let numberFormat4 = new Intl.NumberFormat('zh-CN', {style: 'percent'});
+let numberFormat4 = new intl.NumberFormat('zh-CN', {style: 'percent'});
 let formattedNumber4 = numberFormat4.format(0.25); // formattedNumber4: 25%
+
+// Rounding mode
+let numberFormat5 : intl.NumberFormat = new intl.NumberFormat('en',
+    {
+        roundingMode: 'trunc',
+        maximumSignificantDigits: 2
+    });
+console.log(numberFormat5.format(2.28)); // 2.2
+console.log(numberFormat5.format(-2.25)); // -2.2
+
+// Rounding priority
+let options : intl.NumberOptions = {
+    roundingPriority: 'lessPrecision',
+    maximumFractionDigits: 3,
+    maximumSignificantDigits: 2
+};
+let numberFormat6 : intl.NumberFormat = new intl.NumberFormat('en', options);
+console.log(numberFormat6.format(1.23456)); // 1.2
+
+// Rounding increment
+let numOptions : intl.NumberOptions = {
+    style: "currency",
+    currency: "USD",
+    roundingIncrement: 5,
+    maximumFractionDigits: 2,
+    roundingMode: "halfCeil"
+};
+let numberFormat7 : intl.NumberFormat = new intl.NumberFormat('en-US', numOptions);
+console.log(numberFormat7.format(11.21)); // $11.20
+```
+
+### Number Range Formatting
+
+Number range formatting is implemented through the [formatRange](../reference/apis-localization-kit/js-apis-intl.md#formatrange-1) API of the [NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat) class. The development procedure is as follows:
+
+1. Import the **intl** module.
+   ```ts
+   import { intl } from '@kit.LocalizationKit';
+   ```
+
+2. Create a **NumberFormat** object.
+   If you pass in a list of locales, the first valid locale will be used. If you do not pass in any locale, the current system locale will be used.
+   The **NumberFormat** constructor allows you to set different number formatting formats by using **NumberOptions**. For details, see Table 1 to Table 8.
+
+   ```ts
+   let numberFormat: intl.NumberFormat = new intl.NumberFormat(locale: string | Array<string>, options?: NumberOptions);
+   ```
+
+3. Format the start and end numbers based on the configuration of **numberFormat**.
+   ```ts
+   let formattedNumber: string = numberFormat.formatRange(startRange: number, endRange: number);
+   ```
+
+**Development Example**
+
+```ts
+// Import the intl module.
+import { intl } from '@kit.LocalizationKit';
+
+// Number range formatting
+let options : intl.NumberOptions = {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0
+};
+let numberRangeFormat : intl.NumberFormat = new intl.NumberFormat('es-ES', options);
+console.log(numberRangeFormat.formatRange(2, 8)); // 2-8 €
+console.log(numberRangeFormat.formatRange(2.9, 3.1)); // ~3 €
 ```
 
 
@@ -170,22 +238,22 @@ Assume that the unit name is hectare and the value is **-12300**.
 **Development Example**
 ```ts
 // Import the intl module.
-import Intl from '@ohos.intl'
+import { intl } from '@kit.LocalizationKit';
 
 // Format the currency.
-let numberFormat5 = new Intl.NumberFormat('zh-CN', {style: 'currency', currency: 'USD'});
+let numberFormat5 = new intl.NumberFormat('zh-CN', {style: 'currency', currency: 'USD'});
 let formattedNumber5 = numberFormat5.format(123400); // formattedNumber5: US$123,400.00
 
 // Display the currency using its name.
-let numberFormat6 = new Intl.NumberFormat('zh-CN', {style: 'currency', currency: 'USD', currencyDisplay: 'name'});
+let numberFormat6 = new intl.NumberFormat('zh-CN', {style: 'currency', currency: 'USD', currencyDisplay: 'name'});
 US$ let formattedNumber6 = numberFormat6.format(123400); // formattedNumber6: US$123,400.00
 
 // Format units of measurement.
-let numberFormat7 = new Intl.NumberFormat('en-GB', {style: 'unit', unit: 'hectare'});
+let numberFormat7 = new intl.NumberFormat('en-GB', {style: 'unit', unit: 'hectare'});
 let formattedNumber7 = numberFormat7.format(123400); // formattedNumber7: 123,400 ha
 
 // Format the units of measurement in the specified scenario, for example, area-land-agricult.
-let numberFormat8 = new Intl.NumberFormat('en-GB', {style: 'unit', unit: 'hectare', unitUsage: 'area-land-agricult'});
+let numberFormat8 = new intl.NumberFormat('en-GB', {style: 'unit', unit: 'hectare', unitUsage: 'area-land-agricult'});
 let formattedNumber8 = numberFormat8.format(123400); // formattedNumber8: 304,928.041 ac
 ```
 
@@ -196,14 +264,14 @@ Units of measurement conversion and formatting are implemented by the [unitConve
 
 1. Import the **i18n** module.
    ```ts
-   import I18n from '@ohos.i18n';
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. Convert the unit of measurement.
 
    Convert the unit of measurement from **fromUnit** to **toUnit**, and format the unit based on the specified locale and formatting style. The display effect varies according to the style. For details, see Table 13.
    ```ts
-   let convertedUnit: string = I18n.I18NUtil.unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string);
+   let convertedUnit: string = i18n.I18NUtil.unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string);
    ```
 
 **Formatting Style**
@@ -222,15 +290,15 @@ Assume that **fromUnit** is **cup** (US unit), **toUnit** is **liter** (SI unit)
 
 ```ts
 // Import the i18n module.
-import I18n from '@ohos.i18n'
+import { i18n } from '@kit.LocalizationKit';
 
 // Set the fromUnit and toUnit.
-let fromUnit: I18n.UnitInfo = {unit: 'cup', measureSystem: 'US'};
-let toUnit: I18n.UnitInfo = {unit: 'liter', measureSystem: 'SI'};
+let fromUnit: i18n.UnitInfo = {unit: 'cup', measureSystem: 'US'};
+let toUnit: i18n.UnitInfo = {unit: 'liter', measureSystem: 'SI'};
 
 // Convert the unit based on the locale en-US.
-let convertedUnit1 = I18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US'); // convertedUnit1: 236.588 L
+let convertedUnit1 = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US'); // convertedUnit1: 236.588 L
 
 // Display the complete unit.
-let convertedUnit2 = I18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // convertedUnit2: 236.588 liters
+let convertedUnit2 = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // convertedUnit2: 236.588 liters
 ```

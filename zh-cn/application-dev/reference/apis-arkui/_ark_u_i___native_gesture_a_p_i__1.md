@@ -19,6 +19,7 @@
 | -------- | -------- |
 | int32_t [version](#version) | 结构版本号 = 1。  | 
 | ArkUI_GestureRecognizer \*(\* [createTapGesture](#createtapgesture) )(int32_t countNum, int32_t fingersNum) | 创建敲击手势。  | 
+| ArkUI_GestureRecognizer \*(\* [createTapGestureWithDistance](#createtapgesturewithdistance) )(int32_t countNum, int32_t fingersNum, int32_t distance) | 创建带移动范围限制的敲击手势。  | 
 | ArkUI_GestureRecognizer \*(\* [createLongPressGesture](#createlongpressgesture) )(int32_t fingersNum, bool repeatResult, int32_t durationNum) | 创建长按手势。  | 
 | ArkUI_GestureRecognizer \*(\* [createPanGesture](#createpangesture) )(int32_t fingersNum, [ArkUI_GestureDirectionMask](_ark_u_i___native_module.md#arkui_gesturedirectionmask) directions, double distanceNum) | 创建拖动手势。  | 
 | ArkUI_GestureRecognizer \*(\* [createPinchGesture](#createpinchgesture) )(int32_t fingersNum, double distanceNum) | 创建捏合手势。  | 
@@ -33,6 +34,7 @@
 | int32_t(\* [removeGestureFromNode](#removegesturefromnode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, ArkUI_GestureRecognizer \*recognizer) | 在节点中移除手势。  | 
 | int32_t(\* [setGestureInterrupterToNode](#setgestureinterruptertonode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_GestureInterruptResult](_ark_u_i___native_module.md#arkui_gestureinterruptresult)(\*interrupter)(ArkUI_GestureInterruptInfo \*info)) | 设置节点手势打断回调。  | 
 | [ArkUI_GestureRecognizerType](_ark_u_i___native_module.md#arkui_gesturerecognizertype)(\* [getGestureType](#getgesturetype) )(ArkUI_GestureRecognizer \*recognizer) | 获取手势类别。  | 
+| int32_t(\* [setInnerGestureParallelTo](#setinnergestureparallelto) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void \*userData, ArkUI_GestureRecognizer \*(\*parallelInnerGesture)([ArkUI_ParallelInnerGestureEvent](_ark_u_i___native_module.md#arkui_parallelinnergestureevent) \*event)) | 设置并行内部手势事件回调。  | 
 
 
 ## 结构体成员变量说明
@@ -231,6 +233,28 @@ ArkUI_GestureRecognizer*(* ArkUI_NativeGestureAPI_1::createTapGesture) (int32_t 
 返回创建的敲击手势指针。
 
 
+### createTapGestureWithDistance
+
+```
+ArkUI_GestureRecognizer*(* ArkUI_NativeGestureAPI_1::createTapGestureWithDistance) (int32_t countNum, int32_t fingersNum, int32_t distance)
+```
+**描述：**
+
+创建带移动范围限制的敲击手势。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| countNum | 识别的连续点击次数。当设置的值小于1或不设置时，会被转化为默认值 1。  | 
+| fingersNum | 触发点击的手指数，最小为1指， 最大为10指。当设置小于1的值或不设置时，会被转化为默认值 1。  | 
+| distance | 手指允许的移动距离范围。当设置的值小于0或者不设置时，会被转化为默认值无穷大。  | 
+
+**返回：**
+
+返回创建的敲击手势指针。
+
+
 ### dispose
 
 ```
@@ -347,6 +371,28 @@ int32_t(* ArkUI_NativeGestureAPI_1::setGestureInterrupterToNode) (ArkUI_NodeHand
 | -------- | -------- |
 | node | 需要被设置手势打断回调的ARKUI节点。  | 
 | interrupter | 打断回调, info 返回手势打断数据。 interrupter 返回 GESTURE_INTERRUPT_RESULT_CONTINUE, 手势正常进行； 返回 GESTURE_INTERRUPT_RESULT_REJECT 手势打断。  | 
+
+**返回：**
+
+0 - 成功。 401 - 参数错误。
+
+
+### setInnerGestureParallelTo
+
+```
+int32_t(* ArkUI_NativeGestureAPI_1::setInnerGestureParallelTo) (ArkUI_NodeHandle node, void *userData, ArkUI_GestureRecognizer *(*parallelInnerGesture)(ArkUI_ParallelInnerGestureEvent *event))
+```
+**描述：**
+
+设置并行内部手势事件回调。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 需要被设置并行内部手势事件回调的ARKUI节点。  | 
+| userData | 用户自定义数据。  | 
+| parallelInnerGesture | 并行内部手势事件，event 返回并行内部手势事件数据。 parallelInnerGesture 返回 需要并行的手势识别器指针。  | 
 
 **返回：**
 

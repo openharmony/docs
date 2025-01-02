@@ -11,7 +11,7 @@ The **shortKey** module provides APIs to set the delay for starting an ability u
 ##  Modules to Import
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 ```
 
 ##  shortKey.setKeyDownDuration
@@ -26,16 +26,25 @@ Sets the delay for starting an ability using shortcut keys. This API uses an asy
 
 | Name    | Type               | Mandatory| Description                                                        |
 | ---------- | ------------------- | ---- | ------------------------------------------------------------ |
-| businessKey| string              | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file.|
+| businessKey| string              | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file. You need to query this parameter on your own before calling the API.|
 | delay      | number              | Yes  | Delay for starting an ability using shortcut keys, in milliseconds. This field is invalid only when shortcut keys are used.|
 | callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |                                               
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 try {
-  shortKey.setKeyDownDuration("screenshot", 500, (error) => {
+  shortKey.setKeyDownDuration("businessId", 500, (error) => {
     if (error) {
       console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -59,7 +68,7 @@ Sets the delay for starting an ability using shortcut keys. This API uses a prom
 
 | Name    | Type  | Mandatory| Description                                                        |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| businessKey| string | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file.|
+| businessKey| string | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file. You need to query this parameter on your own before calling the API.|
 | delay      | number | Yes  | Delay for starting an ability using shortcut keys, in milliseconds. This field is invalid only when shortcut keys are used.|
 
 **Return value**
@@ -68,15 +77,51 @@ Sets the delay for starting an ability using shortcut keys. This API uses a prom
 | ------------- | ------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 try {
-  shortKey.setKeyDownDuration("screenshot", 500).then(() => {
+  shortKey.setKeyDownDuration("businessId", 500).then(() => {
     console.log(`Set key down duration success`);
   });
 } catch (error) {
   console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
+## FingerprintAction<sup>12+</sup>
+
+Enumerates key event types.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+| Name                | Value         | Description               |
+| ---------------------| ---------- | --------------------|
+| DOWN                 | 0x00000000 | Pressing down          |
+| UP                   | 0x00000001 | Lifting up          |
+| SLIDE                | 0x00000002 | Sliding          |
+| RETOUCH              | 0x00000003 | Retouching          |
+| CLICK                | 0x00000004 | Clicking          |
+
+
+## FingerprintEvent<sup>12+</sup>
+
+Defines the key event type and the offset position relative to the key.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+| Name     | Type                                      |Read Only  | Optional |Description                   |
+| --------  | ------------------------                  |-------|------ |--------               |
+| action    | [FingerprintAction](#fingerprintaction12)   | Yes   |  No  |Key event type.          |
+| distanceX | number                                    | Yes   |  No  |Offset position on the X axis. A positive number indicates that the pointer moves rightward, and a negative number indicates that the cursor moves leftward.|
+| distanceY | number                                    | Yes   |  No  |Offset position on the Y axis. A positive number indicates that the pointer moves upward, and a negative number indicates that the cursor moves downward.|

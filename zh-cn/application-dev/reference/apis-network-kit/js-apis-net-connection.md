@@ -3,12 +3,14 @@
 网络连接管理提供管理网络一些基础能力，包括获取默认激活的数据网络、获取所有激活数据网络列表、开启关闭飞行模式、获取网络能力信息等功能。
 
 > **说明：**
+>
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 无特殊说明，接口默认不支持并发。
 
 ## 导入模块
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 ```
 
 ## connection.createNetConnection
@@ -16,6 +18,8 @@ import connection from '@ohos.net.connection';
 createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection
 
 创建一个NetConnection对象，[netSpecifier](#netspecifier)指定关注的网络的各项特征；timeout是超时时间(单位是毫秒)；netSpecifier是timeout的必要条件，两者都没有则表示关注默认网络。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -35,7 +39,7 @@ createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnectio
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 // 关注默认网络, 不需要传参
 let netConnection = connection.createNetConnection();
@@ -56,6 +60,8 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -66,18 +72,20 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 401     | Parameter error.                 |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
   if (error) {
@@ -96,6 +104,8 @@ getDefaultNet(): Promise\<NetHandle>
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **返回值：**
@@ -106,17 +116,19 @@ getDefaultNet(): Promise\<NetHandle>
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                         |
+| ------- | -------------------------------- |
+| 201     | Permission denied.               |
+| 2100002 | Failed to connect to the service.|
+| 2100003 | System internal error.           |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
+
 connection.getDefaultNet().then((data: connection.NetHandle) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
@@ -130,6 +142,8 @@ getDefaultNetSync(): NetHandle
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **返回值：**
@@ -140,17 +154,18 @@ getDefaultNetSync(): NetHandle
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                         |
+| ------- | -------------------------------- |
+| 201     | Permission denied.               |
+| 2100002 | Failed to connect to the service.|
+| 2100003 | System internal error.           |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 let netHandle = connection.getDefaultNetSync();
 ```
@@ -158,7 +173,7 @@ let netHandle = connection.getDefaultNetSync();
 
 ## connection.setAppHttpProxy<sup>11+</sup>
 
-setAppHttpProxy(httpProxy: HttpProxy): void;
+setAppHttpProxy(httpProxy: HttpProxy): void
 
 设置网络应用级Http代理配置信息。
 
@@ -172,6 +187,8 @@ setAppHttpProxy(httpProxy: HttpProxy): void;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                       |
 | ------- | -----------------------------  |
 | 401     | Parameter error.               |
@@ -180,8 +197,8 @@ setAppHttpProxy(httpProxy: HttpProxy): void;
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let exclusionStr = "192.168,baidu.com";
 let exclusionArray = exclusionStr.split(',');
@@ -210,6 +227,10 @@ cat server.pem \
 
 直接把证书原文件预置在APP中。目前支持crt和pem格式的证书文件。
 
+**注意：**
+
+当前ohos.net.http和Image组件的证书锁定，会匹配证书链上所有证书的哈希值，如果服务器更新了任意一本证书，都会导致校验失败。如果服务器出现了更新证书的情况，APP版本应当随之更新并推荐消费者尽快升级APP版本，否则可能导致联网失败。
+
 **预置JSON配置文件:**
 
 预置的证书与网络服务器的对应关系通过JSON配置。 
@@ -220,25 +241,29 @@ cat server.pem \
 证书锁定的配置例子如下:
 ```json
 {
-  "network-security-config": {	
-	  "domain-config": {
-		  "domains": [
-        {
-          "include-subdomains": true,
-          "name": "server.com"
-        }
-      ],
-      "pin-set": {
-        "expiration": "2024-11-08",
-        "pin": [
+  "network-security-config": {
+    "domain-config": [
+      {
+        "domains": [
           {
-            "digest-algorithm": "sha256",
-            "digest": "FEDCBA987654321"
+            "include-subdomains": true,
+            "name": "server.com"
           }
-        ]
+        ],
+        "pin-set": {
+          "expiration": "2024-11-08",
+          "pin": [
+            {
+              "digest-algorithm": "sha256",
+              "digest": "FEDCBA987654321"
+            }
+          ]
+        }
       }
-    }
-  }
+    ]
+  },
+  "trust-global-user-ca": false,
+  "trust-current-user-ca": false,
 }
 ```
 
@@ -246,22 +271,28 @@ cat server.pem \
 ```json
 {
   "network-security-config": {
-    "base-config": {  
-      "trust-anchors": [                         
-        {"certificates": "/etc/security/certificates"}
+    "base-config": {
+      "trust-anchors": [
+        {
+          "certificates": "/etc/security/certificates"
+        }
       ]
     },
-    "domain-config": {
-      "domains": [
-        {
-          "include-subdomains": true,
-          "name": "example.com"
-        }
-      ],
-      "trust-anchors": [
-        {"certificates": "/data/storage/el1/bundle/entry/resources/resfile"}
-      ]
-    }
+    "domain-config": [
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "example.com"
+          }
+        ],
+        "trust-anchors": [
+          {
+            "certificates": "/data/storage/el1/bundle/entry/resources/resfile"
+          }
+        ]
+      }
+    ]
   }
 }
 
@@ -274,6 +305,10 @@ cat server.pem \
 可包含0或者1个base-config
 
 必须包含1个domain-config
+
+**trust-global-user-ca: 是否信任企业MDM系统或设备管理员用户手动安装的CA证书，默认true**
+
+**trust-current-user-ca: 是否信任当前用户安装的证书，默认true**
 
 **base-config(object:指示应用程序范围的安全配置)**
 
@@ -335,16 +370,18 @@ getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
-| 2100002  | Operation failed. Cannot connect to service. |
+| 2100002  | Failed to connect to the service.            |
 | 2100003  | System internal error.                       |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
   if (error) {
@@ -357,7 +394,7 @@ connection.getDefaultHttpProxy((error: BusinessError, data: connection.HttpProxy
 
 ## connection.getDefaultHttpProxy<sup>10+</sup>
 
-getDefaultHttpProxy(): Promise\<HttpProxy>;
+getDefaultHttpProxy(): Promise\<HttpProxy>
 
 获取网络默认的代理配置信息。
 如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet9)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。
@@ -373,16 +410,18 @@ getDefaultHttpProxy(): Promise\<HttpProxy>;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
-| 2100002  | Operation failed. Cannot connect to service. |
+| 2100002  | Failed to connect to the service.            |
 | 2100003  | System internal error.                       |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultHttpProxy().then((data: connection.HttpProxy) => {
   console.info(JSON.stringify(data));
@@ -407,17 +446,19 @@ getAppNet(callback: AsyncCallback\<NetHandle>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 401 | Parameter error.|
-| 2100002 | Operation failed. Cannot connect to service.|
+| 401     | Parameter error.                 |
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getAppNet((error: BusinessError, data: connection.NetHandle) => {
   if (error) {
@@ -430,7 +471,7 @@ connection.getAppNet((error: BusinessError, data: connection.NetHandle) => {
 
 ## connection.getAppNet<sup>9+</sup>
 
-getAppNet(): Promise\<NetHandle>;
+getAppNet(): Promise\<NetHandle>
 
 获取App绑定的网络信息，使用Promise方式作为异步方法。
 
@@ -444,17 +485,18 @@ getAppNet(): Promise\<NetHandle>;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 401 | Parameter error.|
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getAppNet().then((data: connection.NetHandle) => {
   console.info(JSON.stringify(data));
@@ -479,16 +521,17 @@ getAppNetSync(): NetHandle
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 let netHandle = connection.getAppNetSync();
 ```
@@ -512,21 +555,27 @@ setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    return;
+  }
   connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
     if (error) {
       console.error(`Failed to get default net. Code:${error.code}, message:${error.message}`);
@@ -539,7 +588,7 @@ connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle)
 
 ## connection.setAppNet<sup>9+</sup>
 
-setAppNet(netHandle: NetHandle): Promise\<void>;
+setAppNet(netHandle: NetHandle): Promise\<void>
 
 绑定App到指定网络，绑定后的App只能通过指定网络访问外网，使用Promise方式作为异步方法。
 
@@ -561,21 +610,28 @@ setAppNet(netHandle: NetHandle): Promise\<void>;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    return;
+  }
+
   connection.setAppNet(netHandle).then(() => {
     console.log("success");
   }).catch((error: BusinessError) => {
@@ -602,18 +658,20 @@ getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 401     | Parameter error.                 |
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getAllNets((error: BusinessError, data: connection.NetHandle[]) => {
   if (error) {
@@ -642,17 +700,18 @@ getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.getAllNets().then((data: connection.NetHandle[]) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
@@ -677,17 +736,18 @@ getAllNetsSync(): Array&lt;NetHandle&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 let netHandle = connection.getAllNetsSync();
 ```
@@ -711,21 +771,27 @@ getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<Connectio
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    return;
+  }
   connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
     if (error) {
       console.error(`Failed to get connection properties. Code:${error.code}, message:${error.message}`);
@@ -760,20 +826,27 @@ getConnectionProperties(netHandle: NetHandle): Promise\<ConnectionProperties>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    return;
+  }
+
   connection.getConnectionProperties(netHandle).then((data: connection.ConnectionProperties) => {
     console.info("Succeeded to get data: " + JSON.stringify(data));
   })
@@ -804,21 +877,35 @@ getConnectionPropertiesSync(netHandle: NetHandle): ConnectionProperties
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let netHandle = connection.getDefaultNetSync();
-let connectionproperties = connection.getConnectionPropertiesSync(netHandle);
+let netHandle: connection.NetHandle;
+let connectionproperties: connection.ConnectionProperties;
+
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    return;
+  }
+  netHandle = connection.getDefaultNetSync();
+  connectionproperties = connection.getConnectionPropertiesSync(netHandle);
+  console.info("Succeeded to get connectionproperties: " + JSON.stringify(connectionproperties));
+});
+
 ```
 
 ## connection.getNetCapabilities
@@ -828,6 +915,8 @@ getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilitie
 获取netHandle对应的网络的能力信息，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -840,21 +929,27 @@ getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilitie
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    return;
+  }
   connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
     if (error) {
       console.error(`Failed to get net capabilities. Code:${error.code}, message:${error.message}`);
@@ -862,6 +957,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
     }
     console.info("Succeeded to get data: " + JSON.stringify(data));
   })
+}).catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
 });
 ```
 
@@ -872,6 +969,8 @@ getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 获取netHandle对应的网络的能力信息，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -889,23 +988,31 @@ getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    return;
+  }
   connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
-    console.info("Succeeded to get data: " + JSON.stringify(data));
+      console.info("Succeeded to get data: " + JSON.stringify(data));
   })
+}).catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
 });
 ```
 
@@ -916,6 +1023,8 @@ getNetCapabilitiesSync(netHandle: NetHandle): NetCapabilities
 获取netHandle对应的网络的能力信息，使用同步方式返回。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -933,21 +1042,35 @@ getNetCapabilitiesSync(netHandle: NetHandle): NetCapabilities
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let netHandle = connection.getDefaultNetSync();
-let getNetCapabilitiesSync = connection.getNetCapabilitiesSync(netHandle);
+let netHandle: connection.NetHandle;
+let getNetCapabilitiesSync: connection.NetCapabilities;
+
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    return;
+  }
+
+  getNetCapabilitiesSync = connection.getNetCapabilitiesSync(netHandle);
+  console.info("Succeeded to get net capabilities sync: " + JSON.stringify(getNetCapabilitiesSync));
+});
+
 ```
 
 ## connection.isDefaultNetMetered<sup>9+</sup>
@@ -968,18 +1091,20 @@ isDefaultNetMetered(callback: AsyncCallback\<boolean>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 401     | Parameter error.                 |
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.isDefaultNetMetered((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
@@ -1005,17 +1130,18 @@ isDefaultNetMetered(): Promise\<boolean>
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                         |
+| ------- | -------------------------------- |
+| 201     | Permission denied.               |
+| 2100002 | Failed to connect to the service.|
+| 2100003 | System internal error.           |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.isDefaultNetMetered().then((data: boolean) => {
   console.log('data: ' + data);
@@ -1040,17 +1166,18 @@ isDefaultNetMeteredSync(): boolean
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                         |
+| ------- | -------------------------------- |
+| 201     | Permission denied.               |
+| 2100002 | Failed to connect to the service.|
+| 2100003 | System internal error.           |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 let isMetered = connection.isDefaultNetMeteredSync();
 ```
@@ -1059,7 +1186,7 @@ let isMetered = connection.isDefaultNetMeteredSync();
 
 hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
-检查默认数据网络是否被激活，使用callback方式作为异步方法。如果有默认数据网路，可以使用[getDefaultNet](#connectiongetdefaultnet)去获取。
+检查默认数据网络是否被激活，使用callback方式作为异步方法。如果有默认数据网络，可以使用[getDefaultNet](#connectiongetdefaultnet)去获取。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -1073,18 +1200,20 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.hasDefaultNet((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
@@ -1096,7 +1225,7 @@ connection.hasDefaultNet((error: BusinessError, data: boolean) => {
 
 hasDefaultNet(): Promise\<boolean>
 
-检查默认数据网络是否被激活，使用Promise方式作为异步方法。如果有默认数据网路，可以使用[getDefaultNet](#connectiongetdefaultnet)去获取。
+检查默认数据网络是否被激活，使用Promise方式作为异步方法。如果有默认数据网络，可以使用[getDefaultNet](#connectiongetdefaultnet)去获取。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -1110,17 +1239,19 @@ hasDefaultNet(): Promise\<boolean>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
+
 connection.hasDefaultNet().then((data: boolean) => {
   console.log('data: ' + data);
 });
@@ -1144,17 +1275,18 @@ hasDefaultNetSync(): boolean
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 let isDefaultNet = connection.hasDefaultNetSync();
 ```
@@ -1179,19 +1311,21 @@ reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): v
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.reportNetConnected(netHandle, (error: BusinessError) => {
@@ -1202,7 +1336,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 ## connection.reportNetConnected
 
-reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
+reportNetConnected(netHandle: NetHandle): Promise\<void\>
 
 向网络管理报告网络处于可用状态，使用Promise方式作为异步方法。
 
@@ -1223,18 +1357,21 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
+
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.reportNetConnected(netHandle).then(() => {
     console.log(`report success`);
@@ -1261,18 +1398,21 @@ reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;)
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
+
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.reportNetDisconnected(netHandle).then( () => {
     console.log(`report success`);
@@ -1303,18 +1443,21 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
+
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.reportNetDisconnected(netHandle).then( () => {
     console.log(`report success`);
@@ -1341,19 +1484,22 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.NetAddress[]) => {
   if (error) {
     console.error(`Failed to get addresses. Code:${error.code}, message:${error.message}`);
@@ -1365,7 +1511,7 @@ connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.Ne
 
 ## connection.getAddressesByName
 
-getAddressesByName(host: string): Promise\<Array\<NetAddress>>
+getAddressesByName(host: string): Promise\<Array\<NetAddress\>\>
 
 使用对应网络解析主机名以获取所有IP地址，使用Promise方式作为异步方法。
 
@@ -1387,18 +1533,21 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
+
 connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
@@ -1408,7 +1557,7 @@ connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
 
 addCustomDnsRule(host: string, ip: Array\<string\>, callback: AsyncCallback\<void\>): void
 
-为当前应用程序添加自定义host和对应的ip地址的映射，使用callback方式作为异步方法。
+为当前应用程序添加自定义host和对应的IP地址的映射，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1424,19 +1573,22 @@ addCustomDnsRule(host: string, ip: Array\<string\>, callback: AsyncCallback\<voi
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 connection.addCustomDnsRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"], (error: BusinessError, data: void) => {
   if (error) {
     console.error(`Failed to get add custom dns rule. Code:${error.code}, message:${error.message}`);
@@ -1450,7 +1602,7 @@ connection.addCustomDnsRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"], (error: Busin
 
 addCustomDnsRule(host: string, ip: Array\<string\>): Promise\<void\>
 
-为当前应用程序添加自定义host和对应的ip地址的映射，使用Promise方式作为异步方法。
+为当前应用程序添加自定义host和对应的IP地址的映射，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1471,19 +1623,22 @@ addCustomDnsRule(host: string, ip: Array\<string\>): Promise\<void\>
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 connection.addCustomDnsRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"]).then(() => {
     console.info("success");
 }).catch((error: BusinessError) => {
@@ -1510,19 +1665,22 @@ removeCustomDnsRule(host: string, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 connection.removeCustomDnsRule("xxxx", (error: BusinessError, data: void) => {
   if (error) {
     console.error(`Failed to remove custom dns rule. Code:${error.code}, message:${error.message}`);
@@ -1556,19 +1714,22 @@ removeCustomDnsRule(host: string): Promise\<void\>
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 connection.removeCustomDnsRule("xxxx").then(() => {
     console.log("success");
 }).catch((error: BusinessError) => {
@@ -1594,19 +1755,22 @@ clearCustomDnsRules(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID| 错误信息                           |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 connection.clearCustomDnsRules((error: BusinessError, data: void) => {
   if (error) {
     console.error(`Failed to clear custom dns rules. Code:${error.code}, message:${error.message}`);
@@ -1634,19 +1798,21 @@ clearCustomDnsRules(): Promise\<void\>
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 connection.clearCustomDnsRules().then(() => {
     console.log("success");
 }).catch((error: BusinessError) => {
@@ -1662,7 +1828,7 @@ connection.clearCustomDnsRules().then(() => {
 > **说明：**
 > 设备从无网络到有网络会触发netAvailable事件、netCapabilitiesChange事件和netConnectionPropertiesChange事件；
 > 设备从有网络到无网络状态会触发netLost事件；
-> 设备从WiFi到蜂窝会触发netLost事件（WiFi丢失）之后触发 netAvaliable事件（蜂窝可用）；
+> 设备从WiFi到蜂窝会触发netLost事件（WiFi丢失）之后触发 netAvailable事件（蜂窝可用）；
 
 ### register
 
@@ -1671,6 +1837,8 @@ register(callback: AsyncCallback\<void>): void
 订阅指定网络状态变化的通知。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1682,20 +1850,23 @@ register(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
-| 2101008 | The same callback exists.     |
-| 2101022 | The number of requests exceeded the maximum. |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID |                       错误信息                       |
+| ------- | ---------------------------------------------------- |
+| 201     | Permission denied.                                   |
+| 401     | Parameter error.                                     |
+| 2100002 | Failed to connect to the service.                    |
+| 2100003 | System internal error.                               |
+| 2101008 | The callback already exists.                         |
+| 2101022 | The number of requests exceeded the maximum allowed. |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let netCon: connection.NetConnection = connection.createNetConnection();
 netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -1708,6 +1879,8 @@ unregister(callback: AsyncCallback\<void>): void
 
 取消订阅默认网络状态变化的通知。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -1718,19 +1891,21 @@ unregister(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201 | Permission denied.|
-| 401 | Parameter error.         |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
-| 2101007 | The callback is not exists.      |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 401     | Parameter error.                  |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+| 2101007 | The callback does not exist.      |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let netCon: connection.NetConnection = connection.createNetConnection();
 netCon.unregister((error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -1741,9 +1916,9 @@ netCon.unregister((error: BusinessError) => {
 
 on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 
-订阅网络可用事件。
+订阅网络可用事件。此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
 
-**模型约束**：此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1757,8 +1932,8 @@ on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
@@ -1783,9 +1958,7 @@ netCon.unregister((error: BusinessError) => {
 
 on(type: 'netBlockStatusChange', callback: Callback\<NetBlockStatusInfo>): void
 
-订阅网络阻塞状态事件，使用callback方式作为异步方法。
-
-**模型约束**：此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
+订阅网络阻塞状态事件。此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1794,13 +1967,13 @@ on(type: 'netBlockStatusChange', callback: Callback\<NetBlockStatusInfo>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 订阅事件，固定为'netBlockStatusChange'。<br/>netBlockStatusChange：网络阻塞状态事件。 |
-| callback | Callback<[NetBlockStatusInfo](#netblockstatusinfo11)> | 是   | 回调函数。获取网络阻塞状态信息。|
+| callback | Callback<[NetBlockStatusInfo](#netblockstatusinfo11)>        | 是   | 回调函数，获取网络阻塞状态信息。|
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
@@ -1810,7 +1983,7 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-// 订阅网络可用事件。调用register后，才能接收到此事件通知
+// 订阅网络阻塞状态事件。调用register后，才能接收到此事件通知
 netCon.on('netBlockStatusChange', (data: connection.NetBlockStatusInfo) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
@@ -1825,9 +1998,9 @@ netCon.unregister((error: BusinessError) => {
 
 on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo\>): void
 
-订阅网络能力变化事件。
+订阅网络能力变化事件。此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
 
-**模型约束**：此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1836,13 +2009,13 @@ on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo\>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 订阅事件，固定为'netCapabilitiesChange'。<br/>netCapabilitiesChange：网络能力变化事件。 |
-| callback | Callback<[NetCapabilityInfo](#netcapabilityinfo10)> | 是   | 回调函数，返回数据网络句柄(netHandle)和网络的能力信息(netCap)。|
+| callback | Callback<[NetCapabilityInfo](#netcapabilityinfo10)>          | 是   | 回调函数，返回数据网络句柄(netHandle)和网络的能力信息(netCap)。|
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
@@ -1867,9 +2040,7 @@ netCon.unregister((error: BusinessError) => {
 
 on(type: 'netConnectionPropertiesChange', callback: Callback\<NetConnectionPropertyInfo\>): void
 
-订阅网络连接信息变化事件。
-
-**模型约束**：此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
+订阅网络连接信息变化事件。此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1878,13 +2049,13 @@ on(type: 'netConnectionPropertiesChange', callback: Callback\<NetConnectionPrope
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 订阅事件，固定为'netConnectionPropertiesChange'。<br/>netConnectionPropertiesChange：网络连接信息变化事件。 |
-| callback | Callback<[NetConnectionPropertyInfo](#netconnectionpropertyinfo11)> | 是   | 回调函数。获取网络连接属性信息。|
+| callback | Callback<[NetConnectionPropertyInfo](#netconnectionpropertyinfo11)> | 是   | 回调函数，获取网络连接属性信息。|
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
@@ -1894,7 +2065,7 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-// 订阅网络可用事件。调用register后，才能接收到此事件通知
+// 订阅网络连接信息变化事件。调用register后，才能接收到此事件通知
 netCon.on('netConnectionPropertiesChange', (data: connection.NetConnectionPropertyInfo) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
@@ -1909,9 +2080,9 @@ netCon.unregister((error: BusinessError) => {
 
 on(type: 'netLost', callback: Callback\<NetHandle>): void
 
-订阅网络丢失事件。
+订阅网络丢失事件。此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
 
-**模型约束**：此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1925,8 +2096,8 @@ on(type: 'netLost', callback: Callback\<NetHandle>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
@@ -1936,7 +2107,7 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-// 订阅网络可用事件。调用register后，才能接收到此事件通知
+// 订阅网络丢失事件。调用register后，才能接收到此事件通知
 netCon.on('netLost', (data: connection.NetHandle) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
@@ -1951,9 +2122,9 @@ netCon.unregister((error: BusinessError) => {
 
 on(type: 'netUnavailable', callback: Callback\<void>): void
 
-订阅网络不可用事件。
+订阅网络不可用事件。此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
 
-**模型约束**：此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1967,8 +2138,8 @@ on(type: 'netUnavailable', callback: Callback\<void>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
@@ -2001,7 +2172,7 @@ netCon.unregister((error: BusinessError) => {
 
 | 名称    | 类型   | 必填 | 说明                      |
 | ------ | ------ | --- |------------------------- |
-| netId  | number | 是  |  网络ID，取值为0代表没有默认网络，其余取值必须大于等于100。 |
+| netId  | number | 是  |  网络ID，取值为0代表没有默认网络，其余取值必须大于等于100。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ### bindSocket<sup>9+</sup>
 
@@ -2020,28 +2191,32 @@ bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>):
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection, socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 interface Data {
   message: ArrayBuffer,
   remoteInfo: socket.SocketRemoteInfo
 }
 
-connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  let tcp = socket.constructTCPSocketInstance();
-  let udp = socket.constructUDPSocketInstance();
+  connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  }
+  let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
+  let udp : socket.UDPSocket = socket.constructUDPSocketInstance();
   let socketType = "TCPSocket";
   if (socketType == "TCPSocket") {
     tcp.bind({address:"192.168.xxx.xxx",
@@ -2054,6 +2229,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
         if (error) {
           console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
+          return;
         } else {
           console.info(JSON.stringify(data));
         }
@@ -2076,18 +2252,19 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
         if (error) {
           console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
+          return;
         } else {
           console.info(JSON.stringify(data));
         }
       });
     });
   }
-});
+})
 ```
 
 ### bindSocket<sup>9+</sup>
 
-bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
+bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void\>
 
 将TCPSocket或UDPSockett绑定到当前网络，使用Promise方式作为异步方法。
 
@@ -2107,27 +2284,33 @@ bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection, socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 interface Data {
   message: ArrayBuffer,
   remoteInfo: socket.SocketRemoteInfo
 }
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  let tcp = socket.constructTCPSocketInstance();
-  let udp = socket.constructUDPSocketInstance();
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    return;
+  }
+  let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
+  let udp : socket.UDPSocket = socket.constructUDPSocketInstance();
   let socketType = "TCPSocket";
   if (socketType == "TCPSocket") {
     tcp.bind({address:"192.168.xxx.xxx",
@@ -2137,12 +2320,10 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
         console.log('bind fail');
         return;
       }
-      netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
-        if (error) {
-          console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
-        } else {
-          console.info(JSON.stringify(data));
-        }
+      netHandle.bindSocket(tcp).then(() => {
+        console.info("bind socket success");
+      }).catch((error: BusinessError) => {
+        console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
       });
     });
   } else {
@@ -2152,28 +2333,26 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
     udp.bind({address:"192.168.xxx.xxx",
               port:8080,
               family:1} as socket.NetAddress, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to bind. Code:${error.code}, message:${error.message}`);
-      return;
-    }
-    udp.on('message', (data: Data) => {
-      console.info("Succeeded to get data: " + JSON.stringify(data));
-    });
-    netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
       if (error) {
-        console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);;
-      } else {
-        console.info(JSON.stringify(data));
+        console.error(`Failed to bind. Code:${error.code}, message:${error.message}`);
+        return;
       }
+      udp.on('message', (data: Data) => {
+        console.info("Succeeded to get data: " + JSON.stringify(data));
+      });
+      netHandle.bindSocket(udp).then(() => {
+        console.info("bind socket success");
+      }).catch((error: BusinessError) => {
+        console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
+      });
     });
-  });
-}
+  }
 });
 ```
 
 ### getAddressesByName
 
-getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
+getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>\>\): void
 
 使用对应网络解析主机名以获取所有IP地址，使用callback方式作为异步方法。
 
@@ -2190,21 +2369,27 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    return;
+  }
   let host = "xxxx";
   netHandle.getAddressesByName(host, (error: BusinessError, data: connection.NetAddress[]) => {
     if (error) {
@@ -2240,20 +2425,26 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    return;
+  }
   let host = "xxxx";
   netHandle.getAddressesByName(host).then((data: connection.NetAddress[]) => {
     console.info("Succeeded to get data: " + JSON.stringify(data));
@@ -2280,21 +2471,27 @@ getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    return;
+  }
   let host = "xxxx";
   netHandle.getAddressByName(host, (error: BusinessError, data: connection.NetAddress) => {
     if (error) {
@@ -2330,20 +2527,26 @@ getAddressByName(host: string): Promise\<NetAddress>
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    return;
+  }
   let host = "xxxx";
   netHandle.getAddressByName(host).then((data: connection.NetAddress) => {
     console.info("Succeeded to get data: " + JSON.stringify(data));
@@ -2359,12 +2562,13 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 | 名称                  | 值   | 说明                   |
 | ------------------------ | ---- | ---------------------- |
-| NET_CAPABILITY_MMS | 0 | 表示网络可以访问运营商的MMSC（Multimedia&nbsp;Message&nbsp;Service，多媒体短信服务）发送和接收彩信。 |
-| NET_CAPABILITY_NOT_METERED | 11 | 表示网络流量未被计费。 |
-| NET_CAPABILITY_INTERNET  | 12   | 表示该网络应具有访问Internet的能力，该能力由网络提供者设置。 |
-| NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。 |
-| NET_CAPABILITY_VALIDATED | 16   | 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置。 |
-| NET_CAPABILITY_PORTAL<sup>12+</sup> | 17   | 表示系统发现该网络存在强制网络门户，需要用户登陆认证，该能力由网络管理模块设置。 |
+| NET_CAPABILITY_MMS | 0 | 表示网络可以访问运营商的MMSC（Multimedia&nbsp;Message&nbsp;Service，多媒体短信服务）发送和接收彩信。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NET_CAPABILITY_NOT_METERED | 11 | 表示网络流量未被计费。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NET_CAPABILITY_INTERNET  | 12   | 表示该网络应具有访问Internet的能力，该能力由网络提供者设置，但该网络访问Internet的连通性并未被网络管理成功验证。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NET_CAPABILITY_VALIDATED | 16   | 表示网络管理通过该网络与华为云地址成功建立连接，该能力由网络管理模块设置。<br>请注意，网络管理可能会与华为云地址建立连接失败，导致网络能力不具备此标记位，但不完全代表该网络无法访问互联网。另外，对于新完成连接的网络，由于网络正在进行连通性验证，此值可能无法反映真实的验证结果。对此，您可以通过NET_CAPABILITY_CHECKING_CONNECTIVITY<sup>12+</sup>检查网络是否正在检测连通性。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NET_CAPABILITY_PORTAL<sup>12+</sup> | 17   | 表示系统发现该网络存在强制网络门户，需要用户登陆认证，该能力由网络管理模块设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NET_CAPABILITY_CHECKING_CONNECTIVITY<sup>12+</sup> | 31   | 表示网络管理正在检验当前网络的连通性，此值会在网络连接时设置，直到连通性检测结束后不再设置，当此值存在时，NET_CAPABILITY_VALIDATED的值可能不准确。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## NetBearType
 
@@ -2374,9 +2578,10 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 |            名称         | 值   | 说明        |
 | ----------------------- | ---- | ---------- |
-| BEARER_CELLULAR         | 0    | 蜂窝网络。  |
-| BEARER_WIFI             | 1    | Wi-Fi网络。 |
-| BEARER_ETHERNET         | 3    | 以太网网络。|
+| BEARER_CELLULAR | 0    | 蜂窝网络。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| BEARER_WIFI     | 1    | Wi-Fi网络。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| BEARER_BLUETOOTH<sup>12+</sup> | 2    | 蓝牙网络。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BEARER_ETHERNET | 3    | 以太网网络。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | BEARER_VPN<sup>12+</sup>| 4    | VPN网络。   |
 
 ## HttpProxy<sup>10+</sup>
@@ -2387,9 +2592,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 | 名称    | 类型   | 必填 | 说明                      |
 | ------ | ------ | --- |------------------------- |
-| host  | string | 是  |  代理服务器主机名。 |
-| port  | number | 是  |  主机端口。 |
-| exclusionList  | Array<string> | 是  | 不使用代理的主机名列表，主机名支持域名、IP地址以及通配符形式，详细匹配规则如下：<br/>1、域名匹配规则：<br/>（1）完全匹配：代理服务器主机名只要与列表中的任意一个主机名完全相同，就可以匹配。<br/>（2）包含匹配：代理服务器主机名只要包含列表中的任意一个主机名，就可以匹配。<br/>例如，如果在主机名列表中设置了 “ample.com”，则  “ample.com”、“www.ample.com”、“ample.com:80”都会被匹配，而 “www.example.com”、“ample.com.org”则不会被匹配。<br/>2、IP地址匹配规则：代理服务器主机名只要与列表中的任意一个IP地址完全相同，就可以匹配。<br/>3、域名跟IP地址可以同时添加到列表中进行匹配。<br/>4、单个“*”是唯一有效的通配符，当列表中只有通配符时，将与所有代理服务器主机名匹配，表示禁用代理。通配符只能单独添加，不可以与其他域名、IP地址一起添加到列表中，否则通配符将不生效。<br/>5、匹配规则不区分主机名大小写。<br/>6、匹配主机名时，不考虑http和https等协议前缀。 |
+| host  | string | 是  |  代理服务器主机名。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| port  | number | 是  |  主机端口。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| exclusionList  | Array\<string\> | 是  | 不使用代理的主机名列表，主机名支持域名、IP地址以及通配符形式，详细匹配规则如下：<br/>1、域名匹配规则：<br/>（1）完全匹配：代理服务器主机名只要与列表中的任意一个主机名完全相同，就可以匹配。<br/>（2）包含匹配：代理服务器主机名只要包含列表中的任意一个主机名，就可以匹配。<br/>例如，如果在主机名列表中设置了 “ample.com”，则  “ample.com”、“www.ample.com”、“ample.com:80”都会被匹配，而 “www.example.com”、“ample.com.org”则不会被匹配。<br/>2、IP地址匹配规则：代理服务器主机名只要与列表中的任意一个IP地址完全相同，就可以匹配。<br/>3、域名跟IP地址可以同时添加到列表中进行匹配。<br/>4、单个“\*”是唯一有效的通配符，当列表中只有通配符时，将与所有代理服务器主机名匹配，表示禁用代理。通配符只能单独添加，不可以与其他域名、IP地址一起添加到列表中，否则通配符将不生效。<br/>5、匹配规则不区分主机名大小写。<br/>6、匹配主机名时，不考虑http和https等协议前缀。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | username<sup>12+</sup>  | string | 否 |  使用代理的用户名。|
 | password<sup>12+</sup>  | string | 否 |  使用代理的用户密码。|
 
@@ -2397,23 +2602,52 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 提供承载数据网络能力的实例。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 名称                     | 类型                                | 必填  | 说明                                                         |
 | ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | netCapabilities         | [NetCapabilities](#netcapabilities) |  是  | 存储数据网络的传输能力和承载类型。                                |
-| bearerPrivateIdentifier | string                              |  否  |  网络标识符，Wi-Fi网络的标识符是"wifi"，蜂窝网络的标识符是"slot0"（对应SIM卡1）。 |
+| bearerPrivateIdentifier | string                              |  否  |  网络标识符，蜂窝网络的标识符是"slot0"（对应SIM卡1）、"slot1"（对应SIM卡2）。从API12开始可以通过传递注册的WLAN热点信息表示应用希望激活的指定的WLAN网络。 |
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+import { wifiManager } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let config: wifiManager.WifiDeviceConfig = {
+  ssid: "TEST",
+  preSharedKey: "**********",
+  securityType: wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
+};
+// 通过wifiManager.addCandidateConfig获取注册WLAN的networkId
+let networkId: number = await wifiManager.addCandidateConfig(config);
+let netConnectionWlan = connection.createNetConnection({
+  netCapabilities: {
+    bearerTypes: [connection.NetBearType.BEARER_WIFI]
+  },
+  bearerPrivateIdentifier: `${networkId}`
+});
+netConnectionWlan.register((error: BusinessError) => {
+  console.log(JSON.stringify(error));
+});
+```
 
 ## NetCapabilityInfo<sup>10+</sup>
 
 提供承载数据网络能力的实例。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称                     | 类型                                | 必填  | 说明                                                         |
-| ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| netHandle         | [NetHandle](#nethandle) |  是  | 数据网络句柄。                                |
-| netCap |  [NetCapabilities](#netcapabilities)       |  否  |  存储数据网络的传输能力和承载类型。 |
+| 名称                    | 类型                                 | 必填  | 说明                                                         |
+| ----------------------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| netHandle               | [NetHandle](#nethandle)              |  是  | 数据网络句柄。                                                |
+| netCap                  |  [NetCapabilities](#netcapabilities) |  是  |  存储数据网络的传输能力和承载类型。                            |
 
 ## NetCapabilities
 
@@ -2425,8 +2659,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | --------------------- | ---------------------------------- | --- | ------------------------ |
 | linkUpBandwidthKbps   | number                             |  否 |  上行（设备到网络）带宽，单位(kb/s)，0表示无法评估当前网络带宽。|
 | linkDownBandwidthKbps | number                             |  否 |  下行（网络到设备）带宽，单位(kb/s)，0表示无法评估当前网络带宽。|
-| networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。           |
-| bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。数组里面只包含了一种具体的网络类型。      |
+| networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。           |
+| bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。数组里面只包含了一种具体的网络类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 
 ## NetConnectionPropertyInfo<sup>11+</sup>
 
@@ -2436,23 +2670,23 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 ### 属性
 
-| 名称                 | 类型                                   | 必填 |  说明            |
-| -------------------- | ------------------------------------- | ---- |---------------- |
-| netHandle            | [NetHandle](#nethandle)                             | 是   |数据网络句柄(netHandle)。       |
-| connectionProperties | [ConnectionProperties](#connectionproperties)                  | 是   |网络连接属性。 |
+| 名称                 |                          类型                        | 必填 |         说明           |
+| -------------------- | --------------------------------------------------- | ---- |----------------------- |
+| netHandle            | [NetHandle](#nethandle)                             | 是   |数据网络句柄(netHandle)。|
+| connectionProperties | [ConnectionProperties](#connectionproperties)       | 是   |网络连接属性。           |
 
 ## NetBlockStatusInfo<sup>11+</sup>
 
-获取网络状态信息
+获取网络状态信息。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 ### 属性
 
-| 名称                 | 类型                                   | 必填 |  说明            |
-| -------------------- | ------------------------------------- | ---- |---------------- |
-| netHandle            | [NetHandle](#nethandle)                             | 是   |数据网络句柄(netHandle)。   |
-| blocked | boolean                  | 是   |标识当前网络是否是堵塞状态 |
+| 名称                 | 类型                                  | 必填 |            说明            |
+| -------------------- | ------------------------------------- | --- |--------------------------- |
+| netHandle            | [NetHandle](#nethandle)               | 是   |数据网络句柄(netHandle)。   |
+| blocked              | boolean                               | 是   |标识当前网络是否是堵塞状态。 |
 
 ## ConnectionProperties
 
@@ -2460,14 +2694,14 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称           | 类型                               | 必填 |  说明             |
-| ------------- | ---------------------------------- | ----|---------------- |
-| interfaceName | string                             | 是 |网卡名称。       |
-| domains       | string                             | 是 |所属域，默认""。 |
-| linkAddresses | Array\<[LinkAddress](#linkaddress)> | 是 |链路信息。       |
-| routes        | Array\<[RouteInfo](#routeinfo)>     | 是 |路由信息。       |
-| dnses     | Array\<[NetAddress](#netaddress)> | 是 |网络地址，参考[NetAddress](#netaddress)。 |
-| mtu           | number                             | 是 |最大传输单元。   |
+| 名称          |                类型                 | 必填 |               说明                     |
+| ------------- | ----------------------------------- | ----|--------------------------------------- |
+| interfaceName | string                              | 是 |网卡名称。                                |
+| domains       | string                              | 是 |域名。                                    |
+| linkAddresses | Array\<[LinkAddress](#linkaddress)> | 是 |链路信息。                                |
+| routes        | Array\<[RouteInfo](#routeinfo)>     | 是 |路由信息。                                |
+| dnses         | Array\<[NetAddress](#netaddress)>   | 是 |网络地址，参考[NetAddress](#netaddress)。 |
+| mtu           | number                              | 是 |最大传输单元。                            |
 
 ## RouteInfo
 
@@ -2475,8 +2709,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称           | 类型                        | 必填 |说明             |
-| -------------- | --------------------------- | --- |---------------- |
+| 名称           | 类型                        | 必填 |     说明      |
+| -------------- | --------------------------- | --- |-------------- |
 | interface      | string                      | 是 |网卡名称。       |
 | destination    | [LinkAddress](#linkaddress) | 是 |目的地址。       |
 | gateway        | [NetAddress](#netaddress)   | 是 |网关地址。       |
@@ -2489,19 +2723,63 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称        | 类型                      | 必填 |说明                 |
-| ------------ | ----------------------- |---- |-------------------- |
-| address      | [NetAddress](#netaddress) | 是 | 链路地址。           |
-| prefixLength | number                    | 是 |链路地址前缀的长度。 |
+| 名称         |           类型            | 必填 |        说明         |
+| ------------ | ------------------------- |---- |-------------------- |
+| address      | [NetAddress](#netaddress) | 是  | 链路地址。           |
+| prefixLength | number                    | 是  |链路地址前缀的长度。  |
 
 ## NetAddress
 
 网络地址。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-| ------- | ------ | -- |------------------------------ |
-| address | string | 是 |地址。 |
-| family  | number | 否 |IPv4 = 1，IPv6 = 2，默认IPv4。 |
-| port    | number | 否 |端口，取值范围\[0, 65535]。 |
+|  名称   | 类型   |必填|            说明              |
+| ------- | ------ | -- |---------------------------- |
+| address | string | 是 |地址。                       |
+| family  | number | 否 |IPv4 = 1，IPv6 = 2，默认IPv4。|
+| port    | number | 否 |端口，取值范围\[0, 65535]。   |
+
+## HttpRequest
+
+type HttpRequest = http.HttpRequest
+
+获取一个HTTP请求。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| http.HttpRequest | 定义HTTP请求任务。在调用HttpRequest提供的API之前。 |
+
+## TCPSocket
+
+type TCPSocket = socket.TCPSocket
+
+获取一个TCPSocket对象。
+
+**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| socket.TCPSocket | 定义一个TCPSocket连接。     |
+
+## UDPSocket
+
+type UDPSocket = socket.UDPSocket
+
+获取一个UDPSocket对象。
+
+**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| socket.UDPSocket | 定义UDPSocket连接。     |

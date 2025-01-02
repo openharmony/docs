@@ -6,7 +6,7 @@
 
 - 自定义组件：\@Component装饰的UI单元，可以组合多个系统组件实现UI的复用，可以调用组件的生命周期。
 
-- 页面：即应用的UI页面。可以由一个或者多个自定义组件组成，[@Entry](arkts-create-custom-components.md#自定义组件的基本结构)装饰的自定义组件为页面的入口组件，即页面的根节点，一个页面有且仅能有一个\@Entry。只有被\@Entry装饰的组件才可以调用页面的生命周期。
+- 页面：即应用的UI页面。可以由一个或者多个自定义组件组成，@Entry装饰的自定义组件为页面的入口组件，即页面的根节点，一个页面有且仅能有一个\@Entry。只有被\@Entry装饰的组件才可以调用页面的生命周期。
 
 
 页面生命周期，即被\@Entry装饰的组件生命周期，提供以下生命周期接口：
@@ -23,6 +23,8 @@
 
 
 - [aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)：组件即将出现时回调该接口，具体时机为在创建自定义组件的新实例后，在执行其build()函数之前执行。
+
+- [onDidBuild](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#ondidbuild12)：组件build()函数执行完成之后回调该接口，开发者可以在这个阶段进行埋点数据上报等不影响实际UI的功能。不建议在onDidBuild函数中更改状态变量、使用animateTo等功能，这可能会导致不稳定的UI表现。
 
 - [aboutToDisappear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)：aboutToDisappear函数在自定义组件析构销毁之前执行。不允许在aboutToDisappear函数中改变状态变量，特别是@Link变量的修改可能会导致应用程序行为不稳定。
 
@@ -45,6 +47,8 @@
 3. 如果开发者定义了aboutToAppear，则执行aboutToAppear方法。
 
 4. 在首次渲染的时候，执行build方法渲染系统组件，如果子组件为自定义组件，则创建自定义组件的实例。在首次渲染的过程中，框架会记录状态变量和组件的映射关系，当状态变量改变时，驱动其相关的组件刷新。
+
+5. 如果开发者定义了onDidBuild，则执行onDidBuild方法。
 
 
 ## 自定义组件重新渲染
@@ -76,13 +80,13 @@
 
 ```ts
 // Index.ets
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct MyComponent {
   @State showChild: boolean = true;
-  @State btnColor:string = "#FF007DFF"
+  @State btnColor:string = "#FF007DFF";
 
   // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onPageShow() {
@@ -96,13 +100,18 @@ struct MyComponent {
   // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onBackPress() {
     console.info('Index onBackPress');
-    this.btnColor ="#FFEE0606"
+    this.btnColor ="#FFEE0606";
     return true // 返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理
   }
 
   // 组件生命周期
   aboutToAppear() {
     console.info('MyComponent aboutToAppear');
+  }
+
+  // 组件生命周期
+  onDidBuild() {
+    console.info('MyComponent onDidBuild');
   }
 
   // 组件生命周期
@@ -118,9 +127,9 @@ struct MyComponent {
       }
       // this.showChild为false，删除Child子组件，执行Child aboutToDisappear
       Button('delete Child')
-      .margin(20)
-      .backgroundColor(this.btnColor)
-      .onClick(() => {
+        .margin(20)
+        .backgroundColor(this.btnColor)
+        .onClick(() => {
         this.showChild = false;
       })
       // push到page页面，执行onPageHide
@@ -129,7 +138,6 @@ struct MyComponent {
           router.pushUrl({ url: 'pages/page' });
         })
     }
-
   }
 }
 
@@ -138,17 +146,26 @@ struct Child {
   @State title: string = 'Hello World';
   // 组件生命周期
   aboutToDisappear() {
-    console.info('[lifeCycle] Child aboutToDisappear')
+    console.info('[lifeCycle] Child aboutToDisappear');
   }
+
+  // 组件生命周期
+  onDidBuild() {
+    console.info('[lifeCycle] Child onDidBuild');
+  }
+
   // 组件生命周期
   aboutToAppear() {
-    console.info('[lifeCycle] Child aboutToAppear')
+    console.info('[lifeCycle] Child aboutToAppear');
   }
 
   build() {
-    Text(this.title).fontSize(50).margin(20).onClick(() => {
-      this.title = 'Hello ArkUI';
-    })
+    Text(this.title)
+      .fontSize(50)
+      .margin(20)
+      .onClick(() => {
+        this.title = 'Hello ArkUI';
+      })
   }
 }
 ```
@@ -158,10 +175,10 @@ struct Child {
 @Component
 struct page {
   @State textColor: Color = Color.Black;
-  @State num: number = 0
+  @State num: number = 0;
 
   onPageShow() {
-    this.num = 5
+    this.num = 5;
   }
 
   onPageHide() {
@@ -169,12 +186,12 @@ struct page {
   }
 
   onBackPress() { // 不设置返回值按照false处理
-    this.textColor = Color.Grey
-    this.num = 0
+    this.textColor = Color.Grey;
+    this.num = 0;
   }
 
   aboutToAppear() {
-    this.textColor = Color.Blue
+    this.textColor = Color.Blue;
   }
 
   build() {
@@ -185,7 +202,7 @@ struct page {
         .fontColor(this.textColor)
         .margin(20)
         .onClick(() => {
-          this.num += 5
+          this.num += 5;
         })
     }
     .width('100%')
@@ -193,17 +210,17 @@ struct page {
 }
 ```
 
-以上示例中，Index页面包含两个自定义组件，一个是被\@Entry装饰的MyComponent，也是页面的入口组件，即页面的根节点；一个是Child，是MyComponent的子组件。只有\@Entry装饰的节点才可以使页面级别的生命周期方法生效，因此在MyComponent中声明当前Index页面的页面生命周期函数（onPageShow / onPageHide / onBackPress）。MyComponent和其子组件Child分别声明了各自的组件级别生命周期函数（aboutToAppear / aboutToDisappear）。
+以上示例中，Index页面包含两个自定义组件，一个是被\@Entry装饰的MyComponent，也是页面的入口组件，即页面的根节点；一个是Child，是MyComponent的子组件。只有\@Entry装饰的节点才可以使页面级别的生命周期方法生效，因此在MyComponent中声明当前Index页面的页面生命周期函数（onPageShow / onPageHide / onBackPress）。MyComponent和其子组件Child分别声明了各自的组件级别生命周期函数（aboutToAppear / onDidBuild/aboutToDisappear）。
 
 
-- 应用冷启动的初始化流程为：MyComponent aboutToAppear --&gt; MyComponent build --&gt; Child aboutToAppear --&gt; Child build --&gt; Child build执行完毕 --&gt; MyComponent build执行完毕 --&gt; Index onPageShow。
+- 应用冷启动的初始化流程为：MyComponent aboutToAppear --&gt; MyComponent build --&gt; MyComponent onDidBuild--&gt; Child aboutToAppear --&gt; Child build --&gt; Child onDidBuild --&gt; Index onPageShow。
 
 - 点击“delete Child”，if绑定的this.showChild变成false，删除Child组件，会执行Child aboutToDisappear方法。
 
 
 - 点击“push to next page”，调用router.pushUrl接口，跳转到另外一个页面，当前Index页面隐藏，执行页面生命周期Index onPageHide。此处调用的是router.pushUrl接口，Index页面被隐藏，并没有销毁，所以只调用onPageHide。跳转到新页面后，执行初始化新页面的生命周期的流程。
 
-- 如果调用的是router.replaceUrl，则当前Index页面被销毁，执行的生命周期流程将变为：Index onPageHide --&gt; MyComponent aboutToDisappear --&gt; Child aboutToDisappear。上文已经提到，组件的销毁是从组件树上直接摘下子树，所以先调用父组件的aboutToDisappear，再调用子组件的aboutToDisappear，然后执行初始化新页面的生命周期流程。
+- 如果调用的是router.replaceUrl，则当前Index页面被销毁，上文已经提到，组件的销毁是从组件树上直接摘下子树,所以执行的生命周期流程将变为：新页面的初始化生命周期流程，然后执行Index onPageHide --&gt; MyComponent aboutToDisappear --&gt; Child aboutToDisappear。
 
 - 点击返回按钮，触发页面生命周期Index onBackPress，且触发返回一个页面后会导致当前Index页面被销毁。
 
@@ -211,3 +228,76 @@ struct page {
 
 
 - 退出应用，执行Index onPageHide --&gt; MyComponent aboutToDisappear --&gt; Child aboutToDisappear。
+
+## 自定义组件监听页面生命周期
+
+使用[无感监听页面路由](../reference/apis-arkui/js-apis-arkui-observer.md#observeronrouterpageupdate11)的能力，能够实现在自定义组件中监听页面的生命周期。
+
+```ts
+// Index.ets
+import { uiObserver, router, UIObserver } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  listener: (info: uiObserver.RouterPageInfo) => void = (info: uiObserver.RouterPageInfo) => {
+    let routerInfo: uiObserver.RouterPageInfo | undefined = this.queryRouterPageInfo();
+    if (info.pageId == routerInfo?.pageId) {
+      if (info.state == uiObserver.RouterPageState.ON_PAGE_SHOW) {
+        console.log(`Index onPageShow`);
+      } else if (info.state == uiObserver.RouterPageState.ON_PAGE_HIDE) {
+        console.log(`Index onPageHide`);
+      }
+    }
+  }
+  aboutToAppear(): void {
+    let uiObserver: UIObserver = this.getUIContext().getUIObserver();
+    uiObserver.on('routerPageUpdate', this.listener);
+  }
+  aboutToDisappear(): void {
+    let uiObserver: UIObserver = this.getUIContext().getUIObserver();
+    uiObserver.off('routerPageUpdate', this.listener);
+  }
+  build() {
+    Column() {
+      Text(`this page is ${this.queryRouterPageInfo()?.pageId}`)
+        .fontSize(25)
+      Button("push self")
+        .onClick(() => {
+          router.pushUrl({
+            url: 'pages/Index'
+          })
+        })
+      Column() {
+        SubComponent()
+      }
+    }
+  }
+}
+@Component
+struct SubComponent {
+  listener: (info: uiObserver.RouterPageInfo) => void = (info: uiObserver.RouterPageInfo) => {
+    let routerInfo: uiObserver.RouterPageInfo | undefined = this.queryRouterPageInfo();
+    if (info.pageId == routerInfo?.pageId) {
+      if (info.state == uiObserver.RouterPageState.ON_PAGE_SHOW) {
+        console.log(`SubComponent onPageShow`);
+      } else if (info.state == uiObserver.RouterPageState.ON_PAGE_HIDE) {
+        console.log(`SubComponent onPageHide`);
+      }
+    }
+  }
+  aboutToAppear(): void {
+    let uiObserver: UIObserver = this.getUIContext().getUIObserver();
+    uiObserver.on('routerPageUpdate', this.listener);
+  }
+  aboutToDisappear(): void {
+    let uiObserver: UIObserver = this.getUIContext().getUIObserver();
+    uiObserver.off('routerPageUpdate', this.listener);
+  }
+  build() {
+    Column() {
+      Text(`SubComponent`)
+    }
+  }
+}
+```

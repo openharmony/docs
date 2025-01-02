@@ -1,4 +1,4 @@
-# Image Transformation (C/C++)
+# Using Image to Transform Images
 
 You will learn how to use native image APIs to process images.
 
@@ -6,7 +6,7 @@ You will learn how to use native image APIs to process images.
 
 **Adding Dependencies**
 
-Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libpixelmap_ndk.z.so** of the image and **libhilog_ndk.z.so** of the log to the **target_link_libraries** dependency.
+Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libace_napi.z.so** and **libpixelmap_ndk.z.so** (on both of which the image APIs depend) and **libhilog_ndk.z.so** (on which the log APIs depend) to the **target_link_libraries** dependency.
 
 ```txt
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelmap_ndk.z.so)
@@ -32,19 +32,20 @@ static napi_value Init(napi_env env, napi_value exports)
 EXTERN_C_END
 ```
 
-
 **Calling the Native APIs**
 
-For details about the APIs, see [Image API Reference](../../reference/apis-image-kit/image.md).
+For details about the APIs, see [Image](../../reference/apis-image-kit/image.md).
 
 Obtain the JS resource object from the **hello.cpp** file and convert it to a native resource object. Then you can call native APIs. The sample code is as follows:
 
 Open **src/main/cpp/hello.cpp**, and add the reference file.
+
 ```c++
 #include<multimedia/image_framework/image_pixel_map_napi.h>
 ```
-    
+
 1. Obtain the **PixelMap** information and store the information to the **OhosPixelMapInfo** struct.
+
    ```c++
    static napi_value TestGetImageInfo(napi_env env, napi_callback_info info)
     {
@@ -62,7 +63,9 @@ Open **src/main/cpp/hello.cpp**, and add the reference file.
         return result;
     }
     ```
+
 2. Obtain the memory address of a **PixelMap** object and lock the memory.
+
     ```c++
     static napi_value TestAccessPixels(napi_env env, napi_callback_info info)
     {
@@ -80,7 +83,9 @@ Open **src/main/cpp/hello.cpp**, and add the reference file.
         return result;
     }
     ```
+
 3. Unlock the memory of the **PixelMap** object.
+
     ```c++
     static napi_value TestUnAccessPixels(napi_env env, napi_callback_info info)
     {
@@ -101,8 +106,9 @@ Open **src/main/cpp/hello.cpp**, and add the reference file.
 **Calling APIs on the JS Side**
 
 1. Open **src\main\cpp\types\*libentry*\index.d.ts** (where **libentry** varies according to the project name), and import the following files:
+
     ```js
-    import image from '@ohos.multimedia.image'
+    import { image } from '@kit.ImageKit';
     export const add:(a: number, b: number) => image.PixelMap;
     export const transform: (a: image.PixelMap) => image.PixelMap;
     export const testGetImageInfo: (a: image.PixelMap) => image.PixelMap;
@@ -114,7 +120,7 @@ Open **src/main/cpp/hello.cpp**, and add the reference file.
 
     ```js
     import testNapi from 'libentry.so'
-    import image from '@ohos.multimedia.image';
+    import { image } from '@kit.ImageKit';
 
     @Entry
     @Component

@@ -24,7 +24,7 @@
 拉伸能力是指容器组件尺寸发生变化时，增加或减小的空间全部分配给容器组件内指定区域。
 
 
-拉伸能力通常通过[Flex布局](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md)中的flexGrow和flexShrink属性实现，flexGrow和flexShink属性常与flexBasis属性搭配使用，故将这三个属性放在一起介绍。
+拉伸能力通常通过[Flex布局](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md)中的flexGrow和flexShrink属性实现，flexGrow和flexShrink属性常与flexBasis属性搭配使用，故将这三个属性放在一起介绍。
 
 
   | 属性 | 类型 | 默认值 | 描述 | 
@@ -221,7 +221,7 @@ struct EquipartitionCapabilitySample {
         Row() {
           ForEach(this.list, (item:number) => {
             Column() {
-              Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
+              Image($r("app.media.startIcon")).width(48).height(48).margin({ top: 8 })
               Text('App name')
                 .width(64)
                 .height(30)
@@ -242,7 +242,7 @@ struct EquipartitionCapabilitySample {
         Row() {
           ForEach(this.list, (item:number) => {
             Column() {
-              Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
+              Image($r("app.media.startIcon")).width(48).height(48).margin({ top: 8 })
               Text('App name')
                 .width(64)
                 .height(30)
@@ -426,20 +426,21 @@ struct ScaleCapabilitySample {
 
   // 底部滑块，可以通过拖拽滑块改变容器尺寸
   @Builder slider() {
-    Slider({ value: this.sliderWidth, min: 100, max: 400, style: SliderStyle.OutSet })
-      .blockColor(Color.White)
-      .width('60%')
-      .height(50)
-      .onChange((value: number) => {
-        this.sliderWidth = value;
-      })
-      .position({ x: '20%', y: '80%' })
+    
     Slider({ value: this.sliderHeight, min: 100, max: 400, style: SliderStyle.OutSet })
       .blockColor(Color.White)
       .width('60%')
       .height(50)
       .onChange((value: number) => {
         this.sliderHeight = value
+      })
+      .position({ x: '20%', y: '80%' })
+      Slider({ value: this.sliderWidth, min: 100, max: 400, style: SliderStyle.OutSet })
+      .blockColor(Color.White)
+      .width('60%')
+      .height(50)
+      .onChange((value: number) => {
+        this.sliderWidth = value;
       })
       .position({ x: '20%', y: '87%' })
   }
@@ -536,7 +537,7 @@ struct ExtensionCapabilitySample1 {
           ForEach(this.appList, (item:number) => {
             ListItem() {
               Column() {
-                Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
+                Image($r("app.media.startIcon")).width(48).height(48).margin({ top: 8 })
                 Text('App name')
                   .width(64)
                   .height(30)
@@ -599,7 +600,7 @@ struct ExtensionCapabilitySample2 {
         Row({ space: 10 }) {
           ForEach(this.appList, () => {
             Column() {
-              Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
+              Image($r("app.media.startIcon")).width(48).height(48).margin({ top: 8 })
               Text('App name')
                 .width(64)
                 .height(30)
@@ -615,10 +616,10 @@ struct ExtensionCapabilitySample2 {
         }
         .padding({ top: 16, left: 10 })
         .height(118)
-        .borderRadius(16)
         .backgroundColor(Color.White)
       }
       .scrollable(ScrollDirection.Horizontal)
+      .borderRadius(16)
       .width(this.rate * 100 + '%')
 
       this.slider()
@@ -672,40 +673,35 @@ struct HiddenCapabilitySample {
 
   build() {
     Column() {
-      Row() {
+      Row({ space:24 }) {
         Image($r("app.media.favorite"))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
-          .margin({ left: 12, right: 12 })
           .displayPriority(1)  // 布局优先级
 
         Image($r("app.media.down"))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
-          .margin({ left: 12, right: 12 })
           .displayPriority(2)  // 布局优先级
 
         Image($r("app.media.pause"))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
-          .margin({ left: 12, right: 12 })
           .displayPriority(3)  // 布局优先级
 
         Image($r("app.media.next"))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
-          .margin({ left: 12, right: 12 })
           .displayPriority(2)  // 布局优先级
 
         Image($r("app.media.list"))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
-          .margin({ left: 12, right: 12 })
           .displayPriority(1)  // 布局优先级
       }
       .width(this.rate * 100 + '%')

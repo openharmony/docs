@@ -13,10 +13,10 @@ Before developing an application related to HCE, you must declare NFC-related at
 ```json
 {
   "module": {
-    // Other declared attributes.
+    // other declared attributes.
     "abilities": [
       {
-        // Other declared attributes.
+        // other declared attributes.
         "skills": [
           {
             "actions": [
@@ -54,7 +54,7 @@ Before developing an application related to HCE, you must declare NFC-related at
 ## Modules to Import
 
 ```
-import cardEmulation from '@ohos.nfc.cardEmulation';
+import { cardEmulation } from '@kit.ConnectivityKit';
 ```
 
 ## FeatureType<sup>(deprecated)</sup>
@@ -78,10 +78,12 @@ Enumerates the types of services used by the card emulation application.
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name     | Value        | Description               |
 | ------- | --------- | ----------------- |
-| PAYMENT | "payment" | Payment service. |
-| OTHER   | "other"   | Other services. |
+| PAYMENT | "payment" | Payment service.|
+| OTHER   | "other"   | Other services.|
 
 ## isSupported<sup>(deprecated)</sup>
 
@@ -106,6 +108,17 @@ Checks whether a certain type of card emulation is supported.
 | ------- | -------------------------------------- |
 | boolean | Returns **true** if the card emulation type is supported; returns **false** otherwise.|
 
+**Example**
+
+```js
+import { cardEmulation } from '@kit.ConnectivityKit';
+
+let isHceSupported: boolean = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
+if (!isHceSupported) {
+    console.log('this device is not supported for HCE, ignore it.');
+}
+```
+
 ## hasHceCapability<sup>9+</sup>
 
 hasHceCapability(): boolean
@@ -116,7 +129,7 @@ Checks whether the device supports HCE.
 
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Return value**
 
@@ -124,17 +137,21 @@ Checks whether the device supports HCE.
 | ------- | -------------------------------- |
 | boolean | Returns **true** if HCE is supported; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
+import { cardEmulation } from '@kit.ConnectivityKit';
 
-let isHceSupported = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
-if (!isHceSupported) {
-    console.log('this device is not supported for HCE, ignore it.');
-}
-
-let hasHceCap = cardEmulation.hasHceCapability();
+let hasHceCap: boolean = cardEmulation.hasHceCapability();
 if (!hasHceCap) {
     console.log('this device hasHceCapability false, ignore it.');
 }
@@ -150,7 +167,7 @@ Checks whether an application is the default application of the specified servic
 
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -159,22 +176,41 @@ Checks whether an application is the default application of the specified servic
 | elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | Yes   | Information about the page, on which the application declares the NFC card emulation capability. It cannot be empty and must contain at least **bundleName** and **abilityName**.|
 | type        | [CardType](#cardtype9)                   | Yes   | Card emulation service type. Currently, only the default payment application can be queried.  |
 
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
+
 **Return value**
 
 | **Type** | **Description**                              |
 | ------- | ------------------------------------ |
 | boolean | Returns **true** if the application is the default payment application; returns **false** otherwise.|
 
+
 **Example**
 ```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import bundleManager from '@ohos.bundle.bundleManager';
-
-let elementName : bundleManager.ElementName;
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { bundleManager, Want } from '@kit.AbilityKit';
 
 // Initialize elementName here. bundleName and abilityName are required.
+let want: Want = {
+  bundleName: "com.example.myapplication",
+  moduleName: "entry",
+  abilityName: "EntryAbility"
+};
+let elementName: bundleManager.ElementName = {
+  bundleName: "com.example.myapplication",
+  moduleName: "entry",
+  abilityName: "EntryAbility"
+};
 
-let isDefaultService = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
+let isDefaultService: boolean = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
 // Do something according to the isDefaultService value.
 ```
 
@@ -187,7 +223,7 @@ Provides APIs for implementing HCE, including receiving Application Protocol Dat
 
 startHCE(aidList: string[]): boolean
 
-Starts HCE, including enabling this application to run in the foreground preferentially and dynamically registering the AID list. This API is used only for declaration and cannot be used currently.
+Starts HCE, including enabling this application to run in the foreground preferentially and dynamically registering the AID list.
 
 > **NOTE**
 > This API is supported since API version 8 and deprecated since API version 9. Use [start](#start9) instead.
@@ -212,13 +248,13 @@ Starts HCE, including enabling this application to run in the foreground prefere
 
 start(elementName: [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname), aidList: string[]): void
 
-Starts HCE, including enabling this application to run in the foreground preferentially and dynamically registering the AID list. This API is used only for declaration and cannot be used currently.
+Starts HCE, including enabling this application to run in the foreground preferentially and dynamically registering the AID list.
 
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -233,6 +269,9 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message |
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3100301 | Card emulation running state is abnormal in service. |
 
 ### stopHCE<sup>(deprecated)</sup>
@@ -268,7 +307,7 @@ Stops HCE, including canceling the subscription of APDU data, exiting this appli
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -282,6 +321,9 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message |
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3100301 | Card emulation running state is abnormal in service. |
 
 ### on<sup>8+</sup>
@@ -294,32 +336,32 @@ Registers a callback to receive APDUs from the peer card reader. The application
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                        |
 | -------- | ----------------------- | ---- | -------------------------------------------- |
 | type     | string                  | Yes  | Callback type to register. It has a fixed value of **hceCmd**.                        |
-| callback | AsyncCallback\<number[]> | Yes  | Callback invoked to return the APDU, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| callback | AsyncCallback\<number[]> | Yes  | Callback used to return the APDU, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
 **Example**
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import hilog from '@ohos.hilog';
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { AsyncCallback } from '@ohos.base';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { AsyncCallback } from '@kit.BasicServicesKit';
 import { ElementName } from './bundleManager/ElementName'
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 let element: ElementName;
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, param: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onCreate');
     element = {
-      bundleName: want.bundleName,
-      abilityName: want.abilityName,
+      bundleName: want.bundleName ?? '',
+      abilityName: want.abilityName ?? '',
       moduleName: want.moduleName
     }
     const apduCallback: AsyncCallback<number[]> = (err, data) => {
@@ -341,7 +383,7 @@ export default class EntryAbility extends UIAbility {
 
 sendResponse(responseApdu: number[]): void
 
-Sends a response to the peer card reader. This API is used only for declaration and cannot be used currently.
+Sends a response to the peer card reader.
 
 > **NOTE**
 > This API is supported since API version 8 and deprecated since API version 9. Use [transmit](#transmit9) instead.
@@ -366,7 +408,7 @@ Transmits an APDU to the peer card reader. This API uses a promise to return the
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -386,12 +428,15 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message |
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3100301 | Card emulation running state is abnormal in service. |
 
 **Example**
 ```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { BusinessError } from '@ohos.base';
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
@@ -415,14 +460,14 @@ Transmits an APDU to the peer card reader. This API uses an asynchronous callbac
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
 | Name | Type    | Mandatory| Description                   |
 | ------- | -------- | ---- | ----------------------- |
 | response | number[] | Yes  | Response APDU sent to the peer card reader. The value consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
-| callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -430,12 +475,15 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message |
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3100301 | Card emulation running state is abnormal in service. |
 
 **Example**
 ```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { BusinessError } from '@ohos.base';
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
@@ -445,13 +493,13 @@ try {
 
   hceService.transmit(responseData, (err : BusinessError)=> {
     if (err) {
-      console.error("transmit AsyncCallback err Code: ${err.code}, message: ${err.message}");
+      console.error(`transmit AsyncCallback err Code: ${err.code}, message: ${err.message}`);
     } else {
       console.log("transmit AsyncCallback success.");
     }
   });
-} catch (busiError) {
-  console.error("transmit AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-    "message: ${(busiError as Businsess).message}");
+} catch (error) {
+  console.error(`transmit AsyncCallback catch Code: ${(error as BusinessError).code}, ` +
+    `message: ${(error as BusinessError).message}`);
 }
 ```

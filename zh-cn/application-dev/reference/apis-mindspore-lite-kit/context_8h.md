@@ -3,7 +3,7 @@
 
 ## 概述
 
-提供了Context相关的接口，可以配置运行时信息。
+提供了Context相关的接口，可以配置运行时信息，该接口是非线程安全的。
 
 **起始版本：**
 
@@ -21,15 +21,15 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) | Mindspore的上下文信息的指针，该指针会指向Context。 |
-| [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) | Mindspore的运行设备信息的指针。 |
+| [OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) | MindSpore的上下文信息的指针，该指针会指向Context。 |
+| [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) | MindSpore的运行设备信息的指针。 |
 
 
 ### 函数
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_AI_ContextCreate](_mind_spore.md#oh_ai_contextcreate) () | 创建一个上下文的对象。 |
+| [OH_AI_ContextCreate](_mind_spore.md#oh_ai_contextcreate) () | 创建一个上下文的对象。注意：此接口需跟[OH_AI_ContextDestroy](_mind_spore.md#oh_ai_contextdestroy)配套使用。 |
 | [OH_AI_ContextDestroy](_mind_spore.md#oh_ai_contextdestroy) ([OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) \*context) | 释放上下文对象。 |
 | [OH_AI_ContextSetThreadNum](_mind_spore.md#oh_ai_contextsetthreadnum) ([OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) context, int32_t thread_num) | 设置运行时的线程数量。 |
 | [OH_AI_ContextGetThreadNum](_mind_spore.md#oh_ai_contextgetthreadnum) (const [OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) context) | 获取线程数量。 |

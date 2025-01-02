@@ -5,7 +5,7 @@
 During application running, some unexpected behaviors are inevitable. For example, unprocessed exceptions and errors are thrown, and the call or running constraints of the recovery framework are violated.
 
 Process exit is treated as the default exception handling method. However, if user data is generated during application use, process exit may interrupt user operations and cause data loss.
-If the [application recovery](#available-apis) function is enabled in [AbilityStage](../reference/apis/js-apis-app-ability-abilityStage.md) and temporary data is saved, the previous application state and data will be restored upon next startup in the case of an abnormal exit, providing more consistent user experience. The application state includes two parts, namely, the page stack and the data saved in **onSaveState**.
+If the [application recovery](#available-apis) function is enabled in [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) and temporary data is saved, the previous application state and data will be restored upon next startup in the case of an abnormal exit, providing more consistent user experience. The application state includes two parts, namely, the page stack and the data saved in **onSaveState**.
 
 In API version 9, application recovery is supported only for a single ability of the application developed using the stage model. Application state saving and automatic restart are performed when a JsError occurs.
 
@@ -15,7 +15,7 @@ In API version 10, application recovery is applicable to multiple abilities of a
 
 The application recovery APIs are provided by the **appRecovery** module, which can be imported via **import**. For details, see [Development Example](#development-example).
 
-### Available APIs
+### Application Recovery APIs
 
 | API                                                      | Description                                                |
 | ------------------------------------------------------------ | ---------------------------------------------------- |
@@ -27,13 +27,13 @@ The application recovery APIs are provided by the **appRecovery** module, which 
 
 No error will be thrown if the preceding APIs are used in the troubleshooting scenario. The following are some notes on API usage:
 
-**enableAppRecovery**: This API should be called during application initialization. For example, you can call this API in **onCreate** of **AbilityStage**. For details, see [Parameter Description](../reference/apis/js-apis-app-ability-appRecovery.md).
+**enableAppRecovery**: This API should be called during application initialization. For example, you can call this API in **onCreate** of **AbilityStage**. For details, see [Parameter Description](../reference/apis-ability-kit/js-apis-app-ability-appRecovery.md).
 
 **saveAppState**: After this API is called, the recovery framework invokes **onSaveState** for all abilities that support recovery in the current process. If you choose to save data in **onSaveState**, the related data and ability page stack are persistently stored in the local cache of the application. To save data of the specified ability, you need to specify the context corresponding to that ability.
 
 **setRestartWant**: This API specifies the ability to be restarted by **appRecovery**.
 
-**restartApp**: After this API is called, the recovery framework kills the current process and restarts the ability specified by **setRestartWant**, with **APP_RECOVERY** set as the startup cause. In API version 9 and scenarios where an ability is not specified by **setRestartWant**, the last foreground ability that supports recovery is started. If the no foreground ability supports recovery, the application crashes. If a saved state is available for the restarted ability, the saved state is passed as the **wantParam** attribute in the **want** parameter of the ability's **onCreate** callback.
+**restartApp**: After this API is called, the recovery framework kills the current process and restarts the ability specified by **setRestartWant**, with **APP_RECOVERY** set as the startup cause. In API version 9 and scenarios where an ability is not specified by **setRestartWant**, the last foreground ability that supports recovery is started. If the no foreground ability supports recovery, the application crashes. If a saved state is available for the restarted ability, the saved state is passed as the **wantParam** attribute in the **want** parameter of the ability's **onCreate** callback. The interval between two restarts must be greater than 1 minute. If this API is called repeatedly within 1 minute, the application exits but does not restart. The behavior of automatic restart is the same as that of proactive restart.
 
 ### Application State Management
 Since API version 10, application recovery is not limited to automatic restart in the case of an exception. Therefore, you need to understand when the application will load the saved state.
@@ -52,17 +52,17 @@ When the application is suspended, the callback is not executed in the JS thread
 
 Fault management is an important way for applications to deliver a better user experience. The application framework offers three methods for application fault management: fault listening, fault rectification, and fault query.
 
-- Fault listening refers to the process of registering an [ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) via [errorManager](../reference/apis/js-apis-app-ability-errorManager.md), listening for faults, and notifying the listener of the faults.
+- Fault listening refers to the process of registering an [ErrorObserver](../reference/apis-ability-kit/js-apis-inner-application-errorObserver.md) via [errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md), listening for faults, and notifying the listener of the faults.
 
-- Fault rectification refers to the process of restoring the application state and data through [appRecovery](../reference/apis/js-apis-app-ability-appRecovery.md).
+- Fault rectification refers to the process of restoring the application state and data through [appRecovery](../reference/apis-ability-kit/js-apis-app-ability-appRecovery.md).
 
-- Fault query is the process of calling APIs of [faultLogger](../reference/apis/js-apis-faultLogger.md) to obtain the fault information.
+- Fault query is the process of calling APIs of [faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md) to obtain the fault information.
 
-The figure below does not illustrate the time when [faultLogger](../reference/apis/js-apis-faultLogger.md) is called. You can refer to the [LastExitReason](../reference/apis/js-apis-app-ability-abilityConstant.md#abilityconstantlastexitreason) passed during application initialization to determine whether to call [faultLogger](../reference/apis/js-apis-faultLogger.md) to query information about the previous fault.
+The figure below does not illustrate the time when [faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md) is called. You can refer to the [LastExitReason](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantlastexitreason) passed during application initialization to determine whether to call [faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md) to query information about the previous fault.
 ![Fault rectification process](./figures/fault_rectification.png)
-It is recommended that you call [errorManager](../reference/apis/js-apis-app-ability-errorManager.md) to handle the exception. After the processing is complete, you can call the **saveAppState** API and restart the application.
-If you do not register an [ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) instance or enable application recovery, the application process will exit according to the default processing logic of the system. Users can restart the application from the home screen.
-If you have enabled application recovery, the recovery framework first checks whether application state saving is supported and whether the application state saving is enabled. If so, the recovery framework invokes [onSaveState](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of the [Ability](../reference/apis/js-apis-app-ability-uiAbility.md). Finally, the application is restarted.
+It is recommended that you call [errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md) to handle the exception. After the processing is complete, you can call the **saveAppState** API and restart the application.
+If you do not register an [ErrorObserver](../reference/apis-ability-kit/js-apis-inner-application-errorObserver.md) instance or enable application recovery, the application process will exit according to the default processing logic of the system. Users can restart the application from the home screen.
+If you have enabled application recovery, the recovery framework first checks whether application state saving is supported and whether the application state saving is enabled. If so, the recovery framework invokes [onSaveState](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of the [ability](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md). Finally, the application is restarted.
 
 ### Supported Application Recovery Scenarios
 
@@ -70,9 +70,9 @@ Common fault types include JavaScript application crash, application freezing, a
 
 | Fault  | Fault Listening | State Saving| Automatic Restart| Log Query|
 | ----------|--------- |--------- |--------- |--------- |
-| [JS_CRASH](../reference/apis/js-apis-faultLogger.md#faulttype) | Supported|Supported|Supported|Supported|
-| [APP_FREEZE](../reference/apis/js-apis-faultLogger.md#faulttype) | Not supported|Supported|Supported|Supported|
-| [CPP_CRASH](../reference/apis/js-apis-faultLogger.md#faulttype) | Not supported|Not supported|Not supported|Supported|
+| [JS_CRASH](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) | Supported|Supported|Supported|Supported|
+| [APP_FREEZE](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) | Not supported|Supported|Supported|Supported|
+| [CPP_CRASH](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) | Not supported|Not supported|Not supported|Supported|
 
 **State Saving** in the table header means saving of the application state when a fault occurs. To protect user data as much as possible when an AppFreeze occurs, you can adopt either the periodic or automatic way, and the latter will save user data when an ability is switched to the background.
 
@@ -85,8 +85,7 @@ Common fault types include JavaScript application crash, application freezing, a
    Enable **appRecovery** during application initialization. The following is an example of **AbilityStage**:
 
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage'
-import appRecovery from '@ohos.app.ability.appRecovery'
+import { AbilityStage, appRecovery } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
     onCreate() {
@@ -118,45 +117,41 @@ The following is an example of **EntryAbility**:
 #### Importing the Service Package
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
-import appRecovery from '@ohos.app.ability.appRecovery';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { AbilityConstant, appRecovery, errorManager } from '@kit.AbilityKit';
 ```
 
 #### Actively Saving the Application State and Restoring Data
 
-- Define and register the [ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) callback. For details about its usage, see [errorManager](../reference/apis/js-apis-app-ability-errorManager.md).
+- Define and register the [ErrorObserver](../reference/apis-ability-kit/js-apis-inner-application-errorObserver.md) callback. For details about its usage, see [errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md).
 
 ```ts
-  import appRecovery from '@ohos.app.ability.appRecovery';
-  import errorManager from '@ohos.app.ability.errorManager';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
+import { appRecovery, errorManager, UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
-  let registerId = -1;
-  let callback: errorManager.ErrorObserver = {
-      onUnhandledException(errMsg) {
-          console.log(errMsg);
-          appRecovery.saveAppState();
-          appRecovery.restartApp();
-      }
-  }
+let registerId = -1;
+let callback: errorManager.ErrorObserver = {
+    onUnhandledException(errMsg) {
+    console.log(errMsg);
+    appRecovery.saveAppState();
+    appRecovery.restartApp();
+    }
+}
 
-  export default class EntryAbility extends UIAbility {
-      onWindowStageCreate(windowStage: window.WindowStage) {
-          // Main window is created, set main page for this ability
-          console.log("[Demo] EntryAbility onWindowStageCreate");
-          registerId = errorManager.on('error', callback);
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("[Demo] EntryAbility onWindowStageCreate");
+    registerId = errorManager.on('error', callback);
 
-          windowStage.loadContent("pages/index", (err, data) => {
-              if (err.code) {
-                  console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                  return;
-              }
-              console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
-          })
-      }
-  }
+    windowStage.loadContent("pages/index", (err, data) => {
+        if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+        }
+        console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+    })
+    }
+}
 ```
 
 - Save data.
@@ -164,8 +159,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 After the callback triggers **appRecovery.saveAppState()**, **onSaveState(state, wantParams)** of **EntryAbility** is triggered.
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onSaveState(state:AbilityConstant.StateType, wantParams: Record<string, Object>) {
@@ -182,9 +176,7 @@ export default class EntryAbility extends UIAbility {
 After the callback triggers **appRecovery.restartApp()**, the application is restarted. After the restart, **onCreate(want, launchParam)** of **EntryAbility** is called, and the saved data is stored in **parameters** of **want**.
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 let abilityWant: Want;
 
@@ -209,8 +201,7 @@ export default class EntryAbility extends UIAbility {
 - Unregister the **ErrorObserver** callback.
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { errorManager, UIAbility } from '@kit.AbilityKit';
 
 let registerId = -1;
 
@@ -231,9 +222,7 @@ export default class EntryAbility extends UIAbility {
 This is triggered by the recovery framework. You do not need to register an **ErrorObserver** callback. You only need to implement **onSaveState** for application state saving and **onCreate** for data restore.
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 let abilityWant: Want;
 
@@ -263,13 +252,10 @@ export default class EntryAbility extends UIAbility {
 
 #### Restart Flag for the Failed Ability
 
-If the failed ability is restarted again, the [ABILITY_RECOVERY_RESTART](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantparams) flag will be added as a **parameters** member for the **want** parameter in **onCreate** and its value is **true**.
+If the failed ability is restarted again, the [ABILITY_RECOVERY_RESTART](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params) flag will be added as a **parameters** member for the **want** parameter in **onCreate** and its value is **true**.
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { AbilityConstant, UIAbility, Want, wantConstant } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {

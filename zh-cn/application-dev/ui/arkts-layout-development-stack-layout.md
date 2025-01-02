@@ -19,16 +19,22 @@
 
 Stack组件为容器组件，容器内可包含各种子元素。其中子元素默认进行居中堆叠。子元素被约束在Stack下，进行自己的样式定义以及排列。
 
-
-
 ```ts
+// xxx.ets
 let MTop:Record<string,number> = { 'top': 50 }
-Column(){
-  Stack({ }) {
-    Column(){}.width('90%').height('100%').backgroundColor('#ff58b87c')
-    Text('text').width('60%').height('60%').backgroundColor('#ffc3f6aa')
-    Button('button').width('30%').height('30%').backgroundColor('#ff8ff3eb').fontColor('#000')
-  }.width('100%').height(150).margin(MTop)
+
+@Entry
+@Component
+struct StackExample {
+  build() {
+    Column(){
+      Stack({ }) {
+        Column(){}.width('90%').height('100%').backgroundColor('#ff58b87c')
+        Text('text').width('60%').height('60%').backgroundColor('#ffc3f6aa')
+        Button('button').width('30%').height('30%').backgroundColor('#ff8ff3eb').fontColor('#000')
+      }.width('100%').height(150).margin(MTop)
+    }
+  }
 }
 ```
 
@@ -38,7 +44,7 @@ Column(){
 
 ## 对齐方式
 
-Stack组件通过[alignContent参数](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#alignment)实现位置的相对移动。如图2所示，支持九种对齐方式。
+Stack组件通过[alignContent参数](../reference/apis-arkui/arkui-ts/ts-container-stack.md#aligncontent)实现位置的相对移动。如图2所示，支持九种对齐方式。
 
   **图2** Stack容器内元素的对齐方式  
 
@@ -66,7 +72,6 @@ Stack容器中兄弟组件显示层级关系可以通过[Z序控制](../referenc
   在层叠布局中，如果后面子元素尺寸大于前面子元素尺寸，则前面子元素完全隐藏。
 
 ```ts
-let MTopM1:Record<string,number> = { 'top': 100 }
 Stack({ alignContent: Alignment.BottomStart }) {
   Column() {
     Text('Stack子元素1').textAlign(TextAlign.End).fontSize(20)
@@ -79,7 +84,7 @@ Stack({ alignContent: Alignment.BottomStart }) {
   Column() {
     Text('Stack子元素3').fontSize(20)
   }.width(200).height(200).backgroundColor(Color.Grey)
-}.margin(MTopM1).width(350).height(350).backgroundColor(0xe0e0e0)
+}.width(350).height(350).backgroundColor(0xe0e0e0)
 ```
 
 ![zh-cn_image_0000001511900544](figures/zh-cn_image_0000001511900544.png)
@@ -88,7 +93,6 @@ Stack({ alignContent: Alignment.BottomStart }) {
 
 
 ```ts
-let MTopM:Record<string,number> = { 'top': 100 }
 Stack({ alignContent: Alignment.BottomStart }) {
   Column() {
     Text('Stack子元素1').fontSize(20)
@@ -101,7 +105,7 @@ Stack({ alignContent: Alignment.BottomStart }) {
   Column() {
     Text('Stack子元素3').fontSize(20)
   }.width(200).height(200).backgroundColor(Color.Grey)
-}.margin(MTopM).width(350).height(350).backgroundColor(0xe0e0e0)
+}.width(350).height(350).backgroundColor(0xe0e0e0)
 ```
 
 ![zh-cn_image_0000001563060797](figures/zh-cn_image_0000001563060797.png)
@@ -150,3 +154,4 @@ struct StackSample {
 
 
 ![zh-cn_image_0000001511421368](figures/zh-cn_image_0000001511421368.png)
+<!--RP1--><!--RP1End-->

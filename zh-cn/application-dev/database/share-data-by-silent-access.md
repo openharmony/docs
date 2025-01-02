@@ -41,13 +41,21 @@
 
 - 和跨应用数据共享方式不同的是，静默数据访问借助数据管理服务通过目录映射方式直接读取数据提供方的配置，按规则进行预处理后，并访问数据库。
 
-- 数据访问方如果使用静默数据访问方式，URI需严格按照如下格式：
-  datashareproxy://{bundleName}/{dataPath}
+- 数据访问方的URI需严格按照如下格式：`datashareproxy://{bundleName}/{dataPath}`
 
   数据管理服务会读取对应bundleName作为数据提供方应用，读取配置，进行权限校验并访问对应数据。
 
   dataPath为数据标识，可以自行定义，在同一个数据提供方应用中需要保持唯一。
 
+- URI还支持添加其他参数来设置具体的访问方式或访问对象，URI添加参数需严格遵循格式：`datashareproxy://{bundleName}/{dataPath}?{arg1}&{arg2}`，不符合规范的URI参数不生效。
+
+  其中以"?"符号开始参数，以"&"符号连接参数，连续的多个符号会被视为一个。当前仅支持“Proxy”以及“appIndex”参数。当使用多个"?"符开始参数时，"?"后的参数需是"Proxy"参数，否则该参数不生效。
+
+  - "Proxy"仅支持设置为true或false，true表示数据访问方采用静默数据访问方式，false则表示数据访问方采用非静默数据访问方式。
+
+  - "appIndex"仅支持设置为整型，表示应用包的分身索引，从1开始支持，仅在分身应用中生效。appIndex的定义及获取参照[BundleInfo](../reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md)。appIndex为0，或不填写时，访问数据提供者的应用本体。
+
+    目前访问应用分身仅支持静默访问方式下，不支持非静默访问方式。故需要设置访问应用分身URI和参数时，请注意同步设置"Proxy"参数和"appIndex"参数。例如“datashareproxy://{bundleName}/{dataPath}?Proxy=true&appIndex=1”，表示将在数据访问方会在静默访问方式下访问应用的第一个分身。
 
 ## 约束与限制
 
@@ -107,8 +115,8 @@
    | 属性名称                    | 备注说明                                     | 必填   |
    | ----------------------- | ---------------------------------------- | ---- |
    | uri                     | 数据使用的URI，是跨应用数据访问的唯一标识。                  | 是    |
-   | requiredReadPermission  | 标识从该数据代理读取数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/permissions-for-all.md)。            | 否    |
-   | requiredWritePermission | 标识从该数据代理修改数据时所需要的权限，不配置默认不允许其他APP修改数据。支持权限可参考[权限列表](../security/AccessToken/permissions-for-all.md)。          | 否    |
+   | requiredReadPermission  | 标识从该数据代理读取数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。            | 否    |
+   | requiredWritePermission | 标识从该数据代理修改数据时所需要的权限，不配置默认不允许其他APP修改数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。          | 否    |
    | metadata                | 数据源的信息，包含name和resource字段。<br /> name类型固定为"dataProperties"，是配置的唯一标识。 <br /> resource类型固定为"$profile:{fileName}"，表示配置文件的名称为{fileName}.json。 | 是    |
 
    **module.json5配置样例：**
@@ -150,12 +158,10 @@
 1. 导入基础依赖包。
 
    ```ts
-   import dataShare from '@ohos.data.dataShare';
-   import dataSharePredicates from '@ohos.data.dataSharePredicates';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { ValuesBucket } from '@ohos.data.ValuesBucket';
-   import window from '@ohos.window';
-   import { BusinessError } from '@ohos.base';
+   import { dataShare, dataSharePredicates, ValuesBucket } from '@kit.ArkData';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit'
    ```
 
 2. 定义与数据提供方通信的URI字符串。
@@ -277,8 +283,8 @@
 | 属性名称                    | 备注说明                          | 必填   |
 | ----------------------- | ----------------------------- | ---- |
 | uri                     | 数据使用的URI，是跨应用数据访问的唯一标识。       | 是    |
-| requiredReadPermission  | 标识从该数据代理读取数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/permissions-for-all.md)。 | 否    |
-| requiredWritePermission | 标识从该数据代理修改数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/permissions-for-all.md)。 | 否    |
+| requiredReadPermission  | 标识从该数据代理读取数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。 | 否    |
+| requiredWritePermission | 标识从该数据代理修改数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。 | 否    |
 
 **module.json5配置样例：**
 
@@ -297,10 +303,10 @@
 1. 导入基础依赖包。
 
    ```ts
-   import dataShare from '@ohos.data.dataShare';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import window from '@ohos.window';
-   import { BusinessError } from '@ohos.base';
+   import { dataShare } from '@kit.ArkData';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 定义与数据提供方通信的URI字符串。
@@ -368,9 +374,9 @@
 1. 导入基础依赖包。
 
    ```ts
-   import dataShare from '@ohos.data.dataShare';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import window from '@ohos.window';
+   import { dataShare } from '@kit.ArkData';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { window } from '@kit.ArkUI';
    ```
 
 2. 定义与数据提供方通信的URI字符串。

@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import insightIntentDriver from '@ohos.app.ability.insightIntentDriver';
+import { insightIntentDriver } from '@kit.AbilityKit';
 ```
 
 ## ExecuteParam
@@ -35,12 +35,16 @@ import insightIntentDriver from '@ohos.app.ability.insightIntentDriver';
 | insightIntentParam | string | 是 | 意图调用参数。 |
 | executeMode | [insightIntent.ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) | 是 | 意图调用执行模式。 |
 | displayId<sup>12+</sup> | number | 否 | 意图调用时指定的物理屏幕id，该参数应为整数，仅在executeMode为UI_ABILITY_FOREGROUND时生效。 |
+| uris<sup>16+</sup> | Array&lt;string&gt; | 否 | 意图调用时，意图调用方给意图执行方授权的URI列表。 |
+| flags<sup>16+</sup> | number | 否 | 意图调用时，意图调用方给意图执行方授权的uris的[flags](js-apis-app-ability-wantConstant.md#flags)。 <br/>**说明：**<br/>该参数仅支持FLAG_AUTH_READ_URI_PERMISSION 、 FLAG_AUTH_WRITE_URI_PERMISSION。 |
 
 ## insightIntentDriver.execute
 
 execute(param: ExecuteParam, callback: AsyncCallback<insightIntent.ExecuteResult>): void
 
 执行意图调用的接口。使用callback异步回调。
+当调用方在后台时，需要申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+当意图调用执行模式[ExecuteMode](js-apis-app-ability-insightIntent.md#executemode)取值为UI_ABILITY_BACKGROUND时，需要申请`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`权限。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -59,11 +63,16 @@ execute(param: ExecuteParam, callback: AsyncCallback<insightIntent.ExecuteResult
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -76,14 +85,11 @@ execute(param: ExecuteParam, callback: AsyncCallback<insightIntent.ExecuteResult
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 **示例：**
 
 ```ts
-  import insightIntentDriver from '@ohos.app.ability.insightIntentDriver';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import hilog from '@ohos.hilog';
+  import { insightIntentDriver, insightIntent } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   function executeInsightIntentAsync() {
     let param: insightIntentDriver.ExecuteParam = {
@@ -118,6 +124,8 @@ execute(param: ExecuteParam, callback: AsyncCallback<insightIntent.ExecuteResult
 execute(param: ExecuteParam): Promise<insightIntent.ExecuteResult>
 
 执行意图调用的接口。使用Promise异步回调。
+当调用方在后台时，需要申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+当意图调用执行模式[ExecuteMode](js-apis-app-ability-insightIntent.md#executemode)取值为UI_ABILITY_BACKGROUND时，需要申请`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`权限。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -141,11 +149,16 @@ execute(param: ExecuteParam): Promise<insightIntent.ExecuteResult>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -158,14 +171,11 @@ execute(param: ExecuteParam): Promise<insightIntent.ExecuteResult>
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 **示例：**
 
 ```ts
-  import insightIntentDriver from '@ohos.app.ability.insightIntentDriver';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import hilog from '@ohos.hilog';
+  import { insightIntentDriver, insightIntent } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   async function executeSearchMusicIntentPromise() {
     let param: insightIntentDriver.ExecuteParam = {

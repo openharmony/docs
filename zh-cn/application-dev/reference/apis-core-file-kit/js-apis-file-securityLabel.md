@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import securityLabel from '@ohos.file.securityLabel';
+import { securityLabel } from '@kit.CoreFileKit';
 ```
 
 ## 使用说明
@@ -18,8 +18,8 @@ import securityLabel from '@ohos.file.securityLabel';
 
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
+  import { UIAbility } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
 
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -43,7 +43,7 @@ type DataLevel = 's0' | 's1' | 's2' | 's3' | 's4' |
 
 setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 
-以异步方法设置数据标签，以Promise形式返回结果。
+以异步方法设置数据标签，数据标签安全等级仅可由低向高或平级设置，以Promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -78,7 +78,7 @@ setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + '/test.txt';
   securityLabel.setSecurityLabel(filePath, "s0").then(() => {
     console.info("setSecurityLabel successfully");
@@ -91,7 +91,7 @@ setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 
 setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt;):void
 
-以异步方法设置数据标签，以callback形式返回结果。
+以异步方法设置数据标签，数据标签安全等级仅可由低向高或平级设置，以callback形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -121,7 +121,7 @@ setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + '/test.txt';
   securityLabel.setSecurityLabel(filePath, "s0", (err: BusinessError) => {
     if (err) {
@@ -136,7 +136,7 @@ setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt
 
 setSecurityLabelSync(path:string, type:DataLevel):void
 
-以同步方法设置数据标签。
+以同步方法设置数据标签，数据标签安全等级仅可由低向高或平级设置。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -173,7 +173,7 @@ securityLabel.setSecurityLabelSync(filePath, "s0");
 
 getSecurityLabel(path:string):Promise&lt;string&gt;
 
-异步方法获取数据标签，以Promise形式返回结果。
+异步方法获取数据标签，若未设置过数据标签安全等级则默认返回“s3”，以Promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -207,7 +207,7 @@ getSecurityLabel(path:string):Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + '/test.txt';
   securityLabel.getSecurityLabel(filePath).then((type: string) => {
     console.log("getSecurityLabel successfully, Label: " + type);
@@ -220,7 +220,7 @@ getSecurityLabel(path:string):Promise&lt;string&gt;
 
 getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 
-异步方法获取数据标签，以callback形式返回结果。
+异步方法获取数据标签，若未设置过数据标签安全等级则默认返回“s3”，以callback形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -249,7 +249,7 @@ getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + '/test.txt';
   securityLabel.getSecurityLabel(filePath, (err: BusinessError, type: string) => {
     if (err) {
@@ -264,7 +264,7 @@ getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 
 getSecurityLabelSync(path:string):string
 
-以同步方法获取数据标签。
+以同步方法获取数据标签，若未设置过数据标签安全等级则默认返回“s3”。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 

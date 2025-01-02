@@ -4,11 +4,11 @@
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
-## 890001 参数类型错误
+## 890001 参数校验错误
 
 **错误信息**
 
-param value not valid
+Invalid parameter
 
 **错误描述**
 

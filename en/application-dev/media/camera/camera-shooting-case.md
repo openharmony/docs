@@ -1,8 +1,10 @@
-# Camera Photographing Sample (ArkTS)
+# Photo Capture Sample (ArkTS)
 
-This topic provides sample code that covers the complete photographing process to help you understand the complete API calling sequence.
+Before developing a camera application, request the camera permission. For details, see [Camera Development Preparations](camera-preparation.md).
 
-Before referring to the sample code, you are advised to read [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), [Camera Photographing](camera-shooting.md), and other related topics in [Camera Development (ArkTS)](camera-preparation.md).
+This topic provides sample code that covers the complete photo capture process to help you understand the complete API calling sequence.
+
+Before referring to the sample code, you are advised to read [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), [Photo Capture](camera-shooting.md), and other related topics in [Camera Development (ArkTS)](camera-preparation.md).
 
 ## Development Process
 
@@ -14,28 +16,18 @@ After obtaining the output stream capabilities supported by the camera, create a
 
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
+To view the saved images and videos in Gallery, you must save them to the media library. For details, see [Creating a Media Asset Using SaveButton](../medialibrary/photoAccessHelper-savebutton.md).
+
+Specifically, when [photoOutput.on('photoAvailable')](../../reference/apis-camera-kit/js-apis-camera.md#onphotoavailable11) is called and a buffer is obtained, the buffer must be stored in the security component to the media library.
 ```ts
-import camera from '@ohos.multimedia.camera';
-import image from '@ohos.multimedia.image';
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
-import fs from '@ohos.file.fs';
-import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
+import { camera } from '@kit.CameraKit';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 let context = getContext(this);
-
-async function savePicture(buffer: ArrayBuffer, img: image.Image): Promise<void> {
-  let photoAccessHelper: PhotoAccessHelper.PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
-  let options: PhotoAccessHelper.CreateOptions = {
-    title: Date.now().toString()
-  };
-  let photoUri: string = await photoAccessHelper.createAsset(PhotoAccessHelper.PhotoType.IMAGE, 'jpg', options);
-  // To call createAsset(), the application must have the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
-  let file: fs.File = fs.openSync(photoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  await fs.write(file.fd, buffer);
-  fs.closeSync(file);
-  img.release(); 
-}
 
 function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
   // After the callback is set, call capture() of photoOutput to transfer the photo buffer back to the callback.
@@ -60,7 +52,11 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
         console.error('byteBuffer is null');
         return;
       }
-      savePicture(buffer, imageObj);
+
+      // To view the saved image and video resources in Gallery, use a security component to create media assets.
+
+      // After the buffer processing is complete, the buffer must be released. Otherwise, no buffer is available for subsequent photo capture.
+      imageObj.release(); 
     });
   });
 }
@@ -74,6 +70,10 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   }
   // Listen for camera status changes.
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
+    if (err !== undefined && err.code !== 0) {
+      console.error('cameraStatus with errorCode = ' + err.code);
+      return;
+    }
     console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
     console.info(`status: ${cameraStatusInfo.status}`);
   });
@@ -297,7 +297,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
     quality: camera.QualityLevel.QUALITY_LEVEL_HIGH, // Set the photo quality to high.
     rotation: camera.ImageRotation.ROTATION_0 // Set the rotation angle of the photo to 0.
   }
-  // Use the current photographing settings to take photos.
+  // Use the current photo capture settings to take photos.
   photoOutput.capture(photoCaptureSetting, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to capture the photo ${err.message}`);
@@ -305,20 +305,22 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
     }
     console.info('Callback invoked to indicate the photo capture request success.');
   });
+
+  // After the photo capture is complete, call the following APIs to close the camera and release the session. Do not release the session before the photo capture is complete.
   // Stop the session.
-  photoSession.stop();
+  await photoSession.stop();
 
   // Release the camera input stream.
-  cameraInput.close();
+  await cameraInput.close();
 
   // Release the preview output stream.
-  previewOutput.release();
+  await previewOutput.release();
 
   // Release the photo output stream.
-  photoOutput.release();
+  await photoOutput.release();
 
   // Release the session.
-  photoSession.release();
+  await photoSession.release();
 
   // Set the session to null.
   photoSession = undefined;

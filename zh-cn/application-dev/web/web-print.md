@@ -1,6 +1,16 @@
 # 使用Web组件打印前端页面
 
-Web组件打印html页面时可通过W3C标准协议接口和应用接口两种方式实现。开发者在使用该能力时，需配置[ohos.permission.PRINT](../security/AccessToken/declare-permissions.md)打印权限。
+Web组件打印html页面时可通过W3C标准协议接口和应用接口两种方式实现。
+
+使用打印功能前，请在module.json5中配置相关权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+
+  ```
+  "requestPermissions":[
+      {
+        "name" : "ohos.permission.PRINT"
+      }
+    ]
+  ```
 
 ## 使用W3C标准协议接口拉起打印
 通过创建打印适配器，拉起打印应用，并对当前Web页面内容进行渲染，渲染后生成的PDF文件信息通过fd传递给打印框架。W3C标准协议接口window.print()方法用于打印当前页面或弹出打印对话框。该方法没有任何参数，只需要在JavaScript中调用即可。
@@ -63,13 +73,12 @@ Web组件打印html页面时可通过W3C标准协议接口和应用接口两种�
 - 应用侧代码。
 
   ```ts
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct Index {
-
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Row() {
@@ -85,18 +94,18 @@ Web组件打印html页面时可通过W3C标准协议接口和应用接口两种�
   ```
 
 ## 通过调用应用侧接口拉起打印。
-应用侧通过调用[createWebPrintDocumentAdapter](../reference/apis-arkweb/js-apis-webview.md#createwebprintdocumentadapter)创建打印适配器，通过将适配器传入打印的print接口调起打印。
+应用侧通过调用[createWebPrintDocumentAdapter](../reference/apis-arkweb/js-apis-webview.md#createwebprintdocumentadapter11)创建打印适配器，通过将适配器传入打印的print接口调起打印。
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
-import print from '@ohos.print'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { print } from '@kit.BasicServicesKit'
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -106,8 +115,7 @@ struct WebComponent {
             let webPrintDocadapter = this.controller.createWebPrintDocumentAdapter('example.pdf');
             print.print('example_jobid', webPrintDocadapter, null, getContext());
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })

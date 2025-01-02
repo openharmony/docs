@@ -1,15 +1,18 @@
 # ExtensionAbilityInfo
 
-The **ExtensionAbilityInfo** module defines the ExtensionAbility information. A third-party application can obtain its own ExtensionAbility information through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY** passed in to [bundleFlags](js-apis-bundleManager.md#bundleflag) .
+The **ExtensionAbilityInfo** module defines the ExtensionAbility information. A third-party application can obtain its own ExtensionAbility information through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY** passed in to [bundleFlags](js-apis-bundleManager.md#bundleflag).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## ExtensionAbilityInfo
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name                | Type                                                        | Readable| Writable| Description                                                |
+| Name                | Type                                                        | Read-Only| Optional| Description                                                |
 | -------------------- | ------------------------------------------------------------ | ---- | ---- | ---------------------------------------------------- |
 | bundleName           | string                                                       | Yes  | No  | Bundle name.                                    |
 | moduleName           | string                                                       | Yes  | No  | Name of the HAP file to which the ExtensionAbility belongs.                   |
@@ -26,3 +29,5 @@ The **ExtensionAbilityInfo** module defines the ExtensionAbility information. A 
 | readPermission       | string                                                       | Yes  | No  | Permission required for reading data from the ExtensionAbility.                |
 | writePermission      | string                                                       | Yes  | No  | Permission required for writing data to the ExtensionAbility.                |
 | extensionAbilityTypeName<sup>11</sup>      | string                                 | Yes  | No  | Type of the ExtensionAbility.                |
+| skills<sup>12+</sup>             | Array\<[Skill](js-apis-bundleManager-skill.md)>                                                 | Yes  | No  | Skills of the ExtensionAbility.       |
+| appIndex<sup>12+</sup>    | number    | Yes  | No  | Index of an application clone. It takes effect only for cloned applications.|

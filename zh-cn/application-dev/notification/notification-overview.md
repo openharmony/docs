@@ -3,13 +3,12 @@
 Notification Kit（用户通知服务）为开发者提供本地通知发布通道，开发者可借助Notification Kit将应用产生的通知直接在客户端本地推送给用户，本地通知根据通知类型及发布场景会产生对应的铃声、震动、横幅、锁屏、息屏、通知栏提醒和显示。
 
 ## 使用场景
-当开发者的应用处于前台运行时，开发者可以使用Notification Kit向用户发布通知。当应用转为后台时，本地通知发布通道关闭，开发者需要接入Push Kit进行云侧离线通知的发布。
-
-开发者可以在多种场景中运用本地通知能力。如同步用户的上传下载进度、发放即时的客服支付等通知、更新运动步数等。
+当应用处于前台运行时，开发者可以使用Notification Kit向用户发布通知。<!--RP1--><!--RP1End-->
+开发者可以在多种场景中运用本地通知能力。如同步用户的上传下载进度、发布即时的客服支付通知、更新运动步数等。
 
 ## 能力范围
 Notification Kit支持的能力主要包括:
- - 发布文本、多行文本、通知大图标等类型通知。
+ - 发布文本、进度条等类型通知。
  - 携带或更新应用通知数字角标。
  - 取消曾经发布的某条或全部通知。
  - 查询已发布的通知列表。
@@ -21,7 +20,7 @@ Notification Kit支持的能力主要包括:
 ## 业务流程
  ![notification_principle](figures/notification_principle.png) 
 
-使用Noification Kit的主要业务流程如下：
+使用Notification Kit的主要业务流程如下：
 
 1.请求通知授权。
 
@@ -36,12 +35,11 @@ Notification Kit支持的能力主要包括:
 >
 > 实际显示效果依赖设备能力和通知中心UI设计样式。
 
-Notification Kit支持的通知样式：
+Notification Kit中常用的通知样式如下：
 | 类型 | 通知样式 | 规格描述 |
 | ---- | --------| ------- |
 | [文本](./text-notification.md)           | ![text_notification](figures/text_notification.png)   | 通知文本内容最多显示三行，超长后以“...”截断。 |
-| [多行文本](./text-notification.md)       | ![multiline_notification](figures/multiline_notification.png)   | 文本内容较长的通知，最多可显示三行内容，每行内容超长后以“...”截断。 |
-| [通知大图标](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md)| ![icon_notification](figures/icon_notification.png) | 有图片预览的通知。 |
+| [多行文本](./text-notification.md)       | ![multiline_notification](figures/multiline_notification.png)   | 最多可显示三行内容，每行内容超长后以“...”截断。 |
 | [通知角标](./notification-badge.md)      | ![notification_badge](figures/notification_badge.png)   | 以数字的形式展示在右上角。 |
 | [进度条](./progress-bar-notification.md) | ![progress_notification](figures/progress_notification.png)    | 进度类通知。 |
 
@@ -52,5 +50,5 @@ Notification Kit支持的通知样式：
 
 ## 与相关Kit的关系
 - Notification Kit创建的通知会即时显示在通知中心等系统入口，如果开发者希望在应用退到后台或进程终止后仍然有一些提醒用户的定时类通知，例如购物类应用抢购提醒等，可通过[`BackGroundTask Kit`](../reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)创建，目前支持基于倒计时、日历、闹钟等类型的通知提醒功能。
-- 开发者可通过`Push Kit`远程推送用户通知到本地。
-- 开发者可通过[`Ability Kit`](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md#wantagentgetwantagent)设置用户点击通知后的行为意图。
+- 开发者可通过[`Ability Kit`](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md#wantagentgetwantagent)设置用户点击通知后的行为意图。<!--RP2-->
+<!--RP2End-->

@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Parameter invalid, message is ${messageInfo}.
+Invalid Parameter. Error message: ${messageInfo}.
 
 **可能原因**
 
@@ -17,6 +17,10 @@ Parameter invalid, message is ${messageInfo}.
 2. 指定的权限名为空或者权限名长度大于256。
 3. 请求授权/撤销权限的flag取值非法。
 4. 注册监听的参数检查错误。
+5. 指定的Context不属于当前应用。
+6. 请求的权限不属于同一个权限组。
+7. 请求的权限中存在应用未声明的权限；
+8. 请求的全局开关类型非法。
 
 **处理步骤**
 
@@ -53,14 +57,14 @@ Permission does not exist.
 
 **处理步骤**
 
-检查入参，修正参数值为有效值。[权限列表](../../security/AccessToken/permissions-for-all.md)。
+检查入参，修正参数值为有效值。[权限列表](../../security/AccessToken/app-permissions.md)。
 
 
 ## 12100004 接口未配套使用
 
 **错误信息**
 
-The interface is not used together.
+The API is not used in pair with others.
 
 **可能原因**
 
@@ -110,7 +114,7 @@ The specified application does not support the permissions granted or ungranted 
 
 **错误信息**
 
-Service is abnormal.
+The service is abnormal.
 
 **可能原因**
 
@@ -136,3 +140,77 @@ Out of memory.
 **处理步骤**
 
 系统内存不足，请稍后重试，或者重启设备。
+
+
+## 12100009 服务内部错误
+
+**错误信息**
+
+Common inner error.
+
+**可能原因**
+
+系统服务内部错误。
+
+**处理步骤**
+
+系统内部逻辑错误，需要结合故障日志进一步分析。
+
+## 12100010 存在未被处理的请求
+
+**错误信息**
+
+The request already exists.
+
+**可能原因**
+
+上一次请求未被处理。
+
+**处理步骤**
+
+请处理完上次请求。
+
+
+## 12100011 输入的所有权限均已被授权
+
+**错误信息**
+
+All permissions in the permission list have been granted.
+
+**可能原因**
+
+所有权限均已被授权。
+
+**处理步骤**
+
+无需处理，返回此错误码表示申请权限已被授权，不会拉起权限设置弹框。
+
+
+## 12100012 输入的权限中存在未被用户拒绝过的权限
+
+**错误信息**
+
+The permission list contains the permission that has not been revoked by the user.
+
+**可能原因**
+
+存在未被用户拒绝过的权限。
+
+**处理步骤**
+
+请先调用requestPermissionsFromUser向用户申请权限。
+
+
+## 12100013 全局开关已开启
+
+**错误信息**
+
+The specific global switch is already open.
+
+**可能原因**
+
+全局开关已开启。
+
+**处理步骤**
+
+无需处理，返回此错误码表示全局开关已开启，不会拉起全局开关设置弹框。

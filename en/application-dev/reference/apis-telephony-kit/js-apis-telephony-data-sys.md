@@ -1,17 +1,18 @@
 # @ohos.telephony.data (Cellular Data) (System API)
 
-The **data** module provides basic mobile data management functions. You can obtain and set the default slot of the SIM card used for mobile data, and obtain the uplink and downlink connection status of cellular data services and connection status of the packet switched (PS) domain. Besides, you can check whether cellular data services and data roaming are enabled.
+The **data** module provides basic mobile data management functions. With the APIs provided by this module, you can set the default slot of the SIM card used for cellular data services and enable or disable cellular data services and data roaming.
 
 >**NOTE**
 >
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.telephony.data (Cellular Data)](js-apis-telephony-data.md).
+>
+>This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.telephony.data (Cellular Data)](js-apis-telephony-data.md).
 
 
 ## Modules to Import
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 ```
 
 
@@ -31,7 +32,7 @@ Sets the default slot of the SIM card used for mobile data. This API uses an asy
 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| slotId   | number                | Yes  | SIM card slot ID. <br>- **0**: card slot 1.<br>- **1**: card slot 2.<br>- **-1**: Clears the default configuration.|
+| slotId   | number                | Yes  | SIM card slot ID. <br>- **0**: card slot 1.<br>- **1**: card slot 2.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -42,19 +43,19 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 | 8301001  | SIM card is not activated.                   |
 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.setDefaultCellularDataSlotId(0, (err: BusinessError) => {
     if(err){
@@ -81,7 +82,7 @@ Sets the default slot of the SIM card used for mobile data. This API uses a prom
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| slotId | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1.<br>- **1**: card slot 2.<br>- **-1**: Clears the default configuration.|
+| slotId | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1.<br>- **1**: card slot 2.|
 
 **Return value**
 
@@ -97,19 +98,19 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 | 8301001  | SIM card is not activated.                   |
 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.setDefaultCellularDataSlotId(0).then(() => {
     console.log(`setDefaultCellularDataSlotId success.`);
@@ -145,17 +146,17 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.enableCellularData((err: BusinessError) => {
     if(err){
@@ -192,15 +193,15 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.enableCellularData().then(() => {
     console.log(`enableCellularData success.`);
@@ -235,17 +236,17 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.disableCellularData((err: BusinessError) => {
     if(err){
@@ -282,15 +283,15 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.disableCellularData().then(() => {
     console.log(`disableCellularData success.`);
@@ -326,17 +327,17 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.enableCellularDataRoaming(0, (err: BusinessError) => {
     if(err){
@@ -379,17 +380,17 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.enableCellularDataRoaming(0).then(() => {
     console.log(`enableCellularDataRoaming success.`);
@@ -425,17 +426,17 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.disableCellularDataRoaming(0, (err: BusinessError) => {
     if(err){
@@ -478,17 +479,17 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.disableCellularDataRoaming(0).then(() => {
     console.log(`disableCellularDataRoaming success.`);

@@ -9,7 +9,7 @@ The **photoAccessHelper** module provides APIs for album management, including c
 ## Modules to Import
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 ```
 
 ## photoAccessHelper.getPhotoAccessHelper
@@ -19,6 +19,8 @@ getPhotoAccessHelper(context: Context): PhotoAccessHelper
 Obtains a **PhotoAccessHelper** instance for accessing and modifying media files in the album.
 
 **Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -40,7 +42,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 
 **Example**
 
@@ -62,12 +64,14 @@ Obtains image and video assets. This API uses an asynchronous callback to return
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
+If the caller does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to access the file and then call this API based on the URI obtained by Picker. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
+
 **Parameters**
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | options  | [FetchOptions](#fetchoptions)        | Yes  | Options for fetching the image and video assets.             |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Yes  | Callback invoked to return the image and video assets obtained.|
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Yes  | Callback used to return the image and video assets obtained.|
 
 **Error codes**
 
@@ -75,7 +79,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -83,7 +87,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getAssets');
@@ -117,6 +121,8 @@ Obtains image and video assets. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
+If the caller does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to access the file and then call this API based on the URI obtained by Picker. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
+
 **Parameters**
 
 | Name | Type               | Mandatory| Description            |
@@ -135,7 +141,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -143,7 +149,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getAssets');
@@ -167,13 +173,79 @@ async function example() {
 }
 ```
 
+### getBurstAssets<sup>12+</sup>
+
+getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
+
+Obtains burst assets. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**Parameters**
+
+| Name | Type               | Mandatory| Description            |
+| ------- | ------------------- | ---- | ---------------- |
+| burstKey | string   | Yes  | UUID of a set of burst photos (**BURST_KEY** of [PhotoKeys](#photokeys)).    |
+| options | [FetchOptions](#fetchoptions)   | Yes  | Options for fetching the burst photos.    |
+
+**Return value**
+
+| Type                       | Description          |
+| --------------------------- | -------------- |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | Internal system error.         |
+
+**Example**
+
+```ts
+import { photoAccessHelper } form '@kit.MediaLibraryKit';
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('getBurstAssets');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  // burstKey is a 36-bit UUID, which can be obtained from photoAccessHelper.PhotoKeys.
+  let burstKey: string = "e719d696-09fa-44f8-ec3f215aa62a";
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await 
+      phAccessHelper.getBurstAssets(burstKey, fetchOptions);
+    if (fetchResult !== undefined) {
+      console.info('fetchResult success');
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+      if (photoAsset !== undefined) {
+        console.info('photoAsset.displayName :' + photoAsset.displayName);
+      }
+    }
+  } catch (err) {
+    console.error(`getBurstAssets failed, error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ### createAsset
 
 createAsset(photoType: PhotoType, extension: string, options: CreateOptions, callback: AsyncCallback&lt;string&gt;): void
 
 Creates an image or video asset with the specified file type, file name extension, and options. This API uses an asynchronous callback to return the result.
 
-If the application does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can use a security component to create a media asset. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security-component).
+If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can create a media asset by using a security component. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-savebutton.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -184,9 +256,9 @@ If the application does not have the ohos.permission.WRITE_IMAGEVIDEO permission
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](#phototype)        | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.             |
-| extension  | string        | Yes  | File name extension, for example, **jpg**.             |
+| extension  | string        | Yes  | File name extension, for example, **'jpg'**.             |
 | options  | [CreateOptions](#createoptions)        | Yes  | Options for creating the image or video asset, for example, **{title: 'testPhoto'}**.             |
-| callback |  AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the URI of the created image or video.|
+| callback |  AsyncCallback&lt;string&gt; | Yes  | Callback used to return the URI of the created image or video.|
 
 **Error codes**
 
@@ -194,7 +266,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -226,7 +298,9 @@ createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;
 
 Creates an image or video asset with the specified file type and file name extension. This API uses an asynchronous callback to return the result.
 
-If the application does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can use a security component to create a media asset. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security-component).
+If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can create a media asset by using a security component. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-savebutton.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -237,8 +311,8 @@ If the application does not have the ohos.permission.WRITE_IMAGEVIDEO permission
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](#phototype)        | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.             |
-| extension  | string        | Yes  | File name extension, for example, **jpg**.             |
-| callback |  AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the URI of the created image or video.|
+| extension  | string        | Yes  | File name extension, for example, **'jpg'**.             |
+| callback |  AsyncCallback&lt;string&gt; | Yes  | Callback used to return the URI of the created image or video.|
 
 **Error codes**
 
@@ -246,7 +320,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -275,7 +349,9 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 
 Creates an image or video asset with the specified file type, file name extension, and options. This API uses a promise to return the result.
 
-If the application does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can use a security component to create a media asset. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security-component).
+If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can create a media asset by using a security component. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-savebutton.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -286,7 +362,7 @@ If the application does not have the ohos.permission.WRITE_IMAGEVIDEO permission
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](#phototype)        | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.             |
-| extension  | string        | Yes  | File name extension, for example, **jpg**.             |
+| extension  | string        | Yes  | File name extension, for example, **'jpg'**.             |
 | options  | [CreateOptions](#createoptions)        | No  | Options for creating the image or video asset, for example, **{title: 'testPhoto'}**.             |
 
 **Return value**
@@ -301,7 +377,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -342,10 +418,10 @@ Before the operation, ensure that the albums to obtain exist.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| type  | [AlbumType](#albumtype)         | Yes  | Type of the album to obtain.             |
+| type  | [AlbumType](#albumtype)         | Yes  | Type of the albums to obtain.             |
 | subtype  | [AlbumSubtype](#albumsubtype)         | Yes  | Subtype of the album.             |
 | options  | [FetchOptions](#fetchoptions)         | Yes  |  Options for fetching the albums.             |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the result.|
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -353,7 +429,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -361,7 +437,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   // Obtain the album named newAlbumName.
@@ -404,9 +480,9 @@ Before the operation, ensure that the albums to obtain exist.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| type  | [AlbumType](#albumtype)         | Yes  | Type of the album to obtain.             |
+| type  | [AlbumType](#albumtype)         | Yes  | Type of the albums to obtain.             |
 | subtype  | [AlbumSubtype](#albumsubtype)         | Yes  | Subtype of the album.             |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the result.|
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -414,7 +490,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -457,7 +533,7 @@ Before the operation, ensure that the albums to obtain exist.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| type  | [AlbumType](#albumtype)         | Yes  | Type of the album to obtain.             |
+| type  | [AlbumType](#albumtype)         | Yes  | Type of the albums to obtain.             |
 | subtype  | [AlbumSubtype](#albumsubtype)         | Yes  | Subtype of the album.             |
 | options  | [FetchOptions](#fetchoptions)         | No  |  Options for fetching the albums. If this parameter is not specified, the albums are obtained based on the album type by default.             |
 
@@ -473,7 +549,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -481,8 +557,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   // Obtain the album named newAlbumName.
@@ -521,7 +597,7 @@ Registers listening for the specified URI. This API uses a callback to return th
 | --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri       | string                                      | Yes  | URI of the photo asset, URI of the album, or [DefaultChangeUri](#defaultchangeuri).|
 | forChildUris | boolean                                     | Yes  | Whether to perform fuzzy listening.<br>If **uri** is the URI of an album, the value **true** means to listen for the changes of the files in the album; the value **false** means to listen for the changes of the album only. <br>If **uri** is the URI of a **photoAsset**, there is no difference between **true** and **false** for **forChildUris**.<br>If **uri** is **DefaultChangeUri**, **forChildUris** must be set to **true**. If **forChildUris** is **false**, the URI cannot be found and no message can be received.|
-| callback  | Callback&lt;[ChangeData](#changedata)&gt; | Yes  | Callback invoked to return the [ChangeData](#changedata). <br>**NOTE**<br>Multiple callback listeners can be registered for a URI. You can use [unRegisterChange](#unregisterchange) to unregister all listeners for the URI or a specified callback listener.|
+| callback  | Callback&lt;[ChangeData](#changedata)&gt; | Yes  | Callback used to return the [ChangeData](#changedata). <br>**NOTE**<br>Multiple callback listeners can be registered for a URI. You can use [unRegisterChange](#unregisterchange) to unregister all listeners for the URI or a specified callback listener.|
 
 **Error codes**
 
@@ -529,14 +605,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('registerChangeDemo');
@@ -563,13 +639,7 @@ async function example() {
   // Register onCallback2.
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
 
-  photoAsset.setFavorite(true, (err) => {
-    if (err === undefined) {
-      console.info('setFavorite successfully');
-    } else {
-      console.error(`setFavorite failed with error: ${err.code}, ${err.message}`);
-    }
-  });
+  await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [photoAsset]);
 }
 ```
 
@@ -594,14 +664,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('offDemo');
@@ -627,13 +697,7 @@ async function example() {
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
   // Unregister the listening of onCallback1.
   phAccessHelper.unRegisterChange(photoAsset.uri, onCallback1);
-  photoAsset.setFavorite(true, (err) => {
-    if (err === undefined) {
-      console.info('setFavorite successfully');
-    } else {
-      console.error(`setFavorite failed with error: ${err.code}, ${err.message}`);
-    }
-  });
+  await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [photoAsset]);
 }
 ```
 
@@ -664,7 +728,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -672,7 +736,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('createDeleteRequestDemo');
@@ -733,7 +797,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -741,7 +805,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('createDeleteRequestDemo');
@@ -773,6 +837,10 @@ Applies media changes. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
+If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can create a media asset by using a security component. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-savebutton.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -794,7 +862,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.         |
-| 401   | if parameter is invalid.   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011  | System inner fail.     |
 
 **Example**
@@ -822,7 +890,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -862,7 +930,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -880,23 +948,211 @@ async function example() {
 }
 ```
 
+### showAssetsCreationDialog<sup>12+</sup>
+
+showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs: Array&lt;PhotoCreationConfig&gt;): Promise&lt;Array&lt;string&gt;&gt;
+
+Shows the dialog box for the user to confirm whether to save the photos or videos. If the user agrees to save the images or videos, a list of URIs granted with the save permission is returned. The list takes effect permanently, and the application can write the images or videos based on the URIs. If the user refuses to save the images or videos, an empty list is returned.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| srcFileUris | Array&lt;string&gt; | Yes| [URIs](../../file-management/user-file-uri-intro.md#media-file-uri) of the images or videos to be saved to the media library.<br>**NOTE**: Only image and video URIs are supported.|
+| photoCreationConfigs | Array&lt;[PhotoCreationConfig](#photocreationconfig12)&gt; | Yes| Configuration for saving the images or videos, including the names of the files to be saved. The value must be consistent with that of **srcFileUris**.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return a URI list. The URIs are granted with the permission for the application to write data.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 14000011 |  Internal system error |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+async function example() {
+  console.info('ShowAssetsCreationDialogDemo.');
+
+  try {
+    // Obtain the sandbox URIs of the images or videos to be saved to the media library.
+    let srcFileUris: Array<string> = [
+      'file://fileUriDemo1' // The URI here is an example only.
+    ];
+    let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
+      {
+        title: 'test2', // Optional.
+        fileNameExtension: 'jpg',
+        photoType: photoAccessHelper.PhotoType.IMAGE,
+        subtype: photoAccessHelper.PhotoSubtype.DEFAULT, // Optional.
+      }
+    ];
+    let desFileUris: Array<string> = await phAccessHelper.showAssetsCreationDialog(srcFileUris, photoCreationConfigs);
+    console.info('showAssetsCreationDialog success, data is ' + desFileUris);
+  } catch (err) {
+    console.error('showAssetsCreationDialog failed, errCode is ' + err.code + ', errMsg is ' + err.message);
+  }
+}
+```
+
+### createAssetWithShortTermPermission<sup>12+</sup>
+
+createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Promise&lt;string&gt;
+
+Creates an asset with a temporary permission of the given period. When this API is called by an application for the first time, a dialog box will be displayed for the user to confirm whether to save the asset. If the user agrees to save the asset, the asset instance will be created and the file URI granted with the save permission will be returned. The application can write the asset based on the URI
+within 5 minutes after the user agrees to save the asset. If the same application calls this API again within the 5 minutes, the authorized URI can be automatically returned without the need to display the conformation dialog box.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| photoCreationConfig | [PhotoCreationConfig](#photocreationconfig12); | Yes| Configuration for saving a media asset (image or video) to the media library, including the file name.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;string&gt; | Promise used to return the URI of the asset saved. The URIs are granted with the permission for the application to write data.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201 | Permission denied |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 14000011 |  Internal system error |
+
+**Example**
+
+```ts
+import fs from '@ohos.file.fs';
+
+async function example() {
+    console.info('createAssetWithShortTermPermissionDemo.');
+    
+    try {
+        let photoCreationConfig: photoAccessHelper.PhotoCreationConfig = {
+            title: '123456', 
+            fileNameExtension: 'jpg',
+            photoType: photoAccessHelper.PhotoType.IMAGE,
+            subtype: photoAccessHelper.PhotoSubtype.DEFAULT, 
+        };
+
+        let resultUri: string = await phAccessHelper.createAssetWithShortTermPermission(photoCreationConfig);
+        let resultFile: fs.File = fs.openSync(resultUri, fs.OpenMode.READ_WRITE);
+        // Use the actual URI and file size.
+        let srcFile:  fs.File = fs.openSync("file://test.jpg", fs.OpenMode.READ_ONLY);
+        let bufSize: number = 2000000;
+        let readSize: number = 0;
+        let buf = new ArrayBuffer(bufSize);
+        let readLen = fs.readSync(srcFile.fd, buf, {
+            offset: readSize,
+            length: bufSize
+        });
+        if (readLen > 0) {
+            readSize += readLen;
+            fs.writeSync(resultFile.fd, buf, { length: readLen });
+        }
+        fs.closeSync(srcFile);
+        fs.closeSync(resultFile);
+    } catch (err) {
+        console.error('createAssetWithShortTermPermission failed, errCode is ' + err.code + ', errMsg is ' + err.message);
+    }
+    
+}
+```
+
+### grantPhotoAssetsReadPermission<sup>14+</sup>
+grantPhotoAssetsReadPermission(srcFileUris: Array&lt;string&gt;): Promise&lt;Array&lt;string&gt;&gt;
+
+<!--RP1--><!--RP1End-->Grants the save permission for URIs. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| srcFileUris | Array&lt;string&gt; | Yes| [URIs](../../file-management/user-file-uri-intro.md#media-file-uri) of the images or videos to be granted with the permission.<br>**NOTE**: Only image and video URIs are supported.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the URIs granted with the save permission.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 14000011 |  Internal system error |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+async function example() {
+  console.info('grantPhotoAssetsReadPermissionSDemo.');
+
+  try {
+    let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
+    // Obtain the URIs of the images or videos to be granted with the permission.
+    let srcFileUris: Array<string> = [
+      'file://fileUriDemo1' // The URI here is an example only.
+    ];
+    let desFileUris: Array<string> = await phAccessHelper.grantPhotoAssetsReadPermission(srcFileUris);
+    console.info('grantPhotoAssetsReadPermissionsuccess, data is ' + desFileUris);
+  } catch (err) {
+    console.error('grantPhotoAssetsReadPermissionfailed, errCode is ' + err.code + ', errMsg is ' + err.message);
+  }
+}
+```
+
 ## PhotoAsset
 
 Provides APIs for encapsulating file asset attributes.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| uri                       | string                   | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).        |
+| uri                       | string                   | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
 | photoType   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                              |
 | displayName               | string                   | Yes  | No  | File name, including the file name extension, to display.                                |
 
 ### get
 
-get(member: string): MemberType;
+get(member: string): MemberType
 
 Obtains a **PhotoAsset** member parameter.
 
@@ -906,7 +1162,7 @@ Obtains a **PhotoAsset** member parameter.
 
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | Yes   | Name of the member parameter to obtain. Except **uri**, **photoType**, and **displayName**, you need to pass in [PhotoKeys](#photokeys) in **fetchColumns** in **get()**. For example, to obtain the title attribute, set **fetchColumns: ['title']**.|
+| member | string | Yes   | Name of the member parameter to obtain. Except **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'**, you need to pass in [PhotoKeys](#photokeys) in **fetchColumns** in **get()**. For example, to obtain the title attribute, set **fetchColumns: ['title']**.|
 
 **Return value**
 
@@ -920,14 +1176,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401    | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900020     | Invalid argument.         |
 | 14000014     | Member is not a valid PhotoKey.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('photoAssetGetDemo');
@@ -969,14 +1225,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401    | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900020     | Invalid argument.         |
 | 14000014     | Member is not a valid PhotoKey.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('photoAssetSetDemo');
@@ -1004,6 +1260,8 @@ Commits the modification on the file metadata to the database. This API uses an 
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -1018,7 +1276,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401    | if values to commit is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -1027,7 +1285,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('commitModifyDemo');
@@ -1061,6 +1319,8 @@ Commits the modification on the file metadata to the database. This API uses a p
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Return value**
@@ -1075,7 +1335,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401    | if values to commit is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -1084,7 +1344,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('commitModifyDemo');
@@ -1118,6 +1378,7 @@ Opens this file in read-only mode. This API uses an asynchronous callback to ret
 > **NOTE**
 >
 > - This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the media file handle is no longer provided.
+
 > - The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
@@ -1128,7 +1389,7 @@ Opens this file in read-only mode. This API uses an asynchronous callback to ret
 
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor (FD) of the file opened.                           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the file descriptor (FD) of the file opened.                           |
 
 **Error codes**
 
@@ -1136,7 +1397,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1174,6 +1435,7 @@ Opens this file in read-only mode. This API uses a promise to return the result.
 > **NOTE**
 >
 > - This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the media file handle is no longer provided.
+
 > - The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
@@ -1192,7 +1454,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1250,14 +1512,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('closeDemo');
@@ -1314,14 +1576,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('closeDemo');
@@ -1357,7 +1619,7 @@ Obtains the thumbnail of this file. This API uses an asynchronous callback to re
 
 | Name     | Type                                 | Mandatory  | Description              |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the PixelMap of the thumbnail.|
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback used to return the PixelMap of the thumbnail.|
 
 **Error codes**
 
@@ -1365,7 +1627,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1373,7 +1635,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getThumbnailDemo');
@@ -1410,7 +1672,7 @@ Obtains the file thumbnail of the given size. This API uses an asynchronous call
 | Name     | Type                                 | Mandatory  | Description              |
 | -------- | ----------------------------------- | ---- | ---------------- |
 | size     | [image.Size](../apis-image-kit/js-apis-image.md#size) | Yes   | Size of the thumbnail.           |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the PixelMap of the thumbnail.|
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback used to return the PixelMap of the thumbnail.|
 
 **Error codes**
 
@@ -1418,7 +1680,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1426,8 +1688,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image'
+import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
 
 async function example() {
   console.info('getThumbnailDemo');
@@ -1478,7 +1740,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1486,9 +1748,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image'
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('getThumbnailDemo');
@@ -1509,9 +1771,66 @@ async function example() {
 }
 ```
 
+### clone<sup>14+</sup>
+
+clone(title: string): Promise&lt;PhotoAsset&gt;
+
+Clones a media asset. The file name can be set, but the file type cannot be changed.
+**Required permissions**: ohos.permission.WRITE\_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| title| string | Yes   | Title of the cloned asset. It is not allowed to:<br>- Contain the filename extension.<br>- Exceed 255 characters.<br>- Contain any of the following characters: . .. \ / : * ? " ' ` < > \| { } [ ] |
+
+**Return value**
+
+| Type               | Description                   |
+| ------------------- | ----------------------- |
+| Promise&lt;PhotoAsset&gt; | Promise used to return the [PhotoAsset](#photoasset) cloned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID   | Error Message                             |
+| :------- | :-------------------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error. It is recommended to retry and check the logs.Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { systemDateTime } from '@kit.BasicServicesKit';
+
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let title: string = systemDateTime.getTime().toString();
+    let newAsset: photoAccessHelper.PhotoAsset = await photoAsset.clone(title);
+    console.info('get new asset successfully');
+  } catch (error) {
+    console.error(`failed to get new asset. message =  ${error.code}, ${error.message}`);
+  }
+}
+```
+
 ## PhotoViewPicker
 
 Provides APIs for the user to select images and videos. Before using the APIs of **PhotoViewPicker**, you need to create a **PhotoViewPicker** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -1529,13 +1848,15 @@ Starts a **photoPicker** page for the user to select one or more images or video
 
 **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| option | [PhotoSelectOptions](#photoselectoptions) | No  | Options for selecting files. If this parameter is not specified, images and videos are selected by default. A maximum of 50 files can be selected.|
+| option | [PhotoSelectOptions](#photoselectoptions) | No  | Options for selecting files. If this parameter is not specified, up to 50 images and videos are selected by default.|
 
 **Return value**
 
@@ -1549,13 +1870,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900042      | Unknown error.         |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 async function example01() {
   try {
     let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
@@ -1582,6 +1903,8 @@ Starts a **photoPicker** page for the user to select one or more images or video
 
 **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -1589,7 +1912,7 @@ Starts a **photoPicker** page for the user to select one or more images or video
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | option | [PhotoSelectOptions](#photoselectoptions) | Yes  | Options for selecting images or videos.|
-| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback invoked to return information about the images or videos selected.|
+| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback used to return information about the images or videos selected.|
 
 **Error codes**
 
@@ -1597,13 +1920,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900042      | Unknown error.         |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 async function example02() {
   try {
     let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
@@ -1632,13 +1955,15 @@ Starts a **photoPicker** page for the user to select one or more images or video
 
 **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback invoked to return information about the images or videos selected.|
+| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback used to return information about the images or videos selected.|
 
 **Error codes**
 
@@ -1646,13 +1971,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900042      | Unknown error.         |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 async function example03() {
   try {
     let photoPicker = new photoAccessHelper.PhotoViewPicker();
@@ -1694,14 +2019,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getCountDemo');
@@ -1736,14 +2061,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1777,14 +2102,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('fetchResultCloseDemo');
@@ -1815,7 +2140,7 @@ Obtains the first file asset in the result set. This API uses an asynchronous ca
 
 | Name  | Type                                         | Mandatory| Description                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------- |
-| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the first file asset obtained.|
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback used to return the first file asset obtained.|
 
 **Error codes**
 
@@ -1823,14 +2148,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getFirstObjectDemo');
@@ -1870,14 +2195,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getFirstObjectDemo');
@@ -1905,7 +2230,7 @@ Before using this API, you must use [isAfterLast()](#isafterlast) to check wheth
 
 | Name   | Type                                         | Mandatory| Description                                     |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the next file asset.|
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback used to return the next file asset.|
 
 **Error codes**
 
@@ -1913,14 +2238,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getNextObjectDemo');
@@ -1964,14 +2289,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getNextObjectDemo');
@@ -2001,7 +2326,7 @@ Obtains the last file asset in the result set. This API uses an asynchronous cal
 
 | Name  | Type                                         | Mandatory| Description                       |
 | -------- | --------------------------------------------- | ---- | --------------------------- |
-| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the last file asset obtained.|
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback used to return the last file asset obtained.|
 
 **Error codes**
 
@@ -2009,14 +2334,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getLastObjectDemo');
@@ -2056,14 +2381,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getLastObjectDemo');
@@ -2091,7 +2416,7 @@ Obtains a file asset with the specified index in the result set. This API uses a
 | Name      | Type                                      | Mandatory  | Description                |
 | -------- | ---------------------------------------- | ---- | ------------------ |
 | index    | number                                   | Yes   | Index of the file asset to obtain. The value starts from **0**.    |
-| callback | AsyncCallback&lt;T&gt; | Yes   | Callback invoked to return the file asset obtained.|
+| callback | AsyncCallback&lt;T&gt; | Yes   | Callback used to return the file asset obtained.|
 
 **Error codes**
 
@@ -2099,14 +2424,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getObjectByPositionDemo');
@@ -2152,14 +2477,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getObjectByPositionDemo');
@@ -2186,7 +2511,7 @@ Obtains all the file assets in the result set. This API uses an asynchronous cal
 
 | Name  | Type                                         | Mandatory| Description                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;T&gt;&gt; | Yes  | Callback invoked to return an array of all file assets in the result set.|
+| callback | AsyncCallback&lt;Array&lt;T&gt;&gt; | Yes  | Callback used to return an array of all file assets in the result set.|
 
 **Error codes**
 
@@ -2194,14 +2519,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getAllObjectDemo');
@@ -2241,14 +2566,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getAllObjectDemo');
@@ -2267,14 +2592,14 @@ async function example() {
 
 Provides APIs to manage albums.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name          | Type   | Readable  | Writable | Description  |
 | ------------ | ------ | ---- | ---- | ------- |
-| albumType | [AlbumType]( #albumtype) | Yes   | No   | Type of the album.   |
-| albumSubtype | [AlbumSubtype]( #albumsubtype) | Yes   | No  | Subtype of the album.   |
+| albumType | [AlbumType](#albumtype) | Yes   | No   | Type of the album.   |
+| albumSubtype | [AlbumSubtype](#albumsubtype) | Yes   | No  | Subtype of the album.   |
 | albumName | string | Yes   | Yes for a user album; no for a system album.  | Name of the album.   |
 | albumUri | string | Yes   | No   | URI of the album.  |
 | count | number | Yes   | No   |  Number of files in the album.|
@@ -2296,8 +2621,8 @@ Obtains image and video assets. This API uses an asynchronous callback to return
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the albums.|
-| callback | AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Yes  | Callback invoked to return the image and video assets obtained.|
+| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the assets.|
+| callback | AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Yes  | Callback used to return the image and video assets obtained.|
 
 **Error codes**
 
@@ -2305,7 +2630,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -2313,7 +2638,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('albumGetAssetsDemoCallback');
@@ -2352,7 +2677,7 @@ Obtains image and video assets. This API uses a promise to return the result.
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the album files.|
+| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the assets.|
 
 **Return value**
 
@@ -2366,7 +2691,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -2374,8 +2699,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('albumGetAssetsDemoPromise');
@@ -2420,7 +2745,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -2428,7 +2753,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('albumCommitModifyDemo');
@@ -2472,7 +2797,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -2480,8 +2805,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('albumCommitModifyDemo');
@@ -2528,7 +2853,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -2536,7 +2861,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2595,7 +2920,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -2603,8 +2928,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   try {
@@ -2656,7 +2981,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -2664,7 +2989,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2723,7 +3048,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -2731,8 +3056,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   try {
@@ -2769,6 +3094,8 @@ constructor(asset: PhotoAsset)
 
 Constructor.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -2783,13 +3110,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.          |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('MediaAssetChangeRequest constructorDemo');
@@ -2812,6 +3139,8 @@ Creates an image asset change request.
 
 Use **fileUri** to specify the data source of the asset to be created. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md).
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -2833,7 +3162,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900002   | No such file.         |
 | 14000011   | System inner fail.        |
 
@@ -2883,7 +3212,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900002   | No such file.         |
 | 14000011   | System inner fail.        |
 
@@ -2910,6 +3239,8 @@ static createAssetRequest(context: Context, photoType: PhotoType, extension: str
 
 Create an asset change request based on the file type and filename extension.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -2933,7 +3264,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -2989,13 +3320,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied.         |
-| 401      |  if parameter is invalid.   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011 |  System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('deleteAssetsDemo');
@@ -3045,14 +3376,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied.         |
-| 401      |  if parameter is invalid.   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000002 |  Invalid asset uri.         |
 | 14000011 |  System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('deleteAssetsDemo');
@@ -3080,6 +3411,8 @@ Obtains the asset in this asset change request.
 
 > **NOTE**<br>For the change request used to create an asset, this API returns **null** before [applyChanges](#applychanges11) is called to apply the changes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Return value**
@@ -3094,7 +3427,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.   |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14000011 |  System inner fail.         |
 
 **Example**
@@ -3121,18 +3454,16 @@ setTitle(title: string): void
 
 Sets the media asset title.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| title | string | Yes  | Title to set.|
+| title | string | Yes  | Title to set. It is not allowed to:<br>- Contain the filename extension.<br>- Exceed 255 characters.<br>- Contain any of the following characters:. .. \ / : * ? " ' ` < > | { } [ ] |
 
-Note that the title cannot:
-- Contain the filename extension.
-- Exceed 255 characters.
-- Contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **Error codes**
 
@@ -3140,14 +3471,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('setTitleDemo');
@@ -3173,13 +3504,13 @@ async function example() {
 
 getWriteCacheHandler(): Promise&lt;number&gt;
 
-Obtains the write handle of a temporary file.
+Obtains the handler used for writing a file to cache.
 
 > **NOTE**<br>For the same asset change request, this API cannot be repeatedly called after a temporary file write handle is successfully obtained.
 
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Return value**
 
@@ -3194,14 +3525,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
-| 401      |  if parameter is invalid.   |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14000011 |  System inner fail.         |
 | 14000016 |  Operation Not Support.     |
 
 **Example**
 
 ```ts
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 
 async function example() {
   console.info('getWriteCacheHandlerDemo');
@@ -3212,7 +3543,7 @@ async function example() {
     let fd: number = await assetChangeRequest.getWriteCacheHandler();
     console.info('getWriteCacheHandler successfully');
     // write date into fd
-    await fs.close(fd);
+    await fileIo.close(fd);
     await phAccessHelper.applyChanges(assetChangeRequest);
   } catch (err) {
     console.error(`getWriteCacheHandlerDemo failed with error: ${err.code}, ${err.message}`);
@@ -3224,9 +3555,11 @@ async function example() {
 
 addResource(type: ResourceType, fileUri: string): void
 
-Adds resources to the application sandbox directory using **fileUri**.
+Adds a resource using **fileUri**.
 
-> **NOTE**<br>For the same asset change request, this API cannot be repeatedly called after resources are successfully added.
+> **NOTE**<br>For the same asset change request, this API cannot be repeatedly called after the resource is successfully added. For a moving photo, you can call this API twice to add the image and video resources.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3243,7 +3576,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900002      |  No such file.   |
 | 14000011 |  System inner fail.         |
 | 14000016 |  Operation Not Support.     |
@@ -3272,9 +3605,11 @@ async function example() {
 
 addResource(type: ResourceType, data: ArrayBuffer): void
 
-Adds resources using **ArrayBuffer** data.
+Adds a resource using **ArrayBuffer** data.
 
-> **NOTE**<br>For the same asset change request, this API cannot be repeatedly called after resources are successfully added.
+> **NOTE**<br>For the same asset change request, this API cannot be repeatedly called after the resource is successfully added. For a moving photo, you can call this API twice to add the image and video resources.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3291,7 +3626,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011 |  System inner fail.         |
 | 14000016 |  Operation Not Support.     |
 
@@ -3311,6 +3646,163 @@ async function example() {
   } catch (err) {
     console.error(`addResourceByArrayBufferDemo failed with error: ${err.code}, ${err.message}`);
   }
+}
+```
+
+### saveCameraPhoto<sup>12+</sup>
+
+saveCameraPhoto(): void
+
+Saves the photo taken by the camera.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 14000011 |  System inner fail.         |
+| 14000016 |  Operation Not Support.         |
+
+**Example**
+
+```ts
+async function example(asset: photoAccessHelper.PhotoAsset) {
+  console.info('saveCameraPhotoDemo');
+  try {
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    assetChangeRequest.saveCameraPhoto();
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply saveCameraPhoto successfully');
+  } catch (err) {
+    console.error(`apply saveCameraPhoto failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### saveCameraPhoto<sup>13+</sup>
+
+saveCameraPhoto(imageFileType: ImageFileType): void
+
+Saves the photo taken by the camera.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| imageFileType | [ImageFileType](#imagefiletype13)  | Yes  | File type of the photo to save.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 14000011 |  System inner fail.         |
+| 14000016 |  Operation Not Support.         |
+
+**Example**
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { image } from '@kit.ImageKit';
+
+async function example(asset: photoAccessHelper.PhotoAsset) {
+  console.info('saveCameraPhotoDemo');
+  try {
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    assetChangeRequest.saveCameraPhoto(photoAccessHelper.ImageFileType.JPEG);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply saveCameraPhoto successfully');
+  } catch (err) {
+    console.error(`apply saveCameraPhoto failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### discardCameraPhoto<sup>12+</sup>
+
+discardCameraPhoto(): void
+
+Discards the photo taken by the camera.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 14000011 |  Internal system error.         |
+| 14000016 |  Operation Not Support.         |
+
+**Example**
+
+```ts
+async function example(asset: photoAccessHelper.PhotoAsset) {
+  console.info('discardCameraPhotoDemo');
+  try {
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    assetChangeRequest.discardCameraPhoto();
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply discardCameraPhoto successfully');
+  } catch (err) {
+    console.error(`apply discardCameraPhoto failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### setOrientation<sup>13+</sup>
+
+setOrientation(orientation: number): void
+
+Sets the orientation of this image.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| orientation | number | Yes  | Rotation angle of the image to set. The value can only be **0**, **90**, **180**, or **270**.|
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function example() {
+  console.info('setOrientationDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  assetChangeRequest.setOrientation(90);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setOrientation successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`apply setOrientation failed with error: ${err.code}, ${err.message}`);
+  });
 }
 ```
 
@@ -3340,13 +3832,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.          |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('MediaAlbumChangeRequest constructorDemo');
@@ -3383,7 +3875,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.   |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14000011 |  System inner fail.         |
 
 **Example**
@@ -3392,11 +3884,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 async function example() {
   console.info('getAlbumDemo');
   try {
-    let albumName: string = 'newAlbumName' + new Date().getTime();
-    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(context, albumName);
-    await phAccessHelper.applyChanges(albumChangeRequest);
-    let album: photoAccessHelper.Album = albumChangeRequest.getAlbum();
-    console.info('create album successfully with uri = ' + album.albumUri);
+    // Ensure that the user album exists in the gallery.
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    let changeRequestAlbum: photoAccessHelper.Album = albumChangeRequest.getAlbum();
+    console.info('change request album uri: ' + changeRequestAlbum.albumUri);
   } catch (err) {
     console.error(`getAlbumDemo failed with error: ${err.code}, ${err.message}`);
   }
@@ -3409,10 +3902,10 @@ setAlbumName(name: string): void
 
 Sets the album name.
 
-The album name must comply with the following specifications:
-- The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
-- The album name is case-insensitive.
+The album name must comply with the following:
+- It cannot exceed 255 characters.
+- It cannot contain any of the following characters:. .. \ / : * ? " ' ` < > | { } [ ]
+- It is case-insensitive.
 - Duplicate album names are not allowed.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -3429,7 +3922,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -3471,14 +3964,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 | 14000016 |  Operation Not Support.     |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('addAssetsDemo');
@@ -3488,10 +3981,12 @@ async function example() {
     predicates: predicates
   };
   try {
+    // Ensure that user albums and photos exist in Gallery.
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    let albumName: string = 'newAlbumName' + new Date().getTime();
-    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(context, albumName);
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
     albumChangeRequest.addAssets([asset]);
     await phAccessHelper.applyChanges(albumChangeRequest);
     console.info('addAssets successfully');
@@ -3521,14 +4016,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 | 14000016 |  Operation Not Support.     |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('removeAssetsDemo');
@@ -3555,6 +4050,10 @@ async function example() {
 
 ## MediaAssetManager<sup>11+</sup>
 
+A media asset manager class, used for manipulating the read and write operations of media assets.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
 ### requestImage<sup>11+</sup>
 
 static requestImage(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, dataHandler: MediaAssetDataHandler&lt;image.ImageSource&gt;): Promise&lt;string&gt;
@@ -3565,14 +4064,23 @@ Requests an image.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
+- If the caller does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to access the file and then call this API based on the URI obtained by Picker. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
+- For the media assets saved to the media library by this application, the application can access them without the ohos.permission.READ_IMAGEVIDEO permission.
+
 **Parameters**
 
 | Name           | Type                                                                                                       | Mandatory| Description                     |
 |----------------|-----------------------------------------------------------------------------------------------------------| ---- | ------------------------- |
 | context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                                                           | Yes  | Context of the ability instance.|
 | asset         | [PhotoAsset](#photoasset)                                                                                | Yes  | Image to request.|
-| requestOptions | [RequestOptions](#requestoptions11)                                                                        | Yes  | Options for requesting the image.      
-| dataHandler    | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;[image.ImageSource](../apis-image-kit/js-apis-image.md#imagesource)&gt; | Yes  | Media asset handler, which invokes a callback to return the image when the requested image is ready.
+| requestOptions | [RequestOptions](#requestoptions11)                                                                        | Yes  | Options for requesting the image.|       
+| dataHandler    | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;[image.ImageSource](../apis-image-kit/js-apis-image.md#imagesource)&gt; | Yes  | Media asset handler, which invokes a callback to return the image when the requested image is ready.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise\<string> | Promise used to return the request ID, which can be used in [cancelRequest](#cancelrequest12) to cancel a request.|
 
 **Error codes**
 
@@ -3581,19 +4089,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image'
+import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
 
 class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
-    onDataPrepared(data: image.ImageSource) {
-        console.info('on image data prepared');
+  onDataPrepared(data: image.ImageSource) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
     }
+    console.info('on image data prepared');
+  }
 }
 
 async function example() {
@@ -3605,7 +4117,6 @@ async function example() {
   };
   let requestOptions: photoAccessHelper.RequestOptions = {
     deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
-    sourceMode: photoAccessHelper.SourceMode.ORIGINAL_MODE
   }
   const handler = new MediaHandler();
 
@@ -3628,14 +4139,23 @@ Requests an image.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
+- If the caller does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to access the file and then call this API based on the URI obtained by Picker. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
+- For the media assets saved to the media library by this application, the application can access them without the ohos.permission.READ_IMAGEVIDEO permission.
+
 **Parameters**
 
 | Name  | Type                                                                  | Mandatory| Description                     |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | Yes  | Context of the ability instance.|
 | asset | [PhotoAsset](#photoasset)                                            | Yes  | Image to request.|
-| requestOptions  | [RequestOptions](#requestoptions11)                                  | Yes  | Options for requesting the image.      
-| dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;ArrayBuffer&gt; | Yes  | Media asset handler, which invokes a callback to return the image when the requested image is ready.
+| requestOptions  | [RequestOptions](#requestoptions11)                                  | Yes  | Options for requesting the image.|      
+| dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;ArrayBuffer&gt; | Yes  | Media asset handler, which invokes a callback to return the image when the requested image is ready.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise\<string> | Promise used to return the request ID, which can be used in [cancelRequest](#cancelrequest12) to cancel a request.|
 
 **Error codes**
 
@@ -3644,17 +4164,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
-    onDataPrepared(data: ArrayBuffer) {
-        console.info('on image data prepared');
+  onDataPrepared(data: ArrayBuffer) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
     }
+    console.info('on image data prepared');
+  }
 }
 
 async function example() {
@@ -3666,7 +4190,6 @@ async function example() {
   };
   let requestOptions: photoAccessHelper.RequestOptions = {
     deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
-    sourceMode: photoAccessHelper.SourceMode.ORIGINAL_MODE
   }
   const handler = new MediaDataHandler();
 
@@ -3679,6 +4202,322 @@ async function example() {
 }
 ```
 
+### requestMovingPhoto<sup>12+</sup>
+
+static requestMovingPhoto(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, dataHandler: MediaAssetDataHandler&lt;MovingPhoto&gt;): Promise&lt;string&gt;
+
+Requests a moving photo object, which can be used to request the asset data of the moving photo.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+- If the caller does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to access the file and then call this API based on the URI obtained by Picker. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
+- For the moving photos saved to the media library by this application, the application can access them without the ohos.permission.READ_IMAGEVIDEO permission.
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | Yes  | Context of the ability instance.|
+| asset | [PhotoAsset](#photoasset)                                            | Yes  | Image to request.|
+| requestOptions  | [RequestOptions](#requestoptions11)                                  | Yes  | Options for requesting the image.|       
+| dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;[MovingPhoto](#movingphoto12)&gt; | Yes  | Media asset handler, which invokes a callback to return the image when the requested image is ready.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise\<string> | Promise used to return the request ID, which can be used in [cancelRequest](#cancelrequest12) to cancel a request.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | System inner fail         |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
+  async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
+    if (movingPhoto === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
+    console.info("moving photo acquired successfully, uri: " + movingPhoto.getUri());
+  }
+}
+
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_SUBTYPE, photoAccessHelper.PhotoSubtype.MOVING_PHOTO);
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  // Ensure that there are moving photos in Gallery.
+  let assetResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let asset: photoAccessHelper.PhotoAsset = await assetResult.getFirstObject();
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
+  }
+  const handler = new MovingPhotoHandler();
+  try {
+    let requestId: string = await photoAccessHelper.MediaAssetManager.requestMovingPhoto(context, asset, requestOptions, handler);
+    console.info("moving photo requested successfully, requestId: " + requestId);
+  } catch (err) {
+    console.error(`failed to request moving photo, error code is ${err.code}, message is ${err.message}`);
+  }
+}
+
+```
+
+### requestVideoFile<sup>12+</sup>
+
+static requestVideoFile(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, fileUri: string, dataHandler: MediaAssetDataHandler&lt;boolean&gt;): Promise&lt;string&gt;
+
+Requests a video and saves it to the specified sandbox directory.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+- If the caller does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to access the file and then call this API based on the URI obtained by Picker. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
+- For the videos saved to the media library by this application, the application can access them without the ohos.permission.READ_IMAGEVIDEO permission.
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | Yes  | Context of the ability instance.|
+| asset | [PhotoAsset](#photoasset)                                            | Yes  | Image to request.|
+| requestOptions  | [RequestOptions](#requestoptions11)                                  | Yes  | Options for requesting the video asset.|
+| fileUri| string                                                              | Yes| URI of the sandbox directory, to which the requested video asset is to be saved.|
+| dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;boolean&gt; | Yes  | Media asset handler. When the requested video is written to the specified directory, a callback is triggered.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise\<string> | Promise used to return the request ID, which can be used in [cancelRequest](#cancelrequest12) to cancel a request.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<boolean> {
+    onDataPrepared(data: boolean) {
+        console.info('on video request status prepared');
+    }
+}
+
+async function example() {
+  console.info('requestVideoFile');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+  }
+  const handler = new MediaDataHandler();
+  let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4';
+  phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
+      console.info('fetchResult success');
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+      await photoAccessHelper.MediaAssetManager.requestVideoFile(context, photoAsset, requestOptions, fileUri, handler);
+      console.info('requestVideoFile successfully');
+  });
+}
+```
+
+### cancelRequest<sup>12+</sup>
+
+static cancelRequest(context: Context, requestId: string): Promise\<void>
+
+Cancels a request for the asset, the callback of which has not been triggered yet.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | Yes  | Context of the ability instance.|
+| requestId | string     | Yes  | ID of the request to cancel.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | System inner fail         |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  try {
+    let requestId: string = 'xxx-xxx'; // A valid requestId returned by APIs such as requestImage() must be used.
+    await photoAccessHelper.MediaAssetManager.cancelRequest(context, requestId);
+    console.info("request cancelled successfully");
+  } catch (err) {
+    console.error(`cancelRequest failed with error: ${err.code}, ${err.message}`);
+  }
+}
+
+```
+
+### loadMovingPhoto<sup>12+</sup>
+
+static loadMovingPhoto(context: Context, imageFileUri: string, videoFileUri: string): Promise\<MovingPhoto>
+
+Loads a moving photo in the application sandbox.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | Yes  | **AbilityContext** or **UIExtensionContext** instance.|
+| imageFileUri | string     | Yes  | URI of the image file of the moving photo in the application sandbox.|
+| videoFileUri | string     | Yes  | URI of the video file of the moving photo in the application sandbox.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise\<MovingPhoto> | Promise used to return a [MovingPhoto](#movingphoto12) instance.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error. |
+
+**Example**
+
+```ts
+async function example() {
+  try {
+    let imageFileUri: string = 'file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg'; // URI of the image file of the moving photo in the application sandbox.
+    let videoFileUri: string = 'file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4'; // URI of the video file of the moving photo in the application sandbox.
+    let movingPhoto: photoAccessHelper.MovingPhoto = await photoAccessHelper.MediaAssetManager.loadMovingPhoto(context, imageFileUri, videoFileUri);
+  } catch (err) {
+    console.error(`loadMovingPhoto failed with error: ${err.code}, ${err.message}`);
+  }
+}
+
+```
+
+### quickRequestImage<sup>13+</sup>
+
+static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, dataHandler: QuickImageDataHandler&lt;image.Picture&gt;): Promise&lt;string&gt;
+
+Requests an image quickly.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+If the caller does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to access the file and then call this API based on the URI obtained by Picker. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
+
+**Parameters**
+
+| Name           | Type                                                                                                       | Mandatory| Description                     |
+|----------------|-----------------------------------------------------------------------------------------------------------| ---- | ------------------------- |
+| context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                                                           | Yes  | Context of the ability instance.|
+| asset         | [PhotoAsset](#photoasset)                                                                                | Yes  | Image to request.|
+| requestOptions | [RequestOptions](#requestoptions11)                                                                        | Yes  | Options for requesting the image.|
+| dataHandler    | [QuickImageDataHandler](#quickimagedatahandler13)&lt;[image.Picture](../apis-image-kit/js-apis-image.md#picture13)&gt; | Yes  | Media asset handler, which invokes a callback to return the image when the requested image is ready.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise\<string> | Promise used to return the request ID, which can be used in [cancelRequest](#cancelrequest12) to cancel a request.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**Example**
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { image } from '@kit.ImageKit';
+
+class MediaHandler implements photoAccessHelper.QuickImageDataHandler<image.Picture> {
+  onDataPrepared(data: image.Picture, imageSource: image.ImageSource, map: Map<string, string>) {
+    console.info('on image data prepared');
+  }
+}
+
+async function example() {
+  console.info('quickRequestImage');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+  }
+  const handler = new MediaHandler();
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
+      console.info('fetchResult success');
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+      await photoAccessHelper.MediaAssetManager.quickRequestImage(context, photoAsset, requestOptions, handler);
+      console.info('quickRequestImage successfully');
+  });
+}
+```
+
 ## MediaAssetDataHandler<sup>11+</sup>
 
 Media asset handler, which can be used to customize the media asset processing logic in **onDataPrepared**.
@@ -3687,10 +4526,15 @@ Media asset handler, which can be used to customize the media asset processing l
 
 ### onDataPrepared<sup>11+</sup>
 
-onDataPrepared(data: T): void
+onDataPrepared(data: T, map?: Map<string, string>): void
 
-Called when the requested image is ready.
-**T** supports two data types: ArrayBuffer and [ImageSource](../apis-image-kit/js-apis-image.md#imagesource).
+Called when the requested media asset is ready. If an error occurs, **data** returned by the callback is **undefined**. Each media asset request corresponds to a callback.
+T supports the following data types: ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12), and boolean. ArrayBuffer indicates the image/video asset data, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource) indicates the image source, [MovingPhoto](#movingphoto12) indicates a moving photo object, and boolean indicates whether the image/video is successfully written to the application sandbox directory.
+
+Information returned by **map**:
+| Map Key | **Description**|
+|----------|-------|
+| 'quality'  | Image quality. The value **high** means high quality, and **low** means poor quality.|
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3698,42 +4542,425 @@ Called when the requested image is ready.
 
 | Name | Type| Mandatory| Description                                                                           |
 |------|---| ---- |-------------------------------------------------------------------------------|
-| data | T | Yes  | Data of the ArrayBuffer or [ImageSource](../apis-image-kit/js-apis-image.md#imagesource) type.|
+| data | T | Yes  | Data of the image asset that is ready. The value supports the following types: ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12), and boolean.|
+| map<sup>12+</sup> | Map<string, string> | No  | Additional information about the image asset, such as the image quality.|
 
 **Example**
 ```ts
-import image from '@ohos.multimedia.image'
+import { image } from '@kit.ImageKit';
 
 class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
-  onDataPrepared(data: image.ImageSource) {
+  onDataPrepared(data: image.ImageSource, map: Map<string, string>) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
     // Customize the processing logic for ImageSource.
-    console.info('on image data prepared');
+    console.info('on image data prepared, photo quality is ' + map['quality']);
   }
 }
 
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
-  onDataPrepared(data: ArrayBuffer) {
-    // Customize the processing logic for ImageSource.
+  onDataPrepared(data: ArrayBuffer, map: Map<string, string>) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
+    // Customize the processing logic for ArrayBuffer.
+    console.info('on image data prepared, photo quality is ' + map['quality']);
+  }
+}
+
+class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
+  onDataPrepared(data: photoAccessHelper.MovingPhoto, map: Map<string, string>) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
+    // Customize the processing logic for MovingPhoto.
+    console.info('on image data prepared, photo quality is ' + map['quality']);
+  }
+}
+```
+
+## QuickImageDataHandler<sup>13+</sup>
+
+Media asset handler, which can be used to customize the media asset processing logic in **onDataPrepared**.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### onDataPrepared<sup>13+</sup>
+
+onDataPrepared(data: T, imageSource: image.ImageSource, map: Map<string, string>): void
+
+Called when the requested image is ready. If an error occurs, **data** returned by the callback is **undefined**.
+**T** supports the Picture data type.
+
+Information returned by **map**:
+| Map Key | **Description**|
+|----------|-------|
+| 'quality'  | Image quality. The value **high** means high quality, and **low** means poor quality.|
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type| Mandatory| Description                                                                           |
+|------|---| ---- |-------------------------------------------------------------------------------|
+| data | T | Yes  | Data of the image asset that is ready. It is of the T type, which supports the [Picture](../apis-image-kit/js-apis-image.md#picture13) type.|
+| imageSource | image.ImageSource | Yes  | Data of the image asset that is ready.|
+| map<sup>13+</sup> | Map<string, string> | Yes  | Additional information about the image asset, such as the image quality.|
+
+**Example**
+```ts
+import { image } from '@kit.ImageKit';
+
+class MediaHandler implements photoAccessHelper.QuickImageDataHandler<image.Picture> {
+  onDataPrepared(data: image.Picture, imageSource: image.ImageSource, map: Map<string, string>) {
     console.info('on image data prepared');
+  }
+}
+```
+
+## MovingPhoto<sup>12+</sup>
+
+Provides APIs for managing a moving photo instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### getUri<sup>12+</sup>
+
+getUri(): string
+
+Obtains the URI of this moving photo.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| string | URI of the moving photo obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14000011 |  System inner fail.         |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
+  async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
+    if (movingPhoto === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
+    console.info("moving photo acquired successfully, uri: " + movingPhoto.getUri());
+  }
+}
+
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_SUBTYPE, photoAccessHelper.PhotoSubtype.MOVING_PHOTO);
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  // Ensure that there are moving photos in Gallery.
+  let assetResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let asset: photoAccessHelper.PhotoAsset = await assetResult.getFirstObject();
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
+  }
+  const handler = new MovingPhotoHandler();
+  try {
+    let requestId: string = await photoAccessHelper.MediaAssetManager.requestMovingPhoto(context, asset, requestOptions, handler);
+    console.info("moving photo requested successfully, requestId: " + requestId);
+  } catch (err) {
+    console.error(`failed to request moving photo, error code is ${err.code}, message is ${err.message}`);
+  }
+}
+```
+
+### requestContent<sup>12+</sup>
+
+requestContent(imageFileUri: string, videoFileUri: string): Promise\<void>
+
+Requests the image data and video data of this moving photo and writes them to the specified URIs, respectively.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+- If the application does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to call this API to request a moving photo object and read the content. For details, see [Accessing and Managing Moving Photos](../../media/medialibrary/photoAccessHelper-movingphoto.md).
+- For the moving photos saved to the media library by this application, the application can access them without the ohos.permission.READ_IMAGEVIDEO permission.
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| imageFileUri | string                      | Yes  | URI to which the image data of the moving photo is to be written.|
+| videoFileUri | string                                            | Yes  | URI to which the video data of the moving photo is to be written.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 |  System inner fail         |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
+  async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
+    if (movingPhoto === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
+    // The URIs must be valid.
+    let imageFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg";
+    let videoFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4";
+    try {
+      await movingPhoto.requestContent(imageFileUri, videoFileUri);
+      console.log("moving photo contents retrieved successfully");
+    } catch (err) {
+      console.error(`failed to retrieve contents of moving photo, error code is ${err.code}, message is ${err.message}`);
+    }
+  }
+}
+
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_SUBTYPE, photoAccessHelper.PhotoSubtype.MOVING_PHOTO);
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  // Ensure that there are moving photos in Gallery.
+  let assetResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let asset: photoAccessHelper.PhotoAsset = await assetResult.getFirstObject();
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
+  }
+  const handler = new MovingPhotoHandler();
+  try {
+    let requestId: string = await photoAccessHelper.MediaAssetManager.requestMovingPhoto(context, asset, requestOptions, handler);
+    console.info("moving photo requested successfully, requestId: " + requestId);
+  } catch (err) {
+    console.error(`failed to request moving photo, error code is ${err.code}, message is ${err.message}`);
+  }
+}
+```
+
+### requestContent<sup>12+</sup>
+
+requestContent(resourceType: ResourceType, fileUri: string): Promise\<void>
+
+Requests the moving photo content of the specified resource type and writes it to the specified URI.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+- If the application does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to call this API to request a moving photo object and read the content. For details, see [Accessing and Managing Moving Photos](../../media/medialibrary/photoAccessHelper-movingphoto.md).
+- For the moving photos saved to the media library by this application, the application can access them without the ohos.permission.READ_IMAGEVIDEO permission.
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| resourceType | [ResourceType](#resourcetype11)                      | Yes  | Resource type of the moving photo content to request.|
+| fileUri | string                                                    | Yes  |URI to which the moving photo content is to be written.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 |  System inner fail         |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
+  async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
+    if (movingPhoto === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
+    // The URIs must be valid.
+    let imageFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg";
+    try {
+      await movingPhoto.requestContent(photoAccessHelper.ResourceType.IMAGE_RESOURCE, imageFileUri);
+      console.log("moving photo image content retrieved successfully");
+    } catch (err) {
+      console.error(`failed to retrieve image content of moving photo, error code is ${err.code}, message is ${err.message}`);
+    }
+  }
+}
+
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_SUBTYPE, photoAccessHelper.PhotoSubtype.MOVING_PHOTO);
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  // Ensure that there are moving photos in Gallery.
+  let assetResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let asset: photoAccessHelper.PhotoAsset = await assetResult.getFirstObject();
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
+  }
+  const handler = new MovingPhotoHandler();
+  try {
+    let requestId: string = await photoAccessHelper.MediaAssetManager.requestMovingPhoto(context, asset, requestOptions, handler);
+    console.info("moving photo requested successfully, requestId: " + requestId);
+  } catch (err) {
+    console.error(`failed to request moving photo, error code is ${err.code}, message is ${err.message}`);
+  }
+}
+```
+
+### requestContent<sup>12+</sup>
+
+requestContent(resourceType: ResourceType): Promise\<ArrayBuffer>
+
+Requests the moving photo content of the specified resource type and returns it in ArrayBuffer format.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+- If the application does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to call this API to request a moving photo object and read the content. For details, see [Accessing and Managing Moving Photos](../../media/medialibrary/photoAccessHelper-movingphoto.md).
+- For the moving photos saved to the media library by this application, the application can access them without the ohos.permission.READ_IMAGEVIDEO permission.
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| resourceType | [ResourceType](#resourcetype11)                      | Yes  | Resource type of the moving photo content to request.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise\<ArrayBuffer> | Promise used to return the requested content in an ArrayBuffer.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 |  System inner fail         |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
+  async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
+    if (movingPhoto === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
+    try {
+      let buffer: ArrayBuffer = await movingPhoto.requestContent(photoAccessHelper.ResourceType.IMAGE_RESOURCE);
+      console.log("moving photo image content retrieved successfully, buffer length: " + buffer.byteLength);
+    } catch (err) {
+      console.error(`failed to retrieve image content of moving photo, error code is ${err.code}, message is ${err.message}`);
+    }
+  }
+}
+
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_SUBTYPE, photoAccessHelper.PhotoSubtype.MOVING_PHOTO);
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  // Ensure that there are moving photos in Gallery.
+  let assetResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let asset: photoAccessHelper.PhotoAsset = await assetResult.getFirstObject();
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
+  }
+  const handler = new MovingPhotoHandler();
+  try {
+    let requestId: string = await photoAccessHelper.MediaAssetManager.requestMovingPhoto(context, asset, requestOptions, handler);
+    console.info("moving photo requested successfully, requestId: " + requestId);
+  } catch (err) {
+    console.error(`failed to request moving photo, error code is ${err.code}, message is ${err.message}`);
   }
 }
 ```
 
 ## MemberType
 
-Enumerates the member types.
+type MemberType = number | string | boolean
+
+Defines the types of the **PhotoAsset** members.
+
+The member types are the union of the types listed in the following table.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| Name |  Type|  Readable |  Writable |  Description |
-| ----- |  ---- |  ---- |  ---- |  ---- |
-| number |  number | Yes| Yes| The member is a number.|
-| string |  string | Yes| Yes| The member is a string.|
-| boolean |  boolean | Yes| Yes| The member is a Boolean value.|
+| Type| Description|
+| ---- | ---- |
+| number | The member value is a number.|
+| string | The member value is a string.|
+| boolean | The member value is true or false.|
 
 ## PhotoType
 
 Enumerates media file types.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3741,6 +4968,31 @@ Enumerates media file types.
 | ----- |  ---- |  ---- |
 | IMAGE |  1 |  Image.|
 | VIDEO |  2 |  Video.|
+
+## PhotoSubtype<sup>12+</sup>
+
+Enumerates the [PhotoAsset](#photoasset) types.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| DEFAULT |  0 |  Photo, which is the default type.|
+| MOVING_PHOTO |  3 |  Moving photo.|
+| BURST |  4 |  Burst photo.|
+
+## DynamicRangeType<sup>12+</sup>
+
+Enumerates the formats for displaying media assets.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| SDR |  0 |  Standard dynamic range (SDR).|
+| HDR |  1 |  High dynamic range (HDR). |
 
 ## AlbumType
 
@@ -3764,6 +5016,7 @@ Enumerate the album subtypes.
 | USER\_GENERIC                     | 1          | User album.                          |
 | FAVORITE                          | 1025       | Favorites.                           |
 | VIDEO                             | 1026       | Video album.                          |
+| IMAGE<sup>12+</sup>               | 1031       | Photo album.                          |
 | ANY                               | 2147483647 | Any album.                          |
 
 ## PhotoKeys
@@ -3774,19 +5027,29 @@ Defines the key information about an image or video file.
 
 | Name         | Value             | Description                                                      |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| URI           | 'uri'                 | URI of the file.                                                  |
+| URI           | 'uri'                 | URI of the file.<br>**NOTE**: Only the [DataSharePredicates.equalTo](../apis-arkdata/js-apis-data-dataSharePredicates.md#equalto10) predicate can be used for this field during photo query.           |
 | PHOTO_TYPE    | 'media_type'           | Type of the file.                                             |
 | DISPLAY_NAME  | 'display_name'        | File name displayed.                                                  |
-| SIZE          | 'size'                | File size.                                                  |
+| SIZE          | 'size'                | File size, in bytes.                                                  |
 | DATE_ADDED    | 'date_added'          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).            |
 | DATE_MODIFIED | 'date_modified'       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
 | DURATION      | 'duration'            | Duration, in ms.                                   |
 | WIDTH         | 'width'               | Image width, in pixels.                                   |
 | HEIGHT        | 'height'              | Image height, in pixels.                                     |
 | DATE_TAKEN    | 'date_taken'          | Date when the file (photo) was taken. The value is the number of seconds elapsed since the Epoch time.               |
-| ORIENTATION   | 'orientation'         | Orientation of the image file.                                            |
+| ORIENTATION   | 'orientation'         | Orientation of the file, in degrees.                                            |
 | FAVORITE      | 'is_favorite'            | Whether the file is added to favorites.                                                   |
 | TITLE         | 'title'               | Title in the file.                                                  |
+| DATE_ADDED_MS<sup>12+</sup>  | 'date_added_ms'          | Date when the file was added. The value is the number of milliseconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).<br>**NOTE**: The photos queried cannot be sorted based on this field. |
+| DATE_MODIFIED_MS<sup>12+</sup>  | 'date_modified_ms'    | Date when the album file content (not the album name) was last modified. The value is the number of milliseconds elapsed since the Epoch time.<br>**NOTE**: The photos queried cannot be sorted based on this field.|
+| PHOTO_SUBTYPE<sup>12+</sup>   | 'subtype'               | Subtype of the media file.                                                  |
+| DYNAMIC_RANGE_TYPE<sup>12+</sup>   | 'dynamic_range_type'               | Dynamic range type of the media asset.                                                 |
+| COVER_POSITION<sup>12+</sup>   | 'cover_position'               | Position of the moving photo cover, which is the video timestamp (in μs) corresponding to the cover frame.|
+| BURST_KEY<sup>12+</sup>   | 'burst_key'               | Unique ID of a group of burst photos.|
+| LCD_SIZE<sup>12+</sup>  | 'lcd_size'  | Width and height of an LCD image, in the format of a **width:height** string.|
+| THM_SIZE<sup>12+</sup>  | 'thm_size'  | Width and height of a thumbnail image, in the format of a **width:height** string.|
+| DETAIL_TIME<sup>13+</sup>  | 'detail_time'  | Detailed time. The value is a string of time when the image or video was taken in the time zone and does not change with the time zone.|
+| DATE_TAKEN_MS<sup>13+</sup>  | 'date_taken_ms'  | Date when the image/video was taken. The value is the number of milliseconds elapsed since the Epoch time.|
 
 ## AlbumKeys
 
@@ -3803,16 +5066,19 @@ Enumerates the key album attributes.
 
 Options for creating an image or video asset.
 
-Note that the title cannot:
+The title is not allowed to:
 - Contain the filename extension.
 - Exceed 255 characters.
 - Contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| title           | string | No | Title of the image or video. |
+| title                  | string                          | No | Title of the image or video. |
+| subtype<sup>12+</sup>  | [PhotoSubtype](#photosubtype12) | No | Subtype of the image or video file.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 
 ## FetchOptions
@@ -3823,7 +5089,7 @@ Defines the options for fetching media files.
 
 | Name                  | Type               | Readable| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns. If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object. Example:<br>fetchColumns: ['uri', 'title']|
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Names of the columns specified for query.<br>If this parameter is left blank for photos, photos are fetched by **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'** by default. An error will be thrown if [get](#get) is used to obtain other attributes of this object. <br>Example: **fetchColumns: ['uri', 'title']**.<br>If this parameter is left blank for albums, albums are fetched by **'uri'** and **'album_name'** by default.|
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Yes  | Predicates that specify the fetch criteria.|
 
 ## RequestOptions<sup>11+</sup>
@@ -3832,15 +5098,11 @@ Represents request options.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| Name                  | Type                             | Readable| Writable| Description                                             |
-| ---------------------- |---------------------------------| ---- |---- | ------------------------------------------------ |
-| deliveryMode           | [DeliveryMode](#deliverymode11) | Yes  | Yes  | Delivery mode of the requested asset, which can be fast mode, high-quality mode, or balance mode.|
-
-## PhotoProxy<sup>11+</sup>
-
-Photo proxy object, which is used by the camera application to write image data.
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+| Name                  | Type                       | Read-Only| Optional| Description                                        |
+| ---------------------- |----------------------------| ---- | ---- | ------------------------------------------- |
+| deliveryMode           | [DeliveryMode](#deliverymode11) | No  | No  | Delivery mode of the requested asset. The value can be **FAST_MODE**, **HIGH_QUALITY_MODE**, or **BALANCE_MODE**.|
+| compatibleMode<sup>13+</sup>      | [CompatibleMode](#compatiblemode13) | No  | Yes  | HDR video transcoding policy, which can be **FAST_ORIGINAL_FORMAT_MODE** (maintaining the original HDR format) or **COMPATIBLE_FORMAT_MODE** (converting HDR content to SDR format).|
+| mediaAssetProgressHandler<sup>13+</sup> | [MediaAssetProgressHandler](#mediaassetprogresshandler13) | No  | Yes  | Callback used to return the HDR-to-SDR conversion progress.|
 
 ## MediaChangeRequest<sup>11+</sup>
 
@@ -3854,12 +5116,25 @@ Media change request, which is the parent class of the asset change request and 
 
 Enumerates the types of the resources to write.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name |  Value|  Description|
 | ----- |  ---- |  ---- |
 | IMAGE_RESOURCE |  1 |  Image resource.|
 | VIDEO_RESOURCE |  2 |  Video resource.|
+
+## ImageFileType<sup>13+</sup>
+
+Enumerates the types of image files to save.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| JPEG  |  1 |  JPEG.|
+| HEIF  |  2 |  HEIF.|
 
 ## ChangeData
 
@@ -3902,17 +5177,22 @@ Enumerates the **DefaultChangeUri** subtypes.
 
 Enumerates the media file types that can be selected.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| Name |  Value|  Description|
-| ----- |  ---- | ---- |
-| IMAGE_TYPE  |  'image/*' | Image.|
-| VIDEO_TYPE |  'video/*' | Video.|
-| IMAGE_VIDEO_TYPE |  '\*/*' | Image and video.|
+| Name                                   |  Value| Description      |
+|---------------------------------------|  ---- |----------|
+| IMAGE_TYPE                            |  'image/*' | Image.   |
+| VIDEO_TYPE                            |  'video/*' | Video.   |
+| IMAGE_VIDEO_TYPE                      |  '\*/*' | Image and video.|
+| MOVING_PHOTO_IMAGE_TYPE<sup>12+</sup> |  'image/movingPhoto' | Moving photo.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 ## RecommendationType<sup>11+</sup>
 
 Enumerates the types of recommended images.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3923,48 +5203,141 @@ Enumerates the types of recommended images.
 | BAR_CODE |  3 | Barcode.|
 | ID_CARD |  4 | ID card.|
 | PROFILE_PICTURE |  5 | Profile.|
+| PASSPORT<sup>12+</sup> |  6 | passport.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| BANK_CARD<sup>12+</sup> |  7 | Bank card.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DRIVER_LICENSE<sup>12+</sup> |  8 | Driver license.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DRIVING_LICENSE<sup>12+</sup> |  9 | Vehicle license<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FEATURED_SINGLE_PORTRAIT<sup>12+</sup> |  10 | Recommended portrait.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+async function example() {
+  try {
+    let recommendOptions: photoAccessHelper.RecommendationOptions = {
+      recommendationType: photoAccessHelper.RecommendationType.ID_CARD
+    }
+    let options: photoAccessHelper.PhotoSelectOptions = {
+      MIMEType: photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE,
+      maxSelectNumber: 1,
+      recommendationOptions: recommendOptions
+    }
+    let photoPicker = new photoAccessHelper.PhotoViewPicker();
+    photoPicker.select(options).then((PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
+      console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
+    }).catch((err: BusinessError) => {
+      console.error(`PhotoViewPicker.select failed with err: ${err.code}, ${err.message}`);
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`PhotoViewPicker failed with err: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+## TextContextInfo<sup>12+</sup>
+
+Represents the text information about the recommended images.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                   | Type               | Mandatory| Description                         |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| text | string   | No  | Text based on which images are recommended. The text cannot exceed 250 simplified Chinese characters.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+async function example() {
+  try {
+    let textInfo: photoAccessHelper.TextContextInfo = {
+      text: 'Pandas at Shanghai Wild Zoo'
+    }
+    let recommendOptions: photoAccessHelper.RecommendationOptions = {
+      textContextInfo: textInfo
+    }
+    let options: photoAccessHelper.PhotoSelectOptions = {
+      MIMEType: photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE,
+      maxSelectNumber: 1,
+      recommendationOptions: recommendOptions
+    }
+    let photoPicker = new photoAccessHelper.PhotoViewPicker();
+    photoPicker.select(options).then((PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
+      console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
+    }).catch((err: BusinessError) => {
+      console.error(`PhotoViewPicker.select failed with err: ${err.code}, ${err.message}`);
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`PhotoViewPicker failed with err: ${err.code}, ${err.message}`);
+  }
+}
+```
 
 ## RecommendationOptions<sup>11+</sup>
 
 Defines the image recommendation options. The image recommendation feature depends on the image data analysis capability, which varies with devices.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| recommendationType | [RecommendationType](#recommendationtype11)   | No  | Type of the recommended image. If this parameter is not specified, images are not recommended by default.|
+| recommendationType | [RecommendationType](#recommendationtype11)   | No  | Type of the recommended image.|
+| textContextInfo<sup>12+</sup> | [TextContextInfo](#textcontextinfo12)   | No  | Text based on which images are recommended. If both **recommendationType** and **textContextInfo** are set, **textContextInfo** takes precedence over **recommendationType**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+
+## BaseSelectOptions<sup>12+</sup>
+
+Defines the basic options for selecting media assets from Gallery.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                   | Type               | Mandatory| Description                         |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| MIMEType<sup>10+</sup>    | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Available media file types. **IMAGE_VIDEO_TYPE** is used by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| maxSelectNumber<sup>10+</sup>      | number | No  | Maximum number of media files that can be selected.<br>Maximum value: **500**<br>Default value: **50**<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| isPhotoTakingSupported<sup>11+</sup> | boolean  | No  | Whether photo taking is supported.<br>The value **true** means photo taking is supported; the value **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| isSearchSupported<sup>11+</sup> | boolean  | No  | Whether the image is searchable.<br>The value **true** means the image is searchable; the value **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | No  | Image recommendation parameters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | No  | URI of the preselected image.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| isPreviewForSingleSelectionSupported<sup>12+</sup> | boolean  | No  | Whether to enable full image preview if a single image is selected.<br>The value **true** means to enable full image preview; the value **false** means the opposite.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## PhotoSelectOptions
 
-Defines the options for selecting images or videos.
+Defines additional options for selecting media assets from Gallery. It inherits from **BaseSelectOptions**.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Available media file types. **IMAGE_VIDEO_TYPE** is used by default.|
-| maxSelectNumber       | number | No  | Maximum number of media files that can be selected. The default value is **50**, and the maximum value is **500**.     |
-| isPhotoTakingSupported<sup>11+</sup> | boolean  | No  | Whether photo taking is supported.|
-| isEditSupported<sup>11+</sup>       | boolean | No  | Whether the image is editable.     |
-| isSearchSupported<sup>11+</sup> | boolean  | No  | Whether the image is searchable.|
-| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | No  | Recommended image.     |
-| preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | No  | URI of the preselected image.|
+| isEditSupported<sup>11+</sup>       | boolean | No  | Whether the image can be edited.<br>The value **true** means the image can be edited; the value **false** means the opposite.    |
+| isOriginalSupported<sup>12+</sup>       | boolean | No  | Whether to display the button for selecting the original image. <br>The value **true** means to display the button; the value **false** means the opposite.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
+| subWindowName<sup>12+</sup>       | string | No  | Name of the sub-window.<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
 
 ## PhotoSelectResult
 
 Defines information about the images or videos selected.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                   | Type               | Readable| Writable| Description                          |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
-| photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the images or videos selected. The URI array can be used only by calling [photoAccessHelper.getAssets](#getassets) with temporary authorization. For details about how to use the media file URI, see [Using a Media File URI] (../../file-management/user-file-uri-intro.md#using-a-media-file-uri).|
+| photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the images or videos selected. The URI array can be used only by calling [photoAccessHelper.getAssets](#getassets) with temporary authorization. For details about how to use the media file URI, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).|
 | isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media asset is the original image.|
 
 
 ## DeliveryMode<sup>11+</sup>
 
-Enumerates the image delivery modes.
+Enumerates the asset delivery modes.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3973,3 +5346,49 @@ Enumerates the image delivery modes.
 | FAST_MODE |  0 |  Fast mode.|
 | HIGH_QUALITY_MODE |  1 |  High-quality mode.|
 | BALANCE_MODE |  2 |  Balance mode.|
+
+## PhotoCreationConfig<sup>12+</sup>
+
+Represents the configuration for saving a media asset (image or video) to the media library, including the file name.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                  | Type               | Mandatory| Description                                             |
+| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
+| title | string | No | Title of the image or video.|
+| fileNameExtension | string | Yes | File name extension, for example, **'jpg'**.|
+| photoType | [PhotoType](#phototype) | Yes | Type of the file to create, which can be **IMAGE** or **VIDEO**.|
+| subtype | [PhotoSubtype](#photosubtype12) | No | Subtype of the image or video file, which can be **DEFAULT** or **MOVING_PHOTO**.|
+
+## CompatibleMode<sup>13+</sup>
+
+Representing the video transcoding mode.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- | ---- | ---- |
+| FAST_ORIGINAL_FORMAT_MODE |  0 |  Maintain the original video format. |
+| COMPATIBLE_FORMAT_MODE    |  1 |  Convert the HDR content to SDR format.   |
+
+## MediaAssetProgressHandler<sup>13+</sup>
+
+Represents the media asset progress handler, which is used to obtain the media asset processing progress from **onProgress()**.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### onProgress<sup>13+</sup>
+
+onProgress(progress: number): void
+
+Called when the progress of the requested video is returned.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                      |
+| ------- | ------- | ---- | -------------------------- |
+| progress | number | Yes  | Progress in percentage. <br>Value range: 0 to 100|

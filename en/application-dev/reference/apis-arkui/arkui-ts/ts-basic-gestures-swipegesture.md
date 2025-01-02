@@ -1,6 +1,6 @@
 # SwipeGesture
 
-**\<SwipeGesture>** is used to implement a swipe gesture, which can be recognized when the swipe speed is 100 vp/s or higher.
+**SwipeGesture** is used to implement a swipe gesture, which can be recognized when the swipe speed is 100 vp/s or higher.
 
 >  **NOTE**
 >
@@ -9,7 +9,9 @@
 
 ## APIs
 
-SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: number })
+SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: number })
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
@@ -17,9 +19,11 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 | -------- | -------- | -------- | -------- |
 | fingers | number | No| Minimum number of fingers to trigger a swipe gesture. The value ranges from 1 to 10.<br>Default value: **1**|
 | direction | [swipeDirection](#swipedirection)| No| Swipe direction.<br>Default value: **SwipeDirection.All**|
-| speed | number | No| Minimum speed of the swipe gesture.<br>Default value: 100 VP/s<br>**NOTE**<br>If the value is less than or equal to 0, it will be converted to the default value.|
+| speed | number | No| Minimum speed of the swipe gesture.<br>Default value: 100 vp/s<br>**NOTE**<br>If the value is less than or equal to 0, it will be converted to the default value.|
 
 ## SwipeDirection
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name| Description|
 | -------- | -------- |
@@ -33,13 +37,14 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 
 | Name| Description|
 | -------- | -------- |
-| onAction(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when a swipe gesture is recognized.|
+| onAction(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the swipe gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## Attributes
 
 | Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
-| tag<sup>11+</sup>   | string  | Tag for the swipe gesture. It is used to distinguish the gesture during custom gesture judgment.|
+| tag<sup>11+</sup>   | string  | Tag for the swipe gesture. It is used to distinguish the gesture during custom gesture judgment.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool9)> | Allowed event input types for the swipe gesture.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## Example
 
@@ -65,7 +70,7 @@ struct SwipeGestureExample {
       // The gesture event is triggered by swiping vertically with one finger.
       .gesture(
       SwipeGesture({ direction: SwipeDirection.Vertical })
-        .onAction((event?: GestureEvent) => {
+        .onAction((event: GestureEvent) => {
           if (event) {
             this.speed = event.speed
             this.rotateAngle = event.angle

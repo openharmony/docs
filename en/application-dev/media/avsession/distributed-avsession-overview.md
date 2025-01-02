@@ -1,4 +1,4 @@
-# Distributed AVSession Overview
+# Distributed AVSession Overview (for System Applications Only)
 
 With distributed AVSession, OpenHarmony allows users to project locally played media to a distributed device for a better playback effect. For example, users can project audio played on a tablet to a smart speaker.
 

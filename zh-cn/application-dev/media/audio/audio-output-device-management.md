@@ -1,4 +1,4 @@
-# 音频输出设备管理
+# 管理全局音频输出设备
 
 有时设备同时连接多个音频输出设备，需要指定音频输出设备进行音频播放，此时需要使用AudioRoutingManager接口进行输出设备的管理，API说明可以参考[AudioRoutingManager API文档](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9)。
 
@@ -7,7 +7,7 @@
 在使用AudioRoutingManager管理音频设备前，需要先导入模块并创建实例。
 
 ```ts
-import audio from '@ohos.multimedia.audio';  // 导入audio模块
+import { audio } from '@kit.AudioKit';  // 导入audio模块
 
 let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
 
@@ -33,7 +33,7 @@ let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioMa
 使用getDevices()方法可以获取当前所有输出设备的信息。
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
@@ -45,7 +45,7 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data:
 可以设置监听事件来监听设备连接状态的变化，当有设备连接或断开时触发回调：
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 // 监听音频设备状态变化
 audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged: audio.DeviceChangeAction) => {
@@ -59,6 +59,7 @@ audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (de
 audioRoutingManager.off('deviceChange');
 ```
 
+<!--Del-->
 ## 选择音频输出设备（仅对系统应用开放）
 
 选择音频输出设备，当前只能选择一个输出设备，以设备ID作为唯一标识。AudioDeviceDescriptors的具体信息可以参考[AudioDeviceDescriptors](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptors)。
@@ -68,8 +69,8 @@ audioRoutingManager.off('deviceChange');
 > 用户可以选择连接一组音频设备（如一对蓝牙耳机），但系统侧只感知为一个设备，该组设备共用一个设备ID。
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
     deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
@@ -94,6 +95,7 @@ async function selectOutputDevice() {
   });
 }
 ```
+<!--DelEnd-->
 
 ## 获取最高优先级输出设备信息
 
@@ -104,13 +106,13 @@ async function selectOutputDevice() {
 > 最高优先级输出设备表示声音将在此设备输出的设备。
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
     rendererFlags : 0
-}
+};
 
 async function getPreferOutputDeviceForRendererInfo() {
   audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
@@ -124,12 +126,12 @@ async function getPreferOutputDeviceForRendererInfo() {
 ## 监听最高优先级输出设备变化
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
     rendererFlags : 0
-}
+};
 
 // 监听最高优先级输出设备变化
 audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {

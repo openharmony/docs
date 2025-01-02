@@ -1,6 +1,6 @@
 # ErrorObserver
 
-The **ErrorObserver** module defines an observer to listen for application errors. It can be used as an input parameter in [ErrorManager.on](js-apis-app-ability-errorManager.md#errormanageron) to listen for errors that occur in the current application.
+The ErrorObserver module defines an observer to listen for application errors. It can be used as an input parameter in [ErrorManager.on](js-apis-app-ability-errorManager.md#errormanageronerror) to listen for errors that occur in the current application.
 
 > **NOTE**
 > 
@@ -9,7 +9,7 @@ The **ErrorObserver** module defines an observer to listen for application error
 ## Modules to Import
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
 ```
 
 ## ErrorObserver.onUnhandledException
@@ -17,6 +17,8 @@ import errorManager from '@ohos.app.ability.errorManager';
 onUnhandledException(errMsg: string): void;
 
 Called when an unhandled exception occurs in the JS runtime.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -29,7 +31,8 @@ Called when an unhandled exception occurs in the JS runtime.
 **Example**
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
@@ -38,9 +41,9 @@ let observer: errorManager.ErrorObserver = {
 };
 
 try {
-    errorManager.on('error', observer);
+  errorManager.on('error', observer);
 } catch (error) {
-    console.error(`registerErrorObserver failed, error.code: ${error.code}, error.message: ${error.message}`);
+  console.error(`registerErrorObserver failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -49,6 +52,8 @@ try {
 onException?(errObject: Error): void;
 
 Called when an exception occurs during the application running.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -61,7 +66,8 @@ Called when an exception occurs during the application running.
 **Example**
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
@@ -70,15 +76,15 @@ let observer: errorManager.ErrorObserver = {
   onException(errorObj) {
     console.log('onException, name: ', errorObj.name);
     console.log('onException, message: ', errorObj.message);
-    if (typeof(errorObj.stack) === 'string') {
-        console.log('onException, stack: ', errorObj.stack);
+    if (typeof (errorObj.stack) === 'string') {
+      console.log('onException, stack: ', errorObj.stack);
     }
   }
 };
 
 try {
-    errorManager.on('error', observer);
+  errorManager.on('error', observer);
 } catch (error) {
-    console.error(`registerErrorObserver failed, error.code: ${error.code}, error.message: ${error.message}`);
+  console.error(`registerErrorObserver failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
 }
 ```

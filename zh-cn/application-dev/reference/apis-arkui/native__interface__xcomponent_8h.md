@@ -7,6 +7,8 @@
 
 **库：** libace_ndk.z.so
 
+**引用文件：** <ace/xcomponent/native_interface_xcomponent.h>
+
 **起始版本：** 8
 
 **相关模块：**[Native XComponent](_o_h___native_x_component.md)
@@ -65,6 +67,7 @@
 | int32_t [OH_NativeXComponent_RegisterMouseEventCallback](_o_h___native_x_component.md#oh_nativexcomponent_registermouseeventcallback) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md) \*callback) | 为此OH_NativeXComponent实例注册鼠标事件回调。  | 
 | int32_t [OH_NativeXComponent_RegisterFocusEventCallback](_o_h___native_x_component.md#oh_nativexcomponent_registerfocuseventcallback) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void \*window)) | 为此OH_NativeXComponent实例注册获焦事件回调。  | 
 | int32_t [OH_NativeXComponent_RegisterKeyEventCallback](_o_h___native_x_component.md#oh_nativexcomponent_registerkeyeventcallback) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void \*window)) | 为此OH_NativeXComponent实例注册按键事件回调。  | 
+| int32_t [OH_NativeXComponent_RegisterKeyEventCallbackWithResult](_o_h___native_x_component.md#oh_nativexcomponent_registerkeyeventcallbackwithresult) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, bool(\*callback)([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void \*window)) | 为此OH_NativeXComponent实例注册有返回值的按键事件回调。  | 
 | int32_t [OH_NativeXComponent_RegisterBlurEventCallback](_o_h___native_x_component.md#oh_nativexcomponent_registerblureventcallback) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void \*window)) | 为此OH_NativeXComponent实例注册失焦事件回调。  | 
 | int32_t [OH_NativeXComponent_GetKeyEvent](_o_h___native_x_component.md#oh_nativexcomponent_getkeyevent) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, [OH_NativeXComponent_KeyEvent](_o_h___native_x_component.md#oh_nativexcomponent_keyevent) \*\*keyEvent) | 获取ArkUI XComponent调度的按键事件。  | 
 | int32_t [OH_NativeXComponent_GetKeyEventAction](_o_h___native_x_component.md#oh_nativexcomponent_getkeyeventaction) ([OH_NativeXComponent_KeyEvent](_o_h___native_x_component.md#oh_nativexcomponent_keyevent) \*keyEvent, [OH_NativeXComponent_KeyAction](_o_h___native_x_component.md#oh_nativexcomponent_keyaction) \*action) | 获取传入按键事件的动作。  | 
@@ -83,6 +86,8 @@
 | int32_t [OH_NativeXComponent_RegisterSurfaceShowCallback](_o_h___native_x_component.md#oh_nativexcomponent_registersurfaceshowcallback) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void \*window)) | 为此OH_NativeXComponent实例注册surface显示回调，该回调在应用从后台返回前台时触发。  | 
 | int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](_o_h___native_x_component.md#oh_nativexcomponent_registersurfacehidecallback) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void \*window)) | 为此OH_NativeXComponent实例注册surface隐藏回调，该回调在应用从前台来到后台时触发。  | 
 | int32_t [OH_NativeXComponent_GetTouchEventSourceType](_o_h___native_x_component.md#oh_nativexcomponent_gettoucheventsourcetype) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, int32_t pointId, [OH_NativeXComponent_EventSourceType](_o_h___native_x_component.md#oh_nativexcomponent_eventsourcetype) \*sourceType) | 获取ArkUI XComponent触发触摸事件的输入设备类型。  |
+| [OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \* [OH_NativeXComponent_GetNativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent_getnativexcomponent) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 基于Native接口创建的组件实例获取OH_NativeXComponent类型的指针。  | 
+| int32_t [OH_NativeXComponent_RegisterKeyEventCallbackWithResult](_o_h___native_x_component.md#oh_nativexcomponent_registerkeyeventcallbackwithresult) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, bool(\*callback)([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void \*window)) | 为此OH_NativeXComponent实例注册有返回值的按键事件回调。  | 
 
 ### 变量
 

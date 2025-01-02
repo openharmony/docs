@@ -13,7 +13,7 @@ The **insightIntentDriver** module provides APIs for executing InsightIntent cal
 ## Modules to Import
 
 ```ts
-import insightIntentDriver from '@ohos.app.ability.insightIntentDriver';
+import { insightIntentDriver } from '@kit.AbilityKit';
 ```
 
 ## ExecuteParam
@@ -59,11 +59,16 @@ Executes a call to an InsightIntent. This API uses an asynchronous callback to r
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | -------- | -------- |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -76,14 +81,11 @@ Executes a call to an InsightIntent. This API uses an asynchronous callback to r
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
 
 ```ts
-  import insightIntentDriver from '@ohos.app.ability.insightIntentDriver';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import hilog from '@ohos.hilog';
+  import { insightIntentDriver, insightIntent } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   function executeInsightIntentAsync() {
     let param: insightIntentDriver.ExecuteParam = {
@@ -141,11 +143,16 @@ Executes a call to an InsightIntent. This API uses a promise to return the resul
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | -------- | -------- |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -158,14 +165,11 @@ Executes a call to an InsightIntent. This API uses a promise to return the resul
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
 
 ```ts
-  import insightIntentDriver from '@ohos.app.ability.insightIntentDriver';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import hilog from '@ohos.hilog';
+  import { insightIntentDriver, insightIntent } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   async function executeSearchMusicIntentPromise() {
     let param: insightIntentDriver.ExecuteParam = {

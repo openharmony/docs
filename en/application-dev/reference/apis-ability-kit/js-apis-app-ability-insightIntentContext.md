@@ -1,6 +1,6 @@
 # @ohos.app.ability.InsightIntentContext (InsightIntent Call Execution Context)
 
-The **InsightIntentContext** module provides the InsightIntent call execution context, which is an attribute of the base class for InsightIntent call execution and provides basic capabilities for the base class.
+The **InsightIntentContext** module provides the InsightIntent call execution context, which is a property of the base class for InsightIntent call execution and provides basic capabilities for the base class.
 
 > **NOTE**
 >
@@ -11,7 +11,7 @@ The **InsightIntentContext** module provides the InsightIntent call execution co
 ## Modules to Import
 
 ```ts
-import InsightIntentContext from '@ohos.app.ability.InsightIntentContext';
+import { InsightIntentContext } from '@kit.AbilityKit';
 ```
 
 ## InsightIntentContext.startAbility
@@ -21,6 +21,8 @@ startAbility(want: Want, callback: AsyncCallback\<void\>): void
 Starts an ability. The ability can be started only when it has the same bundle name as the base class for InsightIntent call execution. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -33,10 +35,13 @@ Starts an ability. The ability can be started only when it has the same bundle n
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -47,7 +52,8 @@ Starts an ability. The ability can be started only when it has the same bundle n
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000061 | Can not start component belongs to other bundle. |
+| 16000061 | Operation not supported. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
@@ -55,13 +61,11 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import window from '@ohos.window';
-  import Want from '@ohos.app.ability.Want';
-  import hilog from '@ohos.hilog';
+  import { InsightIntentExecutor, insightIntent, Want } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, pageLoader: window.WindowStage): insightIntent.ExecuteResult {
       let want: Want = {
         bundleName: 'com.ohos.intentexecutedemo',
@@ -100,6 +104,8 @@ Starts an ability. The ability can be started only when it has the same bundle n
 
 **Model restriction**: This API can be used only in the stage model.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -116,10 +122,13 @@ Starts an ability. The ability can be started only when it has the same bundle n
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -130,7 +139,8 @@ Starts an ability. The ability can be started only when it has the same bundle n
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000061 | Can not start component belongs to other bundle. |
+| 16000061 | Operation not supported. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
@@ -138,13 +148,11 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import window from '@ohos.window';
-  import Want from '@ohos.app.ability.Want';
-  import hilog from '@ohos.hilog';
+  import { InsightIntentExecutor, insightIntent, Want } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     async onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, pageLoader: window.WindowStage): Promise<insightIntent.ExecuteResult> {
       let want: Want = {
         bundleName: 'com.ohos.intentexecutedemo',
@@ -154,9 +162,9 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
       try {
         await this.context.startAbility(want);
-          hilog.info(0x0000, 'testTag', '%{public}s', 'Start ability finished');
-        } catch (error) {
-          hilog.error(0x0000, 'testTag', 'Start ability error caught %{public}s', JSON.stringify(error));
+        hilog.info(0x0000, 'testTag', '%{public}s', 'Start ability finished');
+      } catch (error) {
+        hilog.error(0x0000, 'testTag', 'Start ability error caught %{public}s', JSON.stringify(error));
       }
 
       let result: insightIntent.ExecuteResult = {

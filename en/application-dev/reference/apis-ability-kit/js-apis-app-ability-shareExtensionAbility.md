@@ -1,6 +1,6 @@
 # @ohos.app.ability.ShareExtensionAbility (ExtensionAbility for Sharing)
 
-The **ShareExtensionAbility** module, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides a share service template. The ShareExtensionAbility provides a convenient way for people to share current contextual information through applications, social media accounts, and other services.
+The **ShareExtensionAbility** module, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides a share service template. The ShareExtensionAbility provides a convenient way for people to share current contextual information through applications, social media accounts, and other services. For details about the inheritance relationship of each ability, see [Inheritance Relationship](./js-apis-app-ability-ability.md#ability-inheritance-relationship).
 
 > **NOTE**
 > 
@@ -15,16 +15,16 @@ The following uses text sharing as an example. A user selects a piece of text an
 ## Modules to Import
 
 ```ts
-import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
+import { ShareExtensionAbility } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No| No| Context.|
+| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No| Yes| Context.|
 
 ## ShareExtensionAbility.onCreate
 
@@ -136,9 +136,7 @@ To manually create a ShareExtensionAbility in the DevEco Studio project, perform
 3. In the **ShareExtAbility.ets** file, import the ShareExtensionAbility module. Customize a class that inherits from **ShareExtensionAbility** and implement the lifecycle callbacks.
 
   ```ts
-  import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import Want from '@ohos.app.ability.Want';
+  import { ShareExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
   const TAG: string = "[ShareExtAbility]";
 
@@ -146,7 +144,6 @@ To manually create a ShareExtensionAbility in the DevEco Studio project, perform
     onCreate() {
       console.info(TAG, `onCreate`);
     }
-
     onSessionCreate(want: Want, session: UIExtensionContentSession) {
       console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
       if (want.parameters) {
@@ -158,19 +155,15 @@ To manually create a ShareExtensionAbility in the DevEco Studio project, perform
         session.loadContent('pages/Index', storage);
       }
     }
-
     onForeground() {
       console.info(TAG, `ononForeground`);
     }
-
     onBackground() {
       console.info(TAG, `onBackground`);
     }
-
     onSessionDestroy(session: UIExtensionContentSession) {
       console.info(TAG, `onSessionDestroy`);
     }
-
     onDestroy() {
       console.info(TAG, `onDestroy`);
     }
@@ -182,7 +175,7 @@ To manually create a ShareExtensionAbility in the DevEco Studio project, perform
    ```json
    {
      "module": {
-       ...
+       // ...
        "extensionAbilities": [
          {
            "name": "ShareExtAbility",

@@ -10,19 +10,18 @@ The sorting function is implemented by the [compare](../reference/apis-localizat
 
 1. Import the **intl** module.
    ```ts
-   import Intl from '@ohos.intl';
+   import { intl } from '@kit.LocalizationKit';
    ```
 
 2. Create a **Collator** object.
    You can use **CollatorOptions** to set different sorting formats. For details, see Table 1.
    ```ts
-   let collator = new Intl.Collator(locale: string | Array<string>, options?: CollatorOptions);
+   let collator = new intl.Collator(locale: string | Array<string>, options?: CollatorOptions);
    ```
 
-3. Compare strings.
+3. Compare two strings.
    ```ts
-   let compareResult = collator.compare("first", "second");
-   
+   let compareResult = collator.compare(first: string, second: string);
    // If compareResult is a negative number, the first parameter is placed before the second parameter.
    // If compareResult is 0, the first and second parameters are not sorted in sequence.
    // If compareResult is a positive number, the first parameter is placed after the second parameter.
@@ -70,16 +69,15 @@ The sorting function is implemented by the [compare](../reference/apis-localizat
 
 ```ts
 // Import the i18n module.
-import I18n from '@ohos.i18n';
-import Intl from '@ohos.intl';
+import { intl } from '@kit.LocalizationKit';
 
 // Create a Collator object.
-let options: Intl.CollatorOptions = {
+let options: intl.CollatorOptions = {
     localeMatcher: "lookup", 
     usage: "sort",
     sensitivity: "case" // Case sensitive
 };
-let collator = new Intl.Collator("zh-CN", options);
+let collator = new intl.Collator("zh-CN", options);
 
 // Case-sensitive sorting
 let array = ["app", "App", "Apple", "ANIMAL", "animal", "apple", "APPLE"];
@@ -93,7 +91,7 @@ array = ["Pingguo", "Li", "Xiangjiao", "Shiliu", "Ganzhe", "Putao", "Juzi"];
 array.sort((a, b) => {
     return collator.compare(a, b);
 })
-console.log("result:", array); // Ganzhe, Juzi, Li, Pingguo, Putao, Shiliu, Xiangjiao
+console.log("result: ", array);  // Ganzhe, Juzi, Li, Pingguo, Putao, Shiliu, Xiangjiao
 
 // Stroke sorting
 options = {
@@ -101,11 +99,22 @@ options = {
     usage: "sort",
     collation: "stroke"
 };
-collator = new Intl.Collator("zh-CN", options);
+collator = new intl.Collator("zh-CN", options);
 array = ["苹果", "梨", "香蕉", "石榴", "甘蔗", "葡萄", "橘子"];
 array.sort((a, b) => {
     return collator.compare(a, b);
 })
-console.log("result:", array); // 甘蔗,石榴,苹果,香蕉,梨,葡萄,橘子
+console.log("result: ", array);  // 甘蔗,石榴,苹果,香蕉,梨,葡萄,橘子
+
+// Search for the matched string.
+options = {
+    usage: "search",
+    sensitivity: "base"
+};
+collator = new intl.Collator("tr", options);
+let sourceArray = ['Türkiye', 'TüRkiye', 'salt', 'bright'];
+let s = 'türkiye';
+let matches = sourceArray.filter(item => collator.compare(item, s) === 0);
+console.log(matches.toString());  // Türkiye,TüRkiye
 ```
 <!--no_check-->

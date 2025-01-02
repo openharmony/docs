@@ -29,7 +29,7 @@ A worker cannot execute different tasks. As such, **TaskPool** is recommended in
 
 Yes. **TaskPool** provides the same dynamic loading capability as the main thread. However, after a **TaskPool** thread is loaded, it cannot be reused by the main thread due to modular thread isolation.
 
-## How do I implement multithread data sharing? (API version 10)
+## How do I implement multithreaded data sharing? (API version 10)
 
 ArkTS uses a single-thread model and features memory isolation. Therefore, most common objects use serialization mode to implement cross-thread sharing.
 
@@ -37,7 +37,7 @@ An object can be shared by transferring an ArrayBuffer or using a SharedArrayBuf
 
 **References**
 
-[Multithread Concurrency Overview (TaskPool and Worker)](../arkts-utils/multi-thread-concurrency-overview.md)
+[Multithreaded Concurrency Overview (TaskPool and Worker)](../arkts-utils/multi-thread-concurrency-overview.md)
 
 ## Cross-thread communication of JS objects depends on serialization. Is there any performance problem? (API version 10)
 
@@ -61,8 +61,6 @@ To address the problem that a large number of threads are required, you are advi
 [Comparison Between TaskPool and Worker](../arkts-utils/taskpool-vs-worker.md)
 
 ## How do I set task priorities, what are the differences between scheduling policies for these priorities, and what are the recommended scenarios for them? (API version 10)
-
- 
 
 You can set different priorities for different tasks. The sequence of repeatedly executing the same task is irrelevant to the priority.
 
@@ -103,7 +101,7 @@ for (let i: number = 0; i < allCount; i+=3) { // 3: Three tasks are executed eac
 
 [Priority](../reference/apis-arkts/js-apis-taskpool.md)
 
-## How do I convert the implementation in the Java-like thread model (memory sharing) to the implementation in the ArkTS thread model (memory isolation)? (API version 11)
+## How do I convert the implementation of the memory-sharing thread model into the implementation of the ArkTS thread model (memory isolation)? (API version 11)
 
 Use **TaskPool** APIs for conversion in the following scenarios:
 
@@ -331,8 +329,10 @@ Similarities: In terms of interaction with JS-related threads, both of them feat
 
 ## Do Worker and TaskPool limit the number of threads? What will happen if the maximum number is reached? Will the task pool be affected when the number of worker threads reaches the upper limit? (API version 10)
 
-**TaskPool** dynamically adjusts the number of threads based on hardware conditions and task loads. It does not support setting a number. Tasks are added to the thread pool, and high-priority tasks are executed first. 
-A maximum of eight worker threads can be created. No more worker threads can be created when the maximum number is reached. 
+**TaskPool** dynamically adjusts the number of threads based on hardware conditions and task loads. It does not support setting a number. Tasks are added to the thread pool, and high-priority tasks are executed first.
+
+A maximum of eight worker threads can be created. No more worker threads can be created when the maximum number is reached.
+
 **TaskPool** and **Worker** are independent of each other.  
 
 **References**
@@ -350,12 +350,13 @@ Objects are not directly shared, and therefore all containers are thread-safe.
 ## What is the task scheduling mechanism in TaskPool and Worker? Do they provide the same event loop mechanism as the JS single thread?  (API version 10)
 
 **TaskPool** and **Worker** use the event loop to receive messages exchanged between threads.
-**Worker** does not support the setting of the message priority,
-but **TaskPool** does.
+
+**Worker** does not support the setting of the message priority, but **TaskPool** does.
 
 ## What is the multithreading model of the system? (API version 10)
 
-**TaskPool** APIs are provided to support multithread development. Resident time-consuming tasks can use worker threads, with the maximum number limited to eight.
+**TaskPool** APIs are provided to support multithreading development. Resident time-consuming tasks can use worker threads, with the maximum number limited to eight.
+
 It is recommended that the FFRT thread pool be used on the native side. There is no restriction on pthread.
 
 ## Can context be transferred across threads? (API version 10)
@@ -364,11 +365,11 @@ Yes. Context can be directly transferred as a parameter.
 
 **References**
 
-[Shared Objects](../arkts-utils/serialization-support-types.md)
+1. [Sendable Object Overview](../arkts-utils/arkts-sendable.md)
 
-## How do I implement secure access to the same shared memory in multithread concurrent scenarios? (API version 10)
+## How do I implement secure access to the same shared memory in multithreaded concurrency scenarios? (API version 10)
 
-You can use SharedArrayBuffer. If multiple operations are simultaneously performed to modify data stored in an object of the SharedArrayBuffer type, you must use atomics to ensure data synchronization. Atomics ensure that the current operation is complete before the next operation starts.
+You can use SharedArrayBuffer. If multiple operations are simultaneously performed to modify data stored in an object of the SharedArrayBuffer type, you must use atomic operations to ensure data synchronization. The atomic operations ensure that the current operation is complete before the next operation starts.
 
 **Sample Code**
 
@@ -412,33 +413,33 @@ Subthreads support priority setting, and the priority affects their scheduling.
 1. [@ohos.taskpool (Using the Task Pool)](../reference/apis-arkts/js-apis-taskpool.md)
 2. [@ohos.worker (Worker Startup)](../reference/apis-arkts/js-apis-worker.md)
 
-## Does ArkTS support multithreading development using a Java-like shared memory model? (API version 10)
+## Does ArkTS support multithreading development using the shared memory model? (API version 10)
 
 Multiple threads cannot perform operations on the same memory object simultaneously by locking the memory object. ArkTS is an actor model that supports cross-thread memory isolation. Currently, only SharedArrayBuffer or native-layer objects can be shared.
 
 **References**
 
-[Multithread Concurrency Overview (TaskPool and Worker)](../arkts-utils/multi-thread-concurrency-overview.md)
+[Multithreaded Concurrency Overview (TaskPool and Worker)](../arkts-utils/multi-thread-concurrency-overview.md)
 
-## What is the memory sharing principle of the Sendable class object of ArkTS? What are the restrictions? How do I use it? (API version 11)
+## What is the memory sharing principle of a sendable class object of ArkTS? What are the restrictions? How do I use it? (API version 11)
 
-The Sendable class is an extension of the actor model. The memory of the Sendable class object is shared among threads. However, lock-free must be used for a single thread. To prevent multiple threads from simultaneously accessing the Sendable class object, use the synchronization mechanism to ensure thread safe.
+The sendable class is an extension of the actor model. The memory of a sendable class object is shared among threads. However, lock-free must be used for a single thread. To prevent multiple threads from simultaneously accessing a sendable class object, use the synchronization mechanism to ensure thread safe.
 
-A Sendable object must meet the following specifications:
-1. The member attribute is of the SendableClass or basic type (string, number, or boolean, but not container class, which will be supported later).
-2. Member attributes must be initialized explicitly.
+A sendable object must meet the following specifications:
+1. The member property is of the sendable or basic type (string, number, or boolean, but not container class, which will be supported later).
+2. Member properties must be initialized explicitly.
 3. Member functions cannot use closures. Only input parameters, **this** member, or variables imported through **import** can be used.
-4. Only the Sendable class can inherit from the Sendable class.
+4. Only a sendable class can inherit from another sendable class.
 5. @Sendable can be used only in .ets files.
-6. Private attributes must be defined using **private**, rather than the number sign (#).
-7. The file to export cannot contain non-SendableClass attributes.
+6. Private properties must be defined using **private**, rather than the number sign (#).
+7. The file to export cannot contain non-sendable properties.
 8. Either of the following transfer modes is used:
     Serialized transfer: Deep copy to other threads is supported.
     Sharing mode: Cross-thread reference transfer is supported. Multiple threads can read and write data at the same time. You need to use the synchronization mechanism to avoid multi-thread competition.
 
 **References**
 
-[Multithread Concurrency Overview (TaskPool and Worker)](../arkts-utils/multi-thread-concurrency-overview.md)
+[Multithreaded Concurrency Overview (TaskPool and Worker)](../arkts-utils/multi-thread-concurrency-overview.md)
 
 ## Do ArkTS APIs support overloading? How do I implement overloading in them? (API version 10)
 
@@ -446,7 +447,7 @@ ArkTS supports overloading in TS, that is, multiple overload signatures + implem
 
 ArkTS does not support overloading of multiple function bodies.
 
-**Sample Code**
+Example:
 
 ```ts
 class User {
@@ -489,7 +490,7 @@ In OpenHarmony, asynchronous I/O calls are distributed to the I/O thread pool an
 Tasks in the task pool can trigger the **onReceiveData** callback of the main thread through **sendData**. 
 Multiple threads can use SharedArrayBuffer to operate the memory block.
 
-##  Are multithreading operations on the preferences and databases thread safe or thread independent? (API version 10)
+##  Are multithreading operations on the preferences and databases thread safe? (API version 10)
 
 They are thread safe.
 
@@ -497,19 +498,185 @@ They are thread safe.
 
 If I/O operations are not involved, asynchronous tasks of ArkTS APIs are triggered at the microtask execution time of the main thread and still occupy the main thread. You are advised to use **TaskPool** to distribute the tasks to the background task pool.
 
-##  How do I implement synchronous function calls in ArkTS as easily as using **synchronized** in Java methods? (API version 10)
+##  How do I implement synchronous function calls? (API version 10)
 
 Currently, the use of **synchronized** is not supported. In the future, the AsyncLock synchronization mechanism will be supported, where code blocks to be synchronized can be placed in asynchronous code blocks.
 
 ##  Will the main thread be blocked if await is used in the main thread of ArkTS? (API version 10)
 
-If the following code is executed in the main thread, will the main thread be blocked? 
+**Description**
+
+If the following code is executed in the main thread, will the main thread be blocked?
+
 `const response = await reqeust.buildCall().execute<string>();`  
 
 **Answer**
 
 It will not block the main thread. await suspends the current asynchronous task and wakes up the task until the conditions are met. The main thread can process other tasks.
 
-##  In C/C++ code, how do I directly call ArkTS APIs in the subthread instead of posting messages to the main thread?  (API version 10)
+##  In C/C++ code, how do I directly call ArkTS APIs in the subthread instead of posting messages to the main thread? (API version 10)
 
-Direct calling is not supported yet.
+Direct calls are not supported yet.
+
+## Is the underlying running environment of ArkTS code self-developed or open-source? Is the same running environment used for React Native code? (API version 10)
+
+- On the in-house ArkCompiler, the bytecode is run. The bytecode is generated after the ArkTS, TS, or JS source code is compiled using the ArkCompiler toolchain.
+- For React Native, the JS source code is run on the V8 engine provided by the system.
+
+## What data type conversion methods are used in ArkTS? Are they consistent with TS? (API version 10)
+
+ArkTS supports as type conversion of TS, but not type conversion using the <> operator. Currently, the as type conversion can be used during build, but not at runtime.
+
+ArkTS also supports built-in type conversion functions, such as **Number()**, **String()**, and **Boolean()**.
+
+**References**
+
+[TypeScript to ArkTS Cookbook](../quick-start/typescript-to-arkts-migration-guide.md)
+
+## Can an application manage the background I/O task pool? Is any open API provided for management? (API version 10)
+
+- The background TaskPool threads are determined by the load and hardware. No open API is provided. However, you can use the serial queue and task group for task management.
+- The I/O task pool is scheduled at the bottom layer and cannot be managed by an application.
+
+## Will the system continue to support .ts file development in the future? (API version 10)
+
+**Description**
+
+Will the basic libraries implemented based on TS be compatible in the future? For example, the .ts file supports **any** and dynamic type conversion at runtime, but the .ets file does not.
+
+**Answer**
+
+The system will continue to support the standard TS syntax and be compatible with the existing third-party libraries implemented on TS.
+
+## Is dynamic module loading supported? How do I implement it? (API version 10)
+
+Currently, the binary package on the device side cannot be dynamically loaded. You can use the dynamic import feature for asynchronous loading. This achieves the effect similar to the reflection API **Class.forName()**.
+
+The following is an example. The HAP dynamically imports **harlibrary** and calls the static member function **staticAdd()**, instance member function **instanceAdd()**, and global method **addHarLibrary()**. 
+
+```ts
+/ / src/main/ets/utils/Calc.ets of harlibrary
+export class Calc {
+  public constructor() {}
+  public static staticAdd(a: number, b: number): number {
+    let c = a + b;
+    console.log("DynamicImport I'm harLibrary in staticAdd, %d + %d = %d", a, b, c);
+    return c;
+  }
+  public instanceAdd(a: number, b: number): number {
+    let c = a + b;
+    console.log("DynamicImport I'm harLibrary in instanseAdd, %d + %d = %d", a, b, c);
+    return c;
+  }
+}
+
+export function addHarLibrary(a: number, b: number): number {
+  let c = a + b;
+  console.log("DynamicImport I'm harLibrary in addHarLibrary, %d + %d = %d", a, b, c);
+  return c;
+}
+
+// index.ets of harlibrary
+export { Calc, addHarLibrary } from './src/main/ets/utils/Calc';
+
+// index.ets of hap
+let harLibrary = 'harlibrary';
+import(harLibrary).then((ns: ESObject) => {  // Dynamic variable import is a new feature. Changing an input parameter to the string 'harlibrary' is supported in earlier versions. You can also use the await import mode.
+  ns.Calc.staticAdd(7, 8);  // Call the static member function staticAdd() with reflection.
+  let calc: ESObject = new ns.Calc();  // Instantiate the class Calc.
+  calc.instanceAdd(8, 9);  // Call the instance member function instanceAdd().
+  ns.addHarLibrary(6, 7);  // Call the global method addHarLibrary().
+});
+```
+
+## Can ArkTS be used to develop AST structs or interfaces? (API version 11)
+
+AST is an intermediate data structure during compilation. The data is unstable and may change as the language or compiler evolves. Therefore, there is no plan to open AST to developers.
+
+## Multithreading occupies a large amount of memory. Each thread requires an ArkTS engine, which means more memory is occupied. How do I fully utilize the device performance with a limited number of threads?
+
+The ArkTS worker thread creates an ArkTS engine instance, which occupies extra memory.
+
+In addition, ArkTS provides TaskPool concurrent APIs, which are similar to the thread pool of GCD. Tasks can be executed without thread lifecycle management. Tasks are scheduled to a limited number of worker threads for execution. Multiple tasks share these worker threads (ArkTS engine instances). The system scales in or out the number of worker threads based on the load to maximize the hard performance.
+
+To address the problem that a large number of threads are required, you are advised to:
+
+1. Convert multi-thread tasks into concurrent tasks and distribute them through the task pool.
+2. Execute I/O tasks in the calling thread (which can be the TaskPool thread), rather than starting new threads for them.
+3. Use worker threads (no more than 8) for resident CPU intensive tasks (which is of a small number).
+
+**References**
+
+[Comparison Between TaskPool and Worker](../arkts-utils/taskpool-vs-worker.md)
+
+## Can long-time listening interfaces, such as **emitter.on**, be used in a TaskPool thread?
+
+Not recommended.
+
+**Principle Clarification**
+
+1. Long-time listening may adversely affect thread recycling or reuse.
+2. If a thread is reclaimed, the thread callback becomes invalid or an unexpected error occurs.
+3. If a task function is executed for multiple times, listening may be generated in different threads. Consequently, the result may fail to meet your expectation.
+
+**Solution**
+
+You are advised to use a [continuous task](../reference/apis-arkts/js-apis-taskpool.md#longtask12).
+
+## Should I call onEnqueued, onStartExecution, onExecutionFailed, and onExecutionSucceeded in a certain sequence to listen for a task in the task pool? (API version 12)
+
+The four APIs are independent and can be called in any sequence.
+
+## How do I use a sendable class in HAR?
+
+Use the TS HAR.
+
+**References**
+
+[Building TS Files](../quick-start/har-package.md#building-ts-files)
+
+## When a UI component in the TS HAR is used, an error message is displayed during the build, indicating that the UI component does not meet UI component syntax. What should I do?
+
+When there is a dependency on the TS HAR, a UI component in the TS HAR cannot be referenced.
+
+To use a UI component in the HAR, use the source code HAR or JS HAR.
+
+**References**
+
+[HAR](../quick-start/har-package.md)
+
+## What are the commands used for setting various hdc properties?
+
+- To use the default properties, run the following command: **hdc shell param set persist.ark.properties 0x105c**
+- To disable multithreading detection and print abnormal stack frames, run the following command: **hdc shell param set persist.ark.properties -1**
+- To print the GC status, run the following command: **hdc shell param set persist.ark.properties 0x105e**
+- To enable multithreading detection, run the following command: **hdc shell param set persist.ark.properties 0x107c**
+- To enable multithreading detection and print abnormal stacks, run the following command: **hdc shell param set persist.ark.properties 0x127c**
+- To enable memory leak check for global objects, run the following command: **hdc shell param set persist.ark.properties 0x145c**
+- To enable memory leak check for global original values, run the following command: **hdc shell param set persist.ark.properties 0x185C**
+- To open the GC heap information, run the following command: **hdc shell param set persist.ark.properties 0x905c**
+- To enable microtask tracing (including enqueuing and execution), run the following command: **hdc shell param set persist.ark.properties 0x8105c**
+- To use ArkProperties to control whether to enable the socket debugger of an earlier version, run the following command: **hdc shell param set persist.ark.properties 0x10105C**
+- To use DISABLE to adapt to the existing ArkProperties in the test script, run the following command: **hdc shell param set persist.ark.properties 0x40105C**
+- To enhance error reporting during the loading of .so files to a module, run the following command: **hdc shell param set persist.ark.properties 0x80105C**
+- To enable modular tracing, run the following command: **hdc shell param set persist.ark.properties 100105C**
+- To enable module-specific logging, run the following command: **hdc shell param set persist.ark.properties 200105C**
+### What are the commands used for performance data collection of CPU Profiler?
+- To collect data of the main thread in the cold start phase, run the following command: **hdc shell param set persist.ark.properties 0x705c**
+- To collect data of the worker thread in the cold start phase, run the following command: **hdc shell param set persist.ark.properties 0x1505c**
+- To collect data of the main thread and worker thread in the cold start phase, run the following command: **hdc shell param set persist.ark.properties 0x1705c**
+- To collect data of the main thread in any phase, run the following command: **hdc shell param set persist.ark.properties 0x2505c**
+- To collect data of the worker thread in any phase, run the following command: **hdc shell param set persist.ark.properties 0x4505c**
+- To collect data of the main thread and worker thread in any phase, run the following command: **hdc shell param set persist.ark.properties 0x6505c**
+
+## Does ArkTS use an asynchronous I/O model similar to Node.js?
+
+Yes. Node.js uses the event loop system to process asynchronous operations, which are processed using callback functions or promises. Similarly, ArkTS uses a coroutine-based asynchronous I/O mechanism, in which I/O events are distributed to I/O threads, without blocking JS threads. Asynchronous operations can be processed using callback functions or Promise/async/await paradigm.
+
+## Do I/O intensive tasks like network requests need to be processed by multiple threads?
+
+The decision depends on the specific service scenario and implementation details. If the I/O operations are not frequent and do not affect other services of the UI main thread, multithreading is unnecessary. However, if there are many I/O requests and it takes a long time for the UI main thread to distribute these requests, employing multithreading can enhance the application's performance and response speed. The final decision depends on DevEco Studio Profiler.
+
+## Does the @ohos.net.http network framework need to use TaskPool for handling tasks?
+
+The decision depends on the specific service scenario and implementation details. If the number of network requests is small or the subsequent network data processing is not particularly time-consuming, then employing TaskPool to manage thread creation, recycling, and data transfer overhead is unnecessary. However, if there are a large number of network requests and it takes a long time to process the data obtained, leveraging TaskPool can help manage these tasks more efficiently and reduce the workload on the UI main thread.

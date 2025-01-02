@@ -17,13 +17,14 @@ import ability from '@ohos.ability.ability';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-| Name      | Type |     Mandatory   |       Description  |
-| --------  | --------  | --------    | --------    |
-| uri?      | string    |      No   | URI of the DataAbility. Example: 'dataability:///com.example.xxx.xxxx'. |
-| count?     | number    |      No   | Number of rows affected by the operation. |
+| Name     | Type | Read Only | Optional   |       Description  |
+| -------- | -------- | -------- | -------- | -------- |
+| uri      | string    | No | Yes   | URI of the DataAbility. Example: 'dataability:///com.example.xxx.xxxx'. |
+| count     | number   | No | Yes   | Number of rows affected by the operation. |
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';

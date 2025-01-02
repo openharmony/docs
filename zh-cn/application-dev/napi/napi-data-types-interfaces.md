@@ -52,7 +52,7 @@ typedef struct {
 
 ### napi_value
 
-在C++代码中，表示一个JavaScript值。
+napi_value是一个C的结构体指针，表示一个JavaScript对象的引用。napi_value持有了JS对象，同时，napi_value受handle_scope管理，scope中napi_value持有的JS对象不会被释放；出scope后，napi_value将失效，不再持有对应的JS对象。
 
 ### napi_env
 
@@ -212,10 +212,11 @@ typedef enum {
 | -------- | -------- |
 | napi_qos_background | 低等级，用户不可见任务，例如数据同步、备份。 |
 | napi_qos_utility | 中低等级，不需要立即看到响应效果的任务，例如下载或导入数据。 |
-| napi_qos_default | 默认 |
+| napi_qos_default | 默认。 |
 | napi_qos_user_initiated | 高等级，用户触发并且可见进展，例如打开文档。 |
 
 ### 事件循环模式
+
 napi提供了运行底层事件循环的两种模式, 其定义如下：
 
 ```c
@@ -229,6 +230,26 @@ typedef enum {
 | -------- | -------- |
 | napi_event_mode_default | 阻塞式的运行底层事件循环，直到循环中没有任何任务时退出事件循环。 |
 | napi_event_mode_nowait | 非阻塞式的运行底层事件循环，尝试去处理一个任务，处理完之后退出事件循环；如果事件循环中没有任务，立刻退出事件循环。 |
+
+### 线程安全任务优先级
+
+napi提供了线程安全任务的优先级, 底层任务队列中的任务会根据其优先级被依次执行, 优先级的定义如下：
+
+```c
+typedef enum {
+    napi_priority_immediate = 0,
+    napi_priority_high = 1,
+    napi_priority_low = 2,
+    napi_priority_idle = 3,
+} napi_task_priority;
+```
+
+| 任务优先级 | 解释说明 |
+| -------- | -------- |
+| napi_priority_immediate | 该优先级的级别最高。|
+| napi_priority_high | 该优先级的级别低于napi_priority_immediate。|
+| napi_priority_low | 该优先级的级别低于napi_priority_immediate和napi_priority_high。|
+| napi_priority_idle | 该优先级的级别最低。 |
 
 ## 支持的Node-API接口
 
@@ -298,8 +319,8 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | -------- | -------- |
 | napi_open_handle_scope | 创建一个上下文环境使用。需要使用napi_close_handle_scope进行关闭。 |
 | napi_close_handle_scope | 关闭传入的上下文环境，关闭后，全部在其中声明的引用都将被关闭。 |
-| napi_open_escapable_handle_scope | 创建出一个可逃逸的handel scope，可将范围内声明的值返回到父作用域。需要使用napi_close_escapable_handle_scope进行关闭。 |
-| napi_close_escapable_handle_scope | 关闭传入的可逃逸的handel scope。 |
+| napi_open_escapable_handle_scope | 创建出一个可逃逸的handle scope，可将范围内声明的值返回到父作用域。需要使用napi_close_escapable_handle_scope进行关闭。 |
+| napi_close_escapable_handle_scope | 关闭传入的可逃逸的handle scope。 |
 | napi_escape_handle | 提升传入的JS Object的生命周期到其父作用域。 |
 | napi_create_reference | 为Object创建一个reference，以延长其生命周期。调用者需要自己管理reference生命周期。 |
 | napi_delete_reference | 删除传入的reference。 |
@@ -323,16 +344,18 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | -------- | -------- |
 | napi_create_array | 创建并获取一个JS Array。 |
 | napi_create_array_with_length | 创建并获取一个指定长度的JS Array。 |
-| napi_create_typedarray | 通过现有的ArrayBuffer创建一个JS TypeArray。 |
-| napi_create_dataview | 通过现有的ArrayBuffer创建一个JS DataView。 |
 | napi_get_array_length | 获取array的length。 |
-| napi_get_typedarray_info | 获取给定TypedArray的各种属性。 |
-| napi_get_dataview_info | 获取给定DataView的各种属性。 |
 | napi_is_array | 判断给定JS value是否为array。 |
 | napi_set_element | 在给定Object的指定索引处，设置元素。 |
 | napi_get_element | 获取给定Object指定索引处的元素。 |
 | napi_has_element | 若给定Object的指定索引处拥有属性，获取该元素。 |
 | napi_delete_element | 尝试删除给定Object的指定索引处的元素。 |
+| napi_create_typedarray | 通过现有的ArrayBuffer创建一个JS TypeArray。 |
+| napi_is_typedarray | 判断给定JS value是否为TypeArray。|
+| napi_get_typedarray_info | 获取给定TypedArray的各种属性。 |
+| napi_create_dataview | 通过现有的ArrayBuffer创建一个JS DataView。 |
+| napi_is_dataview | 判断给定JS value是否为DataView。|
+| napi_get_dataview_info | 获取给定DataView的各种属性。|
 
 ### primitive相关
 
@@ -351,9 +374,12 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 
 | 接口 | 功能说明 |
 | -------- | -------- |
+| napi_new_instance | 通过给定的构造函数，构建一个实例。 |
 | napi_get_new_target | 获取构造函数调用的new.target。 |
 | napi_define_class | 定义与C++类相对应的JavaScript类。 |
-| napi_new_instance | 通过给定的构造函数，构建一个实例。 |
+| napi_wrap | 在ArkTS对象上绑定一个Node-API模块对象实例。这个函数通常在将Node-API模块对象与ArkTS对象进行绑定时使用，以便在ArkTS中使用本地对象的方法和属性。 |
+| napi_unwrap | 从ArkTS对象上获取之前绑定的Node-API模块对象实例。 |
+| napi_remove_wrap | 从ArkTS对象上获取之前绑定的Node-API模块对象实例，并解除绑定。 |
 
 ### object相关
 
@@ -367,6 +393,23 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_instanceof | 判断给定object是否为给定constructor的实例。 |
 | napi_type_tag_object | 将tag指针的值与Object关联。 |
 | napi_check_object_type_tag | 判断给定的tag指针是否被关联到了JS Object上。 |
+| napi_create_symbol | 创建一个JS Symbol对象。 |
+| napi_create_external | 用于创建一个JS外部对象，该对象可以用于将C/C++中的自定义数据结构或对象传递到JS中，并且可以在JS中访问其属性和方法。 |
+| napi_get_value_external | 用于获得napi_create_external创建的绑定了外部数据的JS值，此函数可以在JS和C/C++之间传递数据。 |
+
+### 基本数据类型相关
+
+| 接口 | 功能说明 |
+| -------- | -------- |
+| napi_create_int32 | 通过一个C的int32数据创建JS number。 |
+| napi_create_uint32 | 通过一个C的uint32数据创建JS number。 |
+| napi_create_int64 | 通过一个C的int64数据创建JS number。 |
+| napi_create_double | 通过一个C的double数据创建JS number。 |
+| napi_get_value_int32 | 获取给定JS number对应的C int32值。 |
+| napi_get_value_uint32 | 获取给定JS number对应的C uint32值。 |
+| napi_get_value_int64 | 获取给定JS number对应的C int64值。 |
+| napi_get_value_double | 获取给定JS number对应的C double值。 |
+|napi_get_value_bool|获取给定js Boolean对应的C bool值。|
 
 ### bigint相关
 
@@ -384,6 +427,7 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | 接口 | 功能说明 |
 | -------- | -------- |
 | napi_throw | 抛出一个JS value。 |
+| napi_throw_error | 用于抛出一个带文本信息的ArkTS Error。|
 | napi_throw_type_error | 抛出一个带文本信息的JS TypeError。 |
 | napi_throw_range_error | 抛出一个带文本信息的JS RangeError。 |
 | napi_is_error | 判断napi_value是否表示为一个error对象。 |
@@ -394,6 +438,7 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_is_exception_pending | 判断是否出现了异常。 |
 | napi_fatal_error | 引发致命错误以立即终止进程。 |
 | napi_get_last_error_info | 获取napi_extended_error_info结构体，其中包含最近一次出现的error信息。 |
+| napi_fatal_exception | 抛出一个致命异常并终止进程, 同时产生相应的crash日志。 |
 
 ### 属性相关
 
@@ -424,17 +469,11 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 
 | 接口 | 功能说明 |
 | -------- | -------- |
-| napi_async_init | 创建一个异步资源上下文环境（暂不支持与async_hook相关能力）。 |
-| napi_make_callback | 在异步资源上下文环境中回调JS函数(暂不支持与async_hook相关能力)。|
-| napi_async_destroy | 销毁先前创建的异步资源上下文环境（暂不支持与async_hook相关能力）。|
-| napi_open_callback_scope | 创建一个回调作用域（暂不支持与async_hook相关能力）。 |
-| napi_close_callback_scope | 关闭先前创建的回调作用域（暂不支持与async_hook相关能力）。|
-
-### 判断给定的两个JS value是否严格相等
-
-| 接口 | 功能说明 |
-| -------- | -------- |
-| napi_strict_equals | 判断给定的两个JS value是否严格相等。 |
+| napi_async_init | 创建一个异步资源上下文环境（不支持与async_hook相关能力）。 |
+| napi_make_callback | 在异步资源上下文环境中回调JS函数(不支持与async_hook相关能力)。|
+| napi_async_destroy | 销毁先前创建的异步资源上下文环境（不支持与async_hook相关能力）。|
+| napi_open_callback_scope | 创建一个回调作用域（不支持与async_hook相关能力）。 |
+| napi_close_callback_scope | 关闭先前创建的回调作用域（不支持与async_hook相关能力）。|
 
 ### uv相关
 
@@ -451,17 +490,36 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 
 ### 扩展能力
 
+[Node-API组件扩展的符号列表](../reference/native-lib/napi.md#node-api组件扩展的符号列表)
+
 | 接口 | 功能说明 |
 | -------- | -------- |
 | napi_queue_async_work_with_qos | 将异步工作对象加到队列，由底层根据传入的qos优先级去调度执行。 |
 | napi_run_script_path | 运行指定abc文件。 |
 | napi_load_module | 将abc文件作为模块加载，返回模块的命名空间。 |
-| napi_load_module_with_info | 将abc文件作为模块加载，返回模块的命名空间, 可在新创建的ArkTs基础运行时环境中使用。 |
+| napi_load_module_with_info | 将abc文件作为模块加载，返回模块的命名空间, 可在新创建的ArkTS基础运行时环境中使用。 |
 | napi_create_object_with_properties | 使用给定的napi_property_descriptor创建js Object。descriptor的键名必须为 string，且不可转为number。 |
 | napi_create_object_with_named_properties | 使用给定的napi_value和键名创建js Object。键名必须为 string，且不可转为number。 |
 | napi_coerce_to_native_binding_object | 强制将js Object和Native对象绑定。 |
+| napi_create_ark_runtime|创建基础运行时环境。|
+| napi_destroy_ark_runtime|销毁基础运行时环境。|
 | napi_run_event_loop | 触发底层的事件循环。|
 | napi_stop_event_loop | 停止底层的事件循环。|
+| napi_serialize | 将ArkTS对象转换为native数据。|
+| napi_deserialize | 将native数据转为ArkTS对象。|
+| napi_delete_serialization_data | 删除序列化数据。|
+| napi_call_threadsafe_function_with_priority|将指定优先级和入队方式的任务投递到ArkTS主线程。|
+| napi_is_sendable|判断给定JS value是否是Sendable的。|
+| napi_define_sendable_class|创建一个sendable类。|
+| napi_create_sendable_object_with_properties | 使用给定的napi_property_descriptor创建一个sendable对象。|
+| napi_create_sendable_array | 创建一个sendable数组。|
+| napi_create_sendable_array_with_length | 创建一个指定长度的sendable数组。|
+| napi_create_sendable_arraybuffer | 创建一个sendable ArrayBuffer。|
+| napi_create_sendable_typedarray | 创建一个sendable TypedArray。|
+| napi_wrap_sendable | 包裹一个native实例到ArkTS对象中。|
+| napi_wrap_sendable_with_size | 包裹一个native实例到ArkTS对象中并指定大小。|
+| napi_unwrap_sendable | 获取ArkTS对象包裹的native实例。|
+| napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例。|
 
 #### napi_queue_async_work_with_qos
 
@@ -516,17 +574,142 @@ napi_status napi_coerce_to_native_binding_object(napi_env env,
                                                  napi_native_binding_detach_callback detach_cb,
                                                  napi_native_binding_attach_callback attach_cb,
                                                  void* native_object,
-                                                 void* hint);  
+                                                 void* hint);
 ```
 
 #### napi_run_event_loop
+
 ```c
 napi_status napi_run_event_loop(napi_env env, napi_event_mode mode);
 ```
 
 #### napi_stop_event_loop
+
 ```c
 napi_status napi_stop_event_loop(napi_env env);
+```
+
+#### napi_serialize
+
+```c
+napi_status napi_serialize(napi_env env,
+                           napi_value object,
+                           napi_value transfer_list,
+                           napi_value clone_list,
+                           void** result);
+```
+
+#### napi_deserialize
+
+```c
+napi_status napi_deserialize(napi_env env, void* buffer, napi_value* object);
+```
+
+#### napi_delete_serialization_data
+
+```c
+napi_status napi_delete_serialization_data(napi_env env, void* buffer);
+```
+
+#### napi_call_threadsafe_function_with_priority
+
+```c
+napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function func,
+                                                        void *data,
+                                                        napi_task_priority priority,
+                                                        bool isTail);
+```
+
+#### napi_is_sendable
+
+```c
+napi_status napi_is_sendable(napi_env env, napi_value value, bool* result);
+```
+
+#### napi_define_sendable_class
+
+```c
+napi_status napi_define_sendable_class(napi_env env,
+                                       const char* utf8name,
+                                       size_t length,
+                                       napi_callback constructor,
+                                       void* data,
+                                       size_t property_count,
+                                       const napi_property_descriptor* properties,
+                                       napi_value parent,
+                                       napi_value* result);
+
+```
+
+#### napi_create_sendable_object_with_properties
+
+```c
+napi_status napi_create_sendable_object_with_properties(napi_env env,
+                                                        size_t property_count,
+                                                        const napi_property_descriptor* properties,
+                                                        napi_value* result);
+```
+
+#### napi_create_sendable_array
+
+```c
+napi_status napi_create_sendable_array(napi_env env, napi_value* result);
+```
+
+#### napi_create_sendable_array_with_length
+
+```c
+napi_status napi_create_sendable_array_with_length(napi_env env, size_t length, napi_value* result);
+```
+
+#### napi_create_sendable_arraybuffer
+
+```c
+napi_status napi_create_sendable_arraybuffer(napi_env env, size_t byte_length, void** data, napi_value* result);
+```
+
+#### napi_create_sendable_typedarray
+
+```c
+napi_status napi_create_sendable_typedarray(napi_env env,
+                                            napi_typedarray_type type,
+                                            size_t length,
+                                            napi_value arraybuffer,
+                                            size_t byte_offset,
+                                            napi_value* result);
+```
+
+#### napi_wrap_sendable
+
+```c
+napi_status napi_wrap_sendable(napi_env env,
+                               napi_value js_object,
+                               void* native_object,
+                               napi_finalize finalize_cb,
+                               void* finalize_hint);
+```
+
+#### napi_wrap_sendable_with_size
+
+```c
+napi_status napi_wrap_sendable_with_size(napi_env env,
+                                         napi_value js_object,
+                                         void* native_object,
+                                         napi_finalize finalize_cb,
+                                         void* finalize_hint,
+                                         size_t native_binding_size);
+```
+
+#### napi_unwrap_sendable
+
+```c
+napi_status napi_unwrap_sendable(napi_env env, napi_value js_object, void** result);
+```
+
+#### napi_remove_wrap_sendable
+
+```c
+napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void** result);
 ```
 
 ### 环境生命周期
@@ -545,7 +728,7 @@ napi_status napi_stop_event_loop(napi_env env);
 | napi_add_async_cleanup_hook | 注册清理异步钩子函数。 |
 | napi_remove_async_cleanup_hook | 取消清理异步钩子函数。|
 
-### ArkTs基础运行时环境
+### ArkTS基础运行时环境
 
 | 接口 | 功能说明 |
 | -------- | -------- |
@@ -556,4 +739,6 @@ napi_status napi_stop_event_loop(napi_env env);
 
 | 接口 | 功能说明 |
 | -------- | -------- |
+| napi_get_version | 获取Node运行时支持的最高 NAPI 版本。 |
 | node_api_get_module_file_name | 用于获取加载项加载位置的绝对路径。|
+| napi_strict_equals | 在某些情况下，希望确保两个值不仅具有相同的值，还具有相同的类型——例如正在处理一些需要特定类型的数据结构或算法——使用napi_strict_equals可以确保数据的一致性。 |

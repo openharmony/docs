@@ -1,7 +1,7 @@
 # @ohos.identifier.oaid (OAID)
 
 
-The **OAID** module provides APIs for obtaining and resetting Open Anonymous Device Identifiers (OAIDs).
+The **OAID** module provides APIs for obtaining Open Anonymous Device Identifiers (OAIDs).
 
 
 > **NOTE**
@@ -14,7 +14,7 @@ The **OAID** module provides APIs for obtaining and resetting Open Anonymous Dev
 ## Modules to Import
 
 ```
-import identifier from '@ohos.identifier.oaid';
+import { identifier } from '@kit.AdsKit';
 ```
 
 
@@ -32,7 +32,7 @@ Obtains an OAID. This API uses a promise to return the result.
 
 | Type| Description| 
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the OAID. If the operation is successful, an OAID is returned. If the operation fails, 00000000-0000 00000000-0000-0000-0000-000000000000 is returned.| 
+| Promise&lt;string&gt; | Promise used to return the OAID.<br>1. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is allowed, the OAID is returned.<br>2. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is disallowed, 00000000-0000-0000-0000-000000000000 is returned.<br>3. If the application has not configured the permission **ohos.permission.APP_TRACKING_CONSENT**, 00000000-0000-0000-0000-000000000000 is returned.| 
 
 **Error codes**
 
@@ -44,16 +44,17 @@ For details about the following error codes, see [OAID Error Codes](errorcode-oa
 
 **Example**
 ```
-import identifier from '@ohos.identifier.oaid';
-import hilog from '@ohos.hilog'; 
-import { BusinessError } from '@ohos.base';
- 
-try {  
+import { identifier } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
   identifier.getOAID().then((data) => {
     const oaid: string = data;
-    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by promise success, oaid: ${oaid}`);
+    hilog.info(0x0000, 'testTag', '%{public}s', `succeeded in getting oaid by promise, oaid: ${oaid}`);
   }).catch((err: BusinessError) => {
-    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by promise failed, code: ${err.code}, message: ${err.message}`);
+    hilog.error(0x0000, 'testTag', '%{public}s',
+      `get oaid by promise failed, code: ${err.code}, message: ${err.message}`);
   })
 } catch (err) {
   hilog.error(0x0000, 'testTag', '%{public}s', `get oaid by promise catch error: ${err.code} ${err.message}`);
@@ -76,7 +77,7 @@ Obtains an OAID. This API uses an asynchronous callback to return the result.
 
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the OAID. If the operation is successful, an OAID is returned. If the operation fails, 00000000-0000 00000000-0000-0000-0000-000000000000 is returned.| 
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the OAID.<br>1. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the is allowed, the OAID is returned.<br>2. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is disallowed, 00000000-0000-0000-0000-000000000000 is returned.<br>3. If the application has not configured the permission **ohos.permission.APP_TRACKING_CONSENT**, 00000000-0000-0000-0000-000000000000 is returned.| 
 
 
 **Error codes**
@@ -92,9 +93,9 @@ For details about the following error codes, see [OAID Error Codes](errorcode-oa
 
 **Example**
 ```
-import identifier from '@ohos.identifier.oaid';
-import hilog from '@ohos.hilog'; 
-import { BusinessError } from '@ohos.base';
+import { identifier } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
  
 try {
   identifier.getOAID((err: BusinessError, data: string) => {
@@ -102,7 +103,7 @@ try {
       hilog.error(0x0000, 'testTag', '%{public}s', `get oaid by callback failed, error: ${err.code} ${err.message}`);
     } else {
       const oaid: string = data;
-      hilog.info(0x0000, 'testTag', '%{public}s', 'get oaid by callback success');
+      hilog.info(0x0000, 'testTag', '%{public}s', 'succeed in getting oaid by callback');
     }
    });
 } catch (err) {

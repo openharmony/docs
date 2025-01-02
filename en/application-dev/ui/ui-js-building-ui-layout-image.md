@@ -1,6 +1,6 @@
 # Adding an Image
 
-Generally, the **[\<image>](../reference/arkui-js/js-components-basic-image.md)** component is used to add images on a page. The method of using this component is similar to that of using the **\<text>** component.
+Generally, the [\<image>](../reference/apis-arkui/arkui-js/js-components-basic-image.md) component is used to add images on a page. The method of using this component is similar to that of using the **Text** component.
 
 
 

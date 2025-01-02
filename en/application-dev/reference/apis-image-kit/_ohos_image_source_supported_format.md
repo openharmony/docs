@@ -19,5 +19,5 @@ The **OhosImageSourceSupportedFormat** struct defines the format string supporte
 
 | Name| Description| 
 | -------- | -------- |
-| [format](image.md#format) = nullptr | Defines a pointer to the head of the format string.| 
-| [size](image.md#size-57) = 0 | Defines the size of the format string.| 
+| char \* [format](image.md#format) = nullptr | Defines a pointer to the head of the format string.| 
+| size_t [size](image.md#size-57) = 0 | Defines the size of the format string.| 

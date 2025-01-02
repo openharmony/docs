@@ -3,21 +3,13 @@
 
 ## Overview
 
-The **OH_VideoEncInfo** struct defines video encoding parameters.
-
-> **NOTE**
-> 
-> This struct is reserved and will be provided in later versions.
+The **OH_VideoEncInfo** struct describes the video encoding information.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[AVScreenCapture](_a_v_screen_capture.md)
+**Related module**: [AVScreenCapture](_a_v_screen_capture.md)
 
 
 ## Summary
@@ -27,9 +19,9 @@ The **OH_VideoEncInfo** struct defines video encoding parameters.
 
 | Name| Description| 
 | -------- | -------- |
-| [videoCodec](#videocodec) | [OH_VideoCodecFormat](_a_v_screen_capture.md#oh_videocodecformat)<br>Defines the video encoding format.| 
-| [videoBitrate](#videobitrate) | int32_t<br>Defines the video bit rate.| 
-| [videoFrameRate](#videoframerate) | int32_t<br>Defines the video frame rate.| 
+| [OH_VideoCodecFormat](_a_v_screen_capture.md#oh_videocodecformat) [videoCodec](#videocodec) | Video encoding format.| 
+| int32_t [videoBitrate](#videobitrate) | Video bit rate.| 
+| int32_t [videoFrameRate](#videoframerate) | Video frame rate.| 
 
 
 ## Member Variable Description
@@ -43,7 +35,7 @@ int32_t OH_VideoEncInfo::videoBitrate
 
 **Description**
 
-Defines the video bit rate.
+Video bit rate.
 
 
 ### videoCodec
@@ -54,7 +46,7 @@ OH_VideoCodecFormat OH_VideoEncInfo::videoCodec
 
 **Description**
 
-Defines the video encoding format.
+Video encoding format.
 
 
 ### videoFrameRate
@@ -65,4 +57,4 @@ int32_t OH_VideoEncInfo::videoFrameRate
 
 **Description**
 
-Defines the video frame rate.
+Video frame rate.

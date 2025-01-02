@@ -8,6 +8,7 @@ The **photoAccessHelper** module provides APIs for managing system albums, inclu
 > - Unless otherwise specified, the **PhotoAccessHelper** instance obtained in the **Before You Start** section is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
 
 To ensure application running efficiency, most **PhotoAccessHelper** APIs are asynchronously implemented in callback or promise mode. The following examples use promise-based APIs. For details about the APIs, see [Album Management](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).
+
 Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained when the sample code is executed, check whether the media assets exist in the database.
 
 ## Favorites
@@ -21,7 +22,7 @@ Use [PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/js-apis
 **Prerequisites**
 
 - A **PhotoAccessHelper** instance is obtained.
-- The application has the ohos.permission.READ_IMAGEVIDEO permission.
+- The application has the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 **How to Develop**
 
@@ -45,6 +46,7 @@ async function example() {
 }
 ```
 
+<!--Del-->
 ### Favoriting an Image or Video (for System Applications Only)
 
 Use [MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#setfavorite11) and [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11) to add an image or video to **Favorites**.
@@ -52,7 +54,7 @@ Use [MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit
 **Prerequisites**
 
 - A **PhotoAccessHelper** instance is obtained.
-- The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
+- The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Favorite an image.
 
@@ -88,6 +90,7 @@ async function example() {
   }
 }
 ```
+<!--DelEnd-->
 
 ### Obtaining Images and Videos in Favorites
 
@@ -96,7 +99,7 @@ async function example() {
 **Prerequisites**
 
 - A **PhotoAccessHelper** instance is obtained.
-- The application has the ohos.permission.READ_IMAGEVIDEO permission.
+- The application has the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Obtain an image from **Favorites**.
 
@@ -136,6 +139,7 @@ async function example() {
 }
 ```
 
+<!--Del-->
 ### Unfavoriting an Image or Video (for System Applications Only)
 
 Use [MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#setfavorite11) and [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11) to remove an image or video from **Favorites**.
@@ -143,7 +147,7 @@ Use [MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit
 **Prerequisites**
 
 - A **PhotoAccessHelper** instance is obtained.
-- The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
+- The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Unfavorite an image.
 
@@ -187,6 +191,7 @@ async function example() {
   }
 }
 ```
+<!--DelEnd-->
 
 ## Videos
 
@@ -199,7 +204,7 @@ Use [PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/js-apis
 **Prerequisites**
 
 - A **PhotoAccessHelper** instance is obtained.
-- The application has the ohos.permission.READ_IMAGEVIDEO permission.
+- The application has the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 **How to Develop**
 
@@ -230,7 +235,7 @@ async function example() {
 **Prerequisites**
 
 - A **PhotoAccessHelper** instance is obtained.
-- The application has the ohos.permission.READ_IMAGEVIDEO permission.
+- The application has the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Obtain a video in **Videos**.
 
@@ -270,6 +275,7 @@ async function example() {
 }
 ```
 
+<!--Del-->
 ## Screenshots (for System Applications Only)
 
 **Screenshots** is a system album that holds user's screenshots and screen recording files.
@@ -281,12 +287,12 @@ Use [PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/js-apis
 **Prerequisites**
 
 - A **PhotoAccessHelper** instance is obtained.
-- The application has the ohos.permission.READ_IMAGEVIDEO permission.
+- The application has the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 **How to Develop**
 
 1. Set the album type to **photoAccessHelper.AlbumType.SYSTEM** and the album subtype to **photoAccessHelper.AlbumSubtype.SCREENSHOT**.
-2. Use **PhotoAccessHelper.getAlbums** to obtain a **Screenshots** object.
+2. call **PhotoAccessHelper.getAlbums** to obtain a **Screenshots** object.
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
@@ -312,7 +318,7 @@ async function example() {
 **Prerequisites**
 
 - A **PhotoAccessHelper** instance is obtained.
-- The application has the ohos.permission.READ_IMAGEVIDEO permission.
+- The application has the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 Example: Obtain a media asset from **Screenshots**.
 
@@ -351,3 +357,4 @@ async function example() {
   }
 }
 ```
+<!--DelEnd-->

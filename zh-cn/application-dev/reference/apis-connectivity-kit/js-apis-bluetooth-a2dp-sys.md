@@ -11,7 +11,7 @@ a2dp模块提供了访问蓝牙音频接口的方法。
 ## 导入模块
 
 ```js
-import a2dp from '@ohos.bluetooth.a2dp';
+import { a2dp } from '@kit.ConnectivityKit';
 ```
 
 
@@ -39,15 +39,19 @@ connect(deviceId: string): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.               |
-|2900003 | Bluetooth switch is off.       |
-|2900004 | Profile is not supported.      |
+|2900003 | Bluetooth disabled.       |
+|2900004 | Profile not supported.      |
 |2900099 | Operation failed.              |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
@@ -81,15 +85,19 @@ disconnect(deviceId: string): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
@@ -103,7 +111,7 @@ try {
 
 isAbsoluteVolumeSupported(deviceId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取设备是否支持绝对音量能力。
+获取设备是否支持绝对音量能力。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -125,14 +133,18 @@ isAbsoluteVolumeSupported(deviceId: string, callback: AsyncCallback&lt;boolean&g
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.isAbsoluteVolumeSupported('XX:XX:XX:XX:XX:XX', (err, supported) => {
@@ -147,7 +159,7 @@ try {
 
 isAbsoluteVolumeSupported(deviceId: string): Promise&lt;boolean&gt;
 
-获取设备是否支持绝对音量能力。
+获取设备是否支持绝对音量能力。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -173,14 +185,18 @@ isAbsoluteVolumeSupported(deviceId: string): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.isAbsoluteVolumeSupported('XX:XX:XX:XX:XX:XX').then((supported) => {
@@ -195,7 +211,7 @@ try {
 
 isAbsoluteVolumeEnabled(deviceId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取设备绝对音量能力是否开启。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再获取设备绝对音量能力是否开启。
+获取设备绝对音量能力是否开启。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再获取设备绝对音量能力是否开启。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -217,14 +233,18 @@ isAbsoluteVolumeEnabled(deviceId: string, callback: AsyncCallback&lt;boolean&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.isAbsoluteVolumeEnabled('XX:XX:XX:XX:XX:XX', (err, enabled) => {
@@ -239,7 +259,7 @@ try {
 
 isAbsoluteVolumeEnabled(deviceId: string): Promise&lt;boolean&gt;
 
-获取设备绝对音量能力是否开启。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再获取设备绝对音量能力是否开启。
+获取设备绝对音量能力是否开启。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再获取设备绝对音量能力是否开启。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -265,14 +285,18 @@ isAbsoluteVolumeEnabled(deviceId: string): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.isAbsoluteVolumeEnabled('XX:XX:XX:XX:XX:XX').then((enabled) => {
@@ -287,7 +311,7 @@ try {
 
 enableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-开启设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再开启设备绝对音量能力。
+开启设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再开启设备绝对音量能力。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -309,14 +333,18 @@ enableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): voi
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.enableAbsoluteVolume('XX:XX:XX:XX:XX:XX', (err) => {
@@ -333,7 +361,7 @@ try {
 
 enableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
 
-开启设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再开启设备绝对音量能力。
+开启设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再开启设备绝对音量能力。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -359,14 +387,18 @@ enableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.enableAbsoluteVolume('XX:XX:XX:XX:XX:XX').then(() => {
@@ -382,7 +414,7 @@ try {
 
 disableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-关闭设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再关闭设备绝对音量能力。
+关闭设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再关闭设备绝对音量能力。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -404,14 +436,18 @@ disableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): vo
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.disableAbsoluteVolume('XX:XX:XX:XX:XX:XX', (err) => {
@@ -428,7 +464,7 @@ try {
 
 disableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
 
-关闭设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再关闭设备绝对音量能力。
+关闭设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再关闭设备绝对音量能力。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -454,14 +490,18 @@ disableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.disableAbsoluteVolume('XX:XX:XX:XX:XX:XX').then(() => {
@@ -502,14 +542,18 @@ getCurrentCodecInfo(deviceId: string): CodecInfo
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let codecInfo : a2dp.CodecInfo = a2dpSrc.getCurrentCodecInfo('XX:XX:XX:XX:XX:XX');
@@ -543,21 +587,25 @@ setCurrentCodecInfo(deviceId: string, codecInfo: CodecInfo): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900099 | Operation failed.                        |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |   
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let codecInfo : a2dp.CodecInfo = {
         codecType: 0,
         codecBitsPerSample: 1,
         codecChannelMode: 2,
-        codecSampleRate: 1,
+        codecSampleRate: 1
     }
     a2dpSrc.setCurrentCodecInfo('XX:XX:XX:XX:XX:XX', codecInfo);
 } catch (err) {
@@ -565,3 +613,163 @@ try {
 }
 ```
 
+
+### disableAutoPlay<sup>12+</sup>
+
+disableAutoPlay(deviceId: string, duration: number): Promise&lt;void&gt;
+
+限制设备在连接成功的若干毫秒内播放音乐。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | 是    | 远端设备地址，例如："11:22:33:AA:BB:FF"。 |
+| duration | number | 是    | 拦截时长，单位毫秒。 |
+
+**返回值：**
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| Promise&lt;void&gt; | 以Promise的形式返回结果。如果成功，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    let durationNumber = 1000;
+    a2dpSrc.disableAutoPlay('XX:XX:XX:XX:XX:XX', durationNumber).then(() => {
+        console.info("disableAutoPlay");
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+### enableAutoPlay<sup>12+</sup>
+
+enableAutoPlay(deviceId: string): Promise&lt;void&gt;
+
+允许设备在连接成功后自动播放音乐。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | 是    | 远端设备地址，例如："11:22:33:AA:BB:FF"。 |
+
+**返回值：**
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| Promise&lt;void&gt; | 以Promise的形式返回结果。如果成功，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.enableAutoPlay('XX:XX:XX:XX:XX:XX').then(() => {
+        console.info("enableAutoPlay");
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+### getAutoPlayDisabledDuration<sup>12+</sup>
+
+getAutoPlayDisabledDuration(deviceId: string): Promise&lt;number&gt;
+
+获取拦截时长或自动播放开关。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | 是    | 远端设备地址，例如："11:22:33:AA:BB:FF"。 |
+
+**返回值：**
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| Promise&lt;number&gt; | 以Promise的形式返回结果。number为返回的拦截时长，单位为毫秒；如果返回-1，则表示允许设备在连接成功后自动播放音乐。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.getAutoPlayDisabledDuration('XX:XX:XX:XX:XX:XX').then((data: number) => {
+        console.info('number' + JSON.stringify(data));
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```

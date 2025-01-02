@@ -333,7 +333,7 @@ work_cb位于子线程中，执行实际的业务逻辑；after_work_cb位于主
     
         napi_close_handle_scope(context->env, scope);
         if (context != nullptr) {
-            napi_delete_reference(context->env, co[readme-CN.md](readme-CN.md)ntext->callbackRef);
+            napi_delete_reference(context->env, context->callbackRef);
             delete context;
             OH_LOG_INFO(LOG_APP, "UvWorkTest delete context");
             context = nullptr;

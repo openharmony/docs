@@ -48,13 +48,12 @@
 
 通过窗口对象监听断点变化的核心是获取窗口对象及注册窗口尺寸变化的回调函数。
 
-1. 在UIAbility的[onWindowStageCreate](../../application-models/uiability-lifecycle.md)生命周期回调中，通过[窗口](../../reference/apis-arkui/js-apis-window.md)对象获取启动时的应用窗口宽度并注册回调函数监听窗口尺寸变化。将窗口尺寸的长度单位[由px换算为vp](../../../design/ux-design/visual-basis.md#视觉基础)后，即可基于前文中介绍的规则得到当前断点值，此时可以使用[状态变量](../../quick-start/arkts-state.md)记录当前的断点值方便后续使用。
+1. 在UIAbility的[onWindowStageCreate](../../application-models/uiability-lifecycle.md)生命周期回调中，通过[窗口](../../reference/apis-arkui/js-apis-window.md)对象获取启动时的应用窗口宽度并注册回调函数监听窗口尺寸变化。将窗口尺寸的长度单位[由px换算为vp](../../reference/apis-arkui/arkui-ts/ts-pixel-units.md)后，即可基于前文中介绍的规则得到当前断点值，此时可以使用[状态变量](../../quick-start/arkts-state.md)记录当前的断点值方便后续使用。
 
    ```ts
    // MainAbility.ts
-   import window from '@ohos.window'
-   import display from '@ohos.display'
-   import UIAbility from '@ohos.app.ability.UIAbility'
+   import { window, display } from '@kit.ArkUI'
+   import { UIAbility } from '@kit.AbilityKit'
    
    export default class MainAbility extends UIAbility {
      private windowObj?: window.Window
@@ -128,7 +127,7 @@
 在实际应用开发过程中，开发者常常需要针对不同类型设备或同一类型设备的不同状态来修改应用的样式。媒体查询提供了丰富的媒体特征监听能力，可以监听应用显示区域变化、横竖屏、深浅色、设备类型等等，因此在应用开发过程中使用的非常广泛。
 
 
-本小节仅介绍**媒体查询跟断点的结合**，即如何借助媒体查询能力，监听断点的变化，读者可以自行查阅官网中关于[媒体查询](../../ui/arkts-layout-development-media-query.md)的相关介绍了解更详细的用法。
+本小节仅介绍**媒体查询跟断点的结合**，即如何借助媒体查询能力，监听[断点](#断点)的变化，读者可以自行查阅官网中关于[媒体查询](../../ui/arkts-layout-development-media-query.md)的相关介绍了解更详细的用法。
 
 
 > **说明：**
@@ -146,12 +145,83 @@
 | ![zh-cn_image_0000001336165712](figures/zh-cn_image_0000001336165712.jpg) | ![zh-cn_image_0000001386485617](figures/zh-cn_image_0000001386485617.jpg) | ![zh-cn_image_0000001386805569](figures/zh-cn_image_0000001386805569.jpg) | 
 
 
-1.对通过媒体查询监听断点的功能做简单的封装，方便后续使用
+1.对通过媒体查询监听[断点](#断点)的功能做简单的封装，方便后续使用
 ```ts
 // common/breakpointsystem.ets
-import mediaQuery from '@ohos.mediaquery'
+import { mediaquery } from '@kit.ArkUI'
 
-declare interface BreakPointTypeOption<T> {
+export type BreakpointType = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
+
+export interface Breakpoint {
+  name: BreakpointType
+  size: number
+  mediaQueryListener?: mediaquery.MediaQueryListener
+}
+
+export class BreakpointSystem {
+  private static instance: BreakpointSystem
+  private readonly breakpoints: Breakpoint[] = [
+    { name: 'xs', size: 0 },
+    { name: 'sm', size: 320 },
+    { name: 'md', size: 600 },
+    { name: 'lg', size: 840 }
+  ]
+  private states: Set<BreakpointState<Object>>
+
+  private constructor() {
+    this.states = new Set()
+  }
+
+  public static getInstance(): BreakpointSystem {
+    if (!BreakpointSystem.instance) {
+      BreakpointSystem.instance = new BreakpointSystem();
+    }
+    return BreakpointSystem.instance
+  }
+
+  public attach(state: BreakpointState<Object>): void {
+    this.states.add(state)
+  }
+
+  public detach(state: BreakpointState<Object>): void {
+    this.states.delete(state)
+  }
+
+  public start() {
+    this.breakpoints.forEach((breakpoint: Breakpoint, index) => {
+      let condition: string
+      if (index === this.breakpoints.length - 1) {
+        condition = `(${breakpoint.size}vp<=width)`
+      } else {
+        condition = `(${breakpoint.size}vp<=width<${this.breakpoints[index + 1].size}vp)`
+      }
+      breakpoint.mediaQueryListener = mediaquery.matchMediaSync(condition)
+      if (breakpoint.mediaQueryListener.matches) {
+        this.updateAllState(breakpoint.name)
+      }
+      breakpoint.mediaQueryListener.on('change', (mediaQueryResult) => {
+        if (mediaQueryResult.matches) {
+          this.updateAllState(breakpoint.name)
+        }
+      })
+    })
+  }
+
+  private updateAllState(type: BreakpointType): void {
+    this.states.forEach(state => state.update(type))
+  }
+
+  public stop() {
+    this.breakpoints.forEach((breakpoint: Breakpoint, index) => {
+      if (breakpoint.mediaQueryListener) {
+        breakpoint.mediaQueryListener.off('change')
+      }
+    })
+    this.states.clear()
+  }
+}
+
+export interface BreakpointOptions<T> {
   xs?: T
   sm?: T
   md?: T
@@ -160,108 +230,74 @@ declare interface BreakPointTypeOption<T> {
   xxl?: T
 }
 
-export class BreakPointType<T> {
-  options: BreakPointTypeOption<T>
+export class BreakpointState<T extends Object> {
+  public value: T | undefined = undefined;
+  private options: BreakpointOptions<T>
 
-  constructor(option: BreakPointTypeOption<T>) {
-    this.options = option
+  constructor(options: BreakpointOptions<T>) {
+    this.options = options
   }
 
-  getValue(currentBreakPoint: string) {
-    if (currentBreakPoint === 'xs') {
-      return this.options.xs
-    } else if (currentBreakPoint === 'sm') {
-      return this.options.sm
-    } else if (currentBreakPoint === 'md') {
-      return this.options.md
-    } else if (currentBreakPoint === 'lg') {
-      return this.options.lg
-    } else if (currentBreakPoint === 'xl') {
-      return this.options.xl
-    } else if (currentBreakPoint === 'xxl') {
-      return this.options.xxl
+  static of<T extends Object>(options: BreakpointOptions<T>): BreakpointState<T> {
+    return new BreakpointState(options)
+  }
+
+  public update(type: BreakpointType): void {
+    if (type === 'xs') {
+      this.value = this.options.xs
+    } else if (type === 'sm') {
+      this.value = this.options.sm
+    } else if (type === 'md') {
+      this.value = this.options.md
+    } else if (type === 'lg') {
+      this.value = this.options.lg
+    } else if (type === 'xl') {
+      this.value = this.options.xl
+    } else if (type === 'xxl') {
+      this.value = this.options.xxl
     } else {
-      return undefined
+      this.value = undefined
     }
   }
 }
-
-interface Breakpoint {
-  name: string
-  size: number
-  mediaQueryListener?: mediaQuery.MediaQueryListener
-}
-
-export class BreakpointSystem {
-  private currentBreakpoint: string = 'md'
-  private breakpoints: Breakpoint[] = [
-    { name: 'xs', size: 0 }, { name: 'sm', size: 320 },
-    { name: 'md', size: 600 }, { name: 'lg', size: 840 }
-  ]
-
-  private updateCurrentBreakpoint(breakpoint: string) {
-    if (this.currentBreakpoint !== breakpoint) {
-      this.currentBreakpoint = breakpoint
-      AppStorage.Set<string>('currentBreakpoint', this.currentBreakpoint)
-      console.log('on current breakpoint: ' + this.currentBreakpoint)
-    }
-  }
-
-  public register() {
-    this.breakpoints.forEach((breakpoint: Breakpoint, index) => {
-      let condition:string
-      if (index === this.breakpoints.length - 1) {
-        condition = '(' + breakpoint.size + 'vp<=width' + ')'
-      } else {
-        condition = '(' + breakpoint.size + 'vp<=width<' + this.breakpoints[index + 1].size + 'vp)'
-      }
-      console.log(condition)
-      breakpoint.mediaQueryListener = mediaQuery.matchMediaSync(condition)
-      breakpoint.mediaQueryListener.on('change', (mediaQueryResult) => {
-        if (mediaQueryResult.matches) {
-          this.updateCurrentBreakpoint(breakpoint.name)
-        }
-      })
-    })
-  }
-
-  public unregister() {
-    this.breakpoints.forEach((breakpoint: Breakpoint) => {
-      if(breakpoint.mediaQueryListener){
-        breakpoint.mediaQueryListener.off('change')
-      }
-    })
-  }
-}
-
 ```
 2.在页面中，通过媒体查询，监听应用窗口宽度变化，获取当前应用所处的断点值
 ```ts
 // MediaQuerySample.ets
-import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
+import { BreakpointSystem, BreakpointState } from '../common/breakpointsystem'
 
 @Entry
 @Component
 struct MediaQuerySample {
-  @StorageLink('currentBreakpoint') private currentBreakpoint: string = "md";
-  @State private icon: Resource = $r('app.media.md')
-  private breakpointSystem: BreakpointSystem = new BreakpointSystem()
+  @State compStr: BreakpointState<string> = BreakpointState.of({ sm: "sm", md: "md", lg: "lg" })
+  @State compImg: BreakpointState<Resource> = BreakpointState.of({
+    sm: $r('app.media.sm'),
+    md: $r('app.media.md'),
+    lg: $r('app.media.lg')
+  });
 
   aboutToAppear() {
-    this.breakpointSystem.register()
+    BreakpointSystem.getInstance().attach(this.compStr)
+    BreakpointSystem.getInstance().attach(this.compImg)
+    BreakpointSystem.getInstance().start()
   }
 
   aboutToDisappear() {
-    this.breakpointSystem.unregister()
+    BreakpointSystem.getInstance().detach(this.compStr)
+    BreakpointSystem.getInstance().detach(this.compImg)
+    BreakpointSystem.getInstance().stop()
   }
+
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Image(new BreakPointType({sm:$r('app.media.sm'), md:$r('app.media.md'), lg:$r('app.media.lg')}).getValue(this.currentBreakpoint)!)
+      Column()
         .height(100)
         .width(100)
-        .objectFit(ImageFit.Contain)
+        .backgroundImage(this.compImg.value)
+        .backgroundImagePosition(Alignment.Center)
+        .backgroundImageSize(ImageSize.Contain)
 
-      Text(this.currentBreakpoint)
+      Text(this.compStr.value)
         .fontSize(24)
         .margin(10)
     }
@@ -527,7 +563,7 @@ struct GridRowSample4 {
 **示例5：**
 
 
-通过span参数配置GridCol在不同断点下占据不同的列数。特别的，将md断点下和6的span配置为0，这样在md断点下3和6不会渲染和显示。
+通过span参数配置GridCol在不同断点下占据不同的列数。特别的，将md断点下3和6的span配置为0，这样在md断点下3和6不会渲染和显示。
 
 
   | sm | md | lg | 

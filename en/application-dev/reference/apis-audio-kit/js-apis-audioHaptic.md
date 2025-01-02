@@ -10,7 +10,7 @@ Audio-haptic enables users to get rhythmic auditory and haptic feedback while ha
 ## Modules to Import
 
 ```ts
-import audioHaptic from '@ohos.multimedia.audioHaptic';
+import { audioHaptic } from '@kit.AudioKit';
 ```
 
 ## audioHaptic.getAudioHapticManager
@@ -79,10 +79,18 @@ Registers an audio-haptic source. This API uses a promise to return the result.
 | ------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the source ID.|
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID| Error Message                             |
+| ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioUri = 'data/audioTest.wav'; // Change it to the URI of the target audio source.
 let hapticUri = 'data/hapticTest.json'; // Change it to the URI of the target haptic source.
@@ -110,10 +118,29 @@ Unregisters an audio-haptic source. This API uses a promise to return the result
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | id       | number                                   | Yes  | Source ID.   |
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID| Error Message                             |
+| ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let audioUri = 'data/audioTest.wav'; // Change it to the URI of the target audio source.
+let hapticUri = 'data/hapticTest.json'; // Change it to the URI of the target haptic source.
+let id = 0;
+
+audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
+  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+  id = value;
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to register source ${err}`);
+});
 
 audioHapticManagerInstance.unregisterSource(id).then(() => {
   console.info(`Promise returned to indicate that unregister source successfully`);
@@ -143,11 +170,25 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 
 | ID| Error Message                             |
 | ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed.            |
 
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let audioUri = 'data/audioTest.wav'; // Change it to the URI of the target audio source.
+let hapticUri = 'data/hapticTest.json'; // Change it to the URI of the target haptic source.
+let id = 0;
+
+audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
+  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+  id = value;
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to register source ${err}`);
+});
+
 let latencyMode: audioHaptic.AudioLatencyMode = audioHaptic.AudioLatencyMode.AUDIO_LATENCY_MODE_FAST;
 
 audioHapticManagerInstance.setAudioLatencyMode(id, latencyMode);
@@ -174,12 +215,25 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 
 | ID| Error Message                             |
 | ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 5400102 | Operation not allowed.            |
 
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let audioUri = 'data/audioTest.wav'; // Change it to the URI of the target audio source.
+let hapticUri = 'data/hapticTest.json'; // Change it to the URI of the target haptic source.
+let id = 0;
+
+audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
+  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+  id = value;
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to register source ${err}`);
+});
 
 let usage: audio.StreamUsage = audio.StreamUsage.STREAM_USAGE_NOTIFICATION;
 
@@ -217,6 +271,8 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 
 | ID| Error Message                             |
 | ------- |-----------------------------------|
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed. |
 | 5400103 | I/O error. |
 | 5400106 | Unsupport format. |
@@ -224,7 +280,18 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let audioUri = 'data/audioTest.wav'; // Change it to the URI of the target audio source.
+let hapticUri = 'data/hapticTest.json'; // Change it to the URI of the target haptic source.
+let id = 0;
+
+audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
+  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+  id = value;
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to register source ${err}`);
+});
 
 let options: audioHaptic.AudioHapticPlayerOptions = {muteAudio: false, muteHaptics: false};
 let audioHapticPlayerInstance: audioHaptic.AudioHapticPlayer | undefined = undefined;
@@ -272,6 +339,14 @@ Checks whether an audio-haptic type is muted.
 | ------------------- | ------------------------------- |
 | boolean             | Whether the audio-haptic type is muted.       |
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID| Error Message                             |
+| ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -308,7 +383,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.start().then(() => {
   console.info(`Promise returned to indicate that start playing successfully.`);
@@ -343,7 +418,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.stop().then(() => {
   console.info(`Promise returned to indicate that stop playing successfully.`);
@@ -377,7 +452,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.release().then(() => {
   console.info(`Promise returned to indicate that release the audio haptic player successfully.`);
@@ -390,7 +465,7 @@ audioHapticPlayerInstance.release().then(() => {
 
 on(type: 'endOfStream', callback: Callback&lt;void&gt;): void
 
-Subscribes to end of stream (EOS) events. This API uses a callback to obtain the events.
+Subscribes to end of stream (EOS) event, which is triggered when the audio stream playback ends. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -399,12 +474,12 @@ Subscribes to end of stream (EOS) events. This API uses a callback to obtain the
 | Name  | Type                    | Mandatory| Description                                                                      |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
 | type     | string                  | Yes  | Event type. The value is fixed at **'endOfStream'**.|
-| callback | Callback&lt;void&gt;    | Yes  | Callback triggered when the event is received.                          |
+| callback | Callback&lt;void&gt;    | Yes  | Callback that returns no value.|
 
 **Example**
 
 ```ts
-audioHapticPlayerInstance.on('endOfStream', async() => {
+audioHapticPlayerInstance.on('endOfStream', () => {
   console.info(`Receive the callback of endOfStream.`);
 });
 ```
@@ -413,7 +488,7 @@ audioHapticPlayerInstance.on('endOfStream', async() => {
 
 off(type: 'endOfStream', callback?: Callback&lt;void&gt;): void
 
-Unsubscribes from EOS events.
+Unsubscribes from the EOS event. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -422,19 +497,29 @@ Unsubscribes from EOS events.
 | Name| Type  | Mandatory| Description                                             |
 | ----- | ----- | ---- | ------------------------------------------------ |
 | type   | string | Yes  | Event type. The value is fixed at **'endOfStream'**.|
-| callback | Callback&lt;void&gt;    | No  | Callback used for unsubscription.         |
+| callback | Callback&lt;void&gt;    | No  | Callback that returns no value.|
 
 **Example**
 
 ```ts
+// Cancel all subscriptions to the event.
 audioHapticPlayerInstance.off('endOfStream');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let endOfStreamCallback = () => {
+  console.info(`Receive the callback of endOfStream.`);
+};
+
+audioHapticPlayerInstance.on('endOfStream', endOfStreamCallback);
+
+audioHapticPlayerInstance.off('endOfStream', endOfStreamCallback);
 ```
 
 ### on('audioInterrupt')
 
 on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 
-Subscribes to audio interruption events. This API uses a callback to obtain the events.
+Subscribes to the audio interruption event, which is triggered when the audio focus is changed. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -443,17 +528,23 @@ Subscribes to audio interruption events. This API uses a callback to obtain the 
 | Name  | Type                    | Mandatory| Description                                                                      |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
 | type     | string                  | Yes  | Event type. The value is fixed at **'audioInterrupt'**.                    |
-| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | Yes  | Callback triggered when the event is received.   |
+| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | Yes  | Callback used to return the audio interruption event received by the application when playback is interrupted.|
 
 **Example**
 
 ```ts
+import { audio } from '@kit.AudioKit';
+
 let isPlaying: boolean; // An identifier specifying whether rendering is in progress.
 let isDucked: boolean; // An identifier specifying whether the audio volume is reduced.
 
-audioHapticPlayerInstance.on('audioInterrupt', async(interruptEvent: audio.InterruptEvent) => {
+audioHapticPlayerInstance.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
+  // When an audio interruption event occurs, the audioHapticPlayerInstance receives the interruptEvent callback and performs processing based on the content in the callback.
+  // 1. (Optional) The audioHapticPlayerInstance reads the value of interruptEvent.forceType to see whether the system has forcibly performed the operation.
+  // Note: In the default focus policy, INTERRUPT_HINT_RESUME maps to the force type INTERRUPT_SHARE, and others map to INTERRUPT_FORCE. Therefore, the value of forceType does not need to be checked.
+  // 2. (Mandatory) The audioHapticPlayerInstance then reads the value of interruptEvent.hintType and performs corresponding processing.
   if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-    // The system forcibly interrupts audio rendering. The application must update the status and displayed content accordingly.
+    // The audio focus event has been forcibly executed by the system. The application needs to update its status and displayed content.
     switch (interruptEvent.hintType) {
       case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
         // The audio stream has been paused and temporarily loses the focus. It will receive the interruptEvent corresponding to resume when it is able to regain the focus.
@@ -479,10 +570,11 @@ audioHapticPlayerInstance.on('audioInterrupt', async(interruptEvent: audio.Inter
         break;
     }
   } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-    // The application can choose to take action or ignore.
+    // The audio focus event needs to be operated by the application, which can choose the processing mode. It is recommended that the application process the event according to the value of InterruptHint.
     switch (interruptEvent.hintType) {
       case audio.InterruptHint.INTERRUPT_HINT_RESUME:
         // It is recommended that the application continue rendering. (The audio stream has been forcibly paused and temporarily lost the focus. It can resume rendering now.)
+        // The INTERRUPT_HINT_RESUME operation must be proactively executed by the application and cannot be forcibly executed by the system. Therefore, the INTERRUPT_HINT_RESUME event must map to INTERRUPT_SHARE.
         console.info('Resume force paused renderer or ignore');
         // To continue rendering, the application must perform the required operations.
         break;
@@ -497,7 +589,7 @@ audioHapticPlayerInstance.on('audioInterrupt', async(interruptEvent: audio.Inter
 
 off(type: 'audioInterrupt', callback?: Callback&lt;audio.InterruptEvent&gt;): void
 
-Unsubscribes from audio interruption events.
+Unsubscribes from the audio interruption event. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -506,10 +598,66 @@ Unsubscribes from audio interruption events.
 | Name| Type  | Mandatory| Description                                             |
 | ----- | ----- | ---- | ------------------------------------------------- |
 | type   | string | Yes  | Event type. The value is fixed at **'audioInterrupt'**.|
-| callback | Callback&lt;void&gt;    | No  | Callback used for unsubscription.           |
+| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | No  | Callback used to return the audio interruption event when the subscription is canceled.|
 
 **Example**
 
 ```ts
+import { audio } from '@kit.AudioKit';
+
+// Cancel all subscriptions to the event.
 audioHapticPlayerInstance.off('audioInterrupt');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let isPlaying: boolean; // An identifier specifying whether rendering is in progress.
+let isDucked: boolean; // An identifier specifying whether the audio volume is reduced.
+let audioInterruptCallback = (interruptEvent: audio.InterruptEvent) => {
+  // When an audio interruption event occurs, the audioHapticPlayerInstance receives the interruptEvent callback and performs processing based on the content in the callback.
+  // 1. (Optional) The audioHapticPlayerInstance reads the value of interruptEvent.forceType to see whether the system has forcibly performed the operation.
+  // Note: In the default focus policy, INTERRUPT_HINT_RESUME maps to the force type INTERRUPT_SHARE, and others map to INTERRUPT_FORCE. Therefore, the value of forceType does not need to be checked.
+  // 2. (Mandatory) The audioHapticPlayerInstance then reads the value of interruptEvent.hintType and performs corresponding processing.
+  if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+    // The audio focus event has been forcibly executed by the system. The application needs to update its status and displayed content.
+    switch (interruptEvent.hintType) {
+      case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+        // The audio stream has been paused and temporarily loses the focus. It will receive the interruptEvent corresponding to resume when it is able to regain the focus.
+        console.info('Force paused. Update playing status and stop writing');
+        isPlaying = false; // A simplified processing indicating several operations for switching the application to the paused state.
+        break;
+      case audio.InterruptHint.INTERRUPT_HINT_STOP:
+        // The audio stream has been stopped and permanently loses the focus. The user must manually trigger the operation to resume rendering.
+        console.info('Force stopped. Update playing status and stop writing');
+        isPlaying = false; // A simplified processing indicating several operations for switching the application to the paused state.
+        break;
+      case audio.InterruptHint.INTERRUPT_HINT_DUCK:
+        // The audio stream is rendered at a reduced volume.
+        console.info('Force ducked. Update volume status');
+        isDucked = true; // A simplified processing indicating several operations for updating the volume status.
+        break;
+      case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
+        // The audio stream is rendered at the normal volume.
+        console.info('Force ducked. Update volume status');
+        isDucked = false; // A simplified processing indicating several operations for updating the volume status.
+        break;
+      default:
+        break;
+    }
+  } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+    // The audio focus event needs to be operated by the application, which can choose the processing mode. It is recommended that the application process the event according to the value of InterruptHint.
+    switch (interruptEvent.hintType) {
+      case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+        // It is recommended that the application continue rendering. (The audio stream has been forcibly paused and temporarily lost the focus. It can resume rendering now.)
+        // The INTERRUPT_HINT_RESUME operation must be proactively executed by the application and cannot be forcibly executed by the system. Therefore, the INTERRUPT_HINT_RESUME event must map to INTERRUPT_SHARE.
+        console.info('Resume force paused renderer or ignore');
+        // To continue rendering, the application must perform the required operations.
+        break;
+      default:
+        break;
+    }
+  }
+};
+
+audioHapticPlayerInstance.on('audioInterrupt', audioInterruptCallback);
+
+audioHapticPlayerInstance.off('audioInterrupt', audioInterruptCallback);
 ```

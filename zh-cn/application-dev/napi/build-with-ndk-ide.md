@@ -59,7 +59,6 @@ target_link_libraries(entry PUBLIC libace_napi.z.so)
     "cppFlags": "",
     "abiFilters": [
        "arm64-v8a",
-       "armeabi-v7a",
        "x86_64"
     ],
   }
@@ -71,8 +70,8 @@ externalNativeOptions具体参数说明如下表所示。
 | 配置项 | 类型 | 说明 | 
 | -------- | -------- | -------- |
 | path | string | CMake构建脚本地址，即CMakeLists.txt文件地址。 | 
-| abiFilters | array | 本机的ABI编译环境，包括：<br/>- armeabi-v7a<br/>- arm64-v8a<br/>- x86_64<br/>如不配置该参数，编译时默认编译出arm64-v8a架构相关so。 | 
+| abiFilters | array | 本机的ABI编译环境，包括：<!--Del--><br/>- armeabi-v7a<!--DelEnd--><br/>- arm64-v8a<br/>- x86_64<br/>如不配置该参数，编译时默认编译出arm64-v8a架构相关so。 | 
 | arguments | string | CMake编译参数。 | 
 | cppFlags | string | C++编译器参数。 | 
 
-更多关于build-profile.json5中参数的说明，请参考[build-profile.json5](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/build-profile-0000001667501732-V2)。
+更多关于build-profile.json5中参数的说明，请参考<!--RP1-->[build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5)<!--RP1End-->。

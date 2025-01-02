@@ -11,7 +11,7 @@ The **ApplicationStateChangeCallback** module provides callbacks for the applica
 ## Modules to Import
 
 ```ts
-import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
+import { ApplicationStateChangeCallback } from '@kit.AbilityKit';
 ```
 
 ## ApplicationStateChangeCallback.onApplicationForeground
@@ -19,6 +19,8 @@ import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateCh
 onApplicationForeground(): void
 
 Called when the application is switched from the background to the foreground.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -32,40 +34,50 @@ onApplicationBackground(): void
 
 Called when the application is switched from the foreground to the background.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
+import { UIAbility, ApplicationStateChangeCallback } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let applicationStateChangeCallback: ApplicationStateChangeCallback = {
-    onApplicationForeground() {
-        console.info('applicationStateChangeCallback onApplicationForeground');
-    },
-    onApplicationBackground() {
-        console.info('applicationStateChangeCallback onApplicationBackground');
-    }
-}
+  onApplicationForeground() {
+    console.info('applicationStateChangeCallback onApplicationForeground');
+  },
+  onApplicationBackground() {
+    console.info('applicationStateChangeCallback onApplicationBackground');
+  }
+};
 
 export default class MyAbility extends UIAbility {
-    onCreate() {
-        console.log('MyAbility onCreate');
-        // 1. Obtain an applicationContext object.
-        let applicationContext = this.context.getApplicationContext();
-        // 2. Use applicationContext.on() to subscribe to the 'applicationStateChange' event.
-        if (applicationContext != undefined) {
-            applicationContext.on('applicationStateChange', applicationStateChangeCallback);
-        }
-        console.log('Resgiter applicationStateChangeCallback');
+  onCreate() {
+    console.log('MyAbility onCreate');
+    // 1. Obtain an applicationContext object.
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      // 2. Use applicationContext.on() to subscribe to the 'applicationStateChange' event.
+      if (applicationContext != undefined) {
+        applicationContext.on('applicationStateChange', applicationStateChangeCallback);
+      }
+    } catch (paramError) {
+      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
-    onDestroy() {
-        let applicationContext = this.context.getApplicationContext();
-        // 1. Use applicationContext.off() to unsubscribe from the 'applicationStateChange' event.
-        if (applicationContext != undefined) {
-            applicationContext.off('applicationStateChange', applicationStateChangeCallback);
-        }
+    console.log('Resgiter applicationStateChangeCallback');
+  }
+  onDestroy() {
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      // 1. Use applicationContext.off() to unsubscribe from the 'applicationStateChange' event.
+      if (applicationContext != undefined) {
+        applicationContext.off('applicationStateChange', applicationStateChangeCallback);
+      } 
+    } catch (paramError) {
+      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
+  }
 }
 ```

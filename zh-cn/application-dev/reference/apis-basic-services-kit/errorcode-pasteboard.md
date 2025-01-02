@@ -26,7 +26,7 @@ The index is out of range.
 
 **错误信息**
 
-The number of record exceeds the maximum limit.
+The number of records exceeds the upper limit.
 
 **错误描述**
 
@@ -45,7 +45,7 @@ The number of record exceeds the maximum limit.
 
 **错误信息**
 
-Another copy or paste is in progress.
+Another copy or paste operation is in progress.
 
 **错误描述**
 
@@ -83,7 +83,7 @@ Replication is prohibited.
 
 **错误信息**
 
-Request time out.
+Request timed out.
 
 **错误描述**
 
@@ -96,3 +96,94 @@ Request time out.
 **处理步骤**
 
 如果处理数据过大，建议换成异步接口。
+
+## 12900006 设置已存在
+
+**错误信息**
+
+Settings already exist.
+
+**错误描述**
+
+当应用全局的可粘贴的范围已存在时，再次进行设置时，系统会报此错误码。
+
+**可能原因**
+
+应用全局的可粘贴的范围已存在。
+
+**处理步骤**
+
+先删除已有设置，再进行新的设置。
+
+## 12900007 文件拷贝失败
+
+**错误信息**
+
+Copy file failed.
+
+**错误描述**
+
+当文件拷贝失败时，系统会报此错误码。
+
+**可能原因**
+
+文件下载拷贝失败。
+
+**处理步骤**
+
+1. 在对相关数据内容进行拷贝时，首先判断目标路径是否有效。
+2. 若目标路径不支持拷贝时，请确认正确的路径。
+
+## 12900008 拉起进度条hap失败
+
+**错误信息**
+
+Failed to start progress.
+
+**错误描述**
+
+用系统默认进度显示，创建进度显示失败时，系统会报此错误码。
+
+**可能原因**
+
+系统线程异常。
+
+**处理步骤**
+
+确认是否粘贴成功，若粘贴成功不用关注此错误码，若粘贴失败需要进一步确认，请联系技术人员获取支持。
+
+## 12900009 进度上报异常
+
+**错误信息**
+
+Progress exits abnormally.
+
+**错误描述**
+
+ 采用系统默认进度显示，进度上报异常时，系统会报此错误码。
+
+**可能原因**
+
+进度显示异常。
+
+**处理步骤**
+
+确认是否粘贴成功，若粘贴成功不用关注此错误码，若粘贴失败需要进一步确认，请联系技术人员获取支持。
+
+## 12900010 获取粘贴数据失败
+
+**错误信息**
+
+Get Data failed.
+
+**错误描述**
+
+当获取粘贴数据失败时，系统会报此错误码。
+
+**可能原因**
+
+获取粘贴数据失败。
+
+**处理步骤**
+
+请联系技术人员获取支持。

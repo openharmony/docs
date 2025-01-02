@@ -3,6 +3,10 @@
 
 以密钥算法为RSA2048、摘要算法为SHA384、填充模式为PSS的密钥为例，完成签名、验签。具体的场景介绍及支持的算法规格，请参考[签名/验签支持的算法](huks-signing-signature-verification-overview.md#支持的算法)。
 
+## 在CMake脚本中链接相关动态库
+```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+```
 
 ## 开发步骤
 
@@ -35,7 +39,7 @@
 
 3. 指定[算法参数配置](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset)。
 
-4. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession)初始化密钥会话，，并获取会话的句柄handle。
+4. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
 
 5. 调用[OH_Huks_UpdateSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_updatesession)更新密钥会话。
 

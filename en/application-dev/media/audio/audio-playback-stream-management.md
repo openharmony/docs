@@ -9,7 +9,7 @@ Create an AudioRenderer by referring to [Using AudioRenderer for Audio Playback]
 - Check the [state](../../reference/apis-audio-kit/js-apis-audio.md#attributes) of the AudioRenderer.
     
   ```ts
-  import audio from '@ohos.multimedia.audio';
+  import { audio } from '@kit.AudioKit';
   
   let audioRendererState: audio.AudioState = audioRenderer.state;
   console.info(`Current state is: ${audioRendererState }`)
@@ -18,7 +18,7 @@ Create an AudioRenderer by referring to [Using AudioRenderer for Audio Playback]
 - Register **stateChange** to listen for state changes of the AudioRenderer.
     
   ```ts
-  import audio from '@ohos.multimedia.audio';
+  import { audio } from '@kit.AudioKit';
   
   audioRenderer.on('stateChange', (rendererState: audio.AudioState) => {
     console.info(`State change to: ${rendererState}`)
@@ -31,9 +31,11 @@ The application then performs an operation, for example, changing the display of
 
 If an application needs to obtain the change information about all audio streams, it can use **AudioStreamManager** to read or listen for the changes of all audio streams.
 
+<!--Del-->
 > **NOTE**
 > 
 > The audio stream change information marked as the system API can be viewed only by system applications.
+<!--DelEnd-->
 
 The figure below shows the call relationship of audio stream management.
 
@@ -50,7 +52,7 @@ For details about the APIs, see [AudioStreamManager](../../reference/apis-audio-
    Before using **AudioStreamManager** APIs, you must use **getStreamManager()** to create an **AudioStreamManager** instance.
 
    ```ts
-   import audio from '@ohos.multimedia.audio';
+   import { audio } from '@kit.AudioKit';
    
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
@@ -59,7 +61,7 @@ For details about the APIs, see [AudioStreamManager](../../reference/apis-audio-
 2. Use **on('audioRendererChange')** to listen for audio playback stream changes. If the application needs to receive a notification when the audio playback stream state or device changes, it can subscribe to this event.
      
    ```ts
-   import audio from '@ohos.multimedia.audio';
+   import { audio } from '@kit.AudioKit';
    
    audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
      for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
@@ -98,8 +100,8 @@ For details about the APIs, see [AudioStreamManager](../../reference/apis-audio-
    > Before listening for state changes of all audio streams, the application must [declare the ohos.permission.USE_BLUETOOTH permission](../../security/AccessToken/declare-permissions.md), for the device name and device address (Bluetooth related attributes) to be displayed correctly.
    
    ```ts
-   import audio from '@ohos.multimedia.audio';
-   import { BusinessError } from '@ohos.base';
+   import { audio } from '@kit.AudioKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    async function getCurrentAudioRendererInfoArray(): Promise<void> {
      await audioStreamManager.getCurrentAudioRendererInfoArray().then((AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {

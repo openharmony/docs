@@ -8,32 +8,49 @@
 
 ## 使用AudioRenderer播放对端的通话声音
 
-  该过程与[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)过程相似，关键区别在于audioRendererInfo参数和音频数据来源。audioRendererInfo参数中，音频内容类型需设置为语音，CONTENT_TYPE_SPEECH，音频流使用类型需设置为语音通信，STREAM_USAGE_VOICE_COMMUNICATION。
+  该过程与[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)过程相似，关键区别在于audioRendererInfo参数和音频数据来源。audioRendererInfo参数中，音频内容类型需设置为语音：CONTENT_TYPE_SPEECH，音频流使用类型需设置为VOIP通话：STREAM_USAGE_VOICE_COMMUNICATION。
   
 ```ts
-import audio from '@ohos.multimedia.audio';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG = 'VoiceCallDemoForAudioRenderer';
 // 与使用AudioRenderer开发音频播放功能过程相似，关键区别在于audioRendererInfo参数和音频数据来源
-let context = getContext(this);
+class Options {
+  offset?: number;
+  length?: number;
+}
+
+let bufferSize: number = 0;
 let renderModel: audio.AudioRenderer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
   channels: audio.AudioChannel.CHANNEL_2, // 通道
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
-}
+};
 let audioRendererInfo: audio.AudioRendererInfo = {
   // 需使用通话场景相应的参数
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // 音频流使用类型：语音通信
+  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // 音频流使用类型：VOIP通话
   rendererFlags: 0 // 音频渲染器标志：默认为0即可
-}
+};
 let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
-}
+};
+let path = getContext().cacheDir;
+// 确保该沙箱路径下存在该资源
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+let writeDataCallback = (buffer: ArrayBuffer) => {
+  let options: Options = {
+    offset: bufferSize,
+    length: buffer.byteLength
+  };
+  fs.readSync(file.fd, buffer, options);
+  bufferSize += buffer.byteLength;
+};
 
 // 初始化，创建实例，设置监听事件
 audio.createAudioRenderer(audioRendererOptions, (err: BusinessError, renderer: audio.AudioRenderer) => { // 创建AudioRenderer实例
@@ -54,6 +71,7 @@ audio.createAudioRenderer(audioRendererOptions, (err: BusinessError, renderer: a
           console.info('ON Triggered successfully');
         }
       });
+      renderModel.on('writeData', writeDataCallback);
     }
   } else {
     console.info(`${TAG}: creating AudioRenderer failed, error: ${err.message}`);
@@ -68,40 +86,13 @@ async function start() {
       console.error(TAG + 'start failed');
       return;
     }
-    await renderModel.start(); // 启动渲染
-    const bufferSize: number = await renderModel.getBufferSize();
-    // 此处仅以读取音频文件的数据举例，实际音频通话开发中，需要读取的是通话对端传输来的音频数据
-
-    let path = context.filesDir;
-
-    const filePath = path + '/voice_call_data.wav'; // 沙箱路径，实际路径为/data/storage/el2/base/haps/entry/files/voice_call_data.wav
-    let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-    let stat = await fs.stat(filePath);
-    let buf = new ArrayBuffer(bufferSize);
-    let len = stat.size % bufferSize === 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
-    class Option {
-      offset: number = 0
-      length: number = 0
-    }
-    for (let i = 0; i < len; i++) {
-      let options: Option = {
-        offset: i * bufferSize,
-        length: bufferSize
-      };
-      let readsize = await fs.read(file.fd, buf, options);
-      // buf是要写入缓冲区的音频数据，在调用AudioRenderer.write()方法前可以进行音频数据的预处理，实现个性化的音频播放功能，AudioRenderer会读出写入缓冲区的音频数据进行渲染
-      let writeSize: number = await renderModel.write(buf);
-      if (renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为STATE_RELEASED，停止渲染
-        fs.close(file);
-        await renderModel.stop();
+    renderModel.start((err: BusinessError) => {
+      if (err) {
+        console.error('Renderer start failed.');
+      } else {
+        console.info('Renderer start success.');
       }
-      if (renderModel.state.valueOf() === audio.AudioState.STATE_RUNNING) {
-        if (i === len - 1) { // 如果音频文件已经被读取完，停止渲染
-          fs.close(file);
-          await renderModel.stop();
-        }
-      }
-    }
+    });
   }
 }
 
@@ -159,34 +150,50 @@ async function release() {
 
 ## 使用AudioCapturer录制本端的通话声音
 
-  该过程与[使用AudioCapturer开发音频录制功能](using-audiocapturer-for-recording.md)过程相似，关键区别在于audioCapturerInfo参数和音频数据流向。audioCapturerInfo参数中音源类型需设置为语音通话，SOURCE_TYPE_VOICE_COMMUNICATION。
+  该过程与[使用AudioCapturer开发音频录制功能](using-audiocapturer-for-recording.md)过程相似，关键区别在于audioCapturerInfo参数和音频数据流向。audioCapturerInfo参数中音源类型需设置为语音通话：SOURCE_TYPE_VOICE_COMMUNICATION。
 
   所有录制均需要申请麦克风权限：ohos.permission.MICROPHONE，申请方式请参考[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
- 
-```ts
-import audio from '@ohos.multimedia.audio';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
 
-let context = getContext(this);
+```ts
+import { audio } from '@kit.AudioKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 const TAG = 'VoiceCallDemoForAudioCapturer';
+class Options {
+  offset?: number;
+  length?: number;
+}
+
 // 与使用AudioCapturer开发音频录制功能过程相似，关键区别在于audioCapturerInfo参数和音频数据流向
+let bufferSize: number = 0;
 let audioCapturer: audio.AudioCapturer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100, // 采样率
-  channels: audio.AudioChannel.CHANNEL_1, // 通道
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
+  channels: audio.AudioChannel.CHANNEL_2, // 通道
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
-}
+};
 let audioCapturerInfo: audio.AudioCapturerInfo = {
   // 需使用通话场景相应的参数
   source: audio.SourceType.SOURCE_TYPE_VOICE_COMMUNICATION, // 音源类型：语音通话
   capturerFlags: 0 // 音频采集器标志：默认为0即可
-}
+};
 let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
-}
+};
+let path = getContext().cacheDir;
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+let readDataCallback = (buffer: ArrayBuffer) => {
+  let options: Options = {
+    offset: bufferSize,
+    length: buffer.byteLength
+  };
+  fs.writeSync(file.fd, buffer, options);
+  bufferSize += buffer.byteLength;
+};
 
 // 初始化，创建实例，设置监听事件
 async function init() {
@@ -198,16 +205,17 @@ async function init() {
     console.info(`${TAG}: create AudioCapturer success`);
     audioCapturer = capturer;
     if (audioCapturer !== undefined) {
-      audioCapturer.on('markReach', 1000, (position: number) => { // 订阅markReach事件，当采集的帧数达到1000时触发回调
+      audioCapturer.on('markReach', 1000, (position: number) => { // 订阅markReach事件，当采集的帧数达到1000帧时触发回调
         if (position === 1000) {
           console.info('ON Triggered successfully');
         }
       });
-      audioCapturer.on('periodReach', 2000, (position: number) => { // 订阅periodReach事件，当采集的帧数达到2000时触发回调
+      audioCapturer.on('periodReach', 2000, (position: number) => { // 订阅periodReach事件，当采集的帧数每达到2000时触发回调
         if (position === 2000) {
           console.info('ON Triggered successfully');
         }
       });
+      audioCapturer.on('readData', readDataCallback);
     }
   });
 }
@@ -220,33 +228,13 @@ async function start() {
       console.error(`${TAG}: start failed`);
       return;
     }
-    await audioCapturer.start(); // 启动采集
-    // 此处仅以将音频数据写入文件举例，实际音频通话开发中，需要将本端采集的音频数据编码打包，通过网络发送给通话对端
-    const path = context.filesDir + '/voice_call_data.wav'; // 采集到的音频文件存储路径
-    let file = fs.openSync(path, 0o2 | 0o100); // 如果文件不存在则创建文件
-    let fd = file.fd;
-    let numBuffersToCapture = 150; // 循环写入150次
-    let count = 0;
-    class Options {
-      offset: number = 0
-      length: number = 0
-    }
-    while (numBuffersToCapture) {
-      let bufferSize: number = await audioCapturer.getBufferSize();
-      let buffer: ArrayBuffer = await audioCapturer.read(bufferSize, true);
-      let options: Options = {
-        offset: count * bufferSize,
-        length: bufferSize
-      };
-      if (buffer === undefined) {
-        console.error(`${TAG}: read buffer failed`);
+    audioCapturer.start((err: BusinessError) => {
+      if (err) {
+        console.error('Capturer start failed.');
       } else {
-        let number = fs.writeSync(fd, buffer, options);
-        console.info(`${TAG}: write date: ${number}`);
+        console.info('Capturer start success.');
       }
-      numBuffersToCapture--;
-      count++;
-    }
+    });
   }
 }
 
@@ -284,9 +272,3 @@ async function release() {
   }
 }
 ```
-
-## 相关实例
-
-针对音频通话开发，有以下相关实例可供参考：
-
-- [音频通话示例（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VoiceCallDemo)

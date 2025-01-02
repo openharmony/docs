@@ -71,9 +71,9 @@ Configuration description:
 
 - **support**: whether the charging scenario is supported. **path** is the default attribute, which specifies the path of the kernel node that can be queried in the charging scenario. In addition, the **type** and **expect_value** attributes are supported.
 
-  ​	 **type**: type of the kernel node path in the charging scenario. This field is mandatory and can only be set to **dir/file**. **dir** indicates that the kernel node path is a directory or file, and **file** indicates that the kernel node path is a file.
+  ​- **type**: type of the kernel node path in the charging scenario. This field is mandatory and can only be set to **dir/file**. **dir** indicates that the kernel node path is a directory or file, and **file** indicates that the kernel node path is a file.
 
-  ​	 **expect_value**: expected value that supports the charging scenario when type is set to **file**.
+  ​- **expect_value**: expected value that supports the charging scenario when type is set to **file**.
 
 - **get**: getter attribute of the charging scenario. **path** is the default attribute, which specifies the path of the kernel node that can be queried in the charging scenario.
 

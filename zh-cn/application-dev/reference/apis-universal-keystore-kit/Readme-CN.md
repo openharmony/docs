@@ -1,8 +1,10 @@
-# Universal Keystore Kit API参考
+# Universal Keystore Kit（密钥管理服务）
 
 - ArkTS API
   - [@ohos.security.huks (通用密钥库系统)](js-apis-huks.md)
+  <!--Del-->
   - [@ohos.security.huks (通用密钥库系统)(系统接口)](js-apis-huks-sys.md)
+  <!--DelEnd-->
 - C API
   - 模块
     - [HuksKeyApi](_huks_key_api.md)
@@ -15,6 +17,7 @@
   - 结构体
     - [OH_Huks_Blob](_o_h___huks___blob.md)
     - [OH_Huks_CertChain](_o_h___huks___cert_chain.md)
+    - [OH_Huks_KeyAliasSet](_o_h___huks___key_alias_set.md)
     - [OH_Huks_KeyInfo](_o_h___huks___key_info.md)
     - [OH_Huks_KeyMaterial25519](_o_h___huks___key_material25519.md)
     - [OH_Huks_KeyMaterialDh](_o_h___huks___key_material_dh.md)

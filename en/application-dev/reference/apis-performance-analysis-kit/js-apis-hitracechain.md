@@ -9,7 +9,7 @@ The **hiTraceChain** module implements call chain trace throughout a service pro
 ## Modules to Import
 
 ```ts
-import hiTraceChain from '@ohos.hiTraceChain';
+import { hiTraceChain } from '@kit.PerformanceAnalysisKit';
 ```
 
 ## HiTraceFlag

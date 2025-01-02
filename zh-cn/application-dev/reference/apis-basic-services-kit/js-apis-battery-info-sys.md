@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```js
-import batteryInfo from '@ohos.batteryInfo';
+import {batteryInfo} from '@kit.BasicServicesKit';
 ```
 
 ## batteryInfo.setBatteryConfig<sup>11+</sup>
@@ -29,8 +29,8 @@ setBatteryConfig(sceneName: string, sceneValue: string): number
 
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | ------------ |
-| sceneName  | string | 是   | 设置场景名称 |
-| sceneValue | string | 是   | 设置场景的值 |
+| sceneName  | string | 是   | 设置场景名称；该参数必须为字符串类型。 |
+| sceneValue | string | 是   | 设置场景的值；该参数必须为字符串类型。 |
 
 **返回值**：
 
@@ -44,12 +44,14 @@ setBatteryConfig(sceneName: string, sceneValue: string): number
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 
 **示例**：
 
   ```ts
-  import batteryInfo from '@ohos.batteryInfo';
+  import {batteryInfo} from '@kit.BasicServicesKit';
 
   let sceneName = 'xxx';
   let sceneValue = '0';
@@ -72,7 +74,7 @@ getBatteryConfig(sceneName: string): string
 
 | 参数名    | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
-| sceneName | string | 是   | 设置场景名称 |
+| sceneName | string | 是   | 设置场景名称；该参数必须为字符串类型。 |
 
 **返回值**：
 
@@ -86,12 +88,14 @@ getBatteryConfig(sceneName: string): string
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 
 **示例**：
 
   ```ts
-  import batteryInfo from '@ohos.batteryInfo';
+  import {batteryInfo} from '@kit.BasicServicesKit';
 
   let sceneName = 'xxx';
   let result = batteryInfo.getBatteryConfig(sceneName);
@@ -113,7 +117,7 @@ isBatteryConfigSupported(sceneName: string): boolean
 
 | 参数名    | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
-| sceneName | string | 是   | 设置场景名称 |
+| sceneName | string | 是   | 设置场景名称；该参数必须为字符串类型。 |
 
 **返回值**：
 
@@ -127,12 +131,14 @@ isBatteryConfigSupported(sceneName: string): boolean
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 
 **示例**：
 
   ```ts
-  import batteryInfo from '@ohos.batteryInfo';
+  import {batteryInfo} from '@kit.BasicServicesKit';
 
   let sceneName = 'xxx';
   let result = batteryInfo.isBatteryConfigSupported(sceneName);
@@ -150,6 +156,19 @@ isBatteryConfigSupported(sceneName: string): boolean
 | --------------- | ------------------- | ---- | ---- | ---------------------|
 | estimatedRemainingChargeTime<sup>9+</sup> | number                                         | 是   | 否   | 表示当前设备充满电的预估时间，单位毫秒。此接口为系统接口。          |
 | totalEnergy<sup>9+</sup>                  | number                                         | 是   | 否   | 表示当前设备电池的总容量，单位毫安时。此接口为系统接口。   |
-| nowCurrent<sup>9+</sup>                   | number                                         | 是   | 否   | 表示当前设备电池的电流，单位毫安。此接口为系统接口。       |
 | remainingEnergy<sup>9+</sup>              | number                                         | 是   | 否   | 表示当前设备电池的剩余容量，单位毫安时。此接口为系统接口。 |
+
+**示例**：
+  ```ts
+  import {batteryInfo} from '@kit.BasicServicesKit';
+
+  let estimatedRemainingChargeTimeInfo: number = batteryInfo.estimatedRemainingChargeTime;
+  console.info("The estimatedRemainingChargeTimeInfo is: " + estimatedRemainingChargeTimeInfo);
+
+  let totalEnergyInfo: number = batteryInfo.totalEnergy;
+  console.info("The totalEnergyInfo is: " + totalEnergyInfo);
+
+  let remainingEnergyInfo: number = batteryInfo.remainingEnergy;
+  console.info("The remainingEnergyInfo is: " + remainingEnergyInfo);
+  ```
 

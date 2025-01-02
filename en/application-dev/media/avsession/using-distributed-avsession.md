@@ -1,4 +1,4 @@
-# Using Distributed AVSession
+# Using Distributed AVSession (for System Applications Only)
 
 ## Basic Concepts
 
@@ -12,9 +12,9 @@ The table below describes the key APIs used for remote projection with the distr
 
 For details, see [AVSession Management](../../reference/apis-avsession-kit/js-apis-avsession.md).
 
-| API| Description|
+| API | Description |
 | -------- | -------- |
-| castAudio(session: SessionToken \| 'all', audioDevices: Array&lt;audio.AudioDeviceDescriptor&gt;, callback: AsyncCallback&lt;void&gt;): void | Casts a session to a list of devices.|
+| castAudio(session: SessionToken \| 'all', audioDevices: Array&lt;audio.AudioDeviceDescriptor&gt;, callback: AsyncCallback&lt;void&gt;): void | Casts a session to a list of devices. |
 
 ## How to Develop
 
@@ -23,16 +23,16 @@ To enable a system application that accesses the AVSession service as the contro
 1. Import the modules. Before projection, you must obtain the AudioDeviceDescriptor from the audio module. Therefore, import the audio module and AVSessionManager module.
    
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import audio from '@ohos.multimedia.audio';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { audio } from '@kit.AudioKit';
    ```
    
 2. Use **castAudio** in the **AVSessionManager** class to project all sessions of the local device to another device.
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import audio from '@ohos.multimedia.audio';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { audio } from '@kit.AudioKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    async function castAudio() {
      // Cast the sessions to another device.

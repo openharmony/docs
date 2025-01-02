@@ -5,15 +5,15 @@
 
 当设备需要获取传感器数据时，可以使用sensor模块，例如：通过订阅方向传感器数据感知用户设备当前的朝向。
 
-详细的接口介绍请参考[Sensor接口](../../reference/apis-as/js-apis-sensor.md)。
+详细的接口介绍请参考[Sensor接口](../../reference/apis-sensor-service-kit/js-apis-sensor.md)。
 
 
 ## 接口说明
 
-| 模块 | 接口名 | 描述 |
-| -------- | -------- | -------- |
-| ohos.sensor | sensor.on(sensorId, callback:AsyncCallback&lt;Response&gt;): void | 持续监听传感器数据变化。 |
-| ohos.sensor | sensor.off(sensorId, callback?:AsyncCallback&lt;void&gt;): void | 注销传感器数据的监听。 |
+| 名称 | 描述 |
+| -------- | -------- |
+| sensor.on(sensorId, callback:AsyncCallback&lt;Response&gt;): void | 持续监听传感器数据变化。 |
+| sensor.off(sensorId, callback?:AsyncCallback&lt;void&gt;): void | 注销传感器数据的监听。 |
 
 
 ## 开发步骤
@@ -23,7 +23,7 @@
 1. 导入模块。
 
     ```ts
-    import sensor from '@ohos.sensor';
+    import { sensor } from '@kit.SensorServiceKit';
     ```
 
 2. 检查是否已经配置相应权限，具体配置方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。

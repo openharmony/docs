@@ -11,14 +11,14 @@ In the following example, **createWebMessagePorts** is used to create message po
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
-    ports: web_webview.WebMessagePort[] = [];
+    controller: webview.WebviewController = new webview.WebviewController();
+    ports: webview.WebMessagePort[] = [];
     @State sendFromEts: string = 'Send this message from ets to HTML';
     @State receivedFromHtml: string = 'Display received message send from HTML';
 
@@ -27,26 +27,27 @@ In the following example, **createWebMessagePorts** is used to create message po
         // Display the content received from the HTML side.
         Text(this.receivedFromHtml)
         // Send the content in the text box to the HTML side.
-        TextInput({placeholder: 'Send this message from ets to HTML'})
+        TextInput({ placeholder: 'Send this message from ets to HTML' })
           .onChange((value: string) => {
             this.sendFromEts = value;
           })
 
+        // The following can be called in the onPageEnd lifecycle callback.
         Button('postMessage')
           .onClick(() => {
             try {
               // 1. Create two message ports.
               this.ports = this.controller.createWebMessagePorts();
               // 2. Register a callback for the message port (for example, port 1) on the application.
-              this.ports[1].onMessageEvent((result: web_webview.WebMessage) => {
+              this.ports[1].onMessageEvent((result: webview.WebMessage) => {
                 let msg = 'Got msg from HTML:';
-                if (typeof(result) === 'string') {
+                if (typeof (result) === 'string') {
                   console.info(`received string message from html5, string is: ${result}`);
                   msg = msg + result;
-                } else if (typeof(result) === 'object') {
+                } else if (typeof (result) === 'object') {
                   if (result instanceof ArrayBuffer) {
                     console.info(`received arraybuffer from html5, length is: ${result.byteLength}`);
-                    msg = msg + 'lenght is ' + result.byteLength;
+                    msg = msg + 'length is ' + result.byteLength;
                   } else {
                     console.info('not support');
                   }
@@ -58,8 +59,7 @@ In the following example, **createWebMessagePorts** is used to create message po
               // 3. Send the other message port (for example, port 0) to the HTML side, which then saves the message port.
               this.controller.postMessage('__init_port__', [this.ports[0]], '*');
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
 
@@ -73,11 +73,10 @@ In the following example, **createWebMessagePorts** is used to create message po
                 console.error(`ports is null, Please initialize first`);
               }
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
-        Web({ src: $rawfile('xxx.html'), controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
       }
     }
   }
@@ -86,7 +85,7 @@ In the following example, **createWebMessagePorts** is used to create message po
 - Frontend page code:
 
   ```html
-  <!--xxx.html-->
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -118,7 +117,7 @@ In the following example, **createWebMessagePorts** is used to create message po
                 } else if (typeof(result) === 'object') {
                   if (result instanceof ArrayBuffer) {
                     console.info(`received arraybuffer from html5, length is: ${result.byteLength}`);
-                    msg = msg + 'lenght is ' + result.byteLength;
+                    msg = msg + 'length is ' + result.byteLength;
                   } else {
                     console.info('not support');
                   }

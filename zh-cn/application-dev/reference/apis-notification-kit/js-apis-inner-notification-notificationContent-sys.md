@@ -12,9 +12,9 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称           | 类型                                                                        | 只读 | 必填 | 说明               |
+| 名称           | 类型                                                                        | 只读 | 可选 | 说明               |
 | -----------   | --------------------------------------------------------------------------- | ---- | --- | ------------------ |
-| liveView<sup>11+</sup>       | [NotificationLiveViewContent](#notificationliveviewcontent11)              | 否  | 否  | 普通实况窗类型通知内容。<br>**系统接口**：此接口为系统接口。|
+| liveView<sup>11+</sup>       | [NotificationLiveViewContent](#notificationliveviewcontent11)              | 否  | 是  | 普通实况窗类型通知内容。<br>**系统接口**：此接口为系统接口。|
 
 ## NotificationLiveViewContent<sup>11+</sup>
 
@@ -24,14 +24,25 @@
 
 **系统接口**：此接口为系统接口。
 
-| 名称           | 类型                                                                | 只读| 必填 | 说明                                                  |
+| 名称           | 类型                                                                | 只读| 可选 | 说明                                                  |
 | -------------- | ------------------------------------------------------------------ | --- | --- | ------------------------------------------------------|
-| status         | [LiveViewStatus](#liveviewstatus11)                                | 否  | 是  | 通知状态。                  |
-| version        | number                                                             | 否  | 否  | 通知版本号（如果数据库存储版本号为0xffffffff，则本次更新和结束不校验版本号大小，否则需要校验本次版本号>数据库存储版本号）。不填默认为0xffffffff。|
-| extraInfo      | [key: string] object                                               | 否  | 否  | 实况通知附加内容。           |
-| pictureInfo    | [key: string] Array\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | 否  | 否  | 实况通知附加内容中的图片信息。|
-| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  否  | 通知在锁屏界面显示的图片。预留能力，暂未支持。   |
-| isLocalUpdateOnly<sup>12+</sup> | boolean                                           | 否  | 否  | 实况窗是否只在本地更新。     |
+| status         | [LiveViewStatus](#liveviewstatus11)                                | 否  | 否  | 通知状态。                  |
+| version        | number                                                             | 否  | 是  | 通知版本号（如果数据库存储版本号为0xffffffff，则本次更新和结束不校验版本号大小，否则需要校验本次版本号>数据库存储版本号）。不填默认为0xffffffff。|
+| extraInfo      | Record<string, Object\>                                               | 否  | 是  | 实况通知附加内容。           |
+| pictureInfo    | Record<string, Array<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)\>\> | 否  | 是  | 实况通知附加内容中的图片信息。|
+| isLocalUpdateOnly<sup>12+</sup> | boolean                                           | 否  | 是  | 实况窗是否只在本地更新。     |
+
+## NotificationCapsule<sup>11+</sup>
+
+描述通知胶囊。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+| 名称                  |  类型                         | 只读 | 可选 | 说明                              |
+| --------------------- | ---------------------------- | ---- | ---- | -------------------------------- |
+| content<sup>12+</sup> | string                       |  否  |  是  | 胶囊的拓展文本。                   |
 
 ## LiveViewStatus<sup>11+</sup>
 

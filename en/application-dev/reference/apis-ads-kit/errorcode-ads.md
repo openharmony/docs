@@ -61,3 +61,42 @@ The network connection is abnormal.
 **Procedure**
 
 Check the network status.
+
+
+## 401 Incorrect Ads Request Parameter
+
+**Error Message**
+
+Invalid input parameter. Possible causes:1. Mandatory parameters are left unspecified.
+2.Incorrect parameter types. 3.Parameter verification failed
+
+**Description**
+
+This error code is reported if an ads request parameter is incorrect.
+
+**Possible Causes**
+
+Ads request parameters fail the verification.
+
+**Procedure**
+
+Check whether the ads request parameters are correct.
+
+
+## 801 Ad Request Failure
+
+**Error Message**
+
+Device not support
+
+**Description**
+
+This error code is reported when the device supports the target SysCap but does not support a specific API.
+
+**Possible Causes**
+
+The device does not support the API.
+
+**Procedure**
+
+Check whether the device supports the API.

@@ -5,7 +5,7 @@
 > **说明：**
 >
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.file.storageStatistics (应用空间统计)](js-apis-file-storage-statistics-sys.md)。
+> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.file.storageStatistics (应用空间统计)](js-apis-file-storage-statistics.md)。
 
 ## 导入模块
 
@@ -45,7 +45,7 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -94,7 +94,7 @@ getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;):
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -151,7 +151,7 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -200,7 +200,7 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -227,7 +227,7 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
 
 ## storageStatistics.getBundleStats<sup>9+</sup>
 
-getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
+getBundleStats(packageName: string, index?: number): Promise&lt;BundleStats&gt;
 
 异步获取应用存储数据的空间大小（单位为Byte），以Promise方式返回。
 
@@ -242,6 +242,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
   | 参数名      | 类型   | 必填 | 说明     |
   | ----------- | ------ | ---- | -------- |
   | packageName | string | 是   | 应用包名 |
+  | index<sup>12+</sup> | number | 否   | 分身应用的索引号，默认值为0（表示未分身的主应用）。分身应用索引号在分身创建时默认占用从1开始且当前未被占用的最小索引号，并赋值给该应用的[BundleResourceInfo](../apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md#bundleresourceinfo)的appIndex属性，后续可以通过调用[getBundleResourceInfo](../apis-ability-kit/js-apis-bundleResourceManager-sys.md#bundleresourcemanagergetbundleresourceinfo12)接口获得。|
 
 **返回值：**
 
@@ -257,7 +258,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -265,18 +266,34 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 **示例：**
 
   ```ts
+  import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+  import storageStatistics from "@ohos.file.storageStatistics";
   import { BusinessError } from '@ohos.base';
-  let packageName: string = "";
-  storageStatistics.getBundleStats(packageName).then((BundleStats: storageStatistics.BundleStats) => {
-    console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
-  }).catch((err: BusinessError) => {
-    console.error("getBundleStats failed with error:" + JSON.stringify(err));
-  });
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  let bundleName = "com.example.myapplication";
+  let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+  try {
+    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, bundleFlags);
+    hilog.info(0x0000, 'testTag', 'getBundleResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo.label));
+
+    let packageName:string = bundleName;
+    let index:number = resourceInfo.appIndex;
+    storageStatistics.getBundleStats(packageName, index).then((BundleStats: storageStatistics.BundleStats) => {
+      hilog.info(0x0000, 'testTag', 'getBundleStats successfully. BundleStats: %{public}s', JSON.stringify(BundleStats));
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', 'getBundleStats failed with error: %{public}s', JSON.stringify(err));
+    });
+  
+  } catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleResourceInfo failed with error: %{public}s', message);
+  }
   ```
 
 ## storageStatistics.getBundleStats<sup>9+</sup>
 
-getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
+getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;, index?: number): void
 
 异步获取应用存储数据的空间大小（单位为Byte），以callback方式返回。
 
@@ -292,6 +309,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | packageName | string | 是   | 应用包名 |
   | callback | AsyncCallback&lt;[Bundlestats](js-apis-file-storage-statistics.md#bundlestats9)&gt; | 是   | 获取指定卷上的应用存储数据的空间大小之后的回调 |
+  | index<sup>12+</sup> | number | 否   | 分身应用的索引号，默认值为0（表示未分身的主应用）。分身应用索引号在分身创建时默认占用从1开始且当前未被占用的最小索引号，并赋值给该应用的[BundleResourceInfo](../apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md#bundleresourceinfo)的appIndex属性，后续可以通过调用[getBundleResourceInfo](../apis-ability-kit/js-apis-bundleResourceManager-sys.md#bundleresourcemanagergetbundleresourceinfo12)接口获得。|
 
 **错误码：**
 
@@ -301,7 +319,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -309,101 +327,31 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
 **示例：**
 
   ```ts
+  import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+  import storageStatistics from "@ohos.file.storageStatistics";
   import { BusinessError } from '@ohos.base';
-  let packageName: string = "";
-  storageStatistics.getBundleStats(packageName, (error: BusinessError, BundleStats: storageStatistics.BundleStats) => {
-    if (error) {
-      console.error("getBundleStats failed with error:" + JSON.stringify(error));
-    }  else {
-      // do something
-      console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
-    }
-  });
-  ```
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-## storageStatistics.getTotalSize<sup>9+</sup>
+  let bundleName = "com.example.myapplication";
+  let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+  try {
+    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, bundleFlags);
+    hilog.info(0x0000, 'testTag', 'getBundleResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo.label));
 
-getTotalSize(): Promise&lt;number&gt;
-
-获取内置存储的总空间大小（单位为Byte），以Promise方式返回。
-
-**需要权限**：ohos.permission.STORAGE_MANAGER
-
-**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
-
-**系统接口：** 该接口为系统接口。
-
-**返回值：**
-
-  | 类型                   | 说明               |
-  | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | Promise对象，返回内置存储的总空间大小（单位为Byte）   |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 201 | Permission verification failed. |
-| 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
-| 13600001 | IPC error. |
-| 13900042 | Unknown error. |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  storageStatistics.getTotalSize().then((number: number) => {
-    console.info("getTotalSize successfully:" + JSON.stringify(number));
-  }).catch((err: BusinessError) => {
-    console.error("getTotalSize failed with error:"+ JSON.stringify(err));
-  });
-  ```
-
-## storageStatistics.getTotalSize<sup>9+</sup>
-
-getTotalSize(callback: AsyncCallback&lt;number&gt;): void
-
-获取内置存储的总空间大小（单位为Byte），以callback方式返回。
-
-**需要权限**：ohos.permission.STORAGE_MANAGER
-
-**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
-
-**系统接口：** 该接口为系统接口。
-
-**参数：**
-
-  | 参数名    | 类型                                  | 必填  | 说明                     |
-  | -------- | ------------------------------------ | ---- | ------------------------ |
-  | callback | AsyncCallback&lt;number&gt;          | 是   | 获取内置存储的总空间大小之后的回调 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 201 | Permission verification failed. |
-| 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
-| 13600001 | IPC error. |
-| 13900042 | Unknown error. |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  storageStatistics.getTotalSize((error: BusinessError, number: number) => {
-    if (error) {
-      console.error("getTotalSize failed with error:" + JSON.stringify(error));
-    } else {
-      // do something
-      console.info("getTotalSize successfully:" + number);
-    }
-  });
+    let packageName:string = bundleName;
+    let index:number = resourceInfo.appIndex;
+    storageStatistics.getBundleStats(packageName, (err: BusinessError, BundleStats: storageStatistics.BundleStats) => {
+      if (err) {
+        hilog.error(0x0000, 'testTag', 'getBundleStats failed with error: %{public}s', JSON.stringify(err));
+      } else {
+        hilog.info(0x0000, 'testTag', 'getBundleStats successfully. BundleStats: %{public}s', JSON.stringify(BundleStats));
+      }
+    }, index);
+  
+  } catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleResourceInfo failed: %{public}s', message);
+  }
   ```
 
 ## storageStatistics.getTotalSizeSync<sup>10+</sup>
@@ -432,7 +380,7 @@ getTotalSizeSync(): number
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -447,91 +395,6 @@ getTotalSizeSync(): number
     let error: BusinessError = err as BusinessError;
     console.error("getTotalSizeSync failed with error:" + JSON.stringify(error));
   }
-  ```
-
-## storageStatistics.getFreeSize<sup>9+</sup>
-
-getFreeSize(): Promise&lt;number&gt;
-
-获取内置存储的可用空间大小（单位为Byte），以Promise方式返回。
-
-**需要权限**：ohos.permission.STORAGE_MANAGER
-
-**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
-
-**系统接口：** 该接口为系统接口。
-
-**返回值：**
-
-  | 类型                   | 说明               |
-  | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | Promise对象，返回内置存储的可用空间大小（单位为Byte） |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 201 | Permission verification failed. |
-| 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
-| 13600001 | IPC error. |
-| 13900042 | Unknown error. |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  storageStatistics.getFreeSize().then((number: number) => {
-    console.info("getFreeSize successfully:" + JSON.stringify(number));
-  }).catch((err: BusinessError) => {
-    console.error("getFreeSize failed with error:" + JSON.stringify(err));
-  });
-  ```
-
-## storageStatistics.getFreeSize<sup>9+</sup>
-
-getFreeSize(callback: AsyncCallback&lt;number&gt;): void
-
-获取内置存储的可用空间大小（单位为Byte），以callback方式返回。
-
-**需要权限**：ohos.permission.STORAGE_MANAGER
-
-**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
-
-**系统接口：** 该接口为系统接口。
-
-**参数：**
-
-  | 参数名    | 类型                                  | 必填 | 说明                       |
-  | -------- | ------------------------------------ | ---- | ------------------------- |
-  | callback | AsyncCallback&lt;number&gt;          | 是   | 获取内置存储的可用空间大小之后的回调 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 201 | Permission verification failed. |
-| 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
-| 13600001 | IPC error. |
-| 13900042 | Unknown error. |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  storageStatistics.getFreeSize((error: BusinessError, number: number) => {
-    if (error) {
-      console.error("getFreeSize failed with error:" + JSON.stringify(error));
-    } else {
-      // do something
-      console.info("getFreeSize successfully:" + number);
-    }
-  });
   ```
 
 ## storageStatistics.getFreeSizeSync<sup>10+</sup>
@@ -560,7 +423,7 @@ getFreeSizeSync(): number
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -603,7 +466,7 @@ getSystemSize(): Promise&lt;number&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -644,7 +507,7 @@ getSystemSize(callback: AsyncCallback&lt;number&gt;): void
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -688,7 +551,7 @@ getUserStorageStats(): Promise&lt;StorageStats&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -729,7 +592,7 @@ getUserStorageStats(callback: AsyncCallback&lt;StorageStats&gt;): void
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -779,7 +642,7 @@ getUserStorageStats(userId: number): Promise&lt;StorageStats&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600009 | User if out of range. |
 | 13900042 | Unknown error. |
@@ -823,7 +686,7 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600009 | User if out of range. |
 | 13900042 | Unknown error. |
@@ -849,7 +712,7 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
 
 **系统接口：** 该接口为系统接口。
 
-| 名称      | 类型   | 可读  | 可写  | 说明           |
+| 名称      | 类型   | 只读  | 可写  | 说明           |
 | --------- | ------ | ---- | ----- | -------------- |
 | total   | number | 是 | 否 | 内置存储总空间大小（单位为Byte）    |
 | audio | number  |是 | 否 | 音频数据大小 （单位为Byte）  |

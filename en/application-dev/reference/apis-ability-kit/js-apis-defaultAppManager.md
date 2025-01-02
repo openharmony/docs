@@ -9,32 +9,32 @@ The **DefaultAppManager** module provides APIs to query whether the current appl
 ## Modules to Import
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+import { defaultAppManager } from '@kit.AbilityKit';
 ```
 
-## defaultAppMgr.ApplicationType
+## defaultAppManager.ApplicationType
 
 Enumerates the default application types.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-| Name  | Value| Description                                  |
+| Name  | Value | Description                                  |
 | -------- | -------------------------------------- | -------------------------------------- |
-| BROWSER  | "Web Browser" | Default browser.                           |
-| IMAGE    | "Image Gallery" | Default image viewer.                        |
-| AUDIO    | "Audio Player" | Default audio player.                        |
-| VIDEO    | "Video Player" | Default video player.                        |
-| PDF      | "PDF Viewer" | Default PDF reader.                     |
-| WORD     | "Word Viewer" | Default Word viewer.                    |
-| EXCEL    | "Excel Viewer" | Default Excel viewer.                   |
-| PPT      | "PPT Viewer" | Default PowerPoint viewer.                     |
-| EMAIL<sup>12+</sup>    | "Email" | Default email.                     |
+| BROWSER  | 'Web Browser' | Default browser.                           |
+| IMAGE    | 'Image Gallery' | Default image viewer.                        |
+| AUDIO    | 'Audio Player' | Default audio player.                        |
+| VIDEO    | 'Video Player' | Default video player.                        |
+| PDF      | 'PDF Viewer' | Default PDF reader.                     |
+| WORD     | 'Word Viewer' | Default Word viewer.                    |
+| EXCEL    | 'Excel Viewer' | Default Excel viewer.                   |
+| PPT      | 'PPT Viewer' | Default PowerPoint viewer.                     |
+| EMAIL<sup>12+</sup>    | 'Email' | Default email.                     |
 
-## defaultAppMgr.isDefaultApplication
+## defaultAppManager.isDefaultApplication
 
 isDefaultApplication(type: string): Promise\<boolean>
 
-Checks whether this application is the default application of a system-defined application type. This API uses a promise to return the result.
+Checks whether this application is the default application of a system-defined application type or a [uniform data type](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
 
@@ -42,34 +42,42 @@ Checks whether this application is the default application of a system-defined a
 
 | Name        | Type    | Mandatory  | Description                                     |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmgrapplicationtype).                          |
+| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmanagerapplicationtype) or [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).                          |
 
 **Return value**
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<boolean> | Promise used to return the result. If the application is the default application, `true` is returned; otherwise, `false` is returned.|
+| Promise\<boolean> | Promise used to return the result. If the application is the default application, **true** is returned; otherwise, **false** is returned. |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                                                   |
+| -------- | ---------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
 
 **Example**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-import { BusinessError } from '@ohos.base';
+import { defaultAppManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
+defaultAppManager.isDefaultApplication(defaultAppManager.ApplicationType.BROWSER)
   .then((data) => {
     console.info('Operation successful. IsDefaultApplication ? ' + JSON.stringify(data));
   }).catch((error: BusinessError) => {
-  console.error('Operation failed. Cause: ' + JSON.stringify(error));
-});
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+  });
 ```
 
-## defaultAppMgr.isDefaultApplication
+## defaultAppManager.isDefaultApplication
 
 isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void
 
-Checks whether this application is the default application of a system-defined application type. This API uses an asynchronous callback to return the result.
+Checks whether this application is the default application of a system-defined application type or a [uniform data type](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
 
@@ -77,16 +85,25 @@ Checks whether this application is the default application of a system-defined a
 
 | Name        | Type                             | Mandatory  | Description                                     |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
-| type  | string                          | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmgrapplicationtype).                           |
-| callback    | AsyncCallback\<boolean> | Yes   | Callback used to return the result. If the application is the default application, `true` is returned; otherwise, `false` is returned.|
+| type  | string                          | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmanagerapplicationtype) or [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).                           |
+| callback    | AsyncCallback\<boolean> | Yes   | Callback used to return the result. If the application is the default application, **true** is returned; otherwise, **false** is returned. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                                                   |
+| -------- | ---------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
 
 **Example**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-import { BusinessError } from '@ohos.base';
+import { defaultAppManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err: BusinessError, data) => {
+defaultAppManager.isDefaultApplication(defaultAppManager.ApplicationType.BROWSER, (err: BusinessError, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
     return;
@@ -95,33 +112,42 @@ defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err: 
 });
 ```
 
-## defaultAppMgr.isDefaultApplicationSync<sup>10+</sup>
+## defaultAppManager.isDefaultApplicationSync<sup>10+</sup>
 
 isDefaultApplicationSync(type: string): boolean
 
-Checks whether this application is the default application of a system-defined application type. This API is a synchronous API.
+Checks whether this application is the default application of a system-defined application type or a [uniform data type](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md). This API returns the result synchronously.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                    |
+| Name | Type  | Mandatory | Description                                    |
 | -------| ------ | ---- | --------------------------------------- |
-|  type  | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmgrapplicationtype).  |
+|  type  | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmanagerapplicationtype) or [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).  |
 
 **Return value**
 
 | Type   | Description                |
 | ------- | -------------------- |
-| boolean | Returns **true** if the application is the default application; returns **false** otherwise.|
+| boolean | Returns **true** if the application is the default application; returns **false** otherwise. |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                                                   |
+| -------- | ---------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
 
 **Example**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+import { defaultAppManager } from '@kit.AbilityKit';
+
 try {
-  let data = defaultAppMgr.isDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER)
+  let data = defaultAppManager.isDefaultApplicationSync(defaultAppManager.ApplicationType.BROWSER)
   console.info('Operation successful. IsDefaultApplicationSync ? ' + JSON.stringify(data));
 } catch(error) {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));

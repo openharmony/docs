@@ -14,28 +14,30 @@ HiTraceMeter提供系统性能打点接口。开发者通过在关键代码位�
 
 2. HiTraceMeter命令行工具读取内核ftrace缓冲区中的跟踪数据，将文本格式的跟踪数据保存到设备侧的文件中。
 
-## 约束与限制
-
-由于JS程序的异步IO特性，目前HiTraceMeter只提供了异步接口。
-
 ## 接口说明
 
 性能打点跟踪接口由HiTraceMeter模块提供，详细API请参考[性能打点跟踪API参考](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)。
 
 | 接口名 | 描述 | 
 | -------- | -------- |
-| hiTraceMeter.startTrace(name: string, taskId: number) | 标记一个预跟踪耗时任务的开始。taskId是trace中用来表示关联的ID,如果有多个name相同的任务并行执行，则每次调用startTrace的taskId不同；如果具有相同name的任务是串行执行的，则taskId可以相同。 | 
-| hiTraceMeter.finishTrace(name: string, taskId: number) | name和taskId必须与流程开始的hiTraceMeter.startTrace对应参数值保持一致。 | 
-| hiTraceMeter.traceByValue(name: string, value: number) | 用来标记一个预跟踪的数值变量，该变量的数值会不断变化。 | 
+| hiTraceMeter.startTrace(name: string, taskId: number) | 异步时间片跟踪接口，标记一个预跟踪耗时任务的开始。taskId是trace中用来表示关联的ID,如果有多个name相同的任务并行执行，则每次调用startTrace的taskId不同；如果具有相同name的任务是串行执行的，则taskId可以相同。 | 
+| hiTraceMeter.finishTrace(name: string, taskId: number) | 异步时间片跟踪接口，name和taskId必须与流程开始的hiTraceMeter.startTrace对应参数值保持一致。 | 
+| hiTraceMeter.traceByValue(name: string, value: number) | 整数跟踪接口，用来标记一个预跟踪的数值变量，该变量的数值会不断变化。 | 
+
+HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间片跟踪接口、异步时间片跟踪接口和整数跟踪接口。无论同步时间片跟踪接口还是异步时间片跟踪接口，接口本身都是同步接口，不是异步接口，都用在同一线程中，不支持跨线程打点和分析。
+
+- 同步时间片跟踪接口用于顺序执行的打点场景，目前ArkTS/JS暂未提供相关接口。
+- 异步时间片跟踪接口用于在操作调用前开始打点，在操作完成后进行结束打点。异步跟踪的开始和结束由于不是顺序发生的，解析trace时需要通过唯一的taskid进行识别，taskid作为异步跟踪trace接口的参数传入。
+- 整数跟踪接口用于跟踪数值变量。
 
 ## 开发步骤
 
 在应用启动执行页面加载后，开始分布式跟踪；完成业务之后，停止分布式跟踪。
 
-1. 新建一个ArkTS应用工程，在“Project”窗口点击“entry &gt; src &gt; main &gt; ets &gt; pages &gt; index”，打开工程中的“index.ets”文件；在页面执行加载后，在自己的业务中调用hiTraceMeter的接口，进行性能打点跟踪，以任务名name为HITRACE_TAG_APP为例， 示例代码如下：
+1. 新建一个ArkTS应用工程，在“Project”窗口点击“entry &gt; src &gt; main &gt; ets &gt; pages &gt; index”，打开工程中的“index.ets”文件；在页面执行加载后，在自己的业务中调用hiTraceMeter的接口，进行性能打点跟踪，以任务名name为myTraceTest为例， 示例代码如下：
 
    ```ts
-   import hitrace from '@ohos.hiTraceMeter';
+   import hiTraceMeter from '@ohos.hiTraceMeter';
    
    @Entry
    @Component
@@ -49,43 +51,30 @@ HiTraceMeter提供系统性能打点接口。开发者通过在关键代码位�
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
              .onClick(() => {
-               this.message = 'Hello ArkUI';
-   
-               // 跟踪并行执行的同名任务
-               hitrace.startTrace("HITRACE_TAG_APP", 1001);
+               this.message = 'Hello Hitrace';
+                
+               let traceCount = 0;
+               // 第一个跟踪任务开始
+               hiTraceMeter.startTrace("myTraceTest", 1001);
+               // 开始计数任务
+               traceCount++;
+               hiTraceMeter.traceByValue("myTestCount", traceCount);
                // 业务流程
-               console.log(`HITRACE_TAG_APP running`);
-   
+               console.log(`myTraceTest running, taskid: 1001`);
+                 
                // 第二个跟踪任务开始，同时第一个跟踪的同名任务还没结束，出现了并行执行，对应接口的taskId需要不同。
-               hitrace.startTrace("HITRACE_TAG_APP", 1002);
+               hiTraceMeter.startTrace("myTraceTest", 1002);
+               // 开始计数任务
+               traceCount++;
+               hiTraceMeter.traceByValue("myTestCount", traceCount);
                // 业务流程
-               console.log(`HITRACE_TAG_APP running`);
+               console.log(`myTraceTest running, taskid: 1002`);
    
-               hitrace.finishTrace("HITRACE_TAG_APP", 1001);
-               hitrace.finishTrace("HITRACE_TAG_APP", 1002);
-   
-               // 跟踪串行执行的同名任务，taskId可以不同，也可以相同
-               hitrace.startTrace("HITRACE_TAG_APP", 1003);
-               // 业务流程
-               console.log(`HITRACE_TAG_APP running`);
-               //第一个跟踪的任务结束
-               hitrace.finishTrace("HITRACE_TAG_APP", 1003);
-   
-               // 第二个跟踪任务开始，同名的待跟踪任务串行执行，且taskId不同
-               hitrace.startTrace("HITRACE_TAG_APP", 1004);
-               // 业务流程
-               console.log(`HITRACE_TAG_APP running`);
-               let traceCount = 3;
-               hitrace.traceByValue("myTestCount", traceCount);
-               hitrace.finishTrace("HITRACE_TAG_APP", 1004);
-   
-               // 第三个跟踪任务开始，同名的待跟踪任务串行执行，且taskId与上一个相同
-               hitrace.startTrace("HITRACE_TAG_APP", 1004);
-               // 业务流程
-               console.log(`HITRACE_TAG_APP running`);
-               //第三个跟踪的任务结束
-               hitrace.finishTrace("HITRACE_TAG_APP", 1004);
-   
+               // 结束taskId为1001的跟踪任务
+               hiTraceMeter.finishTrace("myTraceTest", 1001);
+               // 结束taskId为1002的跟踪任务
+               hiTraceMeter.finishTrace("myTraceTest", 1002);
+
              })
           }
           .width('100%')
@@ -95,32 +84,29 @@ HiTraceMeter提供系统性能打点接口。开发者通过在关键代码位�
    }
    ```
 
-2. 运行项目，单击IDE界面上的运行按钮，在shell中依次执行如下命令：
+2. 运行项目，单击DevEco Studio界面上的运行按钮，然后可通过[hitrace](hitrace.md)命令获取跟踪任务的相关日志。
+   
+   在 DevEco Studio Terminal 中执行如下命令：
 
    ```shell
-   hdc shell
-   hitrace --trace_begin app
+   PS D:\xxx\xxx> hdc shell
+   $ hitrace --trace_begin app
    ```
 
-   执行抓取trace命令后，先在设备中自己的业务调用接口，继续依次执行如下命令：
+   执行抓取trace命令后，先在设备中执行自己的业务调用逻辑，继续依次执行如下命令：
 
    ```shell
-   hitrace --trace_dump | grep tracing_mark_write
-   hitrace --trace_finish
+   $ hitrace --trace_dump | grep tracing_mark_write
+   $ hitrace --trace_finish
    ```
 
    抓取trace成功的数据如下所示：
 
    ```text
-   <...>-3310    (-------) [005] .... 351382.921936: tracing_mark_write: S|3310|H:HITRACE_TAG_APP 1001
-   <...>-3310    (-------) [005] .... 351382.922138: tracing_mark_write: S|3310|H:HITRACE_TAG_APP 1002
-   <...>-3310    (-------) [005] .... 351382.922165: tracing_mark_write: F|3310|H:HITRACE_TAG_APP 1001
-   <...>-3310    (-------) [005] .... 351382.922175: tracing_mark_write: F|3310|H:HITRACE_TAG_APP 1002
-   <...>-3310    (-------) [005] .... 351382.922182: tracing_mark_write: S|3310|H:HITRACE_TAG_APP 1003
-   <...>-3310    (-------) [005] .... 351382.922203: tracing_mark_write: F|3310|H:HITRACE_TAG_APP 1003
-   <...>-3310    (-------) [005] .... 351382.922210: tracing_mark_write: S|3310|H:HITRACE_TAG_APP 1004
-   <...>-3310    (-------) [005] .... 351382.922233: tracing_mark_write: C|3310|H:myTestCount 3
-   <...>-3310    (-------) [005] .... 351382.922240: tracing_mark_write: F|3310|H:HITRACE_TAG_APP 1004
-   <...>-3310    (-------) [005] .... 351382.922247: tracing_mark_write: S|3310|H:HITRACE_TAG_APP 1004
-   <...>-3310    (-------) [005] .... 351382.922266: tracing_mark_write: F|3310|H:HITRACE_TAG_APP 1004
+   <...>-3310    (-------) [005] .... 351382.921936: tracing_mark_write: S|3310|H:myTraceTest 1001
+   <...>-3310    (-------) [005] .... 351382.922233: tracing_mark_write: C|3310|H:myTestCount 1
+   <...>-3310    (-------) [005] .... 351382.922138: tracing_mark_write: S|3310|H:myTraceTest 1002
+   <...>-3310    (-------) [005] .... 351382.922233: tracing_mark_write: C|3310|H:myTestCount 2
+   <...>-3310    (-------) [005] .... 351382.922165: tracing_mark_write: F|3310|H:myTestCount 1001
+   <...>-3310    (-------) [005] .... 351382.922175: tracing_mark_write: F|3310|H:myTestCount 1002
    ```

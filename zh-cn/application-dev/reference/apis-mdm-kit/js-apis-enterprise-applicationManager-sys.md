@@ -8,14 +8,14 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin)后调用，实现相应功能。
+> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin)后调用，实现相应功能。
 > 
-> 本模块接口均为系统接口。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.applicationManager](js-apis-enterprise-applicationManager.md)。
 
 ## 导入模块
 
 ```ts
-import applicationManager from '@ohos.enterprise.applicationManager';
+import { applicationManager } from '@kit.MDMKit';
 ```
 
 ## applicationManager.addDisallowedRunningBundles
@@ -40,23 +40,26 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -90,22 +93,25 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                     |          
+| 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -144,23 +150,26 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                     |          
+| 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in adding disallowed running bundles');
@@ -191,22 +200,25 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: As
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -240,22 +252,25 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: numb
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                     |          
+| 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -294,23 +309,26 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: num
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                     |          
+| 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in removing disallowed running bundles');
@@ -340,17 +358,20 @@ getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;str
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -387,17 +408,20 @@ getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -439,18 +463,21 @@ getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                     |          
+| 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -461,159 +488,4 @@ applicationManager.getDisallowedRunningBundles(wantTemp, 100).then((result) => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to get disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
 });
-```
-
-## applicationManager.addAutoStartApps<sup>11+</sup>
-
-addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
-
-以同步方法指定设备管理应用添加开机自启动应用名单。
-
-**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
-
-**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-**系统API：** 此接口为系统接口。
-
-**参数：**
-
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是    | 开机自启动应用。数组长度上限长度为10。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
-
-| 错误码ID | 错误信息                                                                     |          
-| ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
-
-**示例：**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-let autoStartApps: Array<Want> = [
-  {
-    bundleName: 'com.example.autoStartApplication',
-    abilityName: 'EntryAbility',
-  }
-];
-
-try {
-  applicationManager.addAutoStartApps(wantTemp, autoStartApps);
-  console.info(`Succeeded in adding auto start applications`);
-} catch(err) {
-  console.error(`Failed to add auto start applications. Code: ${err.code}, message: ${err.message}`);
-}
-```
-
-## applicationManager.removeAutoStartApps<sup>11+</sup>
-
-removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
-
-以同步方法指定设备管理应用删除开机自启动应用名单。
-
-**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
-
-**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-**系统API：** 此接口为系统接口。
-
-**参数：**
-
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是    | 开机自启动应用。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
-
-| 错误码ID | 错误信息                                                                     |          
-| ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
-
-**示例：**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-let autoStartApps: Array<Want> = [
-  {
-    bundleName: 'com.example.autoStartApplication',
-    abilityName: 'EntryAbility',
-  }
-];
-
-try {
-  applicationManager.removeAutoStartApps(wantTemp, autoStartApps);
-  console.info(`Succeeded in removing auto start applications`);
-} catch(err) {
-  console.error(`Failed to remove auto start applications. Code: ${err.code}, message: ${err.message}`);
-}
-```
-
-## applicationManager.getAutoStartApps<sup>11+</sup>
-
-getAutoStartApps(admin: Want): Array\<Want>
-
-以同步方法指定设备管理应用查询开机自启动应用名单。
-
-**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
-
-**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-**系统API：** 此接口为系统接口。
-
-**参数：**
-
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-
-**返回值：**
-
-| 类型                   | 说明                      |
-| --------------------- | ------------------------- |
-| Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 应用自启动名单数组。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
-
-| 错误码ID | 错误信息                                                                     |          
-| ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
-
-**示例：**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-
-try {
-  let res: Array<Want> = applicationManager.getAutoStartApps(wantTemp);
-  console.info(`Succeeded in adding auto start apps: ${res}`);
-} catch(err) {
-  console.error(`Failed to auto start apps. Code: ${err.code}, message: ${err.message}`);
-}
 ```

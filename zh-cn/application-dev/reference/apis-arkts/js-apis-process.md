@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import process from '@ohos.process';
+import { process } from '@kit.ArkTS';
 ```
 
 
@@ -18,21 +18,30 @@ import process from '@ohos.process';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| uid | number | 是 | 否 | 进程的用户标识。 |
-| pid | number | 是 | 否 | 当前进程的pid。 |
-| tid<sup>8+</sup> | number | 是 | 否 | 当前线程的tid。 |
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+
+| 名称             | 类型   | 可读 | 可写 | 说明             |
+| ---------------- | ------ | ---- | ---- | ---------------- |
+| uid              | number | 是   | 否   | 进程的用户标识。 |
+| pid              | number | 是   | 否   | 当前进程的pid。  |
+| tid<sup>8+</sup> | number | 是   | 否   | 当前线程的tid。  |
 
 
 ## EventListener
 
+type EventListener = (evt: Object) => void
+
+用户存储的事件
+
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 说明 |
-| -------- | -------- |
-| EventListener&nbsp;=&nbsp;(evt: &nbsp;Object)&nbsp;=&gt;&nbsp;void | 用户存储的事件。 |
+**参数：**
 
+| 参数名 | 类型   | 必填 | 说明            |
+| ------ | ------ | ---- | --------------- |
+| evt   | Object | 是 | 用户事件。|
 
 ## process.isIsolatedProcess<sup>8+</sup>
 
@@ -40,13 +49,15 @@ isIsolatedProcess(): boolean
 
 判断进程是否被隔离。
 
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 返回判断结果，true表示进程被隔离，false表示未被隔离。|
+| 类型    | 说明                                                    |
+| ------- | ------------------------------------------------------- |
+| boolean | 返回判断结果，如果进程被隔离则返回true，否则返回false。 |
 
 **示例：**
 
@@ -61,13 +72,15 @@ is64Bit(): boolean
 
 判断运行环境是否64位。
 
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 返回判断结果，如果为64位环境返回true，否则返回false。|
+| 类型    | 说明                                                        |
+| ------- | ----------------------------------------------------------- |
+| boolean | 返回判断结果，如果运行环境是64位则返回true，否则返回false。 |
 
 **示例：**
 
@@ -82,13 +95,15 @@ getStartRealtime(): number
 
 获取从系统启动到进程启动所经过的实时时间（以毫秒为单位）。
 
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
-| number | 返回经过的实时时间。单位：毫秒|
+| 类型   | 说明                           |
+| ------ | ------------------------------ |
+| number | 返回经过的实时时间。单位：毫秒 |
 
 **示例：**
 
@@ -102,13 +117,15 @@ getPastCpuTime(): number
 
 获取进程启动到当前时间的CPU时间（以毫秒为单位）。
 
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
-| number | 返回经过的CPU时间。单位：毫秒|
+| 类型   | 说明                          |
+| ------ | ----------------------------- |
+| number | 返回经过的CPU时间。单位：毫秒 |
 
 **示例：**
 
@@ -122,6 +139,8 @@ let result = process.getPastCpuTime() ;
 abort(): void
 
 该方法会导致进程立即退出并生成一个核心文件，谨慎使用。
+
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -138,12 +157,14 @@ uptime(): number
 
 获取当前系统已运行的秒数。
 
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型   | 说明                   |
+| ------ | ---------------------- |
 | number | 当前系统已运行的秒数。 |
 
 **示例：**
@@ -167,16 +188,16 @@ kill(signal: number, pid: number): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| signal | number | 是 | 发送的信号。 |
-| pid | number | 是 | 进程的id。 |
+| 参数名 | 类型   | 必填 | 说明         |
+| ------ | ------ | ---- | ------------ |
+| signal | number | 是   | 发送的信号。 |
+| pid    | number | 是   | 进程的id。   |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 信号是否发送成功。返回值true为发送成功，false为发送失败。|
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 信号是否发送成功。如果信号发送成功则返回true，否则返回false。 |
 
 **示例：**
 
@@ -202,9 +223,9 @@ exit(code: number): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| code | number | 是 | 进程的退出码。 |
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| code   | number | 是   | 进程的退出码。 |
 
 **示例：**
 
@@ -217,7 +238,7 @@ process.exit(0);
 
 getUidForName(v: string): number
 
-通过进程名获取进程uid。
+根据指定的用户名，从系统的用户数据库中获取该用户uid。
 
 > **说明：**
 >
@@ -227,15 +248,15 @@ getUidForName(v: string): number
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| v | string | 是 | 进程名。 |
+| 参数名 | 类型   | 必填 | 说明     |
+| ------ | ------ | ---- | -------- |
+| v      | string | 是   | 用户名。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
-| number | 返回进程uid。|
+| 类型   | 说明          |
+| ------ | ------------- |
+| number | 返回用户uid。 |
 
 **示例：**
 
@@ -258,14 +279,14 @@ getThreadPriority(v: number): number
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| v | number | 是 | 指定的线程tid。 |
+| 参数名 | 类型   | 必填 | 说明            |
+| ------ | ------ | ---- | --------------- |
+| v      | number | 是   | 指定的线程tid。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型   | 说明                                             |
+| ------ | ------------------------------------------------ |
 | number | 返回线程的优先级。优先级顺序取决于当前操作系统。 |
 
 **示例：**
@@ -290,15 +311,15 @@ isAppUid(v: number): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| v | number | 是 | 应用程序的uid。 |
+| 参数名 | 类型   | 必填 | 说明            |
+| ------ | ------ | ---- | --------------- |
+| v      | number | 是   | 应用程序的uid。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 返回判断结果，如果为应用程序的uid返回true，否则返回false。|
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回判断结果，如果是应用程序的uid则返回true，否则返回false。 |
 
 **示例：**
 
@@ -321,14 +342,14 @@ getSystemConfig(name: number): number
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | number | 是 | 指定系统配置参数名。 |
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| name   | number | 是   | 指定系统配置参数名。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型   | 说明               |
+| ------ | ------------------ |
 | number | 返回系统配置信息。 |
 
 **示例：**
@@ -353,14 +374,14 @@ getEnvironmentVar(name: string): string
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | string | 是 | 环境变量名。 |
+| 参数名 | 类型   | 必填 | 说明         |
+| ------ | ------ | ---- | ------------ |
+| name   | string | 是   | 环境变量名。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型   | 说明                        |
+| ------ | --------------------------- |
 | string | 返回环境变量名对应的value。 |
 
 **示例：**
@@ -382,25 +403,38 @@ isAppUid(v: number): boolean
 
 判断uid是否属于当前应用程序。
 
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| v | number | 是 | 应用程序的uid。 |
+| 参数名 | 类型   | 必填 | 说明            |
+| ------ | ------ | ---- | --------------- |
+| v      | number | 是   | 应用程序的uid。可通过process.uid获取 |
 
 **返回值：**
 
-| 类型 | 说明 |
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回判断结果，如果是应用程序的uid则返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| boolean | 返回判断结果，如果为应用程序的uid返回true，否则返回false。|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```js
 let pro = new process.ProcessManager();
-let result = pro.isAppUid(688);
+// uid通过process.uid获取
+let pres = process.uid;
+let result = pro.isAppUid(pres);
+console.log("result: " + result); // result: true
 ```
 
 
@@ -408,21 +442,31 @@ let result = pro.isAppUid(688);
 
 getUidForName(v: string): number
 
-通过进程名获取进程uid。
+根据指定的用户名，从系统的用户数据库中获取该用户uid。
+
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| v | string | 是 | 进程名。 |
+| 参数名 | 类型   | 必填 | 说明     |
+| ------ | ------ | ---- | -------- |
+| v      | string | 是   | 用户名。 |
 
 **返回值：**
 
-| 类型 | 说明 |
+| 类型   | 说明          |
+| ------ | ------------- |
+| number | 返回用户uid，当获取的用户不存在时，返回-1。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| number | 返回进程uid。|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -438,19 +482,29 @@ getThreadPriority(v: number): number
 
 根据指定的tid获取线程优先级。
 
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| v | number | 是 | 指定的线程tid。 |
+| 参数名 | 类型   | 必填 | 说明            |
+| ------ | ------ | ---- | --------------- |
+| v      | number | 是   | 指定的线程tid。 |
 
 **返回值：**
 
-| 类型 | 说明 |
+| 类型   | 说明                                             |
+| ------ | ------------------------------------------------ |
+| number | 返回线程的优先级。优先级顺序取决于当前操作系统。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| number | 返回线程的优先级。优先级顺序取决于前操作系统。 |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -467,19 +521,29 @@ getSystemConfig(name: number): number
 
 获取系统配置信息。
 
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | number | 是 | 指定系统配置参数名。 |
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| name   | number | 是   | 指定系统配置参数名。 |
 
 **返回值：**
 
-| 类型 | 说明 |
+| 类型   | 说明               |
+| ------ | ------------------ |
+| number | 返回系统配置信息，当获取的系统配置不存在时，返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| number | 返回系统配置信息。 |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -496,19 +560,33 @@ getEnvironmentVar(name: string): string
 
 获取环境变量对应的值。
 
+> **说明：**
+>
+> 该接口是获取环境变量对应的值。当环境变量不存在时，返回undefined。
+
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | string | 是 | 环境变量名。 |
+| 参数名 | 类型   | 必填 | 说明         |
+| ------ | ------ | ---- | ------------ |
+| name   | string | 是   | 环境变量名。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型   | 说明                     |
+| ------ | ------------------------ |
 | string | 返回环境变量名对应的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -526,13 +604,23 @@ exit(code: number): void
 
 请谨慎使用此接口，此接口调用后应用会退出，如果入参非0会产生数据丢失或者异常情况。
 
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| code | number | 是 | 进程的退出码。 |
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| code   | number | 是   | 进程的退出码。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -548,20 +636,30 @@ kill(signal: number, pid: number): boolean
 
 发送signal到指定的进程，结束指定进程。
 
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| signal | number | 是 | 发送的信号。 |
-| pid | number | 是 | 进程的id。 |
+| 参数名 | 类型   | 必填 | 说明         |
+| ------ | ------ | ---- | ------------ |
+| signal | number | 是   | 发送特定的信号给目标进程。 |
+| pid    | number | 是   | 进程的id。   |
 
 **返回值：**
 
-| 类型 | 说明 |
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 信号是否发送成功。如果信号发送成功则返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
 | -------- | -------- |
-| boolean | 信号是否发送成功。返回值true为发送成功，false为发送失败。 |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 

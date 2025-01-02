@@ -36,7 +36,7 @@ Before developing an audio feature, especially before implementing audio data pr
 
 - Audio quantization process: sampling > quantization > encoding
 
-- Concepts related to audio quantization: analog signal, digital signal, sampling rate, audio channel, sample format, bit width, bit rate, common encoding formats (such as AAC, MP3, PCM, and WMA), and common encapsulation formats (such as WAV, MPA, FLAC, AAC, and OGG)
+- Concepts related to audio quantization: analog signal, digital signal, sampling rate, audio channel, sample format, bit width, bit rate, common encoding formats (such as AAC, MP3, PCM, and WMA), and common container formats (such as WAV, MPA, FLAC, AAC, and OGG)
 
 ## Introduction to Audio Streams
 
@@ -59,6 +59,8 @@ In addition to the basic information (which describes only audio data), an audio
   Information about the audio stream recording scenario is defined by [SourceType](../../reference/apis-audio-kit/js-apis-audio.md#sourcetype8).
 
   **SourceType** specifies the recording source type of an audio stream, including the mic source, voice recognition source, and voice communication source.
+
+For details, see [Selecting an Appropriate Audio Stream Type](using-right-streamusage-and-sourcetype.md).
 
 ## Supported Audio Formats
 

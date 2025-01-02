@@ -8,11 +8,15 @@ Blur effects add a sense of depth and allow for distinction of hierarchical rela
 
 | API                                                        | Description                                        |
 | ------------------------------------------------------------ | -------------------------------------------- |
-| [backdropBlur](../reference/arkui-ts/ts-universal-attributes-image-effect.md#backdropblur) | Applies a background blur effect to the component. The input parameter is the blur radius.|
-| [blur](../reference/arkui-ts/ts-universal-attributes-image-effect.md#blur) | Applies a foreground blur effect to the component. The input parameter is the blur radius.|
-| [backgroundBlurStyle](../reference/arkui-ts/ts-universal-attributes-background.md#backgroundblurstyle9) | Applies a background blur effect to the component. The input parameter is the blur style.|
-| [foregroundBlurStyle](../reference/arkui-ts/ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle) | Applies a foreground blur effect to the component. The input parameter is the blur style.|
+| [backdropBlur](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur) | Applies a background blur effect to the component. The input parameter is the blur radius.|
+| [blur](../reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#blur) | Applies a foreground blur effect to the component. The input parameter is the blur radius.|
+| [backgroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundblurstyle9) | Applies a background blur effect to the component. The input parameter is the blur style.|
+| [foregroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle) | Applies a foreground blur effect to the component. The input parameter is the blur style.|
+| [motionBlur](../reference/apis-arkui/arkui-ts/ts-universal-attributes-motionBlur.md#motionblur) | Applies a motion blur effect to the component being scaled or moved. The input parameters are the blur radius and anchor point coordinates.|
 
+>  **NOTE**
+>
+>  The preceding APIs provide real-time blurring by rendering each frame, which can be performance-intensive. For static blur effects where content and radius remain unchanged, you are advised to use the static [blur](../reference/apis-arkgraphics2d/js-apis-effectKit.md#blur) API to reduce the load.
 
 ## Applying Background Blur with backdropBlur
 
@@ -23,7 +27,7 @@ Blur effects add a sense of depth and allow for distinction of hierarchical rela
 struct BlurEffectsExample {
   build() {
     Column({ space: 10 }) {
-      Text('backdropblur')
+      Text('backdropBlur')
         .width('90%')
         .height('90%')
         .fontSize(20)
@@ -622,3 +626,54 @@ struct ForegroundBlurStyleDemo {
 
 
 ![en-us_image_0000001599658168](figures/en-us_image_0000001599658168.png)
+
+
+## Applying Motion Blur with motionBlur
+
+```ts
+import { curves } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct motionBlurTest {
+  @State widthSize: number = 400
+  @State heightSize: number = 320
+  @State flag: boolean = true
+  @State radius: number = 0
+  @State x: number = 0
+  @State y: number = 0
+
+  build() {
+    Column() {
+      Column() {
+        Image($r('app.media.testImg'))
+          .width(this.widthSize)
+          .height(this.heightSize)
+          .onClick(() => {
+            this.radius = 5;
+            this.x = 0.5;
+            this.y = 0.5;
+            if (this.flag) {
+              this.widthSize = 100;
+              this.heightSize = 80;
+            } else {
+              this.widthSize = 400;
+              this.heightSize = 320;
+            }
+            this.flag = !this.flag;
+          })
+          .animation({
+            duration: 2000,
+            curve: curves.springCurve(10, 1, 228, 30),
+            onFinish: () => {
+              this.radius = 0;
+            }
+          })
+          .motionBlur({ radius: this.radius, anchor: { x: this.x, y: this.y } })
+      }
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![motionBlurTest](figures/motionBlur.gif)

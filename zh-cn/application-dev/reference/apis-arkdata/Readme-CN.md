@@ -1,4 +1,4 @@
-# ArkData API参考 
+# ArkData（方舟数据管理）
 
 - ArkTS API 
   - [@ohos.data.commonType (数据通用类型)](js-apis-data-commonType.md)
@@ -7,19 +7,26 @@
   - [@ohos.data.distributedDataObject (分布式数据对象)](js-apis-data-distributedobject.md)
   - [@ohos.data.distributedKVStore (分布式键值数据库)](js-apis-distributedKVStore.md)
   - [@ohos.data.preferences (用户首选项)](js-apis-data-preferences.md)
+  - [@ohos.data.sendablePreferences (共享用户首选项)](js-apis-data-sendablePreferences.md)
   - [@ohos.data.relationalStore (关系型数据库)](js-apis-data-relationalStore.md)
+  - [@ohos.data.sendableRelationalStore (共享关系型数据库)](js-apis-data-sendableRelationalStore.md)
   - [@ohos.data.unifiedDataChannel (标准化数据通路)](js-apis-data-unifiedDataChannel.md)
+  - [@ohos.data.uniformDataStruct (标准化数据结构)](js-apis-data-uniformDataStruct.md)
   - [@ohos.data.uniformTypeDescriptor (标准化数据定义与描述)](js-apis-data-uniformTypeDescriptor.md)
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-valuesBucket.md)
+  <!--Del-->
   - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)(系统接口)](js-apis-application-dataShareExtensionAbility-sys.md)
-  - [@ohos.data.cloudData (端云协同)](js-apis-data-cloudData.md)
-  - [@ohos.data.cloudData (端云协同)(系统接口)](js-apis-data-cloudData-sys.md)
+  <!--DelEnd-->
+  - [@ohos.data.cloudData (端云服务)](js-apis-data-cloudData.md)
+  <!--Del-->
+  - [@ohos.data.cloudData (端云服务)(系统接口)](js-apis-data-cloudData-sys.md)
   - [@ohos.data.cloudExtension (端云共享Extension)(系统接口)](js-apis-data-cloudExtension-sys.md)
   - [@ohos.data.dataShare (数据共享)(系统接口)](js-apis-data-dataShare-sys.md)
   - [@ohos.data.dataSharePredicates (数据共享谓词)(系统接口)](js-apis-data-dataSharePredicates-sys.md)
   - [@ohos.data.dataShareResultSet (数据共享结果集)(系统接口)](js-apis-data-DataShareResultSet-sys.md)
   - [@ohos.data.distributedKVStore (分布式键值数据库)(系统接口)](js-apis-distributedKVStore-sys.md)
   - [@ohos.data.relationalStore (关系型数据库)(系统接口)](js-apis-data-relationalStore-sys.md)
+  <!--DelEnd-->
   - 已停止维护的接口
     - [@ohos.data.distributedData (分布式数据管理)](js-apis-distributed-data.md)
     - [@ohos.data.rdb (关系型数据库)](js-apis-data-rdb.md)
@@ -31,6 +38,8 @@
   - 模块
     - [Data](_data.md)
     - [RDB](_r_d_b.md)
+    - [UDMF](_u_d_m_f.md)
+    - [Preferences](_preferences.md)
   - 头文件
     - [data_asset.h](data__asset_8h.md)
     - [oh_cursor.h](oh__cursor_8h.md)
@@ -39,6 +48,15 @@
     - [oh_values_bucket.h](oh__values__bucket_8h.md)
     - [relational_store_error_code.h](relational__store__error__code_8h.md)
     - [relational_store.h](relational__store_8h.md)
+    - [udmf.h](udmf_8h.md)
+    - [udmf_err_code.h](udmf__err__code_8h.md)
+    - [udmf_meta.h](udmf__meta_8h.md)
+    - [uds.h](uds_8h.md)
+    - [utd.h](utd_8h.md)
+    - [oh_preferences.h](oh__preferences_8h.md)
+    - [oh_preferences_err_code.h](oh__preferences__err__code_8h.md)
+    - [oh_preferences_option.h](oh__preferences__option_8h.md)
+    - [oh_preferences_value.h](oh__preferences__value_8h.md)
   - 结构体
     - [OH_Cursor](_o_h___cursor.md)
     - [OH_Predicates](_o_h___predicates.md)
@@ -62,4 +80,5 @@
   - [分布式数据对象错误码](errorcode-distributed-dataObject.md)
   - [分布式键值数据库错误码](errorcode-distributedKVStore.md)
   - [用户首选项错误码](errorcode-preferences.md)
+  - [统一数据管理框架错误码](errorcode-udmf.md)
 

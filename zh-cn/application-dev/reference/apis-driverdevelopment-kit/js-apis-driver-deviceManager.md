@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
+import { deviceManager } from '@kit.DriverDevelopmentKit';
 ```
 
 ## deviceManager.queryDevices
@@ -38,14 +38,14 @@ queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The permission check failed.             |
 | 401      | The parameter check failed.              |
 | 22900001 | ExternalDeviceManager service exception. |
 
 **示例：**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-
+import { deviceManager } from '@kit.DriverDevelopmentKit';
 
 try {
   let devices : Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
@@ -61,7 +61,7 @@ try {
 ## deviceManager.bindDevice
 
 bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
-  callback: AsyncCallback&lt;{deviceId: number, remote: rpc.IRemoteObject}&gt;): void;
+  callback: AsyncCallback&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;): void;
 
 根据queryDevices()返回的设备信息绑定设备。
 
@@ -77,21 +77,22 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 | ------------ | ---------------------------------------------------------------------------------------------------- | ---- | -------------------------------------- |
 | deviceId     | number                                                                                               | 是   | 设备ID，通过queryDevices获得。           |
 | onDisconnect | AsyncCallback&lt;number&gt;                                                                          | 是   | 绑定设备断开的回调。                     |
-| callback     | AsyncCallback&lt;{deviceId: number, remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject)}&gt; | 是   | 绑定设备的回调，返回绑定设备的通信对象。 |
+| callback     | AsyncCallback&lt;{deviceId: number; remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject);}&gt; | 是   | 绑定设备的回调，返回绑定设备的通信对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 401      | The parameter check failed.              |
+| 201      | The permission check failed.              |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 22900001 | ExternalDeviceManager service exception. |
 
 **示例：**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
-import type rpc from '@ohos.rpc';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { rpc } from '@kit.IPCKit';
 
 interface DataType {
   deviceId : number;
@@ -138,15 +139,16 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 401      | The parameter check failed.              |
+| 201      | The permission check failed.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 22900001 | ExternalDeviceManager service exception. |
 
 **示例：**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
-import type rpc from '@ohos.rpc';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { rpc } from '@kit.IPCKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -166,8 +168,8 @@ try {
 
 ## deviceManager.bindDevice
 
-bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;{deviceId: number,
-  remote: rpc.IRemoteObject}&gt;;
+bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;{deviceId: number;
+  remote: rpc.IRemoteObject;}&gt;;
 
 根据queryDevices()返回的设备信息绑定设备。
 
@@ -188,20 +190,21 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 
 | 类型                                                                                           | 说明                                         |
 | ---------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| Promise&lt;{deviceId: number, remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject)}&gt; | Promise对象，返回设备ID和IRemoteObject对象。 |
+| Promise&lt;{deviceId: number; remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject);}&gt; | Promise对象，返回设备ID和IRemoteObject对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 401      | The parameter check failed.              |
+| 201      | The permission check failed.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 22900001 | ExternalDeviceManager service exception. |
 
 **示例：**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -246,14 +249,15 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): P
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 401      | The parameter check failed.              |
+| 201      | The permission check failed.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 22900001 | ExternalDeviceManager service exception. |
 
 **示例：**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -291,13 +295,14 @@ unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 401      | The parameter check failed.              |
+| 201      | The permission check failed.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 22900001 | ExternalDeviceManager service exception. |
 
 **示例：**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
+import { deviceManager } from '@kit.DriverDevelopmentKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -332,7 +337,8 @@ unbindDevice(deviceId: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 401      | The parameter check failed.              |
+| 201      | The permission check failed.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 22900001 | ExternalDeviceManager service exception. |
 
 **返回值：** 
@@ -344,8 +350,8 @@ unbindDevice(deviceId: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -373,7 +379,7 @@ try {
 
 ## USBDevice
 
-USB设备信息。
+USB设备信息，继承自[Device](#device)。
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 

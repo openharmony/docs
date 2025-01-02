@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **Camera_FrameShutterInfo** struct defines the frame shutter callback.
+The Camera_FrameShutterInfo struct describes the frame shutter information.
 
 **Since**: 11
 

@@ -15,18 +15,22 @@ responseRegion(value: Array&lt;Rectangle&gt; | Rectangle)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | Array&lt;[Rectangle](#rectangle对象说明)&gt;&nbsp;\|&nbsp;[Rectangle](#rectangle对象说明) | 是   | 设置一个或多个触摸热区，包括位置和大小。<br/>默认触摸热区为整个组件，默认值：<br/>{<br/>x：0,<br/>y：0,<br/>width：'100%',<br/>height：'100%'<br/>}<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| value  | Array&lt;[Rectangle](#rectangle对象说明)&gt;&nbsp;\|&nbsp;[Rectangle](#rectangle对象说明) | 是   | 设置一个或多个触摸热区，包括位置和大小。<br/>默认触摸热区为整个组件，默认值：<br/>{<br/>x：0,<br/>y：0,<br/>width：'100%',<br/>height：'100%'<br/>}<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## Rectangle对象说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称        | 类型                       | 必填   | 描述                             |
 | ------ | ----------------------------- | -----| -------------------------------- |
@@ -45,6 +49,8 @@ responseRegion(value: Array&lt;Rectangle&gt; | Rectangle)
 
 
 ## 示例
+
+该示例通过responseRegion对按钮设置触摸热区响应点击事件。
 
 ```ts
 // xxx.ets

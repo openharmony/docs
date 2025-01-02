@@ -6,26 +6,28 @@ This topic walks you through on how to create a certificate object, obtain infor
 
 ## How to Develop
 
-1. Import the [certFramework](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
+1. Import the [cert](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
    ```ts
-   import certFramework from '@ohos.security.cert';
+   import { cert } from '@kit.DeviceCertificateKit';
    ```
 
-2. Use [cryptoCert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509cert) to create an **X509Cert** object based on the existing X.509 certificate data.  
+2. Use [cert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert) to create an **X509Cert** object based on the existing X.509 certificate data.
 
 3. Obtain certificate information.<br>
    The following example shows how to obtain the certificate version and serial number. For more information, see [X509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509cert).
 
 4. Use [X509Cert.getPublicKey](../../reference/apis-device-certificate-kit/js-apis-cert.md#getpublickey) to obtain the public key in the certificate and use [X509Cert.verify](../../reference/apis-device-certificate-kit/js-apis-cert.md#verify) to verify the signature.
+   
    In this example, a self-signed certificate is used. Therefore, the public key in the certificate is obtained. In your app experience, obtain the public key for signature verification based on actual situation.
-
+   
 5. Use [X509Cert.checkValidityWithDate](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkvaliditywithdate) to check the certificate validity period.
+
    The input parameter **date** is used to check whether the specified date is within the validity period of the X.509 certificate.
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
-import util from '@ohos.util'; 
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
 
 // The following is an example of the certificate binary data, which varies with the service.
 let certData = '-----BEGIN CERTIFICATE-----\n' +
@@ -41,15 +43,15 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 // Certificate example.
 function certSample(): void {
   let textEncoder = new util.TextEncoder();
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     // Convert the certificate data from a string to a Unit8Array.
     data: textEncoder.encodeInto(certData),
     // Certificate format. Only PEM and DER are supported. In this example, the certificate is in PEM format.
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
   // Create an X509Cert object.
-  certFramework.createX509Cert(encodingBlob, (err, x509Cert) => {
+  cert.createX509Cert(encodingBlob, (err, x509Cert) => {
     if (err != null) {
       // The X509Cert object fails to be created.
       console.error(`createX509Cert failed, errCode:${err.code}, errMsg:${err.message}`);

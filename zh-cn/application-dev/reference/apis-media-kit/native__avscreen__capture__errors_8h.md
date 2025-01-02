@@ -7,6 +7,8 @@
 
 **库：** libnative_avscreen_capture.so
 
+**引用文件：** <multimedia/player_framework/native_avscreen_capture_errors.h>
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 10

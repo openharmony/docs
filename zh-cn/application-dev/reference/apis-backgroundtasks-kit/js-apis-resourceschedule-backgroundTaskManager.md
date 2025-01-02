@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 ```
 
 ## backgroundTaskManager.requestSuspendDelay
@@ -21,7 +21,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 >  **说明：**
 >
-> 短时任务的申请时间最长为3分钟，[低电量](../apis-basic-services-kit/js-apis-battery-info.md)时最长为1分钟。
+> 短时任务的申请和使用过程中的约束与限制请参考[指南](../../task-management/transient-task.md#约束与限制)。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -40,21 +40,22 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID  | 错误信息             |
-| ---- | --------------------- |
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let myReason = 'test requestSuspendDelay';
 try {
@@ -88,22 +89,23 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID  | 错误信息             |
-| ---- | --------------------- |
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed.  |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let id = 1;
 backgroundTaskManager.getRemainingDelayTime(id, (error: BusinessError, res: number) => {
@@ -138,21 +140,22 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID  | 错误信息             |
-| ---- | --------------------- |
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let id = 1;
 backgroundTaskManager.getRemainingDelayTime(id).then((res: number) => {
@@ -179,21 +182,22 @@ cancelSuspendDelay(requestId: number): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID  | 错误信息             |
-| ---- | --------------------- |
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let id = 1;
   try {
@@ -211,6 +215,8 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **参数**：
@@ -218,33 +224,34 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 长时任务模式。                              |
+| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 长时任务类型。                              |
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。           |
 | callback  | AsyncCallback&lt;void&gt;          | 是    | 回调函数，申请长时任务成功时，err为undefined，否则为错误对象。    |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. | 
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 function callback(error: BusinessError, data: void) {
     if (error) {
@@ -265,7 +272,7 @@ export default class EntryAbility extends UIAbility {
                 }
             ],
             // 点击通知后，动作类型
-            operationType: wantAgent.OperationType.START_ABILITY,
+            actionType: wantAgent.OperationType.START_ABILITY,
             // 使用者自定义的一个私有值
             requestCode: 0,
             // 点击通知后，动作执行属性
@@ -293,9 +300,11 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
-申请长时任务，使用promise异步回调。
+申请长时任务，使用promise异步回调。在一个长时任务中仅能申请一种类型。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -304,7 +313,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 长时任务模式。                              |
+| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 长时任务类型。                              |
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。                 |
 
 **返回值**：
@@ -315,27 +324,28 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -348,7 +358,7 @@ export default class EntryAbility extends UIAbility {
                 }
             ],
             // 点击通知后，动作类型
-            operationType: wantAgent.OperationType.START_ABILITY,
+            actionType: wantAgent.OperationType.START_ABILITY,
             // 使用者自定义的一个私有值
             requestCode: 0,
             // 点击通知后，动作执行属性
@@ -382,6 +392,8 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 取消长时任务，使用callback异步回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **参数**：
@@ -393,26 +405,26 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 function callback(error: BusinessError, data: void) {
     if (error) {
@@ -439,6 +451,8 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 取消长时任务，使用promise异步回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **参数**：
@@ -455,26 +469,26 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -493,11 +507,13 @@ export default class EntryAbility extends UIAbility {
 
 ## backgroundTaskManager.startBackgroundRunning<sup>12+</sup>
 
-startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;void&gt;
+startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;ContinuousTaskNotification&gt;
 
-申请长时任务，使用promise异步回调。
+申请长时任务，支持申请多种类型，使用promise异步回调。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -506,84 +522,128 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
-| bgModes    | string[] | 是    | 长时任务模式，模式包括：dataTransfer, audioPlayback, audioRecording, location, bluetoothInteraction, multiDeviceConnection<br>dataTransfer：数据传输<br>audioPlayback：音频播放 <br>audioRecording：录音<br>location：定位导航<br>bluetoothInteraction：蓝牙相关<br>multiDeviceConnection：多设备互联<br>说明：可以传一个或者多个模式。|
+| bgModes    | string[] | 是    | 长时任务类型，类型包括:dataTransfer，audioPlayback，audioRecording，location，bluetoothInteraction，multiDeviceConnection，task_keeping，voip<sup>13+</sup>。<br>dataTransfer：数据传输。<br>audioPlayback：音视频播放。 <br>audioRecording：录制。<br>location：定位、导航。<br>bluetoothInteraction：蓝牙相关。<br>multiDeviceConnection：多设备互联。<br>task_keeping：计算任务。<br>voip<sup>13+</sup>	：音视频通话。<br> **说明** ：支持传入一个或多个类型。|
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。                 |
 
 **返回值**：
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<ContinuousTaskNotification> | 返回[ContinuousTaskNotification](#continuoustasknotification12)类型的Promise对象。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
+import { notificationManager } from '@kit.NotificationKit';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        let wantAgentInfo: wantAgent.WantAgentInfo = {
-            // 点击通知后，将要执行的动作列表
-            wants: [
-                {
-                    bundleName: "com.example.myapplication",
-                    abilityName: "EntryAbility"
-                }
-            ],
-            // 点击通知后，动作类型
-            operationType: wantAgent.OperationType.START_ABILITY,
-            // 使用者自定义的一个私有值
-            requestCode: 0,
-            // 点击通知后，动作执行属性
-            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-        };
+  id: number = 0; // 保存通知id
 
-        try {
-            // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
-            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
-                try {
-                    let list: Array<string> = ["audioPlayback", "location"];
-                    backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then(() => {
-                        console.info("Operation startBackgroundRunning succeeded");
-                    }).catch((error: BusinessError) => {
-                        console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-                    });
-                } catch (error) {
-                    console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
-                }
-            });
-        } catch (error) {
-            console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let wantAgentInfo: wantAgent.WantAgentInfo = {
+      // 点击通知后，将要执行的动作列表
+      wants: [
+        {
+          bundleName: "com.example.myapplication",
+          abilityName: "EntryAbility"
         }
+      ],
+      // 点击通知后，动作类型
+      actionType: wantAgent.OperationType.START_ABILITY,
+      // 使用者自定义的一个私有值
+      requestCode: 0,
+      // 点击通知后，动作执行属性
+      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    };
+
+    try {
+      // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
+      wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
+        try {
+          let list: Array<string> = ["dataTransfer"];
+          backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
+            console.info("Operation startBackgroundRunning succeeded");
+            // 对于上传下载类的长时任务，应用可以使用res中返回的notificationId来更新通知，比如发送带进度条的模板通知。
+            this.id = res.notificationId;
+          }).catch((error: BusinessError) => {
+            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+          });
+        } catch (error) {
+          console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+      });
+    } catch (error) {
+      console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
     }
+  }
+
+  updateProcess(process: Number) {
+    // 应用定义下载类通知模版
+    let downLoadTemplate: notificationManager.NotificationTemplate = {
+      name: 'downloadTemplate', // 当前只支持downloadTemplate，保持不变
+      data: {
+        title: '文件下载：music.mp4', // 必填。
+        fileName: 'senTemplate', // 必填。
+        progressValue: process, // 应用更新进度值，自定义。
+      }
+    };
+    let request: notificationManager.NotificationRequest = {
+      content: {
+        // 系统实况类型，保持不变
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW,
+        systemLiveView: {
+          typeCode: 8, // 上传下载类型需要填写 8，当前仅支持此类型。保持不变
+          title: "test", // 应用自定义
+          text: "test", // 应用自定义
+        }
+      },
+      id: this.id, // 必须是申请长时任务返回的id，否则应用更新通知失败。
+      notificationSlotType: notificationManager.SlotType.LIVE_VIEW, // 实况窗类型，保持不变
+      template: downLoadTemplate // 应用需要设置的模版名称
+    };
+
+    try {
+      notificationManager.publish(request).then(() => {
+        console.info("publish success, id= " + this.id);
+      }).catch((err: BusinessError) => {
+        console.error(`publish fail: ${JSON.stringify(err)}`);
+      });
+    } catch (err) {
+      console.error(`publish fail: ${JSON.stringify(err)}`);
+    }
+  }
 };
 ```
 ## backgroundTaskManager.updateBackgroundRunning<sup>12+</sup>
 
-updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;void&gt;
+updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;ContinuousTaskNotification&gt;
 
-更新长时任务，使用promise异步回调。
+更新长时任务类型，使用promise异步回调。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -592,37 +652,36 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;void&gt
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
-| bgModes    | string[] | 是    | 长时任务模式，模式包括：dataTransfer, audioPlayback, audioRecording, location, bluetoothInteraction, multiDeviceConnection<br>dataTransfer：数据传输<br>audioPlayback：音频播放 <br>audioRecording：录音<br>location：定位导航<br>bluetoothInteraction：蓝牙相关<br>multiDeviceConnection：多设备互联<br>说明：可以传一个或者多个模式。
+| bgModes    | string[] | 是    | 更新后的长时任务类型，类型包括:dataTransfer，audioPlayback，audioRecording，location，bluetoothInteraction，multiDeviceConnection，task_keeping，voip<sup>13+</sup>。<br>dataTransfer：数据传输。<br>audioPlayback：音视频播放。 <br>audioRecording：录制。<br>location：定位、导航。<br>bluetoothInteraction：蓝牙相关。<br>multiDeviceConnection：多设备互联。<br>task_keeping：计算任务。<br>voip<sup>13+</sup>：音视频通话。<br> **说明** ：支持传入一个或多个类型。 |
 
 **返回值**：
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<ContinuousTaskNotification> | 返回[ContinuousTaskNotification](#continuoustasknotification12)类型的Promise对象。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -645,6 +704,113 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
+## backgroundTaskManager.on('continuousTaskCancel')<sup>16+</sup>
+
+on(type: 'continuousTaskCancel', callback: Callback&lt;ContinuousTaskCancelInfo&gt;): void
+
+注册长时任务取消的监听，使用callback异步回调。
+
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+**参数**：
+
+| 参数名       | 类型                                 | 必填   | 说明                                       |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| type   | continuousTaskCancel                            | 是    | 固定取值为'continuousTaskCancel'，表示取消长时任务。 |
+| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason16)>       | 是    | 长时任务取消回调信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 9800002 | Parcel operation failed. |
+| 9800003 | Internal transaction failed. |
+| 9800004 | System service operation failed. |
+| 9800005 | Continuous task verification failed. |
+| 18700001 | Caller information verification failed for an energy resource request. |
+
+**示例**：
+
+```js
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+
+function callback(info: backgroundTaskManager.ContinuousTaskCancelInfo) {
+  console.info('continuousTaskCancel callback id ' + info.id);
+  console.info('continuousTaskCancel callback reason ' + info.reason);
+}
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        try {
+            backgroundTaskManager.on("continuousTaskCancel", callback);
+        } catch (error) {
+            console.error(`Operation onContinuousTaskCancel failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+    }
+};
+```
+## backgroundTaskManager.off('continuousTaskCancel')<sup>16+</sup>
+
+off(type: 'continuousTaskCancel', callback?: Callback&lt;ContinuousTaskCancelInfo&gt;): void
+
+解除长时任务取消的监听，使用callback异步回调。
+
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+**参数**：
+
+| 参数名       | 类型                                 | 必填   | 说明                                       |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| type   | continuousTaskCancel                            | 是    | 固定取值为'continuousTaskCancel'，表示取消长时任务。 |
+| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason16)>       | 否    | 长时任务取消回调信息，未传入则取消所有注册回调。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 9800002 | Parcel operation failed. |
+| 9800003 | Internal transaction failed. |
+| 9800004 | System service operation failed. |
+| 9800005 | Continuous task verification failed. |
+| 18700001 | Caller information verification failed for an energy resource request. |
+
+**示例**：
+
+```js
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+
+function callback(info: backgroundTaskManager.ContinuousTaskCancelInfo) {
+  console.info('continuousTaskCancel callback id ' + info.id);
+  console.info('continuousTaskCancel callback reason ' + info.reason);
+}
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        try {
+            backgroundTaskManager.off("continuousTaskCancel", callback);
+        } catch (error) {
+            console.error(`Operation onContinuousTaskCancel failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+    }
+};
+```
+
 ## DelaySuspendInfo
 
 短时任务信息。
@@ -654,7 +820,7 @@ export default class EntryAbility extends UIAbility {
 | 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | requestId       | number | 是    | 短时任务的请求ID。                               |
-| actualDelayTime | number | 是    | 应用实际申请的短时任务时间，单位为毫秒。<br/>短时任务申请时间最长为3分钟，[低电量](../apis-basic-services-kit/js-apis-battery-info.md)时最长为1分钟。 |
+| actualDelayTime | number | 是    | 应用实际申请的短时任务时间，单位为毫秒。<br/> **说明** ：申请时间最长为3分钟，[低电量](../apis-basic-services-kit/js-apis-battery-info.md)时最长为1分钟。 |
 
 ## BackgroundMode
 
@@ -665,9 +831,56 @@ export default class EntryAbility extends UIAbility {
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
 | DATA_TRANSFER           | 1    | 数据传输。                  |
-| AUDIO_PLAYBACK          | 2    | 音频播放。                  |
-| AUDIO_RECORDING         | 3    | 录音。                    |
+| AUDIO_PLAYBACK          | 2    | 音频播放。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
+| AUDIO_RECORDING         | 3    | 录制。                    |
 | LOCATION                | 4    | 定位导航。                  |
 | BLUETOOTH_INTERACTION   | 5    | 蓝牙相关。                  |
-| MULTI_DEVICE_CONNECTION | 6    | 多设备互联。                 |
-| TASK_KEEPING            | 9    | 计算任务（仅对特定设备开放）。        |
+| MULTI_DEVICE_CONNECTION | 6    | 多设备互联。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
+| VOIP<sup>13+</sup> | 8    | 音视频通话。                 |
+| TASK_KEEPING            | 9    | 计算任务（仅对2in1开放）。        |
+
+## ContinuousTaskNotification<sup>12+</sup>
+
+长时任务通知信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+| 名称             | 类型     | 必填   | 说明                                       |
+| --------------- | ------ | ---- | ---------------------------------------- |
+| slotType       | [notificationManager.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 是    | 长时任务通知的渠道类型。|
+| contentType | [notificationManager.ContentType](../apis-notification-kit/js-apis-notificationManager.md#contenttype) | 是    | 长时任务通知的内容类型。|
+| notificationId | number | 是    | 长时任务通知 Id。|
+| continuousTaskId<sup>16+</sup> | number | 是    | 长时任务 Id。|
+
+## ContinuousTaskCancelInfo<sup>16+</sup>
+
+长时任务取消信息。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+| 名称             | 类型     | 必填   | 说明                                       |
+| --------------- | ------ | ---- | ---------------------------------------- |
+| reason | [ContinuousTaskCancelReason](#continuoustaskcancelreason16) | 是    | 长时任务取消原因。|
+| id | number | 是    | 被取消的长时任务 Id。|
+
+## ContinuousTaskCancelReason<sup>16+</sup>
+
+长时任务取消原因。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+| 名称                     | 值  | 说明                    |
+| ----------------------- | ---- | --------------------- |
+| USER_CANCEL             | 1    | 用户取消。                  |
+| SYSTEM_CANCEL           | 2    | 系统取消。                  |
+| USER_CANCEL_REMOVE_NOTIFICATION         | 3    | 用户移除通知。预留接口，暂未启用。                    |
+| SYSTEM_CANCEL_DATA_TRANSFER_LOW_SPEED                | 4    | 申请dataTransfer类型长时任务，但是网络传输速率低。预留接口，暂未启用。                  |
+| SYSTEM_CANCEL_AUDIO_PLAYBACK_NOT_USE_AVSESSION   | 5    | 申请audioPlayback类型长时任务，但是未接入avseesion。预留接口，暂未启用。                  |
+| SYSTEM_CANCEL_AUDIO_PLAYBACK_NOT_RUNNING | 6    | 申请audioPlayback类型长时任务，但是未播音。预留接口，暂未启用。                 |
+| SYSTEM_CANCEL_AUDIO_RECORDING_NOT_RUNNING | 7    | 申请audioRecording类型长时任务，但是未录制。预留接口，暂未启用。                 |
+| SYSTEM_CANCEL_NOT_USE_LOCATION            | 8    | 申请location类型长时任务，但是未使用定位。预留接口，暂未启用。        |
+| SYSTEM_CANCEL_NOT_USE_BLUETOOTH            | 9    | 申请bluetoothInteraction类型长时任务，但是未使用蓝牙。预留接口，暂未启用。        |
+| SYSTEM_CANCEL_NOT_USE_MULTI_DEVICE            | 10    | 申请multiDeviceConnection类型长时任务，但是未使用分布式。预留接口，暂未启用。        |
+| SYSTEM_CANCEL_USE_ILLEGALLY            | 11    | 使用非法类型的长时任务，如申请audioPlayback类型长时任务，但是使用播音及定位业务。预留接口，暂未启用。        |

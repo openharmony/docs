@@ -232,7 +232,8 @@ import promptAction from '@ohos.promptAction'
 
 ![zh-cn_image_0000001189248178](figures/zh-cn_image_0000001189248178.gif)
 
-> **说明：**
+> **说明：** 
+>
 > 该方法在input类型为text、email、date、time、number和password时生效。
 
 

@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **Camera_VideoProfile** struct defines the video profile.
+The Camera_VideoProfile struct describes the video profile.
 
 **Since**: 11
 

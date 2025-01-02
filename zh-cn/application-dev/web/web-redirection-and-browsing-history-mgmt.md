@@ -5,16 +5,27 @@
 
 在前端页面点击网页中的链接时，Web组件默认会自动打开并加载目标网址。当前端页面替换为新的加载链接时，会自动记录已经访问的网页地址。可以通过[forward()](../reference/apis-arkweb/js-apis-webview.md#forward)和[backward()](../reference/apis-arkweb/js-apis-webview.md#backward)接口向前/向后浏览上一个/下一个历史记录。
 
-  在下面的示例中，点击应用的按钮来触发前端页面的后退操作。
+页面加载过程中，若涉及网络资源获取，需要在module.json5中配置网络访问权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+
+  ```
+  "requestPermissions":[
+      {
+        "name" : "ohos.permission.INTERNET"
+      }
+    ]
+  ```
+
+在下面的示例中，点击应用的按钮来触发前端页面的后退操作。
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+  webviewController: webview.WebviewController = new webview.WebviewController();
+  
   build() {
     Column() {
       Button('loadData')
@@ -23,7 +34,7 @@ struct WebComponent {
             this.webviewController.backward();
           }
         })
-      Web({ src: 'https://www.example.com/cn/', controller: this.webviewController})
+      Web({ src: 'https://www.example.com/cn/', controller: this.webviewController })
     }
   }
 }
@@ -43,22 +54,24 @@ struct WebComponent {
   
   ```ts
   // index.ets
-  import web_webview from '@ohos.web.webview';
-  import router from '@ohos.router';
+  import { webview } from '@kit.ArkWeb';
+  import { router } from '@kit.ArkUI';
+
   @Entry
   @Component
   struct WebComponent {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
-  
+    webviewController: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
+        // 资源文件route.html存放路径src/main/resources/rawfile
         Web({ src: $rawfile('route.html'), controller: this.webviewController })
           .onLoadIntercept((event) => {
             if (event) {
               let url: string = event.data.getRequestUrl();
               if (url.indexOf('native://') === 0) {
                 // 跳转其他界面
-                router.pushUrl({ url:url.substring(9) })
+                router.pushUrl({ url: url.substring(9) });
                 return true;
               }
             }
@@ -111,17 +124,17 @@ Web组件可以实现点击前端页面超链接跳转到其他应用。
   
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import call from '@ohos.telephony.call';
-  
+  import { webview } from '@kit.ArkWeb';
+  import { call } from '@kit.TelephonyKit';
+
   @Entry
   @Component
   struct WebComponent {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
-  
+    webviewController: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src: $rawfile('call.html'), controller: this.webviewController})
+        Web({ src: $rawfile('call.html'), controller: this.webviewController })
           .onLoadIntercept((event) => {
             if (event) {
               let url: string = event.data.getRequestUrl();

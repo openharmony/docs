@@ -1,4 +1,4 @@
-# Core File Kit API参考
+# Core File Kit（文件基础服务）
 
 - ArkTS API
   - [@ohos.application.BackupExtensionAbility (备份恢复扩展能力)](js-apis-application-backupExtensionAbility.md)
@@ -12,6 +12,9 @@
   - [@ohos.file.statvfs (文件系统空间统计)](js-apis-file-statvfs.md)
   - [@ohos.file.storageStatistics (应用空间统计)](js-apis-file-storage-statistics.md)
   - [@ohos.fileshare (文件分享)](js-apis-fileShare.md)
+  - [@ohos.file.BackupExtensionContext (备份恢复扩展能力)](js-apis-file-backupextensioncontext.md)
+  <!--Del-->
+  - [@ohos.application.BackupExtensionAbility (备份恢复扩展能力)(系统接口)](js-apis-application-backupExtensionAbility-sys.md)
   - [@ohos.file.backup (备份恢复)(系统接口)](js-apis-file-backup-sys.md)
   - [@ohos.file.cloudSync (端云同步能力)(系统接口)](js-apis-file-cloudsync-sys.md)
   - [@ohos.file.cloudSyncManager (端云同步管理)(系统接口)](js-apis-file-cloudsyncmanager-sys.md)
@@ -24,6 +27,7 @@
   - [@ohos.file.volumeManager (卷管理)(系统接口)](js-apis-file-volumemanager-sys.md)
   - [@ohos.filemanagement.userFileManager (用户数据管理)(系统接口)](js-apis-userFileManager-sys.md)
   - [@ohos.fileshare (文件分享)(系统接口)](js-apis-fileShare-sys.md)
+  <!--DelEnd-->
   - 已停止维护的接口
     - [@ohos.document (文件交互)](js-apis-document.md)
     - [@ohos.fileio (文件管理)](js-apis-fileio.md)

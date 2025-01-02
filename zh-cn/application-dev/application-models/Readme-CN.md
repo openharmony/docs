@@ -12,9 +12,16 @@
       - [UIAbility组件启动模式](uiability-launch-type.md)
       - [UIAbility组件基本用法](uiability-usage.md)
       - [UIAbility组件与UI的数据同步](uiability-data-sync-with-ui.md)
-      - [UIAbility组件间交互（设备内）](uiability-intra-device-interaction.md)
+      - [启动应用内的UIAbility组件](uiability-intra-device-interaction.md)
+      - [UIAbility备份恢复](ability-recover-guideline.md)
     - [ExtensionAbility组件](extensionability-overview.md)
+      <!--Del-->
       - [ServiceExtensionAbility（仅对系统应用开放）](serviceextensionability.md)
+      - [UIServiceExtension（仅对系统应用开放）](uiserviceextension-sys.md)
+      - [UIExtensionAbility（仅对系统应用开放）](uiextensionability.md)
+      - [AutoFillExtensionAbility（仅对系统应用开放）](autofillextensionablility-guide.md)
+      <!--DelEnd-->
+      - [UIServiceExtension](uiserviceextension.md)
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
@@ -22,21 +29,47 @@
       - [Want概述](want-overview.md)
       - [显式Want与隐式Want匹配规则](explicit-implicit-want-mappings.md)
       - [使用显式Want启动应用组件](ability-startup-with-explicit-want.md)
-      - [使用隐式Want打开网址](ability-startup-with-implicit-want.md)
-      - [应用间使用Want分享数据](data-share-via-want.md)
+      - [常见action与entities（不推荐使用）](actions-entities.md)
     - [组件启动规则（Stage模型）](component-startup-rules.md)
+    - [应用启动框架AppStartup](app-startup.md)
+    <!--Del-->
     - 应用组件跨设备交互（流转）
       - [流转概述](inter-device-interaction-hop-overview.md)
       - [跨端迁移](hop-cross-device-migration.md)
       - [多端协同](hop-multi-device-collaboration.md)
+    <!--DelEnd-->
     - [订阅系统环境变量的变化](subscribe-system-environment-variable-changes.md)
+  - 应用间跳转
+    - [应用间跳转概述](link-between-apps-overview.md)
+    - 拉起指定应用<!--directional-redirection-->
+      - [拉起指定应用概述](app-startup-overview.md)
+      - [（可选）使用canOpenLink判断应用是否可访问](canopenlink.md)
+      - [使用Deep Linking实现应用间跳转](deep-linking-startup.md)
+      <!--Del-->
+      - [使用App Linking实现应用间跳转](app-linking-startup.md)
+      <!--DelEnd-->
+      - [显式Want跳转切换应用链接跳转适配指导](uiability-startup-adjust.md)
+      - [应用链接说明](app-uri-config.md)
+    - 拉起指定类型的应用<!--specified-type-app-redirection-->
+      - [拉起指定类型的应用概述](start-intent-panel.md)
+      - [拉起导航类应用（startAbilityByType）](start-navigation-apps.md)
+      - [拉起邮件类应用（startAbilityByType）](start-email-apps.md)
+      - [拉起邮件类应用（mailto方式）](start-email-apps-by-mailto.md)
+      - [拉起金融类应用（startAbilityByType）](start-finance-apps.md)
+      - [拉起航班类应用（startAbilityByType）](start-flight-apps.md)
+      - [拉起快递类应用（startAbilityByType）](start-express-apps.md)
+      - [拉起图片编辑类应用（startAbilityByType）](photoEditorExtensionAbility.md)
+      - [拉起文件处理类应用（startAbility）](file-processing-apps-startup.md)
+    - [拉起系统应用](system-app-startup.md)
   - [进程模型](process-model-stage.md)
   - [线程模型](thread-model-stage.md)
+  <!--Del-->
   - 任务（Mission）管理（仅对系统应用开放）
     - [任务（Mission）管理场景介绍](mission-management-overview.md)
     - [任务（Mission）与启动模式](mission-management-launch-type.md)
     - [页面栈及任务链](page-mission-stack.md)
     - [设置任务快照的图标和名称](mission-set-icon-name-for-task-snapshot.md)
+  <!--DelEnd-->
   - [Stage模型应用配置文件](config-file-stage.md)
 - FA模型开发指导
   - [FA模型开发概述](fa-model-development-overview.md)
@@ -75,8 +108,11 @@
     - [组件启动规则（FA模型）](component-startup-rules-fa.md)
   - [进程模型](process-model-fa.md)
   - [线程模型](thread-model-fa.md)
+  <!--Del-->
   - [任务管理（仅对系统应用开放）](mission-management-fa.md)
+  <!--DelEnd-->
   - [FA模型应用配置文件](config-file-fa.md)
+<!--Del-->
 - FA模型与Stage模型应用组件互通指导
   - [FA模型与Stage模型应用组件互通综述](fa-stage-interaction-overview.md)
   - [FA模型启动Stage模型UIAbility](start-uiability-from-fa.md)
@@ -105,9 +141,9 @@
     - [LifecycleService接口切换](lifecycleservice-switch.md)
     - [LifecycleData接口切换](lifecycledata-switch.md)
     - [DataAbilityHelper接口切换](dataabilityhelper-switch.md)
-    - [mediaLibrary接口切换](medialibrary-switch.md)
     - [request接口切换](request-switch.md)
     - [resourceManager接口切换](resourcemanager-switch.md)
     - [window接口切换](window-switch.md)
     - [Storage接口切换](storage-switch.md)
-- [程序访问控制](../security/AccessToken/Readme-CN.md)
+<!--DelEnd-->
+- [Native子进程开发指导（C/C++)](capi_nativechildprocess_development_guideline.md)

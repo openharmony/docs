@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import workScheduler from '@ohos.resourceschedule.workScheduler';
+import { workScheduler } from '@kit.BackgroundTasksKit';
 ```
 
 ## workScheduler.startWork
@@ -30,20 +30,21 @@ startWork(work: WorkInfo): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
-| 9700005 | StartWork failed. |
+| 9700004 | Check on workInfo failed. |
+| 9700005 | Calling startWork failed |
 
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   let workInfo: workScheduler.WorkInfo = {
       workId: 1,
@@ -84,19 +85,20 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let workInfo: workScheduler.WorkInfo = {
       workId: 1,
@@ -137,19 +139,20 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.getWorkStatus(50, (error: BusinessError, res: workScheduler.WorkInfo) => {
     if (error) {
@@ -182,19 +185,20 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.getWorkStatus(50).then((res: workScheduler.WorkInfo) => {
     console.info(`workschedulerLog getWorkStatus success, ${JSON.stringify(res)}`);
@@ -220,10 +224,11 @@ obtainAllWorks(callback : AsyncCallback\<void>) : Array\<WorkInfo>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -248,6 +253,7 @@ obtainAllWorks(callback : AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt;): void
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -255,7 +261,7 @@ obtainAllWorks(callback : AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt;): void
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.obtainAllWorks((error: BusinessError, res: Array<workScheduler.WorkInfo>) =>{
     if (error) {
@@ -282,10 +288,11 @@ obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -293,7 +300,7 @@ obtainAllWorks(): Promise\<Array\<WorkInfo>>
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.obtainAllWorks().then((res: Array<workScheduler.WorkInfo>) => {
     console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
@@ -312,10 +319,11 @@ stopAndClearWorks(): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -323,7 +331,7 @@ stopAndClearWorks(): void
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try{
     workScheduler.stopAndClearWorks();
@@ -352,14 +360,15 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 ## workScheduler.isLastWorkTimeOut<sup>10+<sup>
 
@@ -378,19 +387,20 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.isLastWorkTimeOut(500, (error: BusinessError, res: boolean) =>{
     if (error) {
@@ -423,19 +433,20 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.isLastWorkTimeOut(500)
     .then((res: boolean) => {
@@ -466,7 +477,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | isRepeat        | boolean                           | 否    | 是否循环任务。<br>- true表示循环任务，false表示非循环任务。 |
 | repeatCycleTime | number                            | 否    | 循环间隔，单位为毫秒。             |
 | repeatCount     | number                            | 否    | 循环次数。             |
-| isPersisted     | boolean                           | 否    | 是否持久化保存工作。<br>- true表示持久化保存工作。false表示非持久化保存工作。|
+| isPersisted     | boolean                           | 否    | 注册的延迟任务是否可保存在系统中。<br>- true表示可保存，即系统重启后，任务可恢复。false表示不可保存。|
 | isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态。<br>- true表示需要，false表示不需要。   |
 | idleWaitTime    | number                            | 否    | 空闲等待时间，单位为毫秒。           |
 | parameters      | Record<string, number \| string \| boolean>  | 否    | 携带参数信息。 |

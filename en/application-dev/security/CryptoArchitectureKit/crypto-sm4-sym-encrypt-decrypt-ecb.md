@@ -1,4 +1,4 @@
-# Encryption and Decryption with an SM4 Symmetric Key (ECB Mode)
+# Encryption and Decryption with an SM4 Symmetric Key (ECB Mode) (ArkTS)
 
 
 For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-decrypt-spec.md#sm4).
@@ -18,13 +18,13 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
 
 4. Use [Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1) to pass in the data to be encrypted (plaintext).
    
-   - If the data to be encrypted is short, you can use **doFinal** immediately after **init**.
-   - If the data to be encrypted is considerably long, you can call **update()** multiple times to [pass in the data by segment](crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md).
+   - If a small amount of data is to be encrypted, you can use **Cipher.doFinal** immediately after **Cipher.init**.
+   - If a large amount of data is to be encrypted, you can call **Cipher.update** multiple times to pass in the data by segment.
 
 5. Use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to obtain the encrypted data.
    
-   - If data has been passed in by **update()**, pass in **null** in the **data** parameter of **Cipher.doFinal**.
-   - The output of **doFinal** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
+   - If data has been passed in by **Cipher.update**, pass in **null** in the **data** parameter of **Cipher.doFinal**.
+   - The output of **Cipher.doFinal** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
 
 
 **Decryption**
@@ -40,8 +40,8 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
 - Example (using asynchronous APIs):
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
   // Encrypt the message.
   async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
@@ -83,8 +83,8 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
 - Example (using synchronous APIs):
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
   // Encrypt the message.
   function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
@@ -100,16 +100,16 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
     let decryptData = decoder.doFinalSync(cipherText);
     return decryptData;
   }
-  async function genSymKeyByData(symKeyData: Uint8Array) {
+  function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
     let symGenerator = cryptoFramework.createSymKeyGenerator('SM4_128');
-    let symKey = symGenerator.convertKey(symKeyBlob);
-    console.info('convertKey success');
+    let symKey = symGenerator.convertKeySync(symKeyBlob);
+    console.info('convertKeySync success');
     return symKey;
   }
-  async function main() {
+  function main() {
     let keyData = new Uint8Array([7, 154, 52, 176, 4, 236, 150, 43, 237, 9, 145, 166, 141, 174, 224, 131]);
-    let symKey = await genSymKeyByData(keyData);
+    let symKey = genSymKeyByData(keyData);
     let message = "This is a test";
     let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
     let encryptText = encryptMessage(symKey, plainText);

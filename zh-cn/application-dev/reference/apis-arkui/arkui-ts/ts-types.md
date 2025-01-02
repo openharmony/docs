@@ -1,10 +1,12 @@
-# 类型定义
+# 基础类型定义
 
 >**说明：**
 >
 >本模块首批接口从API version 7开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## Resource
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 资源引用类型，用于设置组件属性的值。
 
@@ -28,9 +30,11 @@
 
 长度类型，用于描述尺寸单位。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
-| string                | 需要显式指定像素单位，如'10px'，也可设置百分比字符串，如'100%'。 |
+| string                | 需要显式指定[像素单位](ts-pixel-units.md)，如'10px'，也可设置百分比字符串，如'100%'。<br/>**说明：** <br/>不指定像素单位时，默认单位vp，如'10'，等同于10。 |
 | number                | 默认单位vp。                                |
 | [Resource](#resource) | 资源引用类型，引入系统资源或者应用资源中的尺寸。               |
 
@@ -38,23 +42,18 @@
 
 字符串类型，用于描述字符串入参可以使用的类型。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 类型                    | 说明                        |
 | --------------------- | ------------------------- |
 | string                | 字符串类型。                    |
 | [Resource](#resource) | 资源引用类型，引入系统资源或者应用资源中的字符串。 |
 
-## ASTCResource<sup>12+</sup>
-
-纹理类型，用于设置纹理拼接的属性值。
-
-| 类型                    | 说明                        |
-| --------------------- | ------------------------- |
-| sources               | uri资源数组，表示进行拼接的纹理资源信息。                    |
-| column                | 列大小，表示每行要拼接的纹理资源个数。 |
-
 ## Padding
 
 内边距类型，用于描述组件不同方向的内边距。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
@@ -63,9 +62,22 @@
 | bottom | [Length](#length) | 否    | 下内边距，组件内元素距组件底部的尺寸。  |
 | left   | [Length](#length) | 否    | 左内边距，组件内元素距组件左边界的尺寸。 |
 
+## LocalizedPadding<sup>12+</sup>
+
+内边距类型，用于描述组件不同方向的内边距。
+
+| 名称     | 类型                | 必填   | 说明                   |
+| ------ | ----------------- | ---- | -------------------- |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 上内边距，组件内元素距组件顶部的尺寸。  |
+| end    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 右内边距，组件内元素距组件右边界的尺寸。<br />从右至左显示语言模式下为<br />左内边距，组件内元素距组件左边界的尺寸。 |
+| bottom | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 下内边距，组件内元素距组件底部的尺寸。  |
+| start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 左内边距，组件内元素距组件左边界的尺寸。<br />从右至左显示语言模式下为<br />右内边距，组件内元素距组件右边界的尺寸。 |
+
 ## Margin
 
 外边距类型，用于描述组件不同方向的外边距。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
@@ -74,9 +86,22 @@
 | bottom | [Length](#length) | 否    | 下外边距，组件底部距组件外元素的尺寸。  |
 | left   | [Length](#length) | 否    | 左外边距，组件左边界距组件外元素的尺寸。 |
 
+## LocalizedMargin<sup>12+</sup>
+
+外边距类型，用于描述组件不同方向的外边距。
+
+| 名称     | 类型                | 必填   | 说明                   |
+| ------ | ----------------- | ---- | -------------------- |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 上外边距，组件顶部距组件外元素的尺寸。  |
+| end    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 右外边距，组件右边界距组件外元素的尺寸。<br />从右至左显示语言模式下为<br />左外边距，组件左边界距组件外元素的尺寸。 |
+| bottom | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 下外边距，组件底部距组件外元素的尺寸。  |
+| start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 左外边距，组件左边界距组件外元素的尺寸。<br />从右至左显示语言模式下为<br />右外边距，组件右边界距组件外元素的尺寸。 |
+
 ## EdgeWidths<sup>9+</sup>
 
 边框宽度类型，用于描述组件边框不同方向的宽度。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型                | 必填   | 说明       |
 | ------ | ----------------- | ---- | -------- |
@@ -85,9 +110,22 @@
 | bottom | [Length](#length) | 否    | 组件下边框宽度。 |
 | left   | [Length](#length) | 否    | 组件左边框宽度。 |
 
+## LocalizedEdgeWidths<sup>12+</sup>
+
+边框宽度类型，用于描述组件边框不同方向的宽度。
+
+| 名称     | 类型                | 必填   | 说明       |
+| ------ | ----------------- | ---- | -------- |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件上边框宽度。 |
+| end    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件右边框宽度。<br />从右至左显示语言模式下为组件左边框宽度。 |
+| bottom | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件下边框宽度。 |
+| start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件左边框宽度。<br />从右至左显示语言模式下为组件右边框宽度。 |
+
 ## BorderRadiuses<sup>9+</sup>
 
 圆角类型，用于描述组件边框圆角半径。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称          | 类型                | 必填   | 说明         |
 | ----------- | ----------------- | ---- | ---------- |
@@ -96,9 +134,22 @@
 | bottomLeft  | [Length](#length) | 否    | 组件左下角圆角半径。 |
 | bottomRight | [Length](#length) | 否    | 组件右下角圆角半径。 |
 
+## LocalizedBorderRadiuses<sup>12+</sup>
+
+圆角类型，用于描述组件边框圆角半径。
+
+| 名称          | 类型                | 必填   | 说明         |
+| ----------- | ----------------- | ---- | ---------- |
+| topStart    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件左上角圆角半径。<br />从右至左显示语言模式下为组件右上角圆角半径。 |
+| topEnd      | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件右上角圆角半径。<br />从右至左显示语言模式下为组件左上角圆角半径。 |
+| bottomStart | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件左下角圆角半径。<br />从右至左显示语言模式下为组件右下角圆角半径。 |
+| bottomEnd   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件右下角圆角半径。<br />从右至左显示语言模式下为组件左下角圆角半径。 |
+
 ## EdgeColors<sup>9+</sup>
 
 边框颜色，用于描述组件边框四条边的颜色。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型                              | 必填   | 说明       |
 | ------ | ------------------------------- | ---- | -------- |
@@ -107,9 +158,24 @@
 | bottom | [ResourceColor](#resourcecolor) | 否    | 组件下边框颜色。 |
 | left   | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。 |
 
+## LocalizedEdgeColors<sup>12+</sup>
+
+边框颜色，用于描述组件边框四条边的颜色。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+| 名称     | 类型                              | 必填   | 说明       |
+| ------ | ------------------------------- | ---- | -------- |
+| top    | [ResourceColor](#resourcecolor) | 否    | 组件上边框颜色。 |
+| end    | [ResourceColor](#resourcecolor) | 否    | 组件右边框颜色。<br />从左至右显示语言模式下为组件左边框颜色。 |
+| bottom | [ResourceColor](#resourcecolor) | 否    | 组件下边框颜色。 |
+| start  | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。<br />从左至右显示语言模式下为组件右边框颜色。 |
+
 ## EdgeStyles<sup>9+</sup>
 
 边框样式，用于描述组件边框四条边的样式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型                                       | 必填   | 说明       |
 | ------ | ---------------------------------------- | ---- | -------- |
@@ -118,10 +184,11 @@
 | bottom | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件下边框样式。 |
 | left   | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件左边框样式。 |
 
-
 ## Offset
 
 相对布局完成位置坐标偏移量。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称   | 类型                | 必填   | 说明       |
 | ---- | ----------------- | ---- | -------- |
@@ -131,6 +198,8 @@
 ## RectResult<sup>10+</sup>
 
 位置和尺寸类型，用于描述组件的位置和宽高。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数      | 类型     | 描述 |
 | ------- | ------ | ----------------------- |
@@ -143,26 +212,20 @@
 
 颜色类型，用于描述资源颜色类型。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
 | [Color](ts-appendix-enums.md#color) | 颜色枚举值。                                                 |
-| number                              | HEX格式颜色，支持rgb或者argb。示例：0xffffff，0xffff0000。   |
+| number                              | HEX格式颜色，支持rgb或者argb。示例：0xffffff，0xffff0000。number无法识别传入位数，格式选择依据值的大小，例如0x00ffffff作rgb格式解析 |
 | string                              | rgb或者argb格式颜色。示例：'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'。 |
 | [Resource](#resource)               | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。       |
-
-## ColoringStrategy<sup>10+</sup>
-
-智能取色枚举类型，用于设置前景色。
-
-| 名称     | 描述              |
-| ------ | --------------- |
-| INVERT | 设置前景色为控件背景色的反色。 |
-| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。 |
-| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。 |
 
 ## LengthConstrain
 
 长度约束，用于对组件最大、最小长度做限制。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称        | 类型                | 必填   | 说明      |
 | --------- | ----------------- | ---- | ------- |
@@ -174,6 +237,8 @@
 
 设置文本样式。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称   | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | size   | [Length](#length)                                            | 否   | 设置文本尺寸，Length为number类型时，使用fp单位。不支持设置百分比字符串。<br>默认值：16.0 |
@@ -183,7 +248,9 @@
 
 ## Area<sup>8+</sup>
 
-区域类型，用于存储元素所占区域信息
+区域类型，用于存储元素所占区域信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称             | 类型                     | 说明                             |
 | -------------- | ---------------------- | ------------------------------ |
@@ -196,14 +263,27 @@
 
 位置类型，用于表示一个坐标点。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称   | 类型                | 必填   | 说明                          |
 | ---- | ----------------- | ---- | --------------------------- |
 | x    | [Length](#length) | 否    | x轴坐标，作为返回值时，类型为number，单位vp。 |
 | y    | [Length](#length) | 否    | y轴坐标，作为返回值时，类型为number，单位vp。 |
 
+## LocalizedPosition<sup>12+</sup>
+
+位置类型，用于表示一个坐标点。
+
+| 名称   | 类型                | 必填   | 说明                          |
+| ---- | ----------------- | ---- | --------------------------- |
+| start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | LTR模式时x轴相对左边坐标，RTL模式x轴相对右边坐标。  |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | y轴坐标。 |
+
 ## Edges<sup>12+</sup>
 
 位置类型，表示相对四边的偏移量。同时设置top和bottom，仅top生效；同时设置left和right，仅left生效。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称   | 类型     | 必填   | 说明                          |
 | ---- | ------ | ---- | --------------------------- |
@@ -212,9 +292,22 @@
 | left    | [Dimension](#dimension10) | 否    | 相对左边的偏移量 |
 | right    | [Dimension](#dimension10) | 否    | 相对右边的偏移量 |
 
+## LocalizedEdges<sup>12+</sup>
+
+位置类型，表示相对四边的偏移量。同时设置top和bottom，仅top生效；同时设置start和end，仅start生效。
+
+| 名称   | 类型     | 必填   | 说明                          |
+| ---- | ------ | ---- | --------------------------- |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 相对顶边的偏移量。 |
+| bottom    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 相对底边的偏移量。 |
+| start    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | LTR模式时相对左边的偏移量，RTL模式时相对右边的偏移量。|
+| end    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | LTR模式时相对右边的偏移量，RTL模式时相对左边的偏移量。 |
+
 ## ConstraintSizeOptions
 
 设置约束尺寸，组件布局时，进行尺寸范围限制。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称        | 类型                | 必填   | 说明      |
 | --------- | ----------------- | ---- | ------- |
@@ -227,6 +320,8 @@
 
 设置宽高尺寸。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称     | 类型                | 必填   | 说明    |
 | ------ | ----------------- | ---- | ----- |
 | width  | [Length](#length) | 否    | 元素宽度。 |
@@ -237,9 +332,11 @@
 
 边框属性集合，用于描述边框相关信息。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称     | 类型                                       | 必填   | 说明      |
 | ------ | ---------------------------------------- | ---- | ------- |
-| width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup> | 否    | 边框宽度。   |
+| width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup> \| [LocalizedEdgeWidths](#localizededgewidths12)<sup>12+</sup> | 否    | 边框宽度。   |
 | color  | [ResourceColor](#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | 否    | 边框颜色。   |
 | radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | 否    | 边框圆角半径。 |
 | style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#EdgeStyles9)<sup>9+</sup>| 否    | 边框样式。   |
@@ -247,6 +344,8 @@
 ## ColorFilter<sup>9+</sup>
 
 创建具有4*5矩阵的颜色过滤器。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称          | 类型       | 必填   | 描述                                       |
 | ----------- | -------- | ---- | ---------------------------------------- |
@@ -261,20 +360,23 @@
 | ------------- | ---------------------- | ---------------------------------------- |
 | CustomBuilder | ()&nbsp;=&gt;&nbsp;any \| void | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../../quick-start/arkts-builder.md#builder)。 |
 
-## PixelStretchEffectOptions<sup>10+</sup>
+## MarkStyle<sup>10+</sup>对象说明
 
-像素扩展属性集合,用于描述像素扩展的信息。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 类型                | 必填   | 说明             |
-| ------ | ----------------- | ---- | -------------- |
-| left   | [Length](#length) | 否    | 组件图像左边沿像素扩展距离。 |
-| right  | [Length](#length) | 否    | 组件图像右边沿像素扩展距离。 |
-| top    | [Length](#length) | 否    | 组件图像上边沿像素扩展距离。 |
-| bottom | [Length](#length) | 否    | 组件图像下边沿像素扩展距离。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 类型                                       | 必填 | 默认值      | 描述                                                         |
+| ----------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
+| strokeColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.White | 内部图标颜色。                                               |
+| size        | [Length](ts-types.md#length)               | 否   | -           | 内部图标大小，单位vp。默认大小与多选框组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
+| strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
 
 ## ModalTransition<sup>10+</sup>
 
 全屏模态转场方式枚举类型，用于设置全屏模态转场类型。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称      | 描述           |
 | ------- | ------------ |
@@ -285,6 +387,8 @@
 ## Dimension<sup>10+</sup>
 
 长度类型，用于描述尺寸单位。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
@@ -299,6 +403,8 @@
 
 长度类型，用于描述以px像素单位为单位的长度。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
 | {number}px               | 需要指定以px像素单位，如'10px'。 |
@@ -306,6 +412,8 @@
 ## VP<sup>10+</sup>
 
 长度类型，用于描述以vp像素单位为单位的长度。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
@@ -315,6 +423,8 @@
 
 长度类型，用于描述以fp像素单位为单位的长度。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
 | {number}fp               | 需要指定以fp像素单位，如'10fp'。 |
@@ -322,6 +432,8 @@
 ## LPX<sup>10+</sup>
 
 长度类型，用于描述以lpx像素单位为单位的长度。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
@@ -331,6 +443,8 @@
 
 长度类型，用于描述以%像素单位为单位的长度。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
 | {number}%               | 需要指定以%像素单位，如'10%'。 |
@@ -339,33 +453,29 @@
 
 角度类型，用于描述以deg像素单位为单位的长度。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
 | {number}deg               | 需要指定以deg像素单位，如'10deg'。 |
 
-## SwiperAnimationEvent<sup>10+</sup>
+## MultiShadowOptions<sup>10+</sup>
 
-Swiper组件动画相关信息集合。
+投影样式。
 
-| 名称            | 类型定义       | 必填            | 描述                                       |
-| ------------- | ---------------------- | ---------|------------------------------- |
-| currentOffset | number | 是 | Swiper当前显示元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
-| targetOffset | number | 是 | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
-| velocity | number | 是 | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0。|
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-## TabsAnimationEvent<sup>11+</sup>
-
-Tabs组件动画相关信息集合。
-
-| 名称            | 类型定义      |  必填             | 描述                                       |
-| ------------- | ---------------------- | ----------------|------------------------ |
-| currentOffset | number | 是 | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
-| targetOffset | number | 是 | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
-| velocity | number | 是 | Tabs离手动画开始时的离手速度。单位VP/S，默认值为0。|
+| 名称          | 参数类型 | 必填 | 描述 |
+| ------------- | ------- | ---- | -------- |
+| radius | number \| [Resource](#resource) | 否 | 投影模糊半径。 <br/>API version 10及以前，默认值：5<br/>API version 11及以后，默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
+| offsetX | number \| [Resource](#resource) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
+| offsetY | number \| [Resource](#resource) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
 
 ## SafeAreaType<sup>10+</sup>
 
 扩展安全区域的枚举类型。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 描述                                       |
 | -------- | ------------------------------------------ |
@@ -376,6 +486,8 @@ Tabs组件动画相关信息集合。
 ## SafeAreaEdge<sup>10+</sup>
 
 扩展安全区域的方向。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称   | 描述       |
 | ------ | ---------- |
@@ -388,95 +500,256 @@ Tabs组件动画相关信息集合。
 
 配置键盘避让时页面的避让模式。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称   | 描述       |
 | ------ | ---------- |
 | OFFSET | 上抬模式。 |
 | RESIZE | 压缩模式。 |
+| OFFSET_WITH_CARET<sup>14+</sup> | 上抬模式，输入框光标位置发生变化时候也会触发避让。|
+| RESIZE_WITH_CARET<sup>14+</sup> | 压缩模式，输入框光标位置发生变化时候也会触发避让。|
+
+## LayoutSafeAreaType<sup>12+</sup>
+
+扩展布局安全区域的枚举类型。
+
+| 名称     | 描述                                       |
+| -------- | ------------------------------------------ |
+| SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
+
+## LayoutSafeAreaEdge<sup>12+</sup>
+
+扩展安全区域的方向。
+
+| 名称   | 描述       |
+| ------ | ---------- |
+| TOP    | 上方区域。 |
+| BOTTOM | 下方区域。 |
 
 ## TouchPoint<sup>11+</sup>
 
 配置跟手点坐标，不配置时，默认居中。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称   | 类型定义 | 描述       |
 | ------ | ----------------------| ---------- |
 | X | [Dimension](#dimension10) | 跟手点X轴坐标。 |
 | Y | [Dimension](#dimension10) | 跟手点Y轴坐标。 |
 
-## TabContentAnimatedTransition<sup>11+</sup>
-
-Tabs自定义切换动画相关信息。
-
-| 名称            | 类型定义         | 必填          | 描述                                       |
-| ------------- | ---------------------- | ------------------|---------------------- |
-| timeout | number | 否 | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。单位ms，默认值为1000.|
-| transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11)) => void | 是 | 自定义切换动画具体内容。|
-
-## TabContentTransitionProxy<sup>11+</sup>
-
-Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画的起始和目标页面信息，同时，也可以通过调用该对象的finishTransition接口通知Tabs组件自定义动画已结束。
-
-| 名称            | 类型定义     |  必填              | 描述                                       |
-| ------------- | ---------------------- | ----------------------|------------------ |
-| from | number | 是 | 自定义动画起始页面对应的index值。|
-| to | number | 是 | 自定义动画目标页面对应的index值。|
-| finishTransition() | void | 是 | 通知Tabs组件，此次自定义动画已结束。|
-
 ## PixelRoundPolicy<sup>11+</sup>
 
-组件像素级取整对齐策略。
+指定组件级像素取整的方向。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
-| start | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件前部边界取整对齐。 |
-| top | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件上部边界取整对齐。 |
-| end | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件尾部边界取整对齐。 |
-| bottom | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件底部边界取整对齐。 |
+| start | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件前部边界取整对齐方式。 |
+| top | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件上部边界取整对齐方式。 |
+| end | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件尾部边界取整对齐方式。 |
+| bottom | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件底部边界取整对齐方式。 |
 
 ## VoidCallback<sup>12+</sup>
 
-函数回调：() => void
+type VoidCallback：() => void;
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ## Callback<sup>12+</sup>
 
-Callback<T,V = void> = (T) => V;
+Callback<T,V = void> = (data: T) => V;
 
 带参数的函数回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ## HoverCallback<sup>12+</sup>
 
 hover事件的回调类型。
 
-HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10对象说明)) => void
+type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
 
-| 名称            | 类型定义                   | 描述                                       |
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+| 名称            | 类型                  | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10对象说明)) => void | hover事件的回调。 |
+| HoverCallback | (isHover: boolean, event: HoverEvent) => void | hover事件的回调。 |
 
-## StyledStringValue<sup>12+</sup>
+## VisibleAreaEventOptions<sup>12+</sup>
 
-样式对象类型，用于设置属性字符串的样式。
+关于区域变化相关的参数。
 
-| 名称   | 描述       |
-| ------ | ---------- |
-| TextStyle | 文本字体样式。 |
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-## SubmitEvent<sup>11+</sup>
+| 参数名 | 类型                                                | 必填 | 说明                                                         |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| ratios | Array&lt;number&gt;                                 | 是   | 阈值数组。其中，每个阈值代表组件可见面积（即组件在屏幕显示区的面积，只计算父组件内的面积，超出父组件部分不会计算）与组件自身面积的比值。每个阈值的取值范围为[0.0, 1.0]，如果开发者设置的阈值超出该范围，则会实际取值0.0或1.0。 |
+| expectedUpdateInterval | number | 否 | 预期更新间隔，单位为ms。定义了开发者期望的更新间隔。默认值：1000。|
 
-定义用户提交事件。
+## VisibleAreaChangeCallback<sup>12+</sup>
 
-| 名称              | 类型       | 必填 | 描述                                               |
-| ----------------- | ---------- | ---- | -------------------------------------------------- |
-| keepEditableState | () => void | 否   | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
-| text              | string     | 否   | 输入框文本内容。                                   |
+组件可见区域变化事件的回调类型。
 
-## EnterKeyType枚举说明
+type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) => void;
 
-| 名称                   | 描述               |
-| ---------------------- | ------------------ |
-| Go                     | 显示为开始样式。   |
-| Search                 | 显示为搜索样式。   |
-| Send                   | 显示为发送样式。   |
-| Next                   | 显示为下一步样式。 |
-| Done                   | 显示为完成样式。   |
-| PREVIOUS<sup>11+</sup> | 显示为上一步样式。 |
-| NEW_LINE<sup>11+</sup> | 显示为换行样式。   |
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+| 名称            | 类型                   | 描述                                       |
+| ------------- | ---------------------- | ---------------------------------------- |
+| VisibleAreaChangeCallback | (isExpanding: boolean, currentRatio: number) => void | 组件可见区域变化事件的回调。<br/>-isExpanding：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
+
+## DividerStyleOptions<sup>12+</sup>
+
+分割线样式属性集合, 用于描述分割线相关信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型                                      | 必填 | 说明              |
+| ------ | --------------------------------------- |---|-----------------|
+| strokeWidth  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>  | 否 | 分割线的线宽。         |
+| color  | [ResourceColor](#resourcecolor) | 否  | 分割线的颜色。         |
+| startMargin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否  | 分割线与菜单侧边起始端的距离。 |
+| endMargin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>| 否  | 分割线与菜单侧边结束端的距离。 |
+
+## TextContentControllerBase<sup>10+</sup>
+
+TextInput、TextArea、Search的基础控制器。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### getTextContentRect<sup>10+</sup>
+
+getTextContentRect(): RectResult
+
+获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型       | 说明       |
+| -------------------  | -------- |
+| [RectResult](#rectresult10) | 获取已编辑文本内容区域相对组件的位置和大小。 |
+
+> **说明：**
+>
+> - 初始不输入文本时，返回值中有相对组件的位置信息，大小为0。
+> - 返回值中的位置信息是第一个字符相对于可编辑组件的位置。
+> - 在Search组件中，返回的位置信息是相对Search组件中搜索图标的偏移值。
+> - 有输入时返回信息中的宽度是组件编辑的固定宽度。
+
+### getTextContentLineCount<sup>10+</sup>
+
+getTextContentLineCount(): number
+
+获取已编辑文本内容的行数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型  | 说明       |
+| ----- | -------- |
+| number| 已编辑文本内容行数。 |
+
+### getCaretOffset<sup>11+</sup>
+
+getCaretOffset(): CaretOffset
+
+返回当前光标所在位置信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                      | 说明               |
+| ----------------------- | ---------------- |
+| [CaretOffset](#caretoffset11对象说明) | 光标相对输入框的位置。 |
+
+> **说明：**
+>
+> - 在当前帧更新光标位置同时调用该接口，该接口不生效。
+> - 在Search组件中，返回的位置信息是相对Search组件中搜索图标的偏移值。
+> - 在Search组件中，不输入文本时，返回值中有相对Search组件的位置信息。
+> - 返回值中的位置信息是光标相对于可编辑组件的位置。
+
+## TextDecorationOptions<sup>12+</sup>对象说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| color  | &nbsp;[ResourceColor](#resourcecolor) | 否   | 设置文本装饰线颜色。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 设置文本装饰线样式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+
+## SelectionOptions<sup>12+</sup>对象说明
+
+setTextSelection选中文字时的配置。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 类型                                            | 必填 | 说明             |
+| ---------- | ----------------------------------------------- | ---- | ---------------- |
+| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 值   | 说明                               |
+| ------- | ---- | ---------------------------------- |
+| DEFAULT | 0    | 按照底层默认逻辑决定是否弹出菜单。 |
+| HIDE    | 1    | 始终不弹出菜单。                   |
+| SHOW    | 2    | 始终弹出菜单。                     |
+
+## CaretOffset<sup>11+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名   | 类型     | 描述             |
+| ----- | ------ | -------------- |
+| index | number | 光标所在位置的索引值。    |
+| x     | number | 光标相对输入框的x坐标位值，单位px。 |
+| y     | number | 光标相对输入框的y坐标位值，单位px。 |
+
+## InputCounterOptions<sup>11+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名              | 类型    | 描述                                                         |
+| ------------------- | ------- | ------------------------------------------------------------ |
+| thresholdPercentage | number  | thresholdPercentage是可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，数值为小数时，向下取整，如果设置的number超出有效值区间内，不显示字符计数器。thresholdPercentage设置为undefined，显示字符计数器，但此参数不生效。 |
+| highlightBorder     | boolean | 如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。如果用户设置显示字符计数器同时thresholdPercentage参数数值在有效区间内，那么当输入字符数超过最大字符数时，边框和计数器下标将变成红色。如果此参数为true，则显示红色边框。计数器默认显示红色边框。 |
+
+## ChainWeightOptions<sup>14+</sup>对象说明
+
+链中组件的布局权重。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名   | 类型     | 描述             |
+| ----- | ------ | -------------- |
+| horizontal | number | 组件在竖直方向的布局权重，设置大于0的数字时生效。 <br> 默认值：0 <br> 异常值：0  |
+| vertical     | number | 组件在水平方向的布局权重，设置大于0的数字时生效。 <br> 默认值：0 <br> 异常值：0 |

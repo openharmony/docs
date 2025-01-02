@@ -107,7 +107,7 @@ Toggle用于切换蓝牙开关状态。
 
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
 @Entry
 @Component
 struct ToggleExample {

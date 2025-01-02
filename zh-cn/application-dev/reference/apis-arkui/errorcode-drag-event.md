@@ -8,7 +8,7 @@
 
 **错误信息**
 
-GetData failed, data not found.
+Data not found.
 
 **错误描述**
 
@@ -26,7 +26,7 @@ NA
 
 **错误信息**
 
-GetData failed, data error.
+Data error.
 
 **错误描述**
 

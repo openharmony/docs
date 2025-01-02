@@ -9,7 +9,7 @@ The **cloudSync** module provides the device-cloud synchronization capabilities 
 ## Modules to Import
 
 ```ts
-import cloudSync from '@ohos.file.cloudSync';
+import { cloudSync } from '@kit.CoreFileKit';
 ```
 
 ## State<sup>11+</sup>
@@ -57,7 +57,7 @@ A constructor used to create a **CloudFileCache** instance.
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 
 **Example**
 
@@ -78,7 +78,7 @@ Registers a listener for the download progress of a file from the Drive Kit.
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | event | string | Yes  | Event type. The value is **progress**, which indicates the download progress event of a file from the Drive Kit.|
-| callback | Callback\<[DownloadProgress](#downloadprogress11)> | Yes  | Callback invoked to return the download progress information.|
+| callback | Callback\<[DownloadProgress](#downloadprogress11)> | Yes  | Callback for the download progress event of a file from the Drive Kit.|
 
 **Error codes**
 
@@ -86,18 +86,24 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileCache = new cloudSync.CloudFileCache();
   let callback = (pg: cloudSync.DownloadProgress) => {
     console.info("download state: " + pg.state);
   };
 
-  fileCache.on('progress', callback);
+  try {
+    fileCache.on('progress', callback);
+  } catch (e) {
+    const error = e as BusinessError;
+    console.error(`Error code: ${error.code}, message: ${error.message}`);
+  }
   ```
 
 ### off<sup>11+</sup>
@@ -113,7 +119,7 @@ Unregisters a listener for the download progress of a file from the Drive Kit.
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | event | string | Yes  | Event type. The value is **progress**, which indicates the download progress event of a file from the Drive Kit.|
-| callback | Callback\<[DownloadProgress](#downloadprogress11)> | No  | Callback for the download progress event of a file from the Drive Kit.|
+| callback | Callback\<[DownloadProgress](#downloadprogress11)> | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the download progress event.|
 
 **Error codes**
 
@@ -121,24 +127,26 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
-| 13900002  | No such file or directory. |
-| 13900025  | No space left on device. |
-| 14000002  | Invalid uri. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileCache = new cloudSync.CloudFileCache();
 
   let callback = (pg: cloudSync.DownloadProgress) => {
     console.info("download state: " + pg.state);
   }
 
-  fileCache.on('progress', callback);
-
-  fileCache.off('progress', callback);
+  try {
+    fileCache.on('progress', callback);
+    fileCache.off('progress', callback);
+  } catch (e) {
+    const error = e as BusinessError;
+    console.error(`Error code: ${error.code}, message: ${error.message}`);
+  }
   ```
 
 ### start<sup>11+</sup>
@@ -164,20 +172,25 @@ Starts to download a file from the Drive Kit to the local device. This API uses 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
 
-  fileCache.on('progress', (pg: cloudSync.DownloadProgress) => {
-    console.info("download state:" + pg.state);
-  });
+  try {
+    fileCache.on('progress', (pg: cloudSync.DownloadProgress) => {
+      console.info("download state:" + pg.state);
+    });
+  } catch (e) {
+    const error = e as BusinessError;
+    console.error(`Error code: ${error.code}, message: ${error.message}`);
+  }
 
   fileCache.start(uri).then(() => {
     console.info("start download successfully");
   }).catch((err: BusinessError) => {
-    console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("start download failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -187,7 +200,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
 | 13900025 | No space left on device. |
@@ -206,7 +219,7 @@ Starts to download a file from the Drive Kit to the local device. This API uses 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | uri | string | Yes  | URI of the file to download.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -214,7 +227,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
 | 13900025 | No space left on device. |
@@ -223,15 +236,15 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
 
   fileCache.start(uri, (err: BusinessError) => {
     if (err) {
-      console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("start download failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("start download successfully");
     }
@@ -240,7 +253,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 ### stop<sup>11+</sup>
 
-stop(uri: string): Promise&lt;void&gt;
+stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 
 Stops downloading a file from the Drive Kit to the local device. This API uses a promise to return the result.
 
@@ -253,6 +266,7 @@ Calling **stop** will terminate the download of the current file and clear the c
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | uri | string | Yes  | URI of the file to download.|
+| needClean<sup>12+</sup> | boolean | No  | Whether to delete the downloaded files. By default, downloaded files are deleted.<br>This parameter is available since API version 12.|
 
 **Return value**
 
@@ -266,24 +280,24 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
-| 14000002 | Invalid uri. |
+| 14000002 | Invalid URI. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
 
-  fileCache.stop(uri).then(() => {
+  fileCache.stop(uri, true).then(() => {
     console.info("stop download successfully");
   }).catch((err: BusinessError) => {
-    console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("stop download failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -302,7 +316,7 @@ Calling **stop** will terminate the download of the current file and clear the c
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | uri | string | Yes  | URI of the file to download.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -310,23 +324,23 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
-| 14000002 | Invalid uri. |
+| 14000002 | Invalid URI. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
 
   fileCache.stop(uri, (err: BusinessError) => {
     if (err) {
-      console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("stop download failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("stop download successfully");
     }

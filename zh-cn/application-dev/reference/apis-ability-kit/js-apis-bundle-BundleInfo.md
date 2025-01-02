@@ -1,9 +1,9 @@
 # BundleInfo
 
+应用包的信息，通过[bundle.getBundleInfo](js-apis-Bundle.md#bundlegetbundleinfodeprecated)获取。
+
 > **说明：**
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
-应用包的信息，通过[bundle.getBundleInfo](js-apis-Bundle.md#bundlegetbundleinfodeprecated)获取。
 
 ## BundleInfo<sup>(deprecated)<sup>
 
@@ -11,7 +11,7 @@
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework。
 
-| 名称                             | 类型                                                         | 可读 | 可写 | 说明                                                         |
+| 名称                             | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | -------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | name                             | string                                                       | 是   | 否   | 应用包的名称。                                               |
 | type                             | string                                                       | 是   | 否   | 应用包类型。                                                 |
@@ -47,11 +47,11 @@
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework。
 
-| 名称                  | 类型                    | 可读 | 可写 | 说明                   |
+| 名称                  | 类型                    | 只读 | 可选 | 说明                   |
 | --------------------- | ----------------------- | ---- | ---- | ---------------------- |
-| name                  | string                  | 是   | 是   | 需要使用的权限名称。   |
-| reason                | string                  | 是   | 是   | 描述申请权限的原因。   |
-| usedScene             | [UsedScene](#usedscenedeprecated) | 是   | 是   | 权限使用的场景和时机。 |
+| name                  | string                  | 否   | 否   | 需要使用的权限名称。   |
+| reason                | string                  | 否   | 否   | 描述申请权限的原因。   |
+| usedScene             | [UsedScene](#usedscenedeprecated) | 否   | 否   | 权限使用的场景和时机。 |
 
 
 
@@ -63,7 +63,7 @@
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework。
 
-| 名称      | 类型           | 可读 | 可写 | 说明                        |
+| 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| abilities | Array\<string> | 是   | 是   | 使用到该权限的Ability集合。 |
-| when      | string         | 是   | 是   | 使用该权限的时机。          |
+| abilities | Array\<string> | 否   | 否   | 使用到该权限的Ability集合。 |
+| when      | string         | 否   | 否   | 使用该权限的时机。          |

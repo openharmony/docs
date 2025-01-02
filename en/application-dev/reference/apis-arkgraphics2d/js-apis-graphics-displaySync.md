@@ -9,7 +9,7 @@ The displaySync module allows your application to draw its custom UI content at 
 ## Modules to Import
 
 ```ts
-import displaySync from '@ohos.graphics.displaySync';
+import { displaySync } from '@kit.ArkGraphics2D';
 ```
 
 ## displaySync.create
@@ -36,7 +36,7 @@ You can obtain the timestamp information from the event callback, including the 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name            | Type                                     | Read-only| Mandatory| Description                                      |
+| Name            | Type                                     | Read-only| Optional| Description                                      |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
 | timestamp      | number | Yes  | No  | Time when the current frame arrives, in nanoseconds.|
 | targetTimestamp | number| Yes  | No  | Expected arrival time of the next frame, in nanoseconds.|
@@ -61,6 +61,13 @@ Sets the expected frame rate range.
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | rateRange       | [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11)| Yes  | Expected frame rate range.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameters types. 3. Parameter verification failed. or check ExpectedFrameRateRange if valid.|
 
 **Example**
 
@@ -158,6 +165,39 @@ backDisplaySync?.on("frame", callback)
 
 // Start callback for each frame.
 backDisplaySync?.start()
+```
+
+> **NOTE**
+>
+> The **start()** API associates a **DisplaySync** object with a UI instance and window. If the start operation is performed on a non-UI page or in an asynchronous callback, the context of the current UI may not be obtained, causing the API call to fail and consequently the subscription function to fail. Therefore, you can use [runScopedTask](../apis-arkui/js-apis-arkui-UIContext.md#runscopedtask) of **UIContext** to specify the UI context for executing the **start()** API.
+
+**Example**
+
+```ts
+import { displaySync } from '@kit.ArkGraphics2D';
+import { UIContext } from '@kit.ArkUI';
+
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  // Create a DisplaySync instance.
+  backDisplaySync: displaySync.DisplaySync = displaySync.create();
+
+  aboutToAppear() {
+    // Obtain a UIContext instance.
+    let uiContext: UIContext = this.getUIContext();
+    // Call start() in the current UI context.
+    uiContext?.runScopedTask(() => {
+      this.backDisplaySync?.start();
+    })
+  }
+
+  build() {
+    // ...
+  }
+}
+
 ```
 
 ### stop

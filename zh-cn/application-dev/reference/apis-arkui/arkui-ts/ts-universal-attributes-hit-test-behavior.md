@@ -12,6 +12,8 @@ hitTestBehavior(value: HitTestMode)
 
 设置组件的触摸测试类型。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -24,16 +26,15 @@ hitTestBehavior(value: HitTestMode)
 
 | 名称          | 枚举值    | 描述                                       |
 | ------------| ---------|----------------------------------- |
-| Default     | 0 |默认触摸测试效果，自身和子节点都响应触摸测试，但会阻塞兄弟节点的触摸测试。 |
-| Block       | 1 |自身响应触摸测试，阻塞子节点和兄弟节点的触摸测试。 |
-| Transparent | 2 |自身和子节点都响应触摸测试，不会阻塞兄弟节点的触摸测试。 |
-| None        | 3 |自身不响应触摸测试，不会阻塞子节点和兄弟节点的触摸测试。 |
+| Default     | 0 |默认触摸测试效果，自身和子节点都响应触摸测试，但会阻塞兄弟节点的触摸测试。不会影响祖先节点的触摸测试。 |
+| Block       | 1 |自身响应触摸测试，阻塞子节点和兄弟节点的触摸测试。会阻塞祖先节点的触摸测试。 |
+| Transparent | 2 |自身和子节点都响应触摸测试，不会阻塞兄弟节点的触摸测试。不会影响祖先节点的触摸测试。 |
+| None        | 3 |自身不响应触摸测试，不会阻塞子节点和兄弟节点的触摸测试。不会影响祖先节点的触摸测试。 |
 
 
 ## 示例
 
-Text组件设置hitTestBehavior为HitTestMode.Transparent，不会阻塞内层Stack的触摸测试，因此Text和内层Stack的onTouch事件都会触发。  
-内层Stack设置hitTestBehavior为HitTestMode.Block，会阻塞子节点和外层Button进行触摸测试，因此内层Button和外层Button组件不会响应onTouch事件。
+该示例通过设置不同的HitTestMode值演示了Block和Transparent的触摸类型效果。
 
 ```ts
 // xxx.ets

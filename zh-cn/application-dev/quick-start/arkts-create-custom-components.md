@@ -45,23 +45,15 @@ HelloComponent可以在其他自定义组件中的build()函数中多次创建�
 
 
 ```ts
-class HelloComponentParam {
-  message: string = ""
-}
-
 @Entry
 @Component
 struct ParentComponent {
-  param: HelloComponentParam = {
-    message: 'Hello, World!'
-  }
-
   build() {
     Column() {
       Text('ArkUI message')
-      HelloComponent(this.param);
+      HelloComponent({ message: 'Hello World!' });
       Divider()
-      HelloComponent(this.param);
+      HelloComponent({ message: '你好，世界!' });
     }
   }
 }
@@ -84,12 +76,18 @@ struct ParentComponent {
 
 ## 自定义组件的基本结构
 
-- struct：自定义组件基于struct实现，struct + 自定义组件名 + {...}的组合构成自定义组件，不能有继承关系。对于struct的实例化，可以省略new。
+### struct
+
+自定义组件基于struct实现，struct + 自定义组件名 + {...}的组合构成自定义组件，不能有继承关系。对于struct的实例化，可以省略new。
+
   > **说明：**
   >
   > 自定义组件名、类名、函数名不能和系统组件名相同。
 
-- \@Component：\@Component装饰器仅能装饰struct关键字声明的数据结构。struct被\@Component装饰后具备组件化的能力，需要实现build方法描述UI，一个struct只能被一个\@Component装饰。\@Component可以接受一个可选的bool类型参数。
+### \@Component
+
+\@Component装饰器仅能装饰struct关键字声明的数据结构。struct被\@Component装饰后具备组件化的能力，需要实现build方法描述UI，一个struct只能被一个\@Component装饰。\@Component可以接受一个可选的bool类型参数。
+
   > **说明：**
   >
   > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
@@ -102,7 +100,7 @@ struct ParentComponent {
   }
   ```
 
-  ### freezeWhenInactive<sup>11+</sup>
+ #### freezeWhenInactive<sup>11+</sup>
   [组件冻结](arkts-custom-components-freeze.md)选项。
 
   | 名称   | 类型   | 必填 | 说明                                                         |
@@ -115,7 +113,9 @@ struct ParentComponent {
   }
   ```
 
-- build()函数：build()函数用于定义自定义组件的声明式UI描述，自定义组件必须定义build()函数。
+### build()函数
+
+build()函数用于定义自定义组件的声明式UI描述，自定义组件必须定义build()函数。
 
   ```ts
   @Component
@@ -125,13 +125,17 @@ struct ParentComponent {
   }
   ```
 
-- \@Entry：\@Entry装饰的自定义组件将作为UI页面的入口。在单个UI页面中，最多可以使用\@Entry装饰一个自定义组件。\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)的参数。
+### \@Entry
+
+\@Entry装饰的自定义组件将作为UI页面的入口。在单个UI页面中，最多可以使用\@Entry装饰一个自定义组件。\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)的参数。
 
   > **说明：**
   >
   > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
   >
   > 从API version 10开始，\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)的参数或者一个可选的[EntryOptions](#entryOptions)参数。
+  >
+  > 从API version 11开始，该装饰器支持在原子化服务中使用。
 
   ```ts
   @Entry
@@ -140,7 +144,7 @@ struct ParentComponent {
   }
   ```
 
-  ### EntryOptions<sup>10+</sup>
+#### EntryOptions<sup>10+</sup>
 
   命名路由跳转选项。
 
@@ -162,7 +166,9 @@ struct ParentComponent {
   ```
 
 
-- \@Reusable：\@Reusable装饰的自定义组件具备可复用能力
+### \@Reusable
+
+\@Reusable装饰的自定义组件具备可复用能力。
 
   > **说明：**
   >
@@ -254,7 +260,6 @@ struct Son {
           }
         })
     }
-    .justifyContent(FlexAlign.SpaceBetween)
     .height(56)
   }
 }
@@ -262,7 +267,7 @@ struct Son {
 
 ## build()函数
 
-所有声明在build()函数的语言，我们统称为UI描述，UI描述需要遵循以下规则：
+所有声明在build()函数的语句，我们统称为UI描述，UI描述需要遵循以下规则：
 
 - \@Entry装饰的自定义组件，其build()函数下的根节点唯一且必要，且必须为容器组件，其中ForEach禁止作为根节点。
   \@Component装饰的自定义组件，其build()函数下的根节点唯一且必要，可以为非容器组件，其中ForEach禁止作为根节点。
@@ -293,7 +298,7 @@ struct Son {
   ```ts
   build() {
     // 反例：不允许声明本地变量
-    let a: number = 1;
+    let num: number = 1;
   }
   ```
 
@@ -346,7 +351,7 @@ struct Son {
   }
   ```
 
-- 不允许使用switch语法，如果需要使用条件判断，请使用if。反例如下。
+- 不允许使用switch语法，如果需要使用条件判断，请使用[if](./arkts-rendering-control-ifelse.md)。示例如下。
 
   ```ts
   build() {
@@ -363,28 +368,43 @@ struct Son {
           Text('...')
           break;
       }
+      // 正例：使用if
+      if(expression == 1) {
+        Text('...')
+      } else if(expression == 2) {
+        Image('...')
+      } else {
+        Text('...')
+      }
     }
   }
   ```
 
-- 不允许使用表达式，反例如下。
+- 不允许使用表达式，请使用if组件，示例如下。
 
   ```ts
   build() {
     Column() {
       // 反例：不允许使用表达式
       (this.aVar > 10) ? Text('...') : Image('...')
+
+      // 正例：使用if判断
+      if(this.aVar > 10) {
+        Text('...')
+      } else {
+        Image('...')
+      }
     }
   }
   ```
 
-- 不允许直接改变状态变量，反例如下。
+- 不允许直接改变状态变量，反例如下。详细分析见[\@State常见问题：不允许在build里改状态变量](./arkts-state.md#不允许在build里改状态变量)
 
   ```ts
   @Component
-  struct CompA {
-    @State col1: Color = Color.Yellow;
-    @State col2: Color = Color.Green;
+  struct MyComponent {
+    @State textColor: Color = Color.Yellow;
+    @State columnColor: Color = Color.Green;
     @State count: number = 1;
     build() {
       Column() {
@@ -392,15 +412,15 @@ struct Son {
         Text(`${this.count++}`)
           .width(50)
           .height(50)
-          .fontColor(this.col1)
+          .fontColor(this.textColor)
           .onClick(() => {
-            this.col2 = Color.Red;
+            this.columnColor = Color.Red;
           })
-        Button("change col1").onClick(() =>{
-          this.col1 = Color.Pink;
+        Button("change textColor").onClick(() =>{
+          this.textColor = Color.Pink;
         })
       }
-      .backgroundColor(this.col2)
+      .backgroundColor(this.columnColor)
     }
   }
   ```
@@ -411,8 +431,8 @@ struct Son {
 
   所以，不能在自定义组件的build()或\@Builder方法里直接改变状态变量，这可能会造成循环渲染的风险。Text('${this.count++}')在全量更新或最小化更新会产生不同的影响：
 
-  - 全量更新： ArkUI可能会陷入一个无限的重渲染的循环里，因为Text组件的每一次渲染都会改变应用的状态，就会再引起下一轮渲染的开启。 当 this.col2 更改时，都会执行整个build构建函数，因此，Text(`${this.count++}`)绑定的文本也会更改，每次重新渲染Text(`${this.count++}`)，又会使this.count状态变量更新，导致新一轮的build执行，从而陷入无限循环。
-  - 最小化更新： 当 this.col2 更改时，只有Column组件会更新，Text组件不会更改。 只当 this.col1 更改时，会去更新整个Text组件，其所有属性函数都会执行，所以会看到Text(`${this.count++}`)自增。因为目前UI以组件为单位进行更新，如果组件上某一个属性发生改变，会更新整体的组件。所以整体的更新链路是：this.col1 = Color.Pink -&gt; Text组件整体更新-&gt;this.count++ -&gt;Text组件整体更新。值得注意的是，这种写法在初次渲染时会导致Text组件渲染两次，从而对性能产生影响。
+  - 全量更新（API8及以前版本）： ArkUI可能会陷入一个无限的重渲染的循环里，因为Text组件的每一次渲染都会改变应用的状态，就会再引起下一轮渲染的开启。 当 this.columnColor 更改时，都会执行整个build构建函数，因此，Text(`${this.count++}`)绑定的文本也会更改，每次重新渲染Text(`${this.count++}`)，又会使this.count状态变量更新，导致新一轮的build执行，从而陷入无限循环。
+  - 最小化更新（API9-至今版本）： 当 this.columnColor 更改时，只有Column组件会更新，Text组件不会更改。 只当 this.textColor 更改时，会去更新整个Text组件，其所有属性函数都会执行，所以会看到Text(`${this.count++}`)自增。因为目前UI以组件为单位进行更新，如果组件上某一个属性发生改变，会更新整体的组件。所以整体的更新链路是：this.textColor = Color.Pink -&gt; Text组件整体更新-&gt;this.count++ -&gt;Text组件整体更新。值得注意的是，这种写法在初次渲染时会导致Text组件渲染两次，从而对性能产生影响。
 
   build函数中更改应用状态的行为可能会比上面的示例更加隐蔽，比如：
 
@@ -443,7 +463,7 @@ struct Son {
 
 ```ts
 @Component
-struct MyComponent2 {
+struct ChildComponent {
   build() {
     Button(`Hello World`)
   }
@@ -454,7 +474,7 @@ struct MyComponent2 {
 struct MyComponent {
   build() {
     Row() {
-      MyComponent2()
+      ChildComponent()
         .width(200)
         .height(300)
         .backgroundColor(Color.Red)
@@ -465,6 +485,6 @@ struct MyComponent {
 
 > **说明：**
 >
-> ArkUI给自定义组件设置样式时，相当于给MyComponent2套了一个不可见的容器组件，而这些样式是设置在容器组件上的，而非直接设置给MyComponent2的Button组件。通过渲染结果我们可以很清楚的看到，背景颜色红色并没有直接生效在Button上，而是生效在Button所处的开发者不可见的容器组件上。
+> ArkUI给自定义组件设置样式时，相当于给ChildComponent套了一个不可见的容器组件，而这些样式是设置在容器组件上的，而非直接设置给ChildComponent的Button组件。通过渲染结果我们可以很清楚的看到，背景颜色红色并没有直接生效在Button上，而是生效在Button所处的开发者不可见的容器组件上。
 
 <!--no_check-->

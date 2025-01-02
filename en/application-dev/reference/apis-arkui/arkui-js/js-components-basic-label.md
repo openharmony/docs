@@ -18,7 +18,7 @@ Not supported
 
 ## Attributes
 
-In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
 | Name    | Type    | Default Value | Mandatory  | Description         |
 | ------ | ------ | ---- | ---- | ----------- |
@@ -27,7 +27,7 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 
 ## Styles
 
-In addition to the [universal styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
+In addition to the [universal styles](js-components-common-styles.md), the following styles are supported.
 
 | Name               | Type                        | Default Value       | Mandatory  | Description                                      |
 | ----------------- | -------------------------- | ---------- | ---- | ---------------------------------------- |
@@ -41,7 +41,7 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 | text-align        | string                     | start<br>| No   | Text alignment mode. Available values are as follows:<br>- **left**: The text is left-aligned.<br>- **center**: The text is center-aligned.<br>- **right**: The text is right-aligned.<br>- **start**: The text is aligned with the direction in which the text is written.<br>- **end**: The text is aligned with the opposite direction in which the text is written.<br>If the text width is not specified, the alignment effect may not be obvious when the text width is the same as the width of the parent container.|
 | line-height       | &lt;length&gt;             | 0px        | No   | Text line height. When this parameter is set to **0px**, the text line height is not limited and the font size is adaptive.      |
 | text-overflow     | string                     | clip       | No   | Takes effect when the maximum number of lines is specified. Available values are as follows:<br>- **clip**: The text is clipped and displayed based on the size of the parent container.<br>- **ellipsis**: The text is displayed based on the size of the parent container. The text that cannot be displayed is replaced with ellipsis. This style must be used together with **max-lines**.|
-| font-family       | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
+| font-family       | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-components-common-customizing-font.md) is used for the text.|
 | max-lines         | number                     | -          | No   | Maximum number of lines in the text.                              |
 | min-font-size     | &lt;length&gt;             | -          | No   | Minimum font size in the text. This style must be used together with **max-font-size**. The font size can be changed dynamically. After the maximum and minimum font sizes are set, **font-size** does not take effect.|
 | max-font-size     | &lt;length&gt;             | -          | No   | Maximum font size in the text. This style must be used together with **min-font-size**. The font size can be changed dynamically. After the maximum and minimum font sizes are set, **font-size** does not take effect.|

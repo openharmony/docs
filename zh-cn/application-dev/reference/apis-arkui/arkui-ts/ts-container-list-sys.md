@@ -10,15 +10,29 @@
 
 ## 属性
 
-| 名称                                    | 参数类型                                     | 描述                                       |
-| ------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| chainAnimationOptions<sup>10+</sup>   | [ChainAnimationOptions](#chainanimationoptions10对象说明) | 设置链式联动动效参数。<br>**系统接口：** 此接口为系统接口。      |
+### chainAnimationOptions<sup>10+</sup>
+
+chainAnimationOptions(value: ChainAnimationOptions)
+
+设置链式联动动效。
+
+**系统接口：** 此接口为系统接口
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称    | 参数类型                                     | 描述                           |
+| ------ | ---------------------------------------- | ---------------------------------- |
+| value  | [ChainAnimationOptions](#chainanimationoptions10对象说明) | 链式联动动效参数。|
 
 ## ChainEdgeEffect<sup>10+</sup>枚举说明
 
 设置链式动效边缘效果。
 
 **系统接口：** 此接口为系统接口
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      |  枚举值  | 描述                                       |
 | ------- | ------ | ---------------------------------------- |
@@ -31,6 +45,8 @@
 
 **系统接口：** 此接口为系统接口
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称           | 类型                                       | 必填   | 说明                                       |
 | ------------ | ---------------------------------------- | ---- | ---------------------------------------- |
 | minSpace     | [Length](ts-types.md#length)             | 是    | 设置链式联动动效最小间距。                            |
@@ -39,6 +55,3 @@
 | intensity    | number                                   | 否    | 设置链式联动动效效果强度。取值范围[0,1]，数值越大，动效效果越明显。<br/>默认为0.3。 |
 | edgeEffect   | [ChainEdgeEffect](#chainedgeeffect10枚举说明) | 否    | 设置链式联动动效边缘效果。<br/>默认为ChainEdgeEffect.DEFAULT。 |
 
-> **说明：** 
->
-> List组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。

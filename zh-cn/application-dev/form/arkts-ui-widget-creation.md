@@ -3,12 +3,12 @@
 创建卡片当前有两种入口：
 
 - 创建工程时，选择Application，默认不带卡片，可以在创建工程后右键新建卡片。
-- 创建工程时，选择Atomic Service，默认自带卡片，也可以在创建工程后右键新建卡片。
+- 创建工程时，选择Atomic Service，也可以在创建工程后右键新建卡片。
 
 ![WidgetCreateProject](figures/WidgetCreateProject.png)
 >**说明：** 
 >
->本文基于[DevEco Studio 3.1.1 Release](https://developer.harmonyos.com/cn/develop/deveco-studio/#download)版本进行介绍。如您使用DevEco Studio其它版本，请以实际界面为准。
+>基于不同版本的DeEco Studio，请以实际界面为准。
 
 在已有的应用工程中，可以通过右键新建ArkTS卡片，具体的操作方式如下。
 
@@ -16,7 +16,7 @@
    ![WidgetProjectCreate1](figures/WidgetProjectCreate1.png)
 >**说明：** 
 >
->在API 10 Stage模型的工程中，在**Service Widget**菜单可直接选择创建动态或静态服务卡片。创建服务卡片后，也可以在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，通过**isDynamic**参数修改卡片类型：isDynamic置空或赋值为"true"，则该卡片为动态卡片；isDynamic赋值为"false"，则该卡片为静态卡片。
+>在API 10及以上 Stage模型的工程中，在Service Widget菜单可直接选择创建动态或静态服务卡片。创建服务卡片后，也可以在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为"true"，则该卡片为动态卡片；isDynamic赋值为"false"，则该卡片为静态卡片。
    
 2. 根据实际业务场景，选择一个卡片模板。  
    ![WidgetProjectCreate2](figures/WidgetProjectCreate2.png)

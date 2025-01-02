@@ -17,7 +17,11 @@
 
 ImageAnimator()
 
-从API version 10开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## 属性
 
@@ -30,6 +34,8 @@ images(value: Array&lt;ImageFrameInfo&gt;)
 设置图片帧信息集合。不支持动态更新。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -47,6 +53,8 @@ state(value: AnimationStatus)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -62,6 +70,8 @@ duration(value: number)
 设置播放时长。当Images中任意一帧图片设置了单独的duration后，该属性设置无效。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -79,6 +89,8 @@ reverse(value: boolean)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -94,6 +106,8 @@ fixedSize(value: boolean)
 设置图片大小是否固定为组件大小。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -111,8 +125,6 @@ preDecode(value: number)
 
 从API version 9开始废弃。
 
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -129,6 +141,8 @@ fillMode(value: FillMode)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -143,6 +157,8 @@ iterations(value: number)
 
 设置播放次数。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -153,13 +169,17 @@ iterations(value: number)
 
 ## ImageFrameInfo对象说明
 
-| 参数名称   | 参数类型   | 必填 | 参数描述 |
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   | 必填 | 说明 |
 | -------- | -------------- | -------- | -------- |
-| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> | 是    | 图片路径，图片格式为svg，png和jpg，从API Version9开始支持[Resource](ts-types.md#resource)类型的路径。 <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。|
-| width    | number&nbsp;\|&nbsp;string | 否  | 图片宽度。<br/>默认值：0   <br/>从API version 10开始，该接口支持在ArkTS卡片中使用       |
-| height   | number&nbsp;\|&nbsp;string | 否  | 图片高度。<br/>默认值：0     <br/>从API version 10开始，该接口支持在ArkTS卡片中使用        |
-| top      | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的纵向坐标。<br/>默认值：0  <br/>从API version 10开始，该接口支持在ArkTS卡片中使用  |
-| left     | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的横向坐标。<br/>默认值：0 <br/>从API version 10开始，该接口支持在ArkTS卡片中使用   |
+| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | 是    | 图片路径，图片格式为jpg、jpeg、svg、png、bmp、webp、ico和heif，从API Version9开始支持[Resource](ts-types.md#resource)类型的路径，从API version 12开始支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型。 <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
+| width    | number&nbsp;\|&nbsp;string | 否  | 图片宽度。<br/>默认值：0   <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用       |
+| height   | number&nbsp;\|&nbsp;string | 否  | 图片高度。<br/>默认值：0     <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用        |
+| top      | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的纵向坐标。<br/>默认值：0  <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用  |
+| left     | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的横向坐标。<br/>默认值：0 <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用   |
 | duration | number          | 否     | 每一帧图片的播放时长，单位毫秒。<br/>默认值：0         |
 
 ## 事件
@@ -174,6 +194,8 @@ onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onPause
@@ -184,6 +206,8 @@ onPause(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onRepeat
@@ -191,6 +215,8 @@ onPause(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 onRepeat(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 状态回调，动画重复播放时触发。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -202,6 +228,8 @@ onCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onFinish
@@ -212,10 +240,16 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
 ## 示例
+
+### 示例1（播放Resource动画）
+
+通过ImageAnimator组件播放Resource动画。
 
 ```ts
 // xxx.ets
@@ -287,6 +321,91 @@ struct ImageAnimatorExample {
         }).margin(5)
       }
     }.width('100%').height('100%')
+  }
+}
+```
+
+### 示例2（播放PixelMap动画）
+
+通过ImageAnimator组件播放PixelMap动画。
+
+```ts
+// xxx.ets
+import { image } from '@kit.ImageKit'
+
+@Entry
+@Component
+struct ImageAnimatorExample {
+  imagePixelMap: Array<PixelMap> = []
+  @State state: AnimationStatus = AnimationStatus.Initial
+  @State reverse: boolean = false
+  @State iterations: number = 1
+  @State images:Array<ImageFrameInfo> = []
+  async aboutToAppear() {
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')))
+    this.images.push({src:this.imagePixelMap[0]})
+  }
+  build() {
+    Column({ space: 10 }) {
+      ImageAnimator()
+        .images(this.images)
+        .duration(2000)
+        .state(this.state).reverse(this.reverse)
+        .fillMode(FillMode.None).iterations(this.iterations).width(340).height(240)
+        .margin({ top: 100 })
+        .onStart(() => {
+          console.info('Start')
+        })
+        .onPause(() => {
+          console.info('Pause')
+        })
+        .onRepeat(() => {
+          console.info('Repeat')
+        })
+        .onCancel(() => {
+          console.info('Cancel')
+        })
+        .onFinish(() => {
+          console.info('Finish')
+          this.state = AnimationStatus.Stopped
+        })
+      Row() {
+        Button('start').width(100).padding(5).onClick(() => {
+          this.state = AnimationStatus.Running
+        }).margin(5)
+        Button('pause').width(100).padding(5).onClick(() => {
+          this.state = AnimationStatus.Paused     // 显示当前帧图片
+        }).margin(5)
+        Button('stop').width(100).padding(5).onClick(() => {
+          this.state = AnimationStatus.Stopped    // 显示动画的起始帧图片
+        }).margin(5)
+      }
+      Row() {
+        Button('reverse').width(100).padding(5).onClick(() => {
+          this.reverse = !this.reverse
+        }).margin(5)
+        Button('once').width(100).padding(5).onClick(() => {
+          this.iterations = 1
+        }).margin(5)
+        Button('infinite').width(100).padding(5).onClick(() => {
+          this.iterations = -1 // 无限循环播放
+        }).margin(5)
+      }
+    }.width('100%').height('100%')
+  }
+
+  private async getPixmapFromMedia(resource: Resource) {
+    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    })
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+    })
+    await imageSource.release()
+    return createPixelMap
   }
 }
 ```

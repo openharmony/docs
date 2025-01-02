@@ -118,24 +118,7 @@ Note:
 
    Confirm the issues found by the OAT tool and configure the **OAT.xml** file. For details, see [OSS Audio Tool](https://gitee.com/openharmony-sig/tools_oat/blob/master/README.md). Attach the file in the request. If no issue needs to be confirmed, you do not have to configure the file.
 
-3. **README.OpenSource** file of the repository. The format is as follows:
-
-   ```
-   [
-     {
-       "Name": "softwarename",
-       "License": "Apache-2.0",
-       "License File": "LICENSE",
-       "Version Number": "1.0.0",
-       "Owner": "James@example.com",
-       "Upstream URL": "https://gitee.com/softwarecodesite/v1.0.0.zip",
-       "Description": "...."
-     },
-     {
-     ...
-     }// If there are multiple licenses, list them one by one.
-   ]
-   ```
+3. The content of the README.OpenSource file in this repository can refer to: [README.OpenSource Configuration File Example](readme.opensource_design_specification_document_and_usage_guide.md).
 
 #### Reviewing New Third-Party Open-Source Software
 

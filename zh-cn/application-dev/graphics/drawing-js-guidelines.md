@@ -29,23 +29,10 @@
 本文以实现2D图形和文字的绘制与显示为例，给出具体的开发指导。
 ### 添加开发依赖
 
-**添加动态链接库**
-
-CMakeLists.txt中添加以下lib。
-
-```txt
-libace_ndk.z.so
-libnative_window.so
-libnative_drawing.so
-```
-
 **依赖文件**
 ```js
-import { NodeController, FrameNode, RenderNode, DrawContext } from "@ohos.arkui.node"
-import { UIContext } from '@ohos.arkui.UIContext'
-import drawing from "@ohos.graphics.drawing"
-import image from '@ohos.multimedia.image'
-import common2D from '@ohos.graphics.common2D'
+import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI'
+import { common2D, drawing } from '@kit.ArkGraphics2D'
 ```
 
 接下来介绍如何使用Drawing接口进行内容绘制。
@@ -54,7 +41,7 @@ import common2D from '@ohos.graphics.common2D'
 
 以下步骤描述了如何使用@ohos.graphics.drawing模块的画布画笔绘制基本的2D图形和文字：
 
-1. **创建RenderNode子类**。创建`RenderNode`子类`MyRenderNode`，并在其中定义绘图函数。`RenderNode`中包含树结构的操作，以及对绘制属性的操作。
+1. **创建RenderNode子类**。创建`RenderNode`子类`MyRenderNode`，并在其中定义绘图函数。`RenderNode`中包含树结构的操作，以及对绘制属性的操作，其中`draw`方法会在`RenderNode`进行绘制时被调用，更多细节请参考[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)。
 
     ```js
     // 创建一个MyRenderNode类，并构建Path形状。

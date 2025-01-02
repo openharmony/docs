@@ -9,7 +9,7 @@ The **continuationManager** module provides the continuation management entry. Y
 ## Modules to Import
 
 ```ts
-import continuationManager from '@ohos.continuation.continuationManager'
+import { continuationManager } from '@kit.AbilityKit';
 ```
 
 ## continuationManager.register<sup>(deprecated)</sup>
@@ -33,7 +33,7 @@ Registers the continuation management service and obtains a token. This API does
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager'
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = -1;
   continuationManager.register((err, data) => {
@@ -68,7 +68,7 @@ Registers the continuation management service and obtains a token. This API uses
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager'
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = -1;
   continuationManager.register(
@@ -112,8 +112,8 @@ Registers the continuation management service and obtains a token. This API uses
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager'
-  import { BusinessError } from '@ohos.base';
+  import { continuationManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   let token: number = -1;
   continuationManager.register(
@@ -131,6 +131,8 @@ registerContinuation(callback: AsyncCallback\<number>): void
 
 Registers the continuation management service and obtains a token. This API does not involve any filter parameters and uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
@@ -143,17 +145,19 @@ Registers the continuation management service and obtains a token. This API does
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager'
+  import { continuationManager } from '@kit.AbilityKit';
   
   let token: number = -1;
   try {
@@ -176,6 +180,8 @@ registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<
 
 Registers the continuation management service and obtains a token. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
@@ -189,17 +195,19 @@ Registers the continuation management service and obtains a token. This API uses
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = -1;
   try {
@@ -226,6 +234,8 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>
 
 Registers the continuation management service and obtains a token. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
@@ -244,18 +254,20 @@ Registers the continuation management service and obtains a token. This API uses
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
-  import { BusinessError } from '@ohos.base';
+  import { continuationManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let token: number = -1;
   try {
@@ -274,9 +286,9 @@ For details about the error codes, see [Distributed Scheduler Error Codes](error
   ```
 
 
-## continuationManager.on("deviceConnect")<sup>(deprecated)</sup>
+## continuationManager.on('deviceConnect')<sup>(deprecated)</sup>
 
-on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void
+on(type: 'deviceConnect', callback: Callback\<ContinuationResult>): void
 
 Subscribes to device connection events. This API uses an asynchronous callback to return the result.
 
@@ -296,7 +308,7 @@ Subscribes to device connection events. This API uses an asynchronous callback t
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   continuationManager.on("deviceConnect", (data) => {
     console.info('onDeviceConnect deviceId: ' + JSON.stringify(data.id));
@@ -305,9 +317,9 @@ Subscribes to device connection events. This API uses an asynchronous callback t
   });
   ```
 
-## continuationManager.on("deviceDisconnect")<sup>(deprecated)</sup>
+## continuationManager.on('deviceDisconnect')<sup>(deprecated)</sup>
 
-on(type: "deviceDisconnect", callback: Callback\<string>): void
+on(type: 'deviceDisconnect', callback: Callback\<string>): void
 
 Subscribes to device disconnection events. This API uses an asynchronous callback to return the result.
 
@@ -327,16 +339,16 @@ Subscribes to device disconnection events. This API uses an asynchronous callbac
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   continuationManager.on("deviceDisconnect", (data) => {
     console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data));
   });
   ```
 
-## continuationManager.off("deviceConnect")<sup>(deprecated)</sup>
+## continuationManager.off('deviceConnect')<sup>(deprecated)</sup>
 
-off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void
+off(type: 'deviceConnect', callback?: Callback\<ContinuationResult>): void
 
 Unsubscribes from device connection events. This API uses an asynchronous callback to return the result.
 
@@ -356,7 +368,7 @@ Unsubscribes from device connection events. This API uses an asynchronous callba
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   continuationManager.off("deviceConnect", (data) => {
     console.info('onDeviceConnect deviceId: ' + JSON.stringify(data.id));
@@ -365,9 +377,9 @@ Unsubscribes from device connection events. This API uses an asynchronous callba
   });
   ```
 
-## continuationManager.off("deviceDisconnect")<sup>(deprecated)</sup>
+## continuationManager.off('deviceDisconnect')<sup>(deprecated)</sup>
 
-off(type: "deviceDisconnect", callback?: Callback\<string>): void
+off(type: 'deviceDisconnect', callback?: Callback\<string>): void
 
 Unsubscribes from device disconnection events. This API uses an asynchronous callback to return the result.
 
@@ -387,18 +399,20 @@ Unsubscribes from device disconnection events. This API uses an asynchronous cal
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   continuationManager.off("deviceDisconnect", (data) => {
     console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data));
   });
   ```
 
-## continuationManager.on("deviceSelected")<sup>9+</sup>
+## continuationManager.on('deviceSelected')<sup>9+</sup>
 
-on(type: "deviceSelected", token: number, callback: Callback\<Array\<ContinuationResult>>): void
+on(type: 'deviceSelected', token: number, callback: Callback\<Array\<ContinuationResult>>): void
 
 Subscribes to device connection events. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -414,10 +428,12 @@ Subscribes to device connection events. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -425,7 +441,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](error
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   try {
@@ -442,11 +458,13 @@ For details about the error codes, see [Distributed Scheduler Error Codes](error
   }
   ```
 
-## continuationManager.on("deviceUnselected")<sup>9+</sup>
+## continuationManager.on('deviceUnselected')<sup>9+</sup>
 
-on(type: "deviceUnselected", token: number, callback: Callback\<Array\<ContinuationResult>>): void
+on(type: 'deviceUnselected', token: number, callback: Callback\<Array\<ContinuationResult>>): void
 
 Subscribes to device disconnection events. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -462,10 +480,12 @@ Subscribes to device disconnection events. This API uses an asynchronous callbac
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -473,7 +493,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](error
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   try {
@@ -491,11 +511,13 @@ For details about the error codes, see [Distributed Scheduler Error Codes](error
   }
   ```
 
-## continuationManager.off("deviceSelected")<sup>9+</sup>
+## continuationManager.off('deviceSelected')<sup>9+</sup>
 
-off(type: "deviceSelected", token: number): void
+off(type: 'deviceSelected', token: number): void
 
 Unsubscribes from device connection events.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -510,10 +532,12 @@ Unsubscribes from device connection events.
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -521,7 +545,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](error
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   try {
@@ -531,11 +555,13 @@ For details about the error codes, see [Distributed Scheduler Error Codes](error
   }
   ```
 
-## continuationManager.off("deviceUnselected")<sup>9+</sup>
+## continuationManager.off('deviceUnselected')<sup>9+</sup>
 
-off(type: "deviceUnselected", token: number): void
+off(type: 'deviceUnselected', token: number): void
 
 Unsubscribes from device disconnection events.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -550,10 +576,12 @@ Unsubscribes from device disconnection events.
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -561,7 +589,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](error
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   try {
@@ -593,7 +621,7 @@ Starts the device selection module to show the list of available devices on the 
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   continuationManager.startDeviceManager(token, (err) => {
@@ -628,7 +656,7 @@ Starts the device selection module to show the list of available devices on the 
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   continuationManager.startDeviceManager(
@@ -673,8 +701,8 @@ Starts the device selection module to show the list of available devices on the 
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
-  import { BusinessError } from '@ohos.base';
+  import { continuationManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let token: number = -1;
   continuationManager.startDeviceManager(
@@ -694,6 +722,8 @@ startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): v
 
 Starts the device selection module to show the list of available devices on the network. This API does not involve any filter parameters and uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
@@ -707,17 +737,19 @@ Starts the device selection module to show the list of available devices on the 
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = -1;
   try {
@@ -739,6 +771,8 @@ startContinuationDeviceManager(token: number, options: ContinuationExtraParams, 
 
 Starts the device selection module to show the list of available devices on the network. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
@@ -753,17 +787,19 @@ Starts the device selection module to show the list of available devices on the 
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = -1;
   try {
@@ -790,6 +826,8 @@ startContinuationDeviceManager(token: number, options?: ContinuationExtraParams)
 
 Starts the device selection module to show the list of available devices on the network. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
@@ -809,18 +847,20 @@ Starts the device selection module to show the list of available devices on the 
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
-  import { BusinessError } from '@ohos.base';
+  import { continuationManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let token: number = -1;
   try {
@@ -862,7 +902,7 @@ Instructs the device selection module to update the device connection state. Thi
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = -1;
   let deviceId: string = "test deviceId";
@@ -904,8 +944,8 @@ Instructs the device selection module to update the device connection state. Thi
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
-  import { BusinessError } from '@ohos.base';
+  import { continuationManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let token: number = 1;
   let deviceId: string = "test deviceId";
@@ -924,6 +964,8 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 Instructs the device selection module to update the device connection state. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
@@ -939,17 +981,19 @@ Instructs the device selection module to update the device connection state. Thi
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   let deviceId: string = "test deviceId";
@@ -972,6 +1016,8 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 Instructs the device selection module to update the device connection state. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
@@ -992,18 +1038,20 @@ Instructs the device selection module to update the device connection state. Thi
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
-  import { BusinessError } from '@ohos.base';
+  import { continuationManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let token: number = 1;
   let deviceId: string = "test deviceId";
@@ -1043,7 +1091,7 @@ Unregisters the continuation management service. This API uses an asynchronous c
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   continuationManager.unregister(token, (err) => {
@@ -1082,8 +1130,8 @@ Unregisters the continuation management service. This API uses a promise to retu
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
-  import { BusinessError } from '@ohos.base';
+  import { continuationManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let token: number = 1;
   continuationManager.unregister(token)
@@ -1100,6 +1148,8 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void
 
 Unregisters the continuation management service. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
@@ -1113,17 +1163,19 @@ Unregisters the continuation management service. This API uses an asynchronous c
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   try {
@@ -1145,6 +1197,8 @@ unregisterContinuation(token: number): Promise\<void>
 
 Unregisters the continuation management service. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
@@ -1163,18 +1217,20 @@ Unregisters the continuation management service. This API uses a promise to retu
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
-  import { BusinessError } from '@ohos.base';
+  import { continuationManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   let token: number = -1;
   try {
@@ -1193,6 +1249,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](error
 
 Enumerates the device connection states.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
 | Name| Value| Description|
@@ -1205,6 +1263,8 @@ Enumerates the device connection states.
 ## ContinuationMode
 
 Enumerates the continuation modes provided by the device selection module.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 

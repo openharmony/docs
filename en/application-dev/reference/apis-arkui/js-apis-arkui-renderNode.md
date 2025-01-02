@@ -7,11 +7,13 @@ The **RenderNode** module provides APIs for creating a RenderNode in custom draw
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > 
 > **RenderNode** is not available in DevEco Studio Previewer.
+>
+> You are not advised to modify RenderNodes in BuilderNodes.
 
 ## Modules to Import
 
 ```ts
-import { RenderNode } from "@ohos.arkui.node";
+import { RenderNode } from '@kit.ArkUI';
 ```
 
 ## RenderNode
@@ -22,12 +24,14 @@ constructor()
 
 Constructor used to create a RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node";
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
@@ -67,6 +71,8 @@ appendChild(node: RenderNode): void
 
 Appends a child node to this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -78,7 +84,7 @@ Appends a child node to this RenderNode.
 **Example**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
@@ -122,6 +128,8 @@ insertChildAfter(child: RenderNode, sibling: RenderNode | null): void
 
 Inserts a child node after the specified child node of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -134,7 +142,7 @@ Inserts a child node after the specified child node of this RenderNode.
 **Example**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 200, height: 350 };
@@ -186,6 +194,8 @@ removeChild(node: RenderNode): void
 
 Deletes the specified child node from this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -196,7 +206,7 @@ Deletes the specified child node from this RenderNode.
 
 **Example**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 200, height: 350 };
@@ -244,12 +254,14 @@ clearChildren(): void
 
 Clears all child nodes of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 for (let i = 0; i < 10; i++) {
@@ -300,6 +312,8 @@ getChild(index: number): RenderNode | null
 
 Obtains the child node in the specified position of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -317,7 +331,7 @@ Obtains the child node in the specified position of this RenderNode.
 **Example**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 for (let i = 0; i < 10; i++) {
@@ -376,6 +390,8 @@ getFirstChild(): RenderNode | null
 
 Obtains the first child node of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -387,7 +403,7 @@ Obtains the first child node of this RenderNode.
 **Example**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 200, height: 350 };
@@ -444,6 +460,8 @@ getNextSibling(): RenderNode | null
 
 Obtains the next sibling node of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -454,7 +472,7 @@ Obtains the next sibling node of this RenderNode.
 
 **Example**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 200, height: 350 };
@@ -494,7 +512,7 @@ struct Index {
       Button('getNextSibling')
         .onClick(() => {
           const child = renderNode.getChild(1);
-          const nextSibling = child.getNextSibling()
+          const nextSibling = child!.getNextSibling()
           if (child === null || nextSibling === null) {
             console.log('the child or nextChild is null');
           } else {
@@ -513,6 +531,8 @@ getPreviousSibling(): RenderNode | null
 
 Obtains the previous sibling node of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -523,7 +543,7 @@ Obtains the previous sibling node of this RenderNode.
 
 **Example**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 200, height: 350 };
@@ -560,15 +580,15 @@ struct Index {
       NodeContainer(this.myNodeController)
         .width(200)
         .height(350)
-      Button('getNextSibling')
+      Button('getPreviousSibling')
         .onClick(() => {
           const child = renderNode.getChild(1);
-          const previousSibling = child.getPreviousSibling()
+          const previousSibling = child!.getPreviousSibling()
           if (child === null || previousSibling === null) {
-            console.log('the child or nextChild is null');
+            console.log('the child or previousChild is null');
           } else {
             console.log(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
-              `the position of nextSibling is x: ${previousSibling.position.x}, y: ${previousSibling.position.y}`);
+              `the position of previousSibling is x: ${previousSibling.position.x}, y: ${previousSibling.position.y}`);
           }
         })
     }
@@ -582,6 +602,8 @@ set backgroundColor(color: number)
 
 Sets the background color for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -594,6 +616,8 @@ get backgroundColor(): number
 
 Obtains the background color of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -604,7 +628,7 @@ Obtains the background color of this RenderNode.
 
 **Example**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
@@ -644,6 +668,8 @@ set clipToFrame(useClip: boolean)
 
 Sets whether to clip this RenderNode. The value **true** means to clip the RenderNode to its set size.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -656,17 +682,19 @@ get clipToFrame(): boolean
 
 Obtains whether this RenderNode needs to be clipped.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
 | Type   | Description                                               |
 | ------- | --------------------------------------------------- |
-| boolean | Whether the current RenderNode needs to be clipped. The default value is **false**.|
+| boolean | Whether the current RenderNode needs to be clipped. The default value is **true**.|
 
 **Example**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
@@ -711,7 +739,9 @@ struct Index {
 
 set opacity(value: number)
 
-Sets the opacity for this RenderNode.
+Sets the opacity for this RenderNode. If the value passed in is less than **0**, the opacity is set to **0**. If the value passed in is greater than **1**, the opacity is set to **1**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -719,11 +749,13 @@ Sets the opacity for this RenderNode.
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| value  | number | Yes  | Opacity to set.\<br>Value range: [0, 1]|
+| value  | number | Yes  | Opacity to set.<br>Value range: [0, 1]|
 
 get opacity(): number
 
 Obtains the opacity of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -735,7 +767,7 @@ Obtains the opacity of this RenderNode.
 
 **Example**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
@@ -777,6 +809,8 @@ set size(size: Size)
 
 Sets the size for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -789,6 +823,8 @@ get size(): Size
 
 Obtains the size of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -799,7 +835,7 @@ Obtains the size of this RenderNode.
 
 **Example**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -840,6 +876,8 @@ set position(position: Position)
 
 Sets the position for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -852,6 +890,8 @@ get position(): Position
 
 Obtains the position of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -862,7 +902,7 @@ Obtains the position of this RenderNode.
 
 **Example**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -904,6 +944,8 @@ set frame(frame: Frame)
 
 Sets the size and position for this RenderNode. When this parameter is used together with [position](#position) and [size](#size), the one that is set later in time is prioritized.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -916,6 +958,8 @@ get frame(): Frame
 
 Obtains the size and position of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -926,7 +970,7 @@ Obtains the size and position of this RenderNode.
 
 **Example**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -967,6 +1011,8 @@ set pivot(pivot: Pivot)
 
 Sets the pivot for this RenderNode, which affects the scaling and rotation effects of the RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -979,6 +1025,8 @@ get pivot(): Pivot
 
 Obtains the pivot of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -989,7 +1037,7 @@ Obtains the pivot of this RenderNode.
 
 **Example**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1033,6 +1081,8 @@ set scale(scale: Scale)
 
 Sets the scale factor for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -1045,6 +1095,8 @@ get scale(): Scale
 
 Obtains the scale factor of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -1055,7 +1107,7 @@ Obtains the scale factor of this RenderNode.
 
 **Example**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1097,6 +1149,8 @@ set translation(translation: Translation)
 
 Sets the translation amount for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -1109,6 +1163,8 @@ get translation(): Translation
 
 Obtains the translation amount of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -1119,7 +1175,7 @@ Obtains the translation amount of this RenderNode.
 
 **Example**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1161,6 +1217,8 @@ set rotation(rotation: Rotation)
 
 Sets the rotation angle for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -1173,6 +1231,8 @@ get rotation(): Rotation
 
 Obtains the rotation angle of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -1183,7 +1243,7 @@ Obtains the rotation angle of this RenderNode.
 
 **Example**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1223,7 +1283,9 @@ struct Index {
 
 set transform(transform: Matrix4)
 
-Sets the transformation information for this RenderNode.
+Sets the transformation matrix for this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1231,11 +1293,11 @@ Sets the transformation information for this RenderNode.
 
 | Name   | Type                                          | Mandatory| Description                            |
 | --------- | ---------------------------------------------- | ---- | -------------------------------- |
-| transform | [Matrix4](./js-apis-arkui-graphics.md#matrix4) | Yes  | Transformation information to set.|
+| transform | [Matrix4](./js-apis-arkui-graphics.md#matrix4) | Yes  | Transformation matrix to set.|
 
 get transform(): Matrix4
 
-Obtains the transformation information of this RenderNode. The default value is as follows:
+Obtains the transformation matrix of this RenderNode. The default value is as follows:
 ```ts
 [
   1, 0, 0, 0,
@@ -1245,17 +1307,19 @@ Obtains the transformation information of this RenderNode. The default value is 
 ]
 ```
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
 | Type                                          | Description                      |
 | ---------------------------------------------- | -------------------------- |
-| [Matrix4](./js-apis-arkui-graphics.md#matrix4) | Transformation information of the current RenderNode.|
+| [Matrix4](./js-apis-arkui-graphics.md#matrix4) | Transformation matrix of the current RenderNode.|
 
 **Example**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1302,6 +1366,8 @@ set shadowColor(color: number)
 
 Sets the shadow color for this RenderNode, in ARGB format. If [shadowAlpha](#shadowalpha) is set, the opacity is subject to **shadowAlpha**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -1314,6 +1380,8 @@ get shadowColor(): number
 
 Obtains the shadow color of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -1324,7 +1392,7 @@ Obtains the shadow color of this RenderNode.
 
 **Example**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1367,6 +1435,8 @@ set shadowOffset(offset: Offset)
 
 Sets the shadow offset for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -1379,6 +1449,8 @@ get shadowOffset(): Offset
 
 Obtains the shadow offset of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -1390,7 +1462,7 @@ Obtains the shadow offset of this RenderNode.
 **Example**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1428,11 +1500,82 @@ struct Index {
 }
 ```
 
+### label<sup>12+</sup>
+
+set label(label: string)
+
+Sets the label for this RenderNode. If the RenderNode was created with **new**, the set label will appear in the node Inspector information.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                     |
+| ------ | ------ | ---- | ----------------------------------------- |
+| label  | string | Yes  | Label of the RenderNode to set.|
+
+get label(): string
+
+Obtains the label of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type  | Description                                          |
+| ------ | ---------------------------------------------- |
+| string | Label of the current RenderNode.<br>Default value: **""**|
+
+**Example**
+
+```ts
+import {  RenderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    const renderNode: RenderNode | null = this.rootNode.getRenderNode();
+    if (renderNode !== null) {
+      const renderChildNode: RenderNode = new RenderNode();
+      renderChildNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+      renderChildNode.backgroundColor = 0xffff0000;
+      renderChildNode.label = 'customRenderChildNode';
+      console.log('label:', renderChildNode.label);
+      renderNode.appendChild(renderChildNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column() {
+      NodeContainer(this.myNodeController)
+        .width(300)
+        .height(700)
+        .backgroundColor(Color.Gray)
+    }
+  }
+}
+```
 ### shadowAlpha
 
 set shadowAlpha(alpha: number)
 
 Sets the alpha value of the shadow color for this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1446,6 +1589,8 @@ get shadowAlpha(): number
 
 Obtains the alpha value of the shadow color of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -1454,8 +1599,10 @@ Obtains the alpha value of the shadow color of this RenderNode.
 | ------ | ---------------------------------------------- |
 | number | Alpha value of the shadow color of the current RenderNode. The default value is **0**.|
 
+**Example**
+
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1500,6 +1647,8 @@ set shadowElevation(elevation: number)
 
 Sets the shadow elevation for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -1512,6 +1661,8 @@ get shadowElevation(): number
 
 Obtains the shadow elevation of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -1520,8 +1671,10 @@ Obtains the shadow elevation of this RenderNode.
 | ------ | ------------------------------------- |
 | number | Shadow elevation of the current RenderNode. The default value is **0**.|
 
+**Example**
+
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
@@ -1567,6 +1720,8 @@ set shadowRadius(radius: number)
 
 Sets the shadow blur radius for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -1579,6 +1734,8 @@ get shadowRadius(): number
 
 Obtains the shadow blur radius of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -1590,7 +1747,7 @@ Obtains the shadow blur radius of this RenderNode.
 **Example**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xff00ff00;
@@ -1636,6 +1793,8 @@ draw(context: DrawContext): void
 
 Performs drawing. You need to implement this API. It is called when the RenderNode performs drawing.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -1650,8 +1809,8 @@ Code in ArkTS:
 
 ```ts
 // Index.ets
-import bridge from "libentry.so" // This .so file is compiled and generated by you using the N-API.
-import { RenderNode, DrawContext, NodeController, FrameNode } from "@ohos.arkui.node"
+import bridge from "libentry.so" // This .so file is compiled and generated by you using the Node-API.
+import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 
 class MyRenderNode extends RenderNode {
   draw(context: DrawContext) {
@@ -1689,7 +1848,7 @@ struct Index {
 }
 ```
 
-The C++ side can obtain the canvas through the N-API and perform subsequent custom drawing operations.
+The C++ side can obtain the canvas through the Node-API and perform subsequent custom drawing operations.
 
 ```c++
 // native_bridge.cpp
@@ -1721,7 +1880,7 @@ static napi_value OnDraw(napi_env env, napi_callback_info info)
     int32_t height;
     napi_get_value_int32(env, args[3], &height);
     
-    // Pass in information such as the canvas, height, and width to the drawing API for customized drawing.
+    // Pass in information such as the canvas, height, and width to the drawing API for custom drawing.
     auto path = OH_Drawing_PathCreate();
     OH_Drawing_PathMoveTo(path, width / 4, height / 4);
     OH_Drawing_PathLineTo(path, width * 3 / 4, height / 4);
@@ -1768,6 +1927,9 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 ```
 
 Add the following content to the **src/main/cpp/CMakeLists.txt** file of the project:
+
+<!--code_no_check-->
+
 ```cmake
 # the minimum version of CMake.
 cmake_minimum_required(VERSION 3.4.1)
@@ -1785,8 +1947,11 @@ target_link_libraries(entry PUBLIC libnative_drawing.so)
 ```
 
 In addition, add the definition of the custom drawing API on the ArkTs side to the **src/main/cpp/types/libentry/index.d.ts** file of the project. The following is an example:
+
+<!--code_no_check-->
+
 ```ts
-import { DrawContext } from "@ohos.arkui.node"
+import { DrawContext } from '@kit.ArkUI';
 
 export const nativeOnDraw: (id: number, context: DrawContext, width: number, height: number) => number;
 ```
@@ -1797,13 +1962,15 @@ invalidate(): void
 
 Triggers the re-rendering of this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
 
 ```ts
-import bridge from "libentry.so" // This .so file is compiled and generated by you using the N-API.
-import { RenderNode, DrawContext, FrameNode, NodeController } from "@ohos.arkui.node"
+import bridge from "libentry.so" // This .so file is compiled and generated by you using the Node-API.
+import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 
 class MyRenderNode extends RenderNode {
   draw(context: DrawContext) {
@@ -1858,17 +2025,21 @@ set borderStyle(style: Edges\<BorderStyle>)
 
 Sets the border style for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type                                                                                                  | Mandatory| Description                  |
 | ------ | ------------------------------------------------------------------------------------------------------ | ---- | ---------------------- |
-| style  | [Edges](./js-apis-arkui-graphics.md#edges12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | Yes  | Border style of the RenderNode.|
+| style  | [Edges](./js-apis-arkui-graphics.md#edgest12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | Yes  | Border style of the RenderNode.|
 
 get borderStyle(): Edges\<BorderStyle>
 
 Obtains the border style of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1876,11 +2047,11 @@ Obtains the border style of this RenderNode.
 
 | Type                                                                                                  | Description                  |
 | ------------------------------------------------------------------------------------------------------ | ---------------------- |
-| [Edges](./js-apis-arkui-graphics.md#edges12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | Border style of the RenderNode.|
+| [Edges](./js-apis-arkui-graphics.md#edgest12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | Border style of the RenderNode.|
 
 **Example**
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
@@ -1929,17 +2100,21 @@ set borderWidth(width: Edges\<number>)
 
 Sets the border width for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type                                               | Mandatory| Description                  |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
-| width  | [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | Yes  | Border width of the RenderNode.|
+| width  | [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | Yes  | Border width of the RenderNode, in vp.|
 
 get borderWidth(): Edges\<number>
 
 Obtains the border width of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1947,12 +2122,12 @@ Obtains the border width of this RenderNode.
 
 | Type                                               | Description                  |
 | --------------------------------------------------- | ---------------------- |
-| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | Border width of the RenderNode.|
+| [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | Border width of the RenderNode. The default width of all borders is 0 vp.|
 
 **Example**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
@@ -1995,17 +2170,21 @@ set borderColor(color: Edges\<number>)
 
 Sets the border color for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type                                               | Mandatory| Description                  |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
-| color  | [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | Yes  | Border color of the RenderNode.|
+| color  | [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | Yes  | Border color of the RenderNode.|
 
 get borderColor(): Edges\<number>
 
 Obtains the border color of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -2013,12 +2192,12 @@ Obtains the border color of this RenderNode.
 
 | Type                                               | Description                  |
 | --------------------------------------------------- | ---------------------- |
-| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | Border color of the RenderNode.|
+| [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | Border color of the RenderNode. By default, the color of all borders is 0XFF000000.|
 
 **Example**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
@@ -2062,18 +2241,22 @@ set borderRadius(radius: BorderRadiuses)
 
 Sets the border corner radius for this RenderNode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type                                                        | Mandatory| Description                  |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------- |
-| radius | [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | Yes  | Border corner radius of the RenderNode.|
+| radius | [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses12) | Yes  | Border corner radius of the RenderNode, in vp.|
 
 
 get borderRadius(): BorderRadiuses
 
 Obtains the border corner radius of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -2081,12 +2264,12 @@ Obtains the border corner radius of this RenderNode.
 
 | Type                                                        | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | Border corner radius of the RenderNode.|
+| [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses12) | Border corner radius of the RenderNode. By default, the corner radius of all borders is 0 vp.|
 
 **Example**
 
 ```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
@@ -2127,7 +2310,9 @@ struct Index {
 
 set shapeMask(shapeMask: ShapeMask)
 
-Sets the shape mask for this RenderNode.
+Sets the mask for this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -2135,7 +2320,7 @@ Sets the shape mask for this RenderNode.
 
 | Name   | Type                                              | Mandatory| Description              |
 | --------- | -------------------------------------------------- | ---- | ------------------ |
-| shapeMask | [ShapeMask](./js-apis-arkui-graphics.md#shapemask12) | Yes  | Shape mask of the RenderNode. |
+| shapeMask | [ShapeMask](./js-apis-arkui-graphics.md#shapemask12) | Yes  | Shape mask of the RenderNode.|
 
 get shapeMask(): ShapeMask
 
@@ -2147,12 +2332,12 @@ Obtains the shape mask of this RenderNode.
 
 | Type                                              | Description                  |
 | -------------------------------------------------- | ---------------------- |
-| [ShapeMask](./js-apis-arkui-graphics.md#shapemask12) | Shape mask of the RenderNode. |
+| [ShapeMask](./js-apis-arkui-graphics.md#shapemask12) | Shape mask of the RenderNode.|
 
 **Example**
 
 ```ts
-import { RenderNode, ShapeMask, FrameNode, NodeController } from "@ohos.arkui.node";
+import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
 const mask = new ShapeMask();
 mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
@@ -2178,6 +2363,367 @@ class MyNodeController extends NodeController {
       rootRenderNode.appendChild(renderNode);
     }
 
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController)
+    }
+  }
+}
+```
+
+### shapeClip<sup>12+</sup>
+
+set shapeClip(shapeClip: ShapeClip)
+
+Sets the clipping shape for this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name   | Type                                              | Mandatory| Description              |
+| --------- | -------------------------------------------------- | ---- | ------------------ |
+| shapeClip | [ShapeClip](./js-apis-arkui-graphics.md#shapeclip12) | Yes  | Clipping shape of the RenderNode.|
+
+get shapeClip(): ShapeClip
+
+Obtains the clipping shape for this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type                                              | Description                  |
+| -------------------------------------------------- | ---------------------- |
+| [ShapeClip](./js-apis-arkui-graphics.md#shapeclip12) | Clipping shape of the RenderNode.|
+
+**Example**
+
+```ts
+import { RenderNode, FrameNode, NodeController, ShapeMask, ShapeClip } from '@kit.ArkUI';
+
+const clip = new ShapeClip();
+clip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
+
+const renderNode = new RenderNode();
+renderNode.frame = {
+  x: 0,
+  y: 0,
+  width: 150,
+  height: 150
+};
+renderNode.backgroundColor = 0XFF00FF00;
+renderNode.shapeClip = clip;
+const shapeClip = renderNode.shapeClip;
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column() {
+      NodeContainer(this.myNodeController)
+        .borderWidth(1)
+      Button("setRectShape")
+        .onClick(() => {
+          shapeClip.setRectShape({
+            left: 0,
+            right: 150,
+            top: 0,
+            bottom: 150
+          });
+          renderNode.shapeClip = shapeClip;
+        })
+      Button("setRoundRectShape")
+        .onClick(() => {
+          renderNode.shapeClip.setRoundRectShape({
+            rect: {
+              left: 0,
+              top: 0,
+              right: vp2px(150),
+              bottom: vp2px(150)
+            },
+            corners: {
+              topLeft: { x: 32, y: 32 },
+              topRight: { x: 32, y: 32 },
+              bottomLeft: { x: 32, y: 32 },
+              bottomRight: { x: 32, y: 32 }
+            }
+          });
+          renderNode.shapeClip = renderNode.shapeClip;
+        })
+      Button("setCircleShape")
+        .onClick(() => {
+          renderNode.shapeClip.setCircleShape({ centerY: 75, centerX: 75, radius: 75 });
+          renderNode.shapeClip = renderNode.shapeClip;
+
+        })
+      Button("setOvalShape")
+        .onClick(() => {
+          renderNode.shapeClip.setOvalShape({
+            left: 0,
+            right: vp2px(150),
+            top: 0,
+            bottom: vp2px(100)
+          });
+          renderNode.shapeClip = renderNode.shapeClip;
+        })
+      Button("setCommandPath")
+        .onClick(() => {
+          renderNode.shapeClip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
+          renderNode.shapeClip = renderNode.shapeClip;
+        })
+    }
+  }
+}
+```
+
+### dispose<sup>12+</sup>
+
+dispose(): void
+
+Releases this RenderNode immediately.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Example**
+
+```ts
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
+
+const renderNode = new RenderNode();
+renderNode.frame = { x: 0, y: 100, width: 100, height: 100 };
+renderNode.backgroundColor = 0xffff0000;
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode!.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.size = { width: 200, height: 200 };
+      rootRenderNode.backgroundColor = 0xff00ff00;
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+
+  disposeRenderNode() {
+    const rootRenderNode = this.rootNode!.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.removeChild(renderNode);
+    }
+    renderNode.dispose();
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 4 }) {
+      NodeContainer(this.myNodeController)
+      Button('RenderNode dispose')
+        .onClick(() => {
+          this.myNodeController.disposeRenderNode();
+        })
+        .width('100%')
+    }
+  }
+}
+```
+
+### markNodeGroup<sup>12+</sup>
+
+set markNodeGroup(isNodeGroup: boolean)
+
+Sets whether to prioritize the drawing of this RenderNode and its childe nodes. If the input parameter is set to **true**, attributes such as opacity will be composited after the node has been drawn. The configuration result is as follows.
+
+![markNodeGroup](./figures/renderNode-markNodeGroup.png)
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name   | Type                                              | Mandatory| Description              |
+| --------- | -------------------------------------------------- | ---- | ------------------ |
+| isNodeGroup | boolean | Yes  | Whether to prioritize the drawing of the current RenderNode and its childe nodes.|
+
+get markNodeGroup(): boolean
+
+Obtains whether to prioritize the drawing of this RenderNode and its childe nodes.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type   | Description                                       |
+| ------- | ------------------------------------------- |
+| boolean | Whether to prioritize the drawing of the current RenderNode and its childe nodes. The default value is **false**.|
+
+**Example**
+
+```ts
+import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class MyRenderNode extends RenderNode {
+  draw(context: DrawContext) {
+    const canvas = context.canvas;
+    const brush = new drawing.Brush();
+    brush.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    canvas.attachBrush(brush);
+    canvas.drawRect({ left: 0, right: 200, top: 0, bottom: 200 });
+    canvas.detachBrush();
+
+    brush.setColor({ alpha: 255, red: 0, green: 255, blue: 0 });
+    canvas.attachBrush(brush);
+    canvas.drawRect({ left: 100, right: 300, top: 100, bottom: 300 });
+    canvas.detachBrush();
+  }
+}
+
+const renderNode = new MyRenderNode();
+renderNode.frame = { x: 100, y: 100, width: 200, height: 200 };
+renderNode.backgroundColor = 0xff0000ff;
+renderNode.markNodeGroup = true;
+renderNode.opacity = 0.5;
+
+const isNodeGroup = renderNode.markNodeGroup;
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController)
+    }
+  }
+}
+```
+
+### lengthMetricsUnit<sup>12+</sup>
+
+set lengthMetricsUnit(unit: LengthMetricsUnit)
+
+Sets the metric unit used by attributes of this RenderNode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                                | Mandatory| Description                              |
+| ------ | -------------------------------------------------------------------- | ---- | ---------------------------------- |
+| unit   | [LengthMetricsUnit](./js-apis-arkui-graphics.md#lengthmetricsunit12) | Yes  | Metric unit used by attributes of the current RenderNode.|
+
+get lengthMetricsUnit(): LengthMetricsUnit
+
+Obtains the metric unit used by attributes of this RenderNode.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type   | Description                                       |
+| ------- | ------------------------------------------- |
+| [LengthMetricsUnit](./js-apis-arkui-graphics.md#lengthmetricsunit12) | Metric unit used by attributes of this RenderNode. The default value is **LengthMetricsUnit.DEFAULT**.|
+
+**Example**
+
+```ts
+import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+import { LengthMetricsUnit } from '@ohos.arkui.node';
+
+class BaseRenderNode extends RenderNode {
+  constructor() {
+    super();
+    this.lengthMetricsUnit = LengthMetricsUnit.PX;
+  }
+}
+
+class MyRenderNode extends BaseRenderNode {
+  draw(context: DrawContext) {
+    const canvas = context.canvas;
+    const brush = new drawing.Brush();
+    brush.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    canvas.attachBrush(brush);
+    canvas.drawRect({ left: 0, right: 200, top: 0, bottom: 200 });
+    canvas.detachBrush();
+  }
+}
+
+const renderNode = new MyRenderNode();
+renderNode.frame = { x: 100, y: 100, width: 200, height: 200 };
+renderNode.backgroundColor = 0xff0000ff;
+renderNode.rotation = { x: 0, y: 0, z: 45 };
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
     return this.rootNode;
   }
 }

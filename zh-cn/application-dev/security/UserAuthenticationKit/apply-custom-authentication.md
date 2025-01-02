@@ -40,37 +40,41 @@
 当前示例仅展示如何配置界面、选择切换到自定义认证界面，具体拉起的页面及对应页面的实现，请开发者自行实现，代码插入位置可参考注释提示。
 
 ```ts
-import type {BusinessError} from '@ohos.base';
-import userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from  '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
-const authParam: userAuth.AuthParam = {
-  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userAuth.UserAuthType.FACE],
-  authTrustLevel: userAuth.AuthTrustLevel.ATL3,
-};
-// 配置认证界面需设置navigationButtonText
-const widgetParam: userAuth.WidgetParam = {
-  title: '请验证身份',
-  navigationButtonText: '使用密码',
-};
 try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.FACE],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  // 配置认证界面需设置navigationButtonText
+  const widgetParam: userAuth.WidgetParam = {
+    title: '请验证身份',
+    navigationButtonText: '使用密码',
+  };
   // 获取认证对象
-  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
   // 订阅认证结果
   userAuthInstance.on('result', {
     onResult(result) {
       // 若收到ResultCode值为12500000，代表操作成功
-      console.log('userAuthInstance callback result = ' + JSON.stringify(result));
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
       // 若收到ResultCode值为12500011,说明用户点击了导航按钮想切换自定义认证方式
       if (result.result == 12500011) {
         //请开发者自行完成拉起自定义认证界面的实现
       }
     }
   });
-  console.log('auth on success');
+  console.info('auth on success');
   userAuthInstance.start();
-  console.log('auth start success');
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);

@@ -72,7 +72,7 @@ HiLog模块实现日志打印功能。
 
 日志所对应的业务领域，用于标识业务的子系统、模块。
 
-16进制整数，有效范围0x0~0xFFFF，超过自动截掉高位。
+16进制整数，有效范围为0x0~0xFFFF，超过自动截掉高位。
 
 **起始版本：** 8
 
@@ -85,7 +85,7 @@ HiLog模块实现日志打印功能。
 
 **描述**
 
-字符串常量，标识调用所在的类或者业务。
+字符串常量，标识调用所在的类或者业务。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。
 
 **起始版本：** 8
 
@@ -246,8 +246,8 @@ typedef void(* LogCallback) (const LogType type, const LogLevel level, const uns
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。 | 
 | level | 日志级别，日志级别包括LOG_DEBUG、LOG_INFO、LOG_WARN、LOG_ERROR、LOG_FATAL。 | 
-| domain | 日志业务领域，16进制整数，范围0x0~0xFFFF。 | 
-| tag | 日志TAG，字符串，标识调用所在的类或者业务。 | 
+| domain | 日志业务领域，16进制整数，范围为0x0~0xFFFF。 |
+| tag | 日志TAG，字符串，标识调用所在的类或者业务。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。 | 
 | msg | 日志内容，格式化之后的日志字符串。 | 
 
 
@@ -354,8 +354,8 @@ int OH_LOG_Print (LogType type, LogLevel level, unsigned int domain, const char 
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。 | 
 | level | 日志级别，日志级别包括LOG_DEBUG、LOG_INFO、LOG_WARN、LOG_ERROR、LOG_FATAL。 | 
-| domain | 日志业务领域，16进制整数，范围0x0~0xFFFF。 | 
-| tag | 日志TAG，字符串，标识调用所在的类或者业务。 | 
+| domain | 日志业务领域，16进制整数，范围为0x0~0xFFFF。 |
+| tag | 日志TAG，字符串，标识调用所在的类或者业务。 tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。| 
 | fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。 | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。 | 
 
@@ -383,3 +383,110 @@ void OH_LOG_SetCallback (LogCallback callback)
 | 名称 | 描述 | 
 | -------- | -------- |
 | callback | 用户实现的回调函数。如果不需要处理hilog日志，可以传输空指针。 | 
+
+### OH_LOG_SetMinLogLevel()
+
+```
+void OH_LOG_SetMinLogLevel(LogLevel level)
+```
+**描述**
+
+设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别，[全局日志级别](..\..\dfx\hilog.md#查看和设置日志级别)默认为Info。
+
+**起始版本** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| level | 指定日志level。 | 
+
+
+### OH_LOG_PrintMsg()
+
+```
+int OH_LOG_PrintMsg(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *message)
+```
+
+**描述**
+
+写日志接口。
+
+输出常量字符串，并指定domain、tag和日志级别。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| type | 日志类型，三方应用日志类型为LOG_APP。 | 
+| level | 日志级别，日志级别包括LOG_DEBUG、LOG_INFO、LOG_WARN、LOG_ERROR、LOG_FATAL。 | 
+| domain | 日志业务领域，16进制整数，范围为0x0~0xFFFF。 |
+| tag | 日志TAG，字符串，标识调用所在的类或者业务。 tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。| 
+| message | 日志字符串。 | 
+
+**返回：**
+
+大于等于0表示成功；小于0表示失败。
+
+
+### OH_LOG_PrintMsgByLen()
+
+```
+int OH_LOG_PrintMsgByLen(LogType type, LogLevel level, unsigned int domain, const char *tag, size_t tagLen, const char *message, size_t messageLen)
+```
+
+**描述**
+
+写日志接口。
+
+输出指定domain、tag和日志级别的常量日志字符串，需要指定tag及字符串长度，和OH_LOG_PrintMsg区别是可以接受不带结束符的字符串。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| type | 日志类型，三方应用日志类型为LOG_APP。 | 
+| level | 日志级别，日志级别包括LOG_DEBUG、LOG_INFO、LOG_WARN、LOG_ERROR、LOG_FATAL。 | 
+| domain | 日志业务领域，16进制整数，范围为0x0~0xFFFF。 |
+| tag | 日志TAG，字符串，标识调用所在的类或者业务。 tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。| 
+| tagLen | tag长度，小于32。 |
+| message | 日志字符串。 | 
+| messageLen | 日志字符串长度，小于3500。 |
+
+**返回：**
+
+大于等于0表示成功；小于0表示失败。
+
+
+### OH_LOG_VPrint()
+
+```
+int OH_LOG_VPrint(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, va_list ap)
+```
+
+**描述**
+
+写日志接口。
+
+指定日志类型、日志级别、业务领域、TAG，按照类printf格式类型和隐私指示确定需要输出的变参，变参为va_list类型。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| type | 日志类型，三方应用日志类型为LOG_APP。 | 
+| level | 日志级别，日志级别包括LOG_DEBUG、LOG_INFO、LOG_WARN、LOG_ERROR、LOG_FATAL。 | 
+| domain | 日志业务领域，16进制整数，范围为0x0~0xFFFF。 |
+| tag | 日志TAG，字符串，标识调用所在的类或者业务。 tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。| 
+| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。 | 
+| ap | va_list类型，与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。 | 
+
+**返回：**
+
+大于等于0表示成功；小于0表示失败。

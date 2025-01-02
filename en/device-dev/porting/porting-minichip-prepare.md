@@ -206,9 +206,9 @@ During porting, the vendor must create a working directory in the project based 
    | subsystem | Subsystem, which must be one supported by the OS. For details about the subsystem definition, see the description file of each subsystem in **build/lite/components**.|
    | components | Components of the subsystem. For details about the components supported by a specific subsystem, see the **build/lite/components/{*Subsystem*}.json** file.|
    | features | Features of the component configured for the product. For details, see the **BUILD.gn** file corresponding to the subsystem source code directory.|
-   | vendor_adapter_dir | Directory used for adaptation to IoT peripherals and UtilsFile file read and write capabilities. Generally, the value points to a directory under **device**. For details, see Step 2 in [Porting the File Subsystem] (porting-minichip-subsys-filesystem.md#example).|
+   | vendor_adapter_dir | Directory used for adaptation to IoT peripherals and UtilsFile file read and write capabilities. Generally, the value points to a directory under **device**. For details, see Step 2 in [Porting the File Subsystem](porting-minichip-subsys-filesystem.md#example).|
    | third_party_dir | Third-party software directory of the chip vendor, such as **mbedtls** and **lwip**. If the third-party software provided by OpenHarmony is used, leave this parameter empty or refer to the configuration for **hispark_pegasus**.|
-   | product_adapter_dir | Directory used for adaptation to hal_token and system parameters. Generally, the value points to a directory under **vendor**. For details, see Step 1 in [Porting the Startup Subsystem] (porting-minichip-subsys-startup.md#example).|
+   | product_adapter_dir | Directory used for adaptation to hal_token and system parameters. Generally, the value points to a directory under **vendor**. For details, see Step 1 in [Porting the Startup Subsystem](porting-minichip-subsys-startup.md#example).|
    
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
    >

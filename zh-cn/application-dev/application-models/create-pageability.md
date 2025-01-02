@@ -1,46 +1,47 @@
 # 创建PageAbility
 
 
-开发者需要重写app.js/app.ets中的生命周期回调函数，开发者通过DevEco Studio开发平台创建PageAbility时，DevEco Studio会在app.js/app.ets中默认生成onCreate()和onDestroy()方法，其他方法需要开发者自行实现。接口说明参见前述章节，创建PageAbility示例如下：
+通过DevEco Studio开发平台创建PageAbility时，DevEco Studio会在app.js/app.ets中默认生成onCreate()和onDestroy()方法，其他方法需要开发者自行实现。接口说明参见前述章节，创建PageAbility示例如下：
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import Logger from '../utils/Logger';
+import hilog from '@ohos.hilog';
 
 const TAG: string = 'MainAbility';
+const domain: number = 0xFF00;
 
 class MainAbility {
   onCreate() {
     // 获取context并调用相关方法
     let context = featureAbility.getContext();
     context.getBundleName((data, bundleName) => {
-      Logger.info(TAG, 'ability bundleName:' + bundleName);
+      hilog.info(domain, TAG, 'ability bundleName:' ,bundleName);
     });
-    Logger.info(TAG, 'Application onCreate');
+    hilog.info(domain, TAG, 'Application onCreate');
   }
 
   onDestroy() {
-    Logger.info(TAG, 'Application onDestroy');
+    hilog.info(domain, TAG, 'Application onDestroy');
   }
 
   onShow(): void {
-    Logger.info(TAG, 'Application onShow');
+    hilog.info(domain, TAG, 'Application onShow');
   }
 
   onHide(): void {
-    Logger.info(TAG, 'Application onHide');
+    hilog.info(domain, TAG, 'Application onHide');
   }
 
   onActive(): void {
-    Logger.info(TAG, 'Application onActive');
+    hilog.info(domain, TAG, 'Application onActive');
   }
 
   onInactive(): void {
-    Logger.info(TAG, 'Application onInactive');
+    hilog.info(domain, TAG, 'Application onInactive');
   }
 
   onNewWant() {
-    Logger.info(TAG, 'Application onNewWant');
+    hilog.info(domain, TAG, 'Application onNewWant');
   }
 }
 
@@ -103,26 +104,27 @@ FA模型中，可以通过featureAbility的getContext接口获取应用上下文
 import featureAbility from '@ohos.ability.featureAbility';
 import fs from '@ohos.file.fs';
 import promptAction from '@ohos.promptAction';
-import Logger from '../../utils/Logger';
+import hilog from '@ohos.hilog';
 
 const TAG: string = 'PagePageAbilityFirst';
+const domain: number = 0xFF00;
 ```
 ```ts
 (async (): Promise<void> => {
   let dir: string;
   try {
-    Logger.info(TAG, 'Begin to getOrCreateDistributedDir');
+    hilog.info(domain, TAG, 'Begin to getOrCreateDistributedDir');
     dir = await featureAbility.getContext().getOrCreateDistributedDir();
     promptAction.showToast({
       message: dir
     });
-    Logger.info(TAG, 'distribute dir is ' + dir);
+    hilog.info(domain, TAG, 'distribute dir is ' + dir);
     let fd: number;
     let path = dir + '/a.txt';
     fd = fs.openSync(path, fs.OpenMode.READ_WRITE).fd;
     fs.close(fd);
   } catch (error) {
-    Logger.error(TAG, `getOrCreateDistributedDir failed with : ${error}`);
+    hilog.error(domain, TAG, 'getOrCreateDistributedDir failed with : ' + error);
   }
 })()
 ```

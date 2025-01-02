@@ -10,7 +10,7 @@ EventHub模块提供了事件中心，提供订阅、取消订阅、触发事件
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## 使用说明
@@ -18,16 +18,16 @@ import common from '@ohos.app.ability.common';
 在使用eventHub的功能前，需要通过UIAbility实例的成员变量context获取。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-    eventFunc(){
-        console.log('eventFunc is called');
-    }
+  eventFunc() {
+    console.log('eventFunc is called');
+  }
 
-    onCreate() {
-        this.context.eventHub.on('myEvent', this.eventFunc);
-    }
+  onCreate() {
+    this.context.eventHub.on('myEvent', this.eventFunc);
+  }
 }
 ```
 EventHub不是全局的事件中心，不同的context对象拥有不同的EventHub对象，事件的订阅、取消订阅、触发都作用在某一个具体的EventHub对象上，因此不能用于虚拟机间或者进程间的事件传递。
@@ -41,6 +41,8 @@ on(event: string, callback: Function): void;
 >
 >  callback被emit触发时，调用方是EventHub对象，如果要修改callback中this的指向，可以使用箭头函数。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -50,32 +52,90 @@ on(event: string, callback: Function): void;
 | event | string | 是 | 事件名称。 |
 | callback | Function | 是 | 事件回调，事件触发后调用。 |
 
-**示例：**
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例1：**
+callback被emit触发时，调用方是EventHub对象。EventHub对象没有value属性，因此结果是undefined。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-    value: number = 12;
+  value: number = 12;
 
-    onCreate() {
-        this.context.eventHub.on('myEvent', this.eventFunc);
-        // 支持使用匿名函数订阅事件
-        this.context.eventHub.on('myEvent', () => {
-            console.log(`anonymous eventFunc is called, value: ${this.value}`);
-        });
+  onCreate() {
+    try {
+      this.context.eventHub.on('myEvent', this.eventFunc);
+    } catch (e) {
+      let code: number = (e as BusinessError).code;
+      let msg: string = (e as BusinessError).message;
+      console.error(`EventHub emit error, code: ${code}, msg: ${msg}`);
     }
+  }
 
-    onForeground() {
-        // 结果：
-        // eventFunc is called, value: undefined
-        // anonymous eventFunc is called, value: 12
-        this.context.eventHub.emit('myEvent');
+  onForeground() {
+    try {
+      // 结果：
+      // eventFunc is called, value: undefined
+      this.context.eventHub.emit('myEvent');
+    } catch (e) {
+      let code: number = (e as BusinessError).code;
+      let msg: string = (e as BusinessError).message;
+      console.error(`EventHub emit error, code: ${code}, msg: ${msg}`);
     }
+  }
 
-    eventFunc() {
-        console.log(`eventFunc is called, value: ${this.value}`);
+  eventFunc() {
+    console.log(`eventFunc is called, value: ${this.value}`);
+  }
+}
+```
+
+**示例2：**
+callback使用箭头函数时，调用方是EntryAbility对象。EntryAbility对象里存在value属性，因此结果是12。
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  value: number = 12;
+
+  onCreate() {
+    try {
+      // 支持使用匿名函数订阅事件
+      this.context.eventHub.on('myEvent', () => {
+        console.log(`anonymous eventFunc is called, value: ${this.value}`);
+      });
+    } catch (e) {
+      let code: number = (e as BusinessError).code;
+      let msg: string = (e as BusinessError).message;
+      console.error(`EventHub emit error, code: ${code}, msg: ${msg}`);
     }
+  }
+
+  onForeground() {
+    try {
+      // 结果：
+      // anonymous eventFunc is called, value: 12
+      this.context.eventHub.emit('myEvent');
+    } catch (e) {
+      let code: number = (e as BusinessError).code;
+      let msg: string = (e as BusinessError).message;
+      console.error(`EventHub emit error, code: ${code}, msg: ${msg}`);
+    }
+  }
+
+  eventFunc() {
+    console.log(`eventFunc is called, value: ${this.value}`);
+  }
 }
 ```
 
@@ -87,6 +147,8 @@ off(event: string, callback?: Function): void;
  - 传入callback：取消指定的callback对指定事件的订阅，当该事件触发后，将不会回调该callback。
  - 不传callback：取消所有callback对指定事件的订阅。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -96,27 +158,42 @@ off(event: string, callback?: Function): void;
 | event | string | 是 | 事件名称。 |
 | callback | Function | 否 | 事件回调。如果不传callback，则取消订阅该事件下所有callback。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-    onCreate() {
-        this.context.eventHub.on('myEvent', this.eventFunc1);
-        this.context.eventHub.off('myEvent', this.eventFunc1); // 取消eventFunc1对myEvent事件的订阅
-        this.context.eventHub.on('myEvent', this.eventFunc1);
-        this.context.eventHub.on('myEvent', this.eventFunc2);
-        this.context.eventHub.off('myEvent');  // 取消eventFunc1和eventFunc2对myEvent事件的订阅
+  onCreate() {
+    try {
+      this.context.eventHub.on('myEvent', this.eventFunc1);
+      this.context.eventHub.off('myEvent', this.eventFunc1); // 取消eventFunc1对myEvent事件的订阅
+      this.context.eventHub.on('myEvent', this.eventFunc1);
+      this.context.eventHub.on('myEvent', this.eventFunc2);
+      this.context.eventHub.off('myEvent'); // 取消eventFunc1和eventFunc2对myEvent事件的订阅
+    } catch (e) {
+      let code: number = (e as BusinessError).code;
+      let msg: string = (e as BusinessError).message;
+      console.error(`EventHub emit error, code: ${code}, msg: ${msg}`);
     }
+  }
 
-    eventFunc1() {
-        console.log('eventFunc1 is called');
-    }
+  eventFunc1() {
+    console.log('eventFunc1 is called');
+  }
 
-    eventFunc2() {
-        console.log('eventFunc2 is called');
-    }
+  eventFunc2() {
+    console.log('eventFunc2 is called');
+  }
 }
 ```
 
@@ -125,6 +202,8 @@ export default class EntryAbility extends UIAbility {
 emit(event: string, ...args: Object[]): void;
 
 触发指定事件。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -135,30 +214,45 @@ emit(event: string, ...args: Object[]): void;
 | event | string | 是 | 事件名称。 |
 | ...args | Object[] | 否 | 可变参数，事件触发时，传递给回调函数的参数。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-    onCreate() {
-        this.context.eventHub.on('myEvent', this.eventFunc);
-    }
+  onCreate() {
+    this.context.eventHub.on('myEvent', this.eventFunc);
+  }
 
-    onDestroy() {
-        // 结果：
-        // eventFunc is called,undefined,undefined
-        this.context.eventHub.emit('myEvent');
-        // 结果：
-        // eventFunc is called,1,undefined
-        this.context.eventHub.emit('myEvent', 1);
-        // 结果：
-        // eventFunc is called,1,2
-        this.context.eventHub.emit('myEvent', 1, 2);
+  onDestroy() {
+    try {
+      // 结果：
+      // eventFunc is called,undefined,undefined
+      this.context.eventHub.emit('myEvent');
+      // 结果：
+      // eventFunc is called,1,undefined
+      this.context.eventHub.emit('myEvent', 1);
+      // 结果：
+      // eventFunc is called,1,2
+      this.context.eventHub.emit('myEvent', 1, 2);
+    } catch (e) {
+      let code: number = (e as BusinessError).code;
+      let msg: string = (e as BusinessError).message;
+      console.error(`EventHub emit error, code: ${code}, msg: ${msg}`);
     }
+  }
 
-    eventFunc(argOne: number, argTwo: number) {
-        console.log(`eventFunc is called, ${argOne}, ${argTwo}`);
-    }
+  eventFunc(argOne: number, argTwo: number) {
+    console.log(`eventFunc is called, ${argOne}, ${argTwo}`);
+  }
 }
 ```

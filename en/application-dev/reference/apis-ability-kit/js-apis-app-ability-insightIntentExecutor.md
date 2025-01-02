@@ -11,18 +11,20 @@ The **InsightIntentExecutor** module provides the base class for InsightIntent c
 ## Modules to Import
 
 ```ts
-import InsightIntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
+import { InsightIntentExecutor } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## Properties
 
 **Model restriction**: This API can be used only in the stage model.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [InsightIntentContext](js-apis-app-ability-insightIntentContext.md) | No| Yes| InsightIntent call execution context.|
+| context | [InsightIntentContext](js-apis-app-ability-insightIntentContext.md) | No| No| InsightIntent call execution context.|
 
 ## InsightIntentExecutor.onExecuteInUIAbilityForegroundMode
 
@@ -32,6 +34,8 @@ onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, 
 Called when the InsightIntent call displays a UIAbility in the foreground. Both synchronous calls and asynchronous calls using Promise are supported.
 
 **Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -54,12 +58,11 @@ Called when the InsightIntent call displays a UIAbility in the foreground. Both 
 
 The code snippet below shows the synchronous call that returns the InsightIntent call result:
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import window from '@ohos.window';
-  import hilog from '@ohos.hilog';
+  import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, pageLoader: window.WindowStage): insightIntent.ExecuteResult {
       let result: insightIntent.ExecuteResult;
       if (name !== 'SupportedInsightIntentName') {
@@ -96,10 +99,9 @@ The code snippet below shows the synchronous call that returns the InsightIntent
 
 The code snippet below shows the promise-based asynchronous call that returns the InsightIntent call result:
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import window from '@ohos.window';
-  import hilog from '@ohos.hilog';
+  import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   async function executeInsightIntent(param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
     return new Promise((resolve, reject) => {
@@ -113,7 +115,7 @@ The code snippet below shows the promise-based asynchronous call that returns th
     })
   }
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     async onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, pageLoader: window.WindowStage): Promise<insightIntent.ExecuteResult> {
       let result: insightIntent.ExecuteResult;
       if (name !== 'SupportedInsightIntentName') {
@@ -143,6 +145,8 @@ Called when the InsightIntent call displays a UIAbility in the background. Both 
 
 **Model restriction**: This API can be used only in the stage model.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
@@ -163,10 +167,9 @@ Called when the InsightIntent call displays a UIAbility in the background. Both 
 
 The code snippet below shows the synchronous call that returns the InsightIntent call result:
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
+  import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>): insightIntent.ExecuteResult {
       let result: insightIntent.ExecuteResult = {
         code: 0,
@@ -181,8 +184,7 @@ The code snippet below shows the synchronous call that returns the InsightIntent
 
 The code snippet below shows the promise-based asynchronous call that returns the InsightIntent call result:
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
+  import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
 
   async function executeInsightIntent(param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
     return new Promise((resolve, reject) => {
@@ -196,7 +198,7 @@ The code snippet below shows the promise-based asynchronous call that returns th
     })
   }
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     async onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
       let result: insightIntent.ExecuteResult = await executeInsightIntent(param);
       return result;
@@ -234,12 +236,10 @@ Called when the InsightIntent call starts a UIExtensionAbility. Both synchronous
 
 The code snippet below shows the synchronous call that returns the InsightIntent call result:
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import hilog from '@ohos.hilog';
+  import { InsightIntentExecutor, insightIntent, UIExtensionContentSession } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageLoader: UIExtensionContentSession): insightIntent.ExecuteResult {
       let result: insightIntent.ExecuteResult;
       if (name !== 'SupportedInsightIntentName') {
@@ -270,10 +270,8 @@ The code snippet below shows the synchronous call that returns the InsightIntent
 
 The code snippet below shows the promise-based asynchronous call that returns the InsightIntent call result:
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import hilog from '@ohos.hilog';
+  import { InsightIntentExecutor, insightIntent, UIExtensionContentSession } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   async function executeInsightIntent(param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
     return new Promise((resolve, reject) => {
@@ -287,7 +285,7 @@ The code snippet below shows the promise-based asynchronous call that returns th
     })
   }
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     async onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageLoader: UIExtensionContentSession): Promise<insightIntent.ExecuteResult> {
       let result: insightIntent.ExecuteResult;
       if (name !== 'SupportedInsightIntentName') {
@@ -337,11 +335,10 @@ Called when the InsightIntent call starts a ServiceExtensionAbility. Both synchr
 
 The code snippet below shows the synchronous call that returns the InsightIntent call result:
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import hilog from '@ohos.hilog';
+  import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>): insightIntent.ExecuteResult {
       let result: insightIntent.ExecuteResult;
       if (name !== 'SupportedInsightIntentName') {
@@ -369,9 +366,8 @@ The code snippet below shows the synchronous call that returns the InsightIntent
 
 The code snippet below shows the promise-based asynchronous call that returns the InsightIntent call result:
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import hilog from '@ohos.hilog';
+  import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   async function executeInsightIntent(param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
     return new Promise((resolve, reject) => {
@@ -385,7 +381,7 @@ The code snippet below shows the promise-based asynchronous call that returns th
     });
   }
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     async onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
       let result: insightIntent.ExecuteResult;
       if (name !== 'SupportedInsightIntentName') {

@@ -13,7 +13,7 @@ The **font** module provides APIs for registering custom fonts.
 ## Modules to Import
 
 ```ts
-import font from '@ohos.font'
+import { font } from '@kit.ArkUI'
 ```
 
 ## font.registerFont
@@ -21,6 +21,8 @@ import font from '@ohos.font'
 registerFont(options: FontOptions): void
 
 Registers a custom font with the font manager.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -32,18 +34,24 @@ Registers a custom font with the font manager.
 
 ## FontOptions
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name        | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
-| familyName | string \| [Resource](../arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Name of the custom font to register.  |
-| familySrc  | string \| [Resource](../arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Path of the custom font to register.|
+| familyName | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Name of the custom font to register.  |
+| familySrc  | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Path of the custom font to register.|
 
 **Example**
 
+> **NOTE**
+>
+> You are advised to use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context.
+
 ```ts
 // xxx.ets
-import font from '@ohos.font';
+import { font } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -55,14 +63,8 @@ struct FontExample {
   @State codePoint: string = String.fromCharCode(0x0000)
 
   aboutToAppear() {
-    // Both familyName and familySrc support the string type.
-    font.registerFont({
-      familyName: 'medium',
-      familySrc: '/font/medium.ttf' // The font folder is at the same level as the pages folder.
-    })
-
     // Both familyName and familySrc support the Resource type.
-    font.registerFont({
+    font.registerFont({ // You are advised to use the this.getUIContext().getFont().registerFont() API.
       familyName: $r('app.string.font_name'),
       familySrc: $r('app.string.font_src')
     })
@@ -78,6 +80,12 @@ struct FontExample {
       familyName: 'iconFont',
       familySrc: '/font/iconFont.ttf'
     })
+
+    // Both familyName and familySrc support the string type.
+    font.registerFont({
+      familyName: 'medium',
+      familySrc: '/font/medium.ttf' // The font folder is at the same level as the pages folder.
+    })
   }
 
   build() {
@@ -86,7 +94,7 @@ struct FontExample {
         .align(Alignment.Center)
         .fontSize(20)
         .fontFamily('medium') // medium: name of the custom font to register. (Registered fonts such as $r('app.string.mediumFamilyName') and 'mediumRawFile' can also be used.)
-      
+
       // Two methods of using iconFont
       Text(this.unicode)
         .align(Alignment.Center)
@@ -100,11 +108,19 @@ struct FontExample {
   }
 }
 ```
+> **NOTE**
+>
+> To use custom fonts globally in an application, register the fonts through the [windowStage.loadContent](js-apis-window.md#loadcontent9) API in the [onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) lifecycle callback in the **EntryAbility.ets** file.
+>
+> In an HSP project, avoid using a relative path to register a custom font. For details, see [Accessing Resources in an HSP Through $r](../../quick-start/in-app-hsp.md#accessing-resources-in-an-hsp-through-r).
+
 ## font.getSystemFontList<sup>10+</sup>
 
 getSystemFontList(): Array\<string>
 
-Obtains the list of supported fonts.
+Obtains the system font list.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -114,11 +130,19 @@ Obtains the list of supported fonts.
 | -------------------- | ----------------- |
 | Array\<string>       | List of supported fonts. |
 
+>  **NOTE**
+>
+>  This API takes effect only on 2-in-1 devices.
+
 **Example**
+
+> **NOTE**
+>
+> You are advised to use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context.
 
 ```ts
 // xxx.ets
-import font from '@ohos.font';
+import { font } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -130,7 +154,7 @@ struct FontExample {
         .width('60%')
         .height('6%')
         .onClick(()=>{
-          this.fontList = font.getSystemFontList()
+          this.fontList = font.getSystemFontList() // You are advised to use the this.getUIContext().getFont().getSystemFontList() API.
         })
     }.width('100%')
   }
@@ -142,6 +166,8 @@ struct FontExample {
 getFontByName(fontName: string): FontInfo
 
 Obtains information about a system font based on the font name.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -155,9 +181,11 @@ Obtains information about a system font based on the font name.
 
 | Type            | Description                         |
 | ---------------- | ---------------------------- |
-| FontInfo         | Information about the system font.                |
+| FontInfo         | Information about the system font.    |
 
 ## FontInfo<sup>10+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -168,17 +196,21 @@ Obtains information about a system font based on the font name.
 | fullName       | string  | Yes| Name of the system font.          |
 | family         | string  | Yes| Family of the system font.      |
 | subfamily      | string  | Yes| Subfamily of the system font.     |
-| weight         | number  | Yes| Weight of the system font.       |
-| width          | number  | Yes| Width of the system font.   |
+| weight         | number  | Yes| Weight of the system font, in px.       |
+| width          | number  | Yes| Width of the system font, in px.   |
 | italic         | boolean | Yes| Whether the system font is italic.         |
 | monoSpace      | boolean | Yes| Whether the system font is monospaced.        |
 | symbolic       | boolean | Yes| Whether the system font supports symbols. |
 
 **Example**
 
+> **NOTE**
+>
+> You are advised to use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context.
+
 ```ts
 // xxx.ets
-import font from '@ohos.font';
+import { font } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -189,7 +221,7 @@ struct FontExample {
     Column() {
       Button("getFontByName")
         .onClick(() => {
-          this.fontInfo = font.getFontByName('Sans Italic')
+          this.fontInfo = font.getFontByName('HarmonyOS Sans Italic') // You are advised to use the this.getUIContext().getFont().getFontByName() API.
           console.log("getFontByName(): path = " + this.fontInfo.path)
           console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName)
           console.log("getFontByName(): fullName = " + this.fontInfo.fullName)
@@ -211,6 +243,8 @@ getUIFontConfig() : UIFontConfig
 
 Obtains the UI font configuration of the system.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -219,6 +253,9 @@ Obtains the UI font configuration of the system.
 | [UIFontConfig](#uifontconfig11)     | UI font configuration of the system.         |
 
 ## UIFontConfig<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
@@ -227,14 +264,20 @@ Obtains the UI font configuration of the system.
 | fallbackGroups       | Array\<[UIFontFallbackGroupInfo](#uifontfallbackgroupinfo11)>  | Yes| List of alternate generic font families.          |
 
 ## UIFontGenericInfo<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
 | family        | string | Yes| Font family name, which is the value of **family** specified in the font file.     |
 | alias        | Array\<[UIFontAliasInfo](#uifontaliasinfo11)>  | Yes| Alias list.|
-| adjust       | Array\<[UIFontAdjustInfo](#uifontadjustinfo11)>  | No| Weight of the font when displayed, which corresponds to the original weight.|
+| adjust       | Array\<[UIFontAdjustInfo](#uifontadjustinfo11)>  | Yes| Weight of the font when displayed, which corresponds to the original weight.|
 
 ## UIFontFallbackGroupInfo<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
@@ -242,6 +285,9 @@ Obtains the UI font configuration of the system.
 | fallback        | Array\<[UIFontFallbackInfo](#uifontfallbackinfo11)>  | Yes| Alternate fonts for the font family. If **fontSetName** is **""**, it indicates that the fonts can be used as alternate fonts for all font families.|
 
 ## UIFontAliasInfo<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
@@ -249,6 +295,9 @@ Obtains the UI font configuration of the system.
 | weight        | number  | Yes| Weight of the fonts included in the font family. If the value is greater than 0, the font family contains only the fonts with the specified weight. If the value is 0, the font family contains all fonts.|
 
 ## UIFontAdjustInfo<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
@@ -256,6 +305,9 @@ Obtains the UI font configuration of the system.
 | to            | number  | Yes| Weight of the font displayed in the application.|
 
 ## UIFontFallbackInfo<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
@@ -266,7 +318,8 @@ Obtains the UI font configuration of the system.
 
 ```ts
 // xxx.ets
-import font from '@ohos.font';
+import { font } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct FontExample {
@@ -304,3 +357,4 @@ struct FontExample {
   }
 }
 ```
+<!--no_check-->

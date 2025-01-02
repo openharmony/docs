@@ -26,7 +26,9 @@ ArkTS是OpenHarmony优选的主力应用开发语言。ArkTS围绕应用开发�
 - [渲染控制](arkts-rendering-control-overview.md)：ArkTS提供了渲染控制的能力。条件渲染可根据应用的不同状态，渲染对应状态下的UI内容。循环渲染可从数据源中迭代获取数据，并在每次迭代过程中创建相应的组件。数据懒加载从数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。
 
 
-ArkTS兼容TS/JavaScript(简称JS)生态，开发者可以使用TS/JS进行开发或复用已有代码。OpenHarmony系统对TS/JS支持的详细情况参见[兼容TS/JS的约束](arkts-migration-background.md#兼容tsjs的约束)。
+ArkTS兼容TS/JavaScript(简称JS)生态，开发者可以使用TS/JS进行开发或复用已有代码。OpenHarmony系统对TS/JS支持的详细情况参见[兼容TS/JS的约束](arkts-migration-background.md#方舟运行时兼容tsjs)。
 
 
 未来，ArkTS会结合应用开发/运行的需求持续演进，逐步提供并行和并发能力增强、系统类型增强、分布式开发范式等更多特性。
+
+如需更详细了解ArkTS语言，可见[ArkTS具体指南](../arkts-utils/arkts-overview.md)。

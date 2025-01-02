@@ -292,7 +292,7 @@ Initialize necessary actions before **OHOS_SystemInit** is started in step 3, as
 ```
 
 ### Interrupt Adaptation
-To ensure the normal running of LiteOS-M, two interrupt service routines must be redirected to the ISRs specified by LiteOS-M: HalPendSV and OsTickerHandler. This depends on whether LiteOS-M takes over the interrupt vector table when LiteOS-M is adapted.
+To ensure the normal running of LiteOS-M, two interrupt service threads must be redirected to the ISRs specified by LiteOS-M: HalPendSV and OsTickerHandler. This depends on whether LiteOS-M takes over the interrupt vector table when LiteOS-M is adapted.
 ```
 /**
  * @ingroup los_config
@@ -314,11 +314,11 @@ You can configure the **target_config.h** file to determine whether to take over
 ```
 
 
-If this parameter is set to **1**, LiteOS changes **SCB->VTOR** to **g_hwiForm**. Therefore, the ArchHwiCreate API of the LITEOS needs to be called to configure the original ISRs of the SoC to the new interrupt vector table **g_hwiForm** during startup, and the interrupt service routines of PendSV and SysTicke are redirected to HalPendSV and OsTickerHandler. Otherwise, the original ISRs of the SoC do not respond.
+If this parameter is set to **1**, LiteOS changes **SCB->VTOR** to **g_hwiForm**. Therefore, the ArchHwiCreate API of the LITEOS needs to be called to configure the original ISRs of the SoC to the new interrupt vector table **g_hwiForm** during startup, and the interrupt service threads of PendSV and SysTick are redirected to HalPendSV and OsTickerHandler. Otherwise, the original ISRs of the SoC do not respond.
 
-If this parameter is set to **0**, the original interrupt vector table of the SoC is used. For CST85F01, the interrupt vector table is **__vectors_start___** (**NVIC_Vectors_Init** copies the content of **__isr_vector** to this table). To adapt LiteOS, you must redirect the interrupt service routines of PendSV and SysTick to HalPendSV and OsTickHandler. Otherwise, the system cannot run.
+If this parameter is set to **0**, the original interrupt vector table of the SoC is used. For CST85F01, the interrupt vector table is **__vectors_start___** (**NVIC_Vectors_Init** copies the content of **__isr_vector** to this table). To adapt LiteOS, you must redirect the interrupt service threads of PendSV and SysTick to HalPendSV and OsTickHandler. Otherwise, the system cannot run.
 
-In this example, LiteOS is not allowed to take over interrupt processing. Therefore, you need to redirect the interrupt service routines of PendSV and SysTick to HalPendSV and OsTickHandler during startup.
+In this example, LiteOS is not allowed to take over interrupt processing. Therefore, you need to redirect the interrupt service threads of PendSV and SysTick to HalPendSV and OsTickHandler during startup.
 ```
 #ifdef CFG_LITEOS
 static void OsVectorInit(void)

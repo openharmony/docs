@@ -17,11 +17,13 @@ CalendarPicker(options?: CalendarOptions)
 
 日历选择器。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名  | 类型                                        | 必填 | 描述                       |
+| 参数名  | 类型                                        | 必填 | 说明                       |
 | ------- | ------------------------------------------- | ---- | -------------------------- |
 | options | [CalendarOptions](#calendaroptions对象说明) | 否   | 配置日历选择器组件的参数。 |
 
@@ -31,9 +33,11 @@ CalendarPicker(options?: CalendarOptions)
 
 ### edgeAlign
 
-edgeAlign(alignType: CalendarAlign, offset?: Offset)
+edgeAlign(alignType: Optional\<CalendarAlign>, offset?: Offset)
 
 设置选择器与入口组件的对齐方式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -41,22 +45,24 @@ edgeAlign(alignType: CalendarAlign, offset?: Offset)
 
 | 参数名    | 类型                                    | 必填 | 说明                                                         |
 | --------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| alignType | [CalendarAlign](#calendaralign枚举说明) | 是   | 对齐方式类型。<br/>默认值：CalendarAlign .END                |
+| alignType | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CalendarAlign](#calendaralign枚举说明)> | 是   | 对齐方式类型。<br/>默认值：CalendarAlign .END                |
 | offset    | [Offset](ts-types.md#offset)            | 否   | 按照对齐类型对齐后，选择器相对入口组件的偏移量。<br/>默认值：{dx: 0, dy: 0} |
 
 ### textStyle
 
-textStyle(value: PickerTextStyle)
+textStyle(value: Optional\<PickerTextStyle>)
 
-设置选择器与入口组件的对齐方式。
+入口区的文本颜色、字号、字体粗细。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                          |
-| ------ | ------------------------------------------------------------ | ---- | --------------------------------------------- |
-| value  | [PickerTextStyle](./ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 对齐方式类型。<br/>默认值：CalendarAlign .END |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](./ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 设置入口区的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ## 事件
 
@@ -64,19 +70,25 @@ textStyle(value: PickerTextStyle)
 
 ### onChange
 
-onChange(callback: (value: Date) => void)
+onChange(callback: Optional\<Callback\<Date>>)
 
 选择日期时触发该事件。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型 | 必填 | 说明           |
-| ------ | ---- | ---- | -------------- |
-| value  | Date | 是   | 选中的日期值。 |
+| 参数名   | 类型                                      | 必填 | 说明           |
+| -------- | ----------------------------------------- | ---- | -------------- |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Callback](ts-types.md#callback12)\<Date>> | 是   | 选中的日期值。 |
 
 ##  CalendarOptions对象说明
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型       | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- |
@@ -85,7 +97,9 @@ onChange(callback: (value: Date) => void)
 
 ## CalendarAlign枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 描述                     |
 | ------ | ------------------------ |
@@ -95,12 +109,15 @@ onChange(callback: (value: Date) => void)
 
 ## 示例
 
+该示例实现了日历选择器组件，提供下拉日历弹窗。
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct CalendarPickerExample {
-  private selectedDate: Date = new Date()
+  private selectedDate: Date = new Date('2024-03-05')
+
   build() {
     Column() {
       Text('月历日期选择器').fontSize(30)
@@ -113,7 +130,7 @@ struct CalendarPickerExample {
             console.info("CalendarPicker onChange:" + JSON.stringify(value))
           })
       }.alignItems(HorizontalAlign.End).width("100%")
-    }.width('100%').margin({top:350})
+    }.width('100%').margin({ top: 350 })
   }
 }
 ```

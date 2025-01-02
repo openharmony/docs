@@ -1,4 +1,4 @@
-# @ohos.enterprise.applicationManager (Application Management (System API)
+# @ohos.enterprise.applicationManager (Application Management) (System API)
 
 The **applicationManager** module provides application management capabilities, including adding, removing, and obtaining the applications that are forbidden to run.
 
@@ -8,14 +8,14 @@ The **applicationManager** module provides application management capabilities, 
 >
 > - The APIs of this module can be used only in the stage model.
 >
-> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
+> - The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
 > 
-> - The APIs provided by this module are system APIs.
+> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.applicationManager](js-apis-enterprise-applicationManager.md).
 
 ## Modules to Import
 
 ```ts
-import applicationManager from '@ohos.enterprise.applicationManager';
+import { applicationManager } from '@kit.MDMKit';
 ```
 
 ## applicationManager.addDisallowedRunningBundles
@@ -36,22 +36,25 @@ Adds the applications that are not allowed to run by the current user through th
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -86,21 +89,24 @@ Adds the applications that are not allowed to run by the specified user through 
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
 | userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -144,18 +150,21 @@ Adds the applications that are not allowed to run by the current or specified us
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -187,21 +196,24 @@ Removes the applications that are not allowed to run by the current user through
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -236,21 +248,24 @@ Removes the applications that are not allowed to run by the specified user throu
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
 | userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -294,18 +309,21 @@ Removes the applications that are not allowed to run by the current or specified
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -336,21 +354,24 @@ Obtains the applications that are not allowed to run by the current user through
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -383,21 +404,24 @@ Obtains the applications that are not allowed to run by the specified user throu
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -439,18 +463,21 @@ Obtains the applications that are not allowed to run by the current or specified
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -461,159 +488,4 @@ applicationManager.getDisallowedRunningBundles(wantTemp, 100).then((result) => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to get disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
 });
-```
-
-## applicationManager.addAutoStartApps<sup>11+</sup>
-
-addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
-
-Adds the auto-start applications (applications that automatically run at system startup) through the specified device administrator application. This API returns the result synchronously.
-
-**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_APPLICATION
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name  | Type                                 | Mandatory  | Description     |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | Yes   | Auto-start applications to add. A maximum of 10 applications can be added at a time.|
-
-**Error codes**
-
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
-
-| ID| Error Message                                                                    |
-| ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
-
-**Example**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-let autoStartApps: Array<Want> = [
-  {
-    bundleName: 'com.example.autoStartApplication',
-    abilityName: 'EntryAbility',
-  }
-];
-
-try {
-  applicationManager.addAutoStartApps(wantTemp, autoStartApps);
-  console.info(`Succeeded in adding auto start applications`);
-} catch(err) {
-  console.error(`Failed to add auto start applications. Code: ${err.code}, message: ${err.message}`);
-}
-```
-
-## applicationManager.removeAutoStartApps<sup>11+</sup>
-
-removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
-
-Remotes the auto-start applications through the specified device administrator application. This API returns the result synchronously.
-
-**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_APPLICATION
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name  | Type                                 | Mandatory  | Description     |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | Yes   | Auto-start applications to remove.|
-
-**Error codes**
-
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
-
-| ID| Error Message                                                                    |
-| ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
-
-**Example**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-let autoStartApps: Array<Want> = [
-  {
-    bundleName: 'com.example.autoStartApplication',
-    abilityName: 'EntryAbility',
-  }
-];
-
-try {
-  applicationManager.removeAutoStartApps(wantTemp, autoStartApps);
-  console.info(`Succeeded in removing auto start applications`);
-} catch(err) {
-  console.error(`Failed to remove auto start applications. Code: ${err.code}, message: ${err.message}`);
-}
-```
-
-## applicationManager.getAutoStartApps<sup>11+</sup>
-
-getAutoStartApps(admin: Want): Array\<Want>
-
-Obtains the auto-start applications through the specified device administrator application. This API returns the result synchronously.
-
-**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_APPLICATION
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name  | Type                                 | Mandatory  | Description     |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-
-**Return value**
-
-| Type                  | Description                     |
-| --------------------- | ------------------------- |
-| Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | List of the auto-start applications obtained.|
-
-**Error codes**
-
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
-
-| ID| Error Message                                                                    |
-| ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
-
-**Example**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-
-try {
-  let res: Array<Want> = applicationManager.getAutoStartApps(wantTemp);
-  console.info(`Succeeded in adding auto start apps: ${res}`);
-} catch(err) {
-  console.error(`Failed to auto start apps. Code: ${err.code}, message: ${err.message}`);
-}
 ```

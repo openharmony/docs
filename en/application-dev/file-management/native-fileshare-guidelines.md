@@ -1,8 +1,8 @@
-# Authorizing File Access (C/C++)
+# Persisting Temporary Permissions (C/C++)
 
-## **Scenario**
+## When to Use
 
-You can use the **FileShare** module to persist permissions on multiple files or folders based on their URI, activate or deactivate persistent permissions on files or folders, and check the persistent permissions.
+If an application accesses a file by using a Picker, the permission for accessing the file will be automatically revoked after the application exits or the device restarts. To retain the permission for accessing the file, you need to [persistent the authorization](file-persistPermission.md#when-to-use). You can use the **FileShare** module to persist permissions on files or folders based on their URI, activate or deactivate persistent permissions on files or folders, and check the persistent permissions.
 
 ## Available APIs
 
@@ -21,9 +21,7 @@ For details about the APIs, see [FileShare](../reference/apis-core-file-kit/file
 
 - Before using the **FileShare** APIs, check that your device has SystemCapability.FileManagement.AppFileService.FolderAuthorization.
 
-- To call **FileShare** APIs, the application must have the ohos.permission.FILE_ACCESS_PERSIST permission. For details about how to request the permission, see [Workflow for Using Permissions](../security/AccessToken/determine-application-mode.md).
-
-- The APL of the ohos.permission.FILE_ACCESS_PERSIST permission is system_basic. If your application is of the normal APL, request this permission via the ACL.
+- To call **FileShare** APIs, the application must have the ohos.permission.FILE_ACCESS_PERSIST permission. For details about how to request the permission, see [Workflow for Requesting Permissions](../security/AccessToken/determine-application-mode.md).
 
 ## How to Develop
 
@@ -48,7 +46,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     static const uint32_t POLICY_NUM = 2;
     char strTestPath1[] = "file://com.example.fileshare/data/storage/el2/base/files/test1.txt";
     char strTestPath2[] = "file://com.example.fileshare/data/storage/el2/base/files/test2.txt";
-    FileShare_PolicyInfo policy[POLICY_NUM] = { 
+    FileShare_PolicyInfo policy[POLICY_NUM] = {
         {strTestPath1, static_cast<unsigned int>(strlen(strTestPath1)), FileShare_OperationMode::READ_MODE},
         {strTestPath2, static_cast<unsigned int>(strlen(strTestPath2)), FileShare_OperationMode::WRITE_MODE}};
     FileShare_PolicyErrorResult* result = nullptr;
@@ -65,7 +63,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     }
     OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
-2. Use **OH_FileShare_ActivatePermission** to activate the persistent permissions on files. The maximum value of **policyNum** is **500**.
+2. Call **OH_FileShare_ActivatePermission** to activate the persistent permissions on files. The maximum value of **policyNum** is **500**.
     ```c++
     auto ret = OH_FileShare_ActivatePermission(policy, POLICY_NUM, &result, &resultNum);
     if (ret != ERR_OK) {
@@ -79,7 +77,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     }
     OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
-3. Use **OH_FileShare_DeactivatePermission** to deactivate the persistent permissions on files. The maximum value of **policyNum** is **500**.
+3. Call **OH_FileShare_DeactivatePermission** to deactivate the persistent permissions on files. The maximum value of **policyNum** is **500**.
     ```c++
     auto ret = OH_FileShare_DeactivatePermission(policy, POLICY_NUM, &result, &resultNum);
     if (ret != ERR_OK) {
@@ -93,7 +91,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     }
     OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
-4. Use **OH_FileShare_RevokePermission** to revoke the persistent permissions from files. The maximum value of **policyNum** is **500**.
+4. Call **OH_FileShare_RevokePermission** to revoke the persistent permissions from files. The maximum value of **policyNum** is **500**.
     ```c++
     auto ret = OH_FileShare_RevokePermission(policy, POLICY_NUM, &result, &resultNum);
     if (ret != ERR_OK) {
@@ -107,7 +105,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     }
     OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
-5. Use **OH_FileShare_CheckPersistentPermission** to check the persistent permissions on files. The maximum value of **policyNum** is **500**.
+5. Call **OH_FileShare_CheckPersistentPermission** to check the persistent permissions on files. The maximum value of **policyNum** is **500**.
     ```c++
     bool *result = nullptr;
     auto ret = OH_FileShare_CheckPersistentPermission(policy, POLICY_NUM, &result, &resultNum);

@@ -13,7 +13,7 @@ As an auxiliary positioning tool, the responsive grid layout is handy in UI desi
 
 4. Completes the wrapping and adaptation automatically when overflow occurs. When the number of page elements exceeds the capacity of a row or column, they automatically wrap to a new row or column and adapt the typesetting to different devices.
 
-The [\<GridRow>](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md) component is a responsive grid container and must have [\<GridCol>](../reference/arkui-ts/ts-container-gridcol.md) as its child component.
+The [GridRow](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md) component is a responsive grid container and must have [GridCol](../reference/apis-arkui/arkui-ts/ts-container-gridcol.md) as its child component.
 
 
 ## GridRow
@@ -32,7 +32,7 @@ By default, the grid system provides four breakpoints: xs, sm, md, and lg.
 | md   | [520, 840) | Medium-width device.|
 | lg   | [840, +∞)  | Large-width device. |
 
-In the **\<GridRow>** component, you can use **breakpoints** to customize the value range of breakpoints. A maximum of six breakpoints are supported. In addition to the four default breakpoints, you can also enable the xl and xxl breakpoints for your application window layout.
+In the **GridRow** component, you can use **breakpoints** to customize the value range of breakpoints. A maximum of six breakpoints are supported. In addition to the four default breakpoints, you can also enable the xl and xxl breakpoints for your application window layout.
 
 | Breakpoint| Device Description     |
 | ---- | --------- |
@@ -61,7 +61,7 @@ In the **\<GridRow>** component, you can use **breakpoints** to customize the va
 
 - The grid system implements breakpoints by listening for the changes in the window or container size, and sets the breakpoint references through **reference**. Since the application may be displayed in non-full-screen mode, it is better to design the breakpoints with the application window width as the reference.
 
-In the following example, the default number of grid columns is 12. Breakpoints are used to divide the application window width into six ranges. In different ranges, the **\<GridCol>** child component occupies a different number of columns.
+In the following example, the default number of grid columns is 12. Breakpoints are used to divide the application window width into six ranges. In different ranges, the **GridCol** child component occupies a different number of columns.
 
 
 ```ts
@@ -76,12 +76,12 @@ GridRow({
    ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
      GridCol({
        span: {
-         xs: 2, // The <GridCol> component occupies two grid columns on the minimum-width device.
-         sm: 3, // The <GridCol> component occupies three grid columns on the small-width device.
-         md: 4, // The <GridCol> component occupies four grid columns on the medium-width device.
-         lg: 6, // The <GridCol> component occupies six grid columns on the large-width device.
-         xl: 8, // The <GridCol> component occupies eight grid columns on the extra-large-width device.
-         xxl: 12 // The <GridCol> component occupies 12 grid columns on the extra-extra-large-width device.
+         xs: 2, // The GridCol component occupies two grid columns on the minimum-width device.
+         sm: 3, // The GridCol component occupies three grid columns on the small-width device.
+         md: 4, // The GridCol component occupies four grid columns on the medium-width device.
+         lg: 6, // The GridCol component occupies six grid columns on the large-width device.
+         xl: 8, // The GridCol component occupies eight grid columns on the extra-large-width device.
+         xxl: 12 // The GridCol component occupies 12 grid columns on the extra-extra-large-width device.
        }
      }) {
        Row() {
@@ -97,7 +97,7 @@ GridRow({
 
 ### Columns
 
-In the **\<GridRow>**, **columns** is used to set the total number of columns in the responsive grid layout.
+In the **GridRow**, **columns** is used to set the total number of columns in the responsive grid layout.
 
 - The default value of **columns** is 12. If **columns** is not set, the responsive grid layout is divided into 12 columns at any breakpoint.
 
@@ -196,7 +196,7 @@ If **columns** is only set for the sm and md screen size types, screen sizes sma
 
 ### Alignment
 
-In the responsive grid layout, you can set the **direction** attribute of **\<GridRow>** to define the direction in which child components are arranged. The options are **GridRowDirection.Row** (from left to right) or **GridRowDirection.RowReverse** (from right to left). An appropriate **direction** value can make the page layout more flexible and meet the design requirements.
+In the responsive grid layout, you can set the **direction** attribute of **GridRow** to define the direction in which child components are arranged. The options are **GridRowDirection.Row** (from left to right) or **GridRowDirection.RowReverse** (from right to left). An appropriate **direction** value can make the page layout more flexible and meet the design requirements.
 
 - When child components are arranged from left to right (default):
 
@@ -219,7 +219,7 @@ In the responsive grid layout, you can set the **direction** attribute of **\<Gr
 
 ### Gutters
 
-In the **\<GridRow>** component, **gutter** is used to set the spacing between adjacent child components in the horizontal and vertical directions.
+In the **GridRow** component, **gutter** is used to set the spacing between adjacent child components in the horizontal and vertical directions.
 
 - When **gutter** is set to a number, the number applies to both the horizontal and vertical directions. In the following example, the horizontal and vertical spacing between adjacent child components is set to **10**.
 
@@ -242,7 +242,7 @@ In the **\<GridRow>** component, **gutter** is used to set the spacing between a
 
 ## GridCol
 
-The **\<GridCol>** component is a child component of the **\<GridRow>** component. You can set the **span**, **offset**, and **order** attributes of this component by passing parameters or using setters.
+The **\GridCol** component is a child component of the **GridRow** component. You can set the **span**, **offset**, and **order** attributes of this component by passing parameters or using setters.
 
 - Setting **span**
 
@@ -441,9 +441,7 @@ If **order** is not set for all child components, those that have **order** set 
 
 Responsive grid components can be contained in other responsive grid components.
 
-In the following example, the responsive grid divides the entire space into 12 parts. At the first layer, **\<GridCol>** is nested in **\<GridRow>**, and the space is divided into the large area in the center and the footer area. At the second layer, **\<GridCol>** is nested in **\<GridRow>**, and the space is divided into the left and right areas. The child components take up the space allocated by the parent component at the upper layer. In this example, the pink area is made up of 12 columns of the screen space, and the green and blue areas take up the 12 columns of the parent component proportionally.
-
-
+In the following example, the responsive grid divides the entire space into 12 parts. At the first layer, **\GridCol** is nested in **GridRow**, and the space is divided into the large area in the center and the footer area. At the second layer, **\GridCol** is nested in **GridRow**, and the space is divided into the left and right areas. The child components take up the space allocated by the parent component at the upper layer. In this example, the pink area is made up of 12 columns of the screen space, and the green and blue areas take up the 12 columns of the parent component proportionally.
 
 ```ts
 @Entry
@@ -470,7 +468,6 @@ struct GridRowExample {
           }.backgroundColor('#ff4168db')
         }
         .backgroundColor('#19000000')
-        .height('100%')
       }
 
       GridCol({ span: { sm: 12 } }) {

@@ -56,7 +56,8 @@ text{
 ![zh-cn_image_0000001181495038](figures/zh-cn_image_0000001181495038.gif)
 
 
-> **说明：**
+> **说明：** 
+>
 > swiper组件支持除&lt;list&gt;之外的子组件。
 
 
@@ -369,7 +370,5 @@ export default {
 ## 相关实例
 
 针对swiper开发，有以下相关实例可供参考：
-
-- [JS组件集（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)
 
 - [简易视频播放器（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)

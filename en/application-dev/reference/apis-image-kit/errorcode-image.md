@@ -9,7 +9,7 @@
 
 **Error Message**
 
-Resource Unavailable.
+Resource unavailable.
 
 **Possible Cause**
 
@@ -41,7 +41,7 @@ Check the image and follow the instructions to decode it.
 
 **Error Message**
 
-Rpc error.
+RPC error.
 
 **Possible Cause**
 
@@ -167,7 +167,7 @@ Correct the parameters or user another image.
 
 **Error Message**
 
-Image get data abnormal.
+Failed to get the image data.
 
 **Possible Cause**
 
@@ -255,7 +255,7 @@ Check the operation procedure or use another image.
 
 **Error Message**
 
-The image source data incomplete.
+The image source data is incomplete.
 
 **Possible Cause**
 
@@ -283,7 +283,7 @@ Use an image in a matched format.
 
 **Error Message**
 
-Image unknown format.
+Unknown image format.
 
 **Possible Cause**
 
@@ -341,7 +341,7 @@ Ensure that the image is read or use another image.
 
 **Error Message**
 
-Failed to register plugin.
+Failed to register the plugin.
 
 **Possible Cause**
 
@@ -356,7 +356,7 @@ Correct the input data or use another image.
 
 **Error Message**
 
-Failed to create plugin.
+Failed to create the plugin.
 
 **Possible Cause**
 
@@ -386,7 +386,7 @@ Correct the input data or use another image.
 
 **Error Message**
 
-Image addition pixel mapping failed.
+Failed to add the pixel mappings.
 
 **Possible Cause**
 
@@ -415,7 +415,7 @@ Use another decoding mode.
 
 **Error Message**
 
-Decoding image header abnormal.
+Failed to decode the image header.
 
 **Possible Cause**
 
@@ -430,7 +430,7 @@ Correct the image data or use another image.
 
 **Error Message**
 
-Image decoding exif support.
+The image does not support EXIF decoding.
 
 **Possible Cause**
 
@@ -483,37 +483,80 @@ The image attribute is missing.
 
 Correct the image data or use another image.
 
-## 62980246 Failure in Reading the Pixel Map
+## 62980137 Invalid Image Operation
 
 **Error Message**
 
-Failed to read pixel map.
+Invalid media operation.
 
 **Possible Cause**
 
-1. The pixel map data is incorrect.
-2. You do not have the permission to read the pixel map.
+The target image format does not support this operation.
 
 **Solution**
 
-Re-create the pixel map or change the read permission.
+Use another image.
 
-## 62980247 Failure in Writing the Pixel Map
+## 62980149 Invalid Image Parameter
 
 **Error Message**
 
-Writing to pixel mapping failed.
+Invalid MIME type for the image source.
 
 **Possible Cause**
 
-1. The pixel map data is incorrect.
-2. You do not have the permission to write the pixel map.
+The target image format does not support this operation.
 
 **Solution**
 
-Re-create the pixel map or change the read permission.
+Use another image.
 
-## 62980248 No Modification to the Pixel Map
+## 62980178 Failure in Creating a PixelMap
+
+**Error Message**
+
+Failed to create the PixelMap.
+
+**Possible Cause**
+
+1. Input parameters are incorrect. For example, the region size exceeds the upper limit or an invalid value is passed in.
+2. The instance is incorrectly released in advance.
+
+**Solution**
+
+Check whether the input parameters are correct and whether the instance is released in advance.
+
+## 62980246 Failure in Reading the PixelMap
+
+**Error Message**
+
+Failed to read the pixel map.
+
+**Possible Cause**
+
+1. The PixelMap data is incorrect.
+2. You do not have the permission to read the PixelMap.
+
+**Solution**
+
+Re-create the PixelMap or change the read permission.
+
+## 62980247 Failure in Writing the PixelMap
+
+**Error Message**
+
+Failed to write the pixel map.
+
+**Possible Cause**
+
+1. The PixelMap data is incorrect.
+2. You do not have the permission to write the PixelMap.
+
+**Solution**
+
+Re-create the PixelMap or change the read permission.
+
+## 62980248 No Modification to the PixelMap
 
 **Error Message**
 
@@ -521,11 +564,11 @@ PixelMap does not allow modification.
 
 **Possible Cause**
 
-Users try to modify a pixel map.
+Users try to modify a PixelMap.
 
 **Solution**
 
-Do not modify the pixel map.
+Do not modify the PixelMap.
 
 ## 62980259 Incorrect Configuration
 
@@ -540,3 +583,120 @@ The configuration is incorrect.
 **Solution**
 
 Correct the configuration.
+
+## 62980286 Failed to Set a Memory Identifier for a PixelMap
+
+**Error Message**
+
+Memory format not supported.
+
+**Possible Cause**
+
+1. The memory type of the PixelMap does not match.
+2. The FD of the PixelMap is invalid.
+3. Unknown kernel error.
+
+**Solution**
+
+Check whether the PixelMap instance has been released. Check whether the memory type matches.
+
+## 7600201 Unsupported Operation
+
+**Error Message**
+
+Unsupported operation.
+
+**Possible Cause**
+
+The operation is not supported.
+
+**Solution**
+
+Use a supported operation.
+
+## 7600202 Unsupported Metadata Read/Write Operation
+
+**Error Message**
+
+Unsupported metadata. Possible causes: Unsupported metadata type.
+
+**Possible Cause**
+
+The metadata read/write operation is not supported. For example, the Exif field to read or write is not supported, or users attempt to obtain specific data from an auxiliary picture of an incorrect type (for example, attempt to obtain GainmapMetadata of a depth map).
+
+**Solution**
+
+Check whether the auxiliary picture type corresponds to the metadata type, and then perform the read and write operations.
+
+## 7600301 Memory Allocation Failure
+
+**Error Message**
+
+Memory alloc failed.
+
+**Possible Cause**
+
+The device memory is insufficient or occupied.
+
+**Solution**
+
+Clear the memory and try again.
+
+## 7600302 Memory Copy Failure
+
+**Error Message**
+
+Memory copy failed.
+
+**Possible Cause**
+
+The memory to copy does not exist, or the device memory is insufficient.
+
+**Solution**
+
+Check whether the memory to copy exists. Clear the memory and try again.
+
+## 7600901 Unknown Error
+
+**Error Message**
+
+Unknown error.
+
+**Possible Cause**
+
+Errors caused by unknown reasons.
+
+**Solution**
+
+Locate the cause based on logs.
+
+## 7700301 Decoding Failure
+
+**Error Message**
+
+Decode failed.
+
+**Possible Cause**
+
+1. The memory of the device is insufficient.
+2. The device does not support the image type.
+3. Image decoding is not performed as instructed.
+
+**Solution**
+
+Check the image data or replace the image.
+
+## 7800301 Encoding Failure
+
+**Error Message**
+
+Encode failed.
+
+**Possible Cause**
+
+1. The encoding format is not supported.
+2. The data passed in is incorrect.
+
+**Solution**
+
+Correct the input data or use another image.

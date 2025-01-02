@@ -11,22 +11,22 @@ The **DefaultAppManager** module provides APIs to query whether the current appl
 ## Modules to Import
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+import { defaultAppManager } from '@kit.AbilityKit';
 ```
 
 ## Required Permissions
 
 | Permission                                   | APL   | Description            |
 | --------------------------------------- | ----------- | ---------------- |
-| ohos.permission.GET_DEFAULT_APPLICATION | system_core | Permission related to the default application.|
+| ohos.permission.GET_DEFAULT_APPLICATION | system_core | Permission related to the default application. |
 
-For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
+For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
-## defaultAppMgr.getDefaultApplication
+## defaultAppManager.getDefaultApplication
 
 getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 
-Obtains the default application based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API uses a promise to return the result.
+Obtains the default application based on a system-defined application type, a file type that complies with the media type format (either specified by **type** or **subtype**), or a [uniform data type](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md). This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.GET_DEFAULT_APPLICATION
 
@@ -38,21 +38,25 @@ Obtains the default application based on a system-defined application type or a 
 
 | Name        | Type    | Mandatory  | Description                                     |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype) or a file type that complies with the media type format.      |
+| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).      |
 | userId  | number | No   | User ID. The default value is the user ID of the caller.                        |
 
 **Return value**
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Promise used to return the default application.|
+| Promise\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Promise used to return the default application. |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found.       |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
@@ -60,10 +64,11 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 **Example**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-import { BusinessError } from '@ohos.base';
+import { defaultAppManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
-defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
+defaultAppManager.getDefaultApplication(defaultAppManager.ApplicationType.BROWSER)
   .then((data) => {
     console.info('Operation successful. bundleInfo: ' + JSON.stringify(data));
   })
@@ -71,7 +76,15 @@ defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
   });
 
-defaultAppMgr.getDefaultApplication("image/png")
+defaultAppManager.getDefaultApplication("image/png")
+  .then((data) => {
+    console.info('Operation successful. bundleInfo: ' + JSON.stringify(data));
+  })
+  .catch((error: BusinessError) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+  });
+
+defaultAppManager.getDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI)
   .then((data) => {
     console.info('Operation successful. bundleInfo: ' + JSON.stringify(data));
   })
@@ -80,11 +93,11 @@ defaultAppMgr.getDefaultApplication("image/png")
   });
 ```
 
-## defaultAppMgr.getDefaultApplication
+## defaultAppManager.getDefaultApplication
 
 getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<BundleInfo>) : void
 
-Obtains the default application of a user based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API uses an asynchronous callback to return the result.
+Obtains the default application of a user based on a system-defined application type, a file type that complies with the media type format (either specified by **type** or **subtype**), or a [uniform data type](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md). This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_DEFAULT_APPLICATION
 
@@ -96,16 +109,20 @@ Obtains the default application of a user based on a system-defined application 
 
 | Name        | Type    | Mandatory  | Description                                     |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype) or a file type that complies with the media type format.      |
+| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).      |
 | userId  | number | Yes   | User ID.                          |
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | Callback used to return the default application.                   |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found.       |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
@@ -113,11 +130,12 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 **Example**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-import { BusinessError } from '@ohos.base';
+import { defaultAppManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
 let userId = 100;
-defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId, (err: BusinessError, data) => {
+defaultAppManager.getDefaultApplication(defaultAppManager.ApplicationType.BROWSER, userId, (err: BusinessError, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
     return;
@@ -125,7 +143,15 @@ defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userI
   console.info('Operation successful. bundleInfo:' + JSON.stringify(data));
 });
 
-defaultAppMgr.getDefaultApplication("image/png", userId, (err: BusinessError, data) => {
+defaultAppManager.getDefaultApplication("image/png", userId, (err: BusinessError, data) => {
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. bundleInfo:' + JSON.stringify(data));
+});
+
+defaultAppManager.getDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI, userId, (err: BusinessError, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
     return;
@@ -134,11 +160,11 @@ defaultAppMgr.getDefaultApplication("image/png", userId, (err: BusinessError, da
 });
 ```
 
-## defaultAppMgr.getDefaultApplication
+## defaultAppManager.getDefaultApplication
 
 getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 
-Obtains the default application based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API uses an asynchronous callback to return the result.
+Obtains the default application based on a system-defined application type, a file type that complies with the media type format (either specified by **type** or **subtype**), or a [uniform data type](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md). This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_DEFAULT_APPLICATION
 
@@ -150,32 +176,46 @@ Obtains the default application based on a system-defined application type or a 
 
 | Name        | Type    | Mandatory  | Description                                     |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype) or a file type that complies with the media type format.      |
+| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).      |
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | Callback used to return the default application.                   |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
 
 **Example**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-import { BusinessError } from '@ohos.base';
+import { defaultAppManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
-defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err: BusinessError, data) => {
+defaultAppManager.getDefaultApplication(defaultAppManager.ApplicationType.BROWSER, (err: BusinessError, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
     return;
   }
   console.info('Operation successful. bundleInfo:' + JSON.stringify(data));
 });
-defaultAppMgr.getDefaultApplication("image/png", (err: BusinessError, data) => {
+
+defaultAppManager.getDefaultApplication("image/png", (err: BusinessError, data) => {
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. bundleInfo:' + JSON.stringify(data));
+});
+
+defaultAppManager.getDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI, (err: BusinessError, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
     return;
@@ -184,11 +224,11 @@ defaultAppMgr.getDefaultApplication("image/png", (err: BusinessError, data) => {
 });
 ```
 
-## defaultAppMgr.getDefaultApplicationSync<sup>10+</sup>
+## defaultAppManager.getDefaultApplicationSync<sup>10+</sup>
 
 getDefaultApplicationSync(type: string, userId?: number): BundleInfo
 
-Obtains the default application based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API is a synchronous API.
+Obtains the default application based on a system-defined application type, a file type that complies with the media type format (either specified by **type** or **subtype**), or a [uniform data type](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md). This API returns the result synchronously.
 
 **Required permissions**: ohos.permission.GET_DEFAULT_APPLICATION
 
@@ -198,9 +238,9 @@ Obtains the default application based on a system-defined application type or a 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                   |
+| Name | Type  | Mandatory | Description                                   |
 | -------| ------ | ---- | --------------------------------------- |
-| type   | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype) or a file type that complies with the media type format.|
+| type   | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).|
 | userId | number | No  | User ID. The default value is the user ID of the caller.         |
 
 **Return value**
@@ -211,10 +251,14 @@ Obtains the default application based on a system-defined application type or a 
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ----------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found.       |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
@@ -222,27 +266,36 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 **Example**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+import { defaultAppManager } from '@kit.AbilityKit';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+
 try {
-  let data = defaultAppMgr.getDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER)
+  let data = defaultAppManager.getDefaultApplicationSync(defaultAppManager.ApplicationType.BROWSER)
   console.info('Operation successful. bundleInfo: ' + JSON.stringify(data));
 } catch(error) {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));
 };
 
 try {
-  let data = defaultAppMgr.getDefaultApplicationSync("image/png")
+  let data = defaultAppManager.getDefaultApplicationSync("image/png")
+  console.info('Operation successful. bundleInfo: ' + JSON.stringify(data));
+} catch(error) {
+  console.error('Operation failed. Cause: ' + JSON.stringify(error));
+};
+
+try {
+  let data = defaultAppManager.getDefaultApplicationSync(uniformTypeDescriptor.UniformDataType.AVI)
   console.info('Operation successful. bundleInfo: ' + JSON.stringify(data));
 } catch(error) {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));
 };
 ```
 
-## defaultAppMgr.setDefaultApplication
+## defaultAppManager.setDefaultApplication
 
 setDefaultApplication(type: string, elementName: ElementName, userId?: number): Promise\<void>
 
-Sets the default application based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API uses a promise to return the result.
+Sets the default application based on a system-defined application type, a file type that complies with the media type format (either specified by **type** or **subtype**), or a [uniform data type](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md). This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -254,7 +307,7 @@ Sets the default application based on a system-defined application type or a fil
 
 | Name        | Type    | Mandatory  | Description                                     |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype) or a file type that complies with the media type format.      |
+| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).      |
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | Yes   | Information about the element to be set as the default application.                          |
 | userId  | number | No   | User ID. The default value is the user ID of the caller.                           |
 
@@ -262,14 +315,18 @@ Sets the default application based on a system-defined application type or a fil
 
 | Type          | Description                              |
 | -------------- | ---------------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                                      |
+| ID | Error Message                                      |
 | -------- | ---------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found.            |
 | 17700025 | The specified type is invalid.                 |
 | 17700028 | The specified ability does not match the type. |
@@ -277,10 +334,11 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 **Example**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-import { BusinessError } from '@ohos.base';
+import { defaultAppManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
-defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
+defaultAppManager.setDefaultApplication(defaultAppManager.ApplicationType.BROWSER, {
   bundleName: "com.example.myapplication",
   moduleName: "module01",
   abilityName: "EntryAbility"
@@ -291,7 +349,7 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
 });
 
 let userId = 100;
-defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
+defaultAppManager.setDefaultApplication(defaultAppManager.ApplicationType.BROWSER, {
   bundleName: "com.example.myapplication",
   moduleName: "module01",
   abilityName: "EntryAbility"
@@ -301,7 +359,17 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));
 });
 
-defaultAppMgr.setDefaultApplication("image/png", {
+defaultAppManager.setDefaultApplication("image/png", {
+  bundleName: "com.example.myapplication",
+  moduleName: "module01",
+  abilityName: "EntryAbility"
+}, userId).then((data) => {
+  console.info('Operation successful.');
+}).catch((error: BusinessError) => {
+  console.error('Operation failed. Cause: ' + JSON.stringify(error));
+});
+
+defaultAppManager.setDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI, {
   bundleName: "com.example.myapplication",
   moduleName: "module01",
   abilityName: "EntryAbility"
@@ -312,11 +380,11 @@ defaultAppMgr.setDefaultApplication("image/png", {
 });
 ```
 
-## defaultAppMgr.setDefaultApplication
+## defaultAppManager.setDefaultApplication
 
 setDefaultApplication(type: string, elementName: ElementName, userId: number, callback: AsyncCallback\<void>) : void
 
-Sets the default application for a user based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API uses an asynchronous callback to return the result.
+Sets the default application for a user based on a system-defined application type, a file type that complies with the media type format (either specified by **type** or **subtype**), or a [uniform data type](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md). This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -328,17 +396,21 @@ Sets the default application for a user based on a system-defined application ty
 
 | Name        | Type    | Mandatory  | Description                                     |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype) or a file type that complies with the media type format.      |
+| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).      |
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | Yes   | Information about the element to be set as the default application.                          |
 | userId  | number | Yes   | User ID.                          |
 | callback    | AsyncCallback\<void> | Yes   | Callback used to return the result.                   |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                                      |
+| ID | Error Message                                      |
 | -------- | ---------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found.            |
 | 17700025 | The specified type is invalid.                 |
 | 17700028 | The specified ability does not match the type. |
@@ -346,11 +418,12 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 **Example**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-import { BusinessError } from '@ohos.base';
+import { defaultAppManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
 let userId = 100;
-defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
+defaultAppManager.setDefaultApplication(defaultAppManager.ApplicationType.BROWSER, {
   bundleName: "com.example.myapplication",
   moduleName: "module01",
   abilityName: "EntryAbility"
@@ -362,7 +435,19 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
   console.info('Operation successful.');
 });
 
-defaultAppMgr.setDefaultApplication("image/png", {
+defaultAppManager.setDefaultApplication("image/png", {
+  bundleName: "com.example.myapplication",
+  moduleName: "module01",
+  abilityName: "EntryAbility"
+}, userId, (err: BusinessError, data) => {
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful.');
+});
+
+defaultAppManager.setDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI, {
   bundleName: "com.example.myapplication",
   moduleName: "module01",
   abilityName: "EntryAbility"
@@ -375,11 +460,11 @@ defaultAppMgr.setDefaultApplication("image/png", {
 });
 ```
 
-## defaultAppMgr.setDefaultApplication
+## defaultAppManager.setDefaultApplication
 
 setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCallback\<void>) : void
 
-Sets the default application based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API uses an asynchronous callback to return the result.
+Sets the default application based on a system-defined application type, a file type that complies with the media type format (either specified by **type** or **subtype**), or a [uniform data type](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md). This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -391,26 +476,31 @@ Sets the default application based on a system-defined application type or a fil
 
 | Name        | Type    | Mandatory  | Description                                     |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype) or a file type that complies with the media type format.      |
+| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).      |
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | Yes   | Information about the element to be set as the default application.                          |
 | callback    | AsyncCallback\<void> | Yes   | Callback used to return the result.                   |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                                      |
+| ID | Error Message                                      |
 | -------- | ---------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700025 | The specified type is invalid.                 |
 | 17700028 | The specified ability does not match the type. |
 
 **Example**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-import { BusinessError } from '@ohos.base';
+import { defaultAppManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
-defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
+defaultAppManager.setDefaultApplication(defaultAppManager.ApplicationType.BROWSER, {
   bundleName: "com.example.myapplication",
   moduleName: "module01",
   abilityName: "EntryAbility"
@@ -422,7 +512,19 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
   console.info('Operation successful.');
 });
 
-defaultAppMgr.setDefaultApplication("image/png", {
+defaultAppManager.setDefaultApplication("image/png", {
+  bundleName: "com.example.myapplication",
+  moduleName: "module01",
+  abilityName: "EntryAbility"
+}, (err: BusinessError, data) => {
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful.');
+});
+
+defaultAppManager.setDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI, {
   bundleName: "com.example.myapplication",
   moduleName: "module01",
   abilityName: "EntryAbility"
@@ -435,11 +537,11 @@ defaultAppMgr.setDefaultApplication("image/png", {
 });
 ```
 
-## defaultAppMgr.setDefaultApplicationSync<sup>10+</sup>
+## defaultAppManager.setDefaultApplicationSync<sup>10+</sup>
 
 setDefaultApplicationSync(type: string, elementName: ElementName, userId?: number): void
 
-Sets the default application based on the application type defined in the system or the file type that complies with the media type format (type/subtype). This API is a synchronous API.
+Sets the default application based on a system-defined application type, a file type that complies with the media type format (either specified by **type** or **subtype**), or a [uniform data type](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md). This API returns the result synchronously.
 
 **Required permissions**: ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -449,18 +551,22 @@ Sets the default application based on the application type defined in the system
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description                                     |
+| Name     | Type  | Mandatory | Description                                     |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type        | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype) or a file type that complies with the media type format.|
-| elementName | [ElementName](js-apis-bundle-ElementName.md) | Yes| Information about the element to be set as the default application.                          |
+| type        | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).|
+| elementName | [ElementName](js-apis-bundle-ElementName.md) | Yes | Information about the element to be set as the default application.                          |
 | userId      | number | No  | User ID. The default value is the user ID of the caller.                           |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                                      |
+| ID | Error Message                                      |
 | -------- | ---------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found.            |
 | 17700025 | The specified type is invalid.                 |
 | 17700028 | The specified ability does not match the type. |
@@ -468,9 +574,11 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 **Example**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+import { defaultAppManager } from '@kit.AbilityKit';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+
 try {
-  defaultAppMgr.setDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER, {
+  defaultAppManager.setDefaultApplicationSync(defaultAppManager.ApplicationType.BROWSER, {
   bundleName: "com.example.myapplication",
   moduleName: "module01",
   abilityName: "EntryAbility"
@@ -482,7 +590,7 @@ try {
 
 let userId = 100;
 try {
-  defaultAppMgr.setDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER, {
+  defaultAppManager.setDefaultApplicationSync(defaultAppManager.ApplicationType.BROWSER, {
   bundleName: "com.example.myapplication",
   moduleName: "module01",
   abilityName: "EntryAbility"
@@ -493,7 +601,18 @@ try {
 };
 
 try {
-  defaultAppMgr.setDefaultApplicationSync("image/png", {
+  defaultAppManager.setDefaultApplicationSync("image/png", {
+  bundleName: "com.example.myapplication",
+  moduleName: "module01",
+  abilityName: "EntryAbility"
+}, userId);
+  console.info('Operation successful.');
+} catch(error) {
+  console.error('Operation failed. Cause: ' + JSON.stringify(error));
+};
+
+try {
+  defaultAppManager.setDefaultApplicationSync(uniformTypeDescriptor.UniformDataType.AVI, {
   bundleName: "com.example.myapplication",
   moduleName: "module01",
   abilityName: "EntryAbility"
@@ -504,11 +623,11 @@ try {
 };
 ```
 
-## defaultAppMgr.resetDefaultApplication
+## defaultAppManager.resetDefaultApplication
 
 resetDefaultApplication(type: string, userId?: number): Promise\<void>
 
-Resets the default application based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API uses a promise to return the result.
+Resets the default application based on a system-defined application type, a file type that complies with the media type format (either specified by **type** or **subtype**), or a [uniform data type](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md). This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -520,26 +639,31 @@ Resets the default application based on a system-defined application type or a f
 
 | Name        | Type    | Mandatory  | Description                                     |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype) or a file type that complies with the media type format.      |
+| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).      |
 | userId  | number | No   | User ID. The default value is the user ID of the caller.                           |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found. |
 | 17700025 | The specified type is invalid.      |
 
 **Example**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-import { BusinessError } from '@ohos.base';
+import { defaultAppManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
 let userId = 100;
-defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId)
+defaultAppManager.resetDefaultApplication(defaultAppManager.ApplicationType.BROWSER, userId)
   .then((data) => {
     console.info('Operation successful.');
   })
@@ -547,7 +671,15 @@ defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, use
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
   });
 
-defaultAppMgr.resetDefaultApplication("image/png", userId)
+defaultAppManager.resetDefaultApplication("image/png", userId)
+  .then((data) => {
+    console.info('Operation successful.');
+  })
+  .catch((error: BusinessError) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+  });
+
+defaultAppManager.resetDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI, userId)
   .then((data) => {
     console.info('Operation successful.');
   })
@@ -556,11 +688,11 @@ defaultAppMgr.resetDefaultApplication("image/png", userId)
   });
 ```
 
-## defaultAppMgr.resetDefaultApplication
+## defaultAppManager.resetDefaultApplication
 
 resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<void>) : void
 
-Resets the default application for a user based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API uses an asynchronous callback to return the result.
+Resets the default application for a user based on a system-defined application type, a file type that complies with the media type format (either specified by **type** or **subtype**), or a [uniform data type](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md). This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -572,27 +704,32 @@ Resets the default application for a user based on a system-defined application 
 
 | Name        | Type    | Mandatory  | Description                                     |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype) or a file type that complies with the media type format.      |
+| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).      |
 | userId  | number | Yes   | User ID.                         |
 | callback    | AsyncCallback\<void> | Yes   | Callback used to return the result.                   |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found. |
 | 17700025 | The specified type is invalid.      |
 
 **Example**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-import { BusinessError } from '@ohos.base';
+import { defaultAppManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
 let userId = 100;
-defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId, (err: BusinessError, data) => {
+defaultAppManager.resetDefaultApplication(defaultAppManager.ApplicationType.BROWSER, userId, (err: BusinessError, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
     return;
@@ -600,7 +737,15 @@ defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, use
   console.info('Operation successful.');
 });
 
-defaultAppMgr.resetDefaultApplication("image/png", userId, (err: BusinessError, data) => {
+defaultAppManager.resetDefaultApplication("image/png", userId, (err: BusinessError, data) => {
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful.');
+});
+
+defaultAppManager.resetDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI, userId, (err: BusinessError, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
     return;
@@ -609,11 +754,11 @@ defaultAppMgr.resetDefaultApplication("image/png", userId, (err: BusinessError, 
 });
 ```
 
-## defaultAppMgr.resetDefaultApplication
+## defaultAppManager.resetDefaultApplication
 
 resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void
 
-Resets the default application based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API uses an asynchronous callback to return the result.
+Resets the default application based on a system-defined application type, a file type that complies with the media type format (either specified by **type** or **subtype**), or a [uniform data type](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md). This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -625,24 +770,29 @@ Resets the default application based on a system-defined application type or a f
 
 | Name        | Type    | Mandatory  | Description                                     |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype) or a file type that complies with the media type format.      |
+| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).      |
 | callback    | AsyncCallback\<void> | Yes   | Callback used to return the result.                   |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700025 | The specified type is invalid.      |
 
 **Example**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-import { BusinessError } from '@ohos.base';
+import { defaultAppManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
-defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err: BusinessError, data) => {
+defaultAppManager.resetDefaultApplication(defaultAppManager.ApplicationType.BROWSER, (err: BusinessError, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
     return;
@@ -650,7 +800,15 @@ defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (er
   console.info('Operation successful.');
 });
 
-defaultAppMgr.resetDefaultApplication("image/png", (err: BusinessError, data) => {
+defaultAppManager.resetDefaultApplication("image/png", (err: BusinessError, data) => {
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful.');
+});
+
+defaultAppManager.resetDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI, (err: BusinessError, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
     return;
@@ -659,11 +817,11 @@ defaultAppMgr.resetDefaultApplication("image/png", (err: BusinessError, data) =>
 });
 ```
 
-## defaultAppMgr.resetDefaultApplicationSync<sup>10+</sup>
+## defaultAppManager.resetDefaultApplicationSync<sup>10+</sup>
 
 resetDefaultApplicationSync(type: string, userId?: number): void
 
-Resets the default application based on the application type defined in the system or the file type that complies with the media type format (type/subtype). This API is a synchronous API.
+Resets the default application based on a system-defined application type, a file type that complies with the media type format (either specified by **type** or **subtype**), or a [uniform data type](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md). This API returns the result synchronously.
 
 **Required permissions**: ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -673,35 +831,47 @@ Resets the default application based on the application type defined in the syst
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                   |
+| Name | Type  | Mandatory | Description                                   |
 | ------ | ------ | ---- | --------------------------------------- |
-| type   | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype) or a file type that complies with the media type format.|
+| type   | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).|
 | userId | number | No  | User ID. The default value is the user ID of the caller.                           |
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found. |
 | 17700025 | The specified type is invalid.      |
 
 **Example**
 
 ```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+import { defaultAppManager } from '@kit.AbilityKit';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
 let userId = 100;
 try {
-  defaultAppMgr.resetDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER, userId);
+  defaultAppManager.resetDefaultApplicationSync(defaultAppManager.ApplicationType.BROWSER, userId);
   console.info('Operation successful.');
 } catch(error) {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));
 };
 
 try {
-  defaultAppMgr.resetDefaultApplicationSync("image/png", userId);
+  defaultAppManager.resetDefaultApplicationSync("image/png", userId);
+  console.info('Operation successful.');
+} catch(error) {
+  console.error('Operation failed. Cause: ' + JSON.stringify(error));
+};
+
+try {
+  defaultAppManager.resetDefaultApplicationSync(uniformTypeDescriptor.UniformDataType.AVI, userId);
   console.info('Operation successful.');
 } catch(error) {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));

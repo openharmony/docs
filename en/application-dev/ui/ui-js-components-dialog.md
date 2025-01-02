@@ -1,7 +1,7 @@
 # &lt;dialog&gt; Development
 
 
-The **&lt;dialog&gt;** component is custom pop-up container for showing critical information or calling for an action. For details, see [dialog](../reference/arkui-js/js-components-container-dialog.md).
+The **&lt;dialog&gt;** component is custom pop-up container for showing critical information or calling for an action. For details, see [dialog](../reference/apis-arkui/arkui-js/js-components-container-dialog.md).
 
 
 ## Creating a &lt;dialog&gt; Component
@@ -159,7 +159,7 @@ export default {
 ## Example Scenario
 
 
-Use the **&lt;dialog&gt;** component to implement a schedule. When the dialog box is open, use the [**&lt;textarea&gt;**](../reference/arkui-js/js-components-basic-textarea.md) component to add an event and touch the OK button to obtain the current time and save the input text. The events in the calendar are displayed in a list.
+Use the **&lt;dialog&gt;** component to implement a schedule. When the dialog box is open, use the [&lt;textarea&gt;](../reference/apis-arkui/arkui-js/js-components-basic-textarea.md) component to add an event and touch the OK button to obtain the current time and save the input text. The events in the calendar are displayed in a list.
 
 
 ```html

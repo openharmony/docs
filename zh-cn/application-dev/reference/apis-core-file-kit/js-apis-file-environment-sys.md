@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import environment from '@ohos.file.environment';
+import { Environment } from '@kit.CoreFileKit';
 ```
 
 ## environment.getStorageDataDir
@@ -41,8 +41,8 @@ getStorageDataDir():Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  environment.getStorageDataDir().then((path: string) => {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  Environment.getStorageDataDir().then((path: string) => {
       console.info("getStorageDataDir successfully, Path: " + path);
   }).catch((err: BusinessError) => {
       console.error("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
@@ -77,8 +77,8 @@ getStorageDataDir(callback:AsyncCallback&lt;string&gt;):void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  environment.getStorageDataDir((err: BusinessError, path: string) => {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  Environment.getStorageDataDir((err: BusinessError, path: string) => {
     if (err) {
       console.error("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -115,8 +115,8 @@ getUserDataDir():Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  environment.getUserDataDir().then((path: string) => {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  Environment.getUserDataDir().then((path: string) => {
     console.info("getUserDataDir successfully, Path: " + path);
   }).catch((err: BusinessError) => {
     console.error("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
@@ -151,8 +151,8 @@ getUserDataDir(callback:AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  environment.getUserDataDir((err: BusinessError, path: string) => {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  Environment.getUserDataDir((err: BusinessError, path: string) => {
     if (err) {
       console.error("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -165,7 +165,7 @@ getUserDataDir(callback:AsyncCallback&lt;string&gt;): void
 
 getExternalStorageDir(): string
 
-获取外卡根目录的沙箱路径，该接口仅对特定设备开放。
+获取外卡根目录的沙箱路径，该接口仅对具有该系统能力的设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
@@ -193,10 +193,10 @@ getExternalStorageDir(): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 function getExternalStorageDirExample() {
   try {
-    let path = environment.getExternalStorageDir();
+    let path = Environment.getExternalStorageDir();
     console.log(`success to getExternalStorageDir: ${JSON.stringify(path)}`);
   } catch (error) {
     console.error(`failed to getExternalStorageDir because: ${JSON.stringify(error)}`);
@@ -208,7 +208,7 @@ function getExternalStorageDirExample() {
 
 getUserHomeDir(): string
 
-获取当前用户下应用沙箱路径的内卡目录，该接口仅对特定设备开放。
+获取当前用户下应用沙箱路径的内卡目录，该接口仅对具有该系统能力的设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
@@ -236,10 +236,10 @@ getUserHomeDir(): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 function getUserHomeDirExample() {
   try {
-    let path = environment.getUserHomeDir();
+    let path = Environment.getUserHomeDir();
     console.log(`success to getUserHomeDir: ${JSON.stringify(path)}`);
   } catch (error) {
     console.error(`failed to getUserHomeDir because: ${JSON.stringify(error)}`);

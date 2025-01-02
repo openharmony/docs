@@ -6,6 +6,8 @@
 >
 > 本模块首批接口从API version 11 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> 本模块从API version 12 开始支持查询被禁用应用和设备上已安装应用(不区用户)的图标和名称资源。
+>
 > 本模块为系统接口。
 
 ## 导入模块
@@ -21,7 +23,7 @@ import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
 | ohos.permission.GET_BUNDLE_RESOURCES| system_basic | 允许查询应用的资源信息。 |
 | ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | 读取已安装应用列表。 |
 
-权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
 ## 枚举
 
@@ -72,10 +74,13 @@ getBundleResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 
 
@@ -123,10 +128,13 @@ getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#res
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 
 
@@ -165,6 +173,16 @@ getAllBundleResourceInfo(resourceFlags: [number](#resourceflag), callback: Async
 | ----------- | ------ | ---- | --------------------- |
 | resourceFlags | [number](#resourceflag) | 是   | 指定返回的BundleResourceInfo所包含的信息。 |
 | callback | AsyncCallback\<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的BundleResourceInfo数值；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **示例：**
 
@@ -211,6 +229,16 @@ getAllBundleResourceInfo(resourceFlags: [number](#resourceflag)): Promise<Array<
 | ------------------------------------------------------------ | -------------------------------- |
 | Promise\<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)>> | Promise对象，返回BundleResourceInfo数值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+
 **示例：**
 
 ```ts
@@ -249,6 +277,15 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag), callba
 | resourceFlags | [number](#resourceflag) | 是   | 指定返回的LauncherAbilityResourceInfo所包含的信息。 |
 | callback | AsyncCallback\<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的LauncherAbilityResourceInfo数值；否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **示例：**
 
@@ -295,6 +332,16 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)) : Prom
 | ------------------------------------------------------------ | -------------------------------- |
 | Promise\<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>> | Promise对象，返回LauncherAbilityResourceInfo数值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+
 **示例：**
 ```ts
 import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
@@ -310,5 +357,119 @@ try {
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo failed: %{public}s', message);
+}
+```
+
+### bundleResourceManager.getBundleResourceInfo<sup>12+</sup>
+
+getBundleResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag), appIndex?: number): [BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)
+
+以同步方法根据给定的bundleName、resourceFlags和appIndex获取当前应用的BundleResourceInfo。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_RESOURCES
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                |
+| ----------- | ------ | ---- | --------------------- |
+| bundleName | string | 是   | 指定查询应用的包名。 |
+| resourceFlags | [number](#resourceflag) | 否   | 指定返回的BundleResourceInfo所包含的信息。 |
+| appIndex | number | 否   | 指定查询应用分身的ID。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                  |
+| ----------------------------------------------------------- | ------------------------------------- |
+| [BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md) | 返回指定应用的BundleResourceInfo。|
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found. |
+| 17700061 | AppIndex not in valid range or not found. |
+
+
+**示例：**
+
+```ts
+import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let bundleName = "com.example.myapplication";
+let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let appIndex = 1;
+try {
+    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, bundleFlags, appIndex);
+    hilog.info(0x0000, 'testTag', 'getBundleResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo.label));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleResourceInfo failed: %{public}s', message);
+}
+```
+
+### bundleResourceManager.getLauncherAbilityResourceInfo<sup>12+</sup>
+
+getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag), appIndex?: number): Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>
+
+以同步方法根据给定的bundleName、resourceFlags和appIndex获取当前应用的LauncherAbilityResourceInfo。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_RESOURCES
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                |
+| ----------- | ------ | ---- | --------------------- |
+| bundleName | string | 是   | 指定查询应用的包名。 |
+| resourceFlags | [number](#resourceflag) | 否   | 指定返回的LauncherAbilityResourceInfo所包含的信息。 |
+| appIndex | number | 否   | 指定查询应用分身的ID。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                  |
+| ----------------------------------------------------------- | ------------------------------------- |
+| Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)> | 返回指定应用的LauncherAbilityResourceInfo。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found. |
+| 17700061 | AppIndex not in valid range or not found. |
+
+**示例：**
+
+```ts
+import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let bundleName = "com.example.myapplication";
+let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let appIndex = 1;
+try {
+    let resourceInfo = bundleResourceManager.getLauncherAbilityResourceInfo(bundleName, bundleFlags, appIndex);
+    hilog.info(0x0000, 'testTag', 'getLauncherAbilityResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo[0].label));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getLauncherAbilityResourceInfo failed: %{public}s', message);
 }
 ```

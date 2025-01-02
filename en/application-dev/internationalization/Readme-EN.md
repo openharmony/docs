@@ -1,13 +1,15 @@
-# Internalization and Localization
+# Localization Kit
 
-- [Overview of Internationalization and Localization](i18n-l10n.md)
+- [Introduction to Localization Kit](i18n-l10n.md)
 - Application Internalization
     - [UI Design for Internationalization](i18n-ui-design.md)
     - [Locale and Cultural Habit Division](i18n-locale-culture.md)
     - Language and User Preference Setting
         - [System Language and Region Setting](i18n-system-language-region.md)
         - [Preferred Language Setting](i18n-preferred-language.md)
-        - [User Preference Setting](i18n-user-preferences.md)
+        <!--Del-->
+        - [User Preference Setting (for System Applications Only)](i18n-user-preferences.md)
+        <!--DelEnd-->
     - [Date and Time Formatting](i18n-time-date.md)
     - [Number and Unit of Measurement Formatting](i18n-numbers-weights-measures.md)
     - [Phone Number Formatting](i18n-phone-numbers.md)

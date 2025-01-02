@@ -5,17 +5,17 @@
 ## 开发步骤
 
 1. 完成分布式组网。
-   首先将需要进行跨设备访问的设备连接到同一局域网中，同帐号认证完成组网。
+   首先将需要进行跨设备访问的设备连接到同一局域网中，同账号认证完成组网。
 
 2. 拷贝跨设备文件。 同一应用不同设备之间实现跨设备文件拷贝，只需要将对应的文件放在应用沙箱的分布式文件路径即可。
 
    将A设备的待拷贝沙箱文件，拷贝到A设备的分布式路径下。
 
    ```ts
-   import fs from '@ohos.file.fs';
-   import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
-   import fileUri from '@ohos.file.fileuri';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { common } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileUri } from '@kit.CoreFileKit';
 
    let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
    let pathDir: string = context.filesDir;
@@ -28,9 +28,8 @@
     let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     fs.writeSync(file.fd, 'Create file success');
     fs.closeSync(file);
-   } catch (error: BusinessError) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`Failed to createFile. Code: ${err.code}, message: ${err.message}`);
+   } catch (error) {
+    console.error(`Failed to createFile. Code: ${error.code}, message: ${error.message}`);
    }
 
    // 获取待拷贝文件uri
@@ -48,19 +47,18 @@
       let err: BusinessError = error as BusinessError;
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
-   } catch (error: BusinessError) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`Failed to getData. Code: ${err.code}, message: ${err.message}`);
+   } catch (error) {
+    console.error(`Failed to getData. Code: ${error.code}, message: ${error.message}`);
    }
    ```
 
    B设备在获取A端沙箱文件时，从B设备的分布式路径下将对应的文件拷贝走，以此完成跨设备拷贝。
 
    ```ts
-   import fs from '@ohos.file.fs';
-   import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
-   import fileUri from '@ohos.file.fileuri';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { common } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileUri } from '@kit.CoreFileKit';
 
    let context = getContext(this) as common.UIAbilityContext; // 获取设备B的UIAbilityContext信息
    let pathDir: string = context.filesDir;
@@ -91,8 +89,7 @@
       let err: BusinessError = error as BusinessError;
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
-   } catch (error: BusinessError) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
+   } catch (error) {
+    console.error(`Failed to copy. Code: ${error.code}, message: ${error.message}`);
    }
    ```

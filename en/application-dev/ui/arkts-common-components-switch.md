@@ -1,7 +1,7 @@
 # Toggle
 
 
-The **\<Toggle>** component provides a clickable element in the check box, button, or switch type, typically used to switch between two states. For details, see [Toggle](../reference/arkui-ts/ts-basic-components-toggle.md).
+The **Toggle** component provides a clickable element in the check box, button, or switch type, typically used to switch between two states. For details, see [Toggle](../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md).
 
 
 ## Creating a Toggle
@@ -14,7 +14,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 In this API, **ToggleType** indicates the toggle type, which can be **Button**, **Checkbox**, or **Switch**, and **isOn** specifies whether the toggle is turned on.
 
-Since API version 11, the default style of the **\<Checkbox>** component is changed from rounded square to circle.
+Since API version 11, the default style of the **Checkbox** component is changed from rounded square to circle.
 
 The API can be called in either of the following ways:
 
@@ -88,7 +88,7 @@ The API can be called in either of the following ways:
 
 ## Adding Events
 
-The **\<Toggle>** component supports the [universal events](../reference/arkui-ts/ts-universal-events-click.md). In addition, it can be bound to the **onChange** event so that it responds with custom behavior after being turned on or off.
+The **Toggle** component supports the [universal events](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md). In addition, it can be bound to the **onChange** event so that it responds with custom behavior after being turned on or off.
 
 
 ```ts
@@ -103,11 +103,11 @@ Toggle({ type: ToggleType.Switch, isOn: false })
 
 ## Example Scenario
 
-In this example, the **\<Toggle>** component is used to enable or disable Bluetooth.
+In this example, the **Toggle** component is used to enable or disable Bluetooth.
 
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
 @Entry
 @Component
 struct ToggleExample {

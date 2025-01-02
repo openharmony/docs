@@ -1,4 +1,4 @@
-# 短时任务
+# 短时任务(ArkTS)
 
 
 ## 概述
@@ -6,7 +6,7 @@
 应用退至后台一小段时间后，应用进程会被挂起，无法执行对应的任务。如果应用在后台仍需要执行耗时不长的任务，如状态保存等，可以通过本文申请短时任务，扩展应用在后台的运行时间。
 
 
-### 约束与限制
+## 约束与限制
 
 - **申请时机**：应用需要在前台或onBackground回调内，申请短时任务，否则会申请失败。
 
@@ -43,8 +43,8 @@
 1. 导入模块。
    
    ```ts
-   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-   import { BusinessError } from '@ohos.base';
+   import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 申请短时任务并实现回调。
@@ -94,4 +94,4 @@
 
 针对短时任务开发，有以下相关实例可供参考：
 
-- [短时任务（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/TransientTask)
+- [短时任务（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/TaskManagement/TransientTask)

@@ -4,7 +4,7 @@
 
 > **说明**
 >
->- 从API Version 10开始，该接口不再维护，推荐使用新接口@ohos.cooperate (键鼠穿越)。
+>- 从API Version 10开始，该接口不再维护，推荐使用新接口[@ohos.cooperate](../apis-distributedservice-kit/js-apis-devicestatus-cooperate-sys.md) (键鼠穿越)。
 > 
 >- 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { inputDeviceCooperate } from '@kit.InputKit';
 ```
 
 ## inputDeviceCooperate.enable
@@ -31,13 +31,20 @@ enable(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 | enable   | boolean                   | 是   | 键鼠穿越使能状态。 |
 | callback | AsyncCallback&lt;void&gt;  | 是  |回调函数，异步返回键鼠穿越开启、关闭结果。   |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](../apis-distributedservice-kit/errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | -----------------|
+| 401 | Parameter error.      |
 
 
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputDeviceCooperate.enable(true, (error: BusinessError) => {
@@ -67,21 +74,25 @@ enable(enable: boolean): Promise&lt;void&gt;
 | --------- | ------- | ---- | -------------------------------------------------------------------                 |
 | enable    | boolean | 是   | 键鼠穿越使能状态。                   |
 
-
-
 **返回值**：
 
 | 参数                 | 说明                     |
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt;      | Promise对象，异步返回键鼠穿越开启、关闭结果。        |
 
+**错误码**：
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | -----------------|
+| 401 | Parameter error.      |
 
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputDeviceCooperate.enable(true).then(() => {
@@ -110,20 +121,21 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 | srcInputDeviceId     | number                       |  是   | 键鼠穿越待穿越外设标识符。           |
 | callback             | AsyncCallback\<void>         |  是    | 回调函数，异步返回键鼠穿越启动、停止状态。|
 
-**错误码：**
+**错误码**：
 
-以下错误码的详细介绍请参见[ohos.multimodalinput错误码](errorcode-multimodalinput.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.multimodalinput错误码](errorcode-multimodalinput.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401      | Parameter error.    |
 | 4400001  | Incorrect descriptor for the target device.                |
 | 4400002  | Screen hop failed.    |
 
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let sinkDeviceDescriptor = "descriptor";
 let srcInputDeviceId = 0;
@@ -163,20 +175,21 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 | ---------------------- | ------------------------------- |
 | Promise\<void>         | Promise对象，异步返回键鼠穿越启动、关闭结果。       |
 
-**错误码：**
+**错误码**：
 
 以下错误码的详细介绍请参见[ohos.multimodalinput错误码](errorcode-multimodalinput.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401      | Parameter error.    |
 | 4400001  | Incorrect descriptor for the target device.          |
 | 4400002  | Screen hop failed.               |
 
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let sinkDeviceDescriptor = "descriptor";
 let srcInputDeviceId = 0;
@@ -205,13 +218,19 @@ stop(callback: AsyncCallback\<void>): void
 | --------             | ---------------------------- | ----  | ----------------------------   |
 | callback             | AsyncCallback\<void>         |  是   | 回调函数，异步返回停止键鼠穿越结果。        |
 
+**错误码**：
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
 
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputDeviceCooperate.stop((error: BusinessError) => {
@@ -243,8 +262,8 @@ stop(): Promise\<void>
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputDeviceCooperate.stop().then(() => {
@@ -272,11 +291,20 @@ getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>):
 | deviceDescriptor     | string                       |  是    | 键鼠穿越目标设备描述符。             |
 | callback             | AsyncCallback<{ state: boolean }> |  是    | 回调函数，异步返回键鼠穿越开关状态。        |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
+
+
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let deviceDescriptor = "descriptor";
 try {
@@ -306,21 +334,26 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 | --------             | ---------                    | ----  | ----------------------------    |
 | deviceDescriptor     | string                       |  是    | 键鼠穿越目标设备描述符。            |
 
-
-
 **返回值**：
 
 | 参数                        | 说明                     |
 | -------------------        | ------------------------------- |
 | Promise<{ state: boolean }>| Promise对象，异步返回键鼠穿越开关状态。        |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
 
 
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let deviceDescriptor = "descriptor";
 try {
@@ -349,12 +382,19 @@ on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, even
 | type                 | string                                                          |  是  | 注册类型，取值”cooperation“。         |
 | callback             | AsyncCallback<{ deviceDescriptor: string, eventMsg: [EventMsg](#eventmsg) }> |  是  | 回调函数，异步返回键鼠穿越事件。    |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
 
 
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { inputDeviceCooperate } from '@kit.InputKit';
 
 function callback(msg: object) {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
@@ -382,12 +422,19 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 | type                 | string                                                           |  是    | 注册类型，取值“cooperation”。         |
 | callback             | AsyncCallback\<void> |  否  | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
 
 
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { inputDeviceCooperate } from '@kit.InputKit';
 
 // 取消注册单个回调函数
 function callbackOn(msg: object) {
@@ -406,7 +453,7 @@ try {
 }
 ```
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { inputDeviceCooperate } from '@kit.InputKit';
 
 // 取消注册所有回调函数
 function callback(msg: object) {

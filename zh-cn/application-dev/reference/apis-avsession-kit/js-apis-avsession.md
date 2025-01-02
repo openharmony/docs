@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
+import { avSession } from '@kit.AVSessionKit';
 ```
 
 ## avSession.createAVSession<sup>10+</sup>
@@ -24,13 +24,15 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 创建会话对象，一个Ability只能存在一个会话，重复创建会失败，结果通过Promise异步回调方式返回。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
 
 | 参数名 | 类型                            | 必填 | 说明                           |
 | ------ | ------------------------------- | ---- | ------------------------------ |
-| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。 |
+| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是| 需要使用UIAbilityContext，用于系统获取应用组件的相关信息。 |
 | tag    | string                          | 是   | 会话的自定义名称。             |
 | type   | [AVSessionType](#avsessiontype10) | 是   | 会话类型。 |
 
@@ -46,17 +48,18 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentAVSession: avSession.AVSession;
 let tag = "createNewSession";
 let context: Context = getContext(this);
-let sessionId: string;  //供后续函数入参使用
+let sessionId: string;  // 供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio").then((data: avSession.AVSession) => {
   currentAVSession = data;
@@ -79,7 +82,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。     |
+| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是| 需要使用UIAbilityContext，用于系统获取应用组件的相关信息。     |
 | tag      | string                                  | 是   | 会话的自定义名称。                                           |
 | type     | [AVSessionType](#avsessiontype10)         | 是   | 会话类型。                               |
 | callback | AsyncCallback<[AVSession](#avsession10)\> | 是   | 回调函数。回调返回会话实例对象，可用于获取会话ID，以及设置元数据、播放状态，发送按键事件等操作。 |
@@ -90,17 +93,18 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentAVSession: avSession.AVSession;
 let tag = "createNewSession";
 let context: Context = getContext(this);
-let sessionId: string;  //供后续函数入参使用
+let sessionId: string;  // 供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
@@ -113,9 +117,11 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 });
 ```
 
-## ProtocolType<sup>10+</sup>
+## ProtocolType<sup>11+</sup>
 
-远端设备支持的协议类型。
+远端设备支持的协议类型的枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -123,24 +129,34 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 | --------------------------- | ---- | ----------- |
 | TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。 |
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
+| TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。 |
 
 ## AVSessionType<sup>10+<sup>
 
+type AVSessionType = 'audio' | 'video' | 'voice_call' | 'video_call'
+
 当前会话支持的会话类型。
+
+该类型可取的值为下表字符串。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-| 名称  | 类型   | 说明 |
-| ----- | ------ | ---- |
-| audio | string | 音频 |
-| video | string | 视频 |
-| voice_call<sup>11+<sup> | string | 通话 |
+| 类型  | 说明 |
+| -----  | ---- |
+| 'audio' | 音频 |
+| 'video' | 视频 |
+| 'voice_call'<sup>11+<sup> | 音频通话 |
+| 'video_call'<sup>12+<sup> | 视频通话 |
 
 ## AVSession<sup>10+</sup>
 
 调用[avSession.createAVSession](#avsessioncreateavsession10)后，返回会话的实例，可以获得会话ID，完成设置元数据，播放状态信息等操作。
 
 ### 属性
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -162,6 +178,8 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 
 设置会话元数据。结果通过Promise异步回调方式返回。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -182,13 +200,14 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let metadata: avSession.AVMetadata = {
   assetId: "121278",
@@ -202,12 +221,14 @@ let metadata: avSession.AVMetadata = {
   mediaImage: "https://www.example.com/example.jpg",
   subtitle: "8 Mile",
   description: "Rap",
-  lyric: "https://www.example.com/example.lrc",
+  // LRC中有两类元素：一种是时间标签+歌词，一种是ID标签。
+  // 例如：[00:25.44]xxx\r\n[00:26.44]xxx\r\n
+  lyric: "lrc格式歌词内容",
   previousAssetId: "121277",
-  nextAssetId: "121279",
+  nextAssetId: "121279"
 };
 currentAVSession.setAVMetadata(metadata).then(() => {
-  console.info(`SetAVMetadata successfully`);
+  console.info('SetAVMetadata successfully');
 }).catch((err: BusinessError) => {
   console.error(`SetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -234,13 +255,14 @@ setAVMetadata(data: AVMetadata, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let metadata: avSession.AVMetadata = {
   assetId: "121278",
@@ -254,15 +276,17 @@ let metadata: avSession.AVMetadata = {
   mediaImage: "https://www.example.com/example.jpg",
   subtitle: "8 Mile",
   description: "Rap",
-  lyric: "https://www.example.com/example.lrc",
+  // LRC中有两类元素：一种是时间标签+歌词，一种是ID标签。
+  // 例如：[00:25.44]xxx\r\n[00:26.44]xxx\r\n
+  lyric: "lrc格式歌词内容",
   previousAssetId: "121277",
-  nextAssetId: "121279",
+  nextAssetId: "121279"
 };
 currentAVSession.setAVMetadata(metadata, (err: BusinessError) => {
   if (err) {
     console.error(`SetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`SetAVMetadata successfully`);
+    console.info('SetAVMetadata successfully');
   }
 });
 ```
@@ -293,21 +317,27 @@ setCallMetadata(data: CallMetadata): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let calldata: avSession.CallMetadata = {
-  name: "xiaoming",
-  phoneNumber: "111xxxxxxxx",
-  avatar: "xxx.jpg",
-};
+let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+    let imageSource = await image.createImageSource(value.buffer);
+    let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
+    let calldata: avSession.CallMetadata = {
+      name: "xiaoming",
+      phoneNumber: "111xxxxxxxx",
+      avatar: imagePixel
+    };
 currentAVSession.setCallMetadata(calldata).then(() => {
-  console.info(`setCallMetadata successfully`);
+  console.info('setCallMetadata successfully');
 }).catch((err: BusinessError) => {
   console.error(`setCallMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -334,30 +364,31 @@ setCallMetadata(data: CallMetadata, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
-import resourceManager from '@ohos.resourceManager';
-import { BusinessError } from '@ohos.base';
+import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function setCallMetadata() {
   let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
-  let imageSource= await image.createImageSource(value.buffer);
+  let imageSource = await image.createImageSource(value.buffer);
   let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
   let calldata: avSession.CallMetadata = {
     name: "xiaoming",
     phoneNumber: "111xxxxxxxx",
-    avatar: imagePixel,
+    avatar: imagePixel
   };
   currentAVSession.setCallMetadata(calldata, (err: BusinessError) => {
     if (err) {
       console.error(`setCallMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-      console.info(`setCallMetadata successfully`);
+      console.info('setCallMetadata successfully');
     }
   });
 }
@@ -389,20 +420,21 @@ setAVCallState(state: AVCallState): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let calldata: avSession.AVCallState = {
   state: avSession.CallState.CALL_STATE_ACTIVE,
   muted: false
 };
 currentAVSession.setAVCallState(calldata).then(() => {
-  console.info(`setAVCallState successfully`);
+  console.info('setAVCallState successfully');
 }).catch((err: BusinessError) => {
   console.error(`setAVCallState BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -429,23 +461,24 @@ setAVCallState(state: AVCallState, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avcalldata: avSession.AVCallState = {
-  state: avsession.CallState.CALL_STATE_ACTIVE,
+  state: avSession.CallState.CALL_STATE_ACTIVE,
   muted: false
 };
 currentAVSession.setAVCallState(avcalldata, (err: BusinessError) => {
   if (err) {
     console.error(`setAVCallState BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`setAVCallState successfully`);
+    console.info('setAVCallState successfully');
   }
 });
 ```
@@ -455,6 +488,8 @@ currentAVSession.setAVCallState(avcalldata, (err: BusinessError) => {
 setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 
 设置会话播放状态。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -476,13 +511,14 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let playbackState: avSession.AVPlaybackState = {
   state:avSession.PlaybackState.PLAYBACK_STATE_PLAY,
@@ -490,10 +526,10 @@ let playbackState: avSession.AVPlaybackState = {
   position:{elapsedTime:10, updateTime:(new Date()).getTime()},
   bufferedTime:1000,
   loopMode:avSession.LoopMode.LOOP_MODE_SINGLE,
-  isFavorite:true,
+  isFavorite:true
 };
 currentAVSession.setAVPlaybackState(playbackState).then(() => {
-  console.info(`SetAVPlaybackState successfully`);
+  console.info('SetAVPlaybackState successfully');
 }).catch((err: BusinessError) => {
   console.error(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -520,13 +556,14 @@ setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let PlaybackState: avSession.AVPlaybackState = {
   state:avSession.PlaybackState.PLAYBACK_STATE_PLAY,
@@ -534,13 +571,13 @@ let PlaybackState: avSession.AVPlaybackState = {
   position:{elapsedTime:10, updateTime:(new Date()).getTime()},
   bufferedTime:1000,
   loopMode:avSession.LoopMode.LOOP_MODE_SINGLE,
-  isFavorite:true,
+  isFavorite:true
 };
 currentAVSession.setAVPlaybackState(PlaybackState, (err: BusinessError) => {
   if (err) {
     console.error(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`SetAVPlaybackState successfully`);
+    console.info('SetAVPlaybackState successfully');
   }
 });
 ```
@@ -550,6 +587,8 @@ currentAVSession.setAVPlaybackState(PlaybackState, (err: BusinessError) => {
 setLaunchAbility(ability: WantAgent): Promise\<void>
 
 设置一个WantAgent用于拉起会话的Ability。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -571,16 +610,17 @@ setLaunchAbility(ability: WantAgent): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import wantAgent from '@ohos.app.ability.wantAgent';
-import { BusinessError } from '@ohos.base';
+import { wantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-//WantAgentInfo对象
+// WantAgentInfo对象
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -590,7 +630,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       action: "action1",
       entities: ["entity1"],
       type: "MIMETYPE",
-      uri: "key={true,true,false}",
+      uri: "key = {true,true,false}",
       parameters:
         {
           mykey0: 2222,
@@ -599,7 +639,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
           mykey3: "ssssssssssssssssssssssssss",
           mykey4: [false, true, false],
           mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-          mykey6: true,
+          mykey6: true
         }
     }
   ],
@@ -610,7 +650,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 
 wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
   currentAVSession.setLaunchAbility(agent).then(() => {
-    console.info(`SetLaunchAbility successfully`);
+    console.info('SetLaunchAbility successfully');
   }).catch((err: BusinessError) => {
     console.error(`SetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
   });
@@ -638,16 +678,17 @@ setLaunchAbility(ability: WantAgent, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import wantAgent from '@ohos.app.ability.wantAgent';
-import { BusinessError } from '@ohos.base';
+import { wantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-//WantAgentInfo对象
+// WantAgentInfo对象
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -657,7 +698,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       action: "action1",
       entities: ["entity1"],
       type: "MIMETYPE",
-      uri: "key={true,true,false}",
+      uri: "key = {true,true,false}",
       parameters:
         {
           mykey0: 2222,
@@ -666,7 +707,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
           mykey3: "ssssssssssssssssssssssssss",
           mykey4: [false, true, false],
           mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-          mykey6: true,
+          mykey6: true
         }
     }
   ],
@@ -680,7 +721,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
     if (err) {
       console.error(`SetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-      console.info(`SetLaunchAbility successfully`);
+      console.info('SetLaunchAbility successfully');
     }
   });
 });
@@ -691,6 +732,8 @@ wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
 dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<void>
 
 媒体提供方设置一个会话内自定义事件，包括事件名和键值对形式的事件内容, 结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -716,13 +759,14 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<voi
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
@@ -738,7 +782,7 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 let eventName = "dynamic_lyric";
 if (currentAVSession !== undefined) {
   (currentAVSession as avSession.AVSession).dispatchSessionEvent(eventName, {lyric : "This is lyric"}).then(() => {
-    console.info(`dispatchSessionEvent successfully`);
+    console.info('dispatchSessionEvent successfully');
   }).catch((err: BusinessError) => {
     console.error(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
   })
@@ -771,13 +815,14 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: Asy
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
@@ -806,6 +851,8 @@ setAVQueueItems(items: Array\<AVQueueItem>): Promise\<void>
 
 设置媒体播放列表。结果通过Promise异步回调方式返回。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -826,19 +873,20 @@ setAVQueueItems(items: Array\<AVQueueItem>): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
-import resourceManager from '@ohos.resourceManager';
-import { BusinessError } from '@ohos.base';
+import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function setAVQueueItems() {
   let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
-  let imageSource= await image.createImageSource(value.buffer);
+  let imageSource = await image.createImageSource(value.buffer);
   let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
   let queueItemDescription_1: avSession.AVMediaDescription = {
     assetId: '001',
@@ -866,7 +914,7 @@ async function setAVQueueItems() {
   };
   let queueItemsArray: avSession.AVQueueItem[] = [queueItem_1, queueItem_2];
   currentAVSession.setAVQueueItems(queueItemsArray).then(() => {
-    console.info(`SetAVQueueItems successfully`);
+    console.info('SetAVQueueItems successfully');
   }).catch((err: BusinessError) => {
     console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
   });
@@ -894,19 +942,20 @@ setAVQueueItems(items: Array\<AVQueueItem>, callback: AsyncCallback\<void>): voi
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
-import resourceManager from '@ohos.resourceManager';
-import { BusinessError } from '@ohos.base';
+import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function setAVQueueItems() {
   let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
-  let imageSource= await image.createImageSource(value.buffer);
+  let imageSource = await image.createImageSource(value.buffer);
   let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
   let queueItemDescription_1: avSession.AVMediaDescription = {
     assetId: '001',
@@ -937,7 +986,7 @@ async function setAVQueueItems() {
     if (err) {
       console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-      console.info(`SetAVQueueItems successfully`);
+      console.info('SetAVQueueItems successfully');
     }
   });
 }
@@ -948,6 +997,8 @@ async function setAVQueueItems() {
 setAVQueueTitle(title: string): Promise\<void>
 
 设置媒体播放列表名称。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -969,17 +1020,18 @@ setAVQueueTitle(title: string): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let queueTitle = 'QUEUE_TITLE';
 currentAVSession.setAVQueueTitle(queueTitle).then(() => {
-  console.info(`SetAVQueueTitle successfully`);
+  console.info('SetAVQueueTitle successfully');
 }).catch((err: BusinessError) => {
   console.error(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1006,20 +1058,21 @@ setAVQueueTitle(title: string, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let queueTitle = 'QUEUE_TITLE';
 currentAVSession.setAVQueueTitle(queueTitle, (err: BusinessError) => {
   if (err) {
     console.error(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`SetAVQueueTitle successfully`);
+    console.info('SetAVQueueTitle successfully');
   }
 });
 ```
@@ -1029,6 +1082,8 @@ currentAVSession.setAVQueueTitle(queueTitle, (err: BusinessError) => {
 setExtras(extras: {[key: string]: Object}): Promise\<void>
 
 媒体提供方设置键值对形式的自定义媒体数据包, 结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1054,13 +1109,14 @@ setExtras(extras: {[key: string]: Object}): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
@@ -1075,7 +1131,7 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 });
 if (currentAVSession !== undefined) {
   (currentAVSession as avSession.AVSession).setExtras({extras : "This is custom media packet"}).then(() => {
-    console.info(`setExtras successfully`);
+    console.info('setExtras successfully');
   }).catch((err: BusinessError) => {
     console.error(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
   })
@@ -1107,13 +1163,14 @@ setExtras(extras: {[key: string]: Object}, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
@@ -1141,6 +1198,8 @@ getController(): Promise\<AVSessionController>
 
 获取本会话对应的控制器。结果通过Promise异步回调方式返回。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **返回值：**
@@ -1161,7 +1220,7 @@ getController(): Promise\<AVSessionController>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avsessionController: avSession.AVSessionController;
 currentAVSession.getController().then((avcontroller: avSession.AVSessionController) => {
@@ -1198,7 +1257,7 @@ getController(callback: AsyncCallback\<AVSessionController>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avsessionController: avSession.AVSessionController;
 currentAVSession.getController((err: BusinessError, avcontroller: avSession.AVSessionController) => {
@@ -1208,6 +1267,45 @@ currentAVSession.getController((err: BusinessError, avcontroller: avSession.AVSe
     avsessionController = avcontroller;
     console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
   }
+});
+```
+
+### getAVCastController<sup>10+</sup>
+
+getAVCastController(): Promise\<AVCastController>
+
+设备建立连接后，获取投播控制器。结果通过Promise异步回调方式返回。如果 avsession 未处于投播状态，则控制器将返回 null。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| --------- | ------------------------------------------------------------ |
+| Promise<[AVCastController](#avcastcontroller10)\>  | Promise对象。返回投播控制器实例。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | --------------------------------------- |
+| 6600102| The session does not exist.           |
+| 6600109| The remote connection is not established. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let aVCastController: avSession.AVCastController;
+currentAVSession.getAVCastController().then((avcontroller: avSession.AVCastController) => {
+  aVCastController = avcontroller;
+  console.info('getAVCastController : SUCCESS');
+}).catch((err: BusinessError) => {
+  console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1231,50 +1329,13 @@ getAVCastController(callback: AsyncCallback\<AVCastController>): void
 
 | 错误码ID | 错误信息                                  |
 | -------- |---------------------------------------|
-| 6600102  | The session does not exist.           |
-| 6600110  | The remote connection does not exist. |
+| 6600102| The session does not exist.           |
+| 6600109| The remote connection is not established. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-let aVCastController: avSession.AVCastController;
-currentAVSession.getAVCastController().then((avcontroller: avSession.AVCastController) => {
-  aVCastController = avcontroller;
-  console.info(`getAVCastController : SUCCESS`);
-}).catch((err: BusinessError) => {
-  console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
-});
-```
-
-### getAVCastController<sup>10+</sup>
-
-getAVCastController(): Promise\<AVCastController>
-
-设备建立连接后，获取投播控制器。结果通过callback异步回调方式返回。如果 avsession 未处于投播状态，则控制器将返回 null。
-
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
-**返回值：**
-
-| 类型                                                        | 说明                                                         |
-| --------- | ------------------------------------------------------------ |
-| Promise<[AVCastController](#avcastcontroller10)\>  | Promise对象。返回投播控制器实例。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | --------------------------------------- |
-| 6600102  | The session does not exist.           |
-| 6600110  | The remote connection does not exist. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let aVCastController: avSession.AVCastController;
 currentAVSession.getAVCastController((err: BusinessError, avcontroller: avSession.AVCastController) => {
@@ -1282,7 +1343,7 @@ currentAVSession.getAVCastController((err: BusinessError, avcontroller: avSessio
     console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     aVCastController = avcontroller;
-    console.info(`getAVCastController : SUCCESS`);
+    console.info('getAVCastController : SUCCESS');
   }
 });
 ```
@@ -1292,6 +1353,8 @@ currentAVSession.getAVCastController((err: BusinessError, avcontroller: avSessio
 getOutputDevice(): Promise\<OutputDeviceInfo>
 
 通过会话获取播放设备信息。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1313,7 +1376,7 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.getOutputDevice().then((outputDeviceInfo: avSession.OutputDeviceInfo) => {
   console.info(`GetOutputDevice : SUCCESS : devices length : ${outputDeviceInfo.devices.length}`);
@@ -1348,7 +1411,7 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.getOutputDevice((err: BusinessError, outputDeviceInfo: avSession.OutputDeviceInfo) => {
   if (err) {
@@ -1364,6 +1427,8 @@ currentAVSession.getOutputDevice((err: BusinessError, outputDeviceInfo: avSessio
 activate(): Promise\<void>
 
 激活会话，激活后可正常使用会话。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1385,10 +1450,10 @@ activate(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.activate().then(() => {
-  console.info(`Activate : SUCCESS `);
+  console.info('Activate : SUCCESS ');
 }).catch((err: BusinessError) => {
   console.error(`Activate BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1420,13 +1485,13 @@ activate(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.activate((err: BusinessError) => {
   if (err) {
     console.error(`Activate BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Activate : SUCCESS `);
+    console.info('Activate : SUCCESS ');
   }
 });
 ```
@@ -1436,6 +1501,8 @@ currentAVSession.activate((err: BusinessError) => {
 deactivate(): Promise\<void>
 
 禁用当前会话的功能，可通过[activate](#activate10)恢复。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1457,10 +1524,10 @@ deactivate(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.deactivate().then(() => {
-  console.info(`Deactivate : SUCCESS `);
+  console.info('Deactivate : SUCCESS ');
 }).catch((err: BusinessError) => {
   console.error(`Deactivate BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1494,13 +1561,13 @@ deactivate(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.deactivate((err: BusinessError) => {
   if (err) {
     console.error(`Deactivate BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Deactivate : SUCCESS `);
+    console.info('Deactivate : SUCCESS ');
   }
 });
 ```
@@ -1510,6 +1577,8 @@ currentAVSession.deactivate((err: BusinessError) => {
 destroy(): Promise\<void>
 
 销毁当前会话，使当前会话完全失效。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1531,10 +1600,10 @@ destroy(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.destroy().then(() => {
-  console.info(`Destroy : SUCCESS `);
+  console.info('Destroy : SUCCESS ');
 }).catch((err: BusinessError) => {
   console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1566,13 +1635,13 @@ destroy(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.destroy((err: BusinessError) => {
   if (err) {
     console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Destroy : SUCCESS `);
+    console.info('Destroy : SUCCESS ');
   }
 });
 ```
@@ -1584,6 +1653,8 @@ on(type: 'play', callback: () => void): void
 设置播放命令监听事件。注册该监听，说明应用支持播放指令。
 
 每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1600,6 +1671,7 @@ on(type: 'play', callback: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1607,7 +1679,7 @@ on(type: 'play', callback: () => void): void
 
 ```ts
 currentAVSession.on('play', () => {
-  console.info(`on play entry`);
+  console.info('on play entry');
 });
 ```
 
@@ -1618,6 +1690,8 @@ on(type: 'pause', callback: () => void): void
 设置暂停命令监听事件。注册该监听，说明应用支持暂停指令。
 
 每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1634,6 +1708,7 @@ on(type: 'pause', callback: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1641,7 +1716,7 @@ on(type: 'pause', callback: () => void): void
 
 ```ts
 currentAVSession.on('pause', () => {
-  console.info(`on pause entry`);
+  console.info('on pause entry');
 });
 ```
 
@@ -1652,6 +1727,8 @@ on(type:'stop', callback: () => void): void
 设置停止命令监听事件。注册该监听，说明应用支持停止指令。
 
 每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1668,6 +1745,7 @@ on(type:'stop', callback: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1675,7 +1753,7 @@ on(type:'stop', callback: () => void): void
 
 ```ts
 currentAVSession.on('stop', () => {
-  console.info(`on stop entry`);
+  console.info('on stop entry');
 });
 ```
 
@@ -1686,6 +1764,8 @@ on(type:'playNext', callback: () => void): void
 设置播放下一首命令监听事件。注册该监听，说明应用支持下一首指令。
 
 每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1702,6 +1782,7 @@ on(type:'playNext', callback: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1709,7 +1790,7 @@ on(type:'playNext', callback: () => void): void
 
 ```ts
 currentAVSession.on('playNext', () => {
-  console.info(`on playNext entry`);
+  console.info('on playNext entry');
 });
 ```
 
@@ -1720,6 +1801,8 @@ on(type:'playPrevious', callback: () => void): void
 设置播放上一首命令监听事件。注册该监听，说明应用支持上一首指令。
 
 每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1736,6 +1819,7 @@ on(type:'playPrevious', callback: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1743,7 +1827,7 @@ on(type:'playPrevious', callback: () => void): void
 
 ```ts
 currentAVSession.on('playPrevious', () => {
-  console.info(`on playPrevious entry`);
+  console.info('on playPrevious entry');
 });
 ```
 
@@ -1754,6 +1838,8 @@ on(type: 'fastForward', callback: (time?: number) => void): void
 设置快进命令监听事件。注册该监听，说明应用支持快进指令。
 
 每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1770,6 +1856,7 @@ on(type: 'fastForward', callback: (time?: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1777,7 +1864,7 @@ on(type: 'fastForward', callback: (time?: number) => void): void
 
 ```ts
 currentAVSession.on('fastForward', (time?: number) => {
-  console.info(`on fastForward entry`);
+  console.info('on fastForward entry');
 });
 ```
 
@@ -1786,6 +1873,8 @@ currentAVSession.on('fastForward', (time?: number) => {
 on(type:'rewind', callback: (time?: number) => void): void
 
 设置快退命令监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1802,6 +1891,7 @@ on(type:'rewind', callback: (time?: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1809,7 +1899,7 @@ on(type:'rewind', callback: (time?: number) => void): void
 
 ```ts
 currentAVSession.on('rewind', (time?: number) => {
-  console.info(`on rewind entry`);
+  console.info('on rewind entry');
 });
 ```
 
@@ -1818,6 +1908,8 @@ currentAVSession.on('rewind', (time?: number) => {
 on(type:'playFromAssetId', callback: (assetId: number) => void): void
 
 设置媒体id播放监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1834,6 +1926,7 @@ on(type:'playFromAssetId', callback: (assetId: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1841,7 +1934,7 @@ on(type:'playFromAssetId', callback: (assetId: number) => void): void
 
 ```ts
 currentAVSession.on('playFromAssetId', (assetId: number) => {
-  console.info(`on playFromAssetId entry`);
+  console.info('on playFromAssetId entry');
 });
 ```
 
@@ -1850,6 +1943,8 @@ currentAVSession.on('playFromAssetId', (assetId: number) => {
 off(type: 'playFromAssetId', callback?: (assetId: number) => void): void
 
 取消媒体id播放事件监听，关闭后，不再进行该事件回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1866,6 +1961,7 @@ off(type: 'playFromAssetId', callback?: (assetId: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1880,6 +1976,8 @@ currentAVSession.off('playFromAssetId');
 on(type: 'seek', callback: (time: number) => void): void
 
 设置跳转节点监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1896,6 +1994,7 @@ on(type: 'seek', callback: (time: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1913,6 +2012,8 @@ on(type: 'setSpeed', callback: (speed: number) => void): void
 
 设置播放速率的监听事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -1928,6 +2029,7 @@ on(type: 'setSpeed', callback: (speed: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1945,6 +2047,8 @@ on(type: 'setLoopMode', callback: (mode: LoopMode) => void): void
 
 设置循环模式的监听事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -1960,6 +2064,7 @@ on(type: 'setLoopMode', callback: (mode: LoopMode) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1977,6 +2082,8 @@ on(type: 'toggleFavorite', callback: (assetId: string) => void): void
 
 设置是否收藏的监听事件
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -1992,6 +2099,7 @@ on(type: 'toggleFavorite', callback: (assetId: string) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2009,6 +2117,8 @@ on(type: 'skipToQueueItem', callback: (itemId: number) => void): void
 
 设置播放列表其中某项被选中的监听事件，session端可以选择对这个单项歌曲进行播放。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -2024,6 +2134,7 @@ on(type: 'skipToQueueItem', callback: (itemId: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2039,7 +2150,9 @@ currentAVSession.on('skipToQueueItem', (itemId: number) => {
 
 on(type: 'handleKeyEvent', callback: (event: KeyEvent) => void): void
 
-设置按键事件的监听
+设置蓝牙/有线等外设接入的按键输入事件的监听，监听多媒体按键事件中播放、暂停、上下一首、快进、快退的指令。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2056,15 +2169,16 @@ on(type: 'handleKeyEvent', callback: (event: KeyEvent) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import keyEvent from '@ohos.multimodalInput.keyEvent';
+import { KeyEvent } from '@kit.InputKit';
 
-currentAVSession.on('handleKeyEvent', (event: keyEvent.KeyEvent) => {
+currentAVSession.on('handleKeyEvent', (event: KeyEvent) => {
   console.info(`on handleKeyEvent event : ${event}`);
 });
 
@@ -2074,7 +2188,9 @@ currentAVSession.on('handleKeyEvent', (event: keyEvent.KeyEvent) => {
 
 on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: OutputDeviceInfo) => void): void
 
-设置播放设备变化的监听事件。
+设置播放设备变化的监听事件。应用接入[系统投播组件](ohos-multimedia-avcastpicker.md)，当用户通过组件切换设备时，会收到设备切换的回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2091,6 +2207,7 @@ on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: Output
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2108,6 +2225,8 @@ on(type: 'commonCommand', callback: (command: string, args: {[key: string]: Obje
 
 设置自定义控制命令变化的监听器。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -2123,13 +2242,14 @@ on(type: 'commonCommand', callback: (command: string, args: {[key: string]: Obje
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
@@ -2157,6 +2277,8 @@ off(type: 'play', callback?: () => void): void
 
 取消回调时，需要更新支持的命令列表。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -2172,6 +2294,7 @@ off(type: 'play', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2189,6 +2312,8 @@ off(type: 'pause', callback?: () => void): void
 
 取消回调时，需要更新支持的命令列表。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -2204,6 +2329,7 @@ off(type: 'pause', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2221,6 +2347,8 @@ off(type: 'stop', callback?: () => void): void
 
 取消回调时，需要更新支持的命令列表。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -2236,6 +2364,7 @@ off(type: 'stop', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2253,6 +2382,8 @@ off(type: 'playNext', callback?: () => void): void
 
 取消回调时，需要更新支持的命令列表。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -2268,6 +2399,7 @@ off(type: 'playNext', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2285,6 +2417,8 @@ off(type: 'playPrevious', callback?: () => void): void
 
 取消回调时，需要更新支持的命令列表。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -2300,6 +2434,7 @@ off(type: 'playPrevious', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2317,6 +2452,8 @@ off(type: 'fastForward', callback?: () => void): void
 
 取消回调时，需要更新支持的命令列表。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -2332,6 +2469,7 @@ off(type: 'fastForward', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2346,6 +2484,8 @@ currentAVSession.off('fastForward');
 off(type: 'rewind', callback?: () => void): void
 
 取消会话快退事件监听，关闭后，不再进行该事件回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2362,6 +2502,7 @@ off(type: 'rewind', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2376,6 +2517,8 @@ currentAVSession.off('rewind');
 off(type: 'seek', callback?: (time: number) => void): void
 
 取消监听跳转节点事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2392,6 +2535,7 @@ off(type: 'seek', callback?: (time: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2406,6 +2550,8 @@ currentAVSession.off('seek');
 off(type: 'setSpeed', callback?: (speed: number) => void): void
 
 取消监听播放速率变化事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2422,6 +2568,7 @@ off(type: 'setSpeed', callback?: (speed: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2436,6 +2583,8 @@ currentAVSession.off('setSpeed');
 off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void
 
 取消监听循环模式变化事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2452,6 +2601,7 @@ off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2466,6 +2616,8 @@ currentAVSession.off('setLoopMode');
 off(type: 'toggleFavorite', callback?: (assetId: string) => void): void
 
 取消监听是否收藏的事件
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2482,6 +2634,7 @@ off(type: 'toggleFavorite', callback?: (assetId: string) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2496,6 +2649,8 @@ currentAVSession.off('toggleFavorite');
 off(type: 'skipToQueueItem', callback?: (itemId: number) => void): void
 
 取消监听播放列表单项选中的事件
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2512,6 +2667,7 @@ off(type: 'skipToQueueItem', callback?: (itemId: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2526,6 +2682,8 @@ currentAVSession.off('skipToQueueItem');
 off(type: 'handleKeyEvent', callback?: (event: KeyEvent) => void): void
 
 取消监听按键事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2542,6 +2700,7 @@ off(type: 'handleKeyEvent', callback?: (event: KeyEvent) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2556,6 +2715,8 @@ currentAVSession.off('handleKeyEvent');
 off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: OutputDeviceInfo) => void): void
 
 取消监听播放设备变化的事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2572,6 +2733,7 @@ off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: Outp
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2588,6 +2750,8 @@ off(type: 'commonCommand', callback?: (command: string, args: {[key:string]: Obj
 
 取消监听自定义控制命令的变化。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -2603,6 +2767,7 @@ off(type: 'commonCommand', callback?: (command: string, args: {[key:string]: Obj
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2617,6 +2782,8 @@ currentAVSession.off('commonCommand');
 on(type: 'answer', callback: Callback\<void>): void;
 
 设置通话接听的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2633,6 +2800,7 @@ on(type: 'answer', callback: Callback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2640,7 +2808,7 @@ on(type: 'answer', callback: Callback\<void>): void;
 
 ```ts
 currentAVSession.on('answer', () => {
-  console.info(`on call answer`);
+  console.info('on call answer');
 });
 ```
 
@@ -2649,6 +2817,8 @@ currentAVSession.on('answer', () => {
 off(type: 'answer', callback?: Callback\<void>): void;
 
 取消通话接听事件的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2665,6 +2835,7 @@ off(type: 'answer', callback?: Callback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2679,6 +2850,8 @@ currentAVSession.off('answer');
 on(type: 'hangUp', callback: Callback\<void>): void;
 
 设置通话挂断的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2695,6 +2868,7 @@ on(type: 'hangUp', callback: Callback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2702,7 +2876,7 @@ on(type: 'hangUp', callback: Callback\<void>): void;
 
 ```ts
 currentAVSession.on('hangUp', () => {
-  console.info(`on call hangUp`);
+  console.info('on call hangUp');
 });
 ```
 
@@ -2711,6 +2885,8 @@ currentAVSession.on('hangUp', () => {
 off(type: 'hangUp', callback?: Callback\<void>): void;
 
 取消通话挂断事件的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2727,6 +2903,7 @@ off(type: 'hangUp', callback?: Callback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2741,6 +2918,8 @@ currentAVSession.off('hangUp');
 on(type: 'toggleCallMute', callback: Callback\<void>): void;
 
 设置通话静音的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2757,6 +2936,7 @@ on(type: 'toggleCallMute', callback: Callback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2764,7 +2944,7 @@ on(type: 'toggleCallMute', callback: Callback\<void>): void;
 
 ```ts
 currentAVSession.on('toggleCallMute', () => {
-  console.info(`on call toggleCallMute`);
+  console.info('on call toggleCallMute');
 });
 ```
 
@@ -2773,6 +2953,8 @@ currentAVSession.on('toggleCallMute', () => {
 off(type: 'toggleCallMute', callback?: Callback\<void>): void;
 
 取消通话静音事件的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2789,6 +2971,7 @@ off(type: 'toggleCallMute', callback?: Callback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2803,6 +2986,8 @@ currentAVSession.off('toggleCallMute');
 on(type: 'castDisplayChange', callback: Callback\<CastDisplayInfo>): void
 
 设置扩展屏投播显示设备变化的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
@@ -2819,6 +3004,7 @@ on(type: 'castDisplayChange', callback: Callback\<CastDisplayInfo>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2829,9 +3015,9 @@ let castDisplay: avSession.CastDisplayInfo;
 currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) => {
     if (display.state === avSession.CastDisplayState.STATE_ON) {
         castDisplay = display;
-        console.info('castDisplayChange display : ${display.id} ON');
+        console.info(`Succeeded in castDisplayChange display : ${display.id} ON`);
     } else if (display.state === avSession.CastDisplayState.STATE_OFF){
-        console.info('castDisplayChange display : ${display.id} OFF');
+        console.info(`Succeeded in castDisplayChange display : ${display.id} OFF`);
     }
 });
 ```
@@ -2840,6 +3026,8 @@ currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) =>
  off(type: 'castDisplayChange', callback?: Callback\<CastDisplayInfo>): void
 
 取消扩展屏投播显示设备变化事件监听，关闭后，不再进行该事件回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
@@ -2856,6 +3044,7 @@ currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) =>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2890,13 +3079,13 @@ stopCasting(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.stopCasting((err: BusinessError) => {
   if (err) {
     console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`stopCasting successfully`);
+    console.info('stopCasting successfully');
   }
 });
 ```
@@ -2906,6 +3095,8 @@ currentAVSession.stopCasting((err: BusinessError) => {
 stopCasting(): Promise\<void>
 
 结束投播。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -2926,10 +3117,10 @@ stopCasting(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.stopCasting().then(() => {
-  console.info(`stopCasting successfully`);
+  console.info('stopCasting successfully');
 }).catch((err: BusinessError) => {
   console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -2940,6 +3131,8 @@ currentAVSession.stopCasting().then(() => {
 getOutputDeviceSync(): OutputDeviceInfo
 
 使用同步方法获取当前输出设备信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2961,7 +3154,7 @@ getOutputDeviceSync(): OutputDeviceInfo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let currentOutputDevice: avSession.OutputDeviceInfo = currentAVSession.getOutputDeviceSync();
@@ -2976,13 +3169,15 @@ getAllCastDisplays(): Promise<Array\<CastDisplayInfo>>
 
 获取当前系统中所有支持扩展屏投播的显示设备。通过Promise异步回调方式返回。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
 **返回值：**
 
 | 类型                                            | 说明                              |
 | ----------------------------------------------- | --------------------------------- |
-| Promise<Array<[CastDisplayInfo](#castdisplayinfo12)>>| 当前支持扩展屏投播的显示设备属性。 |
+| Promise<Array<[CastDisplayInfo](#castdisplayinfo12)>>| Promise对象，返回当前系统中所有支持扩展屏投播的显示设备。 |
 
 **错误码：**
 
@@ -2996,53 +3191,57 @@ getAllCastDisplays(): Promise<Array\<CastDisplayInfo>>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let castDisplay: avSession.CastDisplayInfo;
-currentAVSession.getAllCastDisplays()
-  .then((data: Array< avSession.CastDisplayInfo >) => {
+currentAVSession.getAllCastDisplays().then((data: Array< avSession.CastDisplayInfo >) => {
     if (data.length >= 1) {
-       castDisplay =  data[0];
-     } else {
-       console.info('There is not a cast display');
+       castDisplay = data[0];
      }
-   })
-   .catch((error: BusinessError) => {
-     console.info(`getAllCastDisplays BusinessError: code: ${err.code}, message: ${err.message}`);
+   }).catch((err: BusinessError) => {
+     console.error(`Failed to getAllCastDisplay. Code: ${err.code}, message: ${err.message}`);
    });
 ```
 
 ## AVCastControlCommandType<sup>10+</sup>
 
+type AVCastControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward' | 'rewind' |
+  'seek' | 'setVolume' | 'setSpeed' | 'setLoopMode' | 'toggleFavorite' | 'toggleMute'
+
 投播控制器可传递的命令。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-| 名称           | 类型   | 说明         |
-| -------------- | ------ | ------------ |
-| play           | string | 播放         |
-| pause          | string | 暂停         |
-| stop           | string | 停止         |
-| playNext       | string | 下一首       |
-| playPrevious   | string | 上一首       |
-| fastForward    | string | 快进         |
-| rewind         | string | 快退         |
-| seek           | number | 跳转某一节点 |
-| setSpeed       | number | 设置播放倍速 |
-| setLoopMode    | string | 设置循环模式 |
-| toggleFavorite | string | 是否收藏     |
-| setVolume      | number | 设置音量     |
+| 类型             | 说明         |
+| ---------------- | ------------ |
+| 'play'           | 播放         |
+| 'pause'          | 暂停         |
+| 'stop'           | 停止         |
+| 'playNext'       | 下一首       |
+| 'playPrevious'   | 上一首       |
+| 'fastForward'    | 快进         |
+| 'rewind'         | 快退         |
+| 'seek'           | 跳转某一节点 |
+| 'setVolume'      | 设置音量     |
+| 'setSpeed'       | 设置播放倍速 |
+| 'setLoopMode'    | 设置循环模式 |
+| 'toggleFavorite' | 是否收藏     |
+| 'toggleMute'     | 设置静音状态 |
 
 ## AVCastControlCommand<sup>10+</sup>
 
 投播控制器接受的命令的对象描述。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
 | command   | [AVCastControlCommandType](#avcastcontrolcommandtype10)     | 是   | 命令           |
-| parameter | [LoopMode](#loopmode10) &#124; string &#124; number &#124; [media.PlaybackSpeed](../apis-media-kit/js-apis-media.md#playbackspeed8) | 否   | 命令对应的参数 |
+| parameter | [media.PlaybackSpeed](../apis-media-kit/js-apis-media.md#playbackspeed8) &#124; number &#124; string &#124; [LoopMode](#loopmode10) | 否   | 命令对应的参数 |
 
 ## AVCastController<sup>10+</sup>
 
@@ -3073,13 +3272,13 @@ getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.getAVPlaybackState((err: BusinessError, state: avSession.AVPlaybackState) => {
   if (err) {
     console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`getAVPlaybackState : SUCCESS`);
+    console.info('getAVPlaybackState : SUCCESS');
   }
 });
 ```
@@ -3089,6 +3288,8 @@ aVCastController.getAVPlaybackState((err: BusinessError, state: avSession.AVPlay
 getAVPlaybackState(): Promise\<AVPlaybackState>
 
 获取当前的远端播放状态。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3109,10 +3310,10 @@ getAVPlaybackState(): Promise\<AVPlaybackState>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.getAVPlaybackState().then((state: avSession.AVPlaybackState) => {
-  console.info(`getAVPlaybackState : SUCCESS`);
+  console.info('getAVPlaybackState : SUCCESS');
 }).catch((err: BusinessError) => {
   console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -3124,6 +3325,8 @@ sendControlCommand(command: AVCastControlCommand): Promise\<void>
 
 通过控制器发送命令到其对应的会话。结果通过Promise异步回调方式返回。
 
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3145,6 +3348,7 @@ sendControlCommand(command: AVCastControlCommand): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600105  | Invalid session command. |
 | 6600109  | The remote connection is not established. |
@@ -3152,11 +3356,11 @@ sendControlCommand(command: AVCastControlCommand): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avCommand: avSession.AVCastControlCommand = {command:'play'};
 aVCastController.sendControlCommand(avCommand).then(() => {
-  console.info(`SendControlCommand successfully`);
+  console.info('SendControlCommand successfully');
 }).catch((err: BusinessError) => {
   console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -3184,6 +3388,7 @@ sendControlCommand(command: AVCastControlCommand, callback: AsyncCallback\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600105  | Invalid session command. |
 | 6600109  | The remote connection is not established. |
@@ -3191,14 +3396,14 @@ sendControlCommand(command: AVCastControlCommand, callback: AsyncCallback\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avCommand: avSession.AVCastControlCommand = {command:'play'};
 aVCastController.sendControlCommand(avCommand, (err: BusinessError) => {
   if (err) {
     console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`SendControlCommand successfully`);
+    console.info('SendControlCommand successfully');
   }
 });
 ```
@@ -3224,13 +3429,14 @@ prepare(item: AVQueueItem, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600109  | The remote connection is not established. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 设置播放参数，开始播放
 let playItem: avSession.AVQueueItem = {
@@ -3254,7 +3460,7 @@ aVCastController.prepare(playItem, (err: BusinessError) => {
   if (err) {
     console.error(`prepare BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`prepare successfully`);
+    console.info('prepare successfully');
   }
 });
 ```
@@ -3266,6 +3472,8 @@ prepare(item: AVQueueItem): Promise\<void>
 
 准备播放媒体资源，即进行播放资源的加载和缓冲。结果通过Promise异步回调方式返回。
 
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3287,6 +3495,7 @@ prepare(item: AVQueueItem): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600109  | The remote connection is not established. |
 
@@ -3294,7 +3503,7 @@ prepare(item: AVQueueItem): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 设置播放参数，开始播放
 let playItem: avSession.AVQueueItem = {
@@ -3315,7 +3524,7 @@ let playItem: avSession.AVQueueItem = {
 };
 // 准备播放，这个不会触发真正的播放，会进行加载和缓冲
 aVCastController.prepare(playItem).then(() => {
-  console.info(`prepare successfully`);
+  console.info('prepare successfully');
 }).catch((err: BusinessError) => {
   console.error(`prepare BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -3342,13 +3551,14 @@ start(item: AVQueueItem, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600109  | The remote connection is not established. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 设置播放参数，开始播放
 let playItem: avSession.AVQueueItem = {
@@ -3373,7 +3583,7 @@ aVCastController.start(playItem, (err: BusinessError) => {
   if (err) {
     console.error(`start BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`start successfully`);
+    console.info('start successfully');
   }
 });
 ```
@@ -3384,6 +3594,8 @@ start(item: AVQueueItem): Promise\<void>
 
 启动播放某个媒体资源。结果通过Promise异步回调方式返回。
 
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3405,6 +3617,7 @@ start(item: AVQueueItem): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600109  | The remote connection is not established. |
 
@@ -3412,7 +3625,7 @@ start(item: AVQueueItem): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 设置播放参数，开始播放
 let playItem: avSession.AVQueueItem = {
@@ -3433,7 +3646,7 @@ let playItem: avSession.AVQueueItem = {
 };
 // 启动播放
 aVCastController.start(playItem).then(() => {
-  console.info(`start successfully`);
+  console.info('start successfully');
 }).catch((err: BusinessError) => {
   console.error(`start BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -3464,13 +3677,13 @@ getCurrentItem(callback: AsyncCallback\<AVQueueItem>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.getCurrentItem((err: BusinessError, value: avSession.AVQueueItem) => {
   if (err) {
     console.error(`getCurrentItem BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`getCurrentItem successfully`);
+    console.info('getCurrentItem successfully');
   }
 });
 ```
@@ -3480,6 +3693,8 @@ aVCastController.getCurrentItem((err: BusinessError, value: avSession.AVQueueIte
 getCurrentItem(): Promise\<AVQueueItem>
 
 获取当前投播的资源信息。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3500,14 +3715,128 @@ getCurrentItem(): Promise\<AVQueueItem>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.getCurrentItem().then((value: avSession.AVQueueItem) => {
-  console.info(`getCurrentItem successfully`);
+  console.info('getCurrentItem successfully');
 }).catch((err: BusinessError) => {
   console.error(`getCurrentItem BusinessError: code: ${err.code}, message: ${err.message}`);
 });
+```
 
+### getValidCommands<sup>11+</sup>
+
+getValidCommands(callback: AsyncCallback<Array\<AVCastControlCommandType>>): void
+
+获取当前支持的命令。结果通过callback异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| callback | Array<[AVCastControlCommandType](#avcastcontrolcommandtype10)> | 是 | 回调函数。返回当前支持的命令。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+aVCastController.getValidCommands((err: BusinessError, state: avSession.AVCastControlCommandType) => {
+  if (err) {
+    console.error(`getValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info('getValidCommands successfully');
+  }
+});
+```
+
+### getValidCommands<sup>11+</sup>
+
+getValidCommands(): Promise<Array\<AVCastControlCommandType>>
+
+获取当前支持的命令。结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------------- | ----------------------------- |
+| Promise<Array\<[AVCastControlCommandType](#avcastcontrolcommandtype10)>> | Promise对象，返回当前支持的命令。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+aVCastController.getValidCommands().then((state: avSession.AVCastControlCommandType) => {
+  console.info('getValidCommands successfully');
+}).catch((err: BusinessError) => {
+  console.error(`getValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### processMediaKeyResponse<sup>12+</sup>
+
+processMediaKeyResponse(assetId: string, response: Uint8Array): Promise\<void>
+
+在线DRM资源投播时，处理许可证响应。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                                  |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| assetId | string                  | 是   | 媒体ID。 |
+| response | Uint8Array             | 是   | 许可证响应。 |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise对象，当处理许可证响应成功，无返回结果，否则返回错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  // 根据assetId获取对应的DRM url
+  let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
+  // 从服务器获取许可证，需要开发者根据实际情况进行赋值
+  let licenseResponseData: Uint8Array = new Uint8Array();
+  console.info(`Succeeded in get license by ${drmUrl}.`);
+  aVCastController.processMediaKeyResponse(assetId, licenseResponseData);
+}
 ```
 
 ### release<sup>11+</sup>
@@ -3535,13 +3864,13 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.release((err: BusinessError) => {
   if (err) {
     console.error(`release BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`release successfully`);
+    console.info('release successfully');
   }
 });
 ```
@@ -3551,6 +3880,8 @@ aVCastController.release((err: BusinessError) => {
 release(): Promise\<void>
 
 销毁当前controller。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3571,10 +3902,10 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.release().then(() => {
-  console.info(`release successfully`);
+  console.info('release successfully');
 }).catch((err: BusinessError) => {
   console.error(`release BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -3586,6 +3917,8 @@ aVCastController.release().then(() => {
 on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', callback: (state: AVPlaybackState) => void): void
 
 设置播放状态变化的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3603,6 +3936,7 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3624,6 +3958,8 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void): v
 
 媒体控制器取消监听播放状态变化的事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
@@ -3639,6 +3975,7 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void): v
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3652,6 +3989,8 @@ aVCastController.off('playbackStateChange');
 on(type: 'mediaItemChange', callback: Callback\<AVQueueItem>): void
 
 设置投播当前播放媒体内容的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3668,6 +4007,7 @@ on(type: 'mediaItemChange', callback: Callback\<AVQueueItem>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3684,6 +4024,8 @@ off(type: 'mediaItemChange'): void
 
 取消设置投播当前播放媒体内容的监听事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
@@ -3698,6 +4040,7 @@ off(type: 'mediaItemChange'): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3711,6 +4054,8 @@ aVCastController.off('mediaItemChange');
 on(type: 'playNext', callback: Callback\<void>): void
 
 设置播放下一首资源的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3727,13 +4072,14 @@ on(type: 'playNext', callback: Callback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
 
 ```ts
 aVCastController.on('playNext', () => {
-  console.info(`on playNext`);
+  console.info('on playNext');
 });
 ```
 
@@ -3742,6 +4088,8 @@ aVCastController.on('playNext', () => {
 off(type: 'playNext'): void
 
 取消设置播放下一首资源的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3757,6 +4105,7 @@ off(type: 'playNext'): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3770,6 +4119,8 @@ aVCastController.off('playNext');
 on(type: 'playPrevious', callback: Callback\<void>): void
 
 设置播放上一首资源的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3786,13 +4137,14 @@ on(type: 'playPrevious', callback: Callback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
 
 ```ts
 aVCastController.on('playPrevious', () => {
-  console.info(`on playPrevious`);
+  console.info('on playPrevious');
 });
 ```
 
@@ -3801,6 +4153,8 @@ aVCastController.on('playPrevious', () => {
 off(type: 'playPrevious'): void
 
 取消设置播放上一首资源的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3816,6 +4170,7 @@ off(type: 'playPrevious'): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3845,6 +4200,7 @@ on(type: 'requestPlay', callback: Callback\<AVQueueItem>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3876,6 +4232,7 @@ off(type: 'requestPlay', callback?: Callback\<AVQueueItem>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3905,13 +4262,14 @@ on(type: 'endOfStream', callback: Callback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
 
 ```ts
 aVCastController.on('endOfStream', () => {
-  console.info(`on endOfStream`);
+  console.info('on endOfStream');
 });
 ```
 
@@ -3936,6 +4294,7 @@ off(type: 'endOfStream', callback?: Callback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3949,6 +4308,8 @@ aVCastController.off('endOfStream');
 on(type: 'seekDone', callback: Callback\<number>): void
 
 设置seek结束的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3965,6 +4326,7 @@ on(type: 'seekDone', callback: Callback\<number>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3981,6 +4343,8 @@ off(type: 'seekDone'): void
 
 取消设置seek结束的监听事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
@@ -3995,6 +4359,7 @@ off(type: 'seekDone'): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -4024,6 +4389,7 @@ on(type: 'validCommandChange', callback: Callback\<Array\<AVCastControlCommandTy
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -4057,6 +4423,7 @@ off(type: 'validCommandChange', callback?: Callback\<Array\<AVCastControlCommand
 
 | 错误码ID | 错误信息           |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -4071,6 +4438,8 @@ aVCastController.off('validCommandChange');
 on(type: 'error', callback: ErrorCallback): void
 
 监听远端播放器的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -4087,6 +4456,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 5400101  | No memory.            |
 | 5400102  | Operation not allowed.   |
 | 5400103  | I/O error.             |
@@ -4098,11 +4468,10 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.on('error', (error: BusinessError) => {
-  console.info('error happened,and error message is :' + error.message)
-  console.info('error happened,and error code is :' + error.code)
+  console.info(`error happened, error code: ${error.code}, error message : ${error.message}.`)
 })
 ```
 
@@ -4111,6 +4480,8 @@ aVCastController.on('error', (error: BusinessError) => {
 off(type: 'error'): void
 
 取消监听播放的错误事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -4126,6 +4497,7 @@ off(type: 'error'): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 5400101  | No memory.            |
 | 5400102  | Operation not allowed.   |
 | 5400103  | I/O error.             |
@@ -4140,9 +4512,517 @@ off(type: 'error'): void
 aVCastController.off('error')
 ```
 
+### on('keyRequest')<sup>12+</sup>
+
+on(type: 'keyRequest', callback: KeyRequestCallback): void
+
+在线DRM资源投播时，设置许可证请求的事件监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| type     | string  | 是   | 事件回调类型，支持事件`'keyRequest'`：当DRM资源播放需要许可证时，触发该事件。 |
+| callback | [KeyRequestCallback](#keyrequestcallback12)  | 是   | 回调函数，媒体资源及许可证请求数据。|
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  console.info(`Succeeded in keyRequestCallback. assetId: ${assetId}, requestData: ${requestData}`);
+}
+aVCastController.on('keyRequest', keyRequestCallback);
+```
+### off('keyRequest')<sup>12+</sup>
+
+off(type: 'keyRequest', callback?: KeyRequestCallback): void
+
+取消监听许可证请求的事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| type     | string                                                       | 是   | 取消对应的监听事件，支持的事件是`'keyRequest'`。 |
+| callback |  [KeyRequestCallback](#keyrequestcallback12)  | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+aVCastController.off('keyRequest');
+```
+
+### on('castControlGenericError')<sup>13+</sup>
+
+on(type: 'castControlGenericError', callback: ErrorCallback): void
+
+监听投播通用错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 错误事件回调类型，支持的事件：'castControlGenericError'。 |
+| callback | ErrorCallback | 是   | 投播通用错误事件回调方法。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 6611000  | The error code for cast control is unspecified.      |
+| 6611001  | An unspecified error occurs in the remote player.   |
+| 6611002  | The playback position falls behind the live window.     |
+| 6611003  | The process of cast control times out.    |
+| 6611004  | The runtime check failed.      |
+| 6611100  | Cross-device data transmission is locked.    |
+| 6611101  | The specified seek mode is not supported.   |
+| 6611102  | The position to seek to is out of the range of the media asset or the specified seek mode is not supported.  |
+| 6611103  | The specified playback mode is not supported.       |
+| 6611104  | The specified playback speed is not supported.    |
+| 6611105  | The action failed because either the media source device or the media sink device has been revoked.   |
+| 6611106  | The parameter is invalid, for example, the url is illegal to play.  |
+| 6611107  | Allocation of memory failed.  |
+| 6611108  | Operation is not allowed.    |
+
+**示例：**
+
+```ts
+aVCastController.on('castControlGenericError', (error: BusinessError) => {
+  console.info(`castControlGenericError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+
+### off('castControlGenericError')<sup>13+</sup>
+
+off(type: 'castControlGenericError', callback?: ErrorCallback): void
+
+取消监听投播通用的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 	取消对应的监听事件，支持的事件是'castControlGenericError'。 |
+| callback | ErrorCallback | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+aVCastController.off('castControlGenericError');
+```
+
+### on('castControlIoError')<sup>13+</sup>
+
+on(type: 'castControlIoError', callback: ErrorCallback): void
+
+监听投播输入/输出的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 错误事件回调类型，支持的事件：'castControlIoError'。 |
+| callback | ErrorCallback | 是   | 投播输入/输出的错误事件回调方法。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 6612000  | An unspecified input/output error occurs.     |
+| 6612001  | Network connection failure.   |
+| 6612002  | Network timeout.     |
+| 6612003  | Invalid "Content-Type" HTTP header.    |
+| 6612004  | The HTTP server returns an unexpected HTTP response status code.      |
+| 6612005  | The file does not exist.    |
+| 6612006  | No permission is granted to perform the IO operation.   |
+| 6612007  | Access to cleartext HTTP traffic is not allowed by the app's network security configuration. |
+| 6612008  | Reading data out of the data bound.    |
+| 6612100  | The media does not contain any contents that can be played.   |
+| 6612101  | The media cannot be read, for example, because of dust or scratches.   |
+| 6612102  | This resource is already in use. |
+| 6612103  | The content using the validity interval has expired.  |
+| 6612104  | Using the requested content to play is not allowed.    |
+| 6612105  | The use of the allowed content cannot be verified.  |
+| 6612106  | The number of times this content has been used as requested has reached the maximum allowed number of uses.  |
+| 6612107  | An error occurs when sending packet from source device to sink device.    |
+
+**示例：**
+
+```ts
+aVCastController.on('castControlIoError', (error: BusinessError) => {
+  console.info(`castControlIoError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+
+### off('castControlIoError')<sup>13+</sup>
+
+off(type: 'castControlIoError', callback?: ErrorCallback): void
+
+取消监听投播输入/输出的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 	取消对应的监听事件，支持的事件是'castControlIoError'。 |
+| callback | ErrorCallback | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+aVCastController.off('castControlIoError');
+```
+
+### on('castControlParsingError')<sup>13+</sup>
+
+on(type: 'castControlParsingError', callback: ErrorCallback): void
+
+监听投播解析的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 错误事件回调类型，支持的事件：'castControlParsingError'。 |
+| callback | ErrorCallback | 是   | 投播解析的错误事件回调方法。 |
+
+**错误码：**
+
+| 错误码ID  | 错误信息              |
+| -------- | --------------------- |
+| 401      |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 6613000  | Unspecified error related to content parsing.     |
+| 6613001  | Parsing error associated with media container format bit streams.   |
+| 6613002  | Parsing error associated with the media manifest.     |
+| 6613003  | An error occurs when attempting to extract a file with an unsupported media container format or an unsupported media container feature.    |
+| 6613004  | Unsupported feature in the media manifest.    |
+
+**示例：**
+
+```ts
+aVCastController.on('castControlParsingError', (error: BusinessError) => {
+  console.info(`castControlParsingError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+
+### off('castControlParsingError')<sup>13+</sup>
+
+off(type: 'castControlParsingError', callback?: ErrorCallback): void
+
+取消监听投播解析的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 	取消对应的监听事件，支持的事件是'castControlParsingError'。 |
+| callback | ErrorCallback | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+aVCastController.off('castControlParsingError');
+```
+
+### on('castControlDecodingError')<sup>13+</sup>
+
+on(type: 'castControlDecodingError', callback: ErrorCallback): void
+
+监听投播解码的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 错误事件回调类型，支持的事件：'castControlDecodingError'。 |
+| callback | ErrorCallback | 是   | 投播解码的错误事件回调方法。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 6614000  | Unspecified decoding error.     |
+| 6614001  | Decoder initialization failed.   |
+| 6614002  | Decoder query failed.     |
+| 6614003  | Decoding the media samples failed.    |
+| 6614004  | The format of the content to decode exceeds the capabilities of the device.    |
+| 6614005  | The format of the content to decode is not supported.    |
+
+**示例：**
+
+```ts
+aVCastController.on('castControlDecodingError', (error: BusinessError) => {
+  console.info(`castControlDecodingError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+### off('castControlDecodingError')<sup>13+</sup>
+
+off(type: 'castControlDecodingError', callback?: ErrorCallback): void
+
+取消监听投播解码的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 	取消对应的监听事件，支持的事件是'castControlDecodingError'。 |
+| callback | ErrorCallback | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+aVCastController.off('castControlDecodingError');
+```
+
+### on('castControlAudioRendererError')<sup>13+</sup>
+
+on(type: 'castControlAudioRendererError', callback: ErrorCallback): void
+
+监听投播音频渲染器的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 错误事件回调类型，支持的事件：'castControlAudioRendererError'。 |
+| callback | ErrorCallback | 是   | 投播音频渲染器的错误事件回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)以及[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 6615000  | Unspecified errors related to the audio renderer.     |
+| 6615001  | Initializing the audio renderer failed.   |
+| 6615002  | The audio renderer fails to write data.     |
+
+**示例：**
+
+```ts
+aVCastController.on('castControlAudioRendererError', (error: BusinessError) => {
+  console.info(`castControlAudioRendererError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+### off('castControlAudioRendererError')<sup>13+</sup>
+
+off(type: 'castControlAudioRendererError', callback?: ErrorCallback): void
+
+取消监听投播音频渲染器的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 	取消对应的监听事件，支持的事件是'castControlAudioRendererError'。 |
+| callback | ErrorCallback | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+
+**示例：**
+
+```ts
+aVCastController.off('castControlAudioRendererError');
+```
+
+### on('castControlDrmError')<sup>13+</sup>
+
+on(type: 'castControlDrmError', callback: ErrorCallback): void
+
+监听投播drm的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 错误事件回调类型，支持的事件：'castControlDrmError'。 |
+| callback | ErrorCallback | 是   | 投播drm的错误事件回调方法。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 6616000  | Unspecified error related to DRM.     |
+| 6616001  | The chosen DRM protection scheme is not supported by the device.  |
+| 6616002  | Device provisioning failed.    |
+| 6616003  | The DRM-protected content to play is incompatible.     |
+| 6616004  | Failed to obtain a license.   |
+| 6616005  | The operation is disallowed by the license policy.     |
+| 6616006  | An error occurs in the DRM system.     |
+| 6616007  | The device has revoked DRM privileges.   |
+| 6616008  | The DRM license being loaded into the open DRM session has expired.      |
+| 6616100  | An error occurs when the DRM processes the key response.     |
+
+**示例：**
+
+```ts
+aVCastController.on('castControlDrmError', (error: BusinessError) => {
+  console.info(`castControlDrmError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+
+### off('castControlDrmError')<sup>13+</sup>
+
+off(type: 'castControlDrmError', callback?: ErrorCallback): void
+
+取消监听投播drm的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 	取消对应的监听事件，支持的事件是'castControlDrmError'。 |
+| callback | ErrorCallback | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+aVCastController.off('castControlDrmError');
+```
+
+## KeyRequestCallback<sup>12+</sup>
+type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
+
+许可证请求事件的回调函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| assetId     | string  | 是   | 媒体ID。 |
+| requestData |  Uint8Array  | 是   | 媒体许可证请求数据。                            |
+
+**示例：**
+<!--code_no_check-->
+```ts
+let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  console.info(`Succeeded in keyRequestCallback. assetId: ${assetId}, requestData: ${requestData}`);
+}
+```
+
 ## CastDisplayState<sup>12+</sup>
 
-投播显示设备状态。
+投播显示设备状态的枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
@@ -4156,19 +5036,23 @@ aVCastController.off('error')
 
 扩展屏投播显示设备相关属性。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
-| 名称            | 类型                      | 可读 | 可写 | 说明                                                                  |
+| 名称            | 类型                      | 只读 | 可选 | 说明                                                                  |
 | --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
-| id            | number                  | 是    | 否    | 投播显示设备的ID，该参数应为整数。  |
-| name     | string                  | 是    | 否    | 投播显示设备的名称。           |
-| state          | [CastDisplayState](#castdisplaystate12)          | 是    | 否    |投播显示设备状态。            |
-| width          | number          | 是    | 否    | 投播显示设备的屏幕宽度，单位为px，该参数应为整数。          |  
-| height          | number          | 是    | 否    | 投播显示设备的屏幕高度，单位为px，该参数应为整数。            |  
+| id            | number                  | 否    | 否    | 投播显示设备的ID，该参数应为整数。  |
+| name     | string                  | 否    | 否    | 投播显示设备的名称。           |
+| state          | [CastDisplayState](#castdisplaystate12)          | 否    | 否    |投播显示设备状态。            |
+| width          | number          | 否    | 否    | 投播显示设备的屏幕宽度，单位为px，该参数应为整数。          |  
+| height          | number          | 否    | 否    | 投播显示设备的屏幕高度，单位为px，该参数应为整数。            |  
 
 ## ConnectionState<sup>10+</sup>
 
 连接状态枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4186,26 +5070,28 @@ aVCastController.off('error')
 
 | 名称            | 类型                      | 必填 | 说明                                                                  |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| assetId         | string                  | 是   | 媒体ID。歌曲的唯一标识，由应用自定义。                                     |
-| title           | string                  | 否   | 标题。                                                                 |
-| artist          | string                  | 否   | 艺术家。                                                                |
-| author          | string                  | 否   | 专辑作者。                                                               |
+| assetId         | string                  | 是   | 媒体ID。歌曲的唯一标识，由应用自定义。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                     |
+| title           | string                  | 否   | 标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                 |
+| artist          | string                  | 否   | 艺术家。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
+| author          | string                  | 否   | 专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
+| avQueueName<sup>12+</sup>       | string                  | 否   | 歌单（歌曲列表）名称。                                                               |
 | avQueueId<sup>11+</sup>       | string                  | 否   | 歌单（歌曲列表）唯一标识Id。                                                               |
-| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。  |                       
-| album           | string                  | 否   | 专辑名称。                                                               |
-| writer          | string                  | 否   | 词作者。                                                                |
+| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。<br>应用通过setAVMetadata设置图片数据，当设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。设置为url图片路径，获取的亦为url图片路径  |                       
+| album           | string                  | 否   | 专辑名称。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
+| writer          | string                  | 否   | 词作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | composer        | string                  | 否   | 作曲者。                                                                |
-| duration        | number                  | 否   | 媒体时长，单位毫秒（ms）。                                                  |
-| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。                             |
-| publishDate     | Date                    | 否   | 发行日期。                                                               |
-| subtitle        | string                  | 否   | 子标题。                                                                |
-| description     | string                  | 否   | 媒体描述。                                                               |
-| lyric           | string                  | 否   | 歌词文件路径地址(本地路径或网络路径) |
-| previousAssetId | string                  | 否   | 上一首媒体ID。                                                            |
-| nextAssetId     | string                  | 否   | 下一首媒体ID。                                                            |
-| filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype10)。                   |
+| duration        | number                  | 否   | 媒体时长，单位毫秒（ms）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                  |
+| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。<br>应用通过setAVMetadata设置图片数据，当设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。设置为url图片路径，获取的亦为url图片路径  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                             |
+| publishDate     | Date                    | 否   | 发行日期。                                                             |
+| subtitle        | string                  | 否   | 子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
+| description     | string                  | 否   | 媒体描述。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
+| lyric           | string                  | 否   | 媒体歌词内容。应用需将歌词内容拼接为一个字符串传入。<br>字符串长度需小于等于40960字节。<br>**说明：** 系统支持简单版的LRC格式（Simple LRC format）的歌词文本内容。当传入的歌词内容不规范（如出现重复的时间戳等），将导致解析失败以及在系统中显示异常。 |
+| previousAssetId | string                  | 否   | 上一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
+| nextAssetId     | string                  | 否   | 下一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
+| filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
+| drmSchemes<sup>12+</sup>        | Array\<string>         | 否   | 当前session支持的DRM方案，取值为DRM方案uuid。|
 | skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | 否   | 快进快退支持的时间间隔，默认为SECONDS_15，即15秒。                            |
-|displayTags<sup>11+</sup>     | [DisplayTag](#displaytag11)                           | 否   | 媒体资源的金标类型。                                                          |
+|displayTags<sup>11+</sup>     | number                           | 否   | 媒体资源的金标类型，取值参考[DisplayTag](#displaytag11)。                                                          |
 
 ## AVMediaDescription<sup>10+</sup>
 
@@ -4215,29 +5101,34 @@ aVCastController.off('error')
 
 | 名称         | 类型                    | 必填  | 说明                     |
 | ------------ | ----------------------- | ---- | ----------------------- |
-| assetId      | string                  | 是   | 播放列表媒体ID。          |
-| title        | string                  | 否   | 播放列表媒体标题。        |
-| subtitle     | string                  | 否   | 播放列表媒体子标题。      |
-| description  | string                  | 否   | 播放列表媒体描述的文本。   |
-| mediaImage | image.PixelMap          | 否   | 播放列表媒体图片像素数据。 |
-| extras       | {[key: string]: any}    | 否   | 播放列表媒体额外字段。     |
-| mediaUri     | string                  | 否   | 播放列表媒体URI。         |
-| mediaType     | string                  | 否   | 播放列表媒体类型。         |
-| mediaSize     | number                  | 否   | 播放列表媒体的大小。         |
-| albumTitle     | string                  | 否   | 播放列表媒体专辑标题。         |
-| albumCoverUri     | string                  | 否   | 播放列表媒体专辑标题URI。    |
-| lyricContent     | string                  | 否   | 播放列表媒体歌词内容。         |
-| lyricUri     | string                  | 否   | 播放列表媒体歌词URI。         |
-| artist     | string                  | 否   | 播放列表媒体专辑作者。         |
-| fdSrc     | media.AVFileDescriptor        | 否   | 播放列表媒体本地文件的句柄。         |
-| duration     | number                  | 否   | 播放列表媒体播放时长。         |
-| startPosition     | number                  | 否   | 播放列表媒体起始播放位置。         |
-| creditsPosition     | number                  | 否   | 播放列表媒体的片尾播放位置。         |
-| appName     | string                  | 否   | 播放列表提供的应用的名字。         |
+| assetId      | string                  | 是   | 播放列表媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。          |
+| title        | string                  | 否   | 播放列表媒体标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
+| subtitle     | string                  | 否   | 播放列表媒体子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| description  | string                  | 否   | 播放列表媒体描述的文本。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| mediaImage | image.PixelMap \| string   | 否   | 播放列表媒体图片像素数据。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| extras       | {[key: string]: Object}    | 否   | 播放列表媒体额外字段。     |
+| mediaUri     | string                  | 否   | 播放列表媒体URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| mediaType     | string                  | 否   | 播放列表媒体类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| mediaSize     | number                  | 否   | 播放列表媒体的大小。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| albumTitle     | string                  | 否   | 播放列表媒体专辑标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| albumCoverUri     | string                  | 否   | 播放列表媒体专辑标题URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。    |
+| lyricContent     | string                  | 否   | 播放列表媒体歌词内容。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| lyricUri     | string                  | 否   | 播放列表媒体歌词URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| artist     | string                  | 否   | 播放列表媒体专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| fdSrc     | media.AVFileDescriptor        | 否   | 播放列表媒体本地文件的句柄。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 播放列表数据源描述。         |
+| drmScheme<sup>12+</sup>     | string        | 否   | 播放列表媒体支持的DRM方案，由uuid表示。       |
+| duration     | number                  | 否   | 播放列表媒体播放时长。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| startPosition     | number                  | 否   | 播放列表媒体起始播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| creditsPosition     | number                  | 否   | 播放列表媒体的片尾播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| appName     | string                  | 否   | 播放列表提供的应用的名字。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+|displayTags<sup>11+</sup>     | number | 否   | 媒体资源的金标类型，取值参考[DisplayTag](#displaytag11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
 
 ## AVQueueItem<sup>10+</sup>
 
 播放列表中单项的相关属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4254,24 +5145,26 @@ aVCastController.off('error')
 
 | 名称         | 类型                                  | 必填 | 说明     |
 | ------------ | ------------------------------------- | ---- | ------- |
-| state        | [PlaybackState](#playbackstate10)       | 否   | 播放状态 |
-| speed        | number                                | 否   | 播放倍速 |
-| position     | [PlaybackPosition](#playbackposition10) | 否   | 播放位置 |
-| bufferedTime | number                                | 否   | 缓冲时间 |
-| loopMode     | [LoopMode](#loopmode10)                 | 否   | 循环模式 |
-| isFavorite   | boolean                               | 否   | 是否收藏 |
-| activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id |
-| volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量 |
-| maxVolume<sup>11+</sup> | number                    | 否   | 最大音量 |
-| muted<sup>11+</sup>     | boolean                   | 否   | 当前静音状态，true表示静音 |
+| state        | [PlaybackState](#playbackstate10)       | 否   | 播放状态<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| speed        | number                                | 否   | 播放倍速<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| position     | [PlaybackPosition](#playbackposition10) | 否   | 播放位置<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| bufferedTime | number                                | 否   | 缓冲时间<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| loopMode     | [LoopMode](#loopmode10)                 | 否   | 循环模式<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| isFavorite   | boolean                               | 否   | 是否收藏<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| maxVolume<sup>11+</sup> | number                    | 否   | 最大音量<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| muted<sup>11+</sup>     | boolean                   | 否   | 当前静音状态，true表示静音<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | duration<sup>11+</sup>     | number                   | 否   | 当前媒体资源的时长 |
-| videoWidth<sup>11+</sup>  | number                  | 否   | 媒体资源的视频宽度，单位为像素（px）。 |
-| videoHeight<sup>11+</sup> |  number                 | 否   | 媒体资源的视频高度，单位为像素（px）。 |
-| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据 |
+| videoWidth<sup>11+</sup>  | number                  | 否   | 媒体资源的视频宽度，单位为像素（px）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| videoHeight<sup>11+</sup> |  number                 | 否   | 媒体资源的视频高度，单位为像素（px）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## PlaybackPosition<sup>10+</sup>
 
 媒体播放位置的相关属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4283,6 +5176,8 @@ aVCastController.off('error')
 ## CallMetadata<sup>11+</sup>
 
 通话会话元数据相关属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4296,6 +5191,8 @@ aVCastController.off('error')
 
 通话状态相关属性。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 | 名称            | 类型                      | 必填 | 说明                                                                  |
@@ -4306,6 +5203,8 @@ aVCastController.off('error')
 ## CallState<sup>11+</sup>
 
 表示通话状态的枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4333,6 +5232,8 @@ aVCastController.off('error')
 
 投播的类别枚举。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 | 名称                        | 值   | 说明         |
@@ -4344,12 +5245,12 @@ aVCastController.off('error')
 
 播放设备的类型枚举。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
-| DEVICE_TYPE_LOCAL      | 0    | 本地播放类型     |
-| DEVICE_TYPE_BLUETOOTH      | 10   | 蓝牙设备  |
+| DEVICE_TYPE_LOCAL      | 0    | 本地播放类型 <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core|
+| DEVICE_TYPE_BLUETOOTH      | 10   | 蓝牙设备 <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core |
 | DEVICE_TYPE_TV      | 2    | 电视 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast |
 | DEVICE_TYPE_SMART_SPEAKER      | 3   | 音箱设备 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast |
 
@@ -4357,19 +5258,22 @@ aVCastController.off('error')
 
 播放设备的相关信息。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 | 名称       | 类型           | 必填 | 说明                   |
 | ---------- | -------------- | ---- | ---------------------- |
-| castCategory   | AVCastCategory        | 是   | 投播的类别。         |
-| deviceId   | string | 是   | 播放设备的ID。  |
-| deviceName | string | 是   | 播放设备的名称。    |
-| deviceType | DeviceType | 是   | 播放设备的类型。    |
-| supportedProtocols<sup>11+</sup> | number | 否   | 播放设备支持的协议。默认为TYPE_LOCAL。具体取值参考[ProtocolType](#protocoltype10)。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
+| castCategory   | AVCastCategory        | 是   | 投播的类别。  <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| deviceId   | string | 是   | 播放设备的ID。<br> **系统能力：** SystemCapability.Multimedia.AVSession.Core  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| deviceName | string | 是   | 播放设备的名称。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| deviceType | DeviceType | 是   | 播放设备的类型。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| supportedProtocols<sup>11+</sup> | number | 否   | 播放设备支持的协议。默认为TYPE_LOCAL。具体取值参考[ProtocolType](#protocoltype11)。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast   <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| supportedDrmCapabilities<sup>12+</sup> | Array\<string> | 否   | 播放设备支持的DRM能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast   <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| manufacturer<sup>13+</sup> | string | 否   | 播放设备生产厂家。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast  <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
+| modelName<sup>13+</sup> | string | 否   | 播放设备型号名称。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast  <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
 
 ## OutputDeviceInfo<sup>10+</sup>
 
 播放设备的相关信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4380,6 +5284,8 @@ aVCastController.off('error')
 ## LoopMode<sup>10+</sup>
 
 表示媒体播放循环模式的枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4394,6 +5300,8 @@ aVCastController.off('error')
 ## PlaybackState<sup>10+</sup>
 
 表示媒体播放状态的枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4418,6 +5326,8 @@ AVSessionController控制器可查看会话ID，并可完成对会话发送命�
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 | 名称      | 类型   | 可读 | 可写 | 说明                                    |
@@ -4428,7 +5338,7 @@ AVSessionController控制器可查看会话ID，并可完成对会话发送命�
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let AVSessionController: avSession.AVSessionController;
 avSession.createController(currentAVSession.sessionId).then((controller: avSession.AVSessionController) => {
@@ -4465,13 +5375,13 @@ getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVPlaybackState((err: BusinessError, state: avSession.AVPlaybackState) => {
   if (err) {
     console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`getAVPlaybackState : SUCCESS`);
+    console.info('getAVPlaybackState : SUCCESS');
   }
 });
 ```
@@ -4481,6 +5391,8 @@ avsessionController.getAVPlaybackState((err: BusinessError, state: avSession.AVP
 getAVPlaybackState(): Promise\<AVPlaybackState>
 
 获取当前的远端播放状态。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4503,10 +5415,10 @@ getAVPlaybackState(): Promise\<AVPlaybackState>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVPlaybackState().then((state: avSession.AVPlaybackState) => {
-  console.info(`getAVPlaybackState : SUCCESS`);
+  console.info('getAVPlaybackState : SUCCESS');
 }).catch((err: BusinessError) => {
   console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -4517,6 +5429,8 @@ avsessionController.getAVPlaybackState().then((state: avSession.AVPlaybackState)
 getAVMetadata(): Promise\<AVMetadata>
 
 获取会话元数据。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4539,7 +5453,7 @@ getAVMetadata(): Promise\<AVMetadata>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVMetadata().then((metadata: avSession.AVMetadata) => {
   console.info(`GetAVMetadata : SUCCESS : assetId : ${metadata.assetId}`);
@@ -4575,7 +5489,7 @@ getAVMetadata(callback: AsyncCallback\<AVMetadata>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVMetadata((err: BusinessError, metadata: avSession.AVMetadata) => {
   if (err) {
@@ -4591,6 +5505,8 @@ avsessionController.getAVMetadata((err: BusinessError, metadata: avSession.AVMet
 getAVQueueTitle(): Promise\<string>
 
 获取当前会话播放列表的名称。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4613,7 +5529,7 @@ getAVQueueTitle(): Promise\<string>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVQueueTitle().then((title: string) => {
   console.info(`GetAVQueueTitle : SUCCESS : title : ${title}`);
@@ -4649,7 +5565,7 @@ getAVQueueTitle(callback: AsyncCallback\<string>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVQueueTitle((err: BusinessError, title: string) => {
   if (err) {
@@ -4665,6 +5581,8 @@ avsessionController.getAVQueueTitle((err: BusinessError, title: string) => {
 getAVQueueItems(): Promise\<Array\<AVQueueItem>>
 
 获取当前会话播放列表相关信息。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4687,7 +5605,7 @@ getAVQueueItems(): Promise\<Array\<AVQueueItem>>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVQueueItems().then((items: avSession.AVQueueItem[]) => {
   console.info(`GetAVQueueItems : SUCCESS : length : ${items.length}`);
@@ -4723,7 +5641,7 @@ getAVQueueItems(callback: AsyncCallback\<Array\<AVQueueItem>>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVQueueItems((err: BusinessError, items: avSession.AVQueueItem[]) => {
   if (err) {
@@ -4739,6 +5657,8 @@ avsessionController.getAVQueueItems((err: BusinessError, items: avSession.AVQueu
 skipToQueueItem(itemId: number): Promise\<void>
 
 设置指定播放列表单项的ID，发送给session端处理，session端可以选择对这个单项歌曲进行播放。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4760,6 +5680,7 @@ skipToQueueItem(itemId: number): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -4767,11 +5688,11 @@ skipToQueueItem(itemId: number): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let queueItemId = 0;
 avsessionController.skipToQueueItem(queueItemId).then(() => {
-  console.info(`SkipToQueueItem successfully`);
+  console.info('SkipToQueueItem successfully');
 }).catch((err: BusinessError) => {
   console.error(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -4798,6 +5719,7 @@ skipToQueueItem(itemId: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -4805,14 +5727,14 @@ skipToQueueItem(itemId: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let queueItemId = 0;
 avsessionController.skipToQueueItem(queueItemId, (err: BusinessError) => {
   if (err) {
     console.error(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`SkipToQueueItem successfully`);
+    console.info('SkipToQueueItem successfully');
   }
 });
 ```
@@ -4822,6 +5744,8 @@ avsessionController.skipToQueueItem(queueItemId, (err: BusinessError) => {
 getOutputDevice(): Promise\<OutputDeviceInfo>
 
 获取播放设备信息。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4843,10 +5767,10 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getOutputDevice().then((deviceInfo: avSession.OutputDeviceInfo) => {
-  console.info(`GetOutputDevice : SUCCESS`);
+  console.info('GetOutputDevice : SUCCESS');
 }).catch((err: BusinessError) => {
   console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -4878,13 +5802,13 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getOutputDevice((err: BusinessError, deviceInfo: avSession.OutputDeviceInfo) => {
   if (err) {
     console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`GetOutputDevice : SUCCESS`);
+    console.info('GetOutputDevice : SUCCESS');
   }
 });
 ```
@@ -4894,6 +5818,8 @@ avsessionController.getOutputDevice((err: BusinessError, deviceInfo: avSession.O
 sendAVKeyEvent(event: KeyEvent): Promise\<void>
 
 发送按键事件到控制器对应的会话。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4909,6 +5835,7 @@ sendAVKeyEvent(event: KeyEvent): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 600101  | Session service exception. |
 | 600102  | The session does not exist. |
 | 600103  | The session controller does not exist. |
@@ -4924,14 +5851,15 @@ sendAVKeyEvent(event: KeyEvent): Promise\<void>
 **示例：**
 
 ```ts
-import keyEvent from '@ohos.multimodalInput.keyEvent';
-import { BusinessError } from '@ohos.base';
+import { Key, KeyEvent } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let keyItem: keyEvent.Key = {code:0x49, pressedTime:2, deviceId:0};
-let event: keyEvent.KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
+let keyItem: Key = {code:0x49, pressedTime:2, deviceId:0};
+let event:KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
+
 
 avsessionController.sendAVKeyEvent(event).then(() => {
-  console.info(`SendAVKeyEvent Successfully`);
+  console.info('SendAVKeyEvent Successfully');
 }).catch((err: BusinessError) => {
   console.error(`SendAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -4958,6 +5886,7 @@ sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 600101  | Session service exception. |
 | 600102  | The session does not exist. |
 | 600103  | The session controller does not exist. |
@@ -4967,17 +5896,16 @@ sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import keyEvent from '@ohos.multimodalInput.keyEvent';
-import { BusinessError } from '@ohos.base';
+import { Key, KeyEvent } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let keyItem: keyEvent.Key = {code:0x49, pressedTime:2, deviceId:0};
-let event: keyEvent.KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
-
+let keyItem: Key = {code:0x49, pressedTime:2, deviceId:0};
+let event:KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
 avsessionController.sendAVKeyEvent(event, (err: BusinessError) => {
   if (err) {
     console.error(`SendAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`SendAVKeyEvent Successfully`);
+    console.info('SendAVKeyEvent Successfully');
   }
 });
 ```
@@ -4987,6 +5915,8 @@ avsessionController.sendAVKeyEvent(event, (err: BusinessError) => {
 getLaunchAbility(): Promise\<WantAgent>
 
 获取应用在会话中保存的WantAgent对象。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -5009,7 +5939,7 @@ getLaunchAbility(): Promise\<WantAgent>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getLaunchAbility().then((agent: object) => {
   console.info(`GetLaunchAbility : SUCCESS : wantAgent : ${agent}`);
@@ -5045,7 +5975,7 @@ getLaunchAbility(callback: AsyncCallback\<WantAgent>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getLaunchAbility((err: BusinessError, agent: object) => {
   if (err) {
@@ -5061,6 +5991,8 @@ avsessionController.getLaunchAbility((err: BusinessError, agent: object) => {
 getRealPlaybackPositionSync(): number
 
 获取当前播放位置。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -5091,6 +6023,8 @@ isActive(): Promise\<boolean>
 
 获取会话是否被激活。结果通过Promise异步回调方式返回。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **返回值：**
@@ -5112,7 +6046,7 @@ isActive(): Promise\<boolean>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.isActive().then((isActive: boolean) => {
   console.info(`IsActive : SUCCESS : isactive : ${isActive}`);
@@ -5148,7 +6082,7 @@ isActive(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.isActive((err: BusinessError, isActive: boolean) => {
   if (err) {
@@ -5164,6 +6098,8 @@ avsessionController.isActive((err: BusinessError, isActive: boolean) => {
 destroy(): Promise\<void>
 
 销毁当前控制器，销毁后当前控制器不可再用。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -5185,10 +6121,10 @@ destroy(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.destroy().then(() => {
-  console.info(`Destroy : SUCCESS `);
+  console.info('Destroy : SUCCESS ');
 }).catch((err: BusinessError) => {
   console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -5220,13 +6156,13 @@ destroy(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.destroy((err: BusinessError) => {
   if (err) {
     console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Destroy : SUCCESS `);
+    console.info('Destroy : SUCCESS ');
   }
 });
 ```
@@ -5236,6 +6172,8 @@ avsessionController.destroy((err: BusinessError) => {
 getValidCommands(): Promise\<Array\<AVControlCommandType>>
 
 获取会话支持的有效命令。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -5258,7 +6196,7 @@ getValidCommands(): Promise\<Array\<AVControlCommandType>>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getValidCommands().then((validCommands: avSession.AVControlCommandType[]) => {
   console.info(`GetValidCommands : SUCCESS : size : ${validCommands.length}`);
@@ -5294,7 +6232,7 @@ getValidCommands(callback: AsyncCallback\<Array\<AVControlCommandType>>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getValidCommands((err: BusinessError, validCommands: avSession.AVControlCommandType[]) => {
   if (err) {
@@ -5314,6 +6252,8 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 > **说明：**
 >
 > 媒体控制方在使用sendControlCommand命令前，需要确保控制对应的媒体会话注册了对应的监听，注册媒体会话相关监听的方法请参见接口[on'play'](#onplay10)、[on'pause'](#onpause10)等。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -5335,6 +6275,7 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5345,11 +6286,11 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avCommand: avSession.AVControlCommand = {command:'play'};
 avsessionController.sendControlCommand(avCommand).then(() => {
-  console.info(`SendControlCommand successfully`);
+  console.info('SendControlCommand successfully');
 }).catch((err: BusinessError) => {
   console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -5380,6 +6321,7 @@ sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): v
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception.                |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
@@ -5390,14 +6332,14 @@ sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): v
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avCommand: avSession.AVControlCommand = {command:'play'};
 avsessionController.sendControlCommand(avCommand, (err: BusinessError) => {
   if (err) {
     console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`SendControlCommand successfully`);
+    console.info('SendControlCommand successfully');
   }
 });
 ```
@@ -5407,6 +6349,8 @@ avsessionController.sendControlCommand(avCommand, (err: BusinessError) => {
 sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void>
 
 通过会话控制器发送自定义控制命令到其对应的会话。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -5432,6 +6376,7 @@ sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5442,7 +6387,7 @@ sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -5468,7 +6413,7 @@ if (currentAVSession !== undefined) {
 let commandName = "my_command";
 if (avSessionController !== undefined) {
   (avSessionController as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}).then(() => {
-    console.info(`SendCommonCommand successfully`);
+    console.info('SendCommonCommand successfully');
   }).catch((err: BusinessError) => {
     console.error(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
   })
@@ -5500,6 +6445,7 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.|
 | 6600101  | Session service exception.                |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
@@ -5510,7 +6456,7 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let avSessionController: avSession.AVSessionController | undefined = undefined;
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
@@ -5547,6 +6493,8 @@ getExtras(): Promise\<{[key: string]: Object}>
 
 获取媒体提供方设置的自定义媒体数据包。结果通过Promise异步回调方式返回。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **返回值：**
@@ -5561,6 +6509,7 @@ getExtras(): Promise\<{[key: string]: Object}>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5570,7 +6519,7 @@ getExtras(): Promise\<{[key: string]: Object}>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -5621,6 +6570,7 @@ getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5630,7 +6580,7 @@ getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -5669,6 +6619,8 @@ on(type: 'metadataChange', filter: Array\<keyof AVMetadata> | 'all', callback: (
 
 设置元数据变化的监听事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -5685,6 +6637,7 @@ on(type: 'metadataChange', filter: Array\<keyof AVMetadata> | 'all', callback: (
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5707,6 +6660,8 @@ off(type: 'metadataChange', callback?: (data: AVMetadata) => void)
 
 媒体控制器取消监听元数据变化的事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -5722,6 +6677,7 @@ off(type: 'metadataChange', callback?: (data: AVMetadata) => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5736,6 +6692,8 @@ avsessionController.off('metadataChange');
 on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', callback: (state: AVPlaybackState) => void)
 
 设置播放状态变化的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -5753,6 +6711,7 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5774,6 +6733,8 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 
 媒体控制器取消监听播放状态变化的事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -5789,6 +6750,7 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5803,6 +6765,8 @@ avsessionController.off('playbackStateChange');
 on(type: 'callMetadataChange', filter: Array\<keyof CallMetadata> | 'all', callback: Callback\<CallMetadata>): void;
 
 设置通话元数据变化的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -5820,6 +6784,7 @@ on(type: 'callMetadataChange', filter: Array\<keyof CallMetadata> | 'all', callb
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5831,7 +6796,7 @@ avsessionController.on('callMetadataChange', 'all', (callmetadata: avSession.Cal
 });
 
 avsessionController.on('callMetadataChange', ['name'], (callmetadata: avSession.CallMetadata) => {
-  console.info(`on callMetadataChange state : ${callmetadata.state}`);
+  console.info(`on callMetadataChange state : ${callmetadata.name}`);
 });
 ```
 
@@ -5840,6 +6805,8 @@ avsessionController.on('callMetadataChange', ['name'], (callmetadata: avSession.
 off(type: 'callMetadataChange', callback?: Callback\<CallMetadata>): void;
 
 取消设置通话元数据变化的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -5856,6 +6823,7 @@ off(type: 'callMetadataChange', callback?: Callback\<CallMetadata>): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5870,6 +6838,8 @@ avsessionController.off('callMetadataChange');
 on(type: 'callStateChange', filter: Array\<keyof AVCallState> | 'all', callback: Callback\<AVCallState>): void;
 
 设置通话状态变化的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -5887,6 +6857,7 @@ on(type: 'callStateChange', filter: Array\<keyof AVCallState> | 'all', callback:
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5908,6 +6879,8 @@ off(type: 'callStateChange', callback?: Callback\<AVCallState>): void;
 
 取消设置通话状态变化的监听事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -5923,6 +6896,7 @@ off(type: 'callStateChange', callback?: Callback\<AVCallState>): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5937,6 +6911,8 @@ avsessionController.off('callMetadataChange');
 on(type: 'sessionDestroy', callback: () => void)
 
 会话销毁的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -5953,6 +6929,7 @@ on(type: 'sessionDestroy', callback: () => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5960,7 +6937,7 @@ on(type: 'sessionDestroy', callback: () => void)
 
 ```ts
 avsessionController.on('sessionDestroy', () => {
-  console.info(`on sessionDestroy : SUCCESS `);
+  console.info('on sessionDestroy : SUCCESS ');
 });
 ```
 
@@ -5969,6 +6946,8 @@ avsessionController.on('sessionDestroy', () => {
 off(type: 'sessionDestroy', callback?: () => void)
 
 媒体控制器取消监听会话的销毁事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -5985,6 +6964,7 @@ off(type: 'sessionDestroy', callback?: () => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5999,6 +6979,8 @@ avsessionController.off('sessionDestroy');
 on(type: 'activeStateChange', callback: (isActive: boolean) => void)
 
 会话的激活状态的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -6015,6 +6997,7 @@ on(type: 'activeStateChange', callback: (isActive: boolean) => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ----------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  |The session controller does not exist. |
 
@@ -6032,6 +7015,8 @@ off(type: 'activeStateChange', callback?: (isActive: boolean) => void)
 
 媒体控制器取消监听会话激活状态变化的事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -6047,6 +7032,7 @@ off(type: 'activeStateChange', callback?: (isActive: boolean) => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6061,6 +7047,8 @@ avsessionController.off('activeStateChange');
 on(type: 'validCommandChange', callback: (commands: Array\<AVControlCommandType>) => void)
 
 会话支持的有效命令变化监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -6077,6 +7065,7 @@ on(type: 'validCommandChange', callback: (commands: Array\<AVControlCommandType>
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6095,6 +7084,8 @@ off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandTyp
 
 媒体控制器取消监听会话有效命令变化的事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -6110,6 +7101,7 @@ off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandTyp
 
 | 错误码ID | 错误信息           |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6124,6 +7116,8 @@ avsessionController.off('validCommandChange');
 on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: OutputDeviceInfo) => void): void
 
 设置播放设备变化的监听事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -6140,6 +7134,7 @@ on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: Output
 
 | 错误码ID | 错误信息 |
 | -------- | ----------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6157,6 +7152,8 @@ off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: Outp
 
 媒体控制器取消监听分布式设备变化的事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -6172,6 +7169,7 @@ off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: Outp
 
 | 错误码ID  | 错误信息          |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6186,6 +7184,8 @@ avsessionController.off('outputDeviceChange');
 on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: Object}) => void): void
 
 媒体控制器设置会话自定义事件变化的监听器。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -6202,13 +7202,14 @@ on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: O
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -6243,6 +7244,8 @@ off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key:string]:
 
 媒体控制器取消监听会话事件的变化通知。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -6258,6 +7261,7 @@ off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key:string]:
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6272,6 +7276,8 @@ avsessionController.off('sessionEvent');
 on(type: 'queueItemsChange', callback: (items: Array<[AVQueueItem](#avqueueitem10)\>) => void): void
 
 媒体控制器设置会话自定义播放列表变化的监听器。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -6288,6 +7294,7 @@ on(type: 'queueItemsChange', callback: (items: Array<[AVQueueItem](#avqueueitem1
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6305,6 +7312,8 @@ off(type: 'queueItemsChange', callback?: (items: Array<[AVQueueItem](#avqueueite
 
 媒体控制器取消监听播放列表变化的事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -6320,6 +7329,7 @@ off(type: 'queueItemsChange', callback?: (items: Array<[AVQueueItem](#avqueueite
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6334,6 +7344,8 @@ avsessionController.off('queueItemsChange');
 on(type: 'queueTitleChange', callback: (title: string) => void): void
 
 媒体控制器设置会话自定义播放列表的名称变化的监听器。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -6350,6 +7362,7 @@ on(type: 'queueTitleChange', callback: (title: string) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6367,6 +7380,8 @@ off(type: 'queueTitleChange', callback?: (title: string) => void): void
 
 媒体控制器取消监听播放列表名称变化的事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -6382,6 +7397,7 @@ off(type: 'queueTitleChange', callback?: (title: string) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6396,6 +7412,8 @@ avsessionController.off('queueTitleChange');
 on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): void
 
 媒体控制器设置自定义媒体数据包事件变化的监听器。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -6412,13 +7430,14 @@ on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): vo
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -6453,6 +7472,8 @@ off(type: 'extrasChange', callback?: (extras: {[key:string]: Object}) => void): 
 
 媒体控制器取消监听自定义媒体数据包变化事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -6468,6 +7489,7 @@ off(type: 'extrasChange', callback?: (extras: {[key:string]: Object}) => void): 
 
 | 错误码ID | 错误信息 |
 | -------- | ----------------                       |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception.             |
 | 6600103  | The session controller does not exist. |
 
@@ -6482,6 +7504,8 @@ avsessionController.off('extrasChange');
 getAVPlaybackStateSync(): AVPlaybackState;
 
 使用同步方法获取当前会话的播放状态。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -6504,10 +7528,10 @@ getAVPlaybackStateSync(): AVPlaybackState;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let playbackState: avsession.AVPlaybackState = avsessionController.getAVPlaybackStateSync();
+  let playbackState: avSession.AVPlaybackState = avsessionController.getAVPlaybackStateSync();
 } catch (err) {
   let error = err as BusinessError;
   console.info(`getAVPlaybackStateSync error, error code: ${error.code}, error message: ${error.message}`);
@@ -6519,6 +7543,8 @@ try {
 getAVMetadataSync(): AVMetadata
 
 使用同步方法获取会话元数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -6540,10 +7566,10 @@ getAVMetadataSync(): AVMetadata
 
 **示例：**
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let metaData: avsession.AVMetadata = avsessionController.getAVMetadataSync();
+  let metaData: avSession.AVMetadata = avsessionController.getAVMetadataSync();
 } catch (err) {
   let error = err as BusinessError;
   console.info(`getAVMetadataSync error, error code: ${error.code}, error message: ${error.message}`);
@@ -6577,7 +7603,7 @@ getAVCallState(): Promise\<AVCallState>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVCallState().then((callstate: avSession.AVCallState) => {
   console.info(`getAVCallState : SUCCESS : state : ${callstate.state}`);
@@ -6613,7 +7639,7 @@ getAVCallState(callback: AsyncCallback\<AVCallState>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVCallState((err: BusinessError, callstate: avSession.AVCallState) => {
   if (err) {
@@ -6651,7 +7677,7 @@ getCallMetadata(): Promise\<CallMetadata>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getCallMetadata().then((calldata: avSession.CallMetadata) => {
   console.info(`getCallMetadata : SUCCESS : name : ${calldata.name}`);
@@ -6687,7 +7713,7 @@ getCallMetadata(callback: AsyncCallback\<CallMetadata>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getCallMetadata((err: BusinessError, calldata: avSession.CallMetadata) => {
   if (err) {
@@ -6703,6 +7729,8 @@ avsessionController.getCallMetadata((err: BusinessError, calldata: avSession.Cal
 getAVQueueTitleSync(): string
 
 使用同步方法获取当前会话播放列表的名称。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -6725,7 +7753,7 @@ getAVQueueTitleSync(): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let currentQueueTitle: string = avsessionController.getAVQueueTitleSync();
@@ -6740,6 +7768,8 @@ try {
 getAVQueueItemsSync(): Array\<AVQueueItem\>
 
 使用同步方法获取当前会话播放列表相关信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -6762,10 +7792,10 @@ getAVQueueItemsSync(): Array\<AVQueueItem\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let currentQueueItems: Array<avsession.AVQueueItem> = avsessionController.getAVQueueItemsSync();
+  let currentQueueItems: Array<avSession.AVQueueItem> = avsessionController.getAVQueueItemsSync();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getAVQueueItemsSync error, error code: ${error.code}, error message: ${error.message}`);
@@ -6777,6 +7807,8 @@ try {
 getOutputDeviceSync(): OutputDeviceInfo
 
 使用同步方法获取当前输出设备信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -6798,7 +7830,7 @@ getOutputDeviceSync(): OutputDeviceInfo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let currentOutputDevice: avSession.OutputDeviceInfo = avsessionController.getOutputDeviceSync();
@@ -6813,6 +7845,8 @@ try {
 isActiveSync(): boolean
 
 使用同步方法判断会话是否被激活。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -6835,7 +7869,7 @@ isActiveSync(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let isActive: boolean = avsessionController.isActiveSync();
@@ -6850,6 +7884,8 @@ try {
 getValidCommandsSync(): Array\<AVControlCommandType\>
 
 使用同步方法获取会话支持的有效命令。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -6872,7 +7908,7 @@ getValidCommandsSync(): Array\<AVControlCommandType\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let validCommands: Array<avSession.AVControlCommandType> = avsessionController.getValidCommandsSync();
@@ -6884,27 +7920,40 @@ try {
 
 ## AVControlCommandType<sup>10+</sup>
 
+type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward' | 'rewind' |
+  'seek' | 'setSpeed' | 'setLoopMode' | 'toggleFavorite' | 'playFromAssetId' | 'answer' | 'hangUp' | 'toggleCallMute'
+
 会话可传递的命令。
+
+该类型可取的值为下表字符串的并集。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-| 名称           | 类型   | 说明         |
-| -------------- | ------ | ------------ |
-| play           | string | 播放         |
-| pause          | string | 暂停         |
-| stop           | string | 停止         |
-| playNext       | string | 下一首       |
-| playPrevious   | string | 上一首       |
-| fastForward    | string | 快进         |
-| rewind         | string | 快退         |
-| seek           | string | 跳转某一节点 |
-| setSpeed       | string | 设置播放倍速 |
-| setLoopMode    | string | 设置循环模式 |
-| toggleFavorite | string | 是否收藏     |
+| 类型             | 说明         |
+| ---------------- | ------------ |
+| 'play'           | 播放         |
+| 'pause'          | 暂停         |
+| 'stop'           | 停止         |
+| 'playNext'       | 下一首       |
+| 'playPrevious'   | 上一首       |
+| 'fastForward'    | 快进         |
+| 'rewind'         | 快退         |
+| 'seek'           | 跳转某一节点 |
+| 'setSpeed'       | 设置播放倍速 |
+| 'setLoopMode'    | 设置循环模式 |
+| 'toggleFavorite' | 是否收藏     |
+| 'playFromAssetId'| 播放指定的assetid |
+|'answer'          | 接听        |
+| 'hangUp'         | 挂断        |
+|'toggleCallMute'  | 设置通话静音状态 |
 
 ## AVControlCommand<sup>10+</sup>
 
 会话接受的命令的对象描述。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -6913,27 +7962,269 @@ try {
 | command   | [AVControlCommandType](#avcontrolcommandtype10)     | 是   | 命令           |
 | parameter | [LoopMode](#loopmode10) &#124; string &#124; number | 否   | 命令对应的参数 |
 
+
+## AVCastPickerOptions<sup>14+</sup>
+
+拉起的投播半模态窗口相关属性。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+| 名称            | 类型                      | 必填 | 说明                                                                  |
+| --------------- |-------------------------| ---- |---------------------------------------------------------------------|
+| sessionType         | [AVSessionType](#avsessiontype10)  | 否   | 会话类型，默认值为'audio'。<br>当前仅支持'audio'、'video'会话类型。如果传入'voice_call'、'video_call'，将按照传入默认值'audio'处理。            |
+
+## AVCastPickerHelper<sup>14+</sup>
+
+投播半模态对象，可拉起半模态窗口，选择投播设备。在使用前，需要创建AVCastPickerHelper实例。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+### constructor<sup>14+</sup>
+
+constructor(context: Context)
+
+创建AVCastPickerHelper对象，获取context参考[getContext](../apis-arkui/js-apis-getContext.md)。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名    | 类型                                                        | 必填 | 说明                                                         |
+| --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context | 是   | 应用上下文（仅支持[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { common } from '@kit.AbilityKit';
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(40)
+          .fontWeight(FontWeight.Bold)
+          .onClick(()=>{
+            let context = getContext(this) as common.Context;
+            let avCastPicker = new avSession.AVCastPickerHelper(context);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### select<sup>14+</sup>
+
+select(options?: AVCastPickerOptions): Promise\<void>
+
+通过选择模式拉起AVCastPicker界面，用户可以选择投播设备。接口采用Promise异步返回形式，传入可选参数AVCastPickerOptions对象，无返回值。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名    | 类型                                                        | 必填 | 说明                                                         |
+| --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [AVCastPickerOptions](#avcastpickeroptions14) | 否   | AVCastPicker选择选项。无此参数时，以AVCastPickerOptions默认值拉起。 |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise对象。当命令发送成功，无返回结果，否则返回错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function avCastPicker(context: common.Context) {
+  let avCastPickerOptions : avSession.AVCastPickerOptions = {
+    sessionType : 'video',
+  }
+  let avCastPicker = new avSession.AVCastPickerHelper(context);
+  avCastPicker.select(avCastPickerOptions).then(() => {
+    console.info('select successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`AVCastPicker.select failed with err: ${err.code}, ${err.message}`);
+  });
+}
+```
+### on('pickerStateChange')<sup>14+</sup>
+
+on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
+
+设置半模态窗口变化的监听事件。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型       | 必填 | 说明      |
+| --------| -----------|-----|------------|
+| type     | string    | 是   | 事件回调类型，支持事件`'pickerStateChange'`：当半模态窗口变化时，触发该事件。 |
+| callback | Callback\<[AVCastPickerState](js-apis-avCastPickerParam.md#avcastpickerstate11)>       | 是   | 回调函数，参数state是变化后的半模态窗口状态。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { AVCastPickerState } from '@kit.AVSessionKit';
+
+avCastPicker.on('pickerStateChange', (state: AVCastPickerState) => {
+  console.info(`picker state change : ${state}`);
+});
+```
+
+### off('pickerStateChange')<sup>14+</sup>
+
+off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
+
+取消半模态窗口变化的监听事件，关闭后，不再进行该事件回调。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                                               | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------ | ---- | ------------------------------------------------------ |
+| type     | string                                           | 是   | 取消对应的监听事件，支持事件`'pickerStateChange'`。         |
+| callback | Callback\<[AVCastPickerState](js-apis-avCastPickerParam.md#avcastpickerstate11)> | 否   | 回调函数，参数state是变化后的半模态窗口状态。<br>当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+avCastPicker.off('pickerStateChange');
+```
+
 ## AVSessionErrorCode<sup>10+</sup>
 
 会话发生错误时的错误码。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 | 名称                                   | 值      | 说明                             |
 | -------------------------------------- | ------- | ------------------------------- |
-| ERR_CODE_SERVICE_EXCEPTION             | 6600101 | Session service exception.               |
-| ERR_CODE_SESSION_NOT_EXIST             | 6600102 | The session does not exist.      |
-| ERR_CODE_CONTROLLER_NOT_EXIST          | 6600103 | The session controller does not exist.   |
-| ERR_CODE_REMOTE_CONNECTION_ERR         | 6600104 | The remote session  connection failed.         |
-| ERR_CODE_COMMAND_INVALID               | 6600105 | Invalid session command.           |
-| ERR_CODE_SESSION_INACTIVE              | 6600106 | The session is not activated.                |
-| ERR_CODE_MESSAGE_OVERLOAD              | 6600107 | Too many commands or events.       |
-| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connecting failed.       |
-| ERR_CODE_REMOTE_CONNECTION_NOT_EXIST   | 6600109 | The remote connection is not established.       |
+| ERR_CODE_SERVICE_EXCEPTION             | 6600101 | 会话服务端异常。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**系统能力：** SystemCapability.Multimedia.AVSession.Core|
+| ERR_CODE_SESSION_NOT_EXIST             | 6600102 | 会话不存在。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| ERR_CODE_CONTROLLER_NOT_EXIST          | 6600103 | 会话控制器不存在。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| ERR_CODE_REMOTE_CONNECTION_ERR         | 6600104 | 远端会话连接失败。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core|
+| ERR_CODE_COMMAND_INVALID               | 6600105 | 无效会话命令。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**系统能力：** SystemCapability.Multimedia.AVSession.Core|
+| ERR_CODE_SESSION_INACTIVE              | 6600106 | 会话未激活。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| ERR_CODE_MESSAGE_OVERLOAD              | 6600107 | 命令&消息过载。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | 设备连接失败。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| ERR_CODE_REMOTE_CONNECTION_NOT_EXIST   | 6600109 | 远端会话不存在。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| ERR_CODE_CAST_CONTROL_UNSPECIFIED<sup>13+</sup>    | 6611000 | 未被定义的投播错误码。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_REMOTE_ERROR<sup>13+</sup>    | 6611001 | 远端播放器中发生不明错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_BEHIND_LIVE_WINDOW<sup>13+</sup>     | 6611002 | 播放出现延迟。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_TIMEOUT<sup>13+</sup>     | 6611003 | 投播控制进程超时。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_RUNTIME_CHECK_FAILED<sup>13+</sup>      | 6611004 | 运行时检查失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PLAYER_NOT_WORKING<sup>13+</sup>      | 6611100 | 跨设备数据传输被锁定。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_SEEK_MODE_UNSUPPORTED<sup>13+</sup>      | 6611101 | 不支持指定的查找模式。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_ILLEGAL_SEEK_TARGET<sup>13+</sup>      | 6611102 | 要搜索的位置超出媒体的范围，或者不支持当前搜索模式。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PLAY_MODE_UNSUPPORTED<sup>13+</sup>      | 6611103 |  不支持指定的播放模式。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PLAY_SPEED_UNSUPPORTED<sup>13+</sup>      | 6611104 | 不支持指定的播放速度。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DEVICE_MISSING<sup>13+</sup>      | 6611105 | 操作失败，因为媒体源设备或媒体接收器设备已被销毁。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_INVALID_PARAM<sup>13+</sup>       | 6611106 | 该参数无效。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_NO_MEMORY<sup>13+</sup>       | 6611107 | 内存分配失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_OPERATION_NOT_ALLOWED<sup>13+</sup>       | 6611108 | 不被允许的操作。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_UNSPECIFIED<sup>13+</sup>       | 6612000 | 未指定的输入/输出错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NETWORK_CONNECTION_FAILED<sup>13+</sup>       | 6612001 | 网络连接失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NETWORK_CONNECTION_TIMEOUT<sup>13+</sup>       | 6612002 | 网络连接超时。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_INVALID_HTTP_CONTENT_TYPE <sup>13+</sup>      | 6612003 | 无效的"Content-Type"。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_BAD_HTTP_STATUS<sup>13+</sup>        | 6612004 | HTTP服务器返回一个意外的HTTP响应状态码。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_FILE_NOT_FOUND<sup>13+</sup>   | 6612005 | 文件不存在。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NO_PERMISSION<sup>13+</sup>    | 6612006 | 不允许执行输入/输出的IO操作。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_CLEARTEXT_NOT_PERMITTED<sup>13+</sup>    | 6612007 | 应用的网络安全配置不允许访问明文HTTP流量。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_READ_POSITION_OUT_OF_RANGE<sup>13+</sup>        | 6612008 | 从数据绑定中读取数据。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NO_CONTENTS<sup>13+</sup>     | 6612100 | 媒体中没有可播放的内容。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_READ_ERROR<sup>13+</sup>        | 6612101 | 媒体无法读取。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_CONTENT_BUSY<sup>13+</sup>         | 6612102 | 该资源正在使用中。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_CONTENT_EXPIRED<sup>13+</sup>    | 6612103 | 输入/输出的IO请求内容已过期。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_USE_FORBIDDEN<sup>13+</sup>    | 6612104 | 不允许播放请求内容。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NOT_VERIFIED<sup>13+</sup>     | 6612105 | 无法验证所允许的内容。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_EXHAUSTED_ALLOWED_USES<sup>13+</sup>     | 6612106 | 此内容已达到允许的最大使用次数。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NETWORK_PACKET_SENDING_FAILED<sup>13+</sup>   | 6612107 | 从源设备发送数据包到接收设备时出现错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PARSING_UNSPECIFIED<sup>13+</sup>    | 6613000 | 未指定的内容解析错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PARSING_CONTAINER_MALFORMED<sup>13+</sup>    | 6613001 | 媒体容器比特流的格式解析错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PARSING_MANIFEST_MALFORMED<sup>13+</sup>     | 6613002 | 媒体清单解析错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PARSING_CONTAINER_UNSUPPORTED<sup>13+</sup>   | 6613003 | 文件的媒体容器格式/媒体容器特性不被支持。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PARSING_MANIFEST_UNSUPPORTED<sup>13+</sup>      | 6613004 | 媒体清单中不支持的特性。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_UNSPECIFIED<sup>13+</sup>     | 6614000 | 未指定的解码错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_INIT_FAILED<sup>13+</sup>   | 6614001 | 解码器初始化失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_QUERY_FAILED<sup>13+</sup>     | 6614002 | 解码器查询失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_FAILED<sup>13+</sup>     | 6614003 | 媒体样本解码失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_FORMAT_EXCEEDS_CAPABILITIES<sup>13+</sup>    | 6614004 | 设备的能力无法解码当前格式。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_FORMAT_UNSUPPORTED<sup>13+</sup>    | 6614005 | 不支持的解码格式。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_AUDIO_RENDERER_UNSPECIFIED<sup>13+</sup>       | 6615000 | 未指定的音频渲染器错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_AUDIO_RENDERER_INIT_FAILED <sup>13+</sup>     | 6615001 | 音频渲染器初始化失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_AUDIO_RENDERER_WRITE_FAILED<sup>13+</sup>    | 6615002 | 音频渲染器写入数据失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_UNSPECIFIED<sup>13+</sup>      | 6616000 | 未指定的DRM相关错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_SCHEME_UNSUPPORTED<sup>13+</sup>  | 6616001 | 设备不支持所选择的DRM保护方案。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_PROVISIONING_FAILED<sup>13+</sup>   | 6616002 | 设备配置失败。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_CONTENT_ERROR<sup>13+</sup>  | 6616003 | 受DRM保护的内容无法播放。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_LICENSE_ACQUISITION_FAILED<sup>13+</sup>    | 6616004 | 获取许可证失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_DISALLOWED_OPERATION<sup>13+</sup>     | 6616005 | 许可证策略不允许该操作。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_SYSTEM_ERROR<sup>13+</sup>     | 6616006 | DRM系统中发生错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_DEVICE_REVOKED<sup>13+</sup>     | 6616007 | 设备已撤销DRM权限。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_LICENSE_EXPIRED<sup>13+</sup>   | 6616008 | 加载中的DRM许可证已过期。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_PROVIDE_KEY_RESPONSE_ERROR<sup>13+</sup>    | 6616100 | DRM处理密钥响应时发生错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
 
 ## SkipIntervals<sup>11+</sup>
 
-表示session支持的快进快退时间间隔。
+表示session支持的快进快退时间间隔的枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 

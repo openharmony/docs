@@ -13,10 +13,10 @@ The AutoFillExtensionAbility module, inherited from [ExtensionAbility](js-apis-a
 ## Modules to Import
 
 ```ts
-import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
+import { AutoFillExtensionAbility } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -37,16 +37,16 @@ Called when an AutoFillExtensionAbility is created.
 
 **Example**
 
-  ```ts
-  import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
-  import hilog from '@ohos.hilog';
+```ts
+import { AutoFillExtensionAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
-    onCreate() {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'onCreate');
-    }
+class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
+  onCreate() {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'onCreate');
   }
-  ```
+}
+```
 
 ## AutoFillExtensionAbility.onFillRequest
 
@@ -66,41 +66,38 @@ Called when an auto-fill request is initiated or a password is generated.
 
 **Example**
 
-  ```ts
-  import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import autoFillManager from '@ohos.app.ability.autoFillManager';
-  import hilog from '@ohos.hilog';
-  import common from '@ohos.app.ability.common';
+```ts
+import { AutoFillExtensionAbility, UIExtensionContentSession, autoFillManager, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
-    onFillRequest(session: UIExtensionContentSession,
-                  request: autoFillManager.FillRequest,
-                  callback: autoFillManager.FillRequestCallback) {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
-      hilog.info(0x0000, 'testTag', 'fill requestCallback: %{public}s', JSON.stringify(callback));
-      hilog.info(0x0000, 'testTag', 'get request viewData: ', JSON.stringify(request.viewData));
-      try {
-        let localStorageData: Record<string, UIExtensionContentSession | string | autoFillManager.FillRequestCallback |
-          autoFillManager.ViewData | common.AutoFillExtensionContext> = {
-          'session': session,
-          'message': 'AutoFill Page',
-          'fillCallback': callback,
-          'viewData': request.viewData,
-          'context': this.context,
-        };
-        let storage_fill = new LocalStorage(localStorageData);
-        if (session) {
-          session.loadContent('pages/SelectorList', storage_fill);
-        } else {
-          hilog.error(0x0000, 'testTag', '%{public}s', 'session is null');
-        }
-      } catch (err) {
-        hilog.error(0x0000, 'testTag', '%{public}s', 'failed to load content');
+class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
+  onFillRequest(session: UIExtensionContentSession,
+                request: autoFillManager.FillRequest,
+                callback: autoFillManager.FillRequestCallback) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
+    hilog.info(0x0000, 'testTag', 'fill requestCallback: %{public}s', JSON.stringify(callback));
+    hilog.info(0x0000, 'testTag', 'get request viewData: ', JSON.stringify(request.viewData));
+    try {
+      let localStorageData: Record<string, UIExtensionContentSession | string | autoFillManager.FillRequestCallback |
+      autoFillManager.ViewData | common.AutoFillExtensionContext> = {
+        'session': session,
+        'message': 'AutoFill Page',
+        'fillCallback': callback,
+        'viewData': request.viewData,
+        'context': this.context,
+      };
+      let storage_fill = new LocalStorage(localStorageData);
+      if (session) {
+        session.loadContent('pages/SelectorList', storage_fill);
+      } else {
+        hilog.error(0x0000, 'testTag', '%{public}s', 'session is null');
       }
+    } catch (err) {
+      hilog.error(0x0000, 'testTag', '%{public}s', 'failed to load content');
     }
   }
-  ```
+}
+```
 
 ## AutoFillExtensionAbility.onSaveRequest
 
@@ -120,39 +117,64 @@ Called when automatic or manual saving is initiated.
 
 **Example**
 
-  ```ts
-  import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import autoFillManager from '@ohos.app.ability.autoFillManager';
-  import hilog from '@ohos.hilog';
-  import common from '@ohos.app.ability.common';
+```ts
+import { AutoFillExtensionAbility, UIExtensionContentSession, autoFillManager, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
-    onSaveRequest(session : UIExtensionContentSession,
-                  request : autoFillManager.SaveRequest,
-                  callback : autoFillManager.SaveRequestCallback) {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'onSaveRequest');
-      try {
-        let localStorageData: Record<string, UIExtensionContentSession | string | autoFillManager.SaveRequestCallback |
-          autoFillManager.ViewData | common.AutoFillExtensionContext> = {
-          'session': session,
-          'message': 'AutoFill Page',
-          'fillCallback': callback,
-          'viewData': request.viewData,
-          'context': this.context,
-        };
-        let storage_save = new LocalStorage(localStorageData);
-        if (session) {
-          session.loadContent('pages/SavePage', storage_save);
-        } else {
-          hilog.error(0x0000, 'testTag', '%{public}s', 'session is null');
-        }
-      } catch (err) {
-        hilog.error(0x0000, 'testTag', '%{public}s', 'failed to load content');
+class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
+  onSaveRequest(session : UIExtensionContentSession,
+                request : autoFillManager.SaveRequest,
+                callback : autoFillManager.SaveRequestCallback) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'onSaveRequest');
+    try {
+      let localStorageData: Record<string, UIExtensionContentSession | string | autoFillManager.SaveRequestCallback |
+      autoFillManager.ViewData | common.AutoFillExtensionContext> = {
+        'session': session,
+        'message': 'AutoFill Page',
+        'fillCallback': callback,
+        'viewData': request.viewData,
+        'context': this.context,
+      };
+      let storage_save = new LocalStorage(localStorageData);
+      if (session) {
+        session.loadContent('pages/SavePage', storage_save);
+      } else {
+        hilog.error(0x0000, 'testTag', '%{public}s', 'session is null');
       }
+    } catch (err) {
+      hilog.error(0x0000, 'testTag', '%{public}s', 'failed to load content');
     }
   }
-  ```
+}
+```
+
+## AutoFillExtensionAbility.onUpdateRequest<sup>12+</sup>
+
+onUpdateRequest(request: UpdateRequest): void
+
+Called when an update request is received.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| request | [UpdateRequest](js-apis-inner-application-autoFillRequest-sys.md#updaterequest12)  | Yes| Update request.|
+
+**Example**
+
+```ts
+import { AutoFillExtensionAbility, autoFillManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
+  onUpdateRequest(request: autoFillManager.UpdateRequest) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'on update request, view data is: %{public}s',
+      JSON.stringify(request.viewData));
+  }
+}
+```
 
 ## AutoFillExtensionAbility.onSessionDestroy
 
@@ -170,17 +192,16 @@ Called when a **UIExtensionContentSession** instance is destroyed for this AutoF
 
 **Example**
 
-  ```ts
-  import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import hilog from '@ohos.hilog';
+```ts
+import { AutoFillExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
-    onSessionDestroy(session : UIExtensionContentSession) {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'onSessionDestroy');
-    }
+class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
+  onSessionDestroy(session : UIExtensionContentSession) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'onSessionDestroy');
   }
-  ```
+}
+```
 
 ## AutoFillExtensionAbility.onForeground
 
@@ -192,16 +213,16 @@ Called when this AutoFillExtensionAbility is switched from the background to the
 
 **Example**
 
-  ```ts
-  import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
-  import hilog from '@ohos.hilog';
+```ts
+import { AutoFillExtensionAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
-    onForeground() {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'onForeground');
-    }
+class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
+  onForeground() {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'onForeground');
   }
-  ```
+}
+```
 
 ## AutoFillExtensionAbility.onBackground
 
@@ -213,16 +234,16 @@ Called when this AutoFillExtensionAbility is switched from the foreground to the
 
 **Example**
 
-  ```ts
-  import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
-  import hilog from '@ohos.hilog';
+```ts
+import { AutoFillExtensionAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
-    onBackground() {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'onBackground');
-    }
+class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
+  onBackground() {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'onBackground');
   }
-  ```
+}
+```
 
 ## AutoFillExtensionAbility.onDestroy
 
@@ -240,13 +261,13 @@ Called to clear resources when this AutoFillExtensionAbility is destroyed. This 
 
 **Example**
 
-  ```ts
-  import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
-  import hilog from '@ohos.hilog';
+```ts
+import { AutoFillExtensionAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
-    onDestroy() {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'onDestroy');
-    }
+class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
+  onDestroy() {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'onDestroy');
   }
-  ```
+}
+```

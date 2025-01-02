@@ -6,7 +6,7 @@
 
 ### 功能简介
 
-组件若有HiSysEvent事件的打点需求，则需要先定义yaml文件并在bundle.json文件中[配置yaml文件的路径](subsys-dfx-hisysevent-logging-config.md#验证yaml文件)。OpenHarmony编译框架在编译过程中则会通过python编译脚本解析校验bundle.json文件指定的所有yaml文件。在解析校验之后，编译框架会将这些yaml文件中配置的信息汇总转换成名为hisysevent.def的json文件。最后，将此json文件打包到系统指定路径下，用作HiSysEvent事件落盘的判断依据。
+组件若有HiSysEvent事件的打点需求，则需要先定义yaml文件并在bundle.json文件中[配置yaml文件的路径](subsys-dfx-hisysevent-logging-config.md#验证yaml文件)。OpenHarmony编译框架在编译过程中则会通过python编译脚本解析校验bundle.json文件指定的所有yaml文件。在解析校验之后，编译框架会将这些yaml文件中配置的信息汇总转换成名为hisysevent.zip文件。最后，将此zip文件打包到系统指定路径下，用作HiSysEvent事件落盘的判断依据。
 
 
 ### 基本概念
@@ -156,18 +156,18 @@
 **编译yaml文件**
 
 - 全量编译：
-  - 全量编译整个系统，会将所有组件配置的yaml文件中的配置进行汇总，正常完成系统编译后，指定目录下就会生成hisysevent.def文件。
+  - 全量编译整个系统，会将所有组件配置的yaml文件中的配置进行汇总，正常完成系统编译后，指定目录下就会生成hisysevent.zip文件。
     
      ```
      cd 工程根目录的绝对路径
      ./build --product-name <product name>
      ```
 
-  - 全量编译生成的hisysevent.def文件可以通过以下命令获取：
+  - 全量编译生成的hisysevent.zip文件可以通过以下命令获取：
     
      ```
      cd 工程根目录的绝对路径
-     find out -name hisysevent.def -type f
+     find out -name hisysevent.zip -type f
      ```
 
 - 单文件编译：
@@ -184,11 +184,11 @@
   | 选项名称 | 描述 |
   | -------- | -------- |
   | --yaml-list | 指定需要编译的yaml文件路径列表，多个yaml文件路径之间用空格分隔。 |
-  | --def-path | 指定编译生成的hisysevent.def文件的生成路径。 |
+  | --def-path | 指定编译生成的hisysevent.zip文件的生成路径。 |
 
 
 ### 打点及查询定义的事件
 
-1. 通过[hdc_std工具](../subsystems/subsys-toolchain-hdc-guide.md)将hisysevent.def文件推送到至设备的//system/etc/hiview/目录下。
+1. 通过[hdc_std工具](../subsystems/subsys-toolchain-hdc-guide.md)将从hisysevent.zip解压的hisysevent.def文件推送至设备的/data/system/hiview/unzip_configs/sys_event_def/目录下。
 
 2. 触发yaml文件自定义的HiSysEvent事件完成打点，通过“[hisysevent -l](../subsystems/subsys-dfx-hisysevent-tool.md)”命令查询历史HiSysEvent事件，确认触发的自定义HiSysEvent事件是否打点成功。

@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import call from '@ohos.telephony.call';
+import { call } from '@kit.TelephonyKit';
 ```
 
 ## call.dialCall<sup>9+</sup>
@@ -43,7 +43,7 @@ dialCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -54,7 +54,7 @@ dialCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.dialCall("138xxxxxxxx", (err: BusinessError) => {
     if (err) {
@@ -94,7 +94,7 @@ dialCall\(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -105,7 +105,7 @@ dialCall\(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dialCallOptions: call.DialCallOptions = {
     accountId: 0,
@@ -156,7 +156,7 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -167,7 +167,7 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dialCallOptions: call.DialCallOptions = {
     accountId: 0,
@@ -209,7 +209,7 @@ muteRinger\(callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -218,7 +218,7 @@ muteRinger\(callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.muteRinger((err: BusinessError) => {
     if (err) {
@@ -263,7 +263,7 @@ muteRinger\(\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.muteRinger().then(() => {
     console.log(`muteRinger success.`);
@@ -300,7 +300,7 @@ answerCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -309,7 +309,7 @@ answerCall\(callId: number, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.answerCall(1, (err: BusinessError) => {
     if (err) {
@@ -353,7 +353,7 @@ answerCall(callId?: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -362,7 +362,7 @@ answerCall(callId?: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.answerCall(1).then(() => {
     console.log(`answerCall success.`);
@@ -398,7 +398,7 @@ answerCall\(callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -407,7 +407,7 @@ answerCall\(callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.answerCall((err: BusinessError) => {
     if (err) {
@@ -446,7 +446,7 @@ hangUpCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -455,7 +455,7 @@ hangUpCall\(callId: number, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.hangUpCall(1, (err: BusinessError) => {
     if (err) {
@@ -499,7 +499,7 @@ hangUpCall\(callId?: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -508,7 +508,7 @@ hangUpCall\(callId?: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.hangUpCall(1).then(() => {
     console.log(`hangUpCall success.`);
@@ -544,7 +544,7 @@ hangUpCall\(callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -554,7 +554,7 @@ hangUpCall\(callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.hangUpCall((err: BusinessError) => {
     if (err) {
@@ -593,7 +593,7 @@ rejectCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -603,7 +603,7 @@ rejectCall\(callId: number, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.rejectCall(1, (err: BusinessError) => {
     if (err) {
@@ -643,7 +643,7 @@ rejectCall\(callId: number, options: RejectMessageOptions, callback: AsyncCallba
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -652,7 +652,7 @@ rejectCall\(callId: number, options: RejectMessageOptions, callback: AsyncCallba
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rejectMessageOptions : call.RejectMessageOptions = {
     messageContent: "拦截陌生号码"
@@ -700,7 +700,7 @@ rejectCall\(callId?: number, options?: RejectMessageOptions\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -709,7 +709,7 @@ rejectCall\(callId?: number, options?: RejectMessageOptions\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rejectMessageOptions: call.RejectMessageOptions = {
     messageContent: "拦截陌生号码"
@@ -748,7 +748,7 @@ rejectCall\(callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -757,7 +757,7 @@ rejectCall\(callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.rejectCall((err: BusinessError) => {
     if (err) {
@@ -796,7 +796,7 @@ rejectCall\(options: RejectMessageOptions, callback: AsyncCallback\<void\>\): vo
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -805,7 +805,7 @@ rejectCall\(options: RejectMessageOptions, callback: AsyncCallback\<void\>\): vo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rejectMessageOptions: call.RejectMessageOptions = {
     messageContent: "拦截陌生号码"
@@ -847,7 +847,7 @@ holdCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -856,7 +856,7 @@ holdCall\(callId: number, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.holdCall(1, (err: BusinessError) => {
     if (err) {
@@ -900,7 +900,7 @@ holdCall\(callId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -909,7 +909,7 @@ holdCall\(callId: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.holdCall(1).then(() => {
     console.log(`holdCall success.`);
@@ -945,7 +945,7 @@ unHoldCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -954,7 +954,7 @@ unHoldCall\(callId: number, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.unHoldCall(1, (err: BusinessError) => {
     if (err) {
@@ -998,7 +998,7 @@ unHoldCall\(callId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1007,7 +1007,7 @@ unHoldCall\(callId: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.unHoldCall(1).then(() => {
     console.log(`unHoldCall success.`);
@@ -1043,7 +1043,7 @@ switchCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1052,7 +1052,7 @@ switchCall\(callId: number, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.switchCall(1, (err: BusinessError) => {
     if (err) {
@@ -1096,7 +1096,7 @@ switchCall\(callId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1105,7 +1105,7 @@ switchCall\(callId: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.switchCall(1).then(() => {
     console.log(`switchCall success.`);
@@ -1138,7 +1138,7 @@ combineConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1148,7 +1148,7 @@ combineConference\(callId: number, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.combineConference(1, (err: BusinessError) => {
     if (err) {
@@ -1189,7 +1189,7 @@ combineConference\(callId: number\): Promise\<void\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1199,7 +1199,7 @@ combineConference\(callId: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.combineConference(1).then(() => {
     console.log(`combineConference success.`);
@@ -1235,7 +1235,7 @@ kickOutFromConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1244,7 +1244,7 @@ kickOutFromConference\(callId: number, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.kickOutFromConference(1, (err: BusinessError) => {
     if (err) {
@@ -1287,7 +1287,7 @@ kickOutFromConference\(callId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1296,7 +1296,7 @@ kickOutFromConference\(callId: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.kickOutFromConference(1).then(() => {
     console.log(`kickOutFromConference success.`);
@@ -1329,7 +1329,7 @@ getMainCallId\(callId: number, callback: AsyncCallback\<number\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1339,7 +1339,7 @@ getMainCallId\(callId: number, callback: AsyncCallback\<number\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getMainCallId(1, (err: BusinessError, data: number) => {
     if (err) {
@@ -1380,7 +1380,7 @@ getMainCallId\(callId: number\): Promise\<number\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1390,7 +1390,7 @@ getMainCallId\(callId: number\): Promise\<number\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getMainCallId(1).then((data: number) => {
     console.log(`getMainCallId success, promise: data->${JSON.stringify(data)}`);
@@ -1423,7 +1423,7 @@ getSubCallIdList\(callId: number, callback: AsyncCallback\<Array\<string\>\>\): 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1432,7 +1432,7 @@ getSubCallIdList\(callId: number, callback: AsyncCallback\<Array\<string\>\>\): 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getSubCallIdList(1, (err: BusinessError, data: Array<string>) => {
     if (err) {
@@ -1473,7 +1473,7 @@ getSubCallIdList\(callId: number\): Promise\<Array\<string\>\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1482,7 +1482,7 @@ getSubCallIdList\(callId: number\): Promise\<Array\<string\>\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getSubCallIdList(1).then((data: Array<string>) => {
     console.log(`getSubCallIdList success, promise: data->${JSON.stringify(data)}`);
@@ -1515,7 +1515,7 @@ getCallIdListForConference\(callId: number, callback: AsyncCallback\<Array\<stri
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1524,7 +1524,7 @@ getCallIdListForConference\(callId: number, callback: AsyncCallback\<Array\<stri
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallIdListForConference(1, (err: BusinessError, data: Array<string>) => {
     if (err) {
@@ -1565,7 +1565,7 @@ getCallIdListForConference\(callId: number\): Promise\<Array\<string\>\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1574,7 +1574,7 @@ getCallIdListForConference\(callId: number\): Promise\<Array\<string\>\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallIdListForConference(1).then((data: Array<string>) => {
     console.log(`getCallIdListForConference success, promise: data->${JSON.stringify(data)}`);
@@ -1610,7 +1610,7 @@ getCallWaitingStatus\(slotId: number, callback: AsyncCallback\<CallWaitingStatus
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1619,7 +1619,7 @@ getCallWaitingStatus\(slotId: number, callback: AsyncCallback\<CallWaitingStatus
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallWaitingStatus(0, (err: BusinessError, data: call.CallWaitingStatus) => {
     if (err) {
@@ -1663,7 +1663,7 @@ getCallWaitingStatus\(slotId: number\): Promise\<CallWaitingStatus\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1672,7 +1672,7 @@ getCallWaitingStatus\(slotId: number\): Promise\<CallWaitingStatus\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallWaitingStatus(0).then((data: call.CallWaitingStatus) => {
     console.log(`getCallWaitingStatus success, promise: data->${JSON.stringify(data)}`);
@@ -1709,7 +1709,7 @@ setCallWaiting\(slotId: number, activate: boolean, callback: AsyncCallback\<void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1718,7 +1718,7 @@ setCallWaiting\(slotId: number, activate: boolean, callback: AsyncCallback\<void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setCallWaiting(0, true, (err: BusinessError) => {
     if (err) {
@@ -1763,7 +1763,7 @@ setCallWaiting\(slotId: number, activate: boolean\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1772,7 +1772,7 @@ setCallWaiting\(slotId: number, activate: boolean\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setCallWaiting(0, true).then(() => {
     console.log(`setCallWaiting success.`);
@@ -1806,7 +1806,7 @@ startDTMF\(callId: number, character: string, callback: AsyncCallback\<void\>\):
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1815,7 +1815,7 @@ startDTMF\(callId: number, character: string, callback: AsyncCallback\<void\>\):
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.startDTMF(1, "0", (err: BusinessError) => {
     if (err) {
@@ -1857,7 +1857,7 @@ startDTMF\(callId: number, character: string\): Promise\<void\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1866,7 +1866,7 @@ startDTMF\(callId: number, character: string\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.startDTMF(1, "0").then(() => {
     console.log(`startDTMF success.`);
@@ -1899,7 +1899,7 @@ stopDTMF\(callId: number, callback: AsyncCallback\<void\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1908,7 +1908,7 @@ stopDTMF\(callId: number, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.stopDTMF(1, (err: BusinessError) => {
     if (err) {
@@ -1949,7 +1949,7 @@ stopDTMF\(callId: number\): Promise\<void\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1958,7 +1958,7 @@ stopDTMF\(callId: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.stopDTMF(1).then(() => {
     console.log(`stopDTMF success.`);
@@ -1998,7 +1998,7 @@ postDialProceed\(callId: number, proceed: boolean, callback: AsyncCallback\<void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2007,7 +2007,7 @@ postDialProceed\(callId: number, proceed: boolean, callback: AsyncCallback\<void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.postDialProceed(1, true, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -2051,7 +2051,7 @@ postDialProceed\(callId: number, proceed: boolean\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2060,7 +2060,7 @@ postDialProceed\(callId: number, proceed: boolean\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.postDialProceed(1, true).then(() => {
     console.log(`postDialProceed success.`);
@@ -2095,7 +2095,7 @@ isInEmergencyCall\(callback: AsyncCallback\<boolean\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2104,7 +2104,7 @@ isInEmergencyCall\(callback: AsyncCallback\<boolean\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isInEmergencyCall((err: BusinessError, data: boolean) => {
     if (err) {
@@ -2149,7 +2149,7 @@ isInEmergencyCall\(\): Promise\<boolean\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isInEmergencyCall().then((data: boolean) => {
     console.log(`isInEmergencyCall success, promise: data->${JSON.stringify(data)}`);
@@ -2185,7 +2185,7 @@ on\(type: 'callDetailsChange', callback: Callback\<CallAttributeOptions\>\): voi
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2226,7 +2226,7 @@ on\(type: 'callEventChange', callback: Callback\<CallEventOptions\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2267,7 +2267,7 @@ on\(type: 'callDisconnectedCause', callback: Callback\<DisconnectedDetails\>\): 
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2308,7 +2308,7 @@ on\(type: 'mmiCodeResult', callback: Callback\<MmiCodeResults\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2349,7 +2349,7 @@ off\(type: 'callDetailsChange', callback?: Callback\<CallAttributeOptions\>\): v
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2390,7 +2390,7 @@ off\(type: 'callEventChange', callback?: Callback\<CallEventOptions\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2431,7 +2431,7 @@ off\(type: 'callDisconnectedCause', callback?: Callback\<DisconnectedDetails\>\)
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2472,7 +2472,7 @@ off\(type: 'mmiCodeResult', callback?: Callback\<MmiCodeResults\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2514,7 +2514,7 @@ on\(type: 'audioDeviceChange', callback: Callback\<AudioDeviceCallbackInfo\>\): 
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2556,7 +2556,7 @@ off\(type: 'audioDeviceChange', callback?: Callback\<AudioDeviceCallbackInfo\>\)
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2597,7 +2597,7 @@ on\(type: 'postDialDelay', callback: Callback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2638,7 +2638,7 @@ off\(type: 'postDialDelay', callback?: Callback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2675,7 +2675,7 @@ isNewCallAllowed\(callback: AsyncCallback\<boolean\>\): void
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2684,7 +2684,7 @@ isNewCallAllowed\(callback: AsyncCallback\<boolean\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isNewCallAllowed((err: BusinessError, data: boolean) => {
     if (err) {
@@ -2726,7 +2726,7 @@ isNewCallAllowed\(\): Promise\<boolean\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isNewCallAllowed().then((data: boolean) => {
     console.log(`isNewCallAllowed success, promise: data->${JSON.stringify(data)}`);
@@ -2759,7 +2759,7 @@ separateConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2769,7 +2769,7 @@ separateConference\(callId: number, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.separateConference(1, (err: BusinessError) => {
     if (err) {
@@ -2810,7 +2810,7 @@ separateConference\(callId: number\): Promise\<void\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2820,7 +2820,7 @@ separateConference\(callId: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.separateConference(1).then(() => {
     console.log(`separateConference success.`);
@@ -2857,7 +2857,7 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType, callback: A
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2866,7 +2866,7 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType, callback: A
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallRestrictionStatus(0, 1, (err: BusinessError, data: call.RestrictionStatus) => {
     if (err) {
@@ -2911,7 +2911,7 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType\): Promise\<
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2920,7 +2920,7 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType\): Promise\<
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallRestrictionStatus(0, 1).then((data: call.RestrictionStatus) => {
     console.log(`getCallRestrictionStatus success, promise: data->${JSON.stringify(data)}`);
@@ -2957,7 +2957,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo, callback: AsyncCa
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2966,7 +2966,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo, callback: AsyncCa
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callRestrictionInfo: call.CallRestrictionInfo = {
     type: call.CallRestrictionType.RESTRICTION_TYPE_ALL_OUTGOING,
@@ -3016,7 +3016,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3025,7 +3025,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callRestrictionInfo: call.CallRestrictionInfo = {
     type: call.CallRestrictionType.RESTRICTION_TYPE_ALL_INCOMING,
@@ -3068,7 +3068,7 @@ setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: st
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3077,7 +3077,7 @@ setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: st
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setCallRestrictionPassword(0, "123456", "654321", (err: BusinessError) => {
     if (err) {
@@ -3122,7 +3122,7 @@ setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: st
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3131,7 +3131,7 @@ setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: st
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setCallRestrictionPassword(0, "123456", "654321").then(() => {
     console.log(`setCallRestrictionPassword success.`);
@@ -3168,7 +3168,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType, callback: AsyncCall
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3177,7 +3177,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType, callback: AsyncCall
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY, (err: BusinessError, data: call.CallTransferResult) => {
     if (err) {
@@ -3222,7 +3222,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType\): Promise\<CallTran
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3231,7 +3231,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType\): Promise\<CallTran
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY).then((data: call.CallTransferResult) => {
     console.log(`getCallTransferInfo success, promise: data->${JSON.stringify(data)}`);
@@ -3268,7 +3268,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo, callback: AsyncCallback
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3277,7 +3277,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo, callback: AsyncCallback
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callTransferInfo: call.CallTransferInfo = {
     transferNum: "111",
@@ -3327,7 +3327,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3336,7 +3336,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callTransferInfo: call.CallTransferInfo = {
     transferNum: "111",
@@ -3376,7 +3376,7 @@ isRinging\(callback: AsyncCallback\<boolean\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3385,7 +3385,7 @@ isRinging\(callback: AsyncCallback\<boolean\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isRinging((err: BusinessError, data: boolean) => {
     if (err) {
@@ -3430,7 +3430,7 @@ isRinging\(\): Promise\<boolean\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isRinging().then((data: boolean) => {
     console.log(`isRinging success, promise: data->${JSON.stringify(data)}`);
@@ -3462,7 +3462,7 @@ setMuted\(callback: AsyncCallback\<void\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3471,7 +3471,7 @@ setMuted\(callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setMuted((err: BusinessError) => {
     if (err) {
@@ -3513,7 +3513,7 @@ setMuted\(\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setMuted().then(() => {
     console.log(`setMuted success.`);
@@ -3545,7 +3545,7 @@ cancelMuted\(callback: AsyncCallback\<void\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3554,7 +3554,7 @@ cancelMuted\(callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.cancelMuted((err: BusinessError) => {
     if (err) {
@@ -3596,7 +3596,7 @@ cancelMuted\(\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.cancelMuted().then(() => {
     console.log(`cancelMuted success.`);
@@ -3632,7 +3632,7 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3641,7 +3641,7 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioDevice: call.AudioDevice = {
     deviceType: call.AudioDeviceType.DEVICE_EARPIECE
@@ -3687,7 +3687,7 @@ setAudioDevice\(device: AudioDevice): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3696,7 +3696,7 @@ setAudioDevice\(device: AudioDevice): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioDevice: call.AudioDevice = {
     deviceType: call.AudioDeviceType.DEVICE_EARPIECE
@@ -3733,7 +3733,7 @@ joinConference\(mainCallId: number, callNumberList: Array\<string\>, callback: A
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3742,7 +3742,7 @@ joinConference\(mainCallId: number, callNumberList: Array\<string\>, callback: A
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callNumberList: Array<string> = [
     "138XXXXXXXX"
@@ -3786,7 +3786,7 @@ joinConference\(mainCallId: number, callNumberList: Array\<string\>\): Promise\<
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3795,7 +3795,7 @@ joinConference\(mainCallId: number, callNumberList: Array\<string\>\): Promise\<
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callNumberList: Array<string> = [
     "138XXXXXXXX"
@@ -3832,7 +3832,7 @@ updateImsCallMode\(callId: number, mode: ImsCallMode, callback: AsyncCallback\<v
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3841,7 +3841,7 @@ updateImsCallMode\(callId: number, mode: ImsCallMode, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.updateImsCallMode(1, 1, (err: BusinessError) => {
     if (err) {
@@ -3882,7 +3882,7 @@ updateImsCallMode\(callId: number, mode: ImsCallMode\): Promise\<void\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3891,7 +3891,7 @@ updateImsCallMode\(callId: number, mode: ImsCallMode\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.updateImsCallMode(1, 1).then(() => {
     console.log(`updateImsCallMode success.`);
@@ -3927,7 +3927,7 @@ enableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3936,7 +3936,7 @@ enableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.enableImsSwitch(0, (err: BusinessError) => {
     if (err) {
@@ -3979,7 +3979,7 @@ enableImsSwitch\(slotId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3988,7 +3988,7 @@ enableImsSwitch\(slotId: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.enableImsSwitch(0).then(() => {
     console.log(`enableImsSwitch success.`);
@@ -4024,7 +4024,7 @@ disableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4033,7 +4033,7 @@ disableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.disableImsSwitch(0, (err: BusinessError) => {
     if (err) {
@@ -4076,7 +4076,7 @@ disableImsSwitch\(slotId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4085,7 +4085,7 @@ disableImsSwitch\(slotId: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.disableImsSwitch(0).then(() => {
     console.log(`disableImsSwitch success.`);
@@ -4118,7 +4118,7 @@ isImsSwitchEnabled\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4127,7 +4127,7 @@ isImsSwitchEnabled\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isImsSwitchEnabled(0, (err: BusinessError, data: boolean) => {
     if (err) {
@@ -4167,7 +4167,7 @@ isImsSwitchEnabled\(slotId: number\): Promise\<boolean\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4176,7 +4176,7 @@ isImsSwitchEnabled\(slotId: number\): Promise\<boolean\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isImsSwitchEnabled(0).then((data: boolean) => {
     console.log(`isImsSwitchEnabled success, promise: data->${JSON.stringify(data)}`);
@@ -4185,6 +4185,54 @@ call.isImsSwitchEnabled(0).then((data: boolean) => {
 });
 ```
 
+## call.isImsSwitchEnabledSync<sup>12+</sup>
+
+isImsSwitchEnabledSync\(slotId: number\): boolean
+
+判断Ims开关是否启用。调用此API返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型    | 说明                                                 |
+| ------- | ---------------------------------------------------- |
+| boolean | 用来返回结果，true表示Ims开关启用，false表示未启用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Non-system applications use system APIs.                     |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types; |
+| 8300001  | Invalid parameter value.                                     |
+| 8300002  | Operation failed. Cannot connect to service.                 |
+| 8300003  | System internal error.                                       |
+| 8300999  | Unknown error code.                                          |
+
+**示例：**
+
+<!--code_no_check-->
+
+```ts
+let slotId: number = 0;
+try {
+    let isEnabled: boolean = call.isImsSwitchEnabledSync(slotId);
+    console.log(`isImsSwitchEnabledSync success : ${isEnabled}`);
+} catch (error) {
+    console.error(`isImsSwitchEnabledSync fail : err->${JSON.stringify(error)}`);  
+}
+```
 
 ## call.closeUnfinishedUssd<sup>10+</sup>
 
@@ -4213,7 +4261,7 @@ closeUnfinishedUssd\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4222,7 +4270,7 @@ closeUnfinishedUssd\(slotId: number, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.closeUnfinishedUssd(slotId, (err: BusinessError) => {
@@ -4266,7 +4314,7 @@ closeUnfinishedUssd\(slotId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4275,7 +4323,7 @@ closeUnfinishedUssd\(slotId: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.closeUnfinishedUssd(slotId).then(() => {
@@ -4314,7 +4362,7 @@ setVoNRState\(slotId: number, state: VoNRState, callback: AsyncCallback\<void\>\
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4323,7 +4371,7 @@ setVoNRState\(slotId: number, state: VoNRState, callback: AsyncCallback\<void\>\
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let state: call.VoNRState = call.VoNRState.VONR_STATE_ON;
@@ -4370,7 +4418,7 @@ setVoNRState\(slotId: number, state: VoNRState\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4379,7 +4427,7 @@ setVoNRState\(slotId: number, state: VoNRState\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let state: call.VoNRState = call.VoNRState.VONR_STATE_ON;
@@ -4418,7 +4466,7 @@ getVoNRState\(slotId: number, callback: AsyncCallback\<VoNRState\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4427,7 +4475,7 @@ getVoNRState\(slotId: number, callback: AsyncCallback\<VoNRState\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.getVoNRState(slotId, (err: BusinessError, data: call.VoNRState) => {
@@ -4472,7 +4520,7 @@ getVoNRState\(slotId: number\): Promise\<VoNRState\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4481,7 +4529,7 @@ getVoNRState\(slotId: number\): Promise\<VoNRState\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.getVoNRState(slotId).then((data: call.VoNRState) => {
@@ -4519,7 +4567,7 @@ canSetCallTransferTime\(slotId: number, callback: AsyncCallback\<boolean\>\): vo
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4528,7 +4576,7 @@ canSetCallTransferTime\(slotId: number, callback: AsyncCallback\<boolean\>\): vo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.canSetCallTransferTime(slotId, (err: BusinessError, data: boolean) => {
@@ -4573,7 +4621,7 @@ canSetCallTransferTime\(slotId: number\): Promise\<boolean\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4582,7 +4630,7 @@ canSetCallTransferTime\(slotId: number\): Promise\<boolean\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.canSetCallTransferTime(slotId).then((data: boolean) => {
@@ -4609,7 +4657,7 @@ inputDialerSpecialCode\(inputCode: string, callback: AsyncCallback\<void\>\): vo
 
 | 参数名      | 类型                         | 必填 | 说明                                       |
 | ----------- | ---------------------------- | ---- | ----------------------------------------- |
-| inputCode   | string                       | 是   | 暗码。支持暗码字段, 如：2846579(工程菜单)。 |
+| inputCode   | string                       | 是   | 暗码。支持暗码字段, 如：*#*#2846579#*#*(工程菜单)。 |
 | callback    | AsyncCallback&lt;void&gt;    | 是   | 以回调函数的方式返回暗码广播的结果。              |
 
 **错误码：**
@@ -4620,7 +4668,7 @@ inputDialerSpecialCode\(inputCode: string, callback: AsyncCallback\<void\>\): vo
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4628,9 +4676,9 @@ inputDialerSpecialCode\(inputCode: string, callback: AsyncCallback\<void\>\): vo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-call.inputDialerSpecialCode('2846579', (err: BusinessError) => {
+call.inputDialerSpecialCode('*#*#2846579#*#*', (err: BusinessError) => {
     if (err) {
         console.error(`inputDialerSpecialCode fail, err->${JSON.stringify(err)}`);
     } else {
@@ -4655,7 +4703,7 @@ inputDialerSpecialCode\(inputCode: string\): Promise\<void\>
 
 | 参数名      | 类型                         | 必填 | 说明                                       |
 | ----------- | ---------------------------- | ---- | ----------------------------------------- |
-| inputCode   | string                       | 是   | 暗码。支持暗码字段, 如：2846579(工程菜单)。 |
+| inputCode   | string                       | 是   | 暗码。支持暗码字段, 如：*#*#2846579#*#*(工程菜单)。 |
 
 **返回值：**
 
@@ -4671,7 +4719,7 @@ inputDialerSpecialCode\(inputCode: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4679,10 +4727,10 @@ inputDialerSpecialCode\(inputCode: string\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    call.inputDialerSpecialCode('2846579');
+    call.inputDialerSpecialCode('*#*#2846579#*#*');
     console.log(`inputDialerSpecialCode success`);
 } catch (error) {
     console.error(`inputDialerSpecialCode fail, promise: err->${JSON.stringify(error)}`);
@@ -4716,7 +4764,7 @@ removeMissedIncomingCallNotification\(callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 | 8300999  | Unknown error code.                          |
@@ -4724,7 +4772,7 @@ removeMissedIncomingCallNotification\(callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.removeMissedIncomingCallNotification((err: BusinessError) => {
     if (err) {
@@ -4769,7 +4817,7 @@ removeMissedIncomingCallNotification\(\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.removeMissedIncomingCallNotification().then(() => {
     console.log(`removeMissedIncomingCallNotification success`);
@@ -4778,6 +4826,56 @@ call.removeMissedIncomingCallNotification().then(() => {
 });
 ```
 
+## call.sendCallUiEvent<sup>12+</sup>
+
+sendCallUiEvent\(callId: number, eventName: string\): Promise\<void\>
+
+发布通话界面事件。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明     |
+| --------- | ------ | ---- | -------- |
+| callId    | number | 是   | 呼叫Id。 |
+| eventName | string | 是   | 事件名称。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | 以Promise形式异步返回。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let callId: number = 0;
+call.sendCallUiEvent(callId, 'eventName').then(() => {
+    console.log(`sendCallUiEvent success.`);
+}).catch((err: BusinessError) => {
+    console.error(`sendCallUiEvent fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## DialOptions
 
@@ -4972,6 +5070,8 @@ IP多媒体系统调用模式。
 | voipCallAttribute<sup>11+</sup> | [VoipCallAttribute](#voipcallattribute11)     | 否   | VoIP通话信息       |
 | crsType<sup>11+</sup> | number                             | 是   | 视频彩振类型|
 | originalCallType<sup>11+</sup> | number                    | 是   | 视频彩振原始呼叫类型|
+| numberLocation<sup>12+</sup> | string | 否 | 号码归属地信息 |
+| numberMarkInfo<sup>12+</sup> | [NumberMarkInfo](#numbermarkinfo12) | 否 | 号码标记信息 |
 
 ## VoipCallAttribute<sup>11+</sup>
 
@@ -4989,6 +5089,9 @@ VoIP通话信息。
 | extensionId      | string     | 是   |  三方应用进程Id  |
 | abilityName      | string     | 是   |  需加载的三方应用的界面ability  |
 | voipBundleName    | string     | 是   |  三方应用包名  |
+| showBannerForIncomingCall<sup>12+</sup>    | boolean     | 否   |  上报来电时是否显示来电横幅  |
+| isConferenceCall<sup>12+</sup>    | boolean     | 否   |  上报是否是电话会议  |
+| isVoiceAnswerSupported<sup>12+</sup>    | boolean     | 否   |  上报来电时是否支持语音接听  |
 
 ## ConferenceState<sup>7+</sup>
 
@@ -5112,6 +5215,8 @@ VoIP通话信息。
 | EVENT_SWAP_CALL_FAILED<sup>11+</sup>  | 4    | 保持当前通话并接听等待中电话失败事件 |
 | EVENT_COMBINE_CALL_FAILED<sup>11+</sup>  | 5 | 合并通话失败 |
 | EVENT_SPLIT_CALL_FAILED<sup>11+</sup> | 6    | 分离通话失败 |
+| EVENT_SHOW_FULL_SCREEN<sup>12+</sup>  | 7    | 全屏显示通话界面   |
+| EVENT_SHOW_FLOAT_WINDOW<sup>12+</sup> | 8    | 悬浮窗显示通话界面 |
 
 ## DialScene<sup>8+</sup>
 
@@ -5371,7 +5476,7 @@ answerCall(videoState: VideoStateType, callId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5380,7 +5485,7 @@ answerCall(videoState: VideoStateType, callId: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.answerCall(0, 1).then(() => {
     console.log(`answerCall success.`);
@@ -5421,7 +5526,7 @@ cancelCallUpgrade\(callId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5430,7 +5535,7 @@ cancelCallUpgrade\(callId: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.cancelCallUpgrade(1).then(() => {
     console.log(`cancelCallUpgrade success.`);
@@ -5472,7 +5577,7 @@ controlCamera\(callId: number, cameraId: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5481,7 +5586,7 @@ controlCamera\(callId: number, cameraId: string\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.controlCamera(1, "1").then(() => {
     console.log(`controlCamera success.`);
@@ -5523,7 +5628,7 @@ setPreviewSurface\(callId: number, surfaceId: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5532,7 +5637,7 @@ setPreviewSurface\(callId: number, surfaceId: string\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setPreviewSurface(1, "surfaceId1").then(() => {
     console.log(`setPreviewSurface success.`);
@@ -5574,7 +5679,7 @@ setDisplaySurface\(callId: number, surfaceId: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5583,7 +5688,7 @@ setDisplaySurface\(callId: number, surfaceId: string\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setDisplaySurface(1, "surfaceId1").then(() => {
     console.log(`setDisplaySurface success.`);
@@ -5625,7 +5730,7 @@ setDeviceDirection\(callId: number, deviceDirection: DeviceDirection\): Promise\
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5634,7 +5739,7 @@ setDeviceDirection\(callId: number, deviceDirection: DeviceDirection\): Promise\
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setDeviceDirection(1, 0).then(() => {
     console.log(`setDeviceDirection success.`);
@@ -5670,7 +5775,7 @@ on\(type: 'imsCallModeChange', callback: Callback\<ImsCallModeInfo\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5679,7 +5784,7 @@ on\(type: 'imsCallModeChange', callback: Callback\<ImsCallModeInfo\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.on('imsCallModeChange', (data: call.ImsCallModeInfo) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -5713,7 +5818,7 @@ off\(type: 'imsCallModeChange', callback?: Callback\<ImsCallModeInfo\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5722,7 +5827,7 @@ off\(type: 'imsCallModeChange', callback?: Callback\<ImsCallModeInfo\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.off('imsCallModeChange', (data: call.ImsCallModeInfo) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -5756,7 +5861,7 @@ on\(type: 'callSessionEvent', callback: Callback\<CallSessionEvent\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5765,7 +5870,7 @@ on\(type: 'callSessionEvent', callback: Callback\<CallSessionEvent\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.on('callSessionEvent', (data: call.CallSessionEvent) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -5799,7 +5904,7 @@ off\(type: 'callSessionEvent', callback?: Callback\<CallSessionEvent\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5808,7 +5913,7 @@ off\(type: 'callSessionEvent', callback?: Callback\<CallSessionEvent\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.off('callSessionEvent', (data: call.CallSessionEvent) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -5842,7 +5947,7 @@ on\(type: 'peerDimensionsChange', callback: Callback\<PeerDimensionsDetail\>\): 
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5851,7 +5956,7 @@ on\(type: 'peerDimensionsChange', callback: Callback\<PeerDimensionsDetail\>\): 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.on('peerDimensionsChange', (data: call.PeerDimensionsDetail) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -5885,7 +5990,7 @@ off\(type: 'peerDimensionsChange', callback?: Callback\<PeerDimensionsDetail\>\)
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5894,7 +5999,7 @@ off\(type: 'peerDimensionsChange', callback?: Callback\<PeerDimensionsDetail\>\)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.off('peerDimensionsChange', (data: call.PeerDimensionsDetail) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -5928,7 +6033,7 @@ on\(type: 'cameraCapabilitiesChange', callback: Callback\<CameraCapabilities\>\)
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5969,7 +6074,7 @@ off\(type: 'cameraCapabilitiesChange', callback?: Callback\<CameraCapabilities\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -6088,3 +6193,42 @@ call.off('cameraCapabilitiesChange', (data: call.CameraCapabilities) => {
 | width   | number       | 是   | 本端画面图像尺寸宽(像素)。  |
 | height  | number       | 是   | 本端画面图像尺寸高(像素)。  |
 
+## NumberMarkInfo<sup>12+</sup>
+
+电话号码的标记信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+| 名称    |     类型      | 必填 | 说明           |
+| ------- | ------------ | ---- | ------------- |
+| markType | [MarkType](#marktype12) | 是   | 号码的标记类型。 |
+| markContent | string | 否  | 号码的标记内容，markType为MARK_TYPE_ENTERPRISE时，该字段返回信息为“姓名 工号”。 |
+| markCount | number       | 否  | 号码的标记次数。 |
+| markSource | string | 否 | 号码的标记来源供应商。 |
+| isCloud | boolean | 否 | 号码的标记是否来自云端。 |
+| markDetails<sup>14+</sup> | string | 否 | 号码标记的详细信息，markType为MARK_TYPE_ENTERPRISE时，该字段返回信息为“部门 职位”。 |
+
+## MarkType<sup>12+</sup>
+
+号码标记的类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+| 名称                           | 值     | 说明     |
+| ------------------------------ | ------ | --------|
+| MARK_TYPE_NONE | 0      | 没有标记 |
+| MARK_TYPE_CRANK | 1      | 骚扰电话 |
+| MARK_TYPE_FRAUD | 2    | 诈骗电话 |
+| MARK_TYPE_EXPRESS | 3    | 快递送餐 |
+| MARK_TYPE_PROMOTE_SALES | 4 | 广告推销 |
+| MARK_TYPE_HOUSE_AGENT | 5 | 房产中介 |
+| MARK_TYPE_INSURANCE | 6 | 保险理财 |
+| MARK_TYPE_TAXI | 7 | 出租车 |
+| MARK_TYPE_CUSTOM | 8 | 用户自定义 |
+| MARK_TYPE_OTHERS | 9 | 其他 |
+| MARK_TYPE_YELLOW_PAGE | 10 | 黄页 |
+| MARK_TYPE_ENTERPRISE<sup>14+</sup> | 11 | 企业联系人 |

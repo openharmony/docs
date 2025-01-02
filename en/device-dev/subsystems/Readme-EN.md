@@ -20,6 +20,7 @@
       - [HAP Build Guide](subsys-build-gn-hap-compilation-guide.md)
       - Rust Build Guide
         - [Rust Module Configuration Rules and Guide](subsys-build-rust-compilation.md)
+        - [Using Rust Toolchain](subsys-build-rust-toolchain.md)
         - [Using Interactive Tools](subsys-build-bindgen-cxx-guide.md)
         - [Using Cargo2gn](subsys-build-cargo2gn-guide.md)
       - [FAQs](subsys-build-FAQ.md)

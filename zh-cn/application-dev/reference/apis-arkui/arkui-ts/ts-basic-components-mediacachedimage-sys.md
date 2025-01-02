@@ -20,9 +20,22 @@ MediaCachedImage(src: PixelMap | ResourceStr | DrawableDescriptor | ASTCResource
 
 **参数：** 
 
-| 参数名  | 参数类型                                     | 必填   | 参数描述                                     |
-| ---- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor)&nbsp;\|&nbsp;[ASTCResource](ts-types.md#astcresource12) | 是    | 图片的数据源，支持媒体库资源，PixelMap、ResourceStr、DrawableDescriptor的引用方式可参考Image的[加载图片资源](../../../ui/arkts-graphics-display.md#加载图片资源)，ASTCResource为纹理资源，只支持系统应用 |
+| 参数名 | 参数类型                                                     | 必填 | 参数描述                                                     |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| src    | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor)&nbsp;\|&nbsp;[ASTCResource](#astcresource12) | 是   | 图片的数据源，支持媒体库资源，PixelMap、ResourceStr、DrawableDescriptor的引用方式可参考Image的[加载图片资源](../../../ui/arkts-graphics-display.md#加载图片资源)，ASTCResource为纹理资源，只支持系统应用 |
+
+## ASTCResource<sup>12+</sup>
+
+纹理类型，用于设置纹理拼接的属性值。
+
+**系统接口：** 此接口为系统接口
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型    | 说明                                      |
+| ------- | ----------------------------------------- |
+| sources | uri资源数组，表示进行拼接的纹理资源信息。 |
+| column  | 列大小，表示每行要拼接的纹理资源个数。    |
 
 ## 示例
 

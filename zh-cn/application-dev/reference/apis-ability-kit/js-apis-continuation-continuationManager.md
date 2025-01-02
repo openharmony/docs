@@ -9,7 +9,7 @@ continuationManager模块提供了流转/协同入口管理服务能力，包括
 ## 导入模块
 
 ```ts
-import continuationManager from '@ohos.continuation.continuationManager'
+import { continuationManager } from '@kit.AbilityKit';
 ```
 
 ## continuationManager.register<sup>(deprecated)</sup>
@@ -33,7 +33,7 @@ register(callback: AsyncCallback\<number>): void
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager'
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = -1;
   continuationManager.register((err, data) => {
@@ -68,7 +68,7 @@ register(options: ContinuationExtraParams, callback: AsyncCallback\<number>): vo
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager'
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = -1;
   continuationManager.register(
@@ -112,8 +112,8 @@ register(options?: ContinuationExtraParams): Promise\<number>
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager'
-  import { BusinessError } from '@ohos.base';
+  import { continuationManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   let token: number = -1;
   continuationManager.register(
@@ -131,6 +131,8 @@ registerContinuation(callback: AsyncCallback\<number>): void
 
 注册流转管理服务，并获取对应的注册token，无过滤条件，使用AsyncCallback方式作为异步方法。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -143,17 +145,19 @@ registerContinuation(callback: AsyncCallback\<number>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager'
+  import { continuationManager } from '@kit.AbilityKit';
   
   let token: number = -1;
   try {
@@ -176,6 +180,8 @@ registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<
 
 连接流转管理服务，并获取对应的注册token，使用AsyncCallback方式作为异步方法。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -189,17 +195,19 @@ registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = -1;
   try {
@@ -226,6 +234,8 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>
 
 连接流转管理服务，并获取对应的注册token，使用Promise方式作为异步方法。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -244,18 +254,20 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
-  import { BusinessError } from '@ohos.base';
+  import { continuationManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let token: number = -1;
   try {
@@ -276,7 +288,7 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>
 
 ## continuationManager.on('deviceConnect')<sup>(deprecated)</sup>
 
-on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void
+on(type: 'deviceConnect', callback: Callback\<ContinuationResult>): void
 
 异步方法，监听设备连接状态，使用Callback形式返回连接的设备信息。
 
@@ -296,7 +308,7 @@ on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   continuationManager.on("deviceConnect", (data) => {
     console.info('onDeviceConnect deviceId: ' + JSON.stringify(data.id));
@@ -307,7 +319,7 @@ on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void
 
 ## continuationManager.on('deviceDisconnect')<sup>(deprecated)</sup>
 
-on(type: "deviceDisconnect", callback: Callback\<string>): void
+on(type: 'deviceDisconnect', callback: Callback\<string>): void
 
 异步方法，监听设备断开状态，使用Callback形式返回断开的设备信息。
 
@@ -327,7 +339,7 @@ on(type: "deviceDisconnect", callback: Callback\<string>): void
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   continuationManager.on("deviceDisconnect", (data) => {
     console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data));
@@ -336,7 +348,7 @@ on(type: "deviceDisconnect", callback: Callback\<string>): void
 
 ## continuationManager.off('deviceConnect')<sup>(deprecated)</sup>
 
-off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void
+off(type: 'deviceConnect', callback?: Callback\<ContinuationResult>): void
 
 异步方法，取消监听设备连接状态，使用Callback形式返回连接的设备信息。
 
@@ -356,7 +368,7 @@ off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   continuationManager.off("deviceConnect", (data) => {
     console.info('onDeviceConnect deviceId: ' + JSON.stringify(data.id));
@@ -367,7 +379,7 @@ off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void
 
 ## continuationManager.off('deviceDisconnect')<sup>(deprecated)</sup>
 
-off(type: "deviceDisconnect", callback?: Callback\<string>): void
+off(type: 'deviceDisconnect', callback?: Callback\<string>): void
 
 异步方法，取消监听设备断开状态，使用Callback形式返回连接的设备信息。
 
@@ -387,7 +399,7 @@ off(type: "deviceDisconnect", callback?: Callback\<string>): void
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   continuationManager.off("deviceDisconnect", (data) => {
     console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data));
@@ -396,9 +408,11 @@ off(type: "deviceDisconnect", callback?: Callback\<string>): void
 
 ## continuationManager.on('deviceSelected')<sup>9+</sup>
 
-on(type: "deviceSelected", token: number, callback: Callback\<Array\<ContinuationResult>>): void
+on(type: 'deviceSelected', token: number, callback: Callback\<Array\<ContinuationResult>>): void
 
 异步方法，监听设备连接状态，使用Callback形式返回连接的设备信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -414,10 +428,12 @@ on(type: "deviceSelected", token: number, callback: Callback\<Array\<Continuatio
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -425,7 +441,7 @@ on(type: "deviceSelected", token: number, callback: Callback\<Array\<Continuatio
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   try {
@@ -444,9 +460,11 @@ on(type: "deviceSelected", token: number, callback: Callback\<Array\<Continuatio
 
 ## continuationManager.on('deviceUnselected')<sup>9+</sup>
 
-on(type: "deviceUnselected", token: number, callback: Callback\<Array\<ContinuationResult>>): void
+on(type: 'deviceUnselected', token: number, callback: Callback\<Array\<ContinuationResult>>): void
 
 异步方法，监听设备断开状态，使用Callback形式返回断开的设备信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -462,10 +480,12 @@ on(type: "deviceUnselected", token: number, callback: Callback\<Array\<Continuat
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -473,7 +493,7 @@ on(type: "deviceUnselected", token: number, callback: Callback\<Array\<Continuat
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   try {
@@ -493,9 +513,11 @@ on(type: "deviceUnselected", token: number, callback: Callback\<Array\<Continuat
 
 ## continuationManager.off('deviceSelected')<sup>9+</sup>
 
-off(type: "deviceSelected", token: number): void
+off(type: 'deviceSelected', token: number): void
 
 取消监听设备连接状态。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -510,10 +532,12 @@ off(type: "deviceSelected", token: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -521,7 +545,7 @@ off(type: "deviceSelected", token: number): void
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   try {
@@ -533,9 +557,11 @@ off(type: "deviceSelected", token: number): void
 
 ## continuationManager.off('deviceUnselected')<sup>9+</sup>
 
-off(type: "deviceUnselected", token: number): void
+off(type: 'deviceUnselected', token: number): void
 
 取消监听设备断开状态。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -550,10 +576,12 @@ off(type: "deviceUnselected", token: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -561,7 +589,7 @@ off(type: "deviceUnselected", token: number): void
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   try {
@@ -593,7 +621,7 @@ startDeviceManager(token: number, callback: AsyncCallback\<void>): void
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   continuationManager.startDeviceManager(token, (err) => {
@@ -628,7 +656,7 @@ startDeviceManager(token: number, options: ContinuationExtraParams, callback: As
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   continuationManager.startDeviceManager(
@@ -673,8 +701,8 @@ startDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<v
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
-  import { BusinessError } from '@ohos.base';
+  import { continuationManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let token: number = -1;
   continuationManager.startDeviceManager(
@@ -694,6 +722,8 @@ startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): v
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，无过滤条件，使用AsyncCallback方式作为异步方法。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -707,17 +737,19 @@ startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = -1;
   try {
@@ -739,6 +771,8 @@ startContinuationDeviceManager(token: number, options: ContinuationExtraParams, 
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，使用AsyncCallback方式作为异步方法。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -753,17 +787,19 @@ startContinuationDeviceManager(token: number, options: ContinuationExtraParams, 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = -1;
   try {
@@ -790,6 +826,8 @@ startContinuationDeviceManager(token: number, options?: ContinuationExtraParams)
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，使用Promise方式作为异步方法。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -809,18 +847,20 @@ startContinuationDeviceManager(token: number, options?: ContinuationExtraParams)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
-  import { BusinessError } from '@ohos.base';
+  import { continuationManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let token: number = -1;
   try {
@@ -862,7 +902,7 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState,
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = -1;
   let deviceId: string = "test deviceId";
@@ -904,8 +944,8 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState)
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
-  import { BusinessError } from '@ohos.base';
+  import { continuationManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let token: number = 1;
   let deviceId: string = "test deviceId";
@@ -924,6 +964,8 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 通知设备选择模块，更新当前的连接状态，使用AsyncCallback方式作为异步方法。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -939,17 +981,19 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   let deviceId: string = "test deviceId";
@@ -972,6 +1016,8 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 通知设备选择模块，更新当前的连接状态，使用Promise方式作为异步方法。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -992,18 +1038,20 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
-  import { BusinessError } from '@ohos.base';
+  import { continuationManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let token: number = 1;
   let deviceId: string = "test deviceId";
@@ -1043,7 +1091,7 @@ unregister(token: number, callback: AsyncCallback\<void>): void
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   continuationManager.unregister(token, (err) => {
@@ -1082,8 +1130,8 @@ unregister(token: number): Promise\<void>
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
-  import { BusinessError } from '@ohos.base';
+  import { continuationManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let token: number = 1;
   continuationManager.unregister(token)
@@ -1100,6 +1148,8 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void
 
 解注册流转管理服务，传入注册时获取的token进行解注册，使用AsyncCallback方式作为异步方法。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -1113,17 +1163,19 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
+  import { continuationManager } from '@kit.AbilityKit';
 
   let token: number = 1;
   try {
@@ -1145,6 +1197,8 @@ unregisterContinuation(token: number): Promise\<void>
 
 解注册流转管理服务，传入注册时获取的token进行解注册，使用Promise方式作为异步方法。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -1163,18 +1217,20 @@ unregisterContinuation(token: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
 **示例：**
 
   ```ts
-  import continuationManager from '@ohos.continuation.continuationManager';
-  import { BusinessError } from '@ohos.base';
+  import { continuationManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   let token: number = -1;
   try {
@@ -1193,6 +1249,8 @@ unregisterContinuation(token: number): Promise\<void>
 
 设备连接状态。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
 | 名称 | 值 | 说明 |
@@ -1205,6 +1263,8 @@ unregisterContinuation(token: number): Promise\<void>
 ## ContinuationMode
 
 设备选择模块连接模式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 

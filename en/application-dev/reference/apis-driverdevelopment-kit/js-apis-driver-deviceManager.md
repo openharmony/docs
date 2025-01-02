@@ -2,14 +2,14 @@
 
 The **deviceManager** module provides APIs for managing peripheral devices, including querying the peripheral device list and binding or unbinding a peripheral device.
 
->  **NOTE**
+>  **Note:**
 > 
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
+import { deviceManager } from '@kit.DriverDevelopmentKit';
 ```
 
 ## deviceManager.queryDevices
@@ -38,14 +38,14 @@ Queries the list of peripheral devices. If the device has no peripheral device c
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | The permission check failed.             |
 | 401      | The parameter check failed.              |
 | 22900001 | ExternalDeviceManager service exception. |
 
 **Example**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-
+import { deviceManager } from '@kit.DriverDevelopmentKit';
 
 try {
   let devices : Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
@@ -61,7 +61,7 @@ try {
 ## deviceManager.bindDevice
 
 bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
-  callback: AsyncCallback&lt;{deviceId: number, remote: rpc.IRemoteObject}&gt;): void;
+  callback: AsyncCallback&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;): void;
 
 Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses an asynchronous callback to return the result.
 
@@ -75,23 +75,24 @@ You can use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain t
 
 | Name      | Type                                                                                                | Mandatory| Description                                  |
 | ------------ | ---------------------------------------------------------------------------------------------------- | ---- | -------------------------------------- |
-| deviceId     | number                                                                                               | Yes  | ID of the device to unbind. It can be obtained by **queryDevices()**.          |
+| deviceId     | number                                                                                               | Yes  | Device ID, which can be obtained by **queryDevices**.          |
 | onDisconnect | AsyncCallback&lt;number&gt;                                                                          | Yes  | Callback to be invoked when the bound peripheral device is disconnected.                    |
-| callback     | AsyncCallback&lt;{deviceId: number, remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject)}&gt; | Yes  | Callback invoked to return the communication object of the peripheral device bound.|
+| callback     | AsyncCallback&lt;{deviceId: number; remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject);}&gt; | Yes  | Callback invoked to return the communication object of the peripheral device bound.|
 
 **Error codes**
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 401      | The parameter check failed.              |
+| 201      | The permission check failed.              |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 22900001 | ExternalDeviceManager service exception. |
 
 **Example**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
-import type rpc from '@ohos.rpc';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { rpc } from '@kit.IPCKit';
 
 interface DataType {
   deviceId : number;
@@ -130,7 +131,7 @@ You can use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain t
 
 | Name      | Type                       | Mandatory| Description                        |
 | ------------ | --------------------------- | ---- | ---------------------------- |
-| deviceId     | number                      | Yes  | ID of the device to bind. It can be obtained by **queryDevices()**.|
+| deviceId     | number                      | Yes  | Device ID, which can be obtained by **queryDevices**.|
 | onDisconnect | AsyncCallback&lt;number&gt; | Yes  | Callback to be invoked when the bound peripheral device is disconnected.          |
 | callback     | AsyncCallback&lt;RemoteDeviceDriver&gt;| Yes| Binding result, including the device ID and remote object.|
 
@@ -138,15 +139,16 @@ You can use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain t
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 401      | The parameter check failed.              |
+| 201      | The permission check failed.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 22900001 | ExternalDeviceManager service exception. |
 
 **Example**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
-import type rpc from '@ohos.rpc';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { rpc } from '@kit.IPCKit';
 
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
@@ -166,10 +168,10 @@ try {
 
 ## deviceManager.bindDevice
 
-bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;{deviceId: number,
-  remote: rpc.IRemoteObject}&gt;;
+bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;{deviceId: number;
+  remote: rpc.IRemoteObject;}&gt;;
 
-Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses a promise to return the result.
+Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses an asynchronous callback to return the result.
 
 You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
 
@@ -181,27 +183,28 @@ You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obta
 
 | Name      | Type                       | Mandatory| Description                        |
 | ------------ | --------------------------- | ---- | ---------------------------- |
-| deviceId     | number                      | Yes  | ID of the device to bind. It can be obtained by **queryDevices()**.|
+| deviceId     | number                      | Yes  | Device ID, which can be obtained by **queryDevices**.|
 | onDisconnect | AsyncCallback&lt;number&gt; | Yes  | Callback to be invoked when the bound peripheral device is disconnected.          |
 
 **Return value**
 
 | Type                                                                                          | Description                                        |
 | ---------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| Promise&lt;{deviceId: number, remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject)}&gt; | Promise used to return the device ID and **IRemoteObject** object.|
+| Promise&lt;{deviceId: number; remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject);}&gt; | Promise used to return the device ID and **IRemoteObject** object.|
 
 **Error codes**
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 401      | The parameter check failed.              |
+| 201      | The permission check failed.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 22900001 | ExternalDeviceManager service exception. |
 
 **Example**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
@@ -221,7 +224,7 @@ try {
 
 bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;RemoteDeviceDriver&gt;;
 
-Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses a promise to return the result.
+Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses an asynchronous callback to return the result.
 
 You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
 
@@ -233,7 +236,7 @@ You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obta
 
 | Name      | Type                       | Mandatory| Description                        |
 | ------------ | --------------------------- | ---- | ---------------------------- |
-| deviceId     | number                      | Yes  | ID of the device to bind. It can be obtained by **queryDevices()**.|
+| deviceId     | number                      | Yes  | Device ID, which can be obtained by **queryDevices**.|
 | onDisconnect | AsyncCallback&lt;number&gt; | Yes  | Callback to be invoked when the bound peripheral device is disconnected.          |
 
 **Return value**
@@ -246,14 +249,15 @@ You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obta
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 401      | The parameter check failed.              |
+| 201      | The permission check failed.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 22900001 | ExternalDeviceManager service exception. |
 
 **Example**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
@@ -284,20 +288,21 @@ Unbinds a peripheral device. This API uses an asynchronous callback to return th
 
 | Name  | Type                       | Mandatory| Description                          |
 | -------- | --------------------------- | ---- | ------------------------------ |
-| deviceId | number                      | Yes  | ID of the device to unbind. It can be obtained by **queryDevices()**.|
+| deviceId | number                      | Yes  | Device ID, which can be obtained by **queryDevices**.|
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result.              |
 
 **Error codes**
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 401      | The parameter check failed.              |
+| 201      | The permission check failed.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 22900001 | ExternalDeviceManager service exception. |
 
 **Example**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
+import { deviceManager } from '@kit.DriverDevelopmentKit';
 
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
@@ -316,7 +321,7 @@ try {
 
 unbindDevice(deviceId: number): Promise&lt;number&gt;
 
-Unbinds a peripheral device. This API uses a promise to return the result.
+Unbinds a peripheral device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -326,13 +331,14 @@ Unbinds a peripheral device. This API uses a promise to return the result.
 
 | Name  | Type  | Mandatory| Description                          |
 | -------- | ------ | ---- | ------------------------------ |
-| deviceId | number | Yes  | ID of the device to unbind. It can be obtained by **queryDevices()**.|
+| deviceId | number | Yes  | Device ID, which can be obtained by **queryDevices**.|
 
 **Error codes**
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 401      | The parameter check failed.              |
+| 201      | The permission check failed.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 22900001 | ExternalDeviceManager service exception. |
 
 **Return value**
@@ -344,8 +350,8 @@ Unbinds a peripheral device. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
@@ -368,12 +374,12 @@ Represents the peripheral device information.
 | Name       | Type               | Mandatory| Description      |
 | ----------- | ------------------- | ---- | ---------- |
 | busType     | [BusType](#bustype) | Yes  | Bus type.|
-| deviceId    | number              | Yes  | ID of the peripheral device.  |
+| deviceId    | number              | Yes  | Device ID.  |
 | description | string              | Yes  | Description of the peripheral device.|
 
 ## USBDevice
 
-Represents the USB device information.
+USB device information, which is inherited from [Device](#device).
 
 **System capability**: SystemCapability.Driver.ExternalDevice
 
@@ -400,5 +406,5 @@ Represents information about a remote device driver.
 
 | Name     | Type  | Mandatory| Description               |
 | --------- | ------ | ---- | ------------------- |
-| deviceId<sup>11+</sup>  | number | Yes  | ID of the peripheral device. |
+| deviceId<sup>11+</sup>  | number | Yes  | Device ID. |
 | remote<sup>11+</sup> | [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject) | Yes  | Remote driver object.|

@@ -12,7 +12,7 @@ module对象包含HAP的配置信息。
 | name | 标识HAP的类名。采用反向域名方式标识，前缀要与同级的package标签指定的包名一致，也可采用"."开头的命名方式。字符串长度不超过255字节。 | 字符串 | 可缺省，缺省值为空。 |
 | description | 标识HAP的描述信息。字符串长度不超过255字节。如果字符串超出长度或者需要支持多语言，可以采用资源索引的方式添加描述内容。 | 字符串 | 可缺省，缺省值为空。 |
 | supportedModes | 标识应用支持的运行模式，当前只定义了驾驶模式（drive）。该标签只适用于车机。 | 字符串数组 | 可缺省，缺省值为空。 |
-|deviceType | 标识允许Ability运行的设备类型。系统预定义的设备类型包括：tablet(平板)、tv（智慧屏）、car(车机)、wearable(智能穿戴)等。 | 字符串数组 | 不可缺省。 |
+|deviceType | <!--RP1-->标识允许Ability运行的设备类型。系统预定义的设备类型包括：tablet(平板)、tv（智慧屏）、car(车机)、wearable(智能穿戴)等。<!--RP1End--> | 字符串数组 | 不可缺省。 |
 |distro | 标识HAP发布的具体描述。 | 对象 | 不可缺省。 |
 |metaData | 标识HAP的元信息。 | 对象 | 可缺省，缺省值为空。 |
 | abilities | 标识当前模块内的所有Ability。采用对象数据格式。 | 对象数组 | 可缺省，缺省值为空。 |
@@ -182,13 +182,16 @@ metadata对象示例：
 
 **表7** **deviceType标签配置说明**
 
+<!--RP2-->
 | 设备类型 | 枚举值 | 说明 |
 | -------- | -------- | -------- |
 | 平板 | tablet | - |
 | 智慧屏 | tv | - |
 | 智能手表 | wearable | 系统能力较丰富的手表，具备电话功能。 |
+| 运动表 | litewearable | - |
 | 车机 | car | - |
 | 默认设备 | default | 能够使用全部系统能力的设备。 |
+<!--RP2End-->
 
 ## abilities对象的内部结构
 
@@ -254,7 +257,7 @@ metadata对象示例：
 }
 ```
 
-如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。详细的入口图标及入口标签的显示规则如下。
+如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权<!--Del-->，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)<!--DelEnd-->。详细的入口图标及入口标签的显示规则如下。
 * HAP中包含Page类型的PageAbility
   * 配置文件（config.json）中abilities配置中设置了入口图标
     * 该应用没有隐藏图标的特权
@@ -380,7 +383,7 @@ abilities示例：
 | pathStartWith | 标识uri的pathStartWith值。 | 字符串 | 可缺省，缺省值为空。 |
 | path | 标识uri的path值。 | 字符串 | 可缺省，缺省值为空。 |
 | pathRegx | 标识uri的pathRegx值。 | 字符串 | 可缺省，缺省值为空。 |
-| type | 标识uri的type值。type为MIME-TYPE属性，为资源的媒体类型，常见的类型有"audio/aac"，"text/css"等。 | 字符串 | 可缺省，缺省值为空。 |
+| type | 标识uri的type值。type为MIME-TYPE属性，为资源的媒体类型，常见的类型有"audio/aac"，"text/css"等。<br/>注意：只支持*/*、mainType/*的通配符格式，不支持mainType/subType.*的通配符格式，mainType为标准媒体类型。| 字符串 | 可缺省，缺省值为空。 |
 
 
 skills示例：

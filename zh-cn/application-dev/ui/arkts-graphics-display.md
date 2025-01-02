@@ -1,7 +1,7 @@
 # 显示图片 (Image)
 
 
-开发者经常需要在应用中显示一些图片，例如：按钮中的icon、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg和gif，具体用法请参考[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)组件。
+开发者经常需要在应用中显示一些图片，例如：按钮中的icon、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg、gif和heif，具体用法请参考[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)组件。
 
 
 Image通过调用接口来创建，接口调用形式如下：
@@ -38,7 +38,11 @@ Image支持加载存档图、多媒体像素图两种类型。
 
   引入网络图片需申请权限ohos.permission.INTERNET，具体申请方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。此时，Image组件的src参数为网络图片的链接。
 
-  Image组件首次加载网络图片时，需要请求网络资源，非首次加载时，默认从缓存中直接读取图片，更多图片缓存设置请参考[setImageCacheCount、setImageRawDataCacheSize、setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7)。
+  当前Image组件仅支持加载简单网络图片。
+
+  Image组件首次加载网络图片时，需要请求网络资源，非首次加载时，默认从缓存中直接读取图片，更多图片缓存设置请参考[setImageCacheCount](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7)、[setImageRawDataCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagerawdatacachesize7)、[setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagefilecachesize7)。但是，这三个图片缓存接口并不灵活，且后续不继续演进，对于复杂情况，更推荐使用[ImageKnife](https://gitee.com/openharmony-tpc/ImageKnife)。
+
+  API version 14及之后，Image组件在显示网络图片时，网络图片下载与缓存能力将不再内嵌于Image组件中，而是剥离至上传下载模块进行统一管理。上传下载模块提供独立的预下载接口，允许应用开发者在创建Image组件前预下载所需图片。组件创建后，通过向上传下载模块请求数据，从而优化了Image组件的显示流程。关于网络缓存的位置，对于API version 14之前的版本，Image组件的缓存位于应用的本地沙箱路径下，而对于API version 14及之后的版本，缓存则移至应用根目录下的cache目录中。
 
   ```ts
   Image('https://www.example.com/example.JPG') // 实际使用时请替换为真实地址
@@ -46,7 +50,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
 - Resource资源
 
-  使用资源格式可以跨包/跨模块引入图片，resources文件夹下的图片都可以通过$r资源接口读 取到并转换到Resource格式。
+  使用资源格式可以跨包/跨模块引入图片，resources文件夹下的图片都可以通过$r资源接口读取到并转换到Resource格式。
 
   **图1** resources  
 
@@ -72,12 +76,13 @@ Image支持加载存档图、多媒体像素图两种类型。
 
 - 媒体库file://data/storage
 
-  支持file://路径前缀的字符串，用于访问通过[媒体库](../reference/apis-core-file-kit/js-apis-file-picker.md)提供的图片路径。
+  支持file://路径前缀的字符串，用于访问通过[选择器](../reference/apis-core-file-kit/js-apis-file-picker.md)提供的图片路径。
 
   1. 调用接口获取图库的照片url。
+
       ```ts
-      import picker from '@ohos.file.picker';
-      import { BusinessError } from '@ohos.base';
+      import { photoAccessHelper } from '@kit.MediaLibraryKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
 
       @Entry
       @Component
@@ -85,13 +90,12 @@ Image支持加载存档图、多媒体像素图两种类型。
         @State imgDatas: string[] = [];
         // 获取照片url集
         getAllImg() {
-          let result = new Array<string>();
           try {
-            let PhotoSelectOptions:picker.PhotoSelectOptions = new picker.PhotoSelectOptions();
-            PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+            let PhotoSelectOptions:photoAccessHelper.PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+            PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
             PhotoSelectOptions.maxSelectNumber = 5;
-            let photoPicker:picker.PhotoViewPicker = new picker.PhotoViewPicker();
-            photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult:picker.PhotoSelectResult) => {
+            let photoPicker:photoAccessHelper.PhotoViewPicker = new photoAccessHelper.PhotoViewPicker();
+            photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult:photoAccessHelper.PhotoSelectResult) => {
               this.imgDatas = PhotoSelectResult.photoUris;
               console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
             }).catch((err:Error) => {
@@ -104,7 +108,7 @@ Image支持加载存档图、多媒体像素图两种类型。
             let code = (err as BusinessError).code;
             console.error(`PhotoViewPicker failed with. Code: ${code}, message: ${message}`);    }
         }
-      
+
         // aboutToAppear中调用上述函数，获取图库的所有图片url，存在imgDatas中
         async aboutToAppear() {
           this.getAllImg();
@@ -126,21 +130,23 @@ Image支持加载存档图、多媒体像素图两种类型。
       ```
 
   2. 从媒体库获取的url格式通常如下。
+
       ```ts
       Image('file://media/Photos/5')
       .width(200)
       ```
 
+
 - base64
 
-  路径格式为data:image/[png|jpeg|bmp|webp];base64,[base64 data]，其中[base64 data]为Base64字符串数据。
+  路径格式为data:image/[png|jpeg|bmp|webp|heif];base64,[base64 data]，其中[base64 data]为Base64字符串数据。
 
   Base64格式字符串可用于存储图片的像素数据，在网页上使用较为广泛。
 
 
 ### 多媒体像素图
 
-PixelMap是图片解码后的像素图，具体用法请参考[图片开发指导](../media/image/image-overview.md)。以下示例将加载的网络图片返回的数据解码成PixelMap格式，再显示在Image组件上，
+PixelMap是图片解码后的像素图，具体用法请参考[图片开发指导](../media/image/image-overview.md)。以下示例将加载的网络图片返回的数据解码成PixelMap格式，再显示在Image组件上。
 
 1. 创建PixelMap状态变量。
 
@@ -150,84 +156,108 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
 
 2. 引用多媒体。
 
-   请求网络图片，解码编码PixelMap。
+   (1) 引用网络权限与媒体库权限。
 
-   1. 引用网络权限与媒体库权限。
-       ```ts
-       import http from '@ohos.net.http';
-       import ResponseCode from '@ohos.net.http';
-       import image from '@ohos.multimedia.image';
-       import { BusinessError } from '@ohos.base';
-       ```
-   2. 填写网络图片地址。
-       ```ts
-       let OutData: http.HttpResponse
-       http.createHttp().request("https://www.example.com/xxx.png",
-         (error: BusinessError, data: http.HttpResponse) => {
-           if (error) {
-             console.error(`http reqeust failed with. Code: ${error.code}, message: ${error.message}`);
-           } else {
-             OutData = data
-           }
-         }
-       )
-       ```
-   3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
-       ```ts
-       let code: http.ResponseCode | number = OutData.responseCode
-       if (ResponseCode.ResponseCode.OK === code) {
-         let imageData: ArrayBuffer = OutData.result as ArrayBuffer;
-         let imageSource: image.ImageSource = image.createImageSource(imageData);
-       
-         class tmp {
-           height: number = 100
-           width: number = 100
-         }
-       
-         let si: tmp = new tmp()
-         let options: Record<string, number | boolean | tmp> = {
-           'alphaType': 0, // 透明度
-           'editable': false, // 是否可编辑
-           'pixelFormat': 3, // 像素格式
-           'scaleMode': 1, // 缩略值
-           'size': { height: 100, width: 100 }
-         } // 创建图片大小
-       
-         class imagetmp {
-           image: PixelMap | undefined = undefined
-           set(val: PixelMap) {
-             this.image = val
-           }
-         }
-       
-         imageSource.createPixelMap(options).then((pixelMap: PixelMap) => {
-           let im = new imagetmp()
-           im.set(pixelMap)
-         })
+   ```ts
+   import { http } from '@kit.NetworkKit';
+   import { image } from '@kit.ImageKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   ```
+
+   (2) 填写网络图片地址。
+
+   ```ts
+   let OutData: http.HttpResponse
+   http.createHttp().request("https://www.example.com/xxx.png",
+     (error: BusinessError, data: http.HttpResponse) => {
+       if (error) {
+         console.error(`http request failed with. Code: ${error.code}, message: ${error.message}`);
+       } else {
+         OutData = data
        }
-       ```
-   4. 显示图片。
-       ```ts
-       class htp{
-        httpRequest: Function | undefined = undefined
-        set(){
-          if(this.httpRequest){
-            this.httpRequest()
-          }
-        }
-      }
-       Button("获取网络图片")
-         .onClick(() => {
-           let sethtp = new htp()
-           sethtp.set()
-         })
-       Image(this.image).height(100).width(100)
-      ```
+     }
+   )
+   ```
 
+3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
+
+   ```ts
+   let code: http.ResponseCode | number = OutData.responseCode
+   if (http.ResponseCode.OK === code) {
+     let imageData: ArrayBuffer = OutData.result as ArrayBuffer;
+     let imageSource: image.ImageSource = image.createImageSource(imageData);
+
+     class tmp {
+       height: number = 100
+       width: number = 100
+     }
+
+     let si: tmp = new tmp()
+     let options: Record<string, number | boolean | tmp> = {
+       'alphaType': 0, // 透明度
+       'editable': false, // 是否可编辑
+       'pixelFormat': 3, // 像素格式
+       'scaleMode': 1, // 缩略值
+       'size': { height: 100, width: 100 }
+     } // 创建图片大小
+
+     class imagetmp {
+       image: PixelMap | undefined = undefined
+       set(val: PixelMap) {
+         this.image = val
+       }
+     }
+
+     imageSource.createPixelMap(options).then((pixelMap: PixelMap) => {
+       let im = new imagetmp()
+       im.set(pixelMap)
+     })
+   }
+   ```
+
+4. 显示图片。
+
+   ```ts
+   class htp{
+     httpRequest: Function | undefined = undefined
+     set(){
+       if(this.httpRequest){
+         this.httpRequest()
+       }
+     }
+   }
+   Button("获取网络图片")
+     .onClick(() => {
+       let sethtp = new htp()
+       sethtp.set()
+     })
+   Image(this.image).height(100).width(100)
+   ```
+
+   同时，也可以传入pixelMap创建[PixelMapDrawableDescriptor](../reference/apis-arkui/js-apis-arkui-drawableDescriptor.md#pixelmapdrawabledescriptor12)对象，用来显示图片。
+
+   ```ts
+   import { DrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI'
+   class htp{
+     httpRequest: Function | undefined = undefined
+     set(){
+       if(this.httpRequest){
+         this.httpRequest()
+       }
+     }
+   }
+   Button("获取网络图片")
+     .onClick(() => {
+       let sethtp = new htp()
+       sethtp.set()
+       this.drawablePixelMap = new PixelMapDrawableDescriptor(this.image)
+     })
+   Image(this.drawablePixelMap).height(100).width(100)
+   ```
 
 ## 显示矢量图
 
-Image组件可显示矢量图（svg格式的图片），支持的svg标签为：svg、rect、circle、ellipse、path、line、polyline、polygon和animate。
+Image组件可显示矢量图（svg格式的图片），svg标签文档请参考[svg说明](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-svg.md)。
 
 svg格式的图片可以使用fillColor属性改变图片的绘制颜色。
 
@@ -246,11 +276,31 @@ Image($r('app.media.cloud'))
 
 ![屏幕截图_20230223_141404](figures/屏幕截图_20230223_141404.png)
 
+### 矢量图引用位图
+
+如果Image加载的Svg图源中包含对本地位图的引用，则Svg图源的路径应当设置为以ets为根目录的工程路径，同时，本地位图的路径应设置为与Svg图源同级的相对路径。
+
+Image加载的Svg图源路径设置方法如下所示：
+
+```ts
+Image("images/icon.svg")
+  .width(50)
+  .height(50)
+```
+Svg图源通过`<image>`标签的`xlink:href`属性指定本地位图路径，本地位图路径设置为跟Svg图源同级的相对路径：
+
+```
+<svg width="200" height="200">
+  <image width="200" height="200" xlink:href="sky.png"></image>
+</svg>
+```
+文件工程路径示例如图：
+
+![image path](figures/imagePath.png)
 
 ## 添加属性
 
 给Image组件设置属性可以使图片显示更灵活，达到一些自定义的效果。以下是几个常用属性的使用示例，完整属性信息详见[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)。
-
 
 ### 设置图片缩放类型
 
@@ -279,9 +329,9 @@ struct MyComponent {
             .width(200)
             .height(150)
             .border({ width: 1 })
+              // 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。
             .objectFit(ImageFit.Cover)
             .margin(15)
-              // 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。
             .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.img_2'))
             .width(200)
@@ -298,9 +348,9 @@ struct MyComponent {
             .width(200)
             .height(150)
             .border({ width: 1 })
+              // 不保持宽高比进行放大缩小，使得图片充满显示边界。
             .objectFit(ImageFit.Fill)
             .margin(15)
-              // 不保持宽高比进行放大缩小，使得图片充满显示边界。
             .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.img_2'))
             .width(200)

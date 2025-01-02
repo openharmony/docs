@@ -28,7 +28,7 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 下面简要介绍如何通过DevEco Studio新建一个HAP模块。
 
-1. 创建工程，详见[构建第一个ArkTS应用](start-with-ets-stage.md)。
+1. 创建工程，构建第一个ArkTS应用。
 2. 在工程目录上单击右键，选择**New > Module**。
 3. 在弹出的对话框中选择**Empty Ability**模板，单击**Next**。
    
@@ -38,19 +38,19 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 ## 开发
 
-- HAP中支持添加UIAbility组件或ExtensionAbility组件，添加pages页面。具体操作可参考[应用/服务开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/add_new_ability-0000001053183674-V3)。
+- HAP中支持添加UIAbility组件或ExtensionAbility组件，添加pages页面。具体操作可参考[应用/服务开发](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-add-new-ability-V13)。
 
 - HAP中支持引用HAR或HSP共享包，详见[HAR的使用](./har-package.md#使用)、[HSP的使用](./in-app-hsp.md#使用)。
 
 ## 调试
 
-通过DevEco Studio编译打包，生成单个或者多个HAP，即可基于HAP进行调试。如需根据不同的部署环境、目标人群、运行环境等，将同一个HAP定制编译为不同版本，请参见[定制编译指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/customized-multi-targets-and-products-0000001430013853-V3?catalogVersion=V3)。
+通过DevEco Studio编译打包，生成单个或者多个HAP，即可基于HAP进行调试。如需根据不同的部署环境、目标人群、运行环境等，将同一个HAP定制编译为不同版本，请参见[定制编译指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-customized-multi-targets-and-products-guides-V13)。
 
 开发者可以采用DevEco Studio或者hdc工具进行调试：
 
-- **方法一：** 使用DevEco Studio进行调试，详见[应用程序包调试方法](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ide_debug_device-0000001053822404-V3?catalogVersion=V3#section10491183521520)。
+- **方法一：** 使用DevEco Studio进行调试，详见[应用程序包调试方法](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-run-debug-configurations-V13)。
 
-- **方法二：** 使用[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)(可通过OpenHarmony SDK获取，在SDK的toolchains目录下)进行调试。
+- **方法二：** 使用<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->(可通过OpenHarmony SDK获取，在SDK的toolchains目录下)进行调试。
 
    在调试前，需要先安装或更新HAP，此处有两种方式：
 
@@ -88,3 +88,5 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
    完成HAP安装或更新后，即可参考相关调试命令进行[调试](../tools/aa-tool.md)。
 
+<!--RP4-->
+<!--RP4End-->

@@ -1,4 +1,4 @@
-# @ohos.systemDateTime (System Time and Time Zone)
+# @ohos.systemDateTime (System Time and Time Zone) (System API)
 
 The **systemDateTime** module provides system time and time zone features. You can use the APIs of this module to set and obtain the system time and time zone.
 
@@ -9,7 +9,7 @@ The **systemDateTime** module provides system time and time zone features. You c
 ## Modules to Import
 
 ```ts
-import systemDateTime from '@ohos.systemDateTime';
+import { systemDateTime } from '@kit.BasicServicesKit';
 ```
 
 ## TimeType<sup>10+</sup>
@@ -42,10 +42,20 @@ Sets the system time. This API uses an asynchronous callback to return the resul
 | time     | number                    | Yes  | Timestamp to set, in milliseconds.                        |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+| -------- |-------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                          |
+| 202       | Permission verification failed. A non-system application calls a system API.                                |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Set the system time to 2021-01-20 02:36:25.
 let time = 1611081385000;
@@ -87,10 +97,20 @@ Sets the system time. This API uses a promise to return the result.
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+| -------- |-------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                          |
+| 202       | Permission verification failed. A non-system application calls a system API.                                |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Set the system time to 2021-01-20 02:36:25.
 let time = 1611081385000;
@@ -124,15 +144,25 @@ Sets the system date. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description            |
-| -------- | ------------- | ---- | --------------------- |
-| date     | Date                      | Yes  | Target date to set.                                |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                     | Mandatory| Description         |
+| -------- | ------------- | ---- |-------------|
+| date     | Date                      | Yes  | Target date. The value must be greater than 0.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.      |
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                                                        |
+| -------- |----------------------------------------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                                                           |
+| 202       | Permission verification failed. A non-system application calls a system API.                                                                 |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let date = new Date();
 try {
@@ -169,7 +199,7 @@ Sets the system date. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description      |
 | ------ | ---- | ---- | ---------- |
-| date   | Date | Yes  | Target date to set.|
+| date   | Date | Yes  | Target date, which is mandatory.|
 
 **Return value**
 
@@ -177,10 +207,20 @@ Sets the system date. This API uses a promise to return the result.
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                                                        |
+| -------- |----------------------------------------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                                                           |
+| 202       | Permission verification failed. A non-system application calls a system API.                                                                 |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let date = new Date(); 
 try {
@@ -214,10 +254,20 @@ Sets the system time zone. This API uses an asynchronous callback to return the 
 | timezone | string                    | Yes  | System time zone to set. For details, see [Supported System Time Zones](#supported-system-time-zones).       |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+| -------- |-------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                          |
+| 202       | Permission verification failed. A non-system application calls a system API.                                |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.setTimezone('Asia/Shanghai', (error: BusinessError) => {
@@ -257,10 +307,20 @@ Sets the system time zone. This API uses a promise to return the result.
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+| -------- |-------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                          |
+| 202       | Permission verification failed. A non-system application calls a system API.                                |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemDateTime.setTimezone('Asia/Shanghai').then(() => {
@@ -274,40 +334,86 @@ try {
 }
 ```
 
+## systemDateTime.updateNtpTime<sup>14+</sup>
+
+updateNtpTime(): Promise&lt;void&gt;
+
+Updates the NTP time from the NTP server This API returns the result asynchronously. In this way, the NTP time is updated from the NTP server only once within one hour.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Return value**
+
+| Type               | Description                |
+| ------------------- | -------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                   |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 13000001    | Network connection error or OS error.                                                                 |
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemDateTime.updateNtpTime().then(() => {
+    console.info(`Succeeded in update ntp time.`);
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to update ntp time. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.error(`Failed to update ntp time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.getNtpTime<sup>14+</sup>
+
+getNtpTime(): number
+
+Obtains the actual time calculated based on the last updated NTP time. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Return value**
+
+| Type  | Description                            |
+| ------ |--------------------------------|
+| number | Unix epoch time (ms) calculated based on the last updated NTP time.|
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                   |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 13000002    | updateNtpTime() is not called successfully.                                                           |
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let time = systemDateTime.getNtpTime();
+} catch(e) {
+  let error = e as BusinessError;
+  console.error(`Failed to get ntp time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
 ## Supported System Time Zones
 
-The following table lists the supported system time zones and the respective offset (unit: h) between each time zone and time zone 0.
-
-| Time Zone                          | Offset        |
-| ------------------------------ | --------------------- |
-| Antarctica/McMurdo             | 12                    |
-| America/Argentina/Buenos_Aires | -3                    |
-| Australia/Sydney               | 10                    |
-| America/Noronha                | -2                    |
-| America/St_Johns               | -3                    |
-| Africa/Kinshasa                | 1                     |
-| America/Santiago               | -3                    |
-| Asia/Shanghai                  | 8                     |
-| Asia/Nicosia                   | 3                     |
-| Europe/Berlin                  | 2                     |
-| America/Guayaquil              | -5                    |
-| Europe/Madrid                  | 2                     |
-| Pacific/Pohnpei                | 11                    |
-| America/Godthab                | -2                    |
-| Asia/Jakarta                   | 7                     |
-| Pacific/Tarawa                 | 12                    |
-| Asia/Almaty                    | 6                     |
-| Pacific/Majuro                 | 12                    |
-| Asia/Ulaanbaatar               | 8                     |
-| America/Mexico_City            | -5                    |
-| Asia/Kuala_Lumpur              | 8                     |
-| Pacific/Auckland               | 12                    |
-| Pacific/Tahiti                 | -10                   |
-| Pacific/Port_Moresby           | 10                    |
-| Asia/Gaza                      | 3                     |
-| Europe/Lisbon                  | 1                     |
-| Europe/Moscow                  | 3                     |
-| Europe/Kiev                    | 3                     |
-| Pacific/Wake                   | 12                    |
-| America/New_York               | -4                    |
-| Asia/Tashkent                  | 5                     |
+For details about the supported system time zones, see API [I18n.SystemLocaleManager.getTimeZoneCityItemArray()](../apis-localization-kit/js-apis-i18n-sys.md#gettimezonecityitemarray10).

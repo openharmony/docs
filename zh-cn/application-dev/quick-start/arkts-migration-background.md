@@ -99,7 +99,7 @@ notify('Jack', 'You look great today')
 ```
 
 在大多数情况下，函数`notify`会接受两个`string`类型的变量作为输入，产生一个新的字符串。但是，如果将一些特殊值作为输入，例如`notify(null, undefined)`，情况会怎么样呢？
-程序仍会正常运行，输出预期值：`Dear undefined, a message for you: null`。一切看起来正常，但是请注意，为了保证该场景下程序的正确性，引擎总是在运行时进行类型检查，执行类似以下的伪代码。
+程序仍会正常运行，输出预期值：`Dear null, a message for you: undefined`。一切看起来正常，但是请注意，为了保证该场景下程序的正确性，引擎总是在运行时进行类型检查，执行类似以下的伪代码。
 
 ```typescript
 function __internal_tostring(s: any): string {
@@ -138,14 +138,32 @@ TS通过打开编译选项`strictNullChecks`来实现此特性。但是TS是被�
   - compatibleSdkVersion >= 10 为标准模式。在该模式下，对.ets文件，违反ArkTS语法规则的代码会导致工程编译失败，需要完全适配ArkTS语法后方可编译成功。
   - compatibleSdkVersion < 10 为兼容模式。在该模式下，对.ets文件，以warning形式提示违反ArkTS语法规则的所有代码。尽管违反ArkTS语法规则的工程在兼容模式下仍可编译成功，但是需要完全适配ArkTS语法后方可在标准模式下编译成功。
 
+ArkTS支持与TS/JS的高效互操作，在当前版本上，ArkTS运行时兼容动态类型对象语义。
 
-## 兼容TS/JS的约束
+## 方舟运行时兼容TS/JS
 
-在API version 11上，OpenHarmony SDK中的TypeScript版本为4.9.5，target字段为es2017。开发者可以使用ECMA2017+的语法进行应用开发。
+在API version 11上，OpenHarmony SDK中的TypeScript版本为4.9.5，target字段为es2017。在应用中，开发者可以使用ECMA2017+的语法进行TS/JS开发。
 
-应用环境限制
+**应用环境限制**
 
 1. 强制使用严格模式（use strict）
 2. 禁止使用`eval()`
 3. 禁止使用`with() {}`
 4. 禁止以字符串为代码创建函数
+5. 禁止循环依赖
+
+    循环依赖示例:
+    ```typescript
+    // bar.ets
+    import {v} from './foo' // bar.ets依赖foo.ets
+    export let u = 0;
+
+    // foo.ets
+    import {u} from './bar' // foo.ets同时又依赖bar.ets
+    export let v = 0;
+
+    ```
+
+**与标准TS/JS的差异**
+
+标准TS/JS中，JSON的数字格式，小数点后必须跟着数字，如`2.e3`这类科学计数法不被允许，报出`SyntaxError`。在方舟运行时中，允许使用这类科学计数法。

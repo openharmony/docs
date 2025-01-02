@@ -6,7 +6,11 @@ LinkedList和[List](js-apis-list.md)相比，LinkedList是双向链表，可以�
 
 LinkedList和[ArrayList](js-apis-arraylist.md)相比，插入数据效率LinkedList优于ArrayList，而查询效率ArrayList优于LinkedList。
 
-**推荐使用场景：** 当需要频繁的插入删除时，推荐使用LinkedList高效操作。
+> **注意：**
+>
+> 在LinkedList中使用\[index\]的方式虽然能够获取对应位置的元素，但这会导致未定义结果。推荐使用get()方法。
+
+**推荐使用场景：** 当需要频繁的插入删除元素，并且需要使用双向链表时，推荐使用LinkedList高效操作。
 
 文档中存在泛型的使用，涉及以下泛型标记符：<br>
 - T： Type，类
@@ -19,12 +23,14 @@ LinkedList和[ArrayList](js-apis-arraylist.md)相比，插入数据效率LinkedL
 ## 导入模块
 
 ```ts
-import LinkedList from '@ohos.util.LinkedList';
+import { LinkedList } from '@kit.ArkTS';
 ```
 
 ## LinkedList
 
 ### 属性
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -38,6 +44,8 @@ import LinkedList from '@ohos.util.LinkedList';
 constructor()
 
 LinkedList的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -62,6 +70,8 @@ let linkedList: LinkedList<string | number | boolean | object> = new LinkedList(
 add(element: T): boolean
 
 在LinkedList尾部插入元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -97,7 +107,7 @@ class C {
   name: string = ''
   age: string = ''
 }
-let c: C = {name : "Dylon", age : "13"};
+let c: C = {name : "Dylan", age : "13"};
 let result3 = linkedList.add(c);
 let result4 = linkedList.add(false);
 ```
@@ -107,6 +117,8 @@ let result4 = linkedList.add(false);
 addFirst(element: T): void
 
 在LinkedList头部插入元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -136,7 +148,7 @@ class C {
   name: string = ''
   age: string = ''
 }
-let c: C = {name : "Dylon", age : "13"};
+let c: C = {name : "Dylan", age : "13"};
 linkedList.addFirst(c);
 linkedList.addFirst(false);
 ```
@@ -147,23 +159,26 @@ insert(index: number, element: T): void
 
 在长度范围内任意插入指定元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 插入位置索引。 |
+| index | number | 是 | 插入位置索引。需要小于等于int32_max即2147483647。 |
 | element | T | 是 | 插入元素。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The insert method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The insert method cannot be bound. |
 
 **示例：**
 
@@ -179,6 +194,8 @@ linkedList.insert(2, true);
 has(element: T): boolean
 
 判断此LinkedList中是否含有该指定元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -216,13 +233,15 @@ get(index: number): T
 
 根据下标获取LinkedList中的元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定的下标值。 |
+| index | number | 是 | 指定的下标值。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -232,10 +251,11 @@ get(index: number): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The get method cannot be bound. |
 
 **示例：**
@@ -257,6 +277,8 @@ let result = linkedList.get(2);
 getLastIndexOf(element: T): number
 
 返回指定元素最后一次出现时的下标值，查找失败返回-1。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -300,6 +322,8 @@ getIndexOf(element: T): number
 
 返回指定元素第一次出现时的下标值，查找失败返回-1。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -342,13 +366,15 @@ removeByIndex(index: number): T
 
 根据元素的下标值查找元素，并将其删除。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定元素的下标值。 |
+| index | number | 是 | 指定元素的下标值。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -358,12 +384,13 @@ removeByIndex(index: number): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The removeByIndex method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The removeByIndex method cannot be bound. |
 
 **示例：**
 
@@ -383,6 +410,8 @@ removeFirst(): T
 
 删除并返回LinkedList的第一个元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -397,8 +426,8 @@ removeFirst(): T
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The removeFirst method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200011 | The removeFirst method cannot be bound. |
 
 **示例：**
 
@@ -418,6 +447,8 @@ removeLast(): T
 
 删除并返回LinkedList的最后一个元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -432,8 +463,8 @@ removeLast(): T
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The removeLast method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200011 | The removeLast method cannot be bound. |
 
 **示例：**
 
@@ -452,6 +483,8 @@ let result = linkedList.removeLast();
 remove(element: T): boolean
 
 删除查找到的第一个指定的元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -492,6 +525,8 @@ removeFirstFound(element: T): boolean
 
 删除第一次出现的指定元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -512,8 +547,8 @@ removeFirstFound(element: T): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The removeFirstFound method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200011 | The removeFirstFound method cannot be bound. |
 | 10200017 | The element does not exist in this container. |
 
 **示例：**
@@ -533,6 +568,8 @@ removeLastFound(element: T): boolean
 
 删除最后一次出现的指定元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -553,8 +590,8 @@ removeLastFound(element: T): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The removeLastFound method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200011 | The removeLastFound method cannot be bound. |
 | 10200017 | The element does not exist in this container. |
 
 **示例：**
@@ -573,6 +610,8 @@ let result = linkedList.removeLastFound(4);
 clone(): LinkedList&lt;T&gt;
 
 克隆一个与LinkedList相同的实例，并返回克隆后的实例。修改克隆后的实例并不会影响原实例。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -608,6 +647,8 @@ thisArg?: Object): void
 
 通过回调函数来遍历LinkedList实例对象上的元素以及元素对应的下标。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -627,10 +668,11 @@ callbackfn的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **示例：**
@@ -651,6 +693,8 @@ linkedList.forEach((value: number, index?: number) => {
 clear(): void
 
 清除LinkedList中的所有元素，并把length置为0。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -679,13 +723,15 @@ set(index: number, element: T): T
 
 将此LinkedList中指定位置的元素替换为指定元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 查找的下标值。 |
+| index | number | 是 | 查找的下标值。需要小于等于int32_max即2147483647。 |
 | element | T | 是 | 用来替换的元素。 |
 
 **返回值：**
@@ -696,12 +742,13 @@ set(index: number, element: T): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The set method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The set method cannot be bound. |
 
 **示例：**
 
@@ -719,6 +766,8 @@ let result = linkedList.set(2, "b");
 convertToArray(): Array&lt;T&gt;
 
 把当前LinkedList实例转换成数组，并返回转换后的数组。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -751,6 +800,8 @@ let result = linkedList.convertToArray();
 getFirst(): T
 
 获取LinkedList实例中的第一个元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -785,6 +836,8 @@ getLast(): T
 
 获取LinkedList实例中的最后一个元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -818,9 +871,7 @@ let result = linkedList.getLast();
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -849,9 +900,9 @@ linkedList.add(4);
 
 // 使用方法一：
 let items = Array.from(linkedList)
-for (let item of items) { 
-  console.log("value:" + item); 
-} 
+for (let item of items) {
+  console.log("value:" + item);
+}
 
 // 使用方法二：
 let iter = linkedList[Symbol.iterator]();

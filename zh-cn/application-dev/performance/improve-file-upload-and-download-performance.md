@@ -8,9 +8,9 @@
 
 ## 上传下载接口
 
-目前系统内提供给文件上传下载可用的模块有[@ohos.net.http](../reference/apis/js-apis-http.md)模块和[@ohos.request](../reference/apis/js-apis-request.md)模块。[@ohos.net.http](../reference/apis/js-apis-http.md)模块提供基础的HTTP数据请求能力，功能较为基础，本文不做介绍。[@ohos.request](../reference/apis/js-apis-request.md)模块主要给应用提供上传下载文件、后台传输代理的基础能力。它具备任务管理系统的默认并发功能，简化下载功能的实现和管理，提升数据传输的安全，整合通知机制，新增任务状态与进度查询功能，具有灵活性、高效性、可扩展性、可靠性、一致性和安全性的优势。
+目前系统内提供给文件上传下载可用的模块有[@ohos.net.http](../reference/apis-network-kit/js-apis-http.md)模块和[@ohos.request](../reference/apis-basic-services-kit/js-apis-request.md)模块。[@ohos.net.http](../reference/apis-network-kit/js-apis-http.md)模块提供基础的HTTP数据请求能力，功能较为基础，本文不做介绍。[@ohos.request](../reference/apis-basic-services-kit/js-apis-request.md)模块主要给应用提供上传下载文件、后台传输代理的基础能力。它具备任务管理系统的默认并发功能，简化下载功能的实现和管理，提升数据传输的安全，整合通知机  制，新增任务状态与进度查询功能，具有灵活性、高效性、可扩展性、可靠性、一致性和安全性的优势。
 
-具体来说，[@ohos.request](../reference/apis/js-apis-request.md)模块包括以下功能：
+具体来说，[@ohos.request](../reference/apis-basic-services-kit/js-apis-request.md)模块包括以下功能：
 
 1. 任务管理：任务管理操作包括创建任务、暂停任务、恢复任务、删除任务、文件上传、文件下载、系统通知等。创建的任务分为前端任务和后台任务。前端任务是立即的、模态界面的、同步的，跟随应用的生命周期，通常数据量较小、耗时短，例如发布微信朋友圈、微博，通常优先级高且倾斜带宽资源。后台任务为可等待的、任意界面的、异步的，通常数据量较大、耗时长，例如缓存一部电影、同步数百兆字节乃至若干吉字节的数据，优先级相较于前端任务低且与应用生命周期无关。
   
@@ -31,7 +31,7 @@
 
 ### 下载任务的状态迁移流程
 
-使用[@ohos.request](../reference/apis/js-apis-request.md)模块执行下载的任务，具有四种运行状态：初始任务、就绪任务、挂起任务、待网任务、成功任务、失败任务。可以通过create创建任务，start开始任务，pause挂起任务，resume恢复任务，remove移除任务，stop停止任务，任务结果有final-failed任务失败，final-completed下载完成，recoverable-failed重试失败，并支持查询任务状态，具体流程如图一所示：
+使用[@ohos.request](../reference/apis-basic-services-kit/js-apis-request.md)模块执行下载的任务，具有四种运行状态：初始任务、就绪任务、挂起任务、待网任务、成功任务、失败任务。可以通过create创建任务，start开始任务，pause挂起任务，resume恢复任务，remove移除任务，stop停止任务，任务结果有final-failed任务失败，final-completed下载完成，recoverable-failed重试失败，并支持查询任务状态，具体流程如图一所示：
 
 **图一 模块流程图**
 
@@ -54,7 +54,7 @@
 在应用开发中，常见的数据压缩技术分类如下：
 
 - 有损压缩：仅限图片视频音频等文件适用。通过减少图片视频文件的分辨率，降低音频的音质等手段，以减少文件的大小，来实现减少加载时间和带宽消耗。
-- 无损压缩：对一些零碎文件可以使用 [@ohos.zlib（Zip模块）](../reference/apis/js-apis-zlib.md)来进行打包压缩，减少上传请求次数；对一些大文件可以利用缓存技术，服务器将曾经上传过的大文件MD5码缓存起来，本地在上传前预生成MD5码并传输到服务器进行比对，如果相同则说明服务器存在该文件，可以跳过该文件上传，从而省略重复传输时间。
+- 无损压缩：对一些零碎文件可以使用 [@ohos.zlib（Zip模块）](../reference/apis-basic-services-kit/js-apis-zlib.md)来进行打包压缩，减少上传请求次数；对一些大文件可以利用缓存技术，服务器将曾经上传过的大文件MD5码缓存起来，本地在上传前预生成MD5码并传输到服务器进行比对，如果相同则说明服务器存在该文件，可以跳过该文件上传，从而省略重复传输时间。
   
 
 以从相册批量上传图片为例，介绍大量文件打包无损压缩上传相关技术，下图为相关示例的界面截图：
@@ -98,7 +98,7 @@ class ZipUpload {
   private waitList: Array<string> = [];
   // 需要上传的文件uri
   private fileUris: Array<string> = [];
-  ...
+  // ...
 }
 ```
 3. 建立用于接收图库图片的临时文件夹，并将整个临时文件夹打包添加到待上传list内：
@@ -135,9 +135,9 @@ async zipUploadFiles(fileUris: Array<string>): Promise<void> {
 
 在应用端需要用到的技术和API：
 
-- [@ohos.file.fs（文件管理）](../reference/apis/js-apis-file-fs.md)：用于处理文件上传操作，提供了读取文件内容，文件分片和组合的功能。
-- [@ohos.file.hash（文件哈希处理）](../reference/apis/js-apis-file-hash.md)：用于实现文件MD5的计算，将计算的MD5值预先传到服务器端进行预处理，实现文件秒传，同时确保传输的准确性和可靠性。
-- [@ohos.request（上传下载）](../reference/apis/js-apis-request.md)：用于实现文件上传操作，并支持在上传过程中的断点续传功能。
+- [@ohos.file.fs（文件管理）](../reference/apis-core-file-kit/js-apis-file-fs.md)：用于处理文件上传操作，提供了读取文件内容，文件分片和组合的功能。
+- [@ohos.file.hash（文件哈希处理）](../reference/apis-core-file-kit/js-apis-file-hash.md)：用于实现文件MD5的计算，将计算的MD5值预先传到服务器端进行预处理，实现文件秒传，同时确保传输的准确性和可靠性。
+- [@ohos.request（上传下载）](../reference/apis-basic-services-kit/js-apis-request.md)：用于实现文件上传操作，并支持在上传过程中的断点续传功能。
   
 
 在服务器端需要用到的技术：
@@ -152,7 +152,7 @@ async zipUploadFiles(fileUris: Array<string>): Promise<void> {
 
 #### 文件上传
 
-对于大文件断点续传上传，本文采用[@ohos.request（上传下载）](../reference/apis/js-apis-request.md)模块中的**request.agent**任务托管接口，可以自动实现暂停继续重试等操作，无需手动将文件分片和记录上传分片信息。流程图如图四所示：
+对于大文件断点续传上传，本文采用[@ohos.request（上传下载）](../reference/apis-basic-services-kit/js-apis-request.md)模块中的**request.agent**任务托管接口，可以自动实现暂停继续重试等操作，无需手动将文件分片和记录上传分片信息。流程图如图四所示：
 
 **图四 断点续传上传流程图**
 
@@ -175,7 +175,7 @@ class Upload {
   private backgroundTask: request.agent.Task | undefined = undefined;
   // 创建任务前存放的uri
   private waitList: Array<string> = [];
-  ...
+  // ...
 }
 ```
 3. 生成MD5码，上传到服务器进行校验：
@@ -193,7 +193,8 @@ async checkFileExist(fileUri: string): Promise<boolean> {
   let response = await httpRequest.request('http://XXX.XXX.XXX.XXX/XXXX', requestOption);
   let result = response.result;
   let flag = false;
-  ... // 根据服务器返回对应数据判断是否存在
+  // ... 
+  // 根据服务器返回对应数据判断是否存在
   if (flag) {
     return true;
   } else {
@@ -214,10 +215,10 @@ private config: request.agent.Config = {
   data: [],
   token: 'UPLOAD_TOKEN'
 }
-...
+// ...
 // 转换uri
 private async getFilesAndData(cacheDir: string, fileUris: Array<string>): Promise<Array<request.agent.FormItem>> {
-...
+// ...
 }
 // 创建文件上传后台任务
 async createBackgroundTask(fileUris: Array<string>) {
@@ -313,7 +314,7 @@ class Download {
   private downloadTask: request.agent.Task | undefined = undefined;
   // 后台任务下载列表
   private backgroundDownloadTaskList: Array<request.agent.Task> = [];
-  ...
+  // ...
 }
 ```
 3. 配置Config，创建后台下载任务：
@@ -339,9 +340,7 @@ async createBackgroundTask(downloadList: Array<string[]>) {
 ```
 4. 任务开始：
 ```ts
-...
 await downTask.start();
-...
 ```
 5. 任务暂停：
 ```ts

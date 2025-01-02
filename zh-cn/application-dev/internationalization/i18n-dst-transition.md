@@ -17,8 +17,9 @@
 
    计算夏令时跳变前后同一个挂钟时间之间相差的小时数，示例代码如下：
    ```ts
-   import I18n from '@ohos.i18n'
-   let calendar = I18n.getCalendar("zh-Hans");
+   import { i18n } from '@kit.LocalizationKit';
+
+   let calendar = i18n.getCalendar("zh-Hans");
    calendar.setTimeZone("Europe/London");
    calendar.set(2021, 2, 27, 16, 0, 0); //The day before daylight saving time start
    let time1 = calendar.getTimeInMillis();

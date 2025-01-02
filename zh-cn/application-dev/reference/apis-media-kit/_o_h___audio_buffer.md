@@ -5,15 +5,11 @@
 
 定义了音频数据的大小，类型，时间戳等配置信息。
 
-**系统能力**：SystemCapability.Multimedia.Media.AVScreenCapture
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-**相关模块:**
-
-[AVScreenCapture](_a_v_screen_capture.md)
+**相关模块：**[AVScreenCapture](_a_v_screen_capture.md)
 
 
 ## 汇总
@@ -23,10 +19,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [buf](#buf) | 音频buffer内存。 | 
-| [size](#size) | 音频buffer内存大小。 | 
-| [timestamp](#timestamp) | 音频buffer时间戳。 | 
-| [type](#type) | 音频录制源类型。 | 
+| uint8_t \* [buf](#buf) | 音频buffer内存。  | 
+| int32_t [size](#size) | 音频buffer内存大小。  | 
+| int64_t [timestamp](#timestamp) | 音频buffer时间戳。  | 
+| [OH_AudioCaptureSourceType](_a_v_screen_capture.md#oh_audiocapturesourcetype) [type](#type) | 音频录制源类型。  | 
 
 
 ## 结构体成员变量说明
@@ -37,9 +33,7 @@
 ```
 uint8_t* OH_AudioBuffer::buf
 ```
-
-**描述：**
-
+**描述**
 音频buffer内存。
 
 
@@ -48,9 +42,7 @@ uint8_t* OH_AudioBuffer::buf
 ```
 int32_t OH_AudioBuffer::size
 ```
-
-**描述：**
-
+**描述**
 音频buffer内存大小。
 
 
@@ -59,9 +51,7 @@ int32_t OH_AudioBuffer::size
 ```
 int64_t OH_AudioBuffer::timestamp
 ```
-
-**描述：**
-
+**描述**
 音频buffer时间戳。
 
 
@@ -70,7 +60,5 @@ int64_t OH_AudioBuffer::timestamp
 ```
 OH_AudioCaptureSourceType OH_AudioBuffer::type
 ```
-
-**描述：**
-
+**描述**
 音频录制源类型。

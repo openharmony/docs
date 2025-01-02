@@ -2,12 +2,18 @@
 
 
 HUKS提供了接口供业务获取指定密钥的相关属性。在获取指定密钥属性前，需要确保已在HUKS中生成或导入持久化存储的密钥。
+>**说明：**
+> 轻量级设备不支持获取密钥属性功能。
 
+## 在CMake脚本中链接相关动态库
+```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+```
 
 ## 开发步骤
 
 1. 构造对应参数。
-   - keyAlias：密钥别名，封装成[OH_Huks_Blob](../../reference/apis-universal-keystore-kit/_o_h___huks___blob.md)结构，密钥别名最大长度为64字节。
+   - keyAlias：密钥别名，封装成[OH_Huks_Blob](../../reference/apis-universal-keystore-kit/_o_h___huks___blob.md)结构，密钥别名最大长度为128字节。
    - paramSetIn：预留参数，暂不需要处理，传空即可。
    - paramSetOut：用于放置获取到的参数集结果，为[OH_Huks_ParamSet](../../reference/apis-universal-keystore-kit/_o_h___huks___param_set.md)类型对象，需要业务提前申请好内存，需申请足够容纳获取到的密钥属性集的内存大小。
 

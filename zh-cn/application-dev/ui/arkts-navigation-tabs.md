@@ -1,4 +1,4 @@
-# Tabs
+# 选项卡 (Tabs)
 
 
 当页面信息较多时，为了让用户能够聚焦于当前显示的内容，需要对页面内容进行分类，提高页面空间利用率。[Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md)组件可以在一个页面内快速实现视图内容的切换，一方面提升查找信息的效率，另一方面精简用户单次获取到的信息量。
@@ -254,156 +254,91 @@ TabContent() {
 
 ## 切换至指定页签
 
-在不使用自定义导航栏时，系统默认的Tabs会实现切换逻辑。在使用了自定义导航栏后，切换页签的逻辑需要手动实现。即用户点击对应页签时，屏幕需要显示相应的内容页。
+在不使用自定义导航栏时，默认的Tabs会实现切换逻辑。在使用了自定义导航栏后，默认的Tabs仅实现滑动内容页和点击页签时内容页的切换逻辑，页签切换逻辑需要自行实现。即用户滑动内容页和点击页签时，页签栏需要同步切换至内容页对应的页签。
 
 
-  **图10** 使用自定义导航栏实现切换指定页签  
+  **图10** 内容页和页签不联动  
 
-![切换指定页签](figures/切换指定页签.gif)
+![内容页和页签不联动](figures/tabcontent_tabbar_not_sync.gif)
 
-
-切换指定页签需要使用TabsController，TabsController是Tabs组件的控制器，用于控制Tabs组件进行页签切换。通过TabsController的changeIndex方法来实现跳转至指定索引值对应的TabContent内容。
-
-```ts
-class Tmp{
-  currentIndex:number = 0;
-  tabsController : TabsController = new TabsController()
-  foo(val:number){
-    this.currentIndex = val;
-  }
-  tabFoo(){
-    this.tabsController.changeIndex(this.currentIndex);
-  }
-}
-private tabsController : TabsController = new TabsController()
-@State currentIndex:number = 0;
-
-@Builder tabBuilder(title: string, targetIndex: number) {
-  Column() {
-    Text(title)
-      .fontColor(this.currentIndex === targetIndex ? '#1698CE' : '#6B6B6B')
-  }
-  ...
-  .onClick(() => {
-    let cur:Tmp = new Tmp()
-    cur.foo(targetIndex)
-    cur.tabFoo()
-  })
-}
-```
-
-
-使用自定义导航栏时，在tabBar属性中传入对应的\@Builder，并传入相应的参数。
+此时需要使用Tabs提供的onChange事件方法，监听索引index的变化，并将当前活跃的index值传递给currentIndex，实现页签的切换。
 
 ```ts
-Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
-  TabContent(){
-    ...
-  }.tabBar(this.tabBuilder('首页',0))
-
-  TabContent(){
-    ...
-  }.tabBar(this.tabBuilder('发现',1))
-
-  TabContent(){
-    ...
-  }.tabBar(this.tabBuilder('推荐',2))
-
-  TabContent(){
-    ...
-  }
-  .tabBar(this.tabBuilder('我的',3))
-}
-```
-
-
-## 滑动切换导航栏
-
-在不使用自定义导航栏的情况下，Tabs默认会实现tabBar与TabContent的切换联动。但在使用了自定义导航栏后，使用TabsController可以实现点击页签与页面内容的联动，但不能实现滑动页面时，页面内容对应页签的联动。即用户在滑动屏幕切换页面内容时，页签栏需要同步切换至内容对应的页签。
-
-
-  **图11** 滑动切换时页签内容不联动  
-
-![TabsChange1](figures/TabsChange1.gif)
-
-
-此时需要使用Tabs提供的onChange事件方法，监听索引index的变化，并将当前活跃的index值传递给currentIndex，实现页签内容的切换。
-
-
-```ts
-//xxx.ets
 @Entry
 @Component
-struct TabsExample {
+struct TabsExample1 {
   @State currentIndex: number = 2
-  private controller: TabsController = new TabsController()
-    
-  ...
-  
+
+  @Builder tabBuilder(title: string, targetIndex: number) {
+    Column() {
+      Text(title)
+        .fontColor(this.currentIndex === targetIndex ? '#1698CE' : '#6B6B6B')
+    }
+  }
+
   build() {
     Column() {
-      Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
+      Tabs({ barPosition: BarPosition.End }) {
         TabContent() {
           ...
-        }.tabBar(this.tabBuilder('首页',0))
+        }.tabBar(this.tabBuilder('首页', 0))
 
         TabContent() {
           ...
-        }.tabBar(this.tabBuilder('发现',1))
+        }.tabBar(this.tabBuilder('发现', 1))
 
         TabContent() {
           ...
-        }.tabBar(this.tabBuilder('推荐',2))
+        }.tabBar(this.tabBuilder('推荐', 2))
 
         TabContent() {
           ...
-        }.tabBar(this.tabBuilder('我的',3))
+        }.tabBar(this.tabBuilder('我的', 3))
       }
-      .vertical(false)
-      .barMode(BarMode.Fixed)
-      .barWidth(360)
-      .barHeight(60)
       .animationDuration(0)
+      .backgroundColor('#F1F3F5')
       .onChange((index: number) => {
         this.currentIndex = index
       })
-      .width(360)
-      .height(600)
-      .backgroundColor('#F1F3F5')
-      .scrollable(true)
-      .onContentWillChange((currentIndex, comingIndex) => {
-        if (comingIndex == 2) {
-          return false
-        }
-        return true
-      })
-
-      Button('动态修改index').width('50%').margin({ top: 20 })
-        .onClick(()=>{
-          this.currentIndex = (this.currentIndex + 1) % 4
-        })
-
-      Button('changeIndex').width('50%').margin({ top: 20 })
-        .onClick(()=>{
-          this.currentIndex = (this.currentIndex + 1) % 4
-          this.controller.changeIndex(this.currentIndex)
-        })
     }.width('100%')
   }
 }
 ```
+  **图11** 内容页和页签联动  
 
+![内容页和页签联动](figures/tabcontent_tabbar_sync.gif)
 
-  **图12** 内容与页签联动 
+若希望不滑动内容页和点击页签也能实现内容页和页签的切换，可以将currentIndex传给Tabs的index参数，通过改变currentIndex来实现跳转至指定索引值对应的TabContent内容。也可以使用TabsController，TabsController是Tabs组件的控制器，用于控制Tabs组件进行内容页切换。通过TabsController的changeIndex方法来实现跳转至指定索引值对应的TabContent内容。
+```ts
+@State currentIndex: number = 2
+private controller: TabsController = new TabsController()
 
-![TabsChange2](figures/TabsChange2.gif)
+Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.controller }) {
+  ...
+}
+.height(600)
+.onChange((index: number) => {
+   this.currentIndex = index
+})
 
-  **图13** 支持开发者自定义页面切换拦截事件 
+Button('动态修改index').width('50%').margin({ top: 20 })
+  .onClick(()=>{
+    this.currentIndex = (this.currentIndex + 1) % 4
+})
 
-![TabsChange3](figures/TabsChange3.gif)
+Button('changeIndex').width('50%').margin({ top: 20 })
+  .onClick(()=>{
+    let index = (this.currentIndex + 1) % 4
+    this.controller.changeIndex(index)
+})
+```
+  
+  **图12** 切换指定页签    
+
+![切换指定页签](figures/TabsChange.gif)
 
 开发者可以通过Tabs组件的onContentWillChange接口，设置自定义拦截回调函数。拦截回调函数在下一个页面即将展示时被调用，如果回调返回true，新页面可以展示；如果回调返回false，新页面不会展示，仍显示原来页面。
-
+  
 ```ts
 Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {...}
 .onContentWillChange((currentIndex, comingIndex) => {
@@ -412,11 +347,177 @@ Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.cu
   }
   return true
 })
-
 ```
+  **图13** 支持开发者自定义页面切换拦截事件 
+
+![TabsChange3](figures/TabsChange3.gif)
+<!--Del-->
+## 支持适老化
+
+在适老化大字体场景下，底部页签提供大字体弹窗显示内容。当组件识别到大字体时，基于设置的文字和图标等内容，构建长按提示弹窗。当用户长按弹窗后，滑动到下一个页签位置时，使用新页签的弹窗提示内容替换上一个页签提示内容，抬手关闭弹窗并切换到对应TabContent内容页。
+
+>  **说明：** 
+>
+> 弹窗只适用于底部页签BottomTabBarStyle。
+
+**图14** 在适老化场景下通过长按底部页签显示适老化弹窗。
+
+![适老化弹窗](figures/tabs11.png)
+
+```ts
+import { abilityManager, Configuration } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { promptAction, uiAppearance } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Demo {
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  @State currentIndex: number = 0;
+  @State currentFontSizeScale: string = '';
+  @State showBuilderTab: boolean = false;
+  @State fontSize: number = 15;
+  private darkModeKey: string[] = Object.keys(uiAppearance.DarkMode).filter(
+    key => typeof uiAppearance.DarkMode[key] === 'number')
+
+  async setFontScale(scale: number): Promise<void> {
+    let configInit: Configuration = {
+      fontSizeScale: scale,
+    };
+    abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
+      if (err) {
+        console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
+        promptAction.showToast({ message: `scale:${scale}, err:${JSON.stringify(err)}` })
+      } else {
+        this.currentFontSizeScale = String(scale);
+        if (scale > 1) {
+          this.fontSize = 8;
+        } else {
+          this.fontSize = 15;
+        }
+        console.log('updateConfiguration success.');
+        promptAction.showToast({ message: `scale:${scale}, updateConfiguration success.` })
+      }
+    });
+  }
+
+  darkMode(isDarkMode: boolean): void {
+    let mode: uiAppearance.DarkMode = uiAppearance.DarkMode.ALWAYS_LIGHT;
+    if (isDarkMode) {
+      mode = uiAppearance.DarkMode.ALWAYS_DARK;
+    }
+    if (mode == uiAppearance.getDarkMode()) {
+      console.info(`TitleDarkMode Set ${this.darkModeKey[mode]} successfully.`)
+      return;
+    }
+    try {
+      uiAppearance.setDarkMode(mode).then(() => {
+        console.info(`TitleDarkMode Set ${this.darkModeKey[mode]} successfully.`)
+      }).catch((error: Error) => {
+        console.error(`TitleDarkMode Set ${this.darkModeKey[mode]} failed, ${error.message}`);
+      });
+    } catch (error) {
+      let message = (error as BusinessError).message;
+      console.error(`TitleDarkMode Set dark-mode failed, ${message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Column() {
+        Row() {
+          Text(`current fontSizeScale:${this.currentFontSizeScale}`)
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+        }
+
+        Row() {
+          Button('1.75')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              await this.setFontScale(1.75);
+            })
+          Button('2')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              await this.setFontScale(2);
+            })
+        }.margin({ top: 25 })
+
+        Row() {
+          Button('3.2')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              await this.setFontScale(3.2);
+            })
+          Button('1')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              await this.setFontScale(1);
+            })
+        }
+
+        Row() {
+          Button('深色模式')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              this.darkMode(true);
+            })
+          Button('浅色模式')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              this.darkMode(false);
+            })
+        }
+      }.alignItems(HorizontalAlign.Start)
+
+      Column() {
+        Tabs({ barPosition: BarPosition.End }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'OverLength'))
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'SixLine'))
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
+        }
+        .vertical(false)
+        .scrollable(true)
+        .barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('80%').height(200)
+      .margin({ top: 200 })
+    }.width('100%')
+  }
+}
+```
+<!--DelEnd-->
 
 ## 相关实例
 
 如需详细了解Tabs的更多实现，请参考以下示例：
 
 - [常用组件与布局](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ArkTSComponents)
+<!--RP1--><!--RP1End-->

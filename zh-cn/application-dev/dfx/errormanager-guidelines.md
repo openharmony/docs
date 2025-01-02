@@ -4,6 +4,8 @@
 
 当应用的代码存在规范问题或错误时，会在运行中产生异常和错误，如应用未捕获异常、应用生命周期超时等。在错误产生后，应用会异常退出。错误日志通常会保存在用户本地存储上，不方便开发者定位问题。所以，应用开发者可以使用错误管理的接口，在应用退出前，及时将相关错误及日志上报到开发者的服务平台来定位问题。
 
+使用errormanager接口监听异常和错误后，应用不会退出，建议在回调函数执行完后，增加同步退出操作，如果只是为了获取错误日志，建议使用[hiappevent](hiappevent-watcher-crash-events-arkts.md)。
+
 ## 接口说明
 
 应用错误管理接口由[errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md)模块提供，开发者可以通过import引入，详见[开发示例](#开发示例)。
@@ -12,9 +14,13 @@
 
 | 接口名称                                                       | 说明                                                 |
 | ------------------------------------------------------------ | ---------------------------------------------------- |
-| on(type: "error", observer: ErrorObserver): number       | 注册错误监听接口，当系统监测到应用异常时会回调该监听。该接口为同步接口，返回值为注册的监听对象对应的序号。 |
+| on(type: "error", observer: ErrorObserver): number       | 注册错误监听接口，当系统监测到应用异常时会回调该监听。该接口为同步接口，返回值为注册的监听对象对应的序号。  |
 | off(type: "error", observerId: number,  callback: AsyncCallback\<void\>): void | 以callback的形式解除注册监听，传入的number为之前注册监听时返回的序号。  |
 | off(type: "error", observerId: number): Promise\<void\> | 以Promise的形式解除注册监听，传入的number为之前注册监听时返回的序号。  |
+| on(type: 'globalErrorOccurred', observer: GlobalObserver): void       | 注册进程错误监听接口，当系统监测到应用异常时会回调该监听，即一次注册，全局监听。（**推荐使用**）  |
+| off(type: 'globalErrorOccurred', observer?: GlobalObserver): void | 取消以前注册的callback监听。（**推荐使用**）  |
+| on(type: 'globalUnhandledRejectionDetected', observer: GlobalObserver): void       | 注册进程错误监听接口，当系统监测到应用promise异常时会回调该监听，即一次注册，全局监听。（**推荐使用**）  |
+| off(type: 'globalUnhandledRejectionDetected', observer?: GlobalObserver): void | 取消以前注册的callback监听。（**推荐使用**）  |
 | on(type: 'loopObserver', timeout: number, observer: LoopObserver): void<sup>12+</sup> | 注册主线程消息处理耗时监听器，当系统监测到应用主线程事件处理超时时会回调该监听。只能在主线程调用，多次注册后，后一次的注册会覆盖前一次的。  |
 | off(type: 'loopObserver', observer?: LoopObserver): void<sup>12+</sup> | 解除应用主线程消息处理耗时监听。  |
 
@@ -45,12 +51,17 @@
 | -2     | 参数错误       |
 
 ## 开发示例
+
+> **注意：**
+> 
+> 建议在异常回调函数处理的最后，增加同步退出操作，否则可能出现多次异常回调的现象。
+
+### 单线程监听场景
+
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import errorManager from '@ohos.app.ability.errorManager';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
+import { AbilityConstant, errorManager, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import process from '@ohos.process';
 
 let registerId = -1;
 let callback: errorManager.ErrorObserver = {
@@ -63,14 +74,11 @@ let callback: errorManager.ErrorObserver = {
         if (typeof(errorObj.stack) === 'string') {
             console.log('onException, stack: ', errorObj.stack);
         }
+        //回调函数执行完，采用同步退出方式，避免多次触发异常
+        let pro = new process.ProcessManager();
+        pro.exit(0);
     }
 }
-
-let observer: errorManager.LoopObserver = {
-    onLoopTimeOut(timeout: number) {
-        console.log('Duration timeout: ' + timeout);
-    }
-};
 
 let abilityWant: Want;
 
@@ -78,7 +86,6 @@ export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log("[Demo] EntryAbility onCreate");
         registerId = errorManager.on("error", callback);
-        errorManager.on("loopObserver", 1, observer);
         abilityWant = want;
     }
 
@@ -87,7 +94,131 @@ export default class EntryAbility extends UIAbility {
         errorManager.off("error", registerId, (result) => {
             console.log("[Demo] result " + result.code + ";" + result.message);
         });
-        errorManager.off("loopObserver");
+    }
+
+    onWindowStageCreate(windowStage: window.WindowStage) {
+        // Main window is created, set main page for this ability
+        console.log("[Demo] EntryAbility onWindowStageCreate");
+
+        windowStage.loadContent("pages/index", (err, data) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+        });
+    }
+
+    onWindowStageDestroy() {
+        // Main window is destroyed, release UI related resources
+        console.log("[Demo] EntryAbility onWindowStageDestroy");
+    }
+
+    onForeground() {
+        // Ability has brought to foreground
+        console.log("[Demo] EntryAbility onForeground");
+    }
+
+    onBackground() {
+        // Ability has back to background
+        console.log("[Demo] EntryAbility onBackground");
+    }
+};
+```
+
+### 进程监听异常场景
+
+```ts
+import { AbilityConstant, errorManager, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import process from '@ohos.process';
+
+function errorFunc(observer: errorManager.GlobalError) {
+    console.log("[Demo] result name :" + observer.name);
+    console.log("[Demo] result message :" + observer.message);
+    console.log("[Demo] result stack :" + observer.stack);
+    console.log("[Demo] result instanceName :" + observer.instanceName);
+    console.log("[Demo] result instaceType :" + observer.instanceType);
+    //回调函数执行完，采用同步退出方式，避免多次触发异常
+    let pro = new process.ProcessManager();
+    pro.exit(0);
+}
+
+let abilityWant: Want;
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        console.log("[Demo] EntryAbility onCreate");
+        errorManager.on("globalErrorOccurred", errorFunc);
+        abilityWant = want;
+    }
+
+    onDestroy() {
+        console.log("[Demo] EntryAbility onDestroy");
+        errorManager.off("globalErrorOccurred", errorFunc);
+    }
+
+    onWindowStageCreate(windowStage: window.WindowStage) {
+        // Main window is created, set main page for this ability
+        console.log("[Demo] EntryAbility onWindowStageCreate");
+
+        windowStage.loadContent("pages/index", (err, data) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+        });
+    }
+
+    onWindowStageDestroy() {
+        // Main window is destroyed, release UI related resources
+        console.log("[Demo] EntryAbility onWindowStageDestroy");
+    }
+
+    onForeground() {
+        // Ability has brought to foreground
+        console.log("[Demo] EntryAbility onForeground");
+    }
+
+    onBackground() {
+        // Ability has back to background
+        console.log("[Demo] EntryAbility onBackground");
+    }
+};
+```
+
+### 进程监听promise异常场景
+
+```ts
+import { AbilityConstant, errorManager, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import process from '@ohos.process';
+
+function promiseFunc(observer: errorManager.GlobalError) {
+    console.log("[Demo] result name :" + observer.name);
+    console.log("[Demo] result message :" + observer.message);
+    console.log("[Demo] result stack :" + observer.stack);
+    console.log("[Demo] result instanceName :" + observer.instanceName);
+    console.log("[Demo] result instaceType :" + observer.instanceType);
+    //回调函数执行完，采用同步退出方式，避免多次触发异常
+    let pro = new process.ProcessManager();
+    pro.exit(0);
+}
+
+
+let abilityWant: Want;
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        console.log("[Demo] EntryAbility onCreate");
+        errorManager.on("globalUnhandledRejectionDetected", errorFunc);
+        abilityWant = want;
+    }
+
+    onDestroy() {
+        console.log("[Demo] EntryAbility onDestroy");
+        errorManager.off("globalUnhandledRejectionDetected", errorFunc);
     }
 
     onWindowStageCreate(windowStage: window.WindowStage) {

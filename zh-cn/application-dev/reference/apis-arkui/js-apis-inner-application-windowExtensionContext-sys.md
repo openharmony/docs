@@ -17,8 +17,7 @@ WindowExtensionContext模块提供[WindowExtensionAbility](js-apis-application-w
 在使用WindowExtensionContext的功能前，需要通过WindowExtensionAbility子类实例获取。
 
 ```ts
-import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
-import WindowExtensionContext from 'application/WindowExtensionContext';
+import { WindowExtensionAbility, WindowExtensionContext } from '@kit.ArkUI';
 
 let context: WindowExtensionContext | null = null;
 
@@ -45,13 +44,21 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | options | [StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
+import { WindowExtensionAbility } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want, StartOptions } from '@kit.AbilityKit';
 
 class WindowExtAbility extends WindowExtensionAbility {
   
@@ -107,13 +114,21 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
+import { WindowExtensionAbility } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want, StartOptions } from '@kit.AbilityKit';
 
 class WindowExtAbility extends WindowExtensionAbility {
 

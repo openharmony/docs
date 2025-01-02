@@ -46,7 +46,7 @@ Parcel operation failed.
 
 **错误信息**
 
-Inner transact failed.
+Internal transaction failed.
 
 **错误描述**
 
@@ -83,7 +83,7 @@ System service operation failed.
 
 **错误信息**
 
-Background task verification failed.
+Continuous task verification failed.
 
 **错误描述**
 
@@ -94,7 +94,7 @@ Background task verification failed.
 1. 应用重复申请长时任务。
 2. 应用重复取消长时任务。
 3. bgMode无效，应用配置文件属性backgroundModes没有配置任何长时任务类型。
-4. 只有PC设备才能申请长时任务KEEPING_TASK。
+4. 只有<!--RP1-->特定设备<!--RP1End-->才能申请长时任务KEEPING_TASK。
 
 **处理步骤**
 
@@ -107,7 +107,7 @@ Background task verification failed.
 
 **错误信息**
 
-Notification verification failed.
+Notification verification failed for a continuous task.
 
 **错误描述**
 
@@ -127,7 +127,7 @@ Notification verification failed.
 
 **错误信息**
 
-Task storage failed.
+Continuous task storage failed.
 
 **错误描述**
 
@@ -148,7 +148,7 @@ Task storage failed.
 
 **错误信息**
 
-Caller information verification failed.
+Caller information verification failed for a transient task.
 
 **错误描述**
 
@@ -170,7 +170,7 @@ Caller information verification failed.
 
 **错误信息**
 
-Background task verification failed.
+Transient task verification failed.
 
 **错误描述**
 
@@ -193,7 +193,7 @@ Background task verification failed.
 
 **错误信息**
 
-Caller information verification failed.
+Caller information verification failed for an energy resource request.
 
 **错误描述**
 

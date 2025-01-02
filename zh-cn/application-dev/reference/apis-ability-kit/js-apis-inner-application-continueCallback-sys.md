@@ -26,8 +26,8 @@ Mission迁移完成后调用，返回迁移结果。
 **示例：**
 
 ```ts
-import distributedMissionManager from '@ohos.distributedMissionManager';
-import { BusinessError } from '@ohos.base';
+import { distributedMissionManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 distributedMissionManager.continueMission(
   {
@@ -35,18 +35,17 @@ distributedMissionManager.continueMission(
     dstDeviceId: '456',
     missionId: 123,
     wantParam: {
-        'key':'value'
+      'key': 'value'
     }
   },
   {
     onContinueDone(result: number) {
-        console.log(`onContinueDone, result: ${JSON.stringify(result)}`);
+      console.log(`onContinueDone, result: ${JSON.stringify(result)}`);
     }
   }, (error: BusinessError) => {
-    if (error && error.code) {
-        console.error(`continueMission failed, error.code: ${error.code}, error.message: ${error.message}`);
-    }
-    console.log(`continueMission finished`);
+  if (error && error.code) {
+    console.error(`continueMission failed, error.code: ${error.code}, error.message: ${error.message}`);
   }
-);
+  console.log(`continueMission finished`);
+});
 ```

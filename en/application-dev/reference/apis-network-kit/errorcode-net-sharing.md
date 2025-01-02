@@ -26,7 +26,7 @@ Check whether the input parameter value is within the valid value range.
 
 **Error Message**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **Description**
 
@@ -78,11 +78,7 @@ The specified Iface does not exist or the Iface name is incorrect.
 
 **Procedure**
 
-1. Check whether the shared Iface is available.
-
-    ```bash
-    > ifconfig -a
-    ```
+1. Run **ifconfig -a** to check whether the shared Iface is available.
 
 2. Check whether the Iface name is correct.
 
@@ -130,7 +126,7 @@ This error code is reported if Bluetooth sharing fails.
 
 **Error Message**
 
-Network share enable forwarding error.
+Failed to enable forwarding for network sharing.
 
 **Description**
 

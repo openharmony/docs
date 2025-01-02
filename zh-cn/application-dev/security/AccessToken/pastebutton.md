@@ -12,8 +12,6 @@
 
 ## 约束与限制
 
-- 剪贴板读取的临时授权将持续到新的数据被写入剪贴板为止（例如用户复制了新的数据）。
-
 - 临时授权会持续到灭屏、应用切后台、应用退出情况发生。
 
 - 应用在授权期间没有调用次数限制。
@@ -27,20 +25,19 @@
 1. 导入剪贴板依赖。
    
    ```ts
-   import pasteboard from '@ohos.pasteboard';
+   import { pasteboard } from '@kit.BasicServicesKit';
    ```
 
 2. 添加输入框和粘贴控件。
    
-   粘贴控件是由图标、文本、背景组成的类似Button的按钮，其中图标、文本两者至少有其一，背景可选。图标和文本不支持自定义，仅支持在已有的选项中选择。
+   粘贴控件是由图标、文本、背景组成的类似Button的按钮，其中图标、文本两者至少有其一，背景必选。图标和文本不支持自定义，仅支持在已有的选项中选择。
 
    应用申明安全控件的接口时，分为传参和不传参两种，不传参默认创建图标+文字+背景的按钮，传参根据传入的参数创建，不包含没有配置的元素。
 
    当前示例使用默认参数。具体请参见[PasteButton控件](../../reference/apis-arkui/arkui-ts/ts-security-components-pastebutton.md)。此外，所有安全控件都继承[安全控件通用属性](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)，可用于定制样式。
    
    ```ts
-   import pasteboard from '@ohos.pasteboard';
-   import { BusinessError } from '@ohos.base';
+   import { pasteboard, BusinessError } from '@kit.BasicServicesKit';
    
    @Entry
    @Component
@@ -51,18 +48,20 @@
        Row() {
          Column({ space: 10 }) {
            TextInput({ placeholder: '请输入验证码', text: this.message })
-           PasteButton().onClick((event: ClickEvent, result: PasteButtonOnClickResult) => {
-             if (PasteButtonOnClickResult.SUCCESS === result) {
-               pasteboard.getSystemPasteboard().getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
-                 if (err) {
-                   console.error(`Failed to get paste data. Code is ${err.code}, message is ${err.message}`);
-                   return;
-                 }
-                 // 剪贴板内容为 '123456'
-                 this.message = pasteData.getPrimaryText();
-               });
-             }
-           })
+           PasteButton()
+             .padding({top: 12, bottom: 12, left: 24, right: 24})
+             .onClick((event: ClickEvent, result: PasteButtonOnClickResult) => {
+               if (PasteButtonOnClickResult.SUCCESS === result) {
+                 pasteboard.getSystemPasteboard().getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
+                   if (err) {
+                     console.error(`Failed to get paste data. Code is ${err.code}, message is ${err.message}`);
+                     return;
+                   }
+                   // 剪贴板内容为 '123456'
+                   this.message = pasteData.getPrimaryText();
+                 });
+               }
+             })
          }
          .width('100%')
        }

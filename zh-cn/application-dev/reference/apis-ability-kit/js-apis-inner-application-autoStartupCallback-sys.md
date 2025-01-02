@@ -27,8 +27,8 @@ onAutoStartupOn(info: AutoStartupInfo): void;
 **示例：**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
-import common from '@ohos.app.ability.common';
+import { autoStartupManager, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let autoStartupCallback: common.AutoStartupCallback = {
   onAutoStartupOn(data: common.AutoStartupInfo) {
@@ -38,10 +38,11 @@ let autoStartupCallback: common.AutoStartupCallback = {
     console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
   }
 }
+
 try {
-  AutoStartupManager.on('systemAutoStartup', autoStartupCallback)
+  autoStartupManager.on('systemAutoStartup', autoStartupCallback)
 } catch (err) {
-  console.info('===> autostartupmanager on callback err: ' + JSON.stringify(err));
+  console.info('===> autostartupmanager on callback err: ' + JSON.stringify(err as BusinessError));
 }
 ```
 
@@ -64,8 +65,8 @@ onAutoStartupOff(info: AutoStartupInfo): void;
 **示例：**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
-import common from '@ohos.app.ability.common';
+import { autoStartupManager, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let autoStartupCallback: common.AutoStartupCallback = {
   onAutoStartupOn(data: common.AutoStartupInfo) {
@@ -75,9 +76,10 @@ let autoStartupCallback: common.AutoStartupCallback = {
     console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
   }
 }
+
 try {
-  AutoStartupManager.on('systemAutoStartup', autoStartupCallback)
+  autoStartupManager.on('systemAutoStartup', autoStartupCallback)
 } catch (err) {
-  console.info('===> autostartupmanager on callback err: ' + JSON.stringify(err));
+  console.info('===> autostartupmanager on callback err: ' + JSON.stringify(err as BusinessError));
 }
 ```

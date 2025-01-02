@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.SplitLayout (上下结构布局)
+# SplitLayout
 
 
 上下结构布局介绍了常用的页面布局样式。主要分为上下文本和上下图文两种类型。
@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { SplitLayout } from '@ohos.arkui.advanced.SplitLayout'
+import { SplitLayout } from '@kit.ArkUI'
 ```
 
 
@@ -30,11 +30,11 @@ SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, t
 
 **装饰器类型：**@Component
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 名称 | 参数类型 | 必填 | 装饰器类型        | 说明     |
+| 名称 | 类型 | 必填 | 装饰器类型        | 说明     |
 | -------- | -------- | -------- |---------------|--------|
 | mainImage | [ResourceStr](ts-types.md#resourcestr) | 是 | -             | 传入图片。  |
 | primaryText | [ResourceStr](ts-types.md#resourcestr) | 是 | @Prop         | 标题内容。  |
@@ -46,9 +46,10 @@ SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, t
 不支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
-
+该示例通过SplitLayout实现了页面布局，并具备自适应能力。
 ```ts
-import { SplitLayout } from '@ohos.arkui.advanced.SplitLayout'
+import { SplitLayout } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {

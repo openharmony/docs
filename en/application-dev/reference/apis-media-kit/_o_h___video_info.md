@@ -3,17 +3,13 @@
 
 ## Overview
 
-The **OH_VideoInfo** struct defines video capture parameters.
+The **OH_VideoInfo** struct describes the video information.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[AVScreenCapture](_a_v_screen_capture.md)
+**Related module**: [AVScreenCapture](_a_v_screen_capture.md)
 
 
 ## Summary
@@ -23,8 +19,8 @@ The **OH_VideoInfo** struct defines video capture parameters.
 
 | Name| Description| 
 | -------- | -------- |
-| [videoCapInfo](#videocapinfo) | [OH_VideoCaptureInfo](_o_h___video_capture_info.md)<br>Defines video capture information.| 
-| [videoEncInfo](#videoencinfo) | [OH_VideoEncInfo](_o_h___video_enc_info.md)<br>Defines video encoding parameters.<br>**NOTE**: This member variable is reserved and will be provided in later versions.| 
+| [OH_VideoCaptureInfo](_o_h___video_capture_info.md) [videoCapInfo](#videocapinfo) | Video capture information.| 
+| [OH_VideoEncInfo](_o_h___video_enc_info.md) [videoEncInfo](#videoencinfo) | Video encoding information.| 
 
 
 ## Member Variable Description
@@ -38,7 +34,7 @@ OH_VideoCaptureInfo OH_VideoInfo::videoCapInfo
 
 **Description**
 
-Defines video capture information.
+Video capture information.
 
 
 ### videoEncInfo
@@ -49,8 +45,4 @@ OH_VideoEncInfo OH_VideoInfo::videoEncInfo
 
 **Description**
 
-Defines video encoding parameters.
-
-> **NOTE**
-> 
-> This member variable is reserved and will be provided in later versions.
+Video encoding information.

@@ -4,7 +4,7 @@
 
 **Error Message**
 
-Permission verification failed, usually the result returned by VerifyAccessToken.
+Permission verification failed. The application does not have the permission required to call the API.
 
 **Description**
 
@@ -22,7 +22,7 @@ Check the permission required to call the API and make sure the application has 
 
 **Error Message**
 
-Permission verification failed, application which is not a system application uses system API.
+Permission verification failed. A non-system application calls a system API.
 
 **Description**
 
@@ -40,7 +40,7 @@ Check whether any system API is called. Delete it if any.
 
 **Error Message**
 
-BusinessError 401: Parameter error. The type of "${parameterName}" must be ${validType}[or ${validInput}].
+Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.
 
 **Description**
 
@@ -58,7 +58,7 @@ Make sure the mandatory parameter is passed in and the type of the passed parame
 
 **Error Message**
 
-BusinessError 801: Capability not supported. function ${functionName } can not work correctly due to limited device capabilities.
+Capability not supported. Failed to call the API due to limited device capabilities.
 
 **Description**
 

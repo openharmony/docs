@@ -1,7 +1,7 @@
 # 通过router或call事件刷新卡片内容
 
 
-在卡片页面中可以通过[postCardAction()](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口触发router事件或者call事件拉起UIAbility，然后由UIAbility刷新卡片内容，下面是这种刷新方式的简单示例。
+在卡片页面中可以通过[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口触发router事件或者call事件拉起UIAbility，然后由UIAbility刷新卡片内容，下面是这种刷新方式的简单示例。
 
 > **说明：**
 >
@@ -9,7 +9,7 @@
 
 ## 通过router事件刷新卡片内容
 
-- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用[postCardAction()](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口触发router事件拉起UIAbility。
+- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用postCardAction接口触发router事件拉起UIAbility。
   
   ```ts
   let storageUpdateRouter = new LocalStorage();
@@ -64,68 +64,52 @@
   }
   ```
   
-- 在UIAbility的onCreate()或者onNewWant()生命周期中可以通过入参want获取卡片的formID和传递过来的参数信息，然后调用[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform)接口刷新卡片。
+- 在UIAbility的onCreate或者onNewWant生命周期中可以通过入参want获取卡片的formID和传递过来的参数信息，然后调用[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform)接口刷新卡片。
   
   ```ts
-  import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import type Base from '@ohos.base';
-  import formBindingData from '@ohos.app.form.formBindingData';
-  import formInfo from '@ohos.app.form.formInfo';
-  import formProvider from '@ohos.app.form.formProvider';
-  import hilog from '@ohos.hilog';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import type Want from '@ohos.app.ability.Want';
-  import type window from '@ohos.window';
-  
+  import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { formBindingData, formInfo, formProvider } from '@kit.FormKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
   const TAG: string = 'WidgetEventRouterEntryAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
-  
+
   export default class WidgetEventRouterEntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-      this.handleFormRouterEvent(want);
+      this.handleFormRouterEvent(want, 'onCreate');
     }
-  
-    handleFormRouterEvent(want: Want): void {
-      hilog.info(DOMAIN_NUMBER, TAG, 'handleFormRouterEvent, Want:', JSON.stringify(want));
+
+    handleFormRouterEvent(want: Want, source: string): void {
+      hilog.info(DOMAIN_NUMBER, TAG, `handleFormRouterEvent ${source}, Want: ${JSON.stringify(want)}`);
       if (want.parameters && want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
-        let curFormId = JSON.stringify(want.parameters[formInfo.FormParam.IDENTITY_KEY]);
-        let message: string = JSON.stringify(want.parameters.routerDetail);
+        let curFormId = want.parameters[formInfo.FormParam.IDENTITY_KEY].toString();
+        // want.parameters.params 对应 postCardAction() 中 params 内容
+        let message: string = (JSON.parse(want.parameters?.params as string))?.routerDetail;
         hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
         let formData: Record<string, string> = {
-          'routerDetail': message + 'UIAbility.', // 和卡片布局中对应
+          'routerDetail': message + ' ' + source + ' UIAbility', // 和卡片布局中对应
         };
         let formMsg = formBindingData.createFormBindingData(formData);
-        formProvider.updateForm(want.parameters[formInfo.FormParam.IDENTITY_KEY] + '', formMsg).then((data) => {
+        formProvider.updateForm(curFormId, formMsg).then((data) => {
           hilog.info(DOMAIN_NUMBER, TAG, 'updateForm success.', JSON.stringify(data));
-        }).catch((error: Base.BusinessError) => {
+        }).catch((error: BusinessError) => {
           hilog.info(DOMAIN_NUMBER, TAG, 'updateForm failed.', JSON.stringify(error));
         });
       }
     }
-  
+
     // 如果UIAbility已在后台运行，在收到Router事件后会触发onNewWant生命周期回调
     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant Want:', JSON.stringify(want));
-      if (want.parameters && want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
-        let curFormId = JSON.stringify(want.parameters[formInfo.FormParam.IDENTITY_KEY]);
-        let message: string = JSON.stringify(want.parameters.routerDetail);
-        hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
-        let formData: Record<string, string> = {
-          'routerDetail': message + 'onNewWant UIAbility.', // 和卡片布局中对应
-        };
-        let formMsg = formBindingData.createFormBindingData(formData);
-        formProvider.updateForm(want.parameters[formInfo.FormParam.IDENTITY_KEY] + '', formMsg).then((data) => {
-          hilog.info(DOMAIN_NUMBER, TAG, 'updateForm success.', JSON.stringify(data));
-        }).catch((error: Base.BusinessError) => {
-          hilog.info(DOMAIN_NUMBER, TAG, 'updateForm failed.', JSON.stringify(error));
-        });
-      }
+      this.handleFormRouterEvent(want, 'onNewWant');
     }
-  
+
     onWindowStageCreate(windowStage: window.WindowStage): void {
       // Main window is created, set main page for this ability
       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onWindowStageCreate');
-  
+
       windowStage.loadContent('pages/Index', (err, data) => {
         if (err.code) {
           hilog.error(DOMAIN_NUMBER, TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -134,20 +118,18 @@
         hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
       });
     }
-    ...
+    // ...
   }
   ```
 
 
-
 ## 通过call事件刷新卡片内容
 
-- 在使用**postCardAction**接口的call事件时，需要在FormExtensionAbility中的onAddForm生命周期回调中更新formId。
+- 在使用postCardAction接口的call事件时，需要在FormExtensionAbility中的onAddForm生命周期回调中更新formId。
 
   ```ts
-  import formBindingData from '@ohos.app.form.formBindingData';
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import type Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
+  import { formBindingData, FormExtensionAbility } from '@kit.FormKit';
   
   export default class WidgetCalleeFormAbility extends FormExtensionAbility {
     onAddForm(want: Want): formBindingData.FormBindingData {
@@ -163,11 +145,11 @@
       let obj1 = formBindingData.createFormBindingData(dataObj1);
       return obj1;
     }
-    ...
+    // ...
   }
   ```
 
-- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发call事件拉起UIAbility。
+- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用postCardAction接口触发call事件拉起UIAbility。
   
   ```ts
   let storageUpdateCall = new LocalStorage();
@@ -226,15 +208,12 @@
 - 在UIAbility的onCreate生命周期中监听call事件所需的方法，然后在对应方法中调用[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform)接口刷新卡片。
   
   ```ts
-  import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import type Base from '@ohos.base';
-  import formBindingData from '@ohos.app.form.formBindingData';
-  import formProvider from '@ohos.app.form.formProvider';
-  import hilog from '@ohos.hilog';
-  import type rpc from '@ohos.rpc';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import type Want from '@ohos.app.ability.Want';
-  import type window from '@ohos.window';
+  import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { formBindingData, formProvider } from '@kit.FormKit';
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   
   const TAG: string = 'WidgetCalleeEntryAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -277,7 +256,7 @@
       let formMsg: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
       formProvider.updateForm(curFormId, formMsg).then((data) => {
         hilog.info(DOMAIN_NUMBER, TAG, `updateForm success. ${JSON.stringify(data)}`);
-      }).catch((error: Base.BusinessError) => {
+      }).catch((error: BusinessError) => {
         hilog.error(DOMAIN_NUMBER, TAG, `updateForm failed: ${JSON.stringify(error)}`);
       });
     }
@@ -291,7 +270,7 @@
         this.callee.on(MSG_SEND_METHOD, funACall);
       } catch (error) {
         hilog.error(DOMAIN_NUMBER, TAG, `${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`);
-      };
+      }
     }
   
     onWindowStageCreate(windowStage: window.WindowStage): void {

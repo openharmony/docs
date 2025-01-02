@@ -11,6 +11,9 @@
 | [OH_NativeBundle_GetCurrentApplicationInfo](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getcurrentapplicationinfo) | 获取应用自身相关信息。          |
 | [OH_NativeBundle_GetAppId](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getappid) | 获取自身应用的appId信息。 |
 | [OH_NativeBundle_GetAppIdentifier](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getappidentifier) | 获取自身应用的appIdentifier信息。 |
+| [OH_NativeBundle_GetMainElementName](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getmainelementname) | 获取自身应用入口的信息。 |
+| [OH_NativeBundle_GetCompatibleDeviceType](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getcompatibledevicetype) | 获取自身应用适用的设备类型。 |
+
 
 ## 开发步骤
 
@@ -22,7 +25,7 @@
 
 **2. 添加依赖**
 
-创建完成后，IDE会在工程生成cpp目录，目录有libentry/index.d.ts、hello.cpp、CMakeLists.txt等文件。
+创建完成后，DevEco Studio会在工程生成cpp目录，目录有types/libentry/index.d.ts、napi_init.cpp、CMakeLists.txt等文件。
 
 1. 打开src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加包管理的libbundle_ndk.z.so。
 
@@ -30,7 +33,7 @@
     target_link_libraries(entry PUBLIC libace_napi.z.so libbundle_ndk.z.so)
     ```
 
-2. 打开src/main/cpp/hello.cpp文件，添加头文件。
+2. 打开src/main/cpp/napi_init.cpp文件，添加头文件。
 
     ```c++
     #include "bundle/native_interface_bundle.h"
@@ -38,7 +41,7 @@
 
 **3. 修改源文件**
 
-1. 打开src/main/cpp/hello.cpp文件，文件Init会对当前方法进行初始化映射，这里定义对外接口为getCurrentApplicationInfo。
+1. 打开src/main/cpp/napi_init.cpp文件，文件Init会对当前方法进行初始化映射，这里定义对外接口为getCurrentApplicationInfo。
 
     ```c++
     EXTERN_C_START
@@ -54,13 +57,13 @@
     EXTERN_C_END
     ```
 
-2. 把src/main/cpp/hello.cpp文件中，增加对应的方法，如下所示：
+2. 在src/main/cpp/napi_init.cpp文件中，增加对应的方法，如下所示：
 
     ```c++
     static napi_value GetCurrentApplicationInfo(napi_env env, napi_callback_info info)
     ```
 
-3. 在hello.cpp文件中获取Native的包信息对象，并转为js的包信息对象，即可在js测获取应用的信息：
+3. 在src/main/cpp/napi_init.cpp文件中获取Native的包信息对象，并转为js的包信息对象，即可在js测获取应用的信息：
 
     ```c++
     static napi_value GetCurrentApplicationInfo(napi_env env, napi_callback_info info)

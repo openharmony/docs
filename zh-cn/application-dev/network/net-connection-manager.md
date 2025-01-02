@@ -5,7 +5,7 @@
 网络连接管理提供管理网络一些基础能力，包括WiFi/蜂窝/Ethernet等多网络连接优先级管理、网络质量评估、订阅默认/指定网络连接状态变化、查询网络连接信息、DNS解析等功能。
 
 > **说明：**
-> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用callback函数，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-connection.md)。
+> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用promise函数，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-connection.md)。
 
 ## 基本概念
 
@@ -37,22 +37,22 @@
 | 接口名 | 描述 |
 | ---- | ---- |
 | getDefaultNet(callback: AsyncCallback\<NetHandle>): void; |获取一个含有默认网络的netId的NetHandle对象，使用callback回调 |
-| getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void;| 获取网络的全局代理设置，使用callback回调 |
-| setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void;| 设置网络全局Http代理配置信息，使用callback回调 |
+| <!--DelRow--> getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void;| 获取网络的全局代理设置，使用callback回调 |
+| <!--DelRow--> setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void;| 设置网络全局Http代理配置信息，使用callback回调 |
 | setAppHttpProxy(httpProxy: HttpProxy): void;| 设置网络应用级Http代理配置信息 |
 | getAppNet(callback: AsyncCallback\<NetHandle>): void;| 获取一个App绑定的包含了网络netId的NetHandle对象，使用callback回调 |
 | setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 绑定App到指定网络，绑定后的App只能通过指定网络访问外网。使用callback回调 |
 | getDefaultNetSync(): NetHandle; |使用同步方法获取默认激活的数据网络。可以使用getNetCapabilities去获取网络的类型、拥有的能力等信息。|
 | hasDefaultNet(callback: AsyncCallback\<boolean>): void; |检查默认数据网络是否被激活，使用callback回调 |
-| getAllNets(callback: AsyncCallback\<Array\<NetHandle>>): void;| 获取所处于连接状态的网络的MetHandle对象列表，使用callback回调 |
+| getAllNets(callback: AsyncCallback\<Array\<NetHandle>>): void;| 获取所处于连接状态的网络的NetHandle对象列表，使用callback回调 |
 | getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void; |查询netHandle对应的网络的连接信息，使用callback回调 |
 | getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void; |获取netHandle对应的网络的能力信息，使用callback回调 |
 | isDefaultNetMetered(callback: AsyncCallback\<boolean>): void; |检查当前网络上的数据流量使用是否被计量，使用callback方式作为异步方法 |
 | reportNetConnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。使用callback回调 |
 | reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 向网络管理报告网络处于不可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。使用callback回调 |
 | getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |使用对应网络解析域名，获取所有IP，使用callback回调 |
-| enableAirplaneMode(callback: AsyncCallback\<void>): void; | 设置网络为飞行模式，使用callback回调 |
-| disableAirplaneMode(callback: AsyncCallback\<void>): void;| 关闭网络飞行模式，使用callback回调 |
+| <!--DelRow--> enableAirplaneMode(callback: AsyncCallback\<void>): void; | 设置网络为飞行模式，使用callback回调 |
+| <!--DelRow--> disableAirplaneMode(callback: AsyncCallback\<void>): void;| 关闭网络飞行模式，使用callback回调 |
 | createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection; | 返回一个NetConnection对象，netSpecifier指定关注的网络的各项特征，timeout是超时时间(单位是毫秒)，netSpecifier是timeout的必要条件，两者都没有则表示关注默认网络 |
 | bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void; | 将TCPSocket或UDPSockett绑定到当前网络，使用callback回调 |
 | getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |使用对应网络解析域名，获取所有IP，使用callback回调 |
@@ -71,7 +71,7 @@
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
-1. 从@ohos.net.connection.d.ts中导入connection命名空间。
+1. 从@kit.NetworkKit中导入connection命名空间。
 
 2. 调用createNetConnection方法，指定网络能力、网络类型和超时时间（可选，如不传入代表默认网络；创建不同于默认网络时可通过指定这些参数完成），创建一个NetConnection对象。
 
@@ -85,8 +85,8 @@
 
 ```ts
 // 引入包名
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let netSpecifier: connection.NetSpecifier = {
   netCapabilities: {
@@ -105,7 +105,7 @@ let conn = connection.createNetConnection(netSpecifier, timeout);
 
 // 订阅指定网络状态变化的通知
 conn.register((err: BusinessError, data: void) => {
-  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(err));
 });
 
 // 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户
@@ -125,19 +125,17 @@ conn.unregister((err: BusinessError, data: void) => {
 
 ## 获取所有注册的网络
 
-### 开发步骤
-
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
-2. 从@ohos.net.connection.d.ts中导入connection命名空间。
+2. 从@kit.NetworkKit中导入connection命名空间。
 
 3. 调用getAllNets方法，获取所有处于连接状态的网络列表。
 
 ```ts
 // 引入包名
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 构造单例对象
 export class GlobalContext {
@@ -163,23 +161,20 @@ export class GlobalContext {
 }
 
 // 获取所有处于连接状态的网络列表
-connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
+connection.getAllNets().then((data: connection.NetHandle[]) => {
+  console.info("Succeeded to get data: " + JSON.stringify(data));
   if (data) {
     GlobalContext.getContext().netList = data;
   }
-})
+});
 ```
 
 ## 根据数据网络查询网络的能力信息及连接信息
 
-### 开发步骤
-
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
-2. 从@ohos.net.connection.d.ts中导入connection命名空间。
+2. 从@kit.NetworkKit中导入connection命名空间。
 
 3. 通过调用getDefaultNet方法，获取默认的数据网络(NetHandle)；或者通过调用getAllNets方法，获取所有处于连接状态的网络列表(Array\<NetHandle>)。
 
@@ -188,8 +183,8 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 5. 调用getConnectionProperties方法，获取NetHandle对应网络的连接信息。
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 构造单例对象
 export class GlobalContext {
@@ -216,16 +211,18 @@ export class GlobalContext {
 }
 
 // 调用getDefaultNet方法，获取默认的数据网络(NetHandle)
-connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
+connection.getDefaultNet().then((data:connection.NetHandle) => {
+  if (data.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+    return;
+  }
   if (data) {
+    console.info("getDefaultNet get data: " + JSON.stringify(data));
     GlobalContext.getContext().netHandle = data;
-
     // 获取netHandle对应网络的能力信息。能力信息包含了网络类型、网络具体能力等网络信息
-    connection.getNetCapabilities(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.NetCapabilities) => {
-      console.log(JSON.stringify(err));
-
+    connection.getNetCapabilities(GlobalContext.getContext().netHandle).then(
+      (data: connection.NetCapabilities) => {
+      console.info("getNetCapabilities get data: " + JSON.stringify(data));
       // 获取网络类型(bearerTypes)
       let bearerTypes: Set<number> = new Set(data.bearerTypes);
       let bearerTypesNum = Array.from(bearerTypes.values());
@@ -241,7 +238,7 @@ connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
           console.log(JSON.stringify("BEARER_ETHERNET"));
         }
       }
-      
+
       // 获取网络具体能力(networkCap)
       let itemNumber : Set<number> = new Set(data.networkCap);
       let dataNumber = Array.from(itemNumber.values());
@@ -265,18 +262,16 @@ connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
       }
     })
   }
-})
+});
 
 // 获取netHandle对应网络的连接信息。连接信息包含了链路信息、路由信息等
-connection.getConnectionProperties(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.ConnectionProperties) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
+connection.getConnectionProperties(GlobalContext.getContext().netHandle).then((data: connection.ConnectionProperties) => {
+  console.info("getConnectionProperties get data: " + JSON.stringify(data));
 })
 
 // 调用getAllNets,获取所有处于连接状态的网络列表(Array<NetHandle>)
-connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
+connection.getAllNets().then((data: connection.NetHandle[]) => {
+  console.info("getAllNets get data: " + JSON.stringify(data));
   if (data) {
     GlobalContext.getContext().netList = data;
 
@@ -284,15 +279,13 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
     let dataNumber = Array.from(itemNumber.values());
     for (let item of dataNumber) {
       // 循环获取网络列表每个netHandle对应网络的能力信息
-      connection.getNetCapabilities(item, (err: BusinessError, data: connection.NetCapabilities) => {
-        console.log(JSON.stringify(err));
-        console.log(JSON.stringify(data));
+      connection.getNetCapabilities(item).then((data: connection.NetCapabilities) => {
+        console.info("getNetCapabilities get data: " + JSON.stringify(data));
       })
 
       // 循环获取网络列表每个netHandle对应的网络的连接信息
-      connection.getConnectionProperties(item, (err: BusinessError, data: connection.ConnectionProperties) => {
-        console.log(JSON.stringify(err));
-        console.log(JSON.stringify(data));
+      connection.getConnectionProperties(item).then((data: connection.ConnectionProperties) => {
+        console.info("getConnectionProperties get data: " + JSON.stringify(data));
       })
     }
   }
@@ -301,23 +294,20 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 
 ## 使用对应网络解析域名，获取所有IP
 
-### 开发步骤
-
 1. 声明接口调用所需要的权限：ohos.permission.INTERNET
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
-2. 从@ohos.net.connection.d.ts中导入connection命名空间。
+2. 从@kit.NetworkKit中导入connection命名空间。
 
 3. 调用getAddressesByName方法，使用默认网络解析主机名以获取所有IP地址。
 
 ```ts
 // 引入包名
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 使用默认网络解析主机名以获取所有IP地址
-connection.getAddressesByName(this.host, (err: BusinessError, data: connection.NetAddress[]) => {
-  console.log(JSON.stringify(err));
-  console.log(JSON.stringify(data));
-})
+connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
+  console.info("Succeeded to get data: " + JSON.stringify(data));
+});
 ```

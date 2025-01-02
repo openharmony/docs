@@ -19,7 +19,7 @@ ArkUI提供了四种阻尼弹簧曲线接口。
 
 
 - [responsiveSpringMotion](../reference/apis-arkui/js-apis-curve.md#curvesresponsivespringmotion9)：是springMotion动画的一种特例，仅默认参数不同。一般用于跟手做成动画的场景，离手时可用springMotion创建动画，此时离手阶段动画将自动继承跟手阶段动画速度，完成动画衔接。
-  当新动画的overlapDuration参数不为0，且当前属性的上一个springMotion动画还未结束时，reponse和dampingFracion将在overlapDuration指定的时间内，从旧动画的参数值过渡到新动画的参数值。
+  当新动画的overlapDuration参数不为0，且当前属性的上一个springMotion动画还未结束时，response和dampingFraction将在overlapDuration指定的时间内，从旧动画的参数值过渡到新动画的参数值。
 
 
   ```ts
@@ -43,7 +43,7 @@ ArkUI提供了四种阻尼弹簧曲线接口。
   ```
 
 
-关于弹簧曲线完整的使用示例和参考效果如下，开发者也可参考[动画衔接](arkts-animation-smoothing.md)，掌握使用reponsiveSpringMotion和springMotion进行手势和动画之间的衔接。
+关于弹簧曲线完整的使用示例和参考效果如下，开发者也可参考[动画衔接](arkts-animation-smoothing.md)，掌握使用responsiveSpringMotion和springMotion进行手势和动画之间的衔接。
 
 
 弹簧曲线的示例代码和效果如下。
@@ -51,7 +51,7 @@ ArkUI提供了四种阻尼弹簧曲线接口。
 
 
 ```ts
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
 
 class Spring {
   public title: string;
@@ -108,10 +108,10 @@ struct Motion {
 export struct SpringCurve {
   @State dRotate: number = 0;
   private springs: Spring[] = [
-    new Spring('springMotion', '周期2, 阻尼0.25', curves.springMotion(1, 0.25)),
-    new Spring('responsive' + '\n' + 'SpringMotion', '默认弹性跟手曲线', curves.responsiveSpringMotion(1, 0.25)),
-    new Spring('interpolating' + '\n' + 'Spring', '初始速度10，质量1， 剛度228， 阻尼30', curves.interpolatingSpring(10, 1, 228, 30)),
-    new Spring('springCurve', '初始速度10， 质量1， 剛度228， 阻尼30', curves.springCurve(10, 1, 228, 30))
+    new Spring('springMotion', '周期1, 阻尼0.25', curves.springMotion(1, 0.25)),
+    new Spring('responsive' + '\n' + 'SpringMotion', '弹性跟手曲线', curves.responsiveSpringMotion(1, 0.25)),
+    new Spring('interpolating' + '\n' + 'Spring', '初始速度10，质量1， 刚度228， 阻尼30', curves.interpolatingSpring(10, 1, 228, 30)),
+    new Spring('springCurve', '初始速度10， 质量1， 刚度228， 阻尼30', curves.springCurve(10, 1, 228, 30))
   ];
 
   build() {
@@ -133,5 +133,5 @@ export struct SpringCurve {
 
 
 
-![zh-cn_image_0000001649089041](figures/zh-cn_image_0000001649089041.gif)
+![zh-cn_image_0000001649089041](figures/spring_curve.gif)
 

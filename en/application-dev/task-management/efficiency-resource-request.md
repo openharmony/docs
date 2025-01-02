@@ -1,4 +1,4 @@
-# Requesting Efficiency Resources (for Privileged System Applications Only)
+# Requesting Efficiency Resources (ArkTS) (for Privileged System Applications Only)
 
 ## Overview
 
@@ -30,7 +30,6 @@ The table below lists the main APIs used for efficient resources. For details ab
 | resetAllEfficiencyResources(): void | Releases all efficiency resources.|
 
 **Table 2** Parameters for requesting efficiency resources
-
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | resourceTypes | number | Yes| Type of the resource to request.|
@@ -41,7 +40,6 @@ The table below lists the main APIs used for efficient resources. For details ab
 | reason | string | Yes| Reason for requesting the resource.|
 
 **Table 3** Efficiency resource types
-
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | CPU | 1 | CPU resource. Such type of resource prevents an application from being suspended.|
@@ -59,7 +57,7 @@ The table below lists the main APIs used for efficient resources. For details ab
 1. Import the module.
 
    ```ts
-   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+   import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
    ```
 
 2. Request efficiency resources.
@@ -97,5 +95,4 @@ The table below lists the main APIs used for efficient resources. For details ab
    ```
 
    > **NOTE**
-   >
    > Applications can dynamically request efficiency resources. Therefore, it is recommended that the application proactively releases the resources after the task is complete so as to reduce power consumption and ensure smooth user experience.

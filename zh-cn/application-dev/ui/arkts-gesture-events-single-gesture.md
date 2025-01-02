@@ -5,7 +5,7 @@
 
 
 ```ts
-TapGesture(value?:{count?:number; fingers?:number})
+TapGesture(value?:{count?:number, fingers?:number})
 ```
 
 
@@ -14,7 +14,7 @@ TapGesture(value?:{count?:number; fingers?:number})
 
 - count：声明该点击手势识别的连续点击次数。默认值为1，若设置小于1的非法值会被转化为默认值。如果配置多次点击，上一次抬起和下一次按下的超时时间为300毫秒。
 
-- fingers：用于声明触发点击的手指数量，最小值为1，最大值为10，默认值为1。当配置多指时，若第一根手指按下300毫秒内未有足够的手指数按下则手势识别失败。当实际点击手指数超过配置值时，手势识别失败。
+- fingers：用于声明触发点击的手指数量，最小值为1，最大值为10，默认值为1。当配置多指时，若第一根手指按下300毫秒内未有足够的手指数按下则手势识别失败。
     以在Text组件上绑定双击手势（count值为2的点击手势）为例：
 
   ```ts
@@ -53,7 +53,7 @@ TapGesture(value?:{count?:number; fingers?:number})
 
 
 ```ts
-LongPressGesture(value?:{fingers?:number; repeat?:boolean; duration?:number})
+LongPressGesture(value?:{fingers?:number, repeat?:boolean, duration?:number})
 ```
 
 
@@ -113,7 +113,7 @@ struct Index {
 
 
 ```ts
-PanGesture(value?:{ fingers?:number; direction?:PanDirection; distance?:number})
+PanGesture(value?:{ fingers?:number, direction?:PanDirection, distance?:number})
 ```
 
 
@@ -185,13 +185,15 @@ struct Index {
 >大部分可滑动组件，如List、Grid、Scroll、Tab等组件是通过PanGesture实现滑动，在组件内部的子组件绑定[拖动手势（PanGesture）](#拖动手势pangesture)或者[滑动手势（SwipeGesture）](#滑动手势swipegesture)会导致手势竞争。
 >
 >当在子组件绑定PanGesture时，在子组件区域进行滑动仅触发子组件的PanGesture。如果需要父组件响应，需要通过修改手势绑定方法或者子组件向父组件传递消息进行实现，或者通过修改父子组件的PanGesture参数distance使得拖动更灵敏。当子组件绑定SwipeGesture时，由于PanGesture和SwipeGesture触发条件不同，需要修改PanGesture和SwipeGesture的参数以达到所需效果。
+>
+>不合理的阈值设置会导致滑动不跟手（响应时延慢）的问题。
 
 
 ## 捏合手势（PinchGesture）
 
 
 ```ts
-PinchGesture(value?:{fingers?:number; distance?:number})
+PinchGesture(value?:{fingers?:number, distance?:number})
 ```
 
 
@@ -261,7 +263,7 @@ struct Index {
 
 
 ```ts
-RotationGesture(value?:{fingers?:number; angle?:number})
+RotationGesture(value?:{fingers?:number, angle?:number})
 ```
 
 
@@ -329,7 +331,7 @@ struct Index {
 
 
 ```ts
-SwipeGesture(value?:{fingers?:number; direction?:SwipeDirection; speed?:number})
+SwipeGesture(value?:{fingers?:number, direction?:SwipeDirection, speed?:number})
 ```
 
 

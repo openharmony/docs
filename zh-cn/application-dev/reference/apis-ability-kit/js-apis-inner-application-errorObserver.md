@@ -1,6 +1,6 @@
 # ErrorObserver
 
-定义异常监听，可以作为[ErrorManager.on](js-apis-app-ability-errorManager.md#errormanageron)的入参监听当前应用发生的异常。
+定义异常监听，可以作为[ErrorManager.on](js-apis-app-ability-errorManager.md#errormanageronerror)的入参监听当前应用发生的异常。
 
 > **说明：**
 > 
@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
 ```
 
 ## ErrorObserver.onUnhandledException
@@ -17,6 +17,8 @@ import errorManager from '@ohos.app.ability.errorManager';
 onUnhandledException(errMsg: string): void;
 
 将在js运行时引发用户未捕获的异常时调用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -29,7 +31,8 @@ onUnhandledException(errMsg: string): void;
 **示例：**
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
@@ -38,9 +41,9 @@ let observer: errorManager.ErrorObserver = {
 };
 
 try {
-    errorManager.on('error', observer);
+  errorManager.on('error', observer);
 } catch (error) {
-    console.error(`registerErrorObserver failed, error.code: ${error.code}, error.message: ${error.message}`);
+  console.error(`registerErrorObserver failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -49,6 +52,8 @@ try {
 onException?(errObject: Error): void;
 
 将在js运行时引发用户未捕获的异常时调用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -61,7 +66,8 @@ onException?(errObject: Error): void;
 **示例：**
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
@@ -70,15 +76,15 @@ let observer: errorManager.ErrorObserver = {
   onException(errorObj) {
     console.log('onException, name: ', errorObj.name);
     console.log('onException, message: ', errorObj.message);
-    if (typeof(errorObj.stack) === 'string') {
-        console.log('onException, stack: ', errorObj.stack);
+    if (typeof (errorObj.stack) === 'string') {
+      console.log('onException, stack: ', errorObj.stack);
     }
   }
 };
 
 try {
-    errorManager.on('error', observer);
+  errorManager.on('error', observer);
 } catch (error) {
-    console.error(`registerErrorObserver failed, error.code: ${error.code}, error.message: ${error.message}`);
+  console.error(`registerErrorObserver failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
 }
 ```

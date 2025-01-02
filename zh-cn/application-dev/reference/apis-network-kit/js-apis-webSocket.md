@@ -14,14 +14,14 @@
 ## 导入模块
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 ```
 
 ## 完整示例
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();
@@ -92,6 +92,8 @@ createWebSocket(): WebSocket
 
 创建一个WebSocket，里面包括建立连接、关闭连接、发送数据和订阅/取消订阅WebSocket连接的打开事件、接收到服务器消息事件、关闭事件和错误事件。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -103,7 +105,7 @@ createWebSocket(): WebSocket
 **示例：**
 
 ```ts
-let ws: webSocket = webSocket.createWebSocket();
+let ws: webSocket.WebSocket = webSocket.createWebSocket();
 ```
 
 ## WebSocket<sup>6+</sup>
@@ -121,7 +123,11 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 
 **需要权限**：ohos.permission.INTERNET
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
+
+**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
 
 **参数：**
 
@@ -132,16 +138,24 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
-| 201     | Permission denied.      |
+| 错误码ID              | 错误信息                                   |
+| --------------------- | ------------------------------------------ |
+| 401                   | Parameter error.                           |
+| 201                   | Permission denied.                         |
+| 2302001<sup>12+</sup> | Websocket url error.                       |
+| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
+| 2302003<sup>12+</sup> | Websocket connection already exists.       |
+| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
+| 2302999<sup>10+</sup> | Websocket other unknown error.             |
+
+> **错误码说明：**
+> 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
 
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://";
@@ -165,7 +179,11 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 
 **需要权限**：ohos.permission.INTERNET
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
+
+**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
 
 **参数：**
 
@@ -177,25 +195,37 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 
 **错误码：**
 
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
-| 201     | Permission denied.      |
+| 错误码ID              | 错误信息                                   |
+| --------------------- | ------------------------------------------ |
+| 401                   | Parameter error.                           |
+| 201                   | Permission denied.                         |
+| 2302001<sup>12+</sup> | Websocket url error.                       |
+| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
+| 2302003<sup>12+</sup> | Websocket connection already exists.       |
+| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
+| 2302999<sup>10+</sup> | Websocket other unknown error.             |
+
+> **错误码说明：**
+> 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
 
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
-let header: Map<string, string> | undefined;
-if (header !=undefined) {
-    header.set("key", "value")
-    header.set("key2", "value2")
+let options: webSocket.WebSocketRequestOptions | undefined;
+if (options !=undefined) {
+  options.header = {
+     name1: "value1",
+     name2: "value2",
+     name3: "value3"
+  };
+  options.caPath = "";
 }
 let url = "ws://"
-ws.connect(url, header as webSocket.WebSocketRequestOptions, (err: BusinessError, value: Object) => {
+ws.connect(url, options, (err: BusinessError, value: Object) => {
   if (!err) {
     console.log("connect success");
   } else {
@@ -215,7 +245,11 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 **需要权限**：ohos.permission.INTERNET
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
+
+**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
 
 **参数：**
 
@@ -232,15 +266,23 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 **错误码：**
 
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
-| 201     | Permission denied.      |
+| 错误码ID              | 错误信息                                   |
+| --------------------- | ------------------------------------------ |
+| 401                   | Parameter error.                           |
+| 201                   | Permission denied.                         |
+| 2302001<sup>12+</sup> | Websocket url error.                       |
+| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
+| 2302003<sup>12+</sup> | Websocket connection already exists.       |
+| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
+| 2302999<sup>10+</sup> | Websocket other unknown error.             |
+
+> **错误码说明：**
+> 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
 
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
@@ -259,6 +301,8 @@ send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 通过WebSocket连接发送数据，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -279,13 +323,25 @@ send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
+class OutValue {
+  status: number = 0
+  message: string = ""
+}
 ws.connect(url, (err: BusinessError, value: boolean) => {
-  ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
+    if (!err) {
+      console.log("connect success");
+    } else {
+      console.log("connect fail, err:" + JSON.stringify(err))
+    }
+});
+ws.on('open', (err: BusinessError, value: Object) => {
+  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
+    ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("send success");
     } else {
@@ -295,6 +351,10 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
 });
 ```
 
+> **说明**
+>
+> send接口必须在监听到open事件后才可以调用。
+
 ### send<sup>6+</sup>
 
 send(data: string | ArrayBuffer): Promise\<boolean\>
@@ -302,6 +362,8 @@ send(data: string | ArrayBuffer): Promise\<boolean\>
 通过WebSocket连接发送数据，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -327,12 +389,25 @@ send(data: string | ArrayBuffer): Promise\<boolean\>
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
+class OutValue {
+  status: number = 0
+  message: string = ""
+}
 ws.connect(url, (err: BusinessError, value: boolean) => {
+    if (!err) {
+      console.log("connect success");
+    } else {
+      console.log("connect fail, err:" + JSON.stringify(err))
+    }
+});
+
+ws.on('open', (err: BusinessError, value: Object) => {
+  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
   let promise = ws.send("Hello, server!");
   promise.then((value: boolean) => {
     console.log("send success")
@@ -342,6 +417,10 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
 });
 ```
 
+> **说明**
+>
+> send接口必须在监听到open事件后才可以调用。
+
 ### close<sup>6+</sup>
 
 close(callback: AsyncCallback\<boolean\>): void
@@ -349,6 +428,8 @@ close(callback: AsyncCallback\<boolean\>): void
 关闭WebSocket连接，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -368,8 +449,8 @@ close(callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.close((err: BusinessError) => {
@@ -388,6 +469,8 @@ close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 根据可选参数code和reason，关闭WebSocket连接，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -408,8 +491,8 @@ close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 
@@ -435,6 +518,8 @@ close(options?: WebSocketCloseOptions): Promise\<boolean\>
 
 **需要权限**：ohos.permission.INTERNET
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -459,7 +544,7 @@ close(options?: WebSocketCloseOptions): Promise\<boolean\>
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 let options: webSocket.WebSocketCloseOptions | undefined;
@@ -481,6 +566,8 @@ on(type: 'open', callback: AsyncCallback\<Object\>): void
 
 订阅WebSocket的打开事件，使用callback方式作为异步方法。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -493,8 +580,8 @@ on(type: 'open', callback: AsyncCallback\<Object\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError, Callback } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError, Callback } from '@kit.BasicServicesKit';
 
 let ws= webSocket.createWebSocket();
 class OutValue {
@@ -515,6 +602,8 @@ off(type: 'open', callback?: AsyncCallback\<Object\>): void
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -527,8 +616,8 @@ off(type: 'open', callback?: AsyncCallback\<Object\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 class OutValue {
@@ -552,6 +641,8 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 > **说明：**
 > AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -564,8 +655,8 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('message', (err: BusinessError<void>, value: string | ArrayBuffer) => {
@@ -583,6 +674,8 @@ off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 > AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -595,7 +688,7 @@ off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.off('message');
@@ -606,6 +699,8 @@ ws.off('message');
 on(type: 'close', callback: AsyncCallback\<CloseResult\>): void
 
 订阅WebSocket的关闭事件，使用callback方式作为异步方法。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -619,8 +714,8 @@ on(type: 'close', callback: AsyncCallback\<CloseResult\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
@@ -637,6 +732,8 @@ off(type: 'close', callback?: AsyncCallback\<CloseResult\>): void
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -649,7 +746,7 @@ off(type: 'close', callback?: AsyncCallback\<CloseResult\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.off('close');
@@ -660,6 +757,8 @@ ws.off('close');
 on(type: 'error', callback: ErrorCallback): void
 
 订阅WebSocket的Error事件，使用callback方式作为异步方法。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -673,8 +772,8 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('error', (err: BusinessError) => {
@@ -691,6 +790,8 @@ off(type: 'error', callback?: ErrorCallback): void
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -703,7 +804,8 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
+
 let ws = webSocket.createWebSocket();
 ws.off('error');
 ```
@@ -726,7 +828,7 @@ on(type: 'dataEnd', callback: Callback\<void\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('dataEnd', () => {
@@ -755,7 +857,8 @@ off(type: 'dataEnd', callback?: Callback\<void\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
+
 let ws = webSocket.createWebSocket();
 ws.off('dataEnd');
 ```
@@ -778,7 +881,7 @@ on(type: 'headerReceive', callback: Callback\<ResponseHeaders\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('headerReceive', (data) => {
@@ -807,7 +910,8 @@ off(type: 'headerReceive', callback?: Callback\<ResponseHeaders\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
+
 let ws = webSocket.createWebSocket();
 ws.off('headerReceive');
 ```
@@ -818,13 +922,13 @@ ws.off('headerReceive');
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| header | Object | 否   | 建立WebSocket连接可选参数，代表建立连接时携带的HTTP头信息。参数内容自定义，也可以不指定。 |
-| caPath<sup>11+</sup> | string | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持格式为pem的文本证书。 |
-| clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | 否   | 支持传输客户端证书。 |
-| proxy<sup>12+</sup> | ProxyConfiguration | 否 | 通信过程中的代理信息，默认使用系统网络代理。 |
-| protocol<sup>12+</sup> | string | 否 | 自定义Sec-WebSocket-Protocol字段，默认为""。              |
+| 名称 | 类型 |  只读  | 可选 | 说明                                                         |
+| ------ | ------ |------ | ---- | ------------------------------------------------------------ |
+| header | Object |  否  |  是   | 建立WebSocket连接可选参数，代表建立连接时携带的HTTP头信息。参数内容自定义，也可以不指定。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| caPath<sup>11+</sup> | string |  否  |  是  | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持格式为pem的文本证书。 |
+| clientCert<sup>11+</sup> | [ClientCert](#clientcert11) |   否  |  是   | 支持传输客户端证书。 |
+| proxy<sup>12+</sup> | ProxyConfiguration |  否  | 是 | 通信过程中的代理信息，默认使用系统网络代理。 |
+| protocol<sup>12+</sup> | string |  否  | 是 | 自定义Sec-WebSocket-Protocol字段，默认为""。              |
 
 ## ClientCert<sup>11+</sup>
 
@@ -839,20 +943,23 @@ ws.off('headerReceive');
 | keyPassword | string | 否   | 证书秘钥的密码。 |
 
 ## ProxyConfiguration<sup>12+</sup>
+type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy
 
 网络代理配置信息
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetStack
 
-| 名称    | 类型   | 必填 | 说明                      |
-| ------ | ------ | --- |------------------------- |
-| 'system' | string | 否  |  使用系统默认网络代理。 |
-| 'no-proxy' | string | 否  |  不使用网络代理。 |
-| HttpProxy | Object | 否  | 使用指定的网络代理。 |
+|  类型   | 说明                      |
+| ------  |------------------------- |
+| 'system'   |  使用系统默认网络代理。 |
+| 'no-proxy' |  不使用网络代理。 |
+| [HttpProxy](js-apis-net-connection.md#httpproxy10)  | 使用指定的网络代理。 |
 
 ## WebSocketCloseOptions
 
 关闭WebSocket连接时，可选参数的类型和说明。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -865,6 +972,8 @@ ws.off('headerReceive');
 
 关闭WebSocket连接时，订阅close事件得到的关闭结果。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 | 名称 | 类型   | 必填 | 说明                                                         |
@@ -873,16 +982,15 @@ ws.off('headerReceive');
 | reason | string | 是   | 原因值，订阅close事件得到的关闭连接的错误原因。 |
 
 ## ResponseHeaders<sup>12+</sup>
+type ResponseHeaders = {[k: string]: string | string[] | undefined;}
 
 服务器发送的响应头。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 类型   | 必填 | 说明                                                         |
-| ------ | ---- | ------------------------------------------------------------ |
-| [k:string]:string | 否   | header数据类型为键值对 |
-| string[] | 否   | header数据类型为字符串 |
-| undefined | 否   | header数据类型为undefined |
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| {[k:string]:string \| string[] \| undefined} | header数据类型为键值对、字符串或者undefined |
 
 ## close错误码说明
 
@@ -897,3 +1005,15 @@ ws.off('headerReceive');
 | 1002      | 协议错误           |
 | 1003      | 无法处理的数据类型 |
 | 1004~1015 | 保留值             |
+
+## HttpProxy
+
+type HttpProxy = connection.HttpProxy
+
+网络全局代理配置信息。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| connection.HttpProxy | 使用指定的网络代理。    |

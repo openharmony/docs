@@ -9,10 +9,10 @@
 ## 导入模块
 
 ```ts
-import statvfs from '@ohos.file.statvfs';
+import { statfs } from '@kit.CoreFileKit';
 ```
 
-## statvfs.getFreeSize
+## statfs.getFreeSize
 
 getFreeSize(path:string):Promise&lt;number&gt;
 
@@ -39,19 +39,19 @@ getFreeSize(path:string):Promise&lt;number&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   
   let context = getContext(this) as common.UIAbilityContext;
   let path = context.filesDir;
-  statvfs.getFreeSize(path).then((number: number) => {
+  statfs.getFreeSize(path).then((number: number) => {
     console.info("getFreeSize succeed, Size: " + number);
   }).catch((err: BusinessError) => {
     console.error("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
-## statvfs.getFreeSize
+## statfs.getFreeSize
 
 getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 
@@ -73,12 +73,12 @@ getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   
   let context = getContext(this) as common.UIAbilityContext;
   let path = context.filesDir;
-  statvfs.getFreeSize(path, (err: BusinessError, number: number) => {
+  statfs.getFreeSize(path, (err: BusinessError, number: number) => {
     if (err) {
       console.error("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -87,7 +87,7 @@ getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
   });
   ```
 
-## statvfs.getFreeSizeSync<sup>10+</sup>
+## statfs.getFreeSizeSync<sup>10+</sup>
 
 getFreeSizeSync(path:string): number
 
@@ -114,15 +114,15 @@ getFreeSizeSync(path:string): number
 **示例：**
 
   ```ts
-  import common from '@ohos.app.ability.common';
+  import { common } from '@kit.AbilityKit';
   
   let context = getContext(this) as common.UIAbilityContext;
   let path = context.filesDir;
-  let number = statvfs.getFreeSizeSync(path);
+  let number = statfs.getFreeSizeSync(path);
   console.info("getFreeSizeSync succeed, Size: " + number);
   ```
 
-## statvfs.getTotalSize
+## statfs.getTotalSize
 
 getTotalSize(path: string): Promise&lt;number&gt;
 
@@ -149,19 +149,19 @@ getTotalSize(path: string): Promise&lt;number&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   
   let context = getContext(this) as common.UIAbilityContext;
   let path = context.filesDir;
-  statvfs.getTotalSize(path).then((number: number) => {
+  statfs.getTotalSize(path).then((number: number) => {
     console.info("getTotalSize succeed, Size: " + number);
   }).catch((err: BusinessError) => {
     console.error("getTotalSize failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
-## statvfs.getTotalSize
+## statfs.getTotalSize
 
 getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 
@@ -183,12 +183,12 @@ getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   
   let context = getContext(this) as common.UIAbilityContext;
   let path = context.filesDir;
-  statvfs.getTotalSize(path, (err: BusinessError, number: number) => {
+  statfs.getTotalSize(path, (err: BusinessError, number: number) => {
     if (err) {
       console.error("getTotalSize failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -197,7 +197,7 @@ getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
   });
   ```
 
-## statvfs.getTotalSizeSync<sup>10+</sup>
+## statfs.getTotalSizeSync<sup>10+</sup>
 
 getTotalSizeSync(path: string): number
 
@@ -224,10 +224,10 @@ getTotalSizeSync(path: string): number
 **示例：**
 
   ```ts
-  import common from '@ohos.app.ability.common';
+  import { common } from '@kit.AbilityKit';
   
   let context = getContext(this) as common.UIAbilityContext;
   let path = context.filesDir;
-  let number = statvfs.getTotalSizeSync(path);
+  let number = statfs.getTotalSizeSync(path);
   console.info("getTotalSizeSync succeed, Size: " + number);
   ```

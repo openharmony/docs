@@ -35,6 +35,7 @@ When creating an ECDH key agreement instance, you need to specify the algorithm 
 | ECC | ECC_BrainPoolP384t1 | 11+ | 
 | ECC | ECC_BrainPoolP512r1 | 11+ | 
 | ECC | ECC_BrainPoolP512t1 | 11+ | 
+| ECC | ECC_Secp256k1 | 14+ | 
 | ECC | ECC | 10+ | 
 
 

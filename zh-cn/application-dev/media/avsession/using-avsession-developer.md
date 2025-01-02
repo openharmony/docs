@@ -38,7 +38,7 @@
 1. 通过AVSessionManager的方法创建并激活媒体会话。
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    // 开始创建并激活媒体会话
    // 创建session
@@ -58,8 +58,8 @@
    音视频应用设置的媒体会话信息，会被媒体会话控制方通过AVSessionController相关方法获取后进行显示或处理。
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let context: Context = getContext(this);
    async function setSessionInfo() {
@@ -70,6 +70,7 @@
      let metadata: AVSessionManager.AVMetadata = {
        assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体
        title: 'TITLE',
+       mediaImage: 'IMAGE',
        artist: 'ARTIST'
      };
      session.setAVMetadata(metadata).then(() => {
@@ -132,14 +133,10 @@
 
 3. 设置用于被媒体会话控制方拉起的UIAbility。当用户操作媒体会话控制方的界面时，例如点击播控中心的卡片，可以拉起此处配置的UIAbility。
    设置UIAbility时通过WantAgent接口实现，更多关于WantAgent的信息请参考[WantAgent](../../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)。
- 
-   ```ts
-   import wantAgent from "@ohos.app.ability.wantAgent";
-   ```
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import wantAgent from '@ohos.app.ability.wantAgent';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { wantAgent } from '@kit.AbilityKit';
 
    let context: Context = getContext(this);
    async function getWantAgent() {
@@ -150,10 +147,11 @@
        wants: [
          {
            bundleName: 'com.example.musicdemo',
-           abilityName: 'com.example.musicdemo.MainAbility'
+           abilityName: 'MainAbility'
          }
        ],
-       operationType: wantAgent.OperationType.START_ABILITIES,
+       // OperationType.START_ABILITIES
+       operationType: 2,
        requestCode: 0,
        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
      }
@@ -170,8 +168,8 @@
 
    ```ts
 
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let context: Context = getContext(this);
    async function dispatchSessionEvent() {
@@ -194,8 +192,8 @@
    > 通过setExtras方法设置的数据包会被存储在AVSession服务中，数据的生命周期与会话一致；会话对应的Controller可以使用getExtras来获取该数据。
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let context: Context = getContext(this);
    async function setExtras() {
@@ -218,12 +216,12 @@
 
    > **说明：**
    >
-   > 媒体会话提供方在注册相关固定播控命令事件监听时，监听的事件会在媒体会话控制方的getValidCommands()方法中体现，即媒体会话控制方会认为对应的方法有效，进而根据需要触发相应的事件。为了保证媒体会话控制方下发的播控命令可以被正常执行，媒体会话提供方请勿进行无逻辑的空实现监听。
+   > 媒体会话提供方在注册相关固定播控命令事件监听时，监听的事件会在媒体会话控制方的getValidCommands()方法中体现，即媒体会话控制方会认为对应的方法有效，进而根据需要触发相应暂不使用时的事件。为了保证媒体会话控制方下发的播控命令可以被正常执行，媒体会话提供方请勿进行无逻辑的空实现监听。
 
-   Session侧的固定播控命令主要包括播放、暂停、上一首、下一首等基础操作命令，详细介绍请参见[AVControlCommand](../../reference/apis-avsession-kit/js-apis-avsession.md)
+   Session侧的固定播控命令主要包括播放、暂停、上一首、下一首等基础操作命令，详细介绍请参见[AVControlCommand](../../reference/apis-avsession-kit/js-apis-avsession.md#avcontrolcommand10)
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function setListenerForMesFromController() {
@@ -234,36 +232,43 @@
      // 不要忘记处理完后需要通过set接口同步播放相关信息，参考上面的用例
      session.on('play', () => {
        console.info(`on play , do play task`);
-       // do some tasks ···
+       // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('play')取消监听
+       // 处理完毕后，请使用SetAVPlayState上报播放状态
      });
      session.on('pause', () => {
        console.info(`on pause , do pause task`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('pause')取消监听
+        // 处理完毕后，请使用SetAVPlayState上报播放状态
      });
      session.on('stop', () => {
        console.info(`on stop , do stop task`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('stop')取消监听
+        // 处理完毕后，请使用SetAVPlayState上报播放状态
      });
      session.on('playNext', () => {
        console.info(`on playNext , do playNext task`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('playNext')取消监听
+        // 处理完毕后，请使用SetAVPlayState上报播放状态，使用SetAVMetadata上报媒体信息
      });
      session.on('playPrevious', () => {
        console.info(`on playPrevious , do playPrevious task`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('playPrevious')取消监听
+        // 处理完毕后，请使用SetAVPlayState上报播放状态，使用SetAVMetadata上报媒体信息
      });
      session.on('fastForward', () => {
        console.info(`on fastForward , do fastForward task`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('fastForward')取消监听
+        // 处理完毕后，请使用SetAVPlayState上报播放状态和播放position
      });
      session.on('rewind', () => {
        console.info(`on rewind , do rewind task`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('rewind')取消监听
+        // 处理完毕后，请使用SetAVPlayState上报播放状态和播放position
      });
-
      session.on('seek', (time) => {
        console.info(`on seek , the seek time is ${time}`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('seek')取消监听
+        // 处理完毕后，请使用SetAVPlayState上报播放状态和播放position
      });
      session.on('setSpeed', (speed) => {
        console.info(`on setSpeed , the speed is ${speed}`);
@@ -271,11 +276,13 @@
      });
      session.on('setLoopMode', (mode) => {
        console.info(`on setLoopMode , the loop mode is ${mode}`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('setLoopMode')取消监听
+        // 应用自定下一个模式，处理完毕后，请使用SetAVPlayState上报切换后的LoopMode
      });
      session.on('toggleFavorite', (assetId) => {
        console.info(`on toggleFavorite , the target asset Id is ${assetId}`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('toggleFavorite')取消监听
+        // 处理完毕后，请使用SetAVPlayState上报收藏结果isFavorite
      });
    }
    ```
@@ -290,7 +297,7 @@
    - commonCommand: 自定义控制命令变化的事件。
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function setListenerForMesFromController() {
@@ -321,7 +328,7 @@
 7. 获取当前媒体会话自身的控制器，与媒体会话对应进行通信交互。
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function createControllerFromSession() {
@@ -350,7 +357,7 @@
    取消播控命令监听的示例代码如下所示 ：
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function unregisterSessionListener() {
@@ -374,7 +381,7 @@
      销毁媒体会话示例代码如下所示：
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function destroySession() {

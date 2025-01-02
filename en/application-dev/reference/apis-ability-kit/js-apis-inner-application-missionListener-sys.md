@@ -1,6 +1,6 @@
 # MissionListener (System API)
 
-The **MissionListener** module defines the listeners used to observe the mission status. The listeners can be registered by using [on](js-apis-app-ability-missionManager-sys.md#missionmanageron).
+The MissionListener module defines the listeners used to observe the mission status. The listeners can be registered by using [on](js-apis-app-ability-missionManager-sys.md#missionmanageronmission).
 
 > **NOTE**
 > 
@@ -10,7 +10,7 @@ The **MissionListener** module defines the listeners used to observe the mission
 ## Modules to Import
 
 ```ts
-import missionManager from '@ohos.app.ability.missionManager';
+import { missionManager } from '@kit.AbilityKit';
 ```
 
 ## Attributes
@@ -31,7 +31,8 @@ import missionManager from '@ohos.app.ability.missionManager';
 
 **Example**
 ```ts
-import missionManager from '@ohos.app.ability.missionManager';
+import { missionManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let listener: missionManager.MissionListener = {
   onMissionCreated: (mission) => {
@@ -51,16 +52,16 @@ let listener: missionManager.MissionListener = {
   },
   onMissionIconUpdated: (mission, icon) => {
     console.log(`onMissionIconUpdated mission: ${JSON.stringify(mission)}`);
-    console.log(`onMissionIconUpdated icon: ${JSON.stringify(mission)}`);
+    console.log(`onMissionIconUpdated icon: ${JSON.stringify(icon)}`);
   },
   onMissionClosed: (mission) => {
     console.log(`onMissionClosed mission: ${JSON.stringify(mission)}`);
-    }
+  }
 };
 
 try {
   let listenerId = missionManager.on('mission', listener);
 } catch (paramError) {
-  console.error(`error: ${paramError.code}, ${paramError.message}`);
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
 }
 ```

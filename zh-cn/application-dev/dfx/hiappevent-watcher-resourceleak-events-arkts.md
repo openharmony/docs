@@ -13,12 +13,18 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 以实现对发生内存泄漏场景生成的资源泄漏事件订阅为例，说明开发步骤。
 
-1. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，在onCreate函数中添加系统事件的订阅，完整示例代码如下：
+1. 新建一个ArkTS应用工程，编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，导入依赖模块：
+
+   ```ts
+   import { hiAppEvent, hilog, hidebug } from '@kit.PerformanceAnalysisKit';
+   ```
+
+2. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，在onCreate函数中添加系统事件的订阅，示例代码如下：
 
    ```ts
     hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
-      name: "watcher3",
+      name: "watcher",
       // 开发者可以订阅感兴趣的系统事件，此处是订阅了资源泄漏事件
       appEventFilters: [
         {
@@ -41,17 +47,44 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     });
    ```
 
-2. 运行`hdc shell param set hiview.memleak.test enable`，使能内存泄漏检测测试，原泄漏检测周期为200s，使能后，周期为5s。
+3. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造资源泄漏场景，以触发资源泄漏事件。
+   此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存内存泄漏，需要同步在“开发者选项”中打开“系统资源泄漏日志”，并重启设备。接口示例代码如下：
 
-   运行`hdc shell killall hiview`，重启hiview，使能内存检测测试才会生效。
+   ```ts
+    import hidebug from "@ohos.hidebug";
 
-3. 点击IDE界面中的运行按钮，运行应用工程，hiview连续5次检测到应用内存超基线（RSS超过1228800KB），会上报应用内存泄漏事件。
-   同一个应用，5小时内至多上报一次内存泄漏，如果短时间内要二次上报，需要重启hiview
+    @Entry
+    @Component
+    struct Index {
+      @State leakedArray: string[][] = [];
 
-4. 内存泄漏事件上报后，系统会回调应用的onReceive函数，可以在Log窗口看到对系统事件数据的处理日志：
+      build() {
+        Column() {
+          Row() {
+            Column() {
+              Button("pss leak")
+                .onClick(() => {
+                  hidebug.setAppResourceLimit("pss_memory", 1024, true);
+                  for (let i = 0; i < 20 * 1024; i++) {
+                    this.leakedArray.push(new Array(1).fill("leak"));
+                  }
+                })
+            }
+          }
+          .height('100%')
+          .width('100%')
+        }
+      }
+    }
+   ```
+
+4. 点击DevEco Studio界面中的运行按钮，运行应用工程，等待15~30分钟，会上报应用内存泄漏事件。
+   同一个应用，24小时内至多上报一次内存泄漏，如果短时间内要二次上报，需要重启设备。
+
+5. 内存泄漏事件上报后，系统会回调应用的onReceive函数，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
    HiAppEvent onReceive: domain=OS
    HiAppEvent eventName=RESOURCE_OVERLIMIT
-   HiAppEvent eventInfo={"domain":"OS","name":"RESOURCE_OVERLIMIT","eventType":1,"params":{"bundle_name":"com.example.myapplication","bundle_version"::"1.0.0","memory":{"pss":2100257,"rss":1352644,"sys_avail_mem":250272,"sys_free_mem":60004,"sys_total_mem":1992340,"vss":2462936},"pid":20731,"resource_type":"pss_memory","time":1502348798106,"uid":20010044}}
+   HiAppEvent eventInfo={"domain":"OS","name":"RESOURCE_OVERLIMIT","eventType":1,"params":{"bundle_name":"com.example.myapplication","bundle_version":"1.0.0","memory":{"pss":2100257,"rss":1352644,"sys_avail_mem":250272,"sys_free_mem":60004,"sys_total_mem":1992340,"vss":2462936},"pid":20731,"resource_type":"pss_memory","time":1502348798106,"uid":20010044,"external_log": ["/data/storage/el2/log/resourcelimit/RESOURCE_OVERLIMIT_1725614572401_6808.log", "/data/storage/el2/log/resourcelimit/RESOURCE_OVERLIMIT_1725614572412_6808.log"], "log_over_limit": false}}
    ```

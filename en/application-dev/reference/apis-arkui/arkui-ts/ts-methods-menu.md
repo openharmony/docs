@@ -1,20 +1,29 @@
-# Menu
+# ContextMenu
 
-The menu bound to a component through [bindContextMenu](./ts-universal-attributes-menu.md#bindcontextmenu8) on a page can be closed as needed.
+The menu bound to a component through [bindContextMenu](./ts-universal-attributes-menu.md#bindcontextmenu12) on a page can be closed as needed.
 
 >  **NOTE**
 >
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
+>
+> Since API version 12, you can use the [getContextMenuController](../js-apis-arkui-UIContext.md#contextmenucontroller12) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
 
 ## ContextMenu.close
 
-|Name|Description|
-|----|---|
-| close() | Closes the menu bound to this component through [bindContextMenu](./ts-universal-attributes-menu.md#bindcontextmenu8) on a page.|
+static close()
+
+Closes the menu bound to this component through [bindContextMenu](./ts-universal-attributes-menu.md#bindcontextmenu12) on a page.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
 ## Example
+
+>  **NOTE**
+>
+> For clarity in UI execution context, you are advised to use the [getContextMenuController](../js-apis-arkui-UIContext.md#contextmenucontroller12) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext).
 
 ```ts
 // xxx.ets
@@ -46,7 +55,7 @@ struct Index {
       .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
       .onDragStart(()=>{
         // Close the menu when the component is dragged.
-        ContextMenu.close()
+        ContextMenu.close() // You are advised to use this.getUIContext().getContextMenuController().close().
       })
     }
     .width('100%')

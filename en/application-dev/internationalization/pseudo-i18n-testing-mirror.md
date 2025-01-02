@@ -10,8 +10,8 @@ The pseudo-localization testing for UI mirroring aims to check whether the text 
 
    You can switch the locale through the code (system permission required):
    ```ts
-   import I18n from '@ohos.i18n'
-   I18n.System.setSystemLanguage('ar-XB')
+   import { i18n } from '@kit.LocalizationKit';
+   i18n.System.setSystemLanguage('ar-XB')
    ```
 
 2. Traverse the applications to be tested.

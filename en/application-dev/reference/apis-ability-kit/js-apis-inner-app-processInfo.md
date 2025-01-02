@@ -16,12 +16,13 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Readable| Writable| Description|
+| Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | Yes| No| Process ID.|
-| processName | string | Yes| No| Process name.|
+| pid | number | Yes | No | Process ID. |
+| processName | string | Yes | No | Process name. |
 
 **Example**
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 

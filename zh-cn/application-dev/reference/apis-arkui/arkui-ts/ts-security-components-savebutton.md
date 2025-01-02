@@ -1,80 +1,118 @@
 # SaveButton
 
-
 安全控件的保存控件，用户通过点击该保存按钮，可以临时获取存储权限，而不需要权限弹框授权确认。
-
 
 > **说明：**
 >
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
 ## 子组件
 
 不支持。
 
-
 ## 接口
 
 ### SaveButton
+
 SaveButton()
 
 默认创建带有图标、文本、背景的保存按钮。
 
+为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### SaveButton
-SaveButton(option:SaveButtonOptions)
+
+SaveButton(options:SaveButtonOptions)
 
 创建包含指定元素的保存按钮。
 
+为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| option | [SaveButtonOptions](#savebuttonoptions) | 否 | 创建包含指定元素的保存按钮。 |
+| options | [SaveButtonOptions](#savebuttonoptions) | 是 | 创建包含指定元素的保存按钮。 |
 
 ## SaveButtonOptions
 
-| 名称 | 类型 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- |
-| icon | [SaveIconStyle](#saveiconstyle枚举说明) | 否 | 设置保存按钮的图标风格<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
-| text | [SaveDescription](#savedescription枚举说明) | 否 | 设置保存按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
-| buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置保存按钮的背景样式<br/>不传入该参数表示没有背景。 |
+用于指定保存按钮的图标、文本等指定元素。
 
+> **说明：**
+> 
+> - icon或text需至少传入一个。<br>
+> - 如果icon、text都不传入，[SaveButton](#savebutton-1)中的options参数不起效，创建的SaveButton为默认样式，默认样式：
+>
+>   SaveIconStyle默认样式为FULL_FILLED；
+>
+>   SaveDescription默认样式为DOWNLOAD；
+>
+>   ButtonType默认样式为Capsule。
+> - icon、text、buttonType不支持动态修改。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| icon | [SaveIconStyle](#saveiconstyle枚举说明) | 否 | 设置保存按钮的图标风格<br/>不传入该参数表示没有图标。 |
+| text | [SaveDescription](#savedescription枚举说明) | 否 | 设置保存按钮的文本描述<br/>不传入该参数表示没有文字描述。 |
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置保存按钮的背景样式<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
 
 ## SaveIconStyle枚举说明
 
-| 名称 | 枚举值 | 描述 |
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | FULL_FILLED | 0 | 保存按钮展示填充样式图标。 |
 | LINES | 1 | 保存按钮展示线条样式图标。 |
 
-
 ## SaveDescription枚举说明
 
-| 名称 | 枚举值 | 描述 |
-| -------- | -------- | -------- |
-| DOWNLOAD | 0 | 保存按钮的文字描述为“下载”。 |
-| DOWNLOAD_FILE | 1 | 保存按钮的文字描述为“下载文件”。 |
-| SAVE | 2 | 保存按钮的文字描述为“保存”。 |
-| SAVE_IMAGE | 3 | 保存按钮的文字描述为“保存图片”。 |
-| SAVE_FILE | 4 | 保存按钮的文字描述为“保存文件”。 |
-| DOWNLOAD_AND_SHARE | 5 | 保存按钮的文字描述为“下载分享”。 |
-| RECEIVE | 6 | 保存按钮的文字描述为“接收”。 |
-| CONTINUE_TO_RECEIVE | 7 | 保存按钮的文字描述为“继续接收”。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| DOWNLOAD | 0 | 保存按钮的文字描述为“下载”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| DOWNLOAD_FILE | 1 | 保存按钮的文字描述为“下载文件”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| SAVE | 2 | 保存按钮的文字描述为“保存”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| SAVE_IMAGE | 3 | 保存按钮的文字描述为“保存图片”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| SAVE_FILE | 4 | 保存按钮的文字描述为“保存文件”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| DOWNLOAD_AND_SHARE | 5 | 保存按钮的文字描述为“下载分享”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| RECEIVE | 6 | 保存按钮的文字描述为“接收”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| CONTINUE_TO_RECEIVE | 7 | 保存按钮的文字描述为“继续接收”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| SAVE_TO_GALLERY<sup>12+</sup> | 8 | 保存按钮的文字描述为“保存至图库”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| EXPORT_TO_GALLERY<sup>12+</sup> | 9 | 保存按钮的文字描述为“导出”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| QUICK_SAVE_TO_GALLERY<sup>12+</sup> | 10 | 保存按钮的文字描述为“快速保存图片”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| RESAVE_TO_GALLERY<sup>12+</sup> | 11 | 保存按钮的文字描述为“重新保存”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| SAVE_ALL<sup>16+</sup> | 12 | 保存按钮的文字描述为“全部保存”。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 ## SaveButtonOnClickResult枚举说明
 
-| 名称 | 枚举值 | 描述 |
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | SUCCESS | 0 | 保存按钮点击成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 保存按钮点击后权限授权失败。 |
 
-
 ## 属性
 
 不支持通用属性，仅继承[安全控件通用属性](ts-securitycomponent-attributes.md#属性)。
-
 
 ## 事件
 
@@ -86,6 +124,8 @@ onClick(event: (event: ClickEvent, result: SaveButtonOnClickResult) =&gt; void)
 
 点击动作触发该回调
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -95,13 +135,12 @@ onClick(event: (event: ClickEvent, result: SaveButtonOnClickResult) =&gt; void)
 | event  | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明|
 | result | [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)| 是 | 存储权限的授权结果，授权时长为10秒，即触发点击后，可以在10秒之内不限制次数的调用特定媒体库接口，超出10秒的调用会鉴权失败。|
 
-
 ## 示例
 
-```
+```ts
 // xxx.ets
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import fs from '@ohos.file.fs';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 @Entry
 @Component
@@ -118,22 +157,35 @@ struct Index {
               // onClick触发后10秒内通过createAsset接口创建图片文件，10秒后createAsset权限收回。
               let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'png');
               // 使用uri打开文件，可以持续写入内容，写入过程不受时间限制
-              let file = await fs.open(uri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+              let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
               // 写入文件
-              await fs.write(file.fd, "context");
+              await fileIo.write(file.fd, "context");
               // 关闭文件
-              await fs.close(file.fd);
+              await fileIo.close(file.fd);
             } catch (error) {
               console.error("error is "+ JSON.stringify(error));
             }
           }
         })
-        // 传入参数即表示元素存在，不传入的参数表示元素不存在，例如：只显示图标
+        // 传入参数即表示元素存在，不传入的参数表示元素不存在，如果不传入buttonType，会默认添加ButtonType.Capsule配置，显示图标+背景。
         SaveButton({icon:SaveIconStyle.FULL_FILLED})
-        // 只显示图标+背景
+        // 只显示图标+背景，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF
         SaveButton({icon:SaveIconStyle.FULL_FILLED, buttonType:ButtonType.Capsule})
-        // 图标、文字、背景都存在
+          .backgroundColor(0x10007dff)
+        // 图标、文字、背景都存在，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF
         SaveButton({icon:SaveIconStyle.FULL_FILLED, text:SaveDescription.DOWNLOAD, buttonType:ButtonType.Capsule})
+        // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
+        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:SaveDescription.DOWNLOAD, buttonType:ButtonType.Capsule})
+          .fontSize(16)
+          .width(30)
+        // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
+        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:SaveDescription.DOWNLOAD, buttonType:ButtonType.Capsule})
+          .fontSize(16)
+          .size({width: 30, height: 30})
+        // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
+        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:SaveDescription.DOWNLOAD, buttonType:ButtonType.Capsule})
+          .fontSize(16)
+          .constraintSize({minWidth: 0, maxWidth: 30, minHeight: 0, maxHeight: 30})
       }.width('100%')
     }.height('100%')
   }

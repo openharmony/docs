@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```js
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
+import { inputMonitor } from '@kit.InputKit';
 ```
 
 ## 接口说明
@@ -36,7 +36,7 @@ import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 当应用需要根据鼠标按键按下状态变化样式时。调用[on](../../reference/apis-input-kit/js-apis-inputmonitor-sys.md#inputmonitoronmouse9)监听鼠标按键事件，调用[off](../../reference/apis-input-kit/js-apis-inputmonitor-sys.md#inputmonitoroffmouse9)取消监听鼠标按键事件.
 
 ```js
-import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
+import { MouseEvent } from '@kit.InputKit';
 
 let BUTTON_DOWN = 2;
 let callback = (mouseEvent: MouseEvent) => {

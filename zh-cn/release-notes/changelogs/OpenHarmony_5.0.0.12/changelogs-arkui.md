@@ -317,3 +317,22 @@ struct ComponentChild {
 **参考文档**
 
 [自定义组件成员属性访问限定符使用限制](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-custom-components-access-restrictions.md)
+
+
+6.由于AnimatorResult 中的onframe,onfinish,oncancel,onrepeat方法不符合语法规范，所以新增接口 onFrame,onFinish,onCancel,onRepeat。
+
+**API Level**
+
+起始支持版本为 API 12。
+
+**增加发生版本**
+
+从OpenHarmony SDK 5.0.0.12开始。
+
+**适配指导**
+
+开发者如果继承AnimatorResult接口。则需要新增nFrame,onFinish,onCancel,onRepeat方法的实现。
+
+**参考文档**
+
+[animator动画](../../../application-dev/reference/apis-arkui/js-apis-animator.md)

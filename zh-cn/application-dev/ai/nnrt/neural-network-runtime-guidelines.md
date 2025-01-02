@@ -18,7 +18,7 @@ Neural Network Runtime部件的环境要求如下：
 - 开发环境：Ubuntu 18.04及以上。
 - 接入设备：系统定义的标准设备，系统中内置AI硬件驱动并已接入Neural Network Runtime。
 
-由于Neural Network Runtime通过OpenHarmony Native API对外开放，需要通过OpenHarmony的Native开发套件编译Neural Network Runtime应用。在社区的每日构建中下载对应系统版本的ohos-sdk压缩包，从压缩包中提取对应平台的Native开发套件。以Linux为例，Native开发套件的压缩包命名为`native-linux-{版本号}.zip`。
+由于Neural Network Runtime通过Native API对外开放，需要通过Native开发套件编译Neural Network Runtime应用。在社区的每日构建中下载对应系统版本的ohos-sdk压缩包，从压缩包中提取对应平台的Native开发套件。以Linux为例，Native开发套件的压缩包命名为`native-linux-{版本号}.zip`。
 
 ### 环境搭建
 
@@ -166,21 +166,12 @@ Neural Network Runtime的开发流程主要包含**模型构造**、**模型编�
     ```cpp
     #include <iostream>
     #include <cstdarg>
-    #include "hilog/log.h"
     #include "neural_network_runtime/neural_network_runtime.h"
     ```
 
 3. 定义日志打印、设置输入数据、数据打印等辅助函数。
 
     ```cpp
-    #define LOG_DOMAIN 0xD002101
-    #define LOG_TAG "NNRt"
-    #define LOGD(...) OH_LOG_DEBUG(LOG_APP, __VA_ARGS__)
-    #define LOGI(...) OH_LOG_INFO(LOG_APP, __VA_ARGS__)
-    #define LOGW(...) OH_LOG_WARN(LOG_APP, __VA_ARGS__)
-    #define LOGE(...) OH_LOG_ERROR(LOG_APP, __VA_ARGS__)
-    #define LOGF(...) OH_LOG_FATAL(LOG_APP, __VA_ARGS__)
-
     // 返回值检查宏
     #define CHECKNEQ(realRet, expectRet, retValue, ...) \
         do { \
@@ -286,110 +277,110 @@ Neural Network Runtime的开发流程主要包含**模型构造**、**模型编�
     {
         // 创建模型实例model，进行模型构造
         OH_NNModel* model = OH_NNModel_Construct();
-        CHECKEQ(model, nullptr, -1, "Create model failed.");
+        CHECKEQ(model, nullptr, OH_NN_FAILED, "Create model failed.");
 
         // 添加Add算子的第一个输入张量，类型为float32，张量形状为[1, 2, 2, 3]
         NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
-        CHECKEQ(tensorDesc, nullptr, -1, "Create TensorDesc failed.");
+        CHECKEQ(tensorDesc, nullptr, OH_NN_FAILED, "Create TensorDesc failed.");
 
         int32_t inputDims[4] = {1, 2, 2, 3};
-        returnCode = OH_NNTensorDesc_SetShape(tensorDesc, inputDims, 4);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc shape failed.");
+        auto returnCode = OH_NNTensorDesc_SetShape(tensorDesc, inputDims, 4);
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc shape failed.");
 
         returnCode = OH_NNTensorDesc_SetDataType(tensorDesc, OH_NN_FLOAT32);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc data type failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc data type failed.");
 
         returnCode = OH_NNTensorDesc_SetFormat(tensorDesc, OH_NN_FORMAT_NONE);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc format failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc format failed.");
 
         returnCode = OH_NNModel_AddTensorToModel(model, tensorDesc);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Add first TensorDesc to model failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Add first TensorDesc to model failed.");
 
         returnCode = OH_NNModel_SetTensorType(model, 0, OH_NN_TENSOR);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set model tensor type failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set model tensor type failed.");
 
         // 添加Add算子的第二个输入张量，类型为float32，张量形状为[1, 2, 2, 3]
         tensorDesc = OH_NNTensorDesc_Create();
-        CHECKEQ(tensorDesc, nullptr, -1, "Create TensorDesc failed.");
+        CHECKEQ(tensorDesc, nullptr, OH_NN_FAILED, "Create TensorDesc failed.");
 
         returnCode = OH_NNTensorDesc_SetShape(tensorDesc, inputDims, 4);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc shape failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc shape failed.");
 
         returnCode = OH_NNTensorDesc_SetDataType(tensorDesc, OH_NN_FLOAT32);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc data type failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc data type failed.");
 
         returnCode = OH_NNTensorDesc_SetFormat(tensorDesc, OH_NN_FORMAT_NONE);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc format failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc format failed.");
 
         returnCode = OH_NNModel_AddTensorToModel(model, tensorDesc);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Add second TensorDesc to model failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Add second TensorDesc to model failed.");
 
         returnCode = OH_NNModel_SetTensorType(model, 1, OH_NN_TENSOR);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set model tensor type failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set model tensor type failed.");
 
         // 添加Add算子的参数张量，该参数张量用于指定激活函数的类型，张量的数据类型为int8。
         tensorDesc = OH_NNTensorDesc_Create();
-        CHECKEQ(tensorDesc, nullptr, -1, "Create TensorDesc failed.");
+        CHECKEQ(tensorDesc, nullptr, OH_NN_FAILED, "Create TensorDesc failed.");
 
         int32_t activationDims = 1;
         returnCode = OH_NNTensorDesc_SetShape(tensorDesc, &activationDims, 1);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc shape failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc shape failed.");
 
         returnCode = OH_NNTensorDesc_SetDataType(tensorDesc, OH_NN_INT8);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc data type failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc data type failed.");
 
         returnCode = OH_NNTensorDesc_SetFormat(tensorDesc, OH_NN_FORMAT_NONE);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc format failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc format failed.");
 
         returnCode = OH_NNModel_AddTensorToModel(model, tensorDesc);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Add second TensorDesc to model failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Add second TensorDesc to model failed.");
 
         returnCode = OH_NNModel_SetTensorType(model, 2, OH_NN_ADD_ACTIVATIONTYPE);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set model tensor type failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set model tensor type failed.");
 
-        // 将激活函数类型设置为OH_NNBACKEND_FUSED_NONE，表示该算子不添加激活函数。
+        // 将激活函数类型设置为OH_NN_FUSED_NONE，表示该算子不添加激活函数。
         int8_t activationValue = OH_NN_FUSED_NONE;
         returnCode = OH_NNModel_SetTensorData(model, 2, &activationValue, sizeof(int8_t));
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set model tensor data failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set model tensor data failed.");
 
         // 设置Add算子的输出张量，类型为float32，张量形状为[1, 2, 2, 3]
         tensorDesc = OH_NNTensorDesc_Create();
-        CHECKEQ(tensorDesc, nullptr, -1, "Create TensorDesc failed.");
+        CHECKEQ(tensorDesc, nullptr, OH_NN_FAILED, "Create TensorDesc failed.");
 
         returnCode = OH_NNTensorDesc_SetShape(tensorDesc, inputDims, 4);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc shape failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc shape failed.");
 
         returnCode = OH_NNTensorDesc_SetDataType(tensorDesc, OH_NN_FLOAT32);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc data type failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc data type failed.");
 
         returnCode = OH_NNTensorDesc_SetFormat(tensorDesc, OH_NN_FORMAT_NONE);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc format failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc format failed.");
 
         returnCode = OH_NNModel_AddTensorToModel(model, tensorDesc);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Add forth TensorDesc to model failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Add forth TensorDesc to model failed.");
 
         returnCode = OH_NNModel_SetTensorType(model, 3, OH_NN_TENSOR);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set model tensor type failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set model tensor type failed.");
 
         // 指定Add算子的输入张量、参数张量和输出张量的索引
         uint32_t inputIndicesValues[2] = {0, 1};
         uint32_t paramIndicesValues = 2;
         uint32_t outputIndicesValues = 3;
-        OH_NN_UInt32Array paramIndices = {&paramIndicesValues, 1 * 4};
-        OH_NN_UInt32Array inputIndices = {inputIndicesValues, 2 * 4};
-        OH_NN_UInt32Array outputIndices = {&outputIndicesValues, 1 * 4};
+        OH_NN_UInt32Array paramIndices = {&paramIndicesValues, 1};
+        OH_NN_UInt32Array inputIndices = {inputIndicesValues, 2};
+        OH_NN_UInt32Array outputIndices = {&outputIndicesValues, 1};
 
         // 向模型实例添加Add算子
         returnCode = OH_NNModel_AddOperation(model, OH_NN_OPS_ADD, &paramIndices, &inputIndices, &outputIndices);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Add operation to model failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Add operation to model failed.");
 
         // 设置模型实例的输入张量、输出张量的索引
         returnCode = OH_NNModel_SpecifyInputsAndOutputs(model, &inputIndices, &outputIndices);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Specify model inputs and outputs failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Specify model inputs and outputs failed.");
 
         // 完成模型实例的构建
         returnCode = OH_NNModel_Finish(model);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Build model failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Build model failed.");
 
         // 返回模型实例
         *pmodel = model;
@@ -429,32 +420,32 @@ Neural Network Runtime的开发流程主要包含**模型构造**、**模型编�
     {
         // 创建编译实例compilation，将构图的模型实例或MSLite传下来的模型实例传入
         OH_NNCompilation* compilation = OH_NNCompilation_Construct(model);
-        CHECKEQ(compilation, nullptr, -1, "OH_NNCore_ConstructCompilationWithNNModel failed.");
+        CHECKEQ(compilation, nullptr, OH_NN_FAILED, "OH_NNCore_ConstructCompilationWithNNModel failed.");
 
         // 设置编译的硬件、缓存路径、性能模式、计算优先级、是否开启float16低精度计算等选项
         // 选择在第一个设备上编译模型
-        returnCode = OH_NNCompilation_SetDevice(compilation, availableDevice[0]);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNCompilation_SetDevice failed.");
+        auto returnCode = OH_NNCompilation_SetDevice(compilation, availableDevice[0]);
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNCompilation_SetDevice failed.");
 
         // 将模型编译结果缓存在/data/local/tmp目录下，版本号指定为1
         returnCode = OH_NNCompilation_SetCache(compilation, "/data/local/tmp", 1);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNCompilation_SetCache failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNCompilation_SetCache failed.");
 
         // 设置硬件性能模式
         returnCode = OH_NNCompilation_SetPerformanceMode(compilation, OH_NN_PERFORMANCE_EXTREME);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNCompilation_SetPerformanceMode failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNCompilation_SetPerformanceMode failed.");
 
         // 设置推理执行优先级
         returnCode = OH_NNCompilation_SetPriority(compilation, OH_NN_PRIORITY_HIGH);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNCompilation_SetPriority failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNCompilation_SetPriority failed.");
 
         // 是否开启FP16计算模式
         returnCode = OH_NNCompilation_EnableFloat16(compilation, false);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNCompilation_EnableFloat16 failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNCompilation_EnableFloat16 failed.");
 
         // 执行模型编译
         returnCode = OH_NNCompilation_Build(compilation);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNCompilation_Build failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNCompilation_Build failed.");
 
         *pCompilation = compilation;
         return OH_NN_SUCCESS;
@@ -469,7 +460,7 @@ Neural Network Runtime的开发流程主要包含**模型构造**、**模型编�
     {
         // 通过编译实例compilation创建执行器executor
         OH_NNExecutor *executor = OH_NNExecutor_Construct(compilation);
-        CHECKEQ(executor, nullptr, -1, "OH_NNExecutor_Construct failed.");
+        CHECKEQ(executor, nullptr, nullptr, "OH_NNExecutor_Construct failed.");
         return executor;
     }
     ```
@@ -483,25 +474,25 @@ Neural Network Runtime的开发流程主要包含**模型构造**、**模型编�
         // 从executor获取输入输出信息
         // 获取输入张量的个数
         size_t inputCount = 0;
-        returnCode = OH_NNExecutor_GetInputCount(executor, &inputCount);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNExecutor_GetInputCount failed.");
+        auto returnCode = OH_NNExecutor_GetInputCount(executor, &inputCount);
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNExecutor_GetInputCount failed.");
         std::vector<NN_TensorDesc*> inputTensorDescs;
         NN_TensorDesc* tensorDescTmp = nullptr;
         for (size_t i = 0; i < inputCount; ++i) {
             // 创建输入张量的描述
             tensorDescTmp = OH_NNExecutor_CreateInputTensorDesc(executor, i);
-            CHECKEQ(tensorDescTmp, nullptr, -1, "OH_NNExecutor_CreateInputTensorDesc failed.");
+            CHECKEQ(tensorDescTmp, nullptr, OH_NN_FAILED, "OH_NNExecutor_CreateInputTensorDesc failed.");
             inputTensorDescs.emplace_back(tensorDescTmp);
         }
         // 获取输出张量的个数
         size_t outputCount = 0;
         returnCode = OH_NNExecutor_GetOutputCount(executor, &outputCount);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNExecutor_GetOutputCount failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNExecutor_GetOutputCount failed.");
         std::vector<NN_TensorDesc*> outputTensorDescs;
         for (size_t i = 0; i < outputCount; ++i) {
             // 创建输出张量的描述
             tensorDescTmp = OH_NNExecutor_CreateOutputTensorDesc(executor, i);
-            CHECKEQ(tensorDescTmp, nullptr, -1, "OH_NNExecutor_CreateOutputTensorDesc failed.");
+            CHECKEQ(tensorDescTmp, nullptr, OH_NN_FAILED, "OH_NNExecutor_CreateOutputTensorDesc failed.");
             outputTensorDescs.emplace_back(tensorDescTmp);
         }
 
@@ -511,24 +502,24 @@ Neural Network Runtime的开发流程主要包含**模型构造**、**模型编�
         for (size_t i = 0; i < inputCount; ++i) {
             tensor = nullptr;
             tensor = OH_NNTensor_Create(availableDevice[0], inputTensorDescs[i]);
-            CHECKEQ(tensor, nullptr, -1, "OH_NNTensor_Create failed.");
+            CHECKEQ(tensor, nullptr, OH_NN_FAILED, "OH_NNTensor_Create failed.");
             inputTensors[i] = tensor;
         }
         NN_Tensor* outputTensors[outputCount];
         for (size_t i = 0; i < outputCount; ++i) {
             tensor = nullptr;
             tensor = OH_NNTensor_Create(availableDevice[0], outputTensorDescs[i]);
-            CHECKEQ(tensor, nullptr, -1, "OH_NNTensor_Create failed.");
+            CHECKEQ(tensor, nullptr, OH_NN_FAILED, "OH_NNTensor_Create failed.");
             outputTensors[i] = tensor;
         }
 
         // 设置输入张量的数据
         returnCode = SetInputData(inputTensors, inputCount);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "SetInputData failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "SetInputData failed.");
 
         // 执行推理
         returnCode = OH_NNExecutor_RunSync(executor, inputTensors, inputCount, outputTensors, outputCount);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNExecutor_RunSync failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNExecutor_RunSync failed.");
 
         // 打印输出张量的数据
         Print(outputTensors, outputCount);
@@ -536,15 +527,15 @@ Neural Network Runtime的开发流程主要包含**模型构造**、**模型编�
         // 清理输入和输出张量以及张量描述
         for (size_t i = 0; i < inputCount; ++i) {
             returnCode = OH_NNTensor_Destroy(&inputTensors[i]);
-            CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNTensor_Destroy failed.");
+            CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNTensor_Destroy failed.");
             returnCode = OH_NNTensorDesc_Destroy(&inputTensorDescs[i]);
-            CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNTensorDesc_Destroy failed.");
+            CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNTensorDesc_Destroy failed.");
         }
         for (size_t i = 0; i < outputCount; ++i) {
             returnCode = OH_NNTensor_Destroy(&outputTensors[i]);
-            CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNTensor_Destroy failed.");
+            CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNTensor_Destroy failed.");
             returnCode = OH_NNTensorDesc_Destroy(&outputTensorDescs[i]);
-            CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNTensorDesc_Destroy failed.");
+            CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNTensorDesc_Destroy failed.");
         }
 
         return OH_NN_SUCCESS;
@@ -555,7 +546,7 @@ Neural Network Runtime的开发流程主要包含**模型构造**、**模型编�
 
     步骤4-步骤8实现了模型的模型构造、编译和执行流程，并封装成多个函数，便于模块化开发。以下示例代码将串联这些函数， 形成一个完整的Neural Network Runtime使用流程。
     ```cpp
-    int main()
+    int main(int argc, char** argv)
     {
         OH_NNModel* model = nullptr;
         OH_NNCompilation* compilation = nullptr;
@@ -563,7 +554,6 @@ Neural Network Runtime的开发流程主要包含**模型构造**、**模型编�
         std::vector<size_t> availableDevices;
 
         // 模型构造
-        OH_NNModel* model = nullptr;
         OH_NN_ReturnCode ret = BuildModel(&model);
         if (ret != OH_NN_SUCCESS) {
             std::cout << "BuildModel failed." << std::endl;

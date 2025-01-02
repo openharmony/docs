@@ -1,0 +1,45 @@
+# Location HDI 参考
+
+- 模块
+    - [HdiAGnss](_hdi_a_gnss.md)
+    - [HdiGeofence](_hdi_geofence.md)
+    - [HdiGnss](_hdi_gnss.md)
+- 头文件
+    - HdiAGnss
+        - [AGnssTypes.idl](_a_gnss_types_8idl.md)
+        - [IAGnssCallback.idl](_i_a_gnss_callback_8idl.md)
+        - [IAGnssInterface.idl](_i_a_gnss_interface_8idl.md)
+    - HdiGeofence
+        - [GeofenceTypes.idl](_geofence_types_8idl.md)
+        - [IGeofenceCallback.idl](_i_geofence_callback_8idl.md)
+        - [IGeofenceInterface.idl](_i_geofence_interface_8idl.md)
+    - HdiGnss
+        - [GnssTypes.idl](_gnss_types_8idl.md)
+        - [IGnssCallback.idl](_i_gnss_callback_8idl.md)
+        - [IGnssInterface.idl](_i_gnss_interface_8idl.md)
+- 结构体
+    - HdiAGnss
+        - [AGnssDataLinkRequest](_a_gnss_data_link_request.md)
+        - [AGnssRefCellId](_a_gnss_ref_cell_id.md)
+        - [AGnssRefInfo](_a_gnss_ref_info.md)
+        - [AGnssRefMac](_a_gnss_ref_mac.md)
+        - [AGnssServerInfo](_a_gnss_server_info.md)
+        - [IAGnssCallback](interface_i_a_gnss_callback.md)
+        - [IAGnssInterface](interface_i_a_gnss_interface.md)
+        - [SubscriberSetId](_subscriber_set_id.md)
+    - HdiGeofence
+        - [GeofenceInfo](_geofence_info.md)
+        - [IGeofenceCallback](interface_i_geofence_callback.md)
+        - [IGeofenceInterface](interface_i_geofence_interface.md)
+        - [LocationInfo](_location_info.md)
+    - HdiGnss
+        - [GnssBasicConfig](_gnss_basic_config.md)
+        - [GnssCachingConfig](_gnss_caching_config.md)
+        - [GnssConfigPara](_gnss_config_para.md)
+        - [GnssRefInfo](_gnss_ref_info.md)
+        - [GnssRefLocation](_gnss_ref_location.md)
+        - [GnssRefTime](_gnss_ref_time.md)
+        - [IGnssCallback](interface_i_gnss_callback.md)
+        - [IGnssInterface](interface_i_gnss_interface.md)
+        - [LocationInfo](_location_info.md)
+        - [SatelliteStatusInfo](_satellite_status_info.md)

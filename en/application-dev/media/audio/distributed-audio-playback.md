@@ -31,34 +31,34 @@ For details about the API reference, see [AudioRoutingManager](../../reference/a
 3. Call **selectOutputDevice** to select a remote device, on which all the audio streams will continue playing.
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioManager = audio.getAudioManager();
 let audioRoutingManager = audioManager.getRoutingManager();
 let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
-    deviceRole: audio.DeviceRole.OUTPUT_DEVICE,
-    deviceType: audio.DeviceType.SPEAKER,
-    id: 1,
-    name: "",
-    address: "",
-    sampleRates: [44100],
-    channelCounts: [2],
-    channelMasks: [0],
-    networkId: audio.LOCAL_NETWORK_ID,
-    interruptGroupId: 1,
-    volumeGroupId: 1,
-    displayName: ""
+  deviceRole: audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType: audio.DeviceType.SPEAKER,
+  id: 1,
+  name: "",
+  address: "",
+  sampleRates: [44100],
+  channelCounts: [2],
+  channelMasks: [0],
+  networkId: audio.LOCAL_NETWORK_ID,
+  interruptGroupId: 1,
+  volumeGroupId: 1,
+  displayName: ""
 }];
 
 async function selectOutputDevice(): Promise<void> {
-    audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err: BusinessError) => {
-        if (err) {
-            console.error(`Invoke selectOutputDevice failed, code is ${err.code}, message is ${err.message}`);
-        } else {
-            console.info('Invoke selectOutputDevice succeeded.');
-        }
-    });
+  audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err: BusinessError) => {
+    if (err) {
+      console.error(`Invoke selectOutputDevice failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+      console.info('Invoke selectOutputDevice succeeded.');
+    }
+  });
 }
 ```
 
@@ -73,40 +73,42 @@ async function selectOutputDevice(): Promise<void> {
 4. Call **selectOutputDeviceByFilter** to select a remote device, on which the specified audio stream will continue playing.
  
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioManager = audio.getAudioManager();
 let audioRoutingManager = audioManager.getRoutingManager();
 let outputAudioRendererFilter: audio.AudioRendererFilter  = {
-    uid: 20010041,
-    rendererInfo: {
-        content: audio.ContentType.CONTENT_TYPE_MUSIC,
-        usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
-        rendererFlags: 0 } as audio.AudioRendererInfo,
-    rendererId: 0 };
+  uid: 20010041,
+  rendererInfo: {
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags: 0
+  } as audio.AudioRendererInfo,
+  rendererId: 0
+};
 
 let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
-    deviceRole: audio.DeviceRole.OUTPUT_DEVICE,
-    deviceType: audio.DeviceType.SPEAKER,
-    id: 1,
-    name: "",
-    address: "",
-    sampleRates: [44100],
-    channelCounts: [2],
-    channelMasks: [0],
-    networkId: audio.LOCAL_NETWORK_ID,
-    interruptGroupId: 1,
-    volumeGroupId: 1,
-    displayName: ""
+  deviceRole: audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType: audio.DeviceType.SPEAKER,
+  id: 1,
+  name: "",
+  address: "",
+  sampleRates: [44100],
+  channelCounts: [2],
+  channelMasks: [0],
+  networkId: audio.LOCAL_NETWORK_ID,
+  interruptGroupId: 1,
+  volumeGroupId: 1,
+  displayName: ""
 }];
+
 async function selectOutputDeviceByFilter(): Promise<void> {
-    audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err: BusinessError) => {
-        if (err) {
-            console.error(`Invoke selectOutputDeviceByFilter failed, code is ${err.code}, message is ${err.message}`);
-        } else {
-            console.info('Invoke selectOutputDeviceByFilter succeeded.');
-        }
-    });
+  audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err: BusinessError) => {
+    if (err) {
+      console.error(`Invoke selectOutputDeviceByFilter failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+      console.info('Invoke selectOutputDeviceByFilter succeeded.');
+    }
+  });
 }
 ```

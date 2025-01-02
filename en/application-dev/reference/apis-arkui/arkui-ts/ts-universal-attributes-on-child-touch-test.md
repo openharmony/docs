@@ -3,14 +3,18 @@
 When handling a touch event, ArkUI performs a touch test on the touch point and the component area before the event is triggered – to determine the components targeted by the event – and dispatches the event based on the test result. You can use **onChildTouchTest** on a parent node to specify how to perform the touch test on child nodes and thereby exert an impact on touch event dispatch. For details about the impact, see [TouchTestStrategy](#touchteststrategy).
 
 >  **NOTE**
+>
 >  - This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>
 >  - With use of **onChildTouchTest**, the **onClick**, rotation, and pinch gesture events may receive no response due to the touch target not being hit.
 
 ## onChildTouchTest
 
-onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult)
+onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 Called to specify how to perform the touch test on the children of this component.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -22,15 +26,21 @@ Called to specify how to perform the touch test on the children of this componen
 
 **Return value**
 
-| Type                               | Description                      |
-| ----------------------------------- | -------------------------- |
-| [TouchTestInfo](#touchtestinfo) | How the touch test is performed on the child components.|
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 >**NOTE**
+>
 >The array of child components contains only components for which **id** is set.
 
-
 ## TouchTestInfo
+
+Provides information about the coordinate system, ID, and size of the component where the current touch point is located.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name         | Type  | Description                                      |
 | ------------- | ------ | ---------------------------------------- |
@@ -45,19 +55,32 @@ Called to specify how to perform the touch test on the children of this componen
 
 ## TouchResult
 
+Defines the custom event dispatch result. You can influence event dispatch by returning specific results.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name     | Type                                    | Mandatory  | Description                               |
 | --------- | --------- | ---- |--------------------------------------- |
 | strategy  | [TouchTestStrategy](#touchteststrategy) | Yes   | Event dispatch strategy.                    |
-| id ?   | string | No   | Component ID.<br>If **strategy** is set to **TouchTestStrategy.DEFAULT**, **id** is optional. If **strategy** is set to **TouchTestStrategy.FORWARD_COMPEITION** or **TouchTestStrategy.FORWARD**, **id** is mandatory. If **id** is not returned, the strategy **TouchTestStrategy.DEFAULT** is used.|
+| id  | string | No   | Component ID.<br>If **strategy** is set to **TouchTestStrategy.DEFAULT**, **id** is optional. If **strategy** is set to **TouchTestStrategy.FORWARD_COMPETITION** or **TouchTestStrategy.FORWARD**, **id** is mandatory. If **id** is not returned, the strategy **TouchTestStrategy.DEFAULT** is used.|
 
 ## TouchTestStrategy
 
+Describes the event dispatch strategy.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name         | Description                                      |
 | ------------| ----------------------------------------- |
-| DEFAULT     | The default event dispatch mechanism for components is used.|
-| FORWARD_COMPETITION       | The event is dispatched to the specified child component, while the ArkUI touch test process is followed.|
-| FORWARD | The event is dispatched to the specified child component, and the ArkUI touch test process is not followed.|
+| DEFAULT     | Custom dispatch has no effect; the system distributes events based on the hit status of the current node.|
+| FORWARD_COMPETITION       | The specified event is forwarded to a particular child node, and the system determines whether to distribute the event to other sibling nodes.|
+| FORWARD | The specified event is forwarded to a particular child node, and the system no longer distributes the event to other sibling nodes.|
 
 ## Example
 
@@ -65,7 +88,7 @@ Called to specify how to perform the touch test on the children of this componen
 
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -95,7 +118,7 @@ struct ListExample {
         console.info('first' + start)
         console.info('last' + end)
       })
-      .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+      .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
         console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
       })
       .width('100%')
@@ -130,7 +153,7 @@ struct ListExample {
   }
 }
 ```
-After you touch the blank area in the lower part and drag the list, the list scrolls. After you touch the button, the button responds to the **onClick** event.
+After you touch the blank area in the lower part of the list and start dragging, the list scrolls. After you touch the button, the **onClick** event is triggered.
 
 ![onchildtouchtest](figures/on-child-touch-test-competition.gif)
 
@@ -138,7 +161,7 @@ After you touch the blank area in the lower part and drag the list, the list scr
 
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -168,7 +191,7 @@ struct ListExample {
         console.info('first' + start)
         console.info('last' + end)
       })
-      .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+      .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
         console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
       })
       .width('100%')
@@ -203,7 +226,7 @@ struct ListExample {
   }
 }
 ```
-After you touch the blank area in the lower part and drag the list, the list scrolls. After you touch the button, the button does not respond to the **onClick** event.
+After you touch the blank area in the lower part of the list and start dragging, the list scrolls. After you touch the button, the **onClick** event is not triggered.
 
 ![onchildtouchtest](figures/on-child-touch-test-forward.gif)
 
@@ -211,7 +234,7 @@ After you touch the blank area in the lower part and drag the list, the list scr
 
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -241,7 +264,7 @@ struct ListExample {
         console.info('first' + start)
         console.info('last' + end)
       })
-      .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+      .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
         console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
       })
       .width('100%')
@@ -271,6 +294,6 @@ struct ListExample {
   }
 }
 ```
-After you touch the blank area in the lower part and drag the list, the list does not scroll. After you touch the button, the button responds to the **onClick** event.
+After you touch the blank area in the lower part of the list and start dragging, the list does not scroll. After you touch the button, the **onClick** event is triggered.
 
 ![onchildtouchtest](figures/on-child-touch-test-default.gif)

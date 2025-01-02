@@ -166,6 +166,24 @@ Can not use camera cause of preempted.
 
 N/A
 
+## 7400110 与当前配置存在冲突
+
+**错误信息**
+
+Unresolved conflicts with current configurations.
+
+**错误描述**
+
+由于当前提交的配置与设备所支持的配置存在不兼容。
+
+**可能原因**
+
+设置预览流的帧率超出设备所支持的帧率等。
+
+**处理步骤**
+
+检测当前提交的配置是否符合设备所支持的配置。
+
 ## 7400201 相机服务异常
 
 **错误信息**

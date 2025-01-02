@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import cloudSync from '@ohos.file.cloudSync';
+import { cloudSync } from '@kit.CoreFileKit';
 ```
 
 ## SyncState
@@ -119,7 +119,7 @@ on(evt: 'progress', callback: (pg: SyncProgress) => void): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
@@ -159,7 +159,7 @@ off(evt: 'progress', callback: (pg: SyncProgress) => void): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
@@ -202,7 +202,7 @@ off(evt: 'progress'): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
@@ -243,15 +243,15 @@ start(): Promise&lt;void&gt;
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 | 22400001 | Cloud status not ready. |
 | 22400002 | Network unavailable. |
-| 22400003  | Battery level warning. |
+| 22400003  | Low battery level. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.on('progress', (pg: cloudSync.SyncProgress) => {
@@ -291,15 +291,15 @@ start(callback: AsyncCallback&lt;void&gt;): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 22400001 | Cloud status not ready. |
 | 22400002 | Network unavailable. |
-| 22400003  | Battery level warning. |
+| 22400003  | Low battery level. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.start((err: BusinessError) => {
@@ -341,12 +341,12 @@ stop(): Promise&lt;void&gt;
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.stop().then(() => {
@@ -386,12 +386,12 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.stop((err: BusinessError) => {
@@ -450,7 +450,7 @@ on(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
@@ -490,7 +490,7 @@ off(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
@@ -533,7 +533,7 @@ off(evt: 'progress'): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
@@ -575,7 +575,7 @@ start(uri: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -598,7 +598,7 @@ start(uri: string): Promise&lt;void&gt;
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13900002 | No such file or directory. |
 | 13900025 | No space left on device. |
 
@@ -629,14 +629,14 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13900002 | No such file or directory. |
 | 13900025 | No space left on device. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -685,12 +685,12 @@ stop(uri: string): Promise&lt;void&gt;
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -732,12 +732,12 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -771,7 +771,7 @@ constructor()
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 
 **示例：**
 
@@ -802,7 +802,7 @@ constructor(bundleName: string)
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -837,7 +837,7 @@ on(event: 'progress', callback: Callback\<SyncProgress>): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
@@ -878,7 +878,7 @@ off(event: 'progress', callback?: Callback\<SyncProgress>): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
@@ -921,16 +921,16 @@ start(): Promise&lt;void&gt;
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 22400001  | Cloud status not ready. |
 | 22400002  | Network unavailable. |
-| 22400003  | Battery level warning. |
+| 22400003  | Low battery level. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   let callback = (pg: cloudSync.SyncProgress) => {
@@ -972,16 +972,16 @@ start(callback: AsyncCallback&lt;void&gt;): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 22400001  | Cloud status not ready. |
 | 22400002  | Network unavailable. |
-| 22400003  | Battery level warning. |
+| 22400003  | Low battery level. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   fileSync.start((err: BusinessError) => {
@@ -1021,13 +1021,13 @@ stop(): Promise&lt;void&gt;
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   fileSync.stop().then(() => {
@@ -1065,13 +1065,13 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   fileSync.stop((err: BusinessError) => {
@@ -1109,13 +1109,13 @@ getLastSyncTime(): Promise&lt;number&gt;
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   fileSync.getLastSyncTime().then((timeStamp: number) => {
@@ -1153,13 +1153,13 @@ getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void;
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   fileSync.getLastSyncTime((err: BusinessError, timeStamp: number) => {
@@ -1204,16 +1204,16 @@ cleanCache(uri: string): void;
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002  | No such file or directory. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -1259,15 +1259,15 @@ getFileSyncState(uri: Array&lt;string&gt;): Promise&lt;Array&lt;FileSyncState&gt
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002  | No such file or directory. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let uris: Array<string> = ["file://uri"];
   cloudSync.getFileSyncState(uris).then(function(syncStates: Array<cloudSync.FileSyncState>) {
@@ -1307,15 +1307,15 @@ getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;F
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002  | No such file or directory. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let uris: Array<string> = ["file://uri"];
   cloudSync.getFileSyncState(uris, (err: BusinessError, syncStates: Array<cloudSync.FileSyncState>) => {
@@ -1358,20 +1358,20 @@ getFileSyncState(uri: string): FileSyncState
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13900002  | No such file or directory. |
 | 13900004  | Interrupted system call. |
 | 13900010  | Try again. |
 | 13900012  | Permission denied by the file system. |
 | 13900031  | Function not implemented. |
 | 13900042  | Unknown error. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
   try {
@@ -1398,7 +1398,7 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   | 待下载文件uri。 |
 | recursion | boolean | 是   | true为监听该uri以及子文件和子目录，false为仅监听该uri文件。|
-| callback | Callback&lt;ChangeData&gt; | 是   | 返回更改的数据。 |
+| callback | Callback&lt;[ChangeData](#changedata12)&gt; | 是   | 返回更改的数据。 |
 
 **错误码：**
 
@@ -1407,17 +1407,16 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
-| 13600001  | IPC error. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13900001  | Operation not permitted. |
 | 13900002  | No such file or directory. |
 | 13900012  | Permission denied. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **示例：**
 
   ```ts
-  import fileUri from '@ohos.file.fileuri';
+  import { fileUri } from '@kit.CoreFileKit';
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
   let onCallback1 = (changeData: ChangeData) => {
@@ -1455,16 +1454,16 @@ unregisterChange(uri: string): void
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13900001  | Operation not permitted. |
 | 13900002  | No such file or directory. |
 | 13900012  | Permission denied. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **示例：**
 
   ```ts
-  import fileUri from '@ohos.file.fileuri';
+  import { fileUri } from '@kit.CoreFileKit';
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
   let onCallback1 = (changeData: ChangeData) => {

@@ -6,7 +6,7 @@
 
 ## 使用懒加载等方式提升Grid性能
 
-关于懒加载、cachedCount、组件复用的原理机制的介绍请参考[应用列表场景性能提升实践](./list-perf-improvment.md)。
+关于懒加载、cachedCount、组件复用的原理机制的介绍请参考[列表场景性能提升实践](./list-perf-improvment.md)。
 
 ### 使用场景
 
@@ -107,7 +107,7 @@ struct ReusableChildComponent {
 }
 ```
 
-- 使用懒加载可以有效缩短Grid加载和渲染时间，而且在处理大量GridItem时，懒加载可以显著节省内存和CPU资源的消耗。示例中使用LazyForEach进行数据懒加载，Grid布局时会根据可视区域按需创建GridItem组件，并在GridItem滑出可视区域时销毁以降低内存占用。更多懒加载的信息，请参考[LazyForEach：数据懒加载](./lazyforeach_optimization.md)。
+- 使用懒加载可以有效缩短Grid加载和渲染时间，而且在处理大量GridItem时，懒加载可以显著节省内存和CPU资源的消耗。示例中使用LazyForEach进行数据懒加载，Grid布局时会根据可视区域按需创建GridItem组件，并在GridItem滑出可视区域时销毁以降低内存占用。更多懒加载的信息，请参考[LazyForEach：数据懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)。
 
 - 使用懒加载方式渲染Grid时，合理使用cachedCount可以让应用有更好的滚动体验，减少滑动时出现的白块。示例中Grid使用cachedCount属性设置GridItem的缓存数量，会在Grid显示区域前后各缓存cachedCount\*列数个GridItem，超出显示和缓存范围的GridItem会被释放。需要注意的是cachedCount的增加会增大CPU、内存开销。使用时需要根据实际情况，综合性能和用户体验进行调整。
 
@@ -324,7 +324,7 @@ struct GridExample {
 
 ### 效果对比
 
-正反例相同的操作步骤：通过点击按钮，在调用scrollToIndex之前使用startTrace开始性能打点跟踪。当Grid查找到指定GridItem位置，准备渲染GridItem节点前，会进入GridItem自定义组件的生命周期回调aboutToAppear，在aboutToAppear里使用finishTrace停止性能打点跟踪。通过性能打点方式，使用startTrace标记调用scrollToIndex作为开始打点的位置，使用finishTrace标记查找到指定位置后准备渲染首个GridItem节点作为结束打点位置，来对比正反例场景下的耗时数据。关于本例中使用性能打点的介绍，请参考[性能打点](../reference/apis/js-apis-hitracemeter.md)。
+正反例相同的操作步骤：通过点击按钮，在调用scrollToIndex之前使用startTrace开始性能打点跟踪。当Grid查找到指定GridItem位置，准备渲染GridItem节点前，会进入GridItem自定义组件的生命周期回调aboutToAppear，在aboutToAppear里使用finishTrace停止性能打点跟踪。通过性能打点方式，使用startTrace标记调用scrollToIndex作为开始打点的位置，使用finishTrace标记查找到指定位置后准备渲染首个GridItem节点作为结束打点位置，来对比正反例场景下的耗时数据。关于本例中使用性能打点的介绍，请参考[性能打点](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)。
 
 下面将通过以上方式使用SmartPerf工具抓取 trace来分析正反例场景的性能差异。
 

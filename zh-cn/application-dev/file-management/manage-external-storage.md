@@ -40,7 +40,7 @@
 开发者通过订阅卷设备相关的广播事件来感知外置存储的插入，通过广播传递的信息获取卷设备信息后可以对卷设备进行查询以及管理操作。
 
 1. 获取权限。
-   订阅卷设备广播事件需要申请ohos.permission.STORAGE_MANAGER权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+   订阅卷设备广播事件需要申请ohos.permission.STORAGE_MANAGER权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 
 2. 订阅广播事件。
    需订阅的事件如下：
@@ -52,13 +52,13 @@
    - 卷设备正在弹出："usual.event.data.VOLUME_EJECT"
 
    ```ts
-   import CommonEvent from '@ohos.commonEventManager';
-   import volumeManager from '@ohos.file.volumeManager';
-   import { BusinessError } from '@ohos.base';
+   import { commonEventManager } from '@kit.BasicServicesKit';
+   import { volumeManager } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-   let subscriber: CommonEvent.CommonEventSubscriber;
+   let subscriber: commonEventManager.CommonEventSubscriber;
    async function example() {
-     const subscribeInfo: CommonEvent.CommonEventSubscribeInfo = {
+     const subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
        events: [
          "usual.event.data.VOLUME_REMOVED",
          "usual.event.data.VOLUME_UNMOUNTED",
@@ -67,24 +67,28 @@
          "usual.event.data.VOLUME_EJECT"
        ]
      };
-     subscriber = await CommonEvent.createSubscriber(subscribeInfo);
+     subscriber = await commonEventManager.createSubscriber(subscribeInfo);
    }
    ```
 
 3. 收到广播通知后获取卷设备信息。
 
    ```ts
-   CommonEvent.subscribe(subscriber, (err: BusinessError, data: CommonEvent.CommonEventData) => {
-     if (data.event === 'usual.event.data.VOLUME_MOUNTED') {
-       // 开发者可以通过广播传递的卷设备信息来管理卷设备
-       let volId: string = data.parameters.id;
-       volumeManager.getVolumeById(volId, (error: BusinessError, vol: volumeManager.Volume) => {
-         if (error) {
-           console.error('volumeManager getVolumeById failed for ' + JSON.stringify(error));
-         } else {
-           console.info('volumeManager getVolumeById successfully, the volume state is ' + vol.state);
-         }
-       })
-     }
-   })
+   let subscriber: commonEventManager.CommonEventSubscriber|undefined;
+   //注意： 参数subscriber 是从步骤2订阅广播事件 中 await commonEventManager.createSubscriber(subscribeInfo) 获取到的。
+   if (subscriber !== undefined) {
+    commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
+      if (data.event === 'usual.event.data.VOLUME_MOUNTED' && data.parameters !== undefined) {
+        // 开发者可以通过广播传递的卷设备信息来管理卷设备
+        let volId: string = data.parameters.id;
+        volumeManager.getVolumeById(volId, (error: BusinessError, vol: volumeManager.Volume) => {
+          if (error) {
+            console.error('volumeManager getVolumeById failed for ' + JSON.stringify(error));
+          } else {
+            console.info('volumeManager getVolumeById successfully, the volume state is ' + vol.state);
+          }
+        })
+      }
+    })
+   }
    ```

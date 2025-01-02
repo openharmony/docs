@@ -8,7 +8,7 @@
 
 **错误信息**
 
-The application is not a administrator of the device.
+The application is not an administrator application of the device.
 
 **错误描述**
 
@@ -131,7 +131,7 @@ The specified user ID is invalid.
 
 **错误信息**
 
-The system ability work abnormally.
+The system ability works abnormally.
 
 **错误描述**
 
@@ -153,7 +153,7 @@ The system ability work abnormally.
 
 **错误信息**
 
-The specified system events enum is invalid.
+The specified system event is invalid.
 
 **错误描述**
 
@@ -171,7 +171,7 @@ The specified system events enum is invalid.
 
 **错误信息**
 
-Authorize permission to the application failed.
+Failed to grant the permission to the application.
 
 **错误描述**
 
@@ -189,7 +189,7 @@ Authorize permission to the application failed.
 
 **错误信息**
 
-a conflicting policy has been configured.
+A conflict policy has been configured.
 
 **错误描述**
 
@@ -207,7 +207,7 @@ a conflicting policy has been configured.
 
 **错误信息**
 
-manage certificate failed
+Failed to manage the certificate.
 
 **错误描述**
 
@@ -225,7 +225,7 @@ manage certificate failed
 
 **错误信息**
 
-the application install failed.
+Failed to install the application.
 
 **错误描述**
 
@@ -244,3 +244,81 @@ the application install failed.
 1. 检查应用安装路径是有效的安装路径。
 2. 检查安装参数是有效的安装参数。
 3. 检查安装的是同一应用。
+
+## 9201003 创建账号失败
+
+**错误信息**
+
+Failed to add an OS account.
+
+**错误描述**
+
+当企业设备管理创建账号失败时，则会产生此错误码。
+
+**可能原因**
+
+该错误码表示创建账号失败，可能原因如下。
+
+1. 账号已存在。
+2. 账号名非法。
+3. 创建账号时未连接网络。
+4. 系统不支持多账号。
+
+**处理步骤**
+
+1. 检查账号名是否已存在，如果已存在则需更换。
+2. 检查账号名长度和内容，确保正确性。
+3. 确保创建账号时网络畅通。
+
+## 9201004 系统更新包不存在或解析失败
+
+**错误信息**
+
+The update packages do not exist or analyzing failed.
+
+**错误描述**
+
+当企业设备管理通知系统更新包失败时，则会产生此错误码。
+
+**可能原因**
+
+该错误码表示通知系统更新包失败，可能原因如下。
+
+1. 系统更新包不存在。
+2. 系统更新包文件名校验失败。
+3. 系统更新包打开失败。
+4. 系统更新包解析失败。
+
+**处理步骤**
+
+1. 检查系统更新包是否存在。
+2. 检查系统更新包文件名是否有效。
+3. 检查系统更新包是否具有可读权限。
+4. 检查系统更新包是否完整。
+
+## 9201005 添加保活应用失败
+
+**错误信息**
+
+1. Add keep alive applications failed.
+
+**错误描述**
+
+当企业设备管理添加保活应用失败时，则会产生此错误码。
+
+**可能原因**
+
+该错误码表示添加保活应用失败，可能原因如下。
+
+1. 应用未安装。
+2. 应用没有MainAbility。
+3. 应用没有托盘服务。
+4. 应用未添加到托盘。
+5. 当前设备不支持添加保活应用。
+
+**处理步骤**
+
+1. 检查应用是否安装。
+2. 检查应用是否有MainAbility。
+3. 检查应用是否实现托盘服务。
+4. 检查应用是否已添加到托盘。

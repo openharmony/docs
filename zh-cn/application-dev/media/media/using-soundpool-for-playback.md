@@ -1,6 +1,6 @@
-# 使用SoundPool开发音频播放功能
+# 使用SoundPool播放短音频(ArkTS)
 
-使用SoundPool（音频池）提供的接口，可以实现低时延短音播放。
+使用[SoundPool](media-kit-intro.md#soundpool)（音频池）提供的接口，可以实现低时延短音播放。
 
 当应用开发时，经常需要使用一些急促简短的音效（如相机快门音效、系统通知音效等），此时建议调用SoundPool，实现一次加载，多次低时延播放。
 
@@ -12,20 +12,26 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
 在应用开发过程中，开发者应通过监听方法检查当前播放状态并按照一定顺序调用接口，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
 
+> **说明：**
+>
+> 使用SoundPool播放短音频时，涉及音频焦点管控策略的问题，请参考[音频焦点指南](../audio/audio-playback-concurrency.md)。
+
 ## 开发步骤及注意事项
 
 1. 调用createSoundPool方法创建SoundPool实例。
 
     ```ts
-    import media from '@ohos.multimedia.media';
-    import audio from '@ohos.multimedia.audio';
-    import { BusinessError } from '@ohos.base';
+    import { media } from '@kit.MediaKit';
+    import { audio } from '@kit.AudioKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     let soundPool: media.SoundPool;
+    // audioRenderInfo中的参数usage取值为STREAM_USAGE_UNKNOWN，STREAM_USAGE_MUSIC，STREAM_USAGE_MOVIE，
+    // STREAM_USAGE_AUDIOBOOK时，SoundPool播放短音时为混音模式，不会打断其他音频播放。
     let audioRendererInfo: audio.AudioRendererInfo = {
       usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
       rendererFlags : 0
-    }
+    };
 
     media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
       if (soundpool_ != null) {
@@ -39,13 +45,40 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     });
     ```
 
-2. 调用load方法进行音频资源加载。
-    可以传入uri或fd加载资源，此处使用传入uri的方式为例，更多方法请参考[API文档](../../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md#load)。
+2. 调用on('loadComplete')方法，用于监听“资源加载完成”。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
-    import fs from '@ohos.file.fs';
-   
+    soundPool.on('loadComplete', (soundId: number) => {
+      console.info('loadComplete, soundId: ' + soundId);
+    });
+    ```
+
+3. 调用on('playFinished')方法，用于监听“播放完成”。
+
+    ```ts
+    soundPool.on('playFinished', () => {
+      console.info("receive play finished message");
+    });
+    ```
+
+4. 调用on('error')方法，设置错误类型监听。
+
+    ```ts
+    soundPool.on('error', (error: BusinessError) => {
+      console.info('error happened,message is :' + error.message);
+    });
+    ```
+
+5. 调用load方法进行音频资源加载。
+
+    可以传入uri或fd加载资源，此处使用传入uri的方式为例，更多方法请参考[API文档](../../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md#load)。
+
+    当系统加载完毕音频资源文件的时候，会通过loadComplete回调，通知用户资源加载完成，请在收到回调之后，再进行后续的play操作。
+
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { fileIo as fs } from '@kit.CoreFileKit';
+
     let soundID: number;
     let uri: string;
     async function load() {
@@ -62,32 +95,8 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     }
     ```
 
-3. 调用on('loadComplete')方法，用于监听“资源加载完成”。
+6. 配置播放参数PlayParameters，并在收到loadComplete回调通知之后，调用play方法播放音频。多次调用play播放同一个soundID，只会播放一次。
 
-    ```ts
-    soundPool.on('loadComplete', (soundId: number) => {
-      console.info('loadComplete, soundId: ' + soundId);
-    });
-    ```
-
-4. 调用on('playFinished')方法，用于监听“播放完成”。
-     
-    ```ts
-    soundPool.on('playFinished', () => {
-      console.info("receive play finished message");
-    });
-    ```
-
-5. 调用on('error')方法，设置错误类型监听。
-     
-    ```ts
-    soundPool.on('error', (error: BusinessError) => {
-      console.info('error happened,message is :' + error.message);
-    });
-    ```
-
-6. 配置播放参数PlayParameters，并调用play方法播放音频。多次调用play播放同一个soundID，只会播放一次。
-  
     ```ts
     let soundID: number;
     let streamID: number;
@@ -97,7 +106,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
         leftVolume: 0.5, // range = 0.0-1.0
         rightVolume: 0.5, // range = 0.0-1.0
         priority: 0, // 最低优先级
-      }
+      };
     soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
       if (error) {
         console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
@@ -109,10 +118,10 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```
 
 7. 调用setLoop方法设置循环次数。
-     
+
     ```ts
-    import { BusinessError } from '@ohos.base';
-   
+    import { BusinessError } from '@kit.BasicServicesKit';
+
     let streamID: number;
     soundPool.setLoop(streamID, 1).then(() => {
       console.info('setLoop success streamID:' + streamID);
@@ -122,7 +131,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```
 
 8. 调用setPriority方法设置优先级。
-     
+
     ```ts
     let streamID: number;
     soundPool.setPriority(streamID, 1);
@@ -131,8 +140,8 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 9. 调用setVolume方法设置音量。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
-   
+    import { BusinessError } from '@kit.BasicServicesKit';
+
     let streamID: number;
     // 先调用play方法获取到对应资源的streamID
 
@@ -144,10 +153,10 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```
 
 10. 调用stop方法终止指定流的播放。
-     
+
     ```ts
-    import { BusinessError } from '@ohos.base';
-    
+    import { BusinessError } from '@kit.BasicServicesKit';
+
     let streamID: number;
     //先调用play方法给拿到对应的streamID
 
@@ -161,8 +170,8 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 11. 调用unload方法卸载音频资源。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
-    
+    import { BusinessError } from '@kit.BasicServicesKit';
+
     let soundID: number;
     // 先调用load方法获取到对应资源的soundID
 
@@ -194,8 +203,8 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 15. 调用release方法释放SoundPool实例。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
-    
+    import { BusinessError } from '@kit.BasicServicesKit';
+
     soundPool.release().then(() => {
       console.info('release success');
     }).catch((err: BusinessError) => {
@@ -208,25 +217,27 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 下面展示了使用SoundPool进行低时延播放的完整示例代码。
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import media from '@ohos.multimedia.media';
-import fs from '@ohos.file.fs'
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { media } from '@kit.MediaKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let soundPool: media.SoundPool;
 let streamId: number = 0;
 let soundId: number = 0;
+// audioRenderInfo中的参数usage取值为STREAM_USAGE_UNKNOWN，STREAM_USAGE_MUSIC，STREAM_USAGE_MOVIE，
+// STREAM_USAGE_AUDIOBOOK时，SoundPool播放短音时为混音模式，不会打断其他音频播放。
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
-}
-let PlayParameters: media.PlayParameters = {
+};
+let playParameters: media.PlayParameters = {
   loop: 3, // 循环4次
   rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
   leftVolume: 0.5, // range = 0.0-1.0
   rightVolume: 0.5, // range = 0.0-1.0
   priority: 0, // 最低优先级
-}
+};
 let uri: string = "";
 async function create() {
   //创建soundPool实例
@@ -242,17 +253,17 @@ async function create() {
   }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
   soundId = await soundPool.load(uri);
 }
-async function loadCallback() {
+function loadCallback() {
   // 加载完成回调
   soundPool.on('loadComplete', (soundId_: number) => {
     console.info('loadComplete, soundId: ' + soundId_);
   })
 }
 //设置播放完成监听
-async function finishPlayCallback() {
+function finishPlayCallback() {
   // 播放完成回调
   soundPool.on('playFinished', () => {
-    console.info("recive play finished message");
+    console.info("receive play finished message");
     // 可进行下次播放
   })
 }
@@ -263,8 +274,8 @@ function setErrorCallback() {
   })
 }
 async function PlaySoundPool() {
-  // 开始播放,这边play也可带播放播放的参数PlayParameters
-  await soundPool.play(soundID, playParameters, (error, streamID: number) => {
+  // 开始播放，这边play也可带播放播放的参数PlayParameters，请在音频资源加载完毕，即收到loadComplete回调之后再执行play操作
+  soundPool.play(soundId, playParameters, (error, streamID: number) => {
     if (error) {
       console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
     } else {
@@ -273,15 +284,15 @@ async function PlaySoundPool() {
     }
   });
   // 设置循环播放次数
-  soundPool.setLoop(streamId, 2); // 播放3次
+  await soundPool.setLoop(streamId, 2); // 播放3次
   // 设置对应流的优先级
-  soundPool.setPriority(streamId, 1);
+  await soundPool.setPriority(streamId, 1);
   // 设置音量
-  soundPool.setVolume(streamId, 0.5, 0.5);
+  await soundPool.setVolume(streamId, 0.5, 0.5);
 }
 async function release() {
   // 终止指定流的播放
-  soundPool.stop(streamId);
+  await soundPool.stop(streamId);
   // 卸载音频资源
   await soundPool.unload(soundId);
   //关闭监听

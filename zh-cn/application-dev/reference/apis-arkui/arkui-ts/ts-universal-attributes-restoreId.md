@@ -12,6 +12,8 @@ restoreId(value: number)
 
 标记支持分布式迁移的组件Id，用于两端设备组件的配对。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -30,6 +32,8 @@ restoreId(value: number)
 | WaterFlow | 11   | 迁移当前设备显示在顶部FlowItem的索引值，迁移后在对端设备上，将迁移索引值对应的FlowItem在WaterFlow顶部显示。同时迁移顶部FlowItem相对WaterFlow的主轴偏移值（vp单位）。 |
 
 ## 示例
+
+该示例通过restoreId设置了List组件的分布式迁移标识。
 
 ```ts
 // xxx.ets

@@ -18,8 +18,8 @@ Provides HID driver development kit (DDK) functions, including those for creatin
 
 | Name| Description| 
 | -------- | -------- |
-| [hid_ddk_api.h](hid__ddk__api_8h.md) | Declares the HID DDK functions for accessing an input device from the host. | 
-| [hid_ddk_types.h](hid__ddk__types_8h.md) | Defines the enum variables and structs used in the HID DDK. | 
+| [hid_ddk_api.h](hid__ddk__api_8h.md) | Declares the HID DDK functions for accessing an input device from the host.<br>File to include: &lt;hid/hid_ddk_api.h&gt;<br>Library: libhid.z.so| 
+| [hid_ddk_types.h](hid__ddk__types_8h.md) | Defines the enum variables and structs used in the HID DDK.<br>File to include: &lt;hid/hid_ddk_types.h&gt;<br>Library: libhid.z.so | 
 
 
 ### Structs
@@ -60,8 +60,8 @@ Provides HID driver development kit (DDK) functions, including those for creatin
 | [Hid_KeyCode](#hid_keycode) {<br>HID_KEY_A = 30, HID_KEY_B = 48, HID_KEY_C = 46, HID_KEY_D = 32,<br>HID_KEY_E = 18, HID_KEY_F = 33, HID_KEY_G = 34, HID_KEY_H = 35,<br>HID_KEY_I = 23, HID_KEY_J = 36, HID_KEY_K = 37, HID_KEY_L = 38,<br>HID_KEY_M = 50, HID_KEY_N = 49, HID_KEY_O = 24, HID_KEY_P = 25,<br>HID_KEY_Q = 16, HID_KEY_R = 19, HID_KEY_S = 31, HID_KEY_T = 20,<br>HID_KEY_U = 22, HID_KEY_V = 47, HID_KEY_W = 17, HID_KEY_X = 45,<br>HID_KEY_Y = 21, HID_KEY_Z = 44, HID_KEY_ESC = 1, HID_KEY_0 = 11,<br>HID_KEY_1 = 2, HID_KEY_2 = 3, HID_KEY_3 = 4, HID_KEY_4 = 5,<br>HID_KEY_5 = 6, HID_KEY_6 = 7, HID_KEY_7 = 8, HID_KEY_8 = 9,<br>HID_KEY_9 = 10, HID_KEY_GRAVE = 41, HID_KEY_MINUS = 12, HID_KEY_EQUALS = 13,<br>HID_KEY_BACKSPACE = 14, HID_KEY_LEFT_BRACKET = 26, HID_KEY_RIGHT_BRACKET = 27, HID_KEY_ENTER = 28,<br>HID_KEY_LEFT_SHIFT = 42, HID_KEY_BACKSLASH = 43, HID_KEY_SEMICOLON = 39, HID_KEY_APOSTROPHE = 40,<br>HID_KEY_SPACE = 57, HID_KEY_SLASH = 53, HID_KEY_COMMA = 51, HID_KEY_PERIOD = 52,<br>HID_KEY_RIGHT_SHIFT = 54, HID_KEY_NUMPAD_0 = 82, HID_KEY_NUMPAD_1 = 79, HID_KEY_NUMPAD_2 = 80,<br>HID_KEY_NUMPAD_3 = 81, HID_KEY_NUMPAD_4 = 75, HID_KEY_NUMPAD_5 = 76, HID_KEY_NUMPAD_6 = 77,<br>HID_KEY_NUMPAD_7 = 71, HID_KEY_NUMPAD_8 = 72, HID_KEY_NUMPAD_9 = 73, HID_KEY_NUMPAD_DIVIDE = 70,<br>HID_KEY_NUMPAD_MULTIPLY = 55, HID_KEY_NUMPAD_SUBTRACT = 74, HID_KEY_NUMPAD_ADD = 78, HID_KEY_NUMPAD_DOT = 83,<br>HID_KEY_SYSRQ = 99, HID_KEY_MUTE = 113, HID_KEY_VOLUME_DOWN = 114, HID_KEY_VOLUME_UP = 115,<br>HID_KEY_BRIGHTNESS_DOWN = 224, HID_KEY_BRIGHTNESS_UP = 225, HID_BTN_0 = 0x100, HID_BTN_1 = 0x101,<br>HID_BTN_2 = 0x102, HID_BTN_3 = 0x103, HID_BTN_4 = 0x104, HID_BTN_5 = 0x105,<br>HID_BTN_6 = 0x106, HID_BTN_7 = 0x107, HID_BTN_8 = 0x108, HID_BTN_9 = 0x109,<br>HID_BTN_LEFT = 0x110, HID_BTN_RIGHT = 0x111, HID_BTN_MIDDLE = 0x112, HID_BTN_SIDE = 0x113,<br>HID_BTN_EXTRA = 0x114, HID_BTN_FORWARD = 0x115, HID_BTN_BACKWARD = 0x116, HID_BTN_TASK = 0x117,<br>HID_BTN_TOOL_PEN = 0x140, HID_BTN_TOOL_RUBBER = 0x141, HID_BTN_TOOL_BRUSH = 0x142, HID_BTN_TOOL_PENCIL = 0x143,<br>HID_BTN_TOOL_AIRBRUSH = 0x144, HID_BTN_TOOL_FINGER = 0x145, HID_BTN_TOOL_MOUSE = 0x146, HID_BTN_TOOL_LENS = 0x147,<br>HID_BTN_TOOL_QUINT_TAP = 0x148, HID_BTN_STYLUS3 = 0x149, HID_BTN_TOUCH = 0x14a, HID_BTN_STYLUS = 0x14b,<br>HID_BTN_STYLUS2 = 0x14c, HID_BTN_TOOL_DOUBLE_TAP = 0x14d, HID_BTN_TOOL_TRIPLE_TAP = 0x14e, HID_BTN_TOOL_QUAD_TAP = 0x14f,<br>HID_BTN_WHEEL = 0x150<br>} | Enumerates the key codes. | 
 | [Hid_AbsAxes](#hid_absaxes) {<br>HID_ABS_X = 0x00, HID_ABS_Y = 0x01, HID_ABS_Z = 0x02, HID_ABS_RX = 0x03,<br>HID_ABS_RY = 0x04, HID_ABS_RZ = 0x05, HID_ABS_THROTTLE = 0x06, HID_ABS_RUDDER = 0x07,<br>HID_ABS_WHEEL = 0x08, HID_ABS_GAS = 0x09, HID_ABS_BRAKE = 0x0a, HID_ABS_HAT0X = 0x10,<br>HID_ABS_HAT0Y = 0x11, HID_ABS_HAT1X = 0x12, HID_ABS_HAT1Y = 0x13, HID_ABS_HAT2X = 0x14,<br>HID_ABS_HAT2Y = 0x15, HID_ABS_HAT3X = 0x16, HID_ABS_HAT3Y = 0x17, HID_ABS_PRESSURE = 0x18,<br>HID_ABS_DISTANCE = 0x19, HID_ABS_TILT_X = 0x1a, HID_ABS_TILT_Y = 0x1b, HID_ABS_TOOL_WIDTH = 0x1c,<br>HID_ABS_VOLUME = 0x20, HID_ABS_MISC = 0x28<br>} | Enumerates the absolute coordinates. | 
 | [Hid_RelAxes](#hid_relaxes) {<br>HID_REL_X = 0x00, HID_REL_Y = 0x01, HID_REL_Z = 0x02, HID_REL_RX = 0x03,<br>HID_REL_RY = 0x04, HID_REL_RZ = 0x05, HID_REL_HWHEEL = 0x06, HID_REL_DIAL = 0x07,<br>HID_REL_WHEEL = 0x08, HID_REL_MISC = 0x09, HID_REL_RESERVED = 0x0a, HID_REL_WHEEL_HI_RES = 0x0b,<br>HID_REL_HWHEEL_HI_RES = 0x0c<br>} | Enumerates the relative coordinates. | 
-| [Hid_MscEvent](#hid_mscevent) {<br>HID_MSC_SERIAL = 0x00, HID_MSC_PULSE_LED = 0x01, HID_MSC_GESTURE = 0x02, HID_MSC_RAW = 0x03,<br>HID_MSC_SCAN = 0x04, HID_MSC_TIMESTAMP = 0x05<br>} | Enumerates the miscellaneous input events. | 
-| [Hid_DdkErrCode](#hid_ddkerrcode) {<br>HID_DDK_SUCCESS = 0, HID_DDK_FAILURE = -1, HID_DDK_INVALID_PARAMETER = -2, HID_DDK_INVALID_OPERATION = -3,<br>HID_DDK_NULL_PTR = -4, HID_DDK_TIMEOUT = -5, HID_DDK_NO_PERM = -6<br>} | Enumerates the HID DDK error codes. | 
+| [Hid_MscEvent](#hid_mscevent) {<br>HID_MSC_SERIAL = 0x00, HID_MSC_PULSE_LED = 0x01, HID_MSC_GESTURE = 0x02, HID_MSC_RAW = 0x03,<br>HID_MSC_SCAN = 0x04, HID_MSC_TIMESTAMP = 0x05<br>} | Enumerates miscellaneous input events. | 
+| [Hid_DdkErrCode](#hid_ddkerrcode) {<br>HID_DDK_SUCCESS = 0, HID_DDK_NO_PERM = 201, HID_DDK_INVALID_PARAMETER = 401,HID_DDK_FAILURE = 27300001,<br>HID_DDK_NULL_PTR = 27300002, HID_DDK_INVALID_OPERATION = 27300003, HID_DDK_TIMEOUT = 27300004<br>} | Enumerates the HID DDK error codes. | 
 
 
 ### Functions
@@ -88,19 +88,19 @@ Provides HID driver development kit (DDK) functions, including those for creatin
 | [Hid_Device::properties](#properties) | Device properties. | 
 | [Hid_Device::propLength](#proplength) | Number of device properties. | 
 | [Hid_EventTypeArray::hidEventType](#hideventtype) | Event type. | 
-| [Hid_EventTypeArray::length](#length-15) | Length of the event type array. |
+| [Hid_EventTypeArray::length](#length-15) | Array length. | 
 | [Hid_KeyCodeArray::hidKeyCode](#hidkeycode) | key code. | 
-| [Hid_KeyCodeArray::length](#length-25) | Length of the key code array. |
+| [Hid_KeyCodeArray::length](#length-25) | Array length. | 
 | [Hid_AbsAxesArray::hidAbsAxes](#hidabsaxes) | Array of absolute coordinates. | 
-| [Hid_AbsAxesArray::length](#length-35) | Length of the absolute coordinate array. |
+| [Hid_AbsAxesArray::length](#length-35) | Array length. | 
 | [Hid_RelAxesArray::hidRelAxes](#hidrelaxes) | Array of relative coordinates. | 
-| [Hid_RelAxesArray::length](#length-45) | Length of the relative coordinate array. |
+| [Hid_RelAxesArray::length](#length-45) | Array length. | 
 | [Hid_MscEventArray::hidMscEvent](#hidmscevent) | Miscellaneous event. | 
-| [Hid_MscEventArray::length](#length-55) | Length of the miscellaneous event array. |
+| [Hid_MscEventArray::length](#length-55) | Array length. | 
 | [Hid_EventProperties::hidEventTypes](#hideventtypes) | Array of event types. | 
 | [Hid_EventProperties::hidKeys](#hidkeys) | Array of key codes. | 
-| [Hid_EventProperties::hidAbs](#hidabs) | Array of absolute coordinates. | 
-| [Hid_EventProperties::hidRelBits](#hidrelbits) | Array of relative coordinates. | 
+| [Hid_EventProperties::hidAbs](#hidabs) | Array of absolute coordinate properties. | 
+| [Hid_EventProperties::hidRelBits](#hidrelbits) | Array of relative coordinate properties. | 
 | [Hid_EventProperties::hidMiscellaneous](#hidmiscellaneous) | Array of miscellaneous events. | 
 | [Hid_EventProperties::hidAbsMax](#hidabsmax) [64] | Maximum values of the absolute coordinates. | 
 | [Hid_EventProperties::hidAbsMin](#hidabsmin) [64] | Minimum values of the absolute coordinates. | 
@@ -252,16 +252,15 @@ Enumerates the HID DDK error codes.
 
 **Since**: 11
 
-| Value| Description| 
-| -------- | -------- |
-| HID_DDK_SUCCESS  | Operation successful.| 
-| HID_DDK_FAILURE  | Operation failed.| 
-| HID_DDK_INVALID_PARAMETER  | Invalid parameter.| 
-| HID_DDK_INVALID_OPERATION  | Invalid operation.| 
-| HID_DDK_NULL_PTR  | Null pointer.| 
-| HID_DDK_TIMEOUT  | Timeout.| 
-| HID_DDK_NO_PERM  | Permission denied.| 
-
+| Enum| Value| Description| 
+| -------- | -------- |-------- |
+| HID_DDK_SUCCESS | 0 | Operation successful.| 
+| HID_DDK_NO_PERM | 201 | Permission denied.| 
+| HID_DDK_INVALID_PARAMETER | 401 | Invalid parameter.| 
+| HID_DDK_FAILURE | 27300001 | Operation failed.| 
+| HID_DDK_NULL_PTR | 27300002 | Null pointer.| 
+| HID_DDK_INVALID_OPERATION | 27300003 | Invalid operation.| 
+| HID_DDK_TIMEOUT | 27300004 | Timeout.| 
 
 ### Hid_DeviceProp
 
@@ -341,7 +340,7 @@ Enumerates the key codes.
 | HID_KEY_X  | Key X.| 
 | HID_KEY_Y  | Key Y.| 
 | HID_KEY_Z  | Key Z.| 
-| HID_KEY_ESC  | Key **Esc**. |
+| HID_KEY_ESC  | Key Esc.| 
 | HID_KEY_0  | Key 0.| 
 | HID_KEY_1  | Key 1.| 
 | HID_KEY_2  | Key 2.| 
@@ -355,19 +354,19 @@ Enumerates the key codes.
 | HID_KEY_GRAVE  | Key grave (`).| 
 | HID_KEY_MINUS  | Key minus (-).| 
 | HID_KEY_EQUALS  | Key equals (=).| 
-| HID_KEY_BACKSPACE  | key **Backspace**. |
+| HID_KEY_BACKSPACE  | key Backspace.| 
 | HID_KEY_LEFT_BRACKET  | Key left bracket ([).| 
 | HID_KEY_RIGHT_BRACKET  | Key right bracket (]).| 
-| HID_KEY_ENTER  | Key **Enter**. |
-| HID_KEY_LEFT_SHIFT  | Left **Shift** key. |
-| HID_KEY_BACKSLASH  | Key backslash (\\). |
+| HID_KEY_ENTER  | Key Enter.| 
+| HID_KEY_LEFT_SHIFT  | Left Shift.| 
+| HID_KEY_BACKSLASH  | Key backslash (\).| 
 | HID_KEY_SEMICOLON  | Key semicolon (;).| 
 | HID_KEY_APOSTROPHE  | Key apostrophe (').| 
-| HID_KEY_SPACE  | Key **Space**. |
+| HID_KEY_SPACE  | Key Space.| 
 | HID_KEY_SLASH  | Key slash (/).| 
 | HID_KEY_COMMA  | Key comma (,).| 
 | HID_KEY_PERIOD  | Key period (.).| 
-| HID_KEY_RIGHT_SHIFT  | Right **Shift** key. |
+| HID_KEY_RIGHT_SHIFT  | Right Shift.| 
 | HID_KEY_NUMPAD_0  | Numeral 0 on the numeric keypad.| 
 | HID_KEY_NUMPAD_1  | Numeral 1 on the numeric keypad.| 
 | HID_KEY_NUMPAD_2  | Numeral 2 on the numeric keypad.| 
@@ -383,12 +382,12 @@ Enumerates the key codes.
 | HID_KEY_NUMPAD_SUBTRACT  | Arithmetic operator - (subtraction) on the numeric keypad.| 
 | HID_KEY_NUMPAD_ADD  | Arithmetic operator + (addition) on the numeric keypad.| 
 | HID_KEY_NUMPAD_DOT  | Decimal point (.) on the numeric keypad. | 
-| HID_KEY_SYSRQ  | Key **Print Screen**.| 
+| HID_KEY_SYSRQ  | SYSRQ key.| 
 | HID_KEY_MUTE  | Mute key.| 
-| HID_KEY_VOLUME_DOWN  | Key for decreasing volume.| 
-| HID_KEY_VOLUME_UP  | Key for increasing volume.| 
-| HID_KEY_BRIGHTNESS_DOWN  | Key for making the screen dimmer.| 
-| HID_KEY_BRIGHTNESS_UP  | Key for making the screen brighter.| 
+| HID_KEY_VOLUME_DOWN  | Volume Down key.| 
+| HID_KEY_VOLUME_UP  | Volume Up key.| 
+| HID_KEY_BRIGHTNESS_DOWN  | Brightness Down key.| 
+| HID_KEY_BRIGHTNESS_UP  | Brightness Up key.| 
 | HID_BTN_0  | Button 0.| 
 | HID_BTN_1  | Button 1| 
 | HID_BTN_2  | Button 2.| 
@@ -432,7 +431,7 @@ Enumerates the key codes.
 enum Hid_MscEvent
 ```
 **Description**
-Enumerates the miscellaneous input events.
+Enumerates miscellaneous input events.
 
 **Since**: 11
 
@@ -517,8 +516,11 @@ ohos.permission.ACCESS_DDK_HID
 
 **Returns**
 
-Returns the device ID (a non-negative number) if the operation is successful; returns a negative number otherwise.
-
+- deviceID (a non-negative digit): The API call is successful.
+- [HID_DDK_NO_PERM](#hid_ddkerrcode): Permission verification fails.
+- [HID_DDK_INVALID_OPERATION](#hid_ddkerrcode): The hid_ddk service connection fails.
+- [HID_DDK_INVALID_PARAMETER](#hid_ddkerrcode): Parameter verification fails. The possible causes are as follows: 1. The input **hidDevice** is a null pointer. 2. The input **hidEventProperties** is a null pointer. 3. The length of **properties** exceeds 7 characters. 4. The length of **hidEventTypes** exceeds 5 characters. The length of **hidKeys** exceeds 100 characters. 6. The length of **hidAbs** exceeds 26 characters. 7. The length of **hidRelBits** exceeds 13 characters. 8. The length of **hidMiscellaneous** exceeds 6 characters.
+- [HID_DDK_FAILURE](#hid_ddkerrcode): The number of devices reaches the maximum value **200**.
 
 ### OH_Hid_DestroyDevice()
 
@@ -542,8 +544,9 @@ ohos.permission.ACCESS_DDK_HID
 
 **Returns**
 
-Returns **0** if the operation is successful; returns a negative value otherwise.
-
+- [HID_DDK_SUCCESS](#hid_ddkerrcode): The API call is successful.
+- [HID_DDK_NO_PERM](#hid_ddkerrcode): Permission verification failed.
+- [HID_DDK_INVALID_OPERATION](#hid_ddkerrcode): The hid_ddk service connection fails or the caller is not the device creator.
 
 ### OH_Hid_EmitEvent()
 
@@ -569,7 +572,11 @@ ohos.permission.ACCESS_DDK_HID
 
 **Returns**
 
-Returns **0** if the operation is successful; returns a negative value otherwise.
+- [HID_DDK_SUCCESS](#hid_ddkerrcode): The API call is successful.
+- [HID_DDK_NO_PERM](#hid_ddkerrcode): Permission verification failed.
+- [HID_DDK_INVALID_OPERATION](#hid_ddkerrcode): The hid_ddk service connection fails or the caller is not the device creator.
+- [HID_DDK_INVALID_PARAMETER](#hid_ddkerrcode): Parameter verification fails. The possible causes are as follows: 1. The device ID is smaller than 0. 2. The length of the input parameter exceeds 7 characters. 3. The input **items** is a null pointer.
+- [HID_DDK_NULL_PTR](#hid_ddkerrcode): The corresponding device does not exist.
 
 
 ## Variable Description

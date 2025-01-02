@@ -11,16 +11,18 @@ To use DevTools for frontend page debugging, perform the following steps:
 
    ```ts
    // xxx.ets
-   import web_webview from '@ohos.web.webview';
-   
+   import { webview } from '@kit.ArkWeb';
+
    @Entry
    @Component
    struct WebComponent {
-     controller: web_webview.WebviewController = new web_webview.WebviewController();
+     controller: webview.WebviewController = new webview.WebviewController();
+
      aboutToAppear() {
        // Enable web frontend page debugging.
-       web_webview.WebviewController.setWebDebuggingAccess(true);
+       webview.WebviewController.setWebDebuggingAccess(true);
      }
+ 
      build() {
        Column() {
          Web({ src: 'www.example.com', controller: this.controller })
@@ -28,7 +30,7 @@ To use DevTools for frontend page debugging, perform the following steps:
      }
    }
    ```
-2. Declare the required permission in the **module.json5** file of the application project in DevEco Studio.
+2. Declare the required permission in the **module.json5** file of the HAP module in the application project in DevEco Studio. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md).
 
    ```
    "requestPermissions":[
@@ -42,17 +44,11 @@ To use DevTools for frontend page debugging, perform the following steps:
 
    ```
    // Search for the domain socket name required for DevTools. The name is related to the process ID. After the application being debugged is restarted, repeat this step to complete port forwarding.
-   hdc shell 
    cat /proc/net/unix | grep devtools
-   exit
-   ```
-   ```
    // Configure port mapping. Replace [pid] with the actual process ID.
    hdc fport tcp:9222 localabstract:webview_devtools_remote_[pid]
    // View port mapping.
    hdc fport ls
-   ```
-   ```
    Example:
    hdc shell
    cat /proc/net/unix | grep devtools
@@ -64,17 +60,22 @@ To use DevTools for frontend page debugging, perform the following steps:
 
 4. Enter **chrome://inspect/\#devices** in the address box of the Chrome browser on the PC. Once the device is identified, you can get started with page debugging. The debugging effect is as follows:
 
-     **Figure 1** Page debugging effect 
+     **Figure 1** Successful device identification 
+
+     ![debug-succeed](figures/debug-succeed.png)
+
+     **Figure 2** Page debugging effect 
 
      ![debug-effect](figures/debug-effect.png)
 
+
 5. To debug multiple applications, click **Configure** under **Devices** and add multiple port numbers.
 
-     **Figure 2** Adding port numbers 
+     **Figure 3** Adding port numbers 
 
      ![debug-effect](figures/debug-domains.png)
 
-6. If you are using a Windows PC, you can run debugging simply with a .bat script containing the following information. Specifically, open the target application, and then execute the script.
+6. You can use a script to accelerate debugging on Windows as follows: Create a .bat file that contains the following information, start the application to debug, and run the script:
 
    ```
    @echo off
@@ -148,4 +149,66 @@ To use DevTools for frontend page debugging, perform the following steps:
    )
 
    endlocal
+   ```
+
+7. You can use a script to accelerate debugging on macOS or Linux: Create an .sh file that contains the following information (pay attention to chmod and format conversion), start the application to debug, and run the script:
+   ```
+   #!/bin/bash
+
+   # Get current fport rule list
+   CURRENT_FPORT_LIST=$(hdc fport ls)
+
+   # Delete the existing fport rule one by one
+   while IFS= read -r line; do
+       # Extract the taskline
+       IFS=' ' read -ra parts <<< "$line"
+       taskline="${parts[1]} ${parts[2]}"
+   
+       # Delete the corresponding fport rule
+       echo "Removing forward rule for $taskline"
+       hdc fport rm $taskline
+       result=$?
+   
+       if [ $result -eq 0 ]; then
+           echo "Remove forward rule success, taskline:$taskline"
+       else
+           echo "Failed to remove forward rule, taskline:$taskline"
+       fi
+   
+   done <<< "$CURRENT_FPORT_LIST"
+
+   # Initial port number
+   INITIAL_PORT=9222
+    
+   # Get the current port number, use initial port number if not set previously
+   CURRENT_PORT=${PORT:-$INITIAL_PORT}
+
+   # Get the list of all PIDs that match the condition
+   PID_LIST=$(hdc shell cat /proc/net/unix | grep webview_devtools_remote_ | awk -F '_' '{print $NF}')
+
+   if [ -z "$PID_LIST" ]; then
+       echo "Failed to retrieve PID from the device"
+       exit 1
+   fi
+
+   # Increment the port number
+   PORT=$CURRENT_PORT
+
+   # Forward ports for each application one by one
+   for PID in $PID_LIST; do
+       # Increment the port number
+       PORT=$((PORT + 1))
+
+       # Execute the hdc fport command
+       hdc fport tcp:$PORT localabstract:webview_devtools_remote_$PID
+    
+       # Check if the command executed successfully
+       if [ $? -ne 0 ]; then
+           echo "Failed to execute hdc fport command"
+           exit 1
+       fi
+   done
+
+   # List all forwarded ports
+   hdc fport ls
    ```

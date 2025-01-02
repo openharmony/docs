@@ -16,7 +16,7 @@
 ## 导入模块
 
 ```ts
-import window from '@ohos.window';
+import { window } from '@kit.ArkUI';
 ```
 
 ## WindowType<sup>7+</sup>
@@ -24,28 +24,27 @@ import window from '@ohos.window';
 
 窗口类型枚举。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称                                  | 值 | 说明                                                                                     |
 |-------------------------------------| ------ |----------------------------------------------------------------------------------------|
-| TYPE_INPUT_METHOD<sup>9+</sup>      | 2      | 表示输入法窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                         |
-| TYPE_STATUS_BAR<sup>9+</sup>        | 3      | 表示状态栏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                         |
-| TYPE_PANEL<sup>9+</sup>             | 4      | 表示通知栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                           |
-| TYPE_KEYGUARD<sup>9+</sup>          | 5      | 表示锁屏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                            |
-| TYPE_VOLUME_OVERLAY<sup>9+</sup>    | 6      | 表示音量条。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                           |
-| TYPE_NAVIGATION_BAR<sup>9+</sup>    | 7      | 表示导航栏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                         |
-| TYPE_WALLPAPER<sup>9+</sup>         | 9      | 表示壁纸。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                            |
-| TYPE_DESKTOP<sup>9+</sup>           | 10      | 表示桌面。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                            |
-| TYPE_LAUNCHER_RECENT<sup>9+</sup>   | 11      | 表示多任务中心。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                         |
-| TYPE_LAUNCHER_DOCK<sup>9+</sup>     | 12      | 表示桌面Dock栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                       |
-| TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | 表示智慧语音。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                          |
-| TYPE_POINTER<sup>9+</sup>           | 14      | 表示鼠标。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                            |
-| TYPE_FLOAT_CAMERA<sup>9+</sup>      | 15      | 表示相机类型悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                       |
-| TYPE_SCREENSHOT<sup>9+</sup>        | 17      | 表示截屏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                          |
-| TYPE_SYSTEM_TOAST<sup>11+</sup>     | 18      | 表示顶层提示窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                        |
-| TYPE_DIVIDER<sup>11+</sup>          | 19      | 表示分屏条。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                 |
-| TYPE_GLOBAL_SEARCH<sup>11+</sup>    | 20      | 表示全局搜索窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                        |
-| TYPE_HANDWRITE<sup>12+</sup>        | 21      | 表示手写笔窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                        |
+| TYPE_INPUT_METHOD<sup>(deprecated)</sup>      | 2      | 表示输入法窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**说明：** 从API version 9开始支持，从API version 13开始废弃，无替代窗口类型，输入法相关控制都请调用[输入法框架侧接口](../../inputmethod/inputmethod-application-guide.md)执行。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_STATUS_BAR<sup>9+</sup>        | 3      | 表示状态栏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_PANEL<sup>9+</sup>             | 4      | 表示通知栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_KEYGUARD<sup>9+</sup>          | 5      | 表示锁屏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_VOLUME_OVERLAY<sup>9+</sup>    | 6      | 表示音量条。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_NAVIGATION_BAR<sup>9+</sup>    | 7      | 表示导航栏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_WALLPAPER<sup>9+</sup>         | 9      | 表示壁纸。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_DESKTOP<sup>9+</sup>           | 10      | 表示桌面。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_LAUNCHER_RECENT<sup>9+</sup>   | 11      | 表示多任务中心。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_LAUNCHER_DOCK<sup>9+</sup>     | 12      | 表示桌面Dock栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | 表示智慧语音。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_POINTER<sup>9+</sup>           | 14      | 表示鼠标。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_FLOAT_CAMERA<sup>9+</sup>      | 15      | 表示相机类型悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_SCREENSHOT<sup>9+</sup>        | 17      | 表示截屏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_SYSTEM_TOAST<sup>11+</sup>     | 18      | 表示顶层提示窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_DIVIDER<sup>11+</sup>          | 19      | 表示分屏条。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_GLOBAL_SEARCH<sup>11+</sup>    | 20      | 表示全局搜索窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_HANDWRITE<sup>12+</sup>        | 21      | 表示手写笔窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
 
 ## WindowMode<sup>7+</sup>
 
@@ -129,12 +128,12 @@ import window from '@ohos.window';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 类型 | 可读 | 可写 | 说明                                         |
-| ------ | -------- | ---- | ---- |--------------------------------------------|
-| x      | number   | 否   | 是   | X轴的缩放参数。该参数为浮点数，默认值为1.0。                   |
-| y      | number   | 否   | 是   | Y轴的缩放参数。该参数为浮点数，默认值为1.0。                   |
-| pivotX | number   | 否   | 是   | 缩放中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围[0.0, 1.0]。 |
-| pivotY | number   | 否   | 是   | 缩放中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围[0.0, 1.0]。 |
+| 名称   | 类型 | 只读 | 必填 | 说明                                         |
+| ------ | -------- | ---- | ---- | --------------------------------------------|
+| x      | number   | 否   | 否   | X轴的缩放参数。该参数为浮点数，默认值为1.0。                   |
+| y      | number   | 否   | 否   | Y轴的缩放参数。该参数为浮点数，默认值为1.0。                   |
+| pivotX | number   | 否   | 否   | 缩放中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围[0.0, 1.0]。 |
+| pivotY | number   | 否   | 否   | 缩放中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围[0.0, 1.0]。 |
 
 ## RotateOptions<sup>9+</sup>
 
@@ -144,13 +143,13 @@ import window from '@ohos.window';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 类型 | 可读 | 可写 | 说明                                          |
-| ------ | -------- | ---- | ---- |---------------------------------------------|
-| x      | number   | 否   | 是   | 绕X轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
-| y      | number   | 否   | 是   | 绕Y轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
-| z      | number   | 否   | 是   | 绕Z轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
-| pivotX | number   | 否   | 是   | 旋转中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
-| pivotY | number   | 否   | 是   | 旋转中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。  |
+| 名称   | 类型 | 只读 | 必填 | 说明                                          |
+| ------ | -------- | ---- |---- |---------------------------------------------|
+| x      | number   | 否   | 否  | 绕X轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| y      | number   | 否   | 否  | 绕Y轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| z      | number   | 否   | 否  | 绕Z轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| pivotX | number   | 否   | 否  | 旋转中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
+| pivotY | number   | 否   | 否  | 旋转中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。  |
 
 ## TranslateOptions<sup>9+</sup>
 
@@ -160,12 +159,28 @@ import window from '@ohos.window';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明                         |
+| 名称 | 类型 | 只读 | 必填 | 说明                         |
 | ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | 否   | 是   | X轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
-| y    | number   | 否   | 是   | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
-| z    | number   | 否   | 是   | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| x    | number   | 否   | 否  | X轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| y    | number   | 否   | 否  | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| z    | number   | 否   | 否  | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 
+## WindowInfo<sup>12+</sup>
+
+当前窗口的详细信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 类型   | 只读 | 可选 | 说明                                       |
+| ------ | ------ | ---- | ---- | ------------------------------------------ |
+| rect  | [Rect](js-apis-window.md#rect7)   | 是   | 否   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。 |
+| bundleName  | string   | 是   | 否   | 应用Bundle的名称。          |
+| abilityName | string   | 是   | 否   | Ability的名称。               |
+| windowId | number | 是   | 否   | 窗口ID。   |
+| windowStatusType | [WindowStatusType](js-apis-window.md#windowstatustype11) | 是   | 否   | 窗口模式枚举。   |
+| isFocused<sup>14+</sup> | boolean | 是   | 是   | 窗口是否获焦。true表示窗口获焦；false表示窗口未获焦。   |
 
 ## window.minimizeAll<sup>9+</sup>
 minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
@@ -185,36 +200,35 @@ minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import display from '@ohos.display'
-import { BusinessError } from '@ohos.base';
+import { display } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
+displayClass = display.getDefaultDisplaySync();
 
-  try {
-    window.minimizeAll(displayClass.id, (err: BusinessError) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in minimizing all windows.');
-    });
-  } catch (exception) {
-    console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
-  }
+try {
+  window.minimizeAll(displayClass.id, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in minimizing all windows.');
+  });
 } catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -241,34 +255,33 @@ minimizeAll(id: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import display from '@ohos.display'
-import { BusinessError } from '@ohos.base';
+import { display } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
+displayClass = display.getDefaultDisplaySync();
 
-  try {
-    let promise = window.minimizeAll(displayClass.id);
-    promise.then(() => {
-      console.info('Succeeded in minimizing all windows.');
-    }).catch((err: BusinessError) => {
-      console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
-    });
-  } catch (exception) {
-    console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
-  }
+try {
+  let promise = window.minimizeAll(displayClass.id);
+  promise.then(() => {
+    console.info('Succeeded in minimizing all windows.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
+  });
 } catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -293,17 +306,19 @@ toggleShownStateForAllAppWindows(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 window.toggleShownStateForAllAppWindows((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to toggle shown state for all app windows. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in toggling shown state for all app windows.');
@@ -331,18 +346,20 @@ toggleShownStateForAllAppWindows(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = window.toggleShownStateForAllAppWindows();
 promise.then(() => {
   console.info('Succeeded in toggling shown state for all app windows.');
 }).catch((err: BusinessError) => {
-  console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to toggle shown state for all app windows. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -364,28 +381,30 @@ setWindowLayoutMode(mode: WindowLayoutMode, callback: AsyncCallback&lt;void&gt;)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   window.setWindowLayoutMode(window.WindowLayoutMode.WINDOW_LAYOUT_MODE_CASCADE, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to set window layout mode. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('Succeeded in setting window layout mode.');
   });
 } catch (exception) {
-  console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set window layout mode. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -412,26 +431,28 @@ setWindowLayoutMode(mode: WindowLayoutMode): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let promise = window.setWindowLayoutMode(window.WindowLayoutMode.WINDOW_LAYOUT_MODE_CASCADE);
   promise.then(() => {
     console.info('Succeeded in setting window layout mode.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to set window layout mode. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set window layout mode. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -452,6 +473,15 @@ on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): v
 | type     | string                                                     | 是   | 监听事件，固定为'systemBarTintChange'，即导航栏、状态栏属性变化事件。 |
 | callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | 是   | 回调函数。返回当前的状态栏、导航栏信息集合。                 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.               |
+
 **示例：**
 
 ```ts
@@ -460,7 +490,7 @@ try {
     console.info('Succeeded in enabling the listener for systemBarTint changes. Data: ' + JSON.stringify(data));
   });
 } catch (exception) {
-  console.error('Failed to enable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -481,13 +511,29 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 | type     | string                                                     | 是   | 监听事件，固定为'systemBarTintChange'，即导航栏、状态栏属性变化事件。 |
 | callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | 否   | 回调函数。返回当前的状态栏、导航栏信息集合。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有状态栏、导航栏属性变化的监听。                |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed.              |
+
 **示例：**
 
 ```ts
+const callback = (systemBarTintState: window.SystemBarTintState) => {
+  // ...
+}
 try {
+  window.on('systemBarTintChange', callback);
+
+  window.off('systemBarTintChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   window.off('systemBarTintChange');
 } catch (exception) {
-  console.error('Failed to disable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable or disable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -510,10 +556,12 @@ on(type: 'gestureNavigationEnabledChange', callback: Callback&lt;boolean&gt;): v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.               |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 
@@ -525,7 +573,7 @@ try {
     console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ' + JSON.stringify(data));
   });
 } catch (exception) {
-  console.error('Failed to enable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -548,20 +596,28 @@ off(type: 'gestureNavigationEnabledChange', callback?: Callback&lt;boolean&gt;):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed.               |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
+const callback = (bool: boolean) => {
+  // ...
+}
 try {
+  window.on('gestureNavigationEnabledChange', callback);
+  window.off('gestureNavigationEnabledChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   window.off('gestureNavigationEnabledChange');
 } catch (exception) {
-  console.error('Failed to disable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable or disable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -584,10 +640,12 @@ on(type: 'waterMarkFlagChange', callback: Callback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -598,7 +656,7 @@ try {
     console.info('Succeeded in enabling the listener for watermark flag changes. Data: ' + JSON.stringify(data));
   });
 } catch (exception) {
-  console.error('Failed to enable the listener for watermark flag changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -621,26 +679,34 @@ off(type: 'waterMarkFlagChange', callback?: Callback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
+const callback = (bool: boolean) => {
+  // ...
+}
 try {
+  window.on('waterMarkFlagChange', callback);
+  window.off('waterMarkFlagChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   window.off('waterMarkFlagChange');
 } catch (exception) {
-  console.error('Failed to disable the listener for watermark flag changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable or disable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
 ## window.setGestureNavigationEnabled<sup>10+</sup>
 setGestureNavigationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置手势导航启用状态。使用callback异步回调。
+设置手势导航启用状态。使用callback异步回调。系统出于安全的考虑，不会干预手势的禁用和恢复。应用调用本接口禁用手势后异常退出的情况下，如果想要恢复手势，需自行实现自动拉起机制并再次调用本接口恢复手势。
 
 **系统接口：** 此接口为系统接口。
 
@@ -655,36 +721,38 @@ setGestureNavigationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   window.setGestureNavigationEnabled(true, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to set gesture navigation enabled. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('Succeeded in setting gesture navigation enabled.');
   });
 } catch (exception) {
-  console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set gesture navigation enabled. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
 ## window.setGestureNavigationEnabled<sup>10+</sup>
 setGestureNavigationEnabled(enable: boolean): Promise&lt;void&gt;
 
-设置手势导航启用状态。使用Promise异步回调。
+设置手势导航启用状态。使用Promise异步回调。系统出于安全的考虑，不会干预手势的禁用和恢复。应用调用本接口禁用手势后异常退出的情况下，如果想要恢复手势，需自行实现自动拉起机制并再次调用本接口恢复手势。
 
 **系统接口：** 此接口为系统接口。
 
@@ -704,27 +772,29 @@ setGestureNavigationEnabled(enable: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let promise = window.setGestureNavigationEnabled(true);
   promise.then(() => {
     console.info('Succeeded in setting gesture navigation enabled.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to set gesture navigation enabled. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set gesture navigation enabled. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -747,17 +817,19 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, callback: AsyncCall
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
-import { BusinessError } from '@ohos.base';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable: boolean = true;
 let color: ArrayBuffer = new ArrayBuffer(0);
@@ -773,16 +845,16 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
     window.setWaterMarkImage(pixelMap, enable, (err: BusinessError) => {
       const errCode: number = err.code;
       if (errCode) {
-        console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to show watermark image. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('Succeeded in showing watermark image.');
     });
   } catch (exception) {
-    console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
+    console.error(`Failed to show watermark image. Cause code: ${exception.code}, message: ${exception.message}`);
   }
 }).catch((err: BusinessError) => {
-  console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to create PixelMap. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -810,17 +882,19 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean): Promise&lt;void&gt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
-import { BusinessError } from '@ohos.base';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable: boolean = true;
 let color: ArrayBuffer = new ArrayBuffer(0);
@@ -837,20 +911,21 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
     promise.then(() => {
       console.info('Succeeded in showing watermark image.');
     }).catch((err: BusinessError) => {
-      console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to show watermark image. Cause code: ${err.code}, message: ${err.message}`);
     });
   } catch (exception) {
-    console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
+    console.error(`Failed to show watermark image. Cause code: ${exception.code}, message: ${exception.message}`);
   }
 }).catch((err: BusinessError) => {
-  console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to create PixelMap. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
+
 ## window.getSnapshot<sup>12+</sup>
 
-window.getSnapshot(windowId: number): Promise<image.PixelMap>
+getSnapshot(windowId: number): Promise<image.PixelMap>
 
-获取指定窗口截图，使用Promise异步回调
+获取指定窗口相同尺寸截图，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -867,18 +942,21 @@ window.getSnapshot(windowId: number): Promise<image.PixelMap>
 | Promise<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | Promise对象。返回指定窗口截图。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
-| 1300002  | This window state is abnormal.               |
-| 1300003  | This window manager service work abnormally. |
-| 1300004  | This operation is not access.                |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 1300002  | This window state is abnormal.                |
+| 1300003  | This window manager service works abnormally. |
+| 1300004  | This operation is not accessible.             |
 
 **示例：**
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+
 try {
   // 此处仅示意，请使用getWindowProperties获取对应窗口ID再进行使用
   let windowId: number = 40;
@@ -887,11 +965,62 @@ try {
     console.info('Succeeded in getting snapshot window. Pixel bytes number:' + pixelMap.getPixelBytesNumber());
     pixelMap.release();
   }).catch((err: BusinessError) =>{
-    console.error('Failed to get snapshot. Cause:' + JSON.stringify(err));
+    console.error(`Failed to get snapshot. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to get snapshot. Cause:' + JSON.stringify(exception));
+  console.error(`Failed to get snapshot. Cause code: ${exception.code}, message: ${exception.message}`);
 }
+```
+
+## window.getVisibleWindowInfo<sup>12+</sup>
+
+getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
+
+获取当前屏幕的可见窗口（未退至后台的窗口）信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ----------------------- |
+| Promise&lt;[WindowInfo](#windowinfo12)&gt; | Promise对象，返回当前可见窗口的相关信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 202     | Permission verification failed, non-system application uses system API. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let promise = window.getVisibleWindowInfo();
+promise.then((data) => {
+  data.forEach(windowInfo=>{
+    console.info(`left:${windowInfo.rect.left}`);
+    console.info(`top:${windowInfo.rect.top}`);
+    console.info(`width:${windowInfo.rect.width}`);
+    console.info(`height:${windowInfo.rect.height}`);
+    console.info(`windowId:${windowInfo.windowId}`);
+    console.info(`windowStatusType:${windowInfo.windowStatusType}`);
+    console.info(`abilityName:${windowInfo.abilityName}`);
+    console.info(`bundleName:${windowInfo.bundleName}`);
+    console.info(`isFocused:${windowInfo.isFocused}`);
+  })
+}).catch((err: BusinessError) => {
+  console.error('Failed to getWindowInfo. Cause: ' + JSON.stringify(err));
+});
 ```
 
 ## Window
@@ -904,7 +1033,7 @@ try {
 
 hide (callback: AsyncCallback&lt;void&gt;): void
 
-隐藏当前窗口，使用callback异步回调。
+隐藏当前窗口，使用callback异步回调，仅支持系统窗口与应用子窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -922,17 +1051,18 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.hide((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to hide the window. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in hiding the window.');
@@ -943,7 +1073,7 @@ windowClass.hide((err: BusinessError) => {
 
 hide(): Promise&lt;void&gt;
 
-隐藏当前窗口，使用Promise异步回调。
+隐藏当前窗口，使用Promise异步回调，仅支持系统窗口与应用子窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -961,18 +1091,19 @@ hide(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.hide();
 promise.then(() => {
   console.info('Succeeded in hiding the window.');
 }).catch((err: BusinessError) => {
-  console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to hide the window. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -980,7 +1111,7 @@ promise.then(() => {
 
 hideWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 
-隐藏当前窗口，过程中播放动画，使用callback异步回调。
+隐藏当前窗口，过程中播放动画，使用callback异步回调，仅支持系统窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -998,6 +1129,7 @@ hideWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                |
@@ -1005,12 +1137,12 @@ hideWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.hideWithAnimation((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to hide the window with animation. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in hiding the window with animation.');
@@ -1021,7 +1153,7 @@ windowClass.hideWithAnimation((err: BusinessError) => {
 
 hideWithAnimation(): Promise&lt;void&gt;
 
-隐藏当前窗口，过程中播放动画，使用Promise异步回调。
+隐藏当前窗口，过程中播放动画，使用Promise异步回调，仅支持系统窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1039,6 +1171,7 @@ hideWithAnimation(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                |
@@ -1046,22 +1179,21 @@ hideWithAnimation(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.hideWithAnimation();
 promise.then(() => {
   console.info('Succeeded in hiding the window with animation.');
 }).catch((err: BusinessError) => {
-  console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to hide the window with animation. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
-
 
 ### showWithAnimation<sup>9+</sup>
 
 showWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 
-显示当前窗口，过程中播放动画，使用callback异步回调。
+显示当前窗口，过程中播放动画，使用callback异步回调，仅支持系统窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1079,6 +1211,7 @@ showWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                |
@@ -1086,12 +1219,12 @@ showWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.showWithAnimation((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to show the window with animation. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in showing the window with animation.');
@@ -1102,7 +1235,7 @@ windowClass.showWithAnimation((err: BusinessError) => {
 
 showWithAnimation(): Promise&lt;void&gt;
 
-显示当前窗口，过程中播放动画，使用Promise异步回调。
+显示当前窗口，过程中播放动画，使用Promise异步回调，仅支持系统窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1120,6 +1253,7 @@ showWithAnimation(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                |
@@ -1127,13 +1261,13 @@ showWithAnimation(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.showWithAnimation();
 promise.then(() => {
   console.info('Succeeded in showing the window with animation.');
 }).catch((err: BusinessError) => {
-  console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to show the window with animation. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1141,7 +1275,7 @@ promise.then(() => {
 
 setWindowMode(mode: WindowMode, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口模式，使用callback异步回调。
+设置主窗口模式，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1156,30 +1290,49 @@ setWindowMode(mode: WindowMode, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mode = window.WindowMode.FULLSCREEN;
-try {
-  windowClass.setWindowMode(mode, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to set the window mode. Cause: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in setting the window mode.');
-  });
-} catch (exception) {
-  console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let mode = window.WindowMode.FULLSCREEN;
+      try {
+        windowClass.setWindowMode(mode, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set the window mode. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting the window mode.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set the window mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1187,7 +1340,7 @@ try {
 
 setWindowMode(mode: WindowMode): Promise&lt;void&gt;
 
-设置窗口类型，使用Promise异步回调。
+设置主窗口模式，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1207,28 +1360,47 @@ setWindowMode(mode: WindowMode): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mode = window.WindowMode.FULLSCREEN;
-try {
-  let promise = windowClass.setWindowMode(mode);
-  promise.then(() => {
-    console.info('Succeeded in setting the window mode.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to set the window mode. Cause: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let mode = window.WindowMode.FULLSCREEN;
+      try {
+        let promise = windowClass.setWindowMode(mode);
+        promise.then(() => {
+          console.info('Succeeded in setting the window mode.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set the window mode. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set the window mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1252,18 +1424,20 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, c
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import rpc from '@ohos.rpc';
-import { BusinessError } from '@ohos.base';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
@@ -1296,7 +1470,7 @@ try {
   window.createWindow(config, (err: BusinessError, data) => {
     let errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     windowClass = data;
@@ -1306,13 +1480,13 @@ try {
   }, (err: BusinessError) => {
     let errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('Succeeded in binding dialog target.');
   });
 } catch (exception) {
-  console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
+  console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1341,18 +1515,20 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import rpc from '@ohos.rpc';
-import { BusinessError } from '@ohos.base';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
@@ -1389,7 +1565,7 @@ try {
   window.createWindow(config, (err: BusinessError, data) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     windowClass = data;
@@ -1400,10 +1576,10 @@ try {
   promise.then(() => {
     console.info('Succeeded in binding dialog target.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+    console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
+  console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1427,20 +1603,20 @@ bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { dialogRequest, Want, ServiceExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
@@ -1453,7 +1629,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
       window.createWindow(config, (err: BusinessError, data) => {
         let errCode: number = err.code;
         if (errCode) {
-          console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
         windowClass = data;
@@ -1464,13 +1640,13 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
       }, (err: BusinessError) => {
         let errCode: number = err.code;
         if (errCode) {
-          console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+          console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('Succeeded in binding dialog target.');
       });
     } catch (err) {
-      console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
+      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`)
     }
   }
 }
@@ -1501,20 +1677,20 @@ bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { dialogRequest, Want, ServiceExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
@@ -1527,7 +1703,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
       window.createWindow(config, (err: BusinessError, data) => {
         const errCode: number = err.code;
         if (errCode) {
-          console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
         windowClass = data;
@@ -1539,16 +1715,16 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
       promise.then(() => {
         console.info('Succeeded in binding dialog target.');
       }).catch((err: BusinessError) => {
-        console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+        console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
       });
     } catch (err) {
-      console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
+      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`)
     }
   }
 }
 ```
 
-### setWakeUpScreen()<sup>9+</sup>
+### setWakeUpScreen<sup>9+</sup>
 
 setWakeUpScreen(wakeUp: boolean): void
 
@@ -1566,10 +1742,12 @@ setWakeUpScreen(wakeUp: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
@@ -1580,7 +1758,7 @@ let wakeUp: boolean = true;
 try {
   windowClass.setWakeUpScreen(wakeUp);
 } catch (exception) {
-  console.error('Failed to wake up the screen. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to wake up the screen. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1601,10 +1779,12 @@ setSnapshotSkip(isSkip: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
 
 ```ts
@@ -1612,7 +1792,7 @@ let isSkip: boolean = true;
 try {
   windowClass.setSnapshotSkip(isSkip);
 } catch (exception) {
-  console.error('Failed to Skip. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to Skip. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1620,7 +1800,7 @@ try {
 
 setForbidSplitMove(isForbidSplitMove: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口在分屏模式下是否被禁止移动，使用callback异步回调。
+设置主窗口在分屏模式下是否被禁止移动，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1635,30 +1815,49 @@ setForbidSplitMove(isForbidSplitMove: boolean, callback: AsyncCallback&lt;void&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isForbidSplitMove: boolean = true;
-try {
-  windowClass.setForbidSplitMove(isForbidSplitMove, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in forbidding window moving in split screen mode.');
-  });
-} catch (exception) {
-  console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isForbidSplitMove: boolean = true;
+      try {
+        windowClass.setForbidSplitMove(isForbidSplitMove, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to forbid window moving in split screen mode. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in forbidding window moving in split screen mode.');
+        });
+      } catch (exception) {
+        console.error(`Failed to forbid window moving in split screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1666,7 +1865,7 @@ try {
 
 setForbidSplitMove(isForbidSplitMove: boolean): Promise&lt;void&gt;
 
-设置窗口在分屏模式下是否被禁止移动，使用Promise异步回调。
+设置主窗口在分屏模式下是否被禁止移动，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1686,28 +1885,47 @@ setForbidSplitMove(isForbidSplitMove: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isForbidSplitMove: boolean = true;
-try {
-  let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
-  promise.then(() => {
-    console.info('Succeeded in forbidding window moving in split screen mode.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to forbid window moving in split screen mode. Cause: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isForbidSplitMove: boolean = true;
+      try {
+        let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
+        promise.then(() => {
+          console.info('Succeeded in forbidding window moving in split screen mode.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to forbid window moving in split screen mode. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to forbid window moving in split screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1729,10 +1947,12 @@ opacity(opacity: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -1742,7 +1962,7 @@ opacity(opacity: number): void
 try {
   windowClass.opacity(0.5);
 } catch (exception) {
-  console.error('Failed to opacity. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to opacity. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1764,10 +1984,12 @@ scale(scaleOptions: ScaleOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -1783,7 +2005,7 @@ let obj: window.ScaleOptions = {
 try {
   windowClass.scale(obj);
 } catch (exception) {
-  console.error('Failed to scale. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to scale. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1805,10 +2027,12 @@ rotate(rotateOptions: RotateOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -1825,7 +2049,7 @@ let obj: window.RotateOptions = {
 try {
   windowClass.rotate(obj);
 } catch (exception) {
-  console.error('Failed to rotate. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to rotate. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1847,10 +2071,12 @@ translate(translateOptions: TranslateOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -1865,11 +2091,11 @@ let obj: window.TranslateOptions = {
 try {
   windowClass.translate(obj);
 } catch (exception) {
-  console.error('Failed to translate. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to translate. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
-###  getTransitionController<sup>9+</sup>
+### getTransitionController<sup>9+</sup>
 
  getTransitionController(): TransitionController
 
@@ -1891,6 +2117,7 @@ try {
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -1918,10 +2145,12 @@ setBlur(radius: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -1931,7 +2160,7 @@ setBlur(radius: number): void
 try {
   windowClass.setBlur(4.0);
 } catch (exception) {
-  console.error('Failed to set blur. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set blur. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1940,6 +2169,8 @@ try {
 setBackdropBlur(radius: number): void
 
 设置窗口背景模糊。
+窗口背景是指窗口覆盖的下层区域，与窗口大小相同。
+需要通过[setWindowBackgroundColor](js-apis-window.md#setwindowbackgroundcolor9)将窗口内容背景设置成透明，否则无法看到模糊效果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1953,10 +2184,12 @@ setBackdropBlur(radius: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -1964,9 +2197,10 @@ setBackdropBlur(radius: number): void
 
 ```ts
 try {
+  windowClass.setWindowBackgroundColor('#00FFFFFF');
   windowClass.setBackdropBlur(4.0);
 } catch (exception) {
-  console.error('Failed to set backdrop blur. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set backdrop blur. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1988,10 +2222,12 @@ setBackdropBlurStyle(blurStyle: BlurStyle): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -2001,7 +2237,7 @@ setBackdropBlurStyle(blurStyle: BlurStyle): void
 try {
   windowClass.setBackdropBlurStyle(window.BlurStyle.THIN);
 } catch (exception) {
-  console.error('Failed to set backdrop blur style. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set backdrop blur style. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2026,10 +2262,12 @@ setShadow(radius: number, color?: string, offsetX?: number, offsetY?: number): v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -2039,7 +2277,7 @@ setShadow(radius: number, color?: string, offsetX?: number, offsetY?: number): v
 try {
   windowClass.setShadow(4.0, '#FF00FF00', 2, 3);
 } catch (exception) {
-  console.error('Failed to set shadow. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set shadow. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2057,14 +2295,16 @@ setCornerRadius(cornerRadius: number): void
 
 | 参数名      | 类型    | 必填 | 说明                                                 |
 | ----------- | ------- | ---- |----------------------------------------------------|
-| radius | number | 是   | 表示窗口圆角的半径值。该参数为浮点数，单位为px，取值范围为[0.0, +∞)，取值为0.0时表示没有窗口圆角。 |
+| cornerRadius | number | 是   | 表示窗口圆角的半径值。该参数为浮点数，单位为px，取值范围为[0.0, +∞)，取值为0.0时表示没有窗口圆角。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation.  |
 
@@ -2074,7 +2314,7 @@ setCornerRadius(cornerRadius: number): void
 try {
   windowClass.setCornerRadius(4.0);
 } catch (exception) {
-  console.error('Failed to set corner radius. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set corner radius. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2092,14 +2332,17 @@ setTouchableAreas(rects: Array&lt;Rect&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| rects | Array<[Rect](js-apis-window.md#rect7)> | 是   | 窗口可触摸区域。 |
+| rects | Array<[Rect](js-apis-window.md#rect7)> | 是   | 窗口可触摸区域。可触摸区域最大个数不能超过10个，且范围不能超出窗口区域。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |                       |
 
@@ -2110,7 +2353,7 @@ try {
   windowClass.setTouchableAreas([{left: 100, top: 100, width: 200, height:200},
     {left: 400, top: 100, width: 200, height:200}]);
 } catch (exception) {
-  console.error('Failed to set touchable areas. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set touchable areas. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2132,10 +2375,11 @@ raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. |
@@ -2144,55 +2388,15 @@ raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.raiseToAppTop((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in raising the window to app top.');
-});
-```
-
-### raiseToAppTop<sup>10+</sup>
-
-raiseToAppTop(): Promise&lt;void&gt;
-
-提升应用子窗口到应用顶层。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 1300002 | This window state is abnormal. |
-| 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation. |
-| 1300009 | The parent window is invalid. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let promise = windowClass.raiseToAppTop();
-promise.then(() => {
-  console.info('Succeeded in raising the window to app top.');
-}).catch((err: BusinessError) => {
-  console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -2220,18 +2424,20 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
-| 1300008 | The operation is on invalid display.           |
+| 1300008 | The display device is abnormal.           |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let enable = true;
@@ -2239,10 +2445,10 @@ try {
   promise.then(() => {
     console.info('Succeeded in setting water mark flag of window.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+    console.error(`Failed to set water mark flag of window. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set water mark flag of window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2265,31 +2471,33 @@ setWaterMarkFlag(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
-| 1300008 | The operation is on invalid display.           |
+| 1300008 | The display device is abnormal.           |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let enable: boolean = true;
   windowClass.setWaterMarkFlag(enable, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+      console.error(`Failed to set water mark flag of window. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('Succeeded in setting water mark flag of window.');
   });
 } catch (exception) {
-  console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set water mark flag of window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2317,17 +2525,20 @@ setHandwritingFlag(enable: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let enable = true;
@@ -2335,10 +2546,10 @@ try {
   promise.then(() => {
     console.info('Succeeded in setting handwriting flag of window.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to set handwriting flag of window. Cause:' + JSON.stringify(err));
+    console.error(`Failed to set handwriting flag of window. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set handwriting flag of window. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set handwriting flag of window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2361,10 +2572,13 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: Mandatory parameters are left unspecified. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. |
@@ -2372,18 +2586,42 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-// windowClass的获取需放在targetWindow之上
-let targetWindow: window.Window = windowClass;
-let properties = targetWindow.getWindowProperties();
-let targetId = properties.id;
-windowClass.raiseAboveTarget(targetId, (err) => {
-    if (err.code) {
-        console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
-        return;
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    // 创建子窗
+    try {
+      let subWindow = windowStage.createSubWindow("testSubWindow");
+      subWindow.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        // windowClass的获取需放在targetWindow之上
+        let targetWindow: window.Window = windowClass;
+        let properties = targetWindow.getWindowProperties();
+        let targetId = properties.id;
+        windowClass.raiseAboveTarget(targetId, (err) => {
+          if (err.code) {
+            console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in raising the subWindow to target subWindow top.');
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
     }
-    console.info('Succeeded in raising the subWindow to target subWindow top.');
-});
+  }
+}
 ```
 
 ### raiseAboveTarget<sup>10+</sup>
@@ -2410,10 +2648,13 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: Mandatory parameters are left unspecified. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. |
@@ -2421,18 +2662,43 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-// windowClass的获取需放在targetWindow之上
-let targetWindow: window.Window = windowClass;
-let properties = targetWindow.getWindowProperties();
-let targetId = properties.id;
-let promise = windowClass.raiseAboveTarget(targetId);
-promise.then(()=> {
-    console.info('Succeeded in raising the subWindow to target subWindow top.');
-}).catch((err)=>{
-    console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
-});
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    // 创建子窗
+    try {
+      let subWindow = windowStage.createSubWindow("testSubWindow");
+      subWindow.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        // windowClass的获取需放在targetWindow之上
+        let targetWindow: window.Window = windowClass;
+        let properties = targetWindow.getWindowProperties();
+        let targetId = properties.id;
+        let promise = windowClass.raiseAboveTarget(targetId);
+        promise.then(()=> {
+          console.info('Succeeded in raising the subWindow to target subWindow top.');
+        }).catch((err: BusinessError)=>{
+          console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
 ```
+
 ### setRaiseByClickEnabled<sup>10+</sup>
 
 setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
@@ -2454,10 +2720,13 @@ setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. |
@@ -2465,205 +2734,101 @@ setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 **示例：**
 
-```js
-let enabled = false;
-windowClass.setRaiseByClickEnabled(enabled, (err) => {
-    if (err.code) {
-        console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
-        return;
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    // 创建子窗
+    try {
+      let subWindow = windowStage.createSubWindow("testSubWindow");
+      subWindow.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        let enabled = false;
+        windowClass.setRaiseByClickEnabled(enabled, (err) => {
+          if (err.code) {
+            console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in disabling the raise-by-click function.');
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
     }
-    console.info('Succeeded in disabling the raise-by-click function.');
-});
+  }
+}
 ```
 
-### setRaiseByClickEnabled<sup>10+</sup>
+### enableDrag<sup>14+</sup>
 
-setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
+enableDrag(enable: boolean): Promise&lt;void&gt;
 
-禁止/使能子窗点击抬升功能。使用Promise异步回调。
+使能/禁止拖拽窗口。使用Promise异步回调。
 
-通常来说，点击一个子窗口，会将该子窗口显示到最上方，如果设置为false，那么点击子窗口的时候，不会将该子窗口显示到最上方，而是保持不变。
+使能后，将允许通过鼠标对窗口进行拉伸操作。
 
-**系统接口：** 此接口为系统接口。
+仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明       |
-| -------- | ------------------------- | ---- | ---------- |
-| enable   | boolean                   | 是   | 设置子窗口点击抬升功能是否使能，true表示使能，false表示禁止。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | ---------------------------- | -- | --------- |
+| enable| boolean | 是 | 是否允许拖拽。<br>true表示允许，false表示不允许。</br> |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。  |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 1300002 | This window state is abnormal. |
+| -------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.   |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation. |
-| 1300009 | The parent window is invalid. |
+| 1300004 | Unauthorized operation.                       |
 
 **示例：**
 
-```js
-let enabled = false;
-let promise = windowClass.setRaiseByClickEnabled(enabled);
-promise.then(()=> {
-    console.info('Succeeded in disabling the raise-by-click function.');
-}).catch((err)=>{
-    console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
-});
-```
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
 
-### setResizeByDragEnabled<sup>10+</sup>
-
-setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-禁止/使能通过拖拽方式缩放主窗口的功能。使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名   | 类型                      | 必填 | 说明       |
-| -------- | ------------------------- | ---- | ---------- |
-| enable   | boolean                   | 是   | 设置窗口是否使能通过拖拽进行缩放，true表示使能，false表示禁止。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 1300002 | This window state is abnormal. |
-| 1300003 | This window manager service works abnormally. |
-
-**示例：**
-
-```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // 为主窗口加载对应的目标页面。
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // 获取应用主窗口。
-        let mainWindow = null;
-
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-
-            let enabled = false;
-            // 调用setResizeByDragEnabled接口。
-            mainWindow.setResizeByDragEnabled(enabled, (err) => {
-                if (err.code) {
-                    console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in setting the function of disabling the resize by dragg window.');
-            });
-        })
-    }
-};
-```
-
-### setResizeByDragEnabled<sup>10+</sup>
-
-setResizeByDragEnabled(enable: boolean): Promise&lt;void&gt;
-
-禁止/使能通过拖拽方式缩放主窗口的功能。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名   | 类型                      | 必填 | 说明       |
-| -------- | ------------------------- | ---- | ---------- |
-| enable   | boolean                   | 是   | 设置窗口是否使能通过拖拽进行缩放，true表示使能，false表示禁止。 |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 1300002 | This window state is abnormal. |
-| 1300003 | This window manager service works abnormally. |
-
-**示例：**
-
-```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // 为主窗口加载对应的目标页面。
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // 获取应用主窗口。
-        let mainWindow = null;
-
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-
-            let enabled = false;
-            // 获取setResizeByDragEnabled接口的promise对象
-            let promise = mainWindow.setResizeByDragEnabled(enabled);
-            promise.then(()=> {
-                console.info('Succeeded in setting the function of disabling the resize by dragg window.');
-            }).catch((err)=>{
-                console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
-            });
-        })
-    }
-};
+try {
+  windowClass.enableDrag(true).then(() => { 
+    console.info('succeeded in setting window draggable');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set window draggable. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set window draggable. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### hideNonSystemFloatingWindows<sup>11+</sup>
 
 hideNonSystemFloatingWindows(shouldHide: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置是否隐藏非系统级悬浮窗口。使用callback异步回调。
+设置是否隐藏非系统级悬浮窗口，仅在非2in1设备生效。使用callback异步回调。
 
 非系统级悬浮窗口是指非系统应用创建的悬浮窗口。默认情况下，一个系统应用主窗口可以与非系统级悬浮窗口共同显示，即该主窗口可以被上层的非系统级悬浮窗口遮挡，如果设置为true，则所有的非系统级悬浮窗口会被隐藏，此时该主窗口就不会被上层的非系统级悬浮窗口遮挡了。
 
@@ -2680,10 +2845,13 @@ hideNonSystemFloatingWindows(shouldHide: boolean, callback: AsyncCallback&lt;voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. |
@@ -2691,25 +2859,25 @@ hideNonSystemFloatingWindows(shouldHide: boolean, callback: AsyncCallback&lt;voi
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+// EntryAbility.ets
+import { UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // 加载主窗口对应的页面
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('Succeeded in loading the content.');
     });
 
     // 获取应用主窗口。
-    let mainWindow = null;
+    let mainWindow: window.Window | undefined = undefined;
     windowStage.getMainWindow((err, data) => {
       if (err.code) {
-        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       mainWindow = data;
@@ -2719,12 +2887,12 @@ export default class EntryAbility extends UIAbility {
       // 调用带callback参数的hideNonSystemFloatingWindows接口
       mainWindow.hideNonSystemFloatingWindows(shouldHide, (err) => {
         if (err.code) {
-          console.error('Failed to hide the non-system floating windows. Cause: ' + JSON.stringify(err));
+          console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('Succeeded in hiding the non-system floating windows.');
       });
-    })
+    });
   }
 }
 ```
@@ -2733,7 +2901,7 @@ export default class EntryAbility extends UIAbility {
 
 hideNonSystemFloatingWindows(shouldHide: boolean): Promise&lt;void&gt;
 
-设置是否隐藏非系统级悬浮窗口。使用callback异步回调。
+设置是否隐藏非系统级悬浮窗口，仅在非2in1设备生效。使用callback异步回调。
 
 非系统级悬浮窗口是指非系统应用创建的悬浮窗口。默认情况下，一个系统应用主窗口可以与非系统级悬浮窗口共同显示，即该主窗口可以被上层的非系统级悬浮窗口遮挡，如果设置为true，则所有的非系统级悬浮窗口会被隐藏，此时该主窗口就不会被上层的非系统级悬浮窗口遮挡了。
 
@@ -2755,10 +2923,13 @@ hideNonSystemFloatingWindows(shouldHide: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation. |
@@ -2766,25 +2937,26 @@ hideNonSystemFloatingWindows(shouldHide: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+// EntryAbility.ets
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // 加载主窗口对应的页面
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('Succeeded in loading the content.');
     });
 
     // 获取应用主窗口。
-    let mainWindow = null;
+    let mainWindow: window.Window | undefined = undefined;
     windowStage.getMainWindow((err, data) => {
       if (err.code) {
-        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       mainWindow = data;
@@ -2795,14 +2967,13 @@ export default class EntryAbility extends UIAbility {
       let promise = mainWindow.hideNonSystemFloatingWindows(shouldHide);
       promise.then(()=> {
         console.info('Succeeded in hiding the non-system floating windows.');
-      }).catch((err)=>{
-        console.error('Failed to hide the non-system floating windows. Cause: ' + JSON.stringify(err));
+      }).catch((err: BusinessError)=>{
+        console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
       });
-    })
+    });
   }
 }
 ```
-
 
 ### setTopmost<sup>12+</sup>
 
@@ -2830,20 +3001,23 @@ setTopmost(isTopmost: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                       |
 
 **示例：**
 
-```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -2855,13 +3029,12 @@ export default class EntryAbility extends UIAbility {
       promise.then(() => {
         console.info('Succeeded in setting the main window to be topmost.');
       }).catch((err: BusinessError) => {
-        console.error('Failed to set the main window to be topmost. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to set the main window to be topmost. Cause code: ${err.code}, message: ${err.message}`);
       });
     });
   }
 }
 ```
-
 
 ### setSingleFrameComposerEnabled<sup>11+</sup>
 
@@ -2889,27 +3062,30 @@ setSingleFrameComposerEnabled(enable: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable = true;
 let promise = windowClass.setSingleFrameComposerEnabled(enable);
 promise.then(()=> {
     console.info('Succeeded in enabling the single-frame-composer function.');
 }).catch((err: BusinessError)=>{
-    console.error('Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.');
+    console.error(`Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.`);
 });
 ```
 
-###  setTitleButtonVisible<sup>12+</sup>
+### setTitleButtonVisible<sup>12+</sup>
 
 setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, isSplitVisible: boolean): void
 
@@ -2931,19 +3107,22 @@ setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, is
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
 | 1300004  | Unauthorized operation. |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
@@ -2960,7 +3139,7 @@ export default class EntryAbility extends UIAbility {
         }
       ).catch((err: BusinessError) => {
           if(err.code){
-            console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+            console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
           }
       });
     });
@@ -2992,13 +3171,13 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let type = window.WindowType.TYPE_SYSTEM_ALERT;
 windowClass.setWindowType(type, (err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to set the window type. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in setting the window type.');
@@ -3034,16 +3213,78 @@ setWindowType(type: WindowType): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let type = window.WindowType.TYPE_SYSTEM_ALERT;
 let promise = windowClass.setWindowType(type);
 promise.then(() => {
   console.info('Succeeded in setting the window type.');
 }).catch((err: BusinessError) => {
-  console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to set the window type. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
+
+### requestFocus<sup>13+</sup>
+
+requestFocus(isFocused: boolean): Promise&lt;void&gt;
+
+支持当前窗口主动请求获焦/失焦，使用Promise异步回调。调用成功即返回，该接口返回值不代表最终获焦/失焦生效结果。可使用[on('windowEvent')](js-apis-window.md#onwindowevent10)监听窗口获焦/失焦状态。
+
+获焦请求发送后，窗口获焦结果受到窗口可获焦属性及窗口可见状态的限制。获焦成功的窗口需满足以下约束：1.窗口支持获焦；2.窗口可见（窗口已显示，未销毁且未退至后台）。
+
+失焦请求发送后，窗口无条件失焦。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| isFocused | boolean | 是   | 是否获取焦点，true表示请求获焦，false表示请求失焦。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let isFocused: boolean = true;
+let promise = windowClass.requestFocus(isFocused);
+promise.then(() => {
+  console.info('Succeeded in requesting focus.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to request focus. Cause code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## SubWindowOptions<sup>11+</sup>
+
+子窗口创建参数。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称      | 类型  | 只读 | 可选 | 说明         |
+| ---------- | ---- | ---- | ---- | ----------- |
+| isTopmost<sup>12+</sup>  | boolean | 否 | 是 | 子窗口是否启用置顶属性。true表示子窗口置顶，false表示子窗口不置顶。不设置，则默认为false。       |
 
 ## WindowStage<sup>9+</sup>
 
@@ -3051,11 +3292,13 @@ promise.then(() => {
 
 下列API示例中都需在[onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)函数中使用WindowStage的实例调用对应方法。
 
-### disableWindowDecor()<sup>9+</sup>
+### disableWindowDecor<sup>9+</sup>
 
 disableWindowDecor(): void
 
 禁止窗口装饰。
+
+禁止窗口装饰后，当主窗口进入全屏沉浸状态时，此时鼠标Hover到上方窗口标题栏热区上会显示悬浮标题栏。若想禁用悬浮标题栏显示，请使用[setTitleAndDockHoverShown()](./js-apis-window.md#settitleanddockhovershown14)接口。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -3069,14 +3312,15 @@ disableWindowDecor(): void
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+// EntryAbility.ets
+import { UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -3088,7 +3332,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setShowOnLockScreen()<sup>9+</sup>
+### setShowOnLockScreen<sup>9+</sup>
 
 setShowOnLockScreen(showOnLockScreen: boolean): void
 
@@ -3108,18 +3352,20 @@ setShowOnLockScreen(showOnLockScreen: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -3129,11 +3375,12 @@ export default class EntryAbility extends UIAbility {
     try {
       windowStage.setShowOnLockScreen(true);
     } catch (exception) {
-      console.error('Failed to show on lockscreen. Cause:' + JSON.stringify(exception));
+      console.error(`Failed to show on lockscreen. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 };
 ```
+
 ## TransitionContext<sup>9+</sup>
 
 属性转换的上下文信息。
@@ -3166,6 +3413,15 @@ completeTransition(isCompleted: boolean): void
 | ----------- | ------- | ---- | ------------------------------------------------------------ |
 | isCompleted | boolean | 是   | 窗口属性转换是否完成。true表示完成本次转换；false表示撤销本次转换。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.               |
+
 **示例：**
 
 ```ts
@@ -3191,7 +3447,7 @@ completeTransition(isCompleted: boolean): void
   try {
     context.completeTransition(true)
   } catch (exception) {
-    console.info('toWindow translate fail. Cause: ' + JSON.stringify(exception));
+    console.error(`toWindow translate fail. Cause code: ${exception.code}, message: ${exception.message}`);
   }
   console.info('complete transition end');
 };
@@ -3206,7 +3462,7 @@ completeTransition(isCompleted: boolean): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
@@ -3214,17 +3470,13 @@ let config: window.Configuration = {
   windowType: window.WindowType.TYPE_PANEL, //根据需要自选系统窗口类型
   ctx: this.context
 };
-try {
-  let promise = window.createWindow(config);
-  promise.then((data) => {
-    windowClass = data;
-    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
-}
+let promise = window.createWindow(config);
+promise.then((data) => {
+  windowClass = data;
+  console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the Window. Cause code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ### animationForShown<sup>9+</sup>
@@ -3242,6 +3494,15 @@ animationForShown(context: TransitionContext): void
 | 参数名  | 类型                                     | 必填 | 说明                 |
 | ------- | ---------------------------------------- | ---- | -------------------- |
 | context | [TransitionContext](#transitioncontext9) | 是   | 属性转换时的上下文。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.               |
 
 **示例：**
 
@@ -3261,7 +3522,7 @@ export class AnimationConfig {
     };
     windowClass.showWithAnimation(()=>{
       console.info('Show with animation success');
-    })
+    });
   }
 }
 ```
@@ -3297,9 +3558,10 @@ try {
     console.info('complete transition end');
   });
 } catch (error) {
-  console.error('ShowWindowWithCustomAnimation err : ' + JSON.stringify(error));
+  console.error(`ShowWindowWithCustomAnimation error code: ${error.code}, message: ${error.message}`);
 }
 ```
+
 ### animationForHidden<sup>9+</sup>
 
 animationForHidden(context: TransitionContext): void
@@ -3315,6 +3577,15 @@ animationForHidden(context: TransitionContext): void
 | 参数名  | 类型                                     | 必填 | 说明                 |
 | ------- | ---------------------------------------- | ---- | -------------------- |
 | context | [TransitionContext](#transitioncontext9) | 是   | 属性转换时的上下文。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.               |
 
 **示例：**
 
@@ -3334,7 +3605,7 @@ export class AnimationConfig {
     };
     windowClass.hideWithAnimation(()=>{
       console.info('hide with animation success');
-    })
+    });
   }
 }
 ```
@@ -3370,6 +3641,53 @@ try {
     console.info('complete transition end');
   });
 } catch (error) {
-  console.error('HideWindowWithCustomAnimation err : ' + JSON.stringify(error));
+  console.error(`HideWindowWithCustomAnimation error code: ${error.code}, message: ${error.message}` );
 }
 ```
+
+## ExtensionWindowAttribute<sup>14+</sup>
+
+扩展窗口的属性枚举。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称      | 值 | 说明         |
+| ---------- | ----- | ----------- |
+| SYSTEM_WINDOW  | 0 | 系统窗口。|
+| SUB_WINDOW  | 1 | 子窗口。|
+
+## SystemWindowOptions<sup>14+</sup>
+
+系统窗口的创建参数。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称 | 类型                      | 只读  |可选 | 说明       |
+| ------ | ------------------------- | ---- | ---- |---------- |
+| windowType   | [WindowType](#windowtype7) | 否   | 否   | 窗口类型。无默认类型，不配置会导致窗口创建失败。不支持TYPE_DIALOG类型。 |
+
+## ExtensionWindowConfig<sup>14+</sup>
+
+创建扩展窗口时需要配置的参数。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称 | 类型                      | 只读  |可选 | 说明       |
+| ------ | ------------------------- | ---- | ---- |---------- |
+| windowName   | string | 否 | 否  | 窗口名。 |
+| windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute14) | 否 | 否   | 窗口的属性。用于配置创建的窗口是子窗口还是系统窗口。当windowAttribute配置为SUB_WINDOW时须配置subWindowOptions，当windowAttribute配置为SYSTEM_WINDOW时须配置systemWindowOptions，否则创建窗口失败。|
+| windowRect   | [Rect](js-apis-window.md#rect7) | 否 | 否   | 窗口矩形区域。 |
+| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions11) | 否 | 是 | 创建子窗口的参数。无默认参数，当windowAttribute配置为SUB_WINDOW时必选，否则会导致窗口创建失败。 |
+| systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions14) | 否 | 是 | 创建系统窗口的参数。无默认参数，当windowAttribute配置为SYSTEM_WINDOW时必选，否则会导致窗口创建失败。 |

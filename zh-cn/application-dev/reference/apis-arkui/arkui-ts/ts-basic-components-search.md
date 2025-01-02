@@ -12,15 +12,31 @@
 
 ## 接口
 
-Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, controller?: SearchController })
+Search(options?: SearchOptions)
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数:**
 
-| 参数名      | 参数类型                                             | 必填 | 参数描述                                                     |
-| ----------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| 参数名      | 类型         | 必填 | 说明        |
+| ----------- | ------------- | ---- | ------------- |
+| options       | [SearchOptions](#searchoptions14对象说明)| 否   | 搜索框组件初始化选项 |
+
+## SearchOptions<sup>14+</sup>对象说明
+
+Search初始化参数。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名      | 类型         | 必填 | 说明        |
+| ----------- | ------------- | ---- | ------------- |
 | value       | string                                               | 否   | 设置当前显示的搜索文本内容。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| placeholder | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | 否   | 设置无输入时的提示文本。                                     |
-| icon        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif和pixelmap。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], 其中[base64 data]为Base64字符串数据。<br/>如果与属性searchIcon同时设置，则searchIcon优先。 |
+| placeholder | [ResourceStr](ts-types.md#resourcestr) | 否   | 设置无输入时的提示文本。                                     |
+| icon        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif、pixelmap和heif。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], 其中[base64 data]为Base64字符串数据。<br/>如果与属性searchIcon同时设置，则searchIcon优先。 |
 | controller  | [SearchController](#searchcontroller) | 否   | 设置Search组件控制器。                                       |
 
 ## 属性
@@ -33,6 +49,10 @@ searchButton(value: string, option?: SearchButtonOptions)
 
 设置搜索框末尾搜索按钮。
 
+点击搜索按钮，同时触发onSubmit与onClick回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -40,13 +60,15 @@ searchButton(value: string, option?: SearchButtonOptions)
 | 参数名 | 类型                                                  | 必填 | 说明                         |
 | ------ | ----------------------------------------------------- | ---- | ---------------------------- |
 | value  | string                                                | 是   | 搜索框末尾搜索按钮文本内容。 |
-| option | [SearchButtonOptions](#searchbuttonoptions10对象说明) | 否   | 配置搜索框文本样式。<br />默认值：<br />{<br />fontSize: '16fp',<br />color: '#ff3f97e9'<br />}         |
+| option | [SearchButtonOptions](#searchbuttonoptions10对象说明) | 否   | 配置搜索框文本样式。<br />默认值：<br />{<br />fontSize: '16fp',<br />fontColor: '#ff3f97e9'<br />}         |
 
 ### placeholderColor
 
 placeholderColor(value: ResourceColor)
 
 设置placeholder文本颜色。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -60,7 +82,9 @@ placeholderColor(value: ResourceColor)
 
 placeholderFont(value?: Font)
 
-设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
+设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -76,6 +100,8 @@ textFont(value?: Font)
 
 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -84,11 +110,13 @@ textFont(value?: Font)
 | ------ | ------------------------ | ---- | ---------------------- |
 | value  | [Font](ts-types.md#font) | 否   | 搜索框内输入文本样式。 |
 
-### textAlign
+### textAlign<sup>9+</sup>
 
 textAlign(value: TextAlign)
 
 设置文本在搜索框中的对齐方式。目前支持的对齐方式有：Start、Center、End。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -102,9 +130,11 @@ textAlign(value: TextAlign)
 
 copyOption(value: CopyOptions)
 
-设置输入的文本是否可复制。设置CopyOptions.None时，当前Search中的文字无法被复制或剪切，仅支持粘贴。
+设置输入的文本是否可复制。设置CopyOptions.None时，当前Search中的文字无法被复制、剪切和帮写，仅支持粘贴。
 
-copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。
+设置CopyOptions.None时，不允许拖拽。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -116,9 +146,11 @@ copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。
 
 ### searchIcon<sup>10+</sup>
 
-searchIcon(value: IconOptions)
+searchIcon(value: IconOptions | SymbolGlyphModifier)
 
 设置左侧搜索图标样式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -126,13 +158,15 @@ searchIcon(value: IconOptions)
 
 | 参数名 | 类型                                  | 必填 | 说明               |
 | ------ | ------------------------------------- | ---- | ------------------ |
-| value  | [IconOptions](#iconoptions10对象说明) | 是   | 左侧搜索图标样式。<br />默认值：<br />{<br />fontSize: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />} |
+| value  | [IconOptions](#iconoptions10对象说明) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是   | 左侧搜索图标样式。<!--RP1--><br />浅色模式默认值：<br />{<br />size: '16vp',<br />color: '#99182431',<br />src: ' '<br />}<br />深色模式默认值：<br />{<br />size: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />} <!--RP1End-->|
 
 ### cancelButton<sup>10+</sup>
 
-cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
+cancelButton(value: CancelButtonOptions | CancelButtonSymbolOptions)
 
 设置右侧清除按钮样式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -140,13 +174,15 @@ cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {&nbsp;style:?&nbsp;[CancelButtonStyle](#cancelbuttonstyle10枚举说明),&nbsp;icon:?&nbsp;[IconOptions](#iconoptions10对象说明)&nbsp;} | 是   | 右侧清除按钮样式。<br />style：右侧图标显示状态。<br/>icon：右侧图标。<br>默认值：<br />{<br/>style：CancelButtonStyle.INPUT,<br/>icon:&nbsp;{<br/>size: '16vp',<br/>color: '#99ffffff',<br/>src: ' '<br/>}<br/>}<br/>当style为CancelButtonStyle.CONSTANT时，默认显示清除样式。 |
+| value  | [CancelButtonOptions](#cancelbuttonoptions12对象说明) \| [CancelButtonSymbolOptions](#cancelbuttonsymboloptions12对象说明) | 是   | 右侧清除按钮样式。<br>默认值：<br />{<br/>style: CancelButtonStyle.INPUT,<br/>icon:&nbsp;{<br/>size: '16vp',<br/>color: '#99ffffff',<br/>src: ' '<br/>}<br/>}<br/>当style为CancelButtonStyle.CONSTANT时，默认显示清除样式。 |
 
 ### fontColor<sup>10+</sup>
 
 fontColor(value: ResourceColor)
 
 设置输入文本的字体颜色。[文本通用属性](ts-universal-attributes-text-style.md)fontSize、fontStyle、fontWeight和fontFamily在[textFont](#textfont)属性中设置。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -162,24 +198,28 @@ caretStyle(value: CaretStyle)
 
 设置光标样式。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                | 必填 | 说明                                                         |
 | ------ | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [CaretStyle](#caretstyle10对象说明) | 是   | 光标样式。<br />默认值：<br />{<br />width: '1.5vp',<br />color: '#007DFF'<br />} |
+| value  | [CaretStyle](ts-text-common.md#caretstyle10) | 是   | 光标样式。<br />默认值：<br />{<br />width: '1.5vp',<br />color: '#007DFF'<br />} |
 
 >  **说明：**     
->   从API version 12开始，此接口支持设置文本手柄颜色和文本选中底板颜色，光标、文本手柄和文本选中底板颜色保持一致。<br/>文本手柄透明度为设置透明度，文本选中底板透明度，默认20%，如果设置透明度，文本选中底板颜色透明度在设置色透明度的基础上再叠加20%。例如，设置透明度50%，文本选中底板颜色透明度为10%。
+>   从API version 12开始，此接口支持设置文本手柄颜色，光标和文本手柄颜色保持一致。
 
 ### enableKeyboardOnFocus<sup>10+</sup>
 
 enableKeyboardOnFocus(value: boolean)
 
-设置Search通过点击以外的方式获焦时，是否绑定输入法。
+设置Search通过点击以外的方式获焦时，是否主动拉起软键盘。
 
 从API version 10开始，获焦默认绑定输入法。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -187,13 +227,15 @@ enableKeyboardOnFocus(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                            |
 | ------ | ------- | ---- | ----------------------------------------------- |
-| value  | boolean | 是   | Search获焦时，是否绑定输入法<br/>默认值：true。 |
+| value  | boolean | 是   | Search获焦时，是否主动拉起软键盘。<br/>默认值：true。 |
 
 ### selectionMenuHidden<sup>10+</sup>
 
 selectionMenuHidden(value: boolean)
 
-设置长按输入框或者右键输入框时，是否弹出文本选择菜单。
+设置是否不弹出系统文本选择菜单。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -201,7 +243,7 @@ selectionMenuHidden(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
+| value  | boolean | 是   | 是否不弹出系统文本选择菜单。<br />设置为true时，单击输入框光标、长按输入框、双击输入框、三击输入框或者右键输入框，不弹出系统文本选择菜单。<br />设置为false时，弹出系统文本选择菜单。<br />默认值：false |
 
 ### customKeyboard<sup>10+</sup>
 
@@ -213,13 +255,17 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。
 
-自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。
+自定义键盘采用覆盖原始界面的方式呈现，当没有开启避让模式或者输入框不需要避让的场景不会对应用原始界面产生压缩或者上提。
 
 自定义键盘无法获取焦点，但是会拦截手势事件。
 
 默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[stopEditing](#stopediting10)方法控制键盘关闭。
 
 如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。
+
+当设置自定义键盘时，可以通过绑定[onKeyPrelme](ts-universal-events-key.md#onkeypreime12)事件规避物理键盘的输入。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -228,13 +274,15 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 | 参数名                | 类型                                        | 必填 | 说明                             |
 | --------------------- | ------------------------------------------- | ---- | -------------------------------- |
 | value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。                     |
-| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。 |
+| options<sup>12+</sup> | [KeyboardOptions](ts-basic-components-richeditor.md#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。 |
 
 ### type<sup>11+</sup>
 
 type(value: SearchType)
 
 设置输入框类型。
+
+<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -250,6 +298,8 @@ maxLength(value: number)
 
 设置文本的最大输入字符数。默认不设置最大输入字符数限制。到达文本最大字符限制，将无法继续输入字符。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -264,19 +314,23 @@ enterKeyType(value: EnterKeyType)
 
 设置输入法回车键类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名 | 类型                                             | 必填 | 说明                                               |
 | ------ | ------------------------------------------------ | ---- | -------------------------------------------------- |
-| value  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.Search |
+| value  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.Search |
 
 ### lineHeight<sup>12+</sup>
 
 lineHeight(value: number | string | Resource)
 
 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -290,7 +344,9 @@ lineHeight(value: number | string | Resource)
 
 decoration(value: TextDecorationOptions)
 
-设置文本装饰线样式及其颜色。
+设置文本装饰线类型样式及其颜色。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -298,15 +354,17 @@ decoration(value: TextDecorationOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextDecorationOptions](#textdecorationoptions12对象说明) | 是   | 文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
+| value  | [TextDecorationOptions](ts-types.md#textdecorationoptions12对象说明) | 是   | 文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 
 ### letterSpacing<sup>12+</sup>
 
 letterSpacing(value: number | string | Resource)
 
-设置文本字符间距。设置该值为百分比时，按默认值显示。
+设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。
 
 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -330,6 +388,8 @@ fontFeature(value: string)
 
 例如，使用等宽数字的输入格式为："ss01" on。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -338,41 +398,253 @@ fontFeature(value: string)
 | ------ | ------ | ---- | -------------- |
 | value  | string | 是   | 文字特性效果。 |
 
+Font Feature当前支持的属性见 [fontFeature属性列表](ts-basic-components-text.md#fontfeature12)。
 设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
 更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
 
+### selectedBackgroundColor<sup>12+</sup>
+
+selectedBackgroundColor(value: ResourceColor)
+
+设置文本选中底板颜色。如果未设置不透明度，默认为20%不透明度。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                                       |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
+
+### inputFilter<sup>12+</sup>
+
+inputFilter(value: ResourceStr, error?: &nbsp;Callback<&nbsp;string&nbsp;>)
+
+通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。
+
+设置inputFilter且输入的字符不为空字符，会导致设置输入框类型(即type接口)附带的文本过滤效果失效。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                   | 必填 | 说明                               |
+| ------ | -------------------------------------- | ---- | ---------------------------------- |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 正则表达式。                       |
+| error  | &nbsp;Callback<&nbsp;string&nbsp;>     | 否   | 正则匹配失败时，返回被过滤的内容。 |
+
+### textIndent<sup>12+</sup>
+
+textIndent(value: Dimension)
+
+设置首行文本缩进。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                 | 必填 | 说明                         |
+| ------ | ----------------------------------- | ---- | ---------------------------- |
+| value  | [Dimension](ts-types.md#dimension10)| 是   | 首行文本缩进。<br/>默认值：0   |
+
+### minFontSize<sup>12+</sup>
+
+minFontSize(value: number | string | Resource)
+
+设置文本最小显示字号。
+
+需配合[maxFontSize](#maxfontsize12)以及布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
+
+### maxFontSize<sup>12+</sup>
+
+maxFontSize(value: number | string | Resource)
+
+设置文本最大显示字号。
+
+需配合[minFontSize](#minfontsize12)以及布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
+
+### halfLeading<sup>16+</sup>
+
+halfLeading(halfLeading: boolean)
+
+设置文本是否将行间距平分至行的顶部与底部。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| halfLeading | boolean | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
+
+### minFontScale<sup>16+</sup>
+
+minFontScale(scale: number | Resource)
+
+设置文本最小的字体缩放倍数。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩放倍数。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。 |
+
+### maxFontScale<sup>16+</sup>
+
+maxFontScale(scale: number | Resource)
+
+设置文本最大的字体缩放倍数。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。 |
+
+### editMenuOptions<sup>12+</sup>
+
+editMenuOptions(editMenu: EditMenuOptions)
+
+设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 是   | 扩展菜单选项。 |
+
+### enablePreviewText<sup>12+</sup>
+
+enablePreviewText(enable: boolean)
+
+设置是否开启输入预上屏。
+
+预上屏内容定义为文字暂存态，目前不支持文字拦截功能，因此不触发onWillInsert、onDidInsert、onWillDelete、onDidDelete回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                               |
+| ------ | ------- | ---- | ---------------------------------- |
+| enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
+
+>  **说明：**
+>
+>  该接口在CAPI场景使用时下，默认关闭。可以在工程的module.json5中配置[metadata](../../../../application-dev/quick-start/module-structure.md#metadata对象内部结构)字段控制是否启用预上屏，配置如下：
+> ```json
+> "metadata": [
+>  {
+>     "name": "can_preview_text",
+>     "value": "true",
+>  }
+> ]
+> ```
+
+### enableHapticFeedback<sup>13+</sup>
+
+enableHapticFeedback(isEnabled: boolean)
+
+设置是否开启触控反馈。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                               |
+| ------ | ------- | ---- | ---------------------------------- |
+| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
+
+>  **说明：**
+>
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+> ```json
+> "requestPermissions": [
+>  {
+>     "name": "ohos.permission.VIBRATE",
+>  }
+> ]
+> ```
+
 ## IconOptions<sup>10+</sup>对象说明
 
-| 参数名 | 参数类型                                   | 必填 | 参数描述    |
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型                                   | 必填 | 说明    |
 | ------ | ------------------------------------------ | ---- | ----------- |
 | size   | [Length](ts-types.md#length)               | 否   | 图标尺寸，不支持百分比。    |
 | color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 图标颜色。    |
 | src    | [ResourceStr](ts-types.md#resourcestr)     | 否   | 图标/图片源。 |
 
-## CaretStyle<sup>10+</sup>对象说明
-
-| 参数名 | 参数类型                                   | 必填 | 参数描述 |
-| ------ | ------------------------------------------ | ---- | -------- |
-| width  | [Length](ts-types.md#length)               | 否   | 光标尺寸，不支持百分比。 |
-| color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 光标颜色。 |
-
 ## SearchButtonOptions<sup>10+</sup>对象说明
 
-| 参数名    | 参数类型                                   | 必填 | 参数描述         |
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                   | 必填 | 说明         |
 | --------- | ------------------------------------------ | ---- | ---------------- |
 | fontSize  | [Length](ts-types.md#length)               | 否   | 文本按钮字体大小，不支持百分比。 |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本按钮字体颜色。 |
-
-## TextDecorationOptions<sup>12+</sup>对象说明
-
-| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。 |
-| color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
+| autoDisable<sup>16+</sup>  | boolean                   | 否  | Search无文本内容时按钮置灰且不可点击。|
 
 ## CancelButtonStyle<sup>10+</sup>枚举说明
 
-| 名称                    | 描述             |
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                    | 说明        |
 | ----------------------- | ---------------- |
 | CONSTANT  | 清除按钮常显样式。 |
 | INVISIBLE | 清除按钮常隐样式。 |
@@ -380,12 +652,40 @@ fontFeature(value: string)
 
 ## SearchType<sup>11+</sup>枚举说明
 
-| 名称                 | 描述            |
-| ------------------ | ------------- |
-| NORMAL   | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。 |
-| EMAIL    | 邮箱地址输入模式。支持数字，字母，下划线，以及@字符（只能存在一个@字符）。 |
-| NUMBER   | 纯数字输入模式。      |
-| PHONE_NUMBER | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。 |
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                 | 值            | 说明          |
+| ------------------ | ------ | ------------- |
+| NORMAL   | 0 | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NUMBER   | 2 | 纯数字输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| PHONE_NUMBER | 3 | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| EMAIL    | 5 | 邮箱地址输入模式。<br/>支持数字，字母，下划线、小数点、!、#、$、%、&、'、*、+、-、/、=、?、^、`、\{、\|、\}、~，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NUMBER_DECIMAL<sup>12+</sup>  | 12 | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| URL<sup>12+</sup>  | 13 | 带URL的输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+
+## CancelButtonOptions<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                   | 必填 | 说明         |
+| --------- | ------------------------------------------ | ---- | ---------------- |
+| style  | [CancelButtonStyle](#cancelbuttonstyle10枚举说明)               | 否   | 右侧清除按钮显示状态。 |
+| icon | [IconOptions](#iconoptions10对象说明) | 否   | 右侧清除按钮图标。 |
+
+## CancelButtonSymbolOptions<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                   | 必填 | 说明         |
+| --------- | ------------------------------------------ | ---- | ---------------- |
+| style  | [CancelButtonStyle](#cancelbuttonstyle10枚举说明)               | 否   | 右侧清除按钮显示状态。 |
+| icon | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 右侧清除按钮Symbol图标。 |
 
 ## 事件
 
@@ -393,23 +693,45 @@ fontFeature(value: string)
 
 ### onSubmit
 
-onSubmit(callback: (value: string) => void)
+onSubmit(callback: Callback\<string>)
 
 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型   | 必填 | 说明                         |
 | ------ | ------ | ---- | ---------------------------- |
-| value  | string | 是   | 当前搜索框中输入的文本内容。 |
+| callback  | Callback\<string> | 是   | 搜索提交回调，其返回值为当前搜索框中输入的文本内容。 |
+
+### onSubmit<sup>14+</sup>
+
+onSubmit(callback: SearchSubmitCallback)
+
+点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调事件，提交事件时提供保持Search编辑状态的方法。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                          |
+| ------ | ------- | ---- | ----------------------------- |
+| callback | [SearchSubmitCallback](#searchsubmitcallback14) | 是   | 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时的回调事件。 |
 
 ### onChange
 
-onChange(callback: (value: string) => void)
+onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 输入内容发生变化时，触发该回调。
+
+在本回调中，若执行了光标操作，需要开发者在预上屏场景下依据previewText参数调整光标逻辑，以适应预上屏场景。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -417,56 +739,62 @@ onChange(callback: (value: string) => void)
 
 | 参数名 | 类型   | 必填 | 说明                         |
 | ------ | ------ | ---- | ---------------------------- |
-| value  | string | 是   | 当前搜索框中输入的文本内容。 |
+| callback  | [EditableTextOnChangeCallback](ts-text-common.md#editabletextonchangecallback12) | 是   | 当前输入文本内容变化时的回调。 |
 
 ### onCopy
 
-onCopy(callback: (value: string) => void)
+onCopy(callback:Callback\<string>)
 
-长按搜索框弹出剪切板之后，点击剪切板的复制按钮触发该回调。
+进行复制操作时，触发该回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| value  | string | 是   | 复制的文本内容。 |
+| 参数名    | 类型    | 必填 | 说明             |
+| --------- | ------- | ---- | ---------------- |
+| callback | Callback\<string> | 是   | 复制回调，其返回值为复制的文本内容。 |
 
 ### onCut
 
-onCut(callback: (value: string) => void)
+onCut(callback:Callback\<string>)
 
-长按搜索框弹出剪切板之后，点击剪切板的剪切按钮触发该回调。
+进行剪切操作时，触发该回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| value  | string | 是   | 剪切的文本内容。 |
+| 参数名    | 类型    | 必填 | 说明             |
+| --------- | ------- | ---- | ---------------- |
+| callback | Callback\<string> | 是   | 剪切回调，其返回值为剪切的文本内容。 |
 
 ### onPaste
 
-onPaste(callback: (value: string, event: PasteEvent]) => void)
+onPaste(callback:OnPasteCallback )
 
-长按搜索框弹出剪切板之后，点击剪切板的粘贴按钮触发该回调。
+进行粘贴操作时，触发该回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
-
 | 参数名              | 类型                                                         | 必填 | 说明                   |
 | ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| value               | string                                                       | 是   | 粘贴的文本内容。       |
-| event<sup>11+</sup> | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | 否   | 用户自定义的粘贴事件。 |
+| callback | [OnPasteCallback](ts-basic-components-textinput#onpastecallback14对象说明)       | 是   | 粘贴回调。 |
 
 ### onTextSelectionChange<sup>10+</sup>
 
-onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
+onTextSelectionChange(callback: OnTextSelectionChangeCallback)
 
-文本选择的位置发生变化时，触发该回调。
+文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -474,14 +802,15 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 
 | 参数名         | 类型   | 必填 | 说明                                              |
 | -------------- | ------ | ---- | ------------------------------------------------- |
-| selectionStart | number | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
-| selectionEnd   | number | 否   | 文本选择区域结束位置。                            |
+| callback | [OnTextSelectionChangeCallback](ts-basic-components-textinput#ontextselectionchangecallback14对象说明) | 是   | 文本选择变化回调或光标位置变化回调。 |
 
 ### onContentScroll<sup>10+</sup>
 
-onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
+onContentScroll(callback: OnContentScrollCallback)
 
 文本内容滚动时，触发该回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -489,26 +818,120 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
 | 参数名       | 类型   | 必填 | 说明                               |
 | ------------ | ------ | ---- | ---------------------------------- |
-| totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
-| totalOffsetY | number | 否   | 文本在内容区的纵坐标偏移，单位px。 |
+| callback | [OnContentScrollCallback](ts-basic-components-textinput#oncontentscrollcallback14对象说明) | 是   | 文本内容滚动回调。 |
+
+### onEditChange<sup>12+</sup>
+
+onEditChange(callback:&nbsp;Callback<&nbsp;boolean&nbsp;>)
+
+输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。callback返回值为true表示正在输入。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                | 必填 | 说明                 |
+| --------- | ---------------------------------- | ---- | -------------------- |
+| callback | &nbsp;Callback<&nbsp;boolean&nbsp;> | 是   | 编辑状态改变回调，其返回值为true表示正在输入。 |
+
+### onWillInsert<sup>12+</sup>
+
+onWillInsert(callback: Callback\<InsertValue, boolean>)
+
+在将要输入时，触发该回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
+
+### onDidInsert<sup>12+</sup>
+
+onDidInsert(callback: Callback\<InsertValue>)
+
+在输入完成时，触发该回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明)> | 是   | 在输入完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
+
+### onWillDelete<sup>12+</sup>
+
+onWillDelete(callback: Callback\<DeleteValue, boolean>)
+
+在将要删除时，触发该回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明), boolean> | 是   | 在将要删除时调用的回调。<br/>在返回true时，表示正常删除，返回false时，表示不删除。<br/>在预上屏删除操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
+
+### onDidDelete<sup>12+</sup>
+
+onDidDelete(callback: Callback\<DeleteValue>)
+
+在删除完成时，触发该回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
 
 ## SearchController
 
-Search组件的控制器，目前通过它可控制Search组件的光标位置。
+Search组件的控制器继承自[TextContentControllerBase](ts-types.md#textcontentcontrollerbase10)。
 
 ### 导入对象
 ```
 controller: SearchController = new SearchController()
 ```
-### caretPosition
+
+### constructor<sup>8+</sup>
+
+constructor()
+
+SearchController的构造函数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### caretPosition<sup>8+</sup>
 
 caretPosition(value: number): void
 
 设置输入光标的位置。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:**
 
-| 参数名 | 参数类型 | 必填 | 参数描述                           |
+| 参数名 | 类型 | 必填 | 说明                           |
 | ------ | -------- | ---- | ---------------------------------- |
 | value  | number   | 是   | 从字符串开始到光标所在位置的长度。 |
 
@@ -518,74 +941,9 @@ stopEditing(): void
 
 退出编辑态。
 
-### getTextContentRect<sup>10+</sup>
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-getTextContentRect(): RectResult
-
-获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
-
-**返回值：**
-
-| 类型       | 说明       |
-| -------------------  | -------- |
-| [RectResult](#rectresult10) | 已编辑文本内容的相对组件的位置和大小。 |
-
-> **说明：**
->
-> - 返回的位置信息是相对Search组件中搜索图标的偏移值。
-> - 不输入文本时，返回值中有相对Search组件的位置信息，但大小为0。
-> - 返回值中的位置信息是第一个字符相对于可编辑组件的位置。
-
-### RectResult<sup>10+</sup>
-
-位置和大小，单位均为像素。
-
-| 参数      | 类型     | 描述 |
-| ------- | ------ | ----------------------- |
-| x     | number | 水平方向横坐标。|
-| y     | number | 竖直方向纵坐标。|
-| width | number | 内容宽度大小。|
-| height | number | 内容高度大小。|
-
-## KeyboardOptions<sup>12+</sup>
-
-设置自定义键盘是否支持避让功能。
-
-| 名称            | 类型              | 必填 | 描述                               |
-| --------------- | ---------------  |---- | ---------------------------------   |
-| supportAvoidance |  boolean        | 否  | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
-
-
-### getTextContentLineCount<sup>10+</sup>
-
-getTextContentLineCount(): number
-
-获取已编辑文本内容的行数。
-
-**返回值：**
-
-| 类型  | 说明       |
-| ----- | -------- |
-| number| 已编辑文本内容行数。 |
-
-### getCaretOffset<sup>11+</sup>
-
-getCaretOffset(): CaretOffset
-
-返回当前光标所在位置信息。
-
-**返回值：**
-
-| 类型                      | 说明               |
-| ----------------------- | ---------------- |
-| [CaretOffset](ts-basic-components-textinput.md#caretoffset11对象说明) | 光标相对输入框的位置。 |
-
-> **说明：**
->
-> - 返回的位置信息是相对Search组件中搜索图标的偏移值。
-> - 不输入文本时，返回值中有相对Search组件的位置信息。
-> - 返回值中的位置信息是光标相对于可编辑组件的位置。
-> - 在当前帧更新光标位置同时调用该接口，该接口不生效。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### setTextSelection<sup>12+</sup>
 
@@ -593,40 +951,48 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 
 组件在获焦状态下，调用该接口设置文本选择区域并高亮显示，且只有在selectionStart小于selectionEnd时，文字才会被选取、高亮显示。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名         | 参数类型 | 必填 | 参数描述                                                     |
-| -------------- | -------- | ---- | ------------------------------------------------------------ |
+| 参数名         | 类型 | 必填 | 说明   |
+| -------------- | -------- | ---- | -------- |
 | selectionStart | number   | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。<br/>当selectionStart小于0时、按照0处理；当selectionStart大于文字最大长度时、按照文字最大长度处理。<br/> |
 | selectionEnd   | number   | 是   | 文本选择区域结束位置。<br/>当selectionEnd小于0时、按照0处理；当selectionEnd大于文字最大长度时、按照文字最大长度处理。<br/> |
-| options | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT。 |
+| options | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT。 |
+
 >  **说明：**
 >
 >  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
 >
->  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
+>  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.SHOW，调用setTextSelection也不弹出菜单。
+>
+>  如果选中的文本含有emoji表情时，表情的起始位置包含在设置的文本选中区域内就会被选中。
 
-##  SelectionOptions<sup>12+</sup>
+## SearchSubmitCallback<sup>14+</sup>
 
-setTextSelection的选中文字时的配置。
+type SearchSubmitCallback = (searchContent: string, event?: SubmitEvent) => void
 
-| 名称       | 类型                        | 必填 | 说明             |
-| ---------- | --------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
+点击搜索图标、搜索按钮或者按下软键盘搜索按钮时的回调事件。
 
-## MenuPolicy<sup>12+</sup>
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
-菜单弹出的策略。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 描述                     |
-| ------- | ------------------------ |
-| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
-| NEVER   | 始终不弹出菜单。         |
-| ALWAYS  | 始终弹出菜单。           |
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
+| searchContent | string             | 是   | 当前搜索框中输入的文本内容。 |
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11对象说明) | 否   | 提交事件。    |
 
 ##  示例
 
-### 示例1
+### 示例1（设置与获取光标位置）
+
+该示例通过controller实现了光标位置的设置与获取的功能。
 
 ```ts
 // xxx.ets
@@ -673,7 +1039,9 @@ struct SearchExample {
 
 ![search](figures/search.gif)
 
-### 示例2
+### 示例2（设置搜索和删除图标）
+
+该示例通过searchButton、searchIcon、cancelButton属性展示了设置搜索和删除图标的效果。
 
 ```ts
 // xxx.ets
@@ -719,7 +1087,9 @@ struct SearchExample {
 ![searchButton](figures/searchButton.gif)
 
 
-### 示例3
+### 示例3（设置自定义键盘）
+
+该示例通过customKeyboard属性实现了自定义键盘的功能。
 
 ```ts
 // xxx.ets
@@ -761,22 +1131,25 @@ struct SearchExample {
 
 ![customKeyboard](figures/searchCustomKeyboard.png)
 
-### 示例4
+### 示例4（设置输入法回车键类型）
+
+该示例通过enterKeyType属性实现了动态切换输入法回车键的效果。
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct SearchExample {
-  @State Text: string = ''
+  @State text: string = ''
   @State enterTypes: Array<EnterKeyType> = [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next, EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
   @State index: number = 0
   build() {
     Column({ space: 20 }) {
-      Search({ placeholder: '请输入文本', value: this.Text })
+      Search({ placeholder: '请输入文本', value: this.text })
         .width(380)
         .enterKeyType(this.enterTypes[this.index])
         .onChange((value: string) => {
-          this.Text = value
+          this.text = value
         })
         .onSubmit((value: String) => {
           console.log("trigger search onsubmit" + value);
@@ -792,9 +1165,9 @@ struct SearchExample {
 
 ![searchEnterKeyType](figures/searchEnterKey.gif)
 
-### 示例5
+### 示例5（设置文本样式）
 
-该示例实现了使用lineHeight设置文本的文本行高，使用letterSpacing设置文本字符间距，使用decoration设置文本装饰线样式。
+该示例通过lineHeight、letterSpacing、decoration属性展示了不同样式的文本效果。
 
 ```ts
 // xxx.ets
@@ -824,12 +1197,12 @@ struct SearchExample {
         Search({value: 'LineThrough, Red'})
           .border({ width: 1 }).padding(5)
           .decoration({type: TextDecorationType.LineThrough, color: Color.Red})
-        Search({value: 'Overline, Red'})
+        Search({value: 'Overline, Red, DOTTED'})
           .border({ width: 1 }).padding(5)
-          .decoration({type: TextDecorationType.Overline, color: Color.Red})
-        Search({value: 'Underline, Red'})
+          .decoration({type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DOTTED})
+        Search({value: 'Underline, Red, WAVY'})
           .border({ width: 1 }).padding(5)
-          .decoration({type: TextDecorationType.Underline, color: Color.Red})
+          .decoration({type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY})
       }.height('90%')
     }
     .width('90%')
@@ -841,13 +1214,15 @@ struct SearchExample {
 
 ![SearchDecoration](figures/search_decoration.png)
 
-### 示例6
-fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果
+### 示例6（设置文字特性效果）
+
+该示例通过fontFeature属性实现了文本在不同文字特性下的展示效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct search {
+struct SearchExample {
   @State text1: string = 'This is ss01 on : 0123456789'
   @State text2: string = 'This is ss01 off: 0123456789'
 
@@ -867,27 +1242,31 @@ struct search {
 ```
 ![fontFeature](figures/searchFontFeature.png)
 
-### 示例7
+### 示例7（自定义键盘避让）
 
-自定义键盘弹出发生避让示例
+该示例通过自定义键盘实现了键盘避让的功能。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct SearchExample {
   controller: SearchController = new SearchController()
   @State inputValue: string = ""
-  @State height1:string|number = '80%'
-  @State supportAvoidance:boolean = true;
+  @State height1: string | number = '80%'
+  @State supportAvoidance: boolean = true
+
   // 自定义键盘组件
-  @Builder CustomKeyboardBuilder() {
+  @Builder
+  CustomKeyboardBuilder() {
     Column() {
-      Row(){
+      Row() {
         Button('x').onClick(() => {
           // 关闭自定义键盘
           this.controller.stopEditing()
         }).margin(10)
       }
+
       Grid() {
         ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
@@ -904,16 +1283,16 @@ struct SearchExample {
 
   build() {
     Column() {
-      Row(){
+      Row() {
         Button("20%")
           .fontSize(24)
-          .onClick(()=>{
+          .onClick(() => {
             this.height1 = "20%"
           })
         Button("80%")
           .fontSize(24)
-          .margin({left:20})
-          .onClick(()=>{
+          .margin({ left: 20 })
+          .onClick(() => {
             this.height1 = "80%"
           })
       }
@@ -921,13 +1300,202 @@ struct SearchExample {
       .alignItems(VerticalAlign.Bottom)
       .height(this.height1)
       .width("100%")
-      .padding({bottom:50})
-      Search({ controller: this.controller, value: this.inputValue})
-        // 绑定自定义键盘
-        .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
+      .padding({ bottom: 50 })
+
+      Search({ controller: this.controller, value: this.inputValue })// 绑定自定义键盘
+        .customKeyboard(this.CustomKeyboardBuilder(), { supportAvoidance: this.supportAvoidance })
+        .margin(10)
+        .border({ width: 1 })
+        .onChange((value: string) => {
+          this.inputValue = value
+        })
     }
   }
 }
 ```
 
-![CustomSearchKeyType](figures/Custom_Search.gif)
+![CustomSearchKeyType](figures/searchCustomKeyboard.gif)
+
+### 示例8（设置文本自适应）
+
+该示例通过minFontSize、maxFontSize属性展示了文本自适应字号的效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SearchExample {
+  build() {
+    Row() {
+      Column() {
+        Text('adaptive font').fontSize(9).fontColor(0xCCCCCC)
+
+        Search({value: 'This is the text without the adaptive font'})
+          .width('80%').height(90).borderWidth(1)
+        Search({value: 'This is the text without the adaptive font'})
+          .width('80%').height(90).borderWidth(1)
+          .minFontSize(4)
+          .maxFontSize(40)
+      }.height('90%')
+    }
+    .width('90%')
+    .margin(10)
+  }
+}
+```
+
+![searchAdaptFont](figures/search_adapt_font.png)
+
+### 示例9（支持插入和删除回调）
+
+该示例通过onWillInsert、onDidInsert、onWillDelete、onDidDelete接口实现了插入和删除的功能。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SearchExample {
+  @State insertValue: string = ""
+  @State deleteValue: string = ""
+  @State insertOffset: number = 0
+  @State deleteOffset: number = 0
+  @State deleteDirection: number = 0
+
+  build() {
+    Row() {
+      Column() {
+        Search({ value: "Search支持插入回调文本" })
+          .height(60)
+          .onWillInsert((info: InsertValue) => {
+            this.insertValue = info.insertValue
+            return true;
+          })
+          .onDidInsert((info: InsertValue) => {
+            this.insertOffset = info.insertOffset
+          })
+
+        Text("insertValue:" + this.insertValue + "  insertOffset:" + this.insertOffset).height(30)
+
+        Search({ value: "Search支持删除回调文本b" })
+          .height(60)
+          .onWillDelete((info: DeleteValue) => {
+            this.deleteValue = info.deleteValue
+            info.direction
+            return true;
+          })
+          .onDidDelete((info: DeleteValue) => {
+            this.deleteOffset = info.deleteOffset
+            this.deleteDirection = info.direction
+          })
+
+        Text("deleteValue:" + this.deleteValue + "  deleteOffset:" + this.deleteOffset).height(30)
+        Text("deleteDirection:" + (this.deleteDirection == 0 ? "BACKWARD" : "FORWARD")).height(30)
+
+      }.width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![SearchInsertAndDelete](figures/SearchInsertAndDelete.PNG)
+
+### 示例10（文本扩展自定义菜单）
+
+该示例通过editMenuOptions接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SearchExample {
+  @State text: string = 'Search editMenuOptions'
+  onCreateMenu = (menuItems: Array<TextMenuItem>) => {
+    let item1: TextMenuItem = {
+      content: 'custom1',
+      icon: $r('app.media.startIcon'),
+      id: TextMenuItemId.of('custom1'),
+    }
+    let item2: TextMenuItem = {
+      content: 'custom2',
+      id: TextMenuItemId.of('custom2'),
+      icon: $r('app.media.startIcon'),
+    }
+    menuItems.push(item1)
+    menuItems.unshift(item2)
+    return menuItems
+  }
+  onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
+    if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
+      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
+      return false
+    }
+    return false
+  }
+  @State editMenuOptions: EditMenuOptions = {
+    onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+  }
+
+  build() {
+    Column() {
+      Search({ value: this.text })
+        .width('95%')
+        .editMenuOptions(this.editMenuOptions)
+        .margin({ top: 100 })
+    }
+    .width("90%")
+    .margin("5%")
+  }
+}
+```
+
+![searchEditMenuOptions](figures/searchEditMenuOptions.gif)
+
+### 示例11（设置symbol类型清除按钮）
+
+该示例通过searchIcon、cancelButton属性展示了自定义右侧symbol类型清除按钮样式的效果。
+
+```ts
+// xxx.ets
+import { SymbolGlyphModifier } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+  @State changeValue: string = ''
+  @State submitValue: string = ''
+
+  build() {
+    Column() {
+      Search({ value: this.changeValue, placeholder: 'Type to search...', controller: this.controller })
+        .searchIcon(new SymbolGlyphModifier($r('sys.symbol.magnifyingglass')).fontColor([Color.Red]))
+        .cancelButton({
+          style: CancelButtonStyle.CONSTANT,
+          icon: new SymbolGlyphModifier($r('sys.symbol.xmark')).fontColor([Color.Green])
+        })
+        .searchButton('SEARCH')
+        .width('95%')
+        .height(40)
+        .backgroundColor('#F5F5F5')
+        .placeholderColor(Color.Grey)
+        .placeholderFont({ size: 14, weight: 400 })
+        .textFont({ size: 14, weight: 400 })
+        .margin(10)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![searchSymbolGlyphModifierIcon](figures/searchSymbolGlyphModifierIcon.png)
+

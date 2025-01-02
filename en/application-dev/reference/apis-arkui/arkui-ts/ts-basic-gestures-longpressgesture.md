@@ -11,11 +11,13 @@
 
 LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number })
 
-Triggers a long press gesture. In components that support drag actions by default, such as **\<Text>**, **\<TextInput>**, **\<TextArea>**, **\<Hyperlink>**, **\<Image>**, and **\<RichEditor>**, the long press gesture may conflict with the drag action. If this occurs, they are handled as follows:
+Triggers a long press gesture. In components that support drag actions by default, such as **Text**, **TextInput**, **TextArea**, **HyperLink**, **Image**, and **RichEditor**, the long press gesture may conflict with the drag action. If this occurs, they are handled as follows:
 
 If the minimum duration of the long press gesture is less than 500 ms, the long press gesture receives a higher response priority than the drag action.
 
 If the minimum duration of the long press gesture is greater than or equal to 500 ms, the drag action receives a higher response priority than the long press gesture.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
@@ -30,15 +32,18 @@ If the minimum duration of the long press gesture is greater than or equal to 50
 
 | Name| Description|
 | -------- | -------- |
-| onAction(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when a long press gesture is recognized.|
-| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the last finger is lifted after the long press gesture is recognized.|
-| onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after the long press gesture is recognized.<br>**NOTE**<br>This event is triggered when the window loses focus.|
+| onAction(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when a long press gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionEnd(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the last finger is lifted after the long press gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after the long press gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
 | tag<sup>11+</sup>   | string  | Tag for the long press gesture. It is used to distinguish the gesture during custom gesture judgment.|
+
 ## Example
 
 ```ts
@@ -55,13 +60,13 @@ struct LongPressGestureExample {
         .gesture(
         LongPressGesture({ repeat: true })
           // When repeat is set to true, the event callback is triggered continuously when the gesture is detected. The triggering interval is specified by duration (500 ms by default).
-          .onAction((event?: GestureEvent) => {
+          .onAction((event: GestureEvent) => {
             if (event && event.repeat) {
               this.count++
             }
           })
             // Triggered when the long press gesture ends.
-          .onActionEnd(() => {
+          .onActionEnd((event: GestureEvent) => {
             this.count = 0
           })
         )

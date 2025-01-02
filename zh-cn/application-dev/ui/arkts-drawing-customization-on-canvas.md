@@ -9,7 +9,7 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
 可以由以下三种形式在画布绘制自定义图形：
 
 
-- 使用[CanvasRenderingContext2D对象](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md)在Canvas画布上绘制。
+- 使用[CanvasRenderingContext2D](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md)对象在Canvas画布上绘制。
 
   ```ts
   @Entry
@@ -45,7 +45,7 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
   1. 通过transferToImageBitmap方法将离屏画布最近渲染的图像创建为一个ImageBitmap对象。
   2. 通过CanvasRenderingContext2D对象的transferFromImageBitmap方法显示给定的ImageBitmap对象。
 
-    具体使用参考[OffscreenCanvasRenderingContext2D对象](../reference/apis-arkui/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)。
+    具体使用参考[OffscreenCanvasRenderingContext2D](../reference/apis-arkui/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)对象。
 
   ```ts
   @Entry
@@ -133,7 +133,7 @@ Canvas(this.context)
 
   ![2023022793719(1)](figures/2023022793719(1).jpg)
 
-- 先单独定义path2d对象构造理想的路径，再通过调用CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象的stroke接口或者fill接口进行绘制，具体使用可以参考[Path2D对象](../reference/apis-arkui/arkui-ts/ts-components-canvas-path2d.md)。
+- 先单独定义path2d对象构造理想的路径，再通过调用CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象的stroke接口或者fill接口进行绘制，具体使用可以参考[Path2D](../reference/apis-arkui/arkui-ts/ts-components-canvas-path2d.md)对象。
 
   ```ts
   Canvas(this.context)
@@ -201,6 +201,25 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
   ![2023022795105(1)](figures/2023022795105(1).jpg)
 
+- 使用自定义字体绘制文本
+
+  可以通过[font](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#font)接口（设置文本绘制中的字体样式）加载自定义字体，然后通过[fillText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#filltext)（绘制填充类文本）、[strokeText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext)（绘制描边类文本）等接口进行文本绘制。
+
+  ```ts
+  Canvas(this.context)
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F5DC62')
+    .onReady(() =>{
+      //加载自定义字体
+      this.context.font = '30vp customFont'
+      this.context.fillText("Hello World!", 20, 50)
+      this.context.strokeText("Hello World!", 20, 100)
+    })
+  ```
+
+  ![customFont](figures/customFont.jpeg)
+
 - 绘制图片和图像像素信息处理。
 
   可以通过[drawImage](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#drawimage)（图像绘制）、[putImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#putimagedata)（使用[ImageData](../reference/apis-arkui/arkui-ts/ts-components-canvas-imagedata.md)数据填充新的矩形区域）等接口绘制图片，通过[createImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#createimagedata)（创建新的ImageData 对象）、[getPixelMap](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#getpixelmap)（以当前canvas指定区域内的像素创建[PixelMap](../reference/apis-image-kit/js-apis-image.md#pixelmap7)对象）、[getImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#getimagedata)（以当前canvas指定区域内的像素创建ImageData对象）等接口进行图像像素信息处理。
@@ -243,7 +262,7 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
 - 其他方法。
 
-  Canvas中还提供其他类型的方法。渐变（[CanvasGradient对象](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvasgradient.md)）相关的方法：[createLinearGradient](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#createlineargradient)（创建一个线性渐变色）、[createRadialGradient](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#createradialgradient)（创建一个径向渐变色）等。
+  Canvas中还提供其他类型的方法。渐变（[CanvasGradient](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvasgradient.md)对象）相关的方法：[createLinearGradient](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#createlineargradient)（创建一个线性渐变色）、[createRadialGradient](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#createradialgradient)（创建一个径向渐变色）等。
 
   ```ts
     Canvas(this.context)
@@ -354,3 +373,4 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 - [Lottie动画](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Lottie)
 
 - [自定义抽奖转盘（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CanvasComponent)
+<!--RP1--><!--RP1End-->

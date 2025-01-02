@@ -1,4 +1,4 @@
-# Randomly Generating an Asymmetric Key Pair
+# Randomly Generating an Asymmetric Key Pair (ArkTS)
 
 
 This topic uses RSA and SM2 as an example to describe how to generate an asymmetric key pair (**KeyPair**) and obtain the binary data.
@@ -21,7 +21,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
 
 - Example: Randomly generate an RSA key pair (using promise-based APIs).
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function generateAsyKey() {
     // Create an AsyKeyGenerator instance.
@@ -34,15 +34,15 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
       // Obtain the binary data of the asymmetric key pair.
       let pkBlob = pubKey.getEncoded();
       let skBlob = priKey.getEncoded();
-      AlertDialog.show({ message: 'pk bin data' + pkBlob.data });
-      AlertDialog.show({ message: 'sk bin data' + skBlob.data });
+      console.info('pk bin data' + pkBlob.data);
+      console.info('sk bin data' + skBlob.data);
     });
   }
   ```
 
-- Synchronously return the result ([generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)):
+- Example: Randomly generate an RSA key pair (using the synchronous API [generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)).
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function generateAsyKeySync() {
     // Create an AsyKeyGenerator instance.
@@ -56,8 +56,8 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
         // Obtain the binary data of the asymmetric key pair.
         let pkBlob = pubKey.getEncoded();
         let skBlob = priKey.getEncoded();
-        AlertDialog.show({ message: 'pk bin data' + pkBlob.data });
-        AlertDialog.show({ message: 'sk bin data' + skBlob.data });
+        console.info('pk bin data' + pkBlob.data);
+        console.info('sk bin data' + skBlob.data);
       } else {
         console.error("[Sync]: get key pair result fail!");
       }
@@ -82,7 +82,7 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
 
 - Example: Randomly generate an SM2 key pair (using promise-based APIs).
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function generateSM2Key() {
     // Create an AsyKeyGenerator instance.
@@ -95,15 +95,15 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
       // Obtain the binary data of the asymmetric key pair.
       let pkBlob = pubKey.getEncoded();
       let skBlob = priKey.getEncoded();
-      AlertDialog.show({ message: 'pk bin data' + pkBlob.data });
-      AlertDialog.show({ message: 'sk bin data' + skBlob.data });
+      console.info('pk bin data' + pkBlob.data);
+      console.info('sk bin data' + skBlob.data);
     });
   }
   ```
 
-- Synchronously return the result ([generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)):
+- Example: Randomly generate an SM2 key pair (using the synchronous API [generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)).
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function generateSM2KeySync() {
     // Create an AsyKeyGenerator instance.
@@ -117,8 +117,8 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
         // Obtain the binary data of the asymmetric key pair.
         let pkBlob = pubKey.getEncoded();
         let skBlob = priKey.getEncoded();
-        AlertDialog.show({ message: 'pk bin data' + pkBlob.data });
-        AlertDialog.show({ message: 'sk bin data' + skBlob.data });
+        console.info('pk bin data' + pkBlob.data);
+        console.info('sk bin data' + skBlob.data);
       } else {
         console.error("[Sync]: get key pair result fail!");
       }

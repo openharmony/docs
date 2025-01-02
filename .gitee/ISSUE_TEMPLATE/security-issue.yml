@@ -1,0 +1,72 @@
+name: 安全问题|Security Issue
+description: 当您发现安全问题时，使用此模板反馈。
+title: "[安全问题]: "
+labels: ["SIG_Security"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢对OpenHarmony社区的支持与关注，欢迎反馈安全问题。
+  - type: input
+    attributes:
+      label: 漏洞编号：
+      description: 请描述下漏洞编号。
+      placeholder: ""
+    validations:
+      required: false
+  - type: input
+    attributes:
+      label: 漏洞归属组件
+      description: 请描述下漏洞归属组件。
+      placeholder: ""
+    validations:
+      required: false
+  - type: input
+    attributes:
+      label: 漏洞归属版本
+      description: 请描述下漏洞归属版本。
+      placeholder: ""
+    validations:
+      required: false
+  - type: input
+    attributes:
+      label: CVSS V3.0分值
+      description: 请描述下CVSS V3.0分值。
+      placeholder: ""
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: 漏洞简述
+      description: 请提供下漏洞的描述信息。
+      placeholder: ""
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 影响性分析说明
+      description: 请描述下该漏洞的影响。
+      placeholder: ""
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: 原理分析
+      description: 请分析下该漏洞的原理。
+      placeholder: ""
+    validations:
+      required: false
+  - type: input
+    attributes:
+      label: 受影响版本
+      description: 请描述下该漏洞的影响版本。
+      placeholder: ""
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: 规避方案或消减措施
+      description: 请描述下该漏洞的规避方案或消减措施。
+      placeholder: ""
+    validations:
+      required: false

@@ -1,6 +1,6 @@
 # @ohos.app.ability.ActionExtensionAbility (ExtensionAbility for Custom Actions)
 
-The **ActionExtensionAbility** module, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides a custom action service template. An ActionExtensionAbility is used to view and process the content in a host application. For example, you can add a bookmark, translate the selected text into another language, or edit an image on the current page.
+The **ActionExtensionAbility** module, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides a custom action service template. An ActionExtensionAbility is used to view and process the content in a host application. For example, you can add a bookmark, translate the selected text into another language, or edit an image on the current page. For details about the inheritance relationship of each ability, see [Inheritance Relationship](./js-apis-app-ability-ability.md#ability-inheritance-relationship).
 
 > **NOTE**
 > 
@@ -15,10 +15,10 @@ The following uses text translation as an example. You must create a request ini
 ## Modules to Import
 
 ```ts
-import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
+import { ActionExtensionAbility } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -137,9 +137,7 @@ To manually create an ActionExtensionAbility in the DevEco Studio project, perfo
 3. In the **ActionExtAbility.ets** file, import the ActionExtensionAbility module. Customize a class that inherits from ActionExtensionAbility and implement the lifecycle callbacks.
 
     ```ts
-    import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
-    import Want from '@ohos.app.ability.Want';
-    import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+    import { ActionExtensionAbility, Want, UIExtensionContentSession } from '@kit.AbilityKit';
 
     const TAG: string = "[ActionExtAbility]";
 
@@ -147,31 +145,26 @@ To manually create an ActionExtensionAbility in the DevEco Studio project, perfo
       onCreate() {
         console.info(TAG, `onCreate`);
       }
-
       onSessionCreate(want: Want, session: UIExtensionContentSession) {
         console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
         if (want.parameters) {
           let obj: Record<string, UIExtensionContentSession | object> = {
             'session': session,
             'messages': want.parameters.shareMessages
-          }
+          };
           let storage: LocalStorage = new LocalStorage(obj);
           session.loadContent('pages/Index', storage);
         }
       }
-
       onForeground() {
         console.info(TAG, `ononForeground`);
       }
-
       onBackground() {
         console.info(TAG, `onBackground`);
       }
-
       onSessionDestroy(session: UIExtensionContentSession) {
         console.info(TAG, `onSessionDestroy`);
       }
-
       onDestroy() {
         console.info(TAG, `onDestroy`);
       }

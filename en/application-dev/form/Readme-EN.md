@@ -21,8 +21,13 @@
       - Widget Data Interaction
         - [Widget Data Interaction Overview](arkts-ui-widget-interaction-overview.md)
         - [Configuring a Widget to Update Periodically](arkts-ui-widget-update-by-time.md)
+        <!--Del-->
         - [Updating Widget Content Through a Proxy](arkts-ui-widget-update-by-proxy.md)
+        <!--DelEnd-->
         - [Updating Local and Online Images in the Widget](arkts-ui-widget-image-update.md)
         - [Updating Widget Content by State](arkts-ui-widget-update-by-status.md)
+    <!--Del--> 
+    - [Widget Host Development (for System Applications Only)](widget-host-development-guide.md)
+    <!--DelEnd-->
   - [Developing a JS Widget](js-ui-widget-development.md)
 - [Service Widget Development in FA Model](widget-development-fa.md)

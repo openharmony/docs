@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **VideoOutput_Callbacks** struct defines the callbacks used for video output.
+The VideoOutput_Callbacks struct describes the callbacks related to video output.
 
 For details, see [OH_VideoOutput_RegisterCallback](_o_h___camera.md#oh_videooutput_registercallback).
 

@@ -3,6 +3,9 @@
 - [OpenHarmony Project](OpenHarmony-Overview.md)
 - [Glossary](glossary.md)
 - Release Notes
+  - OpenHarmony 5.x Releases
+    - [OpenHarmony v5.0.0 Release (2024-09-29)](release-notes/OpenHarmony-v5.0.0-release.md)
+    - [OpenHarmony v5.0 Beta1 (2024-06-20)](release-notes/OpenHarmony-v5.0-beta1.md)
   - OpenHarmony 4.x Releases
     - [OpenHarmony v4.1 Beta1 (2023-12-31)](release-notes/OpenHarmony-v4.1-beta1.md)
     - [OpenHarmony v4.0 Release (2023-10-26)](release-notes/OpenHarmony-v4.0-release.md)
@@ -131,7 +134,7 @@
         - [Security](release-notes/api-diff/v3.2-Release/js-apidiff-security.md)
         - [Pan-sensor](release-notes/api-diff/v3.2-Release/js-apidiff-sensor.md)
         - [Startup](release-notes/api-diff/v3.2-Release/js-apidiff-start-up.md)
-        - [Telephony ](release-notes/api-diff/v3.2-Release/js-apidiff-telephony.md)
+        - [Telephony](release-notes/api-diff/v3.2-Release/js-apidiff-telephony.md)
         - [Test](release-notes/api-diff/v3.2-Release/js-apidiff-unitest.md)
         - [Update](release-notes/api-diff/v3.2-Release/js-apidiff-update.md)
         - [USB](release-notes/api-diff/v3.2-Release/js-apidiff-usb.md)

@@ -36,15 +36,15 @@ The table below lists the common APIs used for application window development. F
 | WindowStage    | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads content to the main window in this window stage.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.<br>This API can be used only in the stage model.|
 | WindowStage    | createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void | Creates a subwindow.<br>This API can be used only in the stage model.            |
 | WindowStage    | on(type: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void | Subscribes to window stage lifecycle change events.<br>This API can be used only in the stage model.|
-| Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a system window.<br>**config**: parameters used for creating the window.            |
+| Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow or system window.<br>**config**: parameters used for creating the window.            |
 | Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project in the stage model.                                    |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.                                            |
 | Window         | setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether this window is touchable.                                    |
 | Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.                                          |
 | Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.                                          |
-| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether to enable the full-screen mode for the window layout.                                 |
+| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | Sets whether to enable the full-screen mode for the window layout.                                 |
 | Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | Sets whether to display the status bar and navigation bar in this window.                                |
-| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | Sets the properties of the status bar and navigation bar in this window.<br>**systemBarProperties**: properties of the status bar and navigation bar.|
+| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt; | Sets the properties of the status bar and navigation bar in this window.<br>**systemBarProperties**: properties of the status bar and navigation bar.|
 | Window         | showWindow(callback: AsyncCallback\<void>): void             | Shows this window.                                              |
 | Window         | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Subscribes to touch events outside this window.                          |
 | Window         | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | Destroys this window.                                              |
@@ -52,7 +52,7 @@ The table below lists the common APIs used for application window development. F
 
 ## Setting the Main Window of an Application
 
-In the stage model, the main window of an application is created and maintained by a **UIAbility** instance. In the **onWindowStageCreate** callback of the **UIAbility** instance, use **WindowStage** to obtain the main window of the application and set its properties. You can also set the properties (for example, **maxWindowWidth**) in the [module.json5 file](../quick-start/module-configuration-file.md#abilities).
+In the stage model, the main window of an application is created and maintained by a **UIAbility** instance. In the **onWindowStageCreate** callback of the **UIAbility** instance, use **WindowStage** to obtain the main window of the application and set its properties. You can also set the properties (for example, **maxWindowWidth**) in the [abilities tag of the module.json5 file](../quick-start/module-configuration-file.md#abilities).
 
 ### How to Develop
 
@@ -69,9 +69,9 @@ In the stage model, the main window of an application is created and maintained 
    Call **loadContent** to load content to the main window.
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -131,10 +131,12 @@ You can create an application subwindow, such as a dialog box, and set its prope
 
    When the subwindow is no longer needed, you can call **destroyWindow** to destroy it.
 
+The code snippet for creating a subwindow in **onWindowStageCreate** is as follows:
+
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowStage_: window.WindowStage | null = null;
 let sub_windowClass: window.Window | null = null;
@@ -218,10 +220,159 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
+You can also click a button on a page to create a subwindow. The code snippet is as follows:
+
+```ts
+// EntryAbility.ets
+onWindowStageCreate(windowStage: window.WindowStage) {
+  windowStage.loadContent('pages/Index', (err) => {
+    if (err.code) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in loading the content.');
+  })
+
+  // Transfer the window stage to the Index page.
+  AppStorage.setOrCreate('windowStage', windowStage);
+}
+```
+
+```ts
+// Index.ets
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowStage_: window.WindowStage | undefined = undefined;
+let sub_windowClass: window.Window | undefined = undefined;
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  private CreateSubWindow(){
+    // Obtain the window stage.
+    windowStage_ = AppStorage.get('windowStage');
+    // 1. Create a subwindow.
+    if (windowStage_ == null) {
+      console.error('Failed to create the subwindow. Cause: windowStage_ is null');
+    }
+    else {
+      windowStage_.createSubWindow("mySubWindow", (err: BusinessError, data) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        sub_windowClass = data;
+        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+        // 2. Set the position, size, and other properties of the subwindow.
+        sub_windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to move the window. Cause:' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in moving the window.');
+        });
+        sub_windowClass.resize(500, 500, (err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in changing the window size.');
+        });
+        // 3. Load content to the subwindow.
+        sub_windowClass.setUIContent("pages/subWindow", (err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in loading the content.');
+          // 3. Show the subwindow.
+          (sub_windowClass as window.Window).showWindow((err: BusinessError) => {
+            let errCode: number = err.code;
+            if (errCode) {
+              console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+              return;
+            }
+            console.info('Succeeded in showing the window.');
+          });
+        });
+      })
+    }
+  }
+  private destroySubWindow(){
+    // 4. Destroy the subwindow when it is no longer needed (depending on the service logic).
+    (sub_windowClass as window.Window).destroyWindow((err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in destroying the window.');
+    });
+  }
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button(){
+          Text('CreateSubWindow')
+          .fontSize(24)
+          .fontWeight(FontWeight.Normal)
+        }.width(220).height(68)
+        .margin({left:10, top:60})
+        .onClick(() => {
+          this.CreateSubWindow()
+        })
+        Button(){
+          Text('destroySubWindow')
+          .fontSize(24)
+          .fontWeight(FontWeight.Normal)
+        }.width(220).height(68)
+        .margin({left:10, top:60})
+        .onClick(() => {
+          this.destroySubWindow()
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+```ts
+// subWindow.ets
+@Entry
+@Component
+struct SubWindow {
+  @State message: string = 'Hello subWindow';
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ## Experiencing the Immersive Window Feature
 
 To create a better video watching and gaming experience, you can use the immersive window feature to hide the status bar and navigation bar. This feature is available only for the main window of an application. Since API version 10, the immersive window has the same size as the full screen by default; its layout is controlled by the component module; the background color of its status bar and navigation bar is transparent, and the text color is black. When an application window calls **setWindowLayoutFullScreen**, with **true** passed in, an immersive window layout is used. If **false** is passed in, a non-immersive window layout is used.
 
+> **NOTE**
+>
+> Currently, immersive UI development supports window-level configuration, but not page-level configuration. If page redirection is required, you can set the immersive mode at the beginning of the page lifecycle, for example, in the **onPageShow** callback, and then restore the default settings when the page exits, for example, in the **onPageHide** callback.
 
 ### How to Develop
 
@@ -240,9 +391,9 @@ To create a better video watching and gaming experience, you can use the immersi
    Call **loadContent** to load content to the immersive window.
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -259,24 +410,22 @@ export default class EntryAbility extends UIAbility {
 
       // 2. Implement the immersive effect by hiding the status bar and navigation bar.
       let names: Array<'status' | 'navigation'> = [];
-      windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
+      windowClass.setWindowSystemBarEnable(names)
+        .then(() => {
+          console.info('Succeeded in setting the system bar to be visible.');
+        })
+        .catch((err: BusinessError) => {
           console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in setting the system bar to be visible.');
-      });
+        });
       // 2. Alternatively, implement the immersive effect by setting the properties of the status bar and navigation bar.
       let isLayoutFullScreen = true;
-      windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
+      windowClass.setWindowLayoutFullScreen(isLayoutFullScreen)
+        .then(() => {
+          console.info('Succeeded in setting the window layout to full-screen mode.');
+        })
+        .catch((err: BusinessError) => {
           console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in setting the window layout to full-screen mode.');
-      });
+        });
       let sysBarProps: window.SystemBarProperties = {
         statusBarColor: '#ff00ff',
         navigationBarColor: '#00ff00',
@@ -284,14 +433,13 @@ export default class EntryAbility extends UIAbility {
         statusBarContentColor: '#ffffff',
         navigationBarContentColor: '#ffffff'
       };
-      windowClass.setWindowSystemBarProperties(sysBarProps, (err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
+      windowClass.setWindowSystemBarProperties(sysBarProps)
+        .then(() => {
+          console.info('Succeeded in setting the system bar properties.');
+        })
+        .catch((err: BusinessError) => {
           console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in setting the system bar properties.');
-      });
+        });
     })
     // 3. Load content to the immersive window.
     windowStage.loadContent("pages/page2", (err: BusinessError) => {
@@ -306,14 +454,17 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## Setting a Floating Window
+<!--RP2-->
+## Setting a Floating Window<!--RP2End-->
 
 A floating window is created based on an existing task. It is always displayed in the foreground, even if the task used for creating the floating window is switched to the background. Generally, the floating window is above all application windows. You can create a floating window and set its properties.
 
 
 ### How to Develop
 
-**Prerequisites**: To create a floating window (a window of the type **WindowType.TYPE_FLOAT**), you must request the **ohos.permission.SYSTEM_FLOAT_WINDOW** permission. For details, see [Applying for Application Permissions](../security/AccessToken/applying-for-permissions-for-system-basic-applications).
+<!--RP1-->
+**Prerequisites**: To create a floating window (a window of the type **WindowType.TYPE_FLOAT**), you must request the **ohos.permission.SYSTEM_FLOAT_WINDOW** permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+<!--RP1End-->
 
 1. Create a floating window.
 
@@ -332,9 +483,9 @@ A floating window is created based on an existing task. It is always displayed i
    When the floating window is no longer needed, you can call **destroyWindow** to destroy it.
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -402,15 +553,15 @@ export default class EntryAbility extends UIAbility {
 
 ## Listening for Interactive and Non-Interactive Window Events
 
-When running in the foreground, an application may switch between interactive and non-interactive states and process services depending on the state. For example, when the user opens the **Recents** screen, an application becomes non-interactive and pauses the service interacting with the user, such as video playback or camera preview; when the user switched back to the foreground, the application becomes interactive again, and the paused service needs to be resumed. To obtain these state changes, you can subscribe to the **'windowStageEvent'** event.
+When running in the foreground, an application may switch between interactive and non-interactive states and process services depending on the state. For example, when the user opens the **Recents** screen, an application becomes non-interactive and pauses the service interaction with the user, such as video playback or camera preview; when the user switched back to the foreground, the application becomes interactive again, and the paused service needs to be resumed.
 
 ### How to Develop
 
 After a **WindowStage** object is created, the application can listen for the **'windowStageEvent'** event to obtain window stage lifecycle changes, for example, whether the window stage is interactive or non-interactive in the foreground. The application can process services based on the reported event status.
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {

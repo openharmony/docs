@@ -3,7 +3,7 @@
 
 ## Overview
 
-The AVMuxer module provides the functions for audio and video muxing.
+The AVMuxer module provides the APIs for audio and video muxing.
 
 **System capability**: SystemCapability.Multimedia.Media.Muxer
 
@@ -17,7 +17,7 @@ The AVMuxer module provides the functions for audio and video muxing.
 
 | Name| Description| 
 | -------- | -------- |
-| [native_avmuxer.h](native__avmuxer_8h.md) | Declares native APIs used for audio and video muxing.| 
+| [native_avmuxer.h](native__avmuxer_8h.md) | Declares the native APIs used for audio and video muxing. | 
 
 
 ### Types
@@ -31,13 +31,13 @@ The AVMuxer module provides the functions for audio and video muxing.
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_AVMuxer](#oh_avmuxer) \* [OH_AVMuxer_Create](#oh_avmuxer_create) (int32_t fd, [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat) format) | Creates an **OH_AVMuxer** instance by using the file descriptor and encapsulation format.| 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_SetRotation](#oh_avmuxer_setrotation) ([OH_AVMuxer](#oh_avmuxer) \*muxer, int32_t rotation) | Sets the rotation angle (clockwise) of an output video.| 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_AddTrack](#oh_avmuxer_addtrack) ([OH_AVMuxer](#oh_avmuxer) \*muxer, int32_t \*trackIndex, [OH_AVFormat](_core.md#oh_avformat) \*trackFormat) | Adds a media track to the muxer.| 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_Start](#oh_avmuxer_start) ([OH_AVMuxer](#oh_avmuxer) \*muxer) | Starts the muxer.| 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_WriteSample](#oh_avmuxer_writesample) ([OH_AVMuxer](#oh_avmuxer) \*muxer, uint32_t trackIndex, [OH_AVMemory](_core.md#oh_avmemory) \*sample, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) info) | Writes data to the muxer.| 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_WriteSampleBuffer](#oh_avmuxer_writesamplebuffer) ([OH_AVMuxer](#oh_avmuxer) \*muxer, uint32_t trackIndex, const [OH_AVBuffer](_core.md#oh_avbuffer) \*sample) | Writes data to the muxer.| 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_Stop](#oh_avmuxer_stop) ([OH_AVMuxer](#oh_avmuxer) \*muxer) | Stops the muxer.| 
+| [OH_AVMuxer](#oh_avmuxer) \* [OH_AVMuxer_Create](#oh_avmuxer_create) (int32_t fd, [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat) format) | Creates an **OH_AVMuxer** instance by using the file descriptor and container format. | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_SetRotation](#oh_avmuxer_setrotation) ([OH_AVMuxer](#oh_avmuxer) \*muxer, int32_t rotation) | Sets the rotation angle (clockwise), which must be 0, 90, 180, or 270, of an output video. | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_AddTrack](#oh_avmuxer_addtrack) ([OH_AVMuxer](#oh_avmuxer) \*muxer, int32_t \*trackIndex, [OH_AVFormat](_core.md#oh_avformat) \*trackFormat) | Adds an audio or video track to a muxer.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_Start](#oh_avmuxer_start) ([OH_AVMuxer](#oh_avmuxer) \*muxer) | Starts a muxer.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_WriteSample](#oh_avmuxer_writesample) ([OH_AVMuxer](#oh_avmuxer) \*muxer, uint32_t trackIndex, [OH_AVMemory](_core.md#oh_avmemory) \*sample, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) info) | Writes a sample to a muxer. (This function has been deprecated in API 11.)| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_WriteSampleBuffer](#oh_avmuxer_writesamplebuffer) ([OH_AVMuxer](#oh_avmuxer) \*muxer, uint32_t trackIndex, const [OH_AVBuffer](_core.md#oh_avbuffer) \*sample) | Writes a sample to a muxer. | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_Stop](#oh_avmuxer_stop) ([OH_AVMuxer](#oh_avmuxer) \*muxer) | Stops a muxer. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_Destroy](#oh_avmuxer_destroy) ([OH_AVMuxer](#oh_avmuxer) \*muxer) | Clears internal resources and destroys an **OH_AVMuxer** instance. | 
 
 
@@ -67,9 +67,9 @@ OH_AVErrCode OH_AVMuxer_AddTrack (OH_AVMuxer *muxer, int32_t *trackIndex, OH_AVF
 
 **Description**
 
-Adds a media track to the muxer.
+Adds an audio or video track to a muxer. 
 
-This function must be called before **OH_AVMuxer_Start**.
+Each time this function is called, an audio or video track is added to the muxer. This function must be called before **OH_AVMuxer_Start**.
 
 **System capability**: SystemCapability.Multimedia.Media.Muxer
 
@@ -79,13 +79,15 @@ This function must be called before **OH_AVMuxer_Start**.
 
 | Name| Description| 
 | -------- | -------- |
-| muxer | Pointer to an **OH_AVMuxer** instance.| 
-| trackIndex | Pointer to the index of the media track. The index will be used in the **OH_AVMuxer_WriteSample** function. If the media track is added, the index value is greater than or equal to 0; otherwise, the value is less than 0.| 
-| trackFormat | Pointer to an **OH_AVFormat** instance.| 
+| muxer | Pointer to an **OH_AVMuxer** instance. | 
+| trackIndex | Pointer to the index of the media track. The index will be used in the **OH_AVMuxer_WriteSample** function. If the audio or video track is added, the index value is greater than or equal to 0; otherwise, the value is less than 0. | 
+| trackFormat | Pointer to an **OH_AVFormat** instance. | 
 
 **Returns**
 
 Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+
+**AV_ERR_INVALID_VAL** is returned if the muxer pointer is null, or the track index or track format is invalid. **AV_ERR_OPERATE_NOT_PERMIT** is returned if the function is called in an invalid state. **AV_ERR_UNSUPPORT** is returned if the MIME type is not supported. **AV_ERR_NO_MEMORY** is returned if memory allocation fails. **AV_ERR_UNKNOWN** is returned in the case of an unknown error.
 
 
 ### OH_AVMuxer_Create()
@@ -96,7 +98,7 @@ OH_AVMuxer* OH_AVMuxer_Create (int32_t fd, OH_AVOutputFormat format)
 
 **Description**
 
-Creates an **OH_AVMuxer** instance by using the file descriptor and encapsulation format.
+Creates an **OH_AVMuxer** instance by using the file descriptor and container format.
 
 **System capability**: SystemCapability.Multimedia.Media.Muxer
 
@@ -106,8 +108,8 @@ Creates an **OH_AVMuxer** instance by using the file descriptor and encapsulatio
 
 | Name| Description| 
 | -------- | -------- |
-| fd | File descriptor (FD). You must open the file in read/write mode (O_RDWR) and close the file after using it.| 
-| format | Format of the encapsulated output file. For details, see [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat).| 
+| fd | File descriptor (FD). You must open the file in read/write mode (O_RDWR) and close the file after using it. | 
+| format | Format of the encapsulated output file. For details, see [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat). | 
 
 **Returns**
 
@@ -132,11 +134,13 @@ Clears internal resources and destroys an **OH_AVMuxer** instance.
 
 | Name| Description| 
 | -------- | -------- |
-| muxer | Pointer to an **OH_AVMuxer** instance.| 
+| muxer | Pointer to an **OH_AVMuxer** instance. | 
 
 **Returns**
 
 Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise. You must set the muxer to null.
+
+**AV_ERR_INVALID_VAL** is returned if the muxer pointer is null.
 
 
 ### OH_AVMuxer_SetRotation()
@@ -147,7 +151,7 @@ OH_AVErrCode OH_AVMuxer_SetRotation (OH_AVMuxer *muxer, int32_t rotation)
 
 **Description**
 
-Sets the rotation angle (clockwise) of an output video.
+Sets the rotation angle (clockwise), which must be 0, 90, 180, or 270, of an output video.
 
 This function must be called before **OH_AVMuxer_Start**.
 
@@ -159,12 +163,14 @@ This function must be called before **OH_AVMuxer_Start**.
 
 | Name| Description| 
 | -------- | -------- |
-| muxer | Pointer to an **OH_AVMuxer** instance.| 
-| rotation | Angle to set. The value must be 0, 90, 180, or 270.| 
+| muxer | Pointer to an **OH_AVMuxer** instance. | 
+| rotation | Angle to set. The value must be 0, 90, 180, or 270. | 
 
 **Returns**
 
 Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+
+**AV_ERR_INVALID_VAL** if the muxer pointer is null or the value of **rotation** is invalid. **AV_ERR_OPERATE_NOT_PERMIT** is returned if the function is called in an invalid state.
 
 
 ### OH_AVMuxer_Start()
@@ -175,7 +181,7 @@ OH_AVErrCode OH_AVMuxer_Start (OH_AVMuxer *muxer)
 
 **Description**
 
-Starts the muxer.
+Starts a muxer. 
 
 This function must be called after **OH_AVMuxer_AddTrack** and before **OH_AVMuxer_WriteSample**.
 
@@ -187,11 +193,13 @@ This function must be called after **OH_AVMuxer_AddTrack** and before **OH_AVMux
 
 | Name| Description| 
 | -------- | -------- |
-| muxer | Pointer to an **OH_AVMuxer** instance.| 
+| muxer | Pointer to an **OH_AVMuxer** instance. | 
 
 **Returns**
 
 Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+
+**AV_ERR_INVALID_VAL** is returned if the muxer pointer is null. **AV_ERR_OPERATE_NOT_PERMIT** is returned if the function is called in an invalid state. **AV_ERR_UNKNOWN** is returned in the case of an unknown error.
 
 
 ### OH_AVMuxer_Stop()
@@ -202,7 +210,7 @@ OH_AVErrCode OH_AVMuxer_Stop (OH_AVMuxer *muxer)
 
 **Description**
 
-Stops the muxer.
+Stops a muxer. 
 
 Once the muxer is stopped, it cannot be restarted.
 
@@ -214,11 +222,13 @@ Once the muxer is stopped, it cannot be restarted.
 
 | Name| Description| 
 | -------- | -------- |
-| muxer | Pointer to an **OH_AVMuxer** instance.| 
+| muxer | Pointer to an **OH_AVMuxer** instance. | 
 
 **Returns**
 
 Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+
+**AV_ERR_INVALID_VAL** is returned if the muxer pointer is null. **AV_ERR_OPERATE_NOT_PERMIT** is returned if the function is called in an invalid state.
 
 
 ### OH_AVMuxer_WriteSample()
@@ -229,9 +239,9 @@ OH_AVErrCode OH_AVMuxer_WriteSample (OH_AVMuxer *muxer, uint32_t trackIndex, OH_
 
 **Description**
 
-Writes data to the muxer.
+Writes a sample to a muxer. 
 
-This function must be called after **OH_AVMuxer_Start** and before **OH_AVMuxer_Stop**. You must ensure that the data is written to the correct media track in ascending order by time.
+This function must be called after **OH_AVMuxer_Start** and before **OH_AVMuxer_Stop**. The caller must write the sample to the correct audio or video track based on the time sequence in **info**.
 
 **System capability**: SystemCapability.Multimedia.Media.Muxer
 
@@ -245,14 +255,16 @@ This function must be called after **OH_AVMuxer_Start** and before **OH_AVMuxer_
 
 | Name| Description| 
 | -------- | -------- |
-| muxer | Pointer to an **OH_AVMuxer** instance.| 
-| trackIndex | Index of the media track corresponding to the data.| 
-| sample | Pointer to the buffer that stores the data written (data obtained after encoding or demuxing).| 
-| info | Information about the data written. For details, see [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md).| 
+| muxer | Pointer to an **OH_AVMuxer** instance. | 
+| trackIndex | Index of the audio or video track corresponding to the data. | 
+| sample | Pointer to the data obtained after encoding or demuxing. | 
+| info | Sample description. For details, see **OH_AVCodecBufferAttr**. | 
 
 **Returns**
 
 Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+
+**AV_ERR_INVALID_VAL** is returned if the muxer pointer is null, or the track index, sample, or info is invalid. **AV_ERR_OPERATE_NOT_PERMIT** is returned if the function is called in an invalid state. **AV_ERR_NO_MEMORY** is returned if memory allocation fails. **AV_ERR_UNKNOWN** is returned in the case of an unknown error.
 
 
 ### OH_AVMuxer_WriteSampleBuffer()
@@ -263,9 +275,9 @@ OH_AVErrCode OH_AVMuxer_WriteSampleBuffer (OH_AVMuxer *muxer, uint32_t trackInde
 
 **Description**
 
-Writes data to the muxer.
+Writes a sample to a muxer. 
 
-This function must be called after **OH_AVMuxer_Start** and before **OH_AVMuxer_Stop**. You must ensure that the data is written to the correct media track in ascending order by time.
+This function must be called after **OH_AVMuxer_Start** and before **OH_AVMuxer_Stop**. The caller must write the sample to the correct audio or video track based on the time sequence in **sample**.
 
 **System capability**: SystemCapability.Multimedia.Media.Muxer
 
@@ -275,10 +287,12 @@ This function must be called after **OH_AVMuxer_Start** and before **OH_AVMuxer_
 
 | Name| Description| 
 | -------- | -------- |
-| muxer | Pointer to an **OH_AVMuxer** instance.| 
-| trackIndex | Index of the media track corresponding to the data.| 
-| sample | Pointer to the buffer that stores the data written (data obtained after encoding or demuxing). Contains data and data attributes.| 
+| muxer | Pointer to an **OH_AVMuxer** instance. | 
+| trackIndex | Index of the audio or video track corresponding to the data. | 
+| sample | Pointer to the data obtained after encoding or demuxing. Data and data attributes are included. | 
 
 **Returns**
 
 Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+
+**AV_ERR_INVALID_VAL** is returned if the muxer pointer is null, or the track index or sample is invalid. **AV_ERR_OPERATE_NOT_PERMIT** is returned if the function is called in an invalid state. **AV_ERR_NO_MEMORY** is returned if memory allocation fails. **AV_ERR_UNKNOWN** is returned in the case of an unknown error.

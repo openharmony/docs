@@ -10,7 +10,7 @@
 
 关系型数据库跨设备数据同步，支持应用在多设备间同步存储的关系型数据。
 
-- 分布式列表，应用在数据库中新创建表后，可以设置其为分布式表。在查询远程设备数据库时，根据本地表名可以获取指定远程设备的分布式表名。
+- 应用在数据库中新创建表后，可以设置其为分布式表。在查询远程设备数据库时，根据本地表名可以获取指定远程设备的分布式表名。
 
 - 设备之间同步数据，数据同步有两种方式，将数据从本地设备推送到远程设备或将数据从远程设备拉至本地设备。
 
@@ -55,7 +55,7 @@
 | sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void | 分布式数据同步。 | 
 | on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void | 订阅分布式数据变化。 | 
 | off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void | 取消订阅分布式数据变化。 | 
-| obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void; | 根据本地数据库表名获取指定设备上的表名。 | 
+| obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void | 根据本地数据库表名获取指定设备上的表名。 | 
 | remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt; , callback: AsyncCallback&lt;ResultSet&gt;): void | 根据指定条件查询远程设备数据库中的数据。 | 
 
 
@@ -68,7 +68,7 @@
 1. 导入模块。
      
    ```ts
-   import relationalStore from '@ohos.data.relationalStore';
+   import { relationalStore } from '@kit.ArkData';
    ```
 
 2. 请求权限。
@@ -79,15 +79,15 @@
 3. 创建关系型数据库，设置将需要进行分布式同步的表。
      
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import window from '@ohos.window';
-   import { BusinessError } from "@ohos.base";
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { window } from '@kit.ArkUI';
 
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        const STORE_CONFIG: relationalStore.StoreConfig = {
          name: "RdbTest.db",
-         securityLevel: relationalStore.SecurityLevel.S1
+         securityLevel: relationalStore.SecurityLevel.S3
        };
           
        relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, store: relationalStore.RdbStore) => {
@@ -162,14 +162,14 @@
      
    ```ts
    // 获取deviceIds
-   import deviceManager from '@ohos.distributedDeviceManager';
-   import { BusinessError } from '@ohos.base'
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-   let dmInstance: deviceManager.DeviceManager;
+   let dmInstance: distributedDeviceManager.DeviceManager;
    let deviceId: string | undefined = undefined ;
 
    try {
-     dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+     dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
      let devices = dmInstance.getAvailableDeviceListSync();
 
      deviceId = devices[0].networkId;
@@ -203,4 +203,4 @@
 
 - [分布式关系型数据库（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedRdb)
 
-- [分布式帐号（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DistributedAppDev/DistributedAccount)
+- [分布式账号（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DistributedAppDev/DistributedAccount)

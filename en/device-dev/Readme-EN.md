@@ -34,7 +34,7 @@
     - [Kernel for the Standard System](kernel/kernel-standard-overview.md)
   - [Driver](driver/Readme-EN.md)	
   - [Compilation and Building](subsystems/subsys-build-all.md)
-  - [ArkUI](subsystems/subsys-arkui-customize_titlebar.md) 
+  - [ArkUI](subsystems/subsys-arkui-customize-titlebar-arkts.md) 
   - [Graphics](subsystems/subsys-graphics-overview.md)	
   - [Multimedia](subsystems/subsys-multimedia-camera-overview.md)	
   - [Utils](subsystems/subsys-utils-guide.md)

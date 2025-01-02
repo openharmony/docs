@@ -1,36 +1,35 @@
-# 管理域帐号（仅对系统应用开放）
+# 管理域账号（仅对系统应用开放）
 
-用户可以在系统中添加域帐号，后续可以域帐号身份登录、使用系统。
+用户可以在系统中添加域账号，后续可以域账号身份登录、使用系统。
 
 ## 开发准备
 
-1. 申请权限，申请流程请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+1. 申请权限，申请流程请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
    - ohos.permission.MANAGE_LOCAL_ACCOUNTS
    - ohos.permission.GET_DOMAIN_ACCOUNTS
 
-2. 导入系统帐号模块。
+2. 导入系统账号模块。
 
    ```ts
-   import account_osAccount from '@ohos.account.osAccount';
-   import { AsyncCallback, BusinessError } from '@ohos.base';
+   import { osAccount, BusinessError } from '@kit.BasicServicesKit';
    ```
 
-3. 获取获取系统帐号管理对象。
+3. 获取系统账号管理对象。
 
    ```ts
-   let osAccountMgr = account_osAccount.getAccountManager();
+   let osAccountMgr = osAccount.getAccountManager();
    ```
 
-## 判断指定域帐号是否存在
+## 判断指定域账号是否存在
 
-在添加域帐号之前，应该先判断域帐号是否存在。开发者可以使用[hasAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#hasaccount10)接口进行判断。
+在添加域账号之前，应该先判断域账号是否存在。开发者可以使用[hasAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#hasaccount10)接口进行判断。
 
 具体开发实例如下：
 
-1. 定义待判断的域帐号信息。
+1. 定义待判断的域账号信息。
 
    ```ts
-   let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+   let domainAccountInfo: osAccount.DomainAccountInfo = {
      accountName: 'testAccountName',
      domain: 'testDomain'
    }
@@ -39,30 +38,30 @@
 2. 调用[hasAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#hasaccount10)接口。
 
    ```ts
-   let isAccountExisted: boolean = await account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo);
+   let isAccountExisted: boolean = await osAccount.DomainAccountManager.hasAccount(domainAccountInfo);
    ```
 
-## 添加域帐号
+## 添加域账号
 
-用户在设置中添加其他域帐号，允许其他域帐号用户使用同一设备。开发者可以使用[createOsAccountForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain)完成此操作。
+用户在设置中添加其他域账号，允许其他域账号用户使用同一设备。开发者可以使用[createOsAccountForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain8)完成此操作。
 
 具体开发实例如下：
 
-1. 定义域帐号信息，指定域名、帐号名、帐号标识（可选）。
+1. 定义域账号信息，指定域名、账号名、账号标识（可选）。
 
    ```ts
-   let domainInfo: account_osAccount.DomainAccountInfo = {
+   let domainInfo: osAccount.DomainAccountInfo = {
      domain: 'testDomain',
      accountName: 'testAccountName'
    };
    ```
 
-2. 指定类型和域帐号信息，调用[createOsAccountForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain)接口在设备上创建一个域帐号。
+2. 指定类型和域账号信息，调用[createOsAccountForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain8)接口在设备上创建一个域账号。
 
    ```ts
    try {
-     accountMgr.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo,
-     (err: BusinessError, osAccountInfo: account_osAccount.OsAccountInfo)=>{
+     osAccountMgr.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo,
+     (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
        console.log('createOsAccountForDomain err:' + JSON.stringify(err));
        console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
    });
@@ -71,32 +70,33 @@
    }
    ```
 
-## 删除域帐号
+## 删除域账号
 
-用户可以删除不再使用的域帐号。由于域帐号和系统帐号是一一绑定关系，开发者可以使用[removeOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount)接口删除与目标域帐号绑定的系统帐号，进而实现删除域帐号。
+用户可以删除不再使用的域账号。由于域账号和系统账号是一一绑定关系，开发者可以使用[removeOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount)接口删除与目标域账号绑定的系统账号，进而实现删除域账号。
 
 具体开发实例如下：
 
-1. 调用[getOsAccountLocalIdForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalidfordomain9)方法，根据域帐号信息获取系统帐号ID。
+1. 调用[getOsAccountLocalIdForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalidfordomain9)方法，根据域账号信息获取系统账号ID。
 
    ```ts
-   let domainInfo: account_osAccount.DomainAccountInfo = {
+   let domainInfo: osAccount.DomainAccountInfo = {
        domain: 'testDomain',
        accountName: 'testAccountName'
    };
+   let localId: number = 0;
 
    try {
-     let localId: number = accountMgr.getOsAccountLocalIdForDomain(domainInfo);
+     localId = await osAccountMgr.getOsAccountLocalIdForDomain(domainInfo);
    } catch (err) {
      console.log('getOsAccountLocalIdForDomain exception: ' + JSON.stringify(err));
    }
    ```
 
-2. 调用[removeOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount)方法删除域帐号。
+2. 调用[removeOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount)方法删除域账号。
 
    ```ts
    try {
-     accountMgr.removeOsAccount(osAccountInfo.localId, (err: BusinessError)=>{
+     osAccountMgr.removeOsAccount(localId, (err: BusinessError)=>{
        if (err) {
            console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
        } else {
@@ -108,27 +108,27 @@
    }
    ```
 
-## 查询域帐号信息
+## 查询域账号信息
 
-用户通过身份认证后，可以查询自己或他人的域帐号信息。开发者可以使用[getAccountInfo](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getaccountinfo10)接口完成此操作。
+用户通过身份认证后，可以查询自己或他人的域账号信息。开发者可以使用[getAccountInfo](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getaccountinfo10)接口完成此操作。
 
 具体开发实例如下：
 
-1. 定义查询选项，可以指定需要查询的域名和帐号名。选项的类型为[GetDomainAccountInfoOptions](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getdomainaccountinfooptions10)。
+1. 定义查询选项，可以指定需要查询的域名和账号名。选项的类型为[GetDomainAccountInfoOptions](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getdomainaccountinfooptions10)。
 
    ```ts
-   let options: account_osAccount.GetDomainAccountInfoOptions = {
+   let options: osAccount.GetDomainAccountInfoOptions = {
        domain: 'testDomain',
        accountName: 'testAccountName'
    }
    ```
 
-2. 调用[getAccountInfo](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getaccountinfo10)接口查询域帐号信息。
+2. 调用[getAccountInfo](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getaccountinfo10)接口查询域账号信息。
 
    ```ts
    try {
-     account_osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo,
-       (err: BusinessError, result: account_osAccount.DomainAccountInfo) => {
+     osAccount.DomainAccountManager.getAccountInfo(options,
+       (err: BusinessError, result: osAccount.DomainAccountInfo) => {
        if (err) {
            console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
        } else {

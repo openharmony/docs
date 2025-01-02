@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
+import { pluginComponentManager } from '@kit.ArkUI'
 ```
 
 ### PushParameterForStage
@@ -70,7 +70,7 @@ push(param: PushParameterForStage, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
+import { pluginComponentManager } from '@kit.ArkUI'
 pluginComponentManager.push(
   {
     owner: {
@@ -119,7 +119,7 @@ request(param: RequestParameterForStage, callback: AsyncCallback&lt;RequestCallb
 **示例：**
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
+import { pluginComponentManager } from '@kit.ArkUI'
 pluginComponentManager.request(
   {
     owner: {

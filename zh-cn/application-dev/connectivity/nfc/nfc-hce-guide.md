@@ -10,7 +10,9 @@
 - HCE应用后台刷卡<br>
 后台刷卡是指不打开特定的HCE应用程序，电子设备触碰NFC读卡器后，根据NFC读卡器选择的应用ID（AID）匹配到HCE应用程序，并自动和匹配的HCE应用程序通信完成刷卡交易。如果匹配到多个HCE应用程序时，说明存在冲突，需要用户打开指定的应用才能完成刷卡。
 - HCE应用刷卡的约束条件<br>
-不管是HCE应用前台还是后台刷卡，能够完成HCE应用程序NFC刷卡的条件是电子设备需要亮屏解锁。
+1、不管是HCE应用前台还是后台刷卡，能够完成HCE应用程序NFC刷卡的条件是电子设备需要亮屏解锁。
+2、module.json5文件中需要声明nfc卡模拟权限，具体见示例。
+3、前台应用时需要调用start和stop注册和去注册AID，具体见示例。
 
 ## 接口说明
 
@@ -28,12 +30,12 @@ NFC卡模拟完整的JS API说明以及实例代码请参考：[NFC卡模拟接�
 ## 开发步骤
 
 ### HCE应用前台刷卡
-1. 在module.json5文件中声明NFC卡模拟权限，以及声明HCE特定的action；
-2. import需要的NFC卡模拟模块和其他相关的模块；
-3. 判断设备是否支持NFC能力和HCE能力；
-4. 使能前台HCE应用程序优先处理NFC刷卡功能；
-5. 订阅HCE APDU数据的接收；
-6. 完成HCE刷卡APDU数据的接收和发送；
+1. 在module.json5文件中声明NFC卡模拟权限，以及声明HCE特定的action。
+2. import需要的NFC卡模拟模块和其他相关的模块。
+3. 判断设备是否支持NFC能力和HCE能力。
+4. 使能前台HCE应用程序优先处理NFC刷卡功能。
+5. 订阅HCE APDU数据的接收。
+6. 完成HCE刷卡APDU数据的接收和发送。
 7. 退出应用程序NFC刷卡页面时，退出前台优先功能。
 
 ```ts
@@ -72,14 +74,16 @@ NFC卡模拟完整的JS API说明以及实例代码请参考：[NFC卡模拟接�
 ```
 
 ```ts
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { BusinessError } from '@ohos.base';
-import bundleManager from '@ohos.bundle.bundleManager'
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AsyncCallback } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let hceElementName: bundleManager.ElementName;
 let hceService: cardEmulation.HceService;
 
-async function hceCommandCb(error : BusinessError, hceCommand : number[]) {
+const hceCommandCb : AsyncCallback<number[]> = (error : BusinessError, hceCommand : number[]) => {
   if (!error) {
     if (hceCommand == null || hceCommand == undefined) {
       hilog.error(0x0000, 'testTag', 'hceCommandCb has invalid hceCommand.');
@@ -103,7 +107,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
 
     // 判断设备是否支持NFC能力和HCE能力
-    if (!canIUse("System.Capability.Communication.NFC.Core")) {
+    if (!canIUse("SystemCapability.Communication.NFC.Core")) {
       hilog.error(0x0000, 'testTag', 'nfc unavailable.');
       return;
     }
@@ -113,8 +117,8 @@ export default class EntryAbility extends UIAbility {
     }
 
     hceElementName = {
-      bundleName: want.bundleName,
-      abilityName: want.abilityName,
+      bundleName: want.bundleName ?? '',
+      abilityName: want.abilityName ?? '',
       moduleName: want.moduleName,
     }
     hceService = new cardEmulation.HceService();
@@ -153,11 +157,11 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ### HCE应用后台刷卡
-1. 在module.json5文件中声明NFC卡模拟权限，声明HCE特定的action，声明应用能够处理的AID；
-2. import需要的NFC卡模拟模块和其他相关的模块；
-3. 判断设备是否支持NFC能力和HCE能力；
-4. 订阅HCE APDU数据的接收；
-5. 完成HCE刷卡APDU数据的接收和发送；
+1. 在module.json5文件中声明NFC卡模拟权限，声明HCE特定的action，声明应用能够处理的AID。
+2. import需要的NFC卡模拟模块和其他相关的模块。
+3. 判断设备是否支持NFC能力和HCE能力。
+4. 订阅HCE APDU数据的接收。
+5. 完成HCE刷卡APDU数据的接收和发送。
 6. 退出应用程序时，退出订阅功能。
 
 ```ts
@@ -206,14 +210,16 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ```ts
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { BusinessError } from '@ohos.base';
-import bundleManager from '@ohos.bundle.bundleManager'
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AsyncCallback } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let hceElementName : bundleManager.ElementName;
 let hceService: cardEmulation.HceService;
 
-async function hceCommandCb(error : BusinessError, hceCommand : number[]) {
+const hceCommandCb : AsyncCallback<number[]> = (error : BusinessError, hceCommand : number[]) => {
   if (!error) {
     if (hceCommand == null || hceCommand == undefined) {
       hilog.error(0x0000, 'testTag', 'hceCommandCb has invalid hceCommand.');
@@ -238,7 +244,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
 
     // 判断设备是否支持NFC能力和HCE能力
-    if (!canIUse("System.Capability.Communication.NFC.Core")) {
+    if (!canIUse("SystemCapability.Communication.NFC.Core")) {
       hilog.error(0x0000, 'testTag', 'nfc unavailable.');
       return;
     }
@@ -248,8 +254,8 @@ export default class EntryAbility extends UIAbility {
     }
 
     hceElementName = {
-      bundleName: want.bundleName,
-      abilityName: want.abilityName,
+      bundleName: want.bundleName ?? '',
+      abilityName: want.abilityName ?? '',
       moduleName: want.moduleName,
     }
     hceService = new cardEmulation.HceService();

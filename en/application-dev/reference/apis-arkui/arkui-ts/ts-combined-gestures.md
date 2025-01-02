@@ -10,6 +10,8 @@ Continuous recognition, parallel recognition, and exclusive recognition are supp
 
 GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name | Type                                                    | Mandatory| Description                                                    |
@@ -18,6 +20,8 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 | gesture | [TapGesture](ts-basic-gestures-tapgesture.md)<br>\| [LongPressGesture](ts-basic-gestures-longpressgesture.md)<br>\| [PanGesture](ts-basic-gestures-pangesture.md)<br>\| [PinchGesture](ts-basic-gestures-pinchgesture.md)<br>\| [RotationGesture](ts-basic-gestures-rotationgesture.md)<br>\| [SwipeGesture](ts-basic-gestures-swipegesture.md)<br>\| [GestureGroup](#combined-gestures) | No  | One or more basic gestures to be recognized simultaneously. If this parameter is left empty, simultaneous recognition will not take effect.<br>**NOTE**<br>To add both tap and double-tap gestures for a component, add two TapGestures, with the tap gesture added after the double-tap gesture.|
 
 ## GestureMode
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name       | Description                                      |
 | --------- | ---------------------------------------- |
@@ -30,7 +34,7 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 | Name                                      | Description                                |
 | ---------------------------------------- | ------------------------------------ |
-| onCancel(event: () =&gt; void) | Callback for the GestureMode.Sequence cancellation event.<br>**NOTE**<br>This event is triggered when the window loses focus.|
+| onCancel(event: () =&gt; void) | Callback for the GestureMode.Sequence cancellation event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 
 ## Example

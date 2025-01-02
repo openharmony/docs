@@ -13,7 +13,7 @@ To subscribe to call status changes, use [`observer.on('callStateChange')`](js-a
 ## Modules to Import
 
 ```ts
-import call from '@ohos.telephony.call';
+import { call } from '@kit.TelephonyKit';
 ```
 
 ## call.dialCall<sup>9+</sup>
@@ -43,7 +43,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -54,7 +54,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.dialCall("138xxxxxxxx", (err: BusinessError) => {
     if (err) {
@@ -94,7 +94,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -105,7 +105,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dialCallOptions: call.DialCallOptions = {
     accountId: 0,
@@ -156,7 +156,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -167,7 +167,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dialCallOptions: call.DialCallOptions = {
     accountId: 0,
@@ -209,7 +209,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -218,7 +218,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.muteRinger((err: BusinessError) => {
     if (err) {
@@ -263,7 +263,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.muteRinger().then(() => {
     console.log(`muteRinger success.`);
@@ -300,7 +300,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -309,7 +309,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.answerCall(1, (err: BusinessError) => {
     if (err) {
@@ -353,7 +353,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -362,7 +362,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.answerCall(1).then(() => {
     console.log(`answerCall success.`);
@@ -398,7 +398,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -407,7 +407,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.answerCall((err: BusinessError) => {
     if (err) {
@@ -446,7 +446,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -455,7 +455,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.hangUpCall(1, (err: BusinessError) => {
     if (err) {
@@ -499,7 +499,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -508,7 +508,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.hangUpCall(1).then(() => {
     console.log(`hangUpCall success.`);
@@ -544,7 +544,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -554,7 +554,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.hangUpCall((err: BusinessError) => {
     if (err) {
@@ -593,7 +593,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -603,7 +603,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.rejectCall(1, (err: BusinessError) => {
     if (err) {
@@ -643,7 +643,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -652,7 +652,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rejectMessageOptions : call.RejectMessageOptions = {
     messageContent: "Unknown number blocked"
@@ -700,7 +700,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -709,7 +709,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rejectMessageOptions: call.RejectMessageOptions = {
     messageContent: "Unknown number blocked"
@@ -748,7 +748,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -757,7 +757,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.rejectCall((err: BusinessError) => {
     if (err) {
@@ -796,7 +796,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -805,7 +805,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rejectMessageOptions: call.RejectMessageOptions = {
     messageContent: "Unknown number blocked"
@@ -847,7 +847,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -856,7 +856,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.holdCall(1, (err: BusinessError) => {
     if (err) {
@@ -900,7 +900,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -909,7 +909,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.holdCall(1).then(() => {
     console.log(`holdCall success.`);
@@ -945,7 +945,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -954,7 +954,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.unHoldCall(1, (err: BusinessError) => {
     if (err) {
@@ -998,7 +998,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1007,7 +1007,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.unHoldCall(1).then(() => {
     console.log(`unHoldCall success.`);
@@ -1043,7 +1043,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1052,7 +1052,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.switchCall(1, (err: BusinessError) => {
     if (err) {
@@ -1096,7 +1096,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1105,7 +1105,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.switchCall(1).then(() => {
     console.log(`switchCall success.`);
@@ -1138,7 +1138,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1148,7 +1148,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.combineConference(1, (err: BusinessError) => {
     if (err) {
@@ -1189,7 +1189,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1199,7 +1199,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.combineConference(1).then(() => {
     console.log(`combineConference success.`);
@@ -1235,7 +1235,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1244,7 +1244,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.kickOutFromConference(1, (err: BusinessError) => {
     if (err) {
@@ -1287,7 +1287,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1296,7 +1296,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.kickOutFromConference(1).then(() => {
     console.log(`kickOutFromConference success.`);
@@ -1329,7 +1329,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1339,7 +1339,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getMainCallId(1, (err: BusinessError, data: number) => {
     if (err) {
@@ -1380,7 +1380,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1390,7 +1390,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getMainCallId(1).then((data: number) => {
     console.log(`getMainCallId success, promise: data->${JSON.stringify(data)}`);
@@ -1423,7 +1423,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1432,7 +1432,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getSubCallIdList(1, (err: BusinessError, data: Array<string>) => {
     if (err) {
@@ -1473,7 +1473,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1482,7 +1482,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getSubCallIdList(1).then((data: Array<string>) => {
     console.log(`getSubCallIdList success, promise: data->${JSON.stringify(data)}`);
@@ -1515,7 +1515,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1524,7 +1524,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallIdListForConference(1, (err: BusinessError, data: Array<string>) => {
     if (err) {
@@ -1565,7 +1565,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1574,7 +1574,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallIdListForConference(1).then((data: Array<string>) => {
     console.log(`getCallIdListForConference success, promise: data->${JSON.stringify(data)}`);
@@ -1610,7 +1610,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1619,7 +1619,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallWaitingStatus(0, (err: BusinessError, data: call.CallWaitingStatus) => {
     if (err) {
@@ -1663,7 +1663,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1672,7 +1672,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallWaitingStatus(0).then((data: call.CallWaitingStatus) => {
     console.log(`getCallWaitingStatus success, promise: data->${JSON.stringify(data)}`);
@@ -1709,7 +1709,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1718,7 +1718,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setCallWaiting(0, true, (err: BusinessError) => {
     if (err) {
@@ -1763,7 +1763,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1772,7 +1772,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setCallWaiting(0, true).then(() => {
     console.log(`setCallWaiting success.`);
@@ -1806,7 +1806,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1815,7 +1815,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.startDTMF(1, "0", (err: BusinessError) => {
     if (err) {
@@ -1857,7 +1857,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1866,7 +1866,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.startDTMF(1, "0").then(() => {
     console.log(`startDTMF success.`);
@@ -1899,7 +1899,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1908,7 +1908,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.stopDTMF(1, (err: BusinessError) => {
     if (err) {
@@ -1949,7 +1949,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1958,7 +1958,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.stopDTMF(1).then(() => {
     console.log(`stopDTMF success.`);
@@ -1998,7 +1998,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2007,7 +2007,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.postDialProceed(1, true, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -2051,7 +2051,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2060,7 +2060,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.postDialProceed(1, true).then(() => {
     console.log(`postDialProceed success.`);
@@ -2095,7 +2095,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2104,7 +2104,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isInEmergencyCall((err: BusinessError, data: boolean) => {
     if (err) {
@@ -2149,7 +2149,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isInEmergencyCall().then((data: boolean) => {
     console.log(`isInEmergencyCall success, promise: data->${JSON.stringify(data)}`);
@@ -2185,7 +2185,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2226,7 +2226,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2267,7 +2267,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2308,7 +2308,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2349,7 +2349,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2390,7 +2390,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2431,7 +2431,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2472,7 +2472,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2514,7 +2514,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2556,7 +2556,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2597,7 +2597,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2638,7 +2638,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2675,7 +2675,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2684,7 +2684,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isNewCallAllowed((err: BusinessError, data: boolean) => {
     if (err) {
@@ -2726,7 +2726,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isNewCallAllowed().then((data: boolean) => {
     console.log(`isNewCallAllowed success, promise: data->${JSON.stringify(data)}`);
@@ -2759,7 +2759,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2769,7 +2769,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.separateConference(1, (err: BusinessError) => {
     if (err) {
@@ -2810,7 +2810,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2820,7 +2820,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.separateConference(1).then(() => {
     console.log(`separateConference success.`);
@@ -2857,7 +2857,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2866,7 +2866,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallRestrictionStatus(0, 1, (err: BusinessError, data: call.RestrictionStatus) => {
     if (err) {
@@ -2911,7 +2911,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2920,7 +2920,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallRestrictionStatus(0, 1).then((data: call.RestrictionStatus) => {
     console.log(`getCallRestrictionStatus success, promise: data->${JSON.stringify(data)}`);
@@ -2957,7 +2957,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2966,7 +2966,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callRestrictionInfo: call.CallRestrictionInfo = {
     type: call.CallRestrictionType.RESTRICTION_TYPE_ALL_OUTGOING,
@@ -3016,7 +3016,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3025,7 +3025,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callRestrictionInfo: call.CallRestrictionInfo = {
     type: call.CallRestrictionType.RESTRICTION_TYPE_ALL_INCOMING,
@@ -3068,7 +3068,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3077,7 +3077,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setCallRestrictionPassword(0, "123456", "654321", (err: BusinessError) => {
     if (err) {
@@ -3122,7 +3122,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3131,7 +3131,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setCallRestrictionPassword(0, "123456", "654321").then(() => {
     console.log(`setCallRestrictionPassword success.`);
@@ -3168,7 +3168,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3177,7 +3177,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY, (err: BusinessError, data: call.CallTransferResult) => {
     if (err) {
@@ -3222,7 +3222,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3231,7 +3231,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY).then((data: call.CallTransferResult) => {
     console.log(`getCallTransferInfo success, promise: data->${JSON.stringify(data)}`);
@@ -3268,7 +3268,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3277,7 +3277,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callTransferInfo: call.CallTransferInfo = {
     transferNum: "111",
@@ -3327,7 +3327,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3336,7 +3336,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callTransferInfo: call.CallTransferInfo = {
     transferNum: "111",
@@ -3376,7 +3376,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3385,7 +3385,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isRinging((err: BusinessError, data: boolean) => {
     if (err) {
@@ -3430,7 +3430,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isRinging().then((data: boolean) => {
     console.log(`isRinging success, promise: data->${JSON.stringify(data)}`);
@@ -3462,7 +3462,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3471,7 +3471,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setMuted((err: BusinessError) => {
     if (err) {
@@ -3513,7 +3513,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setMuted().then(() => {
     console.log(`setMuted success.`);
@@ -3545,7 +3545,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3554,7 +3554,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.cancelMuted((err: BusinessError) => {
     if (err) {
@@ -3596,7 +3596,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.cancelMuted().then(() => {
     console.log(`cancelMuted success.`);
@@ -3632,7 +3632,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3641,7 +3641,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioDevice: call.AudioDevice = {
     deviceType: call.AudioDeviceType.DEVICE_EARPIECE
@@ -3687,7 +3687,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3696,7 +3696,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioDevice: call.AudioDevice = {
     deviceType: call.AudioDeviceType.DEVICE_EARPIECE
@@ -3733,7 +3733,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3742,7 +3742,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callNumberList: Array<string> = [
     "138XXXXXXXX"
@@ -3786,7 +3786,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3795,7 +3795,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callNumberList: Array<string> = [
     "138XXXXXXXX"
@@ -3832,7 +3832,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3841,7 +3841,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.updateImsCallMode(1, 1, (err: BusinessError) => {
     if (err) {
@@ -3882,7 +3882,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3891,7 +3891,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.updateImsCallMode(1, 1).then(() => {
     console.log(`updateImsCallMode success.`);
@@ -3927,7 +3927,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3936,7 +3936,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.enableImsSwitch(0, (err: BusinessError) => {
     if (err) {
@@ -3979,7 +3979,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3988,7 +3988,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.enableImsSwitch(0).then(() => {
     console.log(`enableImsSwitch success.`);
@@ -4024,7 +4024,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4033,7 +4033,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.disableImsSwitch(0, (err: BusinessError) => {
     if (err) {
@@ -4076,7 +4076,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4085,7 +4085,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.disableImsSwitch(0).then(() => {
     console.log(`disableImsSwitch success.`);
@@ -4118,7 +4118,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4127,7 +4127,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isImsSwitchEnabled(0, (err: BusinessError, data: boolean) => {
     if (err) {
@@ -4167,7 +4167,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4176,7 +4176,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isImsSwitchEnabled(0).then((data: boolean) => {
     console.log(`isImsSwitchEnabled success, promise: data->${JSON.stringify(data)}`);
@@ -4185,6 +4185,54 @@ call.isImsSwitchEnabled(0).then((data: boolean) => {
 });
 ```
 
+## call.isImsSwitchEnabledSync<sup>12+</sup>
+
+isImsSwitchEnabledSync\(slotId: number\): boolean
+
+Checks whether the IMS service is enabled. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type   | Description                                                |
+| ------- | ---------------------------------------------------- |
+| boolean | Whether the IMS service is enabled. The value **true** indicates that the IMS service is enabled, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Non-system applications use system APIs.                     |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types; |
+| 8300001  | Invalid parameter value.                                     |
+| 8300002  | Operation failed. Cannot connect to service.                 |
+| 8300003  | System internal error.                                       |
+| 8300999  | Unknown error code.                                          |
+
+**Example**
+
+<!--code_no_check-->
+
+```ts
+let slotId: number = 0;
+try {
+    let isEnabled: boolean = call.isImsSwitchEnabledSync(slotId);
+    console.log(`isImsSwitchEnabledSync success : ${isEnabled}`);
+} catch (error) {
+    console.error(`isImsSwitchEnabledSync fail : err->${JSON.stringify(error)}`);  
+}
+```
 
 ## call.closeUnfinishedUssd<sup>10+</sup>
 
@@ -4213,7 +4261,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4222,7 +4270,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.closeUnfinishedUssd(slotId, (err: BusinessError) => {
@@ -4266,7 +4314,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4275,7 +4323,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.closeUnfinishedUssd(slotId).then(() => {
@@ -4314,7 +4362,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4323,7 +4371,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let state: call.VoNRState = call.VoNRState.VONR_STATE_ON;
@@ -4370,7 +4418,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4379,7 +4427,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let state: call.VoNRState = call.VoNRState.VONR_STATE_ON;
@@ -4418,7 +4466,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4427,7 +4475,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.getVoNRState(slotId, (err: BusinessError, data: call.VoNRState) => {
@@ -4472,7 +4520,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4481,7 +4529,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.getVoNRState(slotId).then((data: call.VoNRState) => {
@@ -4519,7 +4567,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4528,7 +4576,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.canSetCallTransferTime(slotId, (err: BusinessError, data: boolean) => {
@@ -4573,7 +4621,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4582,7 +4630,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.canSetCallTransferTime(slotId).then((data: boolean) => {
@@ -4609,7 +4657,7 @@ Performs a secret code broadcast. This API uses an asynchronous callback to retu
 
 | Name     | Type                        | Mandatory| Description                                      |
 | ----------- | ---------------------------- | ---- | ----------------------------------------- |
-| inputCode   | string                       | Yes  | Secret code, for example, **2846579** (project menu).|
+| inputCode   | string                       | Yes  | Secret code, for example, *#*#2846579#*#* (project menu).|
 | callback    | AsyncCallback&lt;void&gt;    | Yes  | Callback used to return the result.             |
 
 **Error codes**
@@ -4620,7 +4668,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4628,11 +4676,11 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-call.inputDialerSpecialCode('2846579', (err: BusinessError) => {
+call.inputDialerSpecialCode('*#*#2846579#*#*', (err: BusinessError) => {
     if (err) {
-        console.error(`inputDialerSpecialCode fail, err->${JSON.stringify(error)}`);
+        console.error(`inputDialerSpecialCode fail, err->${JSON.stringify(err)}`);
     } else {
         console.log(`inputDialerSpecialCode success`);
     }
@@ -4655,7 +4703,7 @@ Performs a secret code broadcast. This API uses a promise to return the result.
 
 | Name     | Type                        | Mandatory| Description                                      |
 | ----------- | ---------------------------- | ---- | ----------------------------------------- |
-| inputCode   | string                       | Yes  | Secret code, for example, **2846579** (project menu).|
+| inputCode   | string                       | Yes  | Secret code, for example, *#*#2846579#*#* (project menu).|
 
 **Return value**
 
@@ -4671,7 +4719,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4679,10 +4727,10 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    call.inputDialerSpecialCode('2846579');
+    call.inputDialerSpecialCode('*#*#2846579#*#*');
     console.log(`inputDialerSpecialCode success`);
 } catch (error) {
     console.error(`inputDialerSpecialCode fail, promise: err->${JSON.stringify(error)}`);
@@ -4716,7 +4764,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 | 8300999  | Unknown error code.                          |
@@ -4724,7 +4772,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.removeMissedIncomingCallNotification((err: BusinessError) => {
     if (err) {
@@ -4769,7 +4817,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.removeMissedIncomingCallNotification().then(() => {
     console.log(`removeMissedIncomingCallNotification success`);
@@ -4778,6 +4826,56 @@ call.removeMissedIncomingCallNotification().then(() => {
 });
 ```
 
+## call.sendCallUiEvent<sup>12+</sup>
+
+sendCallUiEvent\(callId: number, eventName: string\): Promise\<void\>
+
+Sends a call UI event. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name   | Type  | Mandatory| Description    |
+| --------- | ------ | ---- | -------- |
+| callId    | number | Yes  | Call ID.|
+| eventName | string | Yes  | Event name.|
+
+**Return value**
+
+| Type               | Description                   |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let callId: number = 0;
+call.sendCallUiEvent(callId, 'eventName').then(() => {
+    console.log(`sendCallUiEvent success.`);
+}).catch((err: BusinessError) => {
+    console.error(`sendCallUiEvent fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## DialOptions
 
@@ -4972,6 +5070,8 @@ Defines the call attribute options.
 | voipCallAttribute<sup>11+</sup> | [VoipCallAttribute](#voipcallattribute11)     | No  | VoIP call information.      |
 | crsType<sup>11+</sup> | number                             | Yes  | Video RBT type.|
 | originalCallType<sup>11+</sup> | number                    | Yes  | Original call type of the Video RBT service.|
+| numberLocation<sup>12+</sup> | string | No| Home location area of the number.|
+| numberMarkInfo<sup>12+</sup> | [NumberMarkInfo](#numbermarkinfo12) | No| Number mark.|
 
 ## VoipCallAttribute<sup>11+</sup>
 
@@ -4989,6 +5089,9 @@ Defines the VoIP call information.
 | extensionId      | string     | Yes  |  Process ID of the third-party application. |
 | abilityName      | string     | Yes  |  Ability name of the third-party application. |
 | voipBundleName    | string     | Yes  |  Bundle name of the third-party application. |
+| showBannerForIncomingCall<sup>12+</sup>    | boolean     | No  |  Whether to display the incoming call banner. |
+| isConferenceCall<sup>12+</sup>    | boolean     | No  |  Whether the call is a conference call. |
+| isVoiceAnswerSupported<sup>12+</sup>    | boolean     | No  |  Whether call answering with voice commands is supported. |
 
 ## ConferenceState<sup>7+</sup>
 
@@ -5112,6 +5215,8 @@ Enumerates call ability event IDs.
 | EVENT_SWAP_CALL_FAILED<sup>11+</sup>  | 4    | Failed to place the current call on hold and answer the waiting call.|
 | EVENT_COMBINE_CALL_FAILED<sup>11+</sup>  | 5 | Failed to combine calls.|
 | EVENT_SPLIT_CALL_FAILED<sup>11+</sup> | 6    | Failed to split the call.|
+| EVENT_SHOW_FULL_SCREEN<sup>12+</sup>  | 7    | Displaying the call UI in full screen.  |
+| EVENT_SHOW_FLOAT_WINDOW<sup>12+</sup> | 8    | Displaying the call UI in a floating widow.|
 
 ## DialScene<sup>8+</sup>
 
@@ -5371,7 +5476,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5380,7 +5485,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.answerCall(0, 1).then(() => {
     console.log(`answerCall success.`);
@@ -5421,7 +5526,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5430,7 +5535,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.cancelCallUpgrade(1).then(() => {
     console.log(`cancelCallUpgrade success.`);
@@ -5472,7 +5577,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5481,7 +5586,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.controlCamera(1, "1").then(() => {
     console.log(`controlCamera success.`);
@@ -5523,7 +5628,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5532,7 +5637,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setPreviewSurface(1, "surfaceId1").then(() => {
     console.log(`setPreviewSurface success.`);
@@ -5574,7 +5679,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5583,7 +5688,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setDisplaySurface(1, "surfaceId1").then(() => {
     console.log(`setDisplaySurface success.`);
@@ -5625,7 +5730,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5634,7 +5739,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setDeviceDirection(1, 0).then(() => {
     console.log(`setDeviceDirection success.`);
@@ -5670,7 +5775,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5679,7 +5784,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.on('imsCallModeChange', (data: call.ImsCallModeInfo) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -5713,7 +5818,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5722,7 +5827,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.off('imsCallModeChange', (data: call.ImsCallModeInfo) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -5756,7 +5861,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5765,7 +5870,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.on('callSessionEvent', (data: call.CallSessionEvent) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -5799,7 +5904,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5808,7 +5913,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.off('callSessionEvent', (data: call.CallSessionEvent) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -5842,7 +5947,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5851,7 +5956,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.on('peerDimensionsChange', (data: call.PeerDimensionsDetail) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -5885,7 +5990,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5894,7 +5999,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.off('peerDimensionsChange', (data: call.PeerDimensionsDetail) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -5928,7 +6033,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5969,7 +6074,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -6087,3 +6192,43 @@ Defines the local image resolution in a video call.
 | callId  | number       | Yes  | Call ID.        |
 | width   | number       | Yes  | Width of the local image, in pixels. |
 | height  | number       | Yes  | Height of the local image, in pixels. |
+
+## NumberMarkInfo<sup>12+</sup>
+
+Defines a number mark.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+| Name   |     Type     | Mandatory| Description          |
+| ------- | ------------ | ---- | ------------- |
+| markType | [MarkType](#marktype12) | Yes  | Mark type.|
+| markContent | string | No | Mark content. When **markType** is set to **MARK_TYPE_ENTERPRISE**, the returned information consists of the employee name and ID.|
+| markCount | number       | No | Mark count.|
+| markSource | string | No| Mark source.|
+| isCloud | boolean | No| Whether the number mark is from the cloud.|
+| markDetails<sup>14+</sup> | string | No| Mark details. When **markType** is set to **MARK_TYPE_ENTERPRISE**, the value of this parameter is the department position.|
+
+## MarkType<sup>12+</sup>
+
+Enumerates number mark types.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+| Name                          | Value    | Description    |
+| ------------------------------ | ------ | --------|
+| MARK_TYPE_NONE | 0      | No mark.|
+| MARK_TYPE_CRANK | 1      | Spam call|
+| MARK_TYPE_FRAUD | 2    | Fraud call|
+| MARK_TYPE_EXPRESS | 3    | Express & delivery|
+| MARK_TYPE_PROMOTE_SALES | 4 | Advertising|
+| MARK_TYPE_HOUSE_AGENT | 5 | Estate agent|
+| MARK_TYPE_INSURANCE | 6 | Insurance & loans|
+| MARK_TYPE_TAXI | 7 | Taxi|
+| MARK_TYPE_CUSTOM | 8 | Custom|
+| MARK_TYPE_OTHERS | 9 | Others|
+| MARK_TYPE_YELLOW_PAGE | 10 | Yellow page|
+| MARK_TYPE_ENTERPRISE<sup>14+</sup> | 11 | Enterprise contact|

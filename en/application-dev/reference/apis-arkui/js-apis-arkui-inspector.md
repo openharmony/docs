@@ -11,7 +11,7 @@ The **Inspector** module provides APIs for registering the component layout and 
 ## Modules to Import
 
 ```ts
-import inspector from '@ohos.arkui.inspector'
+import { inspector } from '@kit.ArkUI'
 ```
 
 ## inspector.createComponentObserver
@@ -19,6 +19,8 @@ import inspector from '@ohos.arkui.inspector'
 createComponentObserver(id: string): ComponentObserver
 
 Creates an observer for the specified component.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -50,6 +52,8 @@ on(type: 'layout', callback: () => void): void
 
 Registers a listener for completion of component layout.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -64,6 +68,8 @@ Registers a listener for completion of component layout.
 off(type: 'layout', callback?: () => void): void
 
 Unregisters the listener for completion of component layout.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -80,6 +86,8 @@ on(type: 'draw', callback: () => void): void
 
 Registers a listener for completion of component drawing.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -95,6 +103,8 @@ off(type: 'draw', callback?: () => void): void
 
 Unregisters the listener for completion of component drawing.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -106,8 +116,12 @@ Unregisters the listener for completion of component drawing.
 
 **Example**
 
+> **NOTE**
+>
+> You are advised to use the [getUIInspector](./js-apis-arkui-UIContext.md#getuiinspector) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [UIInspector](./js-apis-arkui-UIContext.md#uiinspector) object associated with the current UI context.
+
   ```ts
-  import inspector from '@ohos.arkui.inspector'
+  import { inspector } from '@kit.ArkUI'
 
   @Entry
   @Component
@@ -126,7 +140,7 @@ Unregisters the listener for completion of component drawing.
       }.height(320).width(360).padding({ right: 10, top: 10 })
     }
 
-    listener:inspector.ComponentObserver = inspector.createComponentObserver('IMAGE_ID')
+    listener:inspector.ComponentObserver = inspector.createComponentObserver('IMAGE_ID') // You are advised to use this.getUIContext().getUIInspector().createComponentObserver().
 
     aboutToAppear() {
       let onLayoutComplete:()=>void=():void=>{

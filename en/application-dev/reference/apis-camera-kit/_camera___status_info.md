@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **Camera_StatusInfo** struct defines the camera status information.
+The Camera_StatusInfo struct describes the camera status information.
 
 **Since**: 11
 

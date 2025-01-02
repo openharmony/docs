@@ -1,21 +1,24 @@
 # @ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)
 
-**AbilityDelegatorRegistry**, a module of the [Automatic Test Framework](../../application-test/arkxtest-guidelines.md), is used to obtain [AbilityDelegator](../apis/js-apis-inner-application-abilityDelegator.md) and [AbilityDelegatorArgs](../apis/js-apis-inner-application-abilityDelegatorArgs.md) objects. **AbilityDelegator** provides APIs for creating [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) objects, which can be used to listen for ability lifecycle changes. **AbilityDelegatorArgs** provides APIs for obtaining test parameters.
+**AbilityDelegatorRegistry**, a module of the automatic test framework, is used to obtain [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) and [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md) objects. **AbilityDelegator** provides APIs for creating [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) objects, which can be used to listen for ability lifecycle changes. **AbilityDelegatorArgs** provides APIs for obtaining test parameters.
 
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs provided by this module can be used only in the test framework.
+> 
+> The APIs of this module can be used only in <!--RP1-->[arkxtest](../../application-test/arkxtest-guidelines.md)<!--RP1End-->.
 
 ## Modules to Import
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 ```
 
 ## AbilityLifecycleState
 
-Enumerates the ability lifecycle states. It can be used in [getAbilityState(ability)](../apis/js-apis-inner-application-abilityDelegator.md#getabilitystate9) of [AbilityDelegator](../apis/js-apis-inner-application-abilityDelegator.md) to return different ability lifecycle states.
+Enumerates the ability lifecycle states. It can be used in [getAbilityState(ability)](js-apis-inner-application-abilityDelegator.md#getabilitystate9) of [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) to return different ability lifecycle states.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -31,7 +34,9 @@ Enumerates the ability lifecycle states. It can be used in [getAbilityState(abil
 
 getAbilityDelegator(): AbilityDelegator
 
-Obtains an [AbilityDelegator](../apis/js-apis-inner-application-abilityDelegator.md) object.
+Obtains an [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) object.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -39,26 +44,26 @@ Obtains an [AbilityDelegator](../apis/js-apis-inner-application-abilityDelegator
 
 | Type                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [AbilityDelegator](../apis/js-apis-inner-application-abilityDelegator.md) | [AbilityDelegator](../apis/js-apis-inner-application-abilityDelegator.md) object, which can be used to schedule the functionalities of the test framework.|
+| [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) | [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) object, which can be used to schedule the functionalities of the test framework.|
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import Want from '@ohos.app.ability.Want';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { Want } from '@kit.AbilityKit';
 
-let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-
+let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 let want: Want = {
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility'
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
 };
+
 abilityDelegator.startAbility(want, (err) => {
-    if (err) {
-        console.error(`Failed start ability, error: ${JSON.stringify(err)}`);
-    } else {
-        console.log('Success start ability.');
-    }
+  if (err) {
+    console.error(`Failed start ability, error: ${JSON.stringify(err)}`);
+  } else {
+    console.log('Success start ability.');
+  }
 });
 ```
 
@@ -66,7 +71,9 @@ abilityDelegator.startAbility(want, (err) => {
 
 getArguments(): AbilityDelegatorArgs
 
-Obtains an [AbilityDelegatorArgs](../apis/js-apis-inner-application-abilityDelegatorArgs.md) object.
+Obtains an [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md) object.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -74,14 +81,14 @@ Obtains an [AbilityDelegatorArgs](../apis/js-apis-inner-application-abilityDeleg
 
 | Type                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [AbilityDelegatorArgs](../apis/js-apis-inner-application-abilityDelegatorArgs.md) | [AbilityDelegatorArgs](../apis/js-apis-inner-application-abilityDelegatorArgs.md) object, which can be used to obtain test parameters.|
+| [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md) | [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md) object, which can be used to obtain test parameters.|
 
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let args = AbilityDelegatorRegistry.getArguments();
+let args = abilityDelegatorRegistry.getArguments();
 console.info(`getArguments bundleName: ${args.bundleName}`);
 console.info(`getArguments parameters: ${JSON.stringify(args.parameters)}`);
 console.info(`getArguments testCaseNames: ${args.testCaseNames}`);

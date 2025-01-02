@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import fileShare from '@ohos.fileshare';
+import  { fileShare } from '@kit.CoreFileKit';
 ```
 
 ## fileShare.grantUriPermission
@@ -42,14 +42,14 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags, ca
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed |
 | 202 | The caller is not a system application |
-| 401 | The input parameter is invalid |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types |
 | 143000001 | IPC error |
 
 **示例：**
 
   ```ts
-  import wantConstant from '@ohos.app.ability.wantConstant';
-  import { BusinessError } from '@ohos.base';
+  import { wantConstant } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let uri: string = 'file://media/image/8';
   let bundleName: string = 'com.demo.test';
   try {
@@ -101,14 +101,14 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): P
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed |
 | 202 | The caller is not a system application |
-| 401 | The input parameter is invalid |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types |
 | 143000001 | IPC error |
 
 **示例：**
 
   ```ts
-  import wantConstant from '@ohos.app.ability.wantConstant';
-  import { BusinessError } from '@ohos.base';
+  import { wantConstant } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let uri: string = 'file://media/image/8';
   let bundleName: string = 'com.demo.test';
   try {
@@ -127,7 +127,7 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): P
 
 deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法取消使能授权过的多个文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
+异步方法取消使能授权过的多个文件或目录，以promise形式返回结果，该接口仅对具有该系统能力的设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -153,7 +153,7 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 | 错误码ID    | 错误信息       |
 |----------| --------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
-| 401      | Parameter error. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported. |
 | 13900001 | Operation not permitted.            |
 | 13900042 | Unknown error                          |
@@ -161,8 +161,8 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
+import { BusinessError } from '@kit.BasicServicesKit';
+import  { picker } from '@kit.CoreFileKit';
   
   async function deactivatePermissionExample() {
     try {

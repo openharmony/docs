@@ -1,14 +1,14 @@
-# 指定二进制数据转换对称密钥
+# 指定二进制数据转换对称密钥(ArkTS)
 
 
-以3DES和HMAC为例，根据指定的对称密钥二进制数据，生成密钥（SymKey）。即将外部或存储的二进制数据转换为算法库的密钥对象，该对象可用于后续的加解密等操作。
+以3DES和HMAC为例，根据指定的对称密钥二进制数据，生成密钥（SymKey），即将外部或存储的二进制数据转换为算法库的密钥对象，该对象可用于后续的加解密等操作。
 
 
 ## 指定二进制数据转换3DES密钥
 
 对应的算法规格请查看[对称密钥生成和转换规格：3DES](crypto-sym-key-generation-conversion-spec.md#3des)。
 
-1. 获取3DES二进制密钥数据，封装成DataBlob对象。
+1. 获取3DES二进制密钥数据，封装成[DataBlob](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#datablob)对象。
 
 2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)，指定字符串参数'3DES192'，创建密钥算法为3DES、密钥长度为192位的对称密钥生成器（SymKeyGenerator）。
 
@@ -19,8 +19,8 @@
 - 以使用callback方式生成3DES密钥为例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   function genKeyMaterialBlob(): cryptoFramework.DataBlob {
     let arr = [
@@ -57,7 +57,7 @@
 
 - 同步方法（调用方法[convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)）：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function genKeyMaterialBlob(): cryptoFramework.DataBlob {
     let arr = [
@@ -77,7 +77,7 @@
     let encodedKey = key.getEncoded(); // 获取对称密钥的二进制数据，并以字节数组形式输出。长度为24字节
     console.info('key getEncoded hex' + encodedKey.data);
   }
-
+  ```
 
 ## 指定二进制数据转换HMAC密钥
 
@@ -94,8 +94,8 @@
 - 以使用await方式生成HMAC密钥为例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
   async function testConvertHmacKey() {
     // 对称密钥长度为64字节，512比特
@@ -112,8 +112,8 @@
 
 - 同步方法（调用方法[convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)）：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
   function testConvertKeySync() {
     // 对称密钥长度为64字节，512比特

@@ -122,7 +122,7 @@ fs的具体使用可以参考：[@ohos.file.fs](../reference/apis-core-file-kit/
 
 **参考链接：**  
 
-[应用文件上传下载](../file-management/app-file-upload-download.md)
+[应用文件上传下载](../basic-services/request/app-file-upload-download.md)
 
 ## 如何监听文件或文件目录的变化(API 10)
 

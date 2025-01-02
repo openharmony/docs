@@ -10,7 +10,7 @@ The following includes the error codes for system accounts, distributed accounts
 
 **Error Message**
 
-System service works abnormally.
+The system service works abnormally.
 
 **Possible Causes**
 
@@ -45,7 +45,7 @@ Invalid parameter.
 - The domain name is empty.
 - The domain name exceeds 128 characters.
 - The domain account is empty.
-- The domain account exceeds 512 characters.
+- The domain account name exceeds 512 characters.
 - The constraint is empty.
 - The constraint exceeds 128 characters.
 - Invalid authentication or query parameters are passed in.
@@ -117,7 +117,7 @@ The device does not support multiple users.
 
 Cancel the operation.
 
-## 12300006 Account Type Not Supported
+## 12300006 Unsupported Account Type
 
 **Error Message**
 
@@ -131,21 +131,21 @@ The device does not support the account type.
 
 Create an account of the type supported by the device.
 
-## 12300007 The Number of Accounts Has Reached the Limit
+## 12300007 Account Count Reached the Limit
 
 **Error Message**
 
-The number of accounts has reached the limit.  
+The number of accounts has reached the upper limit.  
 
 **Possible Causes**
 
-A maximum of 1,000 OS accounts or app accounts can be created.
+The number of system accounts or app accounts has reached 1000.
 
 **Solution**
 
 Delete the accounts that are no longer used, and try again.
 
-## 12300008 Account Restricted
+## 12300008 Restricted Account
 
 **Error Message**
 
@@ -222,7 +222,7 @@ Only registered event listeners can be unregistered.
 
 **Error Message**
 
-The network exception.
+Network exception.
 
 **Possible Causes**
 
@@ -237,6 +237,48 @@ The network exception.
 2. Check that the network connection is normal.
 3. Check that the application has the network access permission.
 4. Perform related operations again.
+
+## 12300014 Domain Account Not Authenticated
+
+**Error Message**
+
+The domain account is not authenticated.
+
+**Possible Causes**
+
+The domain account has not logged in.
+
+**Solution**
+
+Log in using the domain account.
+
+## 12300015 Duplicate Short Name
+
+**Error Message**
+
+The short name already exists.
+
+**Possible Causes**
+
+The short name used to create the account already exists.
+
+**Solution**
+
+Change the short name and try again.
+
+## 12300016 Login Accounts Reached the Limit
+
+**Error Message**
+
+The number of logged in accounts reaches the upper limit.
+
+**Possible Causes**
+
+The number of login accounts has reached the upper limit. No more accounts can be used to log in.
+
+**Solution**
+
+Log out of the system and log in to the system using a new account.
 
 ## 12300101 Incorrect Credential
 
@@ -348,7 +390,6 @@ The authentication session does not exist.
 
 **Possible Causes**
 
-
 The session callback to query does not exist.
 
 **Solution**
@@ -359,7 +400,7 @@ Use an opened session to query session callbacks.
 
 **Error Message**
 
-The authentication, enrollment, update operation is canceled.
+The authentication, enrollment, or update operation is canceled.
 
 **Possible Causes**
 
@@ -405,7 +446,7 @@ The authentication timed out.
 
 **Error Message**
 
-The authentication service does not respond.
+The authentication service is busy.
 
 **Possible Causes**
 
@@ -451,6 +492,50 @@ The account authentication service works abnormally.
 1. Try again or restart the system.
 2. Use the app authenticator that complies with specifications.
 
+## 12300115 User Authentication Passwords Reached the Limit
+
+**Error Message**
+
+The number of credentials reaches the upper limit.
+
+**Possible Causes**
+
+1. An unknown error occurs in the identity authentication service.
+2. The user already has a password of the corresponding type and cannot add a password.
+
+**Solution**
+
+1. Try again or restart the system.
+2. Change the password or delete the existing password.
+
+## 12300116 Failed to Verify the Credential Complexity
+
+**Error Message**
+
+Credential complexity verification failed.
+
+**Possible Causes**
+
+The credential is too simple.
+
+**Solution**
+
+Enroll a credential that contains specific characters as required.
+
+## 12300117 PIN Expired
+
+**Error Message**
+
+PIN is expired.
+
+**Possible Causes**
+
+The PIN for user authentication has expired.
+
+**Solution**
+
+Reset the PIN.
+
 ## 12400001 Application Not Exist
 
 **Error Message**
@@ -484,7 +569,7 @@ Query the custom data with a key that is already defined.
 
 **Error Message**
 
-The number of custom data reaches upper limit.
+The number of custom data records reaches the upper limit.
 
 **Possible Causes**
 
@@ -498,7 +583,7 @@ Delete the custom data records that are no longer used.
 
 **Error Message**
 
-The number of token reaches upper limit.
+The number of tokens reaches the upper limit.
 
 **Possible Causes**
 
@@ -512,7 +597,7 @@ Delete the tokens that are not longer used, and try again.
 
 **Error Message**
 
-The size of authorization list reaches upper limit.
+The size of the authorization list reaches the upper limit.
 
 **Possible Causes**
 

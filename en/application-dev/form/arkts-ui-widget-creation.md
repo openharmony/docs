@@ -3,26 +3,26 @@
 You can create a widget in either of the following modes:
 
 - When creating a project, select **Application**. The project created this way does not have a widget by default. You can right-click a module folder and choose **New** > **Service Widget** to create a widget.
-- When creating a project, select **Atomic Service**. The project created this way has a widget by default. You can right-click a module folder and choose **New** > **Service Widget** to create a widget.
+- When creating a project, select **Atomic Service**. You can right-click a module folder and choose **New** > **Service Widget** to create a widget.
 
 ![WidgetCreateProject](figures/WidgetCreateProject.png)
->**NOTE**
+
+> **NOTE**
 >
->This document is based on [DevEco Studio 3.1.1 Release](https://developer.harmonyos.com/cn/develop/deveco-studio/#download). The actual UI and features may be different if you are using any other version of DevEco Studio.
+> The UI may be different in DevEco Studio of a different version.
 
 To create an ArkTS widget in an existing project, perform the following steps:
 
 1. Right-click a module folder and choose **New** > **Service Widget**.
-   
    ![WidgetProjectCreate1](figures/WidgetProjectCreate1.png)
->**NOTE**
+> **NOTE**
 >
->In a project of API version 10 in the stage model, you can directly create a dynamic or static service widget from the **Service Widget** menu. After a service widget is created, you can change its type by setting **isDynamic** in the [form_config.json](arkts-ui-widget-configuration.md) configuration file. If **isDynamic** is left empty or set to **true**, the widget is a dynamic widget. If **isDynamic** is set to **false**, the widget is a static widget.
-
+> For a project developed using API version 10 or later based on the stage model, you can create a dynamic or static widget from the **Service Widget** menu. After a service widget is created, you can change its type by setting **isDynamic** in the [form_config.json](arkts-ui-widget-configuration.md) configuration file. If **isDynamic** is left empty or set to **true**, the widget is a dynamic widget. If **isDynamic** is set to **false**, the widget is a static widget.
+   
 2. Select a widget template based on the actual service scenario.
    
-![WidgetProjectCreate2](figures/WidgetProjectCreate2.png)
-   
+   ![WidgetProjectCreate2](figures/WidgetProjectCreate2.png)
+
 3. Set **Language** to **ArkTS** and click **Finish**.
 
    ![WidgetProjectCreate3](figures/WidgetProjectCreate3.png)

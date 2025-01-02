@@ -21,5 +21,5 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| uint32_t [OH_Drawing_RegisterFont](_drawing.md#oh_drawing_registerfont) ([OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection)\*, const char\* fontFamily, const char\* familySrc) | 用于在字体管理器中注册自定义字体。 | 
+| uint32_t [OH_Drawing_RegisterFont](_drawing.md#oh_drawing_registerfont) ([OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection)\*, const char\* fontFamily, const char\* familySrc) | 用于在字体管理器中注册自定义字体，支持的字体文件格式包含：ttf、otf。 | 
 | uint32_t [OH_Drawing_RegisterFontBuffer](_drawing.md#oh_drawing_registerfontbuffer) ([OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection)\*, const char\* fontFamily, uint8_t\* fontBuffer, size_t length) | 用于在字体管理器中注册字体缓冲区。 | 

@@ -8,23 +8,45 @@ ImageData对象可以存储canvas渲染的像素数据。
 
 ## 接口
 
-constructor(width: number, height: number, data?: Uint8ClampedArray);
+constructor(width: number, height: number, data?: Uint8ClampedArray, unit?: LengthMetricsUnit);
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+创建ImageData时，宽高不超过16384px，最大面积不超过16000px*16000px，超过最大面积则无法正常绘制。当创建面积超过536870911px时，返回值的width和height均为0px，data为undefined。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型  | 必填  | 说明 |
+| ------ | ----- | ----- | ----- |
+| width | number |是| 矩形区域宽度，默认单位为vp。 |
+| height | number |是| 矩形区域高度，默认单位为vp。|
+| data | Uint8ClampedArray |否| 一维数组，保存了相应的颜色数据，数据值范围为0到255。 |
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否   |  用来配置ImageData对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT。 |
 
 ## 属性
 
-| 属性     | 类型                | 描述                                       |
-| ------ | ----------------- | ---------------------------------------- |
-| width | number | 只读属性，矩形区域实际像素宽度，单位为px。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| height | number | 只读属性，矩形区域实际像素高度，单位为px。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| data | Uint8ClampedArray | 只读属性，一维数组，保存了相应的颜色数据，数据值范围为0到255。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型   | 只读 | 可选 | 描述 |
+| ------ | -------- | --------- | ---------- | ------------------------------ |
+| width | number | 是 | 否 | 矩形区域实际像素宽度。<br>单位为px。 |
+| height | number | 是 | 否 | 矩形区域实际像素高度。<br>单位为px。 |
+| data | Uint8ClampedArray | 是 | 否 | 一维数组，保存了相应的颜色数据，数据值范围为0到255。 |
 
 >  **说明：**
 >
 >  可使用[px2vp](ts-pixel-units.md#像素单位转换)接口进行单位转换。
 
 **示例：**
+
+使用getImageData接口获得一个ImageData对象。
 
   ```ts
   // xxx.ets

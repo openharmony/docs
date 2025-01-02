@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import notificationManager from '@ohos.notificationManager';
+import { notificationManager } from '@kit.NotificationKit';
 ```
 
 ## notificationManager.publish
@@ -22,7 +22,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER 或 ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
 **系统接口**: 此接口为系统接口。
 
@@ -30,44 +30,48 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 | 参数名     | 类型                                        | 必填 | 说明                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | userId   | number                                      | 是   | 用户ID。                           |
 | callback | AsyncCallback\<void\>                       | 是   | 被指定的回调方法。                           |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                              |
 | -------- | ---------------------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
-| 1600003  | Failed to connect service.                           |
-| 1600004  | Notification is not enabled.                         |
-| 1600005  | Notification slot is not enabled.                    |
-| 1600007  | The notification is not exist.                       |
-| 1600008  | The user is not exist.                               |
+| 1600003  | Failed to connect to the service.                    |
+| 1600004  | Notification disabled.                               |
+| 1600005  | Notification slot disabled.                    |
+| 1600007  | The notification does not exist.                       |
+| 1600008  | The user does not exist.                               |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
-| 1600014  | No relevant right.                                   |
+| 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 2300007  | Network is unreachable.                              |
+| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // publish回调
-let publishCallback = (err: Base.BusinessError): void => {
+let publishCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publish success");
     }
 }
-// 用户ID
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 // 通知Request对象
 let notificationRequest: notificationManager.NotificationRequest = {
@@ -92,7 +96,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER  或 ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
 **系统接口**: 此接口为系统接口。
 
@@ -100,7 +104,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 | 参数名     |  类型                                        | 必填 | 说明                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | userId   | number                                      | 是   | 用户ID。                           |
 
 **返回值：**
@@ -111,28 +115,31 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                              |
 | -------- | ---------------------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
-| 1600003  | Failed to connect service.                           |
-| 1600004  | Notification is not enabled.                         |
-| 1600005  | Notification slot is not enabled.                    |
-| 1600007  | The notification is not exist.                       |
-| 1600008  | The user is not exist.                               |
+| 1600003  | Failed to connect to the service.                           |
+| 1600004  | Notification disabled.                         |
+| 1600005  | Notification slot disabled.                    |
+| 1600007  | The notification does not exist.                       |
+| 1600008  | The user does not exist.                               |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
-| 1600014  | No relevant right.                                   |
+| 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 2300007  | Network is unreachable.                              |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
@@ -146,11 +153,12 @@ let notificationRequest: notificationManager.NotificationRequest = {
     }
 };
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 
 notificationManager.publish(notificationRequest, userId).then(() => {
 	console.info("publish success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`publish fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -171,27 +179,30 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)       | 是   | 要创建的通知渠道对象。 |
+| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)       | 是   | 要创建的通知渠道对象。 |
 | callback | AsyncCallback\<void\> | 是   | 表示被指定通道的回调方法。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // addslot回调
-let addSlotCallBack = (err: Base.BusinessError): void => {
+let addSlotCallBack = (err: BusinessError): void => {
     if (err) {
         console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -221,7 +232,7 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 | 参数名 | 类型             | 必填 | 说明                 |
 | ---- | ---------------- | ---- | -------------------- |
-| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | 是   | 要创建的通知渠道对象。 |
+| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md) | 是   | 要创建的通知渠道对象。 |
 
 **返回值：**
 
@@ -231,19 +242,22 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 通知slot对象
 let notificationSlot: notificationManager.NotificationSlot = {
@@ -251,7 +265,7 @@ let notificationSlot: notificationManager.NotificationSlot = {
 };
 notificationManager.addSlot(notificationSlot).then(() => {
 	console.info("addSlot success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`addSlot fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -272,27 +286,30 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 
 | 参数名     | 类型                      | 必填 | 说明                     |
 | -------- | ------------------------- | ---- | ------------------------ |
-| slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 要创建的通知渠道对象数组。 |
+| slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)\> | 是   | 要创建的通知渠道对象数组。 |
 | callback | AsyncCallback\<void\>     | 是   | 表示被指定通道的回调方法。     |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // addSlots回调
-let addSlotsCallBack = (err: Base.BusinessError): void => {
+let addSlotsCallBack = (err: BusinessError): void => {
     if (err) {
         console.error(`addSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -326,7 +343,7 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 | 参数名  | 类型                      | 必填 | 说明                     |
 | ----- | ------------------------- | ---- | ------------------------ |
-| slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 要创建的通知渠道对象数组。 |
+| slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)\> | 是   | 要创建的通知渠道对象数组。 |
 
 **返回值：**
 
@@ -336,19 +353,22 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 通知slot对象
 let notificationSlot: notificationManager.NotificationSlot = {
@@ -360,8 +380,8 @@ notificationSlotArray[0] = notificationSlot;
 
 notificationManager.addSlots(notificationSlotArray).then(() => {
 	console.info("addSlots success");
-}).catch((err: Base.BusinessError) => {
-    console.error(`addSlot fail: ${JSON.stringify(err)}`);
+}).catch((err: BusinessError) => {
+    console.error(`addSlots fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -383,30 +403,33 @@ setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCall
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)   | 是   | 指定应用的包信息。        |
-| enable   | boolean               | 是   | 使能状态。             |
+| enable   | boolean               | 是   | 使能状态（true：使能，false：禁止）。             |
 | callback | AsyncCallback\<void\> | 是   | 设定通知使能回调函数。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setNotificationEnableCallback = (err: Base.BusinessError): void => {
+let setNotificationEnableCallback = (err: BusinessError): void => {
     if (err) {
-        console.error(`setNotificationEnableCallback failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`setNotificationEnable failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("setNotificationEnableCallback success");
+        console.info("setNotificationEnable success");
     }
 }
 let bundle: notificationManager.BundleOption = {
@@ -432,7 +455,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
-| enable | boolean      | 是   | 使能状态。   |
+| enable | boolean      | 是   | 使能状态（true：使能，false：禁止）。   |
 
 **返回值：**
 
@@ -442,33 +465,36 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.setNotificationEnable(bundle, false).then(() => {
 	console.info("setNotificationEnable success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setNotificationEnable fail: ${JSON.stringify(err)}`);
 });
 ```
 
 ## notificationManager.getAllNotificationEnabledBundles<sup>12+</sup>
 
-getAllNotificationEnabledBundles(): Promise<Array<BundleOption>>;
+getAllNotificationEnabledBundles(): Promise<Array<BundleOption\>>
 
 获取允许通知的应用程序列表。使用Promise异步回调。
 
@@ -478,20 +504,28 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleOption>>;
 
 **系统接口**: 此接口为系统接口。
 
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise<Array<[BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)\>> | 返回允许通知的应用程序列表。 | 
+
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getAllNotificationEnabledBundles().then((data: Array<notificationManager.BundleOption>) => {
     console.info("Enable bundle data is" + JSON.stringify(data));
@@ -499,8 +533,8 @@ notificationManager.getAllNotificationEnabledBundles().then((data: Array<notific
         console.info("Enable uid is " + JSON.stringify(element.uid));
         console.info("Enable bundle is " + JSON.stringify(element.bundle));
     });
-}).catch((err: Base.BusinessError) => {
-    console.info("getAllNotificationEnabledBundles failed, error is" + JSON.stringify(err));
+}).catch((err: BusinessError) => {
+    console.error("getAllNotificationEnabledBundles failed, error is" + JSON.stringify(err));
 })
 ```
 
@@ -521,25 +555,28 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 | 参数名     | 类型                  | 必填 | 说明                     |
 | -------- | --------------------- | ---- | ------------------------ |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。            |
-| callback | AsyncCallback\<boolean\> | 是   | 获取通知使能状态回调函数。 |
+| callback | AsyncCallback\<boolean\> | 是   | 获取通知使能状态回调函数（true：使能，false：禁止）。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
+let isNotificationEnabledCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -576,30 +613,33 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
 | 类型               | 说明                                                |
 | ------------------ | --------------------------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回获取指定应用的通知使能状态的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取指定应用的通知使能状态的结果（true：使能，false：禁止）。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.isNotificationEnabled(bundle).then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -621,25 +661,28 @@ isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
 | 参数名     | 类型                  | 必填 | 说明                     |
 | -------- | --------------------- | ---- | ------------------------ |
 | userId   | number                | 是   | 指定的用户ID。 |
-| callback | AsyncCallback\<boolean\> | 是   | 获取通知使能状态回调函数。 |
+| callback | AsyncCallback\<boolean\> | 是   | 获取通知使能状态回调函数（true：使能，false：禁止）。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
+let isNotificationEnabledCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -647,6 +690,7 @@ let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): vo
     }
 }
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 
 notificationManager.isNotificationEnabled(userId, isNotificationEnabledCallback);
@@ -656,7 +700,7 @@ notificationManager.isNotificationEnabled(userId, isNotificationEnabledCallback)
 
 isNotificationEnabled(userId: number): Promise\<boolean\>
 
-获取制定用户下的通知使能状态。使用Promise异步回调。
+获取指定用户下的通知使能状态。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -674,29 +718,33 @@ isNotificationEnabled(userId: number): Promise\<boolean\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取通知使能状态的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取通知使能状态的结果（true：使能，false：禁止）。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
-| 1600008  | The user is not exist..                  |
+| 1600003  | Failed to connect to the service.               |
+| 1600008  | The user does not exist.                  |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 
 notificationManager.isNotificationEnabled(userId).then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -718,26 +766,29 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。           |
-| enable   | boolean               | 是   | 使能状态。             |
+| enable   | boolean               | 是   | 使能状态（true：使能，false：禁止）。             |
 | callback | AsyncCallback\<void\> | 是   | 设定角标使能回调函数。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let displayBadgeCallback = (err: Base.BusinessError): void => {
+let displayBadgeCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`displayBadge failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -767,7 +818,7 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
-| enable | boolean      | 是   | 使能状态。   |
+| enable | boolean      | 是   | 使能状态（true：使能，false：禁止）。   |
 
 **返回值：**
 
@@ -777,26 +828,29 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.displayBadge(bundle, false).then(() => {
 	console.info("displayBadge success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`displayBadge fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -818,25 +872,28 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 | 参数名     | 类型                  | 必填 | 说明                     |
 | -------- | --------------------- | ---- | ------------------------ |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。               |
-| callback | AsyncCallback\<boolean\> | 是   | 获取角标使能状态回调函数。 |
+| callback | AsyncCallback\<boolean\> | 是   | 获取角标使能状态回调函数（true：使能，false：禁止）。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isBadgeDisplayedCallback = (err: Base.BusinessError, data: boolean): void => {
+let isBadgeDisplayedCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isBadgeDisplayed failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -871,23 +928,26 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取指定应用的角标使能状态。 |
+| Promise\<boolean\> | 以Promise形式返回获取指定应用的角标使能状态（true：使能，false：禁止）。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
   bundle: "bundleName1",
@@ -895,7 +955,7 @@ let bundle: notificationManager.BundleOption = {
 
 notificationManager.isBadgeDisplayed(bundle).then((data: boolean) => {
 	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isBadgeDisplayed fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -917,7 +977,7 @@ setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
-| slotFlags   | number | 是   | 通知渠道标识位。 |
+| slotFlags   | number | 是   | 通知渠道标识位。<br>- bit0：铃声提示。0表示关闭，1表示开启。 <br>- bit1：锁屏。0表示关闭，1表示开启。 <br>- bit2：横幅。0表示关闭，1表示开启。 <br>- bit3：亮屏。0表示关闭，1表示开启。 <br>- bit4：振动。0表示关闭，1表示开启。 <br>- bit5：状态栏通知图标。0表示关闭，1表示开启。 |
 
 **返回值：**
 
@@ -927,19 +987,22 @@ setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -949,7 +1012,7 @@ let slotFlags: number = 1;
 
 notificationManager.setSlotFlagsByBundle(bundle, slotFlags).then(() => {
 	console.info("setSlotFlagsByBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -958,7 +1021,9 @@ notificationManager.setSlotFlagsByBundle(bundle, slotFlags).then(() => {
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
-设定指定应用的通知渠道。使用callback异步回调。
+设置指定应用的通知渠道。使用callback异步回调。
+
+设置前需要先通过[addSlot](#notificationmanageraddslot)创建通知渠道。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -971,26 +1036,29 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。           |
-| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)      | 是   | 通知渠道。             |
+| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)      | 是   | 通知渠道。             |
 | callback | AsyncCallback\<void\> | 是   | 设定通知渠道回调函数。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setSlotByBundleCallback = (err: Base.BusinessError): void => {
+let setSlotByBundleCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1010,7 +1078,9 @@ notificationManager.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCal
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
-设定指定应用的通知渠道。使用Promise异步回调。
+设置指定应用的通知渠道。使用Promise异步回调。
+
+设置前需要先通过[addSlot](#notificationmanageraddslot)创建通知渠道。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1023,7 +1093,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
-| slot   | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | 是   | 通知渠道。 |
+| slot   | [NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md) | 是   | 通知渠道。 |
 
 **返回值：**
 
@@ -1033,19 +1103,22 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -1057,7 +1130,7 @@ let notificationSlot: notificationManager.NotificationSlot = {
 
 notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("setSlotByBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setSlotByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1084,30 +1157,33 @@ getSlotFlagsByBundle(bundle: BundleOption): Promise\<number\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-|  Promise\<number\>| 以Promise形式返回获取指定应用的通知渠道标识位。 |
+|  Promise\<number\>| 以Promise形式返回获取指定应用的通知渠道标识位。<br>- bit0：铃声提示。0表示关闭，1表示开启。 <br>- bit1：锁屏。0表示关闭，1表示开启。 <br>- bit2：横幅。0表示关闭，1表示开启。 <br>- bit3：亮屏。0表示关闭，1表示开启。 <br>- bit4：振动。0表示关闭，1表示开启。 <br>- bit5：状态栏通知图标。0表示关闭，1表示开启。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.getSlotFlagsByBundle(bundle).then((data : number) => {
 	console.info("getSlotFlagsByBundle success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1129,27 +1205,30 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<Notificat
 | 参数名     | 类型                                     | 必填 | 说明                 |
 | -------- | ---------------------------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)                             | 是   | 指定应用的包信息。           |
-| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | 是   | 获取通知渠道回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)>> | 是   | 获取通知渠道回调函数。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getSlotsByBundleCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
+let getSlotsByBundleCallback = (err: BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
     if (err) {
-        console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`getSlotsByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info(`getSlotsByBundle success, data is ${JSON.stringify(data)}`);
     }
@@ -1182,23 +1261,26 @@ getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | 以Promise形式返回获取指定应用的通知渠道。 |
+| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)>> | 以Promise形式返回获取指定应用的通知渠道。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -1206,7 +1288,7 @@ let bundle: notificationManager.BundleOption = {
 
 notificationManager.getSlotsByBundle(bundle).then((data: Array<notificationManager.NotificationSlot>) => {
 	console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getSlotsByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1232,23 +1314,26 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getSlotNumByBundleCallback = (err: Base.BusinessError, data: number): void => {
+let getSlotNumByBundleCallback = (err: BusinessError, data: number): void => {
     if (err) {
-        console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`getSlotNumByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info(`getSlotNumByBundle success data is ${JSON.stringify(data)}`);
     }
@@ -1287,19 +1372,22 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
   bundle: "bundleName1",
@@ -1307,8 +1395,8 @@ let bundle: notificationManager.BundleOption = {
 
 notificationManager.getSlotNumByBundle(bundle).then((data: number) => {
 	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
-    console.error(`getSlotsByBundle fail: ${JSON.stringify(err)}`);
+}).catch((err: BusinessError) => {
+    console.error(`getSlotNumByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1329,24 +1417,27 @@ getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>)
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | -------- | ------------------------------------------------------------ | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 获取活动通知回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | 是   | 获取活动通知回调函数。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getAllActiveNotificationsCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationRequest>): void => {
+let getAllActiveNotificationsCallback = (err: BusinessError, data: Array<notificationManager.NotificationRequest>): void => {
     if (err) {
         console.error(`getAllActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1359,7 +1450,7 @@ notificationManager.getAllActiveNotifications(getAllActiveNotificationsCallback)
 
 ## notificationManager.getAllActiveNotifications
 
-getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\>
+getAllActiveNotifications(): Promise\<Array\<NotificationRequest\>\>
 
 获取当前未删除的所有通知。使用Promise异步回调。
 
@@ -1373,31 +1464,34 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\> | 以Promise形式返回获取活动通知。 |
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\> | 以Promise形式返回获取活动通知。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getAllActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
 	console.info("getAllActiveNotifications success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getAllActiveNotifications fail: ${JSON.stringify(err)}`);
 });
 ```
 
-## notificationManager.getActiveNotificationByFilter<sup>11+<sup>
+## notificationManager.getActiveNotificationByFilter<sup>11+</sup>
 
 getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallback\<NotificationRequest\>): void
 
@@ -1415,22 +1509,23 @@ getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallbac
 | 参数名     | 类型                                                         | 必填 | 说明                           |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
 | filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest-sys.md#notificationfilter11) | 是   | 查询普通实况窗的过滤条件。 |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 获取满足条件的普通实况通知信息的回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | 是   | 获取满足条件的普通实况通知信息的回调函数。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
-| -------- | ---------------------------------------- |
-| 1600007  | The notification is not exist.           |
+| -------- | ---------------------------------------- | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600007  | The notification does not exist.           |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-import notificationSubscribe from '@ohos.notificationSubscribe';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { notificationSubscribe } from '@kit.NotificationKit';
 
 let bundleOption: notificationManager.BundleOption = {
   bundle: "bundleName1",
@@ -1444,7 +1539,7 @@ let filter: notificationManager.NotificationFilter = {
     notificationKey: notificationKey,
     extraInfoKeys: ['event']
 }
-let getActiveNotificationByFilterCallback = (err: Base.BusinessError, data: notificationManager.NotificationRequest): void => {
+let getActiveNotificationByFilterCallback = (err: BusinessError, data: notificationManager.NotificationRequest): void => {
     if (err) {
         console.error(`getActiveNotificationByFilter failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1454,7 +1549,7 @@ let getActiveNotificationByFilterCallback = (err: Base.BusinessError, data: noti
 notificationManager.getActiveNotificationByFilter(filter, getActiveNotificationByFilterCallback);
 ```
 
-## notificationManager.getActiveNotificationByFilter<sup>11+<sup>
+## notificationManager.getActiveNotificationByFilter<sup>11+</sup>
 
 getActiveNotificationByFilter(filter: NotificationFilter): Promise\<NotificationRequest\>
 
@@ -1477,22 +1572,23 @@ getActiveNotificationByFilter(filter: NotificationFilter): Promise\<Notification
 
 | 类型                                                         | 说明                                    |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\> | 以Promise形式返回获取的满足条件的普通实况通知信息。 |
+| Promise\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\> | 以Promise形式返回获取的满足条件的普通实况通知信息。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
-| -------- | ---------------------------------------- |
-| 1600007  | The notification is not exist.           |
+| -------- | ---------------------------------------- | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600007  | The notification does not exist.         |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-import notificationSubscribe from '@ohos.notificationSubscribe';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { notificationSubscribe } from '@kit.NotificationKit';
 
 let bundleOption: notificationManager.BundleOption = {
   bundle: "bundleName1",
@@ -1508,7 +1604,7 @@ let filter: notificationManager.NotificationFilter = {
 }
 notificationManager.getActiveNotificationByFilter(filter).then((data: notificationManager.NotificationRequest) => {
 	console.info("getActiveNotificationByFilter success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getActiveNotificationByFilter fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1535,21 +1631,24 @@ removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCall
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let removeGroupByBundleCallback = (err: Base.BusinessError): void => {
+let removeGroupByBundleCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`removeGroupByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1590,26 +1689,29 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleOption: notificationManager.BundleOption = { bundle: "Bundle" };
 let groupName: string = "GroupName";
 
 notificationManager.removeGroupByBundle(bundleOption, groupName).then(() => {
 	console.info("removeGroupByBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`removeGroupByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1635,21 +1737,24 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setDoNotDisturbDateCallback = (err: Base.BusinessError): void => {
+let setDoNotDisturbDateCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1693,19 +1798,22 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
@@ -1714,7 +1822,7 @@ let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
 };
 notificationManager.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 	console.info("setDoNotDisturbDate success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setDoNotDisturbDate fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1742,22 +1850,25 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setDoNotDisturbDateCallback = (err: Base.BusinessError): void => {
+let setDoNotDisturbDateCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1771,6 +1882,7 @@ let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     end: new Date(2021, 11, 15, 18, 0)
 };
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDisturbDateCallback);
@@ -1803,20 +1915,23 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
@@ -1824,11 +1939,12 @@ let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     end: new Date(2021, 11, 15, 18, 0)
 };
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 	console.info("setDoNotDisturbDate success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setDoNotDisturbDate fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1854,21 +1970,24 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: notificationManager.DoNotDisturbDate): void => {
+let getDoNotDisturbDateCallback = (err: BusinessError, data: notificationManager.DoNotDisturbDate): void => {
     if (err) {
         console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1899,23 +2018,26 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getDoNotDisturbDate().then((data: notificationManager.DoNotDisturbDate) => {
   console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getDoNotDisturbDate fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -1942,22 +2064,25 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: notificationManager.DoNotDisturbDate): void => {
+let getDoNotDisturbDateCallback = (err: BusinessError, data: notificationManager.DoNotDisturbDate): void => {
     if (err) {
         console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1965,6 +2090,7 @@ let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: notificationMa
     }
 }
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 
 notificationManager.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
@@ -1996,26 +2122,30 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 
 notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.DoNotDisturbDate) => {
 	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getDoNotDisturbDate fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2041,24 +2171,27 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isSupportDoNotDisturbModeCallback = (err: Base.BusinessError, data: boolean): void => {
+let isSupportDoNotDisturbModeCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isSupportDoNotDisturbMode failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isSupportDoNotDisturbMode success");
+        console.info("isSupportDoNotDisturbMode success, data: " + JSON.stringify(data));
     }
 }
 
@@ -2085,23 +2218,26 @@ isSupportDoNotDisturbMode(): Promise\<boolean\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.isSupportDoNotDisturbMode().then((data: boolean) => {
-	console.info("supportDoNotDisturbMode success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
-    console.error(`supportDoNotDisturbMode fail: ${JSON.stringify(err)}`);
+	console.info("isSupportDoNotDisturbMode success, data: " + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+    console.error(`isSupportDoNotDisturbMode fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2126,21 +2262,24 @@ setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600010  | Distributed operation failed.       |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setDistributedEnableCallback = (err: Base.BusinessError): void => {
+let setDistributedEnableCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setDistributedEnable failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2177,25 +2316,28 @@ setDistributedEnable(enable: boolean): Promise\<void>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600010  | Distributed operation failed.       |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable: boolean = true;
 notificationManager.setDistributedEnable(enable).then(() => {
     console.info("setDistributedEnable success");
-}).catch((err: Base.BusinessError) => {
-    console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+}).catch((err: BusinessError) => {
+    console.error(`setDistributedEnable fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2221,26 +2363,29 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setDistributedEnableByBundleCallback = (err: Base.BusinessError): void => {
+let setDistributedEnableByBundleCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setDistributedEnableByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("enableDistributedByBundle success");
+        console.info("setDistributedEnableByBundle success");
     }
 };
 let bundle: notificationManager.BundleOption = {
@@ -2279,20 +2424,23 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -2300,7 +2448,7 @@ let bundle: notificationManager.BundleOption = {
 let enable: boolean = true;
 notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
     console.info("setDistributedEnableByBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setDistributedEnableByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2326,22 +2474,25 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isDistributedEnabledByBundleCallback = (err: Base.BusinessError, data: boolean): void => {
+let isDistributedEnabledByBundleCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2380,27 +2531,30 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.isDistributedEnabledByBundle(bundle).then((data: boolean) => {
     console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2426,20 +2580,23 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let getDeviceRemindTypeCallback = (err: Base.BusinessError, data: notificationManager.DeviceRemindType): void => {
+let getDeviceRemindTypeCallback = (err: BusinessError, data: notificationManager.DeviceRemindType): void => {
     if (err) {
         console.error(`getDeviceRemindType failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2469,22 +2626,25 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getDeviceRemindType().then((data: notificationManager.DeviceRemindType) => {
     console.info("getDeviceRemindType success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getDeviceRemindType fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2506,33 +2666,40 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 | 参数名               | 类型                                        | 必填 | 说明                                     |
 | -------------------- | ------------------------------------------- | ---- | ---------------------------------------- |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | representativeBundle | string                                      | 是   | 被代理应用的包名。                       |
 | userId               | number                                      | 是   | 用户ID。                                 |
 | callback             | AsyncCallback\<void\>                        | 是   | 发布代理通知的回调方法。                 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
+| 1600003  | Failed to connect to the service.                |
+| 1600004  | Notification disabled.              |
+| 1600005  | Notification slot disabled.         |
+| 1600007  | The notification does not exist.      |
+| 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //publishAsBundle回调
-let callback = (err: Base.BusinessError): void => {
+let callback = (err: BusinessError): void => {
     if (err) {
         console.error(`publishAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2541,7 +2708,7 @@ let callback = (err: Base.BusinessError): void => {
 }
 // 被代理应用的包名
 let representativeBundle: string = "com.example.demo";
-// 用户ID
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 100;
 // NotificationRequest对象
 let request: notificationManager.NotificationRequest = {
@@ -2575,7 +2742,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 | 参数名               | 类型                                        | 必填 | 说明                                          |
 | -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | representativeBundle | string                                      | 是   | 被代理应用的包名。                            |
 | userId               | number                                      | 是   | 用户ID。                            |
 
@@ -2587,27 +2754,34 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
+| 1600003  | Failed to connect to the service.                |
+| 1600004  | Notification disabled.                    |
+| 1600005  | Notification slot disabled.         |
+| 1600007  | The notification does not exist.      |
+| 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 被代理应用的包名
 let representativeBundle: string = "com.example.demo";
-// 用户ID
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 100;
 // NotificationRequest对象
 let request: notificationManager.NotificationRequest = {
@@ -2623,7 +2797,7 @@ let request: notificationManager.NotificationRequest = {
 };
 notificationManager.publishAsBundle(request, representativeBundle, userId).then(() => {
 	console.info("publishAsBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`publishAsBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2646,7 +2820,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | 参数名               | 类型                                        | 必填 | 说明                                          |
 |----------------------|--------------------------------------------|------|-----------------------------------------------|
 | representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | 是   | 被代理应用的包信息。                            |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 
 **返回值：**
 
@@ -2656,23 +2830,30 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
+| 1600003  | Failed to connect to the service.                |
 | 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
+| 1600005  | Notification slot disabled.         |
+| 1600007  | The notification does not exist.      |
+| 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 被代理应用的包信息
 let representativeBundle: notificationManager.BundleOption = {
@@ -2692,7 +2873,7 @@ let request: notificationManager.NotificationRequest = {
 };
 notificationManager.publishAsBundle(representativeBundle, request).then(() => {
 	console.info("publishAsBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`publishAsBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2720,23 +2901,27 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
+| 1600008  | The user does not exist.              |
+| 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // cancelAsBundle
-let cancelAsBundleCallback = (err: Base.BusinessError): void => {
+let cancelAsBundleCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`cancelAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2745,7 +2930,7 @@ let cancelAsBundleCallback = (err: Base.BusinessError): void => {
 }
 // 被代理应用的包名
 let representativeBundle: string = "com.example.demo";
-// 用户ID
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 100;
 notificationManager.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
 ```
@@ -2778,28 +2963,32 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
+| 1600008  | The user does not exist.              |
+| 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 被代理应用的包名
 let representativeBundle: string = "com.example.demo";
-// 用户ID
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 100;
 notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 	console.info("cancelAsBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2833,29 +3022,32 @@ cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600007  | The notification is not exist.            |
-| 1600008  | The user is not exist.                    |
-| 1600009  | Over max number notifications per second. |
+| 1600003  | Failed to connect to the service.                |
+| 1600007  | The notification does not exist.            |
+| 1600008  | The user does not exist.                    |
 | 1600012  | No memory space.                          |
+| 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let representativeBundle: notificationManager.BundleOption = {
   bundle: "bundleName1",
 };
 notificationManager.cancelAsBundle(representativeBundle, 1).then(() => {
 	console.info("cancelAsBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2865,6 +3057,8 @@ notificationManager.cancelAsBundle(representativeBundle, 1).then(() => {
 cancel(representativeBundle: BundleOption, id: number): Promise\<void\>
 
 代理取消当前用户其他应用的通知。使用Promise异步回调。
+
+需要当前应用与其他应用存在代理关系，或者当前应用有ohos.permission.NOTIFICATION_AGENT_CONTROLLER权限。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2885,21 +3079,23 @@ cancel(representativeBundle: BundleOption, id: number): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
+| -------- | ----------------------------------- |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 | 1600012  | No memory space.                    |
 | 1600017  | There is no corresponding agent relationship configuration.    |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
   bundle: "bundleName"
@@ -2907,7 +3103,7 @@ let bundle: notificationManager.BundleOption = {
 let id: number = 1;
 notificationManager.cancel(bundle, id).then(() => {
   console.info("cancel success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`cancel fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -2935,23 +3131,26 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // setNotificationEnableSlot
-let setNotificationEnableSlotCallback = (err: Base.BusinessError): void => {
+let setNotificationEnableSlotCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setNotificationEnableSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2983,28 +3182,31 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | -------- | ----------------------------- | ---- | ----------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。|
 | type     | [SlotType](./js-apis-notificationManager.md#slottype)         | 是   | 指定渠道类型。           |
-| enable   | boolean                       | 是   | 使能状态。               |
-| isForceControl<sup>11+</sup> | boolean                 | 是   | 渠道开关是否受通知总开关影响（false：受总开关影响，true：不受总开关影响）。 |
+| enable   | boolean                       | 是   | 使能状态（true：使能，false：禁止）。               |
+| isForceControl<sup>11+</sup> | boolean                 | 是   | 渠道开关是否受通知授权开关影响（false：受影响，true：不受影响）。 |
 | callback | AsyncCallback\<void\>         | 是   | 设置渠道使能回调函数。    |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let setNotificationEnableSlotCallback = (err: Base.BusinessError): void => {
+let setNotificationEnableSlotCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setNotificationEnableSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3043,20 +3245,23 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // setNotificationEnableSlot
 notificationManager.setNotificationEnableSlot(
@@ -3064,7 +3269,7 @@ notificationManager.setNotificationEnableSlot(
     notificationManager.SlotType.SOCIAL_COMMUNICATION,
     true).then(() => {
         console.info("setNotificationEnableSlot success");
-    }).catch((err: Base.BusinessError) => {
+    }).catch((err: BusinessError) => {
         console.error(`setNotificationEnableSlot fail: ${JSON.stringify(err)}`);
     });
 ```
@@ -3091,22 +3296,25 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// isNotificationSlotEnabled
-let getEnableSlotCallback = (err: Base.BusinessError, data: boolean): void => {
+// isNotificationSlotEnabledCallback
+let isNotificationSlotEnabledCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationSlotEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3117,7 +3325,7 @@ let getEnableSlotCallback = (err: Base.BusinessError, data: boolean): void => {
 notificationManager.isNotificationSlotEnabled(
     { bundle: "ohos.samples.notification", },
     notificationManager.SlotType.SOCIAL_COMMUNICATION,
-    getEnableSlotCallback);
+    isNotificationSlotEnabledCallback);
 ```
 
 ## notificationManager.isNotificationSlotEnabled
@@ -3147,25 +3355,28 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // isNotificationSlotEnabled
 notificationManager.isNotificationSlotEnabled({ bundle: "ohos.samples.notification", },
     notificationManager.SlotType.SOCIAL_COMMUNICATION).then((data: boolean) => {
     console.info("isNotificationSlotEnabled success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isNotificationSlotEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -3193,30 +3404,34 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 100;
 let enable: boolean = true;
-let callback = (err: Base.BusinessError): void => {
+let setSyncNotificationEnabledWithoutAppCallback = (err: BusinessError): void => {
     if (err) {
         console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setSyncNotificationEnabledWithoutApp success");
     }
 }
-notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable, callback);
+notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable, setSyncNotificationEnabledWithoutAppCallback);
 ```
 
 
@@ -3247,25 +3462,29 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 100;
 let enable: boolean = true;
 notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
     console.info('setSyncNotificationEnabledWithoutApp success');
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setSyncNotificationEnabledWithoutApp fail: ${JSON.stringify(err)}`);
 });
 ```
@@ -3292,26 +3511,30 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 100;
-let getSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError, data: boolean): void => {
+let getSyncNotificationEnabledWithoutAppCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
-        console.info('getSyncNotificationEnabledWithoutAppCallback, err:' + err);
+        console.error(`getSyncNotificationEnabledWithoutAppCallback failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info('getSyncNotificationEnabledWithoutAppCallback, data:' + data);
+        console.info("getSyncNotificationEnabledWithoutAppCallback success, data: " + JSON.stringify(data));
     }
 }
 notificationManager.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
@@ -3344,33 +3567,39 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600003  | Failed to connect to the service.          |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 100;
 notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boolean) => {
-  console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
-}).catch((err: Base.BusinessError) => {
+  console.info('getSyncNotificationEnabledWithoutApp, data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
     console.error(`getSyncNotificationEnabledWithoutApp fail: ${JSON.stringify(err)}`);
 });
 ```
 
 ## notificationManager.on<sup>10+</sup>
 
-on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;
+on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void
 
 注册通知监听回调。通知服务将通知信息回调给校验程序，校验程序返回校验结果决定该通知是否发布，如营销类通知发布频率控制等。
+
+系统中每个[SlotType](./js-apis-notificationManager.md#slottype)只允许存在一个注册者。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3387,16 +3616,18 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
+| -------- | ----------------------------------- | 
+| 202      | Not system application.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let onCheckNotification = (info : notificationManager.NotificationCheckInfo): notificationManager.NotificationCheckResult => {
     console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
@@ -3411,7 +3642,7 @@ let onCheckNotification = (info : notificationManager.NotificationCheckInfo): no
 try{
     notificationManager.on("checkNotification", onCheckNotification);
 } catch (error){
-    console.error(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
+    console.error(`notificationManager.on error: ${JSON.stringify(error as BusinessError)}`);
 }
 ```
 
@@ -3420,6 +3651,8 @@ try{
 on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: (checkInfo: NotificationCheckInfo) => Promise\<NotificationCheckResult\>): void
 
 注册通知监听回调。通知服务将通知信息回调给校验程序，校验程序返回校验结果决定该通知是否发布，如营销类通知发布频率控制等。使用Promise异步回调。
+
+系统中每个[SlotType](./js-apis-notificationManager.md#slottype)只允许存在一个注册者。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3437,18 +3670,21 @@ on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: 
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
   notificationManager.on('checkNotification',{
@@ -3460,13 +3696,13 @@ try{
       return { code: 1, message: "INVALID_PARAMETERS"};
   },);
 } catch (error) {
-  console.error(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
+  console.error(`notificationManager.on error: ${JSON.stringify(error as BusinessError)}`);
 }
 ```
 
 ## notificationManager.off<sup>10+</sup>
 
-off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;
+off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void
 
 取消通知监听回调。
 
@@ -3485,27 +3721,30 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | Not system application.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     notificationManager.off("checkNotification");
 } catch (error){
-    console.error(`notificationManager.off error: ${JSON.stringify(error as Base.BusinessError)}`);
+    console.error(`notificationManager.off error: ${JSON.stringify(error as BusinessError)}`);
 }
 ```
 
 ## notificationManager.triggerSystemLiveView<sup>11+</sup>
 
-triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOptions: ButtonOptions): Promise\<void>;
+triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOptions: ButtonOptions): Promise\<void>
 
 触发系统实况窗。使用Promise异步回调。
 
@@ -3531,20 +3770,23 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 包信息
 let bundle: notificationManager.BundleOption = {
@@ -3558,7 +3800,7 @@ let buttonOptions: notificationManager.ButtonOptions = {
 }
 notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions).then(() => {
   console.info("triggerSystemLiveView success");
-}).catch((error: Base.BusinessError) => {
+}).catch((error: BusinessError) => {
   console.error(`triggerSystemLiveView fail: ${JSON.stringify(error)}`);
 });
 ```
@@ -3566,7 +3808,7 @@ notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions)
 
 ## notificationManager.subscribeSystemLiveView<sup>11+</sup>
 
-subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
+subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>
 
 订阅系统实况窗。使用Promise异步回调。
 
@@ -3588,36 +3830,38 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
+| -------- | ----------------------------------- |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
-    console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
+    console.info("onResponseCallback: " + JSON.stringify(option) + "notificationId" + id);
 }
 let subscriber: notificationManager.SystemLiveViewSubscriber  = {
     onResponse: onResponseCallback,
 };
 notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 	console.info("subscribeSystemLiveView success");
-}).catch((error: Base.BusinessError) => {
+}).catch((error: BusinessError) => {
     console.error(`subscribeSystemLiveView fail: ${JSON.stringify(error)}`);
 });
 ```
 
 ## notificationManager.setDistributedEnabledByBundle<sup>12+</sup>
 
-setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: boolean): Promise<void>
+setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: boolean): Promise<void\>
 
 设置指定应用是否支持跨设备协同。使用Promise异步回调。
 
@@ -3632,7 +3876,7 @@ setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包信息。                   |
-| deviceType | string | 是   | 设备类型|
+| deviceType | string | 是   | 设备类型。|
 | enable   | boolean                  | 是   | 指定应用是否支持跨设备协同（true：支持，false：不支持）。|
 
 **返回值：**
@@ -3643,20 +3887,24 @@ setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: 
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -3666,14 +3914,14 @@ let enable: boolean = true;
 let deviceType: string = "phone";
 notificationManager.setDistributedEnabledByBundle(bundle, deviceType, enable).then(() => {
     console.info("setDistributedEnabledByBundle success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
 ## notificationManager.isDistributedEnabledByBundle<sup>12+</sup>
 
-isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<boolean>
+isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<boolean\>
 
 获取指定应用是否支持跨设备协同。使用Promise异步回调。
 
@@ -3688,7 +3936,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包信息。                   |
-| deviceType | string | 是   | 设备类型 |
+| deviceType | string | 是   | 设备类型。 |
 
 **返回值：**
 
@@ -3698,20 +3946,24 @@ isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -3719,15 +3971,15 @@ let bundle: notificationManager.BundleOption = {
 };
 let deviceType: string = "phone";
 notificationManager.isDistributedEnabledByBundle(bundle, deviceType).then((data: boolean) => {
-    console.info("isDistributedEnabledByBundle success, data:" + data);
-}).catch((err: Base.BusinessError) => {
+    console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
+}).catch((err: BusinessError) => {
     console.error(`isDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
 ## notificationManager.setSmartReminderEnabled<sup>12+</sup>
 
-setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void>
+setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void\>
 
 设置设备是否与其他设备协同智能提醒。使用Promise异步回调。
 
@@ -3741,7 +3993,7 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void>
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| deviceType | string | 是   | 设备类型 |
+| deviceType | string | 是   | 设备类型。 |
 | enable   | boolean                  | 是   | 指定应用是否支持设备是否与其他设备协同智能提醒（true：支持，false：不支持）。|
 
 **返回值：**
@@ -3752,33 +4004,37 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let deviceType: string = "phone";
 let enable: boolean = true;
 notificationManager.setSmartReminderEnabled(deviceType, enable).then(() => {
     console.info("setSmartReminderEnabled success");
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setSmartReminderEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
 
 ## notificationManager.isSmartReminderEnabled<sup>12+</sup>
 
-isSmartReminderEnabled(deviceType: string): Promise<boolean>
+isSmartReminderEnabled(deviceType: string): Promise<boolean\>
 
 获取设备是否与其他设备协同智能提醒。使用Promise异步回调。
 
@@ -3792,7 +4048,7 @@ isSmartReminderEnabled(deviceType: string): Promise<boolean>
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| deviceType | string | 是   | 设备类型 |
+| deviceType | string | 是   | 设备类型。 |
 
 **返回值：**
 
@@ -3802,32 +4058,36 @@ isSmartReminderEnabled(deviceType: string): Promise<boolean>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let deviceType: string = "phone";
 notificationManager.isSmartReminderEnabled(deviceType).then((data: boolean) => {
     console.info("isSmartReminderEnabled success， data:" + data);
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`isSmartReminderEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
 
 ## notificationManager.setBadgeNumberByBundle<sup>12+</sup>
 
-setBadgeNumberByBundle(bundle: bundleOption, badgeNumber: number): Promise\<void\>
+setBadgeNumberByBundle(bundle: BundleOption, badgeNumber: number): Promise\<void\>
 
 代理其他应用设定角标个数。使用Promise异步回调。
 
@@ -3850,13 +4110,15 @@ setBadgeNumberByBundle(bundle: bundleOption, badgeNumber: number): Promise\<void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
+| -------- | ----------------------------------- |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 | 1600017  | There is no corresponding agent relationship configuration.     |
 | 17700001 | The specified bundle name was not found.   |
@@ -3864,7 +4126,7 @@ setBadgeNumberByBundle(bundle: bundleOption, badgeNumber: number): Promise\<void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: 'com.example.bundleName',
@@ -3873,16 +4135,18 @@ let badgeNumber: number = 10;
 
 notificationManager.setBadgeNumberByBundle(bundle, badgeNumber).then(() => {
     console.info('setBadgeNumberByBundle success');
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`setBadgeNumberByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
 ## notificationManager.getSlotByBundle<sup>12+</sup>
 
-getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<Array\<NotificationSlot>>
+getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<NotificationSlot>
 
 获取指定应用指定类型的通知渠道。使用Promise异步回调。
+
+获取前需要先通过[addSlot](#notificationmanageraddslot)创建通知渠道。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3901,23 +4165,27 @@ getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<Array\<Notif
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)> | 以Promise形式返回获取指定应用指定类型的通知渠道。 |
+| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)> | 以Promise形式返回获取指定应用指定类型的通知渠道。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
+| 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
@@ -3927,9 +4195,290 @@ let slotType = notificationManager.SlotType.LIVE_VIEW;
 
 notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationManager.NotificationSlot) => {
 	console.info("getSlotByBundle success, data: " + JSON.stringify(data));
-}).catch((err: Base.BusinessError) => {
+}).catch((err: BusinessError) => {
     console.error(`getSlotByBundle fail: ${JSON.stringify(err)}`);
 });
+```
+
+## notificationManager.addDoNotDisturbProfile<sup>12+</sup>
+
+addDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
+
+添加勿扰模式配置信息。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明           |
+| ------ | ---------------- | ---- | -------------- |
+| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile12)> | 是 | 勿扰模式的配置信息。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+| 1600012  | No memory space.                    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let trustlist: Array<notificationManager.BundleOption> = [
+  {
+    bundle: 'com.example.bundleName',
+    uid: 0
+  },
+  {
+    bundle: 'com.example.bundleName1',
+    uid: 1
+  }
+]
+let templates: Array<notificationManager.DoNotDisturbProfile> = [
+  {
+    id: 3,
+    name: '工作模式',
+    trustlist: trustlist
+  }
+]
+
+notificationManager.addDoNotDisturbProfile(templates).then(() => {
+  console.info("addDoNotDisturbProfile success.");
+}).catch((error: BusinessError) => {
+  console.error(`addDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
+});
+```
+
+## notificationManager.removeDoNotDisturbProfile<sup>12+</sup>
+
+removeDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
+
+删除勿扰模式配置。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明           |
+| ------ | ---------------- | ---- | -------------- |
+| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile12)> | 是  | 勿扰模式的配置信息。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+| 1600012  | No memory space.                    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let templates: Array<notificationManager.DoNotDisturbProfile> = [
+  {
+    id: 3,
+    name: '工作模式'
+  }
+]
+notificationManager.removeDoNotDisturbProfile(templates).then(() => {
+  console.info("removeDoNotDisturbProfile success.");
+}).catch((error: BusinessError) => {
+  console.error(`removeDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
+});
+```
+
+## notificationManager.setAdditionalConfig<sup>12+</sup>
+
+setAdditionalConfig(key: string, value: string): Promise\<number\>
+
+设置通知的系统附加配置信息。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明           |
+| ------ | ---------------- | ---- | -------------- |
+| key   | string | 是  | 附加配置键。目前仅支持`RING_TRUSTLIST_PKG`，表示应用支持使用[自定义铃声](./js-apis-inner-notification-notificationRequest.md#notificationrequest-1)。 |
+| value   | string | 是  | 附加配置值。参数示例：[bundleName1,bundleName2]。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+|---------|-----------|
+| Promise\<number\> | Promise对象，返回0表示设置成功，返回其他值表示设置失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通知错误码](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundleName2]').then((data: number) => {
+  console.info("setAdditionalConfig success, data: " + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+  console.error(`setAdditionalConfig fail: ${JSON.stringify(error)}`);
+});
+```
+
+## notificationManager.getDoNotDisturbProfile<sup>13+</sup>
+
+getDoNotDisturbProfile(id: number): Promise\<DoNotDisturbProfile\>
+
+查询勿扰模式配置信息。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明           |
+| ------ | ---------------- | ---- | -------------- |
+| id   | number | 是  | 勿扰模式编号。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+|---------|-----------|
+| Promise\<[DoNotDisturbProfile](#donotdisturbprofile12)\> | Promise对象，返回勿扰模式的配置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+| 1600019  | The do-not-disturb profile does not exist.                    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+notificationManager.getDoNotDisturbProfile(1).then((data: notificationManager.DoNotDisturbProfile) => {
+  console.info("getDoNotDisturbProfile success: " + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+  console.error(`getDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
+});
+```
+
+## notificationManager.disableNotificationFeature<sup>16+</sup>
+
+disableNotificationFeature(disabled: boolean, bundleList: Array\<string\>): Promise\<void\>
+
+将应用包名添加到通知发布权限管控名单，以阻止应用发布通知。支持启用或关闭该功能。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                     |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| disabled | boolean | 是   | 是否启用通知发布权限管控名单（true：开启，false：关闭）。 |
+| bundleList | Array\<string\> | 是   | 指定通知发布权限管控名单的应用列表，使用包名代表应用。 |
+
+**返回值：**
+
+| 类型            | 说明                     | 
+|-----------------|-------------------------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 1600001      | Internal error.                     |
+| 1600002      | Marshalling or unmarshalling error. |
+
+**示例：**
+
+```ts
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let disabled: boolean = true;
+let bundleList: Array<string> = ["com.example.myapplication"];
+try {
+  notificationManager.disableNotificationFeature(disabled, bundleList).then(() => {
+    hilog.info(0x0000, 'testTag', '%{public}s', `disableNotificationFeature success.`);
+  }).catch((error: BusinessError) => {
+    hilog.error(0x0000, 'testTag', '%{public}s', `disableNotificationFeature fail: ${JSON.stringify(error)}`);
+  });
+} catch (error) {
+  hilog.error(0x0000, 'testTag', '%{public}s', `testTag fail: ${JSON.stringify(error)}`);
+}
 ```
 
 ## DoNotDisturbDate
@@ -4000,7 +4549,7 @@ notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationMa
 | contentType                  | [ContentType](./js-apis-notificationManager.md#contenttype)  | 是   | 通知类型。      |
 | creatorUserId<sup>11+</sup>  | number                       | 是   | 通知的user ID。 |
 | slotType<sup>11+</sup>       | [SlotType](./js-apis-notificationManager.md#slottype)        | 是   | 渠道类型。      |
-| extraInfos<sup>11+</sup>     | [key: string]: object        | 否   | 通知的附加信息。 |
+| extraInfos<sup>11+</sup>     | [key: string]: object        | 否   | 实况通知的附加信息。 |
 
 ## NotificationCheckResult<sup>10+</sup>
 
@@ -4042,7 +4591,7 @@ notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationMa
 
 | 名称    | 类型                                  | 必填 | 说明                   |
 | ------- | ------------------------------------ | ---- | ---------------------- |
-| onResponse    | (notificationId: number, buttonOptions: ButtonOptions) => void;                         | 否   | 点击按钮的回调。 |
+| onResponse    | (notificationId: number, buttonOptions: [ButtonOptions](#buttonoptions11)) => void                         | 否   | 点击按钮的回调。 |
 
 
 ## SlotType
@@ -4070,3 +4619,14 @@ notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationMa
 | NOTIFICATION_STATUS_CLOSE_VIBRATION     |   1<<4   |     关闭振动提示功能。     |
 | NOTIFICATION_STATUS_CLOSE_STATUSBAR_ICON     |  1<<5    |     关闭状态栏图标提示功能。     |
 
+## DoNotDisturbProfile<sup>12+</sup>
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+| 名称  | 类型                                  | 必填 | 说明                   |
+| ----- | ------------------------------------- | ---- | ---------------------- |
+| id | number | 是 | 勿扰模式编号。 |
+| name | string  | 是 | 勿扰模式名称。 |
+| trustlist | Array\<[BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)> | 否 | 勿扰模式的信任列表。 |

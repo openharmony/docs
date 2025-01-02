@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **Camera_OutputCapability** struct defines the camera output capability.
+The Camera_OutputCapability struct describes the camera output capability.
 
 **Since**: 11
 
@@ -17,13 +17,13 @@ The **Camera_OutputCapability** struct defines the camera output capability.
 
 | Name| Description| 
 | -------- | -------- |
-| [Camera_Profile](_camera___profile.md) \*\* [previewProfiles](#previewprofiles) | List of preview profiles. | 
+| [Camera_Profile](_camera___profile.md) \*\* [previewProfiles](#previewprofiles) | Double pointer to the list of preview profiles. | 
 | uint32_t [previewProfilesSize](#previewprofilessize) | Size of the preview profiles. | 
-| [Camera_Profile](_camera___profile.md) \*\* [photoProfiles](#photoprofiles) | List of photo profiles. | 
+| [Camera_Profile](_camera___profile.md) \*\* [photoProfiles](#photoprofiles) | Double pointer to the list of photo profiles. | 
 | uint32_t [photoProfilesSize](#photoprofilessize) | Size of the photo profiles. | 
-| [Camera_VideoProfile](_camera___video_profile.md) \*\* [videoProfiles](#videoprofiles) | List of video profiles. | 
+| [Camera_VideoProfile](_camera___video_profile.md) \*\* [videoProfiles](#videoprofiles) | Double pointer to the list of video profiles. | 
 | uint32_t [videoProfilesSize](#videoprofilessize) | Size of the video profiles. | 
-| [Camera_MetadataObjectType](_o_h___camera.md#camera_metadataobjecttype) \*\* [supportedMetadataObjectTypes](#supportedmetadataobjecttypes) | Types of the metadata objects supported. | 
+| [Camera_MetadataObjectType](_o_h___camera.md#camera_metadataobjecttype) \*\* [supportedMetadataObjectTypes](#supportedmetadataobjecttypes) | Double pointer to the list of the metadata object types supported. | 
 | uint32_t [metadataProfilesSize](#metadataprofilessize) | Size of the metadata profiles. | 
 
 
@@ -47,7 +47,9 @@ Camera_Profile** Camera_OutputCapability::photoProfiles
 ```
 **Description**
 
-List of photo profiles.
+Double pointer to the list of photo profiles.
+
+In the configuration file, **size** is set to the width and height of the camera resolution, not the actual width and height of an output image.
 
 
 ### photoProfilesSize
@@ -67,7 +69,7 @@ Camera_Profile** Camera_OutputCapability::previewProfiles
 ```
 **Description**
 
-List of preview profiles.
+Double pointer to the list of preview profiles.
 
 
 ### previewProfilesSize
@@ -87,7 +89,7 @@ Camera_MetadataObjectType** Camera_OutputCapability::supportedMetadataObjectType
 ```
 **Description**
 
-Types of the metadata objects supported.
+Double pointer to the list of the metadata object types supported.
 
 
 ### videoProfiles
@@ -97,7 +99,7 @@ Camera_VideoProfile** Camera_OutputCapability::videoProfiles
 ```
 **Description**
 
-List of video profiles.
+Double pointer to the list of video profiles.
 
 
 ### videoProfilesSize

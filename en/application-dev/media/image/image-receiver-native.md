@@ -1,4 +1,4 @@
-# Image Receiver (C/C++)
+# Using Image to Receive Images
 
 You can use the **ImageReceiver** APIs to obtain the surface ID of a component, read the latest image or the next image, and release **ImageReceiver** instances.
 
@@ -6,7 +6,7 @@ You can use the **ImageReceiver** APIs to obtain the surface ID of a component, 
 
 ### Adding Dependencies
 
-Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libimage_ndk.z.so**, **libimage_receiver_ndk.z.so**, **libnative_image.so**, and **libhilog_ndk.z.so** (on which the native log APIs depend) to the **target_link_libraries** dependency.
+Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libace_napi.z.so**, **libimage_ndk.z.so**, **libimage_receiver_ndk.z.so**, **libnative_image.so**, and **libhilog_ndk.z.so** (on which the native log APIs depend) to the **target_link_libraries** dependency.
 
 ```txt
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libimage_ndk.z.so libimage_receiver_ndk.z.so libnative_image.so)
@@ -32,33 +32,25 @@ EXTERN_C_END
 
 ### Requesting Permissions
 
-To enable debugging, add the permissions to the **src\main\module.json5** file of the DevEco Studio project. For details about the fields in the configuration file, see [module.json5 Configuration File](../../quick-start/module-configuration-file.md).
-
-   ```
-   "requestPermissions":[
-      {
-        "name" : "ohos.permission.CAMERA"
-      }
-    ]
-   ```
+To obtain input data of an image from a camera, you must request the **ohos.permission.CAMERA** permission. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
 ### Calling APIs on the JS Side
 
 1. Open **src\main\cpp\types\*libentry*\index.d.ts** (where **libentry** varies according to the project name), and import the following files:
 
     ```js
-    import image from '@ohos.multimedia.image'
+    import { image } from '@kit.ImageKit';
 
     export const createFromReceiver: (a: image.ImageReceiver) => image.Image;
     ```
-    
+
 2. Open **src\main\ets\pages\index.ets**, import ***libentry*.so** (where **libentry** varies according to the project name), call the native APIs, and pass in the JS resource object. The following is an example:
 
     ```js
     import testNapi from 'libentry.so'
-    import image from '@ohos.multimedia.image'
-    import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
-    import camera from '@ohos.multimedia.camera'
+    import { image } from '@kit.ImageKit';
+    import { abilityAccessCtrl } from '@kit.AbilityKit';
+    import { camera } from '@kit.CameraKit';
 
     @Entry
     @Component
@@ -128,10 +120,9 @@ To enable debugging, add the permissions to the **src\main\module.json5** file o
    }
     ```
 
-
 ### Calling the Native APIs
 
-For details about the APIs, see [Image API Reference](../../reference/apis-image-kit/image.md).
+For details about the APIs, see [Image](../../reference/apis-image-kit/image.md).
 
 Obtain the JS resource object from the **hello.cpp** file and convert it to a native resource object. Then you can call native APIs.
 

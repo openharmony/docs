@@ -8,15 +8,15 @@
 
 **Error Message**
 
-Init error. The WebviewController must be associated with a Web compoent.
+Init error. The WebviewController must be associated with a Web component.
 
 **Description**
 
-This error code is reported when the **WebviewController** object is not associated with any **\<Web>** component.
+This error code is reported when the **WebviewController** object is not associated with any **Web** component.
 
 **Solution**
 
-Bind the **WebviewController** object to a **\<Web>** component.
+Use [onControllerAttached()](ts-basic-components-web.md#oncontrollerattached10) to check whether the **WebViewController** object is associated with the **Web** component.
 
 
 ## 17100002 Invalid URL
@@ -57,7 +57,7 @@ Make sure the path to the resource file is correct.
 
 **Error Message**
 
-Function not enable.
+Function not enabled.
 
 **Description**
 
@@ -91,7 +91,7 @@ Verify the cookie value type.
 
 **Error Message**
 
-Can not register message event using this port.
+Failed to register a message event for the port.
 
 **Description**
 
@@ -110,7 +110,7 @@ Make sure the port is open.
 
 **Error Message**
 
-Invalid back or forward operation.
+Invalid backward or forward operation.
 
 **Description**
 
@@ -133,7 +133,7 @@ This error code is reported when the specified forward or backward cannot be per
 
 **Error Message**
 
-Cannot delete JavaScriptProxy.
+Failed to delete JavaScriptProxy because it does not exist.
 
 **Description**
 
@@ -152,7 +152,7 @@ Make sure the **javaScriptProxy** object is registered.
 
 **Error Message**
 
-Cannot zoom in or zoom out.
+The zoom operation failed.
 
 **Description**
 
@@ -171,7 +171,7 @@ Check whether the zoom ratio has reached its maximum or minimum.
 
 **Error Message**
 
-Cannot post message using this port.
+Failed to post messages through the port.
 
 **Description**
 
@@ -234,7 +234,7 @@ The related JS database API is not used.
 
 **Error Message**
 
-The number of preconnect sockets is invalid.
+The number of sockets to be preconnected is invalid.
 
 **Description**
 
@@ -253,7 +253,7 @@ Make sure the specified number of sockets is greater than 0 and less than or equ
 
 **Error Message**
 
-The type does not match with the value of the message.
+The type and value of the message do not match.
 
 **Description**
 
@@ -272,7 +272,7 @@ Call the API based on the message type to obtain the message value. For example,
 
 **Error Message**
 
-New failed, out of memeory.
+Memory allocation failed.
 
 **Description**
 
@@ -290,7 +290,7 @@ Check the length of the data to be sent.
 
 **Error Message**
 
-The download is not paused.
+The download task is not paused.
 
 **Description**
 
@@ -316,11 +316,11 @@ This error code is reported when the current **WebviewController** object is inv
 
 **Possible Causes**
 
-The **WebviewController** object is not associated with a valid **\<Web>** component.
+The **WebviewController** object is not associated with a valid **Web** component.
 
 **Solution**
 
-Use a **WebviewController** object that is associated with a valid **\<Web>** component.
+Use a **WebviewController** object that is associated with a valid **Web** component.
 
 ## 17100018 No WebDownloadDelegate Available
 
@@ -344,7 +344,7 @@ Use **WebDownloadManager.setDownloadDelegate** to set a **WebDownloadDelegate** 
 
 **Error Message**
 
-The download has not been started yet.
+The download task is not started yet.
 
 **Description**
 
@@ -357,3 +357,62 @@ This error code is reported when an attempt is made to pause or resume a downloa
 **Solution**
 
 Call **start('xxx')** in **WebDownloadDelegate.onBeforeDownload** and specify the download path.
+
+## 17100020 Failed to Register Custom Schemes
+
+**Error Message**
+
+Failed to register custom schemes.
+
+**Description**
+
+This error code is reported when a custom scheme failed to be registered.
+
+**Possible Causes**
+
+The custom scheme is set after the ArkWeb engine is initialized.
+
+**Solution**
+
+Register the custom scheme before initializing the ArkWeb engine.
+
+## 17100021 WebResourceHandler Is Invalid
+
+**Error Message**
+
+The resource handler is invalid.
+
+**Description**
+
+This error code is reported when the **WebResourceHandler** object is invalid.
+
+**Possible Causes**
+
+1. The corresponding request is not intercepted in **WebSchemeHandler**.
+
+2. The request is intercepted before the response body is constructed, and the request is ended due to some reasons.
+
+3. The **WebResourceHandler** object has called **didFinish** and **didFail**.
+
+
+**Solution**
+
+Do not call the **WebResourceHandler** API in the preceding situations.
+
+## 17100022 Failed to Initialize WebHttpBodyStream
+
+**Error Message**
+
+Failed to initialize the HTTP body stream.
+
+**Description**
+
+This error code is reported when data initialization of **WebHttpBodyStream** fails.
+
+**Possible Causes**
+
+The data carried in the POST request is invalid, for example, the data flow contains data in a file but the specified file path does not exist.
+
+**Solution**
+
+Verify that the data carried in the POST request is valid.

@@ -8,11 +8,12 @@
 
 **Error Message**
 
-Function is disabled.
+Function disabled.
 
 **Description**
 
-This error code is reported if the **write** API is called to perform application event logging but the system ignores related events because the logging function is disabled.
+- The **write** API is called to perform application event logging, but the system ignores related events because the logging function is disabled.
+- The **setEventParam** API is called to set custom event parameters, but the system ignores the calling because the logging function is disabled.
 
 **Possible Causes**
 
@@ -37,15 +38,16 @@ Invalid event domain.
 
 **Description**
 
-This error code is reported if the **write** API is called to perform application event logging but the system ignores related events because the input event domain name is invalid.
+- The **write** API is called to perform application event logging, but the system ignores related events because the input event domain name is invalid.
+- The **setEventParam** API is called to set custom event parameters, but the system ignores the calling because the input event domain name is invalid.
 
 **Possible Causes**
 
 The specified event domain name does not comply with the following rules:
 
-- The event domain name contains only digits, lowercase letters, and underscores (\_).
-- The event domain name starts with a lowercase letter and does not end with an underscore (\_).
-- The event domain name is not empty and contains a maximum of 16 characters.
+- The event domain name contains only digits, letters, and underscores (\_).
+- The event domain name starts with a letter and does not end with an underscore (\_).
+- The event domain name is not empty and contains a maximum of 32 characters.
 
 **Solution**
 
@@ -59,7 +61,8 @@ Invalid event name.
 
 **Description**
 
-This error code is reported if the **write** API is called to perform application event logging but the system ignores related events because the input event name is invalid.
+- The **write** API is called to perform application event logging, but the system ignores related events because the input event name is invalid.
+- The **setEventParam** API is called to set custom event parameters, but the system ignores the calling because the input event name is invalid.
 
 **Possible Causes**
 
@@ -99,11 +102,13 @@ Invalid string length of the event parameter.
 
 **Description**
 
-This error code is reported if the **write** API is called to perform application event logging but the system ignores related event parameters because the value of the input event parameter is excessively long.
+- The **write** API is called to perform application event logging, but the system ignores related event parameters because the value of the input event parameter is excessively long.
+- The **setEventParam** API is called to set custom event parameters, but the system ignores the calling because the input event parameter value is invalid.
 
 **Possible Causes**
 
-The length of the input event parameter value exceeds 8 x 1024 characters.
+- The length of the string of the event parameter value passed by the **write** API exceeds 8 x 1024 characters.
+- The length of the custom event parameter value passed by the **setEventParam** API exceeds 1024 characters.
 
 **Solution**
 
@@ -117,7 +122,8 @@ Invalid event parameter name.
 
 **Description**
 
-This error code is reported if the **write** API is called to perform application event logging but the system ignores related event parameters because the input event parameter name is invalid.
+- The **write** API is called to perform application event logging but the system ignores related event parameters because the input event parameter name is invalid.
+- The **setEventParam** API is called to set custom event parameters, but the system ignores the calling because the input event parameter name is invalid.
 
 **Possible Causes**
 
@@ -125,7 +131,7 @@ The specified event parameter name does not comply with the following rules:
 
 - The event parameter name contains only the dollar sign ($), digits, letters, and underscores (_).
 - The event parameter name must start with a letter or dollar sign ($) and end with a digit or letter.
-- The event parameter name is not empty and contains a maximum of 16 characters.
+- The event parameter name is not empty and contains a maximum of 32 characters.
 
 **Solution**
 
@@ -149,6 +155,24 @@ The array length of the event parameter value exceeds 100.
 
 Specify a valid array length for the event parameter value.
 
+## 11101007 Invalid Number of Custom Event Parameters
+
+**Error Message**
+
+The number of parameter keys exceeds the limit.
+
+**Description**
+
+The **setEventParam** API is called to set custom event parameters, but the system ignores the calling because the number of event parameters is invalid.
+
+**Possible Causes**
+
+The number of custom event parameters passed exceeds 64.
+
+**Solution**
+
+Specify a valid number of custom event parameters.
+
 ## 11102001 Invalid Watcher Name
 
 **Error Message**
@@ -163,8 +187,8 @@ This error code is reported if the **addWatcher** API is called to subscribe to 
 
 The specified watcher name does not comply with the following rules:
 
-- The watcher name can contain only digits, lowercase letters, and underscores (\_).
-- The watcher name starts with a lowercase letter and does not end with an underscore (\_).
+- The watcher name can contain only digits, letters, and underscores (\_).
+- The watcher name starts with a letter and does not end with an underscore (\_).
 - The watcher name is not empty and contains a maximum of 32 characters.
 
 **Solution**
@@ -185,9 +209,9 @@ This error code is reported if the **addWatcher** API is called to subscribe to 
 
 The specified filtering event domain name does not comply with the following rules:
 
-- The event domain name contains only digits, lowercase letters, and underscores (\_).
-- The event domain name starts with a lowercase letter and does not end with an underscore (\_).
-- The event domain name is not empty and contains a maximum of 16 characters.
+- The event domain name contains only digits, letters, and underscores (\_).
+- The event domain name starts with a letter and does not end with an underscore (\_).
+- The event domain name is not empty and contains a maximum of 32 characters.
 
 **Solution**
 

@@ -45,6 +45,8 @@ Example:
    OH_HiAppEvent_DestroyParamList(list);
    ```
 
+**File to include**: <hiappevent/hiappevent.h>
+
 **Since**: 8
 
 **Related module**: [HiAppEvent](_hi_app_event.md)
@@ -107,13 +109,11 @@ Example:
 | bool [OH_HiAppEvent_Configure](_hi_app_event.md#oh_hiappevent_configure) (const char \*name, const char \*value) | Configures the application event logging function. | 
 | [HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \* [OH_HiAppEvent_CreateWatcher](_hi_app_event.md#oh_hiappevent_createwatcher) (const char \*name) | Creates a watcher for application events. | 
 | void [OH_HiAppEvent_DestroyWatcher](_hi_app_event.md#oh_hiappevent_destroywatcher) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher) | Destroys a created watcher. | 
-| int [OH_HiAppEvent_SetTriggerCondition](_hi_app_event.md#oh_hiappevent_settriggercondition) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher, int row, int size, int timeOut) | Sets the conditions for triggering the OH_HiAppEvent_OnTrigger callback, including the number and size of newly received events and the timeout interval for triggering onTrigger. Ensure that at least one of the trigger conditions is set on the caller side. | 
-| int [OH_HiAppEvent_SetAppEventFilter](_hi_app_event.md#oh_hiappevent_setappeventfilter) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher, const char \*domain, uint8_t eventTypes, const char \*const \*names, int namesLen) | Sets the type of events to be listened for. | 
-| int [OH_HiAppEvent_SetWatcherOnTrigger](_hi_app_event.md#oh_hiappevent_setwatcherontrigger) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnTrigger](_hi_app_event.md#oh_hiappevent_ontrigger) onTrigger) | Sets the onTrigger callback. | 
-| int [OH_HiAppEvent_SetWatcherOnReceive](_hi_app_event.md#oh_hiappevent_setwatcheronreceive) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnReceive](_hi_app_event.md#oh_hiappevent_onreceive) onReceive) | Sets the onReceive callback. When the listener detects the corresponding event, the onReceive callback is called. | 
+| int [OH_HiAppEvent_SetTriggerCondition](_hi_app_event.md#oh_hiappevent_settriggercondition) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher, int row, int size, int timeOut) | Sets the conditions for triggering the **OH_HiAppEvent_OnTrigger** callback, including the number and size of newly received events and the timeout interval for triggering **onTrigger**. Ensure that at least one of the trigger conditions is set on the caller side. | 
+| int [OH_HiAppEvent_SetAppEventFilter](_hi_app_event.md#oh_hiappevent_setappeventfilter) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher, const char \*domain, uint8_t eventTypes, const char \*const \*names, int namesLen) | Sets the type of events to listen for. | 
+| int [OH_HiAppEvent_SetWatcherOnTrigger](_hi_app_event.md#oh_hiappevent_setwatcherontrigger) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnTrigger](_hi_app_event.md#oh_hiappevent_ontrigger) onTrigger) | Sets the **onTrigger** callback. | 
+| int [OH_HiAppEvent_SetWatcherOnReceive](_hi_app_event.md#oh_hiappevent_setwatcheronreceive) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnReceive](_hi_app_event.md#oh_hiappevent_onreceive) onReceive) | Sets the **onReceive** callback. When the listener detects the corresponding event, the onReceive callback is called. | 
 | int [OH_HiAppEvent_TakeWatcherData](_hi_app_event.md#oh_hiappevent_takewatcherdata) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher, uint32_t eventNum, [OH_HiAppEvent_OnTake](_hi_app_event.md#oh_hiappevent_ontake) onTake) | Obtains the event saved by the watcher. | 
 | int [OH_HiAppEvent_AddWatcher](_hi_app_event.md#oh_hiappevent_addwatcher) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher) | Adds a watcher. Once a watcher is added, it starts to listen for system messages. | 
 | int [OH_HiAppEvent_RemoveWatcher](_hi_app_event.md#oh_hiappevent_removewatcher) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher) | Removes a watcher. Once a watcher is removed, it stops listening for system messages. | 
 | void [OH_HiAppEvent_ClearData](_hi_app_event.md#oh_hiappevent_cleardata) (void) | Clears the events saved by all watchers. | 
-
-<!--no_check-->

@@ -1,5 +1,7 @@
 # 录像实现方案(ArkTS)
 
+在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+
 当前示例提供完整的录像流程介绍，方便开发者了解完整的接口调用顺序。
 
 在参考以下示例前，建议开发者查看[相机开发指导(ArkTS)](camera-preparation.md)的具体章节，了解[设备输入](camera-device-input.md)、[会话管理](camera-session-management.md)、[录像](camera-recording.md)等单个流程。
@@ -15,12 +17,12 @@
 Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
-import camera from '@ohos.multimedia.camera';
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
-import common from '@ohos.app.ability.common';
-import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
-import fs from '@ohos.file.fs';
+import { camera } from '@kit.CameraKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { common } from '@kit.AbilityKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function videoRecording(context: common.Context, surfaceId: string): Promise<void> {
   // 创建CameraManager对象
@@ -32,6 +34,10 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
 
   // 监听相机状态变化
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
+    if (err !== undefined && err.code !== 0) {
+      console.error('cameraStatus with errorCode = ' + err.code);
+      return;
+    }
     console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
     console.info(`status: ${cameraStatusInfo.status}`);
   });
@@ -105,11 +111,11 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoFrameHeight: videoSize.height,
     videoFrameRate: 30
   };
-  let options: PhotoAccessHelper.CreateOptions = {
+  let options: photoAccessHelper.CreateOptions = {
     title: Date.now().toString()
   };
-  let photoAccessHelper: PhotoAccessHelper.PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
-  let videoUri: string = await photoAccessHelper.createAsset(PhotoAccessHelper.PhotoType.VIDEO, 'mp4', options);
+  let accessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  let videoUri: string = await accessHelper.createAsset(photoAccessHelper.PhotoType.VIDEO, 'mp4', options);
   let file: fs.File = fs.openSync(videoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let aVRecorderConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
@@ -166,7 +172,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   });
 
   //创建会话
-  let videoSession: camera.CaptureSession | undefined = undefined;
+  let videoSession: camera.VideoSession | undefined = undefined;
   try {
     videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
   } catch (error) {
@@ -301,22 +307,22 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   }
 
   // 停止当前会话
-  videoSession.stop();
+  await videoSession.stop();
 
   // 关闭文件
   fs.closeSync(file);
 
   // 释放相机输入流
-  cameraInput.close();
+  await cameraInput.close();
 
   // 释放预览输出流
-  previewOutput.release();
+  await previewOutput.release();
 
   // 释放录像输出流
-  videoOutput.release();
+  await videoOutput.release();
 
   // 释放会话
-  videoSession.release();
+  await videoSession.release();
 
   // 会话置空
   videoSession = undefined;

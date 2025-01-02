@@ -40,7 +40,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            - jsoncpp.cpp
          ets:
            - entryability:
-               - EntryAbility.ts
+               - EntryAbility.ets
            - pages:
                - Index.ets
    ```
@@ -57,6 +57,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 3. 编辑"napi_init.cpp"文件，导入依赖的文件，并定义LOG_TAG：
 
    ```c++
+   #include "napi/native_api.h"
    #include "json/json.h"
    #include "hilog/log.h"
    #include "hiappevent/hiappevent.h"
@@ -93,21 +94,21 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
          }
      }
      
-      static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
-          // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
-          appEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
-          // 设置订阅的事件名称为click。
-          const char *names[] = {"click"};
-          // 开发者订阅感兴趣的应用事件，此处订阅了button相关事件。
-          OH_HiAppEvent_SetAppEventFilter(appEventWatcher, "button", 0, names, 1);
-          // 开发者设置已实现的回调函数，观察者接收到事件后回立即触发OnReceive回调。
-          OH_HiAppEvent_SetWatcherOnReceive(appEventWatcher, OnReceive);
-          // 使观察者开始监听订阅的事件。
-          OH_HiAppEvent_AddWatcher(appEventWatcher);
-          return {};
-      }
+     static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
+         // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
+         appEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
+         // 设置订阅的事件名称为click。
+         const char *names[] = {"click"};
+         // 开发者订阅感兴趣的应用事件，此处订阅了button相关事件。
+         OH_HiAppEvent_SetAppEventFilter(appEventWatcher, "button", 0, names, 1);
+         // 开发者设置已实现的回调函数，观察者接收到事件后回立即触发OnReceive回调。
+         OH_HiAppEvent_SetWatcherOnReceive(appEventWatcher, OnReceive);
+         // 使观察者开始监听订阅的事件。
+         OH_HiAppEvent_AddWatcher(appEventWatcher);
+         return {};
+     }
      ```
-     
+
    - onTrigger类型观察者：
 
      编辑"napi_init.cpp"文件，定义OnTrigger类型观察者相关方法：
@@ -181,7 +182,6 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            {"registerWatcher", nullptr, RegisterWatcher, nullptr, nullptr, nullptr, napi_default, nullptr},
            {"writeAppEvent", nullptr, WriteAppEvent, nullptr, nullptr, nullptr, napi_default, nullptr}
        };
-       };
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
    }
@@ -194,21 +194,22 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    export const writeAppEvent: () => void;
    ```
 
-7. 编辑"EntryAbility.ts"文件，在onCreate()函数中新增接口调用：
+7. 编辑"EntryAbility.ets"文件，在onCreate()函数中新增接口调用：
 
    ```typescript
+   // 导入依赖模块
    import testNapi from 'libentry.so'
-   export default class EntryAbility extends UIAbility {
-     onCreate(want, launchParam) {
-       // 启动时，注册系统事件观察者
-       testNapi.registerWatcher();
-     }
-   }
+
+   // 在onCreate()函数中新增接口调用
+   // 启动时，注册应用事件观察者
+   testNapi.registerWatcher();
    ```
 
 8. 编辑"Index.ets"文件，新增按钮触发打点事件：
 
    ```typescript
+   import testNapi from 'libentry.so'
+
    Button("button_click").onClick(() => {
      testNapi.writeAppEvent();
    })
@@ -217,10 +218,10 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 9. 可以在Log窗口看到对应用事件数据的处理日志：
 
    ```text
-   08-06 23:04:03.442 18573-18573/? I A00000/testTag: HiAppEvent eventInfo.domain=button
-   08-06 23:04:03.442 18573-18573/? I A00000/testTag: HiAppEvent eventInfo.name=click
-   08-06 23:04:03.442 18573-18573/? I A00000/testTag: HiAppEvent eventInfo.eventType=4
-   08-06 23:04:03.442 18573-18573/? I A00000/testTag: HiAppEvent eventInfo.params.click_time=1502031843
+   HiAppEvent eventInfo.domain=button
+   HiAppEvent eventInfo.name=click
+   HiAppEvent eventInfo.eventType=4
+   HiAppEvent eventInfo.params.click_time=1502031843
    ```
 
 10. 移除应用事件观察者：
@@ -237,9 +238,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
-        // 销毁创建的观察者，并置onReceiverWatcher为nullptr。
+        // 销毁创建的观察者，并置appEventWatcher为nullptr。
         OH_HiAppEvent_DestroyWatcher(appEventWatcher);
-        onTriggerWatcher = nullptr;
+        appEventWatcher = nullptr;
         return {};
     }
     ```

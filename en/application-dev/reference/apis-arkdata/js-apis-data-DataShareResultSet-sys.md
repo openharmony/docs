@@ -14,7 +14,7 @@ The **DataShareResultSet** module provides APIs for accessing the result set obt
 ## Modules to Import
 
 ```ts
-import DataShareResultSet from '@ohos.data.DataShareResultSet';
+import { DataShareResultSet } from '@kit.ArkData';
 ```
 
 ## Usage
@@ -22,10 +22,9 @@ import DataShareResultSet from '@ohos.data.DataShareResultSet';
 You can use [query](js-apis-data-dataShare-sys.md#query) to obtain a **DataShareResultSet** object.
 
 ```ts
-import dataShare from '@ohos.data.dataShare';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { DataShareResultSet, dataShare, dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit'
+import { UIAbility } from '@kit.AbilityKit';
 
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
@@ -58,7 +57,7 @@ Provides APIs for accessing the result sets returned.
 
 The column or key names are returned as a string array, in which the strings are in the same order as the columns or keys in the result set.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 

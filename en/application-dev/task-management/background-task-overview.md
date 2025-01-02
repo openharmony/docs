@@ -1,9 +1,10 @@
-# Background Task Overview
+<!--RP1-->
+# Background Task Overview<!--RP1End-->
 
 
 ## Introduction
 
-When you return to the home screen, lock the screen, or switch to another application, the current application is switched to the background. If the application continues all the activities when running in the background, the power consumption of the device may be high and the UI may freeze. To reduce the power consumption and deliver a positive user experience, the system manages the application running in the background. For example, the system can suspend the application process by stopping allocating CPU resources. It can also stop distributing [common events](../application-models/common-event-overview.md) to the application process or terminate the process.
+When you return to the home screen, lock the screen, or switch to another application, the current application is switched to the background. If the application continues all the activities when running in the background, the power consumption of the device may be high and the UI may freeze. To reduce the power consumption and deliver a positive user experience, the system manages the application running in the background. For example, the system can suspend the application process by stopping allocating CPU resources. It can also stop distributing [common events](../basic-services/common-event/common-event-overview.md) to the application process or terminate the process.
 
 - After an application is switched to the background for a short period of time (defined by the system), the system suspends the application process.
 
@@ -30,7 +31,8 @@ You can select a proper background task type to ensure that your application can
 
 - **Agent-powered reminders**: After an application is switched to the background or an application process is terminated, the system sends a reminder on behalf of the application. You can create scheduled reminders for countdown timers, calendar events, and alarm clocks.
 
-For system applications that provide basic capabilities, the system provides an API for [requesting energy resources](efficiency-resource-request.md). After an application calls the API, the system exempts the application from management.
+<!--Del-->
+For system applications that provide basic capabilities, the system provides an API for [requesting energy resources](efficiency-resource-request.md). After an application calls the API, the system exempts the application from management.<!--DelEnd-->
 
 **Figure 1** Selecting a type of background task
 

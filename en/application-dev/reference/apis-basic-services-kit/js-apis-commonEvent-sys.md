@@ -19,7 +19,7 @@ import CommonEvent from '@ohos.commonEvent';
 
 A system common event is an event that is published by a system service or system application and requires specific permissions to subscribe to. To publish or subscribe to this type of event, you must follow the event-specific definitions.
 
-For details about the definitions of all system common events, see [System Common Events](./commonEvent-definitions.md).
+For details about the definitions of all system common events, see [System Common Events](./common_event/commonEvent-definitions.md).
 
 ## CommonEvent.publishAsUser<sup>(deprecated)</sup>
 
@@ -27,8 +27,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 
 Publishes a common event to a specific user. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
->
+> **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [commonEventManager.publishAsUser](js-apis-commonEventManager-sys.md#commoneventmanagerpublishasuser) instead.
 
 **System capability**: SystemCapability.Notification.CommonEvent
@@ -70,8 +69,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 
 Publishes a common event with given attributes to a specific user. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
->
+> **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [commonEventManager.publishAsUser](js-apis-commonEventManager-sys.md#commoneventmanagerpublishasuser-1) instead.
 
 **System capability**: SystemCapability.Notification.CommonEvent
@@ -121,8 +119,7 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 
 Unsubscribes from common events. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
->
+> **NOTE**<br>
 >This API is supported since API version 7 and deprecated since API version 9. You are advised to use [commonEventManager.subscribe](js-apis-commonEventManager.md#commoneventmanagerunsubscribe) instead.
 
 **System capability**: SystemCapability.Notification.CommonEvent

@@ -1,4 +1,4 @@
-# @ohos.enterprise.adminManager (企业设备管理)(系统接口)
+# @ohos.enterprise.adminManager（企业设备管理）(系统接口)
 
 本模块提供企业设备管理能力，使设备具备企业场景下所需的定制能力。
 
@@ -6,14 +6,14 @@
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，实现相应功能。
+> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，实现相应功能。
 > 
-> 本模块接口均为系统接口。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.adminManager](js-apis-enterprise-adminManager.md)。
 
 ## 导入模块
 
 ```ts
-import adminManager from '@ohos.enterprise.adminManager';
+import { adminManager } from '@kit.MDMKit';
 ```
 
 ## adminManager.enableAdmin
@@ -41,18 +41,21 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                         |
 | ------- | --------------------------------------------------------------- |
-| 9200003 | the administrator ability component is invalid.                 |
-| 9200004 | failed to enable the administrator application of the device.   |
-| 9200007 | the system ability work abnormally.                             |
+| 9200003 | The administrator ability component is invalid.                 |
+| 9200004 | Failed to activate the administrator application of the device.   |
+| 9200007 | The system ability works abnormally. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -97,18 +100,21 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 **错误码**:
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                         |
 | ------- | --------------------------------------------------------------- |
-| 9200003 | the administrator ability component is invalid.                 |
-| 9200004 | failed to enable the administrator application of the device.   |
-| 9200007 | the system ability work abnormally.                             |
+| 9200003 | The administrator ability component is invalid.                 |
+| 9200004 | Failed to activate the administrator application of the device.   |
+| 9200007 | The system ability works abnormally. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -158,19 +164,22 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                         |
 | ------- | --------------------------------------------------------------- |
-| 9200003 | the administrator ability component is invalid.                 |
-| 9200004 | failed to enable the administrator application of the device.   |
-| 9200007 | the system ability work abnormally.                             |
+| 9200003 | The administrator ability component is invalid.                 |
+| 9200004 | Failed to activate the administrator application of the device.   |
+| 9200007 | The system ability works abnormally. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -209,16 +218,19 @@ disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
 **错误码**:
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下的错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                           |
 | ------- | ----------------------------------------------------------------- |
-| 9200005 | failed to disable the administrator application of the device.    |
+| 9200005 | Failed to deactivate the administrator application of the device.    |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -257,16 +269,19 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
 **错误码**:
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                           |
 | ------- | ----------------------------------------------------------------- |
-| 9200005 | failed to disable the administrator application of the device.    |
+| 9200005 | Failed to deactivate the administrator application of the device.    |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -278,56 +293,6 @@ adminManager.disableAdmin(wantTemp, 100, (err) => {
     return;
   }
   console.info('Succeeded in disabling admin');
-});
-```
-
-## adminManager.disableAdmin
-
-disableAdmin(admin: Want, userId?: number): Promise\<void>
-
-将当前/指定用户下指定的普通管理应用去激活。使用promise异步回调。
-
-**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
-
-**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
-
-**参数**：
-
-| 参数名    | 类型                                  | 必填   | 说明                           |
-| ------ | ----------------------------------- | ---- | ---------------------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 普通设备管理应用。                    |
-| userId | number                              | 否    | 用户ID， 取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。|
-
-**返回值：**
-
-| 类型                | 说明                |
-| ----------------- | ----------------- |
-| Promise\<void>    | 无返回结果的Promise对象。当去激活普通管理应用失败时，会抛出错误对象。 |
-
-**错误码**:
-
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
-
-| 错误码ID | 错误信息                                                           |
-| ------- | ----------------------------------------------------------------- |
-| 9200005 | failed to disable the administrator application of the device.    |
-
-**示例**：
-
-```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
-};
-
-adminManager.disableAdmin(wantTemp, 100).catch((err: BusinessError) => {
-  console.error(`Failed to disable admin. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -354,16 +319,19 @@ disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
 **错误码**:
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下的错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                           |   
+| 错误码ID | 错误信息                                                           |
 | ------- | ----------------------------------------------------------------- |
-| 9200005 | failed to disable the administrator application of the device.    |
+| 9200005 | Failed to deactivate the administrator application of the device.    |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.disableSuperAdmin(bundleName, (err) => {
@@ -403,17 +371,20 @@ disableSuperAdmin(bundleName: String): Promise\<void>
 
 **错误码**:
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                           |
 | ------- | ----------------------------------------------------------------- |
-| 9200005 | failed to disable the administrator application of the device.    |
+| 9200005 | Failed to deactivate the administrator application of the device.    |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.disableSuperAdmin(bundleName).catch((err: BusinessError) => {
@@ -440,10 +411,19 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。             |
 | callback | AsyncCallback\<boolean>             | 是    | 回调函数，当接口调用成功，err为null，data为boolean值，true表示当前用户下指定的设备管理应用被激活，false表示当前用户下指定的设备管理应用未激活，否则err为错误对象。 |
 
+**错误码**:
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例**：
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -478,10 +458,19 @@ isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): 
 | userId   | number                              | 是    | 用户ID，指定具体用户，取值范围：大于等于0。<br> 默认值：当前用户。 |
 | callback | AsyncCallback\<boolean>             | 是    | 回调函数，当接口调用成功，err为null，data为boolean值，true表示当前用户下指定的设备管理应用被激活，false表示当前用户下指定的设备管理应用未激活，否则err为错误对象。      |
 
+**错误码**:
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例**：
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -521,11 +510,20 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 | ----------------- | ------------------- |
 | Promise\<boolean> | Promise对象, 返回true表示指定的设备管理应用被激活，返回false表示指定的设备管理应用未激活。|
 
+**错误码**:
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例**：
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -557,10 +555,19 @@ isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 | bundleName | String                  | 是    | 超级设备管理应用。              |
 | callback   | AsyncCallback\<boolean> | 是    | 回调函数，当接口调用成功，err为null，data为boolean类型值，true表示当前用户下指定的设备管理应用被激活，false表示当前用户下指定的设备管理应用未激活，否则err为错误对象。 |
 
+**错误码**:
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例**：
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.isSuperAdmin(bundleName, (err, result) => {
@@ -596,11 +603,20 @@ isSuperAdmin(bundleName: String): Promise\<boolean>
 | ----------------- | ------------------- |
 | Promise\<boolean> | Promise对象, 返回true表示指定的超级设备管理应用被激活，返回false表示指定的超级设备管理应用未激活。 |
 
+**错误码**:
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例**：
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.isSuperAdmin(bundleName).then((result) => {
@@ -608,6 +624,44 @@ adminManager.isSuperAdmin(bundleName).then((result) => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to query admin is super admin or not. Code: ${err.code}, message: ${err.message}`);
 });
+```
+
+## adminManager.getSuperAdmin<sup>12+</sup>
+
+getSuperAdmin(): Promise\<Want>
+
+查询管理员用户下的超级设备管理应用。使用promise异步回调。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**模型约束**: 此接口仅可在Stage模型下使用。
+
+**返回值：**
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Promise\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 返回超级设备管理应用的Promise对象。当设备没有激活超级管理应用时，返回的Promise中Want的bundleName与abilityName为空串。 |
+
+**错误码**:
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+adminManager.getSuperAdmin().then((result) => {
+  console.info(`Succeeded in getting super admin :${JSON.stringify(result)}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get super admin. Code: ${err.code}, message: ${err.message}`);
+})
 ```
 
 ## adminManager.setEnterpriseInfo
@@ -634,16 +688,19 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
+| 9200001 | The application is not an administrator application of the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -691,17 +748,20 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
+| 9200001 | The application is not an administrator application of the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -737,16 +797,18 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
+| 9200001 | The application is not an administrator application of the device. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -787,17 +849,19 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
+| 9200001 | The application is not an administrator application of the device. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -829,22 +893,25 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| managedEvents  | Array\<[ManagedEvent](#managedevent)> | 是 | 订阅事件数组。 |
+| managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | 是 | 订阅事件数组。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-|错误码ID | 错误信息                                                |
-| ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 9200008 | the specified system events enum is invalid.          |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200008  | The specified system event is invalid.                       |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -879,7 +946,7 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| managedEvents  | Array\<[ManagedEvent](#managedevent)> | 是 | 订阅事件数组。 |
+| managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | 是 | 订阅事件数组。 |
 
 **返回值：**
 
@@ -889,18 +956,21 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 9200008 | the specified system events enum is invalid.          |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200008 | The specified system event is invalid.          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -932,22 +1002,25 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| managedEvents  | Array\<[ManagedEvent](#managedevent)> | 是 | 取消订阅事件数组。 |
+| managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | 是 | 取消订阅事件数组。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 9200008 | the specified system events enum is invalid.          |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200008 | The specified system event is invalid.          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -982,7 +1055,7 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| managedEvents  | Array\<[ManagedEvent](#managedevent)> | 是 | 取消订阅事件数组。 |
+| managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | 是 | 取消订阅事件数组。 |
 
 **返回值：**
 
@@ -992,18 +1065,21 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 9200008 | the specified system events enum is invalid.          |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200008 | The specified system event is invalid.          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -1040,18 +1116,21 @@ authorizeAdmin(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 9200002 | the administrator application does not have permission to manage the device.          |
-| 9200009 | authorize permission to the application failed.          |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200002 | The administrator application does not have permission to manage the device.          |
+| 9200009 | Failed to grant the permission to the application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -1096,19 +1175,22 @@ authorizeAdmin(admin: Want, bundleName: string): Promise&lt;void&gt;
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 9200002 | the administrator application does not have permission to manage the device.          |
-| 9200009 | authorize permission to the application failed.          |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200002 | The administrator application does not have permission to manage the device.          |
+| 9200009 | Failed to grant the permission to the application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -1146,19 +1228,3 @@ adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
 | ----------------- | ---- | ----- |
 | ADMIN_TYPE_NORMAL | 0x00 | 普通设备管理应用。 |
 | ADMIN_TYPE_SUPER  | 0x01 | 超级设备管理应用。 |
-
-## ManagedEvent
-
-可订阅的系统管理事件。
-
-**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-
-
-| 名称                        | 值  | 说明           |
-| -------------------------- | ---- | ------------- |
-| MANAGED_EVENT_BUNDLE_ADDED | 0    | 应用安装事件。 |
-| MANAGED_EVENT_BUNDLE_REMOVED | 1  | 应用卸载事件。 |
-| MANAGED_EVENT_APP_START<sup>10+</sup> | 2    | 应用启动事件。 |
-| MANAGED_EVENT_APP_STOP<sup>10+</sup> | 3  | 应用停止事件。 |
-| MANAGED_EVENT_SYSTEM_UPDATE<sup>11+</sup> | 4   | 系统更新事件。 |

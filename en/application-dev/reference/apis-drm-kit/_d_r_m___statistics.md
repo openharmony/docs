@@ -3,7 +3,7 @@
 
 ## Overview
 
-THe DRM_Statistics struct defines the statistics information about a media key system.
+The DRM_Statistics struct describes the statistics information about a media key system.
 
 **Since**: 11
 
@@ -17,6 +17,6 @@ THe DRM_Statistics struct defines the statistics information about a media key s
 
 | Name| Description| 
 | -------- | -------- |
-| uint32_t [statisticsCount](_drm.md#statisticscount) | Defines the number of statistical items.| 
-| char [statisticsName](_drm.md#statisticsname) [[MAX_STATISTICS_COUNT](_drm.md#max_statistics_count)][[MAX_STATISTICS_NAME_LEN](_drm.md#max_statistics_name_len)] | Defines the statistical item name set.| 
-| char [statisticsDescription](_drm.md#statisticsdescription) [[MAX_STATISTICS_COUNT](_drm.md#max_statistics_count)][[MAX_STATISTICS_BUFFER_LEN](_drm.md#max_statistics_buffer_len)] | Defines the set of statistics information description.| 
+| uint32_t [statisticsCount](_drm.md#statisticscount) | Number of statistical items.| 
+| char [statisticsName](_drm.md#statisticsname) [[MAX_STATISTICS_COUNT](_drm.md#max_statistics_count)][[MAX_STATISTICS_NAME_LEN](_drm.md#max_statistics_name_len)] | Statistical item name set.| 
+| char [statisticsDescription](_drm.md#statisticsdescription) [[MAX_STATISTICS_COUNT](_drm.md#max_statistics_count)][[MAX_STATISTICS_BUFFER_LEN](_drm.md#max_statistics_buffer_len)] | Set of statistics information description.| 

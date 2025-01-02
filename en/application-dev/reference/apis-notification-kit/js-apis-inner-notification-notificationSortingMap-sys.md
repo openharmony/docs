@@ -14,7 +14,7 @@ The **NotificationSortingMap** module provides APIs for defining the sorting inf
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name                | Type                 | Mandatory| Description                                      |
-| -------------------- | --------------------- | --- | ------------------------------------------ |
-| sortings              | { [key: string]: [NotificationSorting](js-apis-inner-notification-notificationSorting-sys.md) } | Yes | Array of notification sorting information.                                  |
-| sortedHashCode                | Array<string>                | Yes | Hash codes for notification sorting.|
+| Name       | Type    | Read Only| Mandatory| Description                                      |
+| ----------- | ------- | --- | ----- |------------------------------------------ |
+| sortings    | Record<string, [NotificationSorting](js-apis-inner-notification-notificationSorting-sys.md)\> | Yes| Yes | Array of notification sorting information.                                  |
+| sortedHashCode | Array<string\> | Yes| Yes | Hash codes for notification sorting.|

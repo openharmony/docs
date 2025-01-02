@@ -1,7 +1,7 @@
 # Path2D
 
 
-**\<Path2D>** allows you to describe a path through an existing path. This path can be drawn through the **stroke** API of **Canvas**. For details, see [Path2D](../reference/arkui-js/js-components-canvas-path2d.md).
+**\<Path2D>** allows you to describe a path through an existing path. This path can be drawn through the **stroke** API of **Canvas**. For details, see [Path2D](../reference/apis-arkui/arkui-js/js-components-canvas-path2d.md).
 
 
 ## Drawing Line Segments
@@ -83,7 +83,7 @@ export default {
 
 ## Drawing Graphs
 
-Use **createPath2D** to create a path object and draw only **path1** so that only **path1** is displayed on the canvas. Click the **\<text>** component to trigger the **addPath** method. The **path2** object is passed to **path1** as a parameter. After the **stroke** operation is performed on the **path1** object, **path1** and **path2** are displayed on the canvas. Click **Change** to change the value of **setTransform** to** setTransform(2, 0.1, 0.1, 2, 0,0)**. The graph is enlarged and tilted to the left.
+Use **createPath2D** to create a path object and draw only **path1** so that only **path1** is displayed on the canvas. Click the **Text** component to trigger the **addPath** method. The **path2** object is passed to **path1** as a parameter. After the **stroke** operation is performed on the **path1** object, **path1** and **path2** are displayed on the canvas. Click **Change** to change the value of **setTransform** to** setTransform(2, 0.1, 0.1, 2, 0,0)**. The graph is enlarged and tilted to the left.
 
 
 ```html

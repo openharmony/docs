@@ -17,8 +17,9 @@ The DST transition rules are as follows:
 
    Calculate the number of hours between the same clock time before and after the DST transition. The sample code is as follows:
    ```ts
-   import I18n from '@ohos.i18n'
-   let calendar = I18n.getCalendar("zh-Hans");
+   import { i18n } from '@kit.LocalizationKit';
+
+   let calendar = i18n.getCalendar("zh-Hans");
    calendar.setTimeZone("Europe/London");
    calendar.set(2021, 2, 27, 16, 0, 0); //The day before daylight saving time start
    let time1 = calendar.getTimeInMillis();
@@ -34,7 +35,7 @@ The DST transition rules are as follows:
 
    It is recommended that the DST flag be added to the local time when DST is active.
 
-   ![DST flag](figures/dst-flag.png)
+   ![DST flag](figures/dst-transition.png)
 
 3. Store and transmit time data.
    You are advised to use the standard time (UTC or GMT) of time zone 0 for time data storage and transmission. This helps prevent data loss or errors caused by DST transition.

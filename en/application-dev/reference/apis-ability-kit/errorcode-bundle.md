@@ -81,7 +81,7 @@ When a user-related API is called, the user ID passed in does not exist.
 
 **Error Message**
 
-The specified app ID is empty string.
+The specified app ID is an empty string.
 
 **Description**
 
@@ -165,14 +165,14 @@ Calling the **install** API of the **installer** module to install the bundle fa
 
 1. The HAP is not signed.
 2. The source of the HAP signature information is unreliable.
-3. The signature information of the HAP used for an upgrade is different from that of the installed HAP.
+3. The signature information of the HAP to update is different from that of the installed HAP.
 4. The signature information of multiple HAPs is inconsistent.
 
 **Solution**
 1. Check whether the HAP is signed.
 2. Ensure that the signing certificate of the HAP is applied for from the application market.
 3. Check whether the same certificate is used for signing multiple HAPs.
-4. Check whether the certificate used for signing the upgrade HAP is the same as the certificate used for signing the installed HAP.
+4. Check whether the certificate used for signing the HAP to update is the same as the certificate used for signing the installed HAP.
 
 ## 17700012 Bundle Installation Failure Due to Invalid File Path or Too Large File
 
@@ -252,7 +252,7 @@ Ensure that the version of the bundle to install is not earlier than the version
 
 **Error Message**
 
-Failed to install because the dependent module does not exist.
+Failed to install the HAP or HSP because the dependent module does not exist.
 
 **Description**
 
@@ -448,7 +448,7 @@ The specified ability is disabled.
 
 **Solution**
 
-Check whether the ability is disabled. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the information.
+Check whether the ability is disabled. You can use [Bundle Manager](../../tools/bm-tool.md) to query the information.
 
 ## 17700030 Failure in Clearing Cache Files
 
@@ -465,14 +465,14 @@ When the **cleanBundleCacheFiles** API of the **bundleManager** module is called
 The application is a system application and the **AllowAppDataNotCleared** field is configured in the signing certificate.
 
 **Solution**
-1. Check whether the application is a system application. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the application information and check whether the value of **isSystemApp** is **true**.
-2. Check whether the **AllowAppDataNotCleared** field is configured for the application. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the application information and check whether the value of **userDataClearable** is **true**.
+1. Check whether the application is a system application. You can use [Bundle Manager](../../tools/bm-tool.md) to query the application information and check whether the value of **isSystemApp** is **true**.
+2. Check whether the **AllowAppDataNotCleared** field is configured for the application. You can use [Bundle Manager](../../tools/bm-tool.md) to query the application information and check whether the value of **userDataClearable** is **true**.
 
 ## 17700031 HAP Installation Fails Due to Overlay Feature Verification Failure
 
 **Error Message**
 
-Failed to install the HAP because the overlay check of the HAP is failed.
+Failed to install the HAP because the overlay check of the HAP failed.
 
 **Description**
 
@@ -566,7 +566,7 @@ Check whether the application contains only modules with the overlay feature.
 
 **Error Message**
 
-Failed to install the HSP because lacks appropriate permissions.
+Failed to install the HSP due to the lack of required permission.
 
 **Description**
 
@@ -584,7 +584,7 @@ Configure the **AllowAppShareLibrary** privilege for the shared library, re-sign
 
 **Error Message**
 
-The version of shared bundle is dependent on other applications.
+The version of the shared bundle is dependent on other applications.
 
 **Description**
 
@@ -620,18 +620,18 @@ The shared library to uninstall does not exist.
 
 **Error Message**
 
-Failed to install because disallow install a shared bundle by hapFilePaths.
+Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed.
 
 **Description**
 
 During application installation, the installation package passed in is of the inter-application shared library type.
 
 **Possible Causes**
-1. When the Bundle Manager tool is used to install an application, the **-p** parameter is set to the installation package path of an inter-application shared library.
+1. When [Bundle Manager](../../tools/bm-tool.md) is used to install an application, the **-p** parameter is set to the installation package path of an inter-application shared library.
 2. When the **install** API is called to install an application, the **hapFilePaths** parameter is set to the installation package path of an inter-application shared library.
 
 **Solution**
-1. Use the **-s** parameter to specify the installation package path of an inter-application shared library.
+1. Use the **-p** parameter to specify the installation package path of an inter-application shared library.
 2. Use the **sharedBundleDirPaths** parameter in **installParam** to specify the installation package path of an inter-application shared library.
 
 ## 17700040 Failure in Uninstalling an Inter-Application Shared Library
@@ -645,18 +645,18 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 During application uninstall, the bundle name of an inter-application shared library is passed in.
 
 **Possible Causes**
-1. When the Bundle Manager tool is used to uninstall an application, the **-n** parameter is set to the bundle name of an inter-application shared library.
+1. When [Bundle Manager](../../tools/bm-tool.md) is used to uninstall an application, the **-n** parameter is set to the bundle name of an inter-application shared library.
 2. When the **install** API is called to uninstall an application, the **bundleName** parameter is set to the bundle name of an inter-application shared library.
 
 **Solution**
-1. Use the **-s** parameter to specify the application to be uninstalled as a shared library application.
+1. Use the **-n** parameter to specify the application to be uninstalled as a shared library application.
 2. Use the **bundleName** and **versionCode** parameters in **UninstallParam** to specify the bundle name and version of the shared library to be uninstalled.
 
 ## 17700041 Application Installation Is Not Allowed by Enterprise Device Management
 
 **Error Message**
 
-Failed to install because enterprise device management disallow install.
+Failed to install the HAP because the installation is forbidden by enterprise device management.
 
 **Description**
 
@@ -732,7 +732,7 @@ Set the **isolationMode** field in the HAP based on the isolation mode of the de
 
 **Error Message**
 
-Failed to uninstall because enterprise device management disallow uninstall.
+Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
 
 **Description**
 
@@ -740,7 +740,7 @@ The uninstall of this application is prohibited by enterprise device management.
 
 **Possible Causes**
 
-The enterprise device management does not allow the uninstall of this application.
+The enterprise device management does not allow the installation of this application.
 
 **Solution**
 
@@ -769,7 +769,7 @@ The version of the application to be updated is not later than the current versi
 ## 17700048 Code Signature Verification Failure
 **Error Message**
 
-Failed to install the HAP because the code signature verification is failed.
+Failed to install the HAP because the code signature verification failed.
 
 **Description**
 
@@ -809,7 +809,7 @@ Ensure that the HAP or HSP to be installed belongs to the current application.
 
 **Error Message**
 
-Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device.
+Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices.
 
 **Description**
 
@@ -825,11 +825,11 @@ The device is not an enterprise device.
 
 2. Ensure that **const.bms.allowenterprisebundle** is set to **true**.
 
-## 17700051 Update Failure Because of Incorrect Bundle Name
+## 17700051 Update Failure Because the Distribution Type of the Caller Is Not Enterprise MDM
 
 **Error Message**
 
-Failed to install the HAP because the distribution type of caller application is not enterprise_mdm.
+Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm.
 
 **Description**
 
@@ -847,7 +847,7 @@ Ensure that the signature file of the application is correctly configured.
 
 **Error Message**
 
-Failed to install the HAP because debug bundle cannot be installed under non-developer mode.
+Failed to install the HAP because a debug bundle can be installed only in developer mode.
 
 **Description**
 
@@ -865,7 +865,7 @@ Run the **hdc shell param get const.security.developermode.state** command. If *
 
 **Error Message**
 
-Not app gallery call.
+The caller is not AppGallery.
 
 **Description**
 
@@ -896,8 +896,8 @@ The application has applied for an incorrect permission, causing the installatio
 
 **Solution**
 
-1. Check whether the application has applied for the [MDM permission](../../security/AccessToken/permissions-for-mdm-apps.md), which is available only for MDM applications.
-2. Check whether the [permission level](../../security/AccessToken/permissions-for-all.md) is higher than the [application's APL](../../security/app-provision-structure.md#internal-structure-of-the-bundle-info-object). If the application uses the default APL, which is normal, it can require the system_basic or system_core permission only. Change the API in the **UnsgnedDebugProfileTemplate.json** file to **system_basic** or **system_core**, and sign and pack the application again.
+1. Check whether the application has applied for the <!--Del-->[<!--DelEnd-->MDM permission<!--Del-->](../../security/AccessToken/permissions-for-mdm-apps.md)<!--DelEnd-->, which is available only for MDM applications.
+2. Check whether the requested permission is open. For details, see [Permission List](../../security/AccessToken/permissions-for-all.md).
 
 ## 17700055 Invalid Link
 
@@ -935,11 +935,245 @@ The scheme of the link is not configured in the **querySchemes** field.
 
 Check whether the URL scheme is configured in the **querySchemes** field.
 
+## 17700057 Specified Application Is Not a Preset Application
+
+**Error Message**
+
+Failed to uninstall updates because the HAP is not pre-installed.
+
+**Description**
+
+When the **uninstallUpdates** API of the **installer** module is called, the specified application is not a preset application.
+
+**Possible Causes**
+
+The **uninstallUpdates** API can only be used to uninstall the updates of a preset application.
+
+**Solution**
+
+Check whether the specified application is a preset application.
+
+## 17700058 Specified Application Cannot Be Installed on this Device or by this User
+
+**Error Message**
+
+Failed to install the HAP because this application is prohibited from being installed on this device or by specified users.
+
+**Description**
+
+The specified application cannot be installed on this device or by this user.
+
+**Possible Causes**
+1. The device in use has undergone a whitewashing process.
+2. The specified application is prohibited from being installed by the specified user.
+
+**Solution**
+1. Check whether the device has undergone a whitewashing process.
+2. Install the application as another user.
+
+## 17700059 Specified Developer ID Does Not Exist
+
+**Error Message**
+
+The specified developerId is invalid.
+
+**Description**
+
+When the **getAllBundleInfoByDeveloperId** API of the **bundleManager** module is called, the developer ID passed in is invalid.
+
+**Possible Causes**
+
+Applications with the specified developer ID are not installed on the device.
+
+**Solution**
+
+Check the validity of the developer ID.
+
+## 17700060 Specified Application Cannot Be Uninstalled
+
+**Error Message**
+
+The specified application cannot be uninstalled.
+
+**Description**
+
+When the **uninstall** API of the **BundleInstaller** module or the **switchUninstallState** API of the **bundleManager** module is called, the specified application cannot be uninstalled.
+
+**Possible Causes**
+1. When the **uninstall** API is called, the specified application rejects the uninstallation attempt due to the ongoing operation of its own services.
+2. When the **switchUninstallState** API is called, the specified application has a privilege that prevents it from being uninstalled.
+
+**Solution**
+1. Check the reason why the application cannot be uninstalled and perform related operations.
+2. Check whether the specified application is uninstallable.
+
+## 17700061 appIndex for a Clone Is Invalid
+
+**Error Message**
+
+The appIndex is invalid.
+
+**Description**
+
+When an API related to the app clone feature is called, the specified **appIndex** is invalid.
+
+**Possible Causes**
+1. The index is out of range.
+2. The application does not have a clone of the specified index.
+3. The index already exists when you create the clone.
+
+**Solution**
+1. Check whether the index is within the allowed range.
+2. Check whether the application has a clone of the specified index.
+3. Check whether **createAppClone** is called with an existing index.
+
+## 17700065 Ability Specified by want in the ShortcutInfo Struct Cannot Be Started
+
+**Error Message**
+
+The ability specified by want in the ShortcutInfo struct cannot be started.
+
+**Description**
+
+When the **startShortcut** API of the **launcherBundleManager** module is called, the ability specified by **want** in the **ShortcutInfo** struct fails to start.
+
+**Possible Causes**
+
+The ability specified by **want** in the **ShortcutInfo** struct does not exist, or the ability specified by **want** in the **ShortcutInfo** struct cannot be started.
+
+**Solution**
+
+Check the validity of **want** in the **ShortcutInfo** struct.
+
+## 17700066 Failed to Install the Native Software Package
+
+**Error Message**
+
+Failed to install the HAP because installing the native package failed.
+
+**Description**
+
+The native software package fails to be installed during HAP installation.
+
+**Possible Causes**
+
+The configuration of the native software package is incorrect.
+
+**Solution**
+
+Check the configuration of the native software package.
+
+## 17700067 Failed to Uninstall the Native Software Package
+
+**Error Message**
+
+Failed to uninstall the HAP because uninstalling the native package failed.
+
+**Description**
+
+The native software package fails to be uninstalled during application uninstall.
+
+**Possible Causes**
+
+The native software package to be uninstalled is occupied.
+
+**Solution**
+
+Check whether any process occupies the native software package.
+
+## 17700069 AppClone Instance Cannot Be Created For an Application in Multi-app Mode Not Set To appClone
+
+**Error Message**
+
+The app does not support the creation of an appClone instance.
+
+**Description**
+
+An **AppClone** instance cannot be created for an application that is not in **appClone** mode.
+
+**Possible Causes**
+
+The multi-app mode is set to another mode other than **appClone**.
+
+**Solution**
+
+Check whether the application to update supports clones.
+
+## 17700070 Invalid Shortcut ID
+
+**Error Message**
+
+The specified shortcut id is illegal.
+
+**Description**
+
+The specified shortcut ID is invalid.
+
+**Possible Causes**
+
+When the API for adding a shortcut is called, a shortcut with the same bundle name, clone index, user ID, and shortcut ID already exists, or the passed-in shortcut ID is empty.
+
+**Solution**
+
+Check whether the bundle name and shortcut ID are correct.
+
+## 17700071 Enterprise Applications Cannot Be Installed
+
+**Error Message**
+
+It is not allowed to install the enterprise bundle.
+
+**Description**
+
+It is not allowed to install enterprise applications through a specific installation API.
+
+**Possible Causes**
+
+Due to policy control, enterprise applications cannot be installed through the specific API.
+
+**Solution**
+
+## 17700072 Launch Want Does Not Exist
+
+**Error Message**
+
+The launch want is not found.
+
+**Description**
+
+The launch want does not exist.
+
+**Possible Causes**
+
+The application does not have an ability, or does not have an ability for which **entities** is set to **entity.system.home** and **actions** is set to **action.system.home**.
+
+**Solution**
+
+Configure an ability with **entities** set to **entity.system.home** and **actions** set to **action.system.home** for the application.
+
+## 17700073 Installation Failure Caused by an Application with the Same Bundle Name but Different Signature Information
+
+**Error Message**
+
+Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.
+
+**Description**
+
+The installation fails because an application with the same bundle name but different signature information exists on the device.
+
+**Possible Causes**
+1. An application with the same bundle name but different signature information exists on the device.
+2. An application with the same bundle name but different signature information has been uninstalled with data retained.
+
+**Solution**
+1. Uninstall the application with the same bundle name.
+2. Install the application that has been uninstalled with data retained, and then uninstall the application without data retained.
+
 ## 17700201 .abc File Verification Failure
 
 **Error Message**
 
-Failed to verify abc.
+Failed to verify the abc file.
 
 **Description**
 
@@ -957,7 +1191,7 @@ Pass in the path of a trusted .abc file.
 
 **Error Message**
 
-Failed to delete abc.
+Failed to delete the abc file.
 
 **Description**
 
@@ -970,3 +1204,105 @@ The .abc file does not exist.
 **Solution**
 
 Pass in a valid path of the .abc file.
+
+## 17700301 Failed to Add Extended Resources
+**Error Message**
+
+Failed to add extended resources.
+
+**Description**
+
+Failed to add the extended resources.
+
+**Possible Causes**
+
+The .hsp file does not exist or is untrusted.
+
+**Solution**
+
+Pass in a correct and trusted .hsp file path.
+
+## 17700302 Failed to Delete Extended Resources
+**Error Message**
+
+Failed to remove extended resources.
+
+**Description**
+
+Failed to delete the extended resources.
+
+**Possible Causes**
+
+The HSP corresponding to the module name does not exist.
+
+**Solution**
+
+Pass in a valid module name.
+
+## 17700303 Failed to Obtain Extended Resources
+**Error Message**
+
+Failed to obtain extended resources.
+
+**Description**
+
+Failed to obtain the extended resources.
+
+**Possible Causes**
+
+The HSP corresponding to the bundle name does not exist.
+
+**Solution**
+
+Pass in a valid bundle name.
+
+## 17700304 Failed to Enable the Dynamic Icon
+**Error Message**
+
+Failed to enable the dynamic icon.
+
+**Description**
+
+Failed to enable the dynamic icon.
+
+**Possible Causes**
+
+The HSP does not contain the correct icon resource.
+
+**Solution**
+
+Before enabling the dynamic icon, ensure that the HSP corresponding to the module name is valid and contains the icon resource.
+
+## 17700305 Failed to Disable the Dynamic Icon
+**Error Message**
+
+Failed to disable the dynamic icon.
+
+**Description**
+
+Failed to disable the dynamic icon.
+
+**Possible Causes**
+
+The HSP does not contain the correct icon resource.
+
+**Solution**
+
+Before disabling the dynamic icon, ensure that the HSP corresponding to the bundle name contains the icon resource.
+
+## 17700306 Failed to Obtain the Dynamic Icon
+**Error Message**
+
+Failed to obtain the dynamic icon.
+
+**Description**
+
+Failed to obtain the dynamic icon.
+
+**Possible Causes**
+
+The HSP does not contain the correct icon resource.
+
+**Solution**
+
+Before querying the dynamic icon, ensure that the HSP corresponding to the bundle name contains the icon resource.

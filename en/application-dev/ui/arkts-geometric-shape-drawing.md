@@ -1,14 +1,14 @@
 # Drawing Geometric Shapes (Shape)
 
 
-The drawing components are used to draw graphs on the page. The **\<Shape>** component is the parent component of the drawing components. The attributes of **\<Shape>** are universal attributes supported by all the drawing components. For details, see [Shape](../reference/arkui-ts/ts-drawing-components-shape.md).
+The drawing components are used to draw graphs on the page. The **Shape** component is the parent component of the drawing components. The attributes of **Shape** are universal attributes supported by all the drawing components. For details, see [Shape](../reference/apis-arkui/arkui-ts/ts-drawing-components-shape.md).
 
 
 ## Creating a Drawing Component
 
 A drawing component can be created in either of the following ways:
 
-- Create a drawing component with **\<Shape>** as their parent to implement the effect similar to SVG. The API used is as follows:
+- Create a drawing component with **Shape** as their parent to implement the effect similar to SVG. The API used is as follows:
 
   ```ts
   Shape(value?: PixelMap)
@@ -23,7 +23,7 @@ A drawing component can be created in either of the following ways:
   ```
 
 
-- Create an independent drawing component to draw a specific shape. Seven shapes are supported: [Circle](../reference/arkui-ts/ts-drawing-components-circle.md), [Ellipse](../reference/arkui-ts/ts-drawing-components-ellipse.md), [Line](../reference/arkui-ts/ts-drawing-components-line.md), [Polyline](../reference/arkui-ts/ts-drawing-components-polyline.md), [Polygon](../reference/arkui-ts/ts-drawing-components-polygon.md), [Path](../reference/arkui-ts/ts-drawing-components-path.md), and [Rect](../reference/arkui-ts/ts-drawing-components-rect.md). The following uses the **Circle** API as an example:
+- Create an independent drawing component to draw a specific shape. Seven shapes are supported: [Circle](../reference/apis-arkui/arkui-ts/ts-drawing-components-circle.md), [Ellipse](../reference/apis-arkui/arkui-ts/ts-drawing-components-ellipse.md), [Line](../reference/apis-arkui/arkui-ts/ts-drawing-components-line.md), [Polyline](../reference/apis-arkui/arkui-ts/ts-drawing-components-polyline.md), [Polygon](../reference/apis-arkui/arkui-ts/ts-drawing-components-polygon.md), [Path](../reference/apis-arkui/arkui-ts/ts-drawing-components-path.md), and [Rect](../reference/apis-arkui/arkui-ts/ts-drawing-components-rect.md). The following uses the **Circle** API as an example:
 
   ```ts
   Circle(options?: {width?: string | number, height?: string | number}
@@ -266,7 +266,7 @@ The drawing component allows you to change the component style through various a
 
 ## Example Scenario
 
-- Draw a closed path at (-80, -5). The fill color is 0x317AF7, the stroke width is 10, the stroke color is red, and the stroke join style is miter (default value).
+- Draw a closed path at (-80, -5). The fill color is 0x317AF7, the stroke width is 3, the stroke color is red, and the stroke join style is miter (default value).
 
   ```ts
   @Entry

@@ -1,6 +1,6 @@
 # Permissions for MDM Applications
 
-The following permissions are available only to Mobile Device Management (MDM) applications.
+The following permissions are available only to Mobile Device Management (MDM) applications. For details about MDM applications, see [Introduction to MDM Kit](../../mdm/mdm-kit-intro.md).
 
 ## ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -10,7 +10,8 @@ Allows an application to activate a device administrator application.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
@@ -22,7 +23,8 @@ Allows a device administrator application to query network information.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
@@ -34,7 +36,8 @@ Allows a device administrator application to install and uninstall applications.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
@@ -46,7 +49,8 @@ Allows a device administrator application to set application running policies.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
@@ -58,7 +62,8 @@ Allows a device administrator application to restore devices' factory settings.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
@@ -70,7 +75,8 @@ Allows a device administrator application to set account management policies.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
@@ -82,7 +88,8 @@ Allows a device administrator application to set bundle installation policies.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
@@ -94,7 +101,8 @@ Allows a device administrator application to set the system time.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 9
 
@@ -106,7 +114,8 @@ Allows a device administrator application to set network information.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
@@ -118,7 +127,8 @@ Allows a device administrator application to set and query Wi-Fi information.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
@@ -130,7 +140,8 @@ Allows a device administrator application to subscribe to management events.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 9
 
@@ -142,7 +153,8 @@ Allows a device administrator application to deliver and obtain restriction poli
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
@@ -154,7 +166,8 @@ Allows the device administrator application to set the screen off time.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
@@ -166,7 +179,8 @@ Allows a device administrator application to manage the USB.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
@@ -178,7 +192,8 @@ Allows a device administrator application to manage the network.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
@@ -190,7 +205,8 @@ Allows a device administrator application to manage certificates.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
@@ -202,31 +218,34 @@ Allows a device administrator application to obtain the **Settings** application
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
 ## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
 
-Allows an enterprise MDM bundle to be installed on enterprise devices.
+Allows installation of enterprise MDM applications on enterprise devices.
 
 **Permission level**: system_core
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
 ## ohos.permission.INSTALL_SELF_BUNDLE
 
-Allows automatic updates of the enterprise MDM applications on enterprise devices.
+Allows automatic updates of enterprise MDM applications on enterprise devices.
 
 **Permission level**: system_core
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
@@ -238,7 +257,8 @@ Allows the device to set or cancel browser policies.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
 
@@ -250,33 +270,10 @@ Allows a device administrator application to set enterprise information.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 9
-
-## ohos.permission.SET_FILE_GUARD_POLICY
-
-Allows an application to update the file guard policy.
-
-**Permission level**: system_core
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 10
-
-## ohos.permission.FILE_GUARD_MANAGER
-
-Allows an application to scan user directories and set file extended properties.
-
-**Permission level**: system_core
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 10
 
 ## ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -286,7 +283,8 @@ Allows a device administrator application to set security management policies fo
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 11
 
@@ -298,7 +296,8 @@ Allows a device administrator application to set and obtain Bluetooth informatio
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 11
 
@@ -310,7 +309,8 @@ Allows a device administrator application to manage system parameters.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 11
 
@@ -322,7 +322,8 @@ Allows a device administrator application to set and obtain Wi-Fi information.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 11
 
@@ -334,7 +335,8 @@ Allows a device administrator application to manage restriction policies.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 11
 
@@ -346,7 +348,8 @@ Allows a device administrator application to manage application policies.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 11
 
@@ -358,7 +361,8 @@ Allows a device administrator application to set and obtain location information
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 11
 
@@ -370,7 +374,8 @@ Allows a device administrator application to shut down and restart devices.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 11
 
@@ -382,7 +387,8 @@ Allows a device administrator application to lock devices.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 11
 
@@ -394,6 +400,59 @@ Allows a device administrator application to manage settings.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 11
+
+## ohos.permission.ENTERPRISE_OPERATE_DEVICE
+
+Allows a device administrator application to operate devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 12
+
+## ohos.permission.ENTERPRISE_ADMIN_MANAGE
+
+Allows a device administrator application to manage the device administrator.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 12
+
+## ohos.permission.ENTERPRISE_RECOVERY_KEY
+
+Allows an application to manage the enterprise recovery keys.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 13
+
+## ohos.permission.ENTERPRISE_MANAGE_DELEGATED_POLICY
+
+Allows a device administrator application to delegate other applications to set device management policies.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 14

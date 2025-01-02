@@ -10,6 +10,10 @@
 
 Memory operation failed.
 
+**Description**
+
+This error code is reported when a memory operation fails.
+
 **Possible Causes**
 
 1. A memory leak occurs.
@@ -26,6 +30,10 @@ Memory operation failed.
 
 Parcel operation failed.
 
+**Description**
+
+This error code is reported when the read or write operation fails during IPC.
+
 **Possible Causes**
 
 An exception occurs when invoking the **MessageParcel** object to read or write an object.
@@ -38,7 +46,11 @@ Try again later or restart the device.
 
 **Error Message**
 
-Inner transact failed.
+Internal transaction failed.
+
+**Description**
+
+This error code is reported when IPC fails.
 
 **Possible Causes**
 
@@ -54,6 +66,10 @@ Try again later or restart the device.
 
 System service operation failed.
 
+**Description**
+
+This error code is reported when the client process fails to obtain the system service.
+
 **Possible Causes**
 
 1. The system service is not started.
@@ -67,14 +83,18 @@ Try again later or restart the device.
 
 **Error Message**
 
-Background task verification failed.
+Continuous task verification failed.
+
+**Description**
+
+This error code is reported when continuous task verification fails.
 
 **Possible Causes**
 
 1. The application repeatedly requests a continuous task.
 2. The application repeatedly cancels a continuous task.
 3. The value of **bgMode** is invalid because no continuous task type is configured for **backgroundModes** in the application's configuration file.
-4. A non-PC device requests the continuous task **KEEPING_TASK**, which is available only for PCs.
+4. Only <!--RP1-->specific devices<!--RP1End--> can request continuous tasks of the KEEPING_TASK type.
 
 **Solution**
 
@@ -83,11 +103,15 @@ Background task verification failed.
 3. Check the type of the device where the application is located.
 4. Check the value of **backgroundModes**.
 
-## 9800006 Notification Verification Failure
+## 9800006 Notification Verification Failure for a Continuous Task
 
 **Error Message**
 
-Notification verification failed.
+Notification verification failed for a continuous task.
+
+**Description**
+
+This error code is reported when notification verification in a continuous task fails.
 
 **Possible Causes**
 
@@ -103,7 +127,11 @@ Notification verification failed.
 
 **Error Message**
 
-Task storage failed.
+Continuous task storage failed.
+
+**Description**
+
+This error code is reported when information storage in a continuous task fails. 
 
 **Possible Causes**
 
@@ -120,7 +148,11 @@ Task storage failed.
 
 **Error Message**
 
-Caller information verification failed.
+Caller information verification failed for a transient task.
+
+**Description**
+
+This error code is reported when caller information verification in a transient task fails.
 
 **Possible Causes**
 
@@ -134,11 +166,15 @@ Caller information verification failed.
 2. Check whether the application has requested a transient task.
 3. Try again later or restart the device.
 
-## 9900002 Continuous Task Verification Failure
+## 9900002 Transient Task Verification Failure
 
 **Error Message**
 
-Background task verification failed.
+Transient task verification failed.
+
+**Description**
+
+This error code is reported when transient task verification fails.
 
 **Possible Causes**
 
@@ -157,12 +193,16 @@ Background task verification failed.
 
 **Error Message**
 
-Caller information verification failed.
+Caller information verification failed for an energy resource request.
+
+**Description**
+
+This error code is reported when caller information verification in an energy resource request fails.
 
 **Possible Causes**
 
 1. Failed to obtain the UID or PID of the caller.
-2. The value of **resourceTypes **for requesting energy resources exceeds the upper limit.
+2. The value of **resourceTypes** for requesting energy resources exceeds the upper limit.
 
 **Solution**
 

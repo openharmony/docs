@@ -17,10 +17,10 @@ You can refer to the following example to construct a certificate chain from mul
 
 1. Import the [certFramework](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
    ```ts
-   import certFramework from '@ohos.security.cert';
+   import { cert } from '@kit.DeviceCertificateKit';
    ```
 
-2. Use [cryptoCert.createCertChainValidator](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatecertchainvalidator) to create a certificate chain validator (**CertChainValidator**) object.
+2. Use [cert.createCertChainValidator](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatecertchainvalidator) to create a certificate chain validator (**CertChainValidator**) object.
 
 3. Create a [CertChainData](../../reference/apis-device-certificate-kit/js-apis-cert.md#certchaindata) object.
    
@@ -35,8 +35,8 @@ You can refer to the following example to construct a certificate chain from mul
 4. Use [CertChainValidator.validate](../../reference/apis-device-certificate-kit/js-apis-cert.md#validate) to validate the certificate chain data.
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import util from '@ohos.util';
+import { cert } from '@kit.DeviceCertificateKit';
+import { util } from '@kit.ArkTS';
 
 // CA data, which is only an example.
 let caCertData = '-----BEGIN CERTIFICATE-----\n' +
@@ -59,7 +59,7 @@ function certChainValidatorSample(): void {
   let algorithm = 'PKIX';
 
   // Create a CertChainValidator object.
-  let validator = certFramework.createCertChainValidator(algorithm);
+  let validator = cert.createCertChainValidator(algorithm);
 
   // CA certificate data.
   let uint8ArrayOfCaCertData = textEncoder.encodeInto(caCertData);
@@ -90,13 +90,13 @@ function certChainValidatorSample(): void {
     uint8ArrayOfCaCertDataLen.length + i] = uint8ArrayOfCaCertData[i];
   }
 
-  let certChainData: certFramework.CertChainData = {
+  let certChainData: cert.CertChainData = {
     // Uint8Array in L-V format (certificate data length-certificate data).
     data: encodingData,
     // Number of certificates. In this example, there are two certificates in the certification chain.
     count: 2,
     // Certificate format. Only PEM and DER are supported. In this example, the certificate is in PEM format.
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
   // Validate the certificate chain.

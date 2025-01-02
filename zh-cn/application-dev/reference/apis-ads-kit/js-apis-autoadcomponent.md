@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { AutoAdComponent } from '@ohos.advertising.AutoAdComponent';
+import { AutoAdComponent } from '@kit.AdsKit';
 ```
 
 
@@ -20,11 +20,11 @@ import { AutoAdComponent } from '@ohos.advertising.AutoAdComponent';
 
 AutoAdComponent(adParam: advertising.AdRequestParams, adOptions: advertising.AdOptions, displayOptions: advertising.AdDisplayOptions, interactionListener: advertising.AdInteractionListener): void
 
-展示非全屏广告。
+自动播放广告组件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
-
-**起始版本：** 11
 
 
 **参数：**
@@ -40,22 +40,21 @@ AutoAdComponent(adParam: advertising.AdRequestParams, adOptions: advertising.AdO
 
 **示例：**
 ```ts
-import advertising from '@ohos.advertising';
-import { AutoAdComponent } from '@ohos.advertising.AutoAdComponent';
-import hilog from '@ohos.hilog'; 
+import { AutoAdComponent, advertising } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
 export struct ShowCarouselAd {
   private adRequestParam: advertising.AdRequestParams = {
     // 广告类型
-    adType: 8, 
+    adType: 8,
     // 测试广告位ID
-    adId: "test1", 
+    adId: "test1"
   };
   private adOptions: advertising.AdOptions = {
     // 设置广告内容分级上限
-    adContentClassification: 'A',
+    adContentClassification: 'A'
   };
   // 广告展示参数
   private adDisplayOptions: advertising.AdDisplayOptions = {
@@ -68,11 +67,14 @@ export struct ShowCarouselAd {
   build() {
     Column() {
       // AutoAdComponent组件用于展示轮播非全屏广告
-      AutoAdComponent({ adParam: this.adRequestParam, adOptions: this.adOptions, displayOptions: this.adDisplayOptions,
+      AutoAdComponent({
+        adParam: this.adRequestParam,
+        adOptions: this.adOptions,
+        displayOptions: this.adDisplayOptions,
         interactionListener: {
           // 广告状态变化回调
           onStatusChanged: (status: string, ad: advertising.Advertisement, data: string) => {
-            switch(status) {
+            switch (status) {
               case 'onAdOpen':
                 hilog.info(0x0000, 'testTag', '%{public}s', 'onAdOpen');
                 break;
@@ -83,7 +85,9 @@ export struct ShowCarouselAd {
                 hilog.info(0x0000, 'testTag', '%{public}s', 'onAdClose');
                 break;
             }
-          }}})
+          }
+        }
+      })
         .width('100%')
         .height('100%')
     }.width('100%').height('100%')

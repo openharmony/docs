@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.Dialog (弹出框)
+#  弹出框 (Dialog)
 
 
 弹出框是一种模态窗口，通常用于在保持当前的上下文环境时，临时展示用户需关注的信息或待处理的操作，用户在模态弹出框内完成上述交互任务。模态弹出框需要用户进行交互才能够退出模态模式。
@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, CustomContentDialog } from '@ohos.arkui.advanced.Dialog'
+import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, CustomContentDialog } from '@kit.ArkUI'
 ```
 
 
@@ -21,6 +21,7 @@ import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, Cu
 无
 
 ## 属性
+
 不支持[通用属性](ts-universal-attributes-size.md)
 
 ## TipsDialog
@@ -37,45 +38,42 @@ TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-
-**参数：**
-
-
-| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
-| -------- | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | - | 提示弹出框控制器。 | 
-| imageRes | [Resource](ts-types.md#resource) | 是 | - | 展示的图片。 | 
-| imageSize | [SizeOptions](ts-types.md#sizeoptions) | 否 | - | 自定义图片尺寸。默认值：64*64vp | 
-| title | [ResourceStr](ts-types.md#resourcestr) | 否 | - | 提示弹出框标题。 | 
-| content | [ResourceStr](ts-types.md#resourcestr) | 否 | - | 提示弹出框内容。 | 
-| checkTips | [ResourceStr](ts-types.md#resourcestr) | 否 | - | checkbox的提示内容。 | 
-| isChecked | boolean | 否 | \@Prop | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false。 |
-| checkAction<sup>12+</sup> | (isChecked: boolean) => void | 否 | - | checkbox的选中状态改变事件。 |  
-| primaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 提示框左侧按钮。 | 
-| secondaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 提示框右侧按钮。 | 
-
+| 名称                          | 类型                                                         | 必填 | 装饰器类型 | 说明                                                         |
+| ----------------------------- | ------------------------------------------------------------ | ---- | ---------- | ------------------------------------------------------------ |
+| controller                    | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | -          | 提示弹出框控制器。<br/>**说明：** 未使用@Require装饰，构造时不强制校验参数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| imageRes                      | [ResourceStr<sup>12+</sup>](ts-types.md#resourcestr) \| [PixelMap<sup>12+</sup>](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | -          | 展示的图片。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| imageSize                     | [SizeOptions](ts-types.md#sizeoptions)                       | 否   | -          | 自定义图片尺寸。<br/>默认值：64*64vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| title                         | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | 提示弹出框标题。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| content                       | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | 提示弹出框内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| checkTips                     | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | checkbox的提示内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| isChecked                     | boolean                                                      | 否   | \@Prop     | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| checkAction<sup>12+</sup>     | (isChecked: boolean) => void                                 | 否   | -          | 现推荐使用 onCheckedChange<sup>12+</sup>。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | 否   | -          | checkbox的选中状态改变事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| primaryButton                 | [ButtonOptions](#buttonoptions)                              | 否   | -          | 提示框左侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| secondaryButton               | [ButtonOptions](#buttonoptions)                              | 否   | -          | 提示框右侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| theme<sup>12+</sup>           | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | -          | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| themeColorMode<sup>12+</sup>  | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明) | 否 | -     | 自定义弹窗深浅色模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                 |
 
 ## SelectDialog
 
 SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: ResourceStr, selectedIndex?: number, confirm?: ButtonOptions, radioContent: Array&lt;SheetInfo&gt;})
 
-选择类弹出框，弹框中以列表或网格的形式提供可选的的内容。
+选择类弹出框，弹框中以列表或网格的形式提供可选的内容。
 
 **装饰器类型：**\@CustomDialog
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 名称 | 参数类型 | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 选择弹出框控制器。 | 
-| title | [ResourceStr](ts-types.md#resourcestr) | 是 | 选择弹出框标题。 | 
-| content | [ResourceStr](ts-types.md#resourcestr) | 否 | 选择弹出框内容。 | 
-| selectedIndex | number | 否 | 选择弹出框的选中项。<br/>默认值：-1。 | 
-| confirm | [ButtonOptions](#buttonoptions) | 否 | 选择弹出框底部按钮。 | 
-| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo接口说明)&gt; | 是 | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。 | 
-
+| 名称                | 类型                                                         | 必填 | 说明                                                         |
+| ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 选择弹出框控制器。<br/>**说明：** 未使用@Require装饰，构造时不强制校验参数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| title               | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 选择弹出框标题。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| content             | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 选择弹出框内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| selectedIndex       | number                                                       | 否   | 选择弹出框的选中项。<br/>默认值：-1<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| confirm             | [ButtonOptions](#buttonoptions)                              | 否   | 选择弹出框底部按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| radioContent        | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo对象说明)&gt; | 是   | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| theme<sup>12+</sup> | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| themeColorMode<sup>12+</sup> | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明) | 否 | 自定义弹窗深浅色模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                       |
 
 ## ConfirmDialog
 
@@ -87,22 +85,23 @@ ConfirmDialog({controller: CustomDialogController, title: ResourceStr, content?:
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
-| -------- | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | - | 确认弹出框控制器。 | 
-| title | [ResourceStr](ts-types.md#resourcestr) | 是 | - | 确认弹出框标题。 | 
-| content | [ResourceStr](ts-types.md#resourcestr) | 否 | - | 确认弹出框内容。 | 
-| checkTips | [ResourceStr](ts-types.md#resourcestr) | 否 | - | checkbox的提示内容。 | 
-| isChecked | boolean | 否 | \@Prop | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false。 | 
-| primaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 确认框左侧按钮。 | 
-| secondaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 确认框右侧按钮。 | 
+| 名称                          | 类型                                                         | 必填 | 装饰器类型 | 说明                                                         |
+| ----------------------------- | ------------------------------------------------------------ | ---- | ---------- | ------------------------------------------------------------ |
+| controller                    | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | -          | 确认弹出框控制器。<br/>**说明：** 未使用@Require装饰，构造时不强制校验参数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| title                         | [ResourceStr](ts-types.md#resourcestr)                       | 是   | -          | 确认弹出框标题。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| content                       | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | 确认弹出框内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| checkTips                     | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | checkbox的提示内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| isChecked                     | boolean                                                      | 否   | \@Prop     | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | 否   | -          | checkbox的选中状态改变事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| primaryButton                 | [ButtonOptions](#buttonoptions)                              | 否   | -          | 确认框左侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| secondaryButton               | [ButtonOptions](#buttonoptions)                              | 否   | -          | 确认框右侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| theme<sup>12+</sup>           | [Theme](../js-apis-arkui-theme.md#theme)\| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | -          | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| themeColorMode<sup>12+</sup>  | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明) | 否 | -     | 自定义弹窗深浅色模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                 |
 
 
 ## AlertDialog
 
-AlertDialog({controller: CustomDialogController, primaryTitle: ResourceStr, secondaryTitle: ResourceStr, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
+AlertDialog({controller: CustomDialogController, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
 
 操作确认类弹出框，触发一个将产生严重后果的不可逆操作时，如删除、重置、取消编辑、停止等。
 
@@ -110,16 +109,16 @@ AlertDialog({controller: CustomDialogController, primaryTitle: ResourceStr, seco
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 名称 | 参数类型 | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 确认弹出框控制器。 | 
-| primaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 确认框一级标题。 | 
-| secondaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 确认框二级标题。 | 
-| content | [ResourceStr](ts-types.md#resourcestr) | 是 | 确认弹出框内容。 | 
-| primaryButton | [ButtonOptions](#buttonoptions) | 否 | 确认框左侧按钮。 | 
-| secondaryButton | [ButtonOptions](#buttonoptions) | 否 | 确认框右侧按钮。 | 
+| 名称                         | 类型                                                         | 必填 | 说明                                                         |
+| ---------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| controller                   | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 确认弹出框控制器。<br/>**说明：** 未使用@Require装饰，构造时不强制校验参数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| primaryTitle<sup>12+</sup>   | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 确认框一级标题。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| secondaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 确认框二级标题。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| content                      | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 确认弹出框内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| primaryButton                | [ButtonOptions](#buttonoptions)                              | 否   | 确认框左侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| secondaryButton              | [ButtonOptions](#buttonoptions)                              | 否   | 确认框右侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| theme<sup>12+</sup>          | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| themeColorMode<sup>12+</sup> | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明) | 否 | 自定义弹窗深浅色模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 
 ## LoadingDialog
@@ -132,12 +131,12 @@ LoadingDialog({controller: CustomDialogController, content?: ResourceStr})
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 名称 | 参数类型 | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 加载弹出框控制器。 | 
-| content | [ResourceStr](ts-types.md#resourcestr) | 否 | 加载弹出框内容。 | 
+| 名称                | 类型                                                         | 必填 | 说明                                                         |
+| ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| Controller         | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 加载弹出框控制器。<br/>**说明：** 未使用@Require装饰，构造时不强制校验参数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| content             | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 加载弹出框内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| theme<sup>12+</sup> | [Theme](../js-apis-arkui-theme.md#theme)\| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| themeColorMode<sup>12+</sup> | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明) | 否 | 自定义弹窗深浅色模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 
 ## CustomContentDialog<sup>12+</sup>
@@ -148,49 +147,88 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 
 **装饰器类型：**\@CustomDialog
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
+| 名称                | 类型                                                     | 必填 | 装饰器类型 | 说明                                                         |
+| ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | -  | 弹出框控制器。<br/>**说明：** 未使用@Require装饰，构造时不强制校验参数。                                               |
+| contentBuilder      | () => void                                                   | 是   | @BuilderParam | 弹出框内容。                                                 |
+| primaryTitle        | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -  | 弹出框标题。                                                 |
+| secondaryTitle      | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -  | 弹出框辅助文本。                                             |
+| localizedContentAreaPadding | [LocalizedPadding](ts-types.md#LocalizedPadding)     | 否   | -  | 弹出框内容区内边距。                                         |
+| contentAreaPadding  | [Padding](ts-types.md#padding)                               | 否   | -  | 弹出框内容区内边距。设置了localizedContentAreaPadding属性时该属性不生效。|
+| buttons             | [ButtonOptions](#buttonoptions)[]                     | 否   | -  | 弹出框操作区按钮，最多支持4个按钮。                          |
+| theme | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | -  | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。 |
+| themeColorMode | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明) | 否 | - | 自定义弹窗深浅色模式。 |
 
-| 名称 | 参数类型 | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 弹出框控制器。 | 
-| contentBuilder | () => void | 是 | 弹出框内容。 |
-| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框标题。 |
-| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框辅助文本。 |
-| contentAreaPadding<sup>12+</sup> | [Padding](ts-types.md#padding) | 否 | 弹出框内容区内边距。 |
-| buttons | Array<[ButtonOptions](#buttonoptions)> | 否 | 弹出框操作区按钮，最多支持4个按钮。 |
+
+## PopoverDialog<sup>14+</sup>
+
+PopoverDialog({visible: boolean, popover: PopoverOptions, targetBuilder: Callback\<void>})
+
+跟手弹窗，基于目标组件位置弹出，上文中的TipsDialog、SelectDialog、ConfirmDialog、AlertDialog、LoadingDialog、CustomContentDialog都可作为弹窗内容。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| visible | boolean | 是 | \@Link | 跟手弹出框显示状态。<br/>默认值为false，隐藏弹窗。 |
+| popover | [PopoverOptions](#popoveroptions14) | 是 | \@Prop<br/>\@Require | 配置跟手弹窗的参数。 |
+| targetBuilder | Callback\<void> | 是 | \@Require<br/>\@BuilderParam | 跟手弹出框基于的目标组件。 |
 
 
 ## ButtonOptions
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 按钮的内容。 | 
-| action | ()&nbsp;=&gt;&nbsp;void | 否 | 按钮的点击事件。 | 
-| background | [ResourceColor](ts-types.md#resourcecolor) | 否 | 按钮的背景。 | 
-| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 按钮的字体颜色。 | 
-| buttonStyle<sup>12+</sup> | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否 | 按钮的样式。<br/>默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。 | 
-| role<sup>12+</sup> | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明) | 否 | 按钮的角色。<br/>默认值：ButtonRole.NORMAL。 |
+| 名称                      | 类型                                                         | 必填 | 说明                                                         |
+| ------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value                     | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 按钮的内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| action                    | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 按钮的点击事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| background                | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 按钮的背景。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| fontColor                 | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 按钮的字体颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| buttonStyle<sup>12+</sup> | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否   | 按钮的样式。<br/>默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| role<sup>12+</sup>        | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明) | 否   | 按钮的角色。<br/>默认值：ButtonRole.NORMAL。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
 
 >  **说明：**
 >
 >  buttonStyle和role优先级高于fontColor和background。如果buttonStyle和role设置的是默认值，那么fontColor和background可生效。
 
+## PopoverOptions<sup>14+</sup>
+
+跟手弹窗参数，用于设置弹窗内容、位置属性等。
+
+继承自[CustomPopupOptions](../arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8类型说明)。
+
+> **说明：**
+>
+> radius默认值为32vp。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## 事件
+
 不支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
 
-### 示例1
+### 示例1（上图下文弹出框）
+上图下文弹出框，包含imageRes、content等内容。
 
 ```ts
-import { TipsDialog } from '@ohos.arkui.advanced.Dialog'
+import { TipsDialog } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+
 @Entry
 @Component
 struct Index {
+  @State pixelMap: PixelMap | undefined = undefined;
   isChecked = false;
   dialogControllerImage: CustomDialogController = new CustomDialogController({
     builder: TipsDialog({
@@ -209,6 +247,9 @@ struct Index {
           console.info('Callback when the second button is clicked')
         }
       },
+      onCheckedChange: () => {
+        console.info('Callback when the checkbox is clicked')
+      }
     }),
   })
 
@@ -229,16 +270,35 @@ struct Index {
     .backgroundImageSize({ width: '100%', height: '100%' })
     .height('100%')
   }
+  
+  aboutToAppear(): void {
+    this.getPixmapFromMedia($r('app.media.app_icon'));    
+  }
+  
+  async getPixmapFromMedia(resource: Resource) {
+    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    })
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    this.pixelMap = await imageSource.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+    })
+    await imageSource.release()
+    return this.pixelMap;
+  }
 }
 ```
 
 ![TipsDialog](figures/TipsDialog.png)
 
-
-### 示例2
+### 示例2（纯列表弹出框）
+纯列表弹出框，包含selectedIndex、radioContent等内容。
 
 ```ts
-import { SelectDialog } from '@ohos.arkui.advanced.Dialog'
+import { SelectDialog } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
@@ -296,11 +356,12 @@ struct Index {
 
 ![SelectDialog](figures/SelectDialog.png)
 
-
-### 示例3
+### 示例3（文本与勾选弹出框）
+文本与勾选弹出框，包含content、checkTips等内容。
 
 ```ts
-import { ConfirmDialog } from '@ohos.arkui.advanced.Dialog'
+import { ConfirmDialog } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
@@ -322,9 +383,11 @@ struct Index {
           console.info('Callback when the second button is clicked')
         }
       },
+      onCheckedChange: () => {
+        console.info('Callback when the checkbox is clicked')
+      },
     }),
     autoCancel: true,
-    customStyle: true,
     alignment: DialogAlignment.Bottom
   })
 
@@ -348,13 +411,13 @@ struct Index {
 }
 ```
 
-![20230728-101236](figures/20230728-101236.png)
+![2024-06-03](figures/2024-06-03_150422.png)
 
-
-### 示例4
+### 示例4（纯文本弹出框）
+纯文本弹出框，包含primaryTitle、secondaryTitle、content等内容。
 
 ```ts
-import { AlertDialog } from '@ohos.arkui.advanced.Dialog'
+import { AlertDialog } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -401,11 +464,12 @@ struct Index {
 
 ![AlertDialog](figures/AlertDialog.png)
 
-
-### 示例5
+### 示例5（进度条弹出框）
+进度条弹出框，包含content等内容。
 
 ```ts
-import { LoadingDialog } from '@ohos.arkui.advanced.Dialog'
+import { LoadingDialog } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
@@ -437,11 +501,101 @@ struct Index {
 
 ![LoadingDialog](figures/LoadingDialog.png)
 
-
-### 示例6
+### 示例6（自定义主题风格弹出框）
+自定义主题风格弹出框，包含content、theme等内容。
 
 ```ts
-import { CustomContentDialog } from '@ohos.arkui.advanced.Dialog'
+import { CustomColors, CustomTheme, LoadingDialog } from '@kit.ArkUI'
+
+class CustomThemeImpl implements CustomTheme {
+  colors?: CustomColors;
+
+  constructor(colors: CustomColors) {
+    this.colors = colors;
+  }
+}
+
+class CustomThemeColors implements CustomColors {
+  fontPrimary = '#ffd0a300';
+  iconSecondary = '#ffd000cd';
+}
+
+@Entry
+@Component
+struct Index {
+  @State customTheme: CustomTheme = new CustomThemeImpl(new CustomThemeColors());
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: LoadingDialog({
+      content: 'text',
+      theme: this.customTheme,
+    })
+  });
+
+  build() {
+    Row() {
+      Stack() {
+        Column() {
+          Button('dialog')
+            .width(96)
+            .height(40)
+            .onClick(() => {
+              this.dialogController.open();
+            })
+        }.margin({ bottom: 300 })
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
+}
+```
+
+![loading_dialog_with_theme](figures/advanced_dialog_loading_dialog_with_theme.png)
+
+### 示例7（自定义深浅色模式弹出框）
+自定义深浅色模式弹出框，包含content、themeColorMode等内容。
+
+```ts
+import { LoadingDialog } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: LoadingDialog({
+      content: 'Text',
+      themeColorMode: ThemeColorMode.DARK, //设置弹窗深浅色模式为深色模式
+    })
+  });
+
+  build() {
+    Row() {
+      Stack() {
+        Column() {
+          Button('Dialog')
+            .width(96)
+            .height(40)
+            .onClick(() => {
+              this.dialogController.open();
+            })
+        }.margin({ bottom: 300 })
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
+}
+```
+
+![loading_dialog_with_colorMode](figures/advanced_dialog_loading_dialog_with_colorMode.png)
+
+### 示例8（自定义内容弹出框）
+支持自定义内容弹出框，包含contentBuilder、buttons等内容。
+
+```ts
+import { CustomContentDialog } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -481,3 +635,59 @@ struct Index {
 ```
 
 ![custom_content_dialog](figures/advanced_dialog_custom_content_dialog.png)
+
+### 示例9（跟手弹窗）
+跟手弹窗（警告弹窗为例），包含visible、popover、targetBuilder等内容。
+
+```ts
+import { AlertDialog, PopoverDialog, PopoverOptions } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State isShow: boolean = false;
+  @State popoverOptions: PopoverOptions = {
+    builder: () => {
+      this.dialogBuilder();
+    }
+  }
+
+  @Builder dialogBuilder() {
+    AlertDialog({
+      content: '跟手弹出框',
+      primaryButton: {
+        value: '取消',
+        action: () => {
+          this.isShow = false;
+        },
+      },
+      secondaryButton: {
+        value: '确认',
+        action: () => {
+          this.isShow = false;
+        },
+      },
+    });
+  }
+
+  @Builder buttonBuilder() {
+    Button('跟手弹窗目标组件').onClick(() => {
+      this.isShow = true;
+    });
+  }
+
+  build() {
+    Column() {
+      PopoverDialog({
+        visible: this.isShow,
+        popover: this.popoverOptions,
+        targetBuilder: () => {
+          this.buttonBuilder();
+        },
+      })
+    }
+  }
+}
+```
+
+![popover_dialog](figures/advanced_dialog_popover_dialog.png)

@@ -10,10 +10,10 @@
 ## 导入模块
 
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
+import { distributedDataObject } from '@kit.ArkData';
 ```
 
-## distributedObject.create<sup>9+</sup>
+## distributedDataObject.create<sup>9+</sup>
 
 create(context: Context, source: object): DataObject
 
@@ -34,15 +34,22 @@ create(context: Context, source: object): DataObject
 | -------- | -------- |
 | [DataObject](#dataobject) | 创建完成的分布式数据对象。 |
 
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 FA模型示例：
-
+<!--code_no_check_fa-->
 ```ts
 // 导入模块
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base';
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 // 获取context
 let context = featureAbility.getContext();
 class SourceObject {
@@ -58,19 +65,18 @@ class SourceObject {
 }
 
 let source: SourceObject = new SourceObject("jack", 18, false);
-let g_object: distributedObject.DataObject = distributedObject.create(context, source);
+let g_object: distributedDataObject.DataObject = distributedDataObject.create(context, source);
 ```
 
 Stage模型示例：
 
 ```ts
 // 导入模块
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
-let g_object: distributedObject.DataObject|null = null;
+let g_object: distributedDataObject.DataObject|null = null;
 class SourceObject {
     name: string
     age: number
@@ -86,12 +92,12 @@ class SourceObject {
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         let source: SourceObject = new SourceObject("jack", 18, false);
-        g_object = distributedObject.create(this.context, source);
+        g_object = distributedDataObject.create(this.context, source);
     }
 }
 ```
 
-## distributedObject.genSessionId
+## distributedDataObject.genSessionId
 
 genSessionId(): string
 
@@ -108,8 +114,7 @@ genSessionId(): string
 **示例：**
 
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-let sessionId: string = distributedObject.genSessionId();
+let sessionId: string = distributedDataObject.genSessionId();
 ```
 
 ## SaveSuccessResponse<sup>9+</sup>
@@ -140,25 +145,23 @@ let sessionId: string = distributedObject.genSessionId();
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**参数：**
-
-  | 名称       | 类型                                                                 | 必填 | 说明                                 |
-  | ---------- | -------------------------------------------------------------------- | ---- | ------------------------------------ |
-  | storeName  | string                                                               | 是   | 待绑定资产在所属的数据库中的库名。   |
-  | tableName  | string                                                               | 是   | 待绑定资产在所属的数据库中的表名。   |
-  | primaryKey | [CommonType.ValuesBucket](js-apis-data-commonType.md#valuesbucket) | 是   | 待绑定资产在所属的数据库中的主键。   |
-  | field      | string                                                               | 是   | 待绑定资产在所属的数据库中的列名。   |
-  | assetName  | string                                                               | 是   | 待绑定资产在所属的数据库中的资产名。 |
+  | 名称       | 类型                                                               | 只读 | 可选 | 说明                                 |
+  | ---------- | ------------------------------------------------------------------ | ---- | ---- | ------------------------------------ |
+  | storeName  | string                                                             | 否   | 否   | 待绑定资产在所属的数据库中的库名。   |
+  | tableName  | string                                                             | 否   | 否   | 待绑定资产在所属的数据库中的表名。   |
+  | primaryKey | [commonType.ValuesBucket](js-apis-data-commonType.md#valuesbucket) | 否   | 否   | 待绑定资产在所属的数据库中的主键。   |
+  | field      | string                                                             | 否   | 否   | 待绑定资产在所属的数据库中的列名。   |
+  | assetName  | string                                                             | 否   | 否   | 待绑定资产在所属的数据库中的资产名。 |
 
 ## DataObject
 
-表示一个分布式数据对象。在使用以下接口前，需调用[create()](#distributedobjectcreate9)获取DataObject对象。
+表示一个分布式数据对象。在使用以下接口前，需调用[create()](#distributeddataobjectcreate9)获取DataObject对象。
 
 ### setSessionId<sup>9+</sup>
 
 setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
-设置sessionId，使用callback方式异步回调。当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
+设置sessionId，使用callback方式异步回调。当可信组网中有多个设备处于协同状态时，如果多个设备间的分布式对象设置为同一个sessionId，就能自动同步。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -166,24 +169,26 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | sessionId | string | 是 | 分布式数据对象在可信组网中的标识ID。设置为""时表示退出分布式组网。|
-  | callback | AsyncCallback&lt;void&gt; | 是 | 加入session的异步回调。|
+  | 参数名    | 类型                      | 必填 | 说明                                                                                                           |
+  | --------- | ------------------------- | ---- | -------------------------------------------------------------------------------------------------------------- |
+  | sessionId | string                    | 是   | 分布式数据对象在可信组网中的标识ID，长度不大于128，且只能包含字母数字或下划线_。设置为""时表示退出分布式组网。 |
+  | callback  | AsyncCallback&lt;void&gt; | 是   | 加入session的异步回调。                                                                                        |
 
 **错误码：**
 
-  以下错误码的详细介绍参见[分布式数据对象错误码](errorcode-distributed-dataObject.md)。
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式数据对象错误码](errorcode-distributed-dataObject.md)。
 
-  | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 15400001 | Create table failed.|
+  | 错误码ID | 错误信息                                                                                                                                                           |
+  | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | 201      | Permission verification failed.                                                                                                                                    |
+  | 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. The sessionId allows only letters, digits, and underscores(_), and cannot exceed 128 in length. |
+  | 15400001 | Failed to create the in-memory database.                                                                                                                                               |
 
 **示例：**
 
 ```ts
 // g_object加入分布式组网
-g_object.setSessionId(distributedObject.genSessionId(), ()=>{
+g_object.setSessionId(distributedDataObject.genSessionId(), ()=>{
     console.info("join session");
 });
 // g_object退出分布式组网
@@ -210,17 +215,19 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-  以下错误码的详细介绍参见[分布式数据对象错误码](errorcode-distributed-dataObject.md)。
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式数据对象错误码](errorcode-distributed-dataObject.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 15400001 | Create table failed.|
+  | 201      | Permission verification failed. |
+  | 401      | Parameter error. Incorrect parameter types. |
+  | 15400001 | Failed to create the in-memory database. |
 
 **示例：**
 
 ```ts
 // g_object加入分布式组网
-g_object.setSessionId(distributedObject.genSessionId(), ()=>{
+g_object.setSessionId(distributedDataObject.genSessionId(), ()=>{
     console.info("join session");
 });
 // 退出分布式组网
@@ -233,7 +240,7 @@ g_object.setSessionId(() => {
 
 setSessionId(sessionId?: string): Promise&lt;void&gt;
 
-设置sessionId，使用Promise异步返回。当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
+设置sessionId，使用Promise异步返回。当可信组网中有多个设备处于协同状态时，如果多个设备间的分布式对象设置为同一个sessionId，就能自动同步。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -241,9 +248,9 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | sessionId | string | 否 | 分布式数据对象在可信组网中的标识ID。如果要退出分布式组网，设置为""或不设置均可。 |
+  | 参数名    | 类型   | 必填 | 说明                                                                                                                         |
+  | --------- | ------ | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+  | sessionId | string | 否   | 分布式数据对象在可信组网中的标识ID，长度不大于128，且只能包含字母数字或下划线_。如果要退出分布式组网，设置为""或不设置均可。 |
 
 **返回值：**
 
@@ -253,17 +260,19 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 
 **错误码：**
 
-  以下错误码的详细介绍参见[分布式数据对象错误码](errorcode-distributed-dataObject.md)。
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式数据对象错误码](errorcode-distributed-dataObject.md)。
 
-  | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 15400001 | Create table failed.|
+  | 错误码ID | 错误信息                                                                                                                                                           |
+  | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | 201      | Permission verification failed.                                                                                                                                    |
+  | 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. The sessionId allows only letters, digits, and underscores(_), and cannot exceed 128 in length. |
+  | 15400001 | Failed to create the in-memory database.                                                                                                                                               |
 
 **示例：**
 
 ```ts
 // g_object加入分布式组网
-g_object.setSessionId(distributedObject.genSessionId()).then (()=>{
+g_object.setSessionId(distributedDataObject.genSessionId()).then (()=>{
     console.info("join session.");
     }).catch((error: BusinessError)=>{
         console.info("error:" + error.code + error.message);
@@ -290,6 +299,14 @@ on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =>
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
 | callback | Function | 是 | 变更回调对象实例。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
+
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -319,6 +336,13 @@ off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) 
 | type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
 | callback | Function | 否 | 需要删除的数据变更回调，若不设置则删除该对象所有的数据变更回调。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
 
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -351,6 +375,14 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
 | callback | Function | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -374,6 +406,13 @@ off(type: 'status', callback?:(sessionId: string, networkId: string, status: 'on
 | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
 | callback | Function | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识变更对象； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -409,11 +448,20 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
   | deviceId | string | 是 | 保存数据的deviceId，当deviceId为"local"，代表存储在本地设备。 |
   | callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | 是 | 回调函数。返回SaveSuccessResponse，包含sessionId、version、deviceId等信息。 |
 
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | 801      | Capability not supported. |
+
 **示例：**
 
 ```ts
 g_object.setSessionId("123456");
-g_object.save("local", (err: BusinessError, result:distributedObject.SaveSuccessResponse) => {
+g_object.save("local", (err: BusinessError, result:distributedDataObject.SaveSuccessResponse) => {
     if (err) {
         console.info("save failed, error code = " + err.code);
         console.info("save failed, error message: " + err.message);
@@ -454,11 +502,20 @@ save(deviceId: string): Promise&lt;SaveSuccessResponse&gt;
   | -------- | -------- |
   | Promise&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Promise对象。返回SaveSuccessResponse，包含sessionId、version、deviceId等信息。|
 
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | 801      | Capability not supported. |
+
 **示例：**
 
 ```ts
 g_object.setSessionId("123456");
-g_object.save("local").then((result: distributedObject.SaveSuccessResponse) => {
+g_object.save("local").then((result: distributedDataObject.SaveSuccessResponse) => {
     console.info("save callback");
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
@@ -486,12 +543,21 @@ revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | 是 | 回调函数。返回RevokeSaveSuccessResponse，包含sessionId。 |
 
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Incorrect parameter types. |
+  | 801      | Capability not supported. |
+
 **示例：**
 
 ```ts
 g_object.setSessionId("123456");
 // 持久化数据
-g_object.save("local", (err: BusinessError, result: distributedObject.SaveSuccessResponse) => {
+g_object.save("local", (err: BusinessError, result: distributedDataObject.SaveSuccessResponse) => {
     if (err) {
         console.info("save failed, error code = " + err.code);
         console.info("save failed, error message: " + err.message);
@@ -503,7 +569,7 @@ g_object.save("local", (err: BusinessError, result: distributedObject.SaveSucces
     console.info("save deviceId:  " + result.deviceId);
 });
 // 删除持久化保存的数据
-g_object.revokeSave((err: BusinessError, result: distributedObject.RevokeSaveSuccessResponse) => {
+g_object.revokeSave((err: BusinessError, result: distributedDataObject.RevokeSaveSuccessResponse) => {
     if (err) {
       console.info("revokeSave failed, error code = " + err.code);
       console.info("revokeSave failed, error message: " + err.message);
@@ -531,12 +597,20 @@ revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt;
   | -------- | -------- |
   | Promise&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Promise对象。返回RevokeSaveSuccessResponse，包含sessionId。 |
 
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 801      | Capability not supported. |
+
 **示例：**
 
 ```ts
 g_object.setSessionId("123456");
 // 持久化数据
-g_object.save("local").then((result: distributedObject.SaveSuccessResponse) => {
+g_object.save("local").then((result: distributedDataObject.SaveSuccessResponse) => {
     console.info("save callback");
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
@@ -546,7 +620,7 @@ g_object.save("local").then((result: distributedObject.SaveSuccessResponse) => {
     console.info("save failed, error message: " + err.message);
 });
 // 删除持久化保存的数据
-g_object.revokeSave().then((result: distributedObject.RevokeSaveSuccessResponse) => {
+g_object.revokeSave().then((result: distributedDataObject.RevokeSaveSuccessResponse) => {
     console.info("revokeSave callback");
     console.info("sessionId" + result.sessionId);
 }).catch((err: BusinessError)=> {
@@ -573,14 +647,22 @@ bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;
   | bindInfo | [BindInfo](#bindinfo11)   | 是   | 待绑定的融合资产在数据库中的信息，包含库名、表名、主键、列名及在数据库中的资产名。 |
   | callback | AsyncCallback&lt;void&gt; | 是   | 绑定数据库的回调。                                                                 |
 
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | 801      | Capability not supported. |
+
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type window from '@ohos.window';
-import distributedObject from '@ohos.data.distributedDataObject';
-import commonType from '@ohos.data.commonType';
-import type { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { commonType } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class Note {
   title: string | undefined
@@ -606,17 +688,17 @@ class EntryAbility extends UIAbility {
       status: commonType.AssetStatus.ASSET_NORMAL
     }
     let note: Note = new Note('test', 'test', attachment);
-    let g_object: distributedObject.DataObject = distributedObject.create(this.context, note);
+    let g_object: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
     g_object.setSessionId('123456');
 
-    const bindInfo: distributedObject.BindInfo = {
+    const bindInfo: distributedDataObject.BindInfo = {
       storeName: 'notepad',
       tableName: 'note_t',
       primaryKey: {
         'uuid': '00000000-0000-0000-0000-000000000000'
       },
       field: 'attachment',
-      assetName: attachment.name
+      assetName: attachment.name as string
     }
 
     g_object.bindAssetStore('attachment', bindInfo, (err: BusinessError) => {
@@ -652,14 +734,22 @@ bindAssetStore(assetKey: string, bindInfo: BindInfo): Promise&lt;void&gt;
   | ------------------- | ------------- |
   | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | 801      | Capability not supported. |
+
 **示例:**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type window from '@ohos.window';
-import distributedObject from '@ohos.data.distributedDataObject';
-import commonType from '@ohos.data.commonType';
-import type { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { commonType } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class Note {
   title: string | undefined
@@ -685,17 +775,17 @@ class EntryAbility extends UIAbility {
       status: commonType.AssetStatus.ASSET_NORMAL
     }
     let note: Note = new Note('test', 'test', attachment);
-    let g_object: distributedObject.DataObject = distributedObject.create(this.context, note);
+    let g_object: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
     g_object.setSessionId('123456');
 
-    const bindInfo: distributedObject.BindInfo = {
+    const bindInfo: distributedDataObject.BindInfo = {
       storeName: 'notepad',
       tableName: 'note_t',
       primaryKey: {
         'uuid': '00000000-0000-0000-0000-000000000000'
       },
       field: 'attachment',
-      assetName: attachment.name
+      assetName: attachment.name as string
     }
 
     g_object.bindAssetStore("attachment", bindInfo).then(() => {
@@ -707,7 +797,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## distributedObject.createDistributedObject<sup>(deprecated)</sup>
+## distributedDataObject.createDistributedObject<sup>(deprecated)</sup>
 
 createDistributedObject(source: object): DistributedObject
 
@@ -716,7 +806,7 @@ createDistributedObject(source: object): DistributedObject
 
 > **说明：**
 >
-> 从 API Version 8 开始支持，从 API Version 9 开始废弃，建议使用[distributedObject.create](#distributedobjectcreate9)替代。
+> 从 API Version 8 开始支持，从 API Version 9 开始废弃，建议使用[distributedDataObject.create](#distributeddataobjectcreate9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -735,7 +825,6 @@ createDistributedObject(source: object): DistributedObject
 **示例：**
 
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
 class SourceObject {
     name: string
     age: number
@@ -749,18 +838,18 @@ class SourceObject {
 }
 
 let source: SourceObject = new SourceObject("jack", 18, false);
-let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
+let g_object: distributedDataObject.DistributedObject = distributedDataObject.createDistributedObject(source);
 ```
 
 ## DistributedObject<sup>(deprecated)</sup>
 
-表示一个分布式数据对象。在使用以下接口前，需调用[createDistributedObject()](#distributedobjectcreatedistributedobjectdeprecated)获取DistributedObject对象。
+表示一个分布式数据对象。在使用以下接口前，需调用[createDistributedObject()](#distributeddataobjectcreatedistributedobjectdeprecated)获取DistributedObject对象。
 
 ### setSessionId<sup>(deprecated)</sup>
 
 setSessionId(sessionId?: string): boolean
 
-设置sessionId，当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
+设置sessionId。当可信组网中有多个设备处于协同状态时，如果多个设备间的分布式对象设置为同一个sessionId，就能自动同步。
 
 > **说明：**
 >
@@ -785,7 +874,6 @@ setSessionId(sessionId?: string): boolean
 **示例：**
 
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
 class SourceObject {
     name: string
     age: number
@@ -799,9 +887,9 @@ class SourceObject {
 }
 
 let source: SourceObject = new SourceObject("jack", 18, false);
-let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
+let g_object: distributedDataObject.DistributedObject = distributedDataObject.createDistributedObject(source);
 // g_object加入分布式组网
-g_object.setSessionId(distributedObject.genSessionId());
+g_object.setSessionId(distributedDataObject.genSessionId());
 // 设置为""退出分布式组网
 g_object.setSessionId("");
 ```
@@ -828,7 +916,6 @@ on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =>
 **示例：**
 
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
 class SourceObject {
     name: string
     age: number
@@ -842,7 +929,7 @@ class SourceObject {
 }
 
 let source: SourceObject = new SourceObject("jack", 18, false);
-let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
+let g_object: distributedDataObject.DistributedObject = distributedDataObject.createDistributedObject(source);
 g_object.on("change", (sessionId: string, fields: Array<string>) => {
     console.info("change" + sessionId);
     if (fields != null && fields != undefined) {
@@ -875,7 +962,6 @@ off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) 
 **示例：**
 
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
 class SourceObject {
     name: string
     age: number
@@ -889,7 +975,7 @@ class SourceObject {
 }
 
 let source: SourceObject = new SourceObject("jack", 18, false);
-let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
+let g_object: distributedDataObject.DistributedObject = distributedDataObject.createDistributedObject(source);
 // 删除数据变更回调changeCallback
 g_object.off("change", (sessionId: string, fields: Array<string>) => {
     console.info("change" + sessionId);
@@ -925,7 +1011,6 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 **示例：**
 
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
 class SourceObject {
     name: string
     age: number
@@ -939,7 +1024,7 @@ class SourceObject {
 }
 
 let source: SourceObject = new SourceObject("jack", 18, false);
-let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
+let g_object: distributedDataObject.DistributedObject = distributedDataObject.createDistributedObject(source);
 
 g_object.on("status", (sessionId: string, networkId: string, status: 'online' | 'offline') => {
     console.info("status changed " + sessionId + " " + status + " " + networkId);
@@ -969,7 +1054,6 @@ off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'o
 **示例：**
 
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
 class SourceObject {
     name: string
     age: number
@@ -983,7 +1067,7 @@ class SourceObject {
 }
 
 let source: SourceObject = new SourceObject("jack", 18, false);
-let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
+let g_object: distributedDataObject.DistributedObject = distributedDataObject.createDistributedObject(source);
 // 删除上下线回调changeCallback
 g_object.off("status", (sessionId: string, networkId: string, status: 'online' | 'offline') => {
     console.info("status changed " + sessionId + " " + status + " " + networkId);

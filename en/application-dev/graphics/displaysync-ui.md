@@ -4,12 +4,12 @@ If you want to draw and update a UI component at an independent frame rate, you 
 
 ## How to Develop
 
-This section describes how to use different frame rates to change the font size of the **\<Text>** component. This operation simulates the effect of different frame rates on the UI components.
+This section describes how to use different frame rates to change the font size of the **Text** component. This operation simulates the effect of different frame rates on the UI components.
 
 1. Import the DisplaySync module.
 
    ```ts
-   import displaySync from '@ohos.graphics.displaySync';
+   import { displaySync } from '@kit.ArkGraphics2D';
    ```
 
 2. Define and create a **DisplaySync** instance.
@@ -24,7 +24,7 @@ This section describes how to use different frame rates to change the font size 
    }
    ```
 
-3. Define two **\<Text>** components.
+3. Define two **Text** components.
 
    ```ts
    @State drawFirstSize: number = 25;
@@ -104,7 +104,7 @@ This section describes how to use different frame rates to change the font size 
 
    > **NOTE**
    >
-   > After start() is called, the stop() API must be performed and the DisplaySync instance must be set to null in the aboutToDisappear function to avoid memory leakage.
+   > After **start()** is called, the **stop()** API must be performed and the **DisplaySync** instance must be set to null in the **aboutToDisappear** function to avoid memory leakage.
    ```ts
    aboutToDisappear() {
      if (this.backDisplaySyncSlow) {
@@ -142,7 +142,7 @@ This section describes how to use different frame rates to change the font size 
 
 ## Sample Code
 ```ts
-import displaySync from '@ohos.graphics.displaySync';
+import { displaySync } from '@kit.ArkGraphics2D';
 
 @Entry
 @Component

@@ -38,6 +38,7 @@
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_UpdateSession](#oh_huks_updatesession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*inData, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*outData) | 分段添加密钥操作的数据并进行相应的密钥操作，输出处理数据。  | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_FinishSession](#oh_huks_finishsession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*inData, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*outData) | 结束密钥会话并进行相应的密钥操作，输出处理数据。  | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_AbortSession](#oh_huks_abortsession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet) | 取消密钥会话。  | 
+| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_ListAliases](#oh_huks_listaliases) (const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_KeyAliasSet](_o_h___huks___key_alias_set.md) \*\*outData) | 批量查询密钥别名集。  | 
 
 
 ## 函数说明
@@ -80,6 +81,8 @@ struct OH_Huks_Result OH_Huks_AnonAttestKeyItem (const struct OH_Huks_Blob * key
 ```
 **描述**
 获取密钥证书链。
+
+<!--RP1--><!--RP1End-->
 
 **起始版本：** 11
 
@@ -372,6 +375,28 @@ struct OH_Huks_Result OH_Huks_IsKeyItemExist (const struct OH_Huks_Blob * keyAli
 返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时密钥存在，
 
 返回[OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST](_huks_type_api.md#oh_huks_errcode)不存在，返回其他错误在其他情况。
+
+
+### OH_Huks_ListAliases()
+
+```
+struct OH_Huks_Result OH_Huks_ListAliases (const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_KeyAliasSet ** outData )
+```
+**描述**
+批量查询密钥别名集。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| paramSet | 查询密钥别名需要的属性TAG（默认传空）。  | 
+| outData | 经过对应的查询操作后输出的密钥别名集数据。  | 
+
+**返回：**
+
+返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 
 ### OH_Huks_UpdateSession()

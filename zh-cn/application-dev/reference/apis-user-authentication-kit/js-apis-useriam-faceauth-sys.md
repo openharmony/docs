@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
+import { faceAuth } from '@kit.UserAuthenticationKit';
 ```
 
 ## FaceAuthManager
@@ -37,9 +37,9 @@ constructor()
 **示例：**
 
 ```ts
-import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
+import { faceAuth } from '@kit.UserAuthenticationKit';
 
-let faceAuthManager = new userIAM_faceAuth.FaceAuthManager();
+let faceAuthManager = new faceAuth.FaceAuthManager();
 ```
 
 ### setSurfaceId
@@ -68,16 +68,16 @@ setSurfaceId(surfaceId: string): void;
 | -------- | ------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 12700001 | The operation is failed. |
+| 12700001 | Operation failed. |
 
 **示例：**
 
 ```ts
-import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
+import { faceAuth } from '@kit.UserAuthenticationKit';
 
 // 该surfaceId应该从XComponent控件获取，此处仅用作示例。
 let surfaceId = '123456';
-let manager = new userIAM_faceAuth.FaceAuthManager();
+let manager = new faceAuth.FaceAuthManager();
 try {
   manager.setSurfaceId(surfaceId);
   console.info('set surface id success');

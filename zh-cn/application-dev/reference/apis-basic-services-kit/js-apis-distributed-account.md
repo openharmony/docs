@@ -1,6 +1,6 @@
-# @ohos.account.distributedAccount (分布式帐号管理)
+# @ohos.account.distributedAccount (分布式账号管理)
 
-本模块提供管理分布式帐号的一些基础功能，主要包括查询和更新帐号登录状态。
+本模块提供管理分布式账号的一些基础功能，主要包括查询和更新账号登录状态。
 
 > **说明：**
 > 
@@ -9,14 +9,14 @@
 ## 导入模块
 
 ```ts
-import account_distributedAccount from '@ohos.account.distributedAccount';
+import { distributedAccount } from '@kit.BasicServicesKit';
 ```
 
-## account_distributedAccount.getDistributedAccountAbility
+## distributedAccount.getDistributedAccountAbility
 
 getDistributedAccountAbility(): DistributedAccountAbility
 
-获取分布式帐号单实例对象。
+获取分布式账号单实例对象。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -24,22 +24,22 @@ getDistributedAccountAbility(): DistributedAccountAbility
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | [DistributedAccountAbility](#distributedaccountability) | 返回一个实例，实例提供查询和更新分布式帐号登录状态方法。 |
+  | [DistributedAccountAbility](#distributedaccountability) | 返回一个实例，实例提供查询和更新分布式账号登录状态方法。 |
 
 **示例：**
   ```ts
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   ```
 
 ## DistributedAccountAbility
 
-提供查询和更新分布式帐号登录状态方法(需要先获取分布式帐号的单实例对象)。
+提供查询和更新分布式账号登录状态方法(需要先获取分布式账号的单实例对象)。
 
 ### getOsAccountDistributedInfo<sup>9+</sup>
 
 getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): void
 
-获取分布式帐号信息，使用callback异步回调。
+获取分布式账号信息，使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -49,22 +49,24 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | 是 | 回调参数。当获取分布式帐号信息成功，err为undefined，data为获取到的分布式帐号信息对象；否则为错误对象。 |
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | 是 | 回调参数。当获取分布式账号信息成功，err为undefined，data为获取到的分布式账号信息对象；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo(
-      (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
+      (err: BusinessError, data: distributedAccount.DistributedInfo) => {
         if (err) {
           console.log('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
         } else {
@@ -80,7 +82,7 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
 
 getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
-获取分布式帐号信息。使用Promise异步回调。
+获取分布式账号信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -90,21 +92,22 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise对象，返回分布式帐号信息对象。 |
+  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise对象，返回分布式账号信息对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 12300001 | System service exception. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   try {
-    accountAbility.getOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
+    accountAbility.getOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
         console.log('distributed information: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
         console.log('getOsAccountDistributedInfo exception: '  + JSON.stringify(err));
@@ -118,7 +121,7 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): void
 
-获取分布式帐号信息。使用callback异步回调。
+获取分布式账号信息。使用callback异步回调。
 > **说明：** 
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountDistributedInfo](#getosaccountdistributedinfo9)。
@@ -131,15 +134,15 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | 是 | 回调函数。当获取分布式帐号信息成功，err为undefined，data为获取到的分布式帐号信息对象；否则为错误对象。 |
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | 是 | 回调函数。当获取分布式账号信息成功，err为undefined，data为获取到的分布式账号信息对象；否则为错误对象。 |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo(
-    (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
+    (err: BusinessError, data: distributedAccount.DistributedInfo) => {
       if (err) {
         console.log('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
       } else {
@@ -152,7 +155,7 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
 
 queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
-获取分布式帐号信息。使用Promise异步回调。
+获取分布式账号信息。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -166,14 +169,14 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise对象，返回分布式帐号信息对象。 |
+  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise对象，返回分布式账号信息对象。 |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  accountAbility.queryOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  accountAbility.queryOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
       console.log('distributed information: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
       console.log('queryOsAccountDistributedInfo exception: '  + JSON.stringify(err));
@@ -184,7 +187,7 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallback&lt;void&gt;): void
 
-更新分布式帐号信息。使用callback异步回调。
+更新分布式账号信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -194,23 +197,25 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式帐号信息。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当更新分布式帐号信息成功时，err为undefined，否则为错误对象。 |
+  | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式账号信息。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当更新分布式账号信息成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid accountInfo. |
 | 12300003 | Account not found. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo: account_distributedAccount.DistributedInfo =
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  let accountInfo: distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
@@ -229,7 +234,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
 
 setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
-更新分布式帐号信息。使用Promise异步回调。
+更新分布式账号信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -239,7 +244,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式帐户信息。 |
+  | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式账户信息。 |
 
 **返回值：**
 
@@ -251,16 +256,18 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid accountInfo. |
 | 12300003 | Account not found. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo: account_distributedAccount.DistributedInfo =
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  let accountInfo: distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo).then(() => {
@@ -277,7 +284,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
 updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallback&lt;void&gt;): void
 
-更新分布式帐号信息。使用callback异步回调。
+更新分布式账号信息。使用callback异步回调。
 
 > **说明：** 
 >
@@ -291,15 +298,15 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式帐号信息。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当更新分布式帐号信息成功时，err为undefined，否则为错误对象。 |
+  | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式账号信息。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当更新分布式账号信息成功时，err为undefined，否则为错误对象。 |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo: account_distributedAccount.DistributedInfo =
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  let accountInfo: distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
     if (err) {
@@ -314,7 +321,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
 
 updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
-更新分布式帐号信息。使用Promise异步回调。
+更新分布式账号信息。使用Promise异步回调。
 > **说明：** 
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[setOsAccountDistributedInfo](#setosaccountdistributedinfo9-1)。
@@ -326,7 +333,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式帐户信息。 |
+  | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式账户信息。 |
 
 **返回值：**
 
@@ -336,10 +343,10 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo: account_distributedAccount.DistributedInfo =
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  let accountInfo: distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo).then(() => {
       console.log('updateOsAccountDistributedInfo successfully');
@@ -350,23 +357,23 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
 ## DistributedInfo
 
-提供操作系统帐号的分布式信息。
+提供操作系统账号的分布式信息。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| name | string |是 | 分布式帐号名称，非空字符串。 |
-| id | string |是 | 分布式帐号UID，非空字符串。 |
-| event | string |是 | 分布式帐号登录状态，包括登录、登出、Token失效和注销，分别对应以下字符串：<br/>-&nbsp;Ohos.account.event.LOGIN<br/>-&nbsp;Ohos.account.event.LOGOUT<br/>-&nbsp;Ohos.account.event.TOKEN_INVALID<br/>-&nbsp;Ohos.account.event.LOGOFF |
-| nickname<sup>9+</sup> | string |否 | 分布式帐号的昵称，默认为空。 |
-| avatar<sup>9+</sup> | string |否 | 分布式帐号的头像，默认为空。 |
-| status<sup>10+</sup> | [DistributedAccountStatus](#distributedaccountstatus10) |否 | 分布式帐号的状态，枚举类型，默认为未登录状态。 |
-| scalableData<sup>8+</sup> | object |否 | 分布式帐号扩展信息，根据业务所需，以k-v形式传递定制化信息，默认为空。|
+| name | string |是 | 分布式账号名称，非空字符串。 |
+| id | string |是 | 分布式账号UID，非空字符串。 |
+| event | string |是 | 分布式账号登录状态，包括登录、登出、Token失效和注销，分别对应以下字符串：<br/>-&nbsp;Ohos.account.event.LOGIN<br/>-&nbsp;Ohos.account.event.LOGOUT<br/>-&nbsp;Ohos.account.event.TOKEN_INVALID<br/>-&nbsp;Ohos.account.event.LOGOFF |
+| nickname<sup>9+</sup> | string |否 | 分布式账号的昵称，默认为空。 |
+| avatar<sup>9+</sup> | string |否 | 分布式账号的头像，默认为空。 |
+| status<sup>10+</sup> | [DistributedAccountStatus](#distributedaccountstatus10) |否 | 分布式账号的状态，枚举类型，默认为未登录状态。 |
+| scalableData<sup>8+</sup> | object |否 | 分布式账号扩展信息，根据业务所需，以k-v形式传递定制化信息，默认为空。|
 
 ## DistributedAccountStatus<sup>10+</sup>
 
-表示分布式帐号状态枚举。
+表示分布式账号状态枚举。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 

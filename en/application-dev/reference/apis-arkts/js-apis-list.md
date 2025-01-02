@@ -4,7 +4,11 @@
 
 Unlike [LinkedList](js-apis-linkedlist.md), which is a doubly linked list, **List** is a singly linked list that does not support insertion or removal at both ends.
 
-**Recommended use case**: Use **List** for frequent insertion and removal operations.
+> **NOTE**
+>
+> Although using \[index\] in **List** can obtain an element with the given index, this operation will result in undefined results. Due to this reason, **get()** method is recommended.
+
+**Recommended use case**: Use **List** for frequent insertion and removal operations when a singly linked list is required.
 
 This topic uses the following to identify the use of generics:
 - T: Type
@@ -17,13 +21,15 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import List from '@ohos.util.List';
+import { List } from '@kit.ArkTS';
 ```
 
 
 ## List
 
 ### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -37,6 +43,8 @@ import List from '@ohos.util.List';
 constructor()
 
 A constructor used to create a **List** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -61,17 +69,19 @@ add(element: T): boolean
 
 Adds an element at the end of this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
@@ -95,7 +105,7 @@ class C {
   name: string = ''
   age: string = ''
 }
-let c: C = {name : "Dylon", age : "13"};
+let c: C = {name : "Dylan", age : "13"};
 let result4 = list.add(c);
 let result5 = list.add(false);
 ```
@@ -106,23 +116,26 @@ insert(element: T, index: number): void
 
 Inserts an element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
-| index | number | Yes| Index of the position where the element is to be inserted.|
+| index | number | Yes| Index of the position where the element is to be inserted. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The insert method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The insert method cannot be bound. |
 
 **Example**
 
@@ -139,17 +152,19 @@ has(element: T): boolean
 
 Checks whether this container has the specified element.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
 
@@ -175,26 +190,29 @@ get(index: number): T
 
 Obtains the element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | T | Element obtained.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The get method cannot be bound. |
 
 **Example**
@@ -217,17 +235,19 @@ getLastIndexOf(element: T): number
 
 Obtains the index of the last occurrence of the specified element in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | number | Returns the index if obtained; returns **-1** otherwise.|
 
@@ -259,17 +279,19 @@ getIndexOf(element: T): number
 
 Obtains the index of the first occurrence of the specified element in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | number | Returns the position index if obtained; returns **-1** otherwise.|
 
@@ -301,17 +323,19 @@ equal(obj: Object): boolean
 
 Compares whether a specified object is equal to this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | obj | Object | Yes| Object used for comparison.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the two are equal; returns **false** otherwise.|
 
@@ -343,28 +367,31 @@ removeByIndex(index: number): T
 
 Searches for an element based on its index and then removes it.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | T | Element removed.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The removeByIndex method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The removeByIndex method cannot be bound. |
 
 **Example**
 
@@ -384,17 +411,19 @@ remove(element: T): boolean
 
 Removes the first occurrence of the specified element from this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
@@ -424,18 +453,20 @@ thisArg?: Object): void
 
 Replaces all elements in this container with new elements, and returns the new ones.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for the replacement.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
 callbackFn
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
 | index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
@@ -443,10 +474,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The replaceAllElements method cannot be bound. |
 
 **Example**
@@ -470,18 +502,20 @@ thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for the replacement.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
 callbackFn
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
 | index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
@@ -489,10 +523,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **Example**
@@ -514,27 +549,30 @@ sort(comparator: (firstValue: T, secondValue: T) => number): void
 
 Sorts elements in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | comparator | function | Yes| Callback invoked for sorting.|
 
 comparator
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | firstValue | T | Yes| Previous element.|
 | secondValue | T | Yes| Next element.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The sort method cannot be bound. |
 
 **Example**
@@ -555,29 +593,32 @@ getSubList(fromIndex: number, toIndex: number): List&lt;T&gt;
 
 Obtains elements within a range in this container, including the element at the start position but not that at the end position, and returns these elements as a new **List** instance.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | fromIndex | number | Yes| Index of the start position.|
 | toIndex | number | Yes| Index of the end position.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | List&lt;T&gt; | New **List** instance obtained.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The getSubList method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range. |
+| 10200011 | The getSubList method cannot be bound. |
 
 **Example**
 
@@ -595,6 +636,8 @@ let result = list.getSubList(1, 3);
 clear(): void
 
 Clears this container and sets its length to **0**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -623,29 +666,32 @@ set(index: number, element: T): T
 
 Replaces an element at the specified position in this container with a given element.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 | element | T | Yes| Element to be used for replacement.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | T | New element.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The set method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The set method cannot be bound. |
 
 **Example**
 
@@ -664,11 +710,13 @@ convertToArray(): Array&lt;T&gt;
 
 Converts this container into an array.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | Array&lt;T&gt; | Array obtained.|
 
@@ -697,11 +745,13 @@ isEmpty(): boolean
 
 Checks whether this container is empty (contains no element).
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the container is empty; returns **false** otherwise.|
 
@@ -730,11 +780,13 @@ getFirst(): T
 
 Obtains the first element in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | T | The first element obtained.|
 
@@ -763,11 +815,13 @@ getLast(): T
 
 Obtains the last element in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | T | The last element obtained.|
 
@@ -796,15 +850,13 @@ let result = list.getLast();
 
 Obtains an iterator, each item of which is a JavaScript object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|
 

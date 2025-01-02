@@ -13,13 +13,13 @@ Before the management, you must call [createAudioRenderer(options: AudioRenderer
 1. Import the audio module.
 
     ```ts
-    import audio from '@ohos.multimedia.audio';
+    import { audio } from '@kit.AudioKit';
     ```
 
 2. Configure audio rendering parameters and create an **AudioRenderer** instance. For details about the audio rendering parameters, see [AudioRendererOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiorendereroptions8). For the **AudioRenderer** instance, the audio effect mode **EFFECT_DEFAULT** is used by default.
 
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     let audioStreamInfo: audio.AudioStreamInfo = {
       samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -29,7 +29,7 @@ Before the management, you must call [createAudioRenderer(options: AudioRenderer
     };
 
     let audioRendererInfo: audio.AudioRendererInfo = {
-      usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+      usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
       rendererFlags: 0
     };
 
@@ -53,8 +53,8 @@ Before the management, you must call [createAudioRenderer(options: AudioRenderer
 ### Obtaining the Audio Effect Mode of the Playback Instance
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   audioRenderer.getAudioEffectMode((err: BusinessError, effectMode: audio.AudioEffectMode) => {
     if (err) {
@@ -71,8 +71,8 @@ Before the management, you must call [createAudioRenderer(options: AudioRenderer
 Disable the system audio effect.
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_NONE, (err: BusinessError) => {
     if (err) {
@@ -87,8 +87,8 @@ Disable the system audio effect.
 Enable the default system audio effect.
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err: BusinessError) => {
     if (err) {
@@ -102,7 +102,7 @@ Enable the default system audio effect.
 
 ## Obtaining the Global Audio Effect Mode
 
-Obtain the global audio effect mode corresponding to a specific audio stream usage (specified by [StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)).
+Obtain the global audio effect mode corresponding to a specific audio stream usage, which is specified by [StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage).
 
 For an audio playback application, pay attention to the audio effect mode used by the audio stream of the application and perform corresponding operations. For example, for a music application, select the audio effect mode for the music scenario. Before obtaining the global audio effect mode, call **getStreamManager()** to create an **AudioStreamManager** instance.
 
@@ -111,7 +111,7 @@ For an audio playback application, pay attention to the audio effect mode used b
 Before using **AudioStreamManager** APIs, you must use **getStreamManager()** to create an **AudioStreamManager** instance.
 
    ```ts
-   import audio from '@ohos.multimedia.audio';
+   import { audio } from '@kit.AudioKit';
 
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
@@ -120,10 +120,10 @@ Before using **AudioStreamManager** APIs, you must use **getStreamManager()** to
 ### Querying the Audio Effect Mode of the Corresponding Scenario
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA, async (err: BusinessError, audioEffectInfoArray: audio.AudioEffectInfoArray) => {
+  audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MUSIC, async (err: BusinessError, audioEffectInfoArray: audio.AudioEffectInfoArray) => {
     if (err) {
       console.error('Failed to get effect info array');
       return;    

@@ -1,6 +1,6 @@
 # CommonEventData
 
-The **CommonEventData** module provides APIs for defining common event data.
+Common event data.
 
 > **NOTE**
 >
@@ -8,12 +8,14 @@ The **CommonEventData** module provides APIs for defining common event data.
 
 ## Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Notification.CommonEvent
 
-| Name      | Type                | Readable| Writable| Description                                                   |
+| Name      | Type                | Read Only| Optional| Description                                                   |
 | ---------- |-------------------- | ---- | ---- |  ------------------------------------------------------- |
-| event      | string               | Yes | No | Name of the common event that is being received.                             |
-| bundleName | string               | Yes | No | Bundle name. This parameter is left empty by default.                                             |
-| code       | number               | Yes | No | Result code of the common event, which is used to transfer data of the int type.          |
-| data       | string               | Yes | No | Custom result data of the common event, which is used to transfer data of the string type.|
-| parameters | {[key: string]: any} | Yes | No | Additional information about the common event.                                 |
+| event      | string               | No | No | Name of the common event that is being received.                             |
+| bundleName | string               | No | Yes | Bundle name. This parameter is left empty by default.                                             |
+| code       | number               | No | Yes | Result code of the common event, which is used to transfer data of the int type. The default value is **0**.          |
+| data       | string               | No | Yes | Custom result data of the common event, which is used to transfer data of the string type.|
+| parameters | {[key: string]: any} | No | Yes | Additional information about the common event.                                 |

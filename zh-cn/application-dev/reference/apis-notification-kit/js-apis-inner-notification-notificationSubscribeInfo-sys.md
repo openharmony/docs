@@ -16,5 +16,7 @@
 
 | 名称                 | 类型                  |  必填 | 说明                                       |
 | -------------------- | --------------------- | --- | ------------------------------------------ |
-| bundleNames          | Array<string>         | 否  | 应用Bundle名称。                              |
+| bundleNames          | Array<string\>         | 否  | 应用Bundle名称。                              |
 | userId               | number                | 否  | 用户ID。                                      |
+| deviceType<sup>12+</sup>           | string                | 否  | 设备类型。根据[设备信息](../apis-basic-services-kit/js-apis-device-info.md)获取。                                    |
+| slotTypes<sup>16+</sup>   | Array<[notificationManager.SlotType](js-apis-notificationManager.md#slottype)\>| 否  | 通知渠道类型。 |

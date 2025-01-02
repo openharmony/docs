@@ -19,10 +19,10 @@ The **OHOS::Media::OhosImageRect** struct defines the information about an image
 
 | Name| Description| 
 | -------- | -------- |
-| [x](#x) | X coordinate of the rectangle.| 
-| [y](#y) | Y coordinate of the rectangle.| 
-| [width](#width) | Width of the rectangle, in pixels.| 
-| [height](#height) | Height of the rectangle, in pixels.| 
+| int32_t [x](#x) | X coordinate of the rectangle. | 
+| int32_t [y](#y) | Y coordinate of the rectangle. | 
+| int32_t [width](#width) | Width of the rectangle, in pixels. | 
+| int32_t [height](#height) | Height of the rectangle, in pixels. | 
 
 
 ## Member Variable Description

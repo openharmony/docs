@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```ts
-import wifiManager from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 ```
 
 ## wifiManager.enableWifi<sup>9+</sup>
@@ -28,14 +28,17 @@ enableWifi(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          | 
 | 2501000  | Operation failed.|
-| 2501003  | Failed for wifi is closing.|
+| 2501003  | Operation failed because the service is being closed. |
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.enableWifi();
@@ -61,18 +64,57 @@ disableWifi(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501004  | Failed for wifi is opening.|
+| 2501004  | Operation failed because the service is being opened. |
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.disableWifi();
 	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.enableSemiWifi<sup>12+</sup>
+
+enableSemiWifi(): void
+
+使能WLAN半关闭（STA关闭、其他P2p、Hml可用），异步接口，需要通过注册"wifiStateChange"事件的回调来监听是否使能成功。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION  仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          | 
+| 2501000  | Operation failed.|
+| 2501004  | Operation failed because the service is being opened. |
+
+**示例：**
+
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		wifiManager.enableSemiWifi();
+	} catch(error) {
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
@@ -94,13 +136,16 @@ startScan(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.startScan();
@@ -133,10 +178,14 @@ setScanAlwaysAllowed(isScanAlwaysAllowed: boolean): void
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let isScanAlwaysAllowed = true;
@@ -169,13 +218,16 @@ getScanAlwaysAllowed(): boolean
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let isScanAlwaysAllowed = wifiManager.getScanAlwaysAllowed();
@@ -214,13 +266,18 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -255,6 +312,7 @@ WLAN配置信息。
 | ipType | [IpType](#iptype9) | 是 | 否 | IP地址类型。 <br /> **系统接口：** 此接口为系统接口。 |
 | staticIp | [IpConfig](#ipconfig9) | 是 | 否 | 静态IP配置信息。 <br /> **系统接口：** 此接口为系统接口。 |
 | proxyConfig<sup>10+</sup> | [WifiProxyConfig](#wifiproxyconfig10) | 是 | 否 | 代理配置。  <br /> **系统接口：** 此接口为系统接口。|
+| configStatus<sup>12+</sup> | number | 是 | 否 | 返回当前网络是否允许参与选网。  <br /> **系统接口：** 此接口为系统接口。|
 
 ## IpType<sup>9+</sup>
 
@@ -302,7 +360,7 @@ Wifi 代理配置。
 | proxyMethod | ProxyMethod | 是 | 否 | 代理方法 |
 | pacWebAddress | string | 是 | 否 | 自动配置代理的PAC web 地址。 |
 | serverHostName | string | 是 | 否 | 手动配置代理的服务器主机名。 |
-| serverPort | string | 是 | 否 | 手动配置代理的服务器端口。 |
+| serverPort | number | 是 | 否 | 手动配置代理的服务器端口。 |
 | exclusionObjects | string | 是 | 否 | 手动配置代理的排除对象，对象用“,”分隔。|
 
 ## ProxyMethod<sup>10+</sup>
@@ -343,13 +401,18 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -370,7 +433,7 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 
 connectToNetwork(networkId: number): void
 
-连接到指定网络（如果当前已经连接到热点，请先使用disconnet（）接口断开连接）。
+连接到指定网络（如果当前已经连接到热点，请先使用disconnect（）接口断开连接）。
 
 **系统接口：** 此接口为系统接口。
 
@@ -389,14 +452,18 @@ connectToNetwork(networkId: number): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let networkId = 0;
@@ -410,7 +477,7 @@ connectToNetwork(networkId: number): void
 
 connectToDevice(config: WifiDeviceConfig): void
 
-连接到指定网络（如果当前已经连接到热点，请先使用disconnet（）接口断开连接）。
+连接到指定网络（如果当前已经连接到热点，请先使用disconnect（）接口断开连接）。
 
 **系统接口：** 此接口为系统接口。
 
@@ -430,13 +497,17 @@ connectToDevice(config: WifiDeviceConfig): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -469,12 +540,16 @@ disconnect(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.disconnect();
@@ -561,12 +636,15 @@ getSupportedFeatures(): number
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2401000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let ret = wifiManager.getSupportedFeatures();
@@ -601,13 +679,16 @@ getDeviceMacAddress(): string[]
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let ret = wifiManager.getDeviceMacAddress();
@@ -617,6 +698,67 @@ getDeviceMacAddress(): string[]
 	}
 
 ```
+
+## wifiManager.getWifiDetailState<sup>12+</sup>
+
+getWifiDetailState(): WifiDetailState
+
+获取Wifi开关详细状态。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | WifiDetailState | Wifi枚举状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+
+**示例：**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		let ret = wifiManager.getWifiDetailState();
+		console.info("wifiDetailState:" + ret);
+	} catch(error) {
+		console.error("failed:" + JSON.stringify(error));
+	}
+
+```
+
+## WifiDetailState<sup>12+</sup>
+
+表示Wifi开关状态的枚举。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| UNKNOWN | -1 | 未指定。 |
+| INACTIVE | 0 | 已关闭。 |
+| ACTIVATED | 1 | 已激活。 |
+| ACTIVATING | 2 | 激活中。 |
+| DEACTIVATING | 3 | 关闭中。 |
+| SEMI_ACTIVATING | 4 | 半关闭中。 |
+| SEMI_ACTIVE | 5 | 已半关闭。 |
+
 
 ## wifiManager.reassociate<sup>9+</sup>
 
@@ -635,13 +777,16 @@ reassociate(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.reassociate();
@@ -667,13 +812,16 @@ reconnect(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.reconnect();
@@ -709,12 +857,15 @@ API 10起：ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let configs = wifiManager.getDeviceConfigs();
@@ -753,12 +904,17 @@ updateNetwork(config: WifiDeviceConfig): number
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -796,12 +952,17 @@ disableNetwork(netId: number): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let netId = 0;
@@ -828,12 +989,16 @@ removeAllNetwork(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.removeAllNetwork();		
@@ -865,12 +1030,17 @@ removeDevice(id: number): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let id = 0;
@@ -903,12 +1073,15 @@ get5GChannelList(): Array&lt;number&gt;
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let channelList = wifiManager.get5GChannelList();
@@ -934,7 +1107,9 @@ getDisconnectedReason(): DisconnectedReason
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **返回值：**
@@ -945,7 +1120,7 @@ getDisconnectedReason(): DisconnectedReason
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let disconnectedReason = wifiManager.getDisconnectedReason();	
@@ -986,13 +1161,17 @@ startPortalCertification(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.startPortalCertification();
@@ -1001,6 +1180,58 @@ startPortalCertification(): void
 	}
 ```
 
+## wifiManager.enableHiLinkHandshake<sup>12+</sup>
+
+enableHiLinkHandshake(isHiLinkEnable: boolean, bssid: string, config: WifiDeviceConfig): void
+
+**系统接口：** 此接口为系统接口。
+
+设置是否使能hiLink。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| isHiLinkEnable | boolean | 是 | 是否使能hiLink。true:使能，&nbsp;false:去使能。 |
+| bssid | string | 是 | 热点的mac地址，例如：00:11:22:33:44:55。 |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN的配置信息。config.bssid必须和第二个参数bssid保持一致。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
+
+**示例：**
+
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+	// config数据可以通过getScanInfoList接口获取，只有WifiScanInfo.isHiLinkNetwork为true的热点，才能正常使用该接口
+	let config:wifiManager.WifiDeviceConfig = {
+		ssid : "****",
+		preSharedKey : "****",
+		securityType : 0,
+		bssid : "38:37:8b:80:bf:cc",
+		bssidType : 1,
+		isHiddenSsid : false
+	}	
+	try {
+		wifiManager.enableHiLinkHandshake(true, config.bssid, config);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
 
 ## wifiManager.factoryReset<sup>11+</sup>
 
@@ -1019,13 +1250,16 @@ factoryReset(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.factoryReset();
@@ -1050,12 +1284,15 @@ enableHotspot(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2601000  | Operation failed.|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.enableHotspot();	
@@ -1081,12 +1318,15 @@ disableHotspot(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2601000  | Operation failed.|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.disableHotspot();	
@@ -1118,12 +1358,15 @@ isHotspotDualBandSupported(): boolean
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2601000  | Operation failed.|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let ret = wifiManager.isHotspotDualBandSupported();
@@ -1156,12 +1399,15 @@ isHotspotActive(): boolean
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2601000  | Operation failed.|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let ret = wifiManager.isHotspotActive();
@@ -1194,12 +1440,16 @@ setHotspotConfig(config: HotspotConfig): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2601000  | Operation failed.|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.HotspotConfig = {
@@ -1230,7 +1480,7 @@ setHotspotConfig(config: HotspotConfig): void
 | ssid | string | 是 | 是 | 热点的SSID，编码格式为UTF-8。 |
 | securityType | [WifiSecurityType](js-apis-wifiManager.md#wifisecuritytype9)| 是 | 是 | 加密类型。 |
 | band | number | 是 | 是 | 热点的带宽。1: 2.4G, 2: 5G, 3: 双模频段 |
-| channel<sup>10+</sup> | number | 是 | 是 | 热点的信道（2.4G：1~14,5G：7~196，双模频段：暂不支持）。 |
+| channel<sup>10+</sup> | number | 是 | 是 | 热点的信道（2.4G：1~14,5G：7~196）。 |
 | preSharedKey | string | 是 | 是 | 热点的密钥。 |
 | maxConn | number | 是 | 是 | 最大设备连接数。 |
 
@@ -1257,12 +1507,15 @@ getHotspotConfig(): HotspotConfig
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2601000  | Operation failed.|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config = wifiManager.getHotspotConfig();
@@ -1299,12 +1552,15 @@ API 10起：ohos.permission.GET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPO
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2601000  | Operation failed.|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let stations = wifiManager.getStations();
@@ -1352,13 +1608,17 @@ addHotspotBlockList(stationInfo: StationInfo)
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2601000  | Operation failed.|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.StationInfo = {
@@ -1396,13 +1656,17 @@ delHotspotBlockList(stationInfo: StationInfo)
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2601000  | Operation failed.|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.StationInfo = {
@@ -1440,12 +1704,16 @@ getHotspotBlockList(): Array&lt;StationInfo&gt;
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
-| 2601000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let data = wifiManager.getHotspotBlockList();
@@ -1479,12 +1747,17 @@ deletePersistentGroup(netId: number): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2801000  | Operation failed.|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1.Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let netId = 0;
@@ -1521,14 +1794,17 @@ API 10起：ohos.permission.GET_WIFI_INFO
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2801000  | Operation failed.|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2801000  | Operation failed. |
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
-	wifiManager.getP2pGroups((err, data) => {
+	wifiManager.getP2pGroups((err, data:wifiManager.WifiP2pGroupInfo) => {
     if (err) {
         console.error("get P2P groups error");
         return;
@@ -1570,8 +1846,12 @@ API 10起：ohos.permission.GET_WIFI_INFO
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2801000  | Operation failed.|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 ## wifiManager.setDeviceName<sup>9+</sup>
 
@@ -1596,12 +1876,17 @@ setDeviceName(devName: string): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2801000  | Operation failed.|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
+| 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let name = "****";
@@ -1614,9 +1899,9 @@ setDeviceName(devName: string): void
 
 ## wifiManager.on('streamChange')<sup>9+</sup>
 
-on(type: "streamChange", callback: Callback&lt;number&gt;): void
+on(type: 'streamChange', callback: Callback&lt;number&gt;): void
 
-注册WIFI流变更事件。
+注册WIFI流变更事件，在业务退出时，要调用off(type: 'streamChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1636,12 +1921,16 @@ on(type: "streamChange", callback: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ## wifiManager.off('streamChange')<sup>9+</sup>
 
-off(type: "streamChange", callback?: Callback&lt;number&gt;): void
+off(type: 'streamChange', callback?: Callback&lt;number&gt;): void
 
 取消注册WIFI流变更事件。
 
@@ -1663,12 +1952,16 @@ off(type: "streamChange", callback?: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 ```ts
-import wifi from '@ohos.wifi';
+import { wifi } from '@kit.ConnectivityKit';
 
 let recvStreamChangeFunc = (result:number) => {
     console.info("Receive stream change event: " + result);
@@ -1683,9 +1976,9 @@ wifi.off("streamChange", recvStreamChangeFunc);
 ```
 ## wifiManager.on('deviceConfigChange')<sup>9+</sup>
 
-on(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
+on(type: 'deviceConfigChange', callback: Callback&lt;number&gt;): void
 
-注册WIFI设备配置更改事件。
+注册WIFI设备配置更改事件，在业务退出时，要调用off(type: 'deviceConfigChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1697,7 +1990,7 @@ on(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 固定填"streamChange"字符串。 |
+| type | string | 是 | 固定填"deviceConfigChange"字符串。 |
 | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回0: 添加配置, 1: 更改配置, 2: 删除配置. |
 
 **错误码：**
@@ -1705,12 +1998,16 @@ on(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ## wifiManager.off('deviceConfigChange')<sup>9+</sup>
 
-off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
+off(type: 'deviceConfigChange', callback?: Callback&lt;number&gt;): void
 
 取消注册WIFI设备配置更改事件。
 
@@ -1724,7 +2021,7 @@ off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 固定填"streamChange"字符串。 |
+| type | string | 是 | 固定填"deviceConfigChange"字符串。 |
 | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数，返回0: 添加配置, 1: 更改配置, 2: 删除配置.|
 
 **错误码：**
@@ -1732,12 +2029,16 @@ off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 ```ts
-import wifi from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 
 let recvDeviceConfigChangeFunc = (result:number) => {
     console.info("Receive device config change event: " + result);
@@ -1753,9 +2054,9 @@ wifi.off("deviceConfigChange", recvDeviceConfigChangeFunc);
 
 ## wifiManager.on('hotspotStaJoin')<sup>9+</sup>
 
-on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
+on(type: 'hotspotStaJoin', callback: Callback&lt;StationInfo&gt;): void
 
-注册wifi热点sta加入事件。
+注册wifi热点sta加入事件，在业务退出时，要调用off(type: 'hotspotStaJoin', callback?: Callback&lt;StationInfo&gt;)接口去掉之前的注册回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1775,12 +2076,16 @@ on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2601000  | Operation failed.|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 ## wifiManager.off('hotspotStaJoin')<sup>9+</sup>
 
-off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
+off(type: 'hotspotStaJoin', callback?: Callback&lt;StationInfo&gt;): void
 
 取消注册wifi热点sta加入事件。
 
@@ -1802,12 +2107,16 @@ off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2601000  | Operation failed.|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **示例：**
 ```ts
-import wifiManager from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 
 let recvHotspotStaJoinFunc = (result:wifiManager.StationInfo) => {
     console.info("Receive hotspot sta join event: " + result);
@@ -1823,9 +2132,9 @@ wifiManager.off("hotspotStaJoin", recvHotspotStaJoinFunc);
 
 ## wifiManager.on('hotspotStaLeave')<sup>9+</sup>
 
-on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
+on(type: 'hotspotStaLeave', callback: Callback&lt;StationInfo&gt;): void
 
-注册wifi热点sta离开事件。
+注册wifi热点sta离开事件，在业务退出时，要调用off(type: 'hotspotStaLeave', callback?: Callback&lt;StationInfo&gt;)接口去掉之前的注册回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1845,12 +2154,16 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2601000  | Operation failed.|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 ## wifiManager.off('hotspotStaLeave')<sup>9+</sup>
 
-off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
+off(type: 'hotspotStaLeave', callback?: Callback&lt;StationInfo&gt;): void
 
 取消注册wifi热点sta离开事件。
 
@@ -1872,12 +2185,16 @@ off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2601000  | Operation failed.|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **示例：**
 ```ts
-import wifiManager from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 
 let recvHotspotStaLeaveFunc = (result:wifiManager.StationInfo) => {
     console.info("Receive hotspot sta leave event: " + result);

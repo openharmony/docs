@@ -2,7 +2,8 @@
 
 > **说明：**
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
+>
+> - 从API Version 8 开始，该接口不再维护，推荐使用新接口['@ohos.net.connection'](js-apis-net-connection.md)。
 
 ## 导入模块
 
@@ -111,11 +112,9 @@ unsubscribe(): void
 **示例：**
 
 ```
-export default {    
-  unsubscribe() {        
-    network.unsubscribe();    
-  },
-}
+import network from '@system.network';
+
+network.unsubscribe();
 ```
 
 

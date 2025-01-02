@@ -11,7 +11,7 @@ For details about the development process, see [Development of Performance Traci
 ## Modules to Import
 
 ```js
-import hiTraceMeter from '@ohos.hiTraceMeter';
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
 ```
 
 
@@ -29,10 +29,10 @@ If the trace tasks with the same name are not performed at the same time, the sa
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the trace task to start.|
-| taskId | number | Yes| Task ID.|
+| name | string | Yes | Name of the trace task to start. |
+| taskId | number | Yes | Task ID. |
 
 **Example**
 
@@ -53,10 +53,10 @@ To stop a trace task, the values of name and task ID in **finishTrace** must be 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the trace task to start.|
-| taskId | number | Yes| Task ID.|
+| name | string | Yes | Name of the trace task to start. |
+| taskId | number | Yes | Task ID. |
 
 **Example**
 
@@ -67,22 +67,22 @@ hiTraceMeter.finishTrace("myTestFunc", 1);
 ```js
 // Start trace tasks with the same name concurrently.
 hiTraceMeter.startTrace("myTestFunc", 1);
-// Service flow...
+// Service flow... 
 hiTraceMeter.startTrace("myTestFunc", 2);  // Start the second trace task with the same name while the first task is still running. The tasks are running concurrently and therefore their taskId must be different.
-// Service flow...
+// Service flow... 
 hiTraceMeter.finishTrace("myTestFunc", 1);
-// Service flow...
+// Service flow... 
 hiTraceMeter.finishTrace("myTestFunc", 2);
 ```
 
 ```js
 // Start trace tasks with the same name in serial mode.
 hiTraceMeter.startTrace("myTestFunc", 1);
-// Service flow...
+// Service flow... 
 hiTraceMeter.finishTrace("myTestFunc", 1);  // End the first trace task.
-// Service flow...
+// Service flow... 
 hiTraceMeter.startTrace("myTestFunc", 1);   // Start the second trace task with the same name in serial mode.
-// Service flow...
+// Service flow... 
 hiTraceMeter.finishTrace("myTestFunc", 1);
 ```
 
@@ -97,10 +97,10 @@ Marks the value changes of a numeric variable in a trace task.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the variable.|
-| count | number | Yes| Value of the variable.|
+| name | string | Yes | Name of the variable. |
+| count | number | Yes | Value of the variable. |
 
 **Example**
 ```js
@@ -110,4 +110,3 @@ traceCount = 4;
 hiTraceMeter.traceByValue("myTestCount", traceCount);
 // Service flow...
 ```
-<!--no_check-->

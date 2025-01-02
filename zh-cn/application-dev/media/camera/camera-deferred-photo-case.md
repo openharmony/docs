@@ -1,5 +1,7 @@
 # 高性能拍照实现方案(仅对系统应用开放)(ArkTS)
 
+在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+
 当前示例提供完整的高性能拍照流程介绍，方便开发者了解完整的接口调用顺序。
 
 在参考以下示例前，建议开发者查看[高性能拍照(仅对系统应用开放)(ArkTS)](camera-deferred-photo.md)的具体章节，了解[设备输入](camera-device-input.md)、[会话管理](camera-session-management.md)、[拍照](camera-shooting.md)等单个流程。
@@ -15,21 +17,21 @@
 Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
-import camera from '@ohos.multimedia.camera';
-import image from '@ohos.multimedia.image';
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
-import fs from '@ohos.file.fs';
-import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
+import { camera } from '@kit.CameraKit';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 let context = getContext(this);
 
 // 写文件方式落盘真图
 async function savePicture(photoObj: camera.Photo): Promise<void> {
-  let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+  let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
   let testFileName = 'testFile' + Date.now() + '.jpg';
   //createAsset的调用需要ohos.permission.READ_IMAGEVIDEO和ohos.permission.WRITE_IMAGEVIDEO的权限
-  let photoAsset = await photoAccessHelper.createAsset(testFileName);
+  let photoAsset = await accessHelper.createAsset(testFileName);
   const fd = await photoAsset.open('rw');
   let buffer: ArrayBuffer | undefined = undefined;
   photoObj.main.getComponent(image.ComponentType.JPEG, (errCode: BusinessError, component: image.Component): void => {
@@ -55,13 +57,13 @@ async function savePicture(photoObj: camera.Photo): Promise<void> {
 async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy): Promise<void> {    
   try {
     // 创建 photoAsset
-    let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+    let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let testFileName = 'testFile' + Date.now() + '.jpg';
-    let photoAsset = await photoAccessHelper.createAsset(testFileName);
+    let photoAsset = await accessHelper.createAsset(testFileName);
     // 将缩略图代理类传递给媒体库
-    let mediaRequest: PhotoAccessHelper.MediaAssetChangeRequest = new PhotoAccessHelper.MediaAssetChangeRequest(photoAsset);
-    mediaRequest.addResource(PhotoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
-    let res = await photoAccessHelper.applyChanges(mediaRequest);
+    let mediaRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
+    mediaRequest.addResource(photoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
+    let res = await accessHelper.applyChanges(mediaRequest);
     console.info('saveDeferredPhoto success.');
   } catch (err) {
     console.error(`Failed to saveDeferredPhoto. error: ${JSON.stringify(err)}`);
@@ -77,6 +79,10 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
   }
   // 监听相机状态变化
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
+    if (err !== undefined && err.code !== 0) {
+      console.error(`cameraStatus with errorCode: ${err.code}`);
+      return;
+    }
     console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
     console.info(`status: ${cameraStatusInfo.status}`);
   });
@@ -344,20 +350,22 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
     }
     console.info('Callback invoked to indicate the photo capture request success.');
   });
+
+  // 需要在拍照结束之后调用以下关闭摄像头和释放会话流程，避免拍照未结束就将会话释放。
   // 停止当前会话
-  photoSession.stop();
+  await photoSession.stop();
 
   // 释放相机输入流
-  cameraInput.close();
+  await cameraInput.close();
 
   // 释放预览输出流
-  previewOutput.release();
+  await previewOutput.release();
 
   // 释放拍照输出流
-  photoOutput.release();
+  await photoOutput.release();
 
   // 释放会话
-  photoSession.release();
+  await photoSession.release();
 
   // 会话置空
   photoSession = undefined;

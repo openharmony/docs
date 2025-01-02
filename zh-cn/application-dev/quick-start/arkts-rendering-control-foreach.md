@@ -1,41 +1,18 @@
 # ForEach：循环渲染
 
-
 ForEach接口基于数组类型数据来进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在ForEach父容器组件中的子组件。例如，ListItem组件要求ForEach的父容器组件必须为[List组件](../reference/apis-arkui/arkui-ts/ts-container-list.md)。
+
+API参数说明见：[ForEach API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)
 
 > **说明：**
 >
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-## 接口描述
-
-
-```ts
-ForEach(
-  arr: Array,
-  itemGenerator: (item: any, index: number) => void,
-  keyGenerator?: (item: any, index: number) => string
-)
-```
-
-以下是参数的详细说明：
-
-| 参数名        | 参数类型                                | 是否必填 | 参数描述                                                     |
-| ------------- | --------------------------------------- | -------- | ------------------------------------------------------------ |
-| arr           | Array<any>                                   | 是       | 数据源，为`Array`类型的数组。<br/>**说明：**<br/>- 可以设置为空数组，此时不会创建子组件。<br/>- 可以设置返回值为数组类型的函数，例如`arr.slice(1, 3)`，但设置的函数不应改变包括数组本身在内的任何状态变量，例如不应使用`Array.splice()`,`Array.sort()`或`Array.reverse()`这些会改变原数组的函数。 |
-| itemGenerator | `(item: any, index: number) => void`   | 是       | 组件生成函数。<br/>- 为数组中的每个元素创建对应的组件。<br/>- `item`参数：`arr`数组中的数据项。<br/>- `index`参数（可选）：`arr`数组中的数据项索引。<br/>**说明：**<br/>- 组件的类型必须是`ForEach`的父容器所允许的。例如，`ListItem`组件要求`ForEach`的父容器组件必须为`List`组件。 |
-| keyGenerator  | `(item: any, index: number) => string` | 否       | 键值生成函数。<br/>- 为数据源`arr`的每个数组项生成唯一且持久的键值。函数返回值为开发者自定义的键值生成规则。<br/>- `item`参数：`arr`数组中的数据项。<br/>- `index`参数（可选）：`arr`数组中的数据项索引。<br/>**说明：**<br/>- 如果函数缺省，框架默认的键值生成函数为`(item: T, index: number) => { return index + '__' + JSON.stringify(item); }`<br/>- 键值生成函数不应改变任何组件状态。 |
-
-> **说明：**
->
-> - `ForEach`的`itemGenerator`函数可以包含`if/else`条件渲染逻辑。另外，也可以在`if/else`条件渲染语句中使用`ForEach`组件。
-> - 在初始化渲染时，`ForEach`会加载数据源的所有数据，并为每个数据项创建对应的组件，然后将其挂载到渲染树上。如果数据源非常大或有特定的性能需求，建议使用`LazyForEach`组件。
-
 ## 键值生成规则
 
 在`ForEach`循环渲染过程中，系统会为每个数组元素生成一个唯一且持久的键值，用于标识对应的组件。当这个键值变化时，ArkUI框架将视为该数组元素已被替换或修改，并会基于新的键值创建一个新的组件。
 
-`ForEach`提供了一个名为`keyGenerator`的参数，这是一个函数，开发者可以通过它自定义键值的生成规则。如果开发者没有定义`keyGenerator`函数，则ArkUI框架会使用默认的键值生成函数，即`(item: any, index: number) => { return index + '__' + JSON.stringify(item); }`。
+`ForEach`提供了一个名为`keyGenerator`的参数，这是一个函数，开发者可以通过它自定义键值的生成规则。如果开发者没有定义`keyGenerator`函数，则ArkUI框架会使用默认的键值生成函数，即`(item: Object, index: number) => { return index + '__' + JSON.stringify(item); }`。
 
 ArkUI框架对于`ForEach`的键值生成有一套特定的判断规则，这主要与`itemGenerator`函数的第二个参数`index`以及`keyGenerator`函数的第二个参数`index`有关，具体的键值生成规则判断逻辑如下图所示。
 
@@ -206,10 +183,10 @@ struct ArticleList {
 
   build() {
     Column() {
-      ForEach(this.simpleList, (item: string) => {
+      ForEach(this.simpleList, (item: number) => {
         ArticleSkeletonView()
           .margin({ top: 20 })
-      }, (item: string) => item)
+      }, (item: number) => item.toString())
     }
     .padding(20)
     .width('100%')
@@ -330,6 +307,7 @@ struct ArticleCard {
 
   build() {
     Row() {
+      // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       Image($r('app.media.icon'))
         .width(80)
         .height(80)
@@ -430,6 +408,7 @@ struct ArticleCard {
 
   build() {
     Row() {
+      // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       Image($r('app.media.icon'))
         .width(80)
         .height(80)
@@ -445,6 +424,7 @@ struct ArticleCard {
           .margin({ bottom: 8 })
 
         Row() {
+          // 此处app.media.iconLiked'，'app.media.iconUnLiked'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
           Image(this.article.isLiked ? $r('app.media.iconLiked') : $r('app.media.iconUnLiked'))
             .width(24)
             .height(24)
@@ -482,11 +462,55 @@ struct ArticleCard {
 4. 在此处，`ForEach`键值生成规则为数组项的`id`属性值。当`ForEach`遍历新数据源时，数组项的`id`均没有变化，不会新建组件。
 5. 渲染第1个数组项对应的`ArticleCard`组件时，读取到的`isLiked`和`likesCount`为修改后的新值。
 
+### 拖拽排序
+当ForEach在List组件下使用，并且设置了onMove事件，ForEach每次迭代都生成一个ListItem时，可以使能拖拽排序。拖拽排序离手后，如果数据位置发生变化，则会触发onMove事件，上报数据移动原始索引号和目标索引号。在onMove事件中，需要根据上报的起始索引号和目标索引号修改数据源。数据源修改前后，要保持每个数据的键值不变，只是顺序发生变化，才能保证落位动画正常执行。
+
+```ts
+@Entry
+@Component
+struct ForEachSort {
+  @State arr: Array<string> = [];
+
+  build() {
+    Row() {
+      List() {
+        ForEach(this.arr, (item: string) => {
+          ListItem() {
+            Text(item.toString())
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .size({height: 100, width: "100%"})
+          }.margin(10)
+          .borderRadius(10)
+          .backgroundColor("#FFFFFFFF")
+        }, (item: string) => item)
+          .onMove((from:number, to:number) => {
+            let tmp = this.arr.splice(from, 1);
+            this.arr.splice(to, 0, tmp[0])
+          })
+      }
+      .width('100%')
+      .height('100%')
+      .backgroundColor("#FFDCDCDC")
+    }
+  }
+  aboutToAppear(): void {
+    for (let i = 0; i < 100; i++) {
+      this.arr.push(i.toString())
+    }
+  }
+}
+```
+
+**图8** ForEach拖拽排序效果图  
+![ForEach-Drag-Sort](figures/ForEach-Drag-Sort.gif)
 ## 使用建议
 
-- 尽量避免在最终的键值生成规则中包含数据项索引`index`，以防止出现[渲染结果非预期](#渲染结果非预期)和[渲染性能降低](#渲染性能降低)。如果业务确实需要使用`index`，例如列表需要通过`index`进行条件渲染，开发者需要接受`ForEach`在改变数据源后重新创建组件所带来的性能损耗。
 - 为满足键值的唯一性，对于对象数据类型，建议使用对象数据中的唯一`id`作为键值。
+- 尽量避免在最终的键值生成规则中包含数据项索引`index`，以防止出现[渲染结果非预期](#渲染结果非预期)和[渲染性能降低](#渲染性能降低)。如果业务确实需要使用`index`，例如列表需要通过`index`进行条件渲染，开发者需要接受`ForEach`在改变数据源后重新创建组件所带来的性能损耗。
 - 基本数据类型的数据项没有唯一`ID`属性。如果使用基本数据类型本身作为键值，必须确保数组项无重复。因此，对于数据源会发生变化的场景，建议将基本数据类型数组转化为具备唯一`ID`属性的对象数据类型数组，再使用`ID`属性作为键值生成规则。
+- 对于以上限制规则，`index`参数存在的意义为：index是开发者保证键值唯一性的最终手段；对数据项进行修改时，由于`itemGenerator`中的`item`参数是不可修改的，所以须用index索引值对数据源进行修改，进而触发UI重新渲染。
+- ForEach在下列容器组件 [List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) 内使用的时候，不要与[LazyForEach](./arkts-rendering-control-lazyforeach.md) 混用。 以List为例，同时包含ForEach、LazyForEach的情形是不推荐的。
 
 ## 不推荐案例
 
@@ -533,9 +557,9 @@ struct ChildItem {
 }
 ```
 
-上述代码的初始渲染效果（左图）和点击“在第1项后插入新项”文本组件后的渲染效果（右图）如下图所示。
+上述代码的初始渲染效果和点击“在第1项后插入新项”文本组件后的渲染效果如下图所示。
 
-**图8**  渲染结果非预期运行效果图  
+**图9**  渲染结果非预期运行效果图  
 ![ForEach-UnexpectedRenderingResult](figures/ForEach-UnexpectedRenderingResult.gif)
 
 `ForEach`在首次渲染时，创建的键值依次为"0"、"1"、"2"。
@@ -592,14 +616,14 @@ struct ChildItem {
 }
 ```
 
-以上代码的初始渲染效果（左图）和点击"在第1项后插入新项"文本组件后的渲染效果（右图）如下所示。
+以上代码的初始渲染效果和点击"在第1项后插入新项"文本组件后的渲染效果如下图所示。
 
-**图9**  渲染性能降低案例运行效果图  
+**图10**  渲染性能降低案例运行效果图  
 ![ForEach-RenderPerformanceDecrease](figures/ForEach-RenderPerformanceDecrease.gif)
 
-点击“在第1项后插入新项”文本组件后，IDE的日志打印结果如下所示。
+点击“在第1项后插入新项”文本组件后，DevEco Studio的日志打印结果如下所示。
 
-**图10**  渲染性能降低案例日志打印图  
+**图11**  渲染性能降低案例日志打印图  
 ![ForEach-RenderPerformanceDecreaseLogs](figures/ForEach-RenderPerformanceDecreaseLogs.png)
 
 插入新项后，`ForEach`为`new item`、 `two`、 `three`三个数组项创建了对应的组件`ChildItem`，并执行了组件的[`aboutToAppear()`](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)生命周期函数。这是因为：
@@ -608,4 +632,11 @@ struct ChildItem {
 2. 插入新项后，数据源`simpleList`变为`['one', 'new item', 'two', 'three']`，ArkUI框架监听到`@State`装饰的数据源长度变化触发`ForEach`重新渲染。
 3. `ForEach`依次遍历新数据源，遍历数据项`one`时生成键值`0__one`，键值已存在，因此不创建新组件。继续遍历数据项`new item`时生成键值`1__new item`，不存在相同键值，创建内容为`new item`的新组件并渲染。继续遍历数据项`two`生成键值`2__two`，不存在相同键值，创建内容为`two`的新组件并渲染。最后遍历数据项`three`时生成键值`3__three`，不存在相同键值，创建内容为`three`的新组件并渲染。
 
-尽管此示例中界面渲染的结果符合预期，但每次插入一条新数组项时，`ForEach`都会为从该数组项起后面的所有数组项全部重新创建组件。当数据源数据量较大或组件结构复杂时，由于组件无法得到复用，将导致性能体验不佳。因此，除非必要，否则不推荐将第三个参数`KeyGenerator`函数处于缺省状态，以及在键值生成规则中包含数据项索引`index`。
+尽管此示例中界面渲染的结果符合预期，但每次插入一条新数组项时，`ForEach`都会为从该数组项起后面的所有数组项全部重新创建组件。当数据源数据量较大或组件结构复杂时，由于组件无法得到复用，将导致性能体验不佳。因此，除非必要，否则不推荐将第三个参数`KeyGenerator`函数处于缺省状态，以及在键值生成规则中包含数据项索引`index`。  
+正确渲染并保证效率的`ForEach`写法是：
+```ts
+ForEach(this.simpleList, (item: string) => {
+  ChildItem({ item: item })
+}, (item: string) => item)  // 需要保证key唯一
+```
+提供了第三个参数`KeyGenerator`，在这个例子中，对数据源的不同数据项生成不同的key，并且对同一个数据项每次生成相同的key。

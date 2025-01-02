@@ -5,6 +5,8 @@
 >  **说明：**
 >
 >  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  禁用控制属性只能在按下时生效，已经在交互过程中，更改enabled属性不生效。
 
 ## enabled
 
@@ -13,6 +15,8 @@ enabled(value: boolean)
 设置组件是否可交互。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -24,6 +28,8 @@ enabled(value: boolean)
 
 
 ## 示例
+
+该示例通过enable设置按钮是否可交互。
 
 ```ts
 // xxx.ets

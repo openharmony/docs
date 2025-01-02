@@ -16,64 +16,69 @@ XML还可以作为消息传递格式，在分布式系统中用于不同节点�
 
 ## 开发步骤
 
-XML模块提供XmlSerializer类来生成XML文件，输入为固定长度的Arraybuffer或DataView对象，该对象用于存放输出的XML数据。
+XML模块提供XmlSerializer类来生成XML数据，输入为固定长度的Arraybuffer或DataView对象，该对象用于存放生成的XML数据。
 
 通过调用不同的方法来写入不同的内容，如startElement(name: string)写入元素开始标记，setText(text: string)写入标签值。
 
-XML模块的API接口可以参考[@ohos.xml](../reference/apis-arkts/js-apis-xml.md)的详细描述，按需求调用对应函数可以生成一份完整的XML文件。
+XML模块的API接口可以参考[@ohos.xml](../reference/apis-arkts/js-apis-xml.md)的详细描述，按需求调用对应函数可以生成一份完整的XML数据。
 
 1. 引入模块。
 
    ```ts
-   import xml from '@ohos.xml';
-   import util from '@ohos.util';
+   import { xml, util } from '@kit.ArkTS';
    ```
 
-2. 创建缓冲区，构造XmlSerializer对象（可以基于Arraybuffer构造XmlSerializer对象， 也可以基于DataView构造XmlSerializer对象）。
+2. 创建缓冲区，构造XmlSerializer对象。可以基于Arraybuffer构造XmlSerializer对象，也可以基于DataView构造XmlSerializer对象。
 
    ```ts
-   // 1.基于Arraybuffer构造XmlSerializer对象
+   // 方式1：基于Arraybuffer构造XmlSerializer对象
    let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); // 创建一个2048字节的缓冲区
-   let thatSer: xml.XmlSerializer = new xml.XmlSerializer(arrayBuffer); // 基于Arraybuffer构造XmlSerializer对象
+   let serializer: xml.XmlSerializer = new xml.XmlSerializer(arrayBuffer); // 基于Arraybuffer构造XmlSerializer对象
 
-   // 2.基于DataView构造XmlSerializer对象
-   let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); // 创建一个2048字节的缓冲区
-   let dataView: DataView = new DataView(arrayBuffer); // 使用DataView对象操作ArrayBuffer对象
-   let thatSer: xml.XmlSerializer = new xml.XmlSerializer(dataView); // 基于DataView构造XmlSerializer对象
+   // 方式2：基于DataView构造XmlSerializer对象
+   // let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); 
+   // let dataView: DataView = new DataView(arrayBuffer); 
+   // let serializer: xml.XmlSerializer = new xml.XmlSerializer(dataView);
    ```
 
 3. 调用XML元素生成函数。
 
    ```ts
-   thatSer.setDeclaration(); // 写入xml的声明
-   thatSer.startElement('bookstore'); // 写入元素开始标记
-   thatSer.startElement('book'); // 嵌套元素开始标记
-   thatSer.setAttributes('category', 'COOKING'); // 写入属性及属性值
-   thatSer.startElement('title');
-   thatSer.setAttributes('lang', 'en');
-   thatSer.setText('Everyday'); // 写入标签值
-   thatSer.endElement(); // 写入结束标记
-   thatSer.startElement('author');
-   thatSer.setText('Giada');
-   thatSer.endElement();
-   thatSer.startElement('year');
-   thatSer.setText('2005');
-   thatSer.endElement();
-   thatSer.endElement();
-   thatSer.endElement();
+   serializer.setDeclaration(); // 写入xml的声明
+   serializer.startElement('bookstore'); // 写入元素开始标记
+   serializer.startElement('book'); // 嵌套元素开始标记
+   serializer.setAttributes('category', 'COOKING'); // 写入属性及属性值
+   serializer.startElement('title');
+   serializer.setAttributes('lang', 'en');
+   serializer.setText('Everyday'); // 写入标签值
+   serializer.endElement(); // 写入结束标记
+   serializer.startElement('author');
+   serializer.setText('Giana');
+   serializer.endElement();
+   serializer.startElement('year');
+   serializer.setText('2005');
+   serializer.endElement();
+   serializer.endElement();
+   serializer.endElement();
    ```
 
 4. 使用Uint8Array操作Arraybuffer，调用TextDecoder对Uint8Array解码后输出。
 
    ```ts
-   let view: Uint8Array = new Uint8Array(arrayBuffer); // 使用Uint8Array读取arrayBuffer的数据
+   let uint8Array: Uint8Array = new Uint8Array(arrayBuffer); // 使用Uint8Array读取arrayBuffer的数据
    let textDecoder: util.TextDecoder = util.TextDecoder.create(); // 调用util模块的TextDecoder类
-   let res: string = textDecoder.decodeWithStream(view); // 对view解码
-   console.info(res);
+   let result: string = textDecoder.decodeToString(uint8Array); // 对uint8Array解码
+   console.info(result);
    ```
 
    输出结果如下：
 
    ```
-   <?xml version=\"1.0\" encoding=\"utf-8\"?><bookstore>\r\n  <book category=\"COOKING\">\r\n    <title lang=\"en\">Everyday</title>\r\n    <author>Giada</author>\r\n    <year>2005</year>\r\n  </book>\r\n</bookstore>
+   <?xml version="1.0" encoding="utf-8"?><bookstore>
+     <book category="COOKING">
+       <title lang="en">Everyday</title>
+       <author>Giana</author>
+       <year>2005</year>
+     </book>
+   </bookstore>
    ```

@@ -1,6 +1,7 @@
 # @ohos.net.vpnExtension (Enhanced VPN Management)
 
 This module implements virtual private network (VPN) management, such as starting and stopping a third-party VPN.
+Third-party VPNs refer to VPN services provided by third parties. They usually support more security and privacy functions and more comprehensive customization options.
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -8,10 +9,43 @@ This module implements virtual private network (VPN) management, such as startin
 ## Modules to Import
 
 ```js
-import vpnExt from "@ohos.net.vpnExtension";
+import { vpnExtension } from '@kit.NetworkKit';
 ```
 
-## vpnExt.startVpnExtensionAbility
+## LinkAddress<sup>11+</sup>
+type LinkAddress = connection.LinkAddress
+
+Defines the network link address information.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [connection.LinkAddress](./js-apis-net-connection.md#linkaddress) | network link address information.|
+
+## RouteInfo<sup>11+</sup>
+type RouteInfo = connection.RouteInfo
+
+Defines the network route information.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [connection.RouteInfo](./js-apis-net-connection.md#routeinfo) | Network route information.|
+
+## VpnExtensionContext<sup>11+</sup>
+type VpnExtensionContext = _VpnExtensionContext
+
+Defines the VPN extension context. It allows access to serviceExtension-specific resources.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core.
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [_VpnExtensionContext](./js-apis-inner-application-VpnExtensionContext.md) | VPN extension context.|
+
+## vpnExtension.startVpnExtensionAbility
 
 startVpnExtensionAbility(want: Want): Promise\<void>
 
@@ -37,7 +71,7 @@ Enables the VPN extension ability.
 
 | ID| Error Message                              |
 | --------- | -------------------------------------- |
-| 401       | Parameter error.                       |
+| 401       | If the input parameter is not valid parameter.|
 | 16000001  | The specified ability does not exist.  |
 | 16000002  | Incorrect ability type.                |
 | 16000006  | Cross-user operations are not allowed. |
@@ -50,9 +84,8 @@ Enables the VPN extension ability.
 Stage model:
 
 ```ts
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import vpnExt from '@ohos.net.vpnExtension';
+import { common, Want } from '@kit.AbilityKit';
+import { vpnExtension } from '@kit.NetworkKit';
 
 let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
@@ -74,7 +107,7 @@ struct Index {
           .fontWeight(FontWeight.Bold).onClick(() => {
           console.info("btn click") })
         Button('Start Extension').onClick(() => {
-          vpnExt.startVpnExtensionAbility(want);
+          vpnExtension.startVpnExtensionAbility(want);
         }).width('70%').fontSize(45).margin(16)
         }.width('100%')
     }.height('100%')
@@ -82,7 +115,7 @@ struct Index {
 }
 ```
 
-## vpnExt.stopVpnExtensionAbility
+## vpnExtension.stopVpnExtensionAbility
 
 stopVpnExtensionAbility(want: Want): Promise\<void>
 
@@ -108,7 +141,7 @@ Stops the VPN extension ability.
 
 | ID| Error Message                              |
 | --------- | -------------------------------------- |
-| 401       | Parameter error.                       |
+| 401       | If the input parameter is not valid parameter.|
 | 16000001  | The specified ability does not exist.  |
 | 16000002  | Incorrect ability type.                |
 | 16000006  | Cross-user operations are not allowed. |
@@ -120,9 +153,8 @@ Stops the VPN extension ability.
 Stage model:
 
 ```ts
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import vpnExt from '@ohos.net.vpnExtension';
+import { common, Want } from '@kit.AbilityKit';
+import { vpnExtension } from '@kit.NetworkKit';
 
 let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
@@ -144,11 +176,11 @@ struct Index {
           .fontWeight(FontWeight.Bold).onClick(() => {
           console.info("btn click") })
         Button('Start Extension').onClick(() => {
-          vpnExt.startVpnExtensionAbility(want);
+          vpnExtension.startVpnExtensionAbility(want);
         }).width('70%').fontSize(45).margin(16)
         Button('Stop Extension').onClick(() => {
           console.info("btn end")
-          vpnExt.stopVpnExtensionAbility(want);
+          vpnExtension.stopVpnExtensionAbility(want);
         }).width('70%').fontSize(45).margin(16)
 
         }.width('100%')
@@ -157,12 +189,15 @@ struct Index {
 }
 ```
 
-
-## vpnExt.createVpnConnection
+## vpnExtension.createVpnConnection
 
 createVpnConnection(context: VpnExtensionContext): VpnConnection
 
 Creates a **VpnConnection** object.
+
+> **NOTE**
+>
+> Before calling **createVpnConnection**, call **startVpnExtensionAbility** to enable the VPN function.
 
 **System capability**: SystemCapability.Communication.NetManager.Vpn
 
@@ -190,15 +225,14 @@ Creates a **VpnConnection** object.
 Stage model:
 
 ```ts
-import vpnExt from '@ohos.net.vpnExtension';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
+import { common, Want } from '@kit.AbilityKit';
 
+let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnection;
   onCreate(want: Want) {
-    this.VpnConnection = vpnExt.createVpnConnection(this.context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));
+    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
   }
 }
 ```
@@ -241,19 +275,17 @@ Creates a VPN based on the specified configuration. This API uses a promise to r
 **Example**
 
 ```js
-import vpnExt from '@ohos.net.vpnExtension';
-import Want from '@ohos.app.ability.Want';
-import common from '@ohos.app.ability.common';
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import hilog from '@ohos.hilog';
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
+import { common, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
+let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnection;
   private tunIp: string = '10.0.0.5';
   private blockedAppName: string = 'com.example.myvpndemo';
   onCreate(want: Want) {
-    this.VpnConnection = vpnExt.createVpnConnection(this.context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));
+    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
     this.SetupVpn();
   }
   SetupVpn() {
@@ -301,7 +333,8 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
         let config = new Config(this.tunIp, this.blockedAppName);
 
         try {
-            this.VpnConnection.create(config).then((data) => {
+            let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+            VpnConnection.create(config).then((data) => {
                 hilog.error(0x0000, 'developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
             })
         } catch (error) {
@@ -344,18 +377,17 @@ Protects sockets against a VPN connection. The data sent through sockets is dire
 **Example**
 
 ```js
-import vpnExt from '@ohos.net.vpnExtension';
-import Want from '@ohos.app.ability.Want';
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import hilog from '@ohos.hilog';
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
+import { common, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let g_tunnelFd = -1;
+let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnection;
   private vpnServerIp: string = '192.168.31.13';
   onCreate(want: Want) {
-    this.VpnConnection = vpnExt.createVpnConnection(this.context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));
+    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
     this.CreateTunnel();
     this.Protect();
   }
@@ -364,7 +396,8 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
   }
   Protect() {
         hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect');
-        this.VpnConnection.protect(g_tunnelFd).then(() => {
+        let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+        VpnConnection.protect(g_tunnelFd).then(() => {
             hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect Success');
         }).catch((err : Error) => {
             hilog.error(0x0000, 'developTag', 'vpn Protect Failed %{public}s', JSON.stringify(err) ?? '');
@@ -398,19 +431,18 @@ Destroys a VPN. This API uses a promise to return the result.
 **Example**
 
 ```js
-import vpnExt from '@ohos.net.vpnExtension';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnection;
   onCreate(want: Want) {
-    this.VpnConnection = vpnExt.createVpnConnection(this.context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));
-    this.VpnConnection.destroy().then(() => {
+    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
+    VpnConnection.destroy().then(() => {
       console.info("destroy success.");
-    }).catch((error) => {
+    }).catch((error : BusinessError) => {
       console.error("destroy fail" + JSON.stringify(error));
     });
   }
@@ -426,7 +458,7 @@ Defines the VPN configuration.
 | Name               | Type                                                          | Mandatory| Description                               |
 | ------------------- | -------------------------------------------------------------- | ---- | ----------------------------------- |
 | addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\> | Yes  | IP address of the vNIC.           |
-| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | No  | Route information of the vNIC.           |
+| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | No  | Route information of the vNIC. Currently, a maximum of 1024 routes can be configured.           |
 | dnsAddresses        | Array\<string\>                                                | No  | IP address of the DNS server.               |
 | searchDomains       | Array\<string\>                                                | No  | List of DNS search domains.                 |
 | mtu                 | number                                                         | No  | Maximum transmission unit (MTU), in bytes.    |
@@ -436,3 +468,43 @@ Defines the VPN configuration.
 | isBlocking          | boolean                                                        | No  | Whether the blocking mode is used. The default value is **false**.      |
 | trustedApplications | Array\<string\>                                                | No  | List of trusted applications, which are represented by bundle names of the string type. |
 | blockedApplications | Array\<string\>                                                | No  | List of blocked applications, which are represented by bundle names of the string type. |
+
+**Example**
+
+```js
+import { vpnExtension} from '@kit.NetworkKit';
+
+let vpnConfig: vpnExtension.VpnConfig = {
+  addresses: [],
+  routes: [{
+    interface: "eth0",
+    destination: {
+      address: {
+        address:'',
+        family:1,
+        port:8080
+      },
+      prefixLength:1
+    },
+    gateway: {
+      address:'',
+      family:1,
+      port:8080
+    },
+    hasGateway: true,
+    isDefaultRoute: true,
+  }],
+  mtu: 1400,
+  dnsAddresses: ["223.5.5.5", "223.6.6.6"],
+  trustedApplications: [],
+  blockedApplications: [],
+}
+let context: vpnExtension.VpnExtensionContext;
+
+function vpnCreate(){
+  let VpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+  VpnConnection.create(vpnConfig).then((data) => {
+    console.info("vpn create " + JSON.stringify(data));
+  })
+}
+```

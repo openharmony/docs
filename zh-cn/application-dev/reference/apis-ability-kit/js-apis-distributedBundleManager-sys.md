@@ -24,7 +24,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 | ------------------------------------------ | ------------ | ------------------ |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 允许查询应用的基本信息和其他敏感信息。 |
 
-权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
 ## distributedBundle.getRemoteAbilityInfo
 
@@ -47,10 +47,14 @@ getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback\<RemoteAb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                   |
 |----------|--------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -108,10 +112,14 @@ getRemoteAbilityInfo(elementName: ElementName): Promise\<RemoteAbilityInfo>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -162,10 +170,14 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, callback: AsyncCallback\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -230,10 +242,14 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteA
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -292,10 +308,14 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string, callback: AsyncCa
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -354,10 +374,14 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string): Promise\<RemoteA
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -409,10 +433,14 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -478,10 +506,14 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string): Promise
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |

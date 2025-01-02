@@ -14,6 +14,8 @@ visibility(value: Visibility)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -24,6 +26,8 @@ visibility(value: Visibility)
 
 
 ## 示例
+
+ 该示例通过visibility配置不同的值实现不同的显隐控制效果。
 
 ```ts
 // xxx.ets

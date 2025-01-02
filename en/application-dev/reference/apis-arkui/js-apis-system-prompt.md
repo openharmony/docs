@@ -1,6 +1,6 @@
 # @system.prompt (Prompt)
 
-The **PromptAction** module provides APIs for creating and showing toasts, dialog boxes, and action menus.
+The **Prompt** module provides APIs for creating and showing toasts, dialog boxes, and action menus.
 
 > **NOTE**
 >

@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.ExceptionPrompt (异常提示)
+# ExceptionPrompt
 
 
 异常提示，适用于有异常需要提示异常内容的情况。
@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
 ```
 
 
@@ -26,25 +26,28 @@ import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced
 
 ## ExceptionPrompt
 
-ExceptionPrompt({ options: PromptOptions })
+ExceptionPrompt({ options: PromptOptions, onTipClick?: ()=>void, onActionTextClick?: ()=>void })
 
 **装饰器类型：**\@Component
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 
-| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | options | [PromptOptions](#promptoptions) | 是 | \@Prop | 指定当前异常提示的配置信息。 |
 | onTipClick | ()=>void | 否 | - | 点击左侧提示文本的回调函数。 |
 | onActionTextClick | ()=>void | 否 | - | 点击右侧图标按钮的回调函数。 |
-| build() | void | 是 | - | 构建函数。 |
 
 ## PromptOptions
 
 PromptOptions定义options的类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -55,27 +58,32 @@ PromptOptions定义options的类型。
 | marginType | [MarginType](#margintype) | 是 | 指定当前异常提示的边距样式 。 |
 | actionText | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的右侧图标按钮的文字内容。 |
 | marginTop | [Dimension](ts-types.md#dimension10) | 是 | 指定当前异常提示的距离顶部的位置。 |
-| isShown | boolean | 否 | 指定当前异常提示的显隐状态。<br />true:显示状态。<br />fasle：隐藏状态。 |
+| isShown | boolean | 否 | 指定当前异常提示的显隐状态。<br />true:显示状态。<br />false：隐藏状态。 |
 
 ## MarginType
 
 MarginType定义marginType的类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 说明 |
-| -------- | -------- |
-| DEFAULT_MARGIN | 默认边距：<br />边距1：引用ohos_id_card_margin_start。<br />边距2：引用ohos_id_card_margin_end。 |
-| FIT_MARGIN | 可适配边距：<br /> 边距1：引用ohos_id_max_padding_start。<br /> 边距2：引用ohos_id_max_padding_end。 |
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| DEFAULT_MARGIN | 0 | 默认边距：<br />边距1：引用ohos_id_card_margin_start。<br />边距2：引用ohos_id_card_margin_end。 |
+| FIT_MARGIN | 1 | 可适配边距：<br /> 边距1：引用ohos_id_max_padding_start。<br /> 边距2：引用ohos_id_max_padding_end。 |
 
 ## 事件
 支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
-### 示例1
+### 示例1（设置异常提示）
+
+该示例展示了如何设置异常提示的异常图标、异常提示的文字、边距样式和右侧图标按钮的文字内容。
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
@@ -106,10 +114,13 @@ struct Index {
 
 ![ExceptionPrompt1](figures/ExceptionPrompt1.png)
 
-### 示例2
+### 示例2（设置弹窗类型的异常提示）
+
+该示例使用自定义弹窗设置弹窗类型的异常提示。
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
+
 @CustomDialog
 struct CustomDialogExample {
   @Link textValue: string
@@ -155,7 +166,7 @@ struct CustomDialogExample {
 @Entry
 @Component
 struct Index1 {
-  @State ButtomText: string = ''
+  @State ButtonText: string = ''
   @State MAP_HEIGHT: string = '30%'
   @State duration: number = 2500
   @State tips: string = ''

@@ -13,24 +13,23 @@
 ## Modules to Import
 
 ```ts
-import StartOptions from '@ohos.app.ability.StartOptions';
+import { StartOptions } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| [windowMode](js-apis-app-ability-abilityConstant-sys.md#abilityconstantwindowmode) | number | No| No| Window mode.<br>**System API**: This is a system API and cannot be called by third-party applications.|
+| [windowMode](js-apis-app-ability-abilityConstant-sys.md#windowmode) | number | No| Yes| Window mode.<br>**System API**: This is a system API and cannot be called by third-party applications.|
+| windowFocused<sup>12+</sup> | boolean | No| Yes| Whether the window has focus. The default value is **true**, indicating that the window has focus.<br>**Constraints**:<br>This property takes effect only on tablets and 2-in-1 devices.<br>This property takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).|
 
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import StartOptions from '@ohos.app.ability.StartOptions';
-  import { BusinessError } from '@ohos.base';
+  import { UIAbility, Want, StartOptions } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   export default class EntryAbility extends UIAbility {
 

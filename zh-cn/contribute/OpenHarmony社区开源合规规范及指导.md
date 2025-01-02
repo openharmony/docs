@@ -42,7 +42,7 @@
 
 2. [SPDX信息声明规范]()
 
-3. 第三方开源软件中补充[上游开源软件元数据声明文件README.OpenSource规范](第三方开源软件上游软件元数据READMEOpenSource文件规范.md)
+3. 第三方开源软件中补充[上游开源软件元数据声明文件README.OpenSource规范](第三方开源软件上游软件元数据READMEOpenSource文件设计规范和使用指南.md)
 
 #### 开源开发合规门禁规范
 

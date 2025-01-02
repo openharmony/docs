@@ -24,7 +24,8 @@ The bundle module provides APIs for querying application information.
 
 | Name| Description|
 | -------- | -------- |
-| [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md) | Defines the application information.|
+| [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md) | Describes the application information.|
+| [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md) | Describes the application entry information.|
 
 
 
@@ -35,6 +36,8 @@ The bundle module provides APIs for querying application information.
 | [OH_NativeBundle_GetCurrentApplicationInfo](#oh_nativebundle_getcurrentapplicationinfo) | Obtains the information about the current application.|
 | [OH_NativeBundle_GetAppId](#oh_nativebundle_getappid) | Obtains the appId information about the current application.|
 | [OH_NativeBundle_GetAppIdentifier](#oh_nativebundle_getappidentifier) | Obtains the appIdentifier information about the current application.|
+| [OH_NativeBundle_GetMainElementName](#oh_nativebundle_getmainelementname) | Obtains the application entry information.|
+| [OH_NativeBundle_GetCompatibleDeviceType](_bundle.md#oh_nativebundle_getcompatibledevicetype) | Obtains the compatible device type of the application.|
 
 
 ## Function Description
@@ -87,3 +90,35 @@ Obtains the appIdentifier information about the current application. appIdentifi
 **Returns**
 
 Returns a string that describes the appIdentifier information of the application.
+
+### OH_NativeBundle_GetMainElementName()
+
+```
+OH_NativeBundle_ElementName OH_NativeBundle_GetMainElementName()
+```
+
+**Description**
+
+Obtains the application entry information, including the bundle name, module name, and ability name.
+
+**Since**: 13
+
+**Returns**
+
+Returns the [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md) struct.
+
+### OH_NativeBundle_GetCompatibleDeviceType()
+
+```
+char* OH_NativeBundle_GetCompatibleDeviceType()
+```
+
+**Description**
+
+Obtains the compatible device type of the application.
+
+**Since**: 14
+
+**Returns**
+
+Returns a string indicating the compatible device type.

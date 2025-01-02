@@ -12,8 +12,10 @@ The **CustomizeData** module provides custom metadata.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
-| Name              | Type  | Readable| Writable| Description            |
+
+
+| Name              | Type  | Read-Only| Optional| Description            |
 | ------------------ | ------ | ---- | ---- | ---------------- |
-| name               | string | Yes  | Yes  | Key that identifies a data element.|
-| value              | string | Yes  | Yes  | Value of the data element.  |
-| extra<sup>8+</sup> | string | Yes  | Yes  | Custom format of the data element. The value is an index to the resource that identifies the data.      |
+| name               | string | No  | No  | Key that identifies a data element.|
+| value              | string | No  | No  | Value of the data element.  |
+| extra<sup>8+</sup> | string | No  | No  | Custom format of the data element. The value is an index to the resource that identifies the data.      |

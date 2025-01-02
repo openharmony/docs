@@ -3,11 +3,12 @@
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块接口从API version 16开始废弃使用。后续版本推荐使用hiAppEvent订阅APP_CRASH, APP_FREEZE事件。
 
 ## 导入模块
 
 ```ts
-import faultLogger from '@ohos.faultLogger';
+import { FaultLogger } from '@kit.PerformanceAnalysisKit';
 ```
 
 ## FaultType
@@ -40,7 +41,7 @@ import faultLogger from '@ohos.faultLogger';
 | summary | string | 是 | 故障的概要 |
 | fullLog | string | 是 | 故障日志全文 |
 
-## faultLogger.query<sup>9+</sup>
+## FaultLogger.query<sup>9+</sup>
 
 query(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;&gt;) : void
 
@@ -61,15 +62,17 @@ query(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;
 
 | 错误码ID | 错误信息 |
 | --- | --- |
+| 401 | The parameter check failed, Parameter type error |
+| 801 | The specified SystemCapability name was not found |
 | 10600001 | The service is not started or is faulty |
 
 **示例：**
 
 ```ts
-import faultLogger from '@ohos.faultLogger'
-import { BusinessError } from '@ohos.base'
+import { FaultLogger } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-function queryFaultLogCallback(error: BusinessError, value: Array<faultLogger.FaultLogInfo>) {
+function queryFaultLogCallback(error: BusinessError, value: Array<FaultLogger.FaultLogInfo>) {
     if (error) {
         console.info('error is ' + error);
     } else {
@@ -89,13 +92,13 @@ function queryFaultLogCallback(error: BusinessError, value: Array<faultLogger.Fa
     }
 }
 try {
-    faultLogger.query(faultLogger.FaultType.JS_CRASH, queryFaultLogCallback);
+    FaultLogger.query(FaultLogger.FaultType.JS_CRASH, queryFaultLogCallback);
 } catch (err) {
     console.error(`code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
 }
 ```
 
-## faultLogger.query<sup>9+</sup>
+## FaultLogger.query<sup>9+</sup>
 
 query(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&gt;
 
@@ -121,45 +124,47 @@ query(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&gt;
 
 | 错误码ID | 错误信息 |
 | --- | --- |
+| 401 | The parameter check failed, Parameter type error |
+| 801 | The specified SystemCapability name was not found |
 | 10600001 | The service is not started or is faulty |
 
 **示例：**
 
 ```ts
-import faultLogger from '@ohos.faultLogger'
-import { BusinessError } from '@ohos.base'
+import { FaultLogger } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function getLog() {
-    try {
-        let value: Array<faultLogger.FaultLogInfo> = await faultLogger.query(faultLogger.FaultType.JS_CRASH);
-        if (value) {
-            console.info("value length is " + value.length);
-            let len: number = value.length;
-            for (let i = 0; i < len; i++) {
-                console.info("log: " + i);
-                console.info("Log pid: " + value[i].pid);
-                console.info("Log uid: " + value[i].uid);
-                console.info("Log type: " + value[i].type);
-                console.info("Log timestamp: " + value[i].timestamp);
-                console.info("Log reason: " + value[i].reason);
-                console.info("Log module: " + value[i].module);
-                console.info("Log summary: " + value[i].summary);
-                console.info("Log text: " + value[i].fullLog);
-            }
-        }
-    } catch (err) {
-        console.error(`code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
+  try {
+    let value: Array<FaultLogger.FaultLogInfo> = await FaultLogger.query(FaultLogger.FaultType.JS_CRASH);
+    if (value) {
+      console.info("value length is " + value.length);
+      let len: number = value.length;
+      for (let i = 0; i < len; i++) {
+        console.info("log: " + i);
+        console.info("Log pid: " + value[i].pid);
+        console.info("Log uid: " + value[i].uid);
+        console.info("Log type: " + value[i].type);
+        console.info("Log timestamp: " + value[i].timestamp);
+        console.info("Log reason: " + value[i].reason);
+        console.info("Log module: " + value[i].module);
+        console.info("Log summary: " + value[i].summary);
+        console.info("Log text: " + value[i].fullLog);
+      }
     }
+  } catch (err) {
+    console.error(`code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
+  }
 }
 ```
 
-## faultLogger.querySelfFaultLog<sup>(deprecated)</sup>
+## FaultLogger.querySelfFaultLog<sup>(deprecated)</sup>
 
 querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;&gt;) : void
 
 > **说明：**
 >
-> 从 API Version 9 开始废弃，建议使用[faultLogger.query](#faultloggerquery9)替代。
+> 从 API Version 9 开始废弃，建议使用[FaultLogger.query](#faultloggerquery9)替代。
 
 获取当前进程故障信息，该方法通过回调方式获取故障信息数组，故障信息数组内最多上报10份故障信息。
 
@@ -175,38 +180,38 @@ querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;Faul
 **示例：**
 
 ```ts
-import faultLogger from '@ohos.faultLogger'
-import { BusinessError } from '@ohos.base'
+import { FaultLogger } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-function queryFaultLogCallback(error: BusinessError, value: Array<faultLogger.FaultLogInfo>) {
-    if (error) {
-        console.info('error is ' + error);
-    } else {
-        console.info("value length is " + value.length);
-        let len: number = value.length;
-        for (let i = 0; i < len; i++) {
-            console.info("log: " + i);
-            console.info("Log pid: " + value[i].pid);
-            console.info("Log uid: " + value[i].uid);
-            console.info("Log type: " + value[i].type);
-            console.info("Log timestamp: " + value[i].timestamp);
-            console.info("Log reason: " + value[i].reason);
-            console.info("Log module: " + value[i].module);
-            console.info("Log summary: " + value[i].summary);
-            console.info("Log text: " + value[i].fullLog);
-        }
+function queryFaultLogCallback(error: BusinessError, value: Array<FaultLogger.FaultLogInfo>) {
+  if (error) {
+    console.info('error is ' + error);
+  } else {
+    console.info("value length is " + value.length);
+    let len: number = value.length;
+    for (let i = 0; i < len; i++) {
+      console.info("log: " + i);
+      console.info("Log pid: " + value[i].pid);
+      console.info("Log uid: " + value[i].uid);
+      console.info("Log type: " + value[i].type);
+      console.info("Log timestamp: " + value[i].timestamp);
+      console.info("Log reason: " + value[i].reason);
+      console.info("Log module: " + value[i].module);
+      console.info("Log summary: " + value[i].summary);
+      console.info("Log text: " + value[i].fullLog);
     }
+  }
 }
-faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH, queryFaultLogCallback);
+FaultLogger.querySelfFaultLog(FaultLogger.FaultType.JS_CRASH, queryFaultLogCallback);
 ```
 
-## faultLogger.querySelfFaultLog<sup>(deprecated)</sup>
+## FaultLogger.querySelfFaultLog<sup>(deprecated)</sup>
 
 querySelfFaultLog(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&gt;
 
 > **说明：**
 >
-> 从 API Version 9 开始废弃，建议使用[faultLogger.query](#faultloggerquery9-1)替代。
+> 从 API Version 9 开始废弃，建议使用[FaultLogger.query](#faultloggerquery9-1)替代。
 
 获取当前进程故障信息，该方法通过Promise方式返回故障信息数组，故障信息数组内最多上报10份故障信息。
 
@@ -227,24 +232,24 @@ querySelfFaultLog(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&g
 **示例：**
 
 ```ts
-import faultLogger from '@ohos.faultLogger'
+import { FaultLogger } from '@kit.PerformanceAnalysisKit';
 
 async function getLog() {
-    let value: Array<faultLogger.FaultLogInfo> = await faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH);
-    if (value) {
-        console.info("value length is " + value.length);
-        let len: number = value.length;
-        for (let i = 0; i < len; i++) {
-            console.info("log: " + i);
-            console.info("Log pid: " + value[i].pid);
-            console.info("Log uid: " + value[i].uid);
-            console.info("Log type: " + value[i].type);
-            console.info("Log timestamp: " + value[i].timestamp);
-            console.info("Log reason: " + value[i].reason);
-            console.info("Log module: " + value[i].module);
-            console.info("Log summary: " + value[i].summary);
-            console.info("Log text: " + value[i].fullLog);
-        }
+  let value: Array<FaultLogger.FaultLogInfo> = await FaultLogger.querySelfFaultLog(FaultLogger.FaultType.JS_CRASH);
+  if (value) {
+    console.info("value length is " + value.length);
+    let len: number = value.length;
+    for (let i = 0; i < len; i++) {
+      console.info("log: " + i);
+      console.info("Log pid: " + value[i].pid);
+      console.info("Log uid: " + value[i].uid);
+      console.info("Log type: " + value[i].type);
+      console.info("Log timestamp: " + value[i].timestamp);
+      console.info("Log reason: " + value[i].reason);
+      console.info("Log module: " + value[i].module);
+      console.info("Log summary: " + value[i].summary);
+      console.info("Log text: " + value[i].fullLog);
     }
+  }
 }
 ```

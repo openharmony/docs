@@ -3,17 +3,15 @@
 
 ## Overview
 
-The **OH_VideoCaptureInfo** struct defines video capture information.
+The **OH_VideoCaptureInfo** struct describes the video capture information.
+
+When both **videoFrameWidth** and **videoFrameHeight** are **0**, video-related parameters are ignored and screen data is not recorded.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[AVScreenCapture](_a_v_screen_capture.md)
+**Related module**: [AVScreenCapture](_a_v_screen_capture.md)
 
 
 ## Summary
@@ -23,12 +21,12 @@ The **OH_VideoCaptureInfo** struct defines video capture information.
 
 | Name| Description| 
 | -------- | -------- |
-| [displayId](#displayid) | uint64_t<br>Defines the ID of the physical screen to capture. This member variable is valid when **capturemode** is set to **CAPTURE_SPECIFIED_SCREEN**.<br>**NOTE**: This member variable is reserved and will be provided in later versions.| 
-| [missionIDs](#missionids) | int32_t \*<br>Defines the mission ID list. This member variable is valid when **capturemode** is set to **CAPTURE_SPECIFIED_WINDOW**.<br>**NOTE**: This member variable is reserved and will be provided in later versions.| 
-| [missionIDsLen](#missionidslen) | int32_t<br>Defines the length of the mission ID list. This member variable is valid when **capturemode** is set to **CAPTURE_SPECIFIED_WINDOW**.<br>**NOTE**: This member variable is reserved and will be provided in later versions.| 
-| [videoFrameWidth](#videoframewidth) | int32_t<br>Defines the width of the captured video.| 
-| [videoFrameHeight](#videoframeheight) | int32_t<br>Defines the height of the captured video.| 
-| [videoSource](#videosource) | [OH_VideoSourceType](_a_v_screen_capture.md#oh_videosourcetype)<br>Defines the video source type. Currently, only RGBA is supported.| 
+| uint64_t [displayId](#displayid) | ID of the physical screen to capture. This member variable is valid when **capturemode** is set to **CAPTURE_SPECIFIED_SCREEN**.| 
+| int32_t \* [missionIDs](#missionids) | Mission ID list. This member variable is valid when **capturemode** is set to **CAPTURE_SPECIFIED_WINDOW**.| 
+| int32_t [missionIDsLen](#missionidslen) | Length of the mission ID list. This member variable is valid when **capturemode** is set to **CAPTURE_SPECIFIED_WINDOW**.| 
+| int32_t [videoFrameWidth](#videoframewidth) | Width of the video to capture, in px.| 
+| int32_t [videoFrameHeight](#videoframeheight) | Height of the video to capture, in px.| 
+| [OH_VideoSourceType](_a_v_screen_capture.md#oh_videosourcetype) [videoSource](#videosource) | Video source type. Currently, only RGBA is supported.| 
 
 
 ## Member Variable Description
@@ -42,11 +40,7 @@ uint64_t OH_VideoCaptureInfo::displayId
 
 **Description**
 
-Defines the ID of the physical screen to capture. This member variable is valid when **capturemode** is set to **CAPTURE_SPECIFIED_SCREEN**.
-
-> **NOTE**
-> 
-> This member variable is reserved and will be provided in later versions.
+ID of the physical screen to capture. This member variable is valid when **capturemode** is set to **CAPTURE_SPECIFIED_SCREEN**.
 
 
 ### missionIDs
@@ -57,11 +51,8 @@ int32_t* OH_VideoCaptureInfo::missionIDs
 
 **Description**
 
-Defines the mission ID list. This member variable is valid when **capturemode** is set to **CAPTURE_SPECIFIED_WINDOW**.
+Mission ID list. This member variable is valid when **capturemode** is set to **CAPTURE_SPECIFIED_WINDOW**.
 
-> **NOTE**
-> 
-> This member variable is reserved and will be provided in later versions.
 
 ### missionIDsLen
 
@@ -71,11 +62,7 @@ int32_t OH_VideoCaptureInfo::missionIDsLen
 
 **Description**
 
-Defines the length of the mission ID list. This member variable is valid when **capturemode** is set to **CAPTURE_SPECIFIED_WINDOW**.
-
-> **NOTE**
-> 
-> This member variable is reserved and will be provided in later versions.
+Length of the mission ID list. This member variable is valid when **capturemode** is set to **CAPTURE_SPECIFIED_WINDOW**.
 
 
 ### videoFrameHeight
@@ -86,7 +73,7 @@ int32_t OH_VideoCaptureInfo::videoFrameHeight
 
 **Description**
 
-Defines the height of the captured video.
+Height of the video to capture, in px.
 
 
 ### videoFrameWidth
@@ -97,7 +84,7 @@ int32_t OH_VideoCaptureInfo::videoFrameWidth
 
 **Description**
 
-Defines the width of the captured video.
+Width of the video to capture, in px.
 
 
 ### videoSource
@@ -108,4 +95,4 @@ OH_VideoSourceType OH_VideoCaptureInfo::videoSource
 
 **Description**
 
-Defines the video source type. Currently, only RGBA is supported.
+Video source type. Currently, only RGBA is supported.

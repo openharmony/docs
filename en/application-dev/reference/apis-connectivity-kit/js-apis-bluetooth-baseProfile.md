@@ -11,7 +11,7 @@ The **baseProfile** module provides APIs for using basic Bluetooth profiles.
 ## Modules to Import
 
 ```js
-import baseProfile from '@ohos.bluetooth.baseProfile';
+import { baseProfile } from '@kit.ConnectivityKit';
 ```
 
 
@@ -24,10 +24,27 @@ Represents the profile state change parameters.
 | Name    | Type                          | Readable| Writable| Description                           |
 | -------- | ----------------------------- | ---- | ---- | ------------------------------- |
 | deviceId | string                        | Yes  | No  | Address of the Bluetooth device.  |
-| state    | ProfileConnectionState        | Yes  | No  | Profile connection state of the device.|
+| state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate)        | Yes  | No  | Profile connection state of the device.|
+| cause<sup>12+</sup>| [DisconnectCause](#disconnectcause12) | Yes| No| Cause of the disconnection.|
 
 
-## baseProfile.getConnectedDevices
+## DisconnectCause<sup>12+</sup>
+
+Enumerates the possible causes of a Bluetooth disconnection.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name                | Value | Description    |
+| ------------------ | ---- | ------ |
+| USER_DISCONNECT            | 0    | The user proactively disconnects the connection.|
+| CONNECT_FROM_KEYBOARD      | 1    | The connection should be initiated from a keyboard.|
+| CONNECT_FROM_MOUSE         | 2    | The connection should be initiated from a mouse device.|
+| CONNECT_FROM_CAR           | 3    | The connection should be initiated from a head unit side.|
+| TOO_MANY_CONNECTED_DEVICES | 4    | The number of connections exceeds the limit.|
+| CONNECT_FAIL_INTERNAL      | 5    | Internal error.|
+
+
+## BaseProfile.getConnectedDevices
 
 getConnectedDevices(): Array&lt;string&gt;
 
@@ -41,7 +58,7 @@ Obtains the connected devices.
 
 | Type                 | Description                 |
 | ------------------- | ------------------- |
-| Array&lt;string&gt; | Addresses of the connected devices. For security purposes, the device addresses obtained are random MAC addresses.|
+| Array&lt;string&gt; | Addresses of the connected devices. For security purposes, the device addresses obtained are random MAC addresses. The random MAC address remains unchanged after a device is paired successfully. It changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off.|
 
 **Error codes**
 
@@ -49,16 +66,18 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let retArray = a2dpSrc.getConnectedDevices();
@@ -68,7 +87,7 @@ try {
 ```
 
 
-## baseProfile.getConnectionState
+## BaseProfile.getConnectionState
 
 getConnectionState(deviceId: string): ProfileConnectionState
 
@@ -96,16 +115,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let ret = a2dpSrc.getConnectionState('XX:XX:XX:XX:XX:XX');
@@ -115,11 +137,11 @@ try {
 ```
 
 
-## baseProfile.on('connectionStateChange')
+## BaseProfile.on('connectionStateChange')
 
 on(type: 'connectionStateChange', callback: Callback&lt;StateChangeParam&gt;): void
 
-Subscribes to profile connection state changes.
+Subscribes to profile connection state changes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -130,13 +152,23 @@ Subscribes to profile connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates a profile connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | Yes   | Callback invoked to return the profile connection state change.                              |
+| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | Yes   | Callback used to return the profile connection state change.                              |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 function onReceiveEvent(data: baseProfile.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
@@ -149,7 +181,7 @@ try {
 ```
 
 
-## baseProfile.off('connectionStateChange')
+## BaseProfile.off('connectionStateChange')
 
 off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparam)&gt;): void
 
@@ -164,13 +196,23 @@ Unsubscribes from profile connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates a profile connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | No   | Callback to unregister.                |
+| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | No   | Callback to unregister.                              |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 function onReceiveEvent(data: baseProfile.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }

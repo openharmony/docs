@@ -9,7 +9,7 @@ The **inputMethodList** module is oriented to system applications and input meth
 ## Modules to Import
 
 ```ts
-import inputMethodL from '@ohos.inputMethodList';
+import { inputMethod } from '@kit.IMEKit';
 ```
 
 ## Child Components
@@ -33,14 +33,14 @@ Implements a dialog box showing the input method list.
 
 | Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](../apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md) | Yes| - | Controller for the dialog box showing the input method list.|
+| controller | [CustomDialogController](../apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| - | Controller for the dialog box showing the input method list.|
 | patternOptions | [PatternOptions](#patternoptions) | No| - | Input method pattern options (for the default input method only).|
 
 ## PatternOptions
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | defaultSelected<sup>11+</sup>  | number | Yes| Yes| Optional. Default selected pattern.|
 | patterns<sup>11+</sup>    | Array<[Pattern](#pattern)> | Yes| Yes| Mandatory. Resource of the pattern option.|
@@ -50,7 +50,7 @@ Implements a dialog box showing the input method list.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | icon<sup>11+</sup>  | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes| Yes| Mandatory. Default icon.|
 | selectedIcon<sup>11+</sup>    | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes| Yes| Mandatory. Icon for the selected option.|
@@ -62,7 +62,7 @@ The [universal events](../apis-arkui/arkui-ts/ts-universal-events-click.md) are 
 ##  Example
 
 ```ts
-import { InputMethodListDialog, Pattern, PatternOptions } from '@ohos.inputMethodList';
+import { InputMethodListDialog, Pattern, PatternOptions } from '@kit.IMEKit';
 
 @Entry
 // Configure the component.

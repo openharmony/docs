@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines dimension information. The maximum dimension is set by **MS_MAX_SHAPE_NUM**.
+Defines dimension information. The maximum dimension is set by **OH_AI_MAX_SHAPE_NUM**.
 
 **Since**
 

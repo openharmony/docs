@@ -9,7 +9,7 @@ The **AutoStartupInfo** module defines information about the application compone
 > The APIs of this module can be used only in the stage model.
 > The APIs provided by this module are system APIs.
 
-## Attributes
+## Properties
 
 **System API**: This is a system API.
 
@@ -17,23 +17,23 @@ The **AutoStartupInfo** module defines information about the application compone
 
 | Name                     | Type  | Mandatory | Description      |
 | ------------------------- | ------ | ---- | --------- |
-| bundleName   | string | Yes | Bundle name.|
-| moduleName | string | No  | Module name.|
-| abilityName | string | Yes | Ability name.|
-| abilityTypeName | string | No| Ability type.|
+| bundleName   | string | Yes | Bundle name. |
+| moduleName | string | No  | Module name. |
+| abilityName | string | Yes | Ability name. |
+| abilityTypeName | string | No | Ability type. |
+| appCloneIndex | number   | No  | Index of an application clone. |
 
 **Example**
 
 ```ts
-import autoStartupManager from '@ohos.app.ability.autoStartupManager';
-import common from '@ohos.app.ability.common';
+import { autoStartupManager, common } from '@kit.AbilityKit';
 
 autoStartupManager.setApplicationAutoStartup({
   bundleName: 'com.example.autostartupapp',
   moduleName: 'entry',
   abilityName: 'EntryAbility',
   abilityTypeName: 'ServiceExtension'
-} as common.AutoStartupInfo , (err, data) => {
+} as common.AutoStartupInfo, (err, data) => {
   console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
 });
 ```

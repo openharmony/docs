@@ -7,19 +7,19 @@ Modal transition is a type of transition achieved by a modal – a view that app
 **Table 1** Modal transition APIs
 | API                                      | Description               | Usage                                    |
 | ---------------------------------------- | ----------------- | ---------------------------------------- |
-| [bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md) | Binds a modal to the component.       | Use this API to display a custom modal. It can work with the transition animation and shared element animation to implement complex transition animation effects, for example, displaying an image in full in the modal upon the click of a thumbnail.|
-| [bindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md) | Binds a sheet to the component.         | Use this API to display a custom sheet, for example, a sharing confirmation dialog box.                         |
-| [bindMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) | Binds a menu to the component, which is displayed when the component is clicked.    | Use this API where a menu is required, for example, for the plus sign (+), a common menu indicator in applications.                |
-| [bindContextMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) | Binds a context menu to the component, which is displayed when the user long-presses or right-clicks the component.| Use this API for components that bounce up when long-pressed, for example, home screen icons.            |
-| [bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md) | Binds a popup to the component.       | Use this API to display a popup containing additional information about a component when the component is clicked.              |
-| if                                       | Adds or deletes the component.     | Use this API to display a temporary page in a certain state. In this mode, the return navigation needs to be implemented with a listener. |
+| [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover) | Binds a modal to the component.       | Use this API to display a custom modal. It can work with the transition animation and shared element animation to implement complex transition animation effects, for example, displaying an image in full in the modal upon the click of a thumbnail.|
+| [bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet) | Binds a sheet to the component.         | Use this API to display a custom sheet, for example, a sharing confirmation dialog box.                         |
+| [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11) | Binds a menu to the component, which is displayed when the component is clicked.    | Use this API where a menu is required, for example, for the plus sign (+), a common menu indicator in applications.                |
+| [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12) | Binds a context menu to the component, which is displayed when the user long-presses or right-clicks the component.| Use this API for components that bounce up when long-pressed, for example, home screen icons.            |
+| [bindPopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) | Binds a popup to the component.       | Use this API to display a popup containing additional information about a component when the component is clicked.              |
+| [if](../quick-start/arkts-rendering-control-ifelse.md)                                       | Adds or deletes the component.     | Use this API to display a temporary page in a certain state. In this mode, the return navigation needs to be implemented with a listener. |
 
 
 ## Creating Modal Transition with bindContentCover
 
-You can bind a full-screen modal to a component through the [bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md) attribute. Better yet, with the **ModalTransition** parameter, you can apply a transition effect for when the component is inserted or deleted.
+You can bind a full-screen modal to a component through the [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover) attribute. Better yet, with the **ModalTransition** parameter, you can apply a transition effect for when the component appears or disappears.
 
-1. Define [bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md).
+1. Define [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover).
 
 2. Define the modal view.
 
@@ -30,106 +30,210 @@ You can bind a full-screen modal to a component through the [bindContentCover](.
        Text('my model view')
      }
      // Use the transition API to implement the transition animation for component appearance and disappearance. The transition API must be added to the first component of the builder.
-     .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.8) }))
+     .transition(TransitionEffect.translate({ y: 1000 }).animation({ curve: curves.springMotion(0.6, 0.8) }))
    }
    ```
 
 3. Call the modal API to display the modal. Implement an animation by using the animation or shared element transition APIs.
 
    ```ts
-    class PresentTmp{
-      isPresent: boolean = false;
-      set(){
-        this.isPresent = !this.isPresent;
-      }
-    }
    // Define the state variable to control the visibility of the modal.
    @State isPresent: boolean = false;
 
    Button('Click to present model view')
-     // Bind the modal to the component. ModalTransition indicates the transition mode of the modal. The value None means no transition animation for the modal.
-     .bindContentCover(this.isPresent, this.MyBuilder, ModalTransition.NONE)
+     // Bind a modal to the component. ModalTransition.NONE means not to use the default transition animation for the modal. You can use onDisappear to control state variable changes.
+     .bindContentCover(this.isPresent, this.MyBuilder(), {
+               modalTransition: ModalTransition.NONE,
+               onDisappear: () => {
+                 if (this.isPresent) {
+                   this.isPresent = !this.isPresent;
+                 }
+               }
+             })
      .onClick(() => {
        // Change the state variable to display the modal.
-       let setPre:PresentTmp = new PresentTmp()
-       setPre.set()
+       this.isPresent = !this.isPresent;
      })
    ```
 
 
 Below is the complete sample code and effect.
 
-
-
 ```ts
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
+
+interface PersonList {
+  name: string,
+  cardnum: string
+}
 
 @Entry
 @Component
 struct BindContentCoverDemo {
+  private personList: Array<PersonList> = [
+    { name: 'Wang **', cardnum: '1234***********789' },
+    { name: 'Song*', cardnum: '2345***********789' },
+    { name: 'Xu **', cardnum: '3456***********789' },
+    { name: 'Tang*', cardnum: '4567***********789' }
+  ];
   // Step 1: Define bindContentCover.
   // Define the state variable to control the visibility of the modal.
   @State isPresent: boolean = false;
 
   // Step 2: Define the modal view.
   // Use @Builder to build a modal view.
-  @Builder MyBuilder() {
+  @Builder
+  MyBuilder() {
     Column() {
+      Row() {
+        Text('Select passengers')
+          .fontSize(20)
+          .fontColor(Color.White)
+          .width('100%')
+          .textAlign(TextAlign.Center)
+          .padding({ top: 30, bottom: 15 })
+      }
+      .backgroundColor(0x007dfe)
+
+      Row() {
+        Text('+ Add')
+          .fontSize(16)
+          .fontColor(0x333333)
+          .margin({ top: 10 })
+          .padding({ top: 20, bottom: 20 })
+          .width('92%')
+          .borderRadius(10)
+          .textAlign(TextAlign.Center)
+          .backgroundColor(Color.White)
+      }
+
       Column() {
-        Column() {
-          Text('back')
-            .fontSize(24)
-            .fontColor(Color.White)
-        }
-        .justifyContent(FlexAlign.Center)
-        .width(100)
-        .height(100)
-        .borderRadius(5)
-        .backgroundColor(0xf56c6c)
-        .onClick(() => {
-          this.isPresent = false;
+        ForEach(this.personList, (item: PersonList, index: number) => {
+          Row() {
+            Column() {
+              if (index % 2 == 0) {
+                Column()
+                  .width(20)
+                  .height(20)
+                  .border({ width: 1, color: 0x007dfe })
+                  .backgroundColor(0x007dfe)
+              } else {
+                Column()
+                  .width(20)
+                  .height(20)
+                  .border({ width: 1, color: 0x007dfe })
+              }
+            }
+            .width('20%')
+
+            Column() {
+              Text(item.name)
+                .fontColor(0x333333)
+                .fontSize(18)
+              Text(item.cardnum)
+                .fontColor(0x666666)
+                .fontSize(14)
+            }
+            .width('60%')
+            .alignItems(HorizontalAlign.Start)
+
+            Column() {
+              Text('Edit')
+                .fontColor(0x007dfe)
+                .fontSize(16)
+            }
+            .width('20%')
+          }
+          .padding({ top: 10, bottom: 10 })
+          .border({ width: { bottom: 1 }, color: 0xf1f1f1 })
+          .width('92%')
+          .backgroundColor(Color.White)
         })
       }
-      .height('100%')
-      .width('100%')
-      .backgroundColor(0x909399)
-      .justifyContent(FlexAlign.Center)
-      .border({
-        radius: {
-          topLeft: 15,
-          topRight: 15,
-        }
-      })
+      .padding({ top: 20, bottom: 20 })
+
+      Text('OK')
+        .width('90%')
+        .height(40)
+        .textAlign(TextAlign.Center)
+        .borderRadius(10)
+        .fontColor(Color.White)
+        .backgroundColor(0x007dfe)
+        .onClick(() => {
+          this.isPresent = !this.isPresent;
+        })
     }
-    .height('100%')
-    .justifyContent(FlexAlign.End)
+    .size({ width: '100%', height: '100%' })
+    .backgroundColor(0xf5f5f5)
     // Use the transition API to implement the transition animation for component appearance and disappearance.
     .transition(TransitionEffect.translate({ y: 1000 }).animation({ curve: curves.springMotion(0.6, 0.8) }))
   }
 
   build() {
     Column() {
-      Column() {
-        Text('Click Me')
-          .fontSize(24)
+      Row() {
+        Text('Ticket details')
+          .fontSize(20)
           .fontColor(Color.White)
+          .width('100%')
+          .textAlign(TextAlign.Center)
+          .padding({ top: 30, bottom: 60 })
       }
-      // Step 3: Call the modal API to display the modal. Implement an animation by using the animation or shared element transition APIs.
-      .onClick(() => {
-        // Change the state variable to display the modal.
-        this.isPresent = !this.isPresent;
-      })
-      // Bind a modal to the component. ModalTransition.DEFAULT means to use the slide-up and slide-down animation type.
-      .bindContentCover(this.isPresent, this.MyBuilder(), ModalTransition.DEFAULT)
-      .justifyContent(FlexAlign.Center)
-      .backgroundColor(0XF56C6C)
-      .width(100)
-      .height(100)
-      .borderRadius(5)
+      .backgroundColor(0x007dfe)
+
+      Column() {
+        Row() {
+          Column() {
+            Text('00:25')
+            Text('From')
+          }
+          .width('30%')
+
+          Column() {
+            Text('G1234')
+            Text('8 h 1 min')
+          }
+          .width('30%')
+
+          Column() {
+            Text('08:26')
+            Text('To')
+          }
+          .width('30%')
+        }
+      }
+      .width('92%')
+      .padding(15)
+      .margin({ top: -30 })
+      .backgroundColor(Color.White)
+      .shadow({ radius: 30, color: '#aaaaaa' })
+      .borderRadius(10)
+
+      Column() {
+        Text('+ Select passengers')
+          .fontSize(18)
+          .fontColor(Color.Orange)
+          .fontWeight(FontWeight.Bold)
+          .padding({ top: 10, bottom: 10 })
+          .width('60%')
+          .textAlign(TextAlign.Center)
+          .borderRadius(15)// Bind a modal to the component. ModalTransition.DEFAULT means to use the slide-up and slide-down animation type. You can use onDisappear to control state variable changes.
+          .bindContentCover(this.isPresent, this.MyBuilder(), {
+            modalTransition: ModalTransition.DEFAULT,
+            onDisappear: () => {
+              if (this.isPresent) {
+                this.isPresent = !this.isPresent;
+              }
+            }
+          })
+          .onClick(() => {
+            // Step 3: Call the modal API to display the modal. Implement an animation by using the animation or shared element transition APIs.
+            // Change the state variable to display the modal.
+            this.isPresent = !this.isPresent;
+          })
+      }
+      .padding({ top: 60 })
     }
-    .justifyContent(FlexAlign.Center)
-    .width('100%')
-    .height('100%')
   }
 }
 ```
@@ -142,7 +246,7 @@ struct BindContentCoverDemo {
 
 ## Creating Sheet Transition with bindSheet
 
-You can bind a sheet to a component through the [bindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md) attribute. You can also set the sheet to the preset or custom height for when the component is inserted. The process of creating a sheet transition is basically the same as that of creating a modal transition.
+You can bind a sheet to a component through the [bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet) attribute. You can also set the sheet to the preset or custom height for when the component appears. The process of creating a sheet transition is basically the same as that of creating a modal transition using [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover).
 
 Below is the complete sample code and effect.
 
@@ -151,66 +255,88 @@ Below is the complete sample code and effect.
 @Entry
 @Component
 struct BindSheetDemo {
-
-  // Define the state variable to control the sheet height.
-  @State sheetHeight: number|SheetSize|null|undefined = 300;
-  // Define the state variable to control the visibility of the drag bar.
-  @State showDragBar: boolean = true;
+  // Set visibility of the sheet.
+  @State isShowSheet: boolean = false;
+  private menuList: string[] = ['No ice', 'Light ice', 'Extra ice', 'Light sauce', 'Extra sauce', 'Plastic cutlery', 'No plastic cutlery'];
 
   // Use @Builder to build a sheet view.
-  @Builder myBuilder() {
+  @Builder
+  mySheet() {
     Column() {
-      Button("change height")
-        .margin(10)
-        .fontSize(20)
-        .onClick(() => {
-          this.sheetHeight = 500;
+      Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap }) {
+        ForEach(this.menuList, (item: string) => {
+          Text(item)
+            .fontSize(16)
+            .fontColor(0x333333)
+            .backgroundColor(0xf1f1f1)
+            .borderRadius(8)
+            .margin(10)
+            .padding(10)
         })
-
-      Button("Set Illegal height")
-        .margin(10)
-        .fontSize(20)
-        .onClick(() => {
-          this.sheetHeight = -1;
-        })
-
-      Button("close dragbar")
-        .margin(10)
-        .fontSize(20)
-        .onClick(() => {
-          this.showDragBar = !this.showDragBar;
-        })
-      Button("close modal 1")
-        .margin(10)
-        .fontSize(20)
-        .onClick(() => {
-          this.isPresent = false;
-        })
+      }
+      .padding({ top: 18 })
     }
     .width('100%')
     .height('100%')
+    .backgroundColor(Color.White)
   }
-
-  // Define the state variable to control the visibility of the sheet.
-  @State isPresent: boolean = false;
 
   build() {
     Column() {
-      if(this.sheetHeight){
-        Button("Click to present sheet view")
-        .onClick(() => {
-          // Change the state variable to display the modal.
-          this.isPresent = !this.isPresent;
+      Text('Preferences')
+        .fontSize(28)
+        .padding({ top: 30, bottom: 30 })
+      Column() {
+        Row() {
+          Row()
+            .width(10)
+            .height(10)
+            .backgroundColor('#a8a8a8')
+            .margin({ right: 12 })
+            .borderRadius(20)
+
+          Column() {
+            Text('Customize')
+              .fontSize(16)
+              .fontWeight(FontWeight.Medium)
+          }
+          .alignItems(HorizontalAlign.Start)
+
+          Blank()
+
+          Row()
+            .width(12)
+            .height(12)
+            .margin({ right: 15 })
+            .border({
+              width: { top: 2, right: 2 },
+              color: 0xcccccc
+            })
+            .rotate({ angle: 45 })
+        }
+        .borderRadius(15)
+        .shadow({ radius: 100, color: '#ededed' })
+        .width('90%')
+        .alignItems(VerticalAlign.Center)
+        .padding({ left: 15, top: 15, bottom: 15 })
+        .backgroundColor(Color.White)
+        // Bind a sheet to the component. Set height (sheet height; large by default) and DragBar (whether to display the drag bar; true by default). You can use onDisappear to control state variable changes.
+        .bindSheet(this.isShowSheet, this.mySheet(), {
+          height: 300,
+          dragBar: false,
+          onDisappear: () => {
+            this.isShowSheet = !this.isShowSheet;
+          }
         })
-        .fontSize(20)
-        .margin(10)
-          // Bind the sheet to the component. You can specify the sheet height and whether to display the drag bar.
-        .bindSheet(this.isPresent, this.myBuilder(), { height: this.sheetHeight, dragBar: this.showDragBar })
+        .onClick(() => {
+          this.isShowSheet = !this.isShowSheet;
+        })
       }
+      .width('100%')
     }
-    .justifyContent(FlexAlign.Center)
     .width('100%')
     .height('100%')
+    .backgroundColor(0xf1f1f1)
   }
 }
 ```
@@ -220,7 +346,7 @@ struct BindSheetDemo {
 
 ## Creating a Menu with bindMenu
 
-You can bind a menu to component through the [bindMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) attribute. The menu can then be triggered by clicking. Below is the complete sample code and effect.
+You can bind a menu to component through the [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu) attribute. The menu can then be triggered by clicking. Below is the complete sample code and effect.
 
 
 ```ts
@@ -268,7 +394,7 @@ struct BindMenuDemo {
 
 ## Creating a Context Menu with bindContextMenu
 
-You can bind a context menu to component through the [bindContextMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) attribute. The menu can then be triggered by long-pressing or right-clicking.  
+You can bind a menu to component through the [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8) attribute. The menu can then be triggered by long-pressing or right-clicking.  
 
 Below is the complete sample code and effect.
 
@@ -277,48 +403,55 @@ Below is the complete sample code and effect.
 @Entry
 @Component
 struct BindContextMenuDemo {
-  private num: number[] = [1, 2, 3, 4];
-  private colors: Color[] = [0x67C23A, 0xE6A23C, 0xf56c6c, 0x909399];
+  private menu: string[] = ['Save', 'Favorite', 'Search'];
+  private pics: Resource[] = [$r('app.media.icon_1'), $r('app.media.icon_2')];
+
   // Use @Builder to build custom menu items.
-  @Builder MyMenu() {
-    Row() {
-      Column() {
-        ForEach(this.num, (item: number, index: number = 0) => {
-          Row() {
-              Text(item.toString())
-                .fontSize(20)
-                .fontColor(Color.White)
-            }
-            .backgroundColor(this.colors[index])
+  @Builder myMenu() {
+    Column() {
+      ForEach(this.menu, (item: string) => {
+        Row() {
+          Text(item)
+            .fontSize(18)
             .width('100%')
-            .aspectRatio(2)
-            .justifyContent(FlexAlign.Center)
-        })
-      }
-      .width('100%')
+            .textAlign(TextAlign.Center)
+        }
+        .padding(15)
+        .border({ width: { bottom: 1 }, color: 0xcccccc })
+      })
     }
-    .width(150)
-    .justifyContent(FlexAlign.Center)
-    .padding(5)
+    .width(140)
+    .borderRadius(15)
+    .shadow({ radius: 15, color: 0xf1f1f1 })
+    .backgroundColor(0xf1f1f1)
   }
 
   build() {
     Column() {
-      Column() {
-        Text('longPress')
+      Row() {
+        Text('View image')
           .fontSize(20)
           .fontColor(Color.White)
+          .width('100%')
+          .textAlign(TextAlign.Center)
+          .padding({ top: 20, bottom: 20 })
       }
-      .justifyContent(FlexAlign.Center)
-      .width(170)
-      .height(50)
-      .bindContextMenu(this.MyMenu, ResponseType.LongPress)
-      .backgroundColor(0xf56c6c)
-      .borderRadius(5)
+      .backgroundColor(0x007dfe)
+
+      Column() {
+        ForEach(this.pics, (item: Resource) => {
+          Row(){
+            Image(item)
+              .width('100%')
+              .draggable(false)
+          }
+          .padding({ top: 20, bottom: 20, left: 10, right: 10 })
+          .bindContextMenu(this.myMenu, ResponseType.LongPress)
+        })
+      }
     }
-    .justifyContent(FlexAlign.Center)
     .width('100%')
-    .height(437)
+    .alignItems(HorizontalAlign.Center)
   }
 }
 ```
@@ -328,7 +461,7 @@ struct BindContextMenuDemo {
 
 ## Creating a Popup with bindPopUp
 
-You can bind a popup to a component through the [bindpopup](../reference/arkui-ts/ts-universal-attributes-popup.md) attribute, specifying its content, interaction logic, and display status.
+You can bind a popup to a component through the [bindpopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) attribute, specifying its content, interaction logic, and display status.
 
 Below is the complete sample code and effect.
 
@@ -402,73 +535,180 @@ Below is the complete sample code and effect.
 ```ts
 @Entry
 @Component
-struct ModalTransition1 {
-
+struct ModalTransitionWithIf {
+  private listArr: string[] = ['WLAN', 'Bluetooth', 'Personal hotspot', 'Connected devices'];
+  private shareArr: string[] = ['Projection', 'Printing', 'VPN','Private DNS', 'NFC'];
   // Step 1: Define a state variable to control page display.
-  @State isShow: boolean = false;
+  @State isShowShare: boolean = false;
+  private shareFunc(): void {
+    this.getUIContext()?.animateTo({ duration: 500 }, () => {
+      this.isShowShare = !this.isShowShare;
+    })
+  }
 
-  build() {
+  build(){
     // Step 2: Define a stack layout to display the current view and modal view.
     Stack() {
       Column() {
-        Text('Page1')
-          .fontSize(40)
-          .fontColor(Color.White)
-          .fontWeight(FontWeight.Bolder)
+        Column() {
+          Text('Settings')
+            .fontSize(28)
+            .fontColor(0x333333)
+        }
+        .width('90%')
+        .padding({ top: 30, bottom: 15 })
+        .alignItems(HorizontalAlign.Start)
 
-        Text('Click to transition')
-          .fontSize(15)
-          .fontColor(Color.White)
+        TextInput({ placeholder: 'Search by keyword' })
+          .width('90%')
+          .height(40)
+          .margin({ bottom: 10 })
+          .focusable(false)
+
+        List({ space: 12, initialIndex: 0 }) {
+          ForEach(this.listArr, (item: string, index: number) => {
+            ListItem() {
+              Row() {
+                Row() {
+                  Text(`${item.slice(0, 1)}`)
+                    .fontColor(Color.White)
+                    .fontSize(14)
+                    .fontWeight(FontWeight.Bold)
+                }
+                .width(30)
+                .height(30)
+                .backgroundColor('#a8a8a8')
+                .margin({ right: 12 })
+                .borderRadius(20)
+                .justifyContent(FlexAlign.Center)
+
+                Column() {
+                  Text(item)
+                    .fontSize(16)
+                    .fontWeight(FontWeight.Medium)
+                }
+                .alignItems(HorizontalAlign.Start)
+
+                Blank()
+
+                Row()
+                  .width(12)
+                  .height(12)
+                  .margin({ right: 15 })
+                  .border({
+                    width: { top: 2, right: 2 },
+                    color: 0xcccccc
+                  })
+                  .rotate({ angle: 45 })
+              }
+              .borderRadius(15)
+              .shadow({ radius: 100, color: '#ededed' })
+              .width('90%')
+              .alignItems(VerticalAlign.Center)
+              .padding({ left: 15, top: 15, bottom: 15 })
+              .backgroundColor(Color.White)
+            }
+            .width('100%')
+            .onClick(() => {
+              // Step 3: Change the state variable to display the modal view.
+              if(item.slice(-2) === 'Share'){
+                this.shareFunc();
+              }
+            })
+          }, (item: string): string => item)
+        }
+        .width('100%')
       }
-      .justifyContent(FlexAlign.Center)
       .width('100%')
       .height('100%')
-      .linearGradient({
-        colors: [
-          [0xf56c6c, 0.0],
-          [0xffffff, 1.0]
-        ]
-      })
-      // Step 3: Change the state variable to display the modal view.
-      .onClick(() => {
-        animateTo({ duration: 500 }, () => {
-          this.isShow = !this.isShow;
-        })
-      })
+      .backgroundColor(0xfefefe)
 
       // Step 4: Define the modal view in if and display it at the top layer. Use if to control the appearance and disappearance of the modal view.
-      if (this.isShow) {
+      if(this.isShowShare){
         Column() {
-          Text('Page2')
-            .fontSize(40)
-            .fontColor(Color.Gray)
-            .fontWeight(FontWeight.Bolder)
+          Column() {
+            Row() {
+              Row() {
+                Row()
+                  .width(16)
+                  .height(16)
+                  .border({
+                    width: { left: 2, top: 2 },
+                    color: 0x333333
+                  })
+                  .rotate({ angle: -45 })
+              }
+              .padding({ left: 15, right: 10 })
+              .onClick(() => {
+                this.shareFunc();
+              })
+              Text('Connected devices')
+                .fontSize(28)
+                .fontColor(0x333333)
+            }
+            .padding({ top: 30 })
+          }
+          .width('90%')
+          .padding({bottom: 15})
+          .alignItems(HorizontalAlign.Start)
 
-          Text('Click to transition')
-            .fontSize(15)
-            .fontColor(Color.Gray)
+          List({ space: 12, initialIndex: 0 }) {
+            ForEach(this.shareArr, (item: string) => {
+              ListItem() {
+                Row() {
+                  Row() {
+                    Text(`${item.slice(0, 1)}`)
+                      .fontColor(Color.White)
+                      .fontSize(14)
+                      .fontWeight(FontWeight.Bold)
+                  }
+                  .width(30)
+                  .height(30)
+                  .backgroundColor('#a8a8a8')
+                  .margin({ right: 12 })
+                  .borderRadius(20)
+                  .justifyContent(FlexAlign.Center)
+
+                  Column() {
+                    Text(item)
+                      .fontSize(16)
+                      .fontWeight(FontWeight.Medium)
+                  }
+                  .alignItems(HorizontalAlign.Start)
+
+                  Blank()
+
+                  Row()
+                    .width(12)
+                    .height(12)
+                    .margin({ right: 15 })
+                    .border({
+                      width: { top: 2, right: 2 },
+                      color: 0xcccccc
+                    })
+                    .rotate({ angle: 45 })
+                }
+                .borderRadius(15)
+                .shadow({ radius: 100, color: '#ededed' })
+                .width('90%')
+                .alignItems(VerticalAlign.Center)
+                .padding({ left: 15, top: 15, bottom: 15 })
+                .backgroundColor(Color.White)
+              }
+              .width('100%')
+            }, (item: string): string => item)
+          }
+          .width('100%')
         }
-        .justifyContent(FlexAlign.Start)
         .width('100%')
         .height('100%')
-        .linearGradient({
-          colors: [
-            [0xffffff, 0.0],
-            [0x409eff, 1.0]
-          ]
-        })
+        .backgroundColor(0xffffff)
         // Step 5: Define the mode in which the modal view disappears.
-        .transition(TransitionEffect.OPACITY.combine(TransitionEffect.rotate({ angle: 90, y: 1 })))
-        .onClick(() => {
-          animateTo({ duration: 500 }, () => {
-            this.isShow = !this.isShow;
-          })
-        })
+        .transition(TransitionEffect.OPACITY
+          .combine(TransitionEffect.translate({ x: '100%' }))
+          .combine(TransitionEffect.scale({ x: 0.95, y: 0.95 })))
       }
-
     }
-    .width('100%')
-    .height('100%')
   }
 }
 ```

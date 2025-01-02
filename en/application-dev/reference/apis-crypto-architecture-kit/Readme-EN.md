@@ -1,8 +1,25 @@
-# Crypto Architecture Kit API Reference
+# Crypto Architecture Kit (Crypto Architecture Service)
 
 - ArkTS APIs
   - [@ohos.security.cryptoFramework (Crypto Framework)](js-apis-cryptoFramework.md)
   - APIs No Longer Maintained
     - [@system.cipher (Cipher Algorithm)](js-apis-system-cipher.md)
+- C APIs
+  - Modules
+    - [CryptoAsymKeyApi](_crypto_asym_key_api.md)
+    - [CryptoCommonApi](_crypto_common_api.md)
+    - [CryptoDigestApi](_crypto_digest_api.md)
+    - [CryptoSignatureApi](_crypto_signature_api.md)
+    - [CryptoSymCipherApi](_crypto_sym_cipher_api.md)
+    - [CryptoSymKeyApi](_crypto_sym_key_api.md)
+  - Header Files
+    - [crypto_asym_key.h](crypto__asym__key_8h.md)
+    - [crypto_common.h](crypto__common_8h.md)
+    - [crypto_digest.h](crypto__digest_8h.md)
+    - [crypto_signature.h](crypto__signature_8h.md)
+    - [crypto_sym_cipher.h](crypto__sym__cipher_8h.md)
+    - [crypto_sym_key.h](crypto__sym__key_8h.md)
+  - Structs
+    - [Crypto_DataBlob](_crypto___data_blob.md)
 - Error Codes
   - [Crypto Framework Error Codes](errorcode-crypto-framework.md)

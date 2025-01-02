@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
+import { abilityManager } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -19,23 +19,23 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 | 名称                             | 类型                    | 可读 | 可写 | 说明   |
 | -------------------------------- | ---------------------- | ---- | ---- | ------------------ |
-| onAbilityStateChanged   | AsyncCallback\<void>   | 是   | 否   | Ability前后台状态发生变化时执行的回调函数。传入参数类型是[AbilityStateData](js-apis-inner-application-appStateData-sys.md)。 |
+| onAbilityStateChanged   | AsyncCallback\<void>   | 是   | 否   | Ability前后台状态发生变化时执行的回调函数。传入参数类型是[AbilityStateData](js-apis-inner-application-abilityStateData.md)。 |
 
 **示例：**
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { BusinessError } from '@ohos.base';
+import { abilityManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: abilityManager.AbilityForegroundStateObserver = {
-    onAbilityStateChanged(abilityStateData) {
-        console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
+  onAbilityStateChanged(abilityStateData) {
+    console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+  },
 };
 try {
-    abilityManager.on('abilityForegroundState', observer);
+  abilityManager.on('abilityForegroundState', observer);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`error code: ${code}, error msg: ${message}`);
 }
 ```

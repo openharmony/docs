@@ -13,7 +13,7 @@ The **inputDevice** module allows you to listen for hot swap events of input dev
 
 
 ```js
-import inputDevice from '@ohos.multimodalInput.inputDevice';
+import { inputDevice } from '@kit.InputKit';
 ```
 
 ## inputDevice.getDeviceList<sup>9+</sup>
@@ -29,6 +29,14 @@ Obtains the IDs of all input devices. This API uses an asynchronous callback to 
 | Name    | Type                                    | Mandatory| Description                                    |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -87,6 +95,14 @@ Obtains information about an input device. This API uses an asynchronous callbac
 | deviceId | number                                                   | Yes  | ID of the input device.                 |
 | callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | Yes  | Callback used to return the result, which is an **InputDeviceData** object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -124,6 +140,14 @@ Obtains information about an input device. This API uses a promise to return the
 | -------------------------------------------------- | ------------------------------- |
 | Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -157,6 +181,14 @@ Obtains information about the specified input device.
 | -------------------------------------------------- | ------------------------------- |
 | [InputDeviceData](#inputdevicedata) | Information about the input device.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -183,6 +215,14 @@ Enables listening for device hot swap events. When performing this operation, yo
 | -------- | ---------------------------------------- | ---- | ----------- |
 | type     | string                                   | Yes   | Event type of the input device, such as the mouse, keyboard, or touchscreen. |
 | listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | Yes   | Listener for events of the input device.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -220,8 +260,16 @@ Disables listening for device hot swap events. This API is called before the app
 
 | Name      | Type                                      | Mandatory  | Description         |
 | -------- | ---------------------------------------- | ---- | ----------- |
-| type     | string                                   | Yes   | Event type of the input device. |
+| type     | string                                   | Yes   | Event type of the input device, such as the mouse, keyboard, or touchscreen. |
 | listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | No   | Listener for events of the input device.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -380,6 +428,14 @@ Obtains the keycodes supported by the input device. This API uses an asynchronou
 | keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode)  | Yes  | Keycodes to be queried. A maximum of five keycodes can be specified.               |
 | callback | AsyncCallback&lt;Array&lt;boolean&gt;&gt; | Yes  | Callback used to return the result.                          |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -413,6 +469,14 @@ Obtains the keycodes supported by the input device. This API uses a promise to r
 | Parameters                               | Description                           |
 | ----------------------------------- | ------------------------------- |
 | Promise&lt;Array&lt;boolean&gt;&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -448,6 +512,14 @@ Checks whether the input device supports the specified keycode value.
 | ----------------------------------- | ------------------------------- |
 | Array&lt;boolean&gt; | Result indicating whether the input device supports the keycode value. The value **true** indicates yes, and the value **false** indicates no.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -474,6 +546,14 @@ Obtains the keyboard type of an input device. This API uses an asynchronous call
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | deviceId | number                                              | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
 | callback | AsyncCallback&lt;[KeyboardType](#keyboardtype9)&gt; | Yes  | Callback used to return the result.                                |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -512,6 +592,14 @@ Obtains the keyboard type of an input device. This API uses a promise to return 
 | --------------------------------------------- | ------------------------------- |
 | Promise&lt;[KeyboardType](#keyboardtype9)&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -545,6 +633,14 @@ Obtains the keyboard type of the input device.
 | --------------------------------------------- | ------------------------------- |
 | [KeyboardType](#keyboardtype9) | Keyboard type.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -555,6 +651,28 @@ try {
 } catch (error) {
   console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`)
 }
+```
+
+## inputDevice.getIntervalSinceLastInput<sup>14+</sup>
+
+getIntervalSinceLastInput(): Promise&lt;number&gt;
+
+Obtains the interval since the last system input event. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**Return value**
+
+| Parameters                                         | Description                           |
+| --------------------------------------------- | ------------------------------- |
+| Promise&lt;number&gt; | Promise used tothe interval since the last system input event, in μs.|
+
+**Example**
+
+```js
+  inputDevice.getIntervalSinceLastInput().then((timeInterval: number) => {
+    console.log(`Interval since last input: ${JSON.stringify(number)}`);
+  });
 ```
 
 ## DeviceListener<sup>9+</sup>
@@ -589,21 +707,23 @@ Defines the information about an input device.
 
 ## AxisType<sup>9+</sup>
 
+type AxisType = 'touchmajor' | 'touchminor' | 'orientation' | 'x' | 'y' | 'pressure' | 'toolminor' | 'toolmajor' | 'null'
+
 Defines the axis type of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name       | Type  | Readable  | Writable  | Description     |
-| --------- | ------ | ---- | ---- | ------- |
-| touchmajor  | string | Yes| No| **touchmajor** axis. |
-| touchminor  | string | Yes| No| **touchminor** axis. |
-| toolminor   | string | Yes| No| **toolminor** axis.  |
-| toolmajor   | string | Yes| No| **toolmajor** axis.  |
-| orientation | string | Yes| No| Orientation axis.|
-| pressure    | string | Yes| No| Pressure axis.   |
-| x           | string | Yes| No| X axis.          |
-| y           | string | Yes| No| Y axis.          |
-| null        | string | Yes| No| None.             |
+| Type     |Description     |
+| --------- | ------- |
+| 'touchmajor'  | **touchmajor** axis.|
+| 'touchminor'  | **touchminor** axis.|
+| 'toolminor'   | **toolminor** axis.|
+| 'toolmajor'   | **toolmajor** axis.|
+| 'orientation' | **orientation** axis.|
+|'pressure'    | **pressure** axis. |
+| 'x'          | X axis.        |
+| 'y'           | Y axis.        |
+|'null'        |  None.            |
 
 ## AxisRange
 
@@ -623,29 +743,33 @@ Defines the axis range of an input device.
 
 ## SourceType<sup>9+</sup>
 
-Input source type of the axis. For example, if a mouse reports an x-axis event, the input source of the x-axis is the mouse.
+type SourceType = 'keyboard' | 'mouse' | 'touchpad' | 'touchscreen' | 'joystick' | 'trackball'
+
+Enumerates input source types of the axis. For example, if a mouse reports an x-axis event, the input source of the x-axis is the mouse.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name       | Type  | Readable  | Writable  | Description     |
-| --------- | ------ | ---- | ---- | ------- |
-| keyboard    | string | Yes| No| The input device is a keyboard. |
-| touchscreen | string | Yes| No| The input device is a touchscreen.|
-| mouse       | string | Yes| No| The input device is a mouse. |
-| trackball   | string | Yes| No| The input device is a trackball.|
-| touchpad    | string | Yes| No| The input device is a touchpad.|
-| joystick    | string | Yes| No| The input device is a joystick.|
+| Type      |Description     |
+| --------- |  ------- |
+| 'keyboard'    | The input device is a keyboard. |
+| 'touchscreen' | The input device is a touchscreen.|
+| 'mouse'       | The input device is a mouse. |
+| 'trackball'   | The input device is a trackball.|
+| 'touchpad'    | The input device is a touchpad.|
+| 'joystick'   | The input device is a joystick.|
 
 ## ChangedType<sup>9+</sup>
+
+type ChangedType = 'add' | 'remove'
 
 Defines the change type for the hot swap event of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name       | Type  | Readable  | Writable  | Description     |
-| --------- | ------ | ---- | ---- | ------- |
-| add    | string | Yes| No| An input device is inserted.|
-| remove | string | Yes| No| An input device is removed.|
+| Type       | Description     |
+| --------- | ------- |
+| 'add'    | An input device is inserted.|
+| 'remove' | An input device is removed.|
 
 ## KeyboardType<sup>9+</sup>
 

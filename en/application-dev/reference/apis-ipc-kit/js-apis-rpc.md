@@ -11,7 +11,7 @@ The **RPC** module implements communication between processes, including inter-p
 ## Modules to Import
 
 ```
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 ```
 
 ## ErrorCode<sup>9+</sup>
@@ -20,33 +20,53 @@ The APIs of this module return exceptions since API version 9. The following tab
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-  | Name                                 | Value     | Description                                         |
-  | ------------------------------------- | ------- | --------------------------------------------- |
-  | CHECK_PARAM_ERROR                     | 401     | Parameter check failed.                               |
-  | OS_MMAP_ERROR                         | 1900001 | Failed to call mmap.                       |
-  | OS_IOCTL_ERROR                        | 1900002 | Failed to call **ioctl** with the shared memory file descriptor.|
-  | WRITE_TO_ASHMEM_ERROR                 | 1900003 | Failed to write data to the shared memory.                       |
-  | READ_FROM_ASHMEM_ERROR                | 1900004 | Failed to read data from the shared memory.                       |
-  | ONLY_PROXY_OBJECT_PERMITTED_ERROR     | 1900005 | This operation is allowed only on the proxy object.                    |
-  | ONLY_REMOTE_OBJECT_PERMITTED_ERROR    | 1900006 | This operation is allowed only on the remote object.                   |
-  | COMMUNICATION_ERROR                   | 1900007 | Failed to communicate with the remote object over IPC.               |
-  | PROXY_OR_REMOTE_OBJECT_INVALID_ERROR  | 1900008 | Invalid proxy or remote object.                 |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR  | 1900009 | Failed to write data to MessageSequence.                |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 1900010 | Failed to read data from MessageSequence.                |
-  | PARCEL_MEMORY_ALLOC_ERROR             | 1900011 | Failed to allocate memory during serialization.                   |
-  | CALL_JS_METHOD_ERROR                  | 1900012 | Failed to invoke the JS callback.                         |
-  | OS_DUP_ERROR                          | 1900013 | Failed to call dup.                        |
+| Name                                 | Value     | Description                                         |
+| ------------------------------------- | ------- | --------------------------------------------- |
+| CHECK_PARAM_ERROR                     | 401     | Parameter check failed.                               |
+| OS_MMAP_ERROR                         | 1900001 | Failed to call mmap.                       |
+| OS_IOCTL_ERROR                        | 1900002 | Failed to call **ioctl** with the shared memory file descriptor.|
+| WRITE_TO_ASHMEM_ERROR                 | 1900003 | Failed to write data to the shared memory.                       |
+| READ_FROM_ASHMEM_ERROR                | 1900004 | Failed to read data from the shared memory.                       |
+| ONLY_PROXY_OBJECT_PERMITTED_ERROR     | 1900005 | This operation is allowed only on the proxy object.                    |
+| ONLY_REMOTE_OBJECT_PERMITTED_ERROR    | 1900006 | This operation is allowed only on the remote object.                   |
+| COMMUNICATION_ERROR                   | 1900007 | Failed to communicate with the remote object over IPC.               |
+| PROXY_OR_REMOTE_OBJECT_INVALID_ERROR  | 1900008 | Invalid proxy or remote object.                 |
+| WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR  | 1900009 | Failed to write data to MessageSequence.                |
+| READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 1900010 | Failed to read data from MessageSequence.                |
+| PARCEL_MEMORY_ALLOC_ERROR             | 1900011 | Failed to allocate memory during serialization.                   |
+| CALL_JS_METHOD_ERROR                  | 1900012 | Failed to invoke the JS callback.                         |
+| OS_DUP_ERROR                          | 1900013 | Failed to call dup.                        |
+
+
+## TypeCode<sup>12+</sup>
+
+Since API version 12, [writeArrayBuffer](#writearraybuffer12) and [readArrayBuffer](#readarraybuffer12) are added to pass ArrayBuffer data. The specific TypedArray type is determined by **TypeCode** defined as follows:
+
+**System capability**: SystemCapability.Communication.IPC.Core
+
+| Name                        | Value    | Description                                         |
+| ---------------------------- | ------ | --------------------------------------------  |
+| INT8_ARRAY                   | 0      | The TypedArray type is **INT8_ARRAY**.                 |
+| UINT8_ARRAY                  | 1      | The TypedArray type is **UINT8_ARRAY**.                |
+| INT16_ARRAY                  | 2      | The TypedArray type is **INT16_ARRAY**.                |
+| UINT16_ARRAY                 | 3      | The TypedArray type is **UINT16_ARRAY**.               |
+| INT32_ARRAY                  | 4      | The TypedArray type is **INT32_ARRAY**.                |
+| UINT32_ARRAY                 | 5      | The TypedArray type is **UINT32_ARRAY**.               |
+| FLOAT32_ARRAY                | 6      | The TypedArray type is **FLOAT32_ARRAY**.              |
+| FLOAT64_ARRAY                | 7      | The TypedArray type is **FLOAT64_ARRAY**.              |
+| BIGINT64_ARRAY               | 8      | The TypedArray type is **BIGINT64_ARRAY**.             |
+| BIGUINT64_ARRAY              | 9      | The TypedArray type is **BIGUINT64_ARRAY**.            |
 
 
 ## MessageSequence<sup>9+</sup>
 
-  Provides APIs for reading and writing data in specific format. During RPC or IPC, the sender can use the **write()** method provided by **MessageSequence** to write data in specific format to a **MessageSequence** object. The receiver can use the **read()** method provided by **MessageSequence** to read data in specific format from a **MessageSequence** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
+Provides APIs for reading and writing data in specific format. During RPC or IPC, the sender can use the **write()** method provided by **MessageSequence** to write data in specific format to a **MessageSequence** object. The receiver can use the **read()** method provided by **MessageSequence** to read data in specific format from a **MessageSequence** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
 
 ### create
 
-  static create(): MessageSequence
+static create(): MessageSequence
 
-  Creates a **MessageSequence** object. This API is a static method.
+Creates a **MessageSequence** object. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -59,7 +79,7 @@ The APIs of this module return exceptions since API version 9. The following tab
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageSequence.create();
   hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
@@ -90,24 +110,25 @@ Serializes a remote object and writes it to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type                           | Mandatory| Description                                     |
-  | ------ | ------------------------------- | ---- | ----------------------------------------- |
-  | object | [IRemoteObject](#iremoteobject) | Yes  | Remote object to serialize and write to the **MessageSequence** object.|
+| Name| Type                           | Mandatory| Description                                     |
+| ------ | ------------------------------- | ---- | ----------------------------------------- |
+| object | [IRemoteObject](#iremoteobject) | Yes  | Remote object to serialize and write to the **MessageSequence** object.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900008  | The proxy or remote object is invalid. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -135,24 +156,24 @@ Reads the remote object from **MessageSequence**. You can use this API to deseri
 
 **Return value**
 
-  | Type                           | Description              |
-  | ------------------------------- | ------------------ |
-  | [IRemoteObject](#iremoteobject) | Remote object obtained.|
+| Type                           | Description              |
+| ------------------------------- | ------------------ |
+| [IRemoteObject](#iremoteobject) | Remote object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900008  | The proxy or remote object is invalid. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -182,23 +203,24 @@ Writes an interface token to this **MessageSequence** object. The remote object 
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description              |
-  | ------ | ------ | ---- | ------------------ |
-  | token  | string | Yes  | Interface token to write.|
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| token  | string | Yes  | Interface token to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes:<br> 1.The number of parameters is incorrect;<br> 2.The parameter type does not match;<br> 3.The string length exceeds 40960 bytes;<br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -220,23 +242,23 @@ Reads the interface token from this **MessageSequence** object. The interface to
 
 **Return value**
 
-  | Type  | Description                    |
-  | ------ | ------------------------ |
-  | string | Interface token obtained.|
+| Type  | Description                    |
+| ------ | ------------------------ |
+| string | Interface token obtained.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
 ```ts
-import hilog from '@ohos.hilog';
-import { BusinessError } from '@ohos.base';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class Stub extends rpc.RemoteObject {
   onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -263,14 +285,14 @@ Obtains the data size of this **MessageSequence** object.
 
 **Return value**
 
-  | Type  | Description                                           |
-  | ------ | ----------------------------------------------- |
-  | number | Size of the **MessageSequence** instance obtained, in bytes.|
+| Type  | Description                                           |
+| ------ | ----------------------------------------------- |
+| number | Size of the **MessageSequence** instance obtained, in bytes.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageSequence.create();
   let size = data.getSize();
@@ -287,14 +309,14 @@ Obtains the capacity of this **MessageSequence** object.
 
 **Return value**
 
-  | Type  | Description |
-  | ------ | ----- |
-  | number | Capacity of the obtained **MessageSequence** object, in bytes.|
+| Type  | Description |
+| ------ | ----- |
+| number | Capacity of the obtained **MessageSequence** object, in bytes.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageSequence.create();
   let result = data.getCapacity();
@@ -311,15 +333,23 @@ Sets the size of the data contained in this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description  |
-  | ------ | ------ | ---- | ------ |
-  | size   | number | Yes  | Data size to set, in bytes.|
+| Name| Type  | Mandatory| Description  |
+| ------ | ------ | ---- | ------ |
+| size   | number | Yes  | Data size to set, in bytes.|
+
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   data.writeString('Hello World');
@@ -342,23 +372,24 @@ Sets the storage capacity of this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                                         |
-  | ------ | ------ | ---- | --------------------------------------------- |
-  | size   | number | Yes  | Storage capacity of the **MessageSequence** object to set, in bytes.|
+| Name| Type  | Mandatory| Description                                         |
+| ------ | ------ | ---- | --------------------------------------------- |
+| size   | number | Yes  | Storage capacity of the **MessageSequence** object to set, in bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900011  | parcel memory alloc failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900011  | Memory allocation failed |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -380,14 +411,14 @@ Obtains the writable capacity (in bytes) of this **MessageSequence** object.
 
 **Return value**
 
-  | Type  | Description  |
-  | ------ | ------ |
-  | number | Writable capacity of the **MessageSequence** instance, in bytes.|
+| Type  | Description  |
+| ------ | ------ |
+| number | Writable capacity of the **MessageSequence** instance, in bytes.|
 
 **Example**
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class Stub extends rpc.RemoteObject {
   onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -408,14 +439,14 @@ Obtains the readable capacity of this **MessageSequence** object.
 
 **Return value**
 
-  | Type  | Description   |
-  | ------ | ------- |
-  | number | Readable capacity of the **MessageSequence** instance, in bytes.|
+| Type  | Description   |
+| ------ | ------- |
+| number | Readable capacity of the **MessageSequence** instance, in bytes.|
 
 **Example**
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class Stub extends rpc.RemoteObject {
   onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -436,14 +467,14 @@ Obtains the read position of this **MessageSequence** object.
 
 **Return value**
 
-  | Type  | Description  |
-  | ------ | ------ |
-  | number | Read position obtained.|
+| Type  | Description  |
+| ------ | ------ |
+| number | Read position obtained.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageSequence.create();
   let readPos = data.getReadPosition();
@@ -460,14 +491,14 @@ Obtains the write position of this **MessageSequence** object.
 
 **Return value**
 
-  | Type  | Description |
-  | ------ | ----- |
-  | number | Write position obtained.|
+| Type  | Description |
+| ------ | ----- |
+| number | Write position obtained.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageSequence.create();
   data.writeInt(10);
@@ -485,15 +516,23 @@ Moves the read pointer to the specified position.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | pos    | number | Yes  | Position from which data is to read.|
+| Name| Type  | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| pos    | number | Yes  | Position from which data is to read.|
+
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   data.writeInt(12);
@@ -521,15 +560,23 @@ Moves the write pointer to the specified position.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description |
-  | ------ | ------ | ---- | ----- |
-  | pos    | number | Yes  | Position from which data is to write.|
+| Name| Type  | Mandatory| Description |
+| ------ | ------ | ---- | ----- |
+| pos    | number | Yes  | Position from which data is to write.|
+
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   data.writeInt(4);
@@ -555,23 +602,24 @@ Writes a byte value to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description |
-  | ------ | ------ | ---- | ----- |
-  | val    | number | Yes  | Byte value to write.|
+| Name| Type  | Mandatory| Description |
+| ------ | ------ | ---- | ----- |
+| val    | number | Yes  | Byte value to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------  |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------  |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -593,23 +641,23 @@ Reads the byte value from this **MessageSequence** object.
 
 **Return value**
 
-  | Type  | Description |
-  | ------ | ----- |
-  | number | Byte value read.|
+| Type  | Description |
+| ------ | ----- |
+| number | Byte value read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | ------- | --------  |
-  | 1900010 | read data from message sequence failed |
+| ID| Error Message|
+| ------- | --------  |
+| 1900010 | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -639,23 +687,24 @@ Writes a short integer to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description|
-  | ------ | ------ | ---  | ---  |
-  | val    | number | Yes  | Short integer to write.|
+| Name| Type  | Mandatory| Description|
+| ------ | ------ | ---  | ---  |
+| val    | number | Yes  | Short integer to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -677,23 +726,23 @@ Reads the short integer from this **MessageSequence** object.
 
 **Return value**
 
-  | Type  | Description          |
-  | ------ | -------------- |
-  | number | Short integer read.|
+| Type  | Description          |
+| ------ | -------------- |
+| number | Short integer read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -723,23 +772,24 @@ Writes an integer to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description            |
-  | ------ | ------ | ---- | ---------------- |
-  | val    | number | Yes  | Integer to write.|
+| Name| Type  | Mandatory| Description            |
+| ------ | ------ | ---- | ---------------- |
+| val    | number | Yes  | Integer to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -761,23 +811,23 @@ Reads the integer from this **MessageSequence** object.
 
 **Return value**
 
-  | Type  | Description        |
-  | ------ | ------------ |
-  | number | Integer read.|
+| Type  | Description        |
+| ------ | ------------ |
+| number | Integer read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -807,23 +857,24 @@ Writes a long integer to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description            |
-  | ------ | ------ | ---- | ---------------- |
-  | val    | number | Yes  | Long integer to write.|
+| Name| Type  | Mandatory| Description            |
+| ------ | ------ | ---- | ---------------- |
+| val    | number | Yes  | Long integer to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -845,23 +896,23 @@ Reads the long integer from this **MessageSequence** object.
 
 **Return value**
 
-  | Type  | Description          |
-  | ------ | -------------- |
-  | number | Long integer read.|
+| Type  | Description          |
+| ------ | -------------- |
+| number | Long integer read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -891,23 +942,24 @@ Writes a floating-point number to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description |
-  | ------ | ------ | ---- | ----- |
-  | val    | number | Yes  | Floating-point number to write.|
+| Name| Type  | Mandatory| Description |
+| ------ | ------ | ---- | ----- |
+| val    | number | Yes  | Floating-point number to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -923,29 +975,29 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readFloat(): number
 
-Reads the floating-pointer number from this **MessageSequence** object.
+Reads the floating-point number from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
 
-  | Type  | Description        |
-  | ------ | ------------ |
-  | number | Floating-point number read.|
+| Type  | Description        |
+| ------ | ------------ |
+| number | Floating-point number read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -975,23 +1027,24 @@ Writes a double-precision floating-point number to this **MessageSequence** obje
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                  |
-  | ------ | ------ | ---- | ---------------------- |
-  | val    | number | Yes  | Double-precision floating-point number to write.|
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | ---------------------- |
+| val    | number | Yes  | Double-precision floating-point number to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1013,23 +1066,23 @@ Reads the double-precision floating-point number from this **MessageSequence** o
 
 **Return value**
 
-  | Type  | Description              |
-  | ------ | ------------------ |
-  | number | Double-precision floating-point number read.|
+| Type  | Description              |
+| ------ | ------------------ |
+| number | Double-precision floating-point number read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1059,23 +1112,24 @@ Writes a Boolean value to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description            |
-  | ------ | ------- | ---- | ---------------- |
-  | val    | boolean | Yes  | Boolean value to write.|
+| Name| Type   | Mandatory| Description            |
+| ------ | ------- | ---- | ---------------- |
+| val    | boolean | Yes  | Boolean value to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1097,23 +1151,23 @@ Reads the Boolean value from this **MessageSequence** object.
 
 **Return value**
 
-  | Type   | Description                |
-  | ------- | -------------------- |
-  | boolean | Boolean value read.|
+| Type   | Description                |
+| ------- | -------------------- |
+| boolean | Boolean value read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1143,23 +1197,24 @@ Writes a character to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                |
-  | ------ | ------ | ---- | -------------------- |
-  | val    | number | Yes  | Single character to write.|
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| val    | number | Yes  | Single character to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1181,23 +1236,23 @@ Reads the character from this **MessageSequence** object.
 
 **Return value**
 
-  | Type  | Description|
-  | ------ | ---- |
-  | number | Character read.|
+| Type  | Description|
+| ------ | ---- |
+| number | Character read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1227,23 +1282,24 @@ Writes a string to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                                     |
-  | ------ | ------ | ---- | ----------------------------------------- |
-  | val    | string | Yes  | String to write. The length of the string must be less than 40960 bytes.|
+| Name| Type  | Mandatory| Description                                     |
+| ------ | ------ | ---- | ----------------------------------------- |
+| val    | string | Yes  | String to write. The length of the string must be less than 40960 bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1265,23 +1321,23 @@ Reads the string from this **MessageSequence** object.
 
 **Return value**
 
-  | Type  | Description          |
-  | ------ | -------------- |
-  | string | String read.|
+| Type  | Description          |
+| ------ | -------------- |
+| string | String read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1319,15 +1375,16 @@ Writes a **Parcelable** object to this **MessageSequence** object.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -1376,16 +1433,17 @@ Reads a **Parcelable** object from this **MessageSequence** object to the specif
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
-  | 1900012  | call js callback function failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect. |
+| 1900010  | Failed to read data from the message sequence. |
+| 1900012  | Failed to call the JS callback function. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -1428,23 +1486,24 @@ Writes a byte array to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name   | Type    | Mandatory| Description              |
-  | --------- | -------- | ---- | ------------------ |
-  | byteArray | number[] | Yes  | Byte array to write.|
+| Name   | Type    | Mandatory| Description              |
+| --------- | -------- | ---- | ------------------ |
+| byteArray | number[] | Yes  | Byte array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array. <br> 5.The type of the element in the array is incorrect. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
@@ -1467,23 +1526,24 @@ Reads a byte array from this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description              |
-  | ------ | -------- | ---- | ------------------ |
-  | dataIn | number[] | Yes  | Byte array to read.|
+| Name| Type    | Mandatory| Description              |
+| ------ | -------- | ---- | ------------------ |
+| dataIn | number[] | Yes  | Byte array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
@@ -1514,23 +1574,24 @@ Reads the byte array from this **MessageSequence** object.
 
 **Return value**
 
-  | Type    | Description          |
-  | -------- | -------------- |
-  | number[] | Byte array read.|
+| Type    | Description          |
+| -------- | -------------- |
+| number[] | Byte array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | check param failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   let byteArrayVar = [1, 2, 3, 4, 5];
@@ -1561,23 +1622,24 @@ Writes a short array to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name    | Type    | Mandatory| Description                |
-  | ---------- | -------- | ---- | -------------------- |
-  | shortArray | number[] | Yes  | Short array to write.|
+| Name    | Type    | Mandatory| Description                |
+| ---------- | -------- | ---- | -------------------- |
+| shortArray | number[] | Yes  | Short array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1599,23 +1661,24 @@ Reads a short array from this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description                |
-  | ------ | -------- | ---- | -------------------- |
-  | dataIn | number[] | Yes  | Short array to read.|
+| Name| Type    | Mandatory| Description                |
+| ------ | -------- | ---- | -------------------- |
+| dataIn | number[] | Yes  | Short array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1645,23 +1708,23 @@ Reads the short array from this **MessageSequence** object.
 
 **Return value**
 
-  | Type    | Description            |
-  | -------- | ---------------- |
-  | number[] | Short array read.|
+| Type    | Description            |
+| -------- | ---------------- |
+| number[] | Short array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1691,23 +1754,24 @@ Writes an integer array to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name  | Type    | Mandatory| Description              |
-  | -------- | -------- | ---- | ------------------ |
-  | intArray | number[] | Yes  | Integer array to write.|
+| Name  | Type    | Mandatory| Description              |
+| -------- | -------- | ---- | ------------------ |
+| intArray | number[] | Yes  | Integer array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1729,23 +1793,24 @@ Reads an integer array from this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description              |
-  | ------ | -------- | ---- | ------------------ |
-  | dataIn | number[] | Yes  | Integer array to read.|
+| Name| Type    | Mandatory| Description              |
+| ------ | -------- | ---- | ------------------ |
+| dataIn | number[] | Yes  | Integer array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1775,23 +1840,23 @@ Reads the integer array from this **MessageSequence** object.
 
 **Return value**
 
-  | Type    | Description          |
-  | -------- | -------------- |
-  | number[] | Integer array read.|
+| Type    | Description          |
+| -------- | -------------- |
+| number[] | Integer array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1821,23 +1886,24 @@ Writes a long array to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name   | Type    | Mandatory| Description                |
-  | --------- | -------- | ---- | -------------------- |
-  | longArray | number[] | Yes  | Long array to write.|
+| Name   | Type    | Mandatory| Description                |
+| --------- | -------- | ---- | -------------------- |
+| longArray | number[] | Yes  | Long array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1859,23 +1925,24 @@ Reads a long array from this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description                |
-  | ------ | -------- | ---- | -------------------- |
-  | dataIn | number[] | Yes  | Long array to read.|
+| Name| Type    | Mandatory| Description                |
+| ------ | -------- | ---- | -------------------- |
+| dataIn | number[] | Yes  | Long array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1905,23 +1972,23 @@ Reads the long integer array from this **MessageSequence** object.
 
 **Return value**
 
-  | Type    | Description            |
-  | -------- | ---------------- |
-  | number[] | Long array read.|
+| Type    | Description            |
+| -------- | ---------------- |
+| number[] | Long array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1951,23 +2018,24 @@ Writes a floating-point array to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name    | Type    | Mandatory| Description                                                                                                                   |
-  | ---------- | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-  | floatArray | number[] | Yes  | Floating-point array to write. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
+| Name    | Type    | Mandatory| Description                                                                                                                   |
+| ---------- | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+| floatArray | number[] | Yes  | Floating-point array to write. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1989,23 +2057,24 @@ Reads a floating-point array from this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description                                                                                                                   |
-  | ------ | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-  | dataIn | number[] | Yes  | Floating-point array to read. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
+| Name| Type    | Mandatory| Description                                                                                                                   |
+| ------ | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+| dataIn | number[] | Yes  | Floating-point array to read. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2035,23 +2104,23 @@ Reads the floating-point array from this **MessageSequence** object.
 
 **Return value**
 
-  | Type    | Description          |
-  | -------- | -------------- |
-  | number[] | Floating-point array read.|
+| Type    | Description          |
+| -------- | -------------- |
+| number[] | Floating-point array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2081,23 +2150,24 @@ Writes a double-precision floating-point array to this **MessageSequence** objec
 
 **Parameters**
 
-  | Name     | Type    | Mandatory| Description                    |
-  | ----------- | -------- | ---- | ------------------------ |
-  | doubleArray | number[] | Yes  | Double-precision floating-point array to write.|
+| Name     | Type    | Mandatory| Description                    |
+| ----------- | -------- | ---- | ------------------------ |
+| doubleArray | number[] | Yes  | Double-precision floating-point array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2119,23 +2189,24 @@ Reads a double-precision floating-point array from this **MessageSequence** obje
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description                    |
-  | ------ | -------- | ---- | ------------------------ |
-  | dataIn | number[] | Yes  | Double-precision floating-point array to read.|
+| Name| Type    | Mandatory| Description                    |
+| ------ | -------- | ---- | ------------------------ |
+| dataIn | number[] | Yes  | Double-precision floating-point array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2165,23 +2236,23 @@ Reads the double-precision floating-point array from this **MessageSequence** ob
 
 **Return value**
 
-  | Type    | Description                |
-  | -------- | -------------------- |
-  | number[] | Double-precision floating-point array read.|
+| Type    | Description                |
+| -------- | -------------------- |
+| number[] | Double-precision floating-point array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2211,23 +2282,24 @@ Writes a Boolean array to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name      | Type     | Mandatory| Description              |
-  | ------------ | --------- | ---- | ------------------ |
-  | booleanArray | boolean[] | Yes  | Boolean array to write.|
+| Name      | Type     | Mandatory| Description              |
+| ------------ | --------- | ---- | ------------------ |
+| booleanArray | boolean[] | Yes  | Boolean array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2249,23 +2321,24 @@ Reads a Boolean array from this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type     | Mandatory| Description              |
-  | ------ | --------- | ---- | ------------------ |
-  | dataIn | boolean[] | Yes  | Boolean array to read.|
+| Name| Type     | Mandatory| Description              |
+| ------ | --------- | ---- | ------------------ |
+| dataIn | boolean[] | Yes  | Boolean array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2295,23 +2368,23 @@ Reads the Boolean array from this **MessageSequence** object.
 
 **Return value**
 
-  | Type     | Description          |
-  | --------- | -------------- |
-  | boolean[] | Boolean array read.|
+| Type     | Description          |
+| --------- | -------------- |
+| boolean[] | Boolean array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2341,23 +2414,24 @@ Writes a character array to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name   | Type    | Mandatory| Description                  |
-  | --------- | -------- | ---- | ---------------------- |
-  | charArray | number[] | Yes  | Character array to write.|
+| Name   | Type    | Mandatory| Description                  |
+| --------- | -------- | ---- | ---------------------- |
+| charArray | number[] | Yes  | Character array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2379,23 +2453,24 @@ Reads a character array from this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description                  |
-  | ------ | -------- | ---- | ---------------------- |
-  | dataIn | number[] | Yes  | Character array to read.|
+| Name| Type    | Mandatory| Description                  |
+| ------ | -------- | ---- | ---------------------- |
+| dataIn | number[] | Yes  | Character array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2425,23 +2500,23 @@ Reads the character array from this **MessageSequence** object.
 
 **Return value**
 
-  | Type    | Description              |
-  | -------- | ------------------ |
-  | number[] | Character array read.|
+| Type    | Description              |
+| -------- | ------------------ |
+| number[] | Character array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2471,23 +2546,24 @@ Writes a string array to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name     | Type    | Mandatory| Description                                                   |
-  | ----------- | -------- | ---- | ------------------------------------------------------- |
-  | stringArray | string[] | Yes  | String array to write. The length of a single element in the array must be less than 40960 bytes.|
+| Name     | Type    | Mandatory| Description                                                   |
+| ----------- | -------- | ---- | ------------------------------------------------------- |
+| stringArray | string[] | Yes  | String array to write. The length of a single element in the array must be less than 40960 bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The string length exceeds 40960 bytes; <br> 5.The number of bytes copied to the buffer is different from the length of the obtained string. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2509,23 +2585,24 @@ Reads a string array from this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description                |
-  | ------ | -------- | ---- | -------------------- |
-  | dataIn | string[] | Yes  | String array to read.|
+| Name| Type    | Mandatory| Description                |
+| ------ | -------- | ---- | -------------------- |
+| dataIn | string[] | Yes  | String array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2555,23 +2632,23 @@ Reads the string array from this **MessageSequence** object.
 
 **Return value**
 
-  | Type    | Description            |
-  | -------- | ---------------- |
-  | string[] | String array read.|
+| Type    | Description            |
+| -------- | ---------------- |
+| string[] | String array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2603,15 +2680,15 @@ Writes information to this **MessageSequence** object indicating that no excepti
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -2648,20 +2725,17 @@ Reads the exception information from this **MessageSequence** object.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
-  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
-
   ```ts
-  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // If the FA model is used, import featureAbility from @kit.AbilityKit.
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -2684,14 +2758,17 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
@@ -2743,15 +2820,16 @@ Writes a **Parcelable** array to this **MessageSequence** object.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -2803,16 +2881,17 @@ Reads a **Parcelable** array from this **MessageSequence** object.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
-  | 1900012  | call js callback function failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The length of the array passed when reading is not equal to the length passed when writing to the array; <br> 5.The element does not exist in the array. |
+| 1900010  | Failed to read data from the message sequence. |
+| 1900012  | Failed to call the JS callback function. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -2866,15 +2945,16 @@ Writes an array of **IRemoteObject** objects to this **MessageSequence** object.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The obtained remoteObject is null. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -2915,15 +2995,16 @@ Reads an array of **IRemoteObject** objects from this **MessageSequence** object
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The length of the array passed when reading is not equal to the length passed when writing to the array. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -2966,15 +3047,15 @@ Reads the **IRemoteObject** object array from this **MessageSequence** object.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -3009,19 +3090,27 @@ Closes a file descriptor. This API is a static method.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                |
-  | ------ | ------ | ---- | -------------------- |
-  | fd     | number | Yes  | File descriptor to close.|
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| fd     | number | Yes  | File descriptor to close.|
+
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
 
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
     rpc.MessageSequence.closeFileDescriptor(file.fd);
   } catch (error) {
@@ -3033,7 +3122,7 @@ Closes a file descriptor. This API is a static method.
 
 ### dupFileDescriptor
 
-static dupFileDescriptor(fd: number) :number
+static dupFileDescriptor(fd: number): number
 
 Duplicates a file descriptor. This API is a static method.
 
@@ -3041,33 +3130,34 @@ Duplicates a file descriptor. This API is a static method.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                    |
-  | ------ | ------ | ---- | ------------------------ |
-  | fd     | number | Yes  | File descriptor to duplicate.|
+| Name| Type  | Mandatory| Description                    |
+| ------ | ------ | ---- | ------------------------ |
+| fd     | number | Yes  | File descriptor to duplicate.|
 
 **Return value**
 
-  | Type  | Description                |
-  | ------ | -------------------- |
-  | number | New file descriptor.|
+| Type  | Description                |
+| ------ | -------------------- |
+| number | New file descriptor.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900013  | call os dup function failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900013  | Failed to call dup. |
 
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
     rpc.MessageSequence.dupFileDescriptor(file.fd);
   } catch (error) {
@@ -3087,20 +3177,20 @@ Checks whether this **MessageSequence** object contains file descriptors.
 
 **Return value**
 
-  | Type   | Description                                                                |
-  | ------- | -------------------------------------------------------------------- |
-  | boolean | Returns **true** if the **MessageSequence** object contains file descriptors; returns **false** otherwise.|
+| Type   | Description                                                                |
+| ------- | -------------------------------------------------------------------- |
+| boolean | Returns **true** if the **MessageSequence** object contains file descriptors; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
     sequence.writeFileDescriptor(file.fd);
   } catch (error) {
@@ -3128,28 +3218,29 @@ Writes a file descriptor to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description        |
-  | ------ | ------ | ---- | ------------ |
-  | fd     | number | Yes  | File descriptor to write.|
+| Name| Type  | Mandatory| Description        |
+| ------ | ------ | ---- | ------------ |
+| fd     | number | Yes  | File descriptor to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
     sequence.writeFileDescriptor(file.fd);
   } catch (error) {
@@ -3169,28 +3260,28 @@ Reads the file descriptor from this **MessageSequence** object.
 
 **Return value**
 
-  | Type  | Description            |
-  | ------ | ---------------- |
-  | number | File descriptor read.|
+| Type  | Description            |
+| ------ | ---------------- |
+| number | File descriptor read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
     sequence.writeFileDescriptor(file.fd);
   } catch (error) {
@@ -3226,15 +3317,16 @@ Writes an anonymous shared object to this **MessageSequence** object.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | ------- |
-  | 1900003  | write to ashmem failed |
+| ID| Error Message|
+| -------- | ------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter is not an instance of the Ashmem object. |
+| 1900003  | Failed to write data to the shared memory. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let ashmem: rpc.Ashmem | undefined = undefined;
@@ -3272,15 +3364,16 @@ Reads the anonymous shared object from this **MessageSequence** object.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900004  | read from ashmem failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | check param failed |
+| 1900004  | Failed to read data from the shared memory. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let ashmem: rpc.Ashmem | undefined = undefined;
@@ -3317,14 +3410,14 @@ Obtains the maximum amount of raw data that can be held by this **MessageSequenc
 
 **Return value**
 
-  | Type  | Description                                                        |
-  | ------ | ------------------------------------------------------------ |
-  | number | 128 MB, which is the maximum amount of raw data that can be held by this **MessageSequence** object.|
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| number | Maximum amount of raw data that **MessageSequence** can hold, that is, 128 MB.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let sequence = new rpc.MessageSequence();
   let result = sequence.getRawDataCapacity();
@@ -3333,7 +3426,7 @@ Obtains the maximum amount of raw data that can be held by this **MessageSequenc
 
 ### writeRawData<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 11. You are advised to use [writeRawDataBuffer](#writerawdatabuffer11).
+>**NOTE**<br>This API is deprecated since API version 11. Use [writeRawDataBuffer](#writerawdatabuffer11) instead.
 
 writeRawData(rawData: number[], size: number): void
 
@@ -3343,24 +3436,25 @@ Writes raw data to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name | Type    | Mandatory| Description                              |
-  | ------- | -------- | ---- | ---------------------------------- |
-  | rawData | number[] | Yes  | Raw data to write.                |
-  | size    | number   | Yes  | Size of the raw data, in bytes.|
+| Name | Type    | Mandatory| Description                              |
+| ------- | -------- | ---- | ---------------------------------- |
+| rawData | number[] | Yes  | Raw data to write.                |
+| size    | number   | Yes  | Size of the raw data, in bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The transferred size cannot be obtained; <br> 5.The transferred size is less than or equal to 0;<br> 6.The element does not exist in the array; <br> 7.Failed to obtain typedArray information; <br> 8.The array is not of type int32; <br> 9.The length of typedarray is smaller than the size of the original data sent. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let arr = [1, 2, 3, 4, 5];
@@ -3383,24 +3477,25 @@ Writes raw data to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name | Type    | Mandatory| Description                              |
-  | ------- | -------- | ---- | ---------------------------------- |
-  | rawData | ArrayBuffer | Yes  | Raw data to write.                |
-  | size    | number   | Yes  | Size of the raw data, in bytes.|
+| Name | Type    | Mandatory| Description                              |
+| ------- | -------- | ---- | ---------------------------------- |
+| rawData | ArrayBuffer | Yes  | Raw data to write.                |
+| size    | number   | Yes  | Size of the raw data, in bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain arrayBuffer information; <br> 4.The transferred size cannot be obtained; <br> 5.The transferred size is less than or equal to 0; <br> 6.The transferred size is greater than the byte length of ArrayBuffer. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let buffer = new ArrayBuffer(64 * 1024);
   let int32View = new Int32Array(buffer);
@@ -3420,7 +3515,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### readRawData<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 11. You are advised to use [readRawDataBuffer](#readrawdatabuffer11).
+>**NOTE**<br>This API is deprecated since API version 11. Use [readRawDataBuffer](#readrawdatabuffer11) instead.
 
 readRawData(size: number): number[]
 
@@ -3430,29 +3525,30 @@ Reads raw data from this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                    |
-  | ------ | ------ | ---- | ------------------------ |
-  | size   | number | Yes  | Size of the raw data to read.|
+| Name| Type  | Mandatory| Description                    |
+| ------ | ------ | ---- | ------------------------ |
+| size   | number | Yes  | Size of the raw data to read.|
 
 **Return value**
 
-  | Type    | Description                          |
-  | -------- | ------------------------------ |
-  | number[] | Raw data obtained, in bytes.|
+| Type    | Description                          |
+| -------- | ------------------------------ |
+| number[] | Raw data obtained, in bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let arr = [1, 2, 3, 4, 5];
@@ -3483,29 +3579,30 @@ Reads raw data from this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                    |
-  | ------ | ------ | ---- | ------------------------ |
-  | size   | number | Yes  | Size of the raw data to read.|
+| Name| Type  | Mandatory| Description                    |
+| ------ | ------ | ---- | ------------------------ |
+| size   | number | Yes  | Size of the raw data to read.|
 
 **Return value**
 
-  | Type    | Description                          |
-  | -------- | ------------------------------ |
-  | ArrayBuffer | Raw data obtained, in bytes.|
+| Type    | Description                          |
+| -------- | ------------------------------ |
+| ArrayBuffer | Raw data obtained, in bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let buffer = new ArrayBuffer(64 * 1024);
   let int32View = new Int32Array(buffer);
@@ -3532,9 +3629,119 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
+### writeArrayBuffer<sup>12+</sup>
+
+writeArrayBuffer(buf: ArrayBuffer, typeCode: TypeCode): void
+
+Writes data of the ArrayBuffer type to this **MessageSequence** object.
+
+**System capability**: SystemCapability.Communication.IPC.Core
+
+**Parameters**
+
+| Name   | Type                     | Mandatory| Description                       |
+| --------- | ------------------------- | ---- | --------------------------- |
+| buf       | ArrayBuffer               | Yes  | Data to write.  |
+| typeCode  | [TypeCode](#typecode12)   | Yes  | TypedArray type of the ArrayBuffer data.<br>The underlying write mode is determined based on the enum value of **TypeCode** passed by the service.|
+
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The obtained value of typeCode is incorrect; <br> 5.Failed to obtain arrayBuffer information. |
+| 1900009  | Failed to write data to the message sequence. |
+
+**Example**
+
+  ```ts
+  // In this example, the value of TypeCode is Int16Array.
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  const data = rpc.MessageSequence.create();
+
+  let buffer = new ArrayBuffer(10);
+  let int16View = new Int16Array(buffer);
+  for (let i = 0; i < int16View.length; i++) {
+    int16View[i] = i * 2 + 1;
+  }
+
+  try {
+    data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorMessage ' + e.message);
+  }
+  ```
+
+### readArrayBuffer<sup>12+</sup>
+
+readArrayBuffer(typeCode: TypeCode): ArrayBuffer
+
+Reads data of the ArrayBuffer type from this **MessageSequence**.
+
+**System capability**: SystemCapability.Communication.IPC.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                  |
+| -------- | ----------------------- | ---- | ------------------------|
+| typeCode | [TypeCode](#typecode12) | Yes  | TypedArray type of the ArrayBuffer data.<br>The underlying read mode is determined based on the enum value of **TypeCode** passed by the service. |
+
+**Return value**
+
+| Type    | Description                                        |
+| -------- | -------------------------------------------- |
+| ArrayBuffer | Data of the ArrayBuffer type read, in bytes.|
+
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The obtained value of typeCode is incorrect; |
+| 1900010  | Failed to read data from the message sequence. |
+
+**Example**
+
+  ```ts
+  // In this example, the value of TypeCode is Int16Array.
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  const data = rpc.MessageSequence.create();
+
+  let buffer = new ArrayBuffer(10);
+  let int16View = new Int16Array(buffer);
+  for (let i = 0; i < int16View.length; i++) {
+    int16View[i] = i * 2 + 1;
+  }
+
+  try {
+    data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorMessage ' + e.message);
+  }
+  try {
+    let result = data.readArrayBuffer(rpc.TypeCode.INT16_ARRAY);
+    let readInt16View = new Int16Array(result);
+    hilog.info(0x0000, 'testTag', 'RpcTest: read ArrayBuffer result is ' + readInt16View);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read ArrayBuffer fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read ArrayBuffer fail, errorMessage ' + e.message);
+  }
+  ```
+
 ## MessageParcel<sup>(deprecated)</sup>
 
->This class is no longer maintained since API version 9. You are advised to use [MessageSequence](#messagesequence9).
+>**NOTE**<br>This API is deprecated since API version 9. Use [MessageSequence](#messagesequence9) instead.
 
 Provides APIs for reading and writing data in specific format. During RPC, the sender can use the **write()** method provided by **MessageParcel** to write data in specific format to a **MessageParcel** object. The receiver can use the **read()** method provided by **MessageParcel** to read data in specific format from a **MessageParcel** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
 
@@ -3548,14 +3755,14 @@ Creates a **MessageParcel** object. This method is a static method.
 
 **Return value**
 
-  | Type         | Description                         |
-  | ------------- | ----------------------------- |
-  | [MessageParcel](#messageparceldeprecated) | **MessageParcel** object created.|
+| Type         | Description                         |
+| ------------- | ----------------------------- |
+| [MessageParcel](#messageparceldeprecated) | **MessageParcel** object created.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
@@ -3586,20 +3793,20 @@ Serializes a remote object and writes it to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type                           | Mandatory| Description                                   |
-  | ------ | ------------------------------- | ---- | --------------------------------------- |
-  | object | [IRemoteObject](#iremoteobject) | Yes  | Remote object to serialize and write to the **MessageParcel** object.|
+| Name| Type                           | Mandatory| Description                                   |
+| ------ | ------------------------------- | ---- | --------------------------------------- |
+| object | [IRemoteObject](#iremoteobject) | Yes  | Remote object to serialize and write to the **MessageParcel** object.|
 
 **Return value**
 
-  | Type   | Description                                     |
-  | ------- | ----------------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type   | Description                                     |
+| ------- | ----------------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -3635,14 +3842,14 @@ Reads the remote object from this **MessageParcel** object. You can use this met
 
 **Return value**
 
-  | Type                           | Description              |
-  | ------------------------------- | ------------------ |
-  | [IRemoteObject](#iremoteobject) | Remote object obtained.|
+| Type                           | Description              |
+| ------------------------------- | ------------------ |
+| [IRemoteObject](#iremoteobject) | Remote object obtained.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -3680,20 +3887,20 @@ Writes an interface token to this **MessageParcel** object. The remote object ca
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description              |
-  | ------ | ------ | ---- | ------------------ |
-  | token  | string | Yes  | Interface token to write.|
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| token  | string | Yes  | Interface token to write.|
 
 **Return value**
 
-  | Type   | Description                                     |
-  | ------- | ----------------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type   | Description                                     |
+| ------- | ----------------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeInterfaceToken("aaa");
@@ -3710,14 +3917,14 @@ Reads the interface token from this **MessageParcel** object. The interface toke
 
 **Return value**
 
-  | Type  | Description                    |
-  | ------ | ------------------------ |
-  | string | Interface token obtained.|
+| Type  | Description                    |
+| ------ | ------------------------ |
+| string | Interface token obtained.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
@@ -3738,14 +3945,14 @@ Obtains the data size of this **MessageParcel** object.
 
 **Return value**
 
-  | Type  | Description                                         |
-  | ------ | --------------------------------------------- |
-  | number | Size of the **MessageParcel** object obtained, in bytes.|
+| Type  | Description                                         |
+| ------ | --------------------------------------------- |
+| number | Size of the **MessageParcel** object obtained, in bytes.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let size = data.getSize();
@@ -3762,14 +3969,14 @@ Obtains the capacity of this **MessageParcel** object.
 
 **Return value**
 
-  | Type  | Description                                         |
-  | ------ | --------------------------------------------- |
-  | number | **MessageParcel** capacity obtained, in bytes.|
+| Type  | Description                                         |
+| ------ | --------------------------------------------- |
+| number | **MessageParcel** capacity obtained, in bytes.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.getCapacity();
@@ -3786,20 +3993,20 @@ Sets the size of data contained in this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                                       |
-  | ------ | ------ | ---- | ------------------------------------------- |
-  | size   | number | Yes  | Data size to set, in bytes.|
+| Name| Type  | Mandatory| Description                                       |
+| ------ | ------ | ---- | ------------------------------------------- |
+| size   | number | Yes  | Data size to set, in bytes.|
 
 **Return value**
 
-  | Type   | Description                             |
-  | ------- | --------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type   | Description                             |
+| ------- | --------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let setSize = data.setSize(16);
@@ -3816,20 +4023,20 @@ Sets the storage capacity of this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                                       |
-  | ------ | ------ | ---- | ------------------------------------------- |
-  | size   | number | Yes  | Storage capacity to set, in bytes.|
+| Name| Type  | Mandatory| Description                                       |
+| ------ | ------ | ---- | ------------------------------------------- |
+| size   | number | Yes  | Storage capacity to set, in bytes.|
 
 **Return value**
 
-  | Type   | Description                             |
-  | ------- | --------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type   | Description                             |
+| ------- | --------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.setCapacity(100);
@@ -3846,14 +4053,14 @@ Obtains the writable capacity of this **MessageParcel** object.
 
 **Return value**
 
-  | Type  | Description                                               |
-  | ------ | --------------------------------------------------- |
-  | number | **MessageParcel** writable capacity obtained, in bytes.|
+| Type  | Description                                               |
+| ------ | --------------------------------------------------- |
+| number | **MessageParcel** writable capacity obtained, in bytes.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
@@ -3874,14 +4081,14 @@ Obtains the readable capacity of this **MessageParcel** object.
 
 **Return value**
 
-  | Type  | Description                                               |
-  | ------ | --------------------------------------------------- |
-  | number | **MessageParcel** object readable capacity, in bytes.|
+| Type  | Description                                               |
+| ------ | --------------------------------------------------- |
+| number | **MessageParcel** object readable capacity, in bytes.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
@@ -3902,14 +4109,14 @@ Obtains the read position of this **MessageParcel** object.
 
 **Return value**
 
-  | Type  | Description                                   |
-  | ------ | --------------------------------------- |
-  | number | Current read position of the **MessageParcel** object.|
+| Type  | Description                                   |
+| ------ | --------------------------------------- |
+| number | Current read position of the **MessageParcel** object.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let readPos = data.getReadPosition();
@@ -3926,14 +4133,14 @@ Obtains the write position of this **MessageParcel** object.
 
 **Return value**
 
-  | Type  | Description                                   |
-  | ------ | --------------------------------------- |
-  | number | Current write position of the **MessageParcel** object.|
+| Type  | Description                                   |
+| ------ | --------------------------------------- |
+| number | Current write position of the **MessageParcel** object.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   data.writeInt(10);
@@ -3951,20 +4158,20 @@ Moves the read pointer to the specified position.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                    |
-  | ------ | ------ | ---- | ------------------------ |
-  | pos    | number | Yes  | Position from which data is to read.|
+| Name| Type  | Mandatory| Description                    |
+| ------ | ------ | ---- | ------------------------ |
+| pos    | number | Yes  | Position from which data is to read.|
 
 **Return value**
 
-  | Type   | Description                                             |
-  | ------- | ------------------------------------------------- |
+| Type   | Description                                             |
+| ------- | ------------------------------------------------- |
 | boolean | Returns **true** if the read position changes; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   data.writeInt(12);
@@ -3986,20 +4193,20 @@ Moves the write pointer to the specified position.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                    |
-  | ------ | ------ | ---- | ------------------------ |
-  | pos    | number | Yes  | Position from which data is to write.|
+| Name| Type  | Mandatory| Description                    |
+| ------ | ------ | ---- | ------------------------ |
+| pos    | number | Yes  | Position from which data is to write.|
 
 **Return value**
 
-  | Type   | Description                                         |
-  | ------- | --------------------------------------------- |
+| Type   | Description                                         |
+| ------- | --------------------------------------------- |
 | boolean | Returns **true** if the write position changes; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   data.writeInt(4);
@@ -4019,20 +4226,20 @@ Writes a Byte value to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description            |
-  | ------ | ------ | ---- | ---------------- |
-  | val    | number | Yes  | Byte value to write.|
+| Name| Type  | Mandatory| Description            |
+| ------ | ------ | ---- | ---------------- |
+| val    | number | Yes  | Byte value to write.|
 
 **Return value**
 
-  | Type   | Description                         |
-  | ------- | ----------------------------- |
+| Type   | Description                         |
+| ------- | ----------------------------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeByte(2);
@@ -4049,14 +4256,14 @@ Reads the Byte value from this **MessageParcel** object.
 
 **Return value**
 
-  | Type  | Description        |
-  | ------ | ------------ |
-  | number | Byte value read.|
+| Type  | Description        |
+| ------ | ------------ |
+| number | Byte value read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeByte(2);
@@ -4075,20 +4282,20 @@ Writes a Short int value to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description              |
-  | ------ | ------ | ---- | ------------------ |
-  | val    | number | Yes  | Short int value to write.|
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| val    | number | Yes  | Short int value to write.|
 
 **Return value**
 
-  | Type   | Description                         |
-  | ------- | ----------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                         |
+| ------- | ----------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeShort(8);
@@ -4105,14 +4312,14 @@ Reads the Short int value from this **MessageParcel** object.
 
 **Return value**
 
-  | Type  | Description          |
-  | ------ | -------------- |
-  | number | Short int value read.|
+| Type  | Description          |
+| ------ | -------------- |
+| number | Short int value read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeShort(8);
@@ -4131,20 +4338,20 @@ Writes an Int value to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description            |
-  | ------ | ------ | ---- | ---------------- |
-  | val    | number | Yes  | Int value to write.|
+| Name| Type  | Mandatory| Description            |
+| ------ | ------ | ---- | ---------------- |
+| val    | number | Yes  | Int value to write.|
 
 **Return value**
 
-  | Type   | Description                         |
-  | ------- | ----------------------------- |   
+| Type   | Description                         |
+| ------- | ----------------------------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeInt(10);
@@ -4161,14 +4368,14 @@ Reads the Int value from this **MessageParcel** object.
 
 **Return value**
 
-  | Type  | Description        |
-  | ------ | ------------ |
-  | number | Int value read.|
+| Type  | Description        |
+| ------ | ------------ |
+| number | Int value read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeInt(10);
@@ -4187,20 +4394,20 @@ Writes a Long int value to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description            |
-  | ------ | ------ | ---- | ---------------- |
-  | val    | number | Yes  | Long int value to write.|
+| Name| Type  | Mandatory| Description            |
+| ------ | ------ | ---- | ---------------- |
+| val    | number | Yes  | Long int value to write.|
 
 **Return value**
 
-  | Type   | Description                             |
-  | ------- | --------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                             |
+| ------- | --------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeLong(10000);
@@ -4217,14 +4424,14 @@ Reads the Long int value from this **MessageParcel** object.
 
 **Return value**
 
-  | Type  | Description          |
-  | ------ | -------------- |
-  | number | Long int value read.|
+| Type  | Description          |
+| ------ | -------------- |
+| number | Long integer read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeLong(10000);
@@ -4243,20 +4450,20 @@ Writes a Float value to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description            |
-  | ------ | ------ | ---- | ---------------- |
-  | val    | number | Yes  | Float value to write.|
+| Name| Type  | Mandatory| Description            |
+| ------ | ------ | ---- | ---------------- |
+| val    | number | Yes  | Float value to write.|
 
 **Return value**
 
-  | Type   | Description                             |
-  | ------- | --------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                             |
+| ------- | --------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeFloat(1.2);
@@ -4273,14 +4480,14 @@ Reads the Float value from this **MessageParcel** object.
 
 **Return value**
 
-  | Type  | Description        |
-  | ------ | ------------ |
-  | number | Float value read.|
+| Type  | Description        |
+| ------ | ------------ |
+| number | Float value read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeFloat(1.2);
@@ -4299,20 +4506,20 @@ Writes a Double value to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                  |
-  | ------ | ------ | ---- | ---------------------- |
-  | val    | number | Yes  | Double value to write.|
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | ---------------------- |
+| val    | number | Yes  | Double value to write.|
 
 **Return value**
 
-  | Type   | Description                             |
-  | ------- | --------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                             |
+| ------- | --------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeDouble(10.2);
@@ -4329,14 +4536,14 @@ Reads the Double value from this **MessageParcel** object.
 
 **Return value**
 
-  | Type  | Description              |
-  | ------ | ------------------ |
-  | number | Double value read.|
+| Type  | Description              |
+| ------ | ------------------ |
+| number | Double value read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeDouble(10.2);
@@ -4355,20 +4562,20 @@ Writes a Boolean value to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description            |
-  | ------ | ------- | ---- | ---------------- |
-  | val    | boolean | Yes  | Boolean value to write.|
+| Name| Type   | Mandatory| Description            |
+| ------ | ------- | ---- | ---------------- |
+| val    | boolean | Yes  | Boolean value to write.|
 
 **Return value**
 
-  | Type   | Description                             |
-  | ------- | --------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                             |
+| ------- | --------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeBoolean(false);
@@ -4385,14 +4592,14 @@ Reads the Boolean value from this **MessageParcel** object.
 
 **Return value**
 
-  | Type   | Description                |
-  | ------- | -------------------- |
-  | boolean | Boolean value read.|
+| Type   | Description                |
+| ------- | -------------------- |
+| boolean | Boolean value read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeBoolean(false);
@@ -4411,20 +4618,20 @@ Writes a Char value to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                |
-  | ------ | ------ | ---- | -------------------- |
-  | val    | number | Yes  | Char value to write.|
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| val    | number | Yes  | Char value to write.|
 
 **Return value**
 
-  | Type   | Description                         |
-  | ------- | ----------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                         |
+| ------- | ----------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeChar(97);
@@ -4435,20 +4642,20 @@ Writes a Char value to this **MessageParcel** object.
 
 readChar(): number
 
-Reads the Char value from this **MessageParcel** object.
+Reads the single character value from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
 
-  | Type  | Description            |
-  | ------ | ---------------- |
-  | number | Char value read.|
+| Type  | Description            |
+| ------ | ---------------- |
+| number | Single character value read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeChar(97);
@@ -4467,20 +4674,20 @@ Writes a string to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                                     |
-  | ------ | ------ | ---- | ----------------------------------------- |
-  | val    | string | Yes  | String to write. The length of the string must be less than 40960 bytes.|
+| Name| Type  | Mandatory| Description                                     |
+| ------ | ------ | ---- | ----------------------------------------- |
+| val    | string | Yes  | String to write. The length of the string must be less than 40960 bytes.|
 
 **Return value**
 
-  | Type   | Description                             |
-  | ------- | --------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                             |
+| ------- | --------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeString('abc');
@@ -4497,14 +4704,14 @@ Reads the string from this **MessageParcel** object.
 
 **Return value**
 
-  | Type  | Description          |
-  | ------ | -------------- |
-  | string | String read.|
+| Type  | Description          |
+| ------ | -------------- |
+| string | String read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeString('abc');
@@ -4523,20 +4730,20 @@ Writes a sequenceable object to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type                         | Mandatory| Description                |
-  | ------ | ----------------------------- | ---- | -------------------- |
-  | val    | [Sequenceable](#sequenceabledeprecated) | Yes  | Sequenceable object to write.|
+| Name| Type                         | Mandatory| Description                |
+| ------ | ----------------------------- | ---- | -------------------- |
+| val    | [Sequenceable](#sequenceabledeprecated) | Yes  | Sequenceable object to write.|
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -4572,20 +4779,20 @@ Reads member variables from this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type                         | Mandatory   | Description                                          |
-  | ------ | ----------------------------- | ------- | ---------------------------------------------- |
-  | dataIn | [Sequenceable](#sequenceabledeprecated) | Yes  | Object that reads member variables from the **MessageParcel** object.|
+| Name| Type                         | Mandatory   | Description                                          |
+| ------ | ----------------------------- | ------- | ---------------------------------------------- |
+| dataIn | [Sequenceable](#sequenceabledeprecated) | Yes  | Object that reads member variables from the **MessageParcel** object.|
 
 **Return value**
 
-  | Type   | Description                                    |
-  | ------- | ---------------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type   | Description                                    |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -4624,20 +4831,20 @@ Writes a byte array to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name   | Type    | Mandatory| Description              |
-  | --------- | -------- | ---- | ------------------ |
-  | byteArray | number[] | Yes  | Byte array to write.|
+| Name   | Type    | Mandatory| Description              |
+| --------- | -------- | ---- | ------------------ |
+| byteArray | number[] | Yes  | Byte array to write.|
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
@@ -4655,14 +4862,14 @@ Reads a byte array from this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description              |
-  | ------ | -------- | ---- | ------------------ |
-  | dataIn | number[] | Yes  | Byte array to read.|
+| Name| Type    | Mandatory| Description              |
+| ------ | -------- | ---- | ------------------ |
+| dataIn | number[] | Yes  | Byte array to read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
@@ -4682,14 +4889,14 @@ Reads the byte array from this **MessageParcel** object.
 
 **Return value**
 
-  | Type    | Description          |
-  | -------- | -------------- |
-  | number[] | Byte array read.|
+| Type    | Description          |
+| -------- | -------------- |
+| number[] | Byte array read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
@@ -4709,20 +4916,20 @@ Writes a short array to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name    | Type    | Mandatory| Description                |
-  | ---------- | -------- | ---- | -------------------- |
-  | shortArray | number[] | Yes  | Short array to write.|
+| Name    | Type    | Mandatory| Description                |
+| ---------- | -------- | ---- | -------------------- |
+| shortArray | number[] | Yes  | Short array to write.|
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
@@ -4739,14 +4946,14 @@ Reads a short array from this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description                |
-  | ------ | -------- | ---- | -------------------- |
-  | dataIn | number[] | Yes  | Short array to read.|
+| Name| Type    | Mandatory| Description                |
+| ------ | -------- | ---- | -------------------- |
+| dataIn | number[] | Yes  | Short array to read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
@@ -4765,14 +4972,14 @@ Reads the short array from this **MessageParcel** object.
 
 **Return value**
 
-  | Type    | Description            |
-  | -------- | ---------------- |
-  | number[] | Short array read.|
+| Type    | Description            |
+| -------- | ---------------- |
+| number[] | Short array read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
@@ -4791,20 +4998,20 @@ Writes an integer array to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name  | Type    | Mandatory| Description              |
-  | -------- | -------- | ---- | ------------------ |
-  | intArray | number[] | Yes  | Integer array to write.|
+| Name  | Type    | Mandatory| Description              |
+| -------- | -------- | ---- | ------------------ |
+| intArray | number[] | Yes  | Integer array to write.|
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
@@ -4821,14 +5028,14 @@ Reads an integer array from this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description              |
-  | ------ | -------- | ---- | ------------------ |
-  | dataIn | number[] | Yes  | Integer array to read.|
+| Name| Type    | Mandatory| Description              |
+| ------ | -------- | ---- | ------------------ |
+| dataIn | number[] | Yes  | Integer array to read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
@@ -4847,14 +5054,14 @@ Reads the integer array from this **MessageParcel** object.
 
 **Return value**
 
-  | Type    | Description          |
-  | -------- | -------------- |
-  | number[] | Integer array read.|
+| Type    | Description          |
+| -------- | -------------- |
+| number[] | Integer array read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
@@ -4873,20 +5080,20 @@ Writes a long array to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name   | Type    | Mandatory| Description                |
-  | --------- | -------- | ---- | -------------------- |
-  | longArray | number[] | Yes  | Long array to write.|
+| Name   | Type    | Mandatory| Description                |
+| --------- | -------- | ---- | -------------------- |
+| longArray | number[] | Yes  | Long array to write.|
 
 **Return value**
 
-  | Type   | Description                         |
-  | ------- | ----------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                         |
+| ------- | ----------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
@@ -4903,14 +5110,14 @@ Reads a long array from this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description                |
-  | ------ | -------- | ---- | -------------------- |
-  | dataIn | number[] | Yes  | Long array to read.|
+| Name| Type    | Mandatory| Description                |
+| ------ | -------- | ---- | -------------------- |
+| dataIn | number[] | Yes  | Long array to read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
@@ -4929,14 +5136,14 @@ Reads the long array from this **MessageParcel** object.
 
 **Return value**
 
- | Type    | Description            |
- | -------- | ---------------- |
- | number[] | Long array read.|
+| Type    | Description            |
+| -------- | ---------------- |
+| number[] | Long array read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
@@ -4955,20 +5162,20 @@ Writes a FloatArray to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description |
-  | ---------- | -------- | ---- | --- |
-  | floatArray | number[] | Yes  | Floating-point array to write. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
+| Name| Type| Mandatory| Description |
+| ---------- | -------- | ---- | --- |
+| floatArray | number[] | Yes  | Floating-point array to write. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -4985,14 +5192,14 @@ Reads a FloatArray from this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description  |
-  | ------ | -------- | ---- | ------ |
-  | dataIn | number[] | Yes  | Floating-point array to read. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
+| Name| Type    | Mandatory| Description  |
+| ------ | -------- | ---- | ------ |
+| dataIn | number[] | Yes  | Floating-point array to read. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -5011,14 +5218,14 @@ Reads the FloatArray from this **MessageParcel** object.
 
 **Return value**
 
-  | Type    | Description          |
-  | -------- | -------------- |
-  | number[] | FloatArray read.|
+| Type    | Description          |
+| -------- | -------------- |
+| number[] | FloatArray read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -5037,20 +5244,20 @@ Writes a DoubleArray to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name     | Type    | Mandatory| Description                    |
-  | ----------- | -------- | ---- | ------------------------ |
-  | doubleArray | number[] | Yes  | DoubleArray to write.|
+| Name     | Type    | Mandatory| Description                    |
+| ----------- | -------- | ---- | ------------------------ |
+| doubleArray | number[] | Yes  | DoubleArray to write.|
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -5067,14 +5274,14 @@ Reads a DoubleArray from this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description                    |
-  | ------ | -------- | ---- | ------------------------ |
-  | dataIn | number[] | Yes  | DoubleArray to read.|
+| Name| Type    | Mandatory| Description                    |
+| ------ | -------- | ---- | ------------------------ |
+| dataIn | number[] | Yes  | DoubleArray to read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -5093,14 +5300,14 @@ Reads the DoubleArray from this **MessageParcel** object.
 
 **Return value**
 
-  | Type    | Description                |
-  | -------- | -------------------- |
-  | number[] | DoubleArray read.|
+| Type    | Description                |
+| -------- | -------------------- |
+| number[] | DoubleArray read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -5119,20 +5326,20 @@ Writes a Boolean array to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name      | Type     | Mandatory| Description              |
-  | ------------ | --------- | ---- | ------------------ |
-  | booleanArray | boolean[] | Yes  | Boolean array to write.|
+| Name      | Type     | Mandatory| Description              |
+| ------------ | --------- | ---- | ------------------ |
+| booleanArray | boolean[] | Yes  | Boolean array to write.|
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
@@ -5149,14 +5356,14 @@ Reads a Boolean array from this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type     | Mandatory| Description              |
-  | ------ | --------- | ---- | ------------------ |
-  | dataIn | boolean[] | Yes  | Boolean array to read.|
+| Name| Type     | Mandatory| Description              |
+| ------ | --------- | ---- | ------------------ |
+| dataIn | boolean[] | Yes  | Boolean array to read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
@@ -5175,14 +5382,14 @@ Reads the Boolean array from this **MessageParcel** object.
 
 **Return value**
 
-  | Type     | Description          |
-  | --------- | -------------- |
-  | boolean[] | Boolean array read.|
+| Type     | Description          |
+| --------- | -------------- |
+| boolean[] | Boolean array read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
@@ -5201,20 +5408,20 @@ Writes a character array to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name   | Type    | Mandatory| Description                  |
-  | --------- | -------- | ---- | ---------------------- |
-  | charArray | number[] | Yes  | Character array to write.|
+| Name   | Type    | Mandatory| Description                  |
+| --------- | -------- | ---- | ---------------------- |
+| charArray | number[] | Yes  | Character array to write.|
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 88]);
@@ -5231,14 +5438,14 @@ Reads a character array from this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description                  |
-  | ------ | -------- | ---- | ---------------------- |
-  | dataIn | number[] | Yes  | Character array to read.|
+| Name| Type    | Mandatory| Description                  |
+| ------ | -------- | ---- | ---------------------- |
+| dataIn | number[] | Yes  | Character array to read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 99]);
@@ -5257,14 +5464,14 @@ Reads the character array from this **MessageParcel** object.
 
 **Return value**
 
-  | Type    | Description              |
-  | -------- | ------------------ |
-  | number[] | Character array read.|
+| Type    | Description              |
+| -------- | ------------------ |
+| number[] | Character array read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 99]);
@@ -5283,20 +5490,20 @@ Writes a string array to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name     | Type    | Mandatory| Description            |
-  | ----------- | -------- | ---- | ---------------- |
-  | stringArray | string[] | Yes  | String array to write. The length of a single element in the array must be less than 40960 bytes.|
+| Name     | Type    | Mandatory| Description            |
+| ----------- | -------- | ---- | ---------------- |
+| stringArray | string[] | Yes  | String array to write. The length of a single element in the array must be less than 40960 bytes.|
 
 **Return value**
 
-  | Type   | Description|
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description|
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
@@ -5313,14 +5520,14 @@ Reads a string array from this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description                |
-  | ------ | -------- | ---- | -------------------- |
-  | dataIn | string[] | Yes  | String array to read.|
+| Name| Type    | Mandatory| Description                |
+| ------ | -------- | ---- | -------------------- |
+| dataIn | string[] | Yes  | String array to read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
@@ -5339,14 +5546,14 @@ Reads the string array from this **MessageParcel** object.
 
 **Return value**
 
-  | Type    | Description            |
-  | -------- | ---------------- |
-  | string[] | String array read.|
+| Type    | Description            |
+| -------- | ---------------- |
+| string[] | String array read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
@@ -5366,7 +5573,7 @@ Writes information to this **MessageParcel** object indicating that no exception
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -5409,14 +5616,11 @@ Reads the exception information from this **MessageParcel** object.
 
 **Example**
 
-  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
-
   ```ts
-  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // If the FA model is used, import featureAbility from @kit.AbilityKit.
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -5439,13 +5643,16 @@ Reads the exception information from this **MessageParcel** object.
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendRequest()** of the proxy object is called to send a message.
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
@@ -5490,14 +5697,14 @@ Writes a sequenceable array to this **MessageParcel** object.
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -5543,7 +5750,7 @@ Reads a sequenceable array from this **MessageParcel** object.
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -5584,20 +5791,20 @@ Writes an array of **IRemoteObject** objects to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name     | Type           | Mandatory| Description |
-  | ----------- | --------------- | ---- | ----- |
-  | objectArray | [IRemoteObject](#iremoteobject)[] | Yes  | Array of **IRemoteObject** objects to write.|
+| Name     | Type           | Mandatory| Description |
+| ----------- | --------------- | ---- | ----- |
+| objectArray | [IRemoteObject](#iremoteobject)[] | Yes  | Array of **IRemoteObject** objects to write.|
 
 **Return value**
 
-  | Type   | Description                                                                                                                |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                                                                                                                |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -5638,14 +5845,14 @@ Reads an **IRemoteObject** array from this **MessageParcel** object.
 
 **Parameters**
 
-  | Name | Type           | Mandatory| Description     |
-  | ------- | --------------- | ---- | --------- |
-  | objects | [IRemoteObject](#iremoteobject)[] | Yes  | **IRemoteObject** array to read.|
+| Name | Type           | Mandatory| Description     |
+| ------- | --------------- | ---- | --------- |
+| objects | [IRemoteObject](#iremoteobject)[] | Yes  | **IRemoteObject** array to read.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -5687,14 +5894,14 @@ Reads the **IRemoteObject** array from this **MessageParcel** object.
 
 **Return value**
 
-  | Type           | Description                       |
-  | --------------- | --------------------------- |
-  | [IRemoteObject](#iremoteobject)[] | **IRemoteObject** object array obtained.|
+| Type           | Description                       |
+| --------------- | --------------------------- |
+| [IRemoteObject](#iremoteobject)[] | **IRemoteObject** object array obtained.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -5737,17 +5944,17 @@ Closes a file descriptor. This API is a static method.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                |
-  | ------ | ------ | ---- | -------------------- |
-  | fd     | number | Yes  | File descriptor to close.|
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| fd     | number | Yes  | File descriptor to close.|
 
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
+  import { fileIo } from '@kit.CoreFileKit';
 
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   rpc.MessageParcel.closeFileDescriptor(file.fd);
   ```
 
@@ -5761,23 +5968,23 @@ Duplicates a file descriptor. This API is a static method.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                    |
-  | ------ | ------ | ---- | ------------------------ |
-  | fd     | number | Yes  | File descriptor to duplicate.|
+| Name| Type  | Mandatory| Description                    |
+| ------ | ------ | ---- | ------------------------ |
+| fd     | number | Yes  | File descriptor to duplicate.|
 
 **Return value**
 
-  | Type  | Description                |
-  | ------ | -------------------- |
-  | number | New file descriptor.|
+| Type  | Description                |
+| ------ | -------------------- |
+| number | New file descriptor.|
 
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
+  import { fileIo } from '@kit.CoreFileKit';
 
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   rpc.MessageParcel.dupFileDescriptor(file.fd);
   ```
 
@@ -5791,19 +5998,19 @@ Checks whether this **MessageParcel** object contains file descriptors.
 
 **Return value**
 
-  | Type   | Description                                         |
-  | ------- | --------------------------------------------- |
-  | boolean |Returns **true** if the **MessageParcel** object contains file descriptors; returns **false** otherwise.|
+| Type   | Description                                         |
+| ------- | --------------------------------------------- |
+| boolean |Returns **true** if the **MessageParcel** object contains file descriptors; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   let writeResult = parcel.writeFileDescriptor(file.fd);
   hilog.info(0x0000, 'testTag', 'RpcTest: parcel writeFd result is ' + writeResult);
   let containFD = parcel.containFileDescriptors();
@@ -5820,25 +6027,25 @@ Writes a file descriptor to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description        |
-  | ------ | ------ | ---- | ------------ |
-  | fd     | number | Yes  | File descriptor to write.|
+| Name| Type  | Mandatory| Description        |
+| ------ | ------ | ---- | ------------ |
+| fd     | number | Yes  | File descriptor to write.|
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   let writeResult = parcel.writeFileDescriptor(file.fd);
   hilog.info(0x0000, 'testTag', 'RpcTest: parcel writeFd result is ' + writeResult);
   ```
@@ -5853,19 +6060,19 @@ Reads the file descriptor from this **MessageParcel** object.
 
 **Return value**
 
-  | Type  | Description            |
-  | ------ | ---------------- |
-  | number | File descriptor read.|
+| Type  | Description            |
+| ------ | ---------------- |
+| number | File descriptor read.|
 
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   parcel.writeFileDescriptor(file.fd);
   let readFD = parcel.readFileDescriptor();
   hilog.info(0x0000, 'testTag', 'RpcTest: parcel read fd is ' + readFD);
@@ -5887,14 +6094,14 @@ Writes an anonymous shared object to this **MessageParcel** object.
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
@@ -5919,7 +6126,7 @@ Reads the anonymous shared object from this **MessageParcel** object.
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
@@ -5939,14 +6146,14 @@ Obtains the maximum amount of raw data that can be held by this **MessageParcel*
 
 **Return value**
 
-  | Type  | Description                                                      |
-  | ------ | ---------------------------------------------------------- |
-  | number | 128 MB, which is the maximum amount of raw data that can be held by this **MessageParcel** object.|
+| Type  | Description                                                      |
+| ------ | ---------------------------------------------------------- |
+| number | Maximum amount of raw data that **MessageParcel** can hold, that is, 128 MB.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let result = parcel.getRawDataCapacity();
@@ -5963,21 +6170,21 @@ Writes raw data to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name | Type    | Mandatory| Description                              |
-  | ------- | -------- | ---- | ---------------------------------- |
-  | rawData | number[] | Yes  | Raw data to write.                |
-  | size    | number   | Yes  | Size of the raw data, in bytes.|
+| Name | Type    | Mandatory| Description                              |
+| ------- | -------- | ---- | ---------------------------------- |
+| rawData | number[] | Yes  | Raw data to write.                |
+| size    | number   | Yes  | Size of the raw data, in bytes.|
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let arr = [1, 2, 3, 4, 5];
@@ -5995,20 +6202,20 @@ Reads raw data from this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                    |
-  | ------ | ------ | ---- | ------------------------ |
-  | size   | number | Yes  | Size of the raw data to read.|
+| Name| Type  | Mandatory| Description                    |
+| ------ | ------ | ---- | ------------------------ |
+| size   | number | Yes  | Size of the raw data to read.|
 
 **Return value**
 
-  | Type    | Description                          |
-  | -------- | ------------------------------ |
-  | number[] | Raw data obtained, in bytes.|
+| Type    | Description                          |
+| -------- | ------------------------------ |
+| number[] | Raw data obtained, in bytes.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let arr = [1, 2, 3, 4, 5];
@@ -6038,14 +6245,14 @@ Marshals this **Parcelable** object into a **MessageSequence** object.
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -6062,16 +6269,15 @@ Marshals this **Parcelable** object into a **MessageSequence** object.
     unmarshalling(messageSequence: rpc.MessageSequence): boolean {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
+      hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + this.num + ' readString is ' + this.str);
       return true;
     }
   }
   let parcelable = new MyParcelable(1, "aaa");
   let data = rpc.MessageSequence.create();
-  let result = data.writeParcelable(parcelable);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeParcelable is ' + result);
+  data.writeParcelable(parcelable);
   let ret = new MyParcelable(0, "");
-  let result2 = data.readParcelable(ret);
-  hilog.info(0x0000, 'testTag', 'RpcClient: readParcelable is ' + result2);
+  data.readParcelable(ret);
   ```
 
 ### unmarshalling
@@ -6090,14 +6296,14 @@ Unmarshals this **Parcelable** object from a **MessageSequence** object.
 
 **Return value**
 
-  | Type   | Description                                    |
-  | ------- | ---------------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type   | Description                                    |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -6114,21 +6320,20 @@ Unmarshals this **Parcelable** object from a **MessageSequence** object.
     unmarshalling(messageSequence: rpc.MessageSequence): boolean {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
+      hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + this.num + ' readString is ' + this.str);
       return true;
     }
   }
   let parcelable = new MyParcelable(1, "aaa");
   let data = rpc.MessageSequence.create();
-  let result = data.writeParcelable(parcelable);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeParcelable is ' + result);
+  data.writeParcelable(parcelable);
   let ret = new MyParcelable(0, "");
-  let result2 = data.readParcelable(ret);
-  hilog.info(0x0000, 'testTag', 'RpcClient: readParcelable is ' + result2);
+  data.readParcelable(ret);
   ```
 
 ## Sequenceable<sup>(deprecated)</sup>
 
->This class is no longer maintained since API version 9. You are advised to use the [Parcelable](#parcelable9).
+>**NOTE**<br>This API is deprecated since API version 9. Use [Parcelable](#parcelable9) instead.
 
 Writes objects of classes to a **MessageParcel** and reads them from the **MessageParcel** during IPC.
 
@@ -6142,20 +6347,20 @@ Marshals the sequenceable object into a **MessageParcel** object.
 
 **Parameters**
 
-  | Name | Type                                     | Mandatory| Description                                     |
-  | ------- | ----------------------------------------- | ---- | ----------------------------------------- |
-  | dataOut | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object to which the sequenceable object is to be marshaled.|
+| Name | Type                                     | Mandatory| Description                                     |
+| ------- | ----------------------------------------- | ---- | ----------------------------------------- |
+| dataOut | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object to which the sequenceable object is to be marshaled.|
 
 **Return value**
 
-  | Type   | Description                             |
-  | ------- | --------------------------------  |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type   | Description                             |
+| ------- | --------------------------------  |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -6194,20 +6399,20 @@ Unmarshals this sequenceable object from a **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type                                     | Mandatory| Description                                         |
-  | ------ | ----------------------------------------- | ---- | --------------------------------------------- |
-  | dataIn | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object in which the sequenceable object is to be unmarshaled.|
+| Name| Type                                     | Mandatory| Description                                         |
+| ------ | ----------------------------------------- | ---- | --------------------------------------------- |
+| dataIn | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object in which the sequenceable object is to be unmarshaled.|
 
 **Return value**
 
-  | Type   | Description                                    |
-  | ------- | ---------------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type   | Description                                    |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -6238,7 +6443,7 @@ Unmarshals this sequenceable object from a **MessageParcel** object.
 
 ## IRemoteBroker
 
-Provides the holder of a remote proxy object.
+Represents the holder of a remote proxy object.
 
 ### asObject
 
@@ -6250,9 +6455,9 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
 
 **Return value**
 
-  | Type | Description |
-  | ----- | ----- |
-  | [IRemoteObject](#iremoteobject) | Returns the **RemoteObject** if it is the caller; returns the [IRemoteObject](#iremoteobject), the holder of this **RemoteProxy** object, if the caller is a [RemoteProxy](#remoteproxy) object.|
+| Type | Description |
+| ----- | ----- |
+| [IRemoteObject](#iremoteobject) | Returns the **RemoteObject** if it is the caller; returns the [IRemoteObject](#iremoteobject), the holder of this **RemoteProxy** object, if the caller is a [RemoteProxy](#remoteproxy) object.|
 
 **Example**
 
@@ -6267,15 +6472,11 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
 
 **Example**
 
-  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
-
   ```ts
-  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-  // import FA from "@ohos.ability.featureAbility";
-
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // If the FA model is used, import featureAbility from @kit.AbilityKit.
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -6298,10 +6499,13 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **asObject()** of the proxy object is called to obtain the proxy or remote object.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **asObject()** of the proxy object is called to obtain the proxy or remote object.
 
   ```ts
   class TestProxy {
@@ -6333,7 +6537,7 @@ Called to perform subsequent operations when a death notification of the remote 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -6355,20 +6559,20 @@ Defines the response to the request.
 | data    | [MessageSequence](#messagesequence9) | Yes  | No  | **MessageSequence** object sent to the remote process.|
 | reply   | [MessageSequence](#messagesequence9) | Yes  | No  | **MessageSequence** object returned by the remote process.  |
 
-## SendRequestResult<sup>8+(deprecated)</sup>
+## SendRequestResult<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [RequestResult](#requestresult9).
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [RequestResult](#requestresult9) instead.
 
 Defines the response to the request.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-  | Name   | Type         | Readable| Writable| Description                               |
-  | ------- | ------------- | ---- | ---- | ----------------------------------- |
-  | errCode | number        | Yes  | No  | Error code.                           |
-  | code    | number        | Yes  | No  | Message code.                         |
-  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | No  | **MessageParcel** object sent to the remote process.|
-  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | No  | **MessageParcel** object returned by the remote process.  |
+| Name   | Type         | Readable| Writable| Description                               |
+| ------- | ------------- | ---- | ---- | ----------------------------------- |
+| errCode | number        | Yes  | No  | Error code.                           |
+| code    | number        | Yes  | No  | Message code.                         |
+| data    | [MessageParcel](#messageparceldeprecated) | Yes  | No  | **MessageParcel** object sent to the remote process.|
+| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | No  | **MessageParcel** object returned by the remote process.  |
 
 ## IRemoteObject
 
@@ -6384,9 +6588,9 @@ Obtains the string of the interface descriptor.
 
 **Parameters**
 
-  | Name    | Type  | Mandatory| Description                |
-  | ---------- | ------ | ---- | -------------------- |
-  | descriptor | string | Yes  | Interface descriptor.|
+| Name    | Type  | Mandatory| Description                |
+| ---------- | ------ | ---- | -------------------- |
+| descriptor | string | Yes  | Interface descriptor.|
 
 **Return value**
 
@@ -6394,9 +6598,17 @@ Obtains the string of the interface descriptor.
 | ------------- | --------------------------------------------- |
 | [IRemoteBroker](#iremotebroker) | **IRemoteBroker** object bound to the specified interface token.|
 
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [getLocalInterface](#getlocalinterface9).
+>**NOTE**<br>This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9) instead.
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
@@ -6406,9 +6618,9 @@ Queries the string of the interface descriptor.
 
 **Parameters**
 
-  | Name    | Type  | Mandatory| Description                |
-  | ---------- | ------ | ---- | -------------------- |
-  | descriptor | string | Yes  | Interface descriptor.|
+| Name    | Type  | Mandatory| Description                |
+| ---------- | ------ | ---- | -------------------- |
+| descriptor | string | Yes  | Interface descriptor.|
 
 **Return value**
 
@@ -6418,28 +6630,28 @@ Queries the string of the interface descriptor.
 
 ### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 8. You are advised to use [sendRequest](#sendrequest8deprecated).
+>**NOTE**<br>This API is deprecated since API version 8. Use [sendMessageRequest](#sendmessagerequest9) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message does not contain any content. If synchronous mode is set in **options** , a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message does not contain any content. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-  | Name | Type                                     | Mandatory| Description                                                                                  |
-  | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+| Name | Type                                     | Mandatory| Description                                                                                  |
+| ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+| code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+| options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
 
 ### sendMessageRequest<sup>9+</sup>
 
@@ -6451,22 +6663,30 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-  | Name | Type                                | Mandatory| Description                                                                                  |
-  | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-  | data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-  | reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-  | options | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+| Name | Type                                | Mandatory| Description                                                                                  |
+| ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+| code    | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+| data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
+| reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
+| options | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-  | Type                        | Description                                     |
-  | ---------------------------- | ----------------------------------------- |
-  | Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return the **requestResult** object.|
+| Type                        | Description                                     |
+| ---------------------------- | ----------------------------------------- |
+| Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return the **requestResult** object.|
 
-### sendRequest<sup>8+(deprecated)</sup>
+**Error codes**
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
+
+### sendRequest<sup>(deprecated)</sup>
+
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -6476,44 +6696,52 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-  | Name | Type                                     | Mandatory| Description                                                                                  |
-  | ------- | ----------------------------------------  | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+| Name | Type                                     | Mandatory| Description                                                                                  |
+| ------- | ----------------------------------------  | ---- | -------------------------------------------------------------------------------------- |
+| code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+| options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
 | Type                                                        | Description                                         |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Promise used to return the **sendRequestResult** object.|
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Promise used to return a **sendRequestResult** instance.|
 
 ### sendMessageRequest<sup>9+</sup>
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-  | Name  | Type                                | Mandatory| Description                                                                                  |
-  | -------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
-  | code     | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-  | data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-  | reply    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-  | options  | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-  | callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | Yes  | Callback for receiving the sending result.                                                                  |
+| Name  | Type                                | Mandatory| Description                                                                                  |
+| -------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+| code     | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+| data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
+| reply    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
+| options  | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+| callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | Yes  | Callback for receiving the sending result.                                                                  |
 
-### sendRequest<sup>8+(deprecated)</sup>
+**Error codes**
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9-1).
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
+
+### sendRequest<sup>(deprecated)</sup>
+
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-1) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6525,34 +6753,35 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 | data     | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object holding the data to send.                   |
 | reply    | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object that receives the response.                           |
 | options  | [MessageOption](#messageoption)                              | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                        |
-| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Yes  | Callback for receiving the sending result.                                        |
+| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Yes  | Callback for receiving the sending result.                                        |
 
 ### registerDeathRecipient<sup>9+</sup>
 
 registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
-Registers a callback for receiving death notifications of the remote object. The callback will be called if the remote object process matching the **RemoteProxy** object is killed.
+Registers a callback for receiving death notifications of the remote object. This callback will be called if the remote object process matching the **RemoteProxy** object is killed.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-  | Name   | Type                             | Mandatory| Description          |
-  | --------- | --------------------------------- | ---- | -------------- |
+| Name   | Type                             | Mandatory| Description          |
+| --------- | --------------------------------- | ---- | -------------- |
 | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
-  | flags     | number                            | Yes  | Flag of the death notification.|
+| flags     | number                            | Yes  | Flag of the death notification.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
+| 1900008  | The proxy or remote object is invalid. |
 
 ### addDeathrecipient<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [registerDeathRecipient](#registerdeathrecipient9).
+>**NOTE**<br>This API is deprecated since API version 9. Use [registerDeathRecipient](#registerdeathrecipient9) instead.
 
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -6562,16 +6791,16 @@ Adds a callback for receiving death notifications of the remote object. This met
 
 **Parameters**
 
-  | Name   | Type                             | Mandatory| Description          |
-  | --------- | --------------------------------- | ---- | -------------- |
-  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to add.|
-  | flags     | number                            | Yes  | Flag of the death notification.|
+| Name   | Type                             | Mandatory| Description          |
+| --------- | --------------------------------- | ---- | -------------- |
+| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to add.|
+| flags     | number                            | Yes  | Flag of the death notification.|
 
 **Return value**
 
-  | Type   | Description                                    |
-  | ------- | ---------------------------------------- |
-  | boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
+| Type   | Description                                    |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
 
 ### unregisterDeathRecipient<sup>9+</sup>
 
@@ -6583,22 +6812,23 @@ Unregisters the callback used to receive death notifications of the remote objec
 
 **Parameters**
 
-  | Name   | Type                             | Mandatory| Description          |
-  | --------- | --------------------------------- | ---- | -------------- |
-  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
-  | flags     | number                            | Yes  | Flag of the death notification.|
+| Name   | Type                             | Mandatory| Description          |
+| --------- | --------------------------------- | ---- | -------------- |
+| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
+| flags     | number                            | Yes  | Flag of the death notification.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
+| 1900008  | The proxy or remote object is invalid. |
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [unregisterDeathRecipient](#unregisterdeathrecipient9).
+>**NOTE**<br>This API is deprecated since API version 9. Use [unregisterDeathRecipient](#unregisterdeathrecipient9) instead.
 
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -6608,16 +6838,16 @@ Removes the callback used to receive death notifications of the remote object.
 
 **Parameters**
 
-  | Name   | Type                             | Mandatory| Description          |
-  | --------- | --------------------------------- | ---- | -------------- |
+| Name   | Type                             | Mandatory| Description          |
+| --------- | --------------------------------- | ---- | -------------- |
 | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to remove.|
-  | flags     | number                            | Yes  | Flag of the death notification.|
+| flags     | number                            | Yes  | Flag of the death notification.|
 
 **Return value**
 
-  | Type   | Description                                    |
-  | ------- | -----------------------------------------|
-  | boolean | Returns **true** if the callback is removed; returns **false** otherwise.|
+| Type   | Description                                    |
+| ------- | -----------------------------------------|
+| boolean | Returns **true** if the callback is removed; returns **false** otherwise.|
 
 ### getDescriptor<sup>9+</sup>
 
@@ -6629,21 +6859,21 @@ Obtains the interface descriptor (which is a string) of this object.
 
 **Return value**
 
-  | Type  | Description            |
-  | ------ | ---------------- |
-  | string | Interface descriptor obtained.|
+| Type  | Description            |
+| ------ | ---------------- |
+| string | Interface descriptor obtained.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
+| ID| Error Message|
+| -------- | -------- |
+| 1900008  | The proxy or remote object is invalid. |
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [getDescriptor](#getdescriptor9).
+>**NOTE**<br>This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9) instead.
 
 getInterfaceDescriptor(): string
 
@@ -6653,9 +6883,9 @@ Obtains the interface descriptor (which is a string) of this object.
 
 **Return value**
 
-  | Type  | Description            |
-  | ------ | ---------------- |
-  | string | Interface descriptor obtained.|
+| Type  | Description            |
+| ------ | ---------------- |
+| string | Interface descriptor obtained.|
 
 ### isObjectDead
 
@@ -6667,11 +6897,9 @@ Checks whether this object is dead.
 
 **Return value**
 
-  | Type   | Description                              |
-  | ------- | ---------------------------------- |
-  | boolean | Returns **true** if the object is dead; returns **false** otherwise.|
-
-
+| Type   | Description                              |
+| ------- | ---------------------------------- |
+| boolean | Returns **true** if the object is dead; returns **false** otherwise.|
 
 ## RemoteProxy
 
@@ -6689,7 +6917,7 @@ Provides APIs to implement **IRemoteObject**.
 
 ### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 8. You are advised to use [sendRequest](#sendrequest8deprecated-2).
+>**NOTE**<br>This API is deprecated since API version 8. Use [sendMessageRequest](#sendmessagerequest9-2) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -6699,30 +6927,26 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-  | Name | Type                                     | Mandatory| Description                                                                                  |
-  | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+| Name | Type                                     | Mandatory| Description                                                                                  |
+| ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+| code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+| options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | ---------------------------------|
-  | boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | ---------------------------------|
+| boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
 
 **Example**
 
-  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
-
   ```ts
-  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-  // import FA from "@ohos.ability.featureAbility";
-
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // If the FA model is used, import featureAbility from @kit.AbilityKit.
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -6745,13 +6969,16 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendRequest()** of the proxy object is called to send a message.
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
@@ -6761,9 +6988,9 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   if (proxy != undefined) {
     let ret: boolean = proxy.sendRequest(1, data, reply, option);
     if (ret) {
-    hilog.info(0x0000, 'testTag', 'sendRequest got result');
-    let msg = reply.readString();
-    hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
+      hilog.info(0x0000, 'testTag', 'sendRequest got result');
+      let msg = reply.readString();
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
     } else {
       hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed');
     }
@@ -6783,29 +7010,35 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-  | Name | Type                                | Mandatory| Description                                                                                  |
-  | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-  | data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-  | reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-  | options | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+| Name | Type                                | Mandatory| Description                                                                                  |
+| ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+| code    | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+| data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
+| reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
+| options | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-  | Type                        | Description                                     |
-  | ---------------------------- | ----------------------------------------- |
-  | Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return the **requestResult** object.|
+| Type                        | Description                                     |
+| ---------------------------- | ----------------------------------------- |
+| Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return a **requestResult** instance.|
+
+
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
 
 **Example**
 
-  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
-
   ```ts
-  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // If the FA model is used, import featureAbility from @kit.AbilityKit.
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -6828,13 +7061,16 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
@@ -6863,9 +7099,9 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   }
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
+### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9-2).
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-2) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -6875,29 +7111,26 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-  | Name | Type                                     | Mandatory| Description                                                                                  |
-  | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+| Name | Type                                     | Mandatory| Description                                                                                  |
+| ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+| code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+| options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
 | Type                                                        | Description                                         |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Promise used to return the **sendRequestResult** object.|
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Promise used to return a **sendRequestResult** instance.|
 
 **Example**
 
-  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
-
   ```ts
-  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // If the FA model is used, import featureAbility from @kit.AbilityKit.
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -6920,13 +7153,16 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendRequest()** of the proxy object is called to send a message.
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
@@ -6960,31 +7196,37 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked at certain time after the response to **sendMessageRequest** is returned, and the reply contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked at certain time after the response to **RequestResult** is returned, and the reply contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-  | Name  | Type                                | Mandatory| Description                                                                                  |
-  | -------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
-  | code     | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-  | data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-  | reply    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-  | options  | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-  | callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | Yes  | Callback for receiving the sending result.                                                                  |
+| Name  | Type                                | Mandatory| Description                                                                                  |
+| -------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+| code     | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+| data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
+| reply    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
+| options  | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+| callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | Yes  | Callback for receiving the sending result.                                                                  |
+
+
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
 
 **Example**
 
-  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
-
   ```ts
-  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base'; 
+  // If the FA model is used, import featureAbility from @kit.AbilityKit.
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7021,14 +7263,17 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
@@ -7046,9 +7291,9 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   }
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
+### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9-3).
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-3) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
@@ -7064,19 +7309,16 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 | data     | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object holding the data to send.                   |
 | reply    | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object that receives the response.                           |
 | options  | [MessageOption](#messageoption)                              | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                        |
-| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Yes  | Callback for receiving the sending result.                                        |
+| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Yes  | Callback for receiving the sending result.                                        |
 
 **Example**
 
-  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
-
   ```ts
-  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  // If the FA model is used, import featureAbility from @kit.AbilityKit.
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7113,10 +7355,13 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect); 
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendRequest()** of the proxy object is called to send a message.
 
   ```ts
   let option = new rpc.MessageOption();
@@ -7139,9 +7384,9 @@ Obtains the **LocalInterface** object of an interface token.
 
 **Parameters**
 
-  | Name   | Type  | Mandatory| Description                  |
-  | --------- | ------ | ---- | ---------------------- |
-  | interface | string | Yes  | Interface descriptor.|
+| Name   | Type  | Mandatory| Description                  |
+| --------- | ------ | ---- | ---------------------- |
+| interface | string | Yes  | Interface descriptor.|
 
 **Return value**
 
@@ -7153,20 +7398,18 @@ Obtains the **LocalInterface** object of an interface token.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900006  | only remote object permitted |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | check param failed |
+| 1900006  | Operation allowed only for the remote object. |
 
 **Example**
 
-  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
-
   ```ts
-  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // If the FA model is used, import featureAbility from @kit.AbilityKit.
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7189,19 +7432,22 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getLocalInterface()** of the proxy object is called to obtain the interface descriptor.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getLocalInterface()** of the proxy object is called to obtain the interface descriptor.
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   if (proxy != undefined) {
     try {
-    let broker: rpc.IRemoteBroker = proxy.getLocalInterface("testObject");
-    hilog.info(0x0000, 'testTag', 'RpcClient: getLocalInterface is ' + broker);
+      let broker: rpc.IRemoteBroker = proxy.getLocalInterface("testObject");
+      hilog.info(0x0000, 'testTag', 'RpcClient: getLocalInterface is ' + broker);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
@@ -7212,7 +7458,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [getLocalInterface](#getlocalinterface9-1).
+>**NOTE**<br>This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9-1) instead.
 
 queryLocalInterface(interface: string): IRemoteBroker
 
@@ -7222,9 +7468,9 @@ Obtains the **LocalInterface** object of an interface token.
 
 **Parameters**
 
-  | Name   | Type  | Mandatory| Description                  |
-  | --------- | ------ | ---- | ---------------------- |
-  | interface | string | Yes  | Interface descriptor.|
+| Name   | Type  | Mandatory| Description                  |
+| --------- | ------ | ---- | ---------------------- |
+| interface | string | Yes  | Interface descriptor.|
 
 **Return value**
 
@@ -7234,14 +7480,11 @@ Obtains the **LocalInterface** object of an interface token.
 
 **Example**
 
-  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
-
   ```ts
-  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // If the FA model is used, import featureAbility from @kit.AbilityKit.
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7264,13 +7507,16 @@ Obtains the **LocalInterface** object of an interface token.
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **queryLocalInterface()** of the proxy object is called to obtain the interface descriptor.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **queryLocalInterface()** of the proxy object is called to obtain the interface descriptor.
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   if (proxy != undefined) {
     let broker: rpc.IRemoteBroker = proxy.queryLocalInterface("testObject");
@@ -7282,35 +7528,33 @@ Obtains the **LocalInterface** object of an interface token.
 
 registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
-Registers a callback for receiving death notifications of the remote object. The callback will be invoked when the remote object process matching the **RemoteProxy** object is killed.
+Registers a callback for receiving death notifications of the remote object. This callback will be called if the remote object process matching the **RemoteProxy** object is killed.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-  | Name   | Type                             | Mandatory| Description          |
-  | --------- | --------------------------------- | ---- | -------------- |
+| Name   | Type                             | Mandatory| Description          |
+| --------- | --------------------------------- | ---- | -------------- |
 | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
-  | flags     | number                            | Yes  | Flag of the death notification.|
+| flags     | number                            | Yes  | Flag of the death notification.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
+| 1900008  | The proxy or remote object is invalid. |
 
 **Example**
 
-  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
-
   ```ts
-  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // If the FA model is used, import featureAbility from @kit.AbilityKit.
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7333,14 +7577,17 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **registerDeathRecipient()** of the proxy object is called to register a callback for receiving the death notification of the remote object.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **registerDeathRecipient()** of the proxy object is called to register a callback for receiving the death notification of the remote object.
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -7361,7 +7608,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### addDeathRecipient<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [registerDeathRecipient](#registerdeathrecipient9-1).
+>**NOTE**<br>This API is deprecated since API version 9. Use [registerDeathRecipient](#registerdeathrecipient9-1) instead.
 
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -7371,27 +7618,24 @@ Adds a callback for receiving the death notifications of the remote object, incl
 
 **Parameters**
 
-  | Name   | Type                             | Mandatory| Description                             |
-  | --------- | --------------------------------- | ---- | --------------------------------- |
-  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to add.         |
-  | flags     | number                            | Yes  | Flag of the death notification. This parameter is reserved. It is set to **0**.|
+| Name   | Type                             | Mandatory| Description                             |
+| --------- | --------------------------------- | ---- | --------------------------------- |
+| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to add.         |
+| flags     | number                            | Yes  | Flag of the death notification. This parameter is reserved. It is set to **0**.|
 
 **Return value**
 
-  | Type   | Description                                    |
-  | ------- | ---------------------------------------- |
-  | boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
+| Type   | Description                                    |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
 
 **Example**
 
-  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
-
   ```ts
-  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // If the FA model is used, import featureAbility from @kit.AbilityKit.
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7414,13 +7658,16 @@ Adds a callback for receiving the death notifications of the remote object, incl
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **addDeathRecipient()** of the proxy object is called to add a callback for receiving the death notification of the remove object.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **addDeathRecipient()** of the proxy object is called to add a callback for receiving the death notification of the remove object.
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -7443,29 +7690,27 @@ Unregisters the callback used to receive death notifications of the remote objec
 
 **Parameters**
 
-  | Name   | Type                             | Mandatory| Description          |
-  | --------- | --------------------------------- | ---- | -------------- |
-  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
-  | flags     | number                            | Yes  | Flag of the death notification.|
+| Name   | Type                             | Mandatory| Description          |
+| --------- | --------------------------------- | ---- | -------------- |
+| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
+| flags     | number                            | Yes  | Flag of the death notification.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
+| 1900008  | The proxy or remote object is invalid. |
 
 **Example**
 
-  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
-
   ```ts
-  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // If the FA model is used, import featureAbility from @kit.AbilityKit.
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7488,14 +7733,17 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **unregisterDeathRecipient()** of the proxy object is called to unregister the callback for receiving the death notification of the remote object.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **unregisterDeathRecipient()** of the proxy object is called to unregister the callback for receiving the death notification of the remote object.
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -7517,7 +7765,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [unregisterDeathRecipient](#unregisterdeathrecipient9-1).
+>**NOTE**<br>This API is deprecated since API version 9. Use [unregisterDeathRecipient](#unregisterdeathrecipient9-1) instead.
 
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -7527,27 +7775,24 @@ Removes the callback used to receive death notifications of the remote object.
 
 **Parameters**
 
-  | Name   | Type                             | Mandatory| Description                             |
-  | --------- | --------------------------------- | ---- | --------------------------------- |
-  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to remove.               |
-  | flags     | number                            | Yes  | Flag of the death notification. This parameter is reserved. It is set to **0**.|
+| Name   | Type                             | Mandatory| Description                             |
+| --------- | --------------------------------- | ---- | --------------------------------- |
+| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to remove.               |
+| flags     | number                            | Yes  | Flag of the death notification. This parameter is reserved. It is set to **0**.|
 
 **Return value**
 
-  | Type   | Description                                    |
-  | ------- | ---------------------------------------- |
-  | boolean | Returns **true** if the callback is removed; returns **false** otherwise.|
+| Type   | Description                                    |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the callback is removed; returns **false** otherwise.|
 
 **Example**
 
-  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
-
   ```ts
-  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // If the FA model is used, import featureAbility from @kit.AbilityKit.
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7570,13 +7815,16 @@ Removes the callback used to receive death notifications of the remote object.
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **removeDeathRecipient()** of the proxy object is called to remove the callback used to receive the death notification of the remote object.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **removeDeathRecipient()** of the proxy object is called to remove the callback used to receive the death notification of the remote object.
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -7600,29 +7848,26 @@ Obtains the interface descriptor (which is a string) of this object.
 
 **Return value**
 
-  | Type  | Description            |
-  | ------ | ---------------- |
-  | string | Interface descriptor obtained.|
+| Type  | Description            |
+| ------ | ---------------- |
+| string | Interface descriptor obtained.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
-  | 1900007  | communication failed              |
+| ID| Error Message|
+| -------- | -------- |
+| 1900007  | communication failed.              |
+| 1900008  | The proxy or remote object is invalid. |
 
 **Example**
 
-  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
-
   ```ts
-  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // If the FA model is used, import featureAbility from @kit.AbilityKit.
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7645,13 +7890,16 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getDescriptor()** of the proxy object is called to obtain the interface descriptor of the object.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getDescriptor()** of the proxy object is called to obtain the interface descriptor of the object.
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   if (proxy != undefined) {
     try {
@@ -7667,7 +7915,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [getDescriptor](#getdescriptor9-1).
+>**NOTE**<br>This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9-1) instead.
 
 getInterfaceDescriptor(): string
 
@@ -7677,20 +7925,17 @@ Obtains the interface descriptor of this proxy object.
 
 **Return value**
 
-  | Type  | Description              |
-  | ------ | ------------------ |
-  | string | Interface descriptor obtained.|
+| Type  | Description              |
+| ------ | ------------------ |
+| string | Interface descriptor obtained.|
 
 **Example**
 
-  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
-
   ```ts
-  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // If the FA model is used, import featureAbility from @kit.AbilityKit.
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7713,13 +7958,16 @@ Obtains the interface descriptor of this proxy object.
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getInterfaceDescriptor()** of the proxy object is called to obtain the interface descriptor of the current proxy object.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getInterfaceDescriptor()** of the proxy object is called to obtain the interface descriptor of the current proxy object.
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   if (proxy != undefined) {
     let descriptor: string = proxy.getInterfaceDescriptor();
@@ -7737,20 +7985,17 @@ Checks whether the **RemoteObject** is dead.
 
 **Return value**
 
-  | Type   | Description                                             |
-  | ------- | ------------------------------------------------- |
-  | boolean | Returns **true** if **RemoteObject** is dead; returns **false** otherwise.|
+| Type   | Description                                             |
+| ------- | ------------------------------------------------- |
+| boolean | Returns **true** if **RemoteObject** is dead; returns **false** otherwise.|
 
 **Example**
 
-  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
-
   ```ts
-  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // If the FA model is used, import featureAbility from @kit.AbilityKit.
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7773,13 +8018,16 @@ Checks whether the **RemoteObject** is dead.
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // Save the connection ID, which will be used for the subsequent service disconnection.
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **isObjectDead()** of the proxy object is called to check whether this object is dead.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **isObjectDead()** of the proxy object is called to check whether this object is dead.
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   if (proxy != undefined) {
     let isDead: boolean = proxy.isObjectDead();
@@ -7793,12 +8041,12 @@ Defines the options used to construct the **MessageOption** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-  | Name         | Value       | Description                                                       |
-  | ------------- | --------- | ----------------------------------------------------------- |
-  | TF_SYNC       | 0 (0x00)  | Synchronous call.                                             |
-  | TF_ASYNC      | 1 (0x01)  | Asynchronous call.                                             |
-  | TF_ACCEPT_FDS | 16 (0x10) | Indication to **sendMessageRequest<sup>9+</sup>** for returning the file descriptor.|
-  | TF_WAIT_TIME  | 8 (0x8)   | RPC wait time, in seconds. This parameter cannot be used in IPC.                                    |
+| Name         | Value       | Description                                                       |
+| ------------- | --------- | ----------------------------------------------------------- |
+| TF_SYNC       | 0 (0x00)  | Synchronous call.                                             |
+| TF_ASYNC      | 1 (0x01)  | Asynchronous call.                                             |
+| TF_ACCEPT_FDS | 16 (0x10) | Indication to **sendMessageRequest<sup>9+</sup>** for returning the file descriptor.|
+| TF_WAIT_TIME  | 8 (0x8)   | RPC wait time, in seconds. This parameter cannot be used in IPC.                                    |
 
 ### constructor<sup>9+</sup>
 
@@ -7812,7 +8060,7 @@ A constructor used to create a **MessageOption** object.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| async  | boolean | No  | Whether to execute the call asynchronously. The value **true** means to execute the call asynchronously; the value **false** means to execute the call synchronously. By default, calls are made synchronously.|
+| async  | boolean | No  | Whether to execute the call asynchronously. The value **true** means to execute the call asynchronously; the value **false** means to execute the call synchronously. The default value is **synchronous**.|
 
 **Example**
 
@@ -7834,10 +8082,10 @@ A constructor used to create a **MessageOption** object.
 
 **Parameters**
 
-  | Name   | Type  | Mandatory| Description                                         |
-  | --------- | ------ | ---- | --------------------------------------------- |
-  | syncFlags | number | No  | Call flag, which can be synchronous or asynchronous. The default value is **synchronous**.       |
-  | waitTime  | number | No  | Maximum wait time for an RPC call. The default value is **TF_WAIT_TIME**.|
+| Name   | Type  | Mandatory| Description                                         |
+| --------- | ------ | ---- | --------------------------------------------- |
+| syncFlags | number | No  | Call flag, which can be synchronous or asynchronous. The default value is **synchronous**.       |
+| waitTime  | number | No  | Maximum wait time for an RPC call. The default value is **TF_WAIT_TIME**.|
 
 **Example**
 
@@ -7858,9 +8106,9 @@ Checks whether **SendMessageRequest** is called synchronously or asynchronously.
 
 **Return value**
 
-  | Type   | Description                                    |
-  | ------- | ---------------------------------------- |
-  | boolean | Returns **true** if **SendMessageRequest** is called asynchronously; returns **false** if it is called synchronously.|
+| Type   | Description                                    |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if **SendMessageRequest** is called asynchronously; returns **false** if it is called synchronously.|
 
 **Example**
 
@@ -7886,7 +8134,7 @@ Sets the calling flag in **SendMessageRequest**.
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   option.setAsync(true);
@@ -7903,14 +8151,14 @@ Obtains the call flag, which can be synchronous or asynchronous.
 
 **Return value**
 
-  | Type  | Description                                |
-  | ------ | ------------------------------------ |
-  | number | Call mode obtained.|
+| Type  | Description                                |
+| ------ | ------------------------------------ |
+| number | Call mode obtained.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   try {
     let option = new rpc.MessageOption();
@@ -7936,14 +8184,14 @@ Sets the call flag, which can be synchronous or asynchronous.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                    |
-  | ------ | ------ | ---- | ------------------------ |
-  | flags  | number | Yes  | Call flag to set.|
+| Name| Type  | Mandatory| Description                    |
+| ------ | ------ | ---- | ------------------------ |
+| flags  | number | Yes  | Call flag to set.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   try {
     let option = new rpc.MessageOption();
@@ -7966,14 +8214,14 @@ Obtains the maximum wait time for this RPC call.
 
 **Return value**
 
-  | Type  | Description             |
-  | ------ | ----------------- |
-  | number | Maximum wait time obtained.|
+| Type  | Description             |
+| ------ | ----------------- |
+| number | Maximum wait time obtained.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   try {
     let option = new rpc.MessageOption();
@@ -7997,14 +8245,14 @@ Sets the maximum wait time for this RPC call.
 
 **Parameters**
 
-  | Name  | Type  | Mandatory| Description                 |
-  | -------- | ------ | ---- | --------------------- |
-  | waitTime | number | Yes  | Maximum wait time to set. The upper limit is 3000 seconds.|
+| Name  | Type  | Mandatory| Description                 |
+| -------- | ------ | ---- | --------------------- |
+| waitTime | number | Yes  | Maximum wait time to set. The upper limit is 3000 seconds.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   try {
     let option = new rpc.MessageOption();
@@ -8030,14 +8278,14 @@ Obtains the system capability manager. This API is a static method.
 
 **Return value**
 
-  | Type                           | Description                |
-  | ------------------------------- | -------------------- |
-  | [IRemoteObject](#iremoteobject) | System capability manager obtained.|
+| Type                           | Description                |
+| ------------------------------- | -------------------- |
+| [IRemoteObject](#iremoteobject) | System capability manager obtained.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let samgr = rpc.IPCSkeleton.getContextObject();
   hilog.info(0x0000, 'testTag', 'RpcServer: getContextObject result: ' + samgr);
@@ -8053,14 +8301,14 @@ Obtains the PID of the caller. This API is a static method, which is invoked by 
 
 **Return value**
 
-  | Type  | Description             |
-  | ------ | ----------------- |
-  | number | PID of the caller.|
+| Type  | Description             |
+| ------ | ----------------- |
+| number | PID of the caller.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8081,14 +8329,14 @@ Obtains the UID of the caller. This API is a static method, which is invoked by 
 
 **Return value**
 
-  | Type  | Description             |
-  | ------ | ----------------- |
-  | number | UID of the caller.|
+| Type  | Description             |
+| ------ | ----------------- |
+| number | UID of the caller.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8109,14 +8357,14 @@ Obtains the caller's token ID, which is used to verify the caller identity.
 
 **Return value**
 
-   | Type  | Description                 |
-   | ------ | --------------------- |
-   | number | Token ID of the caller obtained.|
+| Type  | Description                 |
+| ------ | --------------------- |
+| number | Token ID of the caller obtained.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8137,14 +8385,14 @@ Obtains the ID of the device hosting the caller's process. This API is a static 
 
 **Return value**
 
-  | Type  | Description                        |
-  | ------ | ---------------------------- |
-  | string | Device ID obtained.|
+| Type  | Description                        |
+| ------ | ---------------------------- |
+| string | Device ID obtained.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8165,14 +8413,14 @@ Obtains the local device ID. This API is a static method.
 
 **Return value**
 
-  | Type  | Description              |
-  | ------ | ------------------ |
-  | string | Local device ID obtained.|
+| Type  | Description              |
+| ------ | ------------------ |
+| string | Local device ID obtained.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8187,20 +8435,20 @@ Obtains the local device ID. This API is a static method.
 
 static isLocalCalling(): boolean
 
-Checks whether the remote process is a process of the local device. This API is a static method.
+Checks whether the peer process is a process of the local device. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
 
-  | Type   | Description                                              |
-  | ------- | -------------------------------------------------- |
-| boolean | Returns **true** if the local and remote processes are on the same device; returns **false** otherwise.|
+| Type   | Description                                              |
+| ------- | -------------------------------------------------- |
+| boolean | Returns **true** if the local and peer processes are on the same device; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8221,15 +8469,23 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
 
 **Parameters**
 
-  | Name| Type                           | Mandatory| Description               |
-  | ------ | ------------------------------- | ---- | ------------------- |
-  | object | [IRemoteObject](#iremoteobject) | Yes  | **RemoteProxy** specified. |
+| Name| Type                           | Mandatory| Description               |
+| ------ | ------------------------------- | ---- | ------------------- |
+| object | [IRemoteObject](#iremoteobject) | Yes  | **RemoteProxy** specified. |
+
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8248,7 +8504,7 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
 
 ### flushCommands<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [flushCmdBuffer](#flushcmdbuffer9).
+>**NOTE**<br>This API is deprecated since API version 9. Use [flushCmdBuffer](#flushcmdbuffer9) instead.
 
 static flushCommands(object: IRemoteObject): number
 
@@ -8258,20 +8514,20 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
 
 **Parameters**
 
-  | Name| Type                           | Mandatory| Description               |
-  | ------ | ------------------------------- | ---- | ------------------- |
-  | object | [IRemoteObject](#iremoteobject) | Yes  | **RemoteProxy** specified. |
+| Name| Type                           | Mandatory| Description               |
+| ------ | ------------------------------- | ---- | ------------------- |
+| object | [IRemoteObject](#iremoteobject) | Yes  | **RemoteProxy** specified. |
 
 **Return value**
 
-  | Type  | Description                                                                             |
-  | ------ | --------------------------------------------------------------------------------- |
-  | number | Returns **0** if the operation is successful; returns an error code if the input object is null or a **RemoteObject**, or if the operation fails.|
+| Type  | Description                                                                             |
+| ------ | --------------------------------------------------------------------------------- |
+| number | Returns **0** if the operation is successful; returns an error code if the input object is null or a **RemoteObject**, or if the operation fails.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -8307,14 +8563,14 @@ Resets the UID and PID of the remote user to those of the local user. This API i
 
 **Return value**
 
-  | Type  | Description                                |
-  | ------ | ------------------------------------ |
-  | string | String containing the UID and PID of the remote user.|
+| Type  | Description                                |
+| ------ | ------------------------------------ |
+| string | String containing the UID and PID of the remote user.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8335,14 +8591,22 @@ Restores the UID and PID of the remote user. This API is a static method. It is 
 
 **Parameters**
 
-  | Name  | Type  | Mandatory| Description                                                              |
-  | -------- | ------ | ---- | ------------------------------------------------------------------ |
-  | identity | string | Yes  | String containing the remote user UID and PID, which are returned by **resetCallingIdentity**.|
+| Name  | Type  | Mandatory| Description                                                              |
+| -------- | ------ | ---- | ------------------------------------------------------------------ |
+| identity | string | Yes  | String containing the remote user's UID and PID, which are returned by **resetCallingIdentity**.|
+
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8356,7 +8620,7 @@ Restores the UID and PID of the remote user. This API is a static method. It is 
 
 ### setCallingIdentity<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [restoreCallingIdentity](#restorecallingidentity9).
+>**NOTE**<br>This API is deprecated since API version 9. Use [restoreCallingIdentity](#restorecallingidentity9) instead.
 
 static setCallingIdentity(identity: string): boolean
 
@@ -8366,20 +8630,20 @@ Sets the UID and PID of the remote user. This API is a static method. It is usua
 
 **Parameters**
 
-  | Name  | Type  | Mandatory| Description                                                              |
-  | -------- | ------ | ---- | ------------------------------------------------------------------ |
-| identity | string | Yes  | String containing the remote user's UID and PID, which are returned by **resetCallingIdentity**. |
+| Name  | Type  | Mandatory| Description                                                              |
+| -------- | ------ | ---- | ------------------------------------------------------------------ |
+| identity | string | Yes  | String containing the remote user's UID and PID, which are returned by **resetCallingIdentity**.|
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | ---------------------------------|
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | ---------------------------------|
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8406,13 +8670,13 @@ A constructor used to create a **RemoteObject** object.
 
 **Parameters**
 
-  | Name    | Type  | Mandatory| Description        |
-  | ---------- | ------ | ---- | ------------ |
-  | descriptor | string | Yes  | Interface descriptor.|
+| Name    | Type  | Mandatory| Description        |
+| ---------- | ------ | ---- | ------------ |
+| descriptor | string | Yes  | Interface descriptor.|
 
 ### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 8. You are advised to use [sendRequest](#sendrequest8deprecated-4).
+>**NOTE**<br>This API is deprecated since API version 8. Use [sendMessageRequest](#sendmessagerequest9-4) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -8422,23 +8686,23 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-  | Name | Type                                     | Mandatory| Description                                                                                  |
-  | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+| Name | Type                                     | Mandatory| Description                                                                                  |
+| ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+| code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+| options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -8488,12 +8752,12 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-  | Name | Type                                | Mandatory| Description                                                                                  |
-  | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-  | data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-  | reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-  | options | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+| Name | Type                                | Mandatory| Description                                                                                  |
+| ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+| code    | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+| data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
+| reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
+| options | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
@@ -8501,10 +8765,19 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 | ----------------------------------------------- | ----------------------------------------- |
 | Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return a **RequestResult** instance.|
 
+
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
+
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8537,9 +8810,9 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
     });
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
+### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9-4).
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-4) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -8549,23 +8822,23 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-  | Name | Type                                     | Mandatory| Description                                                                                  |
-  | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+| Name | Type                                     | Mandatory| Description                                                                                  |
+| ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+| code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+| options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
 | Type                                                        | Description                                         |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Promise used to return the **sendRequestResult** object.|
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Promise used to return a **sendRequestResult** instance.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -8629,13 +8902,22 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 | data          | [MessageSequence](#messagesequence9)                  | Yes  | **MessageSequence** object holding the data to send.                 |
 | reply         | [MessageSequence](#messagesequence9)                  | Yes  | **MessageSequence** object that receives the response.                         |
 | options       | [MessageOption](#messageoption)                       | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                        |
-| AsyncCallback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt; | Yes  | Callback for receiving the sending result.                                        |
+| callback      | AsyncCallback&lt;[RequestResult](#requestresult9)&gt; | Yes  | Callback for receiving the sending result.                                        |
+
+
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8665,9 +8947,9 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   testRemoteObject.sendMessageRequest(1, data, reply, option, sendRequestCallback);
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
+### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9-5).
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-5) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
@@ -8683,13 +8965,13 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 | data          | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object holding the data to send.                   |
 | reply         | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object that receives the response.                           |
 | options       | [MessageOption](#messageoption)                              | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                        |
-| AsyncCallback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Yes  | Callback for receiving the sending result.                                        |
+| callback      | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Yes  | Callback for receiving the sending result.                                        |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -8748,24 +9030,24 @@ Called to return a response to **sendMessageRequest()**. The server processes th
 
 **Parameters**
 
-  | Name| Type                                | Mandatory| Description                                     |
-  | ------ | ------------------------------------ | ---- | ----------------------------------------- |
-  | code   | number                               | Yes  | Service request code sent by the remote end.                   |
-  | data   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that holds the parameters called by the client.|
-  | reply  | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object to which the result is written.          |
-  | option | [MessageOption](#messageoption)      | Yes  | Whether the operation is synchronous or asynchronous.                 |
+| Name| Type                                | Mandatory| Description                                     |
+| ------ | ------------------------------------ | ---- | ----------------------------------------- |
+| code   | number                               | Yes  | Service request code sent by the remote end.                   |
+| data   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that holds the parameters called by the client.|
+| reply  | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object to which the result is written.          |
+| options | [MessageOption](#messageoption)      | Yes  | Whether the operation is synchronous or asynchronous.                 |
 
 **Return value**
 
-  | Type             | Description                                                                                           |
-  | ----------------- | ----------------------------------------------------------------------------------------------- |
-  | boolean           | Returns a Boolean value if the request is processed synchronously in **onRemoteMessageRequest**. The value **true** means the operation is successful; the value **false** means the opposite.|
-  | Promise\<boolean> | Returns a promise object if the request is processed asynchronously in **onRemoteMessageRequest**.                                |
+| Type             | Description                                                                                           |
+| ----------------- | ----------------------------------------------------------------------------------------------- |
+| boolean           | Returns a Boolean value if the request is processed synchronously in **onRemoteMessageRequest**. The value **true** means the operation is successful; the value **false** means the opposite.|
+| Promise\<boolean> | Returns a promise object if the request is processed asynchronously in **onRemoteMessageRequest**.                                |
 
 **Example**: Overload **onRemoteMessageRequest** to process requests synchronously.
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8787,7 +9069,7 @@ Called to return a response to **sendMessageRequest()**. The server processes th
   **Example**: Overload **onRemoteMessageRequest** to process requests asynchronously.
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8812,7 +9094,7 @@ Called to return a response to **sendMessageRequest()**. The server processes th
 **Example**: Overload **onRemoteMessageRequest** and **onRemoteRequest** to process requests synchronously.
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8844,7 +9126,7 @@ Called to return a response to **sendMessageRequest()**. The server processes th
   **Example**: Overload **onRemoteMessageRequest** and **onRemoteRequest** to process requests asynchronously.
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
@@ -8877,7 +9159,7 @@ Called to return a response to **sendMessageRequest()**. The server processes th
 
 ### onRemoteRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [onRemoteMessageRequest](#onremotemessagerequest9).
+>**NOTE**<br>This API is deprecated since API version 9. Use [onRemoteMessageRequest](#onremotemessagerequest9) instead.
 
 onRemoteRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -8887,23 +9169,23 @@ Called to return a response to **sendRequest()**. The server processes the reque
 
 **Parameters**
 
-  | Name| Type                                     | Mandatory| Description                                   |
-  | ------ | ----------------------------------------- | ---- | --------------------------------------- |
-  | code   | number                                    | Yes  | Service request code sent by the remote end.                 |
-  | data   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that holds the parameters called by the client.|
-  | reply  | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object carrying the result.          |
-  | option | [MessageOption](#messageoption)           | Yes  | Whether the operation is synchronous or asynchronous.               |
+| Name| Type                                     | Mandatory| Description                                   |
+| ------ | ----------------------------------------- | ---- | --------------------------------------- |
+| code   | number                                    | Yes  | Service request code sent by the remote end.                 |
+| data   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that holds the parameters called by the client.|
+| reply  | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object carrying the result.          |
+| options | [MessageOption](#messageoption)           | Yes  | Whether the operation is synchronous or asynchronous.               |
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -8944,14 +9226,14 @@ Obtains the UID of the remote process.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-  | Type  | Description                   |
-  | ------ | ----------------------- |
-  | number | UID of the remote process obtained.|
+| Type  | Description                   |
+| ------ | ----------------------- |
+| number | UID of the remote process obtained.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8972,14 +9254,14 @@ Obtains the PID of the remote process.
 
 **Return value**
 
-  | Type  | Description                   |
-  | ------ | ----------------------- |
-  | number | PID of the remote process obtained.|
+| Type  | Description                   |
+| ------ | ----------------------- |
+| number | PID of the remote process obtained.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8994,27 +9276,35 @@ Obtains the PID of the remote process.
 
 getLocalInterface(descriptor: string): IRemoteBroker
 
-Obtains the interface descriptor.
+Obtains the string of the interface descriptor.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-  | Name    | Type  | Mandatory| Description                |
-  | ---------- | ------ | ---- | -------------------- |
-  | descriptor | string | Yes  | Interface descriptor.|
+| Name    | Type  | Mandatory| Description                |
+| ---------- | ------ | ---- | -------------------- |
+| descriptor | string | Yes  | Interface descriptor.|
 
 **Return value**
 
-  | Type         | Description                                         |
-  | ------------- | --------------------------------------------- |
-  | IRemoteBroker | **IRemoteBroker** object bound to the specified interface token.|
+| Type         | Description                                         |
+| ------------- | --------------------------------------------- |
+| IRemoteBroker | **IRemoteBroker** object bound to the specified interface token.|
+
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9051,7 +9341,7 @@ Obtains the interface descriptor.
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [getLocalInterface](#getlocalinterface9-2).
+>**NOTE**<br>This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9-2) instead.
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
@@ -9061,20 +9351,20 @@ Checks whether the remote object corresponding to the specified interface token 
 
 **Parameters**
 
-  | Name    | Type  | Mandatory| Description                  |
-  | ---------- | ------ | ---- | ---------------------- |
-  | descriptor | string | Yes  | Interface descriptor.|
+| Name    | Type  | Mandatory| Description                  |
+| ---------- | ------ | ---- | ---------------------- |
+| descriptor | string | Yes  | Interface descriptor.|
 
 **Return value**
 
-  | Type         | Description                                                              |
-  | ------------- | ------------------------------------------------------------------ |
-  | IRemoteBroker | Returns the remote object if a match is found; returns **Null** otherwise.|
+| Type         | Description                                                              |
+| ------------- | ------------------------------------------------------------------ |
+| IRemoteBroker | Returns the remote object if a match is found; returns **Null** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9113,23 +9403,23 @@ Obtains the interface descriptor of this object. The interface descriptor is a s
 
 **Return value**
 
-  | Type  | Description            |
-  | ------ | ---------------- |
-  | string | Interface descriptor obtained.|
+| Type  | Description            |
+| ------ | ---------------- |
+| string | Interface descriptor obtained.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
+| ID| Error Message|
+| -------- | -------- |
+| 1900008  | The proxy or remote object is invalid. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9163,7 +9453,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [getDescriptor](#getdescriptor9-2).
+>**NOTE**<br>This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9-2) instead.
 
 getInterfaceDescriptor(): string
 
@@ -9173,14 +9463,14 @@ Obtains the interface descriptor.
 
 **Return value**
 
-  | Type  | Description            |
-  | ------ | ---------------- |
-  | string | Interface descriptor obtained.|
+| Type  | Description            |
+| ------ | ---------------- |
+| string | Interface descriptor obtained.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9221,11 +9511,19 @@ Binds an interface descriptor to an **IRemoteBroker** object.
 | localInterface | [IRemoteBroker](#iremotebroker) | Yes  | **IRemoteBroker** object.  |
 | descriptor     | string                          | Yes  | Interface descriptor.|
 
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9261,7 +9559,7 @@ Binds an interface descriptor to an **IRemoteBroker** object.
 
 ### attachLocalInterface<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [modifyLocalInterface](#modifylocalinterface9).
+>**NOTE**<br>This API is deprecated since API version 9. Use [modifyLocalInterface](#modifylocalinterface9) instead.
 
 attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
@@ -9279,7 +9577,7 @@ Binds an interface descriptor to an **IRemoteBroker** object.
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9315,12 +9613,12 @@ Provides methods related to anonymous shared memory objects, including creating,
 
 The table below describes the protection types of the mapped memory.
 
-  | Name      | Value | Description              |
-  | ---------- | --- | ------------------ |
-  | PROT_EXEC  | 4   | The mapped memory is executable.  |
-  | PROT_NONE  | 0   | The mapped memory is inaccessible.|
-  | PROT_READ  | 1   | The mapped memory is readable.    |
-  | PROT_WRITE | 2   | The mapped memory is writeable.    |
+| Name      | Value | Description              |
+| ---------- | --- | ------------------ |
+| PROT_EXEC  | 4   | The mapped memory is executable.  |
+| PROT_NONE  | 0   | The mapped memory is inaccessible.|
+| PROT_READ  | 1   | The mapped memory is readable.    |
+| PROT_WRITE | 2   | The mapped memory is writeable.    |
 
 ### create<sup>9+</sup>
 
@@ -9332,10 +9630,10 @@ Creates an **Ashmem** object with the specified name and size. This API is a sta
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                        |
-  | ------ | ------ | ---- | ---------------------------- |
-  | name   | string | Yes  | Name of the **Ashmem** object to create.  |
-  | size   | number | Yes  | Size (in bytes) of the **Ashmem** object to create.|
+| Name| Type  | Mandatory| Description                        |
+| ------ | ------ | ---- | ---------------------------- |
+| name   | string | Yes  | Name of the **Ashmem** object to create.  |
+| size   | number | Yes  | Size (in bytes) of the **Ashmem** object to create.|
 
 **Return value**
 
@@ -9343,11 +9641,19 @@ Creates an **Ashmem** object with the specified name and size. This API is a sta
 | ------------------ | ---------------------------------------------- |
 | [Ashmem](#ashmem8) | Returns the **Ashmem** object if it is created successfully; returns null otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The Ashmem name passed is empty; <br> 4.The Ashmem size passed is less than or equal to 0. |
+
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem: rpc.Ashmem | undefined = undefined;
   try {
@@ -9361,9 +9667,9 @@ Creates an **Ashmem** object with the specified name and size. This API is a sta
   }
   ```
 
-### createAshmem<sup>8+(deprecated)</sup>
+### createAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [create](#create9).
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [create](#create9) instead.
 
 static createAshmem(name: string, size: number): Ashmem
 
@@ -9373,10 +9679,10 @@ Creates an **Ashmem** object with the specified name and size. This API is a sta
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                        |
-  | ------ | ------ | ---- | ---------------------------- |
-  | name   | string | Yes  | Name of the **Ashmem** object to create.  |
-  | size   | number | Yes  | Size (in bytes) of the **Ashmem** object to create.|
+| Name| Type  | Mandatory| Description                        |
+| ------ | ------ | ---- | ---------------------------- |
+| name   | string | Yes  | Name of the **Ashmem** object to create.  |
+| size   | number | Yes  | Size (in bytes) of the **Ashmem** object to create.|
 
 **Return value**
 
@@ -9387,7 +9693,7 @@ Creates an **Ashmem** object with the specified name and size. This API is a sta
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let size = ashmem.getAshmemSize();
@@ -9414,11 +9720,19 @@ Creates an **Ashmem** object by copying the file descriptor of an existing **Ash
 | ------------------ | ---------------------- |
 | [Ashmem](#ashmem8) | **Ashmem** object created.|
 
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The passed parameter is not an Ahmem object; <br> 3.The ashmem instance for obtaining packaging is empty. |
+
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
@@ -9432,9 +9746,9 @@ Creates an **Ashmem** object by copying the file descriptor of an existing **Ash
   }
   ```
 
-### createAshmemFromExisting<sup>8+(deprecated)</sup>
+### createAshmemFromExisting<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [create](#create9-1).
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [create](#create9-1) instead.
 
 static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
@@ -9457,7 +9771,7 @@ Creates an **Ashmem** object by copying the file descriptor of an existing **Ash
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let ashmem2 = rpc.Ashmem.createAshmemFromExisting(ashmem);
@@ -9505,14 +9819,14 @@ Obtains the memory size of this **Ashmem** object.
 
 **Return value**
 
-  | Type  | Description                      |
-  | ------ | -------------------------- |
-  | number | **Ashmem** size obtained.|
+| Type  | Description                      |
+| ------ | -------------------------- |
+| number | **Ashmem** size obtained.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let size = ashmem.getAshmemSize();
@@ -9529,23 +9843,24 @@ Creates the shared file mapping on the virtual address space of this process. Th
 
 **Parameters**
 
-  | Name | Type  | Mandatory| Description                          |
-  | ------- | ------ | ---- | ------------------------------ |
-  | mapType | number | Yes  | Protection level of the memory region to which the shared file is mapped.|
+| Name | Type  | Mandatory| Description                          |
+| ------- | ------ | ---- | ------------------------------ |
+| mapType | number | Yes  | Protection level of the memory region to which the shared file is mapped.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900001  | call mmap function failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect;  <br> 2.The parameter type does not match; <br> 3.The passed mapType exceeds the maximum protection level. |
+| 1900001  | Failed to call mmap. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
@@ -9557,9 +9872,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### mapAshmem<sup>8+(deprecated)</sup>
+### mapAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [mapTypedAshmem](#maptypedashmem9).
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [mapTypedAshmem](#maptypedashmem9) instead.
 
 mapAshmem(mapType: number): boolean
 
@@ -9569,20 +9884,20 @@ Creates the shared file mapping on the virtual address space of this process. Th
 
 **Parameters**
 
-  | Name | Type  | Mandatory| Description                          |
-  | ------- | ------ | ---- | ------------------------------ |
-  | mapType | number | Yes  | Protection level of the memory region to which the shared file is mapped.|
+| Name | Type  | Mandatory| Description                          |
+| ------- | ------ | ---- | ------------------------------ |
+| mapType | number | Yes  | Protection level of the memory region to which the shared file is mapped.|
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapReadAndWrite = ashmem.mapAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
@@ -9601,15 +9916,15 @@ Maps the shared file to the readable and writable virtual address space of the p
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900001  | call mmap function failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900001  | Failed to call mmap. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
@@ -9621,9 +9936,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### mapReadAndWriteAshmem<sup>8+(deprecated)</sup>
+### mapReadAndWriteAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [mapReadWriteAshmem](#mapreadwriteashmem9).
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [mapReadWriteAshmem](#mapreadwriteashmem9) instead.
 
 mapReadAndWriteAshmem(): boolean
 
@@ -9633,14 +9948,14 @@ Maps the shared file to the readable and writable virtual address space of the p
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
@@ -9659,15 +9974,15 @@ Maps the shared file to the read-only virtual address space of the process.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900001  | call mmap function failed |
+| ID| Error Message|
+| -------- | -------- |
+| 1900001  | Failed to call mmap. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
@@ -9679,9 +9994,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### mapReadOnlyAshmem<sup>8+(deprecated)</sup>
+### mapReadOnlyAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [mapReadonlyAshmem](#mapreadonlyashmem9).
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [mapReadonlyAshmem](#mapreadonlyashmem9) instead.
 
 mapReadOnlyAshmem(): boolean
 
@@ -9691,14 +10006,14 @@ Maps the shared file to the read-only virtual address space of the process.
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadOnlyAshmem();
@@ -9715,23 +10030,24 @@ Sets the protection level of the memory region to which the shared file is mappe
 
 **Parameters**
 
-  | Name        | Type  | Mandatory| Description              |
-  | -------------- | ------ | ---- | ------------------ |
-  | protectionType | number | Yes  | Protection type to set.|
+| Name        | Type  | Mandatory| Description              |
+| -------------- | ------ | ---- | ------------------ |
+| protectionType | number | Yes  | Protection type to set.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900002  | call os ioctl function failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900002  | Failed to call ioctl. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
@@ -9743,9 +10059,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### setProtection<sup>8+(deprecated)</sup>
+### setProtection<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [setProtectionType](#setprotectiontype9).
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [setProtectionType](#setprotectiontype9) instead.
 
 setProtection(protectionType: number): boolean
 
@@ -9755,20 +10071,20 @@ Sets the protection level of the memory region to which the shared file is mappe
 
 **Parameters**
 
-  | Name        | Type  | Mandatory| Description              |
-  | -------------- | ------ | ---- | ------------------ |
-  | protectionType | number | Yes  | Protection type to set.|
+| Name        | Type  | Mandatory| Description              |
+| -------------- | ------ | ---- | ------------------ |
+| protectionType | number | Yes  | Protection type to set.|
 
 **Return value**
 
-  | Type   | Description                            |
-  | ------- | -------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let result = ashmem.setProtection(ashmem.PROT_READ);
@@ -9785,25 +10101,26 @@ Writes data to the shared file associated with this **Ashmem** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description                                              |
-  | ------ | -------- | ---- | -------------------------------------------------- |
-  | buf    | ArrayBuffer | Yes  | Data to write.                            |
-  | size   | number   | Yes  | Size of the data to write.                                |
-  | offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
+| Name| Type    | Mandatory| Description                                              |
+| ------ | -------- | ---- | -------------------------------------------------- |
+| buf    | ArrayBuffer | Yes  | Data to write.                            |
+| size   | number   | Yes  | Size of the data to write.                                |
+| offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900003  | write to ashmem failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain arrayBuffer information. |
+| 1900003  | Failed to write data to the shared memory. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let buffer = new ArrayBuffer(1024);
   let int32View = new Int32Array(buffer);
@@ -9822,9 +10139,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### writeAshmem<sup>9+(deprecated)</sup>
+### writeAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 11. You are advised to use [writeDataToAshmem](#writedatatoashmem11).
+>**NOTE**<br>This API is supported since API version 9 and deprecated since API version 11. Use [writeDataToAshmem](#writedatatoashmem11) instead.
 
 writeAshmem(buf: number[], size: number, offset: number): void
 
@@ -9834,25 +10151,26 @@ Writes data to the shared file associated with this **Ashmem** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description                                              |
-  | ------ | -------- | ---- | -------------------------------------------------- |
-  | buf    | number[] | Yes  | Data to write.                            |
-  | size   | number   | Yes  | Size of the data to write.                                |
-  | offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
+| Name| Type    | Mandatory| Description                                              |
+| ------ | -------- | ---- | -------------------------------------------------- |
+| buf    | number[] | Yes  | Data to write.                            |
+| size   | number   | Yes  | Size of the data to write.                                |
+| offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900003  | write to ashmem failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The element does not exist in the array. |
+| 1900003  | Failed to write data to the shared memory. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.mapReadWriteAshmem();
@@ -9866,9 +10184,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### writeToAshmem<sup>8+(deprecated)</sup>
+### writeToAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [writeAshmem](#writeashmem9deprecated).
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [writeDataToAshmem](#writedatatoashmem11) instead.
 
 writeToAshmem(buf: number[], size: number, offset: number): boolean
 
@@ -9878,22 +10196,22 @@ Writes data to the shared file associated with this **Ashmem** object.
 
 **Parameters**
 
-  | Name| Type    | Mandatory| Description                                              |
-  | ------ | -------- | ---- | -------------------------------------------------- |
-  | buf    | number[] | Yes  | Data to write.                            |
-  | size   | number   | Yes  | Size of the data to write.                                |
-  | offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
+| Name| Type    | Mandatory| Description                                              |
+| ------ | -------- | ---- | -------------------------------------------------- |
+| buf    | number[] | Yes  | Data to write.                            |
+| size   | number   | Yes  | Size of the data to write.                                |
+| offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
 
 **Return value**
 
-  | Type   | Description                                                                         |
-  | ------- | ----------------------------------------------------------------------------- |
-  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+| Type   | Description                                                                         |
+| ------- | ----------------------------------------------------------------------------- |
+| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
@@ -9913,30 +10231,31 @@ Reads data from the shared file associated with this **Ashmem** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                                              |
-  | ------ | ------ | ---- | -------------------------------------------------- |
-  | size   | number | Yes  | Size of the data to read.                              |
-  | offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
+| Name| Type  | Mandatory| Description                                              |
+| ------ | ------ | ---- | -------------------------------------------------- |
+| size   | number | Yes  | Size of the data to read.                              |
+| offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
 
 **Return value**
 
-  | Type    | Description            |
-  | -------- | ---------------- |
-  | ArrayBuffer | Data read.|
+| Type    | Description            |
+| -------- | ---------------- |
+| ArrayBuffer | Data read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900004  | read from ashmem failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900004  | Failed to read data from the shared memory. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let buffer = new ArrayBuffer(1024);
   let int32View = new Int32Array(buffer);
@@ -9964,9 +10283,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### readAshmem<sup>9+(deprecated)</sup>
+### readAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use the [readDataFromAshmem](#readdatafromashmem11).
+>**NOTE**<br>This API is supported since API version 9 and deprecated since API version 11. Use [readDataFromAshmem](#readdatafromashmem11) instead.
 
 readAshmem(size: number, offset: number): number[]
 
@@ -9976,30 +10295,31 @@ Reads data from the shared file associated with this **Ashmem** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                                              |
-  | ------ | ------ | ---- | -------------------------------------------------- |
-  | size   | number | Yes  | Size of the data to read.                              |
-  | offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
+| Name| Type  | Mandatory| Description                                              |
+| ------ | ------ | ---- | -------------------------------------------------- |
+| size   | number | Yes  | Size of the data to read.                              |
+| offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
 
 **Return value**
 
-  | Type    | Description            |
-  | -------- | ---------------- |
-  | number[] | Data read.|
+| Type    | Description            |
+| -------- | ---------------- |
+| number[] | Data read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900004  | read from ashmem failed |
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900004  | Failed to read data from the shared memory. |
 
 **Example**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.mapReadWriteAshmem();
@@ -10015,9 +10335,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### readFromAshmem<sup>8+(deprecated)</sup>
+### readFromAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [readAshmem](#readashmem9deprecated).
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [readDataFromAshmem](#readdatafromashmem11) instead.
 
 readFromAshmem(size: number, offset: number): number[]
 
@@ -10027,21 +10347,21 @@ Reads data from the shared file associated with this **Ashmem** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                                              |
-  | ------ | ------ | ---- | -------------------------------------------------- |
-  | size   | number | Yes  | Size of the data to read.                              |
-  | offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
+| Name| Type  | Mandatory| Description                                              |
+| ------ | ------ | ---- | -------------------------------------------------- |
+| size   | number | Yes  | Size of the data to read.                              |
+| offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
 
 **Return value**
 
-  | Type    | Description            |
-  | -------- | ---------------- |
-  | number[] | Data read.|
+| Type    | Description            |
+| -------- | ---------------- |
+| number[] | Data read.|
 
 **Example**
 
  ``` ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
@@ -10051,42 +10371,4 @@ Reads data from the shared file associated with this **Ashmem** object.
   hilog.info(0x0000, 'testTag', 'RpcTest: write to Ashmem result is ' + writeResult);
   let readResult = ashmem.readFromAshmem(5, 0);
   hilog.info(0x0000, 'testTag', 'RpcTest: read to Ashmem result is ' + readResult);
- ```
-
-## Obtaining the Context
-
-**Example**
-This example describes only one method of obtaining the context. For details about more methods, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
- ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import hilog from '@ohos.hilog';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import window from '@ohos.window';
-  
-  export default class MainAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onCreate');
-      let context = this.context;
-    }
-    onDestroy() {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onDestroy');
-    }
-    onWindowStageCreate(windowStage: window.WindowStage) {
-      // Main window is created, set main page for this ability
-  	  hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageCreate');
-    }
-    onWindowStageDestroy() {
-      // Main window is destroyed, release UI related resources
-  	  hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageDestroy');
-    }
-    onForeground() {
-      // Ability has brought to foreground
-      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onForeground');
-    }
-    onBackground() {
-      // Ability has back to background
-      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onBackground');
-    }
-  }
  ```

@@ -16,11 +16,15 @@ Operation not permitted
 
 **可能原因**
 
-当前用户文件操作不被允许。
+当前用户文件操作不被允许，URI或path访问未授权。
 
 **处理步骤**
 
-确认文件权限。
+1、根据当前系统的[访问控制机制](../../security/AccessToken/access-token-overview.md)，应用无法使用分享给其他应用的URI。
+
+2、根据[系统Picker](../../application-models/system-app-startup.md)的运行机制，通过Picker获取到的URI仅有临时权限，无法持久化保存使用。
+
+3、URI路径不推荐进行拼接，拼接后的URI默认未授权。
 
 ### 13900002 没有这个文件或目录
 
@@ -178,15 +182,17 @@ Permission denied
 
 **可能原因**
 
-1.文件操作无权限。
+1.文件操作被DAC或selinux拦截。
 
 2.文件沙箱路径地址错误。
 
 **处理步骤**
 
-1.确认权限。
+1.访问被DAC自主式权限控制权限拦截，请排查文件的UGO权限。
 
-2.确认文件沙箱路径地址。
+2.排查内核日志中是否有[avc拦截日志](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-security-selinux-develop-intro.md)，如果存在avc拦截告警，<!--RP1-->拦截原因分析请参考[SELinux开发说明](../../../device-dev/subsystems/subsys-security-selinux-develop-intro.md)。<!--RP1End-->
+
+3.确认文件的路径是否为应用内的沙箱路径[沙箱路径地址](../../file-management/app-sandbox-directory.md)，文件管理系统禁止操作应用沙箱以外的文档。
 
 ### 13900013 错误的地址
 
@@ -434,11 +440,11 @@ Filename too Long
 
 **可能原因**
 
-路径或文件名超过最大长度。
+文件名超过最大长度255字节。
 
 **处理步骤**
 
-确认路径或文件名长度。
+确认文件名长度。
 
 ### 13900031 功能没有实现
 
@@ -604,7 +610,7 @@ Unknown error
 
 **可能原因**
 
-内部错误
+内部错误。
 
 **处理步骤**
 
@@ -612,13 +618,73 @@ Unknown error
 
 2.重启服务。
 
+### 13900043 没有可用的锁
+
+**错误信息**
+
+No record is locks available
+
+**可能原因**
+
+系统资源不足。
+
+**处理步骤**
+
+释放锁资源后重试
+
+### 13900044 网络无法访问
+
+**错误信息**
+
+Network is unreachable
+
+**可能原因**
+
+网络异常。
+
+**处理步骤**
+
+检查网络状态，确认状态正常。
+
+### 13900045 连接失败
+
+**错误信息**
+
+Connection failed
+
+**可能原因**
+
+设备、Wifi或蓝牙状态异常，导致建立链接失败。
+
+**处理步骤**
+
+1. 检查设备，确认设备状态正常。
+
+2. 检查WiFi和蓝牙，确认状态正常。
+
+### 13900046 软件造成连接中断
+
+**错误信息**
+
+Software caused connection abort
+
+**可能原因**
+
+设备下线或WiFi、蓝牙断连。
+
+**处理步骤**
+
+1. 检查设备，确认设备状态正常。
+
+2. 检查WiFi和蓝牙，确认状态正常。
+
 ## 用户数据管理错误码
 
 ### 14000001 文件名非法
 
 **错误信息**
 
-Invalid display name
+Invalid file name
 
 **可能原因**
 
@@ -632,7 +698,7 @@ Invalid display name
 
 **错误信息**
 
-Invalid uri
+Invalid URI
 
 **可能原因**
 
@@ -660,7 +726,7 @@ Invalid file name extension
 
 **错误信息**
 
-File has been put into trash bin
+File already in the recycle bin
 
 **可能原因**
 
@@ -718,7 +784,7 @@ IPC error
 
 **错误信息**
 
-Not supported filesystem
+File system not supported
 
 **可能原因**
 
@@ -732,7 +798,7 @@ Not supported filesystem
 
 **错误信息**
 
-Failed to mount
+Mount failed
 
 **可能原因**
 
@@ -746,7 +812,7 @@ Failed to mount
 
 **错误信息**
 
-Failed to unmount
+Unmount failed
 
 **可能原因**
 
@@ -774,7 +840,7 @@ Incorrect volume state
 
 **错误信息**
 
-Prepare directory or node error
+Failed to create the drectory or node
 
 **可能原因**
 
@@ -788,7 +854,7 @@ Prepare directory or node error
 
 **错误信息**
 
-Delete directory or node error
+Failed to delete the drectory or node
 
 **可能原因**
 
@@ -820,7 +886,7 @@ No such object
 
 **错误信息**
 
-User id out of range
+User ID out of range
 
 **可能原因**
 
@@ -852,7 +918,7 @@ IPC error
 
 **错误信息**
 
-Invalid uri
+Invalid URI
 
 **可能原因**
 
@@ -866,7 +932,7 @@ Invalid uri
 
 **错误信息**
 
-Fail to get fileextension info
+Failed to obtain the server ability information
 
 **可能原因**
 
@@ -880,7 +946,7 @@ BMS接口异常。
 
 **错误信息**
 
-Get wrong result
+Incorrect result returned by js-server
 
 **可能原因**
 
@@ -894,7 +960,7 @@ server端返回值检查。
 
 **错误信息**
 
-Fail to register notification
+Failed to register Notify
 
 **可能原因**
 
@@ -910,7 +976,7 @@ Fail to register notification
 
 **错误信息**
 
-Fail to remove notification
+Failed to unregister Notify
 
 **可能原因**
 
@@ -926,7 +992,7 @@ Fail to remove notification
 
 **错误信息**
 
-Fail to init notification agent
+Failed to initialize the Notify agent
 
 **可能原因**
 
@@ -940,7 +1006,7 @@ Fail to init notification agent
 
 **错误信息**
 
-Fail to notify agent
+Failed to notify the agent
 
 **可能原因**
 
@@ -968,7 +1034,7 @@ Cloud status not ready
 
 **处理步骤**
 
-1.检查是否帐号登录。
+1.检查是否账号登录。
 
 2.检查云同步开关是否打开。
 
@@ -990,7 +1056,7 @@ Network unavailable
 
 **错误信息**
 
-Battery level warning
+Low battery level
 
 **可能原因**
 

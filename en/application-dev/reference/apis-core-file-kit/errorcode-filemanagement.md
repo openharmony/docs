@@ -5,6 +5,7 @@
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 The error codes of the file management subsystem include the following:
+
 - [Basic File IO Error Codes](#basic-file-io-error-codes)
 - [User Data Management Error Codes](#user-data-management-error-codes)
 - [User File Access Error Codes](#user-file-access-error-codes)
@@ -21,11 +22,15 @@ Operation not permitted
 
 **Possible Causes**
 
-The current operation on the file is not allowed.
+The caller does not have the permission to access the URI or path.
 
 **Solution**
 
-Check the permission for the file.
+1. Check whether the caller cannot use the URI shared by another application. For details, see [access control mechanisms](../../security/AccessToken/access-token-overview.md) of the system.
+
+2. Check whether the permission is obtained by Picker. The permission obtained by Picker is temporary. For details, see [System Pickers](../../application-models/system-app-startup.md).
+
+3. Check whether the URI is a concatenated path, which has no permission by default.
 
 ### 13900002 File or Directory Not Exist
 
@@ -183,15 +188,17 @@ Permission denied
 
 **Possible Causes**
 
-1. You do not have the permission to operate the file.
+1. The operation is intercepted by DAC or SELinux.
 
 2. The file sandbox path is incorrect.
 
 **Solution**
 
-1. Check that the required permission is available.
+1. Check the UGO permission of the file.
 
-2. Check that the file sandbox path is correct.
+2. Check the kernel log for [AVC log information](../../../device-dev/subsystems/subsys-security-selinux-develop-intro.md). If yes,<!--RP1--> see [SELinux Development](../../../device-dev/subsystems/subsys-security-selinux-develop-intro.md).<!--RP1End-->
+
+3. Check whether the file path is a [sandbox path](../../file-management/app-sandbox-directory.md). The File Management system does not allow operations on files outside the sandbox directory.
 
 ### 13900013 Incorrect Address
 
@@ -609,7 +616,7 @@ Unknown error
 
 **Possible Causes**
 
-The error is unidentified.
+Internal error
 
 **Solution**
 
@@ -617,13 +624,73 @@ The error is unidentified.
 
 2. Restart the service.
 
+### 13900043 No Available Lock
+
+**Error Message**
+
+No record locks available
+
+**Possible Causes**
+
+System resources are insufficient.
+
+**Solution**
+
+Wait until a lock is released and try again.
+
+### 2300007 Network Access Failure
+
+**Error Message**
+
+Network is unreachable
+
+**Possible Causes**
+
+A network error occurs.
+
+**Solution**
+
+Check the network status.
+
+### 13900045 Connection Failed
+
+**Error Message**
+
+Connection failed
+
+**Possible Causes**
+
+The device is abnormal, or Wi-Fi or Bluetooth is unavailable.
+
+**Solution**
+
+1. Check that the device is in normal status.
+
+2. Check that Wi-Fi and Bluetooth are available.
+
+### 13900046 Connection Interrupted by Software
+
+**Error Message**
+
+Software caused connection abort
+
+**Possible Causes**
+
+The device goes offline, or the Wi-Fi or Bluetooth is disconnected.
+
+**Solution**
+
+1. Check that the device is in normal status.
+
+2. Check that Wi-Fi and Bluetooth are available.
+
 ## User Data Management Error Codes
 
 ### 14000001 Invalid File Name
 
 **Error Message**
 
-Invalid display name
+Invalid file name
 
 **Possible Causes**
 
@@ -637,7 +704,7 @@ Modify the file name.
 
 **Error Message**
 
-Invalid uri
+Invalid URI
 
 **Possible Causes**
 
@@ -665,7 +732,7 @@ Modify the file name extension.
 
 **Error Message**
 
-File has been put into trash bin
+File already in the recycle bin
 
 **Possible Causes**
 
@@ -723,7 +790,7 @@ Check whether the service is started.
 
 **Error Message**
 
-Not supported filesystem
+File system not supported
 
 **Possible Causes**
 
@@ -737,7 +804,7 @@ Use a supported file system.
 
 **Error Message**
 
-Failed to mount
+Mount failed
 
 **Possible Causes**
 
@@ -751,7 +818,7 @@ Remove the card and run the **mount** command again.
 
 **Error Message**
 
-Failed to unmount
+Unmount failed
 
 **Possible Causes**
 
@@ -779,7 +846,7 @@ Check whether the current volume state is correct.
 
 **Error Message**
 
-Prepare directory or node error
+Failed to create the drectory or node
 
 **Possible Causes**
 
@@ -793,7 +860,7 @@ Check whether the directory or node to be created already exists.
 
 **Error Message**
 
-Delete directory or node error
+Failed to delete the drectory or node
 
 **Possible Causes**
 
@@ -825,7 +892,7 @@ No such object
 
 **Error Message**
 
-User id out of range
+User ID out of range
 
 **Possible Causes**
 
@@ -857,7 +924,7 @@ Check that the server service exists.
 
 **Error Message**
 
-Invalid uri
+Invalid URI
 
 **Possible Causes**
 
@@ -871,7 +938,7 @@ Check that the URI is in correct format.
 
 **Error Message**
 
-Fail to get fileextension info
+Failed to obtain the server ability information
 
 **Possible Causes**
 
@@ -885,7 +952,7 @@ Check for basic system capability errors.
 
 **Error Message**
 
-Get wrong result
+Incorrect result returned by js-server
 
 **Possible Causes**
 
@@ -899,7 +966,7 @@ Check the data returned by the server.
 
 **Error Message**
 
-Fail to register notification
+Failed to register Notify
 
 **Possible Causes**
 
@@ -915,7 +982,7 @@ Check that the server service exists.
 
 **Error Message**
 
-Fail to remove notification
+Failed to unregister Notify
 
 **Possible Causes**
 
@@ -931,7 +998,7 @@ Check that the server service exists.
 
 **Error Message**
 
-Fail to init notification agent
+Failed to initialize the Notify agent
 
 **Possible Causes**
 
@@ -945,7 +1012,7 @@ Check whether the specified Notify agent is registered.
 
 **Error Message**
 
-Fail to notify agent
+Failed to notify the agent
 
 **Possible Causes**
 
@@ -995,7 +1062,7 @@ Check the network status.
 
 **Error Message**
 
-Battery level warning
+Low battery level
 
 **Possible Causes**
 

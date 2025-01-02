@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 ```
 
 ## connectedTag.init
@@ -17,6 +17,9 @@ import connectedTag from '@ohos.connectedTag';
 init(): boolean
 
 初始化有源标签芯片。
+
+> **说明：**
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[initialize](#connectedtaginitialize9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -43,6 +46,8 @@ initialize(): void
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 ## connectedTag.uninit
@@ -76,6 +81,8 @@ uninitialize(): void
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 ## connectedTag.readNdefTag
@@ -97,8 +104,8 @@ readNdefTag(): Promise&lt;string&gt;
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
-import { BusinessError } from '@ohos.base';
+import { connectedTag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connectedTag.readNdefTag().then((data) => {
     console.log("connectedTag readNdefTag Promise data = " + data);
@@ -128,13 +135,15 @@ read(): Promise&lt;number[]&gt;
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
-import { BusinessError } from '@ohos.base';
+import { connectedTag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connectedTag.read().then((data) => {
     console.log("connectedTag read Promise data = " + data);
@@ -162,7 +171,7 @@ readNdefTag(callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 
 connectedTag.readNdefTag((err, data)=> {
     if (err) {
@@ -194,12 +203,14 @@ read(callback: AsyncCallback&lt;number[]&gt;): void
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 
 connectedTag.read((err, data)=> {
     if (err) {
@@ -235,10 +246,10 @@ writeNdefTag(data: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
-import { BusinessError } from '@ohos.base';
+import { connectedTag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let rawData = "010203"; // change it tobe correct.
+let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData).then(() => {
     console.log("connectedTag writeNdefTag Promise success.");
 }).catch((err: BusinessError)=> {
@@ -273,15 +284,18 @@ write(data: number[]): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
-import { BusinessError } from '@ohos.base';
+import { connectedTag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let rawData = [0x01, 0x02, 0x03]; // change it tobe correct.
+let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData).then(() => {
     console.log("connectedTag write NdefTag Promise success.");
 }).catch((err: BusinessError)=> {
@@ -309,9 +323,9 @@ writeNdefTag(data: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 
-let rawData = "010203"; // change it tobe correct.
+let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData, (err)=> {
     if (err) {
         console.log("connectedTag writeNdefTag AsyncCallback err: " + err);
@@ -343,14 +357,17 @@ write(data: number[], callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 
-let rawData = [0x01, 0x02, 0x03]; // change it tobe correct.
+let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData, (err)=> {
     if (err) {
         console.log("connectedTag write NdefTag AsyncCallback err: " + err);
@@ -397,7 +414,7 @@ off(type: "notify", callback?: Callback&lt;number&gt;): void
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 
 // Register event
 connectedTag.on("notify", (rfState : number)=> {
@@ -407,7 +424,7 @@ connectedTag.on("notify", (rfState : number)=> {
 let initStatus = connectedTag.init();
 console.log("connectedTag init status: " + initStatus);
 
-// Add nfc connecected tag business oprations here...
+// Add nfc connected tag business operations here...
 // connectedTag.writeNdefTag(rawData)
 // connectedTag.readNdefTag()
 

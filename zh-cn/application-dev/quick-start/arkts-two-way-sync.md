@@ -14,7 +14,7 @@ $$运算符为系统内置组件提供TS变量的引用，使得TS变量和系�
 
 ## 使用规则
 
-- 当前$$支持基础类型变量，以及\@State、\@Link和\@Prop装饰的变量。
+- 当前$$支持基础类型变量，以及[\@State](arkts-state.md)、[\@Link](arkts-link.md)和[\@Prop](arkts-prop.md)装饰的变量。
 
 - 当前$$支持的组件：
 
@@ -43,6 +43,8 @@ $$运算符为系统内置组件提供TS变量的引用，使得TS变量和系�
   | [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 10          |
   | [BindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 10          |
   | [Refresh](../reference/apis-arkui/arkui-ts/ts-container-refresh.md) | refreshing | 8 |
+  | [GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md) | selected | 10 |
+  | [ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) | selected | 10 |
 
 - $$绑定的变量变化时，会触发UI的同步刷新。
 

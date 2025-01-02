@@ -1,4 +1,4 @@
-# @ohos.bluetooth.constant (Bluetooth Constant Module)
+# @ohos.bluetooth.constant (Bluetooth constant Module)
 
 The **constant** module provides definitions of the constants used in Bluetooth.
 
@@ -11,7 +11,7 @@ The **constant** module provides definitions of the constants used in Bluetooth.
 ## Modules to Import
 
 ```js
-import constant from '@ohos.bluetooth.constant';
+import { constant } from '@kit.ConnectivityKit';
 ```
 
 ## ProfileId
@@ -31,6 +31,8 @@ Enumerates profiles.
 ## ProfileConnectionState
 
 Enumerates the profile connection states.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -157,3 +159,23 @@ Enumerates the major and minor classes of Bluetooth devices.
 | HEALTH_ANKLE_PROSTHESIS                  | 0x0934 | Prosthetic ankle.    |
 | HEALTH_GENERIC_HEALTH_MANAGER            | 0x0938 | Generic health management device.    |
 | HEALTH_PERSONAL_MOBILITY_DEVICE          | 0x093C | Personal mobility device.    |
+
+
+## ProfileUuids<sup>12+</sup>
+
+Enumerates the profile UUIDs.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name                                  | Value   | Description             |
+| ------------------------------------| ------ | --------------- |
+| PROFILE_UUID_HFP_AG      | '0000111F-0000-1000-8000-00805F9B34FB' | UUID of the HFPAG profile.|
+| PROFILE_UUID_HFP_HF      | '0000111E-0000-1000-8000-00805F9B34FB' | UUID of the HFPHF profile. |
+| PROFILE_UUID_HSP_AG      | '00001112-0000-1000-8000-00805F9B34FB' | UUID of the HSPAG profile. |
+| PROFILE_UUID_HSP_HS      | '00001108-0000-1000-8000-00805F9B34FB' | UUID of the HSPHS profile. |
+| PROFILE_UUID_A2DP_SRC    | '0000110A-0000-1000-8000-00805F9B34FB' | UUID of the A2DPSRC profile. |
+| PROFILE_UUID_A2DP_SINK   | '0000110B-0000-1000-8000-00805F9B34FB' | UUID of the A2DPSINK profile. |
+| PROFILE_UUID_AVRCP_CT    | '0000110E-0000-1000-8000-00805F9B34FB' | UUID of the AVRCPCT profile. |
+| PROFILE_UUID_AVRCP_TG    | '0000110C-0000-1000-8000-00805F9B34FB' | UUID of the AVRCPTG profile. |
+| PROFILE_UUID_HID         | '00001124-0000-1000-8000-00805F9B34FB' | UUID of the HID profile. |
+| PROFILE_UUID_HOGP        | '00001812-0000-1000-8000-00805F9B34FB' | UUID of the HOGP profile. |

@@ -10,7 +10,7 @@ The **fileShare** module provides APIs for granting the access permissions on a 
 ## Modules to Import
 
 ```ts
-import fileShare from '@ohos.fileshare';
+import  { fileShare } from '@kit.CoreFileKit';
 ```
 
 ## fileShare.grantUriPermission
@@ -32,7 +32,7 @@ Grants the permissions on a user file to an application. This API uses an asynch
 | uri   | string | Yes  | URI of the file.|
 | bundleName   | string | Yes  | Application to be grated with the permissions.|
 | flag   | [wantConstant.Flags](../apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantflags) | Yes  | Permissions to grant.<br>**wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION**: permission to read the file. <br>**wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION**: permission to write the file.|
- | callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked to return the result.                            |
+ | callback | AsyncCallback&lt;void&gt;  | Yes   | Callback used to return the result.                            |
 
 **Error codes**
 
@@ -42,14 +42,14 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed |
 | 202 | The caller is not a system application |
-| 401 | The input parameter is invalid |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types |
 | 143000001 | IPC error |
 
 **Example**
 
   ```ts
-  import wantConstant from '@ohos.app.ability.wantConstant';
-  import { BusinessError } from '@ohos.base';
+  import { wantConstant } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let uri: string = 'file://media/image/8';
   let bundleName: string = 'com.demo.test';
   try {
@@ -101,14 +101,14 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed |
 | 202 | The caller is not a system application |
-| 401 | The input parameter is invalid |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types |
 | 143000001 | IPC error |
 
 **Example**
 
   ```ts
-  import wantConstant from '@ohos.app.ability.wantConstant';
-  import { BusinessError } from '@ohos.base';
+  import { wantConstant } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let uri: string = 'file://media/image/8';
   let bundleName: string = 'com.demo.test';
   try {
@@ -127,7 +127,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-Deactivates the permissions on multiple files or folders. This API uses a promise to return the result. <br>This API is available only to certain devices.
+Deactivates the permissions on multiple files or folders. This API uses a promise to return the result. <br>This API is available only to the devices that have the required system capability.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_PERSIST
 
@@ -137,7 +137,7 @@ Deactivates the permissions on multiple files or folders. This API uses a promis
 
 | Name| Type| Mandatory| Description                     |
 | -------- | -------- | -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](js-apis-fileShare.md#policyinfo11)> | Yes| Permissions to deactivate. |
+| policies| Array&lt;[PolicyInfo](js-apis-fileShare.md#policyinfo11)> | Yes| Permissions to persist.          |
 
 **Return value**
 
@@ -153,7 +153,7 @@ If the permission deactivation of some URIs fails, error code 13900001 will be r
 | ID   | Error Message      |
 |----------| --------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
-| 401      | Parameter error. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported. |
 | 13900001 | Operation not permitted.            |
 | 13900042 | Unknown error                          |
@@ -161,8 +161,8 @@ If the permission deactivation of some URIs fails, error code 13900001 will be r
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
+import { BusinessError } from '@kit.BasicServicesKit';
+import  { picker } from '@kit.CoreFileKit';
   
   async function deactivatePermissionExample() {
     try {
@@ -190,4 +190,3 @@ If the permission deactivation of some URIs fails, error code 13900001 will be r
     }
   }
   ```
-<!--no_check-->

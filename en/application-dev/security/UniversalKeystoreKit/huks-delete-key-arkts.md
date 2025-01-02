@@ -6,7 +6,7 @@ To ensure data security, delete the key that is no longer required.
 
 For example, delete a 256-bit HKDF key.
 
-1. Set the key alias (**keyAlias**), which cannot exceed 64 bytes.
+1. Set the key alias (**keyAlias**), which cannot exceed 128 bytes.
 
 2. Initialize the key property set to specify the properties of the key to delete, for example, delete all keys or a single key. To delete a single key, leave **properties** empty.
 
@@ -16,21 +16,23 @@ For example, delete a 256-bit HKDF key.
 /*
  * Delete a 256-bit HKDF key. This example uses promise-based APIs.
  */
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+
 /* 1. Set the key alias. */
 let keyAlias = "test_Key";
 /* 2. Construct an empty object. */
-let huksOptions:huks.HuksOptions = {
-  properties:[]
+let huksOptions: huks.HuksOptions = {
+  properties: []
 }
-class throwObject{
-  isThrow=false;
+
+class throwObject {
+  isThrow = false;
 }
+
 function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
   return new Promise<void>((resolve, reject) => {
     try {
-      huks.deleteKeyItem(keyAlias, huksOptions, (error, data)=> {
+      huks.deleteKeyItem(keyAlias, huksOptions, (error, data) => {
         if (error) {
           reject(error);
         } else {
@@ -39,30 +41,32 @@ function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObj
       });
     } catch (error) {
       throwObject.isThrow = true;
-      throw(error as Error);
+      throw (error as Error);
     }
   });
 }
+
 /* 3. Delete the key. */
-async function publicDeleteKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions) {
+async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise deleteKeyItem`);
-  let throwObject:throwObject = {isThrow: false};
+  let throwObject: throwObject = { isThrow: false };
   try {
     await deleteKeyItem(keyAlias, huksOptions, throwObject)
-      .then ((data) => {
+      .then((data) => {
         console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
       })
-      .catch((error: BusinessError) => {
+      .catch((error: Error) => {
         if (throwObject.isThrow) {
-          throw(error as Error);
+          throw (error as Error);
         } else {
-          console.error(`promise: deleteKeyItem failed` + error);
+          console.error(`promise: deleteKeyItem failed, ${JSON.stringify(error)}`);
         }
       });
   } catch (error) {
-    console.error(`promise: deletKeyItem input arg invalid` + error);
+    console.error(`promise: deleteKeyItem input arg invalid, ${JSON.stringify(error)}`);
   }
 }
+
 async function testDerive() {
   await publicDeleteKeyFunc(keyAlias, huksOptions);
 }

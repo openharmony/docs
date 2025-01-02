@@ -8,19 +8,31 @@
 
 ## renderFit
 
-renderFit(fitMode: RenderFit)
+renderFit(fitMode: Optional\<RenderFit>)
 
 设置宽高动画过程中的组件内容填充方式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名  | 类型                            | 必填 | 说明                                                         |
-| ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| fitMode | [RenderFit](#renderfit枚举说明) | 是   | 设置宽高动画过程中的组件内容填充方式。<br/>当不设置renderFit属性时，取默认值RenderFit.TOP_LEFT。 |
+| 参数名  | 类型                                       | 必填 | 说明                                                         |
+| ------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| fitMode | Optional\<[RenderFit](#renderfit枚举说明)> | 是   | 设置宽高动画过程中的组件内容填充方式。<br/>当不设置renderFit属性时，取默认值RenderFit.TOP_LEFT。 |
+
+>  **说明：**
+>
+>  对于TEXTURE和SURFACE类型的[XComponent](./ts-basic-components-xcomponent.md)组件，当不设置renderFit属性时，取默认值为RenderFit.RESIZE_FILL。
+>
+>  对于SURFACE类型的[XComponent](./ts-basic-components-xcomponent.md)组件，当组件背景色为不透明的纯黑色时，其renderFit通用属性仅支持设置为RenderFit.RESIZE_FILL，不推荐设置为其他的RenderFit枚举值。
+>
+>  对于使用[ArkUI NDK接口](../../../ui/ndk-access-the-arkts-page.md)创建的XComponent组件，不支持使用属性获取函数[getAttribute](../_ark_u_i___native_node_a_p_i__1.md#getattribute)获取其renderFit属性值。
 
 ## RenderFit枚举说明
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称                          | 描述                                       | 示意图                                      |
 | --------------------------- | ---------------------------------------- | ---------------------------------------- |
@@ -47,6 +59,8 @@ renderFit(fitMode: RenderFit)
 > - 不同的内容填充方式在宽高动画过程中效果不一致，开发者需要选择合适的内容填充方式以实现需要的动画效果。
 
 ## 示例
+
+该示例主要演示通过renderFit设置宽高动画过程中的组件内容不同填充方式。
 
 ```ts
 // xxx.ets

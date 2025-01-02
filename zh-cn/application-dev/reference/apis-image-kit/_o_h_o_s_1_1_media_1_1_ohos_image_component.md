@@ -19,11 +19,11 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [byteBuffer](#bytebuffer) | 像素数据地址 | 
-| [size](#size) | 内存中的像素数据大小 | 
-| [componentType](#componenttype) | 像素数据类型 | 
-| [rowStride](#rowstride) | 像素数据行宽 | 
-| [pixelStride](#pixelstride) | 像素数据的像素大小 | 
+| uint8_t \* [byteBuffer](#bytebuffer) | 像素数据地址  | 
+| size_t [size](#size) | 内存中的像素数据大小  | 
+| int32_t [componentType](#componenttype) | 像素数据类型  | 
+| int32_t [rowStride](#rowstride) | 像素数据行宽  | 
+| int32_t [pixelStride](#pixelstride) | 像素数据的像素大小  | 
 
 
 ## 结构体成员变量说明
@@ -34,9 +34,7 @@
 ```
 uint8_t* OhosImageComponent::byteBuffer
 ```
-
 **描述**
-
 像素数据地址
 
 
@@ -45,9 +43,7 @@ uint8_t* OhosImageComponent::byteBuffer
 ```
 int32_t OhosImageComponent::componentType
 ```
-
 **描述**
-
 像素数据类型
 
 | 值 | 说明 |
@@ -62,9 +58,7 @@ int32_t OhosImageComponent::componentType
 ```
 int32_t OhosImageComponent::pixelStride
 ```
-
 **描述**
-
 像素数据的像素大小
 
 
@@ -73,10 +67,8 @@ int32_t OhosImageComponent::pixelStride
 ```
 int32_t OhosImageComponent::rowStride
 ```
-
 **描述**
-
-像素数据行宽
+像素数据行宽，读取相机预览流数据时，需要考虑按stride进行读取，具体用法见[C/C++预览流二次处理示例](../../media/camera/native-camera-preview-imageReceiver.md)。
 
 
 ### size
@@ -84,7 +76,5 @@ int32_t OhosImageComponent::rowStride
 ```
 size_t OhosImageComponent::size
 ```
-
 **描述**
-
 内存中的像素数据大小

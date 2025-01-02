@@ -1,4 +1,4 @@
-#  Certificate Error Codes
+# Certificate Error Codes
 
 > **NOTE**
 >
@@ -92,7 +92,7 @@ The certificate has expired. The certificate expiration time is earlier than the
 
 1. Check whether the certificate is correct.
 2. Check whether the system time is correct.
-3. Compare the certificate expiration time time with the current system time to determine whether the certificate has expired.
+3. Compare the certificate expiration time with the current system time to determine whether the certificate has expired.
 
 ## 19030005 Failed to Obtain the Certificate Issuer
 

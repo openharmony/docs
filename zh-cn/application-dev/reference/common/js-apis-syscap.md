@@ -12,6 +12,8 @@ canIUse(syscap: string): boolean
 
 查询系统是否具备某个系统能力。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -29,14 +31,14 @@ canIUse(syscap: string): boolean
 **示例：**
 
   ```js
-import geoLocationManager from '@ohos.geoLocationManager'
-import { BusinessError } from '@ohos.base';
+import { geoLocationManager } from '@kit.LocationKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const isLocationAvailable = canIUse('SystemCapability.Location.Location.Core');
 if (isLocationAvailable) {
     geoLocationManager.getCurrentLocation((err: BusinessError, location: geoLocationManager.Location) => {
         if (err) {
-            console.log('err=' + JSON.stringify(err));
+            console.error('err=' + JSON.stringify(err));
         }
         if (location) {
             console.log('location=' + JSON.stringify(location));

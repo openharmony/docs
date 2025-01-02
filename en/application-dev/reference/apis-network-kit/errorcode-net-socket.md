@@ -141,7 +141,7 @@ Check whether the socket is closed unexpectedly.
 
 **Error Message**
 
-Resource temporarily unavailable try again.
+Resource temporarily unavailable. Try again.
 
 **Description**
 
@@ -177,7 +177,7 @@ Check whether the descriptor is correctly obtained.
 
 **Error Message**
 
-Protocol wrong type for socket.
+Incorrect socket protocol type.
 
 **Description**
 
@@ -228,6 +228,24 @@ The remote address or port is invalid for the remote server.
 
 Check whether the address or port is correct.
 
+## 2303200 Network Disabled
+
+**Error Message**
+
+Network is down.
+
+**Description**
+
+The network is disabled.
+
+**Cause**
+
+The network service is not started or has been stopped.
+
+**Procedure**
+
+Check the network connection.
+
 ## 2303210 Connection Timeout
 
 **Error Message**
@@ -268,7 +286,7 @@ Call the function again.
 
 **Error Message**
 
-Error in tls reading.
+An error occurred when reading data on the TLS socket.
 
 **Description**
 
@@ -286,7 +304,7 @@ Perform data receiving again.
 
 **Error Message**
 
-Error in tls writing.
+An error occurred when writing data on the TLS socket.
 
 **Description**
 
@@ -304,7 +322,7 @@ Rectify the fault on the server side.
 
 **Error Message**
 
-Error looking up x509.
+An error occurred when verifying the X.509 certificate.
 
 **Description**
 
@@ -322,7 +340,7 @@ Check whether the local CA matches the server certificate.
 
 **Error Message**
 
-Error occurred in the tls system call.
+An error occurred in the TLS system call.
 
 **Description**
 
@@ -340,7 +358,7 @@ For details, see the Linux kernel error codes (errno).
 
 **Error Message**
 
-Error clearing tls connection.
+Failed to close the TLS connection.
 
 **Description**
 

@@ -42,6 +42,9 @@
     - 开发指导
       - [用户身份认证访问控制开发指导](huks-user-identity-authentication.md)
       - [细粒度用户身份认证访问控制开发指导](huks-refined-user-identity-authentication.md)
+  - HMAC
+    - [HMAC(ArkTS)](huks-hmac-arkts.md)
+    - [HMAC(C/C++)](huks-hmac-ndk.md)
 - 密钥删除
   - [密钥删除(ArkTS)](huks-delete-key-arkts.md)
   - [密钥删除(C/C++)](huks-delete-key-ndk.md)
@@ -50,8 +53,10 @@
   - 开发指导
     - [匿名密钥证明(ArkTS)](huks-key-anon-attestation-arkts.md)
     - [匿名密钥证明(C/C++)](huks-key-anon-attestation-ndk.md)
+    <!--Del-->
     - [非匿名密钥证明(ArkTS)](huks-key-attestation-arkts.md)
     - [非匿名密钥证明(C/C++)](huks-key-attestation-ndk.md)
+    <!--DelEnd-->
 - 其他操作
   - 查询密钥是否存在
     - [查询密钥是否存在(ArkTS)](huks-check-key-arkts.md)
@@ -62,4 +67,9 @@
   - 密钥导出
     - [密钥导出(ArkTS)](huks-export-key-arkts.md)
     - [密钥导出(C/C++)](huks-export-key-ndk.md)
+  - 查询密钥别名集
+    - [查询密钥别名集(ArkTS)](huks-list-aliases-arkts.md)
+    - [查询密钥别名集(C/C++)](huks-list-aliases-ndk.md)
+  <!--Del-->
   - [指定用户身份操作(仅对系统应用开放)](huks-as-user-sys.md)
+  <!--DelEnd-->

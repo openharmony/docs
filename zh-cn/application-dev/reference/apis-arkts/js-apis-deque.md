@@ -2,7 +2,7 @@
 
 Deque（double ended queue）根据循环队列的数据结构实现，符合先进先出以及先进后出的特点，支持两端的元素插入和移除。Deque会根据实际需要动态调整容量，每次进行两倍扩容。
 
-Deque和[Queue](js-apis-queue.md)相比，Queue的特点是先进先出，只能在头部删除元素，尾部增加元素。
+Deque和[Queue](js-apis-queue.md)相比，Deque允许在两端执行增删元素的操作，Queue只能在头部删除元素，尾部增加元素。
 
 与[Vector](js-apis-vector.md)相比，它们都支持在两端增删元素，但Deque不能进行中间插入的操作。对头部元素的插入删除效率高于Vector，而Vector访问元素的效率高于Deque。
 
@@ -19,12 +19,14 @@ Deque和[Queue](js-apis-queue.md)相比，Queue的特点是先进先出，只能
 ## 导入模块
 
 ```ts
-import Deque from '@ohos.util.Deque'; 
+import { Deque } from '@kit.ArkTS';
 ```
 
 ## Deque
 
 ### 属性
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -37,6 +39,8 @@ import Deque from '@ohos.util.Deque';
 constructor()
 
 Deque的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -59,6 +63,8 @@ let deque: Deque<string | number | boolean | Object> = new Deque();
 insertFront(element: T): void
 
 在deque头部插入元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -88,7 +94,7 @@ deque.insertFront("a");
 deque.insertFront(1);
 let b = [1, 2, 3];
 deque.insertFront(b);
-let c: C1 = {name : "Dylon", age : "13"};
+let c: C1 = {name : "Dylan", age : "13"};
 deque.insertFront(c);
 deque.insertFront(false);
 ```
@@ -98,6 +104,8 @@ deque.insertFront(false);
 insertEnd(element: T): void
 
 在deque尾部插入元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -128,7 +136,7 @@ deque.insertEnd("a");
 deque.insertEnd(1);
 let b = [1, 2, 3];
 deque.insertEnd(b);
-let c: C1 = {name : "Dylon", age : "13"};
+let c: C1 = {name : "Dylan", age : "13"};
 deque.insertEnd(c);
 deque.insertEnd(false);
 ```
@@ -138,6 +146,8 @@ deque.insertEnd(false);
 has(element: T): boolean
 
 判断此Deque中是否含有该指定元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -175,6 +185,8 @@ popFirst(): T
 
 删除并返回双端队列的首元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -208,6 +220,8 @@ let result = deque.popFirst();
 popLast(): T
 
 删除并返回双端队列的尾元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -244,6 +258,8 @@ thisArg?: Object): void
 
 通过回调函数来遍历Deque实例对象上的元素以及元素对应的下标。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -263,10 +279,11 @@ callbackfn的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **示例：**
@@ -287,6 +304,8 @@ deque.forEach((value: number, index?: number | undefined, deque?: Deque<number> 
 getFirst(): T
 
 获取Deque实例中的头元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -321,6 +340,8 @@ getLast(): T
 
 获取Deque实例中的尾元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -354,9 +375,7 @@ let result = deque.getLast();
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

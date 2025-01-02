@@ -11,7 +11,7 @@ The **pan** module provides APIs for accessing the Bluetooth personal area netwo
 ## Modules to Import
 
 ```js
-import pan from '@ohos.bluetooth.pan';
+import { pan } from '@kit.ConnectivityKit';
 ```
 
 
@@ -29,10 +29,19 @@ Creates a **PanProfile** instance.
 | ----------------------------- | ---------- |
 | PanProfile | **PanProfile** instance created.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let panProfile : pan.PanProfile= pan.createPanProfile();
     console.info('pan success');

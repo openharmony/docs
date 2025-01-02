@@ -14,7 +14,7 @@ The **PermissionDef** module provides permission details defined in the configur
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name          | Type  | Readable| Writable| Description          |
+| Name          | Type  | Read-Only| Optional| Description          |
 | -------------- | ------ | ---- | ---- | -------------- |
 | permissionName | string | Yes  | No  | Name of the permission.  |
 | grantMode      | number | Yes  | No  | Grant mode of the permission.|

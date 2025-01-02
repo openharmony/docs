@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import logLibrary from '@ohos.logLibrary';
+import { logLibrary } from '@kit.PerformanceAnalysisKit';
 ```
 
 ## LogEntry
@@ -60,7 +60,7 @@ list(logType: string): LogEntry[]
 **示例：**
 
 ```ts
-import logLibrary from '@ohos.logLibrary';
+import { logLibrary } from '@kit.PerformanceAnalysisKit';
 
 try {
     let logObj = logLibrary.list('HILOG');
@@ -108,8 +108,8 @@ copy(logType: string, logName: string, dest: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import logLibrary from '@ohos.logLibrary';
-import { BusinessError } from '@ohos.base';
+import { logLibrary } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     logLibrary.copy('HILOG', 'hiapplogcat-1.zip', ''
@@ -160,7 +160,7 @@ copy(logType: string, logName: string, dest: string, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-import logLibrary from '@ohos.logLibrary';
+import { logLibrary } from '@kit.PerformanceAnalysisKit';
 
 try {
     logLibrary.copy('HILOG', 'hiapplogcat-1.zip', 'dir1', (error, val) => {
@@ -213,8 +213,8 @@ move(logType: string, logName: string, dest: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import logLibrary from '@ohos.logLibrary';
-import { BusinessError } from '@ohos.base';
+import { logLibrary } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     logLibrary.move('FAULTLOG', 'fault_log_test.zip', ''
@@ -265,7 +265,7 @@ move(logType: string, logName: string, dest: string, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-import logLibrary from '@ohos.logLibrary';
+import { logLibrary } from '@kit.PerformanceAnalysisKit';
 
 try {
     logLibrary.move('FAULTLOG', 'fault_log_test.zip', 'dir1/dir2', (error, val) => {
@@ -311,7 +311,7 @@ remove(logType: string, logName: string): void
 **示例：**
 
 ```ts
-import logLibrary from '@ohos.logLibrary';
+import { logLibrary } from '@kit.PerformanceAnalysisKit';
 
 try {
   logLibrary.remove('FAULTLOG', 'fault_log_test.zip');

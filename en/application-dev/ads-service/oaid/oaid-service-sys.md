@@ -1,16 +1,13 @@
-# OAID Service
+# Resetting OAID Information (for System Applications Only)
 
 ## When to Use
 
-An Open Anonymous Device Identifier (OAID) is a non-permanent device identifier. The OAID service is useful for media application developers, ad platforms, and tracking platforms alike. Specifically, it provides personalized ads for users while protecting their personal data privacy, and also interact with third-party tracking platforms to provide conversion attribution analysis for advertisers.
+The OAID changes in the following scenarios:
+- A user restores the factory settings of the device.
 
-An OAID is a 32-bit Universally Unique Identifier (UUID) generated using a Huawei algorithm. The format is xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.
+- A system application configures its bundle name in the **etc/advertising/oaid/oaid_service_config.json** file in the device's system directory and calls the **resetOAID()** API to reset the OAID. Note that the bundle name should be appended to the array in the file and separated with others by commas (,).
 
-The OAID has the following features:
-- The OAID is device specific. Different applications on the same device obtain the same OAID.
-- The OAID obtained depends on the tracing function of the application. When tracing of the application is enabled, the application obtains a valid OAID. When tracing is disabled, the application obtains an all-zero OAID.
-- An OAID is generated when any application on the device enables tracking for the first time.
-- The OAID changes when the user restores the factory settings of the device.
+The following describes how to configure a system application to reset the OAID.
 
 ## Available APIs
 
@@ -22,20 +19,27 @@ The OAID has the following features:
 ## How to Develop
 
 1. In the **module.json5** file of the module, configure the [ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all.md#ohospermissionapp_tracking_consent) permission. The sample code is as follows:
-   ```
-   {
+   ```ts
+    {
      "module": {
        "requestPermissions": [
          {
-         "name": "ohos.permission.APP_TRACKING_CONSENT"
+           "name": "ohos.permission.APP_TRACKING_CONSENT",
+           "reason": "$string:reason",
+           "usedScene": {
+             "abilities": [
+               "EntryFormAbility"
+             ],
+             "when": "inuse"
+           }
          }
        ]
      }
-    }
+   }
    ```
 
 2. Request authorization from the user in a dialog box when the application is started. For details about how to obtain the context, see [Context](../../application-models/application-context-stage.md). The sample code is as follows:
-   ```
+   ```ts
    import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
    import { BusinessError } from '@ohos.base';
    import hilog from '@ohos.hilog';
@@ -49,19 +53,19 @@ The OAID has the following features:
           if (data.authResults[0] == 0) {
             hilog.info(0x0000, 'testTag', '%{public}s', 'request permission success');
           } else {
-            hilog.info(0x0000, 'testTag', '%{public}s', 'user rejected');
+            hilog.error(0x0000, 'testTag', '%{public}s', 'user rejected');
           }
         }).catch((err: BusinessError) => {
           hilog.error(0x0000, 'testTag', '%{public}s', `request permission failed, error: ${err.code} ${err.message}`);
         })
-      } catch(err) {
+      } catch (err) {
         hilog.error(0x0000, 'testTag', '%{public}s', `catch err->${err.code}, ${err.message}`);
       }
     }
    ```
    
 3. Call **resetOAID()** (a system API) to reset the OAID. The sample code is as follows:
-   ```
+   ```ts
    import identifier from '@ohos.identifier.oaid';
    import hilog from '@ohos.hilog'; 
    

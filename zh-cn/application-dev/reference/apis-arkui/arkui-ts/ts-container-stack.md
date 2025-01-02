@@ -14,14 +14,30 @@
 
 ## 接口
 
-Stack(value?: { alignContent?: Alignment })
+Stack(options?: StackOptions)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名       | 参数类型                                    | 必填 | 参数描述                                                    |
+| 参数名       | 类型                                    | 必填 | 说明                                                    |
 | ------------ | ------------------------------------------- | ---- | ----------------------------------------------------------- |
+| options | [StackOptions](#stackoptions14对象说明) | 否   | 设置子组件在容器内的对齐方式。 |
+
+## StackOptions<sup>14+</sup>对象说明
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型            | 必填 | 说明                        |
+| ------------ | --------------- | ---- | --------------------------- |
 | alignContent | [Alignment](ts-appendix-enums.md#alignment) | 否   | 设置子组件在容器内的对齐方式。<br/>默认值：Alignment.Center |
 
 ## 属性
@@ -32,7 +48,9 @@ Stack(value?: { alignContent?: Alignment })
 
 alignContent(value: Alignment)
 
-设置所有子组件在容器内的对齐方式。该属性与[通用属性align](ts-universal-attributes-location.md)同时设置时，后设置的属性生效。
+设置所有子组件在容器内的对齐方式。该属性与[通用属性align](ts-universal-attributes-location.md#align)同时设置时，后设置的属性生效。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -46,6 +64,8 @@ alignContent(value: Alignment)
 
 
 ## 示例
+
+Stack的alignContent设置为Alignment.Bottom条件下子组件显示效果。
 
 ```ts
 // xxx.ets

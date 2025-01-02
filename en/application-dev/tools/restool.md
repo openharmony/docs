@@ -3,7 +3,7 @@
 
 ## Overview
 
-restool is a resource compilation tool that creates resource indexes and parses resources by compiling resource files. You can call the [resource management APIs](../reference/apis/js-apis-resource-manager.md) to obtain resources. The tool is stored in the **toolchains** subdirectory of the SDK installation directory.
+restool is a resource compilation tool that creates resource indexes and parses resources by compiling resource files. You can call the [resource management APIs](../reference/apis-localization-kit/js-apis-resource-manager.md) to obtain resources. The tool is stored in the **toolchains** subdirectory of the SDK installation directory.
 
 ## Description
 
@@ -11,7 +11,7 @@ The tool supports the following command options.
 
 | Option| Default Value Allowed| Argument Carried| Description|
 | -------- | -------- | -------- | -------- |
-| -i | No| Yes| [Resource directory](#compiling-resources) or [resource intermediate file directory](#compiling-resources) to create. The same command can run multiple times.|
+| -i | No| Yes| Resource directory or resource middleware to create. The same command can run multiple times.<br>For details, see [Compiling Resources](#compiling-resources).|
 | -j | No| Yes| Path of the **config.json** or **module.json** file.|
 | -o | No| Yes| Output path of the compiled resource.|
 | -p | No| Yes| Bundle name of the compiled resource.|
@@ -30,9 +30,9 @@ The tool supports the following command options.
 
 ### target-config Parameters
 
-Supported parameters: **MccMnc**, **Locale**, **Orientation**, **Device**, **ColorMode**, and **Density**
+Supported parameters: **MccMnc**, **Locale**, **Orientation**, **Device**, **ColorMode**, and **Density**.
 
-Format: Use semicolons (;) to separate different parameter configurations. Use square brackets ([]) to encapsulate values for a parameter and use commas (,) to separate values.
+Format: Use semicolons (;\) to separate different parameter configurations. Use square brackets ([]) to encapsulate values for a parameter and use commas (,) to separate values.
 
 **MccMnc** matching rule: The MCC must always be used for matching. If an MNC is not included, a match is found as long as the MCC is the same. If an MNC is included, a match is found when both the MCC and MNC are the same.
 
@@ -67,23 +67,22 @@ There are two resource compilation modes: full resource compilation and incremen
 
 1. To compile all resources, run the following command:
 
-   ```
-   restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out -r out/ResourceTable.txt -f
-   ```
+```
+restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out -r out/ResourceTable.txt -f
+```
 
 2. To compile incremental resources, perform the following steps:
 
-   Step 1: Generate the resource middleware.
+Step 1: Generate the resource middleware.
 
-   ```
-   restool -x entry/src/main/resource -o out
-   ```
+```
+restool -x entry/src/main/resource -o out
+```
+Step 2: Compile the resource middleware.
 
-   Step 2: Compile the resource middleware.
-
-   ```
-   restool -i out1 -i out2 -o out -p com.ohos.demo -r out/ResourceTable.txt -j entry/src/main/module.json -f -z
-   ```
+```
+restool -i out1 -i out2 -o out -p com.ohos.demo -r out/ResourceTable.txt -j entry/src/main/module.json -f -z
+```
 
 ### Fixing the Resource ID
 
@@ -93,35 +92,33 @@ Step 1: Create the **id_defined.json** file. There are two ways to create the fi
 
 + Run the following command to generate the file:
 
-  ```
-  restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out -r out/ResourceTable.txt --ids out -f
-  ```
+```
+restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out -r out/ResourceTable.txt --ids out -f
+```
 
 + Customize the **id_defined.json** file with the following content:
 
-  ```
-  {
-      "record" :
-      [
-          {
-              "id": "0x01000000", // A fixed ID for the resource.
-              "name": "app_name", // Resource name.
-              "type": "string" // Resource type.
-          }
-      ]
-  }
-  ```
+```
+{
+    "record" :
+    [
+        {
+            "id": "0x01000000", // A fixed ID for the resource.
+            "name": "app_name", // Resource name.
+            "type": "string" // Resource type.
+        }
+    ]
+}
+```
 
 Step 2: Fix the resource ID. There are two ways to fix the resource ID.
 
 + Run the following command to fix the resource ID:
-
-  ```
-  restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out1 -r out1/ResourceTable.txt --defined-ids out/id_defined.json -f
-  ```
+```
+restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out1 -r out1/ResourceTable.txt --defined-ids out/id_defined.json -f
+```
 
 + Place the customized **id_defined.json** file in the **resource/base/element/** directory and then run the following command to fix the resource ID:
-
-  ```
-  restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out1 -r out1/ResourceTable.txt  -f
-  ```
+```
+restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out1 -r out1/ResourceTable.txt  -f
+```

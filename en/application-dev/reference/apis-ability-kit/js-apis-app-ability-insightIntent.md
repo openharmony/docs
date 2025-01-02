@@ -11,7 +11,7 @@ The **insightIntent** module provides APIs for InsightIntent calls.
 ## Modules to Import
 
 ```ts
-import insightIntent from '@ohos.app.ability.insightIntent';
+import { insightIntent } from '@kit.AbilityKit';
 ```
 
 ## ExecuteMode
@@ -22,17 +22,19 @@ Enumerates the InsightIntent call execution modes.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| UI_ABILITY_FOREGROUND | 0 | Display a UIAbility in the foreground.|
-| UI_ABILITY_BACKGROUND | 1 | Start a UIAbility in the background.|
+| UI_ABILITY_FOREGROUND | 0 | Display a UIAbility in the foreground.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| UI_ABILITY_BACKGROUND | 1 | Start a UIAbility in the background.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | UI_EXTENSION_ABILITY | 2 | Start a UIExtensionAbility.|
 
 ## ExecuteResult
 
 Defines the InsightIntent call execution result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| code | number | No| Yes| Error code returned.|
-| result | Record<string, Object> | No| No| Execution result returned.|
+| code | number | No| No| Error code returned.|
+| result | Record<string, Object> | No| Yes| Execution result returned.|

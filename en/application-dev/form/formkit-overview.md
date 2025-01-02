@@ -38,13 +38,13 @@ ArkTS widgets and JS widgets have different implementation principles and featur
 
 | Category        | JS Widget   | ArkTS Widget |
 | ------------ | --------- | ---------- |
-| Development paradigm    | Web-like paradigm| Declarative paradigm|
+| Development paradigm    | Web-like paradigm | Declarative paradigm |
 | Component capability    | Supported     | Supported      |
 | Layout capability    | Supported     | Supported      |
 | Event capability    | Supported     | Supported      |
 | Custom animation  | Not supported   | Supported      |
 | Custom drawing  | Not supported   | Supported      |
-| Logic code execution| Not supported   | Supported      |
+| Logic code execution | Not supported   | Supported      |
 
 ## Related Kits
 - Ability Kit: Form Kit relies on the Extension abilities of Ability Kit for its internal implementation and interacts with Ability Kit during lifecycle scheduling.
@@ -53,7 +53,7 @@ ArkTS widgets and JS widgets have different implementation principles and featur
 ## Constraints
 ArkTS widgets are subject to the following constraints:
 - When importing modules, you can import only the modules marked with "supported in ArkTS widgets."
-- Only [partial components](arkts-ui-widget-page-overview.md), events, animations, data management, state management, and API capabilities of the declarative paradigm are supported.
+- Only partial components, events, animations, data management, state management, and API capabilities of the [declarative paradigm](../ui/arkts-ui-development-overview.md) are supported.
 - The event processing of the widget is independent of that of the widget host. To prevent gesture conflicts, avoid using swipers in the widget when the widget host supports left and right swipes.
 - Shared packages cannot be imported. The native programming language cannot be used for development.
 - Instant preview, breakpoint debugging, hot reload, and timeout setting (**setTimeOut**) are not supported.

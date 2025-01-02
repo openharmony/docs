@@ -162,7 +162,7 @@ prompt.showDialog({
 
 | 名称  | 类型   | 必填 | 说明                            |
 | ----- | ------ | ---- | ------------------------------- |
-| index | number | 否   | 选中按钮在buttons数组中的索引。 |
+| index | number | 是   | 选中按钮在buttons数组中的索引。 |
 
 
 ## prompt.showActionMenu
@@ -270,9 +270,9 @@ prompt.showActionMenu({
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型     | 必填   | 说明                       |
-| ----- | ------ | ---- | ------------------------ |
-| index | number | 否    | 选中按钮在buttons数组中的索引，从0开始。 |
+| 名称  | 类型   | 必填 | 说明                                     |
+| ----- | ------ | ---- | ---------------------------------------- |
+| index | number | 是   | 选中按钮在buttons数组中的索引，从0开始。 |
 
 ## Button
 

@@ -7,6 +7,8 @@
 
 **库：** libace_ndk.z.so
 
+**引用文件：** <arkui/ui_input_event.h>
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 12
@@ -28,10 +30,14 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) { ARKUI_UIINPUTEVENT_TYPE_UNKNOWN = 0, ARKUI_UIINPUTEVENT_TYPE_TOUCH = 1, ARKUI_UIINPUTEVENT_TYPE_AXIS = 2 } | UI输入事件类型定义。  | 
-| { [UI_TOUCH_EVENT_ACTION_CANCEL](_ark_u_i___event_module.md) = 0, [UI_TOUCH_EVENT_ACTION_DOWN](_ark_u_i___event_module.md) = 1, [UI_TOUCH_EVENT_ACTION_MOVE](_ark_u_i___event_module.md) = 2, [UI_TOUCH_EVENT_ACTION_UP](_ark_u_i___event_module.md) = 3 } | 定义输入事件的Action Code。  | 
+| [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) { **ARKUI_UIINPUTEVENT_TYPE_UNKNOWN** = 0, **ARKUI_UIINPUTEVENT_TYPE_TOUCH** = 1, **ARKUI_UIINPUTEVENT_TYPE_AXIS** = 2, **ARKUI_UIINPUTEVENT_TYPE_MOUSE** = 3 } | UI输入事件类型定义。  | 
+| {<br/>[OH_NATIVEXCOMPONENT_RESULT_SUCCESS](_ark_u_i___event_module.md) = 0, [OH_NATIVEXCOMPONENT_RESULT_FAILED](_ark_u_i___event_module.md) = -1, [OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER](_ark_u_i___event_module.md) = -2, [UI_TOUCH_EVENT_ACTION_CANCEL](_ark_u_i___event_module.md) = 0,<br/>[UI_TOUCH_EVENT_ACTION_DOWN](_ark_u_i___event_module.md) = 1, [UI_TOUCH_EVENT_ACTION_MOVE](_ark_u_i___event_module.md) = 2, [UI_TOUCH_EVENT_ACTION_UP](_ark_u_i___event_module.md) = 3<br/>} | 定义输入事件的Action Code。  | 
 | {<br/>[UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN](_ark_u_i___event_module.md) = 0, [UI_INPUT_EVENT_TOOL_TYPE_FINGER](_ark_u_i___event_module.md) = 1, [UI_INPUT_EVENT_TOOL_TYPE_PEN](_ark_u_i___event_module.md) = 2, [UI_INPUT_EVENT_TOOL_TYPE_MOUSE](_ark_u_i___event_module.md) = 3,<br/>[UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD](_ark_u_i___event_module.md) = 4, [UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK](_ark_u_i___event_module.md) = 5<br/>} | 产生输入事件的工具类型定义。  | 
 | { [UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN](_ark_u_i___event_module.md) = 0, [UI_INPUT_EVENTT_SOURCE_TYPE_MOUSE](_ark_u_i___event_module.md) = 1, [UI_INPUT_EVENTT_SOURCE_TYPE_TOUCH_SCREEN](_ark_u_i___event_module.md) = 2 } | 产生输入事件的来源类型定义。  | 
+| [HitTestMode](_ark_u_i___event_module.md#hittestmode) { [HTMDEFAULT](_ark_u_i___event_module.md) = 0, [HTMBLOCK](_ark_u_i___event_module.md), [HTMTRANSPARENT](_ark_u_i___event_module.md), [HTMNONE](_ark_u_i___event_module.md) } | 定义触摸测试类型的枚举值。  | 
+| { [UI_MOUSE_EVENT_ACTION_UNKNOWN](_ark_u_i___event_module.md) = 0, [UI_MOUSE_EVENT_ACTION_PRESS](_ark_u_i___event_module.md) = 1, [UI_MOUSE_EVENT_ACTION_RELEASE](_ark_u_i___event_module.md) = 2, [UI_MOUSE_EVENT_ACTION_MOVE](_ark_u_i___event_module.md) = 3 } | 定义鼠标事件的Action Code。  | 
+| {<br/>[UI_MOUSE_EVENT_BUTTON_NONE](_ark_u_i___event_module.md) = 0, [UI_MOUSE_EVENT_BUTTON_LEFT](_ark_u_i___event_module.md) = 1, [UI_MOUSE_EVENT_BUTTON_RIGHT](_ark_u_i___event_module.md) = 2, [UI_MOUSE_EVENT_BUTTON_MIDDLE](_ark_u_i___event_module.md) = 3,<br/>[UI_MOUSE_EVENT_BUTTON_BACK](_ark_u_i___event_module.md) = 4, [UI_MOUSE_EVENT_BUTTON_FORWARD](_ark_u_i___event_module.md) = 5<br/>} | 定义鼠标事件的按键类型。  | 
+| [ArkUI_ModifierKeyName](_ark_u_i___event_module.md#arkui_modifierkeyname) { [ARKUI_MODIFIER_KEY_CTRL](_ark_u_i___event_module.md) = 1 &lt;&lt; 0, [ARKUI_MODIFIER_KEY_SHIFT](_ark_u_i___event_module.md) = 1 &lt;&lt; 1, [ARKUI_MODIFIER_KEY_ALT](_ark_u_i___event_module.md) = 1 &lt;&lt; 2, [ARKUI_MODIFIER_KEY_FN](_ark_u_i___event_module.md) = 1 &lt;&lt; 3 } | 定义modifier按键。  | 
 
 
 ### 函数
@@ -80,3 +86,9 @@
 | double [OH_ArkUI_AxisEvent_GetVerticalAxisValue](_ark_u_i___event_module.md#oh_arkui_axisevent_getverticalaxisvalue) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 获取当前轴事件的垂直滚动轴的值。  | 
 | double [OH_ArkUI_AxisEvent_GetHorizontalAxisValue](_ark_u_i___event_module.md#oh_arkui_axisevent_gethorizontalaxisvalue) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 获取当前轴事件的水平滚动轴的值。  | 
 | double [OH_ArkUI_AxisEvent_GetPinchAxisScaleValue](_ark_u_i___event_module.md#oh_arkui_axisevent_getpinchaxisscalevalue) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 获取当前轴事件的捏合轴缩放的值。  | 
+| int32_t [OH_ArkUI_PointerEvent_SetInterceptHitTestMode](_ark_u_i___event_module.md#oh_arkui_pointerevent_setintercepthittestmode) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [HitTestMode](_ark_u_i___event_module.md#hittestmode) mode) | 配置HitTest模式。  | 
+| int32_t [OH_ArkUI_MouseEvent_GetMouseButton](_ark_u_i___event_module.md#oh_arkui_mouseevent_getmousebutton) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 获取鼠标事件的按键类型的值。  | 
+| int32_t [OH_ArkUI_MouseEvent_GetMouseAction](_ark_u_i___event_module.md#oh_arkui_mouseevent_getmouseaction) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 获取鼠标事件的鼠标动作类型的值。  | 
+| int32_t [OH_ArkUI_PointerEvent_SetStopPropagation](_ark_u_i___event_module.md#oh_arkui_pointerevent_setstoppropagation) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, bool stopPropagation) | 设置是否阻止事件冒泡。  | 
+| int32_t [OH_ArkUI_UIInputEvent_GetDeviceId](_ark_u_i___event_module.md#oh_arkui_uiinputevent_getdeviceid) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 获取当前按键的输入设备ID。  | 
+| int32_t [OH_ArkUI_UIInputEvent_GetPressedKeys](_ark_u_i___event_module.md#oh_arkui_uiinputevent_getpressedkeys) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, int32_t \*pressedKeyCodes, int32_t \*length) | 获取所有按下的按键，当前只支持按键事件。  | 

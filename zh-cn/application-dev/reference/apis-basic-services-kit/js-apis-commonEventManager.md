@@ -9,20 +9,20 @@
 ## 导入模块
 
 ```ts
-import CommonEventManager from '@ohos.commonEventManager';
+import { commonEventManager } from '@kit.BasicServicesKit';
 ```
 
 ## Support
 
-系统公共事件是指由系统服务或系统应用发布的事件，订阅这些系统公共事件需要特定的权限。发布或订阅这些事件需要使用如下链接中的枚举定义。
+系统公共事件是指由系统服务或系统应用发布的事件，订阅这些公共事件需要特定的权限、使用相应的值，详见[系统定义的公共事件](./common_event/commonEventManager-definitions.md)。
 
-全部系统公共事件枚举定义请参见[系统公共事件定义](./common_event/commonEventManager-definitions.md)。
-
-## CommonEventManager.publish
+## commonEventManager.publish
 
 publish(event: string, callback: AsyncCallback\<void>): void
 
-发布公共事件，并在发布后执行相应的回调函数。
+发布公共事件。使用callback异步回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -35,43 +35,45 @@ publish(event: string, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
-| 1500004  | not System services.                |
-| 1500007  | error sending message to Common Event Service. |
-| 1500008  | Common Event Service does not complete initialization. |
-| 1500009  | error obtaining system parameters.  |
+| -------- | ----------------------------------- | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 1500004  | A third-party application cannot send system common events.                |
+| 1500007  | Failed to send the message to the common event service. |
+| 1500008  | Failed to initialize the common event service. |
+| 1500009  | Failed to obtain system parameters.  |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-//发布公共事件回调
-function publishCB(err:Base.BusinessError) {
-    if (err) {
-        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("publish");
-    }
-}
-
-//发布公共事件
-try {
-    CommonEventManager.publish("event", publishCB);
-} catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
+// 发布公共事件回调
+function publishCB(err: BusinessError) {
+  if (err) {
     console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("publish success");
+  }
+}
+// 发布公共事件
+try {
+  commonEventManager.publish("event", publishCB);
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
-## CommonEventManager.publish
+## commonEventManager.publish
 
 publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
-以回调的形式发布公共事件。
+发布公共事件。使用callback异步回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -85,50 +87,51 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 1500004  | not System services.                |
-| 1500007  | error sending message to Common Event Service. |
-| 1500008  | Common Event Service does not complete initialization. |
-| 1500009  | error obtaining system parameters.  |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 1500004  | A third-party application cannot send system common events.                |
+| 1500007  | Failed to send the message to the common event service. |
+| 1500008  | Failed to initialize the common event service. |
+| 1500009  | Failed to obtain system parameters.  |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-//公共事件相关信息
-let options:CommonEventManager.CommonEventPublishData = {
-	code: 0,			 //公共事件的初始代码
-	data: "initial data",//公共事件的初始数据
-	isOrdered: true	 //有序公共事件
+// 公共事件相关信息
+let options:commonEventManager.CommonEventPublishData = {
+  code: 0,			 // 公共事件的初始代码
+  data: "initial data",// 公共事件的初始数据
+  isOrdered: true	 // 有序公共事件
 }
-
-//发布公共事件回调
-function publishCB(err:Base.BusinessError) {
-	if (err) {
-        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("publish");
-    }
-}
-
-//发布公共事件
-try {
-    CommonEventManager.publish("event", options, publishCB);
-} catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
+// 发布公共事件回调
+function publishCB(err: BusinessError) {
+  if (err) {
     console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("publish success");
+  }
+}
+// 发布公共事件
+try {
+  commonEventManager.publish("event", options, publishCB);
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
-## CommonEventManager.createSubscriber
+## commonEventManager.createSubscriber
 
 createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback\<CommonEventSubscriber>): void
 
-以回调形式创建订阅者。
+创建订阅者。使用callback异步回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -139,42 +142,50 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 | subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)        | 是   | 表示订阅信息。             |
 | callback      | AsyncCallback\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | 是   | 表示创建订阅者的回调方法。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscriber:CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-
-//订阅者信息
-let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
-    events: ["event"]
+// 定义订阅者，用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber:commonEventManager.CommonEventSubscriber;
+// 订阅者信息
+let subscribeInfo:commonEventManager.CommonEventSubscribeInfo = {
+  events: ["event"]
 };
-
-//创建订阅者回调
-function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManager.CommonEventSubscriber) {
-    if(!err) {
-        console.info("createSubscriber");
-        subscriber = commonEventSubscriber;
-    } else {
-        console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
-    }
-}
-
-//创建订阅者
-try {
-    CommonEventManager.createSubscriber(subscribeInfo, createCB);
-} catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
+// 创建订阅者回调
+function createCB(err: BusinessError, commonEventSubscriber:commonEventManager.CommonEventSubscriber) {
+  if(!err) {
+    console.info("createSubscriber success");
+    subscriber = commonEventSubscriber;
+  } else {
     console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  }
+}
+// 创建订阅者
+try {
+  commonEventManager.createSubscriber(subscribeInfo, createCB);
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
-## CommonEventManager.createSubscriber
+## commonEventManager.createSubscriber
 
 createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventSubscriber>
 
-以Promise形式创建订阅者。
+创建订阅者。使用Promise异步回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -187,35 +198,43 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 **返回值：**
 | 类型                                                      | 说明             |
 | --------------------------------------------------------- | ---------------- |
-| Promise\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | 返回订阅者对象。 |
+| Promise\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | 以Promise形式返回订阅者对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscriber:CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-
-//订阅者信息
-let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
-	events: ["event"]
+// 定义订阅者，用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber:commonEventManager.CommonEventSubscriber;
+// 订阅者信息
+let subscribeInfo:commonEventManager.CommonEventSubscribeInfo = {
+  events: ["event"]
 };
-
-//创建订阅者
-CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:CommonEventManager.CommonEventSubscriber) => {
-    console.info("createSubscriber");
-    subscriber = commonEventSubscriber;
-}).catch((err:Base.BusinessError) => {
-    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+// 创建订阅者
+commonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:commonEventManager.CommonEventSubscriber) => {
+  console.info("createSubscriber success");
+  subscriber = commonEventSubscriber;
+}).catch((err: BusinessError) => {
+  console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 });
-
 ```
 
-## CommonEventManager.createSubscriberSync<sup>10+</sup>
+## commonEventManager.createSubscriberSync<sup>10+</sup>
 
 createSubscriberSync(subscribeInfo: CommonEventSubscribeInfo): CommonEventSubscriber
 
 createSubscriber的同步接口。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -230,33 +249,41 @@ createSubscriber的同步接口。
 | --------------------------------------------------------- | ---------------- |
 | [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md) | 返回订阅者对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscriber: CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-
-//订阅者信息
-let subscribeInfo: CommonEventManager.CommonEventSubscribeInfo = {
+// 定义订阅者，用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber: commonEventManager.CommonEventSubscriber;
+// 订阅者信息
+let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
   events: ["event"]
 };
-
-//创建订阅者
+// 创建订阅者
 try {
-    subscriber = CommonEventManager.createSubscriberSync(subscribeInfo);
+  subscriber = commonEventManager.createSubscriberSync(subscribeInfo);
 } catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
-    console.error(`createSubscriberSync failed, code is ${err.code}, message is ${err.message}`);
+  let err: BusinessError = error as BusinessError;
+  console.error(`createSubscriberSync failed, code is ${err.code}, message is ${err.message}`);
 }
-
 ```
 
-## CommonEventManager.subscribe
+## commonEventManager.subscribe
 
 subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>): void
 
-以回调形式订阅公共事件。
+订阅公共事件。使用callback异步回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -269,66 +296,66 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 801  | capability not supported.               |
-| 1500007  | error sending message to Common Event Service. |
-| 1500008  | Common Event Service does not complete initialization. |
+| 1500007  | Failed to send the message to the common event service. |
+| 1500008  | Failed to initialize the common event service. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscriber:CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-
-//订阅者信息
-let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
-    events: ["event"]
+// 定义订阅者，用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber:commonEventManager.CommonEventSubscriber;
+// 订阅者信息
+let subscribeInfo:commonEventManager.CommonEventSubscribeInfo = {
+  events: ["event"]
 };
-
-//订阅公共事件回调
-function SubscribeCB(err:Base.BusinessError, data:CommonEventManager.CommonEventData) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribe ");
-    }
+// 订阅公共事件回调
+function SubscribeCB(err: BusinessError, data:commonEventManager.CommonEventData) {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribe success, Consume callback " + JSON.stringify(data));
+  }
 }
-
-//创建订阅者回调
-function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManager.CommonEventSubscriber) {
-    if(!err) {
-        console.info("createSubscriber");
-        subscriber = commonEventSubscriber;
-        //订阅公共事件
-        try {
-            CommonEventManager.subscribe(subscriber, SubscribeCB);
-        } catch (error) {
-            let err:Base.BusinessError = error as Base.BusinessError;
-            console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-        }
-    } else {
-        console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+// 创建订阅者回调
+function createCB(err: BusinessError, commonEventSubscriber:commonEventManager.CommonEventSubscriber) {
+  if(!err) {
+    console.info("createSubscriber success");
+    subscriber = commonEventSubscriber;
+    // 订阅公共事件
+    try {
+      commonEventManager.subscribe(subscriber, SubscribeCB);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     }
-}
-
-//创建订阅者
-try {
-    CommonEventManager.createSubscriber(subscribeInfo, createCB);
-} catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
+  } else {
     console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  }
+}
+// 创建订阅者
+try {
+  commonEventManager.createSubscriber(subscribeInfo, createCB);
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
-## CommonEventManager.unsubscribe
+## commonEventManager.unsubscribe
 
 unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>): void
 
-以回调形式取消订阅公共事件。
+取消订阅公共事件。使用callback异步回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -341,71 +368,73 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 801  | capability not supported.               |
-| 1500007  | error sending message to Common Event Service. |
-| 1500008  | Common Event Service does not complete initialization. |
+| 1500007  | Failed to send the message to the common event service. |
+| 1500008  | Failed to initialize the common event service. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscriber:CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-//订阅者信息
-let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
-    events: ["event"]
+// 定义订阅者，用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber:commonEventManager.CommonEventSubscriber; 
+// 订阅者信息
+let subscribeInfo:commonEventManager.CommonEventSubscribeInfo = {
+  events: ["event"]
 };
-//订阅公共事件回调
-function subscribeCB(err:Base.BusinessError, data:CommonEventManager.CommonEventData) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribe");
-    }
+// 订阅公共事件回调
+function subscribeCB(err: BusinessError, data:commonEventManager.CommonEventData) {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribe success, Consume callback " + JSON.stringify(data));
+  }
 }
-//创建订阅者回调
-function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManager.CommonEventSubscriber) {
-    if (err) {
-        console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("createSubscriber");
-        subscriber = commonEventSubscriber;
-        //订阅公共事件
-        try {
-            CommonEventManager.subscribe(subscriber, subscribeCB);
-        } catch (error) {
-            let err:Base.BusinessError = error as Base.BusinessError;
-            console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-        }
-    }
-}
-//取消订阅公共事件回调
-function unsubscribeCB(err:Base.BusinessError) {
-    if (err) {
-        console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("unsubscribe");
-    }
-}
-//创建订阅者
-try {
-    CommonEventManager.createSubscriber(subscribeInfo, createCB);
-} catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
+// 创建订阅者回调
+function createCB(err: BusinessError, commonEventSubscriber:commonEventManager.CommonEventSubscriber) {
+  if (err) {
     console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("createSubscriber success");
+    subscriber = commonEventSubscriber;
+    // 订阅公共事件
+    try {
+      commonEventManager.subscribe(subscriber, subscribeCB);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+    }
+  }
+}
+// 取消订阅公共事件回调
+function unsubscribeCB(err: BusinessError) {
+  if (err) {
+    console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("unsubscribe success");
+  }
+}
+// 创建订阅者
+try {
+  commonEventManager.createSubscriber(subscribeInfo, createCB);
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 
-//取消订阅公共事件
-//等待异步接口subscribe执行完毕，开发者根据实际业务选择是否需要添加setTimeout
+// 取消订阅公共事件
+// 等待异步接口subscribe执行完毕，开发者根据实际业务选择是否需要添加setTimeout
 setTimeout(() => {
   try {
-    CommonEventManager.unsubscribe(subscriber, unsubscribeCB);
+    commonEventManager.unsubscribe(subscriber, unsubscribeCB);
   } catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
+    let err: BusinessError = error as BusinessError;
     console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
   }
 }, 500);

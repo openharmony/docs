@@ -1,11 +1,17 @@
 # 匿名密钥证明(C/C++)
 
+在使用本功能时，需确保网络通畅。
+
+## 在CMake脚本中链接相关动态库
+```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+```
 
 ## 开发步骤
 
-1. 确定密钥别名keyAlias，密钥别名最大长度为64字节；
+1. 确定密钥别名keyAlias，密钥别名最大长度为128字节。
 
-2. 初始化参数集：通过[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset)、[OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_addparams)、[OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_buildparamset)构造参数集paramSet，参数集中必须包含[OH_Huks_KeyAlg](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keyalg)，[OH_Huks_KeySize](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keysize)，[OH_Huks_KeyPurpose](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keypurpose)属性；
+2. 初始化参数集：通过[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset)、[OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_addparams)、[OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_buildparamset)构造参数集paramSet，参数集中必须包含[OH_Huks_KeyAlg](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keyalg)，[OH_Huks_KeySize](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keysize)，[OH_Huks_KeyPurpose](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keypurpose)属性。
 
 3. 将密钥别名与参数集作为参数传入[OH_Huks_AnonAttestKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_anonattestkeyitem)方法中，即可证明密钥。
 
@@ -35,49 +41,38 @@ OH_Huks_Result InitParamSet(
     return ret;
 }
 static uint32_t g_size = 4096;
-static uint32_t CERT_COUNT = 3;
-void FreeCertChain(struct OH_Huks_CertChain **certChain, const uint32_t pos)
+static uint32_t CERT_COUNT = 4;
+void FreeCertChain(struct OH_Huks_CertChain *certChain, const uint32_t pos)
 {
-    if (certChain == nullptr || *certChain == nullptr) {
-        return;
-    }
-    if ((*certChain)->certs == nullptr) {
-        free(*certChain);
-        *certChain = nullptr;
+    if (certChain == nullptr || certChain->certs == nullptr) {
         return;
     }
     for (uint32_t j = 0; j < pos; j++) {
-        if ((*certChain)->certs[j].data != nullptr) {
-            free((*certChain)->certs[j].data);
-            (*certChain)->certs[j].data = nullptr;
+        if (certChain->certs[j].data != nullptr) {
+            free(certChain->certs[j].data);
+            certChain->certs[j].data = nullptr;
         }
     }
-    if ((*certChain)->certs != nullptr) {
-        free((*certChain)->certs);
-        (*certChain)->certs = nullptr;
-    }
-    if (*certChain != nullptr) {
-        free(*certChain);
-        *certChain = nullptr;
+    if (certChain->certs != nullptr) {
+        free(certChain->certs);
+        certChain->certs = nullptr;
     }
 }
-int32_t ConstructDataToCertChain(struct OH_Huks_CertChain **certChain)
+int32_t ConstructDataToCertChain(struct OH_Huks_CertChain *certChain)
 {
-    *certChain = (struct OH_Huks_CertChain *)malloc(sizeof(struct OH_Huks_CertChain));
-    if (*certChain == nullptr) {
+    if (certChain == nullptr) {
         return OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT;
     }
-    (*certChain)->certsCount = CERT_COUNT;
+    certChain->certsCount = CERT_COUNT;
   
-    (*certChain)->certs = (struct OH_Huks_Blob *)malloc(sizeof(struct OH_Huks_Blob) * ((*certChain)->certsCount));
-    if ((*certChain)->certs == nullptr) {
-        free(*certChain);
-        *certChain = nullptr;
+    certChain->certs = (struct OH_Huks_Blob *)malloc(sizeof(struct OH_Huks_Blob) * (certChain->certsCount));
+    if (certChain->certs == nullptr) {
+        return OH_HUKS_ERR_CODE_INTERNAL_ERROR;
     }
-    for (uint32_t i = 0; i < (*certChain)->certsCount; i++) {
-        (*certChain)->certs[i].size = g_size;
-        (*certChain)->certs[i].data = (uint8_t *)malloc((*certChain)->certs[i].size);
-        if ((*certChain)->certs[i].data == nullptr) {
+    for (uint32_t i = 0; i < certChain->certsCount; i++) {
+        certChain->certs[i].size = g_size;
+        certChain->certs[i].data = (uint8_t *)malloc(certChain->certs[i].size);
+        if (certChain->certs[i].data == nullptr) {
             FreeCertChain(certChain, i);
             return OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT;
         }
@@ -108,7 +103,8 @@ static napi_value AnonAttestKey(napi_env env, napi_callback_info info)
     struct OH_Huks_ParamSet *genParamSet = nullptr;
     struct OH_Huks_ParamSet *anonAttestParamSet = nullptr;
     OH_Huks_Result ohResult;
-    OH_Huks_CertChain *certChain = NULL;
+    OH_Huks_Blob certs = { 0 };
+    OH_Huks_CertChain certChain = { &certs, 0 };
     do {
         /* 2.初始化密钥参数集 */
         ohResult = InitParamSet(&genParamSet, g_genAnonAttestParams, sizeof(g_genAnonAttestParams) / sizeof(OH_Huks_Param));
@@ -126,11 +122,9 @@ static napi_value AnonAttestKey(napi_env env, napi_callback_info info)
         
         (void)ConstructDataToCertChain(&certChain);
         /* 3.证明密钥 */
-        ohResult = OH_Huks_AnonAttestKeyItem(&genAlias, anonAttestParamSet, certChain);
+        ohResult = OH_Huks_AnonAttestKeyItem(&genAlias, anonAttestParamSet, &certChain);
     } while (0);
-    if (certChain != nullptr) {
-        FreeCertChain(&certChain, certChain->certsCount);
-    }
+    FreeCertChain(&certChain, CERT_COUNT);
     OH_Huks_FreeParamSet(&genParamSet);
     OH_Huks_FreeParamSet(&anonAttestParamSet);
     (void)OH_Huks_DeleteKeyItem(&genAlias, NULL);

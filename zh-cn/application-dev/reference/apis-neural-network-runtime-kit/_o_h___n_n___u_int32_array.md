@@ -7,7 +7,7 @@
 
 **起始版本：** 9
 
-**相关模块：** [NeuralNeworkRuntime](_neural_nework_runtime.md)
+**相关模块：**[NeuralNeworkRuntime](_neural_network_runtime.md)
 
 
 ## 汇总
@@ -15,10 +15,10 @@
 
 ### 成员变量
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| [data](#data) | 无符号整型数组的指针 |
-| [size](#size) | 数组长度 |
+| uint32_t \* [data](#data) | 无符号整型数组的指针 | 
+| uint32_t [size](#size) | 数组长度 | 
 
 
 ## 结构体成员变量说明

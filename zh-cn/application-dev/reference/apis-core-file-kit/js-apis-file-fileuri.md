@@ -9,14 +9,14 @@
 ## 导入模块
 
 ```ts
-import fileUri from "@ohos.file.fileuri";
+import { fileUri } from '@kit.CoreFileKit';
 ```
 
 使用该功能模块前，需要先获取其应用沙箱路径，开发示例如下：
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
+  import { UIAbility } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
 
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -32,10 +32,10 @@ import fileUri from "@ohos.file.fileuri";
 
 **系统能力**：SystemCapability.FileManagement.AppFileService
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| path<sup>10+</sup> | string | 是 | 否 | 获取FileUri对应路径名。 |
-| name<sup>10+</sup> | string | 是 | 否 | 获取FileUri对应文件名。 |
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | --------| -------- | -------- |
+| path<sup>10+</sup> | string | 是 | 获取FileUri对应路径名。 |
+| name<sup>10+</sup> | string | 是 | 获取FileUri对应文件名。 |
 
 ### constructor<sup>10+</sup>
 
@@ -58,6 +58,8 @@ constructor是FileUri的构造函数。
 | ---------------------------- | ---------- |
 | 13900005 | I/O error |
 | 13900042 | Unknown error |
+| 13900020 | invalid argument |
+| 13900002 | invalid uri |
 
 **示例：**
 
@@ -121,7 +123,7 @@ getFullDirectoryUri(): string
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   try {
     let path = pathDir + '/test.txt';
     let fileUriObject = new fileUri.FileUri(path);
@@ -157,7 +159,7 @@ isRemoteUri(): boolean
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   function isRemoteUriExample() {
     let uri = "file://com.example.demo/data/stroage/el2/base/test.txt?networkid=xxxx";//?networkid设备id，远端URI的标识
     let fileUriObject = new fileUri.FileUri(uri);
@@ -193,7 +195,7 @@ getUriFromPath(path: string): string
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types |
 
 **示例：**
 

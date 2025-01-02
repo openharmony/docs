@@ -97,12 +97,16 @@ You can use a promise or a callback to implement asynchronous calls. To use a ca
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
    }
-   
+    ```
+
+    ```ts
+   // Description of the interface in the .d.ts file.
+   export const asyncWork(data: number): Promise<number>;
+
    // Call the API of ArkTS.
    nativeModule.asyncWork(1024).then((result) => {
        hilog.info(0x0000, 'XXX', 'result is %{public}d', result);
-     }
-   );
+     });
    ```
 
 ## Example (Callback)
@@ -185,7 +189,13 @@ You can use a promise or a callback to implement asynchronous calls. To use a ca
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
    }
-   
+   ```
+
+   ```ts
+   // Description of the interface in the .d.ts file.
+   export const asyncWork(arg1: number, arg2: number,
+     callback: (result: number) => void): void;
+
    // Call the API of ArkTS.
    let num1: number = 123;
    let num2: number = 456;

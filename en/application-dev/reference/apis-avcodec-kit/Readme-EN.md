@@ -1,4 +1,4 @@
-# AVCodec Kit API Reference
+# AVCodec Kit
 
 - C APIs
   - Modules
@@ -13,6 +13,7 @@
     - [Core](_core.md)
     - [VideoDecoder](_video_decoder.md)
     - [VideoEncoder](_video_encoder.md)
+    - [Multimedia_Drm](_multimedia___drm.md)
   - Header Files
     - [avcodec_audio_channel_layout.h](avcodec__audio__channel__layout_8h.md)
     - [native_audio_channel_layout.h](native__audio__channel__layout_8h.md)
@@ -31,8 +32,11 @@
     - [native_avmemory.h](native__avmemory_8h.md)
     - [native_avmuxer.h](native__avmuxer_8h.md)
     - [native_avsource.h](native__avsource_8h.md)
+    - [native_cencinfo.h](native__cencinfo_8h.md)
   - Structs
     - [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)
     - [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md)
     - [OH_AVCodecCallback](_o_h___a_v_codec_callback.md)
+    - [OH_AVDataSource](_o_h___a_v_data_source.md)
     - [OH_AVRange](_o_h___a_v_range.md)
+    - [DrmSubsample](_drm_subsample.md)

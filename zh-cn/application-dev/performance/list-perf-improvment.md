@@ -1,4 +1,4 @@
-# 应用列表场景性能提升实践
+# 列表场景性能提升实践
 
 在应用的UI开发中，使用列表是一种常规场景，因此，对列表性能进行优化是非常重要的。本文将针对应用开发列表场景的性能提升实践方法展开介绍。
 
@@ -20,23 +20,23 @@
 
 应用框架为容器类组件的数据加载和渲染提供了2种方式：
 
-方式1，提供ForEach实现一次性加载全量数据并循环渲染。
+方式1，提供ForEach实现一次性加载全量数据并循环渲染。需要说明，对于List中使用ForEach的场景，系统对ListItem里的内部组件节点进行了优化处理。ForEach虽然还是会构建所有的ListItem节点，但系统仅会构建并渲染当前屏幕可视区域内的ListItem及其内部组件节点。对于超出屏幕可视范围的ListItem，其内部组件节点则不会被构建。
 
 ```ts
-ForEach(  
-  arr: any[], // 需要进行数据迭代的列表数组  
-  itemGenerator: (item: any, index?: number) => void, // 子组件生成函数  
-  keyGenerator?: (item: any, index?: number) => string // （可选）键值生成函数  
+ForEach(
+  arr: Array, // 需要进行数据迭代的列表数组
+  itemGenerator: (item: Object, index: number) => void, // 子组件生成函数
+  keyGenerator?: (item: Object, index: number) => string // （可选）键值生成函数
 )
 ```
 
 方式2，提供LazyForEach实现延迟加载数据并按需渲染。
 
 ```ts
-LazyForEach(  
-  dataSource: IDataSource, // 需要进行数据迭代的数据源   
-  itemGenerator: (item: any) => void, // 子组件生成函数  
-  keyGenerator?: (item: any) => string // (可选) 键值生成函数  
+LazyForEach(
+  dataSource: IDataSource, // 需要进行数据迭代的数据源
+  itemGenerator: (item: Object, index: number) => void, // 子组件生成函数
+  keyGenerator?: (item: Object, index: number) => string // (可选)键值生成函数
 )
 ```
 
@@ -64,13 +64,17 @@ LazyForEach懒加载的原理如下：
 
 ![](figures/list-perf-lazyforeach.png)
 
+4. LazyForEach懒加载中的键值生成函数keyGenerator用于给数据源中的每一个数据项生成唯一且固定的键值。键值生成器必须针对每个数据生成唯一的值，如果键值相同，将导致键值相同的UI组件渲染出现问题。
+
 LazyForEach实现了按需加载，针对列表数据量大、列表组件复杂的场景，减少了页面首次启动时一次性加载数据的时间消耗，减少了内存峰值。可以显著提升页面的能效比和用户体验。
 
 ### 使用场景和限制
 
-如果列表数据较长，一次性加载所有的列表数据创建、渲染页面产生性能瓶颈时，开发者应该考虑使用数据LazyForEach懒加载。
+- 如果列表数据较长，一次性加载所有的列表数据创建、渲染页面产生性能瓶颈时，开发者应该考虑使用数据LazyForEach懒加载。
 
-如果列表数据较少，数据一次性全量加载不是性能瓶颈时，可以直接使用ForEach。
+- 如果列表数据较少，数据一次性全量加载不是性能瓶颈时，可以直接使用ForEach。
+
+- 如果使用LazyForEach懒加载，建议在使用LazyForEach进行组件复用的key生成器函数里，不要使用stringify。
 
 限制：ForEach、LazyForEach必须在List、Grid以及Swiper等容器组件内使用，用于循环渲染具有相同布局的子组件。更多懒加载的信息，请参考官方资料[LazyForEach：数据懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)。
 
@@ -78,7 +82,140 @@ LazyForEach懒加载API提供了cachedCount属性，用于配置可缓存列表�
 
 ### 实现示例
 
-在List、Grid等容器组件下使用LazyForEach懒加载的示意代码如下：
+在介绍List、Grid等容器组件下使用LazyForEach懒加载的示例代码之前，首先针对前面介绍的第三点使用场景，给出以下反例来进行说明，帮助开发者更好的理解和使用LazyForEach。
+
+**反例：在使用LazyForEach进行组件复用的key生成器函数里，使用stringify**
+
+```ts
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: string[] = [];
+
+  public totalCount(): number {
+    return 0;
+  }
+
+  public getData(index: number): string {
+    return this.originDataArray[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener');
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    })
+  }
+
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: string[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+}
+
+// 此处为复用的自定义组件
+@Reusable
+@Component
+struct ChildComponent {
+  @State desc: string = '';
+  @State sum: number = 0;
+  @State avg: number = 0;
+
+  aboutToReuse(params: Record<string, Object>): void {
+    this.desc = params.desc as string;
+    this.sum = params.sum as number;
+    this.avg = params.avg as number;
+  }
+
+  build() {
+    Column() {
+      // 这里仅用于ux展示。实际业务会更复杂。
+      Text(this.desc).fontSize(16).textAlign(TextAlign.Center)
+    }.width('100%')
+  }
+}
+
+@Entry
+@Component
+struct ReusableKeyGeneratorUseStringify {
+  private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear(): void {
+    for (let index = 0; index < 200; index++) {
+      this.data.pushData(index.toString())
+    }
+  }
+
+  build() {
+    Column() {
+      List() {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            ChildComponent({ desc: item, sum: 0, avg: 0 })
+          }
+          .width('100%')
+          .height(100)
+        }, (item: string) => JSON.stringify(item))
+      }
+      .height('100%')
+      .width('100%')
+    }
+  }
+}
+```
+
+在反例中，在使用LazyForEach进行组件复用的key生成器函数里使用了stringify。在实际复杂的业务场景中，懒加载的item数据较大，item数量较多，使用stringify会对整个item对象进行序列化操作最终把item转换成字符串，需要消耗大量的时间和计算资源，从而导致页面性能降低。因此，为了减少页面渲染耗时，提升页面性能，应避免在LazyForEach组件复用的key生成器函数里使用stringify。建议使用简洁的短字符串，如使用item.id，这里假设每个item都有一个唯一的id属性。
+
+
+以上使用场景的反例介绍是为了帮忙开发者更好的理解和正确使用LazyForEach懒加载。下面将给出正例的基本写法，在List、Grid等容器组件下使用LazyForEach懒加载的示例代码如下：
 
 ```ts
 // LazyForEach要遍历的数据源，为实现接口IDataSource的实例   
@@ -147,36 +284,37 @@ class ChatListData extends BasicDataSource {
 }
 ```
 
-接下来，需要创建示例数据。在自定义组件ChatListDisplayView中，创建一个ChatListData类型的局部变量chatList_Lazy，并在aboutToAppear()方法中创建示例数据，详细代码请参考[文件ChatListPage.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/IM/Chat/features/chatlist/src/main/ets/pages/ChatListPage.ets)。
+接下来，需要创建示例数据。在自定义组件ChatListDisplayView中，创建一个ChatListData类型的局部变量chatListLazy，并在aboutToAppear()方法中创建示例数据，详细代码请参考[文件ChatListPage.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/IM/Chat/features/chatlist/src/main/ets/pages/ChatListPage.ets)。
 
 ```ts
-@Component  
-export struct ChatListDisplayView {  
-    private chatList_Lazy: ChatListData = new ChatListData()  
-    ......  
-    async aboutToAppear(): Promise<void> {  
-    await makeDataLocal(this.chatList_Lazy)  
-    ......  
-   }
+@Component
+export struct ChatListDisplayView {
+  private chatListLazy = new ChatListData();
+  // ...
+  async aboutToAppear(): Promise<void> {
+    // ...
+    await makeDataLocal(this.chatListLazy, ChatListJsonData.CHAT_LIST_JSON_DATA[i]);
+    // ...
+  }
 }
 ```
 
-最后，在List组件容器中，使用LazyForEach接口遍历数据源this.chatList_Lazy循环生成ListItem列表项。其中，chatViewBuilder()方法用于布局页面列表项；代码行(msg: ChatModel) => msg.user.userId使用用户的编码作为列表项唯一的键值编码，用于区分不同的列表项。至此，使用懒加载代码实现完成，可以访问[Chat聊天示例程序](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)获取详细代码。
+最后，在List组件容器中，使用LazyForEach接口遍历数据源this.chatListLazy循环生成ListItem列表项。其中，chatViewBuilder()方法用于布局页面列表项；代码行(msg: ChatModel) => msg.user.userId使用用户的编码作为列表项唯一的键值编码，用于区分不同的列表项。至此，使用懒加载代码实现完成，可以访问[Chat聊天示例程序](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)获取详细代码。
 
 ```ts
-build() {  
-    Column() {  
-        List() {  
-        ......  
-        LazyForEach(this.chatList_Lazy, (msg: ChatModel) => {  
-        ListItem() {  
-        ......  
-        this.chatViewBuilder(msg)  
-        ......  
+build() {
+  Column() {
+    List() {
+      // ...
+      LazyForEach(this.chatListLazy, (msg: ChatModel) => {
+        ListItem() {
+          // ...
+          this.chatViewBuilder(msg)
+          // ...
         }
-       }, (msg: ChatModel) => msg.user.userId)  
-       ......  
-    }  
+      }, (msg: ChatModel) => msg.user.userId)
+      // ...
+    }
   }
 }
 ```
@@ -225,8 +363,7 @@ List/Grid容器组件的cachedCount属性用于为LazyForEach懒加载设置列�
 build() {
   Column() {
     List() {
-      ...
-      ...
+      // ...
       LazyForEach(this.chatListData, (msg: ChatModel) => {
         ListItem() {
           ChatView({ chatItem: msg })
@@ -235,9 +372,7 @@ build() {
     }
     .backgroundColor(Color.White)
     .listDirection(Axis.Vertical)
-
-    ...
-    ...
+    // ...
     .cachedCount(this.list_cachedCount ? Constants.CACHED_COUNT : 0) // 缓存列表数量  
   }
 }
@@ -299,7 +434,7 @@ build() {
 
 使用建议如下：
 
-建议复用自定义组件时避免一切可能改变自定义组件的组件树结构和可能使可复用组件中产生重新布局的操作以将组件复用的性能提升到最高；
+- 建议复用自定义组件时避免一切可能改变自定义组件的组件树结构和可能使可复用组件中产生重新布局的操作以将组件复用的性能提升到最高；
 
 - 建议列表滑动场景下组件复用能力和LazyForEach渲染控制语法搭配使用以达到性能最优效果；
 
@@ -343,7 +478,7 @@ struct ReusableOptLayoutChatView {
 
 当前ArkUI应用框架提供了以下两类常用的布局方式：
 
-**线性布局**： 例如Stack、Column、Row和Flex等，会把布局中的组件按照线性方向进行排布，如横向、纵向、Z轴方向等；这种布局使用简单方便、易于理解，但是在复杂的场景下往往会使用更多的组件数和较深的嵌套层次，维护困难，同时也增加了系统的开销；
+**线性布局**： 例如Stack、Column、Row和Flex等，会把布局中的组件按照线性方向进行排布，如横向、纵向、Z轴方向等；这种布局使用简单方便、易于理解，但是在复杂的场景下往往会使用更多的组件数和较深的嵌套层次，维护困难，同时也增加了系统的开销。
 
 **高级布局**： 往往可以使用更少的节点数和布局层级，实现更加复杂的布局效果，具有扁平化的特性；包括List、Grid、RelativeContainer等，在列表、宫格和混排布局等场景提供了扁平化的布局方式，例如RelativeContainer可以根据锚点来进行低嵌套层级复杂布局，而List和Grid又支持懒加载等提升性能的方法，同时降低了维护成本；因此，高级布局是更加推荐的布局方法。
 
@@ -385,10 +520,10 @@ build() {
     Column() {
       Stack({ alignContent: Alignment.TopEnd }) {
         Image(this.chatItem.user.userImage) // 用户头像  
-        ...
+        // ...
         if (this.chatItem.unreadMsgCount > 0) { // 红点消息大于0条时渲染红点  
           Text(`${this.chatItem.unreadMsgCount}`) // 消息数  
-          ...
+        // ...
         }
       }
     }
@@ -423,7 +558,7 @@ build() {
     .layoutWeight(1)
   }
 
-  ...
+  // ...
 }
 ```
 
@@ -433,7 +568,7 @@ build() {
 build() {
   RelativeContainer() { // 相对布局  
     Image(this.chatItem.user.userImage) // 用户头像  
-    ...
+    // ...
     .alignRules({
       top: { anchor: '__container__', align: VerticalAlign.Top },
       left: { anchor: '__container__', align: HorizontalAlign.Start }
@@ -443,7 +578,7 @@ build() {
 
     if (this.chatItem.unreadMsgCount > 0) { // 红点消息大于0条时渲染红点  
       Text(`${this.chatItem.unreadMsgCount}`) // 消息数  
-      ...
+      // ...
       .alignRules({
         top: { anchor: '__container__', align: VerticalAlign.Top },
         left: { anchor: '__container__', align: HorizontalAlign.Start }
@@ -453,7 +588,7 @@ build() {
     }
 
     Text(this.chatItem.user.userName) // 昵称  
-    ...
+    // ...
     .alignRules({
       top: { anchor: '__container__', align: VerticalAlign.Top },
       left: { anchor: '__container__', align: HorizontalAlign.Start }
@@ -461,21 +596,21 @@ build() {
       .id("user")
 
     Text(this.chatItem.lastTime) // 时间  
-    ...
+    // ...
     .alignRules({
       top: { anchor: '__container__', align: VerticalAlign.Top },
       right: { anchor: '__container__', align: HorizontalAlign.End }
     })
       .id("time")
     Text(this.chatItem.lastMsg) // 聊天信息  
-    ...
+    // ...
     .alignRules({
       top: { anchor: '__container__', align: VerticalAlign.Top },
       left: { anchor: '__container__', align: HorizontalAlign.Start }
     })
       .id("msg")
   }
-  ...
+  // ...
 }
 ```
 
@@ -490,7 +625,7 @@ build() {
 
 ![](figures/list-perf-flat-layout.png)
 
-系统还提供了更多的扁平化布局方案，例如绝对定位、自定义布局、Grid、GridRow等，适用更多不同的场景，具体的使用方法可以参考[官方文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/performance/readme-CN.md)。
+系统还提供了更多的扁平化布局方案，例如绝对定位、自定义布局、Grid、GridRow等，适用更多不同的场景，具体的使用方法可以参考[官方文档](../ui/Readme-CN.md)。
 
 ## 总结
 
@@ -500,4 +635,4 @@ build() {
 
 可参考以下实例：
 
-- [Sample聊天实例应用（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)
+- [Sample聊天实例应用（ArkTS）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)

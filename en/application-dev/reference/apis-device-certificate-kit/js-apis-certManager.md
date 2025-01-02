@@ -9,7 +9,7 @@ The **certManager** module provides system-level certificate management capabili
 ## Modules to Import
 
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 ```
 
 ## CmKeyPurpose
@@ -57,72 +57,71 @@ Represents a set of parameters used for signing or signature verification, inclu
 
 **System capability**: System SystemCapability.Security.CertificateManager
 
-| Name          | Type                             | Mandatory| Description                                                        |
-| -------------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| purpose          | [CmKeyPurpose](#cmkeypurpose)                       | Yes  | Purpose of using the key.|
-| padding?        | [CmKeyPadding](#cmkeypadding)                       | No  | Padding mode.|
-| digest?        | [CmKeyDigest](#cmkeydigest)                       | No  | Digest algorithm.|
+| Name          | Type                             | Read-Only| Optional| Description                                                        |
+| -------------- | --------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| purpose          | [CmKeyPurpose](#cmkeypurpose)                       | No | No | Purpose of using the key.|
+| padding        | [CmKeyPadding](#cmkeypadding)                       | No  | Yes | Padding mode.|
+| digest        | [CmKeyDigest](#cmkeydigest)                       | No  | Yes | Digest algorithm.|
 
 
 ## CertInfo
 
-Represents the detailed information about a certificate.
+Represents detailed information about a certificate.
 
 **System capability**: System SystemCapability.Security.CertificateManager
 
-| Name          | Type                             | Readable| Writable| Description                                                        |
+| Name          | Type                             | Read-Only| Optional| Description                                                        |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| uri          | string         | Yes  | Yes  | Unique identifier of the certificate.|
-| certAlias          | string   | Yes  | Yes  | Alias of the certificate.|
-| state          | boolean     | Yes  | Yes  | Certificate state. The value **true** indicates that the certificate is enabled, and **false** means the opposite.|
-| issuerName          | string         | Yes  | Yes  | Issuer of the certificate.|
-| subjectName          | string   | Yes  | Yes  | User of the certificate.|
-| serial          | string     | Yes  | Yes  | Serial number of the certificate.|
-| notBefore          | string         | Yes  | Yes  | Date from which the certificate takes effect.|
-| notAfter          | string   | Yes  | Yes  | Date when the certificate expires.|
-| fingerprintSha256     | string     | Yes  | Yes  | Fingerprint value of the certificate.|
-| cert          | Uint8Array         | Yes  | Yes  | Certificate data in binary format.|
+| uri          | string         | No  | No | Unique identifier of the certificate.|
+| certAlias          | string   | No | No | Alias of the certificate.|
+| state          | boolean     | No | No | Certificate state. The value **true** indicates that the certificate is enabled, and **false** means the opposite.|
+| issuerName          | string         | No | No | Issuer of the certificate.|
+| subjectName          | string   | No | No | User of the certificate.|
+| serial          | string     | No | No | Serial number of the certificate.|
+| notBefore          | string         | No | No | Date from which the certificate takes effect.|
+| notAfter          | string   | No | No | Date when the certificate expires.|
+| fingerprintSha256     | string     | No | No | Fingerprint value of the certificate.|
+| cert          | Uint8Array         | No | No | Certificate data in binary format.|
 
 ## CertAbstract
 
-Represents the brief information about a certificate.
+Represents brief information about a certificate.
 
 **System capability**: System SystemCapability.Security.CertificateManager
 
-| Name          | Type                             | Readable| Writable| Description                                                        |
+| Name          | Type                             | Read-Only| Optional| Description                                                        |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| uri          | string         | Yes  | Yes  | Unique identifier of the certificate.|
-| certAlias          | string   | Yes  | Yes  | Alias of the certificate.|
-| state          | boolean     | Yes  | Yes  | Certificate state. The value **true** indicates that the certificate is enabled, and **false** means the opposite.|
-| issuerName          | string         | Yes  | Yes  | Issuer of the certificate.|
-| subjectName          | string   | Yes  | Yes  | User of the certificate.|
+| uri          | string         | No | No | Unique identifier of the certificate.|
+| certAlias          | string   | No | No | Alias of the certificate.|
+| state          | boolean     | No | No | Certificate state. The value **true** indicates that the certificate is enabled, and **false** means the opposite.|
+| subjectName          | string   | No | No | User of the certificate.|
 
 ## Credential
 
-Represents the detailed information about a credential.
+Represents detailed information about a credential.
 
 **System capability**: System SystemCapability.Security.CertificateManager
 
-| Name          | Type                             | Readable| Writable| Description                                                        |
+| Name          | Type                             | Read-Only| Optional| Description                                                        |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type          | string         | Yes  | Yes  | Type of the credential.|
-| alias          | string   | Yes  | Yes  | Alias of the credential.|
-| keyUri          | string     | Yes  | Yes  | Unique identifier of the credential.|
-| certNum          | number         | Yes  | Yes  | Number of certificates contained in the credential.|
-| keyNum          | number   | Yes  | Yes  | Number of keys contained in the credential.|
-| credentialData          | Uint8Array   | Yes  | Yes  | Credential data in binary format.|
+| type          | string         | No | No | Type of the credential.|
+| alias          | string   | No | No | Alias of the credential.|
+| keyUri          | string     | No | No | Unique identifier of the credential.|
+| certNum          | number         | No | No | Number of certificates contained in the credential.|
+| keyNum          | number   | No | No | Number of keys contained in the credential.|
+| credentialData          | Uint8Array   | No | No | Credential data in binary format.|
 
 ## CredentialAbstract
 
-Represents the brief information about a credential.
+Represents brief information about a credential.
 
 **System capability**: System SystemCapability.Security.CertificateManager
 
-| Name          | Type                             | Readable| Writable| Description                                                        |
+| Name          | Type                             | Read-Only| Optional| Description                                                        |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type          | string         | Yes  | Yes  | Type of the credential.|
-| alias          | string   | Yes  | Yes  | Alias of the credential.|
-| keyUri          | string     | Yes  | Yes  | Unique identifier of the credential.|
+| type          | string         | No| No | Type of the credential.|
+| alias          | string   | No | No | Alias of the credential.|
+| keyUri          | string     | No | No | Unique identifier of the credential.|
 
 ## CMResult
 
@@ -130,25 +129,25 @@ Represents the result returned.
 
 **System capability**: System SystemCapability.Security.CertificateManager
 
-| Name          | Type                             | Readable| Writable| Description                                                        |
+| Name          | Type                             | Read-Only| Optional| Description                                                        |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| certList?          | Array<[CertAbstract](#certabstract)> | Yes  | Yes  | Brief certificate information.|
-| certInfo?          | [CertInfo](#certinfo) | Yes  | Yes  | Detailed certificate information.|
-| credentialList?          | Array<[CredentialAbstract](#credentialabstract)> | Yes  | Yes  | Brief credential information.|
-| credential?         | [Credential](#credential) | Yes  | Yes  | Credential detailed information.|
-| appUidList?        | Array<string>     | Yes  | Yes  | List of authorized applications.|
-| uri?         | string    | Yes  | Yes  | Unique identifier of the certificate or credential.|
-| outData?         | Uint8Array    | Yes  | Yes  | Signature generated.|
+| certList          | Array<[CertAbstract](#certabstract)> | No | Yes  | Brief certificate information.|
+| certInfo          | [CertInfo](#certinfo) | No | Yes  | Detailed certificate information.|
+| credentialList          | Array<[CredentialAbstract](#credentialabstract)> | No | Yes  | Brief credential information.|
+| credential         | [Credential](#credential) | No | Yes  | Detailed credential information.|
+| appUidList        | Array\<string>     | No | Yes  | List of authorized applications.|
+| uri         | string    | No | Yes  | Unique identifier of the certificate or credential.|
+| outData         | Uint8Array    | No | Yes  | Signature generated.|
 
 ## CMHandle
 
-Represents the handle of the signing or signature verification operation.
+Represents the handle to a signing or signature verification operation.
 
 **System capability**: System SystemCapability.Security.CertificateManager
 
-| Name          | Type                             | Readable| Writable| Description                                                        |
+| Name          | Type                             | Read-Only| Optional| Description                                                        |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| handle         | Uint8Array        | Yes  | Yes  | Handle returned by **certManager.init()** for the subsequent signing or signature verification operation.|
+| handle         | Uint8Array        | No | No  | Handle returned by **certManager.init()** for the subsequent signing or signature verification operation. |
 
 ## CMErrorCode
 
@@ -163,10 +162,12 @@ Enumerates the error codes used in the certificate management APIs.
 | CM_ERROR_GENERIC  | 17500001      | An internal error occurs when the interface is called.|
 | CM_ERROR_NO_FOUND  | 17500002      | The certificate or credential does not exist.|
 | CM_ERROR_INCORRECT_FORMAT  | 17500003      | The certificate or credential is in invalid format.|
+| CM_ERROR_MAX_CERT_COUNT_REACHED<sup>12+</sup>  | 17500004      | The number of certificates or credentials has reached the limit.|
+| CM_ERROR_NO_AUTHORIZATION<sup>12+</sup>  | 17500005      | The application has not obtained user authorization.|
 
-## certManager.installPrivateCertificate
+## certificateManager.installPrivateCertificate
 
-installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string, callback: AsyncCallback\<CMResult>) : void
+installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string, callback: AsyncCallback\<CMResult>): void
 
 Installs a private credential. This API uses an asynchronous callback to return the result.
 
@@ -180,21 +181,24 @@ Installs a private credential. This API uses an asynchronous callback to return 
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | keystore | Uint8Array                   | Yes  | Keystore file containing the key pair and certificate.|
 | keystorePwd | string | Yes  | Password of the keystore file. The password cannot exceed 32 bytes.|
-| certAlias | string | Yes  | Certificate alias. Currently, the alias can contain only digits, letters, and underscores (_) and should not exceed 32 bytes.|
-| callback | AsyncCallback\<[CMResult](#cmresult)> | Yes  | Callback invoked to return the result. If the operation is successful, the URI of the installed credential is returned.|
+| certAlias | string | Yes  | Credential alias. Currently, the alias can contain only digits, letters, and underscores (_) and should not exceed 32 bytes.|
+| callback | AsyncCallback\<[CMResult](#cmresult)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is **uri** in the [CMResult](#cmresult) object. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
-| 17500003 | The keystore is not valid format or keystorePwd is not correct. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
+| 17500003 | The keystore is in an invalid format or the keystore password is incorrect. |
+| 17500004<sup>12+</sup> | The number of certificates or credentials reaches the maximum allowed. |
 
 **Example**
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 /* The credential data to be installed must be assigned by the service. The data in this example is not the real credential data. */
 let keystore: Uint8Array = new Uint8Array([
@@ -202,22 +206,22 @@ let keystore: Uint8Array = new Uint8Array([
 ]);
 let keystorePwd: string = "123456";
 try {
-  certManager.installPrivateCertificate(keystore, keystorePwd, "test", (err, cmResult) => {
+  certificateManager.installPrivateCertificate(keystore, keystorePwd, "test", (err, cmResult) => {
     if (err != null) {
-      console.error("[Callback]installPrivateCertificate err: " + err.code);
+      console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
-      let uri: string = (cmResult.uri == undefined) ? '' : cmResult.uri;
-      console.log("[Callback]installPrivateCertificate success");
+      let uri: string = (cmResult?.uri == undefined) ? '' : cmResult.uri;
+      console.info('Succeeded in installing private certificate.');
     }
   });
 } catch (error) {
-  console.error("[Callback]installPrivateCertificate failed");
+  console.error(`Failed to install private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.installPrivateCertificate
+## certificateManager.installPrivateCertificate
 
-installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string) : Promise\<CMResult>
+installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string): Promise\<CMResult>
 
 Installs a private credential. This API uses a promise to return the result.
 
@@ -235,24 +239,27 @@ Installs a private credential. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                       | Description                |
-| ------------------------------------------- | -------------------- |
-| Promise\<[CMResult](#cmresult)> | Promise used to return the result. If the operation is successful, the URI of the installed credential is returned.|
+| Type                           | Description                                                        |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise used to return the operation result, that is, **uri** in the [CMResult](#cmresult) object.|
 
 **Error codes**
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
-| 17500003 | The keystore is not valid format or keystorePwd is not correct. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
+| 17500003 | The keystore is in an invalid format or the keystore password is incorrect. |
+| 17500004<sup>12+</sup> | The number of certificates or credentials reaches the maximum allowed. |
 
 **Example**
 
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 /* The credential data to be installed must be assigned by the service. The data in this example is not the real credential data. */
 let keystore: Uint8Array = new Uint8Array([
@@ -260,20 +267,20 @@ let keystore: Uint8Array = new Uint8Array([
 ]);
 let keystorePwd: string = "123456";
 try {
-  certManager.installPrivateCertificate(keystore, keystorePwd, 'test').then((cmResult) => {
-    let uri: string = (cmResult.uri == undefined) ? '' : cmResult.uri;
-    console.log("[Promise]installPrivateCertificate success");
+  certificateManager.installPrivateCertificate(keystore, keystorePwd, 'test').then((cmResult) => {
+    let uri: string = (cmResult?.uri == undefined) ? '' : cmResult.uri;
+    console.info('Succeeded in installing private certificate.');
   }).catch((err: BusinessError) => {
-    console.error('[Promise]installPrivateCertificate failed');
+    console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]installPrivateCertificate failed");
+} catch (error) {
+  console.error(`Failed to install private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.getPrivateCertificate
+## certificateManager.getPrivateCertificate
 
-getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>) : void
+getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>): void
 
 Obtains detailed information about a private credential. This API uses an asynchronous callback to return the result.
 
@@ -286,7 +293,7 @@ Obtains detailed information about a private credential. This API uses an asynch
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | keyUri | string                   | Yes  | Unique identifier of the target credential.|
-| callback | AsyncCallback\<[CMResult](#cmresult)> | Yes  | Callback invoked to return the result. If the operation is successful, **credential** in [CMResult](#cmresult) is returned.|
+| callback | AsyncCallback\<[CMResult](#cmresult)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is **credential** in the [CMResult](#cmresult) object. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -294,35 +301,37 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
-| 17500002 | The certificate do not exist. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+| 17500002 | The certificate does not exist. |
 
 **Example**
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
-let uri: string = 'test'; /* URI of the credential installed, which is omitted here. */
+let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
 try {
-  certManager.getPrivateCertificate(uri, (err, cmResult) => {
+  certificateManager.getPrivateCertificate(uri, (err, cmResult) => {
     if (err != null) {
-      console.error("getPrivateCertificate error");
+      console.error(`Failed to get private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
-      if (cmResult.credential == undefined) {
-        console.log("[Callback]getPrivateCertificate result is undefined");
+      if (cmResult?.credential == undefined) {
+        console.info('The result of getting private certificate is undefined.');
       } else {
         let list = cmResult.credential;
-        console.log("[Callback]getPrivateCertificate success");
+        console.info('Succeeded in getting private certificate.');
       }
     }
   });
 } catch (error) {
-  console.error("[Callback]installPrivateCertificate failed");
+  console.error(`Failed to get private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.getPrivateCertificate
+## certificateManager.getPrivateCertificate
 
-getPrivateCertificate(keyUri: string) : Promise\<CMResult>
+getPrivateCertificate(keyUri: string): Promise\<CMResult>
 
 Obtains detailed information about a private credential. This API uses a promise to return the result.
 
@@ -338,9 +347,9 @@ Obtains detailed information about a private credential. This API uses a promise
 
 **Return value**
 
-| Type                                       | Description                |
-| ------------------------------------------- | -------------------- |
-| Promise\<[CMResult](#cmresult)> | Promise used to return the result. If the operation is successful, **credential** in [CMResult](#cmresult) is returned.|
+| Type                           | Description                                                        |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise used to return the private credential details obtained, that is, **credential** in the [CMResult](#cmresult) object.|
 
 **Error codes**
 
@@ -348,34 +357,36 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
-| 17500002 | The certificate do not exist. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+| 17500002 | The certificate does not exist. |
 
 **Example**
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri: string = 'test'; /* URI of the credential installed, which is omitted here. */
+let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
 try {
-  certManager.getPrivateCertificate(uri).then((cmResult) => {
-    if (cmResult.credential == undefined) {
-      console.log("[Promise]getPrivateCertificate result is undefined");
+  certificateManager.getPrivateCertificate(uri).then((cmResult) => {
+    if (cmResult?.credential == undefined) {
+      console.info('The result of getting private certificate is undefined.');
     } else {
       let list = cmResult.credential;
-      console.log("[Promise]getPrivateCertificate success");
+      console.info('Succeeded in getting private certificate.');
     }
   }).catch((err: BusinessError) => {
-    console.error('[Promise]getPrivateCertificate failed');
+    console.error(`Failed to get private certificate. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]getPrivateCertificate failed");
+} catch (error) {
+  console.error(`Failed to get private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.uninstallPrivateCertificate
+## certificateManager.uninstallPrivateCertificate
 
-uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>) : void
+uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>): void
 
 Uninstalls a private credential. This API uses an asynchronous callback to return the result.
 
@@ -388,7 +399,7 @@ Uninstalls a private credential. This API uses an asynchronous callback to retur
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | keyUri | string                   | Yes  | Unique identifier of the credential to uninstall.|
-| callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result. If the operation is successful, **error** is **null**.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -396,30 +407,32 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
-| 17500002 | The certificate do not exist. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+| 17500002 | The certificate does not exist. |
 
 **Example**
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
-let uri: string = 'test'; /* URI of the credential installed, which is omitted here. */
+let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
 try {
-  certManager.uninstallPrivateCertificate(uri, (err, result) => {
+  certificateManager.uninstallPrivateCertificate(uri, (err, result) => {
     if (err != null) {
-      console.error("[Callback]uninstallPrivateCertificate error");
+      console.error(`Failed to uninstall private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.log("[Callback]uninstallPrivateCertificate success");
+      console.info('Succeeded in uninstalling private certificate.');
     }
   });
-} catch (err) {
-  console.error("[Callback]uninstallPrivateCertificate failed");
+} catch (error) {
+  console.error(`Failed to uninstall private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.uninstallPrivateCertificate
+## certificateManager.uninstallPrivateCertificate
 
-uninstallPrivateCertificate(keyUri: string) : Promise\<void>
+uninstallPrivateCertificate(keyUri: string): Promise\<void>
 
 Uninstalls a private credential. This API uses a promise to return the result.
 
@@ -437,7 +450,7 @@ Uninstalls a private credential. This API uses a promise to return the result.
 
 | Type                                       | Description                |
 | ------------------------------------------- | -------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -445,29 +458,31 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
-| 17500002 | The certificate do not exist. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+| 17500002 | The certificate does not exist. |
 
 **Example**
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri: string = 'test'; /* URI of the credential installed, which is omitted here. */
+let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
 try {
-  certManager.uninstallPrivateCertificate(uri).then((cmResult) => {
-    console.log("[Promise]uninstallPrivateCertificate success");
+  certificateManager.uninstallPrivateCertificate(uri).then((cmResult) => {
+    console.info('Succeeded in uninstalling private certificate.');
   }).catch((err: BusinessError) => {
-    console.error('[Promise]uninstallPrivateCertificate failed, code =', err.code);
+    console.error(`Failed to uninstall private certificate. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]uninstallPrivateCertificate failed");
+} catch (error) {
+  console.error(`Failed to uninstall private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.init
+## certificateManager.init
 
-init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>) : void
+init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>): void
 
 Initializes the signing or signature verification operation using the specified credential. This API uses an asynchronous callback to return the result.
 
@@ -481,7 +496,7 @@ Initializes the signing or signature verification operation using the specified 
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | authUri | string                   | Yes  | Unique identifier of the credential to use.|
 | spec | [CMSignatureSpec](#cmsignaturespec) | Yes  | Parameters for the signing or signature verification operation.|
-| callback | AsyncCallback\<[CMHandle](#cmhandle)> | Yes  | Callback invoked to return an operation handle.|
+| callback | AsyncCallback\<[CMHandle](#cmhandle)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the obtained **CMHandle**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -489,35 +504,38 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
-| 17500002 | The certificate do not exist. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+| 17500002 | The certificate does not exist. |
+| 17500005<sup>12+</sup> | The application is not authorized by the user. |
 
 **Example**
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
-let uri: string = 'test'; /* URI of the credential installed, which is omitted here. */
-const req: certManager.CMSignatureSpec = {
-  purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
-  padding: certManager.CmKeyPadding.CM_PADDING_PSS,
-  digest: certManager.CmKeyDigest.CM_DIGEST_SHA256
+let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
+const req: certificateManager.CMSignatureSpec = {
+  purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+  padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
+  digest: certificateManager.CmKeyDigest.CM_DIGEST_SHA256
 }
 try {
-  certManager.init(uri, req, (err, cmHandle) => {
+  certificateManager.init(uri, req, (err, cmHandle) => {
     if (err != null) {
-      console.error("[Callback]init err");
+      console.error(`Failed to init. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.log("[Callback]init success");
+      console.info('Succeeded in initiating.');
     }
   })
-} catch (err) {
-  console.error("[Callback]init failed");
+} catch (error) {
+  console.error(`Failed to init. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.init
+## certificateManager.init
 
-init(authUri: string, spec: CMSignatureSpec) : Promise\<CMHandle>
+init(authUri: string, spec: CMSignatureSpec): Promise\<CMHandle>
 
 Initializes the signing or signature verification operation using the specified credential. This API uses a promise to return the result.
 
@@ -544,32 +562,35 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
-| 17500002 | The certificate do not exist. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+| 17500002 | The certificate does not exist. |
+| 17500005<sup>12+</sup> | The application is not authorized by the user. |
 
 **Example**
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri: string = 'test'; /* URI of the credential installed, which is omitted here. */
-const req: certManager.CMSignatureSpec = {
-  purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
-  padding: certManager.CmKeyPadding.CM_PADDING_PSS,
-  digest: certManager.CmKeyDigest.CM_DIGEST_MD5
+let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
+const req: certificateManager.CMSignatureSpec = {
+  purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
+  padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
+  digest: certificateManager.CmKeyDigest.CM_DIGEST_MD5
 }
 try {
-  certManager.init(uri, req).then((handle) => {
-    console.log('[Promise]init success');
-  }).catch((error: BusinessError) => {
-    console.error('[Promise]init failed');
+  certificateManager.init(uri, req).then((handle) => {
+    console.info('Succeeded in initiating.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to init. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]init failed");
+} catch (error) {
+  console.error(`Failed to init. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.update
+## certificateManager.update
 
 update(handle: Uint8Array, data: Uint8Array, callback: AsyncCallback\<void>): void
 
@@ -585,19 +606,21 @@ Updates the data for the signing or signature verification operation. This API u
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | handle | Uint8Array                   | Yes  | Operation handle returned by **init()**.|
 | data | Uint8Array                   | Yes  | Data to be signed or verified.|
-| callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result. If the operation is successful, **error** is **null**.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
 
 **Example**
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 /* cmHandle is the value returned by init(). The value here is only an example. */
 let cmHandle: Uint8Array = new Uint8Array([
@@ -607,19 +630,19 @@ let srcData: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certManager.update(cmHandle, srcData, (err, result) => {
+  certificateManager.update(cmHandle, srcData, (err, result) => {
     if (err != null) {
-      console.error("[Callback]certManager update error");
+      console.error(`Failed to update. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.log("[Callback]certManager update success");
+      console.info('Succeeded in updating.');
     }
   });
-} catch (err) {
-  console.error("[Callback]update failed");
+} catch (error) {
+  console.error(`Failed to update. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.update
+## certificateManager.update
 
 update(handle: Uint8Array, data: Uint8Array): Promise\<void>
 
@@ -640,20 +663,22 @@ Updates the data for the signing or signature verification operation. This API u
 
 | Type                                       | Description                |
 | ------------------------------------------- | -------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
 
 **Example**
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 /* cmHandle is the value returned by init(). The value here is only an example. */
 let cmHandle: Uint8Array = new Uint8Array([
@@ -663,19 +688,19 @@ let srcData: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certManager.update(cmHandle, srcData).then((result) => {
-    console.log('[Promise]update success');
-  }).catch((error: BusinessError) => {
-    console.error('[Promise]update failed');
+  certificateManager.update(cmHandle, srcData).then((result) => {
+    console.info('Succeeded in updating.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to update. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]certManager update error");
+} catch (error) {
+  console.error(`Failed to update. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.finish
+## certificateManager.finish
 
-finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>) : void
+finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>): void
 
 Finishes the signing operation. This API uses an asynchronous callback to return the result.
 
@@ -688,45 +713,47 @@ Finishes the signing operation. This API uses an asynchronous callback to return
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | handle | Uint8Array                   | Yes  | Operation handle returned by **init()**.|
-| callback | AsyncCallback\<[CMResult](#cmresult)> | Yes  | Callback invoked to return the result. If the operation is successful, **outData** in [CMResult](#cmresult) is returned.|
+| callback | AsyncCallback\<[CMResult](#cmresult)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the signature, that is, **outData** of the [CMResult](#cmresult) object. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
 
 **Example**
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 /* cmHandle is the value returned by init(). The value here is only an example. */
 let cmHandle: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certManager.finish(cmHandle, (err, cmResult) => {
+  certificateManager.finish(cmHandle, (err, cmResult) => {
     if (err != null) {
-      console.error("[Callback]certManager sign failed");
+      console.error(`Failed to finish. Code: ${err.code}, message: ${err.message}`);
     } else {
-      if (cmResult.outData != undefined) {
+      if (cmResult?.outData != undefined) {
         let signRes: Uint8Array = cmResult.outData;
-        console.log("[Callback]certManager sign success");
+        console.info('Succeeded in finishing.');
       } else {
-        console.error("[Callback]certManager sign failed");
+        console.info('The result of finishing is undefined.');
       }
     }
   });
 } catch(error) {
-  console.error("[Callback]certManager finish error");
+  console.error(`Failed to finish. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.finish
+## certificateManager.finish
 
-finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMResult>) : void
+finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMResult>): void
 
 Finishes the signature verification operation. This API uses an asynchronous callback to return the result.
 
@@ -740,19 +767,21 @@ Finishes the signature verification operation. This API uses an asynchronous cal
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | handle | Uint8Array                   | Yes  | Operation handle returned by **init()**.|
 | signature | Uint8Array                   | Yes  | Signature data to verify.|
-| callback | AsyncCallback\<[CMResult](#cmresult)> | Yes  | Callback invoked to return the result. If the operation is successful, **error** is **null**.|
+| callback | AsyncCallback\<[CMResult](#cmresult)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
 
 **Example**
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 /* cmHandle is the value returned by init(). The value here is only an example. */
 let cmHandle: Uint8Array = new Uint8Array([
@@ -762,21 +791,21 @@ let signRes: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certManager.finish(cmHandle, signRes, (err, cmResult) => {
+  certificateManager.finish(cmHandle, signRes, (err, cmResult) => {
     if (err != null) {
-      console.error("[Callback]certManager verify failed");
+      console.error(`Failed to finish. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.log("[Callback]certManager verify success");
+      console.info('Succeeded in finishing.');
     }
   });
 } catch(error) {
-  console.error("[Callback]certManager finish error");
+  console.error(`Failed to finish. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.finish
+## certificateManager.finish
 
-finish(handle: Uint8Array, signature?: Uint8Array) : Promise\<CMResult>
+finish(handle: Uint8Array, signature?: Uint8Array): Promise\<CMResult>
 
 Finishes the signing or signature verification operation. This API uses a promise to return the result.
 
@@ -795,20 +824,22 @@ Finishes the signing or signature verification operation. This API uses a promis
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[CMResult](#cmresult)> | Promise used to return the result. If the operation is successful, **outData** in [CMResult](#cmresult) is returned for a signing operation, and no data is returned for a signature verification operation.|
+| Promise\<[CMResult](#cmresult)> | Promise used to return the result. For a signing operation, the promise returns the signature, that is, **outData** in the [CMResult](#cmresult) object, is returned. For a signature verification operation, the promise returns no value.|
 
 **Error codes**
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
 
 **Example**
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 /* cmHandle is the value returned by init(). The value here is only an example. */
 let cmHandle: Uint8Array = new Uint8Array([
@@ -816,15 +847,15 @@ let cmHandle: Uint8Array = new Uint8Array([
 ]);
 try {
   /* Finish the signing operation. */
-  certManager.finish(cmHandle).then((cmResult) => {
-    if (cmResult.outData != undefined) {
+  certificateManager.finish(cmHandle).then((cmResult) => {
+    if (cmResult?.outData != undefined) {
       let signRes1: Uint8Array = cmResult.outData;
-      console.log("[Promise]finish sign success");
+      console.info('Succeeded in finishing signature.');
     } else {
-      console.error("[Promise]finish sign failed");
+      console.info('The result of signature is undefined.');
     }
   }).catch((err: BusinessError) => {
-    console.error('[Promise]finish sign failed');
+    console.error(`Failed to finish signature. Code: ${err.code}, message: ${err.message}`);
   })
 
   /* Signature generated. */
@@ -832,19 +863,19 @@ try {
     0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
   ]);
   /* Finish the signature verification operation. */
-  certManager.finish(cmHandle, signRes).then((cmResult) => {
-    console.log("[Promise]finish verify success");
+  certificateManager.finish(cmHandle, signRes).then((cmResult) => {
+    console.info('Succeeded in finishing verification.');
   }).catch((err: BusinessError) => {
-    console.error('[Promise]finish verify failed');
+    console.error(`Failed to finish verification. Code: ${err.code}, message: ${err.message}`);
   })
 } catch(error) {
-  console.error("[Promise]certManager finish error");
+  console.error(`Failed to finish. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.abort
+## certificateManager.abort
 
-abort(handle: Uint8Array, callback: AsyncCallback\<void>) : void
+abort(handle: Uint8Array, callback: AsyncCallback\<void>): void
 
 Aborts the signing or signature verification operation. This API uses an asynchronous callback to return the result.
 
@@ -857,40 +888,42 @@ Aborts the signing or signature verification operation. This API uses an asynchr
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | handle | Uint8Array                   | Yes  | Operation handle returned by **init()**.|
-| callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result. If the operation is successful, **error** is **null**.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
 
 **Example**
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 /* cmHandle is the value returned by init(). The value here is only an example. */
 let cmHandle: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certManager.abort(cmHandle, (err, cmResult) => {
+  certificateManager.abort(cmHandle, (err, cmResult) => {
     if (err != null) {
-      console.error("[Callback]certManager abort failed");
+      console.error(`Failed to abort. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.log("[Callback]certManager abort success");
+      console.info('Succeeded in aborting.');
     }
   });
 } catch(error) {
-  console.error("[Callback]certManager abort error");
+  console.error(`Failed to abort. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
-## certManager.abort
+## certificateManager.abort
 
-abort(handle: Uint8Array) : Promise\<void>
+abort(handle: Uint8Array): Promise\<void>
 
 Aborts the signing or signature verification operation. This API uses a promise to return the result.
 
@@ -908,7 +941,59 @@ Aborts the signing or signature verification operation. This API uses a promise 
 
 | Type                                       | Description                |
 | ------------------------------------------- | -------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.     |
+
+**Example**
+```ts
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+/* cmHandle is the value returned by init(). The value here is only an example. */
+let cmHandle: Uint8Array = new Uint8Array([
+  0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
+]);
+try {
+  certificateManager.abort(cmHandle).then((result) => {
+    console.info('Succeeded in aborting.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to abort. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (error) {
+  console.error(`Failed to abort. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## certificateManager.getPublicCertificate<sup>12+</sup>
+
+getPublicCertificate(keyUri: string): Promise\<CMResult>
+
+Obtains detailed information about a public credential. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
+
+**System capability**: System SystemCapability.Security.CertificateManager
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                      |
+| -------- | ------------------------------------------------- | ---- | -------------------------- |
+| keyUri | string                   | Yes  | Unique identifier of the public credential.|
+
+**Return value**
+
+| Type                           | Description                                                        |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise used to return the detailed information about the user's public credential obtained, that is, **credential** in the [CMResult](#cmresult) object.|
 
 **Error codes**
 
@@ -916,24 +1001,229 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+| 17500002 | The certificate does not exist. |
+| 17500005 | The application is not authorized by the user. |
 
 **Example**
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-/* cmHandle is the value returned by init(). The value here is only an example. */
-let cmHandle: Uint8Array = new Uint8Array([
-  0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
-]);
+let uri: string = 'test'; /* Unique identifier of the public credential. The process for installing the public credential is omitted here. */
 try {
-  certManager.abort(cmHandle).then((result) => {
-    console.log('[Promise]abort success');
-  }).catch((error: BusinessError) => {
-    console.error('[Promise]abort failed');
+  certificateManager.getPublicCertificate(uri).then((cmResult) => {
+    if (cmResult?.credential == undefined) {
+      console.info('The result of getting public certificate is undefined.');
+    } else {
+      let cred = cmResult.credential;
+      console.info('Succeeded in getting Public certificate.');
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get Public certificate. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]certManager abort error");
+} catch (error) {
+  console.error(`Failed to get Public certificate. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## certificateManager.isAuthorizedApp<sup>12+</sup>
+
+isAuthorizedApp(keyUri: string): Promise\<boolean>
+
+Checks whether this application is authorized by the specified user credential. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
+
+**System capability**: System SystemCapability.Security.CertificateManager
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                      |
+| -------- | ------------------------------------------------- | ---- | -------------------------- |
+| keyUri | string                   | Yes  | Unique identifier of the credential.|
+
+**Return value**
+
+| Type             | Description                                                        |
+| ----------------- | ------------------------------------------------------------ |
+| Promise\<boolean> | Promise used to return a Boolean value, which indicates whether the application is authorized by the specified user credential.|
+
+**Error codes**
+
+For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+
+**Example**
+```ts
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let uri: string = 'test'; /* Unique identifier of the credential. The process for authorizing the credential to the application is omitted here. */
+try {
+  certificateManager.isAuthorizedApp(uri).then((res) => {
+    if (res) {
+      console.info('The application is authorized by the user.');
+    } else {
+      console.info('The application is not authorized by the user.');
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get Public certificate. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (error) {
+  console.error(`Failed to get Public certificate. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## certificateManager.getAllUserTrustedCertificates<sup>12+</sup>
+
+getAllUserTrustedCertificates(): Promise\<CMResult>
+
+Obtains all the user root CA certificates. The API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
+
+**System capability**: System SystemCapability.Security.CertificateManager
+
+**Return value**
+
+| Type                           | Description                                                        |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise used to return the user's root CA certificates obtained, that is, **certList** in the [CMResult](#cmresult) object.|
+
+**Error codes**
+
+For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 17500001 | Internal error. |
+
+**Example**
+```ts
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  certificateManager.getAllUserTrustedCertificates().then((cmResult) => {
+    if (cmResult?.certList == undefined) {
+      console.info('The result of getting all user trusted certificates is undefined.');
+    } else {
+      let list = cmResult.certList;
+      console.info('Succeeded in getting all user trusted certificates.');
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get all user trusted certificates. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (error) {
+  console.error(`Failed to get all user trusted certificates. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## certificateManager.getUserTrustedCertificate<sup>12+</sup>
+
+getUserTrustedCertificate(certUri: string): Promise\<CMResult>
+
+Obtains the detailed information about a user root CA certificate. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
+
+**System capability**: System SystemCapability.Security.CertificateManager
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                      |
+| -------- | ------------------------------------------------- | ---- | -------------------------- |
+| certUri | string                   | Yes  | Unique identifier of the user root CA certificate.|
+
+**Return value**
+
+| Type                           | Description                                                        |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise used to return the detailed CA certificate information obtained, that is, **certInfo** in the [CMResult](#cmresult) object.|
+
+**Error codes**
+
+For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+| 17500002 | The certificate does not exist. |
+
+**Example**
+```ts
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let certUri: string = 'testUserCert'; /* Unique identifier of the user root CA certificate. The process of installing the user root CA certificate is omitted here. */
+try {
+  certificateManager.getUserTrustedCertificate(certUri).then((cmResult) => {
+    if (cmResult?.certInfo == undefined) {
+      console.info('The result of getting user trusted certificate is undefined.');
+    } else {
+      let cert = cmResult.certInfo;
+      console.info('Succeeded in getting user trusted certificate.');
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get user trusted certificate. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (error) {
+  console.error(`Failed to get user trusted certificate. Code: ${error.code}, message: ${error.message}`);
+}
+```
+## certificateManager.getPrivateCertificates<sup>13+</sup>
+
+getPrivateCertificates(): Promise\<CMResult>
+
+Obtains the credentials for installing the application. This API uses a promise to return the result asynchronously.
+
+**Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
+
+**System capability**: System SystemCapability.Security.CertificateManager
+
+**Return value**
+
+| Type                           | Description                                                        |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise used to return the credentials obtained, which is **credentialList** in [CMResult](#cmresult).|
+
+**Error codes**
+
+For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 17500001 | Internal error. |
+
+**Example**
+```ts
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  certificateManager.getPrivateCertificates().then((cmResult) => {
+    if (cmResult?.credentialList == undefined) {
+      console.info('The result of getting all private certificates installed by the application is undefined.');
+    } else {
+      let list = cmResult.credentialList;
+      console.info('Succeeded in getting all private certificates installed by the application.');
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get all private certificates installed by the application. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (error) {
+  console.error(`Failed to get all private certificates installed by the application. Code: ${error.code}, message: ${error.message}`);
 }
 ```

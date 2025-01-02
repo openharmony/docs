@@ -23,7 +23,7 @@ if/else条件渲染是ArkUI应用开发框架提供的渲染控制的能力之�
 | Hidden  | 组件状态为不可见，但参与布局、进行占位   |
 | None    | 组件状态为不可见，不参与布局、不进行占位 |
 
-关于显隐控制的详细说明，可以参考[显隐控制](../reference/arkui-ts/ts-universal-attributes-visibility.md)。
+关于显隐控制的详细说明，可以参考[显隐控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-visibility.md)。
 
 ### 机制区别
 
@@ -45,7 +45,6 @@ if/else条件渲染是ArkUI应用开发框架提供的渲染控制的能力之�
 - 如果组件不会较频繁地在显示和隐藏间切换，或者大部分时间不需要显示，建议使用条件渲染替代显隐控制，以减少界面复杂度、减少嵌套层次，提升性能。
 - 如果被控制的组件所占内存庞大，开发者优先考虑内存时，建议使用条件渲染替代显隐控制，以即时销毁不需要显示的组件，节省内存。
 - 如果组件子树结构比较复杂，且反复切换条件渲染的控制分支，建议使用条件渲染配合组件复用机制，提升应用性能。
-- 如果切换项仅涉及部分组件的情况，且反复切换条件渲染的控制分支，建议使用条件渲染配合容器限制，精准控制组件更新的范围，提升应用性能。
 
 显隐控制的适用场景：
 
@@ -76,7 +75,7 @@ struct WorseUseIf {
   build() {
     Column() {
       Button("Switch visible and hidden").onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
       }).width('100%')
       Stack() {
         if (this.isVisible) {// 使用条件渲染切换，会频繁创建与销毁组件
@@ -114,7 +113,7 @@ struct BetterUseVisibility {
   build() {
     Column() {
       Button("Switch visible and hidden").onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
       }).width('100%')
       Stack() {
         Scroll() {
@@ -168,7 +167,7 @@ struct WorseUseVisibility {
   build() {
     Column() {
       Button("Show the Hidden on start").onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
       }).width('100%')
       Stack() {
         Image($r('app.media.icon')).objectFit(ImageFit.Contain).width('50%').height('50%')
@@ -205,7 +204,7 @@ struct BetterUseIf {
   build() {
     Column() {
       Button("Show the Hidden on start").onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
       }).width('100%')
       Stack() {
         Image($r('app.media.icon')).objectFit(ImageFit.Contain).width('50%').height('50%')
@@ -237,93 +236,6 @@ struct BetterUseIf {
 ![img](./figures/BetterUseIf.png) 
 
 可见，如果在应用冷启动阶段，应用加载绘制首页时，如果组件初始不需要显示，使用条件渲染替代显隐控制，可以减少渲染时间，加快启动速度。
-
-### 条件渲染和容器限制
-
-针对反复切换条件渲染的控制分支，但切换项仅涉及页面中少部分组件的场景，下面示例通过Column父组件下1000个Text组件，与1个受条件渲染控制的Text组件的组合来说明该场景，并对1个受条件渲染控制的Text组件的外面是否加上容器组件做包裹，做两种情况的正反例性能数据的对比。
-
-**反例**
-
-没有使用容器限制条件渲染组件的刷新范围，导致条件变化会触发创建和销毁该组件，影响该容器内所有组件都会刷新。
-
-```ts
-@Entry
-@Component
-struct RenderControlWithoutStack {
-  @State isVisible: boolean = true;
-  private data: number[] = [];
-
-  aboutToAppear() {
-    for (let i: number = 0; i < 1000; i++) {
-      this.data.push(i);
-    }
-  }
-
-  build() {
-    Column() {
-      Stack() {
-        Scroll() {
-          Column() { // 刷新范围会扩展到这一层
-            if (this.isVisible) { // 条件变化会触发创建和销毁该组件，影响到容器的布局，该容器内所有组件都会刷新
-              Text('New item').fontSize(20)
-            }
-            ForEach(this.data, (item: number) => {
-              Text(`Item value: ${item}`).fontSize(20).width('100%').textAlign(TextAlign.Center)
-            }, (item: number) => item.toString())
-          }
-        }
-      }.height('90%')
-
-      Button('Switch Hidden and Show').onClick(() => {
-        this.isVisible = !(this.isVisible);
-      })
-    }
-  }
-}
-```
-
-**正例**
-
-使用容器限制条件渲染组件的刷新范围。
-
-```ts
-@Entry
-@Component
-struct RenderControlWithStack {
-  @State isVisible: boolean = true;
-  private data: number[] = [];
-
-  aboutToAppear() {
-    for (let i: number = 0; i < 1000; i++) {
-      this.data.push(i);
-    }
-  }
-
-  build() {
-    Column() {
-      Stack() {
-        Scroll() {
-          Column() {
-            Stack() { // 在条件渲染外套一层容器，限制刷新范围
-              if (this.isVisible) {
-                Text('New item').fontSize(20)
-              }
-            }
-
-            ForEach(this.data, (item: number) => {
-              Text(`Item value: ${item}`).fontSize(20).width('100%').textAlign(TextAlign.Center)
-            }, (item: number) => item.toString())
-          }
-        }
-      }.height('90%')
-
-      Button('Switch Hidden and Show').onClick(() => {
-        this.isVisible = !(this.isVisible);
-      })
-    }
-  }
-}
-```
 
 **效果对比**
 

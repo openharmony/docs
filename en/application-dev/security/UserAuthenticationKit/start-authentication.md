@@ -26,7 +26,9 @@ The system provides a unified user authentication widget, which stands out with 
 
 The following figure shows the style of the user authentication widget, which can be set via the [WidgetParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#widgetparam10) parameter.
 
+<!--RP1-->
 ![](figures/user-authentication-widget.png)
+<!--RP1End-->
 
 - ①: Title (**WidgetParam.title**) of the user authentication page, which cannot exceed 500 characters. You can set the title based on actual requirements.
 
@@ -34,6 +36,7 @@ The following figure shows the style of the user authentication widget, which ca
    
   If biometric authentication fails, the authentication widget button is displayed. You can click this button to apply custom authentication.
 
+<!--Del-->
 - The following shows the display modes (**WidgetParam.windowMode**) of the user authentication widget.
   
   The user authentication widget provides two display modes: dialog box (default mode, as shown in figure on the left) and full screen (as shown in the figure on the right).
@@ -41,6 +44,7 @@ The following figure shows the style of the user authentication widget, which ca
   Currently, the full screen mode is available only for system applications.
 
   ![](figures/widget_display_modes.png)
+<!--DelEnd-->
 
 The user authentication widget supports the following types of authentication:
 
@@ -69,44 +73,49 @@ The user authentication widget supports the following types of authentication:
 3. Use [UserAuthInstance.on](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#on10) to subscribe to the authentication result.
 
 4. Use [UserAuthInstance.start](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#start10) to start authentication. The authentication result [UserAuthResult](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthresult10) is returned through [IAuthCallback](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#iauthcallback10).
-   If the authentication is successful, the authentication type ([UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8)) and token information (**AuthToken**) are returned.
+   If the authentication is successful, [UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8) and token information (**AuthToken**) are returned.
 
 **Example 1**
 
  Initiate facial authentication and lock screen password authentication with the authentication trust level greater than or equal to ATL3.
 
 ```ts
-import type {BusinessError} from '@ohos.base';
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+// API version 10
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
-// Set authentication parameters.
-const authParam: userIAM_userAuth.AuthParam = {
-  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userIAM_userAuth.UserAuthType.PIN, userIAM_userAuth.UserAuthType.FACE],
-  authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL3,
-};
-// Set the authentication page.
-const widgetParam: userIAM_userAuth.WidgetParam = {
-  title: 'Verify identity',
-};
 try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16; // Generate a 16-byte random number.
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  // Set authentication parameters.
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  // Set the authentication page.
+  const widgetParam: userAuth.WidgetParam = {
+    title: 'Verify identity',
+  };
   // Obtain a UserAuthInstance object.
-  let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
   // Subscribe to the authentication result.
   userAuthInstance.on('result', {
     onResult(result) {
-      console.log(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+      console.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
       // Unsubscribe from the authentication result if required.
       userAuthInstance.off('result');
     }
   });
-  console.log('auth on success');
+  console.info('auth on success');
   userAuthInstance.start();
-  console.log('auth start success');
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
-  console.log(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 **Example 2**
@@ -114,41 +123,46 @@ try {
 Initiate facial authentication with the authentication trust level greater than or equal to ATL3, and enable the device unlock result to be reused for the same type of authentication within the specified time.
 
 ```ts
-import type {BusinessError} from '@ohos.base';
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+// API version 10
+import { BusinessError } from  '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 // Set authentication parameters.
-let reuseUnlockResult: userIAM_userAuth.ReuseUnlockResult = {
-  reuseMode: userIAM_userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
-  reuseDuration: 300000,
+let reuseUnlockResult: userAuth.ReuseUnlockResult = {
+  reuseMode: userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
+  reuseDuration: userAuth.MAX_ALLOWABLE_REUSE_DURATION,
 }
-const authParam: userIAM_userAuth.AuthParam = {
-  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userIAM_userAuth.UserAuthType.FACE],
-  authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL3,
-  reuseUnlockResult: reuseUnlockResult,
-};
-// Set the authentication page.
-const widgetParam: userIAM_userAuth.WidgetParam = {
-  title: 'Verify identity',
-};
 try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.FACE],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+    reuseUnlockResult: reuseUnlockResult,
+  };
+  // Set the authentication page.
+  const widgetParam: userAuth.WidgetParam = {
+    title: 'Verify identity',
+  };
   // Obtain a UserAuthInstance object.
-  let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
   // Subscribe to the authentication result.
   userAuthInstance.on('result', {
     onResult(result) {
-      console.log(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+      console.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
       // Unsubscribe from the authentication result if required.
       userAuthInstance.off('result');
     }
   });
-  console.log('auth on success');
+  console.info('auth on success');
   userAuthInstance.start();
-  console.log('auth start success');
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
-  console.log(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```

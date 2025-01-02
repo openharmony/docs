@@ -8,6 +8,8 @@
 
 ## 属性
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                                                         | 类型     | 可读 | 可写 | 说明                                                         |
@@ -17,17 +19,17 @@
 
 **示例：**
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityStageMonitor({
-    moduleName: 'feature_as1',
-    srcEntrance: './ets/Application/MyAbilityStage.ts',
+  moduleName: 'feature_as1',
+  srcEntrance: './ets/Application/MyAbilityStage.ts',
 }, (error, data) => {
-    if (error) {
-        console.error(`waitAbilityStageMonitor fail, error: ${JSON.stringify(error)}`);
-    } else {
-        console.log(`waitAbilityStageMonitor success, data: ${JSON.stringify(data)}`);
-    }
+  if (error) {
+    console.error(`waitAbilityStageMonitor fail, error: ${JSON.stringify(error)}`);
+  } else {
+    console.log(`waitAbilityStageMonitor success, data: ${JSON.stringify(data)}`);
+  }
 });
 ```

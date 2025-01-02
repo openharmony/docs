@@ -11,7 +11,7 @@ ArkTS提供了渲染控制的能力。条件渲染可根据应用的不同状态
 
 - 支持if、else和else if语句。
 
-- if、else if后跟随的条件语句可以使用状态变量。
+- if、else if后跟随的条件语句可以使用状态变量或者常规变量(状态变量：值的改变可以实时渲染UI，常规变量：值的改变不会实时渲染UI)。
 
 - 允许在容器组件内使用，通过条件渲染语句构建不同的子组件。
 
@@ -19,7 +19,7 @@ ArkTS提供了渲染控制的能力。条件渲染可根据应用的不同状态
 
 - 每个分支内部的构建函数必须遵循构建函数的规则，并创建一个或多个组件。无法创建组件的空构建函数会产生语法错误。
 
-- 某些容器组件限制子组件的类型或数量，将条件渲染语句用于这些组件内时，这些限制将同样应用于条件渲染语句内创建的组件。例如，Grid容器组件的子组件仅支持GridItem组件，在Grid内使用条件渲染语句时，条件渲染语句内仅允许使用GridItem组件。
+- 某些容器组件限制子组件的类型或数量，将条件渲染语句用于这些组件内时，这些限制将同样应用于条件渲染语句内创建的组件。例如，[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)容器组件的子组件仅支持[GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md)组件，在Grid内使用条件渲染语句时，条件渲染语句内仅允许使用GridItem组件。
 
 
 ## 更新机制
@@ -44,7 +44,7 @@ ArkTS提供了渲染控制的能力。条件渲染可根据应用的不同状态
 ```ts
 @Entry
 @Component
-struct ViewA {
+struct MyComponent {
   @State count: number = 0;
 
   build() {
@@ -93,13 +93,16 @@ struct CounterView {
   label: string = 'unknown';
 
   build() {
-    Row() {
+    Column({ space: 20 }) {
       Text(`${this.label}`)
       Button(`counter ${this.counter} +1`)
         .onClick(() => {
           this.counter += 1;
         })
     }
+    .margin(10)
+    .padding(10)
+    .border({ width: 1 })
   }
 }
 
@@ -120,6 +123,8 @@ struct MainView {
           this.toggle = !this.toggle;
         })
     }
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
   }
 }
 ```
@@ -133,20 +138,24 @@ CounterView（label为 'CounterView \#positive'）子组件在初次渲染时创
 以下示例展示了条件更改时，若需要保留counter值所做的修改。
 
 
-```
+```ts
 @Component
 struct CounterView {
   @Link counter: number;
   label: string = 'unknown';
 
   build() {
-    Row() {
+    Column({ space: 20 }) {
       Text(`${this.label}`)
+        .fontSize(20)
       Button(`counter ${this.counter} +1`)
         .onClick(() => {
           this.counter += 1;
         })
     }
+    .margin(10)
+    .padding(10)
+    .border({ width: 1 })
   }
 }
 
@@ -168,6 +177,8 @@ struct MainView {
           this.toggle = !this.toggle;
         })
     }
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
   }
 }
 ```
@@ -183,12 +194,12 @@ struct MainView {
 ```ts
 @Entry
 @Component
-struct CompA {
+struct MyComponent {
   @State toggle: boolean = false;
   @State toggleColor: boolean = false;
 
   build() {
-    Column() {
+    Column({ space: 20 }) {
       Text('Before')
         .fontSize(15)
       if (this.toggle) {
@@ -224,6 +235,178 @@ struct CompA {
           this.toggleColor = !this.toggleColor;
         })
     }
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
   }
 }
 ```
+
+## 常见问题
+
+### 动效场景下if分支切换保护失效
+
+在动画当中改变IfElse分支，而这个IfElse是用来做数据保护的，继续使用该分支会导致访问数据异常，然后造成crash。
+
+反例：
+
+
+```ts
+class MyData {
+  str: string;
+  constructor(str: string) {
+    this.str = str;
+  }
+}
+@Entry
+@Component
+struct Index {
+  @State data1: MyData|undefined = new MyData("branch 0");
+  @State data2: MyData|undefined = new MyData("branch 1");
+
+  build() {
+    Column() {
+      if (this.data1) {
+        // 如果在动画中增加/删除，会给Text增加默认转场
+        // 对于删除时，增加默认透明度转场后，会延长组件的生命周期，Text组件没有真正删除，而是等转场动画做完后才删除
+        Text(this.data1.str)
+          .id("1")
+      } else if (this.data2) {
+        // 如果在动画中增加/删除，会给Text增加默认转场
+        Text(this.data2.str)
+          .id("2")
+      }
+
+      Button("play with animation")
+        .onClick(() => {
+          animateTo({}, ()=>{
+            // 在animateTo中修改if条件，在动画当中，会给if下的第一层组件默认转场
+            if (this.data1) {
+              this.data1 = undefined;
+              this.data2 = new MyData("branch 1");
+            } else {
+              this.data1 = new MyData("branch 0");
+              this.data2 = undefined;
+            }
+          })
+        })
+
+      Button("play directlp")
+        .onClick(() => {
+          // 直接改if条件，不在动画当中，可以正常切换，也不会加默认转场
+          if (this.data1) {
+            this.data1 = undefined;
+            this.data2 = new MyData("branch 1");
+          } else {
+            this.data1 = new MyData("branch 0");
+            this.data2 = undefined;
+          }
+        })
+    }.width("100%")
+    .padding(10)
+  }
+}
+```
+
+正例:
+
+方式1:给数据继续加判空的保护，即在使用data时再加一层判空，即"Text(this.data1?.str)"。
+
+
+```ts
+class MyData {
+  str: string;
+  constructor(str: string) {
+    this.str = str;
+  }
+}
+@Entry
+@Component
+struct Index {
+  @State data1: MyData|undefined = new MyData("branch 0");
+  @State data2: MyData|undefined = new MyData("branch 1");
+
+  build() {
+    Column() {
+      if (this.data1) {
+        // 如果在动画中增加/删除，会给Text增加默认转场
+        // 对于删除时，增加默认透明度转场后，会延长组件的生命周期，Text组件没有真正删除，而是等转场动画做完后才删除
+        // 在使用数据时再加一层判空保护，如果data1存在才去使用data1当中的str
+        Text(this.data1?.str)
+          .id("1")
+      } else if (this.data2) {
+        // 如果在动画中增加/删除，会给Text增加默认转场
+        // 在使用数据时再加一层判空保护
+        Text(this.data2?.str)
+          .id("2")
+      }
+
+      Button("play with animation")
+        .onClick(() => {
+          animateTo({}, ()=>{
+            // 在animateTo中修改if条件，在动画当中，会给if下的第一层组件默认转场
+            if (this.data1) {
+              this.data1 = undefined;
+              this.data2 = new MyData("branch 1");
+            } else {
+              this.data1 = new MyData("branch 0");
+              this.data2 = undefined;
+            }
+          })
+        })
+    }.width("100%")
+    .padding(10)
+  }
+}
+```
+
+方式2:给IfElse下直接要被删除的组件显示的添加transition(TransitionEffect.IDENTITY)属性，避免系统添加默认转场。
+
+
+```ts
+class MyData {
+  str: string;
+  constructor(str: string) {
+    this.str = str;
+  }
+}
+@Entry
+@Component
+struct Index {
+  @State data1: MyData|undefined = new MyData("branch 0");
+  @State data2: MyData|undefined = new MyData("branch 1");
+
+  build() {
+    Column() {
+      if (this.data1) {
+        // 在IfElse的根组件显示指定空的转场效果，避免默认转场动画
+        Text(this.data1.str)
+          .transition(TransitionEffect.IDENTITY)
+          .id("1")
+      } else if (this.data2) {
+        // 在IfElse的根组件显示指定空的转场效果，避免默认转场动画
+        Text(this.data2.str)
+          .transition(TransitionEffect.IDENTITY)
+          .id("2")
+      }
+
+      Button("play with animation")
+        .onClick(() => {
+          animateTo({}, ()=>{
+            // 在animateTo中修改if条件，在动画当中，会给if下的第一层组件默认转场
+            // 但由于已经显示指定转场了就不会再添加默认转场
+            if (this.data1) {
+              this.data1 = undefined;
+              this.data2 = new MyData("branch 1");
+            } else {
+              this.data1 = new MyData("branch 0");
+              this.data2 = undefined;
+            }
+          })
+        })
+    }.width("100%")
+    .padding(10)
+  }
+}
+```
+
+

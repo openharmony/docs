@@ -4,7 +4,7 @@
 
 ### Introduction
 
-By default, OpenHarmony provides the power consumption statistics feature. However, the power consumption benchmarks vary according to hardware specifications of different products. To address this issue, OpenHarmony provides the power consumption statistics customization function, allowing you to customize power consumption benchmarks depending on your hardware specifications.
+By default, OpenHarmony provides the power consumption statistics feature. However, the power consumption benchmarks vary according to hardware specifications of different products.  To address this issue, OpenHarmony provides the power consumption statistics customization function, allowing you to customize power consumption benchmarks depending on your hardware specifications.
 
 ### Basic Concepts
 
@@ -70,7 +70,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     | cpu_active | CPU | Double | Baseline power consumption when the CPU is in the active state.<br>- Power consumption type: software power consumption<br>- Statistical method: Power consumption = Usage duration x Power consumption benchmark|
     | cpu_clusters<br>cpu_speed_clusterX | CPU | Double array| **cpu\_clusters**: baseline power consumption of a CPU cluster. The value is in array format and is used to configure the baseline power consumption for different CPU clusters. The default configuration provides the baseline power consumption for three CPU clusters.<br>**cpu\_speed\_clusterX**: baseline power consumption of a CPU cluster at different frequencies, in array format. **X** indicates the sequence number. By default, its value ranges from **0** to **2**, corresponding to the size of the **cpu_clusters** array. For example, if the default size of the **cpu_clusters** array is **3**, the sequence number corresponds to the configuration items **cpu_speed_cluster0**, **cpu_speed_cluster1**, and **cpu_speed_cluster2**.<br>- Scalability: scalability of CPU clusters<br>- Power consumption type: software power consumption<br>- Statistical method: Power consumption = Usage duration x Power consumption benchmark|
 
-    >**NOTE**<br>The hardware type described in the table is the actual hardware name and does not represent the power consumption statistics type. For details about the power consumption statistics type, see [ConsumptionType](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-batteryStatistics.md#consumptiontype).
+    >**NOTE**<br>The hardware type described in the table is the actual hardware name and does not represent the power consumption statistics type. For details about the power consumption statistics type, see [ConsumptionType](../../application-dev/reference/apis-basic-services-kit/js-apis-batteryStatistics-sys.md#consumptiontype).
 
 4. Write the `BUILD.gn` file by referring to the [BUILD.gn](https://gitee.com/openharmony/powermgr_battery_statistics/blob/master/services/profile/BUILD.gn) file in the default folder of power consumption statistics configuration to pack the `power_average.json` file to the `//vendor/etc/profile` directory. The configuration is as follows:
 
@@ -197,6 +197,6 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 
 During development, you can refer to the [default power consumption statistics configuration](https://gitee.com/openharmony/powermgr_battery_statistics/blob/master/services/profile/power_average.json).
 
-Default packing path: `/system/etc/profile`
+Default packing path: /system/etc/profile
 
-Customization path: `/vendor/etc/profile`
+Customization path: /vendor/etc/profile

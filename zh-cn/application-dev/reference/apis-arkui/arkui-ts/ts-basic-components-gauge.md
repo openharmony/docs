@@ -21,15 +21,29 @@
 
 ## 接口
 
-Gauge(options:{value: number, min?: number, max?: number})
+Gauge(options: GaugeOptions)
 
 创建数据量规图表组件。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options |  [GaugeOptions](#gaugeoptions14对象说明)| 是 | 数据量规图表组件参数。 |
+
+## GaugeOptions<sup>14+</sup>对象说明
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -49,6 +63,8 @@ value(value: number)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -65,6 +81,8 @@ startAngle(angle: number)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -77,9 +95,11 @@ startAngle(angle: number)
 
 endAngle(angle: number)
 
-设置终止角度位置。
+设置终止角度位置。起始角度位置和终止角度位置差过小时，会绘制出异常图像，请取合理的起始角度位置和终止角度位置。建议使用单色环改变Gauge的value参数实现数据值的调节，可通过定时器setTimeout进行数值的延迟加载。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -91,7 +111,7 @@ endAngle(angle: number)
 
 ### colors
 
-colors(colors: ResourceColor | LinearGradient | Array<[ResourceColor | LinearGradient | number]>)
+colors(colors: ResourceColor | LinearGradient | Array<[ResourceColor | LinearGradient, number]>)
 
 设置量规图的颜色。
 
@@ -107,13 +127,15 @@ colors(colors: ResourceColor | LinearGradient | Array<[ResourceColor | LinearGra
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| colors | [ResourceColor<sup>11+</sup>](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明)&nbsp;\|&nbsp;Array&lt;[[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明)&nbsp;\|&nbsp;number]&gt; | 是   | 量规图的颜色，支持分段颜色设置。<br/>API version 9 默认值：Color.Black<br/>API version 11默认值：<br/>若不传颜色，或者数组为空，无法确定圆环类型及颜色，则圆环颜色为"0xFF64BB5C"、"0xFFF7CE00"、"0xFFE84026"的渐变环。<br/>若传入颜色，但颜色值有误，则该颜色为"0xFFE84026"。 |
+| colors | [ResourceColor<sup>11+</sup>](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10)&nbsp;\|&nbsp;Array&lt;[[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10)&nbsp;\,&nbsp;number]&gt; | 是   | 量规图的颜色，支持分段颜色设置。<br/>API version 9 默认值：Color.Black<br/>API version 11默认值：<br/>若不传颜色，或者数组为空，无法确定圆环类型及颜色，则圆环颜色为"0xFF64BB5C"、"0xFFF7CE00"、"0xFFE84026"的渐变环。<br/>若传入颜色，但颜色值有误，则该颜色为"0xFFE84026"。<br/>若对应颜色的比重为0，则该颜色在圆环中不显示。若所有颜色比重均为0，圆环不显示。 |
 
 ### strokeWidth
 
@@ -122,6 +144,8 @@ strokeWidth(length: Length)
 设置环形量规图的环形厚度。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -137,6 +161,8 @@ description(value: CustomBuilder)
 
 设置说明内容。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -150,6 +176,8 @@ description(value: CustomBuilder)
 trackShadow(value: GaugeShadowOptions)
 
 设置阴影样式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -165,6 +193,8 @@ indicator(value: GaugeIndicatorOptions)
 
 设置指针样式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -173,22 +203,77 @@ indicator(value: GaugeIndicatorOptions)
 | ------ | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
 | value  | [GaugeIndicatorOptions](#gaugeindicatoroptions11对象说明) | 是   | 指针样式。<br/>**说明：** <br/>设置null则不显示指针。 |
 
+### privacySensitive<sup>12+</sup>
+
+privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
+
+设置隐私敏感。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                      | 必填 | 说明                                                  |
+| ------ | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
+| isPrivacySensitiveMode  | [Optional\<boolean\>] | 是   | 设置隐私敏感，隐私模式下Gauge指针指向0位置，最大值最小值文本将被遮罩，量程显示灰色或者底色。<br/>**说明：** <br/>设置null则不敏感。<br/>[需要卡片框架支持。](./ts-universal-attributes-obscured.md) |
+
+### contentModifier<sup>12+</sup>
+
+contentModifier(modifier: ContentModifier\<GaugeConfiguration>)
+
+定制Slider内容区的方法。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                             |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
+| modifier  | [ContentModifier\<GaugeConfiguration>](#gaugeconfiguration12对象说明) | 是   | 在Gauge组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+
 ## GaugeShadowOptions<sup>11+</sup>对象说明
-| 名称          | 参数类型 | 必填 | 描述 |
-| ------------- | ------- | ---- | -------- |
-| radius | number \| [Resource](ts-types.md#resource类型) | 否 | 投影模糊半径。 <br/>默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
-| offsetX | number \| [Resource](ts-types.md#resource类型) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
-| offsetY | number \| [Resource](ts-types.md#resource类型) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
+
+GaugeShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptions10)，具有MultiShadowOptions的全部属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ## GaugeIndicatorOptions<sup>11+</sup>对象说明
-| 名称          | 参数类型 | 必填 | 描述 |
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型 | 必填 | 说明 |
 | ------------- | ------- | ---- | -------- |
-| icon | [Resource](ts-types.md#resource类型) | 否 | 图标资源路径。<br/>**说明：** <br/>不配置则使用默认的三角形样式指针。<br/>支持使用svg格式的图标，若使用其他格式，则使用默认的三角形样式指针。 |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标资源路径。<br/>**说明：** <br/>不配置则使用默认的三角形样式指针。<br/>支持使用svg格式的图标，若使用其他格式，则使用默认的三角形样式指针。 |
 | space | [Dimension](ts-types.md#dimension10) | 否 | 指针距离圆环外边的间距。(不支持百分比) <br/>默认值：8<br/>单位：vp <br/>**说明：** <br/> 对于默认的三角形样式指针，间距为黑色三角形到圆环外边的间距。<br/> 若设置值小于0，则使用默认值。<br/>若设置值大于圆环半径，则使用默认值。|
 
+## GaugeConfiguration<sup>12+</sup>对象说明
+
+开发者需要自定义class实现ContentModifier接口。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型    | 必填 | 说明              |
+| ------ | ------ | ----| ---------------- |
+| value | number | 是 | 当前数据值。 |
+| min | number | 是 | 当前数据段最小值。 |
+| max | number | 是 | 当前数据段最大值。 |
+
+
 ## 示例
-### 示例1
-示例使用当前数值、说明文本、辅助文本。
+### 示例1（设置多色量规图）
+
+该示例通过colors接口，实现了多色量规图效果。
+
 ```ts
 @Entry
 @Component
@@ -253,8 +338,10 @@ struct Gauge1 {
 ```
 ![gauge](figures/gauge-image1.png)
 
-### 示例2
-示例使用当前数值、图标。
+### 示例2（设置单色量规图）
+
+该示例通过colors接口，实现了单色量规图效果。
+
 ```ts
 @Entry
 @Component
@@ -293,8 +380,10 @@ struct Gauge2 {
 ```
 ![gauge](figures/gauge-image2.png)
 
-### 示例3
-示例使用当前数值、说明文本。
+### 示例3（设置定制说明区）
+
+该示例通过description接口，实现了说明区的设置功能。
+
 ```ts
 @Entry
 @Component
@@ -351,8 +440,10 @@ struct Gauge3 {
 ```
 ![gauge](figures/gauge-image3.png)
 
-### 示例4
-示例使用当前数值、辅助文本。
+### 示例4（设置辅助区）
+
+该示例通过设置子组件，实现了辅助区的设置功能。
+
 ```ts
 @Entry
 @Component
@@ -403,8 +494,10 @@ struct Gauge4 {
 ```
 ![gauge](figures/gauge-image4.png)
 
-### 示例5
-示例使用当前数值、最大最小数值。
+### 示例5（设置最大最小值）
+
+该示例通过设置min，max属性，实现了量规图的最大最小值设置的功能。
+
 ```ts
 @Entry
 @Component
@@ -442,8 +535,10 @@ struct Gauge5 {
 ```
 ![gauge](figures/gauge-image5.png)
 
-### 示例6
-示例使用当前数值、最大最小数值、辅助文本。
+### 示例6（设置指针）
+
+该示例通过indicator接口，实现了设置量规图的指针的功能。
+
 ```ts
 @Entry
 @Component
@@ -487,8 +582,10 @@ struct Gauge6 {
 ```
 ![gauge](figures/gauge-image6.png)
 
-### 示例7
-示例使用当前数值、最大最小数值。
+### 示例7（设置起止角度）
+
+该示例通过startAngle、endAngle接口，实现了量规图起止角度设置的功能。
+
 ```ts
 @Entry
 @Component
@@ -523,3 +620,132 @@ struct Gauge7 {
 }
 ```
 ![gauge](figures/gauge-image7.png)
+
+
+
+### 示例8（设置定制内容区）
+
+该示例通过contentModifier接口，实现了定制量规图内容区的功能。
+
+```ts
+// xxx.ets
+//该示例实现了Gauge组件使用Builder定制内容区，使用了环形图表组件，按钮和文本框。点击增加按钮，环形图表指针位置会向右偏移，反之点减少按钮环形图表指针位置会向左偏移。
+@Builder
+function buildGauge(config: GaugeConfiguration) {
+  Column({ space: 30 }) {
+    Row() {
+      Text('【ContentModifier】 value：' + JSON.stringify((config.contentModifier as MyGaugeStyle).value) +
+        '  min：' + JSON.stringify((config.contentModifier as MyGaugeStyle).min) +
+        '  max：' + JSON.stringify((config.contentModifier as MyGaugeStyle).max))
+        .fontSize(12)
+    }
+
+    Text('【Config】value：' + config.value + '  min：' + config.min + '  max：' + config.max).fontSize(12)
+    Gauge({
+      value: config.value,
+      min: config.min,
+      max: config.max
+    }).width("50%")
+  }
+  .width("100%")
+  .padding(20)
+  .margin({ top: 5 })
+  .alignItems(HorizontalAlign.Center)
+}
+
+class MyGaugeStyle implements ContentModifier<GaugeConfiguration> {
+  value: number = 0
+  min: number = 0
+  max: number = 0
+
+  constructor(value: number, min: number, max: number) {
+    this.value = value
+    this.min = min
+    this.max = max
+  }
+
+  applyContent(): WrappedBuilder<[GaugeConfiguration]> {
+    return wrapBuilder(buildGauge)
+  }
+}
+
+@Entry
+@Component
+struct refreshExample {
+  @State gaugeValue: number = 20
+  @State gaugeMin: number = 0
+  @State gaugeMax: number = 100
+
+  build() {
+    Column({ space: 20 }) {
+      Gauge({
+        value: this.gaugeValue,
+        min: this.gaugeMin,
+        max: this.gaugeMax
+      })
+        .contentModifier(new MyGaugeStyle(30, 10, 100))
+
+      Column({ space: 20 }) {
+        Row({ space: 20 }) {
+          Button('增加').onClick(() => {
+            if (this.gaugeValue < this.gaugeMax) {
+              this.gaugeValue += 1
+            }
+          })
+          Button('减少').onClick(() => {
+            if (this.gaugeValue > this.gaugeMin) {
+              this.gaugeValue -= 1
+            }
+          })
+        }
+      }.width('100%')
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+![gauge](figures/gauge_builder.gif)
+
+
+### 示例9（设置隐私隐藏）
+
+该示例通过privacySensitive接口，实现了隐私隐藏效果，效果展示需要卡片框架支持
+
+```ts
+@Entry
+@Component
+struct GaugeExample {
+  build() {
+    Scroll() {
+      Column({ space: 15 }) {
+        Row() {
+          Gauge({ value: 50, min: 1, max: 100 }) {
+            Column() {
+              Text('60')
+                .maxFontSize("180sp")
+                .minFontSize("160.0vp")
+                .fontWeight(FontWeight.Medium)
+                .fontColor("#ff182431")
+                .width('40%')
+                .height('30%')
+                .textAlign(TextAlign.Center)
+                .margin({ top: '22.2%' })
+                .textOverflow({ overflow: TextOverflow.Ellipsis })
+                .maxLines(1)
+            }.width('100%').height('100%')
+          }
+          .startAngle(225)
+          .endAngle(135)
+          .colors(Color.Red)
+          .width('80%')
+          .height('80%')
+          .strokeWidth(18)
+          .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 })
+          .padding(18)
+          .privacySensitive(true)
+        }
+      }
+    }
+  }
+}
+```
+![gauge](figures/gauge-privacysensitive.gif)

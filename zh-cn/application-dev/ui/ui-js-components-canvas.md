@@ -139,14 +139,13 @@ export default {
 
 ![zh-cn_image_0000001222985331](figures/zh-cn_image_0000001222985331.gif)
 
-> **说明：**
+> **说明：** 
+>
 > 画布不支持在onInit和onReady中进行创建。
 
 ## 相关实例
 
 针对Canvas开发，有以下相关实例可供参考：
-
-- [JS组件集（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)
 
 - [自定义抽奖转盘（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/JSCanvasComponent)
 

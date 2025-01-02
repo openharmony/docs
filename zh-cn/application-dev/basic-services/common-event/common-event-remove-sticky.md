@@ -7,11 +7,11 @@
 
 ## 接口说明
 
-参考[接口文档](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md)。
+参考[接口文档](../../reference/apis-basic-services-kit/js-apis-commonEventManager-sys.md#commoneventmanagerremovestickycommonevent10)。
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
-| removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void | 移除粘性公共事件 |
+| removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void | 移除粘性公共事件。 |
 
 
 ## 开发步骤
@@ -21,10 +21,11 @@
 2. 导入模块。
 
    ```ts
-   import Base from '@ohos.base';
-   import commonEventManager from '@ohos.commonEventManager';
+   import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'ProcessModel';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 3. 调用[`removeStickyCommonEvent()`](../../reference/apis-basic-services-kit/js-apis-commonEventManager-sys.md#commoneventmanagerremovestickycommonevent10)方法移除对应的粘性公共事件。
@@ -35,14 +36,14 @@
 
    ```ts
    // 移除粘性公共事件，其中的event字段需要替换为实际的事件名称。
-   commonEventManager.removeStickyCommonEvent('event', (err: Base.BusinessError) => {
+   commonEventManager.removeStickyCommonEvent('event', (err: BusinessError) => {
      // sticky_event粘性公共事件名
      if (err) {
-       console.error(TAG, `Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
+       hilog.error(DOMAIN_NUMBER, TAG, `Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     ...
-     console.info(TAG, `Succeeded in removeing sticky event.`);
+     //...
+     hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in removeing sticky event.`);
    });
    ```
 

@@ -7,11 +7,11 @@ Data transferred in XML format must be parsed before being put in use. Generally
 The **xml** module provides the **XmlPullParser** class to parse XML files. The input is an object of the ArrayBuffer or DataView type containing XML text, and the output is the parsed information.
 
 
-**Table 1** XML parsing options
+  **Table 1** XML parsing options
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| supportDoctype | boolean | No| Whether to ignore the document type. The default value is **false**, indicating that the document type is parsed.|
+| supportDoctype | boolean | No| Whether to ignore the document type. The default value is **false**, indicating that the document type is not parsed.|
 | ignoreNameSpace | boolean | No| Whether to ignore the namespace. The default value is **false**, indicating that the namespace is parsed.|
 | tagValueCallbackFunction | (name: string, value: string) =&gt; boolean | No| Callback used to return **tagValue**, which consists of a tag and its value. The default value is **null**, indicating that XML tags and tag values are not parsed.|
 | attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No| Callback used to return **attributeValue**, which consists of an attribute and its value. The default value is **null**, indicating that XML attributes and attribute values are not parsed.|
@@ -30,8 +30,7 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
 1. Import the modules.
 
     ```ts
-    import xml from '@ohos.xml';
-    import util from '@ohos.util'; // Use the API provided by the util module to encode the file.
+    import { xml, util } from '@kit.ArkTS'; // Use the API provided by the util module to encode the file.
     ```
 
 2. Create an **XmlPullParser** object.
@@ -94,8 +93,7 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
 1. Import the modules.
 
     ```ts
-    import xml from '@ohos.xml';
-    import util from '@ohos.util'; // Use the API provided by the util module to encode the file.
+    import { xml, util } from '@kit.ArkTS'; // Use the API provided by the util module to encode the file.
     ```
 
 2. Create an **XmlPullParser** object.
@@ -142,8 +140,7 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
 1. Import the modules.
 
     ```ts
-    import xml from '@ohos.xml';
-    import util from '@ohos.util'; // Use the API provided by the util module to encode the file.
+    import { xml, util } from '@kit.ArkTS'; // Use the API provided by the util module to encode the file.
     ```
 
 2. Create an **XmlPullParser** object.
@@ -198,14 +195,13 @@ In the following example, all parsing options are invoked to parse XML tags, att
 
 
 ```ts
-import xml from '@ohos.xml';
-import util from '@ohos.util';
+import { xml, util } from '@kit.ArkTS';
 
 let strXml: string =
   '<?xml version="1.0" encoding="UTF-8"?>' +
     '<book category="COOKING">' +
     '<title lang="en">Everyday</title>' +
-    '<author>Giada</author>' +
+    '<author>Giana</author>' +
     '</book>';
 let textEncoder: util.TextEncoder = new util.TextEncoder();
 let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml);
@@ -257,7 +253,7 @@ The output is as follows:
    token-3 2
    tag-author
    token-2 2
-   tag-Giada
+   tag-Giana
    token-4 2
    tag-author
    token-3 2

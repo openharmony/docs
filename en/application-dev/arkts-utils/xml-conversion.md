@@ -19,10 +19,10 @@ To convert an XML file into a JavaScript object to obtain the tag values, procee
 1. Import the **convertxml** module.
 
    ```ts
-   import convertxml from '@ohos.convertxml';
+   import { convertxml } from '@kit.ArkTS';
    ```
 
-2. Pass in the XML file to be converted and set conversion options.
+2. Enter the XML file to be converted and set conversion options. For details about the supported conversion options and their meanings, see [ConvertOptions](../reference/apis-arkts/js-apis-convertxml.md#convertoptions).
 
    ```ts
    let xml: string =

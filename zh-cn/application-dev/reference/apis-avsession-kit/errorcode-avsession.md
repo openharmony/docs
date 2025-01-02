@@ -138,7 +138,7 @@ Too many commands or events.
 
 **错误信息**
 
-Device connecting failed.
+Device connection failed.
 
 **错误描述**
 

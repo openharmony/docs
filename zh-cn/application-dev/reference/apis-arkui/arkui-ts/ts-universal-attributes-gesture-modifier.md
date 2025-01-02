@@ -12,6 +12,8 @@ gestureModifier(modifier:&nbsp;GestureModifier)
 
 动态设置组件绑定的手势。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -31,6 +33,8 @@ applyGesture(event: UIGestureEvent): void
 
 开发者可根据需要自定义实现这个方法，对组件设置需要绑定的手势，支持使用if/else语法进行动态设置。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数**：
 
 | 参数名            | 类型                                        | 说明                                       |
@@ -38,6 +42,8 @@ applyGesture(event: UIGestureEvent): void
 | event        | [UIGestureEvent](./ts-uigestureevent.md#uigestureevent) |  UIGestureEvent对象，用于设置组件需要绑定的手势。      |
 
 ## 示例
+
+该示例通过gestureModifier动态设置组件绑定的手势。
 
 ```ts
 // xxx.ets

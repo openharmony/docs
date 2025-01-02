@@ -1,6 +1,6 @@
 # @ohos.net.networkSecurity (Network Security)
 
-The **networkSecurity** module provides the network security verification capability. Specifically, it provides APIs for applications to verify the certificate chains in use.
+The **networkSecurity** module provides the network security verification capability. Specifically, it provides APIs for applications to verify the certificates in use.
 
 > **NOTE**
 >
@@ -9,21 +9,21 @@ The **networkSecurity** module provides the network security verification capabi
 ## Modules to Import
 
 ```ts
-import networkSecurity from '@ohos.net.networkSecurity';
+import { networkSecurity } from '@kit.NetworkKit';
 ```
 
 ## Sample Code
 
 ```ts
-import networkSecurity from '@ohos.net.networkSecurity';
+import { networkSecurity } from '@kit.NetworkKit';
 
 // Define certificate blobs
-const cert = {
+const cert: networkSecurity.CertBlob = {
   type: networkSecurity.CertType.CERT_TYPE_PEM,
   data: '-----BEGIN CERTIFICATE-----\n... (certificate data) ...\n-----END CERTIFICATE-----',
 };
 
-const caCert = {
+const caCert: networkSecurity.CertBlob = {
   type: networkSecurity.CertType.CERT_TYPE_PEM,
   data: '-----BEGIN CERTIFICATE-----\n... (CA certificate data) ...\n-----END CERTIFICATE-----',
 };
@@ -33,12 +33,14 @@ networkSecurity.certVerification(cert, caCert)
   .then((result) => {
     console.info('Certificate verification result:', result);
   })
-  .catch((error) => {
+  .catch((error: BusinessError) => {
     console.error('Certificate verification failed:', error);
   });
 ```
 
-> **NOTE**<br>Be sure to replace the certificate data in the example with the actual certificate data.
+> **NOTE**
+> 
+> Be sure to replace the certificate data in the example with the actual certificate data.
 
 ## CertType
 
@@ -60,15 +62,15 @@ Defines the certificate data.
 
 | Name | Type                  | Mandatory     | Description          |
 | ----- | --------------------- | --------- | -------------- |
-| type  | CertType              | Yes       | Certificate type. |
-| data  | string \| ArrayBuffer | Yes       | Certificate data.     |
+| type  | CertType              | Yes     | Certificate type. |
+| data  | string \| ArrayBuffer | Yes      | Certificate data.     |
 
 
 ## networkSecurity.certVerification
 
 certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 
-Obtains the preset CA certificate and custom CA certificate from the certificate management module, and verifies the certificate chain passed by the application.
+Obtains the preset CA certificate and custom CA certificate from the certificate management module, and verifies the certificate passed by the application.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -76,8 +78,8 @@ Obtains the preset CA certificate and custom CA certificate from the certificate
 
 | Name| Type    | Mandatory| Description                  |
 | ------ | -------- | ---- | ---------------------- |
-| cert   | CertBlob | Yes  | Certificate chain to be verified.      |
-| caCert | CertBlob | No  | Custom CA certificate chain.|
+| cert   | CertBlob | Yes  | Certificate to be verified.      |
+| caCert | CertBlob | No  | Custom CA certificate.|
 
 **Return values:**
 
@@ -102,24 +104,29 @@ Obtains the preset CA certificate and custom CA certificate from the certificate
 | 2305010  | Certificate has expired.                             |
 | 2305011  | CRL is not yet valid.                                |
 | 2305012  | CRL has expired.                                     |
+| 2305018  | Self-signed certificate.                             |
 | 2305023  | Certificate has been revoked.                        |
 | 2305024  | Invalid certificate authority (CA).                  |
 | 2305027  | Certificate is untrusted.                            |
+| 2305069  | Call invalid.                                        |
 
-> **NOTE**<br>If any of the preceding error codes is reported during certificate verification, rectify the error based on the detailed information about the error description.
+> **NOTE**
+> 
+> If any of the preceding error codes is reported during certificate verification, rectify the error based on the detailed information about the error description.
 
 **Example**
 
 ```ts
-import networkSecurity from '@ohos.net.networkSecurity';
+import { networkSecurity } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Define certificate blobs
-const cert = {
+const cert:networkSecurity.CertBlob = {
   type: networkSecurity.CertType.CERT_TYPE_PEM,
   data: '-----BEGIN CERTIFICATE-----\n... (certificate data) ...\n-----END CERTIFICATE-----',
 };
 
-const caCert = {
+const caCert:networkSecurity.CertBlob = {
   type: networkSecurity.CertType.CERT_TYPE_PEM,
   data: '-----BEGIN CERTIFICATE-----\n... (CA certificate data) ...\n-----END CERTIFICATE-----',
 };
@@ -129,11 +136,13 @@ networkSecurity.certVerification(cert, caCert)
   .then((result) => {
     console.info('Certificate verification result:', result);
   })
-  .catch((error) => {
+  .catch((error: BusinessError) => {
     console.error('Certificate verification failed:', error);
   });
 ```
-> **NOTE**<br>Be sure to replace the certificate data in the example with the actual certificate data.
+> **NOTE**
+> 
+> Be sure to replace the certificate data in the example with the actual certificate data.
 
 
 
@@ -141,7 +150,7 @@ networkSecurity.certVerification(cert, caCert)
 
 certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 
-Obtains the preset CA certificate and custom CA certificate from the certificate management module, and verifies the certificate chain passed by the application.
+Obtains the preset CA certificate and custom CA certificate from the certificate management module, and verifies the certificate passed by the application.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -149,14 +158,14 @@ Obtains the preset CA certificate and custom CA certificate from the certificate
 
 | Name| Type    | Mandatory| Description                  |
 | ------ | -------- | ---- | ---------------------- |
-| cert   | CertBlob | Yes | Certificate chain to be verified.      |
-| caCert | CertBlob | No  | Custom CA certificate chain.|
+| cert   | CertBlob | Yes | Certificate to be verified.      |
+| caCert | CertBlob | No  | Custom CA certificate.|
 
 **Return values:**
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| number | Certificate chain verification result. The value **0** indicates that the certificate verification is successful, and a non-0 value indicates that the verification has failed.|
+| number | Certificate verification result. The value **0** indicates that the certificate verification is successful, and a non-0 value indicates that the verification has failed.|
 
 **Error codes**
 
@@ -179,12 +188,15 @@ Obtains the preset CA certificate and custom CA certificate from the certificate
 | 2305024  | Invalid certificate authority (CA).                  |
 | 2305027  | Certificate is untrusted.                            |
 
-> **NOTE**<br>If any of the preceding error codes is reported during certificate verification, rectify the error based on the detailed information about the error description.
+> **NOTE**
+>
+> If any of the preceding error codes is reported during certificate verification, rectify the error based on the detailed information about the error description.
 
 **Example**
 
 ```ts
-import networkSecurity from '@ohos.net.networkSecurity';
+import { networkSecurity } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Create certificate blobs
 const cert: networkSecurity.CertBlob = {
@@ -202,13 +214,15 @@ networkSecurity.certVerification(cert, caCert)
   .then((result) => {
     console.info('Verification Result:', result);
   })
-  .catch((error) => {
+  .catch((error: BusinessError) => {
     console.error('Verification Error:', error);
   });
 
 // Synchronous verification
-let resultSync : number = networkSecurity.certVerificationSync(cert, caCert);
+let resultSync: number = networkSecurity.certVerificationSync(cert, caCert);
 console.info('Synchronous Verification Result:', resultSync);
 ```
 
-> **NOTE**<br>Be sure to replace the certificate data in the example with the actual certificate data.
+> **NOTE**
+>
+> Be sure to replace the certificate data in the example with the actual certificate data.

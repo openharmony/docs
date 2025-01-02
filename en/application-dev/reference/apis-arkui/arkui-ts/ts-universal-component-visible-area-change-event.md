@@ -8,22 +8,30 @@ The visible area change event of a component refers to the change in the visual 
 
 ## onVisibleAreaChange
 
-onVisibleAreaChange(ratios: Array&lt;number&gt;, event: (isVisible: boolean, currentRatio: number) => void)
+onVisibleAreaChange(ratios: Array&lt;number&gt;, event: (isVisible: boolean, currentRatio: number) => void): T
 
-Called when the visual area of the component changes.
+Called when the visible area of the component changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                               | Mandatory| Description                                                        |
+| Name | Type                                               | Mandatory | Description                                                        |
 | ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| ratios | Array&lt;number&gt;                                 | Yes  | Threshold array. Each threshold represents a ratio of the component's visible area (that is, the area of the component that is visible on screen; only the area within the parent component is counted) to the component's total area. This callback is invoked when the ratio of the component's visible area to its total area is greater than or less than the threshold. The value range of the threshold is [0.0, 1.0]. If the threshold set exceeds this range, the value **0.0** or **1.0** will be used.|
-| event  | (isVisible: boolean, currentRatio: number) => void) | Yes  | - **isVisible**: whether the ratio of the component's visible area to its total area is greater than the previous one. The value **true** means that the ratio is greater than the previous one, and **false** means the opposite.<br>- **currentRatio**: ratio of the component's visible area to its total area when this callback is invoked.|
+| ratios | Array&lt;number&gt;                                 | Yes  | Threshold array. Each threshold represents a ratio of the component's visible area (that is, the area of the component that is visible on screen; only the area within the parent component is counted) to the component's total area. This callback is invoked when the ratio of the component's visible area to its total area is greater than or less than the threshold. The value range of the threshold is [0.0, 1.0]. If the threshold set exceeds this range, the value **0.0** or **1.0** will be used.<br>**NOTE**<br>When the value is close to the boundary 0 or 1, it is rounded off with a round-off error not greater than 0.001. For example, 0.9997 is rounded off to 1. |
+| event  | (isVisible: boolean, currentRatio: number) => void) | Yes  | - **isVisible**: whether the ratio of the component's visible area to its total area is greater than the previous one. The value **true** means that the ratio is greater than the previous one, and **false** means the opposite.<br>- **currentRatio**: ratio of the component's visible area to its total area when this callback is invoked. |
+
+**Return value**
+
+| Type | Description |
+| -------- | -------- |
+| T | Current component. |
 
 > **NOTE**
 >
-> This API applies only to the scenario where the component layout area exceeds or is not within the current screen display area. It does not apply to the scenario where the area becomes invisible due to component stacking or the visible area exceeds the allowed range as a result of calling transformation APIs such as **offset** or **translate**.
+> This API applies only to the scenario where the component's layout area exceeds or is not within the current screen display area. It does not apply to the scenario where the visible area changes due to component stacking (by using [Stack](ts-container-stack.md) or [z-order control](ts-universal-attributes-z-order.md)) or as a result of calling transformation APIs such as **offset** or **translate**. Any area of a component that extends beyond its parent component regarded as an invisible area.
 
 
 ## Example
@@ -111,7 +119,7 @@ struct ScrollExample {
       .scrollBar(BarState.On)
       .scrollBarColor(Color.Gray)
       .scrollBarWidth(10)
-      .onScroll((xOffset: number, yOffset: number) => {
+      .onWillScroll((xOffset: number, yOffset: number, scrollState: ScrollState) => {
         console.info(xOffset + ' ' + yOffset)
       })
       .onScrollEdge((side: Edge) => {

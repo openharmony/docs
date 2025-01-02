@@ -10,7 +10,7 @@ The **OverlayModuleInfo** module provides information about a module with the ov
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name                 | Type                                               | Readable| Writable| Description                                           |
+| Name                 | Type                                               | Read-Only| Optional| Description                                           |
 | --------------------- | ---------------------------------------------------| ---- | ---- | ---------------------------------------------- |
 | bundleName            | string                                             | Yes  | No  | Bundle name of the application to which the module with the overlay feature belongs.          |
 | moduleName            | string                                             | Yes  | No  | Name of the module with the overlay feature.                      |

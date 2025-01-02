@@ -1,24 +1,23 @@
-# 管理域帐号插件
+# 管理域账号插件（仅对系统应用开放）
 
-OEM厂商可以采用插件方式定制化域帐号管理能力，系统提供了域帐号插件注册和注销能能力。
+OEM厂商可以采用插件方式定制化域账号管理能力，系统提供了域账号插件注册和注销能能力。
 
 ## 开发准备
 
-1. 申请权限，申请流程请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+1. 申请权限，申请流程请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
    - ohos.permission.MANAGE_LOCAL_ACCOUNTS
    - ohos.permission.GET_DOMAIN_ACCOUNTS
 
-2. 导入系统帐号模块。
+2. 导入系统账号模块。
 
    ```ts
-   import account_osAccount from '@ohos.account.osAccount';
-   import { AsyncCallback, BusinessError } from '@ohos.base';
+   import { osAccount, AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
    ```
 
-3. 获取系统帐号管理对象。
+3. 获取系统账号管理对象。
 
    ```ts
-   let accountMgr = account_osAccount.getAccountManager()
+   let accountMgr = osAccount.getAccountManager()
    ```
 
 ## 注册插件
@@ -30,46 +29,46 @@ OEM厂商可以采用插件方式定制化域帐号管理能力，系统提供�
 1. 定义插件。
 
    ```ts
-   let plugin: account_osAccount.DomainPlugin = {
-     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-            callback: account_osAccount.IUserAuthCallback) => {
+   let plugin: osAccount.DomainPlugin = {
+     auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+            callback: osAccount.IUserAuthCallback) => {
        console.info("plugin auth domain" + domainAccountInfo.domain)
        console.info("plugin auth accountName" + domainAccountInfo.accountName)
        console.info("plugin auth accountId" + domainAccountInfo.accountId)
 
-       let result: account_osAccount.AuthResult = {
+       let result: osAccount.AuthResult = {
          token: new Uint8Array([0]),
          remainTimes: 5,
          freezingTime: 0
        };
        callback.onResult(0, result);
      },
-     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                     callback: account_osAccount.IUserAuthCallback) => {
+     authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                     callback: osAccount.IUserAuthCallback) => {
        console.info("plugin authWithPopup domain" + domainAccountInfo.domain)
        console.info("plugin authWithPopup accountName" + domainAccountInfo.accountName)
        console.info("plugin authWithPopup accountId" + domainAccountInfo.accountId)
 
-       let result: account_osAccount.AuthResult = {
+       let result: osAccount.AuthResult = {
          token: new Uint8Array([0]),
          remainTimes: 5,
          freezingTime: 0
        };
        callback.onResult(0, result);
      },
-     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array, callback: account_osAccount.IUserAuthCallback) => {
+     authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array, callback: osAccount.IUserAuthCallback) => {
        console.info("plugin authWithToken domain" + domainAccountInfo.domain)
        console.info("plugin authWithToken accountName" + domainAccountInfo.accountName)
        console.info("plugin authWithToken accountId" + domainAccountInfo.accountId)
-       let result: account_osAccount.AuthResult = {
+       let result: osAccount.AuthResult = {
          token: new Uint8Array([0]),
          remainTimes: 5,
          freezingTime: 0
        };
        callback.onResult(0, result);
      },
-     getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                      callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {
+     getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                      callback: AsyncCallback<osAccount.DomainAccountInfo>) => {
        console.info("plugin getAccountInfo domain")
        let domainAccountId = Date.now().toString()
        let code: BusinessError = {
@@ -77,16 +76,20 @@ OEM厂商可以采用插件方式定制化域帐号管理能力，系统提供�
          name: "mock_name",
          message: "mock_message"
        };
-       let accountInfo: account_osAccount.DomainAccountInfo = {
-         domain: options.domain,
+       let domainStr: string = '';
+       if (options.domain != undefined) {
+        domainStr = options.domain
+       }
+       let accountInfo: osAccount.DomainAccountInfo = {
+         domain: domainStr,
          accountName: options.accountName,
          accountId: domainAccountId,
          isAuthenticated: false
        };
        callback(code, accountInfo);
      },
-     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {
+     getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                         callback: AsyncCallback<osAccount.AuthStatusInfo>) => {
 
        console.info("plugin getAuthStatusInfo domain" + domainAccountInfo.domain)
        console.info("plugin getAuthStatusInfo accountName" + domainAccountInfo.accountName)
@@ -97,13 +100,13 @@ OEM厂商可以采用插件方式定制化域帐号管理能力，系统提供�
          name: "mock_name",
          message: "mock_message"
        };
-       let statusInfo: account_osAccount.AuthStatusInfo = {
+       let statusInfo: osAccount.AuthStatusInfo = {
          remainTimes: 5,
          freezingTime: 0
        };
        callback(code, statusInfo);
      },
-     bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+     bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                    callback: AsyncCallback<void>) => {
        console.info("plugin bindAccount domain" + domainAccountInfo.domain)
        console.info("plugin bindAccount accountName" + domainAccountInfo.accountName)
@@ -115,12 +118,12 @@ OEM厂商可以采用插件方式定制化域帐号管理能力，系统提供�
        };
        callback(code);
      },
-     unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {
+     unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {
        console.info("plugin unbindAccount domain" + domainAccountInfo.domain)
        console.info("plugin unbindAccount accountName" + domainAccountInfo.accountName)
        console.info("plugin unbindAccount accountId" + domainAccountInfo.accountId)
      },
-     isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+     isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                            callback: AsyncCallback<boolean>) => {
        console.info("plugin isAccountTokenValid domain" + domainAccountInfo.domain)
        console.info("plugin isAccountTokenValid accountName" + domainAccountInfo.accountName)
@@ -132,7 +135,7 @@ OEM厂商可以采用插件方式定制化域帐号管理能力，系统提供�
        };
        callback(code, true);
      },
-     getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {
+     getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {
        console.info("plugin getAccessToken domain")
        let code: BusinessError = {
          code: 0,
@@ -149,7 +152,7 @@ OEM厂商可以采用插件方式定制化域帐号管理能力，系统提供�
 
    ```ts
    try {
-       account_osAccount.DomainAccountManager.registerPlugin(plugin)
+       osAccount.DomainAccountManager.registerPlugin(plugin)
        console.info("registerPlugin success")
    } catch (err) {
        console.info("registerPlugin err: " + JSON.stringify(err));
@@ -164,7 +167,7 @@ OEM厂商可以采用插件方式定制化域帐号管理能力，系统提供�
 
 ```ts
 try {
-  account_osAccount.DomainAccountManager.unregisterPlugin();
+  osAccount.DomainAccountManager.unregisterPlugin();
   console.log('unregisterPlugin success.');
 } catch(err) {
   console.log('unregisterPlugin err:' + JSON.stringify(err));

@@ -1,6 +1,6 @@
 # Circle
 
- The **\<Circle>** component is used to draw a circle.
+The **Circle** component is used to draw a circle.
 
 >  **NOTE**
 >
@@ -14,16 +14,32 @@ Not supported
 
 ## APIs
 
-Circle(options?: {width?: string | number, height?: string | number})
+Circle(value?: CircleOptions)
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| width | string \| number | No| Width of the circle.<br>Default value: **0**<br>**NOTE**<br>An invalid value is handled as the default value.|
-| height | string \| number | No| Height of the circle.<br>Default value: **0**<br>**NOTE**<br>An invalid value is handled as the default value.|
+| value | [CircleOptions](#circleoptions) | No| Options of the circle.|
+
+## CircleOptions
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| width | string \| number| No| Width of the circle.<br>Default value: **0**<br>An invalid value is handled as the default value.|
+| height | string \| number| No| Height of the circle.<br>Default value: **0**<br>An invalid value is handled as the default value.|
 
 ## Attributes
 
@@ -35,7 +51,7 @@ fill(value: ResourceColor)
 
 Sets the color of the fill area. An invalid value is handled as the default value.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -51,7 +67,7 @@ fillOpacity(value: number | string | Resource)
 
 Sets the opacity of the fill area. The value range is [0.0, 1.0]. A value less than 0.0 evaluates to the value **0.0**. A value greater than 1.0 evaluates to the value **1.0**. Any other value evaluates to the value **1.0**.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -59,7 +75,7 @@ Sets the opacity of the fill area. The value range is [0.0, 1.0]. A value less t
 
 | Name| Type                                                        | Mandatory| Description                          |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | Yes  | Opacity of the fill area.<br>Default value: **1**|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Opacity of the fill area.<br>Default value: **1**|
 
 ### stroke
 
@@ -67,7 +83,7 @@ stroke(value: ResourceColor)
 
 Sets the stroke color. If this attribute is not set, the component does not have any stroke. If the value is invalid, no stroke will be drawn.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -83,7 +99,7 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 Sets stroke dashes. An invalid value is handled as the default value.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -99,7 +115,7 @@ strokeDashOffset(value: number | string)
 
 Sets the offset of the start point for drawing the stroke. An invalid value is handled as the default value.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -107,7 +123,7 @@ Sets the offset of the start point for drawing the stroke. An invalid value is h
 
 | Name| Type                      | Mandatory| Description                                |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**|
+| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**|
 
 ### strokeLineCap
 
@@ -115,7 +131,7 @@ strokeLineCap(value: LineCapStyle)
 
 Sets the cap style of the stroke.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -129,9 +145,9 @@ Sets the cap style of the stroke.
 
 strokeLineJoin(value: LineJoinStyle)
 
-Sets the join style of the stroke. This attribute does not work for the **\<circle>** component, which does not have corners.
+Sets the join style of the stroke. This attribute does not work for the **Circle** component, which does not have corners.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -145,9 +161,9 @@ Sets the join style of the stroke. This attribute does not work for the **\<circ
 
 strokeMiterLimit(value: number | string)
 
-Sets the limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. This attribute does not take effect for the **\<Circle>** component, because it does not have a miter join.
+Sets the limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. This attribute does not take effect for the **Circle** component, which does not have a miter join.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -155,7 +171,7 @@ Sets the limit on the ratio of the miter length to the value of **strokeWidth** 
 
 | Name| Type                      | Mandatory| Description                                          |
 | ------ | -------------------------- | ---- | ---------------------------------------------- |
-| value  | number&nbsp;\|&nbsp;string | Yes  | Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join.<br>Default value: **4**|
+| value  | number \| string | Yes  | Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join.<br>Default value: **4**|
 
 ### strokeOpacity
 
@@ -163,7 +179,7 @@ strokeOpacity(value: number | string | Resource)
 
 Sets the stroke opacity. The value range is [0.0, 1.0]. A value less than 0.0 evaluates to the value **0.0**. A value greater than 1.0 evaluates to the value **1.0**. Any other value evaluates to the value **1.0**.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -171,15 +187,15 @@ Sets the stroke opacity. The value range is [0.0, 1.0]. A value less than 0.0 ev
 
 | Name| Type                                                        | Mandatory| Description                      |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | Yes  | Stroke opacity.<br>Default value: **1**|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Stroke opacity.<br>Default value: **1**|
 
 ### strokeWidth
 
 strokeWidth(value: Length)
 
-Sets the stroke width. If of the string type, this parameter cannot be set in percentage. A percentage is processed as 1 px.
+Sets the stroke width. If of the string type, this attribute cannot be set in percentage. A percentage is processed as 1 px.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -195,7 +211,7 @@ antiAlias(value: boolean)
 
 Specifies whether anti-aliasing is enabled.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

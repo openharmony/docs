@@ -29,30 +29,30 @@ HiAppEvent模块提供应用事件打点功能。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct  [HiAppEvent_AppEventInfo](_hi_app_event___app_event_info.md) | 单个事件信息，包含事件领域，事件名称，事件类型和json格式字符串表示的事件中携带的自定义参数列表。  | 
-| struct  [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) | 具有相同事件名称的事件组。  | 
+| struct&nbsp;&nbsp;[HiAppEvent_AppEventInfo](_hi_app_event___app_event_info.md) | 单个事件信息，包含事件领域，事件名称，事件类型和json格式字符串表示的事件中携带的自定义参数列表。  | 
+| struct&nbsp;&nbsp;[HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) | 具有相同事件名称的事件组。  | 
 
 
 ### 宏定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [DISABLE](#disable)   "disable" | 事件打点开关。  | 
-| [MAX_STORAGE](#max_storage)   "max_storage" | 事件文件目录存储配额大小。  | 
-| [EVENT_USER_LOGIN](#event_user_login)   "hiappevent.user_login" | 用户登录事件。  | 
-| [EVENT_USER_LOGOUT](#event_user_logout)   "hiappevent.user_logout" | 用户登出事件。  | 
-| [EVENT_DISTRIBUTED_SERVICE_START](#event_distributed_service_start)   "hiappevent.distributed_service_start" | 分布式服务事件。  | 
-| [EVENT_APP_CRASH](#event_app_crash)   "APP_CRASH" | 应用崩溃事件。  | 
-| [EVENT_APP_FREEZE](#event_app_freeze)   "APP_FREEZE" | 应用卡顿事件。  | 
-| [EVENT_APP_LAUNCH](#event_app_launch)   "APP_LAUNCH" | 应用加载事件。  | 
-| [EVENT_SCROLL_JANK](#event_scroll_jank)   "SCROLL_JANK" | 应用滑动卡顿事件。  | 
-| [EVENT_CPU_USAGE_HIGH](#event_cpu_usage_high)   "CPU_USAGE_HIGH" | 应用CPU资源占用高事件。  | 
-| [EVENT_BATTERY_USAGE](#event_battery_usage)   "BATTERY_USAGE" | 应用电源使用率事件。  | 
-| [EVENT_RESOURCE_OVERLIMIT](#event_resource_overlimit)   "RESOURCE_OVERLIMIT" | 应用资源超限事件。  | 
-| [DOMAIN_OS](#domain_os)   "OS" | OS作用域。  | 
-| [PARAM_USER_ID](#param_user_id)   "user_id" | 用户ID。  | 
-| [PARAM_DISTRIBUTED_SERVICE_NAME](#param_distributed_service_name)   "ds_name" | 分布式服务名称。  | 
-| [PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID](#param_distributed_service_instance_id)   "ds_instance_id" | 分布式服务实例ID。  | 
+| [DISABLE](#disable)&nbsp;&nbsp;&nbsp;"disable" | 事件打点开关。默认值为false。true：关闭打点功能，false：不关闭打点功能。  | 
+| [MAX_STORAGE](#max_storage)&nbsp;&nbsp;&nbsp;"max_storage" | 事件文件目录存储配额大小。默认值为“10M”。  | 
+| [EVENT_USER_LOGIN](#event_user_login)&nbsp;&nbsp;&nbsp;"hiappevent.user_login" | 用户登录事件。  | 
+| [EVENT_USER_LOGOUT](#event_user_logout)&nbsp;&nbsp;&nbsp;"hiappevent.user_logout" | 用户登出事件。  | 
+| [EVENT_DISTRIBUTED_SERVICE_START](#event_distributed_service_start)&nbsp;&nbsp;&nbsp;"hiappevent.distributed_service_start" | 分布式服务事件。  | 
+| [EVENT_APP_CRASH](#event_app_crash)&nbsp;&nbsp;&nbsp;"APP_CRASH" | 应用崩溃事件。  | 
+| [EVENT_APP_FREEZE](#event_app_freeze)&nbsp;&nbsp;&nbsp;"APP_FREEZE" | 应用卡顿事件。  | 
+| [EVENT_APP_LAUNCH](#event_app_launch)&nbsp;&nbsp;&nbsp;"APP_LAUNCH" | 应用加载事件。  | 
+| [EVENT_SCROLL_JANK](#event_scroll_jank)&nbsp;&nbsp;&nbsp;"SCROLL_JANK" | 应用滑动卡顿事件。  | 
+| [EVENT_CPU_USAGE_HIGH](#event_cpu_usage_high)&nbsp;&nbsp;&nbsp;"CPU_USAGE_HIGH" | 应用CPU资源占用高事件。  | 
+| [EVENT_BATTERY_USAGE](#event_battery_usage)&nbsp;&nbsp;&nbsp;"BATTERY_USAGE" | 应用电源使用率事件。  | 
+| [EVENT_RESOURCE_OVERLIMIT](#event_resource_overlimit)&nbsp;&nbsp;&nbsp;"RESOURCE_OVERLIMIT" | 应用资源超限事件。  | 
+| [DOMAIN_OS](#domain_os)&nbsp;&nbsp;&nbsp;"OS" | OS作用域。  | 
+| [PARAM_USER_ID](#param_user_id)&nbsp;&nbsp;&nbsp;"user_id" | 用户ID。  | 
+| [PARAM_DISTRIBUTED_SERVICE_NAME](#param_distributed_service_name)&nbsp;&nbsp;&nbsp;"ds_name" | 分布式服务名称。  | 
+| [PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID](#param_distributed_service_instance_id)&nbsp;&nbsp;&nbsp;"ds_instance_id" | 分布式服务实例ID。  | 
 
 
 ### 类型定义
@@ -72,7 +72,7 @@ HiAppEvent模块提供应用事件打点功能。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [EventType](#eventtype) { FAULT = 1, STATISTIC = 2, SECURITY = 3, BEHAVIOR = 4 } | 事件类型。 | 
+| [EventType](#eventtype) { **FAULT** = 1, **STATISTIC** = 2, **SECURITY** = 3, **BEHAVIOR** = 4 } | 事件类型。  | 
 
 
 ### 函数
@@ -120,7 +120,7 @@ HiAppEvent模块提供应用事件打点功能。
 #define DISABLE   "disable"
 ```
 **描述**
-事件打点开关。
+事件打点开关。默认值为false。true：关闭打点功能，false：不关闭打点功能。
 
 **起始版本：** 8
 
@@ -252,7 +252,7 @@ OS作用域。
 #define MAX_STORAGE   "max_storage"
 ```
 **描述**
-事件文件目录存储配额大小。
+事件文件目录存储配额大小。默认值为“10M”。
 
 **起始版本：** 8
 
@@ -862,12 +862,12 @@ bool OH_HiAppEvent_Configure (const char * name, const char * value )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| name | 配置项名称。  | 
-| value | 配置项值。  | 
+| name | 配置项名称。名称可填[DISABLE](#disable)和[MAX_STORAGE](#max_storage)。  | 
+| value | 配置项值。如果配置项名称是[DISABLE](#disable)，值可以填“true”或者“false”；如果配置项名称是[MAX_STORAGE](#max_storage)， 配额值字符串只由数字字符和大小单位字符（单位字符支持[b\|k\|kb\|m\|mb\|g\|gb\|t\|tb]，不区分大小写）构成， 配额值字符串必须以数字开头，后面可以选择不传单位字符（默认使用byte作为单位），或者以单位字符结尾。  | 
 
 **返回：**
 
-配置结果。
+配置结果。如果配置成功，则返回true；如果配置失败则返回false。
 
 
 ### OH_HiAppEvent_CreateParamList()
@@ -993,7 +993,7 @@ int OH_HiAppEvent_SetAppEventFilter (HiAppEvent_Watcher * watcher, const char * 
 | -------- | -------- |
 | watcher | 指向监听器的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。  | 
 | domain | 需要监听事件的领域。  | 
-| eventTypes | 需要监听事件的事件类型。  | 
+| eventTypes | 需要监听事件的事件类型。使用按位与方式进行匹配，可支持监听多种类型的事件， 第一位为1（数值为1）表示支持监听故障类型的事件，第二位为1（数值为2）表示支持监听统计类型的事件， 第三位为1（数值为4）表示支持监听安全类型的事件，第四位为1（数值为8）表示支持监听行为类型的事件， 都为1（数值为15）或者都为0（数值为0）表示支持所有类型事件。  | 
 | names | 需要监听的事件名称数组。  | 
 | namesLen | 监听的事件名称的数组长度。  | 
 
@@ -1117,11 +1117,11 @@ int OH_HiAppEvent_Write (const char * domain, const char * name, enum EventType 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| domain | 事件领域。您可以根据需要自定义事件领域。  | 
-| name | 事件名称。您可以根据需要自定义事件名称。  | 
+| domain | 事件领域。您可以根据需要自定义事件领域。事件领域名称支持数字、字母、下划线字符， 需要以字母开头且不能以下划线结尾，长度非空且不超过32个字符。  | 
+| name | 事件名称。您可以根据需要自定义事件名称。首字符必须为字母字符或$字符，中间字符必须为数字字符、 字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过48个字符。  | 
 | type | 事件类型，在[EventType](#eventtype)中定义。  | 
-| list | 事件参数列表，每个参数由参数名和参数值组成。  | 
+| list | 事件参数列表，每个参数由参数名和参数值组成，其规格定义如下：<br/>1、参数名为字符串类型，首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符， 结尾字符必须为数字字符或字母字符，长度非空且不超过32个字符。<br/>2、参数值支持字符串、数值、布尔、数组类型，字符串类型参数长度需在8\*1024个字符以内，超出会做丢弃处理； 数组类型参数中的元素类型只能为字符串、数值、布尔中的一种，且元素个数需在100以内，超出会做丢弃处理。<br/>3、参数个数需在32个以内，超出的参数会做丢弃处理。 | 
 
 **返回：**
 
-如果事件参数校验成功，则返回0，将事件写入事件文件；如果事件中存在无效参数，则返回正值，丢弃无效参数后将事件写入事件文件；如果事件参数校验失败，则返回负值，并且事件将不会写入事件文件。
+如果事件参数校验成功，则返回0，将事件写入事件文件；如果事件中存在无效参数，则返回正值，丢弃 无效参数后将事件写入事件文件；如果事件参数校验失败，则返回负值，并且事件将不会写入事件文件。 0  事件参数校验成功。 -1  非法的事件名称。 -4  非法的事件领域名称。 -99  打点功能被关闭。 1  非法的事件参数名称。 4  非法的事件参数字符串长度。 5  非法的事件参数数量。 6  非法的事件参数数组长度。 8  重复的事件参数名称。

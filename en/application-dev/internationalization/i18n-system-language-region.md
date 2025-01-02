@@ -10,43 +10,31 @@ When you set or switch the system language, the system checks whether the [exten
 
 ## How to Develop
 
-For details about how to use related APIs, see [System](../reference/apis/js-apis-i18n.md#system9).
+For details about how to use related APIs, see [System](../reference/apis-localization-kit/js-apis-i18n.md#system9).
 
 1. Import the **i18n** module.
    ```ts
-   import I18n from '@ohos.i18n';
-   import { BusinessError } from '@ohos.base';
+   import { i18n } from '@kit.LocalizationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Obtain the system language, region, and locale.
    ```ts
    // Obtain the system language.
-   try {
-     let systemLanguage = I18n.System.getSystemLanguage(); // systemLanguage indicates the current system language.
-   } catch(error) {
-     console.error(`call System.getSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`);
-   }
-   
+   let systemLanguage = i18n.System.getSystemLanguage();  // systemLanguage indicates the current system language.
+ 
    // Obtain the system region.
-   try {
-     let systemRegion = I18n.System.getSystemRegion(); // systemRegion indicates the current system region.
-   } catch(error) {
-     console.error(`call System.getSystemRegion failed, error code: ${error.code}, message: ${error.message}.`);
-   }
+   let systemRegion = i18n.System.getSystemRegion();  // systemRegion indicates the current system region.
    
    // Obtain the system locale.
-   try {
-     let systemLocale = I18n.System.getSystemLocale(); // systemLocale is the current system locale.
-   } catch(error) {
-     console.error(`call System.getSystemLocale failed, error code: ${error.code}, message: ${error.message}.`);
-   }
+   let systemLocale = i18n.System.getSystemLocale();  // systemLocale is the current system locale.
    ```
-
+<!--Del-->
 3. Set the system language, region, and locale.
    ```ts
    // Set the current system language to zh.
    try {
-     I18n.System.setSystemLanguage('zh'); 
+     i18n.System.setSystemLanguage('zh'); 
    } catch(error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -54,7 +42,7 @@ For details about how to use related APIs, see [System](../reference/apis/js-api
    
    // Set the current system region to CN.
    try {
-     I18n.System.setSystemRegion('CN'); 
+     i18n.System.setSystemRegion('CN'); 
    } catch(error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setSystemRegion failed, error code: ${err.code}, message: ${err.message}.`);
@@ -62,9 +50,10 @@ For details about how to use related APIs, see [System](../reference/apis/js-api
    
    // Set the current system locale to zh-Hans-CN.
    try {
-     I18n.System.setSystemLocale('zh-Hans-CN'); 
+     i18n.System.setSystemLocale('zh-Hans-CN'); 
    } catch(error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);
    }
    ```
+<!--DelEnd-->

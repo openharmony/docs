@@ -1,7 +1,7 @@
 # 组件动画
 
 
-ArkUI为组件提供了通用的属性动画和转场动画能力的同时，还为一些组件提供了默认的动画效果。例如，[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)的滑动动效，[Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#button)的点击动效，是组件自带的默认动画效果。在组件默认动画效果的基础上，开发者还可以通过属性动画和转场动画对容器组件内的子组件动效进行定制。
+ArkUI为组件提供了通用的属性动画和转场动画能力的同时，还为一些组件提供了默认的动画效果。例如，[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)的滑动动效、[Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#button)的点击动效，是组件自带的默认动画效果。在组件默认动画效果的基础上，开发者还可以通过属性动画和转场动画对容器组件内的子组件动效进行定制。
 
 
 ## 使用组件默认动画
@@ -14,7 +14,7 @@ ArkUI为组件提供了通用的属性动画和转场动画能力的同时，还
 
 - 减少开发者工作量，例如列表滑动组件自带滑动动效，开发者直接调用即可。
 
-更多效果，可以参考[组件说明](../reference/apis-arkui/arkui-ts/ts-components-summary.md)。
+更多效果，可以参考[组件说明](../reference/apis-arkui/arkui-ts/ts-container-flex.md)。
 
 示例代码和效果如下。
 
@@ -55,11 +55,8 @@ struct ComponentDemo {
 
 
 ```ts
-import curves from '@ohos.curves';
-import window from '@ohos.window';
-import display from '@ohos.display';
-import mediaquery from '@ohos.mediaquery';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { curves, window, display, mediaquery } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class GlobalContext extends AppStorage{
   static mainWin: window.Window|undefined = undefined;
@@ -349,3 +346,4 @@ export struct TaskSwitchMainPage {
 ```
 
 ![zh-cn_image_0000001599808406](figures/zh-cn_image_0000001599808406.gif)
+<!--RP1--><!--RP1End-->

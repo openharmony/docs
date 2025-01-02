@@ -38,8 +38,8 @@ void OHOS_SystemInit(void)
      
    ```
    {
-       subsystem": "startup",
-       components": [
+       "subsystem": "startup",
+       "components": [
            { "component": "bootstrap_lite", "features":[] },
            { "component": "syspara_lite", "features":[] }
        ]

@@ -1,8 +1,12 @@
 # 加解密(C/C++)
 
 
-以AES 128密钥为例，完成加解密。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
+以AES 256密钥为例，完成加解密。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
 
+## 在CMake脚本中链接相关动态库
+```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+```
 
 ## 开发步骤
 
@@ -12,7 +16,7 @@
 
 2. 初始化密钥属性集。
 
-3. 调用OH_Huks_GenerateKeyItem生成密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
+3. 调用[OH_Huks_GenerateKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_generatekeyitem)生成密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
 
 除此之外，开发者也可以参考[密钥导入](huks-key-import-overview.md)，导入已有的密钥。
 

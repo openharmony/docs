@@ -1,6 +1,6 @@
 # @ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)
 
-ActionExtensionAbility是为开发者提供的自定义操作业务模板，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。ActionExtension主要用于查看宿主应用中的内容以及对其进行对应处理。例如，添加一个书签、将选中的文本翻译成其他语言、在当前页面编辑图像等。
+ActionExtensionAbility是为开发者提供的自定义操作业务模板，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。ActionExtension主要用于查看宿主应用中的内容以及对其进行对应处理。例如，添加一个书签、将选中的文本翻译成其他语言、在当前页面编辑图像等。各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 
 > **说明：**
 > 
@@ -15,7 +15,7 @@ ActionExtensionAbility是为开发者提供的自定义操作业务模板，继�
 ## 导入模块
 
 ```ts
-import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
+import { ActionExtensionAbility } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -136,9 +136,7 @@ ActionExtensionAbility生命周期回调，在ActionExtensionAbility销毁时回
 3. ActionExtAbility.ets文件中，增加导入ActionExtensionAbility的依赖包，自定义类继承ActionExtensionAbility并实现生命周期回调。
 
     ```ts
-    import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
-    import Want from '@ohos.app.ability.Want';
-    import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+    import { ActionExtensionAbility, Want, UIExtensionContentSession } from '@kit.AbilityKit';
 
     const TAG: string = "[ActionExtAbility]";
 
@@ -146,31 +144,26 @@ ActionExtensionAbility生命周期回调，在ActionExtensionAbility销毁时回
       onCreate() {
         console.info(TAG, `onCreate`);
       }
-
       onSessionCreate(want: Want, session: UIExtensionContentSession) {
         console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
         if (want.parameters) {
           let obj: Record<string, UIExtensionContentSession | object> = {
             'session': session,
             'messages': want.parameters.shareMessages
-          }
+          };
           let storage: LocalStorage = new LocalStorage(obj);
           session.loadContent('pages/Index', storage);
         }
       }
-
       onForeground() {
         console.info(TAG, `ononForeground`);
       }
-
       onBackground() {
         console.info(TAG, `onBackground`);
       }
-
       onSessionDestroy(session: UIExtensionContentSession) {
         console.info(TAG, `onSessionDestroy`);
       }
-
       onDestroy() {
         console.info(TAG, `onDestroy`);
       }

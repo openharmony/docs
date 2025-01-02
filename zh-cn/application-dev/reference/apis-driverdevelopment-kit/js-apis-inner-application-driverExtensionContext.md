@@ -12,7 +12,7 @@ DriverExtensionContext模块提供DriverExtensionAbility实现中需要主动发
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## 使用说明
@@ -20,7 +20,7 @@ import common from '@ohos.app.ability.common';
 在使用DriverExtensionContext的功能前，需要通过DriverExtensionAbility子类实例获取。
 
 ```ts
-  import DriverExtensionAbility, { DriverExtensionContext } from '@ohos.app.ability.DriverExtensionAbility';
+  import { DriverExtensionAbility, DriverExtensionContext } from '@kit.DriverDevelopmentKit';
 
   let context : DriverExtensionContext | undefined;
   class EntryAbility extends DriverExtensionAbility {

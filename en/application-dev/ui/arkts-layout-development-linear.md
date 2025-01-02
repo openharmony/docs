@@ -3,15 +3,15 @@
 
 ## Overview
 
-Linear layout is the most frequently used layout in development, built with the [\<Row>](../reference/arkui-ts/ts-container-row.md) and [\<Column>](../reference/arkui-ts/ts-container-column.md) linear containers. The linear layout is the basis of other layouts. Its child elements are arranged in sequence linearly in the horizontal direction, as in a **\<Row>** container, or vertical direction, as in a **\<Column>** container.  
+Linear layout is the most frequently used layout in development, built with the [Row](../reference/apis-arkui/arkui-ts/ts-container-row.md) or [Column](../reference/apis-arkui/arkui-ts/ts-container-column.md) linear containers. The linear layout is the basis of other layouts. Its child elements are arranged in sequence linearly in the horizontal direction, as in a **Row** container, or vertical direction, as in a **Column** container.  
 
 
-  **Figure 1** Child element arrangement in a \<Column> container 
+  **Figure 1** Child element arrangement in a Column container 
 
 ![arrangement-child-elements-column](figures/arrangement-child-elements-column.png)
 
 
-  **Figure 2** Child element arrangement in a \<Row> container 
+  **Figure 2** Child element arrangement in a Row container 
 
 ![arrangement-child-elements-row](figures/arrangement-child-elements-row.png)
 
@@ -22,9 +22,9 @@ Linear layout is the most frequently used layout in development, built with the 
 
 - Layout child element: element inside the layout container.
 
-- Main axis: axis along which child elements are laid out by default in the linear layout container. The main axis is horizontal for the **\<Row>** container and vertical for the **\<Column>** container.
+- Main axis: axis along which child elements are laid out by default in the linear layout container. The main axis is horizontal for the **Row** container and vertical for the **Column** container.
 
-- Cross axis: axis that runs perpendicular to the main axis. The cross axis is vertical for the **\<Row>** container and horizontal for the **\<Column>** container.
+- Cross axis: axis that runs perpendicular to the main axis. The cross axis is vertical for the **Row** container and horizontal for the **Column** container.
 
 - Spacing: distance between child elements.
 
@@ -34,9 +34,9 @@ Linear layout is the most frequently used layout in development, built with the 
 In the layout container, use the **space** attribute to equally space child elements in the arrangement direction.
 
 
-### In \<Column> Container
+### In Column Container
 
-  **Figure 3** Layout child element spacing in the arrangement direction in the \<Column> container 
+  **Figure 3** Layout child element spacing in the arrangement direction in the Column container 
 
 ![arrangement-direction-column](figures/arrangement-direction-column.png)
 
@@ -53,9 +53,9 @@ Column({ space: 20 }) {
 ![arrangement-direction-column-sample](figures/arrangement-direction-column-sample.png)
 
 
-### In \<Row> Container
+### In Row Container
 
-  **Figure 4** Layout child element spacing in the arrangement direction in the \<Row> container 
+  **Figure 4** Layout child element spacing in the arrangement direction in the Row container 
 
 ![arrangement-direction-row](figures/arrangement-direction-row.png)
 
@@ -74,14 +74,14 @@ Row({ space: 35 }) {
 
 ## Alignment of Child Elements Along Cross Axis
 
-In the layout container, use the **alignItems** attribute to set the alignment mode of child elements along the cross axis. The alignment performance is consistent across screens of various sizes. The value is of the [VerticalAlign Type](../reference/arkui-ts/ts-appendix-enums.md#verticalalign) type when the cross axis is in the vertical direction and the [HorizontalAlign](../reference/arkui-ts/ts-appendix-enums.md#horizontalalign) type when the cross axis is in the horizontal direction.
+In the layout container, use the **alignItems** attribute to set the alignment mode of child elements along the cross axis. The alignment performance is consistent across screens of various sizes. The value is of the [VerticalAlign Type](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#verticalalign) type when the cross axis is in the vertical direction and the [HorizontalAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#horizontalalign) type when the cross axis is in the horizontal direction.
 
 The layout container also provides the **alignSelf** attribute to control the alignment mode of a single child element along the cross axis. This attribute has a higher priority than the **alignItems** attribute. This means that, if **alignSelf** is set, it will overwrite the **alignItems** setting on the corresponding child element.
 
 
-### Horizontal Alignment of Child Elements in \<Column> Container
+### Horizontal Alignment of Child Elements in Column Container
 
-  **Figure 5** Horizontal alignment of child elements in the \<Column> container 
+  **Figure 5** Horizontal alignment of child elements in the Column container 
 
 ![horizontal-arrangement-child-column](figures/horizontal-arrangement-child-column.png)
 
@@ -137,9 +137,9 @@ The layout container also provides the **alignSelf** attribute to control the al
   ![en-us_image_0000001511421348](figures/en-us_image_0000001511421348.png)
 
 
-### Vertical Alignment of Child Elements in \<Row> Container
+### Vertical Alignment of Child Elements in Row Container
 
-  **Figure 6** Vertical alignment of child elements in \<Row> container 
+  **Figure 6** Vertical alignment of child elements in Row container 
 
 ![horizontal-arrangement-child-row](figures/horizontal-arrangement-child-row.png)
 
@@ -200,9 +200,9 @@ The layout container also provides the **alignSelf** attribute to control the al
 In the layout container, you can use the **justifyContent** attribute to set the arrangement mode of child elements along the main axis. The arrangement may begin from the start point or end point of the main axis, or the space of the main axis can be evenly divided.
 
 
-### In \<Column> Container
+### Vertical Alignment of Child Elements in Column Container
 
-  **Figure 7** Vertical alignment of child elements in the \<Column> container
+  **Figure 7** Vertical alignment of child elements in the Column container
 
 ![vertial-arrangement-child-column](figures/vertial-arrangement-child-column.png)
 
@@ -309,9 +309,9 @@ In the layout container, you can use the **justifyContent** attribute to set the
   ![en-us_image_0000001563060785](figures/en-us_image_0000001563060785.png)
 
 
-### In \<Row> Container
+### Horizontal Alignment of Child Elements in Row Container
 
-  **Figure 8** Horizontal alignment of child elements in the \<Row> container 
+  **Figure 8** Horizontal alignment of child elements in the Row container 
 
 ![vertial-arrangement-child-row](figures/vertial-arrangement-child-row.png)
 
@@ -420,7 +420,7 @@ In the layout container, you can use the **justifyContent** attribute to set the
 
 ## Adaptive Stretching
 
-In linear layout, adaptive stretching is achieved by using the [\<Blank>](../reference/arkui-ts/ts-basic-components-blank.md) component, which automatically fills the empty spaces in the container – **\<Row>** or **\<Column>** – along the main axis. Just add the width and height as a percentage, and then adaptive scaling will take effect once the screen width and height change.
+In linear layout, adaptive stretching is achieved by using the [Blank](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md) component, which automatically fills the empty spaces in the container – **Row** or **Column** – along the main axis. Just add the width and height as a percentage, and then adaptive scaling will take effect once the screen width and height change.
 
 
 ```ts
@@ -552,10 +552,10 @@ Adaptive scaling means that the size of a child element is automatically adjuste
 
 Adaptive extension allows users to drag the scrollbar to display the page content outside the screen. It is applicable to the scenario where the content extends beyond the viewport in linear layout. Below are the methods to implement adaptive extension in linear layout:
 
-- [Add a scrollbar to a \<List> component](arkts-layout-development-create-list.md#adding-a-scrollbar): If the list items cannot be fully displayed on one screen, you can place the child elements in different components and employ a scrollbar to display them. Use the **scrollBar** attribute to set the scrollbar status and the **edgeEffect** attribute to set the rebound effect when the scrollbar has reached the edge.
+- [Add a scrollbar to a List component](arkts-layout-development-create-list.md#adding-a-scrollbar): If the list items cannot be fully displayed on one screen, you can place the child elements in different components and employ a scrollbar to display them. Use the **scrollBar** attribute to set the scrollbar status and the **edgeEffect** attribute to set the rebound effect when the scrollbar has reached the edge.
 
-- Use a **\<Scroll>** component: When one screen is not able to accommodate the full content, you can wrap a **\<Scroll>** component at the outer layer of the **\<Column>** or **\<Row>** component to implement a scrollable linear layout.
-    Example of using a **\<Scroll>** component in the vertical layout:
+- Use a **Scroll** component: When one screen is not able to accommodate the full content, you can wrap a **Scroll** component at the outer layer of the **Column** or **Row** component to implement a scrollable linear layout.
+    Example of using a **Scroll** component in the vertical layout:
 
   ```ts
   @Entry
@@ -593,7 +593,7 @@ Adaptive extension allows users to drag the scrollbar to display the page conten
 
   ![en-us_image_0000001511900524](figures/en-us_image_0000001511900524.gif)
 
-  Example of using a **\<Scroll>** component in the horizontal layout:
+  Example of using a **Scroll** component in the horizontal layout:
 
 
   ```ts

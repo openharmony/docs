@@ -15,7 +15,7 @@ The native image module must be used together with the native window, native buf
 | API                                                      | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarget) | Creates an **OH_NativeImage** instance to be associated with the specified OpenGL ES texture ID and target.|
-| OH_NativeImage_AcquireNativeWindow (OH_NativeImage \*image)  | Obtains an **OHNativeWindow** instance associated with an **OH_NativeImage** instance. You need to call **OH_NativeWindow_DestroyNativeWindow** to release the **OHNativeWindow** instance when it is no longer needed.|
+| OH_NativeImage_AcquireNativeWindow (OH_NativeImage \*image)  | Obtains an **OHNativeWindow** instance associated with an **OH_NativeImage** instance. It is unnecessary to manually release this **OHNativeWindow** with **OH_NativeWindow_DestroyNativeWindow** as it will be automatically freed upon calling **OH_NativeImage_Destroy**. Failing to do so could result in memory access violations after the memory has been freed, which might cause the application to crash.|
 | OH_NativeImage_AttachContext (OH_NativeImage \*image, uint32_t textureId) | Attaches an **OH_NativeImage** instance to the current OpenGL ES context. The OpenGL ES texture will be bound to an **GL_TEXTURE_EXTERNAL_OES** instance and updated through the **OH_NativeImage** instance.|
 | OH_NativeImage_DetachContext (OH_NativeImage \*image)        | Detaches an **OH_NativeImage** instance from the current OpenGL ES context.             |
 | OH_NativeImage_UpdateSurfaceImage (OH_NativeImage \*image)   | Updates the OpenGL ES texture associated with the latest frame through an **OH_NativeImage** instance.     |
@@ -44,9 +44,13 @@ libnative_buffer.so
 **Including Header Files**
 
 ```c++
+#include <iostream>
+#include <string>
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 #include <GLES3/gl3.h>
+#include <GLES2/gl2ext.h>
+#include <sys/mman.h>
 #include <native_image/native_image.h>
 #include <native_window/external_window.h>
 #include <native_buffer/native_buffer.h>
@@ -54,13 +58,8 @@ libnative_buffer.so
 
 1. Initialize the EGL environment.
 
-   Refer to the code snippet below. For details about how to use the **\<XComponent>**, see [XComponent Development](../ui/napi-xcomponent-guidelines.md).
-   ```c++
-   #include <iostream>
-   #include <string>
-   #include <EGL/egl.h>
-   #include <EGL/eglext.h>
-   
+   Refer to the code snippet below. For details about how to use the **XComponent**, see [XComponent Development](../ui/napi-xcomponent-guidelines.md).
+   ```c++   
    using GetPlatformDisplayExt = PFNEGLGETPLATFORMDISPLAYEXTPROC;
    constexpr const char *EGL_EXT_PLATFORM_WAYLAND = "EGL_EXT_platform_wayland";
    constexpr const char *EGL_KHR_PLATFORM_WAYLAND = "EGL_KHR_platform_wayland";
@@ -71,7 +70,7 @@ libnative_buffer.so
    EGLContext eglContext_ = EGL_NO_CONTEXT;
    EGLDisplay eglDisplay_ = EGL_NO_DISPLAY;
    static inline EGLConfig config_;
-   static inline EGLSurface eglsurface_;
+   static inline EGLSurface eglSurface_;
    // OHNativeWindow obtained from the <XComponent>.
    OHNativeWindow *eglNativeWindow_;
    
@@ -132,7 +131,7 @@ libnative_buffer.so
            std::cout << "Failed to bind OpenGL ES API" << std::endl;
        }
    
-       unsigned int ret;
+       unsigned int glRet;
        EGLint count;
        EGLint config_attribs[] = {EGL_SURFACE_TYPE,
                                   EGL_WINDOW_BIT,
@@ -149,8 +148,8 @@ libnative_buffer.so
                                   EGL_NONE};
    
        // Obtain a valid system configuration.
-       ret = eglChooseConfig(eglDisplay_, config_attribs, &config_, 1, &count);
-       if (!(ret && static_cast<unsigned int>(count) >= 1)) {
+       glRet = eglChooseConfig(eglDisplay_, config_attribs, &config_, 1, &count);
+       if (!(glRet && static_cast<unsigned int>(count) >= 1)) {
            std::cout << "Failed to eglChooseConfig" << std::endl;
        }
    
@@ -163,7 +162,7 @@ libnative_buffer.so
        }
    
        // Create an eglSurface.
-       eglSurface_ = eglCreateWindowSurface(eglDisplay_, config_, eglNativeWindow_, context_attribs);
+       eglSurface_ = eglCreateWindowSurface(eglDisplay_, config_, reinterpret_cast<EGLNativeWindowType>(eglNativeWindow_), context_attribs);
        if (eglSurface_ == EGL_NO_SURFACE) {
            std::cout << "Failed to create egl surface %{public}x, error:" << eglGetError() << std::endl;
        }
@@ -183,7 +182,7 @@ libnative_buffer.so
    GLuint textureId;
    glGenTextures(1, &textureId);
    // Create an OH_NativeImage instance, which will be associated with an OpenGL ES texture.
-   OH_NativeImage* image = OH_NativeImage_Create(textureId, GL_TEXTURE_2D);
+   OH_NativeImage* image = OH_NativeImage_Create(textureId, GL_TEXTURE_EXTERNAL_OES);
    ```
    
 3. Obtain the **OHNativeWindow** instance that functions as the producer.
@@ -218,8 +217,6 @@ libnative_buffer.so
    2. Write the produced content to the **OHNativeWindowBuffer** instance.
 
       ```c++
-      #include <sys/mman.h>
-       
       // Use mmap() to obtain the memory virtual address of buffer handle.
       void *mappedAddr = mmap(handle->virAddr, handle->size, PROT_READ | PROT_WRITE, MAP_SHARED, handle->fd, 0);
       if (mappedAddr == MAP_FAILED) {
@@ -299,4 +296,3 @@ libnative_buffer.so
    OH_NativeImage_Destroy(&image);
    ```
 
- <!--no_check--> 

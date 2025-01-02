@@ -1,18 +1,19 @@
 # Using Incognito Mode
 
 
-When creating a **\<Web>** component, you can enable incognito mode for it by setting the optional parameter [incognitoMode](../reference/apis-arkweb/ts-basic-components-web.md#incognitomode) to **true**. When incognito mode, data such as cookies and cache data during web page browsing is not stored in local persistent files. This means that such data is lost when the **\<Web>** component is destroyed.
+When creating a **Web** component, you can enable incognito mode for it by setting the optional parameter [incognitoMode](../reference/apis-arkweb/ts-basic-components-web.md#apis) to **true**. When incognito mode is enabled, data such as cookies and cache data during web page browsing is not stored in local persistent files. This means that such data is lost when the **Web** component is destroyed.
 
-- Create a [\<Web>](../reference/apis-arkweb/ts-basic-components-web.md#web) component in incognito mode.
+- Create a [Web](../reference/apis-arkweb/ts-basic-components-web.md#web) component in incognito mode.
  
    ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
@@ -21,17 +22,17 @@ When creating a **\<Web>** component, you can enable incognito mode for it by se
   }
   ```
 
-- Use [isIncogntoMode](../reference/apis-arkweb/js-apis-webview.md#isincognitomode) to check whether the current \**<Web>** component is in incognitomode.
+- Use [isIncogntoMode](../reference/apis-arkweb/js-apis-webview.md#isincognitomode11) to check whether the current **Web** component is in incognito mode.
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import business_error from '@ohos.base'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -41,8 +42,7 @@ When creating a **\<Web>** component, you can enable incognito mode for it by se
               let result = this.controller.isIncognitoMode();
               console.log('isIncognitoMode' + result);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -57,13 +57,13 @@ In incognito mode, you can use the following APIs for geolocation information, c
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
     origin: string = "file:///";
 
     build() {
@@ -71,10 +71,10 @@ In incognito mode, you can use the following APIs for geolocation information, c
         Button('allowGeolocation')
           .onClick(() => {
             try {
-              web_webview.GeolocationPermissions.allowGeolocation(this.origin, true);
+              // The second parameter of allowGeolocation specifies whether to allow the specified origin to use the geolocation information in incognito mode (true) or in non-incognito mode (false).
+              webview.GeolocationPermissions.allowGeolocation(this.origin, true);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
@@ -87,13 +87,13 @@ In incognito mode, you can use the following APIs for geolocation information, c
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
     origin: string = "file:///";
 
     build() {
@@ -101,10 +101,10 @@ In incognito mode, you can use the following APIs for geolocation information, c
         Button('deleteGeolocation')
           .onClick(() => {
             try {
-              web_webview.GeolocationPermissions.deleteGeolocation(this.origin, true);
+              // The second parameter of deleteGeolocation specifies whether to clear the geolocation permission status of a specified origin in incognito mode (true) or in non-incognito mode (false).
+              webview.GeolocationPermissions.deleteGeolocation(this.origin, true);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
@@ -117,13 +117,13 @@ In incognito mode, you can use the following APIs for geolocation information, c
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
     origin: string = "file:///";
 
     build() {
@@ -131,7 +131,8 @@ In incognito mode, you can use the following APIs for geolocation information, c
         Button('getAccessibleGeolocation')
           .onClick(() => {
             try {
-              web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
+              // The third parameter of getAccessibleGeolocation specifies whether to obtain the geolocation permission status of the specified origin in incognito mode (true) or in non-incognito mode (false). This API uses an asynchronous callback to return the result.
+              webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
                 if (error) {
                   console.log('getAccessibleGeolocationAsync error: ' + JSON.stringify(error));
                   return;
@@ -139,8 +140,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
                 console.log('getAccessibleGeolocationAsync result: ' + result);
               }, true);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
@@ -153,23 +153,23 @@ In incognito mode, you can use the following APIs for geolocation information, c
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Button('deleteAllData')
           .onClick(() => {
             try {
-              web_webview.WebStorage.deleteAllData(true);
+              // The parameter of deleteAllData specifies whether to delete all data in the Web SQL Database in incognito mode (true) or in non-incognito mode (false).
+              webview.WebStorage.deleteAllData(true);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.controller, incognitoMode: true })
@@ -179,28 +179,72 @@ In incognito mode, you can use the following APIs for geolocation information, c
   }
   ```
 
-- Use [fetchCookieSync](../reference/apis-arkweb/js-apis-webview.md#fetchcookiesync) to obtain the cookie corresponding to the specified URL.
+  HTML file to be loaded:
+   ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script type="text/javascript">
+
+      var db = openDatabase('mydb','1.0','Test DB',2 * 1024 * 1024);
+      var msg;
+
+      db.transaction(function(tx){
+        tx.executeSql('INSERT INTO LOGS (id,log) VALUES(1,"test1")');
+        tx.executeSql('INSERT INTO LOGS (id,log) VALUES(2,"test2")');
+        msg = '<p>Data table created, with two data records inserted.</p>';
+
+        document.querySelector('#status').innerHTML = msg;
+      });
+
+      db.transaction(function(tx){
+        tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
+          var len = results.rows.length,i;
+          msg = "<p>Number of records: " + len + "</p>";
+
+          document.querySelector('#status').innerHTML += msg;
+
+              for(i = 0; i < len; i++){
+                msg = "<p><b>" + results.rows.item(i).log + "</b></p>";
+
+          document.querySelector('#status').innerHTML += msg;
+          }
+        },null);
+      });
+
+      </script>
+  </head>
+  <body>
+  <div id="status" name="status">Status</div>
+  </body>
+  </html>
+  ```
+
+- Use [fetchCookieSync](../reference/apis-arkweb/js-apis-webview.md#fetchcookiesync11) to obtain the cookie corresponding to the specified URL.
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import business_error from '@ohos.base'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Button('fetchCookieSync')
           .onClick(() => {
             try {
-              let value = web_webview.WebCookieManager.fetchCookieSync('https://www.example.com', true);
+              // The second parameter of fetchCookieSync specifies whether to obtain the cookie in incognito mode (true) or in non-incognito mode (false).
+              let value = webview.WebCookieManager.fetchCookieSync('https://www.example.com', true);
               console.log("fetchCookieSync cookie = " + value);
             } catch (error) {
-              let e:business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
@@ -209,27 +253,27 @@ In incognito mode, you can use the following APIs for geolocation information, c
   }
   ```
 
-- Use [configCookieSync](../reference/apis-arkweb/js-apis-webview.md#configcookiesync) to set a cookie for the specified URL.
+- Use [configCookieSync](../reference/apis-arkweb/js-apis-webview.md#configcookiesync11) to set a cookie for the specified URL.
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import business_error from '@ohos.base'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Button('configCookieSync')
           .onClick(() => {
             try {
-              web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b', true);
+              // The third parameter of configCookieSync specifies whether to obtain the cookie for the specified URL in incognito mode (true) or non-incognito mode (false).
+              webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b', true);
             } catch (error) {
-              let e:business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
@@ -242,18 +286,19 @@ In incognito mode, you can use the following APIs for geolocation information, c
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Button('existCookie')
           .onClick(() => {
-            let result = web_webview.WebCookieManager.existCookie(true);
+            // The parameter of existCookie specifies whether to check for cookies in incognito mode (true) or in non-incognito mode (false).
+            let result = webview.WebCookieManager.existCookie(true);
             console.log("result: " + result);
           })
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
@@ -262,22 +307,23 @@ In incognito mode, you can use the following APIs for geolocation information, c
   }
   ```
 
-- Use [clearAllCookiesSync](../reference/apis-arkweb/js-apis-webview.md#clearallcookiessync) to delete all cookies.
+- Use [clearAllCookiesSync](../reference/apis-arkweb/js-apis-webview.md#clearallcookiessync11) to delete all cookies.
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Button('clearAllCookiesSync')
           .onClick(() => {
-            web_webview.WebCookieManager.clearAllCookiesSync(true);
+            // The parameter of clearAllCookiesSync specifies whether to delete all cookies in incognito mode (true) or in non-incognito mode (false).
+            webview.WebCookieManager.clearAllCookiesSync(true);
           })
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
       }

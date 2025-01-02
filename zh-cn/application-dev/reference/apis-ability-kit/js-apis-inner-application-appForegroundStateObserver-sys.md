@@ -1,6 +1,6 @@
 # AppForegroundStateObserver (系统接口)
 
-定义应用启动和退出的状态监听，可以作为[on](js-apis-app-ability-appManager-sys.md#appmanageron11)的入参监听所有应用的启动和退出的变化。
+定义应用启动和退出的状态监听，可以作为[on](js-apis-app-ability-appManager-sys.md#appmanageronappforegroundstate11)的入参监听所有应用的启动和退出的变化。
 
 > **说明：**
 >
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -21,16 +21,16 @@ import appManager from '@ohos.app.ability.appManager';
 
 | 名称                             | 类型                    | 可读 | 可写 | 说明   |
 | -------------------------------- | ---------------------- | ---- | ---- | ------------------ |
-| onAppStateChanged   | AsyncCallback\<void>   | 是   | 否   | 应用启动和退出状态发生变化时执行的回调函数。传入参数类型是[AppStateData](js-apis-inner-application-appStateData-sys.md)。 |
+| onAppStateChanged   | AsyncCallback\<void>   | 是   | 否   | 应用启动和退出状态发生变化时执行的回调函数。传入参数类型是[AppStateData](js-apis-inner-application-appStateData.md)。 |
 
 **示例：**
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 let observer: appManager.AppForegroundStateObserver = {
-    onAppStateChanged(appStateData) {
-        console.log(`onAppStateChanged appStateData: ${JSON.stringify(appStateData)}`);
-    },
+  onAppStateChanged(appStateData) {
+    console.log(`onAppStateChanged appStateData: ${JSON.stringify(appStateData)}`);
+  },
 };
 appManager.on('appForegroundState', observer);
 ```

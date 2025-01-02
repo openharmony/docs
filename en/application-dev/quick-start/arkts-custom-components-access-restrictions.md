@@ -13,7 +13,7 @@ In ArkTS, use of the access modifiers – **private**, **public**, and **protect
 
 - For regular variables (which do not involve re-rendering) and variables decorated by \@State, \@Prop, \@Provide, or \@BuilderParam, when declared as **private**, value assignment is not allowed during custom component construction.
 
-- For variables decorated by \@StorageLink, \@StorageProp, \@LocalStorageLink, \@LocalStorageLink, or \@Consume, **public** access is not allowed.
+- For variables decorated by \@StorageLink, \@StorageProp, \@LocalStorageLink, \@LocalStorageProp, or \@Consume, **public** access is not allowed.
 
 - For variables decorated by \@Link or \@ObjectLink, **private** access is not allowed.
 
@@ -24,18 +24,26 @@ In ArkTS, use of the access modifiers – **private**, **public**, and **protect
 
 ## Examples of Incorrect Usage
 
-1. If a member variable is modified by both the **private** access modifier and the \@State, \@Prop, \@Provide, or \@BuilderParam decorator, a build error is reported.
+1. If a member variable is decorated by both the **private** access modifier and the \@State, \@Prop, \@Provide, or \@BuilderParam decorator, and is initialized through the parent component, a build error is reported.
 
 ```ts
 @Entry
 @Component
 struct AccessRestrictions {
-  @Builder buildTest() {
+  @Builder
+  buildTest() {
     Text("Parent builder")
   }
+
   build() {
     Column() {
-      ComponentsChild({state_value: "Hello", prop_value: "Hello", provide_value: "Hello", builder_value: this.buildTest, regular_value: "Hello"})
+      ComponentsChild({
+        state_value: "Hello",
+        prop_value: "Hello",
+        provide_value: "Hello",
+        builder_value: this.buildTest,
+        regular_value: "Hello"
+      })
     }
     .width('100%')
   }
@@ -48,9 +56,12 @@ struct ComponentsChild {
   @Provide private provide_value: string = "Hello";
   @BuilderParam private builder_value: () => void = this.buildTest;
   private regular_value: string = "Hello";
-  @Builder buildTest() {
+
+  @Builder
+  buildTest() {
     Text("Child builder")
   }
+
   build() {
     Column() {
       Text("Hello")
@@ -71,12 +82,13 @@ Property 'builder_value' is private and can not be initialized through the compo
 Property 'regular_value' is private and can not be initialized through the component constructor.
 ```
 
-2. If a member variable is modified by both the **public** access modifier and the \@StorageLink, \@StorageProp, \@LocalStorageLink, \@LocalStorageLink, or \@Consume decorator, a build error is reported.
+2. If a member variable is decorated by both the **public** access modifier and the \@StorageLink, \@StorageProp, \@LocalStorageLink, \@LocalStorageProp, or \@Consume decorator, and is initialized through the parent component, a build error is reported.
 
 ```ts
 @Entry
 @Component
 struct AccessRestrictions {
+  @Provide consume_value: string = "Hello";
   build() {
     Column() {
       ComponentChild()
@@ -112,15 +124,17 @@ Property 'storage_link_value' can not be decorated with both @StorageLink and pu
 Property 'consume_value' can not be decorated with both @Consume and public.
 ```
 
-3. If a member variable is modified by both the **private** access modifier and the \@Link or \@ObjectLink decorator, a build error is reported.
+3. If a member variable is decorated by both the **private** access modifier and the \@Link/ or \@ObjectLink decorator, and is initialized through the parent component, a build error is reported.
 
 ```ts
 @Entry
 @Component
 struct AccessRestrictions {
+  @State link_value: string = "Hello";
+  @State objectLink_value: ComponentObj = new ComponentObj();
   build() {
     Column() {
-      ComponentChild({link_value: "Hello", objectLink_value: new ComponentObj()})
+      ComponentChild({link_value: this.link_value, objectLink_value: this.objectLink_value})
     }
     .width('100%')
   }
@@ -151,7 +165,7 @@ Property 'link_value' can not be decorated with both @Link and private.
 Property 'objectLink_value' can not be decorated with both @ObjectLink and private.
 ```
 
-4. If a member variable is modified by the **protected** access modifier, a build error is reported.
+4. If a member variable is decorated by the **protected** access modifier and is initialized through the parent component, a build error is reported.
 
 ```ts
 @Entry
@@ -184,7 +198,7 @@ The following are some build error examples:
 The member attributes of a struct can not be protected.
 ```
 
-5. If a member variable is modified by the **private** access modifier, the \@Require decorator, and the \@State, \@Prop, \@Provide, or \@BuilderParam decorator, a build error is reported.
+5. If a member variable is decorated by both the **private** access modifier and the \@Require, \@State, \@Prop, \@Provide, or \@BuilderParam decorator, and is initialized through the parent component, a build error is reported.
 
 ```ts
 @Entry

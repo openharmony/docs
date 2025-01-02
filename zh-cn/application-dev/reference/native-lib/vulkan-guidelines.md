@@ -34,6 +34,10 @@ libnative_window.so
 libvulkan.so
 ```
 
+> **说明:**
+>
+> 在程序中通过dlopen函数链接libvulkan.so动态库时不需要在CMake中增加依赖，否则会导致符号冲突。
+
 **头文件**
 
 ```c++
@@ -70,7 +74,7 @@ libvulkan.so
 
 2. **获取OHNativeWindow**。
 
-   OHNativeWindow需要从XComponent组件中获取，下面提供一份从XComponent组件中获取OHNativeWindow的代码示例，XComponent模块的具体使用方法请参考[XComponent模块的介绍文档](../../ui/arkts-common-components-xcomponent.md)和[XComponent开发指导](../../ui/napi-xcomponent-guidelines.md)。
+   OHNativeWindow需要从XComponent组件中获取，下面提供一份从XComponent组件中获取OHNativeWindow的代码示例，XComponent模块的具体使用方法请参考[XComponent模块的介绍文档](../../ui/napi-xcomponent-guidelines.md)。
 
    1. ets/pages/Index.ets中增加一个XComponent组件。
 
@@ -131,5 +135,11 @@ libvulkan.so
        // Create Surface Failed.
    }
    ```
+
+## 相关实例
+
+针对Vulkan的使用，具体可见以下相关实例：
+
+- [XComponent组件对接Vulkan（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkVulkan)
 
 后续更多vulkan的用法请参考[Vulkan官方网站](https://www.vulkan.org/)。

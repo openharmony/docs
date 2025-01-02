@@ -10,16 +10,16 @@ FA模型下使用Context，需要通过featureAbility下的接口getContext来�
 
 
 ```ts
-import featureAbility from "@ohos.ability.featureAbility";
+import featureAbility from '@ohos.ability.featureAbility';
 ```
 
 然后使用如下方式获取对应的Context对象：
 
 
 ```ts
-import featureAbility from "@ohos.ability.featureAbility";
+import featureAbility from '@ohos.ability.featureAbility';
 
-let context = featureAbility.getContext()
+let context = featureAbility.getContext();
 ```
 
 最终返回的对象为Context，其对应的接口说明请参见[接口文档](../reference/apis-ability-kit/js-apis-inner-app-context.md)。
@@ -29,51 +29,53 @@ let context = featureAbility.getContext()
 
 1. 查询Bundle信息。
    
-   ```ts
-   import featureAbility from '@ohos.ability.featureAbility';
-   import Logger from '../utils/Logger';
-   
-   const TAG: string = 'MainAbility';
-   
-   class MainAbility {
-     onCreate() {
-       // 获取context并调用相关方法
-       let context = featureAbility.getContext();
-       context.getBundleName((data, bundleName) => {
-         Logger.info(TAG, 'ability bundleName:' + bundleName);
-       });
-       Logger.info(TAG, 'Application onCreate');
-     }
-     ...
-   }
-   
-   export default new MainAbility();
-   ```
+    ```ts
+    import featureAbility from '@ohos.ability.featureAbility';
+    import hilog from '@ohos.hilog';
+    
+    const TAG: string = 'MainAbility';
+    const domain: number = 0xFF00;
+    
+    class MainAbility {
+      onCreate() {
+        // 获取context并调用相关方法
+        let context = featureAbility.getContext();
+        context.getBundleName((data, bundleName) => {
+          hilog.info(domain, TAG, 'ability bundleName:' + bundleName);
+        });
+        hilog.info(domain, TAG, 'Application onCreate');
+      }
+      //...
+    }
+    
+    export default new MainAbility();
+    ```
    
 2. 设置当前featureAbility的显示方向。
    
-   ```ts
-   import featureAbility from '@ohos.ability.featureAbility';
-   import bundle from '@ohos.bundle';
-   import Logger from '../utils/Logger';
-   
-   const TAG: string = 'PageAbilitySingleton';
-   
-   class PageAbilitySingleton {
-     onCreate() {
-       // 获取context并调用相关方法
-       let context = featureAbility.getContext();
-       context.setDisplayOrientation(bundle.DisplayOrientation.PORTRAIT).then(() => {
-         Logger.info(TAG, 'Set display orientation.')
-       })
-       Logger.info(TAG, 'Application onCreate');
-     }
-   
-     onDestroy() {
-       Logger.info(TAG, 'Application onDestroy');
-     }
-     ...  
-   }
-   
-   export default new PageAbilitySingleton();
-   ```
+    ```ts
+    import featureAbility from '@ohos.ability.featureAbility';
+    import bundle from '@ohos.bundle';
+    import hilog from '@ohos.hilog';
+    
+    const TAG: string = 'PageAbilitySingleton';
+    const domain: number = 0xFF00;
+    
+    class PageAbilitySingleton {
+      onCreate() {
+        // 获取context并调用相关方法
+        let context = featureAbility.getContext();
+        context.setDisplayOrientation(bundle.DisplayOrientation.PORTRAIT).then(() => {
+          hilog.info(domain, TAG, 'Set display orientation.');
+        })
+        hilog.info(domain, TAG, 'Application onCreate');
+      }
+    
+      onDestroy() {
+        hilog.info(domain, TAG, 'Application onDestroy');
+      }
+      //...  
+    }
+    
+    export default new PageAbilitySingleton();
+    ```

@@ -4,20 +4,21 @@
 
 IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，包括Proxy和Stub运行在不同设备的情况。
 
-
+<!--Del-->
 ## 接口说明
 
 **表1** Native侧IPC接口
 
-| 接口名                               | 描述                                                             |
-| ------------------------------------ | ---------------------------------------------------------------- |
-| sptr&lt;IRemoteObject&gt; AsObject() | 返回通信对象。Stub端返回RemoteObject对象本身，Proxy端返回代理对象。 |
-| virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | 请求处理方法，派生类需要重写该方法用来处理Proxy的请求并返回结果。 |
+| 类/接口 | 方法名                               | 描述                                                             |
+|----------|  ------------------------------------ | ---------------------------------------------------------------- |
+| IRemoteBroker | sptr&lt;IRemoteObject&gt; AsObject() | 返回通信对象。Stub端返回RemoteObject对象本身，Proxy端返回代理对象。 |
+| IRemoteStub | virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | 请求处理方法，派生类需要重写该方法用来处理Proxy的请求并返回结果。 |
 | IRemoteProxy | Remote()->SendRequest(code, data, reply, option)  | 消息发送方法，业务的Proxy类需要从IRemoteProxy类派生，该方法用来向对端发送消息。 |
-
+<!--DelEnd-->
 
 ## 开发步骤
 
+<!--Del-->
 ### **Native侧开发步骤**
 
 1. 添加依赖
@@ -166,76 +167,47 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    sptr<ISystemAbilityManager> samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
    sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(saId);
    sptr<ITestAbility> testAbility = iface_cast<ITestAbility>(remoteObject); // 使用iface_cast宏转换成具体类型
-   
+
    // 获取其他设备注册的SA的proxy
    sptr<ISystemAbilityManager> samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
-   
+
    // networkId是组网场景下对应设备的标识符，可以通过GetLocalNodeDeviceInfo获取
    sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(saId, networkId);
    sptr<TestAbilityProxy> proxy(new TestAbilityProxy(remoteObject)); // 直接构造具体Proxy
    ```
-
+<!--DelEnd-->
 ### **ArkTS侧开发步骤**
+
+> **说明：**
+>
+> - 此文档中的示例代码描述的是系统应用跨进程通信。
+>
+> - 当前不支持三方应用实现ServiceExtensionAbility，三方应用的UIAbility组件可以通过Context连接系统提供的ServiceExtensionAbility。
+>
+> - 当前使用场景： 仅限客户端是三方应用，服务端是系统应用。
 
 1. 添加依赖
 
    ```ts
-    import rpc from '@ohos.rpc';
-    // 仅FA模型需要导入@ohos.ability.featureAbility
-    // import featureAbility from '@ohos.ability.featureAbility';
+    // FA模型需要从@kit.AbilityKit导入featureAbility
+    // import { featureAbility } from '@kit.AbilityKit';
+    import { rpc } from '@kit.IPCKit';
     ```
-
-    Stage模型需要获取context
-
-    ```ts
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import Want from '@ohos.app.ability.Want';
-    import hilog from '@ohos.hilog';
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-    import window from '@ohos.window';
-
-    export default class MainAbility extends UIAbility {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onCreate');
-        let context = this.context;
-      }
-      onDestroy() {
-        hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onDestroy');
-      }
-      onWindowStageCreate(windowStage: window.WindowStage) {
-        // Main window is created, set main page for this ability
-	  	hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageCreate');
-      }
-      onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-	  	hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageDestroy');
-      }
-      onForeground() {
-        // Ability has brought to foreground
-        hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onForeground');
-      }
-      onBackground() {
-        // Ability has back to background
-        hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onBackground');
-      }
-    }
-   ```
 
 2. 绑定Ability
 
-   首先，构造变量want，指定要绑定的Ability所在应用的包名、组件名，如果是跨设备的场景，还需要绑定目标设备NetworkId（组网场景下对应设备的标识符，可以使用deviceManager获取目标设备的NetworkId）；然后，构造变量connect，指定绑定成功、绑定失败、断开连接时的回调函数；最后，FA模型使用featureAbility提供的接口绑定Ability，Stage模型通过context获取服务后用提供的接口绑定Ability。
+   首先，构造变量want，指定要绑定的Ability所在应用的包名、组件名，如果是跨设备的场景，还需要绑定目标设备NetworkId（组网场景下对应设备的标识符，可以使用distributedDeviceManager获取目标设备的NetworkId）；然后，构造变量connect，指定绑定成功、绑定失败、断开连接时的回调函数；最后，FA模型使用featureAbility提供的接口绑定Ability，Stage模型通过context获取服务后用提供的接口绑定Ability。
 
    ```ts
-    // 仅FA模型需要导入@ohos.ability.featureAbility
-    // import featureAbility from "@ohos.ability.featureAbility";
-    import rpc from '@ohos.rpc';
-    import Want from '@ohos.app.ability.Want';
-    import common from '@ohos.app.ability.common';
-    import hilog from '@ohos.hilog';
-    import deviceManager from '@ohos.distributedDeviceManager';
-    import { BusinessError } from '@ohos.base';
+    // FA模型需要从@kit.AbilityKit导入featureAbility
+    // import { featureAbility } from "@kit.AbilityKit";
+    import { Want, common } from '@kit.AbilityKit';
+    import { rpc } from '@kit.IPCKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-    let dmInstance: deviceManager.DeviceManager | undefined;
+    let dmInstance: distributedDeviceManager.DeviceManager | undefined;
     let proxy: rpc.IRemoteObject | undefined;
     let connectId: number;
 
@@ -260,17 +232,19 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
     // FA模型使用此方法连接服务
     // connectId = featureAbility.connectAbility(want, connect);
 
-    connectId = this.context.connectServiceExtensionAbility(want,connect);
+    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+    // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+    connectId = context.connectServiceExtensionAbility(want,connect);
 
-    // 跨设备绑定 
+    // 跨设备绑定
     try{
-      dmInstance = deviceManager.createDeviceManager("ohos.rpc.test");
+      dmInstance = distributedDeviceManager.createDeviceManager("ohos.rpc.test");
     } catch(error) {
       let err: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'createDeviceManager errCode:' + err.code + ', errMessage:' + err.message);
     }
 
-    // 使用deviceManager获取目标设备NetworkId
+    // 使用distributedDeviceManager获取目标设备NetworkId
     if (dmInstance != undefined) {
       let deviceList = dmInstance.getAvailableDeviceListSync();
       let networkId = deviceList[0].networkId;
@@ -283,9 +257,9 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
       // 建立连接后返回的Id需要保存下来，在断开连接时需要作为参数传入
       // FA模型使用此方法连接服务
       // connectId = featureAbility.connectAbility(want, connect);
-      
-      // 第一个参数是本应用的包名，第二个参数是接收deviceManager的回调函数
-      connectId = this.context.connectServiceExtensionAbility(want,connect);
+
+      // 第一个参数是本应用的包名，第二个参数是接收distributedDeviceManager的回调函数
+      connectId = context.connectServiceExtensionAbility(want,connect);
     }
    ```
 
@@ -294,8 +268,8 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    服务端被绑定的Ability在onConnect方法里返回继承自[rpc.RemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#remoteobject)的对象，该对象需要实现[onRemoteMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#onremotemessagerequest9)方法，处理客户端的请求。
 
    ```ts
-    import rpc from '@ohos.rpc';
-    import Want from '@ohos.app.ability.Want';
+    import { rpc } from '@kit.IPCKit';
+    import { Want } from '@kit.AbilityKit';
     class Stub extends rpc.RemoteObject {
       constructor(descriptor: string) {
         super(descriptor);
@@ -309,7 +283,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
         const robj: rpc.RemoteObject = new Stub("rpcTestAbility");
         return robj;
       }
-    } 
+    }
    ```
 
 4. 客户端处理服务端响应
@@ -317,8 +291,8 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    客户端在onConnect回调里接收到代理对象，调用[sendMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#sendmessagerequest9-2)方法发起请求，在期约（用于表示一个异步操作的最终完成或失败及其结果值）或者回调函数里接收结果。
 
    ```ts
-    import rpc from '@ohos.rpc';
-    import hilog from '@ohos.hilog';
+    import { rpc } from '@kit.IPCKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
 
     // 使用期约
     let option = new rpc.MessageOption();
@@ -371,12 +345,11 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    IPC通信结束后，FA模型使用featureAbility的接口断开连接，Stage模型在获取context后用提供的接口断开连接。
 
    ```ts
-    import rpc from '@ohos.rpc';
-    import Want from '@ohos.app.ability.Want';
-    import hilog from '@ohos.hilog';
-    import common from '@ohos.app.ability.common';
-    // 仅FA模型需要导入@ohos.ability.featureAbility
-    // import featureAbility from "@ohos.ability.featureAbility";
+    // FA模型需要从@kit.AbilityKit导入featureAbility
+    // import { featureAbility } from "@kit.AbilityKit";
+    import { Want, common } from '@kit.AbilityKit';
+    import { rpc } from '@kit.IPCKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
 
     function disconnectCallback() {
       hilog.info(0x0000, 'testTag', 'disconnect ability done');

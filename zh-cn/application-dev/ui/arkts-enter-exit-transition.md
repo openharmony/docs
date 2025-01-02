@@ -1,7 +1,7 @@
 # 出现/消失转场
 
 
-[transition](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md)是基础的组件转场接口，用于实现一个组件出现或者消失时的动画效果。可以通过[TransitionEffect](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitioneffect10对象说明)的组合使用，定义出各式效果。
+[transition](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md)是基础的组件转场接口，用于实现一个组件出现或者消失时的动画效果。可以通过[TransitionEffect对象](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitioneffect10对象说明)的组合使用，定义出各式效果。
 
 
   **表1** 转场效果接口
@@ -14,7 +14,7 @@
 | translate | 通过设置组件平移创建转场效果。 | 出现时为translate接口设置的值到默认值0，消失时为默认值0到translate接口设置的值。 |
 | rotate | 通过设置组件旋转创建转场效果。 | 出现时为rotate接口设置的值到默认值0，消失时为默认值0到rotate接口设置的值。 |
 | opacity | 通过设置透明度参数创建转场效果。 | 出现时为opacity设置的值到默认透明度1，消失时为默认透明度1到opacity设置的值。 |
-| move | 通过[TransitionEdge](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#transitionedge10)创建从窗口哪条边缘出来的效果。 | 出现时从TransitionEdge方向滑入，消失时滑出到TransitionEdge方向。 |
+| move | 通过[TransitionEdge](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitionedge10)创建从窗口哪条边缘出来的效果。 | 出现时从TransitionEdge方向滑入，消失时滑出到TransitionEdge方向。 |
 | asymmetric | 通过此方法组合非对称的出现消失转场效果。<br/>- appear:出现转场的效果。<br/>- disappear：消失转场的效果。 | 出现时采用appear设置的TransitionEffect出现效果，消失时采用disappear设置的TransitionEffect消失效果。 |
 | combine | 组合其他TransitionEffect。 | 组合其他TransitionEffect，一起生效。 |
 | animation | 定义转场效果的动画参数：<br/>-&nbsp;如果不定义会跟随animateTo的动画参数。<br/>-&nbsp;不支持通过控件的animation接口配置动画参数。<br/>-&nbsp;TransitionEffect中animation的onFinish不生效。 | 调用顺序时从上往下，上面TransitionEffect的animation也会作用到下面TransitionEffect。 |
@@ -43,7 +43,7 @@
   
    ```ts
    Text('test')
-     .transition(effect)
+     .transition(this.effect)
    ```
 
 3. 新增或者删除组件触发转场。
@@ -53,12 +53,12 @@
    ...
    if (this.isPresent) {
      Text('test')
-       .transition(effect)
+       .transition(this.effect)
    }
    ...
    // 控制新增或者删除组件
    // 方式一：将控制变量放到animateTo闭包内，未通过animation接口定义动画参数的TransitionEffect将跟随animateTo的动画参数
-   animateTo({ curve: curves.springMotion() }, () => {
+   this.getUIContext()?.animateTo({ curve: curves.springMotion() }, () => {
      this.isPresent = false;
    })
    
@@ -70,7 +70,7 @@
  完整的示例代码和效果如下，示例中采用直接删除或新增组件的方式触发转场，也可以替换为在animateTo闭包内改变控制变量触发转场。
 
 ```ts
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -190,7 +190,7 @@ struct Index1 {
     }
     .size({ width: '100%', height: '100%' })
     .onClick(() => {
-      animateTo({
+      this.getUIContext()?.animateTo({
         duration: DURATION + INTERVAL * (ITEM_COUNTS - 1),
         curve: Curve.Friction
       }, () => {

@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Init error. The WebviewController must be associated with a Web compoent.
+Init error. The WebviewController must be associated with a Web component.
 
 **错误描述**
 
@@ -16,7 +16,7 @@ WebviewController还没有和具体的Web组件关联，无法进行相应的操
 
 **处理步骤**
 
-请检查WebviewController对象是否已与Web组件关联。
+请检查WebviewController对象是否已与Web组件关联，可以通过[onControllerAttached()](ts-basic-components-web.md#oncontrollerattached10)接口进行检查。
 
 
 ## 17100002 Url格式错误
@@ -57,7 +57,7 @@ resource路径错误。
 
 **错误信息**
 
-Function not enable.
+Function not enabled.
 
 **错误描述**
 
@@ -91,7 +91,7 @@ cookie value格式错误。
 
 **错误信息**
 
-Can not register message event using this port.
+Failed to register a message event for the port.
 
 **错误描述**
 
@@ -110,7 +110,7 @@ port可能已经关闭。
 
 **错误信息**
 
-Invalid back or forward operation.
+Invalid backward or forward operation.
 
 **错误描述**
 
@@ -133,7 +133,7 @@ Invalid back or forward operation.
 
 **错误信息**
 
-Cannot delete JavaScriptProxy.
+Failed to delete JavaScriptProxy because it does not exist.
 
 **错误描述**
 
@@ -152,7 +152,7 @@ Cannot delete JavaScriptProxy.
 
 **错误信息**
 
-Cannot zoom in or zoom out.
+The zoom operation failed.
 
 **错误描述**
 
@@ -171,7 +171,7 @@ Cannot zoom in or zoom out.
 
 **错误信息**
 
-Cannot post message using this port.
+Failed to post messages through the port.
 
 **错误描述**
 
@@ -234,7 +234,7 @@ Invalid web storage origin.
 
 **错误信息**
 
-The number of preconnect sockets is invalid.
+The number of sockets to be preconnected is invalid.
 
 **错误描述**
 
@@ -253,7 +253,7 @@ The number of preconnect sockets is invalid.
 
 **错误信息**
 
-The type does not match with the value of the message.
+The type and value of the message do not match.
 
 **错误描述**
 
@@ -272,7 +272,7 @@ The type does not match with the value of the message.
 
 **错误信息**
 
-New failed, out of memeory.
+Memory allocation failed.
 
 **错误描述**
 
@@ -290,7 +290,7 @@ New failed, out of memeory.
 
 **错误信息**
 
-The download is not paused.
+The download task is not paused.
 
 **错误描述**
 
@@ -344,7 +344,7 @@ No WebDownloadDelegate has been set yet.
 
 **错误信息**
 
-The download has not been started yet.
+The download task is not started yet.
 
 **错误描述**
 
@@ -362,7 +362,7 @@ The download has not been started yet.
 
 **错误信息**
 
-Register custom schemes failed.
+Failed to register custom schemes.
 
 **错误描述**
 
@@ -380,7 +380,7 @@ Register custom schemes failed.
 
 **错误信息**
 
-Resource handler is invalid.
+The resource handler is invalid.
 
 **错误描述**
 
@@ -403,7 +403,7 @@ WebResourceHandler已经失效。
 
 **错误信息**
 
-The http body stream init failed.
+Failed to initialize the HTTP body stream.
 
 **错误描述**
 
@@ -411,8 +411,8 @@ WebHttpBodyStream数据初始化失败。
 
 **可能原因**
 
-发起的POST等类型的请求中，携带的数据不合法。例如里面数据流中有文件类型的数据，但是该文件路径不存在，则数据流初始化失败.
+发起的POST等类型的请求中，携带的数据不合法。例如里面数据流中有文件类型的数据，但是该文件路径不存在，则数据流初始化失败。
 
 **处理步骤**
 
-检查发起的POST等类型的请求中，携带的数据是否合法
+检查发起的POST等类型的请求中，携带的数据是否合法。

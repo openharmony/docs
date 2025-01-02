@@ -1,8 +1,12 @@
-# 订阅系统崩溃事件（C++）
+# 订阅崩溃事件（C/C++）
 
 ## 接口说明
 
 API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent)。
+
+> **说明：**
+>
+> 使用C/C++接口订阅崩溃事件，包含JsError和NativeCrash两种崩溃类型。
 
 **订阅接口功能介绍：**
 
@@ -33,7 +37,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            - jsoncpp.cpp
          ets:
            - entryability:
-               - EntryAbility.ts
+               - EntryAbility.ets
            - pages:
                - Index.ets
    ```
@@ -50,6 +54,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 3. 编辑"napi_init.cpp"文件，导入依赖的文件，并定义LOG_TAG：
 
    ```c++
+   #include "napi/native_api.h"
    #include "json/json.h"
    #include "hilog/log.h"
    #include "hiappevent/hiappevent.h"
@@ -58,7 +63,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    #define LOG_TAG "testTag"
    ```
 
-4. 订阅应用事件：
+4. 订阅系统事件：
 
    - onReceive类型观察者：
 
@@ -113,9 +118,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
          // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
          systemEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
-         // 设置订阅的事件类型为EVENT_APP_CRASH。
+         // 设置订阅的事件为EVENT_APP_CRASH。
          const char *names[] = {EVENT_APP_CRASH};
-         // 开发者订阅感兴趣的应用事件，此处订阅了系统事件。
+         // 开发者订阅感兴趣的事件，此处订阅了系统事件。
          OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
          // 开发者设置已实现的回调函数，观察者接收到事件后回立即触发OnReceive回调。
          OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcher, OnReceive);
@@ -185,9 +190,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
          // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
          systemEventWatcher = OH_HiAppEvent_CreateWatcher("onTriggerWatcher");
-         // 设置订阅的事件类型为EVENT_APP_CRASH。
+         // 设置订阅的事件为EVENT_APP_CRASH。
          const char *names[] = {EVENT_APP_CRASH};
-         // 开发者订阅感兴趣的应用事件，此处订阅了系统事件。
+         // 开发者订阅感兴趣的事件，此处订阅了系统事件。
          OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
          // 开发者设置已实现的回调函数，需OH_HiAppEvent_SetTriggerCondition设置的条件满足方可触发。
          OH_HiAppEvent_SetWatcherOnTrigger(systemEventWatcher, OnTrigger);
@@ -199,7 +204,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      }
      ```
 
-5. 将RegisterWathcer注册为ArkTS接口：
+5. 将RegisterWatcher注册为ArkTS接口：
 
    编辑"napi_init.cpp"文件，将RegisterWatcher注册为ArkTS接口：
 
@@ -220,16 +225,15 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    export const registerWatcher: () => void;
    ```
 
-6. 编辑"EntryAbility.ts"文件，在onCreate()函数中新增接口调用：
+6. 编辑"EntryAbility.ets"文件，在onCreate()函数中新增接口调用：
 
    ```typescript
+   // 导入依赖模块
    import testNapi from 'libentry.so'
-   export default class EntryAbility extends UIAbility {
-     onCreate(want, launchParam) {
-       // 启动时，注册系统事件观察者
-       testNapi.registerWatcher();
-     }
-   }
+
+   // 在onCreate()函数中新增接口调用
+   // 启动时，注册系统事件观察者
+   testNapi.registerWatcher();
    ```
 
 7. 编辑"Index.ets"文件，新增按钮触发崩溃事件：
@@ -240,29 +244,29 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    })
    ```
 
-8. 点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“appCrash”，触发一次崩溃事件。
+8. 点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“appCrash”，触发一次崩溃事件。崩溃事件发生后，系统会根据崩溃类型（JsError或NativeCrash）采用不同的栈回溯方式生成崩溃日志，然后再进行回调。其中NativeCrash栈回溯耗时约2秒，实际耗时与业务线程数量、进程间通信耗时有关。JsError触发进程内栈回溯，NativeCrash触发进程外栈回溯，因此NativeCrash栈回溯会比JsError栈回溯更耗时。用户可以订阅崩溃事件，栈回溯完成后会异步上报，不会阻塞当前业务。
 
-9. 应用工程崩溃退出后再次运行可以在Log窗口看到对系统事件数据的处理日志：
+9. 下次应用启动后，HiAppEvent将崩溃事件上报给应用已注册的监听，完成回调。并可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.domain=OS
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.name=APP_CRASH
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.eventType=1
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.time=1502032265088
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.crash_type=JsError
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.foreground=1
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_version=1.0.0
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.pid=19237
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.uid=20010043
-   08-06 23:11:35.270 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.uuid=cc0f062e1b28c1fd2c817fafab5e8ca3207925b4bdd87c43ed23c60029659e01
-   08-06 23:11:35.270 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON","name":"SyntaxError","stack":"at anonymous (entry/src/main/ets/pages/Index.ets:16:11)"}
-   08-06 23:11:35.270 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.hilog.size=110
-   08-06 23:11:35.270 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_CRASH_1502032265211_19237.log"]
-   08-06 23:11:35.270 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.log_over_limit=0
+   HiAppEvent eventInfo.domain=OS
+   HiAppEvent eventInfo.name=APP_CRASH
+   HiAppEvent eventInfo.eventType=1
+   HiAppEvent eventInfo.params.time=1502032265088
+   HiAppEvent eventInfo.params.crash_type=JsError
+   HiAppEvent eventInfo.params.foreground=1
+   HiAppEvent eventInfo.params.bundle_version=1.0.0
+   HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
+   HiAppEvent eventInfo.params.pid=19237
+   HiAppEvent eventInfo.params.uid=20010043
+   HiAppEvent eventInfo.params.uuid=cc0f062e1b28c1fd2c817fafab5e8ca3207925b4bdd87c43ed23c60029659e01
+   HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON","name":"SyntaxError","stack":"at anonymous (entry/src/main/ets/pages/Index.ets:16:11)"}
+   HiAppEvent eventInfo.params.hilog.size=110
+   HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_CRASH_1502032265211_19237.log"]
+   HiAppEvent eventInfo.params.log_over_limit=0
    ```
 
-10. 移除应用事件观察者：
+10. 移除事件观察者：
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -272,13 +276,13 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     }
     ```
 
-11. 销毁应用事件观察者：
+11. 销毁事件观察者：
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
-        // 销毁创建的观察者，并置onReceiverWatcher为nullptr。
+        // 销毁创建的观察者，并置systemEventWatcher为nullptr。
         OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
-        onTriggerWatcher = nullptr;
+        systemEventWatcher = nullptr;
         return {};
     }
     ```

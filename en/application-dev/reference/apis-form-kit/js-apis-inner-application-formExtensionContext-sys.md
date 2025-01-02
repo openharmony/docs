@@ -15,7 +15,7 @@ You can use the APIs of this module to start a FormExtensionAbility.
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## FormExtensionContext.startAbility
@@ -33,8 +33,8 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
@@ -50,9 +50,9 @@ For details about the error codes, see [Form Error Codes](errorcode-form.md).
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import Base from '@ohos.base';
+import { FormExtensionAbility } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId: string, message: string) {
@@ -66,7 +66,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
         'message': message
       }
     };
-    this.context.startAbility(want, (error: Base.BusinessError) => {
+    this.context.startAbility(want, (error: BusinessError) => {
       if (error) {
         console.error(`FormExtensionContext startAbility, error:${JSON.stringify(error)}`);
       } else {
@@ -104,8 +104,8 @@ Starts an ability. This API uses a promise to return the result.
 | ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
@@ -114,9 +114,9 @@ For details about the error codes, see [Form Error Codes](errorcode-form.md).
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import Base from '@ohos.base';
+import { FormExtensionAbility } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId: string, message: string) {
@@ -132,7 +132,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     };
     this.context.startAbility(want).then(() => {
       console.info('StartAbility Success');
-    }).catch((error: Base.BusinessError) => {
+    }).catch((error: BusinessError) => {
       console.error(`StartAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
     });
   }
@@ -166,6 +166,8 @@ Connects this ability to a ServiceExtensionAbility.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 201      | Permissions denied.             |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -182,12 +184,13 @@ For details about the error codes, see [Ability Error Codes](../apis-ability-kit
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import rpc from '@ohos.rpc';
-import Base from '@ohos.base';
+import { rpc } from '@kit.IPCKit';
+import { FormExtensionAbility } from '@kit.FormKit';
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let commRemote: rpc.IRemoteObject | null = null;
+
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId: string, message: string) {
     // Call connectServiceExtensionAbility() when the message event is triggered.
@@ -201,12 +204,16 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
       }
     };
     let options: common.ConnectOptions = {
-      onConnect(elementName, remote) { 
+      onConnect(elementName, remote) {
         commRemote = remote; // remote is used to communicate with the ServiceExtensionAbility.
-        console.log('----------- onConnect -----------'); 
+        console.log('----------- onConnect -----------');
       },
-      onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
-      onFailed(code) { console.error('----------- onFailed -----------') }
+      onDisconnect(elementName) {
+        console.log('----------- onDisconnect -----------')
+      },
+      onFailed(code) {
+        console.error('----------- onFailed -----------')
+      }
     };
 
     let connection: number | null = null;
@@ -214,7 +221,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
       connection = this.context.connectServiceExtensionAbility(want, options);
     } catch (paramError) {
       // Process input parameter errors.
-      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 };
@@ -241,6 +248,7 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
@@ -249,9 +257,9 @@ For details about the error codes, see [Ability Error Codes](../apis-ability-kit
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import rpc from '@ohos.rpc';
-import Base from '@ohos.base';
+import { FormExtensionAbility } from '@kit.FormKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // commRemote is the remote object returned in the onConnect() callback. The value null is meaningless and is only an example.
 let commRemote: rpc.IRemoteObject | null = null;
@@ -261,7 +269,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     let connection: number = 1;
 
     try {
-      this.context.disconnectServiceExtensionAbility(connection, (error: Base.BusinessError) => {
+      this.context.disconnectServiceExtensionAbility(connection, (error: BusinessError) => {
         commRemote = null;
         if (error.code) {
           // Process service logic errors.
@@ -274,7 +282,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // Process input parameter errors.
-      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 };
@@ -306,6 +314,7 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
@@ -314,9 +323,9 @@ For details about the error codes, see [Ability Error Codes](../apis-ability-kit
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import rpc from '@ohos.rpc';
-import Base from '@ohos.base';
+import { FormExtensionAbility } from '@kit.FormKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // commRemote is the remote object returned in the onConnect() callback. The value null is meaningless and is only an example.
 let commRemote: rpc.IRemoteObject | null = null;
@@ -332,7 +341,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
           // Carry out normal service processing.
           console.log('disconnectServiceExtensionAbility succeed');
         })
-        .catch((error: Base.BusinessError) => {
+        .catch((error: BusinessError) => {
           commRemote = null;
           // Process service logic errors.
           console.error(`disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
@@ -340,7 +349,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // Process input parameter errors.
-      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 };

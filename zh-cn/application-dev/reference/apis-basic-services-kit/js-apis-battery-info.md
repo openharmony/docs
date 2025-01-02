@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```js
-import batteryInfo from '@ohos.batteryInfo';
+import {batteryInfo} from '@kit.BasicServicesKit';
 ```
 
 ## 属性
@@ -21,20 +21,21 @@ import batteryInfo from '@ohos.batteryInfo';
 
 | 名称      | 类型        | 可读 | 可写 |  说明     |
 | --------------- | ------------------- | ---- | ---- | ---------------------|
-| batterySOC                                | number                                         | 是   | 否   | 表示当前设备剩余电池电量百分比，支持atomicservice<sup>12+</sup>。                           |
-| chargingStatus                            | [BatteryChargeState](#batterychargestate)      | 是   | 否   | 表示当前设备电池的充电状态，支持atomicservice<sup>12+</sup>。                               |
+| batterySOC                                | number                                         | 是   | 否   | 表示当前设备剩余电池电量百分比。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                           |
+| chargingStatus                            | [BatteryChargeState](#batterychargestate)      | 是   | 否   | 表示当前设备电池的充电状态。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                               |
 | healthStatus                              | [BatteryHealthState](#batteryhealthstate)      | 是   | 否   | 表示当前设备电池的健康状态。                               |
 | pluggedType                               | [BatteryPluggedType](#batterypluggedtype)      | 是   | 否   | 表示当前设备连接的充电器类型。                             |
 | voltage                                   | number                                         | 是   | 否   | 表示当前设备电池的电压，单位微伏。                         |
 | technology                                | string                                         | 是   | 否   | 表示当前设备电池的技术型号。                               |
 | batteryTemperature                        | number                                         | 是   | 否   | 表示当前设备电池的温度，单位0.1摄氏度。                    |
 | isBatteryPresent<sup>7+</sup>             | boolean                                        | 是   | 否   | 表示当前设备是否支持电池或者电池是否在位。                 |
-| batteryCapacityLevel<sup>9+</sup>         | [BatteryCapacityLevel](#batterycapacitylevel9) | 是   | 否   | 表示当前设备电池电量的等级。                               |
+| batteryCapacityLevel<sup>9+</sup>         | [BatteryCapacityLevel](#batterycapacitylevel9) | 是   | 否   | 表示当前设备电池电量的等级。                                                  
+| nowCurrent<sup>12+</sup>                  | number                                         | 是   | 否   | 表示当前设备电池的电流，单位毫安。                        |         
 
 **示例**：
 
   ```ts
-  import batteryInfo from '@ohos.batteryInfo';
+  import {batteryInfo} from '@kit.BasicServicesKit';
 
   let batterySOCInfo: number = batteryInfo.batterySOC;
   console.info("The batterySOCInfo is: " + batterySOCInfo);
@@ -62,6 +63,9 @@ import batteryInfo from '@ohos.batteryInfo';
 
   let batteryCapacityLevelInfo = batteryInfo.batteryCapacityLevel;
   console.info("The batteryCapacityLevelInfo is: " + batteryCapacityLevelInfo);
+
+  let nowCurrentInfo: number = batteryInfo.nowCurrent;
+  console.info("The nowCurrentInfo is: " + nowCurrentInfo);
   ```
 
 ## BatteryPluggedType
@@ -79,7 +83,9 @@ import batteryInfo from '@ohos.batteryInfo';
 
 ## BatteryChargeState
 
-表示电池充电状态的枚举，支持atomicservice<sup>12+</sup>。
+表示电池充电状态的枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.PowerManager.BatteryManager.Core
 

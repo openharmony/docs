@@ -12,6 +12,8 @@ drawModifier(modifier: DrawModifier | undefined)
 
 设置组件的自定义绘制修改器。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **组件支持范围:**
@@ -36,6 +38,8 @@ drawFront?(drawContext: DrawContext): void
 
 自定义绘制前景的接口，若重载该方法则可进行前景的自定义绘制。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -50,6 +54,8 @@ drawContent?(drawContext: DrawContext): void
 
 自定义绘制内容的接口，若重载该方法可进行内容的自定义绘制，会替换组件原本的内容绘制函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -63,6 +69,8 @@ drawContent?(drawContext: DrawContext): void
 drawBehind?(drawContext: DrawContext): void
 
 自定义绘制背景的接口，若重载该方法则可进行背景的自定义绘制。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -79,13 +87,18 @@ invalidate(): void
 
 主动触发重绘的接口，开发者无需也无法重载，调用会触发所绑定组件的重绘。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## 示例
+
+通过DrawModifier对Text组件进行自定义绘制。
+
 ```ts
 // xxx.ets
-import drawing from '@ohos.graphics.drawing';
-import animator, { AnimatorResult } from '@ohos.animator';
+import { drawing } from '@kit.ArkGraphics2D';
+import { AnimatorResult } from '@kit.ArkUI';
 
 class MyFullDrawModifier extends DrawModifier {
   public scaleX: number = 1;
@@ -158,8 +171,8 @@ class MyFrontDrawModifier extends DrawModifier {
     brush.setColor({
       alpha: 255,
       red: 0,
-      green: 255,
-      blue: 0
+      green: 0,
+      blue: 255
     });
     context.canvas.attachBrush(brush);
     const halfWidth = context.size.width / 2;
@@ -180,7 +193,7 @@ struct DrawModifierExample {
 
   create() {
     let self = this;
-    this.drawAnimator = animator.create({
+    this.drawAnimator = this.getUIContext().createAnimator({
       duration: 1000,
       easing: 'ease',
       delay: 0,

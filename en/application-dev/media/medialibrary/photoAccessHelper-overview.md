@@ -4,12 +4,21 @@ Media Library Kit provides the capabilities of managing albums and media files, 
 
 ## Available Capabilities
 
-With Media Library Kit, you can manage albums and media files, including creating albums and accessing and modifying media assets in albums. The following capabilities are available to third-party applications:
+With Media Library Kit, you can manage albums and media files, including creating and accessing albums and modifying media assets in albums.
+
+The following capabilities are opened to all applications:
+
+- [Selecting Media Assets Using Picker](photoAccessHelper-photoviewpicker.md)
+- [Saving Media Assets](photoAccessHelper-savebutton.md)
+
+The following capabilities are restrictedly opened to third-party applications:
+
+> **NOTE**
+> To use the restricted open capabilities, the application must have the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions). <!--RP1-->The following permissions are opened to third-party applications with certain restrictions.<!--RP1End-->
 
 - [Media asset management](photoAccessHelper-resource-guidelines.md), including:
   - Obtaining media assets (images and videos)
   - Obtaining image and video thumbnails
-  - Creating a media asset (using a security component)
   - Renaming a media asset
 - [User album management](photoAccessHelper-userAlbum-guidelines.md), including:
   - Obtaining a user album
@@ -24,7 +33,8 @@ With Media Library Kit, you can manage albums and media files, including creatin
   - Registering a listener for the specified URI
   - Unregistering a listener for the specified URI
 
-The following capabilities are available to system applications:
+<!--Del-->
+The following capabilities are opened to system applications:
 
 - Media asset operations, including:
   - Creating a media asset
@@ -37,6 +47,7 @@ The following capabilities are available to system applications:
   - Hiding an album
   - Favoriting and unfavoriting an album
   - Using the Screenshots album
+<!--DelEnd-->
 
 ## Features
 
@@ -48,13 +59,3 @@ The following capabilities are available to system applications:
 ## Working Principles
 
 The media library receives requests for obtaining or changing media assets from users, verifies the request validity and permissions, interacts with the database if the verification is successful, and returns the result.
-
-## Constraints
-
-User personal data is involved in the **photoAccessHelper** module. Therefore, the application needs to apply for the related read and write permissions from the user.
-Before requesting permissions, ensure that the [basic principles for using permissions](../../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. The following permissions are required. For details about how to request user authorization, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
-
-| Permission                        | Description                                      | Authorization Mode  |
-| ------------------------------ | ------------------------------------------ | ---------- |
-| ohos.permission.READ_IMAGEVIDEO     | Allows an application to read image and video file information from a user's external storage.| user_grant |
-| ohos.permission.WRITE_IMAGEVIDEO    | Allows an application to read and write image and video file information on a user's external storage.| user_grant |

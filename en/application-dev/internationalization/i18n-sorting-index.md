@@ -10,12 +10,12 @@ For details about how to use related APIs, see [IndexUtil](../reference/apis-loc
 
 1. Import the **i18n** module.
    ```ts
-   import I18n from '@ohos.i18n';
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. Create an **IndexUtil** object.
    ```ts
-   let indexUtil = I18n.getInstance(locale?:string); // The default value of locale is the current system locale.
+   let indexUtil = i18n.getInstance(locale?:string);  // The default value of locale is the current system locale.
    ```
 
 3. Obtain the index list.
@@ -27,10 +27,9 @@ For details about how to use related APIs, see [IndexUtil](../reference/apis-loc
 
 ```ts
 // Import the i18n module.
-import I18n from '@ohos.i18n';
-import Intl from '@ohos.intl';
+import { i18n } from '@kit.LocalizationKit';
 // Create indexes in a single language.
-let indexUtil = I18n.getInstance("zh-CN");
+let indexUtil = i18n.getInstance("zh-CN");
 let indexList = indexUtil.getIndexList(); // ["...", "A", "B", "C", "D", "E" ... "X", "Y", "Z", "..."]
 // Create indexes in multiple languages.
 indexUtil.addLocale("ru-RU");

@@ -1,0 +1,3 @@
+# Loading Modules Using Node-API
+
+The [napi_load_module](../napi/use-napi-load-module.md) interface in the Node-API is used to load modules in the current HAP/HSP package project in the host thread. The usage scenarios are limited, but the parameter transfer is simple. The [napi_load_module_with_info](../napi/use-napi-load-module-with-info.md) can be used to load multiple file types, such as the HAR package, cross-HSP package, and native module, in the host thread or subthread. However, the information about the loaded package needs to be marked when the [napi_load_module_with_info](../napi/use-napi-load-module-with-info.md) is used.

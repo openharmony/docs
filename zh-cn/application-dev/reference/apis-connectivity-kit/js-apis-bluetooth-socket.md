@@ -11,14 +11,14 @@ socket模块提供了操作和管理蓝牙socket的方法。
 ## 导入模块
 
 ```js
-import socket from '@ohos.bluetooth.socket';
+import { socket } from '@kit.ConnectivityKit';
 ```
 
 ## socket.sppListen
 
 sppListen(name: string, options: SppOptions, callback: AsyncCallback&lt;number&gt;): void
 
-创建一个服务端监听Socket。
+创建一个服务端监听Socket。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -29,7 +29,7 @@ sppListen(name: string, options: SppOptions, callback: AsyncCallback&lt;number&g
 | 参数名      | 类型                          | 必填   | 说明                      |
 | -------- | --------------------------- | ---- | ----------------------- |
 | name     | string                      | 是    | 服务的名称。                  |
-| option   | [SppOptions](#sppoptions)     | 是    | spp监听配置参数。              |
+| options   | [SppOptions](#sppoptions)     | 是    | spp监听配置参数。              |
 | callback | AsyncCallback&lt;number&gt; | 是    | 表示回调函数的入参，服务端Socket的id。 |
 
 **错误码**：
@@ -38,15 +38,18 @@ sppListen(name: string, options: SppOptions, callback: AsyncCallback&lt;number&g
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let serverNumber = -1;
 let serverSocket = (code: BusinessError, number: number) => {
   if (code) {
@@ -71,7 +74,7 @@ try {
 
 sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
-服务端监听socket等待客户端连接。
+服务端监听socket等待客户端连接。使用Callback异步回调。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -88,19 +91,21 @@ sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 let serverNumber = -1;
 let acceptClientSocket = (code: BusinessError, number: number) => {
-  console.log('bluetooth error code: ' + code.code);
+  console.info('bluetooth error code: ' + code.code);
   if (code) {
     console.error('sppListen error, code is ' + code);
     return;
@@ -121,7 +126,7 @@ try {
 
 sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;number&gt;): void
 
-客户端向远端设备发起spp连接。
+客户端向远端设备发起spp连接。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -132,7 +137,7 @@ sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;num
 | 参数名      | 类型                          | 必填   | 说明                             |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | deviceId | string                      | 是    | 对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| option   | [SppOptions](#sppoptions)     | 是    | spp客户端连接配置参数。                  |
+| options   | [SppOptions](#sppoptions)     | 是    | spp客户端连接配置参数。                  |
 | callback | AsyncCallback&lt;number&gt; | 是    | 表示回调函数的入参，客户端socket的id。        |
 
 **错误码**：
@@ -141,15 +146,18 @@ sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;num
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 let clientNumber = -1;
 let clientSocket = (code: BusinessError, number: number) => {
@@ -157,7 +165,7 @@ let clientSocket = (code: BusinessError, number: number) => {
     console.error('sppListen error, code is ' + code);
     return;
   } else {
-    console.log('bluetooth serverSocket Number: ' + number);
+    console.info('bluetooth serverSocket Number: ' + number);
     // 获取的clientNumber用作客户端后续读/写操作socket的id。
     clientNumber = number;
   }
@@ -191,13 +199,15 @@ sppCloseServerSocket(socket: number): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.             |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let serverNumber = -1; // 此处serverNumber需赋值为调用sppListen接口后，回调中得到的serverNumber。
 try {
     socket.sppCloseServerSocket(serverNumber);
@@ -227,13 +237,15 @@ sppCloseClientSocket(socket: number): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 try {
     socket.sppCloseClientSocket(clientNumber);
@@ -264,13 +276,15 @@ sppWrite(clientSocket: number, data: ArrayBuffer): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.             |
+|801 | Capability not supported.          |
 |2901054 | IO error.                                |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 let arrayBuffer = new ArrayBuffer(8);
 let data = new Uint8Array(arrayBuffer);
@@ -287,7 +301,7 @@ try {
 
 on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;): void
 
-订阅spp读请求事件，入参clientSocket由sppAccept或sppConnect接口获取。
+订阅spp读请求事件，入参clientSocket由sppAccept或sppConnect接口获取。使用Callback异步回调。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -305,17 +319,19 @@ on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.            |
+|801 | Capability not supported.          |
 |2901054 | IO error.                                |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 let dataRead = (dataBuffer: ArrayBuffer) => {
-  let data = new Uint8Array(dataBuffer);
-  console.log('bluetooth data is: ' + data[0]);
+    let data = new Uint8Array(dataBuffer);
+    console.info('bluetooth data is: ' + data[0]);
 }
 try {
     socket.on('sppRead', clientNumber, dataRead);
@@ -341,10 +357,19 @@ off(type: 'sppRead', clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt
 | clientSocket | number                      | 是    | 客户端Socket的id。                            |
 | callback     | Callback&lt;ArrayBuffer&gt; | 否    | 表示取消订阅spp读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
+|801 | Capability not supported.          |
+
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 try {
     socket.off('sppRead', clientNumber);
@@ -363,7 +388,7 @@ try {
 | 名称     | 类型                | 可读   | 可写   | 说明          |
 | ------ | ------------------- | ---- | ---- | ----------- |
 | uuid   | string              | 是    | 是    | spp单据的uuid。 |
-| secure | boolean             | 是    | 是    | 是否是安全通道。    |
+| secure | boolean             | 是    | 是    | 是否是安全通道。true表示是安全通道，false表示非安全通道。    |
 | type   | [SppType](#spptype)            | 是    | 是    | Spp链路类型。    |
 
 

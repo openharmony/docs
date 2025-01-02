@@ -13,19 +13,22 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 - [UiDriver<sup>(deprecated)</sup>](#uidriverdeprecated)：入口类，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能力。从API version 9开始不再维护，建议使用[Driver<sup>9+</sup>](#driver9)。
 
 > **说明：**
- > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
- > - 本模块接口在[自动化测试脚本](../../application-test/arkxtest-guidelines.md)中使用。
+> - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块接口在<!--RP1-->[自动化测试脚本](../../application-test/arkxtest-guidelines.md)<!--RP1End-->中使用。
+> - 本模块接口不支持并发调用。
 
 
 ## 导入模块
 
 ```ts
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver} from '@ohos.UiTest';
+import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver } from '@kit.TestKit';
 ```
 
 ## MatchPattern
 
 控件属性支持的匹配模式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -39,6 +42,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 ## ResizeDirection<sup>9+</sup>
 
 窗口调整大小的方向。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -57,6 +62,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 坐标点信息。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称 | 类型   | 可读 | 可写 | 说明             |
@@ -67,6 +74,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 ## Rect<sup>9+</sup>
 
 控件的边框信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -81,6 +90,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 窗口的窗口模式。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称       | 值   | 说明       |
@@ -93,6 +104,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 ## DisplayRotation<sup>9+</sup>
 
 设备显示器的显示方向。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -111,15 +124,17 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 | 名称                 | 类型    | 可读 | 可写 | 说明                                                         |
 | -------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
-| bundleName           | string  | 是   | 否   | 窗口归属应用的包名。                                         |
-| title                | string  | 是   | 否   | 窗口的标题信息。                                             |
-| focused              | boolean | 是   | 否   | 窗口是否处于获焦状态。                                       |
+| bundleName           | string  | 是   | 否   | 窗口归属应用的包名。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| title                | string  | 是   | 否   | 窗口的标题信息。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| focused              | boolean | 是   | 否   | 窗口是否处于获焦状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | actived(deprecated)  | boolean | 是   | 否   | 窗口是否正与用户进行交互。<br>从API11开始，名称变更为active。 |
-| active<sup>11+</sup> | boolean | 是   | 否   | 窗口是否正与用户进行交互。                                   |
+| active<sup>11+</sup> | boolean | 是   | 否   | 窗口是否正与用户进行交互。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## UiDirection<sup>10+</sup>
 
 进行抛滑等UI操作时的方向。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -134,6 +149,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 模拟注入的鼠标按钮。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称                | 值   | 说明         |
@@ -145,6 +162,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 ## UIElementInfo<sup>10+</sup>
 
 UI事件的相关信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -160,7 +179,7 @@ UiTest框架在API 9中，通过On类提供了丰富的控件特征描述API，�
 On提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[ON.isBefore](#isbefore9)和[ON.isAfter](#isafter9)等API限定邻近控件特征进行辅助定位。<br>On类提供的所有API均为同步接口，建议使用者通过静态构造器ON来链式创建On对象。
 
 ```ts
-import { ON } from '@ohos.UiTest';
+import { ON } from '@kit.TestKit';
 ON.text('123').type('Button');
 ```
 
@@ -169,6 +188,8 @@ ON.text('123').type('Button');
 text(txt: string, pattern?: MatchPattern): On
 
 指定目标控件文本属性，支持多种匹配模式，返回On对象自身。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -185,10 +206,18 @@ text(txt: string, pattern?: MatchPattern): On
 | ---------- | ---------------------------------- |
 | [On](#on9) | 返回指定目标控件文本属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.text('123'); // 使用静态构造器ON创建On对象，指定目标控件的text属性。
 ```
 
@@ -197,6 +226,8 @@ let on:On = ON.text('123'); // 使用静态构造器ON创建On对象，指定目
 id(id: string): On
 
 指定目标控件id属性，返回On对象自身。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -212,10 +243,18 @@ id(id: string): On
 | ---------- | -------------------------------- |
 | [On](#on9) | 返回指定目标控件id属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.id('123'); // 使用静态构造器ON创建On对象，指定目标控件的id属性。
 ```
 
@@ -226,13 +265,19 @@ type(tp: string): On
 
 指定目标控件的控件类型属性，返回On对象自身。
 
+>**说明**
+>
+>控件类型是开发者自定义的。同时，可以借助[DevEco Testing工具](https://developer.huawei.com/consumer/cn/download)进行查询。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| tp     | string | 是   | 指定控件类型。 |
+| tp     | string | 是   | 指定控件类型。|
 
 **返回值：**
 
@@ -240,10 +285,18 @@ type(tp: string): On
 | ---------- | ---------------------------------------- |
 | [On](#on9) | 返回指定目标控件的控件类型属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.type('Button'); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
 ```
 
@@ -253,6 +306,8 @@ let on:On = ON.type('Button'); // 使用静态构造器ON创建On对象，指定
 clickable(b?: boolean): On
 
 指定目标控件的可点击状态属性，返回On对象自身。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -268,10 +323,18 @@ clickable(b?: boolean): On
 | ---------- | ------------------------------------------ |
 | [On](#on9) | 返回指定目标控件的可点击状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.clickable(true); // 使用静态构造器ON创建On对象，指定目标控件的可点击状态属性。
 ```
 
@@ -280,6 +343,8 @@ let on:On = ON.clickable(true); // 使用静态构造器ON创建On对象，指�
 longClickable(b?: boolean): On
 
 指定目标控件的可长按点击状态属性，返回On对象自身。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -295,10 +360,18 @@ longClickable(b?: boolean): On
 | ---------- | ---------------------------------------------- |
 | [On](#on9) | 返回指定目标控件的可长按点击状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.longClickable(true); // 使用静态构造器ON创建On对象，指定目标控件的可长按点击状态属性。
 ```
 
@@ -308,6 +381,8 @@ let on:On = ON.longClickable(true); // 使用静态构造器ON创建On对象，�
 scrollable(b?: boolean): On
 
 指定目标控件的可滑动状态属性，返回On对象自身。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -323,10 +398,18 @@ scrollable(b?: boolean): On
 | ---------- | ------------------------------------------ |
 | [On](#on9) | 返回指定目标控件的可滑动状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.scrollable(true); // 使用静态构造器ON创建On对象，指定目标控件的可滑动状态属性。
 ```
 
@@ -335,6 +418,8 @@ let on:On = ON.scrollable(true); // 使用静态构造器ON创建On对象，指�
 enabled(b?: boolean): On
 
 指定目标控件的使能状态属性，返回On对象自身。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -350,10 +435,18 @@ enabled(b?: boolean): On
 | ---------- | ---------------------------------------- |
 | [On](#on9) | 返回指定目标控件的使能状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.enabled(true); // 使用静态构造器ON创建On对象，指定目标控件的使能状态属性。
 ```
 
@@ -362,6 +455,8 @@ let on:On = ON.enabled(true); // 使用静态构造器ON创建On对象，指定�
 focused(b?: boolean): On
 
 指定目标控件的获焦状态属性，返回On对象自身。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -377,10 +472,18 @@ focused(b?: boolean): On
 | ---------- | ---------------------------------------- |
 | [On](#on9) | 返回指定目标控件的获焦状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.focused(true); // 使用静态构造器ON创建On对象，指定目标控件的获焦状态属性。
 ```
 
@@ -389,6 +492,8 @@ let on:On = ON.focused(true); // 使用静态构造器ON创建On对象，指定�
 selected(b?: boolean): On
 
 指定目标控件的被选中状态属性，返回On对象自身。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -404,10 +509,18 @@ selected(b?: boolean): On
 | ---------- | ------------------------------------------ |
 | [On](#on9) | 返回指定目标控件的被选中状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.selected(true); // 使用静态构造器ON创建On对象，指定目标控件的被选中状态属性。
 ```
 
@@ -416,6 +529,8 @@ let on:On = ON.selected(true); // 使用静态构造器ON创建On对象，指定
 checked(b?: boolean): On
 
 指定目标控件的被勾选状态属性，返回On对象自身。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -431,10 +546,18 @@ checked(b?: boolean): On
 | ---------- | ------------------------------------------ |
 | [On](#on9) | 返回指定目标控件的被勾选状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.checked(true); // 使用静态构造器ON创建On对象，指定目标控件的被勾选状态属性
 ```
 
@@ -443,6 +566,8 @@ let on:On = ON.checked(true); // 使用静态构造器ON创建On对象，指定�
 checkable(b?: boolean): On
 
 指定目标控件能否被勾选状态属性，返回On对象自身。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -458,10 +583,18 @@ checkable(b?: boolean): On
 | ---------- | -------------------------------------------- |
 | [On](#on9) | 返回指定目标控件能否被勾选状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.checkable(true); // 使用静态构造器ON创建On对象，指定目标控件的能否被勾选状态属性。
 ```
 
@@ -470,6 +603,8 @@ let on:On = ON.checkable(true); // 使用静态构造器ON创建On对象，指�
 isBefore(on: On): On
 
 指定目标控件位于给出的特征属性控件之前，返回On对象自身。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -485,10 +620,18 @@ isBefore(on: On): On
 | ---------- | ---------------------------------------------------- |
 | [On](#on9) | 返回指定目标控件位于给出的特征属性控件之前的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 
 // 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之前。
 let on:On = ON.type('Button').isBefore(ON.text('123'));  // 查找text为123之前的第一个Button组件
@@ -499,6 +642,8 @@ let on:On = ON.type('Button').isBefore(ON.text('123'));  // 查找text为123之�
 isAfter(on: On): On
 
 指定目标控件位于给出的特征属性控件之后，返回On对象自身。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -514,10 +659,18 @@ isAfter(on: On): On
 | ---------- | ---------------------------------------------------- |
 | [On](#on9) | 返回指定目标控件位于给出的特征属性控件之后的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 
 // 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之后。
 let on:On = ON.type('Text').isAfter(ON.text('123'))  // 查找 text为123之后的第一个Text组件
@@ -528,6 +681,8 @@ let on:On = ON.type('Text').isAfter(ON.text('123'))  // 查找 text为123之后�
 within(on: On): On
 
 指定目标控件位于给出的特征属性控件之内，返回On对象自身。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -543,10 +698,18 @@ within(on: On): On
 | ---------- | -------------------------------------------------- |
 | [On](#on9) | 返回指定目标控件位于给出的特征属性控件内的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 // 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之内。
 let on:On = ON.text('java').within(ON.type('Scroll'));  // 查找Scroller里面的text为java的子组件
 ```
@@ -556,6 +719,8 @@ let on:On = ON.text('java').within(ON.type('Scroll'));  // 查找Scroller里面�
 inWindow(bundleName: string): On;
 
 指定目标控件位于给出的应用窗口内，返回On对象自身。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -571,10 +736,18 @@ inWindow(bundleName: string): On;
 | ---------- | ---------------------------------------------- |
 | [On](#on9) | 返回指定目标控件位于给出的应用窗口内的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.inWindow('com.uitestScene.acts'); // 使用静态构造器ON创建On对象，指定目标控件位于给出的应用窗口内。
 ```
 
@@ -583,6 +756,8 @@ let on:On = ON.inWindow('com.uitestScene.acts'); // 使用静态构造器ON创�
 description(val: string, pattern?: MatchPattern): On
 
 指定目标控件的描述属性，支持多种匹配模式，返回On对象自身。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -599,10 +774,18 @@ description(val: string, pattern?: MatchPattern): On
 | ---------- | ----------------------------------------- |
 | [On](#on9) | 返回指定目标控件description属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { On, ON } from '@ohos.UiTest';
+import { On, ON } from '@kit.TestKit';
 let on:On = ON.description('123'); // 使用静态构造器ON创建On对象，指定目标控件的description属性。
 ```
 
@@ -617,6 +800,8 @@ click(): Promise\<void>
 
 控件对象进行点击操作。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -625,13 +810,13 @@ click(): Promise\<void>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Driver, ON, Component } from '@ohos.UiTest';
+import { Driver, ON, Component } from '@kit.TestKit';
 async function demo() {
   let driver:Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -645,6 +830,8 @@ doubleClick(): Promise\<void>
 
 控件对象进行双击操作。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -653,13 +840,13 @@ doubleClick(): Promise\<void>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import {Component, Driver, ON } from '@ohos.UiTest';
+import {Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -673,6 +860,8 @@ longClick(): Promise\<void>
 
 控件对象进行长按操作。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -681,13 +870,13 @@ longClick(): Promise\<void>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -700,6 +889,8 @@ async function demo() {
 getId(): Promise\<string>
 
 获取控件对象的id值。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -715,13 +906,13 @@ getId(): Promise\<string>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -734,6 +925,8 @@ async function demo() {
 getText(): Promise\<string>
 
 获取控件对象的文本信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -749,13 +942,13 @@ getText(): Promise\<string>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -768,6 +961,8 @@ async function demo() {
 getType(): Promise\<string>
 
 获取控件对象的控件类型。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -783,13 +978,13 @@ getType(): Promise\<string>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -802,6 +997,8 @@ async function demo() {
 getBounds(): Promise\<Rect>
 
 获取控件对象的边框信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -817,13 +1014,13 @@ getBounds(): Promise\<Rect>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -836,6 +1033,8 @@ async function demo() {
 getBoundsCenter(): Promise\<Point>
 
 获取控件对象所占区域的中心点信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -851,13 +1050,13 @@ getBoundsCenter(): Promise\<Point>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -870,6 +1069,8 @@ async function demo() {
 isClickable(): Promise\<boolean>
 
 获取控件对象可点击属性。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -885,13 +1086,13 @@ isClickable(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -909,6 +1110,8 @@ isLongClickable(): Promise\<boolean>
 
 获取控件对象可长按点击属性。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -923,13 +1126,13 @@ isLongClickable(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -947,6 +1150,8 @@ isChecked(): Promise\<boolean>
 
 获取控件对象被勾选状态。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -961,13 +1166,13 @@ isChecked(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let checkBox: Component = await driver.findComponent(ON.type('Checkbox'));
@@ -985,6 +1190,8 @@ isCheckable(): Promise\<boolean>
 
 获取控件对象能否被勾选属性。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -999,13 +1206,13 @@ isCheckable(): Promise\<boolean>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let checkBox: Component = await driver.findComponent(ON.type('Checkbox'));
@@ -1023,6 +1230,8 @@ isScrollable(): Promise\<boolean>
 
 获取控件对象可滑动属性。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -1037,13 +1246,13 @@ isScrollable(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let scrollBar: Component = await driver.findComponent(ON.scrollable(true));
@@ -1062,6 +1271,8 @@ isEnabled(): Promise\<boolean>
 
 获取控件使能状态。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -1076,13 +1287,13 @@ isEnabled(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -1100,6 +1311,8 @@ isFocused(): Promise\<boolean>
 
 判断控件对象获焦状态。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -1114,13 +1327,13 @@ isFocused(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -1138,6 +1351,8 @@ isSelected(): Promise\<boolean>
 
 获取控件对象被选中状态。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -1152,13 +1367,13 @@ isSelected(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -1176,6 +1391,8 @@ inputText(text: string): Promise\<void>
 
 向控件中输入文本(适用于文本框控件)。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1186,17 +1403,18 @@ inputText(text: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let text: Component = await driver.findComponent(ON.text('hello world'));
@@ -1210,6 +1428,8 @@ clearText(): Promise\<void>
 
 清除控件的文本信息(适用于文本框控件)。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -1217,13 +1437,13 @@ clearText(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let text: Component = await driver.findComponent(ON.text('hello world'));
@@ -1236,6 +1456,8 @@ async function demo() {
 scrollSearch(on: On): Promise\<Component>
 
 在控件上滑动查找目标控件(适用支持滑动的控件)。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1253,17 +1475,18 @@ scrollSearch(on: On): Promise\<Component>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
@@ -1277,6 +1500,8 @@ scrollToTop(speed?: number): Promise\<void>
 
 在控件上滑动到顶部(适用支持滑动的控件)。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1287,17 +1512,18 @@ scrollToTop(speed?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
@@ -1311,6 +1537,8 @@ scrollToBottom(speed?: number): Promise\<void>
 
 在控件上滑动到底部(适用支持滑动的控件)。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1321,17 +1549,18 @@ scrollToBottom(speed?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
@@ -1345,6 +1574,8 @@ dragTo(target: Component): Promise\<void>
 
 将控件拖拽至目标控件处。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1355,17 +1586,18 @@ dragTo(target: Component): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -1380,27 +1612,30 @@ pinchOut(scale: number): Promise\<void>
 
 将控件按指定的比例进行捏合放大。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| scale  | number | 是   | 指定放大的比例。 |
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| scale  | number | 是   | 指定放大的比例。取值范围大于1。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let image: Component = await driver.findComponent(ON.type('Image'));
@@ -1414,27 +1649,30 @@ pinchIn(scale: number): Promise\<void>
 
 将控件按指定的比例进行捏合缩小。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| scale  | number | 是   | 指定缩小的比例。 |
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| scale  | number | 是   | 指定缩小的比例。取值范围为0~1。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let image: Component = await driver.findComponent(ON.type('Image'));
@@ -1448,6 +1686,8 @@ getDescription(): Promise\<string>
 
 获取控件对象的描述信息，使用Promise异步回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -1458,17 +1698,17 @@ getDescription(): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.      |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 17000004 | The window or component is invisible or destroyed.                  |
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
@@ -1487,6 +1727,8 @@ static create(): Driver
 
 静态方法，构造一个Driver对象，并返回该对象。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -1499,14 +1741,14 @@ static create(): Driver
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 17000001 | if the test framework failed to initialize. |
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17000001 | Initialization failed. |
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
 }
@@ -1518,26 +1760,29 @@ delayMs(duration: number): Promise\<void>
 
 Driver对象在给定的时间内延时。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 说明                   |
-| -------- | ------ | ---- | ---------------------- |
-| duration | number | 是   | 给定的时间，单位：ms。 |
+| 参数名   | 类型   | 必填 | 说明                            |
+| -------- | ------ | ---- | ------------------------------- |
+| duration | number | 是   | 给定的时间，单位：ms，取值大于等于0。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.delayMs(1000);
@@ -1549,6 +1794,8 @@ async function demo() {
 findComponent(on: On): Promise\<Component>
 
 在Driver对象中，根据给出的目标控件属性要求查找目标控件。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1566,16 +1813,17 @@ findComponent(on: On): Promise\<Component>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.text('next page'));
@@ -1587,6 +1835,8 @@ async function demo() {
 findComponents(on: On): Promise\<Array\<Component>>
 
 在Driver对象中，根据给出的目标控件属性要求查找出所有匹配控件，以列表保存。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1604,16 +1854,17 @@ findComponents(on: On): Promise\<Array\<Component>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let buttonList: Array<Component> = await driver.findComponents(ON.text('next page'));
@@ -1625,6 +1876,8 @@ async function demo() {
 findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 通过指定窗口的属性来查找目标窗口。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1642,16 +1895,17 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -1664,14 +1918,16 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 在Driver对象中，在用户给定的时间内，持续查找满足控件属性要求的目标控件。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型       | 必填 | 说明                             |
-| ------ | ---------- | ---- | -------------------------------- |
-| On     | [On](#on9) | 是   | 目标控件的属性要求。             |
-| time   | number     | 是   | 查找目标控件的持续时间。单位ms。 |
+| 参数名 | 类型       | 必填 | 说明                                      |
+| ------ | ---------- | ---- | ----------------------------------------- |
+| on    | [On](#on9) | 是   | 目标控件的属性要求。                      |
+| time   | number     | 是   | 查找目标控件的持续时间。单位ms，取值大于等于0。 |
 
 **返回值：**
 
@@ -1681,16 +1937,17 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.waitForComponent(ON.text('next page'),500);
@@ -1703,6 +1960,8 @@ assertComponentExist(on: On): Promise\<void>
 
 断言API，用于断言当前界面是否存在满足给出的目标属性的控件。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1713,17 +1972,18 @@ assertComponentExist(on: On): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000003 | if the assertion failed.    |
+| 17000002 | The async function is not called with await. |
+| 17000003 | Assertion failed.   |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.assertComponentExist(ON.text('next page'));
@@ -1736,6 +1996,8 @@ pressBack(): Promise\<void>
 
 Driver对象进行点击BACK键的操作。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -1744,12 +2006,12 @@ Driver对象进行点击BACK键的操作。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.pressBack();
@@ -1762,6 +2024,8 @@ triggerKey(keyCode: number): Promise\<void>
 
 Driver对象采取如下操作：传入key值实现模拟点击对应按键的效果。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1772,16 +2036,17 @@ Driver对象采取如下操作：传入key值实现模拟点击对应按键的�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.triggerKey(123);
@@ -1793,6 +2058,8 @@ async function demo() {
 triggerCombineKeys(key0: number, key1: number, key2?: number): Promise\<void>
 
 Driver对象通过给定的key值，找到对应组合键并点击。例如，Key值为(2072, 2019)时，Driver对象找到key值对应的组合键并点击，如ctrl+c。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1806,16 +2073,17 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.triggerCombineKeys(2072, 2047, 2035);
@@ -1829,27 +2097,30 @@ click(x: number, y: number): Promise\<void>
 
 Driver对象采取如下操作：在目标坐标点单击。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
+| 参数名 | 类型   | 必填 | 说明                                            |
+| ------ | ------ | ---- | ----------------------------------------------- |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.click(100,100);
@@ -1862,27 +2133,30 @@ doubleClick(x: number, y: number): Promise\<void>
 
 Driver对象采取如下操作：在目标坐标点双击。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
+| 参数名 | 类型   | 必填 | 说明                                            |
+| ------ | ------ | ---- | ----------------------------------------------- |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.doubleClick(100,100);
@@ -1895,27 +2169,30 @@ longClick(x: number, y: number): Promise\<void>
 
 Driver对象采取如下操作：在目标坐标点长按。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
+| 参数名 | 类型   | 必填 | 说明                                            |
+| ------ | ------ | ---- | ----------------------------------------------- |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.longClick(100,100);
@@ -1928,30 +2205,33 @@ swipe(startx: number, starty: number, endx: number, endy: number, speed?: number
 
 Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| startx | number | 是   | 以number的形式传入起始点的横坐标信息。                       |
-| starty | number | 是   | 以number的形式传入起始点的纵坐标信息。                       |
-| endx   | number | 是   | 以number的形式传入目的点的横坐标信息。                       |
-| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息。                       |
+| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值大于等于0。              |
+| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值大于等于0。              |
+| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值大于等于0。              |
+| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值大于等于0。              |
 | speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.swipe(100,100,200,200,600);
@@ -1964,30 +2244,33 @@ drag(startx: number, starty: number, endx: number, endy: number, speed?: number)
 
 Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| startx | number | 是   | 以number的形式传入起始点的横坐标信息。                       |
-| starty | number | 是   | 以number的形式传入起始点的纵坐标信息。                       |
-| endx   | number | 是   | 以number的形式传入目的点的横坐标信息。                       |
-| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息。                       |
+| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值大于等于0。              |
+| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值大于等于0。              |
+| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值大于等于0。              |
+| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值大于等于0。              |
 | speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.drag(100,100,200,200,600);
@@ -2000,13 +2283,15 @@ screenCap(savePath: string): Promise\<boolean>
 
 Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 说明           |
-| -------- | ------ | ---- | -------------- |
-| savePath | string | 是   | 文件保存路径。 |
+| 参数名   | 类型   | 必填 | 说明                                       |
+| -------- | ------ | ---- | ------------------------------------------ |
+| savePath | string | 是   | 文件保存路径。路径需为当前应用的沙箱路径。 |
 
 **返回值：**
 
@@ -2016,16 +2301,17 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.screenCap('/data/storage/el2/base/cache/1.png');
@@ -2036,7 +2322,9 @@ async function demo() {
 
 setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
-将设备的屏幕显示方向设置为指定的显示方向。
+将当前场景的显示方向设置为指定的显示方向。适用于可旋转的应用场景。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2048,16 +2336,17 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver, DisplayRotation } from '@ohos.UiTest';
+import { Driver, DisplayRotation } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.setDisplayRotation(DisplayRotation.ROTATION_180);
@@ -2069,6 +2358,8 @@ async function demo() {
 getDisplayRotation(): Promise\<DisplayRotation>
 
 获取当前设备的屏幕显示方向。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2084,12 +2375,12 @@ getDisplayRotation(): Promise\<DisplayRotation>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **示例：**
 
 ```ts
-import { DisplayRotation, Driver } from '@ohos.UiTest';
+import { DisplayRotation, Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let rotation: DisplayRotation = await driver.getDisplayRotation();
@@ -2102,6 +2393,8 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 启用/禁用设备旋转屏幕的功能。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2112,16 +2405,17 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.setDisplayRotationEnabled(false);
@@ -2133,6 +2427,8 @@ async function demo() {
 getDisplaySize(): Promise\<Point>
 
 获取当前设备的屏幕大小。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2148,12 +2444,12 @@ getDisplaySize(): Promise\<Point>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **示例：**
 
 ```ts
-import { Driver, } from '@ohos.UiTest';
+import { Driver, } from '@kit.TestKit';
 
 async function demo() {
   let driver: Driver = Driver.create();
@@ -2166,6 +2462,8 @@ async function demo() {
 getDisplayDensity(): Promise\<Point>
 
 获取当前设备屏幕的分辨率。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2181,12 +2479,12 @@ getDisplayDensity(): Promise\<Point>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let density = await driver.getDisplayDensity();
@@ -2199,6 +2497,8 @@ wakeUpDisplay(): Promise\<void>
 
 唤醒当前设备即设备亮屏。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -2207,12 +2507,12 @@ wakeUpDisplay(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.wakeUpDisplay();
@@ -2225,6 +2525,8 @@ pressHome(): Promise\<void>
 
 设备返回到桌面。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -2233,12 +2535,12 @@ pressHome(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.pressHome();
@@ -2251,14 +2553,16 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 判断当前界面的所有控件是否已经空闲。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| idleTime | number | 是   | 空闲时间的阈值。在这个时间段控件不发生变化，视为该控件空闲，单位：毫秒。 |
-| timeout  | number | 是   | 等待空闲的最大时间，单位：毫秒。                             |
+| idleTime | number | 是   | 空闲时间的阈值。在这个时间段控件不发生变化，视为该控件空闲，单位：毫秒，取值大于等于0。 |
+| timeout  | number | 是   | 等待空闲的最大时间，单位：毫秒，取值大于等于0。                    |
 
 **返回值：**
 
@@ -2268,16 +2572,17 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let idled:boolean = await driver.waitForIdle(4000,5000);
@@ -2289,6 +2594,8 @@ async function demo() {
 fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 模拟手指滑动后脱离屏幕的快速滑动操作。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2303,16 +2610,17 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.fling({x: 500, y: 480},{x: 450, y: 480},5,600);
@@ -2324,6 +2632,8 @@ async function demo() {
 injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<boolean>
 
 向设备注入多指操作。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2342,16 +2652,17 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver, PointerMatrix } from '@ohos.UiTest';
+import { Driver, PointerMatrix } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let pointers: PointerMatrix = PointerMatrix.create(2,5);
@@ -2375,6 +2686,8 @@ fling(direction: UiDirection, speed: number): Promise\<void>;
 
 指定方向和速度，模拟手指滑动后脱离屏幕的快速滑动操作。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2386,16 +2699,17 @@ fling(direction: UiDirection, speed: number): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver, UiDirection } from '@ohos.UiTest';
+import { Driver, UiDirection } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.fling(UiDirection.DOWN, 10000);
@@ -2408,14 +2722,16 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 捕获当前屏幕的指定区域，并保存为PNG格式的图片至给出的保存路径中。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名   | 类型           | 必填 | 说明                   |
-| -------- | -------------- | ---- | ---------------------- |
-| savePath | string         | 是   | 文件保存路径。         |
-| rect     | [Rect](#rect9) | 否   | 截图区域，默认为全屏。 |
+| 参数名   | 类型           | 必填 | 说明                                       |
+| -------- | -------------- | ---- | ------------------------------------------ |
+| savePath | string         | 是   | 文件保存路径。路径需为当前应用的沙箱路径。 |
+| rect     | [Rect](#rect9) | 否   | 截图区域，默认为全屏。                     |
 
 **返回值：**
 
@@ -2425,16 +2741,17 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.screenCapture('/data/storage/el2/base/cache/1.png', {left: 0, top: 0, right: 100, bottom: 100});
@@ -2446,6 +2763,8 @@ async function demo() {
 mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>;
 
 在指定坐标点注入鼠标点击动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标点击动作。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2460,16 +2779,17 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver,MouseButton } from '@ohos.UiTest';
+import { Driver,MouseButton } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseClick({x:248, y:194}, MouseButton.MOUSE_BUTTON_LEFT, 2072);
@@ -2481,6 +2801,8 @@ async function demo() {
 mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): Promise\<void>;
 
 在指定坐标点注入鼠标滚轮滑动动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标滚轮滑动动作。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2496,16 +2818,17 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseScroll({x:360, y:640}, true, 30, 2072)
@@ -2520,6 +2843,8 @@ mouseMoveTo(p: Point): Promise\<void>;
 
 **系统能力**：SystemCapability.Test.UiTest
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型             | 必填 | 说明           |
@@ -2528,16 +2853,17 @@ mouseMoveTo(p: Point): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseMoveTo({x:100, y:100})
@@ -2549,6 +2875,8 @@ async function demo() {
 createUIEventObserver(): UIEventObserver;
 
 创建一个UI事件监听器。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2564,12 +2892,12 @@ createUIEventObserver(): UIEventObserver;
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **示例：**
 
 ```ts
-import { Driver, UIEventObserver } from '@ohos.UiTest';
+import { Driver, UIEventObserver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let observer: UIEventObserver = await driver.createUIEventObserver()
@@ -2581,6 +2909,8 @@ async function demo() {
 mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, speed?: number): Promise\<void>
 
 在指定坐标点注入鼠标滚轮滑动动作，支持同时按下对应键盘组合键并且指定滑动速度。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2597,16 +2927,17 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseScroll({x:360, y:640}, true, 30, 2072,20)
@@ -2618,6 +2949,8 @@ async function demo() {
 mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>
 
 在指定坐标点注入鼠标双击动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标双击动作。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2632,16 +2965,17 @@ mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Pr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver,MouseButton } from '@ohos.UiTest';
+import { Driver,MouseButton } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseDoubleClick({x:248, y:194}, MouseButton.MOUSE_BUTTON_LEFT, 2072);
@@ -2653,6 +2987,8 @@ async function demo() {
 mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>
 
 在指定坐标点注入鼠标长按动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标长按动作。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2667,16 +3003,17 @@ mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Prom
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver,MouseButton } from '@ohos.UiTest';
+import { Driver,MouseButton } from '@kit.TestKit';
 async function demo() {
   let driver:Driver = Driver.create();
   await driver.mouseLongClick({x:248, y:194}, MouseButton.MOUSE_BUTTON_LEFT, 2072);
@@ -2689,6 +3026,8 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 
 鼠标从起始坐标点滑向终点坐标点。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2701,16 +3040,17 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseMoveWithTrack({x:100, y:100},{x:200, y:200},600);
@@ -2723,6 +3063,8 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 鼠标按住鼠标左键从起始坐标点拖拽至终点坐标点。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2735,16 +3077,17 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseDrag({x:100, y:100},{x:200, y:200},600);
@@ -2757,6 +3100,8 @@ inputText(p: Point, text: string): Promise\<void>
 
 在指定坐标点输入文本。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2768,16 +3113,17 @@ inputText(p: Point, text: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver:Driver = Driver.create();
   let text: Component = await driver.findComponent(ON.type('TextInput'));
@@ -2796,6 +3142,8 @@ static create(fingers: number, steps: number): PointerMatrix
 
 静态方法，构造一个PointerMatrix对象，并返回该对象。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2811,10 +3159,18 @@ static create(fingers: number, steps: number): PointerMatrix
 | -------------------------------- | ----------------------------- |
 | [PointerMatrix](#pointermatrix9) | 返回构造的PointerMatrix对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { PointerMatrix } from '@ohos.UiTest';
+import { PointerMatrix } from '@kit.TestKit';
 async function demo() {
   let pointerMatrix: PointerMatrix = PointerMatrix.create(2,3);
 }
@@ -2826,6 +3182,8 @@ setPoint(finger: number, step: number, point: Point): void
 
 设置PointerMatrix对象中指定手指和步骤对应动作的坐标点。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2836,10 +3194,18 @@ setPoint(finger: number, step: number, point: Point): void
 | step   | number           | 是   | 步骤的序号。                                               |
 | point  | [Point](#point9) | 是   | 该行为的坐标点。建议相邻的坐标点距离在10至80像素点范围内。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { PointerMatrix } from '@ohos.UiTest';
+import { PointerMatrix } from '@kit.TestKit';
 async function demo() {
   let pointers: PointerMatrix = PointerMatrix.create(2,5);
   pointers.setPoint(0,0,{x:250,y:480});
@@ -2866,6 +3232,8 @@ getBundleName(): Promise\<string>
 
 获取窗口归属应用的包名信息。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -2880,13 +3248,13 @@ getBundleName(): Promise\<string>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 
 async function demo() {
   let driver: Driver = Driver.create();
@@ -2900,6 +3268,8 @@ async function demo() {
 getBounds(): Promise\<Rect>
 
 获取窗口的边框信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2915,13 +3285,13 @@ getBounds(): Promise\<Rect>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -2934,6 +3304,8 @@ async function demo() {
 getTitle(): Promise\<string>
 
 获取窗口的标题信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2949,13 +3321,13 @@ getTitle(): Promise\<string>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -2968,6 +3340,8 @@ async function demo() {
 getWindowMode(): Promise\<WindowMode>
 
 获取窗口的窗口模式信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2983,13 +3357,13 @@ getWindowMode(): Promise\<WindowMode>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.          |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.          |
 
 **示例：**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3002,6 +3376,8 @@ async function demo() {
 isFocused(): Promise\<boolean>
 
 判断窗口是否处于获焦状态。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3017,13 +3393,13 @@ isFocused(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3053,13 +3429,13 @@ isActived(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3073,6 +3449,8 @@ focus(): Promise\<void>
 
 让窗口获焦。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -3081,13 +3459,13 @@ focus(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3101,29 +3479,32 @@ moveTo(x: number, y: number): Promise\<void>
 
 将窗口移动到目标点。适用于支持移动的窗口。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
+| 参数名 | 类型   | 必填 | 说明                                            |
+| ------ | ------ | ---- | ----------------------------------------------- |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
-| 17000005 | if the action is not supported on this window.         |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 17000005 | This operation is not supported.         |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3137,6 +3518,8 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 根据传入的宽、高和调整方向来调整窗口的大小。适用于支持调整大小的窗口。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -3149,18 +3532,19 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
-| 17000005 | if the action is not supported on this window.         |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 17000005 | This operation is not supported.         |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
 ```ts
-import { Driver, ResizeDirection, UiWindow } from '@ohos.UiTest';
+import { Driver, ResizeDirection, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3174,6 +3558,8 @@ split(): Promise\<void>
 
 将窗口模式切换成分屏模式。适用于支持切换分屏模式的窗口。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -3182,14 +3568,14 @@ split(): Promise\<void>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.         |
-| 17000005 | if the action is not supported on this window.         |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.         |
+| 17000005 | This operation is not supported.         |
 
 **示例：**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3203,6 +3589,8 @@ maximize(): Promise\<void>
 
 将窗口最大化。适用于支持窗口最大化操作的窗口。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -3211,14 +3599,14 @@ maximize(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
-| 17000005 | if the action is not supported on this window.         |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 17000005 | This operation is not supported.         |
 
 **示例：**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3232,6 +3620,8 @@ minimize(): Promise\<void>
 
 将窗口最小化。适用于支持窗口最小化操作的窗口。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -3240,14 +3630,14 @@ minimize(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.          |
-| 17000005 | if the action is not supported on this window.         |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.          |
+| 17000005 | This operation is not supported.         |
 
 **示例：**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3261,6 +3651,8 @@ resume(): Promise\<void>
 
 将窗口恢复到之前的窗口模式。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -3269,14 +3661,14 @@ resume(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.          |
-| 17000005 | if the action is not supported on this window.         |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.          |
+| 17000005 | This operation is not supported.         |
 
 **示例：**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3290,6 +3682,8 @@ close(): Promise\<void>
 
 将窗口关闭。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -3298,14 +3692,14 @@ close(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
-| 17000005 | if the action is not supported on this window.         |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 17000005 | This operation is not supported.         |
 
 **示例：**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver:Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
@@ -3318,6 +3712,8 @@ async function demo() {
 isActive(): Promise\<boolean>
 
 判断窗口是否为用户正在交互窗口。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3333,13 +3729,13 @@ isActive(): Promise\<boolean>
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.         |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.         |
 
 **示例：**
 
 ```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({active: true});
@@ -3357,6 +3753,8 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 
 开始监听toast控件出现的事件，使用callback的形式返回结果。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -3366,10 +3764,18 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 | type     | string                                       | 是   | 订阅的事件类型，取值为'toastShow' |
 | callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数          |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { Driver, UIElementInfo, UIEventObserver } from '@ohos.UiTest';
+import { Driver, UIElementInfo, UIEventObserver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let observer:  UIEventObserver = await driver.createUIEventObserver()
@@ -3388,6 +3794,8 @@ once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 
 开始监听dialog控件出现的事件，使用callback的形式返回结果。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -3397,10 +3805,18 @@ once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 | type     | string                                       | 是   | 订阅的事件类型，取值为'dialogShow' |
 | callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数           |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import { Driver, UIElementInfo, UIEventObserver } from '@ohos.UiTest';
+import { Driver, UIElementInfo, UIEventObserver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let observer: UIEventObserver = await driver.createUIEventObserver()
@@ -3421,7 +3837,7 @@ By提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多
 从API version 9开始不再维护，建议使用[On<sup>9+</sup>](#on9)。
 
 ```ts
-import { BY } from '@ohos.UiTest';
+import { BY } from '@kit.TestKit';
 BY.text('123').type('Button');
 ```
 
@@ -3451,7 +3867,7 @@ text(txt: string, pattern?: MatchPattern): By
 **示例：**
 
 ```ts
-import { BY, By } from '@ohos.UiTest';
+import { BY, By } from '@kit.TestKit';
 let by: By = BY.text('123'); // 使用静态构造器BY创建by对象，指定目标控件的text属性。
 ```
 
@@ -3481,7 +3897,7 @@ key(key: string): By
 **示例：**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 let by: By = BY.key('123'); // 使用静态构造器BY创建by对象，指定目标控件的key值属性。
 ```
 
@@ -3511,7 +3927,7 @@ id(id: number): By
 **示例：**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 let by: By = BY.id(123); // 使用静态构造器BY创建by对象，指定目标控件的id属性。
 ```
 
@@ -3541,7 +3957,7 @@ type(tp: string): By
 **示例：**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 let by: By = BY.type('Button'); // 使用静态构造器BY创建by对象，指定目标控件的控件类型属性。
 ```
 
@@ -3571,7 +3987,7 @@ clickable(b?: boolean): By
 **示例：**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 let by: By = BY.clickable(true); // 使用静态构造器BY创建by对象，指定目标控件的可点击状态属性。
 ```
 
@@ -3601,7 +4017,7 @@ scrollable(b?: boolean): By
 **示例：**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 let by: By = BY.scrollable(true); // 使用静态构造器BY创建by对象，指定目标控件的可滑动状态属性。
 ```
 
@@ -3630,7 +4046,7 @@ enabled(b?: boolean): By
 **示例：**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 let by: By = BY.enabled(true); // 使用静态构造器BY创建by对象，指定目标控件的使能状态属性。
 ```
 
@@ -3659,7 +4075,7 @@ focused(b?: boolean): By
 **示例：**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 let by: By = BY.focused(true); // 使用静态构造器BY创建by对象，指定目标控件的获焦状态属性。
 ```
 
@@ -3688,7 +4104,7 @@ selected(b?: boolean): By
 **示例：**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 let by: By = BY.selected(true); // 使用静态构造器BY创建by对象，指定目标控件的被选中状态属性。
 ```
 
@@ -3717,7 +4133,7 @@ isBefore(by: By): By
 **示例：**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 
 // 使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之前。
 let by: By = BY.type('Button').isBefore(BY.text('123')); // 查找text为123之前的第一个Button组件
@@ -3748,7 +4164,7 @@ isAfter(by: By): By
 **示例：**
 
 ```ts
-import { By, BY } from '@ohos.UiTest';
+import { By, BY } from '@kit.TestKit';
 
 // 使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之后。
 let by: By = BY.type('Text').isAfter(BY.text('123')); // 查找 text为123之后的第一个Text组件
@@ -3774,7 +4190,7 @@ click(): Promise\<void>
 **示例：**
 
 ```ts
-import { UiDriver, BY, Driver, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, Driver, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -3795,7 +4211,7 @@ doubleClick(): Promise\<void>
 **示例：**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -3816,7 +4232,7 @@ longClick(): Promise\<void>
 **示例：**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -3843,7 +4259,7 @@ getId(): Promise\<number>
 **示例：**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -3870,7 +4286,7 @@ getKey(): Promise\<string>
 **示例：**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -3897,7 +4313,7 @@ getText(): Promise\<string>
 **示例：**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -3924,7 +4340,7 @@ getType(): Promise\<string>
 **示例：**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -3951,7 +4367,7 @@ isClickable(): Promise\<boolean>
 **示例：**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -3982,7 +4398,7 @@ isScrollable(): Promise\<boolean>
 **示例：**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let scrollBar: UiComponent = await driver.findComponent(BY.scrollable(true));
@@ -4014,7 +4430,7 @@ isEnabled(): Promise\<boolean>
 **示例：**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -4046,7 +4462,7 @@ isFocused(): Promise\<boolean>
 **示例：**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -4077,7 +4493,7 @@ isSelected(): Promise\<boolean>
 **示例：**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
@@ -4108,7 +4524,7 @@ inputText(text: string): Promise\<void>
 **示例：**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let text: UiComponent = await driver.findComponent(BY.text('hello world'));
@@ -4141,7 +4557,7 @@ scrollSearch(by: By): Promise\<UiComponent>
 **示例：**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let scrollBar: UiComponent = await driver.findComponent(BY.type('Scroll'));
@@ -4175,7 +4591,7 @@ static create(): UiDriver
 **示例：**
 
 ```ts
-import { UiDriver } from '@ohos.UiTest';
+import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
 }
@@ -4200,7 +4616,7 @@ UiDriver对象在给定的时间内延时。
 **示例：**
 
 ```ts
-import { UiDriver } from '@ohos.UiTest';
+import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.delayMs(1000);
@@ -4232,7 +4648,7 @@ findComponent(by: By): Promise\<UiComponent>
 **示例：**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.text('next page'));
@@ -4264,7 +4680,7 @@ findComponents(by: By): Promise\<Array\<UiComponent>>
 **示例：**
 
 ```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let buttonList: Array<UiComponent> = await driver.findComponents(BY.text('next page'));
@@ -4293,13 +4709,14 @@ assertComponentExist(by: By): Promise\<void>
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
+| 401      | if the input parameters are invalid.             |
 | 17000002 | if the async function was not called with await. |
 | 17000003 | if the assertion failed.                         |
 
 **示例：**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.assertComponentExist(BY.text('next page'));
@@ -4319,7 +4736,7 @@ UiDriver对象进行点击BACK键的操作。
 **示例：**
 
 ```ts
-import { UiDriver } from '@ohos.UiTest';
+import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.pressBack();
@@ -4345,7 +4762,7 @@ UiDriver对象采取如下操作：通过key值找到对应键并点击。
 **示例：**
 
 ```ts
-import { Driver, UiDriver } from '@ohos.UiTest';
+import { Driver, UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.triggerKey(123);
@@ -4373,7 +4790,7 @@ UiDriver对象采取如下操作：在目标坐标点单击。
 **示例：**
 
 ```ts
-import { UiDriver } from '@ohos.UiTest';
+import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.click(100,100);
@@ -4400,7 +4817,7 @@ UiDriver对象采取如下操作：在目标坐标点双击。
 **示例：**
 
 ```ts
-import { UiDriver } from '@ohos.UiTest';
+import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.doubleClick(100,100);
@@ -4427,7 +4844,7 @@ UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
 **示例：**
 
 ```ts
-import { UiDriver } from '@ohos.UiTest';
+import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.longClick(100,100);
@@ -4456,7 +4873,7 @@ UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目
 **示例：**
 
 ```ts
-import { UiDriver } from '@ohos.UiTest';
+import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.swipe(100,100,200,200);
@@ -4488,7 +4905,7 @@ UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的
 **示例：**
 
 ```ts
-import { UiDriver } from '@ohos.UiTest';
+import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.screenCap('/data/storage/el2/base/cache/1.png');

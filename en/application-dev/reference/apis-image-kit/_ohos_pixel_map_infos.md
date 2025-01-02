@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OhosPixelMapInfos** struct defines the information about a pixel map.
+The **OhosPixelMapInfos** struct describes the information about a PixelMap.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -19,10 +19,10 @@ The **OhosPixelMapInfos** struct defines the information about a pixel map.
 
 | Name| Description| 
 | -------- | -------- |
-| [width](#width) | Image width, in pixels.| 
-| [height](#height) | Image height, in pixels.| 
-| [rowSize](#rowsize) | Number of bytes per row. In the case of Direct Memory Access (DMA), the formula is as follows: Image width x Roundup(64 x Number of bytes per pixel). (The roundup means that each row is automatically padded.) In the case of other types of memory, the formula is as follows: Image width x Number of bytes per pixel.| 
-| [pixelFormat](#pixelformat) | Pixel format.| 
+| uint32_t [width](#width) | Image width, in pixels. | 
+| uint32_t [height](#height) | Image height, in pixels. | 
+| uint32_t [rowSize](#rowsize) | Number of bytes per row. In the case of Direct Memory Access (DMA), the formula is as follows: Image width x Roundup(256 x Number of bytes per pixel). (The roundup means that each row is automatically padded.) In the case of other types of memory, the formula is as follows: Image width x Number of bytes per pixel. | 
+| int32_t [pixelFormat](#pixelformat) | Pixel format. | 
 
 
 ## Member Variable Description
@@ -60,7 +60,7 @@ uint32_t OhosPixelMapInfos::rowSize
 
 Number of bytes per row.
 
-In the case of DMA, the formula is as follows: Image width x Roundup(64 x Number of bytes per pixel). (The roundup means that each row is automatically padded.) In the case of other types of memory, the formula is as follows: Image width x Number of bytes per pixel.
+In the case of Direct Memory Access (DMA), the formula is as follows: Image width x Roundup(256 x Number of bytes per pixel). (The roundup means that each row is automatically padded.) In the case of other types of memory, the formula is as follows: Image width x Number of bytes per pixel.
 
 
 ### width

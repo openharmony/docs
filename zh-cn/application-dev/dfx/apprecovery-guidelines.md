@@ -33,7 +33,7 @@ API 10在API 9的基础上新增支持多Ability的Stage模型应用开发。支
 
 **setRestartWant:** 指定由appRecovery发起重启的Ability。
 
-**restartApp:** 调用后框架会杀死当前应用进程，并重新拉起由**setRestartWant**指定的Ability，其中启动原因为APP_RECOVERY。API 9以及未使用**setRestartWant**指定Ability的场景，会拉起最后一个支持恢复且在前台的Ability，如果当前前台的Ability不支持恢复，则应用表现闪退。如果重启的Ability存在已经保存的状态，这些状态数据会在Ability的OnCreate生命周期回调的want参数中作为wantParam属性传入。
+**restartApp:** 调用后框架会杀死当前应用进程，并重新拉起由**setRestartWant**指定的Ability，其中启动原因为APP_RECOVERY。API 9以及未使用**setRestartWant**指定Ability的场景，会拉起最后一个支持恢复且在前台的Ability，如果当前前台的Ability不支持恢复，则应用表现闪退。如果重启的Ability存在已经保存的状态，这些状态数据会在Ability的OnCreate生命周期回调的want参数中作为wantParam属性传入。两次重启的间隔应大于一分钟，一分钟之内重复调用此接口只会退出应用不会重启应用。自动重启的行为与主动重启一致。
 
 ### 应用恢复状态管理示意
 从API 10起，应用恢复的场景不仅局限于异常时自动重启。所以需要理解应用何时会加载恢复的状态。
@@ -85,8 +85,7 @@ API 10开始支持应用卡死时的状态保存。JsError故障时，onSaveStat
    开发者需要在应用模块初始化时使能appRecovery功能。下面为示例的AbilityStage。
 
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage'
-import appRecovery from '@ohos.app.ability.appRecovery'
+import { AbilityStage, appRecovery } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
     onCreate() {
@@ -118,9 +117,7 @@ Ability的配置清单一般的名字为module.json5。
 #### 导包
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
-import appRecovery from '@ohos.app.ability.appRecovery';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { AbilityConstant, appRecovery, errorManager } from '@kit.AbilityKit';
 ```
 
 #### 主动触发保存和恢复
@@ -128,35 +125,33 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 - 定义和注册[ErrorObserver](../reference/apis-ability-kit/js-apis-inner-application-errorObserver.md) callback，具体可参考[errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md)里的使用方法。
 
 ```ts
-  import appRecovery from '@ohos.app.ability.appRecovery';
-  import errorManager from '@ohos.app.ability.errorManager';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
+import { appRecovery, errorManager, UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
-  let registerId = -1;
-  let callback: errorManager.ErrorObserver = {
-      onUnhandledException(errMsg) {
-          console.log(errMsg);
-          appRecovery.saveAppState();
-          appRecovery.restartApp();
-      }
-  }
+let registerId = -1;
+let callback: errorManager.ErrorObserver = {
+    onUnhandledException(errMsg) {
+    console.log(errMsg);
+    appRecovery.saveAppState();
+    appRecovery.restartApp();
+    }
+}
 
-  export default class EntryAbility extends UIAbility {
-      onWindowStageCreate(windowStage: window.WindowStage) {
-          // Main window is created, set main page for this ability
-          console.log("[Demo] EntryAbility onWindowStageCreate");
-          registerId = errorManager.on('error', callback);
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("[Demo] EntryAbility onWindowStageCreate");
+    registerId = errorManager.on('error', callback);
 
-          windowStage.loadContent("pages/index", (err, data) => {
-              if (err.code) {
-                  console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                  return;
-              }
-              console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
-          })
-      }
-  }
+    windowStage.loadContent("pages/index", (err, data) => {
+        if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+        }
+        console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+    })
+    }
+}
 ```
 
 - 数据保存
@@ -164,8 +159,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 callback触发appRecovery.saveAppState()调用后，会触发EntryAbility的onSaveState(state, wantParams)函数回调。
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onSaveState(state:AbilityConstant.StateType, wantParams: Record<string, Object>) {
@@ -182,9 +176,7 @@ export default class EntryAbility extends UIAbility {
 callback触发后appRecovery.restartApp()调用后，应用会重启，重启后会走到EntryAbility的onCreate(want, launchParam)函数，保存的数据会在want参数的parameters里。
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 let abilityWant: Want;
 
@@ -209,8 +201,7 @@ export default class EntryAbility extends UIAbility {
 - 取消注册ErrorObserver callback
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { errorManager, UIAbility } from '@kit.AbilityKit';
 
 let registerId = -1;
 
@@ -231,9 +222,7 @@ export default class EntryAbility extends UIAbility {
 被动保存和恢复依赖恢复框架底层触发，无需注册监听ErrorObserver callback，只需实现Ability的onSaveState接口数据保存和onCreate接口数据恢复流程即可。
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 let abilityWant: Want;
 
@@ -263,13 +252,10 @@ export default class EntryAbility extends UIAbility {
 
 #### 故障Ability的重启恢复标记
 
-发生故障的Ability再次重新启动时，在调度onCreate生命周期里，参数want的parameters成员会有[ABILITY_RECOVERY_RESTART](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)标记数据，并且值为true。
+发生故障的Ability再次重新启动时，在调度onCreate生命周期里，参数want的parameters成员会有[ABILITY_RECOVERY_RESTART](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)标记数据，并且值为true。
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { AbilityConstant, UIAbility, Want, wantConstant } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {

@@ -1,10 +1,10 @@
-# 代理提醒
+# 代理提醒(ArkTS)
 
 ## 概述
 
 ### 功能介绍
 
-应用退到后台或进程终止后，仍然有一些提醒用户的定时类任务，例如购物类应用抢购提醒等，为满足此类功能场景，系统提供了代理提醒（reminderAgentManager）的能力。当应用退至后台或进程终止后，系统会代理应用做相应的提醒。当前支持的提醒类型包括：倒计时、日历和闹钟。
+应用退到后台或进程终止后，仍然有一些提醒用户的定时类任务，例如购物类应用抢购提醒等，为满足此类功能场景，系统提供了代理提醒（reminderAgentManager）的能力。当应用退至后台或进程终止后，系统会代理应用做相应的提醒。当前支持的提醒类型包括：倒计时、日历和闹钟。<!--RP1--><!--RP1End-->
 
 - 倒计时类：基于倒计时的提醒功能。
 
@@ -14,9 +14,17 @@
 
 ### 约束与限制
 
-- **个数限制**：一个三方应用支持最多30个有效提醒（有效即发布成功），一个系统应用支持最多10000个有效提醒，整个系统最多支持12000个有效提醒。
+- **个数限制**：一个三方应用支持最多30个有效提醒<!--Del-->，一个系统应用支持最多10000个有效提醒，整个系统最多支持12000个有效提醒<!--DelEnd-->。
+
+> **说明：**
+>
+> 当到达设置的提醒时间点时，通知中心会弹出相应提醒。若未点击提醒上的关闭/CLOSE按钮，则代理提醒是有效/未过期的；若点击了关闭/CLOSE按钮，则代理提醒过期。
+>
+> 当代理提醒是周期性提醒时，如设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
 
 - **跳转限制**：点击提醒通知后跳转的应用必须是申请代理提醒的本应用。
+
+<!--RP2--><!--RP2End-->
 
 
 ## 接口说明
@@ -38,14 +46,14 @@
 
 1. 申请ohos.permission.PUBLISH_AGENT_REMINDER权限，配置方式请参阅[声明权限](../security/AccessToken/declare-permissions.md)。
 
-2. [使能通知开关](../notification/notification-enable.md)。获得用户授权后，才能使用代理提醒功能。
+2. [请求通知授权](../notification/notification-enable.md)。获得用户授权后，才能使用代理提醒功能。
 
 3. 导入模块。
    
    ```ts
-   import reminderAgentManager from '@ohos.reminderAgentManager';
-   import notificationManager from '@ohos.notificationManager';
-   import { BusinessError } from '@ohos.base';
+   import { reminderAgentManager } from '@kit.BackgroundTasksKit';
+   import { notificationManager } from '@kit.NotificationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 4. 定义目标提醒代理。开发者根据实际需要，选择定义如下类型的提醒。
@@ -113,7 +121,7 @@
         },
         ringDuration: 5, // 指明响铃时长（单位：秒）
         snoozeTimes: 2, // 指明延迟提醒次数
-        timeInterval: 5, // 执行延迟提醒间隔（单位：秒）
+        timeInterval: 5*60, // 执行延迟提醒间隔（单位：秒）
         title: 'this is title', // 指明提醒标题
         content: 'this is content', // 指明提醒内容
         expiredContent: 'this reminder has expired', // 指明提醒过期后需要显示的内容
@@ -124,7 +132,7 @@
       ```
 
    - 定义闹钟实例。
-    
+   
       ```ts
       let targetReminderAgent: reminderAgentManager.ReminderRequestAlarm = {
         reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_ALARM, // 提醒类型为闹钟类型
@@ -151,7 +159,7 @@
         },
         ringDuration: 5, // 指明响铃时长（单位：秒）
         snoozeTimes: 2, // 指明延迟提醒次数
-        timeInterval: 5, // 执行延迟提醒间隔（单位：秒）
+        timeInterval: 5*60, // 执行延迟提醒间隔（单位：秒）
         title: 'this is title', // 指明提醒标题
         content: 'this is content', // 指明提醒内容
         expiredContent: 'this reminder has expired', // 指明提醒过期后需要显示的内容
@@ -163,26 +171,26 @@
 
 5. 发布相应的提醒代理。代理发布后，应用即可使用后台代理提醒功能。
    
-  ```ts
-  reminderAgentManager.publishReminder(targetReminderAgent).then((res: number) => {
-    console.info('Succeeded in publishing reminder. ');
-    let reminderId: number = res; // 发布的提醒ID
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to publish reminder. Code: ${err.code}, message: ${err.message}`);
-  })
-  ```
+   ```ts
+    reminderAgentManager.publishReminder(targetReminderAgent).then((res: number) => {
+      console.info('Succeeded in publishing reminder. ');
+      let reminderId: number = res; // 发布的提醒ID
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to publish reminder. Code: ${err.code}, message: ${err.message}`);
+    })
+   ```
 
 6. 根据需要删除提醒任务。
    
-  ```ts
-  let reminderId: number = 1;
-  // reminderId的值从发布提醒代理成功之后的回调中获得
-  reminderAgentManager.cancelReminder(reminderId).then(() => {
-    console.log('Succeeded in canceling reminder.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to cancel reminder. Code: ${err.code}, message: ${err.message}`);
-  });
-  ```
+   ```ts
+    let reminderId: number = 1;
+    // reminderId的值从发布提醒代理成功之后的回调中获得
+    reminderAgentManager.cancelReminder(reminderId).then(() => {
+      console.log('Succeeded in canceling reminder.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to cancel reminder. Code: ${err.code}, message: ${err.message}`);
+    });
+   ```
 
 ## 相关实例
 
@@ -190,6 +198,4 @@
 
 - [后台代理提醒（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ReminderAgentManager)
 
-- [翻页闹钟（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/FlipClock)
-
-- [闹钟（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/CommonEventAndNotification/AlarmClock)
+- [翻页时钟（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/FlipClock)

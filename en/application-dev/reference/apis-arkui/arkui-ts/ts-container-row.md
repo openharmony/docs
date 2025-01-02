@@ -1,6 +1,6 @@
 # Row
 
-The **<Row\>** component lays out child components horizontally.
+The **Row** component lays out child components horizontally.
 
 >  **NOTE**
 >
@@ -16,7 +16,11 @@ Supported
 
 Row(value?:{space?:  number | string })
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -29,14 +33,67 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| alignItems | [VerticalAlign](ts-appendix-enums.md#verticalalign) | Alignment mode of child components in the vertical direction.<br>Default value: **VerticalAlign.Center**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | Alignment mode of the child components in the horizontal direction.<br>Default value: **FlexAlign.Start**<br>Since API version 9, this API is supported in ArkTS widgets.|
+### alignItems
 
->  **NOTE**   
+alignItems(value: VerticalAlign)
+
+Sets the alignment mode of child components in the vertical direction.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                               | Mandatory| Description                                                        |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [VerticalAlign](ts-appendix-enums.md#verticalalign) | Yes  | Alignment mode of child components in the vertical direction.<br>Default value: **VerticalAlign.Center**|
+
+### justifyContent<sup>8+</sup>
+
+justifyContent(value: FlexAlign)
+
+Sets the alignment mode of the child components in the horizontal direction.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description                                                      |
+| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| value  | [FlexAlign](ts-appendix-enums.md#flexalign) | Yes  | Alignment mode of child components in the horizontal direction.<br>Default value: **FlexAlign.Start**|
+
+>  **NOTE**
 >
 >  During row layout, child components do not shrink if [flexShrink](ts-universal-attributes-flex-layout.md#flexshrink) is not set for them. In this case, the total size of the child components on the main axis can exceed the size of the container on the main axis.
+
+### reverse<sup>12+</sup>
+
+reverse(isReversed: Optional\<boolean\>)
+
+Sets whether to reverse the arrangement of child components on the main axis (horizontal direction).
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description                                                      |
+| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| isReversed  | Optional\<boolean\> | Yes  | Whether whether to reverse the arrangement of child components on the main axis (horizontal direction).<br>Default value: **true**|
+
+>  **NOTE**
+>
+>  If the **reverse** attribute is not set, the arrangement on the main axis remains in the normal order. If the attribute is set to **undefined**, it defaults to **true**, which reverses the arrangement on the main axis.<br>Keep in mind that the main axis arrangement direction is also affected by the **direction** attribute. If **reverse** is set to **true**, it effectively reverses the arrangement that results from the **direction** attribute settings.
 
 ## Events
 

@@ -13,6 +13,8 @@
 bool res = OH_HiAppEvent_Configure(MAX_STORAGE, "100M");
 ```
 
+**引用文件：** &lt;hiappevent/hiappevent_cfg.h&gt;
+
 **起始版本：** 8
 
 **相关模块：**[HiAppEvent](_hi_app_event.md)
@@ -25,5 +27,5 @@ bool res = OH_HiAppEvent_Configure(MAX_STORAGE, "100M");
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [DISABLE](_hi_app_event.md#disable)   "disable" | 事件打点开关。 | 
-| [MAX_STORAGE](_hi_app_event.md#max_storage)   "max_storage" | 事件文件目录存储配额大小。 | 
+| [DISABLE](_hi_app_event.md#disable)&nbsp;&nbsp;&nbsp;"disable" | 事件打点开关。默认值为false。true：关闭打点功能，false：不关闭打点功能。  | 
+| [MAX_STORAGE](_hi_app_event.md#max_storage)&nbsp;&nbsp;&nbsp;"max_storage" | 事件文件目录存储配额大小。默认值为“10M”。  | 

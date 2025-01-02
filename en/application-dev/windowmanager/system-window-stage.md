@@ -12,12 +12,12 @@ However, you can customize an animation to be played during the display or hidin
 
 > **NOTE**
 >
-> This document involves the use of system APIs. You must use the full SDK for development. For details, see [Guide to Switching to Full SDK](../faqs/full-sdk-switch-guide.md).
+> This document involves the use of system APIs. You must use the full SDK for development.<!--Del--> For details, see [Guide to Switching to Full SDK](../faqs/full-sdk-switch-guide.md).<!--DelEnd-->
 
 
 ## Available APIs
 
-For details about more APIs, see [Window](../reference/apis-arkui/js-apis-window.md).
+For details about more APIs, see [Window](../reference/apis-arkui/js-apis-window-sys.md).
 
 | Instance           | API                                                      | Description                                                        |
 | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -58,12 +58,11 @@ This section uses the volume bar as an example to describe how to develop a syst
    When the volume bar window is no longer needed, you can call **hide** or **destroyWindow** to hide or destroy it.
 
 ```ts
-import ExtensionContext from '@ohos.app.ability.ServiceExtensionAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { Want, ServiceExtensionAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class ServiceExtensionAbility1 extends ExtensionContext {
+export default class ServiceExtensionAbility1 extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // 1. Create a volume bar window.
     let windowClass: window.Window | null = null;
@@ -154,126 +153,286 @@ You can determine whether to play an animation when a system window is showing o
    Call **showWithAnimation** to show the window and play the animation. Call **hideWithAnimation** to hide the window and play the animation.
 
 ```ts
-import ExtensionContext from '@ohos.app.ability.ServiceExtensionAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+// Import the showWithAnimation and hideWithAnimation methods to the .ts file.
+import { window } from '@kit.ArkUI';
 
-export default class ServiceExtensionAbility1 extends ExtensionContext {
-  onCreate(want: Want) {
-    // Create a volume bar window.
-    let windowClass: window.Window | null = null;
-    let config: window.Configuration = {
-      name: "volume", windowType: window.WindowType.TYPE_VOLUME_OVERLAY, ctx: this.context
+export class AnimationConfig {
+  private animationForShownCallFunc_: Function = undefined;
+  private animationForHiddenCallFunc_: Function = undefined;
+
+  ShowWindowWithCustomAnimation(windowClass: window.Window, callback) {
+    if (!windowClass) {
+      console.error('LOCAL-TEST windowClass is undefined');
+      return false;
+    }
+    this.animationForShownCallFunc_ = callback;
+    // Obtain the transition animation controller.
+    let controller: window.TransitionController = windowClass.getTransitionController();
+    controller.animationForShown = (context: window.TransitionContext)=> {
+      this.animationForShownCallFunc_(context);
     };
-    window.createWindow(config, (err: BusinessError, data) => {
-      let errCode: number = err.code;
-      if (errCode) {
-        console.error('Failed to create the volume window. Cause:' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in creating the volume window.')
-      windowClass = data;
-      // Customize an animation to be played during the display of the system window.
-      // 1. Obtain the transition animation controller.
-      let controller: window.TransitionController = windowClass.getTransitionController();
-      // 2. Configure the animation to be played.
-      (context: window.TransitionContext) => {
-        let toWindow: window.Window = context.toWindow
-        // Set the animation attributes.
-        animateTo({
-          duration: 1000, // Animation duration.
-          tempo: 0.5, // Playback speed.
-          curve: Curve.EaseInOut, // Animation curve.
-          delay: 0, // Animation delay.
-          iterations: 1, // Number of playback times.
-          playMode: PlayMode.Normal // Animation playback mode.
-          onFinish: () => {
-            // 3. Complete the transition.
-            context.completeTransition(true)
-          }
-        }, () => {
-          let obj: window.TranslateOptions = {
-            x: 100.0,
-            y: 0.0,
-            z: 0.0
-          }
-          toWindow.translate(obj);
-          console.info('toWindow translate end');
-        })
-        console.info('complete transition end');
-        controller.animationForHidden(context);
-      }
 
-      windowClass.loadContent("pages/page_volume", (err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
-          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in loading the content.');
-        // 4. Show the window and play the animation during the process.
-        (windowClass as window.Window).showWithAnimation((err: BusinessError) => {
-          let errCode: number = err.code;
-          if (errCode) {
-            console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
-            return;
-          }
-          console.info('Succeeded in showing the window with animation.');
-        })
-      });
-    });
+    windowClass.showWithAnimation(()=>{
+      console.info('LOCAL-TEST show with animation success');
+    })
+    return true;
   }
 
-  onDestroy() {
-    let windowClass: window.Window | null = null;
-    try {
-      windowClass = window.findWindow('volume');
-    } catch (exception) {
-      console.error('Failed to find the Window. Cause: ' + JSON.stringify(exception));
+  HideWindowWithCustomAnimation(windowClass: window.Window, callback) {
+    if (!windowClass) {
+      console.error('LOCAL-TEST window is undefined');
+      return false;
     }
-    // Customize an animation to be played during the hiding of the system window.
-    // 1. Obtain the transition animation controller.
-    let controller: window.TransitionController = (windowClass as window.Window).getTransitionController();
-    // 2. Configure the animation to be played.
-    (context: window.TransitionContext) => {
-      let toWindow: window.Window = context.toWindow
-      // Set the animation attributes.
+    this.animationForHiddenCallFunc_ = callback;
+    // Obtain the transition animation controller.
+    let controller: window.TransitionController = windowClass.getTransitionController();
+    controller.animationForHidden = (context : window.TransitionContext) => {
+      this.animationForHiddenCallFunc_(context);
+    };
+
+    windowClass.hideWithAnimation(()=>{
+      console.info('Hide with animation success');
+    })
+    return true;
+  }
+}
+```
+
+```ts
+// In the .ets file, implement the operation of creating the main window.
+import { window } from '@kit.ArkUI';
+import { UIAbility, Want, AbilityConstant, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit'
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want,launchParam:AbilityConstant.LaunchParam) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability Destroy');
+  }
+
+  onWindowStageCreate(windowStage:window.WindowStage): void{
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/transferControllerPage',(err, data)=>{
+      if(err.code){
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause:%{public}s', JSON.stringify(err)??'');
+        return ;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data:%{public}s', JSON.stringify(data)??'');
+
+    });
+
+    AppStorage.setOrCreate<common.UIAbilityContext>("currentContext",this.context);
+  }
+
+  onWindowStageDestroy(): void{
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+  }
+
+  onForeground(): void{
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+  }
+
+  onBackground(): void{
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+};
+```
+
+```ts
+// In the xxx.ets file, implement the attribute setting of the subwindow.
+import { window, router } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct transferCtrlSubWindow {
+  @State message: string = 'transferCtrlSubWindow'
+
+  build() {
+    Column() {
+      Text("close")
+        .fontSize(24)
+        .fontWeight(FontWeight.Normal)
+        .margin({ left: 10, top: 10 })
+      Button() {
+        Text("close")
+          .fontSize(24)
+          .fontSize(FontWeight.Normal)
+      }.width(220).height(68)
+      .margin({ left: 10, top: 10 })
+      .onClick(() => {
+        let subWin = AppStorage.get<window.Window>("TransferSubWindow");
+        subWin?.destroyWindow();
+        AppStorage.setOrCreate<window.Window>("TransferSubWindow", undefined);
+      })
+    }.height('100%').width('100%').backgroundColor('#ff556243').shadow({radius: 30,color: '#ff555555',offsetX: 15,offsetY: 15})
+  }
+}
+```
+
+```ts
+// In the .ets file, implement the operations of creating a subwindow and displaying or hiding a window.
+import { window, router } from '@kit.ArkUI';
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AnimationConfig } from '../entryability/AnimationConfig';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'transferControllerWindow';
+
+  private animationConfig_?:AnimationConfig = undefined;
+  private subWindow_?:window.Window = undefined;
+
+  aboutToAppear(){
+    if(!this.animationConfig_){
+      this.animationConfig_ = new AnimationConfig();
+    }
+  }
+
+  private CreateTransferSubWindow(){
+    if(this.subWindow_){
+      this.subWindow_ = AppStorage.get<window.Window>("TransferSubWindow");
+      if(!this.subWindow_){
+        this.subWindow_ = undefined;
+      }
+    }
+    let context = AppStorage.get<common.UIAbilityContext>("currentContext");
+    console.log('LOCAL-TEST try to CreateTransferSubWindow');
+    let windowConfig:window.Configuration = {
+      name : "systemTypeWindow",
+      windowType : window.WindowType.TYPE_FLOAT,
+      ctx : context,
+    };
+    let promise = window?.createWindow(windowConfig);
+    promise?.then(async(subWin) => {
+      this.subWindow_ = subWin;
+      AppStorage.setOrCreate<window.Window>("systemTypeWindow", subWin);
+      await subWin.setUIContent("pages/transferCtrlSubWindow",()=>{});
+      await subWin.moveWindowTo(100,100);
+      await subWin.resize(200,200);
+    }).catch((err:Error)=>{
+      console.log('LOCAL-TEST createSubWindow err:' + JSON.stringify(err));
+    })
+  }
+  private ShowSUBWindow(){
+    if(!this.subWindow_){
+      console.log('LOCAL-TEST this.subWindow_is null');
+      return ;
+    }
+    let animationConfig = new AnimationConfig();
+    let systemTypeWindow = window.findWindow("systemTypeWindow");
+    console.log("LOCAL-TEST try to ShowWindowWithCustomAnimation");
+    animationConfig.ShowWindowWithCustomAnimation(systemTypeWindow,(context:window.TransitionContext)=>{
+      console.info('LOCAL-TEST start show window animation');
+      let toWindow = context.toWindow;
       animateTo({
-        duration: 1000, // Animation duration.
+        duration: 200, // Animation duration
         tempo: 0.5, // Playback speed.
         curve: Curve.EaseInOut, // Animation curve.
         delay: 0, // Animation delay.
         iterations: 1, // Number of playback times.
         playMode: PlayMode.Normal // Animation playback mode.
         onFinish: () => {
-          // 3. Complete the transition.
+          console.info('LOCAL-TEST onFinish in show animation');
           context.completeTransition(true);
-          (windowClass as window.Window).destroyWindow((err: BusinessError) => {
-            let errCode: number = err.code;
-            if (errCode) {
-              console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
-              return;
-            }
-            console.info('Succeeded in destroying the window.');
-          });
         }
-      }, () => {
-        toWindow.opacity(0.0);
-        console.info('toWindow opacity end');
-      })
-      console.info('complete transition end');
-      controller.animationForHidden(context);
-    }
-      // 4. Hide the window and play the animation during the process.
-    (windowClass as window.Window).hideWithAnimation((err: BusinessError) => {
-      let errCode: number = err.code;
-      if (errCode) {
-        console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in hiding the window with animation.');
+      },() => {
+        let obj: window.TranslateOptions = {
+          x: 100.0,
+          y: 0.0,
+          z: 0.0
+        };
+        try {
+          toWindow.translate(obj); // Set the transition animation.
+        }catch(exception){
+          console.error('Failed to translate. Cause: ' + JSON.stringify(exception));
+        }
+      });
+      console.info('LOCAL-TEST complete transition end');
     });
   }
-};
+
+  private HideSUBWindow(){
+    if(!this.subWindow_){
+      console.log('LOCAL-TEST this.subWindow_is null');
+      return ;
+    }
+    let animationConfig = new AnimationConfig();
+    let systemTypeWindow = window.findWindow("systemTypeWindow");
+    console.log("LOCAL-TEST try to HideWindowWithCustomAnimation");
+    animationConfig.HideWindowWithCustomAnimation(systemTypeWindow,(context:window.TransitionContext)=>{
+      console.info('LOCAL-TEST start hide window animation');
+      let toWindow = context.toWindow;
+      animateTo({
+        duration: 200, // Animation duration
+        tempo: 0.5, // Playback speed.
+        curve: Curve.EaseInOut, // Animation curve.
+        delay: 0, // Animation delay.
+        iterations: 1, // Number of playback times.
+        playMode: PlayMode.Normal // Animation playback mode.
+        onFinish: () => {
+          console.info('LOCAL-TEST onFinish in hide animation');
+          context.completeTransition(true);
+        }
+      },() => {
+        let obj: window.TranslateOptions = {
+          x: 500.0,
+          y: 0.0,
+          z: 0.0
+        };
+        try {
+          toWindow.translate(obj); // Set the transition animation.
+        }catch(exception){
+          console.error('Failed to translate. Cause: ' + JSON.stringify(exception));
+        }
+      });
+      console.info('LOCAL-TEST complete transition end');
+    });
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .fontSize(24)
+        .fontWeight(FontWeight.Normal)
+        .margin({left: 10, top: 10})
+
+      Button(){
+        Text("CreateSub")
+          .fontSize(24)
+          .fontWeight(FontWeight.Normal)
+      }.width(220).height(68)
+      .margin({left: 10, top: 10})
+      .onClick(() => {
+        this.CreateTransferSubWindow();
+      })
+
+      Button(){
+        Text("Show")
+          .fontSize(24)
+          .fontWeight(FontWeight.Normal)
+      }.width(220).height(68)
+      .margin({left: 10, top: 10})
+      .onClick(() => {
+        this.ShowSUBWindow();
+      })
+
+      Button(){
+        Text("Hide")
+          .fontSize(24)
+          .fontWeight(FontWeight.Normal)
+      }.width(220).height(68)
+      .margin({left: 10, top: 10})
+      .onClick(() => {
+        this.HideSUBWindow();
+      })
+    }.width('100%').height('100%')
+  }
+}
 ```

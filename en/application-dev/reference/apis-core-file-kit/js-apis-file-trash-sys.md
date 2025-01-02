@@ -128,7 +128,7 @@ Represents information about a file or folder in the **Recently deleted** list.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-| Name| Type  | Readable| Writable| Description    |
+| Name| Type  | Read-Only| Writable| Description    |
 | ------ | ------ | -------- | ------ | -------- |
 | uri | string | Yes| No| URI of the file or folder.|
 | srcPath | string | Yes| No| Path of the file or folder before being deleted.|

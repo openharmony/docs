@@ -27,27 +27,33 @@
 示例代码为发起认证可信等级≥ATL3的人脸+锁屏密码认证后，取消认证请求：
 
 ```ts
-import type {BusinessError} from '@ohos.base';
-import userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from  '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
-const authParam: userAuth.AuthParam = {
-  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
-  authTrustLevel: userAuth.AuthTrustLevel.ATL3,
-};
-const widgetParam: userAuth.WidgetParam = {
-  title: '请进行身份认证',
-};
 try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  // 设置认证参数
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  // 配置认证界面
+  const widgetParam: userAuth.WidgetParam = {
+    title: '请进行身份认证',
+  };
   // 获取认证对象
-  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
   // 开始认证
   userAuthInstance.start();
-  console.log('auth start success');
+  console.info('auth start success');
   // 取消认证
   userAuthInstance.cancel();
-  console.log('auth cancel success');
+  console.info('auth cancel success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);

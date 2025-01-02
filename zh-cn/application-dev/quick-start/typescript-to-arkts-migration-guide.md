@@ -249,16 +249,6 @@ let obj: Record<string, number> = {
 }
 ```
 
-**相关约束**
-
-* 不支持Symbol() API
-* 不支持通过索引访问字段
-* 不支持delete运算符
-* 仅允许在表达式中使用typeof运算符
-* 不支持in运算符
-* 限制使用标准库
-
-
 ### 不支持`Symbol()`API
 
 **规则：**`arkts-no-symbol`
@@ -268,15 +258,6 @@ let obj: Record<string, number> = {
 TypeScript中的`Symbol()`API用于在运行时生成唯一的属性名称。由于该API的常见使用场景在静态类型语言中没有意义，因此，ArkTS不支持`Symbol()`API。在ArkTS中，对象布局在编译时就确定了，且不能在运行时被更改。
 
 ArkTS只支持`Symbol.iterator`。
-
-**相关约束**
-
-* 仅支持属性名为标识符的对象
-* 不支持通过索引访问字段
-* 不支持delete运算符
-* 仅允许在表达式中使用typeof运算符
-* 不支持in运算符
-* 限制使用标准库
 
 ### 不支持以`#`开头的私有字段
 
@@ -345,14 +326,14 @@ function f(shouldInitialize: boolean) {
 console.log(f(true));  // b
 console.log(f(false)); // undefined
 
-let upper_let = 0;
+let upperLet = 0;
 {
-  var scoped_var = 0;
-  let scoped_let = 0;
-  upper_let = 5;
+  var scopedVar = 0;
+  let scopedLet = 0;
+  upperLet = 5;
 }
-scoped_var = 5; // 可见
-scoped_let = 5; // 编译时错误
+scopedVar = 5; // 可见
+scopedLet = 5; // 编译时错误
 ```
 
 **ArkTS**
@@ -369,14 +350,14 @@ function f(shouldInitialize: boolean): string {
 console.log(f(true));  // b
 console.log(f(false)); // a
 
-let upper_let = 0;
-let scoped_var = 0;
+let upperLet = 0;
+let scopedVar = 0;
 {
-  let scoped_let = 0;
-  upper_let = 5;
+  let scopedLet = 0;
+  upperLet = 5;
 }
-scoped_var = 5;
-scoped_let = 5; //编译时错误
+scopedVar = 5;
+scopedLet = 5; //编译时错误
 ```
 
 ### 使用具体的类型而非`any`或`unknown`
@@ -408,10 +389,6 @@ let value_o1: Object = true;
 let value_o2: Object = 42;
 ```
 
-**相关约束**
-
-强制进行严格类型检查
-
 ### 使用`class`而非具有call signature的类型
 
 **规则：**`arkts-no-call-signatures`
@@ -429,7 +406,7 @@ type DescribableFunction = {
 }
 
 function doSomething(fn: DescribableFunction): void {
-  console.log(fn.description + ' returned ' + fn(6));
+  console.log(fn.description + ' returned ' + fn(''));
 }
 ```
 
@@ -447,15 +424,11 @@ class DescribableFunction {
 }
 
 function doSomething(fn: DescribableFunction): void {
-  console.log(fn.description + ' returned ' + fn.invoke(6));
+  console.log(fn.description + ' returned ' + fn.invoke(''));
 }
 
 doSomething(new DescribableFunction());
 ```
-
-**相关约束**
-
-使用class而非具有构造签名的类型
 
 ### 使用`class`而非具有构造签名的类型
 
@@ -493,10 +466,6 @@ function fn(s: string): SomeObject {
   return new SomeObject(s);
 }
 ```
-
-**相关约束**
-
-使用class而非具有call signature的类型
 
 ### 仅支持一个静态块
 
@@ -761,10 +730,6 @@ function fn(i: I) {
   return i.create('hello');
 }
 ```
-
-**相关约束**
-
-使用class而非具有构造签名的类型
 
 ### 不支持索引访问类型
 
@@ -1141,16 +1106,16 @@ class Point {
   y: number = 0
 }
 
-function id_x_y(o: Point): Point {
+function getPoint(o: Point): Point {
   return o;
 }
 
 // TS支持structural typing，可以推断p的类型为Point
 let p = {x: 5, y: 10};
-id_x_y(p);
+getPoint(p);
 
 // 可通过上下文推断出对象字面量的类型为Point
-id_x_y({x: 5, y: 10});
+getPoint({x: 5, y: 10});
 ```
 
 **ArkTS**
@@ -1164,22 +1129,17 @@ class Point {
   // 由于没有为Point定义构造函数，编译器将自动添加一个默认构造函数。
 }
 
-function id_x_y(o: Point): Point {
+function getPoint(o: Point): Point {
   return o;
 }
 
 // 字面量初始化需要显式定义类型
 let p: Point = {x: 5, y: 10};
-id_x_y(p);
+getPoint(p);
 
-// id_x_y接受Point类型，字面量初始化生成一个Point的新实例
-id_x_y({x: 5, y: 10});
+// getPoint接受Point类型，字面量初始化生成一个Point的新实例
+getPoint({x: 5, y: 10});
 ```
-
-**相关约束**
-
-* 对象字面量不能用于类型声明
-* 数组字面量必须仅包含可推断类型的元素
 
 ### 对象字面量不能用于类型声明
 
@@ -1213,11 +1173,6 @@ let o: O = {x: 2, y: 3};
 type S = Set<O>
 ```
 
-**相关约束**
-
-* 对象字面量必须对应某些显式声明的类或接口
-* 数组字面量必须仅包含可推断类型的元素
-
 ### 数组字面量必须仅包含可推断类型的元素
 
 **规则：**`arkts-no-noninferrable-arr-literals`
@@ -1244,10 +1199,6 @@ let a1 = [{n: 1, s: '1'} as C, {n: 2, s: '2'} as C]; // a1的类型为“C[]”
 let a2: C[] = [{n: 1, s: '1'}, {n: 2, s: '2'}];    // a2的类型为“C[]”
 ```
 
-**相关约束**
-* 对象字面量必须对应某些显式声明的类或接口
-* 对象字面量不能用于类型声明
-
 ### 使用箭头函数而非函数表达式
 
 **规则：**`arkts-no-func-expressions`
@@ -1270,32 +1221,6 @@ let f = function (s: string) {
 let f = (s: string) => {
   console.log(s);
 }
-```
-
-### 使用泛型函数而非泛型箭头函数
-
-**规则：**`arkts-no-generic-lambdas`
-
-**级别：错误**
-
-ArkTS不支持泛型箭头函数。
-
-**TypeScript**
-
-```typescript
-let generic_arrow_func = <T extends String> (x: T) => { return x; };
-
-generic_arrow_func('string');
-```
-
-**ArkTS**
-
-```typescript
-function generic_func<T extends String>(x: T): T {
-  return x;
-}
-
-generic_func<String>('string');
 ```
 
 ### 不支持使用类表达式
@@ -1580,14 +1505,6 @@ let p = new Point();
 p.y = null;
 ```
 
-**相关约束**
-
-* 对象的属性名必须是合法的标识符
-* 不支持Symbol() API
-* 不支持通过索引访问字段
-* 仅允许在表达式中使用typeof运算符
-* 不支持in运算符
-
 ### 仅允许在表达式中使用`typeof`运算符
 
 **规则：**`arkts-no-type-query`
@@ -1617,15 +1534,6 @@ console.log(typeof s1); // 'string'
 let n2: number
 let s2: string
 ```
-
-**相关约束**
-
-* 对象的属性名必须是合法的标识符
-* 不支持Symbol() API
-* 不支持通过索引访问字段
-* 不支持delete运算符
-* 不支持in运算符
-* 限制使用标准库
 
 ### 部分支持`instanceof`运算符
 
@@ -1664,15 +1572,6 @@ let p = new Person();
 
 let b = p instanceof Person; // true，且属性name一定存在
 ```
-
-**相关约束**
-
-* 对象的属性名必须是合法的标识符
-* 不支持Symbol() API
-* 不支持通过索引访问字段
-* 不支持delete运算符
-* 仅允许在表达式中使用typeof运算符
-* 限制使用标准库
 
 ### 不支持解构赋值
 
@@ -1811,10 +1710,6 @@ try {
   // 处理异常
 }
 ```
-
-**相关约束**
-
-限制throw语句中表达式的类型
 
 ### 不支持`for .. in`
 
@@ -2097,10 +1992,6 @@ function main(): void {
 }
 ```
 
-**相关约束**
-
-不支持Function.apply、Function.bind以及Function.call
-
 ### 不支持生成器函数
 
 **规则：**`arkts-no-generators`
@@ -2126,14 +2017,14 @@ for (let num of counter(1, 5)) {
 **ArkTS**
 
 ```typescript
-async function complexNumberProcessing(str: string): Promise<string> {
+async function complexNumberProcessing(num: number): Promise<number> {
   // ...
-  return str;
+  return num;
 }
 
 async function foo() {
   for (let i = 1; i <= 5; i++) {
-    console.log(await complexNumberProcessing(i));
+    await complexNumberProcessing(i);
   }
 }
 
@@ -2634,26 +2525,6 @@ namespace A {
 A.init();
 ```
 
-### 不支持`import default as ...`
-
-**规则：**`arkts-no-import-default-as`
-
-**级别：错误**
-
-ArkTS不支持`import default as ...`语法，使用显式的`import ... from ...`语法。
-
-**TypeScript**
-
-```typescript
-import { default as d } from 'mod'
-```
-
-**ArkTS**
-
-```typescript
-import d from 'mod'
-```
-
 ### 不支持`require`和`import`赋值表达式
 
 **规则：**`arkts-no-require`
@@ -2673,10 +2544,6 @@ import m = require('mod')
 ```typescript
 import * as m from 'mod'
 ```
-
-**相关约束**
-
-不支持export = ...语法 
 
 ### 不支持`export = ...`语法
 
@@ -2718,10 +2585,6 @@ import * as Pt from 'module1'
 let p = Pt.Point.origin
 ```
 
-**相关约束**
-
-不支持require和import赋值表达式
-
 ### 不支持ambient module声明
 
 **规则：**`arkts-no-ambient-decls`
@@ -2744,10 +2607,6 @@ declare module 'someModule' {
 // 从原始模块中导入需要的内容
 import { normalize } from 'someModule'
 ```
-
-**相关约束**
-
-不支持在模块名中使用通配符
 
 ### 不支持在模块名中使用通配符
 
@@ -2783,11 +2642,6 @@ import * as m from 'module'
 console.log('N.foo called: ' + N.foo(42));
 ```
 
-**相关约束**
-
-* 不支持ambient module声明
-* 不支持通用模块定义(UMD)
-
 ### 不支持通用模块定义(UMD)
 
 **规则：**`arkts-no-umd`
@@ -2820,10 +2674,6 @@ import { mathLib } from 'math-lib'
 mathLib.isPrime(2)
 ```
 
-**相关约束**
-
-不支持在模块名中使用通配符
-
 ### 不支持`new.target`
 
 **规则：**`arkts-no-new-target`
@@ -2831,10 +2681,6 @@ mathLib.isPrime(2)
 **级别：错误**
 
 ArkTS没有原型的概念，因此不支持`new.target`。此特性不符合静态类型的原则。
-
-**相关约束**
-
-不支持在原型上赋值
 
 ### 不支持确定赋值断言
 
@@ -2910,10 +2756,6 @@ class C {
 }
 ```
 
-**相关约束**
-
-不支持new.target
-
 ### 不支持`globalThis`
 
 **规则：**`arkts-no-globalthis`
@@ -2944,11 +2786,6 @@ import * as M from 'file1'
 let x = M.abc;
 ```
 
-**相关约束**
-
-* 不支持声明函数的属性
-* 标准库使用限制
-
 ### 不支持一些utility类型
 
 **规则：**`arkts-no-utility-types`
@@ -2967,10 +2804,6 @@ ArkTS仅支持`Partial`、`Required`、`Readonly`和`Record`，不支持TypeScri
 
 由于ArkTS不支持动态改变函数对象布局，因此，不支持对函数声明属性。
 
-**相关约束**
-
-不支持globalThis
-
 ### 不支持`Function.apply`和`Function.call`
 
 **规则：**`arkts-no-func-apply-call`
@@ -2978,10 +2811,6 @@ ArkTS仅支持`Partial`、`Required`、`Readonly`和`Record`，不支持TypeScri
 **级别：错误**
 
 ArkTS不允许使用标准库函数`Function.apply`和`Function.call`。标准库使用这些函数来显式设置被调用函数的`this`参数。在ArkTS中，`this`的语义仅限于传统的OOP风格，函数体中禁止使用`this`。
-
-**相关约束**
-
-不支持在函数中使用this
 
 ### 不支持`Function.bind`
 
@@ -2991,9 +2820,6 @@ ArkTS不允许使用标准库函数`Function.apply`和`Function.call`。标准�
 
 ArkTS不允许使用标准库函数`Function.bind`。标准库使用这些函数来显式设置被调用函数的`this`参数。在ArkTS中，`this`的语义仅限于传统的OOP风格，函数体中禁止使用`this`。
 
-**相关约束**
-
-不支持在函数中使用this
 
 ### 不支持`as const`断言
 
@@ -3056,12 +2882,6 @@ import { obj } from 'something.json' assert { type: 'json' }
 import { something } from 'module'
 ```
 
-**相关约束**
-
-* 不支持在模块名中使用通配符
-* 不支持通用模块定义(UMD)
-* 不支持运行时导入断言
-
 ### 限制使用标准库
 
 **规则：**`arkts-limited-stdlib`
@@ -3091,15 +2911,6 @@ ArkTS不允许使用TypeScript或JavaScript标准库中的某些接口。大部�
 `handler.getOwnPropertyDescriptor()`、`handler.getPrototypeOf()`、
 `handler.has()`、`handler.isExtensible()`、`handler.ownKeys()`、
 `handler.preventExtensions()`、`handler.set()`、`handler.setPrototypeOf()`
-
-**相关约束**
-
-* 对象的属性名必须是合法的标识符
-* 不支持Symbol() API
-* 不支持通过索引访问字段
-* 仅允许在表达式中使用typeof运算符
-* 不支持in运算符
-* 不支持globalThis
 
 ### 强制进行严格类型检查
 
@@ -3176,11 +2987,6 @@ let c = new C();
 c.initAge(10);
 ```
 
-**相关约束**
-
-* 使用具体的类型而非any或unknown
-* 不允许通过注释关闭类型检查
-
 ### 不允许通过注释关闭类型检查
 
 **规则：**`arkts-strict-typing-required`
@@ -3209,11 +3015,6 @@ let s2: string = null; // 没有报错
 let s1: string | null = null; // 没有报错，合适的类型
 let s2: string = null; // 编译时报错
 ```
-
-**相关约束**
-
-* 使用具体的类型而非any或unknown
-* 强制进行严格类型检查
 
 ### 允许.ets文件`import`.ets/.ts/.js文件源码, 不允许.ts/.js文件`import`.ets文件源码
 
@@ -3319,12 +3120,4 @@ function f() {
   let e7 = e6;              // OK，使用ESObject类型赋值
   bar(e7);                  // OK，ESObject类型变量传给跨语言调用的函数
 }
-
-**相关约束**
-
-* 对象的属性名必须是合法的标识符
-* 不支持Symbol() API
-* 不支持通过索引访问字段
-* 仅允许在表达式中使用typeof运算符
-* 不支持in运算符
-* 不支持globalThis
+```

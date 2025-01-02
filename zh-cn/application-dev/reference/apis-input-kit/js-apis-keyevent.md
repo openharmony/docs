@@ -9,12 +9,14 @@
 ## 导入模块
 
 ```js
-import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
+import { Action, Key, KeyEvent } from '@kit.InputKit';
 ```
 
 ## Action
 
 按键事件类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
@@ -28,6 +30,8 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 
 按键。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
 | 名称        | 类型 | 可读 | 可写 | 说明           |
@@ -39,6 +43,8 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 ## KeyEvent
 
 按键事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 

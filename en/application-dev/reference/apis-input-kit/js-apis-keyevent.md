@@ -9,12 +9,14 @@ The **keyEvent** module provides key events reported by a device. It is inherite
 ## Modules to Import
 
 ```js
-import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
+import { Action, Key, KeyEvent } from '@kit.InputKit';
 ```
 
 ## Action
 
 Key event type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -28,6 +30,8 @@ Key event type.
 
 Defines a key.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name       | Type| Readable| Writable| Description          |
@@ -39,6 +43,8 @@ Defines a key.
 ## KeyEvent
 
 Key event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 

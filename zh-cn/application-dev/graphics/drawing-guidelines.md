@@ -384,7 +384,8 @@ Native Drawing模块关于文本绘制提供两类API接口：
     OH_Drawing_SetTextStyleFontWeight(txtStyle, FONT_WEIGHT_400);
     OH_Drawing_SetTextStyleBaseLine(txtStyle, TEXT_BASELINE_ALPHABETIC);
     OH_Drawing_SetTextStyleFontHeight(txtStyle, 1);
-    OH_Drawing_FontCollection* fontCollection = OH_Drawing_CreateFontCollection();
+    // 如果需要多次测量，建议fontCollection作为全局变量使用，可以显著减少内存占用
+    OH_Drawing_FontCollection* fontCollection = OH_Drawing_CreateSharedFontCollection();
     // 注册自定义字体
     const char* fontFamily = "myFamilyName"; // myFamilyName为自定义字体的family name
     const char* fontPath = "/data/storage/el2/base/haps/entry/files/myFontFile.ttf"; // 设置自定义字体所在的沙箱路径
@@ -424,11 +425,16 @@ Native Drawing模块关于文本绘制提供两类API接口：
 5. **释放变量**。
 
     ```c++
+    // 确认typography不再使用时销毁
     OH_Drawing_DestroyTypography(typography);
+    // 确认已经完成layout时销毁
     OH_Drawing_DestroyTypographyHandler(handler);
+    // 确认不需要使用字体绘制功能时销毁
     OH_Drawing_DestroyFontCollection(fontCollection);
+    // 确认已经完成layout时销毁
     OH_Drawing_DestroyTextStyle(txtStyle);
     OH_Drawing_DestroyTextStyle(txtStyle2);
+    // 确认已经完成layout时销毁
     OH_Drawing_DestroyTypographyStyle(typoStyle);
     ```
 

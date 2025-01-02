@@ -353,8 +353,8 @@ Use the **Record** type to access object attributes.
 **Before adaptation**
 
 ```typescript
-import myRouter from '@ohos.router';
-let params: Object = myRouter.getParams();
+import { router } from '@kit.ArkUI';
+let params: Object = router.getParams();
 let funNum: number = params['funNum'];
 let target: string = params['target'];
 ```
@@ -362,8 +362,8 @@ let target: string = params['target'];
 **After adaptation**
 
 ```typescript
-import myRouter from '@ohos.router';
-let params = myRouter.getParams() as Record<string, string | number>;
+import { router } from '@kit.ArkUI';
+let params = router.getParams() as Record<string, string | number>;
 let funNum: number = params.funNum as number;
 let target: string = params.target as string;
 ```
@@ -438,7 +438,7 @@ const area = {
 **After adaptation**
 
 ```typescript
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 const area: image.PositionArea = {
   pixels: new ArrayBuffer(8),
@@ -550,9 +550,7 @@ let arr: Test[] = [
 ]
 ```
 
-### Using a Key String for Object Literals of the Record Type
-
-If an object literal is of the Record type, a string must be used as the key of the object literal.
+### If **Record** is used to specify the object literal type, a string must be used as the key of the object literal.
 
 **Before adaptation**
 
@@ -662,14 +660,12 @@ The methods declared in a class or interface should be shared by all instances o
 **Before adaptation**
 
 ```typescript
-import hilog from '@ohos.hilog'
-
 export default {
   onCreate() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onCreate');
+    // ...
   },
   onDestroy() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onDestroy');
+    // ...
   }
 }
 ```
@@ -677,14 +673,12 @@ export default {
 **After adaptation**
 
 ```typescript
-import hilog from '@ohos.hilog'
-
 class Test {
   onCreate() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onCreate');
+    // ...
   }
   onDestroy() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onDestroy');
+    // ...
   }
 }
 
@@ -696,43 +690,51 @@ export default new Test()
 **Before adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
-import bluetooth from '@ohos.bluetooth';
-let serverNumber = -1;
-function serverSocket(code: BusinessError, num: number) {
-  console.log('bluetooth error code: ' + code.code);
-  if (code.code == 0) {
-    console.log('bluetooth serverSocket Number: ' + num);
-    serverNumber = num;
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
   }
+
+  function foo(name: string, option: I): void;
 }
 
-let sppOption = { uuid: '', secure: false, type: 0 };
-bluetooth.sppListen('', sppOption, serverSocket);
+export default test;
+
+// app.ets
+import { test } from 'test';
+
+let option = { id: '', type: 0 };
+test.foo('', option);
 ```
 
 **After adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
-import bluetooth from '@ohos.bluetooth';
-let serverNumber = -1;
-function serverSocket(code: BusinessError, num: number) {
-  console.log('bluetooth error code: ' + code.code);
-  if (code.code == 0) {
-    console.log('bluetooth serverSocket Number: ' + num);
-    serverNumber = num;
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
   }
+
+  function foo(name: string, option: I): void;
 }
 
-let sppOption: bluetooth.SppOption = { uuid: '', secure: false, type: 0 };
-bluetooth.sppListen('', sppOption, serverSocket);
+export default test;
+
+// app.ets
+import { test } from 'test';
+
+let option: test.I = { id: '', type: 0 };
+test.foo('', option);
 ```
 
 **Reason for change**
 
-The object literal lacks a type. According to the analysis of **bluetooth.sppListen**, the **sppOption** type comes from the SDK. Therefore, you only need to import the type.
-In **@ohos.bluetooth**, **sppOption** is defined in the namespace. Therefore, to import the type in the .ets file, import the namespace and then obtain the target type based on the name.
+The object literal lacks a type. According to the analysis of **test.foo**, the **option** type comes from the declaration file. Therefore, you only need to import the type.
+In **test.d.ets**, **I** is defined in the namespace. Therefore, to import the type in the .ets file, import the namespace and then obtain the target type based on the name.
 
 ### Passing Parameters from the Object Literal to the Object Type
 
@@ -951,25 +953,25 @@ for (let arr of map) {
 **Before adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   // ...
 } catch (e: BusinessError) {
-  logger.error(e.code, e.message);
+  console.error(e.message, e.code);
 }
 ```
 
 **After adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   // ...
 } catch (error) {
   let e: BusinessError = error as BusinessError;
-  logger.error(e.code, e.message);
+  console.error(e.message, e.code);
 }
 ```
 
@@ -987,7 +989,7 @@ let p: Person = {
 };
 
 for (let t in p) {
-  console.log(p[t]);
+  console.log(p[t]);  // log: "tom", "18" 
 }
 ```
 
@@ -1000,7 +1002,7 @@ let p: Record<string, string> = {
 };
 
 for (let ele of Object.entries(p)) {
-  console.log(ele[1]);
+  console.log(ele[1]);  // log: "tom", "18" 
 }
 ```
 
@@ -1036,7 +1038,7 @@ type OptionsFlags = Record<keyof C, string>
 **Before adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function ThrowError(error: BusinessError) {
   throw error;
@@ -1046,7 +1048,7 @@ function ThrowError(error: BusinessError) {
 **After adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function ThrowError(error: BusinessError) {
   throw error as Error;
@@ -1154,29 +1156,47 @@ class Test {
 **Before adaptation**
 
 ```typescript
-import notification from '@ohos.notificationManager';
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
+  }
 
-function buildNotifyLongRequest(): notification.NotificationRequest {
-  // ...
+  function foo(): I;
 }
 
-let notificationRequest: notification.NotificationRequest = {
-  ...buildNotifyLongRequest(),
-  deliveryTime: new Date().getTime()
+export default test
+
+// app.ets
+import test from 'test';
+
+let t: test.I = {
+  ...test.foo(),
+  type: 0
 }
 ```
 
 **After adaptation**
 
 ```typescript
-import notification from '@ohos.notificationManager';
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
+  }
 
-function buildNotifyLongRequest():notification.NotificationRequest {
-    // ...
+  function foo(): I;
 }
 
-let notificationRequest: notification.NotificationRequest = buildNotifyLongRequest();
-notificationRequest.deliveryTime = new Date().getTime();
+export default test
+
+// app.ets
+import test from 'test';
+
+let t: test.I = test.foo();
+t.type = 0;
 ```
 
 **Reason for change**
@@ -1241,7 +1261,7 @@ console.log(t.createController()!.value);
 
 ## arkts-no-globalthis
 
-ArkTS does not support **globalThis** for two reasons:<br>(1) A static type cannot be added for **globalThis**. As a result, the attributes of **globalThis** can be accessed only through search, which causes extra performance overhead.<br> (2) Type annotation is not available for attributes of **globalThis**. As a result, the security and performance of operations on these attributes cannot be ensured.  
+ArkTS does not support **globalThis** for two reasons:<br>(1) A static type cannot be added for **globalThis**. As a result, the attributes of **globalThis** can be accessed only through search, which causes extra performance overhead.<br>(2) Type annotation is not available for attributes of **globalThis**. As a result, the security and performance of operations on these attributes cannot be ensured. Therefore, ArkTS does not support **globalThis**.
 
 1. You are advised to transfer data between modules based on the service logic and import/export syntax.
 
@@ -1544,7 +1564,7 @@ class Test {
 }
 
 ```
-### Type '*** | null' Not Assignable to type ''\*\*\*'
+### Type `*** | null` is not assignable to type `***`
 
 **Before adaptation**
 
@@ -1721,7 +1741,7 @@ class Test {
 }
 ```
 
-### '***' Is of Type 'unknown'
+### '***' is of type 'unknown'
 
 **Before adaptation**
 
@@ -1736,7 +1756,7 @@ try {
 **After adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   
@@ -1745,7 +1765,7 @@ try {
 }
 ```
 
-### Type '*** | null' Not Assignable to Type '\*\*\*'
+### Type '*** | null' is not assignable to type '\*\*\*'
 
 **Before adaptation**
 
@@ -1817,7 +1837,7 @@ function foo(v: number): A | null {
 let a: A = foo(123)!;
 ```
 
-### Cannot Invoke an Object Which Is Possibly 'undefined'
+### Cannot invoke an object which possibly 'undefined'
 
 **Before adaptation**
 
@@ -1857,7 +1877,7 @@ if (a.foo) {
 
 In the original code definition, **foo** is an optional property and may be **undefined**. If **undefined** is called, an error is reported. You are advised to determine whether a property is optional based on the service logic. If defining an optional property is necessary, a null check is required for accessing the property.
 
-### Variable '***' Is Used Before Being Assigned
+### Variable '***' is used before being assigned
 
 **Before adaptation**
 
@@ -1902,7 +1922,7 @@ For primitive types, a value can be assigned based on the service logic, for exa
 
 For the object type, you can change the type to a union type consisting of **null** and assign **null** to the type. In this case, when using the object type, you need to perform the non-null check.
 
-### "Function lacks ending return statement and return type does not include 'undefined'" Error
+### Function lacks ending return statement and return type does not include 'undefined'.
 
 **Before adaptation**
 
@@ -1948,7 +1968,7 @@ let a: number = 123;
 
 ArkTS does not support the use of comments to bypass strict type checks. Delete the comment (**// @ts-nocheck** or **// @ts-ignore**), and then modify other code based on the error information.
 
-## Importing ArkTS Files to JS and TS Files Not Allowed
+## Importing ArkTS files to JS and TS files is not allowed
 
 ## arkts-no-tsdeps
 
@@ -1958,7 +1978,7 @@ In .ts and .js files, it is not allowed to import source code from an .ets file.
 
 Mode 1: Change the file name extension of the .ts file to .ets and adapt the code based on the ArkTS syntax rules.
 
-Mode 2: Extract the code on which the .ts file depends from the .ets file to the .ts file.
+Mode 2: Extract the code that the .ts file depends on from the .ets file to the .ts file.
 
 ## arkts-no-special-imports
 
@@ -2129,6 +2149,103 @@ class Foo {
 }
 ```
 
+## arkts-limited-esobj
+
+**Before adaptation**
+
+```typescript
+// lib.d.ts
+declare function foo(): any;
+
+// main.ets
+let e0: ESObject = foo();
+
+function f() {
+  let e1 = foo();
+  let e2: ESObject = 1;
+  let e3: ESObject = {};
+  let e4: ESObject = '';
+}
+```
+
+**After adaptation**
+
+```typescript
+// lib.d.ts
+declare function foo(): any;
+
+// main.ets
+interface I {}
+
+function f() {
+  let e0: ESObject = foo();
+  let e1: ESObject = foo();
+  let e2: number = 1;
+  let e3: I = {};
+  let e4: string = '';
+}
+```
+
+## Copy
+
+### Shallow Copy
+
+**TypeScript**
+
+```typescript
+function shallowCopy(obj: object): object {
+  let newObj = {};
+  Object.assign(newObj, obj);
+  return newObj;
+}
+```
+
+**ArkTS**
+
+```typescript
+function shallowCopy(obj: object): object {
+  let newObj: Record<string, Object> = {};
+  for (let key of Object.keys(obj)) {
+    newObj[key] = obj[key];
+  }
+  return newObj;
+}
+```
+
+### Deep Copy
+
+**TypeScript**
+
+```typescript
+function deepCopy(obj: object): object {
+  let newObj = Array.isArray(obj) ? [] : {};
+  for (let key in obj) {
+    if (typeof obj[key] === 'object') {
+      newObj[key] = deepCopy(obj[key]);
+    } else {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
+}
+```
+
+**ArkTS**
+
+```typescript
+function deepCopy(obj: object): object {
+  let newObj: Record<string, Object> | Object[] = Array.isArray(obj) ? [] : {};
+  for (let key of Object.keys(obj)) {
+    if (typeof obj[key] === 'object') {
+      newObj[key] = deepCopy(obj[key]);
+    } else {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
+}
+```
+
 ## Typical Application Scenarios of State Management
 
 ### Using State Variables Outside of Structs
@@ -2164,7 +2281,7 @@ export default struct MyComponent {
 
   aboutToAppear() {
     if (this.controller)
-      this.controller.setItem(this);
+      this.controller.setItem(this); // You are not advised to pass this as a parameter to the outside struct.
   }
 }
 
@@ -2210,7 +2327,7 @@ export class MyComponentController {
 @Component
 export default struct MyComponent {
   public controller: MyComponentController | null = null;
-  @State value: CC = new CC('Hello World')
+  @State value: CC = new CC('Hello World');
 
   build() {
     Column() {
@@ -2234,7 +2351,7 @@ struct StyleExample {
     Column() {
       MyComponent({ controller: this.controller })
       Button('change value').onClick(() => {
-        this.controller.changeText('Text')
+        this.controller.changeText('Text');
       })
     }
   }
@@ -2275,8 +2392,8 @@ struct DatauionOldPage {
 
 @Component
 export struct ForEachCom {
-  arrayList: any[]
-  @BuilderParam closer: (data: any) => void = this.componentCloser
+  arrayList: any[]; // The struct does not support generics. An arkts-no-any-unknown error is reported.
+  @BuilderParam closer: (data: any) => void = this.componentCloser; // The struct does not support generics. An arkts-no-any-unknown error is reported.
 
   @Builder
   componentCloser() {
@@ -2284,7 +2401,7 @@ export struct ForEachCom {
 
   build() {
     Column() {
-      ForEach(this.arrayList, (item: any) => {
+      ForEach(this.arrayList, (item: any) => { // The struct does not support generics. An arkts-no-any-unknown error is reported.
         Row() {
           this.closer(item)
         }.width('100%').height(200).backgroundColor('#eee')
@@ -2305,7 +2422,7 @@ class Model {
   aa: string = '11';
 }
 
-type UnionData = Data | Model
+type UnionData = Data | Model;
 
 @Entry
 @Component
@@ -2333,7 +2450,7 @@ struct DatauionPage {
 @Component
 export struct ForEachCom {
   arrayList: UnionData[] = [new Data(), new Data(), new Data()];
-  @BuilderParam closer: (data: UnionData) => void = this.componentCloser
+  @BuilderParam closer: (data: UnionData) => void = this.componentCloser;
 
   @Builder
   componentCloser() {

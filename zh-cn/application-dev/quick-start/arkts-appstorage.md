@@ -10,6 +10,11 @@ AppStorage是应用全局的UI状态存储，是和应用的进程绑定的，�
 本文仅介绍AppStorage使用场景和相关的装饰器：\@StorageProp和\@StorageLink。
 
 
+AppStorage是应用全局的UI状态存储，不同于\@State等装饰器仅能在组件树上传递，AppStorage的目的是为了给开发者提供更大范围的跨ability基本的数据共享。在阅读本文档前，建议开发者对状态管理框架中AppStorage的定位有一个宏观了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)。
+
+AppStorage还提供了API接口，可以让开发者通过接口在自定义组件外手动触发AppStorage对应key的增删改查，建议配合[AppStorage API文档](../reference/apis-arkui/arkui-ts/ts-state-management.md#appstorage)阅读。
+
+
 ## 概述
 
 AppStorage是在应用启动的时候会被创建的单例。它的目的是为了提供应用状态数据的中心存储，这些状态数据在应用级别都是可访问的。AppStorage将在应用运行过程保留其属性。属性通过唯一的键字符串值访问。
@@ -28,7 +33,9 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 当自定义组件初始化的时候，会使用AppStorage中对应key的属性值将\@StorageProp(key)/\@StorageLink(key)装饰的变量初始化。由于应用逻辑的差异，无法确认是否在组件初始化之前向AppStorage实例中存入了对应的属性，所以AppStorage不一定存在key对应的属性，因此\@StorageProp(key)/\@StorageLink(key)装饰的变量进行本地初始化是必要的。
 
 \@StorageProp(key)是和AppStorage中key对应的属性建立单向数据同步，允许本地改变，但是对于\@StorageProp，本地的修改永远不会同步回AppStorage中，相反，如果AppStorage给定key的属性发生改变，改变会被同步给\@StorageProp，并覆盖掉本地的修改。
-
+> **说明：**
+>
+> 从API version 11开始，该装饰器支持在原子化服务中使用。
 
 ### 装饰器使用规则说明
 
@@ -76,23 +83,26 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 **框架行为**
 
 
-- 当\@StorageProp(key)装饰的数值改变被观察到时，修改不会被同步回AppStorage对应属性键值key的属性中。
+- 当\@StorageProp(key)装饰的数值改变被观察到时，修改不会被同步回AppStorage对应key的属性中。
 
-- 当前\@StorageProp(key)单向绑定的数据会被修改，即仅限于当前组件的私有成员变量改变，其他的绑定该key的数据不会同步改变。
+- 当前\@StorageProp(key)单向绑定的数据会被修改，即仅限于当前组件的私有成员变量改变，其他绑定该key的数据不会同步改变。
 
-- 当\@StorageProp(key)装饰的数据本身是状态变量，它的改变虽然不会同步回AppStorage中，但是会引起所属的自定义组件的重新渲染。
+- 当\@StorageProp(key)装饰的数据本身是状态变量，它的改变虽然不会同步回AppStorage中，但是会引起所属的自定义组件重新渲染。
 
 - 当AppStorage中key对应的属性发生改变时，会同步给所有\@StorageProp(key)装饰的数据，\@StorageProp(key)本地的修改将被覆盖。
 
 
 ## \@StorageLink
 
+> **说明：**
+>
+> 从API version 11开始，该装饰器支持在原子化服务中使用。
+
 \@StorageLink(key)是和AppStorage中key对应的属性建立双向数据同步：
 
 1. 本地修改发生，该修改会被写回AppStorage中；
 
 2. AppStorage中的修改发生后，该修改会被同步到所有绑定AppStorage对应key的属性上，包括单向（\@StorageProp和通过Prop创建的单向绑定变量）、双向（\@StorageLink和通过Link创建的双向绑定变量）变量和其他实例（比如PersistentStorage）。
-
 
 ### 装饰器使用规则说明
 
@@ -147,12 +157,39 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 3. 当\@StorageLink(key)装饰的数据本身是状态变量，它的改变不仅仅会同步回AppStorage中，还会引起所属的自定义组件的重新渲染。
 
 
+## 限制条件
+
+1. \@StorageProp/\@StorageLink的参数必须为string类型，否则编译期会报错。
+
+```ts
+AppStorage.setOrCreate('PropA', 47);
+
+// 错误写法，编译报错
+@StorageProp() storageProp: number = 1;
+@StorageLink() storageLink: number = 2;
+
+// 正确写法
+@StorageProp('PropA') storageProp: number = 1;
+@StorageLink('PropA') storageLink: number = 2;
+```
+
+2. \@StorageProp与\@StorageLink不支持装饰Function类型的变量，框架会抛出运行时错误。
+
+3. AppStorage与[PersistentStorage](arkts-persiststorage.md)以及[Environment](arkts-environment.md)配合使用时，需要注意以下几点：
+
+    （1） 在AppStorage中创建属性后，调用PersistentStorage.persistProp()接口时，会使用在AppStorage中已经存在的值，并覆盖PersistentStorage中的同名属性，所以建议要使用相反的调用顺序，反例可见[在PersistentStorage之前访问AppStorage中的属性](arkts-persiststorage.md#在persistentstorage之前访问appstorage中的属性)；
+
+    （2） 如果在AppStorage中已经创建属性后，再调用Environment.envProp()创建同名的属性，会调用失败。因为AppStorage已经有同名属性，Environment环境变量不会再写入AppStorage中，所以建议AppStorage中属性不要使用Environment预置环境变量名。
+
+    （3） 状态装饰器装饰的变量，改变会引起UI的渲染更新，如果改变的变量不是用于UI更新，只是用于消息传递，推荐使用 emitter方式。例子可见<!--Del-->[<!--DelEnd-->不建议借助@StorageLink的双向同步机制实现事件通知<!--Del-->](#不建议借助storagelink的双向同步机制实现事件通知)<!--DelEnd-->。
+
+
 ## 使用场景
 
 
 ### 从应用逻辑使用AppStorage和LocalStorage
 
-AppStorage是单例，它的所有API都是静态的，使用方法类似于中LocalStorage对应的非静态方法。
+AppStorage是单例，它的所有API都是静态的，使用方法类似于LocalStorage中对应的非静态方法。
 
 
 ```ts
@@ -165,9 +202,9 @@ let link1: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // lin
 let link2: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link2.get() == 47
 let prop: SubscribedAbstractProperty<number> = AppStorage.prop('PropA'); // prop.get() == 47
 
-link1.set(48); // two-way sync: link1.get() == link2.get() == prop.get() == 48
-prop.set(1); // one-way sync: prop.get() == 1; but link1.get() == link2.get() == 48
-link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
+link1.set(48); // 双向同步: link1.get() == link2.get() == prop.get() == 48
+prop.set(1); // 单向同步: prop.get() == 1; 但 link1.get() == link2.get() == 48
+link1.set(49); // 双向同步: link1.get() == link2.get() == prop.get() == 49
 
 storage.get<number>('PropA') // == 17
 storage.set('PropA', 101);
@@ -186,7 +223,7 @@ prop.get() // == 49
 
 
 ```ts
-class PropB {
+class Data {
   code: number;
 
   constructor(code: number) {
@@ -195,18 +232,18 @@ class PropB {
 }
 
 AppStorage.setOrCreate('PropA', 47);
-AppStorage.setOrCreate('PropB', new PropB(50));
+AppStorage.setOrCreate('PropB', new Data(50));
 let storage = new LocalStorage();
-storage.setOrCreate('PropA', 48);
-storage.setOrCreate('PropB', new PropB(100));
+storage.setOrCreate('LinkA', 48);
+storage.setOrCreate('LinkB', new Data(100));
 
 @Entry(storage)
 @Component
-struct CompA {
+struct Index {
   @StorageLink('PropA') storageLink: number = 1;
-  @LocalStorageLink('PropA') localStorageLink: number = 1;
-  @StorageLink('PropB') storageLinkObject: PropB = new PropB(1);
-  @LocalStorageLink('PropB') localStorageLinkObject: PropB = new PropB(1);
+  @LocalStorageLink('LinkA') localStorageLink: number = 1;
+  @StorageLink('PropB') storageLinkObject: Data = new Data(1);
+  @LocalStorageLink('LinkB') localStorageLinkObject: Data = new Data(1);
 
   build() {
     Column({ space: 20 }) {
@@ -258,7 +295,8 @@ class ViewData {
 
 @Entry
 @Component
-struct Gallery2 {
+struct Gallery {
+  // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
   dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
   scroller: Scroller = new Scroller()
 
@@ -328,7 +366,7 @@ export struct TapImage {
 
 ```ts
 // xxx.ets
-import emitter from '@ohos.events.emitter';
+import { emitter } from '@kit.BasicServicesKit';
 
 let NextID: number = 0;
 
@@ -347,7 +385,8 @@ class ViewData {
 
 @Entry
 @Component
-struct Gallery2 {
+struct Gallery {
+  // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
   dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
   scroller: Scroller = new Scroller()
   private preIndex: number = -1
@@ -447,7 +486,8 @@ class ViewData {
 
 @Entry
 @Component
-struct Gallery2 {
+struct Gallery {
+  // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
   dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
   scroller: Scroller = new Scroller()
 
@@ -507,17 +547,17 @@ export struct TapImage {
 ```ts
 @Component
 struct StorLink {
-  @StorageLink("AA") A: number | null = null;
-  @StorageLink("BB") B: number | undefined = undefined;
+  @StorageLink("LinkA") LinkA: number | null = null;
+  @StorageLink("LinkB") LinkB: number | undefined = undefined;
 
   build() {
     Column() {
       Text("@StorageLink接口初始化，@StorageLink取值")
-      Text(this.A + "").fontSize(20).onClick(() => {
-        this.A ? this.A = null : this.A = 1;
+      Text(this.LinkA + "").fontSize(20).onClick(() => {
+        this.LinkA ? this.LinkA = null : this.LinkA = 1;
       })
-      Text(this.B + "").fontSize(20).onClick(() => {
-        this.B ? this.B = undefined : this.B = 1;
+      Text(this.LinkB + "").fontSize(20).onClick(() => {
+        this.LinkB ? this.LinkB = undefined : this.LinkB = 1;
       })
     }
     .borderWidth(3).borderColor(Color.Red)
@@ -527,17 +567,17 @@ struct StorLink {
 
 @Component
 struct StorProp {
-  @StorageProp("AAA") A: number | null = null;
-  @StorageProp("BBB") B: number | undefined = undefined;
+  @StorageProp("PropA") PropA: number | null = null;
+  @StorageProp("PropB") PropB: number | undefined = undefined;
 
   build() {
     Column() {
       Text("@StorageProp接口初始化，@StorageProp取值")
-      Text(this.A + "").fontSize(20).onClick(() => {
-        this.A ? this.A = null : this.A = 1;
+      Text(this.PropA + "").fontSize(20).onClick(() => {
+        this.PropA ? this.PropA = null : this.PropA = 1;
       })
-      Text(this.B + "").fontSize(20).onClick(() => {
-        this.B ? this.B = undefined : this.B = 1;
+      Text(this.PropB + "").fontSize(20).onClick(() => {
+        this.PropB ? this.PropB = undefined : this.PropB = 1;
       })
     }
     .borderWidth(3).borderColor(Color.Blue)
@@ -546,7 +586,7 @@ struct StorProp {
 
 @Entry
 @Component
-struct TestCase3 {
+struct Index {
   build() {
     Row() {
       Column() {
@@ -700,15 +740,41 @@ struct SetSample {
 }
 ```
 
+## 常见问题
 
+### \@StorageProp本地更改值后，无法通过AppStorage接口更新
 
-## 限制条件
+```ts
+AppStorage.setOrCreate('PropA', false);
 
-AppStorage与[PersistentStorage](arkts-persiststorage.md)以及[Environment](arkts-environment.md)配合使用时，需要注意以下几点：
+@Entry
+@Component
+struct Index {
+  @StorageProp('PropA') @Watch('onChange') propA: boolean = false;
 
-- 在AppStorage中创建属性后，调用PersistentStorage.persistProp()接口时，会使用在AppStorage中已经存在的值，并覆盖PersistentStorage中的同名属性，所以建议要使用相反的调用顺序，反例可见[在PersistentStorage之前访问AppStorage中的属性](arkts-persiststorage.md#在persistentstorage之前访问appstorage中的属性)；
+  onChange() {
+    console.log(`propA change`);
+  }
 
-- 如果在AppStorage中已经创建属性后，再调用Environment.envProp()创建同名的属性，会调用失败。因为AppStorage已经有同名属性，Environment环境变量不会再写入AppStorage中，所以建议AppStorage中属性不要使用Environment预置环境变量名。
+  aboutToAppear(): void {
+    this.propA = true;
+  }
 
-- 状态装饰器装饰的变量，改变会引起UI的渲染更新，如果改变的变量不是用于UI更新，只是用于消息传递，推荐使用 emitter方式。例子可见[不建议借助@StorageLink的双向同步机制实现事件通知](#不建议借助storagelink的双向同步机制实现事件通知)。
-<!--no_check-->
+  build() {
+    Column() {
+      Text(`${this.propA}`)
+      Button('change')
+        .onClick(() => {
+          AppStorage.setOrCreate('PropA', false);
+          console.log(`PropA: ${this.propA}`);
+        })
+    }
+  }
+}
+```
+
+上述示例，在点击事件之前，PropA的值已经在本地被更改为true，而AppStorage中存的值仍为false。当点击事件通过setOrCreate接口尝试更新PropA的值为false时，由于AppStorage中的值为false，两者相等，不会触发更新同步，因此@StorageProp的值仍为true。
+
+如果想要实现二者同步，有两种方式：
+（1）将\@StorageProp更改为\@StorageLink。
+（2）本地更改值的方式变为使用AppStorage.setOrCreate('PropA', true)的方式。

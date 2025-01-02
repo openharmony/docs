@@ -486,130 +486,9 @@ interface OHOS.AAFwk.IQuickFixManager {
 ```
 
 #### 修改BUILD.gn文件
-提供三种配置方法，选择其中一种即可
+提供两种配置方法，选择其中一种即可
 
-##### 修改方法一（推荐，支持批量处理idl文件）
-
-1. 导入IDL工具模板到当前BUILD.gn文件。
-
-   ```bash
-   # 此处不需要修改，直接复制到gn中即可
-   import("//foundation/ability/idl_tool/idl_config.gni")
-   ```
-
-2. 调用IDL工具生成C++模板文件。
-
-   ```bash
-   
-   # 使用idl_gen_interface生成模板文件、需输入参数名后面的deps中会使用
-   idl_gen_interface("EEEFFFGGG") {
-     # 开发者定义的.idl名，与gn文件在同一路径下
-     sources = [
-      "IAxxBxxCxx.idl",
-      "IAxxBxxCxx2.idl",
-     ]
-
-     # 开启hitrace，值是hitrace_meter.h文件中定义的uint64_t类型标识,需要填入常量的变量名
-     hitrace = "HITRACE_TAG_ABILITY_MANAGER"
-     # 开启hilog，Domain ID 使用16进制的整数
-     log_domainid = "0xD003900"
-     # 开启hilog，字符串类型tag名、一般为子系统名称
-     log_tag = "QuickFixManagerService"
-   }
-   ```
-
-   如果需要生成的模板文件名第一个字母为I时，需要在interface命名时在前面加一个I。
-
-   ```bash
-   # 例：生成的模板文件为quick_fix_manager_proxy.cpp时interface的名称应为IQuickFixManager
-   # .idl文件中的定义
-   interface OHOS.AAFwk.IQuickFixManager {
-       void ApplyQuickFix([in] String[] quickFixFiles, [in] boolean isDebug);
-       void GetApplyedQuickFixInfo([in] String bundleName, [out] ApplicationQuickFixInfo quickFixInfo);
-       void RevokeQuickFix([in] String bundleName);
-   }
-   ```
-
-   配置hilog，参数log_domainid和log_tag必须成对出现，若只写一个会编译错误。
-
-   ```bash
-   idl_gen_interface("quickfix_manager_interface") {
-     sources = [
-      "IQuickFixManager.idl"
-     ]
-     hitrace = "HITRACE_TAG_ABILITY_MANAGER"
-     log_domainid = "0xD003900"
-     log_tag = "QuickFixManagerService"    #只有一个log_tag，编译会错误，同理只有log_domainid，编译也会错误
-   }
-   ```
-
-3. 在BUILD.gn中添加模板文件的头文件路径。
-
-   只需将“${target_gen_dir}”名添加到现有include_dirs中即可，其它不需要更改。
-
-   ```bash
-   include_dirs = [
-     "aaa/bbb/ccc",        # 原有头文件路径
-     "${target_gen_dir}",  # 模板头文件路径
-   ]
-   ```
-
-4. 在BUILD.gn中添加模板文件.cpp文件路径。
-   ```bash
-   output_values = get_target_outputs(":EEEFFFGGG") # 返回给定目标标签的输出文件列表，替换EEEFFFGGG
-   # 第一种：idl生成的文件全编，需要编译proxy和stub的cpp
-   sources += filter_include(output_values, [ "*.cpp" ]) # filter_include选中符合的列表，直接复制即可
-   # 第二种：idl生成的文件只编译proxy的cpp
-   sources += filter_include(output_values, [ "*_proxy.cpp" ]) # filter_include选中符合的列表，直接复制即可
-   # 第三种：idl生成的文件只编译stub的cpp
-   sources += filter_include(output_values, [ "*_stub.cpp" ]) # filter_include选中符合的列表，直接复制即可
-   ```
-
-5. 在BUILD.gn中添加依赖“EEEFFFGGG”。
-
-   ```bash
-   deps = [
-       ":EEEFFFGGG",
-     ]
-   ```
-
-   deps添加的依赖名，必须同idl_gen_interface函数参数名相同。
-
-   ```bash
-   idl_gen_interface("quickfix_manager_interface") {
-     sources = [
-      "IQuickFixManager.idl"
-     ]
-     hitrace = "HITRACE_TAG_ABILITY_MANAGER"
-     log_domainid = "0xD003900"
-     log_tag = "QuickFixManagerService"
-   }
-   deps = [
-    "${ability_runtime_innerkits_path}/app_manager:app_manager",
-    ":quickfix_manager_interface"]    # idl_gen_interface函数参数名相同
-   ```
-
-6. 在BUILD.gn中添加模板文件的外部依赖。
-
-   模板文件的外部依赖需要自己添加到external_deps里。
-
-   若之前已存在，不需要重复添加，若重复添加会导致编译错误。
-
-   ```bash
-     external_deps = [
-     # 模板文件必须的依赖
-     "c_utils:utils",
-     # hilog输出必须的依赖
-     "hilog:libhilog",
-     # hitrace输出必须的依赖
-     "hitrace:hitrace_meter",
-     # 模板文件必须的依赖
-     "ipc:ipc_core",
-   ]
-   ```
-
-
-##### 修改方法二（推荐，支持批量处理idl文件并编译为so）
+##### 修改方法一（推荐，支持批量处理idl文件并编译为so）
 
 1. 导入IDL工具模板到当前BUILD.gn文件。
 
@@ -622,9 +501,9 @@ interface OHOS.AAFwk.IQuickFixManager {
 
    ```bash
    
-   # 使用idl_gen_interface生成模板文件、需输入参数名后面的deps中会使用
+   # 使用idl_gen_interface生成模板文件、输入的参数名在deps中会使用
    idl_gen_interface("EEEFFFGGG") {
-     # 开发者定义的.idl名，与gn文件在同一路径下
+     # 开发者定义的.idl名，须与gn文件在同一路径下
      sources = [
       "IAxxBxxCxx.idl",
       "IAxxBxxCxx2.idl",
@@ -642,40 +521,29 @@ interface OHOS.AAFwk.IQuickFixManager {
      # 编译so时增加external_deps配置
      sequeceable_ext_deps = []
 
-     # 编译so时增加subsystem_name
-     subsystem_name = ""
-
-     # 编译so时增加part_name
-     part_name = ""
-
      # 编译so时增加innerapi_tags
      innerapi_tags = ""
 
      # 编译so时增加sanitize
      sanitize = ""
 
+
      # 开启hitrace，值是hitrace_meter.h文件中定义的uint64_t类型标识,需要填入常量的变量名
      hitrace = "HITRACE_TAG_ABILITY_MANAGER"
+     
      # 开启hilog，Domain ID 使用16进制的整数
      log_domainid = "0xD003900"
      # 开启hilog，字符串类型tag名、一般为子系统名称
      log_tag = "QuickFixManagerService"
+
+     # 必填：编译so时增加subsystem_name，与业务保持一致，如quick_fix使用：
+     subsystem_name = "ability"
+     # 必填：编译so时增加part_name，与业务保持一致，如quick_fix使用：
+     part_name = "ability_runtime"
    }
    ```
 
-   如果需要生成的模板文件名第一个字母为I时，需要在interface命名时在前面加一个I。
-
-   ```bash
-   # 例：生成的模板文件为quick_fix_manager_proxy.cpp时interface的名称应为IQuickFixManager
-   # .idl文件中的定义
-   interface OHOS.AAFwk.IQuickFixManager {
-       void ApplyQuickFix([in] String[] quickFixFiles, [in] boolean isDebug);
-       void GetApplyedQuickFixInfo([in] String bundleName, [out] ApplicationQuickFixInfo quickFixInfo);
-       void RevokeQuickFix([in] String bundleName);
-   }
-   ```
-
-   配置hilog，参数log_domainid和log_tag必须成对出现，若只写一个会编译错误。
+   配置hilog，参数log_domainid和log_tag必须成对出现，若只写一个会编译错误，quick_fix示例如下：
 
    ```bash
    idl_gen_interface("quickfix_manager_interface") {
@@ -692,13 +560,13 @@ interface OHOS.AAFwk.IQuickFixManager {
 
    ```bash
    deps = [
-      # idl_gen_interface函数参数名，前面加上lib，后面加上_proxy和_stub即为生成的so名称
+      # 使用idl_gen_interface函数参数名，前面加上lib，后面加上_proxy和_stub即为生成的so名称
       ":libEEEFFFGGG_proxy", # 如果需要 proxy 的so，加上这个依赖
       ":libEEEFFFGGG_stub", # 如果需要 stub 的so，加上这个依赖
      ]
    ```
 
-   deps添加的依赖名，必须同idl_gen_interface函数参数名相同。
+   deps添加的依赖名，必须同idl_gen_interface函数参数名相同，quick_fix示例如下：
 
    ```bash
    idl_gen_interface("quickfix_manager_interface") {
@@ -719,7 +587,6 @@ interface OHOS.AAFwk.IQuickFixManager {
 6. 在BUILD.gn中添加模板文件的外部依赖。
 
    模板文件的外部依赖需要自己添加到external_deps里。
-
    若之前已存在，不需要重复添加，若重复添加会导致编译错误。
 
    ```bash
@@ -728,14 +595,14 @@ interface OHOS.AAFwk.IQuickFixManager {
      "c_utils:utils",
      # hilog输出必须的依赖
      "hilog:libhilog",
-     # hitrace输出必须的依赖
+     # hitrace输出必须的依赖（如果idl_gen_interface中未配置hitrace，则不需要此依赖）
      "hitrace:hitrace_meter",
      # 模板文件必须的依赖
      "ipc:ipc_core",
    ]
    ```
 
-##### 修改方法三
+##### 修改方法二
 
 1. 导入IDL工具模板到当前BUILD.gn文件。
 
@@ -1021,4 +888,4 @@ interface OHOS.AAFwk.IQuickFixManager {
 
 针对IDL的使用，有以下相关实例可供参考：
 
-- [Ability与ServiceExtensionAbility通信（ArkTS）(Full SDK)（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/IDL/AbilityConnectServiceExtension)
+- [Ability与ServiceExtensionAbility通信（ArkTS）(Full SDK)（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/IDL/AbilityConnectServiceExtension)

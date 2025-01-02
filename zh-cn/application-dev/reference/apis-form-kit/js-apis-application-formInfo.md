@@ -36,7 +36,7 @@ import formInfo from '@ohos.application.formInfo';
 | scheduledUpdateTime        | string               | 是    | 否      | 表示卡片更新时间。     |
 | formConfigAbility | string               | 是    | 否      | 表示卡片配置ability。   |
 | updateDuration        | number             | 是    | 否      | 表示卡片更新周期。 |
-| defaultDimension  | number | 是    | 否      | 表示卡片规格                                       |
+| defaultDimension  | number | 是    | 否      | 表示卡片规格。                                       |
 | supportDimensions    | Array&lt;number&gt;      | 是    | 否      | 表示卡片支持的规格。                 |
 | customizeData    | {[key: string]: [value: string]}      | 是    | 否      | 表示卡片用户数据。         |
 

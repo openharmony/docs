@@ -4,8 +4,8 @@
 There are three types of threads in the stage model:
 - Main thread
   - Draws the UI.
-  - Manages the ArkTS engine instance of the main thread so that multiple UIAbility components can run on it.
-  - Manages ArkTS engine instances of other threads, for example, using **TaskPool** to create or cancel tasks, and starting and terminating **Worker** threads.
+  - Manages the [ArkTS engine](../arkts-utils/arkts-runtime-overview.md) instance of the main thread so that multiple UIAbility components can run on it.
+  - Manages [ArkTS engine](../arkts-utils/arkts-runtime-overview.md) instances of other threads, for example, using **TaskPool** to create or cancel tasks, and starting and terminating **Worker** threads.
   - Distributes interaction events.
   - Processes application code callbacks (event processing and lifecycle management).
   - Receives messages sent by the **TaskPool** and **Worker** threads.
@@ -21,7 +21,7 @@ For details about the operation mechanism, communication method, and usage of **
 
 > **NOTE**
 >
-> - **TaskPool** manages the number of threads that can be created and their lifecycle. A maximum of eight **Worker** threads can be created, and you need to manage their lifecycle.
+> - **TaskPool** manages the number of threads that can be created and their lifecycle. However, you need to maintain the lifecycle of [Worker](../arkts-utils/worker-introduction.md) threads.
 > - Multiple components can exist in the same thread. For example, both UIAbility and UI components exist in the main thread. In the stage model, [EventHub](#using-eventhub-for-intra-thread-communication) is used for data communication.
 > - To view thread information about an application process, run the **hdc shell** command to enter the shell CLI of the device, and then run the **ps -p *\<pid>* -T command**, where *\<pid>* indicates the [process ID](process-model-stage.md) of the application.
 
