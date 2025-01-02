@@ -12,17 +12,13 @@ hideNonSecureWindows在2in1设备上不允许全局悬浮窗创建和显示，不满足业务需求，导致
 
 **变更影响**
 
-该变更为不兼容变更。
+此变更不涉及应用适配。
 
 
-变更前：
-
-hideNonSecureWindows在2in1设备上不允许全局悬浮窗创建，且会隐藏已经创建的全局悬浮窗。
+变更前：hideNonSecureWindows在2in1设备上不允许全局悬浮窗创建，且会隐藏已经创建的全局悬浮窗。
 
 
-变更后：
-
-hideNonSecureWindows在2in1设备上不阻止全局悬浮窗创建和显示。
+变更后：hideNonSecureWindows在2in1设备上不阻止全局悬浮窗创建和显示。
 
 
 **起始API Level**
@@ -39,4 +35,4 @@ hideNonSecureWindows
 
 **适配指导**
 
-默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+默认行为变更，无需适配。
