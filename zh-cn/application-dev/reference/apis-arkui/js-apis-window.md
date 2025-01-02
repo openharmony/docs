@@ -830,7 +830,7 @@ getAllWindowLayoutInfo(displayId: number): Promise&lt;Array&lt;WindowLayoutInfo&
 
 | 类型                             | 说明                      |
 | -------------------------------- |-------------------------|
-| Promise&lt;Array&lt;[WindowLayoutInfo](#WindowLayoutInfo)&gt;&gt; | Promise对象。返回获取到的窗口布局信息对象数组。 |
+| Promise&lt;Array&lt;[WindowLayoutInfo](#WindowLayoutInfo16)&gt;&gt; | Promise对象。返回获取到的窗口布局信息对象数组。 |
 
 **错误码：**
 
