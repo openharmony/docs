@@ -958,7 +958,7 @@ onMarqueeStateChange(callback: Callback\<MarqueeState\>)
 
 | 参数名    | 类型                                  | 必填  | 说明                       |
 |--------|-------------------------------------|-----|--------------------------|
-| state  | [MarqueeState](#marqueestate16枚举说明) | 是   | 开始滚动时、每一次滚动时以及在滚动结束时触发。 |
+| state  | Callback<[MarqueeState]>(#marqueestate16枚举说明) | 是   | 开始滚动时、每一次滚动时以及在滚动结束时触发。 |
 
 ## TextOptions<sup>11+</sup>
 
@@ -1030,15 +1030,15 @@ getLayoutManager(): LayoutManager
 
 ## marqueeOptions<sup>16+</sup>
 
-当overflow设置为TextOverflow.MARQUEE时，可以进行初始化。
+当overflow设置为TextOverflow.MARQUEE时，跑马灯开始初始化。
 
 | 名称             | 类型                                             | 必填 | 说明            |
 |----------------|------------------------------------------------| -------- |---------------|
-| marqueeOptions | [TextMarqueeOptions ](#marqueeoptions16) | 是 | marquee自定义选项。 |
+| marqueeOptions | [TextMarqueeOptions ](#marqueeoptions16) | 是 | Marquee自定义选项。 |
 
 ## TextMarqueeOptions <sup>16+</sup>
 
-marquee初始化参数。
+Marquee初始化参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1051,23 +1051,23 @@ marquee初始化参数。
 | loop               | number                                          | 否  | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1                                                    |
 | fromStart          | boolean                                         | 否  | 设置文本从头开始滚动或反向滚动。<br/>默认值：true                                                       |
 | delay              | number                                          | 否  | 设置每次滚动的时间间隔。<br/>默认值：0                                                              |
-| fadeout            | boolean                                         | 否  | 设置文字超长渐隐。开启默认渐隐后，在非输入态默认使能；输入态超长时，有未展示的文字的一侧生效渐隐，两侧都有未展示的文字时，两侧同时渐隐。渐隐开启时，clip属性强制为true，无法设置为false。<br/>默认值：false  |
+| fadeout            | boolean                                         | 否  | 设置文字超长渐隐。当Text的文字超长时，有未展示的文字的一侧生效渐隐。两侧都有未展示的文字时，两侧同时渐隐。渐隐开启时，clip属性强制为true，无法设置为false。<br/>默认值：false  |
 | marqueeStartPolicy | [MarqueeStartPolicy](#marqueestartpolicy16枚举说明) | 否  | 设置跑马灯启动策略。<br/>默认值：MarqueeStartPolicy.DEFAULT                                       |
 
 ## MarqueeStartPolicy<sup>16+</sup>枚举说明
 
-| 名称       | 描述            |
-|----------|---------------|
-| DEFAULT  | 默认持续滚动。       |
-| ON_FOCUS | 获焦以及鼠标悬浮时开始滚动。 |
+| 名称        | 值 | 描述            |
+|----------|----|---------------|
+| DEFAULT  | 0  |默认持续滚动。       |
+| ON_FOCUS | 1  |获焦以及鼠标悬浮时开始滚动。 |
 
 ## MarqueeState<sup>16+</sup>枚举说明
 
-| 名称     | 描述                            |
-|--------|-------------------------------|
-| START  | 滚动开始时触发。                      |
-| BOUNCE | 完成一次滚动时触发，若循环次数不为1，则该事件会多次触发。 |
-| FINISH | 滚动全部循环次数完成时触发回调。              |
+| 名称     | 值 |描述                            |
+|--------|----|-------------------------------|
+| START  |0  |滚动开始时触发。                      |
+| BOUNCE |1  |完成一次滚动时触发，若循环次数不为1，则该事件会多次触发。 |
+| FINISH |2  |滚动全部循环次数完成时触发回调。              |
 
 ## 示例
 
