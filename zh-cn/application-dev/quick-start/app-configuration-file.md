@@ -39,7 +39,11 @@
     "ubsanEnabled": false,
     "cloudFileSyncEnabled": false,
     "configuration": "$profile:configuration",
-    "assetAccessGroups": []
+    "assetAccessGroups": [
+      "com.ohos.photos",
+      "com.ohos.screenshot",
+      "com.ohos.note"
+    ]
   },
 }
 ```
