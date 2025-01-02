@@ -824,7 +824,7 @@ getAllWindowLayoutInfo(displayId: number): Promise&lt;Array&lt;WindowLayoutInfo&
 
 | 参数名 | 类型   | 必填 | 说明                                                                        |
 | ------ | ---------- |----|---------------------------------------------------------------------------|
-| displayId   | number| 是  | 需要获取窗口布局信息的displayId，该参数应为整数，且为当前实际存在屏幕的displayId，可以通过窗口属性[WindowProperties](#windowproperties)中获取。 |
+| displayId   | number| 是  | 需要获取窗口布局信息的displayId，该参数应为整数，且为当前实际存在屏幕的displayId，可以通过窗口属性[WindowProperties](#windowproperties)获取。 |
 
 **返回值：**
 
