@@ -311,7 +311,6 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 |pin                        | array           |证书公钥哈希。可以包含任意个item。item必须包含1个digest-algorithm，item必须包含1个digest。|
 |digest-algorithm           | string          |指示用于生成哈希的摘要算法。目前只支持`sha256`。                                    |
 |digest                     | string          |指示公钥哈希。 |
-|
 
 
 ## 相关实例
