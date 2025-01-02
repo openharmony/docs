@@ -58,7 +58,7 @@ circleRadius(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                               |
 | ------ | ---------------------------- | ---- | ---------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 宫格中圆点的半径。<br/>默认值：6vp |
+| value  | [Length](ts-types.md#length) | 是   | 宫格中圆点的半径。<br/>默认值：6vp<br/>取值范围：(0, sideLength/11]，设置小于等于0的值时按默认值处理，超过最大值按最大值处理。 |
 
 ### backgroundColor
 backgroundColor(value: ResourceColor)
