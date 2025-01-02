@@ -313,7 +313,7 @@ Repeat freezeWhenInactive。
 struct ChildComponent {
   @Param @Require message: string;
   @Param @Require bgColor: Color;
-  // 关闭冻结后，二级缓存中的组件不刷新，不会打印相应日志
+  // 关闭冻结后，二级缓存中的组件会刷新，并打印相应日志
   @Monitor(`bgColor`)
   onMessageChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
