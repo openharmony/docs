@@ -363,7 +363,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称   | 类型   | 必填 | 说明                                       |
 | ------ | ------ | ---- | ------------------------------------------ |
-| windowRect | [Rect](#rect7)  | 是 | 窗口尺寸，窗口在屏幕上的实际位置和大小。 |
+| windowRect<sup>16+</sup> | [Rect](#rect7)  | 是 | 窗口尺寸，窗口在屏幕上的实际位置和大小。 |
 
 ## window.createWindow<sup>9+</sup>
 
@@ -814,7 +814,7 @@ try {
 
 getAllWindowLayoutInfo(displayId: number): Promise&lt;Array&lt;WindowLayoutInfo&gt;&gt;
 
-按当前窗口的层级从高到低获取指定屏幕上可见的窗口布局信息，使用Promise异步回调。
+获取指定屏幕上可见的窗口布局信息数组，按当前窗口层级排列，层级最高的对应数组index为0，使用Promise异步回调。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
