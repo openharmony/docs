@@ -1392,6 +1392,7 @@
         - 播放<!--media-playback-arkts-->
           - [使用AVPlayer播放音频(ArkTS)](media/media/using-avplayer-for-playback.md)
           - [使用AVPlayer播放视频(ArkTS)](media/media/video-playback.md)
+          - [使用AVPlayer设置播放URL](media/media/playback-url-setting-method.md)
           - [使用AVPlayer播放流媒体(ArkTS)](media/media/streaming-media-playback-development-guide.md)
           - [使用AVPlayer添加视频外挂字幕(ArkTS)](media/media/video-subtitle.md)
           - [使用SoundPool播放短音频(ArkTS)](media/media/using-soundpool-for-playback.md)
