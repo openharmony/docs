@@ -1,6 +1,6 @@
 # 典型场景的视频编码配置
 
-描述视频编码器在不同应用场景下的推荐配置参数，供调用者根据实际应用场景进行视频编码应用的开发。
+描述AVCodec在不同应用场景下的推荐配置参数，供调用者根据实际应用场景进行视频编码应用的开发。
 
 ## 场景介绍
 
@@ -38,14 +38,19 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 低时延场景包括视频会议、云游戏、互动直播、生产远程操作等，对端到端时延要求较高的交互式应用。
 
+图1-典型的低时延场景如下图所示：
+
+a. 视频会议（单向）:
+
 ![Video conference](figures/video-conference.png)
-<center>a. 视频会议（单向）</center>
+
+b. 云游戏场景:
 
 ![Cloud gaming](figures/cloud-gaming.png)
-<center>b. 云游戏场景</center>
+
+c. 生产操作场景:
 
 ![Production operation](figures/production-operation.png)
-<center>c. 生产操作场景</center>
 
 
 ### 开发指导
@@ -122,7 +127,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, 1920); // 视频宽，必须配置
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, 1080); // 视频高，必须配置
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, AV_PIXEL_FORMAT_NV12); // YUV排布格式
-    // 可选，配置低时延解码
+    // 必选，配置低时延解码
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1); // 低时延场景必选，使能低时延特性：YUV进一帧，出一帧码流数据
 
     // 3.3 配置解码器
@@ -141,9 +146,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 直播场景包括泛娱乐直播、游戏直播、赛事直播等，对视频端到端时延要求不高的应用场景。
 
-![Live streaming](figures/live-streaming.png)
+图2-典型直播应用如下图所示：
 
-<center>典型直播应用</center>
+![Live streaming](figures/live-streaming.png)
 
 
 ### 开发指导
@@ -198,9 +203,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 离线转码场景包括电视剧、电影、网络短剧、直播回放、编辑导出等多种应用场景，为了适配支持不同显示规格（如480p、1080p、4K等）终端、不同码流格式（如H.264、H.265等）的终端，以及不同带宽条件下的多种情况，在内容制作端对源进行离线转码，生成多种尺寸、多种码率、多种编码格式的视频码流文件，供用户分享或者观看。
 
-![Video On-Demand](figures/vod.png)
+图3-典型离线转码的点播应用如下图所示：
 
-<center>典型离线转码的点播应用</center>
+![Video On-Demand](figures/vod.png)
 
 
 ### 开发指导
