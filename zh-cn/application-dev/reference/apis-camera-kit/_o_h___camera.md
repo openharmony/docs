@@ -1787,7 +1787,7 @@ enum Camera_Position
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| CAMERA_POSITION_UNSPECIFIED | 未指定位置。 | 
+| CAMERA_POSITION_UNSPECIFIED | 相对于设备屏幕没有固定的朝向的相机。 | 
 | CAMERA_POSITION_BACK | 后置。 | 
 | CAMERA_POSITION_FRONT | 前置。 | 
 
@@ -1942,7 +1942,7 @@ enum Camera_Type
 | CAMERA_TYPE_DEFAULT | 默认相机类型。 | 
 | CAMERA_TYPE_WIDE_ANGLE | 广角相机。 | 
 | CAMERA_TYPE_ULTRA_WIDE | 超广角相机。 | 
-| CAMERA_TYPE_TELEPHOTO | 电话相机。 | 
+| CAMERA_TYPE_TELEPHOTO | 长焦相机。 | 
 | CAMERA_TYPE_TRUE_DEPTH | 景深相机。 | 
 
 
