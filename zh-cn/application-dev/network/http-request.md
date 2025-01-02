@@ -297,53 +297,21 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 
 **各个字段含义:**
 
-**network-security-config(object:网络安全配置)**
+| 字段                      | 类型            | 说明                                   |   
+| --------------------------| --------------- | -------------------------------------- |
+|network-security-config    | object          |网络安全配置。可包含0或者1个base-config，必须包含1个domain-config。|
+|base-config                | object          |指示应用程序范围的安全配置。必须包含1个trust-anchors。                          |
+|domain-config              | array           |指示每个域的安全配置。可以包含任意个item。item必须包含1个domains，可以包含0或者1个trust-anchors，可以包含0个或者1个pin-set。|
+|trust-anchors              | array           |受信任的CA。可以包含任意个item。item必须包含1个certificates。|
+|certificates               | string          |CA证书路径。 |
+|domains                    | array           |域。可以包含任意个item。item必须包含1个name(string:指示域名)，可以包含0或者1个include-subdomains。|
+|include-subdomains         | boolean         |指示规则是否适用于子域。 |
+|pin-set                    | object          |证书公钥哈希设置。必须包含1个pin，可以包含0或者1个expiration。|
+|expiration                 | string          |指示证书公钥哈希的过期时间。 |
+|pin                        | array           |证书公钥哈希。可以包含任意个item。item必须包含1个digest-algorithm，item必须包含1个digest。|
+|digest-algorithm           | string          |指示用于生成哈希的摘要算法。目前只支持`sha256`。                                    |
+|digest                     | string          |指示公钥哈希。 |
 
-可包含0或者1个base-config
-
-必须包含1个domain-config
-
-**base-config(object:指示应用程序范围的安全配置)**
-
-必须包含1个trust-anchors
-
-**domain-config(array:指示每个域的安全配置)**
-
-可以包含任意个item
-
-item必须包含1个domains
-
-item可以包含0或者1个trust-anchors
-
-item可包含0个或者1个pin-set
-
-**trust-anchors(array:受信任的CA)**
-
-可以包含任意个item
-
-item必须包含1个certificates(string:CA证书路径)
-
-**domains(array:域)**
-
-可以包含任意个item
-
-item必须包含1个name(string:指示域名)
-
-item可以包含0或者1个include-subdomains(boolean:指示规则是否适用于子域)
-
-**pin-set(object:证书公钥哈希设置)**
-
-必须包含1个pin
-
-可以包含0或者1个expiration(string:指示证书公钥哈希的过期时间)
-
-**pin(array:证书公钥哈希)**
-
-可以包含任意个item
-
-item必须包含1个digest-algorithm(string:指示用于生成哈希的摘要算法，目前只支持`sha256`)
-
-item必须包含1个digest(string:指示公钥哈希)
 
 ## 相关实例
 
