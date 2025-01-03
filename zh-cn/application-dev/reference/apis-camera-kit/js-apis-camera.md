@@ -83,7 +83,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 | 名称                         | 值   | 说明                                                              |
 | --------------------------- | ---- |-----------------------------------------------------------------|
-| CAMERA_POSITION_UNSPECIFIED | 0    | 相机位置未指定。                                                        |
+| CAMERA_POSITION_UNSPECIFIED | 0    | 相对于设备屏幕没有固定的朝向的相机。                                                        |
 | CAMERA_POSITION_BACK        | 1    | 后置相机。                                                           |
 | CAMERA_POSITION_FRONT       | 2    | 前置相机。                                                           |
 | CAMERA_POSITION_FOLD_INNER<sup>(deprecated)</sup>  | 3    | 折叠态相机。<br/> 从API version 11开始支持，从API version 12开始废弃。 |
