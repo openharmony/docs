@@ -1,10 +1,10 @@
 # Using Performance Improvement Features (for System Applications Only) (ArkTS)
 
-Before developing a camera application, request the camera permission. For details, see [Camera Development Preparations](camera-preparation.md).
+Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
 
 The camera startup performance is affected by time-consuming operations such as power-on of underlying components and initialization of the process pipeline. To improve the camera startup speed and thumbnail display speed, OpenHarmony introduces some features. The capabilities of these features are related to underlying components. You need to check whether your underlying components support these capabilities before using the capabilities.
 
-These features are involved in the processes of starting the camera device, configuring streams, and taking photos. This topic describes the three scenarios.
+​These features are involved in the processes of starting the camera device, configuring streams, and taking photos. This topic describes the three scenarios.
 
 ## Deferred Stream Configuration
 
@@ -129,8 +129,7 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
 
 Generally, the startup of the camera application is triggered when the user touches the camera icon on the home screen. The home screen senses the touch event and instructs the application manager to start the camera application. This takes a relatively long time. After the camera application is started, the camera startup process starts. A typical camera startup process includes starting the camera device, configuring a data stream, and starting the data stream, which is also time-consuming.
 
-The prelaunch feature triggers the action of starting the camera device before the camera application is started. In other words, when the user touches the camera icon on the home screen,
-the system starts the camera device. At this time, the camera application is not started yet. The figure below shows the camera application process before and after the prelaunch feature is introduced.
+​The prelaunch feature triggers the action of starting the camera device before the camera application is started. In other words, when the user touches the camera icon on the home screen, the system starts the camera device. At this time, the camera application is not started yet. The figure below shows the camera application process before and after the prelaunch feature is introduced.
 
 ![prelaunch-scene](figures/prelaunch-scene.png)
 
