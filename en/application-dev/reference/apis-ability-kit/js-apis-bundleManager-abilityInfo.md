@@ -44,7 +44,7 @@ The **AbilityInfo** module defines the ability information. A third-party applic
 
 Describes the window size.
 
-<br>**Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
