@@ -48,6 +48,7 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
     import { fileUri } from '@kit.CoreFileKit';
     import { UIAbility, Want, common, wantConstant } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
+    import { window } from '@kit.ArkUI';
     ```
 
 2. Obtain the [application file paths](application-context-stage.md#obtaining-application-file-paths).
@@ -90,7 +91,7 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
     ```
 
 4. Call the API to start the target application.
-   
+    
     ```ts
     // xxx.ets
     export default class EntryAbility extends UIAbility {
@@ -163,7 +164,7 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
     ```ts
     // xxx.ets
     import fs from '@ohos.file.fs';
-    import { Want } from '@kit.AbilityKit';
+    import { Want, AbilityConstant } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     export default class EntryAbility extends UIAbility {
