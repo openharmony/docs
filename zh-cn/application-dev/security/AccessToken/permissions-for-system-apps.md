@@ -327,7 +327,7 @@
 
 ### ohos.permission.PLUGIN_UPDATE
 
-允许应用、服务监听系统升级流程中的关键事件。
+允许业务方调用升级相关接口完成插件、AI模型的后下载和更新业务。
 
 **权限级别**：system_basic
 
