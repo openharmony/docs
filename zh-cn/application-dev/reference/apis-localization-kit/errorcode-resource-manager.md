@@ -20,7 +20,7 @@ Invalid resource ID.
 
 **处理步骤**
 
-1、如果是[HAR开启混淆](../../quick-start/har-package.md#编译)、中间码HAR、字节码HAR、跨HAP/HSP包应用资源，资源ID无法获取，使用**方法替代。
+1、[HAR开启混淆](../../quick-start/har-package.md#编译)、[中间码HAR、字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5)、跨HAP/HSP包的资源ID无法获取，推荐使用[getStringByName()](js-apis-resource-manager.md#getstringbyname9)等方法通过名称获取资源。
 
 2、检查传入参数的资源id是否已有。  
 
