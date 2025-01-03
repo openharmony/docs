@@ -617,7 +617,7 @@ static digit(): DigitIndicator
 
 ## DotIndicator<sup>10+</sup>对象说明
 
-圆点指示器属性及功能继承自[Indicator](#indicator10对象说明)。
+构造圆点指示器的样式，继承自[Indicator](#indicator10)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -652,7 +652,7 @@ DotIndicator的构造函数。
 
 ## DigitIndicator<sup>10+</sup>对象说明
 
-数字指示器属性及功能继承自[Indicator](#indicator10对象说明)。
+构造数字指示器的样式，继承自[Indicator](#indicator10)。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
