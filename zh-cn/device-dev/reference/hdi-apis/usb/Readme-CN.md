@@ -1,15 +1,11 @@
 # USB HDI 参考
 
 - 模块
-    - [HdiUsbDdk](_hdi_usb_ddk.md)
     - [HdiUsbfnMtp](_hdi_usbfn_mtp.md)
     - [HdiUsb](_hdi_usb.md)
     - [USB (V1_0)](_u_s_b_v10.md)
     - [USB](_u_s_b.md)
 - 头文件
-    - HdiUsbDdk
-        - [IUsbDdk.idl](_i_usb_ddk_8idl.md)
-        - [UsbDdkTypes.idl](_usb_ddk_types_8idl.md)
     - HdiUsbfnMtp
         - [IUsbfnMtpInterface.idl](_i_usbfn_mtp_interface_8idl.md)
         - [UsbfnMtpTypes.idl](_usbfn_mtp_types_8idl.md)
