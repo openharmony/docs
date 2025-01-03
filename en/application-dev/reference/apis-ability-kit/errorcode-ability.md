@@ -893,6 +893,28 @@ The parameter use scenario is incorrect.
 
 Delete the [CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params) parameter.
 
+## 16000081 Failed to Obtain the Target Application Information
+
+**Error Message**
+
+Get target application info failed.
+
+**Description**
+
+When <!--Del-->[<!--DelEnd-->an API related to URI authorization<!--Del-->](js-apis-uripermissionmanager-sys.md)<!--DelEnd--> is called, the information about the target application cannot be obtained based on the bundle name and clone index.
+
+**Possible Causes**
+
+1. The target application is not installed.
+2. The clone index is out of range.
+3. The target application does not have a clone of the specified index.
+
+**Solution**
+
+1. Check whether the application has been installed.
+2. Check whether the index is within the allowed range.
+3. Check whether the target application has created a clone of the specified index.
+
 ## 16000082 UIAbility Startup Failure in Singleton Mode
 
 **Error Message**

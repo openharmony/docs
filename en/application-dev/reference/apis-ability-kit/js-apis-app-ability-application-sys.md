@@ -1,5 +1,4 @@
 #  @ohos.app.ability.application (Application) (System API)
-
 You can use this module to create a [Context](../../application-models/application-context-stage.md).
 
 > **NOTE**
@@ -17,6 +16,7 @@ import { application } from '@kit.AbilityKit';
 createModuleContext(context: Context, bundleName: string, moduleName: string): Promise\<Context>
 
 Creates the context for a module.
+
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -76,6 +76,7 @@ export default class EntryAbility extends UIAbility {
 createBundleContext(context: Context, bundleName: string): Promise\<Context>
 
 Creates the context for an application.
+
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
