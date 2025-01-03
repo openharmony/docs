@@ -1,6 +1,6 @@
 # Adapting to Camera Changes in Different Folding States (ArkTS)
 
-Before developing a camera application, request the camera permission. For details, see [Camera Development Preparations](camera-preparation.md).
+Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
 
 Cameras that a foldable device can use vary according to its folding states. To deliver a smooth user experience during transitions between folded and unfolded states, an application can call [CameraManager.on('foldStatusChange')](../../reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12) or [display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10) to listen for folding state changes of the device, call [CameraManager.getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras) to obtain the available cameras in the current state, and make adaptations accordingly.
 
@@ -56,7 +56,7 @@ Use two [XComponents](../../reference/apis-arkui/arkui-ts/ts-basic-components-xc
 
 You can use either of the following solutions.
 
-- Solution 1: Call [CameraManager.on('foldStatusChange')](../../../application-dev/reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12) provided by the camera framework to listen for folding state changes.
+- Solution 1: Call [CameraManager.on('foldStatusChange')](../../../application-dev/reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12) provided by the camera framework to listen for device folding state changes.
     ```ts
     import { camera } from '@kit.CameraKit';
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -71,7 +71,7 @@ You can use either of the following solutions.
     cameraManager.on('foldStatusChange', registerFoldStatusChanged);
     //cameraManager.off('foldStatusChange', registerFoldStatusChanged);
     ```
-- Solution 2: Call [display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10) to listen for folding state changes.
+- Solution 2: Call [display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10) to listen for device folding state changes.
     ```ts
     import { display } from '@kit.ArkUI';
     let preFoldStatus: display.FoldStatus = display.getFoldStatus();
@@ -198,19 +198,39 @@ struct Index {
 
   async releaseCamera(): Promise<void> {
     // Stop the session.
-    await this.mPhotoSession?.stop();
-  
+    try {
+      await this.mPhotoSession?.stop();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(TAG + 'Failed to stop session, errorCode = ' + err.code);
+    }
+
     // Release the camera input stream.
-    await this.mCameraInput?.close();
-  
+    try {
+      await this.mCameraInput?.close();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(TAG + 'Failed to close device, errorCode = ' + err.code);
+    }
+
     // Release the preview output stream.
-    await this.mPreviewOutput?.release();
-  
+    try {
+      await this.mPreviewOutput?.release();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(TAG + 'Failed to release previewOutput, errorCode = ' + err.code);
+    }
+
     this.mPreviewOutput = undefined;
-  
+
     // Release the session.
-    await this.mPhotoSession?.release();
-  
+    try {
+      await this.mPhotoSession?.release();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(TAG + 'Failed to release photoSession, errorCode = ' + err.code);
+    }
+
     // Set the session to null.
     this.mPhotoSession = undefined;
   }
@@ -259,29 +279,30 @@ struct Index {
       console.error(TAG + 'camera.getCameraManager error');
       return;
     }
-  
+
     // Obtain the camera list.
     let cameraArray: Array<camera.CameraDevice> = this.mCameraManager.getSupportedCameras();
     if (cameraArray.length <= 0) {
-      console.error(TAG + "cameraManager.getSupportedCameras error");
+      console.error(TAG + 'cameraManager.getSupportedCameras error');
       return;
     }
-  
+
     for (let index = 0; index < cameraArray.length; index++) {
       console.info(TAG + 'cameraId : ' + cameraArray[index].cameraId); // Obtain the camera ID.
       console.info(TAG + 'cameraPosition : ' + cameraArray[index].cameraPosition); // Obtain the camera position.
       console.info(TAG + 'cameraType : ' + cameraArray[index].cameraType); // Obtain the camera type.
       console.info(TAG + 'connectionType : ' + cameraArray[index].connectionType); // Obtain the camera connection type.
     }
-  
+
     let deviceIndex = cameraArray.findIndex((cameraDevice: camera.CameraDevice) => {
       return cameraDevice.cameraPosition === cameraPosition;
     })
     if (deviceIndex === -1) {
-      console.error(TAG + "not found camera");
-      return;
+      deviceIndex = 0;
+      console.error(TAG + 'not found camera');
     }
     this.curCameraDevice = cameraArray[deviceIndex];
+
     // Create a camera input stream.
     try {
       this.mCameraInput = this.mCameraManager.createCameraInput(this.curCameraDevice);
@@ -292,9 +313,15 @@ struct Index {
     if (this.mCameraInput === undefined) {
       return;
     }
+
     // Open a camera.
-    await this.mCameraInput.open();
-  
+    try {
+      await this.mCameraInput.open();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(TAG + 'Failed to open device, errorCode = ' + err.code);
+    }
+
     // Obtain the supported scene modes.
     let sceneModes: Array<camera.SceneMode> = this.mCameraManager.getSupportedSceneModes(this.curCameraDevice);
     let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
@@ -302,22 +329,22 @@ struct Index {
       console.error(TAG + 'photo mode not support');
       return;
     }
+
     // Obtain the output streams supported by the camera device.
     let cameraOutputCapability: camera.CameraOutputCapability =
       this.mCameraManager.getSupportedOutputCapability(this.curCameraDevice, camera.SceneMode.NORMAL_PHOTO);
     if (!cameraOutputCapability) {
-      console.error(TAG + "cameraManager.getSupportedOutputCapability error");
+      console.error(TAG + 'cameraManager.getSupportedOutputCapability error');
       return;
     }
-    console.info(TAG + "outputCapability: " + JSON.stringify(cameraOutputCapability));
-  
+    console.info(TAG + 'outputCapability: ' + JSON.stringify(cameraOutputCapability));
     let previewProfile = this.getPreviewProfile(cameraOutputCapability);
     if (previewProfile === undefined) {
       console.error(TAG + 'The resolution of the current preview stream is not supported.');
       return;
     }
     this.previewProfileObj = previewProfile;
-  
+
     // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream uses the surface provided by the XComponent.
     try {
       this.mPreviewOutput = this.mCameraManager.createPreviewOutput(this.previewProfileObj, surfaceId);
@@ -328,7 +355,7 @@ struct Index {
     if (this.mPreviewOutput === undefined) {
       return;
     }
-  
+
     // Create a session.
     try {
       this.mPhotoSession = this.mCameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
@@ -339,7 +366,7 @@ struct Index {
     if (this.mPhotoSession === undefined) {
       return;
     }
-  
+
     // Start configuration for the session.
     try {
       this.mPhotoSession.beginConfig();
@@ -347,7 +374,7 @@ struct Index {
       let err = error as BusinessError;
       console.error(TAG + 'Failed to beginConfig. errorCode = ' + err.code);
     }
-  
+
     // Add the camera input stream to the session.
     try {
       this.mPhotoSession.addInput(this.mCameraInput);
@@ -355,7 +382,7 @@ struct Index {
       let err = error as BusinessError;
       console.error(TAG + 'Failed to addInput. errorCode = ' + err.code);
     }
-  
+
     // Add the preview output stream to the session.
     try {
       this.mPhotoSession.addOutput(this.mPreviewOutput);
@@ -363,14 +390,22 @@ struct Index {
       let err = error as BusinessError;
       console.error(TAG + 'Failed to addOutput(previewOutput). errorCode = ' + err.code);
     }
-  
+
     // Commit the session configuration.
-    await this.mPhotoSession.commitConfig();
-  
+    try {
+      await this.mPhotoSession.commitConfig();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(TAG + 'Failed to commit session configuration, errorCode = ' + err.code);
+    }
+
     // Start the session.
-    await this.mPhotoSession.start().then(() => {
-      console.info(TAG + 'Promise returned to indicate the session start success.');
-    });
+    try {
+      await this.mPhotoSession.start()
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(TAG + 'Failed to start session. errorCode = ' + err.code);
+    }
   }
 
   build() {
