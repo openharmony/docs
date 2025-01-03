@@ -3209,18 +3209,6 @@ Allows a system application or service to preload application processes.
 
 **Valid since**: 12
 
-### ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
-
-Allows a system application to use infrared interfaces.
-
-**Permission level**: normal
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
-
 ### ohos.permission.ENABLE_EXPERIENCE_HBM
 
 Allows an application to enable the High Brightness Mode (HBM) for the screen.
