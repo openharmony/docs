@@ -2342,10 +2342,6 @@ workerPort.onmessage = (d: MessageEvents): void => {
     console.log("post message is function");
   }
   // workerPort.postMessage(func1); 传递func1发生序列化错误
-  // let obj1: obj | null = null;
-  // if (obj1) {
-  //   workerPort.postMessage(obj1 as obj);  //传递obj1发生序列化错误
-  // }
   let obj2 = new MyModel();
   workerPort.postMessage(obj2);     // 传递obj2不会发生序列化错误
 }
