@@ -79,3 +79,39 @@ onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
     }
 }),
 ```
+
+## cl.arkui.3 RichEditor（富文本）RichEditorTextSpanResult接口返回值变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+在应用添加文本或更新文本样式时，若未指定fontFamily，通过getSpans接口获取的文本信息中，fontFamily将显示默认值"HarmonyOS Sans"。然而，此默认值可能与系统实际应用的字体不一致，从而可能导致应用判断出现偏差。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：
+在应用中添加文本或更新文本样式时，若未指定fontFamily，通过getSpans接口获取的文本信息中，fontFamily将采用默认值"HarmonyOS Sans"。 
+
+变更后：
+在应用中添加文本或更新文本样式时，若未指定fontFamily，通过getSpans接口获取的文本信息中，fontFamily为""。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.59开始。
+
+**变更的接口/组件**
+
+RichEditor
+
+**适配指导**
+
+默认行为变更，无需适配。
