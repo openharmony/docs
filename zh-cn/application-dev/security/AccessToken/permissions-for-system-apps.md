@@ -3209,18 +3209,6 @@
 
 **起始版本**: 12
 
-### ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
-
-允许系统应用使用红外接口。
-
-**权限级别**：normal
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
 ### ohos.permission.ENABLE_EXPERIENCE_HBM
 
 允许应用启用屏幕HBM（High Brightness Mode）亮度模式。

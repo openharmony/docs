@@ -1509,6 +1509,21 @@ workerPort.onerror = (err: ErrorEvent) => {
 | ---- | ---- | ---- | ---- | ------------------ |
 | data | any  | 是   | 否   | 线程间传递的数据。 |
 
+## MessageType<sup>7+</sup>
+
+type MessageType = 'message' | 'messageerror';
+
+表示消息类型。
+
+**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 类型  | 说明               |
+| ---- | ------------------ |
+| 'message'  | 表示消息类型为message，值固定为'message'字符串。 |
+| 'messageerror'  | 表示消息类型为messageerror，值固定为'messageerror'字符串。 |
+
 ## Worker<sup>(deprecated)</sup>
 
 使用以下方法前，均需先构造Worker实例，Worker类继承[EventTarget](#eventtargetdeprecated)。

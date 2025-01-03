@@ -2369,6 +2369,43 @@ unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: S
 
 参考[bindTabsToScrollable](#bindtabstoscrollable13)接口示例。
 
+### enableSwipeBack<sup>16+</sup>
+
+enableSwipeBack(enabled: Optional\<boolean\>): void
+
+设置是否支持应用内横向滑动返回上一级。
+
+**原子化服务API:** 从API Version 16 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Circle
+
+**参数：**
+
+| 参数名     | 类型    | 必填   | 说明      |
+| --- | --- | --- | --- |
+| isEnabled | boolean | 是 | 是否支持应用内横向滑动返回，默认值为true。|
+
+**示例：**
+
+```js
+@Entry
+@Component
+struct Index {
+  @State isEnable: boolean = true;
+
+  build() {
+    RelativeContainer() {
+      Button(`enable swipe back: ${this.isEnable}`).onClick(() => {
+        this.isEnable = !this.isEnable;
+        this.getUIContext().enableSwipeBack(this.isEnable);
+      })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。

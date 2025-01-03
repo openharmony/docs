@@ -80,13 +80,10 @@ displayClass = display.getDefaultDisplaySync();
    });
    
    displayClass.getAvailableArea().then((availableArea) => {
-       console.info('Succeeded get the available area in this display. data: ' + JSON.stringify(availableArea));
-     }).catch((err: BusinessError) => {
-       console.error(`Failed to get the available area in this display. Code: ${err.code}, message: ${err.message}`);
-     })
-   } catch (exception) {
-     console.error(`Failed to obtain the default display object. Code: ${exception.code}, message: ${exception.message}`);
-   }
+     console.info('Succeeded get the available area in this display. data: ' + JSON.stringify(availableArea));
+   }).catch((err: BusinessError) => {
+     console.error(`Failed to get the available area in this display. Code: ${err.code}, message: ${err.message}`);
+   });
    ```
 
 3. 此外，还可以通过display.isCaptured()判断当前设备是都正在截屏、投屏或录屏。

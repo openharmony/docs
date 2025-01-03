@@ -412,3 +412,45 @@ After the application has this permission, the system JS engine can request anon
 **Authorization mode**: system_grant
 
 **Valid since**: 14
+
+<!--Del-->
+### ohos.permission.PRELOAD_FILE
+
+Allows an application to preload files to improve file opening speed.
+
+This permission is available only to document editing applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+<!--DelEnd-->
+
+### ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
+
+Allows a system application to use infrared interfaces.
+
+With this permission, the application can query the maximum frequency supported by the infrared 
+and send infrared signals of a specific frequency.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 12
+
+**Changelog**: This permission is available to system applications in API versions 12 to 15,
+and available to normal applications since API version 16.
+
+### ohos.permission.INPUT_KEYBOARD_CONTROLLER
+
+Allows an application to set the status of keyboard function keys.
+
+With this permission, the application can turn on or off the function keys, such as CapsLock.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15

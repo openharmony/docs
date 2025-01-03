@@ -82,9 +82,11 @@ loadContentByName(name: string, storage?: LocalStorage): void
 
 **示例：**
 
+UIExtensionAbility的实现：
 ```ts
 import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import './pages/UIExtensionPage'; // 导入命名路由页面，示例代码以“./pages/UIExtensionPage.ets”文件为例，在实际代码开发过程中修改为真实路径和文件名称。
 
 export default class UIExtAbility extends UIExtensionAbility {
   // 其他生命周期和实现
@@ -93,7 +95,7 @@ export default class UIExtAbility extends UIExtensionAbility {
     let storage: LocalStorage = new LocalStorage();
     storage.setOrCreate('session', session);
 
-    let name: string = 'UIExtPage';
+    let name: string = 'UIExtPage'; // 命名路由页面的名字。
     try {
       session.loadContentByName(name, storage);
     } catch (error) {
@@ -104,6 +106,32 @@ export default class UIExtAbility extends UIExtensionAbility {
   }
 
   // 其他生命周期和实现
+}
+```
+
+UIExtensionAbility加载的命名路由页面的实现：
+```ts
+// “./pages/UIExtensionPage.ets”文件的实现。
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+
+@Entry({ routeName: 'UIExtPage' }) // 通过“routeName”定义命名路由页面的名字。
+@Component
+struct UIExtensionPage {
+  @State message: string = 'Hello world';
+  storage: LocalStorage | undefined = LocalStorage.getShared();
+  private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
 }
 ```
 

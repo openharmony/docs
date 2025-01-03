@@ -2317,7 +2317,7 @@ function nfcTechDemo() {
         let pageIndex = 1; // change it to be correct index.
         mifareUltralight.readMultiplePages(pageIndex, (err : BusinessError, data : number[])=> {
             if (err) {
-            console.log("mifareUltralight readMultiplePages AsyncCallback Code: ${err.code}, message: ${err.message}");
+                console.log("mifareUltralight readMultiplePages AsyncCallback Code: ${err.code}, message: ${err.message}");
             } else {
                 console.info("mifareUltralight readMultiplePages AsyncCallback data: " + data);
             }
@@ -2779,3 +2779,41 @@ function nfcTechDemo() {
     }
 }
 ```
+
+## BarcodeTag<sup>16+</sup>
+
+BarcodeTag提供对条形码标签的属性和I/O操作的访问，继承自TagSession。
+
+TagSession是所有NFC Tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+
+以下是BarcodeTag的独有接口。
+
+### BarcodeTag.getBarcode<sup>16+</sup>
+
+getBarcode(): Promise\<ArrayBuffer>
+
+获取读到的Barcode类型的完整Tag。使用Promise方式作为异步方法。
+
+**需要权限：** ohos.permission.NFC_TAG
+
+**系统能力：** SystemCapability.Communication.NFC.Tag
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<ArrayBuffer> | Promise对象。返回BarCode类型的 tag。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 201  | Permission denied. |
+| 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
+| 3100205 | The tag leaves the field. |
