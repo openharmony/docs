@@ -365,7 +365,7 @@ import { window } from '@kit.ArkUI';
 | ------ | -------- | ---- | ---- | ---------- |
 | SystemDensity  | number   | 是   | 否   | 窗口所在屏幕的Density值，跟随用户显示大小设置变化，该参数应为浮点数。 |
 | DefaultDensity | number   | 是   | 否   | 窗口所在屏幕的默认Density值，该参数应为浮点数。 |
-| CustomDensity | number   | 是   | 否   | 窗口设置的自定义Density值，该参数应为浮点数。未设置该参数时，将跟随SystemDensity变化，如果调用[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，将跟随DefaultDensity变化。 |
+| CustomDensity | number   | 是   | 否   | 窗口设置的自定义Density值，该参数应为浮点数。未设置该参数时，将跟随SystemDensity变化，如果调用[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12) 时，将跟随DefaultDensity变化。 |
 
 ## window.createWindow<sup>9+</sup>
 
