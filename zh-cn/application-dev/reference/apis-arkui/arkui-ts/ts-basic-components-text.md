@@ -948,7 +948,7 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 
 onMarqueeStateChange(callback: Callback\<MarqueeState\>)
 
-跑马灯动画进行到某些阶段时，触发该回调。
+跑马灯动画进行到一些特定的阶段时，触发该回调。
 
 **卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
@@ -958,7 +958,7 @@ onMarqueeStateChange(callback: Callback\<MarqueeState\>)
 
 | 参数名    | 类型                                             | 必填  | 说明                       |
 |--------|---------------------------------------------------|-----|--------------------------|
-| state  | [Callback\<MarqueeState\>](#marqueestate16枚举说明) | 是   | 开始滚动时、每一次滚动时以及在滚动结束时触发。 |
+| state  | [Callback\<MarqueeState\>](#marqueestate16枚举说明) | 是   | 通过state参数指定触发回调的状态，状态由MarqueeState枚举定义，例如开始滚动、滚动一次、滚动完成。 |
 
 ## TextOptions<sup>11+</sup>
 
@@ -1030,13 +1030,13 @@ getLayoutManager(): LayoutManager
 
 ## marqueeOptions<sup>16+</sup>
 
-当overflow设置为TextOverflow.MARQUEE时，跑马灯开始初始化。
+当textOverflow设置为TextOverflow.MARQUEE时，marqueeOptions的设置方能生效。
 
 | 名称             | 类型                                             | 必填 | 说明            |
 |----------------|------------------------------------------------| -------- |---------------|
-| marqueeOptions | [TextMarqueeOptions ](#marqueeoptions16) | 是 | Marquee自定义选项。 |
+| marqueeOptions | [TextMarqueeOptions](#marqueeoptions16) | 是 | 当text组件的textOverflow属性设置为MARQUEE时，可通过marqueeOptions设置跑马灯动效具体的属性，如开关、步长、循环次数、方向等。 |
 
-## TextMarqueeOptions <sup>16+</sup>
+## TextMarqueeOptions<sup>16+</sup>
 
 Marquee初始化参数。
 
@@ -1051,12 +1051,12 @@ Marquee初始化参数。
 | loop               | number                                          | 否  | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1                                                    |
 | fromStart          | boolean                                         | 否  | 设置文本从头开始滚动或反向滚动。<br/>默认值：true                                                       |
 | delay              | number                                          | 否  | 设置每次滚动的时间间隔。<br/>默认值：0                                                              |
-| fadeout            | boolean                                         | 否  | 设置文字超长渐隐。当Text的文字超长时，有未展示的文字的一侧生效渐隐。两侧都有未展示的文字时，两侧同时渐隐。渐隐开启时，clip属性强制为true，无法设置为false。<br/>默认值：false  |
+| fadeout            | boolean                                         | 否  | 设置文字超长时的渐隐效果。当Text内容超出显示范围时，未完全展现的文字边缘将应用渐隐效果。若两端均有文字未完全显示，则两端同时应用渐隐效果。在渐隐效果开启状态下，clip属性将自动锁定为true，不允许设置为false。<br/>默认值：false  |
 | marqueeStartPolicy | [MarqueeStartPolicy](#marqueestartpolicy16枚举说明) | 否  | 设置跑马灯启动策略。<br/>默认值：MarqueeStartPolicy.DEFAULT                                       |
 
 ## MarqueeStartPolicy<sup>16+</sup>枚举说明
 
-Marquee的策略（可选择默认持续滚动或者有条件滚动）
+Marquee的滚动方式，可选择默认持续滚动或条件触发滚动。
 
 | 名称        | 值 | 描述            |
 |----------|----|---------------|
@@ -1065,13 +1065,13 @@ Marquee的策略（可选择默认持续滚动或者有条件滚动）
 
 ## MarqueeState<sup>16+</sup>枚举说明
 
-Marquee的滚动状态
+Marquee状态回调的返回值。
 
 | 名称     | 值 |描述                            |
 |--------|----|-------------------------------|
-| START  |0  |滚动开始时触发。                      |
-| BOUNCE |1  |完成一次滚动时触发，若循环次数不为1，则该事件会多次触发。 |
-| FINISH |2  |滚动全部循环次数完成时触发回调。              |
+| START  |0  |跑马灯滚动开始。                     |
+| BOUNCE |1  |完成一次跑马灯滚动，如果循环次数不是1，将会多次返回。 |
+| FINISH |2  |跑马灯全部循环次数完成。              |
 
 ## 示例
 
