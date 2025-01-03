@@ -1687,6 +1687,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ShowCursor(struct OH_AVScreenCapt
 
 调用该方法可以设置录屏时光标是否显示，true则显示光标，false则不显示光标。
 
+可以在创建录屏实例后调用，录屏过程中也能设置改变光标的显示情况。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 15
