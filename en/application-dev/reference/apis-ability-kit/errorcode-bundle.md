@@ -897,7 +897,7 @@ The application has applied for an incorrect permission, causing the installatio
 **Solution**
 
 1. Check whether the application has applied for the <!--Del-->[<!--DelEnd-->MDM permission<!--Del-->](../../security/AccessToken/permissions-for-mdm-apps.md)<!--DelEnd-->, which is available only for MDM applications.
-2. Check whether the requested permission is open. For details, see [Permission List](../../security/AccessToken/permissions-for-all.md).
+2. Check whether the requested permission is open. For details, see [Permission List](../../security/AccessToken/app-permissions.md).
 
 ## 17700055 Invalid Link
 
@@ -1027,6 +1027,7 @@ When an API related to the app clone feature is called, the specified **appIndex
 2. Check whether the application has a clone of the specified index.
 3. Check whether **createAppClone** is called with an existing index.
 
+
 ## 17700065 Ability Specified by want in the ShortcutInfo Struct Cannot Be Started
 
 **Error Message**
@@ -1130,8 +1131,6 @@ It is not allowed to install enterprise applications through a specific installa
 **Possible Causes**
 
 Due to policy control, enterprise applications cannot be installed through the specific API.
-
-**Solution**
 
 ## 17700072 Launch Want Does Not Exist
 
