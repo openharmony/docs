@@ -563,7 +563,7 @@ class EntryAbility extends UIAbility {
 
 ## SecurityLevel
 
-数据库的安全级别枚举。请使用枚举名称而非枚举值。
+数据库的安全级别枚举。请使用枚举名称而非枚举值。数据库的安全等级仅支持由低向高设置，不支持由高向低设置。
 
 > **说明：**
 >
