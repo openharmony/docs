@@ -23,6 +23,7 @@ Defines the parameters for starting an ability. The parameter values are automat
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | launchReason | [LaunchReason](#launchreason)| No| No| Ability launch reason, which is an enumerated type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| launchReasonMessage<sup>16+</sup> | string | No| Yes| Detailed message that describes the ability launch reason.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
 | lastExitReason | [LastExitReason](#lastexitreason) | No| No| Reason for the last exit, which is an enumerated type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | lastExitMessage<sup>12+</sup> | string | No| No| Reason for the last exit.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
@@ -266,6 +267,29 @@ class MyAbility extends UIAbility {
     this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
       console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
     });
+  }
+}
+```
+
+## CollaborateResult<sup>16+</sup>
+
+Enumerates the collaboration request results. This enum is used in multi-device collaboration scenarios to specify whether the target application accepts the collaboration request from the caller application. It is used in [onCollaborate(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncollaborate) of the UIAbility.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name    | Value  | Description      |
+| -------- | ---- | ---------- |
+| ACCEPT   | 0    | Accepts the collaboration request.|
+| REJECT   | 1    | Rejects the collaboration request.|
+
+**Example**
+
+```ts
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
+
+class MyAbility extends UIAbility {
+  onCollaborate(wantParam: Record<string, Object>) {
+    return AbilityConstant.CollaborateResult.ACCEPT;
   }
 }
 ```

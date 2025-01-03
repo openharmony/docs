@@ -3626,6 +3626,8 @@ getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): Bund
 
 Obtains the bundle information based on the given bundle name, bundle flags, and user ID. This API returns the result synchronously.
 
+No permission is required for obtaining the caller's own information.
+
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
@@ -3680,6 +3682,8 @@ try {
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
 Obtains the bundle information based on the given bundle name and bundle flags. This API returns the result synchronously.
+
+No permission is required for obtaining the caller's own information.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
