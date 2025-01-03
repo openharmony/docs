@@ -2098,7 +2098,7 @@ getPreviewRotation(displayRotation: number): ImageRotation
 Obtains the preview rotation degree.
 
 - Device' natural orientation: The default orientation of the device (phone) is in portrait mode, with the charging port facing downward.
-- Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in portrait mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
+- Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in landscape mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
 - Screen orientation: The upper left corner of the image displayed on the screen is the first pixel, which is the coordinate origin. In the case of lock screen, the direction is the same as the device's natural orientation.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
@@ -3214,7 +3214,7 @@ getPhotoRotation(deviceDegree: number): ImageRotation
 Obtains the photo rotation degree.
 
 - Device' natural orientation: The default orientation of the device (phone) is in portrait mode, with the charging port facing downward.
-- Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in portrait mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
+- Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in landscape mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
 - Screen orientation: The upper left corner of the image displayed on the screen is the first pixel, which is the coordinate origin. In the case of lock screen, the direction is the same as the device's natural orientation.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
@@ -3243,7 +3243,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-function testGetPhotoRotation(photoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
+function testGetPhotoRotation(photoOutput: camera.PhotoOutput, deviceDegree : number): camera.ImageRotation {
   let photoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
     photoRotation = photoOutput.getPhotoRotation(deviceDegree);
@@ -3744,7 +3744,7 @@ getVideoRotation(deviceDegree: number): ImageRotation
 Obtains the video rotation degree.
 
 - Device' natural orientation: The default orientation of the device (phone) is in portrait mode, with the charging port facing downward.
-- Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in portrait mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
+- Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in landscape mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
 - Screen orientation: The upper left corner of the image displayed on the screen is the first pixel, which is the coordinate origin. In the case of lock screen, the direction is the same as the device's natural orientation.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
@@ -3773,7 +3773,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-function testGetVideoRotation(videoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
+function testGetVideoRotation(videoOutput: camera.VideoOutput, deviceDegree : number): camera.ImageRotation {
   let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
     videoRotation = videoOutput.getVideoRotation(deviceDegree);
