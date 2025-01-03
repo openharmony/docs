@@ -20,9 +20,9 @@ Invalid resource ID.
 
 **处理步骤**
 
-1、[HAR开启混淆](../../quick-start/har-package.md#编译)、[中间码HAR、字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5)、跨HAP/HSP包的资源ID无法获取，推荐使用[getStringByName()](js-apis-resource-manager.md#getstringbyname9)等方法通过名称获取资源。
+1. [HAR开启混淆](../../quick-start/har-package.md#编译)、中间码HAR、字节码HAR、跨HAP/HSP包的资源ID无法获取，推荐使用[getStringByName()](js-apis-resource-manager.md#getstringbyname9)等方法通过名称获取资源。
 
-2、检查传入参数的资源id是否已有。  
+2. 检查传入参数的资源id是否已有。  
 
 ## 9001002 根据当前资源id，找不到匹配的资源
 
@@ -36,9 +36,9 @@ No matching resource is found based on the resource ID.
 
 **可能原因**
 
-1、传入的是资源id有误。
+1. 传入的是资源id有误。
 
-2、资源解析有误。
+2. 资源解析有误。
 
 **处理步骤**
 
@@ -74,9 +74,9 @@ No matching resource is found based on the resource name.
 
 **可能原因**
 
-1、传入的是资源名称有误。
+1. 传入的是资源名称有误。
 
-2、资源解析有误。
+2. 资源解析有误。
 
 **处理步骤**
 
@@ -130,11 +130,11 @@ resId获取的字符串资源格式化失败。
 
 **可能原因**
 
-1、参数类型不在支持范围内。
+1. 参数类型不在支持范围内。
 
-2、参数与占位符个数不等。
+2. 参数与占位符个数不等。
 
-3、参数与占位符类型不匹配。
+3. 参数与占位符类型不匹配。
 
 **处理步骤**
 
@@ -152,11 +152,11 @@ resName获取的字符串资源格式化失败。
 
 **可能原因**
 
-1、参数类型不在支持范围内。
+1. 参数类型不在支持范围内。
 
-2、参数与占位符个数不等。
+2. 参数与占位符个数不等。
 
-3、参数与占位符类型不匹配。
+3. 参数与占位符类型不匹配。
 
 **处理步骤**
 
