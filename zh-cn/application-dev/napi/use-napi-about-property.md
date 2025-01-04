@@ -217,9 +217,9 @@ static napi_value HasProperty(napi_env env, napi_callback_info info)
     }
 
     // 若传入属性存在传入对象中，则输出true将结果转化为napi_value类型抛出
-    napi_value returnReslut;
-    napi_get_boolean(env, result, &returnReslut);
-    return returnReslut;
+    napi_value returnResult;
+    napi_get_boolean(env, result, &returnResult);
+    return returnResult;
 }
 ```
 
@@ -600,10 +600,13 @@ static napi_value SetterCallback(napi_env env, napi_callback_info info)
     napi_value argv[1] = {nullptr};
     napi_value result;
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
-    std::string buf;
-    size_t length;
-    napi_get_value_string_utf8(env, argv[0], (char *)buf.c_str(), NAPI_AUTO_LENGTH, &length);
-    napi_create_string_utf8(env, buf.c_str(), length, &result);
+    size_t length = 0;
+    napi_get_value_string_utf8(env, argv[0], nullptr, 0, &length);
+    char* buf = new char[length + 1];
+    std::memset(buf, 0, length + 1);
+    napi_get_value_string_utf8(env, argv[0], buf, length + 1, &length);
+    napi_create_string_utf8(env, buf, length, &result);
+    delete buf;
     return result;
 }
 static napi_value DefineMethodProperties(napi_env env, napi_callback_info info)

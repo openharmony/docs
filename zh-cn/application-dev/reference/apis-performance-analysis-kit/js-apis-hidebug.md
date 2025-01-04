@@ -492,11 +492,11 @@ trace单位流量实测方法：limitSize设置为最大值500M，调用startApp
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                                                                                  |
-| -------- | ------   | ---- | ------------------------------------------------------------------------------------- |
-| tags     | number[] | 是   | 详情请见[tags](#tags12)                                                      |
-| flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)          |
-| limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte，单个文件大小上限为500MB                                                       |
+| 参数名   | 类型     | 必填 | 说明                                   |
+| -------- | ------   | ---- |--------------------------------------|
+| tags     | number[] | 是   | 详情请见[tags](#hidebugtags12)           |
+| flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)        |
+| limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte，单个文件大小上限为500MB |
 
 **返回值：**
 
@@ -624,7 +624,7 @@ let cpuUsage: number = hidebug.getSystemCpuUsage();
 setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 设置应用的fd数量、线程数量、js内存或者native内存资源限制。
-**注意：** 当设置的开发者选项开关打开时,此功能有效。
+**注意：** 当设置的开发者选项开关打开并重启设备后,此功能有效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -825,46 +825,46 @@ hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${hidebug.getVMRuntimeStat
 | threadId           | number  | 是   | 否   | 线程号                           |
 | cpuUsage           | number  | 是   | 否   | 线程CPU使用率                       |
 
-## tags<sup>12+</sup>
+## hidebug.tags<sup>12+</sup>
 
 描述支持/使用场景标签。
 
 **系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称                     | 类型    |  说明                                |
-| -------------------------| ------- |  ----------------------------------- |
-| ABILITY_MANAGER          | number  |  能力管理标签                         |
-| ARKUI                    | number  |  ArkUI开发框架标签                    |
-| ARK                      | number  |  JSVM虚拟机标签                       |
-| BLUETOOTH                | number  |  蓝牙标签                            |
-| COMMON_LIBRARY           | number  |  公共库子系统标签                     |
-| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  |  分布式硬件设备管理标签     |
-| DISTRIBUTED_AUDIO        | number  |        分布式音频标签                 |
-| DISTRIBUTED_CAMERA       | number  |  分布式相机标签                       |
-| DISTRIBUTED_DATA         | number  |  分布式数据管理模块标签                |
-| DISTRIBUTED_HARDWARE_FRAMEWORK | number  |  分布式硬件框架标签              |
-| DISTRIBUTED_INPUT        | number  |  分布式输入标签                       |
-| DISTRIBUTED_SCREEN       | number  |  分布式屏幕标签                       |
-| DISTRIBUTED_SCHEDULER    | number  |  分布式调度器标签                     |
-| FFRT                     | number  |  FFRT任务标签.                        |
-| FILE_MANAGEMENT          | number  |  文件管理系统标签                     |
-| GLOBAL_RESOURCE_MANAGER  | number  |  全局资源管理标签                     |
-| GRAPHICS                 | number  |  图形模块标签                        |
-| HDF                      | number  |  HDF子系统标签                       |
-| MISC                     | number  |  MISC模块标签                        |
-| MULTIMODAL_INPUT         | number  |  多模态输入模块标签                   |
-| NET                      | number  |  网络标签                             |
-| NOTIFICATION             | number  |  通知模块标签                         |
-| NWEB                     | number  |  Nweb标签                            |
-| OHOS                     | number  |  OHOS通用标签                         |
-| POWER_MANAGER            | number  |  电源管理标签                         |
-| RPC                      | number  |  RPC标签                             |
-| SAMGR                    | number  |  系统能力管理标签                     |
-| WINDOW_MANAGER           | number  |  窗口管理标签                         |
-| AUDIO                    | number  |  音频模块标签                        |
-| CAMERA                   | number  |  相机模块标签                        |
-| IMAGE                    | number  |  图片模块标签                        |
-| MEDIA                    | number  |  媒体模块标签                        |
+| 名称                     | 类型    | 只读  |说明                                |
+| -------------------------| ------- |-----|----------------------------------- |
+| ABILITY_MANAGER          | number  | 是 |  能力管理标签                         |
+| ARKUI                    | number  | 是 |  ArkUI开发框架标签                    |
+| ARK                      | number  | 是 |  JSVM虚拟机标签                       |
+| BLUETOOTH                | number  | 是 |  蓝牙标签                            |
+| COMMON_LIBRARY           | number  | 是 |  公共库子系统标签                     |
+| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  | 是 |  分布式硬件设备管理标签     |
+| DISTRIBUTED_AUDIO        | number  | 是 |        分布式音频标签                 |
+| DISTRIBUTED_CAMERA       | number  | 是 |  分布式相机标签                       |
+| DISTRIBUTED_DATA         | number  | 是 |  分布式数据管理模块标签                |
+| DISTRIBUTED_HARDWARE_FRAMEWORK | number  | 是 |  分布式硬件框架标签              |
+| DISTRIBUTED_INPUT        | number  | 是 |  分布式输入标签                       |
+| DISTRIBUTED_SCREEN       | number  | 是 |  分布式屏幕标签                       |
+| DISTRIBUTED_SCHEDULER    | number  | 是 |  分布式调度器标签                     |
+| FFRT                     | number  | 是 |  FFRT任务标签.                        |
+| FILE_MANAGEMENT          | number  | 是 |  文件管理系统标签                     |
+| GLOBAL_RESOURCE_MANAGER  | number  | 是 |  全局资源管理标签                     |
+| GRAPHICS                 | number  | 是 |  图形模块标签                        |
+| HDF                      | number  | 是 |  HDF子系统标签                       |
+| MISC                     | number  | 是 |  MISC模块标签                        |
+| MULTIMODAL_INPUT         | number  | 是 |  多模态输入模块标签                   |
+| NET                      | number  | 是 |  网络标签                             |
+| NOTIFICATION             | number  | 是 |  通知模块标签                         |
+| NWEB                     | number  | 是 |  Nweb标签                            |
+| OHOS                     | number  | 是 |  OHOS通用标签                         |
+| POWER_MANAGER            | number  | 是 |  电源管理标签                         |
+| RPC                      | number  | 是 |  RPC标签                             |
+| SAMGR                    | number  | 是 |  系统能力管理标签                     |
+| WINDOW_MANAGER           | number  | 是 |  窗口管理标签                         |
+| AUDIO                    | number  | 是 |  音频模块标签                        |
+| CAMERA                   | number  | 是 |  相机模块标签                        |
+| IMAGE                    | number  | 是 |  图片模块标签                        |
+| MEDIA                    | number  | 是 |  媒体模块标签                        |
 
 ## NativeMemInfo<sup>12+</sup>
 

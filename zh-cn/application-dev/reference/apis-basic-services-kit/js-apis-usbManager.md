@@ -553,7 +553,7 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备，需要调用connectDevice获取。|
-| controlparam | [USBControlParams](#usbcontrolparams) | 是 | 控制传输参数，按需设置参数，参数传参类型请参考USB协议。|
+| controlparam | [USBControlParams](#usbcontrolparamsdeprecated) | 是 | 控制传输参数，按需设置参数，参数传参类型请参考USB协议。|
 | timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择 。 |
 
 **错误码：**
@@ -704,6 +704,10 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 **示例：**
 
+> **说明：** 
+>
+> 以下示例代码只是调用bulkTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
+
 ```ts
 //usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
 //把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
@@ -810,6 +814,7 @@ hasAccessoryRight(accessory: USBAccessory): boolean
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = usbManager.hasAccessoryRight(accList[0])
@@ -855,6 +860,7 @@ requestAccessoryRight(accessory: USBAccessory): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = await usbManager.requestAccessoryRight(accList[0])
@@ -894,6 +900,7 @@ cancelAccessoryRight(accessory: USBAccessory): void;
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = await usbManager.requestAccessoryRight(accList[0])
@@ -929,6 +936,7 @@ getAccessoryList(): Array<Readonly&lt;USBAccessory&gt;>
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   hilog.info(0, 'testTag ui', `getAccessoryList success, accList: ${JSON.stringify(accList)}`)
@@ -975,6 +983,7 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle;
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = await usbManager.requestAccessoryRight(accList[0])
@@ -1013,6 +1022,7 @@ closeAccessory(accessoryHandle: USBAccessoryHandle): void;
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = await usbManager.requestAccessoryRight(accList[0])
@@ -1106,9 +1116,13 @@ USB设备消息传输通道，用于确定设备。
 | busNum     | number |是 | 总线地址。 |
 | devAddress | number |是 | 设备地址。 |
 
-## USBControlParams
+## USBControlParams<sup>(deprecated)</sup>
 
 控制传输参数。
+
+**说明：**
+
+> 从 API version 9开始支持，从API version 16开始废弃。建议使用 [USBDeviceRequestParams](#usbdevicerequestparams12) 替代。
 
 **系统能力：** SystemCapability.USB.USBManager
 

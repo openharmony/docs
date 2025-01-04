@@ -73,6 +73,27 @@ java -jar app_unpacking_tool.jar --mode hap --rpcid true --hap-path <path> --out
 | --out-path | 是         | NA            | 拆包rpcid目标文件路径。                                        |
 | --force    | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。  |
 
+### 按照架构指数拆分HAP包
+
+开发者可以使用拆包工具将hap包按照libs包含的架构类型拆包再打包，得到若干仅包含单架构类型库的hap包。
+
+#### 示例
+
+```
+java -jar app_unpacking_tool.jar --mode hap --hap-path <path> --out-path <path> [--force true] [--libs true] [--cpu-abis option]
+```
+
+#### 参数含义及规范
+
+| 指令       | 是否必选项 | 选项          | 描述                                                         |
+| ---------- | ---------- | ------------- | ------------------------------------------------------------ |
+| --mode     | 是         | hap    | 拆包类型。                                                   |
+| --hap-path | 是         | NA            | HAP包路径。                                             |
+| --out-path | 是         | NA            | 拆包目标文件路径。                                           |
+| --force    | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。  |
+| --libs     | 否         | true或者false | 是否按照包中libs目录内若干架构指数拆分，如果为true，表示按照架构进行拆分。 |
+| --cpu-abis | 否         | NA            | 指定具体要拆出libs的架构类型，支持多个，用逗号分隔。--libs配置为fasle时该参数不生效。 |
+
 ### HSP包模式拆包指令
 
 开发者可以使用拆包工具的jar包对应用进行拆包，通过传入拆包选项、文件路径，将HSP包解压出来。
@@ -91,6 +112,27 @@ java -jar app_unpacking_tool.jar --mode hsp --hsp-path <path> --out-path <path> 
 | --hsp-path | 是         | NA            | HSP包路径。                            |
 | --out-path | 是         | NA            | 拆包目标文件路径。                          |
 | --force    | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。 |
+
+### 按照架构指数拆分HSP包
+
+开发者可以使用拆包工具将hsp包按照libs包含的架构类型拆包再打包，得到若干仅包含单架构类型库的hsp包。
+
+#### 示例
+
+```
+java -jar app_unpacking_tool.jar --mode hsp --hsp-path <path> --out-path <path> [--force true] [--libs true] [--cpu-abis option]
+```
+
+#### 参数含义及规范
+
+| 指令       | 是否必选项 | 选项          | 描述                                                         |
+| ---------- | ---------- | ------------- | ------------------------------------------------------------ |
+| --mode     | 是         | hsp    | 拆包类型。                                                   |
+| --hsp-path | 是         | NA            | HSP包路径。                                             |
+| --out-path | 是         | NA            | 拆包目标文件路径。                                           |
+| --force    | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。  |
+| --libs     | 否         | true或者false | 是否按照包中libs目录内若干架构指数拆分，如果为true，表示按照架构进行拆分。 |
+| --cpu-abis | 否         | NA            | 指定具体要拆出libs的架构类型，支持多个，用逗号分隔。--libs配置为fasle时该参数不生效。 |
 
 ### APPQF模式拆包指令
 
@@ -402,6 +444,7 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | -------- | ------------------- |----------------------| ---- |
 | actions  | List\<String>       | 标识能够接收的意图的action值的集合 | NA   |
 | entities | List\<String>       | 标识能够接收的意图的元能力的类别集合   | NA   |
+| domainVerify | boolean       | ability是否支持域校验   | NA   |
 
 ### UriInfo结构体信息
 

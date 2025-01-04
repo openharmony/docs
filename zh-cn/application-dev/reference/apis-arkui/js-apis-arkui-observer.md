@@ -23,15 +23,15 @@ NavDestination组件状态。
 
 | 名称      | 值  | 说明                     |
 | --------- | --- | ------------------------ |
-| ON_SHOWN  | 0   | NavDestination组件显示。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。 |
-| ON_HIDDEN | 1   | NavDestination组件隐藏。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。 |
-| ON_APPEAR<sup>12+</sup> | 2   | NavDestination从组件树上挂载。<br/> **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
-| ON_DISAPPEAR<sup>12+</sup> | 3   | NavDestination从组件树上卸载。 <br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
-| ON_WILL_SHOW<sup>12+</sup> | 4   | NavDestination组件显示之前。 <br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
-| ON_WILL_HIDE<sup>12+</sup> | 5   | NavDestination组件隐藏之前。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| ON_WILL_APPEAR<sup>12+</sup>| 6   | NavDestination挂载到组件树之前。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
-| ON_WILL_DISAPPEAR<sup>12+</sup>| 7   | NavDestination从组件树上卸载之前。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
-| ON_BACKPRESS<sup>12+</sup> | 100   | NavDestination组件返回。 <br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
+| ON_SHOWN  | 0   | NavDestination组件显示。 |
+| ON_HIDDEN | 1   | NavDestination组件隐藏。 |
+| ON_APPEAR<sup>12+</sup> | 2   | NavDestination从组件树上挂载。|
+| ON_DISAPPEAR<sup>12+</sup> | 3   | NavDestination从组件树上卸载。 |
+| ON_WILL_SHOW<sup>12+</sup> | 4   | NavDestination组件显示之前。 |
+| ON_WILL_HIDE<sup>12+</sup> | 5   | NavDestination组件隐藏之前。 |
+| ON_WILL_APPEAR<sup>12+</sup>| 6   | NavDestination挂载到组件树之前。|
+| ON_WILL_DISAPPEAR<sup>12+</sup>| 7   | NavDestination从组件树上卸载之前。|
+| ON_BACKPRESS<sup>12+</sup> | 100   | NavDestination组件返回。 |
 
 ## ScrollEventType<sup>12+</sup>
 
@@ -723,6 +723,7 @@ struct Index {
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
       Button('注册屏幕像素密度变化监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
           this.message = '已注册监听'
           observer.on('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
@@ -808,6 +809,7 @@ struct Index {
   build() {
     Column() {
       Button('注册绘制指令下发监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
           observer.on('willDraw', this.getUIContext(), this.willDrawCallback);
         })
@@ -891,6 +893,7 @@ struct Index {
   build() {
     Column() {
       Button('注册布局完成监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
           observer.on('didLayout', this.getUIContext(), this.didLayoutCallback);
         })

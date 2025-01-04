@@ -334,6 +334,98 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   }
   ```
 
+
+### setTemperatureType<sup>16+</sup>
+
+static setTemperatureType(type: TemperatureType): void
+
+Sets the preferred temperature unit for users.
+
+**System API**: This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type     | Mandatory  | Description                             |
+| ---- | ------- | ---- | ------------------------------- |
+| type | [TemperatureType](./js-apis-i18n.md#temperaturetype16) | Yes| Temperature unit.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+> **NOTE**
+>
+> The error message of 890001 is subject to the actual error.
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    i18n.System.setTemperatureType(i18n.TemperatureType.CELSIUS); //: Set the temperature unit to °C.
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.setTemperatureType failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
+### setFirstDayOfWeek<sup>16+</sup>
+
+static setFirstDayOfWeek(type: WeekDay): void
+
+Sets the preferred start day of a week for users.
+
+**System API**: This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type     | Mandatory  | Description                             |
+| ---- | ------- | ---- | ------------------------------- |
+| type | [WeekDay](./js-apis-i18n.md#weekday16) | Yes| Start day of a week.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+> **NOTE**
+>
+> The error message of 890001 is subject to the actual error.
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    i18n.System.setFirstDayOfWeek (i18n.WeekDay.MON); // Set the preferred start day of a week to Monday.
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.setFirstDayOfWeek failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
+
 ## SystemLocaleManager<sup>10+</sup>
 
 ### constructor<sup>10+</sup>

@@ -12,7 +12,7 @@ NativeBuffer是提供**共享内存**的模块。开发者可以通过`NativeBuf
 | 接口名 | 描述 | 
 | -------- | -------- |
 | OH_NativeBuffer_Alloc (const OH_NativeBuffer_Config \*config) | 通过OH_NativeBuffer_Config创建OH_NativeBuffer实例，每次调用都会产生一个新的OH_NativeBuffer实例。本接口需要与OH_NativeBuffer_Unreference接口配合使用，否则会存在内存泄露。 |
-| OH_NativeBuffer_Reference (OH_NativeBuffer \*buffer) | 将OH_NativeBuffer对象的引用计数加1。 | 
+| OH_NativeBuffer_Reference (OH_NativeBuffer \*buffer) | 将OH_NativeBuffer对象的引用计数增加1。 | 
 | OH_NativeBuffer_Unreference (OH_NativeBuffer \*buffer) | 将OH_NativeBuffer对象的引用计数减1，当引用计数为0的时候，该NativeBuffer对象会被析构掉。 | 
 | OH_NativeBuffer_GetConfig (OH_NativeBuffer \*buffer, OH_NativeBuffer_Config \*config) | 用于获取OH_NativeBuffer的属性。 | 
 | OH_NativeBuffer_Map (OH_NativeBuffer \*buffer, void \*\*virAddr) | 将OH_NativeBuffer对应的ION内存映射到进程空间。 | 

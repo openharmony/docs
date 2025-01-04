@@ -349,11 +349,14 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 
 ## ContentClipMode<sup>14+</sup>枚举说明
 
+表示滚动容器的内容裁剪模式。
+
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 下图是组件配置了边距属性后的示意图，可理解每种枚举对应的裁剪区域。
+
 ![ContentClipMode示意图](figures/ContentClipMode.png)
 
 | 名称     |  值  | 说明                                       |

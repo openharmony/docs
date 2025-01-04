@@ -11,7 +11,7 @@ Provides file management functions for the **rawfile** directory. You can use th
 
 **Since**: 8
 
-**Related module**: [Rawfile] (rawfile.md)
+**Related module**: [Rawfile](rawfile.md)
 
 
 ## Summary

@@ -61,7 +61,7 @@ HiAppEvent提供接口用于订阅系统崩溃事件。
 | tid | number | 线程id。 |
 | frames | object[] | 线程调用栈，详见frame属性。 |
 
-**frame属性(C/C++帧)：**
+**frame属性(Native帧)：**
 
 | 名称    | 类型   | 说明                       |
 | ------- | ------ | ------------------------- |
@@ -76,6 +76,7 @@ HiAppEvent提供接口用于订阅系统崩溃事件。
 | 名称    | 类型   | 说明                       |
 | ------- | ------ | ------------------------- |
 | file | string | 文件名。 |
+| packageName | string | 模块的包名。 |
 | symbol | string | 函数名称。 |
 | column | number | 异常所在行。 |
 | line | number | 异常所在列。 |

@@ -1373,28 +1373,6 @@ int32_t OH_NativeXComponent_RegisterKeyEventCallback (OH_NativeXComponent * comp
 
 10
 
-### OH_NativeXComponent_RegisterKeyEventCallbackWithResult()
-
-```
-int32_t OH_NativeXComponent_RegisterKeyEventCallbackWithResult (OH_NativeXComponent * component, bool(*)(OH_NativeXComponent *component, void *window) callback )
-```
-**描述：**
-
-为此OH_NativeXComponent实例注册有返回值的按键事件回调。
-
-**起始版本：** 14
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| component | 表示指向OH_NativeXComponent实例的指针。  | 
-| callback | 表示指向有返回值的按键事件回调的指针。  | 
-
-**返回：**
-
-返回执行的状态代码。 OH_NATIVEXCOMPONENT_RESULT_SUCCESS - 回调函数注册成功。 OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER - 传入参数异常。
-
 
 ### OH_NativeXComponent_RegisterKeyEventCallbackWithResult()
 

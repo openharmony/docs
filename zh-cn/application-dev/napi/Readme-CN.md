@@ -82,6 +82,9 @@
       - [使用JSVM-API感知JSVM引擎生命周期管理](use-jsvm-trigger-gc.md)
       - [使用JSVM-API接口进行 private 属性相关开发](use-jsvm-about-private.md)
       - [使用JSVM-API接创建 external string](use-jsvm-about-external-string.md)
+      - [使用JSVM-API接口进行Proxy相关开发](use-jsvm-about-proxy.md)
+      - [使用JSVM-API接口进行well-known symbols相关开发](use-jsvm-about-well-known-symbols.md)
+      - [使用JSVM-API接口进行装箱类型判断相关开发](use-jsvm-about-wrapper-object.md)
     - JSVM-API典型使用场景指导
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - [JSVM-API Tracing](use-jsvm-about-trace.md)

@@ -78,7 +78,7 @@ static OH_Crypto_ErrCode randomGenerateAsymKey()
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_asym_key.h"
 
-static OH_Crypto_ErrCode randomGenerateRSA()
+static OH_Crypto_ErrCode randomGenerateSm2KeyPair()
 {
     OH_CryptoAsymKeyGenerator *ctx = nullptr;
     OH_CryptoKeyPair *dupKeyPair = nullptr;

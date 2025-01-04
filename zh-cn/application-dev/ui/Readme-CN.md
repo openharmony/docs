@@ -16,14 +16,13 @@
       - [创建轮播 (Swiper)](arkts-layout-development-create-looping.md)
       - [选项卡 (Tabs)](arkts-navigation-tabs.md)
   - 添加组件
-    - 添加常用组件
-      - [按钮 (Button)](arkts-common-components-button.md)
-      - [单选框 (Radio)](arkts-common-components-radio-button.md)
-      - [切换按钮 (Toggle)](arkts-common-components-switch.md)
-      - [进度条 (Progress)](arkts-common-components-progress-indicator.md)
-      - [显示图片 (Image)](arkts-graphics-display.md)
-      - [视频播放 (Video)](arkts-common-components-video-player.md)
-      - [自定义渲染 (XComponent)](napi-xcomponent-guidelines.md)
+    - [按钮 (Button)](arkts-common-components-button.md)
+    - [单选框 (Radio)](arkts-common-components-radio-button.md)
+    - [切换按钮 (Toggle)](arkts-common-components-switch.md)
+    - [进度条 (Progress)](arkts-common-components-progress-indicator.md)
+    - [显示图片 (Image)](arkts-graphics-display.md)
+    - [视频播放 (Video)](arkts-common-components-video-player.md)
+    - [自定义渲染 (XComponent)](napi-xcomponent-guidelines.md)
   - 设置组件导航和页面路由
     - [组件导航和页面路由概述](arkts-navigation-introduction.md)
     - [组件导航 (Navigation)(推荐)](arkts-navigation-navigation.md)
@@ -66,7 +65,7 @@
       - [出现/消失转场](arkts-enter-exit-transition.md)
       - [模态转场](arkts-modal-transition.md)
       - [共享元素转场 (一镜到底)](arkts-shared-element-transition.md)
-      - [旋转屏动画增强](arkts-rotation-transition-animation.md)    
+      - [旋转屏动画](arkts-rotation-transition-animation.md)    
       - [页面转场动画 (不推荐)](arkts-page-transition-animation.md)
     - [粒子动画](arkts-particle-animation.md)
     - [组件动画](arkts-component-animation.md)
@@ -79,7 +78,7 @@
       - [模糊](arkts-blur-effect.md)
       - [阴影](arkts-shadow-effect.md)
       - [色彩](arkts-color-effect.md)
-    - [帧动画](arkts-animator.md)
+    - [帧动画（ohos.animator）](arkts-animator.md)
   - 支持交互事件
     - [交互事件概述](arkts-event-overview.md)
     - 使用通用事件

@@ -562,6 +562,8 @@ struct MyComponent {
 }
 ```
 
+完整示例如下：
+
 ```ts
 @Component
 struct GrandSon {

@@ -55,7 +55,7 @@
     let pkBlob: cryptoFramework.DataBlob = { data: pkVal };
     try {
       let keyPair = rsaGenerator.convertKeySync(pkBlob, null);
-      if (keyPair != null) {
+      if (keyPair !== null) {
         console.info('convertKeySync success');
       }
     } catch (e) {
@@ -109,7 +109,7 @@
     let generator = cryptoFramework.createAsyKeyGenerator('ECC256');
     try {
       let keyPair = generator.convertKeySync(pubKeyBlob, priKeyBlob);
-      if (keyPair != null) {
+      if (keyPair !== null) {
         console.info('convertKeySync success');
       }
     } catch (e) {
@@ -200,7 +200,7 @@
     let generator = cryptoFramework.createAsyKeyGenerator('SM2_256');
     try {
       let keyPair = generator.convertKeySync(pubKeyBlob, priKeyBlob);
-      if (keyPair != null) {
+      if (keyPair !== null) {
         console.info('convertKeySync success');
       }
     } catch (e) {

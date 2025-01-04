@@ -15,7 +15,7 @@ PC端以Smartperf-Host网站的形式进行发布，内部分为Trace Streamer�
 ├── host                          # Smartperf-Host 相关代码
 │   ├── doc                       # Smartperf-Host 相关使用文档
 │   ├── ide                       # Smartperf-Host IDE 模块目录
-│   │    └── src                  # 主机测调优模块代码
+│   │    └── src                  # 主机侧调优模块代码
 │   │    │   ├── base-ui          # 基础组件目录
 │   │    │   └── Trace            # 业务逻辑目录
 │   ├── trace_streamer            # 解析模块代码目录
@@ -65,7 +65,7 @@ PC端以Smartperf-Host网站的形式进行发布，内部分为Trace Streamer�
   使用Smartperf-Host抓取每次IO访问的起始时间、总延迟、进程、每4k数据的平均延迟、线程、操作（写数据、页面换入、Metadata）、访问量、路径等、Block number、优先级、Backtrace调用栈，详见《[Bio的抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_bio.md)》。
 - 进程Smaps抓取
 
-  使用Smartperf-Host抓取单个进程的smaps数据（类别、Pss、Rss、Vss等），数据源为/proc/$pid/smaps，详见《[进程smaps的抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_smaps.md)》。
+  使用Smartperf-Host抓取单个进程的smaps数据（类别、Pss、Rss、Vss等），数据源为/proc/$pid/smaps，详见《[进程smaps的抓取和展示说明](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_memory_template.md)》。
 - Sql分析和Metrics说明
 
   Smartperf-Host网站trace解析完成后在线数据库使用说明，详见《[Sql分析和Metrics说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_sql_metrics.md)》。

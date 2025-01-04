@@ -11,7 +11,7 @@
    
    如何生成AES对称密钥，开发者可参考下文示例，并结合[对称密钥生成和转换规格：AES](crypto-sym-key-generation-conversion-spec.md#aes)和[随机生成对称密钥](crypto-generate-sym-key-randomly.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
 
-2. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'AES128|GCM|PKCS7'，创建对称密钥类型为AES128、分组模式为GCM、填充模式为PKCS7的Cipher实例，用于完成加解密操作。
+2. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'AES128|GCM|PKCS7'，创建对称密钥类型为AES128、分组模式为GCM、填充模式为PKCS7的Cipher实例，用于完成加密操作。
 
 3. 调用[Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1)，设置模式为加密（CryptoMode.ENCRYPT_MODE），指定加密密钥（SymKey）和GCM模式对应的加密参数（GcmParamsSpec），初始化加密Cipher实例。
 
@@ -27,17 +27,18 @@
    - doFinal输出结果可能为null，在访问具体数据前，需要先判断结果是否为null，避免产生异常。
 
 6. 读取[GcmParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#gcmparamsspec).authTag作为解密的认证信息。
-   在GCM模式下，需要从加密后的数据中取出末尾16字节，作为解密时初始化的认证信息。示例中authTag恰好为16字节。
+   在GCM模式下，算法库当前只支持16字节的authTag，作为解密时初始化的认证信息。示例中authTag恰好为16字节。
 
 
 **解密**
 
+1. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'AES128|GCM|PKCS7'，创建对称密钥类型为AES128、分组模式为GCM、填充模式为PKCS7的Cipher实例，用于完成解密操作。
 
-1. 调用[Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1)，设置模式为解密（CryptoMode.DECRYPT_MODE），指定解密密钥（SymKey）和GCM模式对应的解密参数（GcmParamsSpec），初始化解密Cipher实例。
+2. 调用[Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1)，设置模式为解密（CryptoMode.DECRYPT_MODE），指定解密密钥（SymKey）和GCM模式对应的解密参数（GcmParamsSpec），初始化解密Cipher实例。
 
-2. 调用[Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1)，更新数据（密文）。
+3. 调用[Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1)，更新数据（密文）。
 
-3. 调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，获取解密后的数据。
+4. 调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，获取解密后的数据。
 
 
 - 异步方法示例：
@@ -55,10 +56,10 @@
   function genGcmParamsSpec() {
     let ivBlob = generateRandom(12);
     let arr = [1, 2, 3, 4, 5, 6, 7, 8]; // 8 bytes
-    let dataAad = new Uint8Array(arr);
-    let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
+    let dataAad = new Uint8Array(arr); //将arr数组转换为Uint8Array类型
+    let aadBlob: cryptoFramework.DataBlob = { data: dataAad }; //创建DataBlob对象
     arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
-    let dataTag = new Uint8Array(arr);
+    let dataTag = new Uint8Array(arr); //将arr数组转换为Uint8Array类型
     let tagBlob: cryptoFramework.DataBlob = {
       data: dataTag
     };
@@ -90,7 +91,7 @@
     let decryptUpdate = await decoder.update(cipherText);
     // gcm模式解密doFinal时传入空，验证init时传入的tag数据，如果验证失败会抛出异常。
     let decryptData = await decoder.doFinal(null);
-    if (decryptData == null) {
+    if (decryptData === null) {
       console.info('GCM decrypt success, decryptData is null');
     }
     return decryptUpdate;
@@ -103,10 +104,10 @@
     return symKey;
   }
   async function main() {
-    let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
+    let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]); //创建Uint8Array对象
     let symKey = await genSymKeyByData(keyData);
     let message = "This is a test";
-    let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
+    let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) }; //创建DataBlob对象
     let encryptText = await encryptMessagePromise(symKey, plainText);
     let decryptText = await decryptMessagePromise(symKey, encryptText);
     if (plainText.data.toString() === decryptText.data.toString()) {
@@ -133,10 +134,10 @@
   function genGcmParamsSpec() {
     let ivBlob = generateRandom(12);
     let arr = [1, 2, 3, 4, 5, 6, 7, 8]; // 8 bytes
-    let dataAad = new Uint8Array(arr);
-    let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
+    let dataAad = new Uint8Array(arr); //将arr数组转换为Uint8Array类型
+    let aadBlob: cryptoFramework.DataBlob = { data: dataAad }; //创建DataBlob对象
     arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
-    let dataTag = new Uint8Array(arr);
+    let dataTag = new Uint8Array(arr); //将arr数组转换为Uint8Array类型
     let tagBlob: cryptoFramework.DataBlob = {
       data: dataTag
     };
@@ -168,7 +169,7 @@
     let decryptUpdate = decoder.updateSync(cipherText);
     // gcm模式解密doFinal时传入空，验证init时传入的tag数据，如果验证失败会抛出异常。
     let decryptData = decoder.doFinalSync(null);
-    if (decryptData == null) {
+    if (decryptData === null) {
       console.info('GCM decrypt success, decryptData is null');
     }
     return decryptUpdate;
@@ -181,10 +182,10 @@
     return symKey;
   }
   function main() {
-    let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
+    let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]); //创建Uint8Array对象
     let symKey = genSymKeyByData(keyData);
     let message = "This is a test";
-    let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
+    let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) }; //创建DataBlob对象
     let encryptText = encryptMessage(symKey, plainText);
     let decryptText = decryptMessage(symKey, encryptText);
     if (plainText.data.toString() === decryptText.data.toString()) {

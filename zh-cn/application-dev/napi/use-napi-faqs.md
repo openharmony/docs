@@ -79,13 +79,14 @@ Node-API接口正常执行后，会返回一个napi_ok的状态枚举值，若na
 
 ## napi_threadsafe_function内存泄漏，应该如何处理
 
-`napi_threadsafe_function`（下文简称tsfn）在使用时，常常会调用 `napi_acquire_threadsafe_function` 来更改tsfn的引用计数，确保tsfn不会意外被释放。但在使用完成后，应该及时使用 `napi_tsfn_release` 模式调用 `napi_release_threadsafe_function` 方法，以确保在所有调用回调都执行完成后，其引用计数能回归到调用 `napi_acquire_threadsafe_function` 方法之前的水平。当其引用计数归位0时，tsfn才能正确的被释放。
+`napi_threadsafe_function`（下文简称tsfn）在使用时，常常会调用 `napi_acquire_threadsafe_function` 来更改tsfn的引用计数，确保tsfn不会意外被释放。但在使用完成后，应该及时使用 `napi_tsfn_release` 模式调用 `napi_release_threadsafe_function` 方法，以确保在所有调用回调都执行完成后，其引用计数能回归到调用 `napi_acquire_threadsafe_function` 方法之前的水平。当其引用计数归为0时，tsfn才能正确的被释放。
 
 当在env即将退出，但tsfn的引用计数未被归零时，应该使用 `napi_tsfn_abort` 模式调用 `napi_release_threadsafe_function` 方法，确保在env释放后不再对tsfn进行持有及使用。在env退出后，继续持有tsfn进行使用，是一种未定义的行为，可能会触发崩溃。
 
 如下代码将展示通过注册 `env_cleanup` 钩子函数的方式，以确保在env退出后不再继续持有tsfn。
 
 ```cpp
+//napi_init.cpp
 #include <hilog/log.h> // hilog, 输出日志, 需链接 libhilog_ndk.z.so
 #include <thread> // 创建线程
 #include <unistd.h> // 线程休眠
@@ -183,7 +184,7 @@ static void TsfnCallJs(napi_env env, napi_value func, void *context, void *data)
 };
 };
 
-// 该方法需注册到模块, 注册名为 myTsfnDemo, 接口描述如下
+// 该方法需注册到模块Index.d.ts, 注册名为 myTsfnDemo, 接口描述如下
 // export const myTsfnDemo: () => void;
 napi_value MyTsfnDemo(napi_env env, napi_callback_info info) {
     OH_LOG_ERROR(LOG_APP, "MyTsfnDemo is called");
@@ -230,7 +231,7 @@ napi_value MyTsfnDemo(napi_env env, napi_callback_info info) {
 以下内容为主线程逻辑，主要用作创建worker线程和通知worker执行任务
 
 ```ts
-// 主线程
+// 主线程 Index.ets
 import worker, { MessageEvents } from '@ohos.worker';
 
 const mWorker = new worker.ThreadWorker('../workers/Worker');
@@ -318,10 +319,7 @@ napi_value NapiGenericFailure(napi_env env, napi_callback_info)
 
 ## NAPI常见错误用法导致的异常日志/崩溃
 
-以下维未测手段多依赖于ArkTS运行时的多线程检测能力，因此建议在调试前启用此功能。启用方法如下：
-
-1. 使用param工具，全局启用，重启后生效。详见[ArkTS语言基础类库开发常见问题](../faqs/faqs-arkts-utils.md#hdc属性开关)。
-2. 在调试应用时临时启用，应用退出后失效。详见[分析CppCrash（进程崩溃）](../dfx/cppcrash-guidelines.md#工具二方舟多线程检测)。
+以下维未测手段多依赖于ArkTS运行时的多线程检测能力，因此建议在调试前启用此功能。启用方法参考文档[分析CppCrash（进程崩溃）](../dfx/cppcrash-guidelines.md#工具二方舟多线程检测)。
 
 若无特殊说明，本章节所描述的维测手段，在启用ArkTS运行时多线程检测开关的前提下，会在第一现场中断进程。
 

@@ -68,7 +68,7 @@ DatePicker(options?: DatePickerOptions)
 
 ### lunar
 
-lunar(value: boolean)
+lunar(value: Optional\<boolean>)
 
 设置弹窗的日期是否显示农历。
 
@@ -80,11 +80,11 @@ lunar(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 日期是否显示农历。<br/>-&nbsp;true：展示农历。<br/>-&nbsp;false：不展示农历。<br/>默认值：false |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 日期是否显示农历。<br/>-&nbsp;true：展示农历。<br/>-&nbsp;false：不展示农历。<br/>默认值：false |
 
 ### disappearTextStyle<sup>10+</sup>
 
-disappearTextStyle(value: PickerTextStyle)
+disappearTextStyle(value: Optional\<PickerTextStyle>)
 
 设置所有选项中最上和最下两个选项的文本样式。
 
@@ -96,11 +96,11 @@ disappearTextStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](#pickertextstyle10类型说明) | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ### textStyle<sup>10+</sup>
 
-textStyle(value: PickerTextStyle)
+textStyle(value: Optional\<PickerTextStyle>)
 
 设置所有选项中除了最上、最下及选中项以外的文本样式。
 
@@ -112,11 +112,11 @@ textStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](#pickertextstyle10类型说明) | 是   | 所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ### selectedTextStyle<sup>10+</sup>
 
-selectedTextStyle(value: PickerTextStyle)
+selectedTextStyle(value: Optional\<PickerTextStyle>)
 
 设置选中项的文本样式。
 
@@ -128,7 +128,7 @@ selectedTextStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](#pickertextstyle10类型说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
 
 ## PickerTextStyle<sup>10+</sup>类型说明
 
@@ -137,7 +137,7 @@ selectedTextStyle(value: PickerTextStyle)
 | 参数名   | 参数类型                                     | 必填   | 参数描述                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本颜色。                     |
-| font  | [Font](ts-types.md#font)                 | 否    | 文本样式，picker只支持字号、字体粗细的设置。 |
+| font  | [Font](ts-types.md#font)                 | 否    | 文本样式。 |
 
 ## 事件
 
@@ -161,7 +161,7 @@ onChange(callback: (value: DatePickerResult) => void)
 
 ### onDateChange<sup>10+</sup>
 
-onDateChange(callback: Callback\<Date>)
+onDateChange(callback: Optional\<Callback\<Date>>)
 
 选择日期时触发该事件。
 
@@ -173,7 +173,7 @@ onDateChange(callback: Callback\<Date>)
 
 | 参数名   | 类型                                      | 必填 | 说明                                                         |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | [Callback](ts-types.md#callback12)\<Date> | 是   | 返回选中的时间，年月日为选中的日期，时分取决于当前系统时间的时分，秒恒为00。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Callback](ts-types.md#callback12)\<Date>> | 是   | 返回选中的时间，年月日为选中的日期，时分取决于当前系统时间的时分，秒恒为00。 |
 
 ## DatePickerResult对象说明
 
@@ -247,7 +247,7 @@ struct DatePickerExample {
       })
         .disappearTextStyle({ color: Color.Gray, font: { size: '16fp', weight: FontWeight.Bold } })
         .textStyle({ color: '#ff182431', font: { size: '18fp', weight: FontWeight.Normal } })
-        .selectedTextStyle({ color: '#ff0000FF', font: { size: '26fp', weight: FontWeight.Regular } })
+        .selectedTextStyle({ color: '#ff0000FF', font: { size: '26fp', weight: FontWeight.Regular, family: "HarmonyOS Sans", style: FontStyle.Normal } })
         .onDateChange((value: Date) => {
           this.selectedDate = value
           console.info('select current date is: ' + value.toString())

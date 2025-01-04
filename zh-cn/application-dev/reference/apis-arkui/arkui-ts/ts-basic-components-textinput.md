@@ -113,7 +113,7 @@ enterKeyType(value: EnterKeyType)
 
 | 参数名 | 类型                                             | 必填 | 说明                                             |
 | ------ | ------------------------------------------------ | ---- | ------------------------------------------------ |
-| value  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.Done |
+| value  | [EnterKeyType](#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.Done |
 
 ### caretColor
 
@@ -831,6 +831,54 @@ maxFontSize(value: number | string | Resource)
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
 
+### halfLeading<sup>16+</sup>
+
+halfLeading(halfLeading: boolean)
+
+设置文本是否将行间距平分至行的顶部与底部。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| halfLeading | boolean | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
+
+### minFontScale<sup>16+</sup>
+
+minFontScale(scale: number | Resource)
+
+设置文本最小的字体缩放倍数。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩放倍数。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。 |
+
+### maxFontScale<sup>16+</sup>
+
+maxFontScale(scale: number | Resource)
+
+设置文本最大的字体缩放倍数。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。 |
+
 ### heightAdaptivePolicy<sup>12+</sup>
 
 heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
@@ -968,13 +1016,13 @@ enableHapticFeedback(isEnabled: boolean)
 > ]
 > ```
 
-### cancelButton<sup>14+</sup>
+### cancelButton<sup>16+</sup>
 
 cancelButton(value: CancelButtonSymbolOptions)
 
 设置右侧清除按钮样式。不支持内联模式。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -983,6 +1031,25 @@ cancelButton(value: CancelButtonSymbolOptions)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [CancelButtonSymbolOptions](ts-basic-components-search.md#cancelbuttonsymboloptions12对象说明) | 是   | 右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
+
+### ellipsisMode<sup>16+</sup>
+
+ellipsisMode(value: EllipsisMode)
+
+设置省略位置。ellipsisMode属性需要配合overflow设置为TextOverflow.Ellipsis使用，单独设置ellipsisMode属性不生效。
+
+EllipsisMode仅在内联模式下生效。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                | 必填 | 说明                                      |
+| ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
+| value  | [EllipsisMode](ts-basic-components-richeditor#ellipsismode16) | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
+
 ## InputType枚举说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1054,6 +1121,21 @@ cancelButton(value: CancelButtonSymbolOptions)
 | onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
 | offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
 
+## EnterKeyType枚举说明
+
+输入法回车键类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                   | 描述               |
+| ---------------------- | ------------------ |
+| Go                     | 显示为开始样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| Search                 | 显示为搜索样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| Send                   | 显示为发送样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| Next                   | 显示为下一步样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Done                   | 显示为完成样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| PREVIOUS<sup>11+</sup> | 显示为上一步样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NEW_LINE<sup>11+</sup> | 显示为换行样式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 
 
 ## 事件
@@ -1431,7 +1513,7 @@ type OnSubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 
 | 参数名              | 类型                                             | 必填 | 说明                                                         |
 | ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| enterKey            | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。 |
+| enterKey            | [EnterKeyType](#enterkeytype枚举说明) | 是   | 输入法回车键类型。 |
 | event | [SubmitEvent](#submitevent11对象说明)         | 是   | 提交事件。                                                   |
 
 ## OnTextSelectionChangeCallback<sup>14+</sup>对象说明
@@ -2252,8 +2334,7 @@ struct TextInputExample {
 @Component
 struct TextInputExample {
   @State text: string = 'TextInput editMenuOptions'
-
-  onCreateMenu(menuItems: Array<TextMenuItem>) {
+  onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'custom1',
       icon: $r('app.media.startIcon'),
@@ -2268,29 +2349,31 @@ struct TextInputExample {
     menuItems.unshift(item2)
     return menuItems
   }
+  onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
+    if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
+      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
+      return false
+    }
+    return false
+  }
+  @State editMenuOptions: EditMenuOptions = {
+    onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+  }
 
   build() {
     Column() {
       TextInput({ text: this.text })
         .width('95%')
         .height(50)
-        .editMenuOptions({
-          onCreateMenu: this.onCreateMenu, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
-            if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-              console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-              return true;
-            }
-            if (menuItem.id.equals(TextMenuItemId.COPY)) {
-              console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
-              return true;
-            }
-            if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-              console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-              return false;
-            }
-            return false;
-          }
-        })
+        .editMenuOptions(this.editMenuOptions)
         .margin({ top: 100 })
     }
     .width("90%")
@@ -2329,3 +2412,61 @@ struct TextInputExample {
 ```
 
 ![cancelButton](figures/TextInputCancelButton_SymbolGlyphModifier.jpg)
+
+### 示例16（文本设置省略模式）
+
+该示例通过textOverflow、ellipsisMode、style属性展示了文本超长省略以及调整省略位置的效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct EllipsisModeExample {
+  @State text: string = "As the sun begins to set, casting a warm golden hue across the sky," +
+    "the world seems to slow down and breathe a sigh of relief. The sky is painted with hues of orange, " +
+    " pink, and lavender, creating a breath taking tapestry that stretches as far as the eye can see." +
+    "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil."
+  @State ellipsisModeIndex: number = 0
+  @State ellipsisMode: (EllipsisMode | undefined | null)[] = [EllipsisMode.END, EllipsisMode.START, EllipsisMode.CENTER]
+  @State ellipsisModeStr: string[] = ['END ', 'START', 'CENTER']
+  @State textOverflowIndex: number = 0
+  @State textOverflow: TextOverflow[] = [TextOverflow.Ellipsis, TextOverflow.Clip]
+  @State textOverflowStr: string[] = ['Ellipsis', 'Clip']
+  @State styleInputIndex: number = 0
+  @State styleInput: TextInputStyle[] = [TextInputStyle.Inline, TextInputStyle.Default]
+  @State styleInputStr: string[] = ['Inline', 'Default']
+  build() {
+    Row() {
+      Column({ space: 20 }) {
+        Text('测试TextInput').fontSize(30)
+        TextInput({ text: this.text})
+          .textOverflow( this.textOverflow[this.textOverflowIndex])
+          .ellipsisMode( this.ellipsisMode[this.ellipsisModeIndex])
+          .style(this.styleInput[this.styleInputIndex])
+          .fontSize(30)
+          .margin(30)
+        Button('更改ellipsisMode模式：' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
+          this.ellipsisModeIndex++
+          if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
+            this.ellipsisModeIndex = 0
+          }
+        }).fontSize(20)
+        Button('更改textOverflow模式：' + this.textOverflowStr[this.textOverflowIndex]).onClick(() => {
+          this.textOverflowIndex++
+          if (this.textOverflowIndex > (this.textOverflowStr.length - 1)) {
+            this.textOverflowIndex = 0
+          }
+        }).fontSize(20)
+        Button('更改Style大小：' + this.styleInputStr[this.styleInputIndex]).onClick(() => {
+          this.styleInputIndex++
+          if (this.styleInputIndex > (this.styleInputStr.length - 1)) {
+            this.styleInputIndex = 0
+          }
+        }).fontSize(20)
+      }
+    }
+  }
+}
+```
+
+![textInputEllipsisMode](figures/textInputEllipsisMode.png)

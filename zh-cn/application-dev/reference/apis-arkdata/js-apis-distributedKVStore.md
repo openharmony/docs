@@ -393,7 +393,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&l
 
 > 注意：
 >
-> 在获取已有的分布式键值数据库时，若该数据库文件已损坏，将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。开发者可观测异常查询行为识别该现象，并进行备份数据恢复，异常查询行为例如数据被清空、已有数据无法查询等。
+> 在获取已有的分布式键值数据库时，若该数据库文件已无法打开（例如文件头损坏），将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。对于重要且无法重新生成的数据推荐使用备份恢复功能，防止数据丢失，备份恢复使用方法可见[数据库备份与恢复](../../database/data-backup-and-restore.md)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -458,7 +458,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
 > 注意：
 >
-> 在获取已有的分布式键值数据库时，若该数据库文件已损坏，将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。开发者可观测异常查询行为识别该现象，并进行备份数据恢复，异常查询行为例如数据被清空、已有数据无法查询等。
+> 在获取已有的分布式键值数据库时，若该数据库文件已无法打开（例如文件头损坏），将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。对于重要且无法重新生成的数据推荐使用备份恢复功能，防止数据丢失，备份恢复使用方法可见[数据库备份与恢复](../../database/data-backup-and-restore.md)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3078,7 +3078,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 删除指定设备的数据，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
+> 其中deviceId为[DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo)中的networkId，通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -3087,7 +3087,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | ------------------------- | ---- | ---------------------- |
-| deviceId | string                    | 是   | 表示要删除设备的名称。 |
+| deviceId | string                    | 是   | 表示要删除设备的networkId。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。删除指定设备的数据成功，err为undefined，否则为错误对象。    |
 
 **错误码：**
@@ -3138,7 +3138,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 删除指定设备的数据，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
+> 其中deviceId为[DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo)中的networkId，通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -3147,7 +3147,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 | 参数名   | 类型 | 必填 | 说明                   |
 | -------- | -------- | ---- | ---------------------- |
-| deviceId | string   | 是   | 表示要删除设备的名称。 |
+| deviceId | string   | 是   | 表示要删除设备的networkId。 |
 
 **返回值：**
 

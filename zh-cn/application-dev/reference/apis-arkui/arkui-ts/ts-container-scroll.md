@@ -104,6 +104,8 @@ scrollSnap(value: ScrollSnapOptions)
 
 设置Scroll组件的限位滚动模式。
 
+限位动画期间onWillScroll事件上报的滚动操作来源类型为ScrollSource.FLING。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -558,8 +560,6 @@ scrollEdge(value: Edge, options?: ScrollEdgeOptions)
 滚动到容器边缘，不区分滚动轴方向，Edge.Top和Edge.Start表现相同，Edge.Bottom和Edge.End表现相同。
 Scroll组件默认有动画，Grid、List、WaterFlow组件默认无动画。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -746,7 +746,7 @@ getItemRect(index: number): RectResult
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100004   | Controller not bound to component.                               |
-### getItemIndex<sup>13+</sup>
+### getItemIndex<sup>14+</sup>
 
 getItemIndex(x: number, y: number): number
 
@@ -756,7 +756,7 @@ getItemIndex(x: number, y: number): number
 >
 >  支持List、Grid、WaterFlow组件。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

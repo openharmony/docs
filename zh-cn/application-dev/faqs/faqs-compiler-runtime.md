@@ -57,3 +57,51 @@ if (status != napi_ok) {
 ## Array数组的长度上限是多少
 
 ECMAScript标准中定义的是2^32 - 1，超过该值会抛出RangeError。
+
+## 模块间循环依赖导致运行时未初始化异常问题定位
+
+**问题场景**
+
+模块间循环依赖可能导致应用运行时模块依赖的变量未初始化，如下示例。index.ets文件执行前，会先执行依赖的page.ets文件，page.ets文件执行时又循环依赖了index.ets导出的foo符号。此时index.ets文件未执行，foo变量尚未完成初始化，会导致运行时异常。
+
+```typescript
+// index.ets
+import { bar } from './page'
+
+export function foo() {
+    bar()
+}
+
+// page.ets
+import { foo } from './index'
+
+export function bar() {
+    foo()
+}
+bar()
+
+```
+
+**问题现象**
+
+运行时发生js crash, crash日志中报错信息为：Error message: foo is not initialized
+
+**解决方案**
+
+开发者可以通过IDE中Code Linter检查工具识别应用代码中的循环依赖并进行代码重构，消除循环依赖影响，工具详情请参考[Deveco Studio代码Code Linter检查](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-code-linter-V5)。操作步骤如下：
+
+1. 在工程根目录下创建code-linter.json5配置文件，配置如下：
+    ```json
+    {
+      "files": [ // 用于表示配置适用的文件范围的 glob 模式数组。
+        "**/*.js",
+        "**/*.ts",
+        "**/*.ets"
+      ],
+      "rules": {
+        "@security/no-cycle": "error" // 配置循环依赖检查规则。
+      }
+    }
+    ```
+2. 在工程管理窗口中鼠标选中工程根目录，右键选择Code Linter > Full Linter执行代码全量检查。
+3. 根据检查结果，对应用代码中的循环依赖部分进行代码重构。

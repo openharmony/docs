@@ -71,7 +71,7 @@
     let cipher = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     let decoder = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     // RSA加解密PKCS1-OAEP模式填充字节流P
-    let pSource = new Uint8Array([1, 2, 3, 4]);
+    let pSource = new Uint8Array([1, 2, 3, 4]); // 此处为示例，可以是任意值，由开发者自行决定
     let input: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan, 'utf-8').buffer) };
     // 生成密钥对
     let keyPair = await rsaGeneratorSpec.generateKeyPair();
@@ -81,7 +81,7 @@
     cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
     let retP = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
     // 比较get出来的P字节流与set进去的P字节流是否一致
-    if (retP.toString() != pSource.toString()) {
+    if (retP.toString() !== pSource.toString()) {
       console.error("error init pSource" + retP);
     } else {
       console.info("pSource changed ==" + retP);
@@ -98,7 +98,7 @@
     decoder.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
     retP = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
     // 比较get出来的P字节流与set进去的P字节流是否一致
-    if (retP.toString() != pSource.toString()) {
+    if (retP.toString() !== pSource.toString()) {
       console.error("error init pSource" + retP);
     } else {
       console.info("pSource changed ==" + retP);
@@ -159,7 +159,7 @@
     let cipher = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     let decoder = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     // RSA加解密PKCS1-OAEP模式填充字节流P
-    let pSource = new Uint8Array([1, 2, 3, 4]);
+    let pSource = new Uint8Array([1, 2, 3, 4]); // 此处为示例，可以是任意值，由开发者自行决定
     let input: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan, 'utf-8').buffer) };
     // 生成密钥对
     let keyPair = rsaGeneratorSpec.generateKeyPairSync();
@@ -169,7 +169,7 @@
     cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
     let retP = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
     // 比较get出来的P字节流与set进去的P字节流是否一致
-    if (retP.toString() != pSource.toString()) {
+    if (retP.toString() !== pSource.toString()) {
       console.error("error init pSource" + retP);
     } else {
       console.info("pSource changed ==" + retP);
@@ -186,7 +186,7 @@
     decoder.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
     retP = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
     // 比较get出来的P字节流与set进去的P字节流是否一致
-    if (retP.toString() != pSource.toString()) {
+    if (retP.toString() !== pSource.toString()) {
       console.error("error init pSource" + retP);
     } else {
       console.info("pSource changed ==" + retP);

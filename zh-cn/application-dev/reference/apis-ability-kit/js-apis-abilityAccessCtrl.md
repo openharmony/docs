@@ -129,6 +129,100 @@ let data: abilityAccessCtrl.GrantStatus = atManager.checkAccessTokenSync(tokenID
 console.log(`data->${JSON.stringify(data)}`);
 ```
 
+### on<sup>16+</sup>
+
+on(type: 'selfPermissionStateChange', permissionList: Array&lt;Permissions&gt;, callback: Callback&lt;PermissionStateChangeInfo&gt;): void
+
+订阅自身的指定权限列表的权限状态变更事件。
+
+允许指定权限列表订阅多个callback。
+
+不允许存在交集权限列表订阅相同callback。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名             | 类型                   | 必填 | 说明                                                          |
+| ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
+| type               | string                | 是   | 订阅事件类型，固定为'selfPermissionStateChange'，自身权限状态变更事件。  |
+| permissionList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。|
+| callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo16)&gt; | 是 | 订阅指定权限名状态变更事件的回调。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The permissionName exceeds 256 characters. |
+| 12100004 | The API is used repeatedly with the same input. |
+| 12100005 | The registration time has exceeded the limitation. |
+| 12100007 | The service is abnormal. |
+
+**示例：**
+
+```ts
+import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
+
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let permissionList: Array<Permissions> = ['ohos.permission.APPROXIMATELY_LOCATION'];
+try {
+    atManager.on('selfPermissionStateChange', permissionList, (data: abilityAccessCtrl.PermissionStateChangeInfo) => {
+        console.log('receive permission state change, data:' + JSON.stringify(data));
+    });
+} catch(err) {
+    console.error(`catch err->${JSON.stringify(err)}`);
+}
+```
+### off<sup>16+</sup>
+
+off(type: 'selfPermissionStateChange', permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;PermissionStateChangeInfo&gt;): void
+
+取消订阅自身指定权限列表的权限状态变更事件，使用callback回调异步返回结果。
+
+取消订阅不传callback时，批量删除permissionList下面的所有callback。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名             | 类型                   | 必填 | 说明                                                          |
+| ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
+| type               | string         | 是   | 订阅事件类型，固定为'selfPermissionStateChange'，权限状态变更事件。  |
+| permissionList | Array&lt;Permissions&gt;   | 是   | 取消订阅的权限名列表，为空时表示取消订阅所有的权限状态变化，必须与on的输入一致，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
+| callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo16)&gt; | 否 | 取消订阅指定tokenId与指定权限名状态变更事件的回调。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The permissionNames in the list are all invalid. |
+| 12100004 | The API is not used in pair with 'on'. |
+| 12100007 | The service is abnormal. |
+
+**示例：**
+
+```ts
+import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
+
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let permissionList: Array<Permissions> = ['ohos.permission.APPROXIMATELY_LOCATION'];
+try {
+    atManager.off('selfPermissionStateChange', permissionList);
+} catch(err) {
+    console.error(`catch err->${JSON.stringify(err)}`);
+}
+```
+
 ### requestPermissionsFromUser<sup>9+</sup>
 
 requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;): void
@@ -517,3 +611,30 @@ atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSION
 | CAMERA  | 0    | 表示相机全局开关。 |
 | MICROPHONE | 1     | 表示麦克风全局开关。 |
 | LOCATION | 2     | 表示位置全局开关。 |
+
+## PermissionStateChangeType<sup>16+</sup>
+
+表示权限授权状态变化操作类型的枚举。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+| 名称                     |    值 | 说明              |
+| ----------------------- | ------ | ----------------- |
+| PERMISSION_REVOKED_OPER | 0      | 表示权限取消操作。 |
+| PERMISSION_GRANTED_OPER | 1      | 表示权限授予操作。 |
+
+## PermissionStateChangeInfo<sup>16+</sup>
+
+表示某次权限授权状态变化的详情。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+| 名称           | 类型                       | 只读 | 必填 | 说明                |
+| -------------- | ------------------------- | ---- | ---- | ------------------ |
+| change         | [PermissionStateChangeType](#permissionstatechangetype16) | 是   | 是   | 权限授权状态变化类型。        |
+| tokenID        | number                    | 是   | 是   | 被订阅的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
+| permissionName | Permissions                    | 是   | 是   | 当前授权状态发生变化的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |

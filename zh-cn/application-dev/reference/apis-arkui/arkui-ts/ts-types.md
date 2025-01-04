@@ -221,18 +221,6 @@
 | string                              | rgb或者argb格式颜色。示例：'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'。 |
 | [Resource](#resource)               | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。       |
 
-## ColoringStrategy<sup>10+</sup>
-
-智能取色枚举类型。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 描述              |
-| ------ | --------------- |
-| INVERT | 设置前景色为控件背景色的反色。仅支持在[foregroundColor](ts-universal-attributes-foreground-color.md#foregroundcolor)中设置该枚举。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-
 ## LengthConstrain
 
 长度约束，用于对组件最大、最小长度做限制。
@@ -611,38 +599,6 @@ type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) =>
 | ------------- | ---------------------- | ---------------------------------------- |
 | VisibleAreaChangeCallback | (isExpanding: boolean, currentRatio: number) => void | 组件可见区域变化事件的回调。<br/>-isExpanding：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
 
-## StyledStringValue<sup>12+</sup>
-
-样式对象类型，用于设置属性字符串的样式。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称   | 描述       |
-| ------ | ---------- |
-| TextStyle | 文本字体样式。 |
-| DecorationStyle | 文本装饰线样式。 |
-| BaselineOffsetStyle | 文本基线偏移量样式。 |
-| LetterSpacingStyle | 文本字符间距样式。 |
-| LineHeightStyle | 文本行高样式。 |
-| TextShadowStyle | 文本阴影样式。 |
-| GestureStyle | 事件手势样式。 |
-| ParagraphStyle | 文本段落样式。 |
-| ImageAttachment | 图片样式。 |
-| CustomSpan | 自定义绘制Span样式。 |
-| UserDataSpan | UserDataSpan样式。 |
-
-## EnterKeyType枚举说明
-
-| 名称                   | 描述               |
-| ---------------------- | ------------------ |
-| Go                     | 显示为开始样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| Search                 | 显示为搜索样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| Send                   | 显示为发送样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| Next                   | 显示为下一步样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Done                   | 显示为完成样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| PREVIOUS<sup>11+</sup> | 显示为上一步样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| NEW_LINE<sup>11+</sup> | 显示为换行样式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-
 ## DividerStyleOptions<sup>12+</sup>
 
 分割线样式属性集合, 用于描述分割线相关信息。
@@ -784,3 +740,16 @@ setTextSelection选中文字时的配置。
 | ------------------- | ------- | ------------------------------------------------------------ |
 | thresholdPercentage | number  | thresholdPercentage是可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，数值为小数时，向下取整，如果设置的number超出有效值区间内，不显示字符计数器。thresholdPercentage设置为undefined，显示字符计数器，但此参数不生效。 |
 | highlightBorder     | boolean | 如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。如果用户设置显示字符计数器同时thresholdPercentage参数数值在有效区间内，那么当输入字符数超过最大字符数时，边框和计数器下标将变成红色。如果此参数为true，则显示红色边框。计数器默认显示红色边框。 |
+
+## ChainWeightOptions<sup>14+</sup>对象说明
+
+链中组件的布局权重。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名   | 类型     | 描述             |
+| ----- | ------ | -------------- |
+| horizontal | number | 组件在竖直方向的布局权重，设置大于0的数字时生效。 <br> 默认值：0 <br> 异常值：0  |
+| vertical     | number | 组件在水平方向的布局权重，设置大于0的数字时生效。 <br> 默认值：0 <br> 异常值：0 |

@@ -30,5 +30,5 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AudioCommon_Result](_o_h_audio.md#oh_audiocommon_result) [OH_GetAudioManager](_o_h_audio.md#oh_getaudiomanager) ([OH_AudioManager](_o_h_audio.md#oh_audiomanager) \*\*audioManager) | 获取音频管理器。  | 
-| [OH_AudioCommon_Result](_o_h_audio.md#oh_audiocommon_result) [OH_GetAudioScene](_o_h_audio.md#oh_getaudioscene) ([OH_AudioManager](_o_h_audio.md#oh_audiomanager) \*manager, [OH_AudioScene](_o_h_audio.md#oh_audioscene) \*scene) | 获取音频场景模式。  | 
+| [OH_AudioCommon_Result](_o_h_audio.md#oh_audiocommon_result) [OH_GetAudioManager](_o_h_audio.md#oh_getaudiomanager)([OH_AudioManager](_o_h_audio.md#oh_audiomanager) \*\*audioManager) | 获取音频管理器。  | 
+| [OH_AudioCommon_Result](_o_h_audio.md#oh_audiocommon_result) [OH_GetAudioScene](_o_h_audio.md#oh_getaudioscene)([OH_AudioManager](_o_h_audio.md#oh_audiomanager) \*manager, [OH_AudioScene](_o_h_audio.md#oh_audioscene) \*scene) | 获取音频场景模式。  | 

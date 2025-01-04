@@ -8,7 +8,7 @@ Declare the permissions required by your application under **requestPermissions*
 
 | Field| Description| Data Type| Value Range|
 | -------- | -------- | -------- | -------- |
-| name | Name of the permission to request.| String| This field is mandatory. The value must be a permission defined in the system. For details, see [Permissions for All Applications](permissions-for-all.md).|
+| name | Name of the permission to request.| String| This field is mandatory. The value must be a permission defined in the system. For details, see [Application Permissions](app-permissions.md).|
 | reason | Reason for requesting the permission.| String| This field is optional. It is used for application release verification. It must be specified for a user_grant permission and support multilingual adaptation.<br>It can be referenced as a string resource in $string: \*\*\* format.<br>For details, see [Specifications for reason](#specifications-for-reason).|
 | usedScene | Use case of the permission. This field is used for application release verification. It has two parameters:<br>- **abilities**: names of the abilities (UIAbility or ExtensionAbility) that use the permission.<br>- **when**: when the permission is used.| Object| **usedScene** is mandatory, where:<br>- **abilities** is optional. The value is a string array of multiple UIAbility or ExtensionAbility names<br>- **when** is optional. Set it to **inuse** or **always** for a user_grant permission. It cannot be empty when set.<br>  |
 
@@ -79,6 +79,6 @@ The reason for requesting a permission can be presented in two modes: authorizat
 
    **Example**: Permission A, used to obtain the call status and mobile network information. Permission B, used for secure operation and statistics charging services.
 
-2. For the permissions in other permission groups, the reason for using the first permission requested is presented to the user. The permissions are sorted as they appear in the permission groups under **Permission manager**.
+2. For the permissions in other permission groups, only the reason for the first requested permission is presented to the user. The permissions are sorted as they appear in the permission groups under **Permission manager**.
 
    **Example**: If a permission group consists of permissions A, B, and C in sequence, and permissions C and B are requested, the reason for using permission B is presented to the user.

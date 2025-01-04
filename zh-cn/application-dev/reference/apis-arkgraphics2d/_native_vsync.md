@@ -188,6 +188,10 @@ int OH_NativeVSync_GetPeriod (OH_NativeVSync * nativeVsync, long long * period )
 
 获取vsync周期。
 
+vsync周期是在每次使用OH_NativeVSync_RequestFrame接口请求vsync信号后收到OH_NativeVSync_FrameCallback回调的时候才会更新。
+
+首次使用该接口获取vsync周期之前，需要先使用OH_NativeVSync_RequestFrame接口请求vsync信号，在收到OH_NativeVSync_FrameCallback回调之后，才可以通过该接口获取到vsync周期。
+
 \@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
 
 **参数:**
@@ -269,6 +273,8 @@ void OH_NativeVSync_Destroy (OH_NativeVSync * nativeVsync)
 **描述:**
 
 销毁OH_NativeVSync实例。
+
+销毁后的OH_NativeVSync指针不能再继续使用，否则会有野指针问题，尤其需要注意多线程并发时对于OH_NativeVSync指针的管理。
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
 

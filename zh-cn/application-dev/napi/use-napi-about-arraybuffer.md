@@ -85,15 +85,15 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value GetArraybufferInfo(napi_env env, napi_callback_info info)
+static napi_value GetArrayBufferInfo(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     // 检查参数是否为ArrayBuffer
-    bool isArraybuffer = false;
-    napi_is_arraybuffer(env, args[0], &isArraybuffer);
-    if (!isArraybuffer) {
+    bool isArrayBuffer = false;
+    napi_is_arraybuffer(env, args[0], &isArrayBuffer);
+    if (!isArrayBuffer) {
         napi_throw_type_error(env, nullptr, "Argument must be an ArrayBuffer");
         return nullptr;
     }
@@ -128,7 +128,7 @@ export class ArrayBufferInfo {
   byteLength: number;
   buffer: Object;
 }
-export const getArraybufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | void;
+export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | void;
 ```
 
 ArkTS侧示例代码
@@ -138,7 +138,7 @@ import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 
 const buffer = new ArrayBuffer(10);
-hilog.info(0x0000, 'testTag', 'Test Node-API get_arraybuffer_info:%{public}s ', JSON.stringify(testNapi.getArraybufferInfo(buffer)));
+hilog.info(0x0000, 'testTag', 'Test Node-API get_arrayBuffer_info:%{public}s ', JSON.stringify(testNapi.getArrayBufferInfo(buffer)));
 ```
 
 ### napi_detach_arraybuffer
@@ -154,7 +154,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value DetachedArraybuffer(napi_env env, napi_callback_info info)
+static napi_value DetachedArrayBuffer(napi_env env, napi_callback_info info)
 {
     // 调用napi_detach_arraybuffer接口分离给定ArrayBuffer的底层数据
     size_t argc = 1;
@@ -166,7 +166,7 @@ static napi_value DetachedArraybuffer(napi_env env, napi_callback_info info)
     return arrayBuffer;
 }
 
-static napi_value IsDetachedArraybuffer(napi_env env, napi_callback_info info)
+static napi_value IsDetachedArrayBuffer(napi_env env, napi_callback_info info)
 {
     // 调用napi_is_detached_arraybuffer判断给定的arraybuffer是否已被分离
     size_t argc = 1;
@@ -186,8 +186,8 @@ static napi_value IsDetachedArraybuffer(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const detachedArraybuffer: (buffer:ArrayBuffer) => ArrayBuffer;
-export const isDetachedArraybuffer: (arrarBeffer: ArrayBuffer) => boolean;
+export const detachedArrayBuffer: (buffer:ArrayBuffer) => ArrayBuffer;
+export const isDetachedArrayBuffer: (arrayBuffer: ArrayBuffer) => boolean;
 ```
 
 ArkTS侧示例代码
@@ -197,8 +197,8 @@ import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 try {
   const bufferArray = new ArrayBuffer(8);
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_detached_arraybuffer one: %{public}s', testNapi.isDetachedArraybuffer(bufferArray));
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_detached_arraybuffer two: %{public}s ', testNapi.isDetachedArraybuffer(testNapi.detachedArraybuffer(bufferArray)));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_detached_arraybuffer one: %{public}s', testNapi.isDetachedArrayBuffer(bufferArray));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_detached_arraybuffer two: %{public}s ', testNapi.isDetachedArrayBuffer(testNapi.detachedArrayBuffer(bufferArray)));
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_detached_arraybuffer error: %{public}s', error.message);
 }
@@ -217,7 +217,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value CreateArraybuffer(napi_env env, napi_callback_info info)
+static napi_value CreateArrayBuffer(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value argv[1] = {nullptr};
@@ -244,7 +244,7 @@ static napi_value CreateArraybuffer(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const createArraybuffer: (size: number) => ArrayBuffer;
+export const createArrayBuffer: (size: number) => ArrayBuffer;
 ```
 
 ArkTS侧示例代码
@@ -253,7 +253,7 @@ ArkTS侧示例代码
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_arraybuffer:%{public}s', testNapi.createArraybuffer(10).toString());
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_arraybuffer:%{public}s', testNapi.createArrayBuffer(10).toString());
 ```
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：

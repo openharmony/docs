@@ -49,6 +49,8 @@ The key management service specifications include mandatory specifications and o
 | -------- | -------- | -------- | -------- |
 | RSA | The padding mode can be PSS or PKCS1_V1_5.| 11+ | Yes|
 | ECC | - | 11+ | Yes|
+| X25519 | - | 16+ | Yes|
+| Ed25519 | - | 16+ | Yes|
 | SM2 | - | 11+ | Yes|
 
 <!--Del-->
@@ -59,5 +61,6 @@ The key management service specifications include mandatory specifications and o
 | RSA | The padding mode can be PSS or PKCS1_V1_5.| 8+ | Yes|
 | ECC | - | 8+ | Yes|
 | X25519 | - | 8+ | Yes|
+| Ed25519 | - | 16+ | Yes|
 | SM2 | - | 8+ | Yes|
 <!--DelEnd-->

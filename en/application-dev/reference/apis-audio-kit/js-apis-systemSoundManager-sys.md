@@ -405,7 +405,7 @@ Describes the haptics settings of a system ringtone.
 
 ## ToneHapticsAttrs<sup>13+</sup>
 
-Manages haptics attributes of system ringtones. Before calling any API in **ToneHapticsAttrs<sup>13+</sup>**, you must call [getToneHapticsList] (#gettonehapticslist13) or [getHapticsAttrsSyncedWithTone](#gethapticsattrssyncedwithtone13) to obtain an instance.
+Manages haptics attributes of system ringtones. Before calling any API in **ToneHapticsAttrs<sup>13+</sup>**, you must call [getToneHapticsList](#gettonehapticslist13) or [getHapticsAttrsSyncedWithTone](#gethapticsattrssyncedwithtone13) to obtain an instance.
 
 ### getUri<sup>13+</sup>
 
@@ -1924,7 +1924,7 @@ Obtains the attributes of the haptics feedback synchronized with the system ring
 | Name| Type       | Mandatory| Description                                                                         |
 |-----|-----------| ---- |----------------------------------------------------------------------------------|
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.  |
-| toneUri  | string    | Yes  | URI of the system ringtone. The URI can be obtained by calling [getRingtoneAttrList] (#getringtoneattrlist12) or [getSystemToneAttrList] (#getsystemtoneattrlist12).|
+| toneUri  | string    | Yes  | URI of the system ringtone. The URI can be obtained by calling [getRingtoneAttrList](#getringtoneattrlist12) or [getSystemToneAttrList](#getsystemtoneattrlist12).|
 
 **Return value**
 

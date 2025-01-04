@@ -549,7 +549,7 @@ Defines the XML parsing options.
 | ignoreNameSpace                | boolean                                                      | No  | Whether to ignore the namespace. The default value is **false**, indicating that the namespace is not ignored.|
 | tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | No  | Start tag, tag value, and end tag of parsing. The default value is **undefined**, indicating no parsing.|
 | attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No  | Parsing attribute and attribute value. The default value is **undefined**, indicating no parsing.|
-| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | No  | Parsing element's [EventType] (#eventtype) and [ParseInfo](#parseinfo). The default value is **undefined**, indicating no parsing.|
+| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | No  | Parsing element's [EventType](#eventtype) and [ParseInfo](#parseinfo). The default value is **undefined**, indicating no parsing.|
 
 ## ParseInfo
 

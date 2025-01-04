@@ -1046,7 +1046,7 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 
 async function example() {
     console.info('createAssetWithShortTermPermissionDemo.');
@@ -1060,22 +1060,22 @@ async function example() {
         };
 
         let resultUri: string = await phAccessHelper.createAssetWithShortTermPermission(photoCreationConfig);
-        let resultFile: fs.File = fs.openSync(resultUri, fs.OpenMode.READ_WRITE);
+        let resultFile: fileIo.File = fileIo.openSync(resultUri, fileIo.OpenMode.READ_WRITE);
         // 实际场景请使用真实的uri和文件大小
-        let srcFile:  fs.File = fs.openSync("file://test.jpg", fs.OpenMode.READ_ONLY);
+        let srcFile:  fileIo.File = fileIo.openSync("file://test.jpg", fileIo.OpenMode.READ_ONLY);
         let bufSize: number = 2000000;
         let readSize: number = 0;
         let buf = new ArrayBuffer(bufSize);
-        let readLen = fs.readSync(srcFile.fd, buf, {
+        let readLen = fileIo.readSync(srcFile.fd, buf, {
             offset: readSize,
             length: bufSize
         });
         if (readLen > 0) {
             readSize += readLen;
-            fs.writeSync(resultFile.fd, buf, { length: readLen });
+            fileIo.writeSync(resultFile.fd, buf, { length: readLen });
         }
-        fs.closeSync(srcFile);
-        fs.closeSync(resultFile);
+        fileIo.closeSync(srcFile);
+        fileIo.closeSync(resultFile);
     } catch (err) {
         console.error('createAssetWithShortTermPermission failed, errCode is ' + err.code + ', errMsg is ' + err.message);
     }
@@ -1083,9 +1083,9 @@ async function example() {
 }
 ```
 
-### grantPhotoAssetsReadPermission<sup>14+</sup>
+### requestPhotoUrisReadPermission<sup>14+</sup>
 
-grantPhotoAssetsReadPermission(srcFileUris: Array&lt;string&gt;): Promise&lt;Array&lt;string&gt;&gt;
+requestPhotoUrisReadPermission(srcFileUris: Array&lt;string&gt;): Promise&lt;Array&lt;string&gt;&gt;
 
 <!--RP1--><!--RP1End-->调用接口给未授权的uri进行授权，返回已创建并授予保存权限的uri列表。
 
@@ -1121,7 +1121,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
-  console.info('grantPhotoAssetsReadPermissionSDemo.');
+  console.info('requestPhotoUrisReadPermissionDemo.');
 
   try {
     let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
@@ -1129,10 +1129,10 @@ async function example() {
     let srcFileUris: Array<string> = [
       'file://fileUriDemo1' // 实际场景请使用真实的uri
     ];
-    let desFileUris: Array<string> = await phAccessHelper.grantPhotoAssetsReadPermission(srcFileUris);
-    console.info('grantPhotoAssetsReadPermissionsuccess, data is ' + desFileUris);
+    let desFileUris: Array<string> = await phAccessHelper.requestPhotoUrisReadPermission(srcFileUris);
+    console.info('requestPhotoUrisReadPermission success, data is ' + desFileUris);
   } catch (err) {
-    console.error('grantPhotoAssetsReadPermissionfailed, errCode is ' + err.code + ', errMsg is ' + err.message);
+    console.error('requestPhotoUrisReadPermission failed, errCode is ' + err.code + ', errMsg is ' + err.message);
   }
 }
 ```
@@ -1785,7 +1785,7 @@ clone(title: string): Promise&lt;PhotoAsset&gt;
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| title| string | 是    | 克隆后资产的标题。 title参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ] |
+| title| string | 是    | 克隆后资产的标题。参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ] |
 
 **返回值：**
 
@@ -3713,8 +3713,8 @@ saveCameraPhoto(imageFileType: ImageFileType): void
 **示例：**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
 async function example(asset: photoAccessHelper.PhotoAsset) {
@@ -4492,8 +4492,8 @@ static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: Re
 **示例：**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
 class MediaHandler implements photoAccessHelper.QuickImageDataHandler<image.Picture> {
@@ -5325,6 +5325,7 @@ async function example() {
 | isEditSupported<sup>11+</sup>       | boolean | 否   | 是否支持编辑照片，true表示支持，false表示不支持，默认为true。     |
 | isOriginalSupported<sup>12+</sup>       | boolean | 否   | 是否显示选择原图按钮，true表示显示，false表示不显示，默认为false。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
 | subWindowName<sup>12+</sup>       | string | 否   | 子窗窗口名称。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| complteButtonText<sup>14+</sup>       | [CompleteButtonText](#completebuttontext14) | 否   | 完成按钮显示的内容。<br>完成按钮指在界面右下方，用户点击表示图片选择已完成的按钮。 <br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。     |
 
 ## PhotoSelectResult
 
@@ -5377,6 +5378,18 @@ async function example() {
 | ----- | ---- | ---- |
 | ORIGINAL_FORMAT_MODE |  0 |  原视频资源内容模式。  |
 | COMPATIBLE_FORMAT_MODE    |  1 |  兼容模式，从HDR视频转换为SDR视频。    |
+
+## CompleteButtonText<sup>14+</sup>
+
+配置完成按钮显示内容。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- | ---- | ---- |
+| TEXT_DONE |  0 |  显示“完成”。  |
+| TEXT_SEND    |  1 |  显示“发送”。    |
+| TEXT_ADD |  2 |  显示“添加”。  |
 
 ## MediaAssetProgressHandler<sup>14+</sup>
 

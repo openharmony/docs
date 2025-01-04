@@ -40,3 +40,4 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [EffectErrorCode](effect_kit.md#effecterrorcode) { EFFECT_SUCCESS = 0, EFFECT_BAD_PARAMETER = 401, EFFECT_UNSUPPORTED_OPERATION = 7600201, EFFECT_UNKNOWN_ERROR = 7600901 } | 定义滤镜效果的状态码。 | 
+| [EffectTileMode](effect_kit.md#effecttilemode) { CLAMP = 0, REPEAT, MIRROR, DECAL } | 定义着色器效果平铺模式的枚举。 | 

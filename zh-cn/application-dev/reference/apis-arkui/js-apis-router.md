@@ -169,7 +169,7 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
 
 **返回值：**
 
@@ -239,7 +239,7 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -415,7 +415,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
 
 
 **返回值：**
@@ -475,7 +475,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -664,7 +664,7 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
 
 **返回值：**
 
@@ -734,7 +734,7 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCal
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -910,7 +910,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
 
 
 **返回值：**
@@ -970,7 +970,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -1024,7 +1024,7 @@ back(options?: RouterOptions ): void
 
 | 参数名  | 类型                            | 必填 | 说明                                                         |
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [RouterOptions](#routeroptions) | 否   | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页，页面不会重新构建，页面栈里面的page不会回收，出栈后会被回收。back是返回接口，url设置为特殊值"/"不生效。 |
+| options | [RouterOptions](#routeroptions) | 否   | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页，页面不会重新构建，页面栈里面的page不会回收，出栈后会被回收。back是返回接口，url设置为特殊值"/"不生效。如果是用命名路由的方式跳转，传入的url需是命名路由的名称。 |
 
 **示例：**
 
@@ -1307,7 +1307,7 @@ router.getParams();
   > **说明：**
   > 页面路由栈支持的最大Page数量为32。
 
-## RouterMode<sup>9+</sup>
+## RouterMode<sup>9+</sup>枚举说明
 
 路由跳转模式。
 

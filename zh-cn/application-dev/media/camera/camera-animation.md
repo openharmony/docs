@@ -120,7 +120,7 @@
       */
      public static async doSurfaceShot(surfaceId: string) {
        console.info(`doSurfaceShot surfaceId:${surfaceId}.`);
-       if ('' === surfaceId) {
+       if (surfaceId === '') {
          console.error('surface not ready!');
          return;
        }
@@ -136,7 +136,7 @@
          let imageInfo: image.ImageInfo = await this.surfaceShot.getImageInfo();
          console.info('doSurfaceShot surfaceShot:' + JSON.stringify(imageInfo.size));
        } catch (err) {
-         console.error(JSON.stringify(err))
+         console.error(JSON.stringify(err));
        }
      }
    

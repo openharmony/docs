@@ -12,11 +12,13 @@
     <!--Del-->
     - [Requesting Restricted Permissions](declare-permissions-in-acl.md)
     <!--DelEnd-->
-  - Application Permissions
-    - [Permissions for All Applications](permissions-for-all.md)
+  - [Application Permissions](app-permissions.md)
+    - [Open system_grant Permissions](permissions-for-all.md)
+    - [Open user_grant Permissions](permissions-for-all-user.md)
     <!--Del-->
     - [Permissions for System Applications](permissions-for-system-apps.md)
     <!--DelEnd-->
+    - [Permissions for Enterprise Applications](permissions-for-enterprise-apps.md)
     - [Permissions for MDM Applications](permissions-for-mdm-apps.md)
   - [Application Permission Groups](app-permission-group-list.md)
 - Using Security Components

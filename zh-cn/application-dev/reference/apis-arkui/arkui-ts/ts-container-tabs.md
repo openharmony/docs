@@ -391,7 +391,7 @@ pageFlipMode(value: PageFlipMode)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PageFlipMode](ts-appendix-enums.md#PageFlipMode) | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
+| value  | [PageFlipMode](ts-appendix-enums.md#pageflipmode14) | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
 
 ## DividerStyle<sup>10+</sup>对象说明
 
@@ -1705,6 +1705,8 @@ import { CommonUtil } from '../common/CommonUtil'
 @Entry
 @Component
 struct TabsExample {
+  @State colorArray: [string, string][] =
+    [['green', '#00CB87'], ['blue', '#007DFF'], ['yellow', '#FFBF00'], ['pink', '#E67C92']]
   @State currentIndex: number = 0
   @State animationDuration: number = 300
   @State indicatorLeftMargin: number = 0
@@ -1712,6 +1714,12 @@ struct TabsExample {
   private tabsWidth: number = 0
   private textInfos: [number, number][] = []
   private isStartAnimateTo: boolean = false
+
+  aboutToAppear():void {
+    for (let i = 0; i < this.colorArray.length; i++) {
+      this.textInfos.push([0, 0]);
+    }
+  }
 
   @Builder
   tabBuilder(index: number, name: string) {
@@ -1723,6 +1731,9 @@ struct TabsExample {
         .id(index.toString())
         .onAreaChange((oldValue: Area, newValue: Area) => {
           this.textInfos[index] = [newValue.globalPosition.x as number, newValue.width as number]
+          if (!this.isStartAnimateTo && this.currentIndex === index && this.tabsWidth > 0) {
+            this.setIndicatorAttr(this.textInfos[this.currentIndex][0], this.textInfos[this.currentIndex][1])
+          }
         })
     }.width('100%')
   }
@@ -1730,21 +1741,11 @@ struct TabsExample {
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       Tabs({ barPosition: BarPosition.Start }) {
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#00CB87')
-        }.tabBar(this.tabBuilder(0, 'green'))
-
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#007DFF')
-        }.tabBar(this.tabBuilder(1, 'blue'))
-
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#FFBF00')
-        }.tabBar(this.tabBuilder(2, 'yellow'))
-
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#E67C92')
-        }.tabBar(this.tabBuilder(3, 'pink'))
+        ForEach(this.colorArray, (item: [string, string], index:number) => {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(item[1])
+          }.tabBar(this.tabBuilder(index, item[0]))
+        })
       }
       .onAreaChange((oldValue: Area, newValue: Area)=> {
         this.tabsWidth = newValue.width as number
@@ -1790,7 +1791,8 @@ struct TabsExample {
     let nextIndex = index
     if (index > 0 && (CommonUtil.getIsRTL() ? event.currentOffset < 0 : event.currentOffset > 0)) {
       nextIndex--
-    } else if (index < 3 && (CommonUtil.getIsRTL() ? event.currentOffset > 0 : event.currentOffset < 0)) {
+    } else if (index < this.textInfos.length - 1 &&
+        (CommonUtil.getIsRTL() ? event.currentOffset > 0 : event.currentOffset < 0)) {
       nextIndex++
     }
     let indexInfo = this.textInfos[index]

@@ -92,13 +92,13 @@ Obtains the metrics information of a specified line.
 | ---------------------------------------- | -------- |
 | [LineMetrics](../../apis-arkgraphics2d/js-apis-graphics-text.md#linemetrics) | Button("Line Metrics")|
 
-### getRectsForRange<sup>13+</sup>
+### getRectsForRange<sup>14+</sup>
 
 getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeightStyle): Array\<TextBox>
 
 Obtains the drawing area information for characters or placeholders within a specified text range, based on the specified width and height of a rectangle.
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -227,7 +227,7 @@ Creates a menu with the specified menu items.
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| menuItems | Array<[TextMenuItem](#textmenuitem12)> | Yes  | Menu items.<br>**NOTE**<br>Changes to the name of the default menu item do not take effect.|
+| menuItems | Array\<[TextMenuItem](#textmenuitem12)> | Yes  | Menu items.<br>**NOTE**<br>Changes to the name of the default menu item do not take effect.|
 
 **Return value**
 
@@ -380,7 +380,7 @@ Preview text.
 
 ## FontSettingOptions<sup>12+</sup>
 
-Defines the font settings.
+Defines the font settings, including smooth and continuous adjustments for the font weight for components in your application.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 

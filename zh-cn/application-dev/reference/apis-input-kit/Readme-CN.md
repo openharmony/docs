@@ -10,10 +10,10 @@
   - [@ohos.multimodalInput.gestureEvent (手势事件)](js-apis-multimodalinput-gestureevent.md)
   - [@ohos.multimodalInput.pointer (鼠标指针)](js-apis-pointer.md)
   - [@ohos.multimodalInput.touchEvent (触摸输入事件)](js-apis-touchevent.md)
+  - [@ohos.multimodalInput.infraredEmitter (红外管理)](js-apis-infraredemitter.md)
   <!--Del-->
   - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](js-apis-pointer-sys.md)
   - [@ohos.multimodalInput.shortKey(快捷键)(系统接口)](js-apis-shortKey-sys.md)
-  - [@ohos.multimodalInput.infraredEmitter (红外管理)(系统接口)](js-apis-infraredemitter-sys.md)
   - [@ohos.multimodalInput.inputConsumer-sys (组合按键)(系统接口)](js-apis-inputconsumer-sys.md)
   - [@ohos.multimodalInput.inputConsumer (组合按键)](js-apis-inputconsumer.md)
   - [@ohos.multimodalInput.inputDevice (输入设备)(系统接口)](js-apis-inputdevice-sys.md)

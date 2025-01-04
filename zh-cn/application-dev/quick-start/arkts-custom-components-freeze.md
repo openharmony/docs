@@ -16,14 +16,15 @@
 3. LazyForEach：仅当前显示的LazyForEach中的自定义组件为active状态，而缓存节点的组件则为inactive状态。
 4. Navigation：当前显示的NavDestination中的自定义组件为active状态，而其他未显示的NavDestination组件则为inactive状态。 
 5. 组件复用：进入复用池的组件为inactive状态，从复用池上树的节点为active状态。
-其他场景，如堆叠布局（Stack）下的被遮罩的组件，这些组件尽管不可见，但并不被视为inactive状态，因此不在组件冻结的适用范围内。
-
+6. 混用场景：对于以上场景的组合使用，例如TabContent下面使用LazyForEach，切换Tab时，API version15及以下，LazyForEach中的所有节点都会被设置为active状态，而从API version16开始，只有LazyForEach的屏上节点会被设置为active状态，其余则为inactive状态。
 
 在阅读本文档前，开发者需要了解自定义组件基本语法。建议提前阅读：[自定义组件](./arkts-create-custom-components.md)。
 
 > **说明：**
 >
 > 从API version 11开始，支持自定义组件冻结功能。
+>
+> 从API version 16开始，支持自定义组件冻结功能的混用场景冻结。
 
 ## 当前支持的场景
 
@@ -630,6 +631,7 @@ struct Page {
     - `desc`是\@State装饰的，其变化会通知给其子组件`ChildComponent`\@Link装饰的`desc`。
     - 非可视区域内的`ChildComponent`是inactive状态，且开启了组件冻结，所以这次变化只触发可视区域内的15个节点的`@Watch('descChange')`回调，并只刷新对应可视区域内的15个节点。LazyForEach和复用池中的节点并不会刷新，也不会触发\@Watch回调。
     
+
 图示如下：
 ![freeze](./figures/freezeResuable.png)
 可通过trace观察，仅触发了15个`ChildComponent`节点的刷新。
@@ -971,7 +973,394 @@ struct Page {
 }
 ```
 
+### 组件混用
+
+组件冻结混用场景即当支持组件冻结的场景彼此之间组合使用，对于不同的API version版本，冻结行为会有不同。给父组件设置组件冻结标志，在API version 15及以下，当父组件解冻时，会解冻自己子组件所有的节点；从API version 16开始，父组件解冻时，只会解冻子组件的屏上节点。
+
+#### Navigation和TabContent的混用
+
+代码示例如下：
+
+```ts
+// index.ets
+@Component
+struct ChildOfParamComponent {
+  @Prop @Watch('onChange') child_val: number;
+
+  onChange() {
+    console.log(`Appmonitor ChildOfParamComponent: child_val changed:${this.child_val}`);
+  }
+
+  build() {
+    Column() {
+      Text(`Child Param： ${this.child_val}`);
+    }
+  }
+}
+
+@Component
+struct ParamComponent {
+  @Prop @Watch('onChange')  paramVal: number;
+
+  onChange() {
+    console.log(`Appmonitor ParamComponent: paramVal changed:${this.paramVal}`);
+  }
+
+  build() {
+    Column() {
+      Text(`val： ${this.paramVal}`)
+      ChildOfParamComponent({child_val: this.paramVal});
+    }
+  }
+}
+
+
+
+@Component
+struct DelayComponent {
+  @Prop @Watch('onChange') delayVal: number;
+
+  onChange() {
+    console.log(`Appmonitor ParamComponent: delayVal changed:${this.delayVal}`);
+  }
+
+
+  build() {
+    Column() {
+      Text(`Delay Param： ${this.delayVal}`);
+    }
+  }
+}
+
+@Component ({freezeWhenInactive: true})
+struct TabsComponent {
+  private controller: TabsController = new TabsController();
+  @State @Watch('onChange') tabState: number = 47;
+
+  onChange() {
+    console.log(`Appmonitor TabsComponent: tabState changed:${this.tabState}`);
+  }
+
+  build() {
+    Column({space: 10}) {
+      Button(`Incr state ${this.tabState}`)
+        .fontSize(25)
+        .onClick(() => {
+          console.log('Button increment state value');
+          this.tabState = this.tabState + 1;
+        })
+
+      Tabs({ barPosition: BarPosition.Start, index: 0, controller: this.controller}) {
+        TabContent() {
+          ParamComponent({paramVal: this.tabState});
+        }.tabBar('Update')
+        TabContent() {
+          DelayComponent({delayVal: this.tabState});
+        }.tabBar('DelayUpdate')
+      }
+      .vertical(false)
+      .scrollable(true)
+      .barMode(BarMode.Fixed)
+      .barWidth(400).barHeight(150).animationDuration(400)
+      .width('100%')
+      .height(200)
+      .backgroundColor(0xF5F5F5)
+    }
+  }
+}
+
+@Entry
+@Component
+struct MyNavigationTestStack {
+  @Provide('pageInfo') pageInfo: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageMap(name: string) {
+    if (name === 'pageOne') {
+      pageOneStack()
+    } else if (name === 'pageTwo') {
+      pageTwoStack()
+    }
+  }
+
+  build() {
+    Column() {
+      Navigation(this.pageInfo) {
+        Column() {
+          Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+            .width('80%')
+            .height(40)
+            .margin(20)
+            .onClick(() => {
+              this.pageInfo.pushPath({ name: 'pageOne' }); //将name指定的NavDestination页面信息入栈
+            })
+        }
+      }.title('NavIndex')
+      .navDestination(this.PageMap)
+      .mode(NavigationMode.Stack)
+    }
+  }
+}
+
+@Component
+struct pageOneStack {
+  @Consume('pageInfo') pageInfo: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Column() {
+        TabsComponent();
+
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('pageTwo', null);
+          })
+      }.width('100%').height('100%')
+    }.title('pageOne')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+  }
+}
+
+@Component
+struct pageTwoStack {
+  @Consume('pageInfo') pageInfo: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Column() {
+        Button('Back Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pop();
+          })
+      }.width('100%').height('100%')
+    }.title('pageTwo')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+  }
+}
+```
+
+代码运行结果图如下：
+
+![freeze](figures/freeze_tabcontent.png)
+
+页面中存在两个tab标签，默认在Update标签，开启组件冻结功能，Tabcontent的标签如果未被选中，状态变量不会刷新，如以下操作。
+
+点击Button：Incr state，日志中查询Appmonitor，存在3个打印。
+
+![freeze](figures/freeze_tabcontent_update.png)
+
+切换到DelayUpdate标签，点击Button：Incr state，日志中查询Appmonitor，存在2个打印。DelayUpdate中状态变量不会刷新与Update标签中相关的状态变量。
+
+![freeze](figures/freeze_tabcontent_delayupdate.png)
+
+在API version 15及以下：
+
+点击Next page进入下一个页面并返回，标签默认在DelayUpdate，再次点击Button：Incr state，日志中查询Appmonitor，存在4个打印，页面路由返回时，会解冻Tabcontent所有的标签。
+
+![freeze](figures/freeze_tabcontent_back_api15.png)
+
+在API Version 16及以上：
+
+点击Next page进入下一个页面并返回，标签默认在DelayUpdate，再次点击Button：Incr state，日志中查询Appmonitor，存在2个打印，页面路由返回时，只会解冻对应标签的节点。
+
+![freeze](figures/freeze_tabcontent_back_api16.png)
+
+#### 页面和LazyForEach
+
+Navigation和TabContent混用时，之所以会解锁TabContent标签的子节点，是因为回到前一个页面时会从父组件开始递归解冻子组件，与此行为类似的还有页面生命周期：OnPageShow。OnPageShow会将当前Page中的根节点设置为active状态，TabContent作为页面的子节点，也会被设置为active状态。在屏幕灭屏和屏幕亮屏时会分别触发页面的生命周期：OnPageHide和OnPageShow，因此页面中使用LazyForEach时，手动灭屏和亮屏也能实现页面路由一样的效果，如以下示例代码：
+
+```ts
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+// 用于处理数据监听的IDataSource的基本实现
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: string[] = [];
+
+  public totalCount(): number {
+    return 0;
+  }
+
+  public getData(index: number): string {
+    return this.originDataArray[index];
+  }
+
+  // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener');
+      this.listeners.push(listener);
+    }
+  }
+
+  // 该方法为框架侧调用，为对应的LazyForEach组件在数据源处去除listener监听
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // 通知LazyForEach组件需要重载所有子组件
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+
+  // 通知LazyForEach组件需要在index对应索引处添加子组件
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+
+  // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    })
+  }
+
+  // 通知LazyForEach组件需要在index对应索引处删除该子组件
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    })
+  }
+
+  // 通知LazyForEach组件将from索引和to索引处的子组件进行交换
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: string[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+}
+
+@Reusable
+@Component({freezeWhenInactive: true})
+struct ChildComponent {
+  @State desc: string = '';
+  @Link @Watch('sumChange') sum: number;
+
+  sumChange() {
+    console.info(`sum: Change ${this.sum}`);
+  }
+
+  aboutToReuse(params: Record<string, Object>): void {
+    this.desc = params.desc as string;
+    this.sum = params.sum as number;
+  }
+
+  aboutToRecycle(): void {
+    console.info(`ChildComponent has been recycled`);
+  }
+  build() {
+    Column() {
+      Divider()
+        .color('#ff11acb8')
+      Text(`子组件: ${this.desc}`)
+        .fontSize(30)
+        .fontWeight(30)
+      Text(`${this.sum}`)
+        .fontSize(30)
+        .fontWeight(30)
+    }
+  }
+}
+
+@Entry
+@Component ({freezeWhenInactive: true})
+struct Page {
+  private data: MyDataSource = new MyDataSource();
+  @State sum: number = 0;
+  @State desc: string = '';
+
+  aboutToAppear() {
+    for (let index = 0; index < 20; index++) {
+      this.data.pushData(index.toString());
+    }
+  }
+
+  build() {
+    Column() {
+      Button(`add sum`).onClick(() => {
+        this.sum++;
+      })
+        .fontSize(30)
+        .margin(20)
+      List() {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            ChildComponent({desc: item, sum: this.sum});
+          }
+          .width('100%')
+          .height(100)
+        }, (item: string) => item)
+      }.cachedCount(5)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+在组件复用场景中，已经对LazyForEach的节点进行了详细说明，分为屏上节点和cachedCount节点。
+
+![freeze](figures/freeze_lazyforeach.png)
+
+向下滑动LazyForEach，让cachedCount补充节点，点击Button：add sum，搜索打印日志：sum：Change，出现了8条打印。
+
+![freeze](figures/freeze_lazyforeach_add.png)
+
+在API version 15及以下：
+
+灭屏之后亮屏，触发OnPageShow，点击Button：add sum，打印数量 = 屏上节点 + cachedCount的数量。
+
+![freeze](figures/freeze_lazyforeach_api15.png)
+
+从API version 16开始：
+
+灭屏之后亮屏，触发OnPageShow，点击Button：add sum，只会打印屏上节点数量，不再会解冻cachedCount中的节点。
+
+![freeze](figures/freeze_lazyforeach_api16.png)
+
 ## 限制条件
+
 如下面的例子所示，FreezeBuildNode中使用了自定义节点[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)。BuilderNode可以通过命令式动态挂载组件，而组件冻结又是强依赖父子关系来通知是否开启组件冻结。如果父组件使用组件冻结，且组件树的中间层级上又启用了BuilderNode，则BuilderNode的子组件将无法被冻结。
 
 ```

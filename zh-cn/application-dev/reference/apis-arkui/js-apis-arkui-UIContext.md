@@ -2369,6 +2369,43 @@ unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: S
 
 参考[bindTabsToScrollable](#bindtabstoscrollable13)接口示例。
 
+### enableSwipeBack<sup>16+</sup>
+
+enableSwipeBack(enabled: Optional\<boolean\>): void
+
+设置是否支持应用内横向滑动返回上一级。
+
+**原子化服务API:** 从API Version 16 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Circle
+
+**参数：**
+
+| 参数名     | 类型    | 必填   | 说明      |
+| --- | --- | --- | --- |
+| isEnabled | boolean | 是 | 是否支持应用内横向滑动返回，默认值为true。|
+
+**示例：**
+
+```js
+@Entry
+@Component
+struct Index {
+  @State isEnable: boolean = true;
+
+  build() {
+    RelativeContainer() {
+      Button(`enable swipe back: ${this.isEnable}`).onClick(() => {
+        this.isEnable = !this.isEnable;
+        this.getUIContext().enableSwipeBack(this.isEnable);
+      })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
@@ -2956,6 +2993,7 @@ struct Index {
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
       Button('注册屏幕像素密度变化监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
           this.message = '已注册监听'
           this.getUIContext().getUIObserver().on('densityUpdate', this.densityUpdateCallback);
@@ -3037,6 +3075,7 @@ struct Index {
   build() {
     Column() {
       Button('注册绘制指令下发监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
           this.getUIContext().getUIObserver().on('willDraw', this.willDrawCallback);
         })
@@ -3116,6 +3155,7 @@ struct Index {
   build() {
     Column() {
       Button('注册布局完成监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
           this.getUIContext().getUIObserver().on('didLayout', this.didLayoutCallback);
         })
@@ -4985,6 +5025,22 @@ let router: Router = uiContext.getRouter();
 router.getParams();
 ```
 
+## CustomBuilderWithId<sup>16+</sup>
+
+type CustomBuilderWithId = (id: number)&nbsp;=&gt;&nbsp;void
+
+组件属性方法参数可使用CustomBuilderWithId类型来自定义UI描述，并且可以指定组件ID生成用户自定义组件。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| id | number | 是 | 组件ID |
+
 ## PromptAction
 
 以下API需先使用UIContext中的[getPromptAction()](#getpromptaction)方法获取到PromptAction对象，再通过该对象调用对应方法。
@@ -5530,6 +5586,107 @@ struct Index {
 }
 ```
 
+### openCustomDialogWithController<sup>16+</sup>
+
+openCustomDialogWithController\<T extends Object>(dialogContent: ComponentContent\<T>, controller: promptAction.DialogController, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
+
+创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。支持传入弹窗控制器与自定义弹窗绑定，后续可以通过控制器控制自定义弹窗。
+
+通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。
+
+暂不支持isModal = true与showInSubWindow = true同时使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
+| controller | [promptAction.DialogController](js-apis-promptAction.md#dialogcontroller16) | 是 | 自定义弹窗的控制器。 |
+| options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | 否    | 自定义弹窗的样式。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | the ComponentContent is incorrect. |
+| 103302 | Dialog content already exists.|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ComponentContent, promptAction } from '@kit.ArkUI';
+
+class Params {
+  text: string = ""
+  dialogController: promptAction.DialogController = new promptAction.DialogController();
+  constructor(text: string, dialogController: promptAction.DialogController) {
+    this.text = text;
+    this.dialogController = dialogController;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({bottom: 36})
+    Button('点我关闭弹窗：通过外部传递的DialogController')
+      .onClick(() => {
+        if (params.dialogController != undefined) {
+          params.dialogController.close()
+        }
+      })
+  }.backgroundColor('#FFF0F0F0')
+}
+
+@Entry
+@ComponentV2
+struct Index {
+  @Local message: string = "hello"
+  private dialogController: promptAction.DialogController = new promptAction.DialogController()
+
+  build() {
+    Row() {
+      Column() {
+        Button("click me")
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText),
+              new Params(this.message, this.dialogController));
+            try {
+              promptAction.openCustomDialogWithController(contentNode, this.dialogController);
+            } catch (error) {
+              let message = (error as BusinessError).message;
+              let code = (error as BusinessError).code;
+              console.error(`OpenCustomDialogWithController args error code is ${code}, message is ${message}`);
+            };
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ### closeCustomDialog<sup>12+</sup>
 
 closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promise&lt;void&gt;
@@ -5751,6 +5908,121 @@ openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal error.                                              |
+
+### presentCustomDialog<sup>16+</sup>
+
+presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: promptAction.DialogController, options?: promptAction.DialogOptions): Promise\<number>
+
+创建并弹出自定义弹窗。使用Promise异步回调，返回供closeCustomDialog使用的对话框id。
+
+支持在自定义弹窗内容中持有弹窗ID进行对应操作。支持传入弹窗控制器与自定义弹窗绑定，后续可以通过控制器控制自定义弹窗。
+
+暂不支持isModal = true与showInSubWindow = true同时使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                         | 必填 | 说明               |
+| ------- | ------------------------------------------------------------ | ---- | ------------------ |
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [CustomBuilderWithId](#custombuilderwithid16) | 是   | 自定义弹窗的内容。 |
+| controller | [promptAction.DialogController](js-apis-promptAction.md#dialogcontroller16) | 否 | 自定义弹窗的控制器。 |
+| options | [promptAction.DialogOptions](js-apis-promptAction.md#dialogoptions16) | 否 | 自定义弹窗的样式。 |
+
+**返回值：**
+
+| 类型                | 说明                                    |
+| ------------------- | --------------------------------------- |
+| Promise&lt;number&gt; | 返回自定义弹窗ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { PromptAction, promptAction } from '@kit.ArkUI';
+
+@Entry
+@ComponentV2
+struct Index {
+  @Local message: string = "hello"
+  private ctx: UIContext = this.getUIContext()
+  private promptAction: PromptAction = this.ctx.getPromptAction()
+  private dialogController: promptAction.DialogController = new promptAction.DialogController()
+
+  private customDialogComponentId: number = 0
+  @Builder customDialogComponent() {
+    Column() {
+      Text(this.message).fontSize(30)
+      Row({ space: 10 }) {
+        Button("通过DialogId关闭").onClick(() => {
+          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+        })
+        Button("通过DialogController关闭").onClick(() => {
+          this.dialogController.close()
+        })
+      }
+    }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
+  }
+
+  @Builder customDialogComponentWithId(dialogId: number) {
+    Column() {
+      Text(this.message).fontSize(30)
+      Row({ space: 10 }) {
+        Button("通过DialogId关闭").onClick(() => {
+          this.promptAction.closeCustomDialog(dialogId)
+        })
+        Button("通过DialogController关闭").onClick(() => {
+          this.dialogController.close()
+        })
+      }
+    }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
+  }
+
+  build() {
+    Row() {
+      Column({ space: 10 }) {
+        Button('presentCustomDialog')
+          .fontSize(20)
+          .onClick(() => {
+            this.promptAction.presentCustomDialog(() => {
+              this.customDialogComponent()
+            }, this.dialogController)
+              .then((dialogId: number) => {
+                this.customDialogComponentId = dialogId
+              })
+              .catch((err: BusinessError) => {
+                console.error("presentCustomDialog error: " + err.code + " " + err.message)
+              })
+          })
+        Button('presentCustomDialog with id')
+          .fontSize(20)
+          .onClick(() => {
+            this.promptAction.presentCustomDialog((dialogId: number) => {
+              this.customDialogComponentWithId(dialogId)
+            }, this.dialogController)
+              .catch((err: BusinessError) => {
+                console.error("presentCustomDialog with id error: " + err.code + " " + err.message)
+              })
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
 
 ### closeCustomDialog<sup>12+</sup>
 
@@ -6695,16 +6967,14 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 配置键盘避让时页面的避让模式。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 值   | 说明       |
 | ------ | ---- | ---------- |
-| OFFSET | 0    | 上抬模式。 |
-| RESIZE | 1    | 压缩模式。 |
-| OFFSET_WITH_CARET<sup>14+</sup>  | 2 | 上抬模式，输入框光标位置发生变化时候也会触发避让。|
-| RESIZE_WITH_CARET<sup>14+</sup>  | 3 | 压缩模式，输入框光标位置发生变化时候也会触发避让。|
+| OFFSET | 0    | 上抬模式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| RESIZE | 1    | 压缩模式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| OFFSET_WITH_CARET<sup>14+</sup>  | 2 | 上抬模式，输入框光标位置发生变化时候也会触发避让。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| RESIZE_WITH_CARET<sup>14+</sup>  | 3 | 压缩模式，输入框光标位置发生变化时候也会触发避让。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 
 
 ## FocusController<sup>12+</sup>
@@ -6963,6 +7233,19 @@ struct CustomDialogUser {
   }
 }
 ```
+## PointerStyle<sup>12+</sup>
+
+type PointerStyle = PointerStyle
+
+光标样式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+|类型|说明|
+| -- | -- |
+|[PointerStyle](../apis-input-kit/js-apis-pointer.md#pointerstyle) |光标样式。|
 
 ## CursorController<sup>12+</sup>
 以下API需先使用UIContext中的[getCursorController()](js-apis-arkui-UIContext.md#getcursorcontroller12)方法获取CursorController实例，再通过此实例调用对应方法。
@@ -7021,7 +7304,7 @@ setCursor(value: PointerStyle): void
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| value | [PointerStyle](../apis-input-kit/js-apis-pointer.md#pointerstyle) | 是    | 光标样式 |
+| value | [PointerStyle](#pointerstyle12) | 是    | 光标样式 |
 
 **示例：**
 当光标进入蓝框时，通过CursorController的setCursor方法修改光标样式为PointerStyle.WEST
@@ -7902,7 +8185,7 @@ SwiperDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应S
 
 ## MarqueeDynamicSyncScene<sup>14+</sup>
 
-MarqueeDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应Marquee的动态帧率场景。
+MarqueeDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应[Marquee](arkui-ts/ts-basic-components-marquee.md)的动态帧率场景。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 

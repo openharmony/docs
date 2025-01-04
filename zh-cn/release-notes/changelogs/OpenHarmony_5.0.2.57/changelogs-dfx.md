@@ -20,10 +20,6 @@
    ```
    ![before](figures/hidumper_mem_pid_before.png)
 
-   ```
-   hidumper --mem
-   ```
-   ![before](figures/hidumper_mem_before.png)
 
 变更后：每一列数据后新增一个空格
    ```
@@ -31,12 +27,8 @@
    ```
    ![after](figures/hidumper_mem_pid_after.png)
 
-   ```
-   hidumper --mem
-   ```
-   ![after](figures/hidumper_mem_after.png)
 
-其中hidumper、hidumper -c [system]这两个命令包含了hidumper --mem命令打印的信息，变更效果与hidumper --mem命令效果一致。
+其中hidumper、hidumper --mem、hidumper -c [system]变更效果与hidumper --mem [pid]命令效果一致。
 
 **变更发生版本**
 

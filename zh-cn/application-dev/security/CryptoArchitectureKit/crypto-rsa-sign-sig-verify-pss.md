@@ -111,7 +111,7 @@
     await verifyer.init(keyPair.pubKey);
     await verifyer.update(input1);
     let verifyResult = await verifyer.verify(input2, signMessageBlob);
-    if (verifyResult == true) {
+    if (verifyResult === true) {
       console.info('verify success');
     } else {
       console.error('verify failed');
@@ -193,7 +193,7 @@
     verifyer.initSync(keyPair.pubKey);
     verifyer.updateSync(input1);
     let verifyResult = verifyer.verifySync(input2, signMessageBlob);
-    if (verifyResult == true) {
+    if (verifyResult === true) {
       console.info('verify success');
     } else {
       console.error('verify failed');

@@ -349,6 +349,8 @@ scrollSnapAlign(value: ScrollSnapAlign)
 
 触控板和鼠标滑动List结束后不支持对齐效果。
 
+对齐动画期间onWillScroll事件上报的滚动操作来源类型为ScrollSource.FLING。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -906,13 +908,13 @@ getItemRectInGroup(index: number, indexInGroup: number): RectResult
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100004   | Controller not bound to component.                               |
-### getVisibleListContentInfo<sup>13+</sup>
+### getVisibleListContentInfo<sup>14+</sup>
 
 getVisibleListContentInfo(x:number, y: number): VisibleListContentInfo
 
 根据坐标获取子组件的索引信息。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

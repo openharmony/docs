@@ -48,7 +48,7 @@ Provides the AI analysis options.
 >
 > The **types** parameter of this API has a higher priority than that of [ImageAnalyzerConfig](#imageanalyzerconfig). This means that, if both parameters are set, the value set by this API takes precedence.
 >
-> This API depends on device capabilities and must be used together with the **enableAnalyzer** API of the corresponding component (for example, the [\<Image>](ts-basic-components-image.md#enableanalyzer11) component).
+> This API depends on device capabilities and must be used together with the **enableAnalyzer** API of the corresponding component (for example, the [Image](ts-basic-components-image.md#enableanalyzer11) component).
 
 ## ImageAnalyzerController
 

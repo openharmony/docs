@@ -4529,7 +4529,7 @@ Media asset handler, which can be used to customize the media asset processing l
 onDataPrepared(data: T, map?: Map<string, string>): void
 
 Called when the requested media asset is ready. If an error occurs, **data** returned by the callback is **undefined**. Each media asset request corresponds to a callback.
-T supports the following data types: ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12), and boolean. ArrayBuffer indicates the image/video asset data, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource) indicates the image source, [MovingPhoto] (#movingphoto12) indicates a moving photo object, and boolean indicates whether the image/video is successfully written to the application sandbox directory.
+T supports the following data types: ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12), and boolean. ArrayBuffer indicates the image/video asset data, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource) indicates the image source, [MovingPhoto](#movingphoto12) indicates a moving photo object, and boolean indicates whether the image/video is successfully written to the application sandbox directory.
 
 Information returned by **map**:
 | Map Key | **Description**|

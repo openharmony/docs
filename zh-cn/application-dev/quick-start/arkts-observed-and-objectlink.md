@@ -187,7 +187,7 @@ struct Parent {
 ### 框架行为
 
 1. 初始渲染：
-   1. \@Observed装饰的class的实例会被不透明的代理对象包装，代理了class上的属性的setter和getter方法
+   1. \@Observed装饰的class的实例会被不透明的代理对象包装，代理了class上的属性的setter和getter方法。
    2. 子组件中\@ObjectLink装饰的从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。
 
 2. 属性更新：当\@Observed装饰的class属性改变时，会执行到代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
@@ -282,7 +282,7 @@ struct Parent {
 
   build() {
     Column() {
-      Text(`count的值: ${this.num}`)
+      Text(`count的值: ${this.num.count}`)
       Child({num: this.num})
     }
   }
@@ -323,7 +323,7 @@ struct Parent {
 
   build() {
     Column() {
-      Text(`count的值: ${this.num}`)
+      Text(`count的值: ${this.num.count}`)
       Button('click')
         .onClick(() => {
           // 可以在父组件做整体替换
@@ -493,7 +493,7 @@ struct GrandFather {
 GrandFather中的事件句柄：
 
 
-- this.user.bag = new Bag(10) 和this.user = new User(new Bag(20))： 对@State装饰的变量size和其属性的修改。
+- this.user.bag = new Bag(10) 和this.user = new User(new Bag(20))： 对@State装饰的变量user和其属性的修改。
 
 - this.child.bookName.size += ... ：该变化属于第二层的变化，@State无法观察到第二层的变化，但是Bag被\@Observed装饰，Bag的属性size的变化可以被\@ObjectLink观察到。
 
@@ -501,7 +501,7 @@ GrandFather中的事件句柄：
 Father中的事件句柄：
 
 
-- this.bookName.size += 1：对\@ObjectLink变量size的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
+- this.bookName.size += 1：对\@ObjectLink变量size的修改，将触发Text组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
 
 - \@ObjectLink变量是只读的，this.bookName = new bookName(...)是不允许的，因为一旦赋值操作发生，指向数据源的引用将被重置，同步将被打断。
 
@@ -1951,9 +1951,9 @@ struct Child {
 }
 ```
 
-\@ObjectLink的数据源更新依赖其父组件，当父组件中数据源改变引起父组件刷新时，会重新设置子组件\@ObjectLink的数据源。这个过程不是在父组件数据源变化后立刻发生的，而是在父组件实际刷新时才会进行。上述示例中，Parent包含Child，Parent传递箭头函数给Child，在点击时，日志打印顺序是1-2-3-4-5，打印到日志4时，点击事件流程结束，此时仅仅是将子组件Child标记为需要父组件更新的节点，因此日志4打印的this.per.name的值仍为1，等到父组件真正更新时，才会更新Child的数据源。
+\@ObjectLink的数据源更新依赖其父组件，当父组件中数据源改变引起父组件刷新时，会重新设置子组件\@ObjectLink的数据源。这个过程不是在父组件数据源变化后立刻发生的，而是在父组件实际刷新时才会进行。上述示例中，Parent包含Child，Parent传递箭头函数给Child，在点击时，日志打印顺序是1-2-3-4-5，打印到日志4时，点击事件流程结束，此时仅仅是将子组件Child标记为需要父组件更新的节点，因此日志4打印的this.per.name的值仍为Bob，等到父组件真正更新时，才会更新Child的数据源。
 
-当@ObjectLink @Watch('onChange02') per: Person的\@Watch函数执行时，说明\@ObjectLink的数据源已被父组件更新，此时日志5打印的值为更新后的2。
+当@ObjectLink @Watch('onChange02') per: Person的\@Watch函数执行时，说明\@ObjectLink的数据源已被父组件更新，此时日志5打印的值为更新后的Jack。
 
 日志的含义为：
 - 日志1：对Parent @State @Watch('onChange01') info: Info = new Info(new Person('Bob', 10)) 赋值前。
@@ -1962,13 +1962,13 @@ struct Child {
 
 - 日志3：对Parent @State @Watch('onChange01') info: Info = new Info(new Person('Bob', 10)) 赋值完成。
 
-- 日志4：onClickType方法内clickEvent执行完，此时只是将子组件Child标记为需要父组件更新的节点，未将最新的值更新给Child @ObjectLink @Watch('onChange02') per: Person，所以日志4打印的this.per.name的值仍然是1。
+- 日志4：onClickType方法内clickEvent执行完，此时只是将子组件Child标记为需要父组件更新的节点，未将最新的值更新给Child @ObjectLink @Watch('onChange02') per: Person，所以日志4打印的this.per.name的值仍然是Bob。
 
-- 日志5：下一次vsync信号触发Child更新，@ObjectLink @Watch('onChange02') per: Person被更新，触发其\@Watch方法，此时@ObjectLink @Watch('onChange02') per: Person为新值2。
+- 日志5：下一次vsync信号触发Child更新，@ObjectLink @Watch('onChange02') per: Person被更新，触发其\@Watch方法，此时@ObjectLink @Watch('onChange02') per: Person为新值Jack。
 
 \@Prop父子同步原理同\@ObjectLink一致。
 
-当clickEvent中更改this.info.person.name时，修改会立刻生效，此时日志4打印的值是2。
+当clickEvent中更改this.info.person.name时，修改会立刻生效，此时日志4打印的值是Jack。
 
 ```ts
 Child({

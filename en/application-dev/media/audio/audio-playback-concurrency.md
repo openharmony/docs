@@ -86,7 +86,7 @@ You can set the audio focus mode in one of the following ways:
 
 - If you [use AVPlayer for audio playback (ArkTS)](../media/using-avplayer-for-playback.md), set [audioInterruptMode](../../reference/apis-media-kit/js-apis-media.md#avplayer9) of AVPlayer to set the audio focus mode.
 
-- If you [use AVPlayer for audio playback (C/C++)](../media/using-ndk-avplayer-for-playerback.md), call [OH_AVPlayer_SetAudioInterruptMode](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudiointerruptmode) to set the audio focus mode.
+- If you [use AVPlayer for audio playback (C/C++)](../media/using-ndk-avplayer-for-playback.md), call [OH_AVPlayer_SetAudioInterruptMode](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudiointerruptmode) to set the audio focus mode.
 
 - If you [use AudioRenderer for audio playback](using-audiorenderer-for-playback.md), call [setInterruptMode](../../reference/apis-audio-kit/js-apis-audio.md#setinterruptmode9) of AudioRenderer to set the audio focus mode.
 
@@ -102,7 +102,7 @@ The manners for listening for audio focus events vary according to the developme
 
 - If you [use AVPlayer for audio playback (ArkTS)](../media/using-avplayer-for-playback.md), call [on('audioInterrupt')](../../reference/apis-media-kit/js-apis-media.md#onaudiointerrupt9) to listen for audio focus events (specified by [InterruptEvent](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)).
 
-- If you [use AVPlayer for audio playback (C/C++)](../media/using-ndk-avplayer-for-playerback.md), call [OH_AVPlayer_SetOnInfoCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setoninfocallback) to listen for audio focus events (specified by [OH_AVPlayerOnInfoCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfocallback)).
+- If you [use AVPlayer for audio playback (C/C++)](../media/using-ndk-avplayer-for-playback.md), call [OH_AVPlayer_SetOnInfoCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setoninfocallback) to listen for audio focus events (specified by [OH_AVPlayerOnInfoCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfocallback)).
 
 - If you [use AudioRenderer for audio playback](using-audiorenderer-for-playback.md), call [on('audioInterrupt')](../../reference/apis-audio-kit/js-apis-audio.md#onaudiointerrupt9) to listen for audio focus events (specified by [InterruptEvent](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)).
 
@@ -221,7 +221,7 @@ Applications may use AudioSession APIs to customize a focus strategy for its aud
 
 The AudioSession APIs are used to implement the following functions:
 
-- Once an application activates an audio session and specifies an [audio session strategy] (#audio-session-strategy), all audio streams of the application preferentially use this strategy during focus management.
+- Once an application activates an audio session and specifies an [audio session strategy](#audio-session-strategy), all audio streams of the application preferentially use this strategy during focus management.
 
   Typical scenario: When an application plays a short video, the music playing in the background is interrupted. It is expected that the background music be automatically restored once the audio stream of the application stops.
 

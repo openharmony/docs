@@ -33,6 +33,7 @@
 | DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
 | CONFLICT_RESOLUTION   | 类型为number，取值范围详见[ConflictResolution](../../reference/apis-asset-store-kit/js-apis-asset.md#conflictresolution)。 | 可选     | 新增关键资产时的冲突（如：别名相同）处理策略。  |
 | REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | 类型为bool。 | 可选 | 是否加密业务自定义附属信息，默认不需要加密。|
+| GROUP_ID<sup>16+</sup> | 类型为Uint8Array，长度为7-127字节。 | 可选 | 待新增的关键资产所属群组，默认新增不属于任何群组的关键资产。|
 
 ## 约束和限制
 
@@ -52,8 +53,10 @@
 > **说明：**
 >
 > 本模块提供了异步和同步两套接口，以下为异步接口的使用示例，同步接口详见[API文档](../../reference/apis-asset-store-kit/js-apis-asset.md)。
+>
+> 在指定群组中新增一条关键资产的使用示例详见[新增群组关键资产](asset-js-group-access-control.md#新增群组关键资产)。
 
-新增一条密码是demo_pwd，别名是demo_alias，附属信息是demo_label的数据，该数据在用户首次解锁设备后可被访问。
+新增一条密码是demo_pwd，别名是demo_alias，附属信息是demo_label的关键资产，该关键资产在用户首次解锁设备后可被访问。
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';

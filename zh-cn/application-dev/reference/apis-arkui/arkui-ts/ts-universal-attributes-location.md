@@ -224,6 +224,22 @@ chainMode(direction: Axis, style: ChainStyle)
 | SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。 |
 | PACKED        | 链内子组件无间隙。详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。 |
 
+## chainWeight<sup>14+</sup>
+
+chainWeight(chainWeight: ChainWeightOptions)
+
+对形成链的组件进行重新布局。仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型                                        | 必填 | 说明                     |
+| ------ | ------------------------------------------- | ---- | ------------------------ |
+| chainWeight  | [ChainWeightOptions](ts-types.md#chainweightoptions14对象说明) | 是   | 设置了chainWeight属性的组件与同一条链上的兄弟组件在水平或竖直方向的尺寸会按照设置的权重进行分配，分配时会忽略组件本身尺寸设置，按分配的权重自适应占满剩余空间。 |
+
 ## 示例
 
 ### 示例1（对齐方式和主轴方向上的布局）

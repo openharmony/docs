@@ -277,48 +277,15 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
 
  根据主从类型，异常处理可以分为两类：
 
-1. 回调函数（JS主，Native从）中Native发生异常，需往JSVM中抛出异常
+1. JSVM 执行 C++ 回调函数（JS主，Native从）时发生 C++ 异常，需往 JSVM 中抛出异常，下面用例描述了3种情况下 C++ 回调函数的写法
+**注意事项**：回调函数中调用JSVM-API失败，如要向JSVM中抛异常，需保证JSVM中无等待处理的异常，也可以不抛出异常，JS的try-catch块可以捕获回调函数调用API失败产生的JS异常，见`NativeFunctionExceptionDemo3`。
     ```c++
-    // Native主，JSVM从
-    void ThrowError() {
-    bool isPending = false;
-    if (JSVM_OK == OH_JSVM_IsExceptionPending((env), &isPending) && isPending) {
-        JSVM_Value error;
-        // 获取并清空JSVM异常
-        if (JSVM_OK == OH_JSVM_GetAndClearLastException((env), &error)) {
-        // 获取异常堆栈
-        JSVM_Value stack = nullptr;
-        CALL_JSVM(env, OH_JSVM_GetNamedProperty((env), error, "stack", &stack));
-
-        JSVM_Value message = nullptr;
-        CALL_JSVM(env, OH_JSVM_GetNamedProperty((env), error, "message", &message));
-        
-        // 需实现将JS字符串转化为C++的std::string
-        std::string stackstr = stack? GetValueString(stack) : "";
-        std::string messagestr = message? GetValueString(message) : "";
-        // 抛出异常，需实现JSError
-        throw JSError(*this, messagestr, stackstr);
-        }
-    }
-    // 抛出异常，需实现JSError
-    throw JSError(*this, "JSVM Runtime: unkown execption");
-    }
-
-    status = OH_JSVM_SetNamedProperty(env, object, "foo", string);
-    // JSVM-API调用失败，清空JS引擎实例pending的异常，抛出C++异常
-    if (status != JSVM_OK) { 
-        ThrowError();
-    }
-    ```
-
-2. C++调用JSVM-API（Native主，JS从）失败，需清理JSVM中等待处理的异常，避免影响后续JSVM-API的执行，并设置C++异常处理分支（或抛出C++异常）
-    ```
     // JSVM主， Native从
     void DoSomething() {
         throw("Do something failed");
     }
 
-    // Demo1: 捕获到C++异常，抛出异常到JSVM中
+    // Demo1: C++捕获到异常，抛出异常到JSVM中
     JSVM_Value NativeFunctionExceptionDemo1(JSVM_Env env, JSVM_CallbackInfo info) {
         try {
             DoSomething();
@@ -387,7 +354,39 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
     status = OH_JSVM_RunScript(env, script, &result);
     ```
 
-**注意事项**：回调函数中调用JSVM-API失败，如要向JSVM中抛异常，需保证JSVM中无等待处理的异常，也可以不抛出异常，JS的try-catch块可以捕获回调函数调用API失败产生的JS异常，见`NativeFunctionExceptionDemo3`。
+2. C++调用JSVM-API（Native主，JS从）失败，需清理JSVM中等待处理的异常，避免影响后续JSVM-API的执行，并设置C++异常处理分支（或抛出C++异常）
+    ```
+    std::string sourcecodestr = R"JS(
+        throw Error('Error throw from js');
+    )JS";
+    JSVM_Value sourcecodevalue = nullptr;
+    OH_JSVM_CreateStringUtf8(env, sourcecodestr.c_str(), sourcecodestr.size(), &sourcecodevalue);
+    JSVM_Script script;
+    auto status = OH_JSVM_CompileScript(env, sourcecodevalue, nullptr, 0, true, nullptr, &script);
+    // 异常处理分支
+    if (status != JSVM_OK) {
+        JSVM_Value error = nullptr;
+        // 获取并清理异常
+        CALL_JSVM(OH_JSVM_GetAndClearLastException((env), &error));
+        // 处理异常，如打印信息，省略
+        // 抛出 C++ 异常或结束函数执行
+        throw "JS Compile Error";
+    }
+    JSVM_Value result;
+    // 执行JS脚本，执行过程中抛出JS异常
+    status = OH_JSVM_RunScript(env, script, &result);
+    
+    // 异常分支处理
+    if (status != JSVM_OK) {
+        JSVM_Value error = nullptr;
+        // 获取并清理异常
+        CALL_JSVM(OH_JSVM_GetAndClearLastException((env), &error));
+        // 处理异常，如打印信息，省略
+        // 抛出 C++ 异常或结束函数执行
+        throw "JS RunScript Error";
+    }
+
+    ```
 
 ## 上下文绑定对象
 
