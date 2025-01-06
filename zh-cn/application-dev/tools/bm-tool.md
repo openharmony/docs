@@ -661,7 +661,7 @@ Error: signature verification failed due to not trusted app source.
 
 * 场景一：
 	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。在连接设备后，重新为应用进行签名。
-	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
+	2. 如果使用的是手动签名，<!--RP2-->对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
 		```
 		//UDID获取命令
 		hdc shell bm get -u
@@ -1060,8 +1060,8 @@ Error: fail to verify pkcs7 file.
 验证pkcs7文件失败。
 
 **可能原因**
-
-应用当前使用的签名不符合HarmonyOS应用签名要求，通常是由于当前使用的是OpenHarmony应用的签名，应该替换为HarmonyOS应用的签名。
+<!--RP3-->
+应用当前使用的签名不符合HarmonyOS应用签名要求，通常是由于当前使用的是OpenHarmony应用的签名，应该替换为HarmonyOS应用的签名。<!--RP3End-->
 
 **处理步骤**
 
