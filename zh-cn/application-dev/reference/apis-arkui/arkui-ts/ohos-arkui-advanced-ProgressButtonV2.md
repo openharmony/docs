@@ -6,7 +6,7 @@
 
 > **说明：**
 >
-> 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
@@ -18,23 +18,80 @@ import { ProgressButton } from '@kit.ArkUI'
 ## 属性
 支持[通用属性](ts-universal-attributes-size.md)
 
-## ProgressButton
+## ProgressButtonV2
 
-ProgressButton({progress: number, content: string, progressButtonWidth?: Length, clickCallback: () =&gt; void, enable: boolean})
+ProgressButtonV2({progress: number, content: ResourceStr, progressButtonWidth?: LengthMetrics, onClicked: ClickCallback, isEnabled: boolean, colorOptions: ProgressButtonV2Color})
 
-**装饰器类型：**\@Component
+**装饰器类型：**\@ComponentV2
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| progress | number | 是 | \@Prop | 下载按钮的当前进度值。 |
-| content | string | 是 | \@Prop | 下载按钮的文本。 |
-| progressButtonWidth | [Length](ts-types.md#length) | 否 | - | 下载按钮的宽度。<br/>默认值：44。 |
-| clickCallback | () =&gt; void | 是 | - | 下载按钮的点击回调。 |
-| enable | boolean | 是 | \@Prop | 下载按钮是否可以点击。<br> enable为true时，表示可以点击。<br> enable为false时，表示不可点击。 |
+| 名称 | 类型 | 必填 | 装饰器类型             | 说明                                                             |
+| -------- | -------- |----|-------------------|----------------------------------------------------------------|
+| progress | number | 是  | \@Require \@Param | 下载按钮的当前进度值。                                                    |
+| content | ResourceStr | 是  | \@Require \@Param | 下载按钮的文本。                                                       |
+| progressButtonWidth | LengthMetrics | 否  | \@Require \@Once  | 下载按钮的宽度。<br/>默认值：44。                                           |
+| onClicked | ClickCallback | 否  | \@Param               | 下载按钮的点击回调。                                                     |
+| isEnabled | boolean | 否  | \@Param       | 下载按钮是否可以点击。<br> isEnabled为true时，表示可以点击。<br> isEnabled为false时，表示不可点击。 |
+| colorOptions | ProgressButtonV2Color | 否  | \@Param       | 下载按钮颜色选项                                                       |
+
+## ClickCallback
+下载按钮的点击回调
+
+type ClickCallback = () => void;
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+
+| 名称 | 类型              | 说明                                                             |
+| -------- | ------- |----------------------------------------------------------------|
+| ClickCallback | () => void  | 下载按钮的当前进度值。                            |
+
+## ProgressButtonV2Color
+下载按钮颜色选项
+
+**装饰器类型：**\@ObservedV2
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 装饰器类型         | 说明      |
+| -------- | -------- |---|---------------|---------|
+| progressColor | ColorMetrics | 否 | \@Trace       | 进度条颜色。  |
+| borderColor | ColorMetrics | 否 | \@Trace | 按钮描边颜色。 |
+| textColor | ColorMetrics | 否 | \@Trace | 按钮文本颜色。 |
+| backgroundColor | ColorMetrics | 否 | \@Trace       | 按钮背景颜色。 |
+
+## constructor
+constructor(options: ProgressButtonV2ColorOptions);
+
+构造函数
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 类型 | 必填 | 说明    |
+|---------| -------- |----|-------|
+| options | ProgressButtonV2ColorOptions | 是  | 色彩信息。 |
+
+## ProgressButtonV2ColorOptions
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 |  说明      |
+| -------- | -------- |---|---------|
+| progressColor | ColorMetrics | 否 | 进度条颜色。  |
+| borderColor | ColorMetrics | 否 | 按钮描边颜色。 |
+| textColor | ColorMetrics | 否 | 按钮文本颜色。 |
+| backgroundColor | ColorMetrics | 否 | 按钮背景颜色。 |
 
 ## 事件
 支持[通用事件](ts-universal-events-click.md)
@@ -43,28 +100,35 @@ ProgressButton({progress: number, content: string, progressButtonWidth?: Length,
 
 该示例实现了一个简单的带加载进度的文本下载按钮。
 ```ts
-import { ProgressButton } from '@kit.ArkUI'
+import { ColorMetrics, LengthMetrics, ProgressButtonV2,  ProgressButtonV2Color } from '@kit.ArkUI'
 
 @Entry
-@Component
+@ComponentV2
 struct Index {
-  @State progressIndex: number = 0
-  @State textState: string = '下载'
-  @State ButtonWidth: number = 200
-  @State isRunning: boolean = false
-  @State enableState: boolean = true
-  @State value: number = 0
+  @Local progressIndex: number = 0
+  @Local textState: string = '下载'
+  @Local ButtonWidth: LengthMetrics = LengthMetrics.vp(200)
+  @Local isRunning: boolean = false
+  @Local enableState: boolean = true
+  @Local value: number = 0
+  @Local colorOptions: ProgressButtonV2Color = new ProgressButtonV2Color({
+    progressColor: ColorMetrics.resourceColor(Color.Red),
+    borderColor: ColorMetrics.resourceColor(Color.Red),
+    textColor: ColorMetrics.resourceColor(Color.Red),
+    backgroundColor: ColorMetrics.resourceColor(Color.Red)
+  })
 
   build() {
     Column() {
       Scroll() {
         Column({ space: 20 }) {
-          ProgressButton({
+          ProgressButtonV2({
             progress: this.progressIndex,
             progressButtonWidth: this.ButtonWidth,
             content: this.textState,
-            enable: this.enableState,
-            clickCallback: () => {
+            isEnabled: this.enableState,
+            colorOptions: this.colorOptions,
+            onClicked: () => {
               if (this.textState && !this.isRunning && this.progressIndex < 100) {
                 this.textState = '继续'
               }
