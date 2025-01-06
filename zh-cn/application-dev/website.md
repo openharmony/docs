@@ -594,7 +594,12 @@
         <!--DelEnd-->
         - [使用NativeWindowEventFilter过滤多模输入事件（C/C++）](windowmanager/native-window-event-filter.md)
       - 屏幕管理<!--display-manager-->
-        - [使用OH_DisplayManager实现屏幕基础信息查询和状态监听(C/C++)](displaymanager/native-display-manager.md)
+        - [屏幕管理简介](displaymanager/displayManager-overview.md)
+        - [使用OH_DisplayManager实现屏幕基础信息查询和状态监听 (C/C++)](displaymanager/native-display-manager.md)
+        - [使用Display实现屏幕属性获取及状态监听 (ArkTS)](displaymanager/screenProperty-guideline.md)
+        <!--Del-->
+        - [虚拟屏的创建和使用 (ArkTS) (仅对系统应用开放)](displaymanager/virtualScreen-guideline.md)
+        <!--DelEnd-->
     - ArkWeb（方舟Web）<!--arkweb-->
       - [ArkWeb简介](web/web-component-overview.md)
       - [ArkWeb进程](web/web_component_process.md)
@@ -726,7 +731,7 @@
               - [通过message事件刷新卡片内容](form/arkts-ui-widget-event-formextensionability.md)
               - [通过router或call事件刷新卡片内容](form/arkts-ui-widget-event-uiability.md)
             - 卡片数据交互<!--arkts-ui-widget-interaction-->
-              - [卡片数据交互说明](form/arkts-ui-widget-interaction-overview.md)
+              - [卡片内容更新](form/arkts-ui-widget-interaction-overview.md)
               - [卡片定时刷新和定点刷新](form/arkts-ui-widget-update-by-time.md)
               <!--Del-->
               - [卡片代理刷新](form/arkts-ui-widget-update-by-proxy.md)
@@ -1238,6 +1243,7 @@
         <!--DelEnd-->
         - [param工具](tools/param-tool.md)
         - [power-shell工具](tools/power-shell.md)
+        - [OpenHarmony SDK升级助手](tools/openharmony_sdk_upgrade_assistant.md)
         - [atm工具](tools/atm-tool.md)
         <!--Del-->
         - [acm工具](tools/acm-tool.md)
@@ -1491,6 +1497,7 @@
         - [发布实况窗类型通知（仅对系统应用开放）](notification/live-view-notification.md)
         <!--DelEnd-->
         - [为通知添加行为意图](notification/notification-with-wantagent.md)
+      - [取消通知](notification/notification-cancel.md)
       <!--Del-->
       - [订阅通知（仅对系统应用开放）](notification/notification-subscription.md)
       <!--DelEnd-->
@@ -1575,7 +1582,7 @@
           - [使用Node-API接口进行线程安全开发](napi/use-napi-thread-safety.md)
           - [Native与ArkTS对象绑定](napi/use-napi-object-wrap.md)
           - [Native与sendable ArkTS对象绑定](napi/use-sendable-napi.md)
-          - [使用Node-API接口创建ArkTs运行时环境](napi/use-napi-ark-runtime.md)
+          - [使用Node-API接口创建ArkTS运行时环境](napi/use-napi-ark-runtime.md)
           - [使用Node-API接口在主线程中进行模块加载](napi/use-napi-load-module.md)
           - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](napi/use-napi-event-loop.md)
           - [使用Node-API接口进行模块加载](napi/use-napi-load-module-with-info.md)
