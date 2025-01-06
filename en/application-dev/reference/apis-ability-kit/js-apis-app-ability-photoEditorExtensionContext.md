@@ -14,7 +14,9 @@ import { common } from '@kit.AbilityKit';
 ```
 
 ## PhotoEditorExtensionContext.saveEditedContentWithUri
+
 saveEditedContentWithUri(uri: string): Promise\<AbilityResult\>
+
 Saves an edited image, which is passed in through a URI.
 
 **Model restriction**: This API can be used only in the stage model.
@@ -27,7 +29,7 @@ Saves an edited image, which is passed in through a URI.
 | uri | string  | Yes | [URI](../apis-core-file-kit/js-apis-file-fileuri.md) of the edited image. The format is file://\<bundleName>/\<sandboxPath>. |
 
 **Return value**
-|  Type | Description |
+|  Type| Description |
 | ------------ | ------------ |
 | Promise\<AbilityResult\> | Promise used to return an **AbilityResult** object. The URI of the edited image is stored in **want.uri**. The [URI](../apis-core-file-kit/js-apis-file-fileuri.md) format is file://\<bundleName>/\<sandboxPath>. |
 
@@ -35,7 +37,7 @@ Saves an edited image, which is passed in through a URI.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-|  ID | Error Message |
+|  ID| Error Message |
 | ------------ | ------------ |
 | 401  | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.  |
 | 29600001  | Internal error. |
@@ -60,21 +62,21 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button("RotateAndSaveImg").onClick(event => {
+        Button('RotateAndSaveImg').onClick(event => {
           hilog.info(0x0000, TAG, `Start to edit image and save.`);
 
           this.originalImage?.rotate(90).then(() => {
             const imagePackerApi: image.ImagePacker = image.createImagePacker();
-            let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+            let packOpts: image.PackingOption = { format: 'image/jpeg', quality: 98 };
             imagePackerApi.packing(this.originalImage, packOpts).then((data: ArrayBuffer) => {
               let context = getContext(this) as common.PhotoEditorExtensionContext;
-              let filePath = context.filesDir + "/edited.jpg";
+              let filePath = context.filesDir + '/edited.jpg';
               let file: fileIo.File | undefined;
               try{
                 file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE
                 | fileIo.OpenMode.CREATE | fileIo.OpenMode.TRUNC);
                 let writeLen = fileIo.writeSync(file.fd, data);
-                hilog.info(0x0000, TAG, "write data to file succeed and size is:"
+                hilog.info(0x0000, TAG, 'write data to file succeed and size is:'
                   + writeLen);
                 fileIo.closeSync(file);
                 context.saveEditedContentWithUri(filePath).then
@@ -99,7 +101,9 @@ struct Index {
 }
 ```
 ## PhotoEditorExtensionContext.saveEditedContentWithImage
+
 saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>
+
 Saves an edited image, which is passed in through a **PixelMap** object.
 
 **Model restriction**: This API can be used only in the stage model.
@@ -110,10 +114,10 @@ Saves an edited image, which is passed in through a **PixelMap** object.
 | Name | Type | Mandatory | Description |
 | ------------ | ------------ | ------------ | ------------ |
 | pixeMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | Yes | Edited image, which is an **image.PixelMap** object. |
-| option  | [image.PackingOption](..//apis-image-kit/js-apis-image.md#packingoption)  |  Yes | Option for image packing. |
+| option  | [image.PackingOption](..//apis-image-kit/js-apis-image.md#packingoption)  |  Yes| Option for image packing. |
 
 **Return value**
-|  Type | Description |
+|  Type| Description |
 | ------------ | ------------ |
 | Promise\<AbilityResult\> | Promise used to return an **AbilityResult** object. The URI of the edited image is stored in **want.uri**. The [URI](../apis-core-file-kit/js-apis-file-fileuri.md) format is file://\<bundleName>/\<sandboxPath>. |
 
@@ -121,7 +125,7 @@ Saves an edited image, which is passed in through a **PixelMap** object.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-|  ID | Error Message |
+|  ID| Error Message |
 | ------------ | ------------ |
 | 401  | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.  |
 | 29600001  | Internal error. |
@@ -145,11 +149,11 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button("RotateAndSaveImg").onClick(event => {
+        Button('RotateAndSaveImg').onClick(event => {
           hilog.info(0x0000, TAG, `Start to edit image and save.`);
 
           this.originalImage?.rotate(90).then(() => {
-            let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+            let packOpts: image.PackingOption = { format: 'image/jpeg', quality: 98 };
             try {
               let context = getContext(this) as common.PhotoEditorExtensionContext;
               context.saveEditedContentWithImage(this.originalImage as image.PixelMap,
