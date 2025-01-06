@@ -121,7 +121,7 @@ async function readerModeCb(error : BusinessError, tagInfo : tag.TagInfo) {
           return;
         }
       }
-      // Use other technologies to access this NFC tag if necessary.
+      // use other technology to access this nfc tag if necessary.
     }
     if (isoDep == undefined) {
       hilog.error(0x0000, 'testTag', 'readerModeCb getIsoDep is invalid');
@@ -241,7 +241,7 @@ export default class EntryAbility extends UIAbility {
               {
                   "type":"tag-tech/IsoDep"
               }
-              // Add other technologies if neccessary,
+              // Add other technologies if necessary,
               // such as: NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable
             ]
           }
@@ -301,7 +301,7 @@ export default class EntryAbility extends UIAbility {
           return;
         }
       }
-      // Use other technologies to access this NFC tag if necessary.
+      // use other technology to access this nfc tag if necessary.
     }
     if (isoDep == undefined) {
       hilog.error(0x0000, 'testTag', 'getIsoDep is invalid');

@@ -45,10 +45,10 @@ export default {
   getLocation() {        
     geolocation.getLocation({            
       success: function(data) {                
-        console.log('success get location data. latitude:' + data.latitude);            
+        console.info('success get location data. latitude:' + data.latitude);            
       },            
       fail: function(data, code) {                
-        console.log('fail to get location. code:' + code + ', data:' + data);            
+        console.info('fail to get location. code:' + code + ', data:' + data);            
       }
     });    
   }
@@ -80,10 +80,10 @@ export default {
   getLocationType() {        
     geolocation.getLocationType({            
       success: function(data) {                
-        console.log('success get location type:' + data.types[0]);            
+        console.info('success get location type:' + data.types[0]);            
       },            
       fail: function(data, code) {                
-        console.log('fail to get location. code:' + code + ', data:' + data);            
+        console.info('fail to get location. code:' + code + ', data:' + data);            
        },        
      });    
   },
@@ -117,10 +117,10 @@ export default {
   subscribe() {        
     geolocation.subscribe({            
       success: function(data) {                
-        console.log('get location. latitude:' + data.latitude);            
+        console.info('get location. latitude:' + data.latitude);            
       },            
       fail: function(data, code) {                
-        console.log('fail to get location. code:' + code + ', data:' + data);            
+        console.info('fail to get location. code:' + code + ', data:' + data);            
       },        
     });    
   },
@@ -181,7 +181,7 @@ export default {
 
 ## GetLocationOption<sup>(deprecated)</sup>
 
-Options of a single location request.
+Defines the options of a single location request.
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#CurrentLocationRequest).
@@ -217,7 +217,7 @@ Defines the location information, including the longitude, latitude, and locatio
 
 **System capability**: SystemCapability.Location.Location.Lite
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | longitude | number | No| No| Longitude.|
 | latitude | number | No| No| Latitude.|
@@ -249,7 +249,7 @@ Defines the list of location types supported by the current device
 
 **System capability**: SystemCapability.Location.Location.Lite
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | types | Array&lt;string&gt; | No| No| Available location types, ['gps', 'network']|
 
