@@ -1,13 +1,13 @@
 # Image Kit（图片处理服务）
 
 - [Image Kit简介](image-overview.md)
-- 图片开发指导(ArkTS)
+- 图片开发指导(ArkTS)<!--image-arkts-dev-->
   - [使用ImageSource完成图片解码](image-decoding.md)
   - [使用PixelMap完成图像变换](image-transformation.md)
   - [使用PixelMap完成位图操作](image-pixelmap-operation.md)
   - [使用ImagePacker完成图片编码](image-encoding.md)
   - [编辑图片EXIF信息](image-tool.md)
-- 图片开发指导(C/C++)
+- 图片开发指导(C/C++)<!--image-native-->
   - [介绍Image_NativeModule结构体信息](image-structure-c.md)
   - [使用Image_NativeModule完成图片解码](image-source-c.md)
   - [使用Image_NativeModule完成图片接收器](image-receiver-c.md)
@@ -15,7 +15,7 @@
   - [使用Image_NativeModule处理图像信息](image-info-c.md)
   - [使用Image_NativeModule完成图片编码](image-packer-c.md)
   - [使用ImageEffect编辑图片](image-effect-guidelines.md)
-- 图片开发指导(依赖JS对象)(C/C++)
+- 图片开发指导(依赖JS对象)(C/C++)<!--image-native-js-objects-->
   - [使用Image完成图片解码](image-decoding-native.md)
   - [使用Image完成图片接收器](image-receiver-native.md)
   - [使用Image完成图像变换](image-transformation-native.md)
