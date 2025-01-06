@@ -1114,7 +1114,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getAllUserTrustedCertificates().then((cmResult) => {
-    if (cmResult?.certList == undefined) {
+    if (cmResult == undefined) { // 用户根CA证书个数为0时，返回cmResult为undefined
+      console.info('the count of the user trusted certificates is 0');
+    } else if (cmResult.certList == undefined) {
       console.info('The result of getting all user trusted certificates is undefined.');
     } else {
       let list = cmResult.certList;
@@ -1214,7 +1216,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getPrivateCertificates().then((cmResult) => {
-    if (cmResult?.credentialList == undefined) {
+    if (cmResult == undefined) { // 应用安装的凭据个数为0时，返回cmResult为undefined
+      console.info('the count of the private certificates is 0');
+    } else if (cmResult.credentialList == undefined) {
       console.info('The result of getting all private certificates installed by the application is undefined.');
     } else {
       let list = cmResult.credentialList;
