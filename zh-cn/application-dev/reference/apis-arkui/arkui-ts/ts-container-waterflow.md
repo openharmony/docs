@@ -1253,7 +1253,9 @@ struct WaterFlowDemo {
 
 ![edgeEffect_waterFlow](figures/edgeEffect_waterFlow.gif)
 
-### 示例7（通过footerContent接口，实现了WaterFlow组件设置和改变尾部组件）
+### 示例7（WaterFlow组件设置和改变尾部组件）
+
+该示例通过footerContent接口，实现了WaterFlow组件设置和改变尾部组件。
 
 ```ts
 // Index.ets

@@ -1759,6 +1759,8 @@ struct Index {
 
 ### 示例10（通过ComponentContent设置TabBar）
 
+该示例实现了通过ComponentContent设置TabBar。
+
 ```ts
 // xxx.ets
 import { ComponentContent, UIContext } from "@kit.ArkUI"
@@ -1858,3 +1860,130 @@ struct Index {
 ```
 
 ![tabContent9](figures/tabContent9.gif)
+
+### 示例11（通过ComponentContent预加载子节点）
+
+该示例实现了通过ComponentContent预加载子节点。
+
+```ts
+// xxx.ets
+import { BusinessError } from '@kit.BasicServicesKit'
+import { ComponentContent } from '@kit.ArkUI'
+
+@Component
+struct imageCom {
+  build() {
+    Image($r("app.media.startIcon"))
+      .alt($r('app.media.background'))
+      .width(15)
+      .height(15)
+  }
+}
+
+@Builder
+function TabBuilder(name: string) {
+  Column({ space: 4 }) {
+    imageCom()
+
+    Text(name)
+      .fontSize(10)
+      .fontColor(Color.Black)
+  }
+}
+
+@Entry
+@Component
+struct TabsPreloadItems {
+  @State currentIndex: number = 0
+  private tabsController: TabsController = new TabsController()
+  context: UIContext = this.getUIContext()
+
+  build() {
+    Column() {
+      Tabs({ index: this.currentIndex, controller: this.tabsController }) {
+        TabContent() {
+          MyComponent({ color: '#00CB87' })
+        }.tabBar(new ComponentContent<string>(this.context, wrapBuilder<[string]>(TabBuilder), 'green'))
+
+        TabContent() {
+          MyComponent({ color: '#007DFF' })
+        }.tabBar(new ComponentContent<string>(this.context, wrapBuilder<[string]>(TabBuilder), 'blue'))
+
+        TabContent() {
+          MyComponent({ color: '#FFBF00' })
+        }.tabBar(new ComponentContent<string>(this.context, wrapBuilder<[string]>(TabBuilder), 'yellow'))
+
+        TabContent() {
+          MyComponent({ color: '#E67C92' })
+        }.tabBar(new ComponentContent<string>(this.context, wrapBuilder<[string]>(TabBuilder), 'pink'))
+      }
+      .width(360)
+      .height(296)
+      .backgroundColor('#F1F3F5')
+      .onChange((index: number) => {
+        this.currentIndex = index
+      })
+
+      Button('preload items: [1,2,3]')
+        .margin(5)
+        .onClick(() => {
+          // 预加载第0个子节点
+          this.tabsController.preloadItems([1, 2, 3])
+            .then(() => {
+              console.info('preloadItems success.')
+            })
+            .catch((error: BusinessError) => {
+              console.error('preloadItems failed, error code: ' + error.code + ', error message: ' + error.message)
+            })
+        })
+
+      Button('preload items: [1]')
+        .margin(5)
+        .onClick(() => {
+          // 预加载第0个子节点
+          this.tabsController.preloadItems([1])
+            .then(() => {
+              console.info('preloadItems success.')
+            })
+            .catch((error: BusinessError) => {
+              console.error('preloadItems failed, error code: ' + error.code + ', error message: ' + error.message)
+            })
+        })
+      Button('preload items: [3]')
+        .margin(5)
+        .onClick(() => {
+          // 预加载第0个子节点
+          this.tabsController.preloadItems([3])
+            .then(() => {
+              console.info('preloadItems success.')
+            })
+            .catch((error: BusinessError) => {
+              console.error('preloadItems failed, error code: ' + error.code + ', error message: ' + error.message)
+            })
+        })
+    }
+  }
+}
+
+@Component
+struct MyComponent {
+  private color: string = ""
+
+  aboutToAppear(): void {
+    console.info('aboutToAppear backgroundColor:' + this.color)
+  }
+
+  aboutToDisappear(): void {
+    console.info('aboutToDisappear backgroundColor:' + this.color)
+  }
+
+  build() {
+    Column()
+      .width('100%')
+      .height('100%')
+      .backgroundColor(this.color)
+  }
+}
+```
+
+![tabContent9](figures/tabContent10.gif)
