@@ -523,7 +523,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 
 在弹性布局父组件尺寸过小时，通过子元素的以下属性设置其在父容器的占比，达到自适应布局。
 
-- flexBasis：设置子元素在父容器主轴方向上的基准尺寸。如果设置了该属性，则子项占用的空间为该属性所设置的值；如果没设置该属性，那子项的空间为width/height的值。
+- [flexBasis](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis)：设置子元素在父容器主轴方向上的基准尺寸。如果设置了该属性，则子项占用的空间为该属性所设置的值；如果没设置该属性，那子项的空间为width/height的值。
 
 
   ```ts
@@ -553,7 +553,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 
   ![zh-cn_image_0000001562940505](figures/zh-cn_image_0000001562940505.png)
 
-- flexGrow：设置父容器的剩余空间分配给此属性所在组件的比例。用于分配父组件的剩余空间。
+- [flexGrow](../reference/apis-arkui//arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow)：设置父容器的剩余空间分配给此属性所在组件的比例。用于分配父组件的剩余空间。
 
   ```ts
   Flex() {
@@ -581,7 +581,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
   
   第一个元素以及第二个元素以2:3分配剩下的100vp。第一个元素为100vp+100vp * 2/5=140vp，第二个元素为100vp+100vp * 3/5=160vp。
   
-- flexShrink: 当父容器空间不足时，子元素的压缩比例。
+- [flexShrink](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink): 当父容器空间不足时，子元素的压缩比例。
 
 
   ```ts
