@@ -210,10 +210,12 @@
    });
    ```
 
-4. 释放pixelMap。
-
+4. 释放pixelMap和imageSource。
+   
+   需确认pixelMap和imageSource异步方法已经执行完成，不再使用该变量后可按需手动调用下面方法释放。
    ```ts
    pixelMap.release();
+   imageSource.release();
    ```
 
 ## 相关实例
