@@ -622,15 +622,20 @@ struct Index {
     buttons: [{ text: '页签按钮1' }, { text: '页签按钮2' }, {
       text: '页签按钮3'
     }] as ItemRestriction<SegmentButtonTextItem>,
-    backgroundColor: Color.Green,
-    selectedBackgroundColor: Color.Orange,
-    textPadding: { top: 10, right: 10, bottom: 10, left: 10 },
+    backgroundColor: 'rgb(213,213,213)',
+    selectedBackgroundColor: 'rgb(112,112,112)',
+    textPadding: {
+      top: 10,
+      right: 10,
+      bottom: 10,
+      left: 10
+    },
   })
   @State singleSelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
     buttons: [{ text: '单选按钮1' }, { text: '单选按钮2' }, { text: '单选按钮3' }] as SegmentButtonItemTuple,
     multiply: false,
-    fontColor: Color.Black,
-    selectedFontColor: Color.Yellow,
+    fontColor: 'rgb(0,74,175)',
+    selectedFontColor: 'rgb(247,247,247)',
     backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State multiplySelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
@@ -650,7 +655,12 @@ struct Index {
     ] as SegmentButtonItemTuple,
     multiply: false,
     imageSize: { width: 40, height: 40 },
-    buttonPadding: { top: 6, right: 10, bottom: 6, left: 10 },
+    buttonPadding: {
+      top: 6,
+      right: 10,
+      bottom: 6,
+      left: 10
+    },
     backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State iconTextCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
@@ -675,14 +685,22 @@ struct Index {
       Column() {
         Column({ space: 20 }) {
           SegmentButton({ options: this.tabOptions, selectedIndexes: $tabSelectedIndexes })
-          SegmentButton({ options: this.singleSelectCapsuleOptions,
-            selectedIndexes: $singleSelectCapsuleSelectedIndexes })
-          SegmentButton({ options: this.multiplySelectCapsuleOptions,
-            selectedIndexes: $multiplySelectCapsuleSelectedIndexes })
-          SegmentButton({ options: this.iconCapsuleOptions,
-            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes })
-          SegmentButton({ options: this.iconTextCapsuleOptions,
-            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes })
+          SegmentButton({
+            options: this.singleSelectCapsuleOptions,
+            selectedIndexes: $singleSelectCapsuleSelectedIndexes
+          })
+          SegmentButton({
+            options: this.multiplySelectCapsuleOptions,
+            selectedIndexes: $multiplySelectCapsuleSelectedIndexes
+          })
+          SegmentButton({
+            options: this.iconCapsuleOptions,
+            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes
+          })
+          SegmentButton({
+            options: this.iconTextCapsuleOptions,
+            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes
+          })
         }.width('90%')
       }.width('100%')
     }.height('100%')
