@@ -325,6 +325,18 @@ Allows an application to start the upgrade service to perform assisted or collab
 
 **Valid since**: 12
 
+### ohos.permission.PLUGIN_UPDATE
+
+Allows service parties to invoke upgrade-related interfaces to download and update plug-ins and AI models.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.RECEIVE_UPDATE_MESSAGE
 
 Allows a system application or system ability to listen for the key events occurred in the system update process.

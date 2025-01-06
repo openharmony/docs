@@ -325,6 +325,18 @@
 
 **起始版本**：12
 
+### ohos.permission.PLUGIN_UPDATE
+
+允许业务方调用升级相关接口完成插件、AI模型的后下载和更新业务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.RECEIVE_UPDATE_MESSAGE
 
 允许应用、服务监听系统升级流程中的关键事件。
