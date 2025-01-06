@@ -50,7 +50,7 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 | secondaryTitleModifier<sup>12+</sup> | [TextModifier](ts-universal-attributes-attribute-modifier.md) | 否 | - | 设置副标题文本属性，如设置标题颜色、字体大小、字重等。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | titleBuilder<sup>12+</sup> | () => void | 否 | @BuildParam | 自定义标题区内容<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | contentMargin<sup>12+</sup> | [LocalizedMargin](ts-types.md#localizedmargin12) | 否 | @Prop | 子标题外边距，不支持设置负数。<br />默认值：<br /> `{start: LengthMetrics.resource(` <br /> `$r('sys.float.margin_left'))`, <br /> `end: LengthMetrics.resource(` <br /> `$r('sys.float.margin_right'))}`<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| contentPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12) | 否 | @Prop | 子标题内边距。<br />默认值：<br />左侧为副标题或副标题加图标时：<br /> {start: LengthMetircs.vp(12), end: LengthMetrics.vp(12)}。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| contentPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12) | 否 | @Prop | 子标题内边距。<br />默认值：<br />左侧为副标题或副标题加图标时：<br /> {start: LengthMetrics.vp(12), end: LengthMetrics.vp(12)}。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 
 ## OperationType
