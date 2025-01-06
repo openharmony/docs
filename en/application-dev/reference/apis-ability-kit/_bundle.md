@@ -32,7 +32,7 @@ The bundle module provides APIs for querying application information.
 
 | Name| Description|
 | -------- | -------- |
-| [OH_NativeBundle_GetCurrentApplicationInfo](#oh_nativebundle_getcurrentapplicationinfo) | Obtains the information about the current application.|
+| [OH_NativeBundle_GetCurrentApplicationInfo](#oh_nativebundle_getcurrentapplicationinfo) | Obtains the current application information.|
 | [OH_NativeBundle_GetAppId](#oh_nativebundle_getappid) | Obtains the appId information about the current application.|
 | [OH_NativeBundle_GetAppIdentifier](#oh_nativebundle_getappidentifier) | Obtains the appIdentifier information about the current application.|
 
@@ -48,7 +48,7 @@ OH_NativeBundle_ApplicationInfo OH_NativeBundle_GetCurrentApplicationInfo()
 
 **Description**
 
-Obtains the information about the current application.
+Obtains the current application information.
 
 **Since**: 9
 
@@ -87,4 +87,3 @@ Obtains the appIdentifier information about the current application. appIdentifi
 **Returns**
 
 Returns a string that describes the appIdentifier information of the application.
-
