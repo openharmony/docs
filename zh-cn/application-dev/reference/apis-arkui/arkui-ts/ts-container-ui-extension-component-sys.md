@@ -138,6 +138,18 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 > - 若UIExtensionAbility通过调用`terminateSelfWithResult`退出，其携带的信息会传给回调函数的入参；
 > - 若UIExtensionAbility通过调用`terminateSelf`退出，上述回调函数的入参中，"code"取默认值"0"，"want"为"undefined"。
 
+### onDrawReady<sup>16+<sup>
+
+onDrawReady(callback: Callback\<void>)
+
+被拉起的UIExtensionAbility绘制第一帧时触发本回调。
+
+**参数：**
+
+| 参数名                       | 类型   | 说明                                                         |
+| ---------------------------- | ------ | ------------------------------------------------------------ |
+| callback                        | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback) \<void> | 回调函数，UIExtensionAbility绘制第一帧时触发本回调，类型为void。    |
+
 ### TerminationInfo<sup>12+<sup>
 
 用于表示被拉起的UIExtensionAbility通过调用`terminateSelfWithResult`或者`terminateSelf`正常退出时的返回结果。
