@@ -709,7 +709,7 @@ Enables listening for the **close** events of a WebSocket connection. This API u
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback\<CloseResult\> | Yes  | Callback used to return the result.<br>**close** and **reason** indicate the error code and error cause for closing the connection, respectively.|
+| callback | AsyncCallback\<CloseResult\> | Yes  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
 
 **Example**
 
@@ -741,7 +741,7 @@ Disables listening for the **close** events of a WebSocket connection. This API 
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback\<CloseResult\> | No  | Callback used to return the result.<br>**close** and **reason** indicate the error code and error cause for closing the connection, respectively.|
+| callback | AsyncCallback\<CloseResult\> | No  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
 
 **Example**
 
@@ -992,7 +992,7 @@ Enumerates the response headers sent by the server.
 | ------ | ------------------------------------------------------------ |
 | {[k:string]:string \| string[] \| undefined} | The header data type can be key-value pair, string, or undefined.|
 
-## Result Codes for Connection Closing
+## Result Codes for Closing a WebSocket Connection
 
 You can customize the result codes sent to the server. The result codes in the following table are for reference only.
 
@@ -1005,3 +1005,15 @@ You can customize the result codes sent to the server. The result codes in the f
 | 1002      | Incorrect protocol.          |
 | 1003      | Data unable to be processed.|
 | 1004~1015 | Reserved.            |
+
+## HttpProxy
+
+type HttpProxy = connection.HttpProxy
+
+Defines the global HTTP proxy configuration of the network.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| connection.HttpProxy | The specified network proxy is used.   |

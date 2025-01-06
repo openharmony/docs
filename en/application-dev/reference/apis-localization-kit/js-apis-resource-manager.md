@@ -297,33 +297,27 @@ Defines the device capability.
 
 ## RawFileDescriptor<sup>8+</sup>
 
-Defines the descriptor of the HAP where the raw file is located.
+type RawFileDescriptor = _RawFileDescriptor
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-| Name    | Type   | Readable  | Writable | Description          |
-| ------ | ------  | ---- | ---- | ------------------ |
-| fd     | number  | Yes   | No| File descriptor.|
-| offset | number  | Yes   | No| Start offset of the raw file.     |
-| length | number  | Yes   | No| File length.      |
+| Type   | Description  |
+| ------  | ---- | 
+|[_RawFileDescriptor](rawFileDescriptor.md#rawfiledescriptor-1)|Descriptor of the HAP where the raw file is located.|
 
 ## Resource<sup>9+</sup>
 
-Defines the resource information of an application.
+type Resource = _Resource
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-| Name        | Type    | Readable  | Writable |Description         |
-| ---------- | ------ | ----- | ----  | ---------------|
-| bundleName | string | Yes   | No| Bundle name of the application.|
-| moduleName | string | Yes   | No| Module name of the application.|
-| id         | number | Yes   | No| Resource ID.     |
-| params     | any[] | Yes   | No| Other resource parameters, which are optional.     |
-| type       | number | Yes   | No| Resource type, which is optional.     |
+| Type   | Description  |
+| ------  | ---- | 
+|[_Resource](resource.md#resource-1)|Resource information of an application.|
 
 ## ResourceManager
 

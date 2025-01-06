@@ -443,7 +443,6 @@ Checks whether use of local digits is enabled.
   let status: boolean = i18n.System.getUsingLocalDigit();  // Check whether the local digit switch is enabled.
   ```
 
-
 ## i18n.isRTL
 
 isRTL(locale: string): boolean
@@ -1930,7 +1929,7 @@ Converts the input string from the source format to the target format.
 
   // Chinese transliteration and tone removal
   let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
-  let result = transliter.transform ('中国'); // result: zhong guo
+  let result = transliter.transform('中国'); // result: zhong guo
 
   // Chinese surname pronunciation
   let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
