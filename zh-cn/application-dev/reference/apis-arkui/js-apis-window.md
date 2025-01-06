@@ -363,9 +363,9 @@ import { window } from '@kit.ArkUI';
 
 | 名称   | 类型 | 可读 | 可写 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
-| SystemDensity  | number   | 是   | 否   | 窗口所在屏幕的系统显示大小，跟随用户设置变化，该参数应为浮点数。 |
-| DefaultDensity | number   | 是   | 否   | 窗口所在屏幕的系统默认显示大小，该参数应为浮点数。 |
-| CustomDensity | number   | 是   | 否   | 窗口设置的自定义显示大小，该参数应为浮点数。未设置该参数时，将跟随系统显示大小变化，如果调用[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时， 将跟随系统默认显示大小变化。 |
+| systemDensity  | number   | 是   | 否   | 窗口所在屏幕的系统显示大小，跟随用户设置变化，该参数应为浮点数。 |
+| defaultDensity | number   | 是   | 否   | 窗口所在屏幕的系统默认显示大小，该参数应为浮点数。 |
+| customDensity | number   | 是   | 否   | 窗口设置的自定义显示大小，该参数应为浮点数。未设置该参数时，将跟随系统显示大小变化，如果调用[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时， 将跟随系统默认显示大小变化。 |
 
 ## WindowLayoutInfo<sup>16+</sup>
 
