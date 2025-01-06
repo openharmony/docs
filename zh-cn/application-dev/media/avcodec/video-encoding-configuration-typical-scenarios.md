@@ -2,14 +2,12 @@
 
 描述AVCodec在不同应用场景下的推荐配置参数，供调用者根据实际应用场景进行视频编码应用的开发。
 
-## 场景介绍
-
 视频编码包括低时延、直播、离线转码等主要场景。
 
 
 ## 通用开发步骤
 
-### 在 CMake 脚本中链接动态库
+**在CMake脚本中链接动态库**
 
 ```cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
@@ -22,7 +20,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 > 上述'sample'字样仅为示例，此处由调用者根据实际工程目录自定义。
 >
 
-**头文件**
+**添加头文件**
 
 ```c++
 #include <multimedia/player_framework/native_avcodec_videoencoder.h>
@@ -34,31 +32,26 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 ## 低时延场景
 
-### 典型应用
-
-低时延场景包括视频会议、云游戏、互动直播、生产远程操作等，对端到端时延要求较高的交互式应用。
-
-图1-典型的低时延场景如下图所示：
+低时延场景涵盖了视频会议、云游戏、互动直播以及生产远程操作等，这些均是对端到端时延有较高要求的交互式应用。下图展示了典型的低时延场景。
 
 a. 视频会议（单向）:
 
-![Video conference](figures/video-conference.png)
+   ![Video conference](figures/video-conference.png)
 
 b. 云游戏场景:
 
-![Cloud gaming](figures/cloud-gaming.png)
+   ![Cloud gaming](figures/cloud-gaming.png)
 
 c. 生产操作场景:
 
-![Production operation](figures/production-operation.png)
+   ![Production operation](figures/production-operation.png)
 
 
-### 开发指导
+**开发指导**
 
 基础编码流程请参考[视频编码](video-encoding.md)，下面仅针对编码器配置阶段做具体说明。
 
-
-1. **校验特性**。
+1. 校验特性。
    
    在创建编码器实例前，可校验当前视频编码器是否支持低时延特性。若支持，则可以使能编码低时延特性。
 
@@ -69,7 +62,7 @@ c. 生产操作场景:
     bool isSupported = OH_AVCapability_IsFeatureSupported(cap, VIDEO_LOW_LATENCY);
     ```
 
-2. **配置编码器参数**。
+2. 配置编码器参数。
 
     在配置编码器参数阶段，配置适合低时延场景的编码参数。
 
@@ -101,11 +94,11 @@ c. 生产操作场景:
     OH_AVFormat_Destroy(format);
     ```
 
-> **注意：**
-> 低时延场景需要配置B帧个数为0。
->
+    > **注意：**
+    > 低时延场景需要配置B帧个数为0。
+    >
 
-3. **配置解码器参数**。
+3. 配置解码器参数。
 
     视频编码器使能低时延特性后，对应地，解码器也需要配置适合低时延场景的解码参数。
 
@@ -142,21 +135,16 @@ c. 生产操作场景:
 
 ## 直播场景
 
-### 典型应用
+直播场景包括泛娱乐直播、游戏直播、赛事直播等，这些均是对视频端到端时延要求不高的应用场景。
 
-直播场景包括泛娱乐直播、游戏直播、赛事直播等，对视频端到端时延要求不高的应用场景。
-
-图2-典型直播应用如下图所示：
-
-![Live streaming](figures/live-streaming.png)
+   ![Live streaming](figures/live-streaming.png)
 
 
-### 开发指导
+**开发指导**
 
 基础编码流程请参考[视频编码](video-encoding.md)，下面仅针对编码器配置阶段做具体说明。
 
-
-1. **（可选）校验特性**。
+1. （可选）校验特性。
    
    在创建编码器实例前，可校验当前视频编码器是否支持低时延特性。若支持，则可以使能编码低时延特性。
 
@@ -167,7 +155,7 @@ c. 生产操作场景:
     bool isSupported = OH_AVCapability_IsFeatureSupported(cap, VIDEO_LOW_LATENCY);
     ```
 
-2. **配置编码器参数**。
+2. 配置编码器参数。
 
     在配置编码器参数阶段，配置适合直播场景的编码参数。
 
@@ -199,28 +187,23 @@ c. 生产操作场景:
 
 ## 离线转码场景
 
-### 典型应用
-
 离线转码场景包括电视剧、电影、网络短剧、直播回放、编辑导出等多种应用场景，为了适配支持不同显示规格（如480p、1080p、4K等）终端、不同码流格式（如H.264、H.265等）的终端，以及不同带宽条件下的多种情况，在内容制作端对源进行离线转码，生成多种尺寸、多种码率、多种编码格式的视频码流文件，供用户分享或者观看。
 
-图3-典型离线转码的点播应用如下图所示：
-
-![Video On-Demand](figures/vod.png)
+   ![Video On-Demand](figures/vod.png)
 
 
-### 开发指导
+**开发指导**
 
 基础编码流程请参考[视频编码](video-encoding.md)，下面仅针对编码器配置阶段做具体说明。
 
-
-1. **配置编码器参数**。
+配置编码器参数。
    
    在配置编码器参数阶段，配置适合离线转码场景的编码参数。
 
     ```c++
-    // 1.1 创建配置AVFormat
+    // 1. 创建配置AVFormat
     OH_AVFormat *format = OH_AVFormat_Create();
-    // 1.2 填充使能参数键值对（以1080p@15fps SDR输入源为例）
+    // 2. 填充使能参数键值对（以1080p@15fps SDR输入源为例）
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, 1920); // 视频宽
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, 1080); // 视频高
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, AV_PIXEL_FORMAT_NV12); // YUV排布格式
@@ -233,11 +216,11 @@ c. 生产操作场景:
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, 5000); // 关键帧间隔5s
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, OH_VideoEncodeBitrateMode::VBR); // 码控模式配置为VBR
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, 3000000); // 设置码率为3Mbps
-    // 1.3 参数配置
+    // 3. 参数配置
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
-    // 1.4 配置完成后销毁AVFormat
+    // 4. 配置完成后销毁AVFormat
     OH_AVFormat_Destroy(format);
     ```
