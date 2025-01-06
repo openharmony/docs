@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { ProgressButton } from '@kit.ArkUI'
+import { ColorMetrics, LengthMetrics, ProgressButtonV2,  ProgressButtonV2Color } from '@kit.ArkUI'
 ```
 
 ## 属性
