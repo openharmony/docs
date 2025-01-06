@@ -11,7 +11,6 @@
   - [@ohos.data.relationalStore (关系型数据库)](js-apis-data-relationalStore.md)
   - [@ohos.data.sendableRelationalStore (共享关系型数据库)](js-apis-data-sendableRelationalStore.md)
   - [@ohos.data.unifiedDataChannel (标准化数据通路)](js-apis-data-unifiedDataChannel.md)
-  - [@ohos.data.unifiedDataChannel (标准化数据通路)(系统接口)](js-apis-data-unifiedDataChannel-sys.md)
   - [@ohos.data.uniformDataStruct (标准化数据结构)](js-apis-data-uniformDataStruct.md)
   - [@ohos.data.uniformTypeDescriptor (标准化数据定义与描述)](js-apis-data-uniformTypeDescriptor.md)
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-valuesBucket.md)

@@ -1945,7 +1945,6 @@
         - [@ohos.data.uniformTypeDescriptor (标准化数据定义与描述)](reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md)
         - [@ohos.data.ValuesBucket (数据集)](reference/apis-arkdata/js-apis-data-valuesBucket.md)
         <!--Del-->
-        - [@ohos.data.unifiedDataChannel (标准化数据通路)(系统接口)](reference/apis-arkdata/js-apis-data-unifiedDataChannel-sys.md)
         - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)(系统接口)](reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)
         <!--DelEnd-->
         - [@ohos.data.cloudData (端云服务)](reference/apis-arkdata/js-apis-data-cloudData.md)
