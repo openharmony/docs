@@ -168,7 +168,7 @@ List下嵌套使用LazyForEach，并且LazyForEach下嵌套使用ListItemGroup�
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | ListItem/ListItemGroup的预加载数量。<br/>默认值：一个屏幕内可显示的ListItem数量<br/>取值范围：[0, +∞) |
+| value  | number | 是   | ListItem/ListItemGroup的预加载数量。<br/>默认值：一个屏幕内可显示的ListItem数量。<br/>取值范围：[0, +∞) |
 
 ### cachedCount<sup>14+</sup>
 
@@ -188,7 +188,7 @@ List设置cachedCount后，显示区域外上下各会预加载并布局cachedCo
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| count  | number | 是   | 预加载的ListItem的数量。<br/>默认值：一个屏幕内可显示的ListItem数量 <br/>取值范围：[0, +∞) |
+| count  | number | 是   | 预加载的ListItem的数量。<br/>默认值：一个屏幕内可显示的ListItem数量。 <br/>取值范围：[0, +∞) |
 | show  | boolean | 是   | 被预加载的ListItem是否需要显示。 <br/> 默认值：false |
 
 ### editMode<sup>(deprecated)</sup>

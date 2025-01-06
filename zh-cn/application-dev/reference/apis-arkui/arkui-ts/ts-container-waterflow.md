@@ -402,7 +402,7 @@ cachedCount(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：一个屏幕内可显示的FlowItem数量 |
+| value  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：一个屏幕内可显示的FlowItem数量。 |
 
 ### cachedCount<sup>14+</sup>
 
@@ -422,7 +422,7 @@ cachedCount(value: number, show: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| value  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：一个屏幕内可显示的FlowItem数量 |
+| value  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：一个屏幕内可显示的FlowItem数量。 |
 | show  | boolean | 是   | 被预加载的FlowItem是否需要显示。 <br/> 默认值：false |
 
 ## 事件
