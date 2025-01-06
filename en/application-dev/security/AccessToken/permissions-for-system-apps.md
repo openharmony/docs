@@ -327,7 +327,7 @@ Allows an application to start the upgrade service to perform assisted or collab
 
 ### ohos.permission.PLUGIN_UPDATE
 
-Allows service parties to invoke upgrade-related interfaces to download and update plug-ins and All models.
+Allows service parties to invoke upgrade-related interfaces to download and update plug-ins and AI models.
 
 **Permission level**: system_basic
 
