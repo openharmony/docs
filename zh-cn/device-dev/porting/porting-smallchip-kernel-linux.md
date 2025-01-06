@@ -8,7 +8,7 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 
 ### 基本信息
 
-当前Linux内核基线是基于Linux社区 4.19 LTS版本演进，合入CVE及bugfix补丁。具体信息参考[代码库](https://gitee.com/openharmony/kernel_linux)，对应repo工程代码路径为`kernel/linux-4.19`。
+当前Linux内核基线是基于Linux社区 5.10 LTS版本演进，合入CVE及bugfix补丁。具体信息参考[代码库](https://gitee.com/openharmony/kernel_linux_5.10)，对应repo工程代码路径为`kernel/linux-5.10`。
 
 
 ### Bootloader
@@ -22,11 +22,11 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 
    config文件所在源码目录：`kernel/linux/config/`
 
-   以hi3516dv300芯片为例，可在对应的`linux-4.19/arch/arm/configs/`目录下新建&lt;YOUR_CHIP&gt;_small_defconfig，如`hi3516dv300_small_defconfig`表示针对hi3516dv300小型系统的defconfig。该config文件可以由基础defconfig文件`small_common_defconfig`与该芯片相关的config组合生成。
+   以hi3516dv300芯片为例，可在对应的`linux-5.10/arch/arm/configs/`目录下新建&lt;YOUR_CHIP&gt;_small_defconfig，如`hi3516dv300_small_defconfig`表示针对hi3516dv300小型系统的defconfig。该config文件可以由基础defconfig文件`small_common_defconfig`与该芯片相关的config组合生成。
 
 2. 准备芯片补丁。
 
-   补丁文件所在源码目录：`kernel/linux/patches/linux-4.19`
+   补丁文件所在源码目录：`kernel/linux/patches/linux-5.10`
 
    以hi3516dv300芯片为例，参考已有的patch目录hi3516dv300_small_patch目录，新建&lt;YOUR_CHIP&gt;_patch目录，放置相关芯片补丁，注意hdf.patch等驱动补丁。
 
@@ -41,9 +41,10 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
    （2）编译失败，内核版本差异（函数实现调整等）需要针对性进行内核适配。
 
    > ![icon-caution.gif](public_sys-resources/icon-caution.gif) **注意：**
-   > - 参考`kernel.mk`，在OpenHarmony工程的编译构建流程中会拷贝kernel/linux-4.19的代码环境后进行打补丁动作，在使用版本级编译命令前，需要kernel/linux-4.19保持原代码环境。
+   >
+   > - 参考`kernel.mk`，在OpenHarmony工程的编译构建流程中会拷贝kernel/linux-5.10的代码环境后进行打补丁动作，在使用版本级编译命令前，需要kernel/linux-5.10保持原代码环境。
    > 
-   > - 对应拷贝后的目录位于：`out/<***>/kernel/linux-4.19`，可以在该目录下进行补丁的修改适配。
+   > - 对应拷贝后的目录位于：`out/<***>/kernel/linux-5.10`，可以在该目录下进行补丁的修改适配。
 
 4. 烧录启动。
 
