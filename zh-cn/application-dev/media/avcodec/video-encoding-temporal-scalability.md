@@ -110,7 +110,7 @@
     // 1.1 获取对应视频编码器能力句柄，此处以H.264为例
     OH_AVCapability *cap = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
     // 1.2 通过特性能力查询接口校验是否支持全局时域可分层特性
-    bool isSupported = OH_AVCapability_isFeatureSupported(cap, VIDEO_ENCODER_TEMPORAL_SCALABILITY);
+    bool isSupported = OH_AVCapability_IsFeatureSupported(cap, VIDEO_ENCODER_TEMPORAL_SCALABILITY);
     ```
 
     若支持，则可以使能全局时域可分层特性。
@@ -210,7 +210,7 @@
     // 1.1 获取对应编码器能力句柄，此处以H.264为例
     OH_AVCapability *cap = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
     // 1.2 通过特性能力查询接口校验是否支持LTR特性
-    isSupported = OH_AVCapability_isFeatureSupported(cap, VIDEO_ENCODER_LONG_TERM_REFERENCE);
+    isSupported = OH_AVCapability_IsFeatureSupported(cap, VIDEO_ENCODER_LONG_TERM_REFERENCE);
     // 1.3 确定支持的LTR数目
     if (isSupported) {
         OH_AVFormat *properties = OH_AVCapability_GetFeatureProperties(cap, VIDEO_ENCODER_LONG_TERM_REFERENCE);
