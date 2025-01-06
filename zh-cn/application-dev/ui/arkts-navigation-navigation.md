@@ -252,6 +252,7 @@ let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highli
 Navigation() {
   // ...
 }
+// 竖屏最多支持显示3个图标，多余的图标会被放入自动生成的更多图标。
 .menus([TooTmp,
   TooTmp,
   TooTmp,
