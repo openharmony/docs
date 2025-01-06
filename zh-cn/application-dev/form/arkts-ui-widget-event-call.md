@@ -67,7 +67,7 @@
       }
     }
     ```
-3. 创建指定的UIAbility。
+3. 创建指定的UIAbility
     
    在UIAbility中接收call事件并获取参数，根据传递的method不同，执行不同的方法。其余数据可以通过[readString](../reference/apis-ipc-kit/js-apis-rpc.md#readstring)方法获取。需要注意的是，UIAbility需要onCreate生命周期中监听所需的方法。
     ```ts
@@ -142,7 +142,7 @@
       }
     }
     ```
-4. 添加后台运行权限
+4. 配置后台运行权限
 
    call事件含有约束限制：提供方应用需要在module.json5顶层对象module下添加后台运行权限([ohos.permission.KEEP_BACKGROUND_RUNNING](../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running))。
     ```ts
@@ -158,13 +158,15 @@
    在module.json5顶层对象module的abilities数组内添加WidgetEventCallEntryAbility对应的配置信息。
     ```ts
     //src/main/module.json5
-    {
-      "name": 'WidgetEventCallEntryAbility',
-      "srcEntry": './ets/widgeteventcallcard/WidgetEventCallEntryAbility/WidgetEventCallEntryAbility.ets',
-      "description": '$string:WidgetEventCallCard_desc',
-      "icon": "$media:app_icon",
-      "label": "$string:WidgetEventCallCard_label",
-      "startWindowIcon": "$media:app_icon",
-      "startWindowBackground": "$color:start_window_background"
-    }
+   "abilities": [
+     {
+       "name": 'WidgetEventCallEntryAbility',
+       "srcEntry": './ets/widgeteventcallcard/WidgetEventCallEntryAbility/WidgetEventCallEntryAbility.ets',
+       "description": '$string:WidgetEventCallCard_desc',
+       "icon": "$media:app_icon",
+       "label": "$string:WidgetEventCallCard_label",
+       "startWindowIcon": "$media:app_icon",
+       "startWindowBackground": "$color:start_window_background"
+     }
+   ]
     ```
