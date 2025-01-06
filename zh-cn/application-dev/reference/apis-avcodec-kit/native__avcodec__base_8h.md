@@ -175,8 +175,8 @@
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](_codec_base.md#oh_md_key_video_encoder_qp_min) | 描述视频编码器允许的最小量化参数的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE](_codec_base.md#oh_md_key_video_encoder_qp_average) | 描述视频帧平均量化参数的键，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_MSE](_codec_base.md#oh_md_key_video_encoder_mse)     |描述视频帧平方误差的键，值类型为double。  |
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER](_codec_base.md#oh_md_key_video_encoder_repeat_previous_frame_after)    | 若最后一帧提交给编码器后没有新的帧可用，则会以微秒为单位重复提交最后一帧的键，值类型为int32_t。 |
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT](_codec_base.md#oh_md_key_video_encoder_repeat_previous_max_count)    | 描述在没有新的帧可用的情况下，先前给编码器的帧可以被重复提交的最大计数的键，值类型为int32_t。|
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER](_codec_base.md#oh_md_key_video_encoder_repeat_previous_frame_after)    | 如果自上一帧提交给编码器以来没有新的帧可用，则会以毫秒为单位重复提交最后一帧的键，值类型为int32_t。 |
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT](_codec_base.md#oh_md_key_video_encoder_repeat_previous_max_count)    | 描述在没有新的帧可用的情况下，先前给编码器的帧可以被重复提交的最大次数的键，值类型为int32_t。|
 | const char \* [OH_MD_KEY_DECODING_TIMESTAMP](_codec_base.md#oh_md_key_decoding_timestamp) | AVBuffer中携带的音视频或字幕的sample对应的解码时间戳的键，以微秒为单位，值类型为int64_t。  |
 | const char \* [OH_MD_KEY_BUFFER_DURATION](_codec_base.md#oh_md_key_buffer_duration) | AVBuffer中携带的音视频或字幕的sample对应的持续时间的键，以微秒为单位，值类型为int64_t。       |
 | const char \* [OH_MD_KEY_START_TIME](_codec_base.md#oh_md_key_start_time) | 媒体文件中第一帧起始位置的开始时间的键，以微秒为单位，值类型为int64_t。     |
