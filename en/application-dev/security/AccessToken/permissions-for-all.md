@@ -454,3 +454,15 @@ With this permission, the application can turn on or off the function keys, such
 **Authorization mode**: system_grant
 
 **Valid since**: 15
+
+### ohos.permission.NDK_START_SELF_UI_ABILITY
+
+Allows an application to start its UIAbility by using C API.
+
+Currently, this permission is available only to 2-in-1 device applications.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
