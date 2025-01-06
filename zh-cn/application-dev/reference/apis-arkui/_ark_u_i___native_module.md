@@ -744,6 +744,10 @@
 | int32_t [OH_ArkUI_MarshallStyledStringDescriptor](#oh_arkui_marshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息序列化为字节数组。  | 
 | const char \* [OH_ArkUI_ConvertToHtml](#oh_arkui_converttohtml) ([ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息转化成html。  | 
 | int32_t [OH_ArkUI_PostFrameCallback](#oh_arkui_postframecallback)([ArkUI_ContextHandle](#arkui_contexthandle-12) uiContext, void\* userData, void (\*callback)(uint64_t nanoTimestamp, uint32_t frameCount, void\* userData))| 注册一个回调函数，以便在下一帧渲染时执行。不允许在非UI线程调用，检查到非UI线程调用程序会主动abort。 |
+| int32_t [OH_ArkUI_RegisterLayoutCallbackOnNodeHandle](#oh_arkui_registerlayoutcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node, void\* userData, void (\*onLayoutCompleted)(void\* userData))| 注册组件布局完成回调方法。同一组件仅能注册一个布局完成回调方法。  |
+| int32_t [OH_ArkUI_RegisterDrawCallbackOnNodeHandle](#oh_arkui_registerdrawcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node, void\* userData, void (\*onDrawCompleted)(void\* userData))| 注册组件绘制完成回调方法。同一组件仅能注册一个绘制完成回调方法。  |
+| int32_t [OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle](#oh_arkui_unregisterlayoutcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node)| 取消注册组件布局完成回调方法。  |
+| int32_t [OH_ArkUI_UnregisterDrawCallbackOnNodeHandle](#oh_arkui_unregisterdrawcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node)| 取消注册组件绘制完成回调方法。  |
 
 
 ## 宏定义说明
@@ -14708,3 +14712,99 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。
 ARKUI_ERROR_CODE_CAPI_INIT_ERROR CAPI初始化错误。
 ARKUI_ERROR_CODE_UI_CONTEXT_INVALID uiContext对象无效。
 ARKUI_ERROR_CODE_CALLBACK_INVALID 回调函数无效。
+
+
+### OH_ArkUI_RegisterLayoutCallbackOnNodeHandle()
+
+```
+int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle (ArkUI_NodeHandle node, void* userData, void (*onLayoutCompleted)(void* userData))
+```
+**描述：**
+
+注册组件布局完成回调方法。同一组件仅能注册一个布局完成回调方法。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 指定的节点。  | 
+| userData | 自定义事件参数，当事件触发时在回调参数中携带回来。  | 
+| onLayoutCompleted | 事件触发后的回调。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_RegisterDrawCallbackOnNodeHandle()
+
+```
+int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle (ArkUI_NodeHandle node, void* userData, void (*onDrawCompleted)(void* userData))
+```
+**描述：**
+
+注册组件绘制完成回调方法。同一组件仅能注册一个绘制完成回调方法。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 指定的节点。  | 
+| userData | 自定义事件参数，当事件触发时在回调参数中携带回来。  | 
+| onDrawCompleted | 事件触发后的回调。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle()
+
+```
+int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle (ArkUI_NodeHandle node)
+```
+**描述：**
+
+取消注册组件布局完成回调方法。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 指定的节点。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_UnregisterDrawCallbackOnNodeHandle()
+
+```
+int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle (ArkUI_NodeHandle node)
+```
+**描述：**
+
+取消注册组件绘制完成回调方法。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 指定的节点。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
