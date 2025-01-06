@@ -486,3 +486,38 @@ struct DatePickerDialogExample {
 ```
 
 ![DataPickerDialog](figures/DatePickerDialogDemo7.gif)
+
+### 示例8（设置显示月、日列）
+
+该示例通过配置mode参数实现显示月、日两列。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerDialogExample {
+  selectedDate: Date = new Date("2010-1-1")
+
+  build() {
+    Column() {
+      Button("DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          DatePickerDialog.show({
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            mode: DatePickerMode.MONTH_AND_DAY,
+            onDateAccept: (value: Date) => {
+              // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
+              this.selectedDate = value
+              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+
+![DataPickerDialog](figures/DatePickerDialogDemo8.png)
