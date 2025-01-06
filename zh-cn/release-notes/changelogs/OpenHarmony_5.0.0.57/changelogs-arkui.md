@@ -470,8 +470,6 @@ Canvas组件的toDataURL接口。
 
 默认效果变更，无需适配，但应注意变更后的效果是否符合预期。
 
-# ArkUI子系统Changelog
-
 ## cl.arkui.7 RichEditor（富文本）预上屏候选词替换已上屏内容行为变更
 
 **访问级别**
