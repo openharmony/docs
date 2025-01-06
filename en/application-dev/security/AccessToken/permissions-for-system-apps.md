@@ -4263,7 +4263,7 @@ Allows a system application to invoke the services provided by the account Servi
 
 **Enable via ACL**：true
 
-**Valid since**：13
+**Valid since**：15
 
 ### ohos.permission.ANTI_FRAUD
 

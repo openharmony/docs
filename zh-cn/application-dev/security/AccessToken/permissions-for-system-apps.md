@@ -4263,7 +4263,7 @@
 
 **ACL使能**：true
 
-**起始版本**：13
+**起始版本**：15
 
 ### ohos.permission.ANTI_FRAUD
 
