@@ -509,23 +509,23 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   // Method 1: Use LocationRequest as the input parameter.
   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geoLocationManager.Location):void => {
-      console.log('locationChanger: data: ' + JSON.stringify(location));
+      console.info('locationChanger: data: ' + JSON.stringify(location));
   };
   try {
       geoLocationManager.on('locationChange', requestInfo, locationChange);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
 
   // Method 2: Use ContinuousLocationRequest as the input parameter.
   let request:geoLocationManager.ContinuousLocationRequest = {'interval': 1, 'locationScenario': geoLocationManager.UserActivityScenario.NAVIGATION};
   let locationCallback = (location:geoLocationManager.Location):void => {
-      console.log('locationCallback: data: ' + JSON.stringify(location));
+      console.info('locationCallback: data: ' + JSON.stringify(location));
   };
   try {
       geoLocationManager.on('locationChange', request, locationCallback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -569,20 +569,20 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geoLocationManager.Location):void => {
-    console.log('locationChanger: data: ' + JSON.stringify(location));
+    console.info('locationChanger: data: ' + JSON.stringify(location));
   };
   try {
       geoLocationManager.on('locationChange', requestInfo, locationChange);
       geoLocationManager.off('locationChange', locationChange);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.on('locationError')<sup>12+</sup>
 
-on(type: 'locationError', callback: Callback&lt;LocationError&gt;): void;
+on(type: 'locationError', callback: Callback&lt;LocationError&gt;): void
 
 Registers a listener for error codes generated during continuous location. This API uses an asynchronous callback to return the result.
 
@@ -617,21 +617,21 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geoLocationManager.Location):void => {
-      console.log('locationChanger: data: ' + JSON.stringify(location));
+      console.info('locationChanger: data: ' + JSON.stringify(location));
   };
   try {
       geoLocationManager.on('locationChange', requestInfo, locationChange);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
 
   let locationErrorChange = (errcode: geoLocationManager.LocationError):void => {
-    console.log('locationErrorChange: data: ' + JSON.stringify(errcode));
+    console.info('locationErrorChange: data: ' + JSON.stringify(errcode));
   };
   try {
     geoLocationManager.on('locationError', locationErrorChange);
   } catch (err) {
-    console.error("errCode:" + JSON.stringify(err));
+    console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   
   ```
@@ -673,13 +673,13 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   import { geoLocationManager } from '@kit.LocationKit';
 
   let locationErrorChange = (errcode: geoLocationManager.LocationError):void => {
-    console.log('locationErrorChange: data: ' + JSON.stringify(errcode));
+    console.info('locationErrorChange: data: ' + JSON.stringify(errcode));
   };
   try {
     geoLocationManager.on('locationError', locationErrorChange);
     geoLocationManager.off('locationError', locationErrorChange);
   } catch (err) {
-    console.error("errCode:" + JSON.stringify(err));
+    console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -715,19 +715,19 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   import { geoLocationManager } from '@kit.LocationKit';
 
   let locationEnabledChange = (state:boolean):void => {
-      console.log('locationEnabledChange: ' + JSON.stringify(state));
+      console.info('locationEnabledChange: ' + JSON.stringify(state));
   }
   try {
       geoLocationManager.on('locationEnabledChange', locationEnabledChange);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.off('locationEnabledChange')
 
-off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void;
+off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void
 
 Unsubscribes from location service status change events.
 
@@ -756,20 +756,20 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   import { geoLocationManager } from '@kit.LocationKit';
 
   let locationEnabledChange = (state:boolean):void => {
-      console.log('locationEnabledChange: state: ' + JSON.stringify(state));
+      console.info('locationEnabledChange: state: ' + JSON.stringify(state));
   }
   try {
       geoLocationManager.on('locationEnabledChange', locationEnabledChange);
       geoLocationManager.off('locationEnabledChange', locationEnabledChange);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.on('cachedGnssLocationsChange')
 
-on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void;
+on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void
 
 Subscribes to cached GNSS location reports. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported. This API uses an asynchronous callback to return the result.
 
@@ -804,20 +804,20 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   import { geoLocationManager } from '@kit.LocationKit';
 
   let cachedLocationsCb = (locations:Array<geoLocationManager.Location>):void => {
-      console.log('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
+      console.info('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
   }
   let requestInfo:geoLocationManager.CachedGnssLocationsRequest = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   try {
       geoLocationManager.on('cachedGnssLocationsChange', requestInfo, cachedLocationsCb);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.off('cachedGnssLocationsChange')
 
-off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&gt;&gt;): void;
+off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&gt;&gt;): void
 
 Unsubscribes from cached GNSS location reports. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
@@ -851,21 +851,21 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   import { geoLocationManager } from '@kit.LocationKit';
 
   let cachedLocationsCb = (locations:Array<geoLocationManager.Location>):void => {
-      console.log('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
+      console.info('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
   }
   let requestInfo:geoLocationManager.CachedGnssLocationsRequest = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   try {
       geoLocationManager.on('cachedGnssLocationsChange', requestInfo, cachedLocationsCb);
       geoLocationManager.off('cachedGnssLocationsChange');
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.on('satelliteStatusChange')
 
-on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): void;
+on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): void
 
 Subscribes to GNSS satellite status change events. This API uses an asynchronous callback to return the result.
 
@@ -898,20 +898,20 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   import { geoLocationManager } from '@kit.LocationKit';
 
   let gnssStatusCb = (satelliteStatusInfo:geoLocationManager.SatelliteStatusInfo):void => {
-      console.log('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
+      console.info('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
 
   try {
       geoLocationManager.on('satelliteStatusChange', gnssStatusCb);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.off('satelliteStatusChange')
 
-off(type: 'satelliteStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): void;
+off(type: 'satelliteStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): void
 
 Unsubscribes from GNSS satellite status change events.
 
@@ -945,20 +945,20 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   import { geoLocationManager } from '@kit.LocationKit';
 
   let gnssStatusCb = (satelliteStatusInfo:geoLocationManager.SatelliteStatusInfo):void => {
-      console.log('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
+      console.info('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
   try {
       geoLocationManager.on('satelliteStatusChange', gnssStatusCb);
       geoLocationManager.off('satelliteStatusChange', gnssStatusCb);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.on('nmeaMessage')
 
-on(type: 'nmeaMessage', callback: Callback&lt;string&gt;): void;
+on(type: 'nmeaMessage', callback: Callback&lt;string&gt;): void
 
 Subscribes to GNSS NMEA message change events. This API uses an asynchronous callback to return the result.
 
@@ -992,20 +992,20 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   import { geoLocationManager } from '@kit.LocationKit';
 
   let nmeaCb = (str:string):void => {
-      console.log('nmeaMessage: ' + JSON.stringify(str));
+      console.info('nmeaMessage: ' + JSON.stringify(str));
   }
 
   try {
       geoLocationManager.on('nmeaMessage', nmeaCb );
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.off('nmeaMessage')
 
-off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
+off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void
 
 Unsubscribes from GNSS NMEA message change events.
 
@@ -1039,21 +1039,21 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   import { geoLocationManager } from '@kit.LocationKit';
 
   let nmeaCb = (str:string):void => {
-      console.log('nmeaMessage: ' + JSON.stringify(str));
+      console.info('nmeaMessage: ' + JSON.stringify(str));
   }
 
   try {
       geoLocationManager.on('nmeaMessage', nmeaCb);
       geoLocationManager.off('nmeaMessage', nmeaCb);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.on('gnssFenceStatusChange')
 
-on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
+on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void
 
 Subscribes to status change events of the specified geofence. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
@@ -1086,7 +1086,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { wantAgent } from '@kit.AbilityKit'
+  import { wantAgent } from '@kit.AbilityKit';
 
 
   let wantAgentInfo:wantAgent.WantAgentInfo = {
@@ -1107,7 +1107,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
     try {
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
     } catch (err) {
-        console.error("errCode:" + JSON.stringify(err));
+        console.error("errCode:" + err.code + ", message:"  + err.message);
     }
   });
   ```
@@ -1115,7 +1115,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 ## geoLocationManager.off('gnssFenceStatusChange')
 
-off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
+off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void
 
 Unsubscribes from status change events of the specified geofence. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported.
 
@@ -1148,7 +1148,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { wantAgent } from '@kit.AbilityKit'
+  import { wantAgent } from '@kit.AbilityKit';
 
   
   let wantAgentInfo:wantAgent.WantAgentInfo = {
@@ -1170,7 +1170,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
         geoLocationManager.off('gnssFenceStatusChange', requestInfo, wantAgentObj);
     } catch (err) {
-        console.error("errCode:" + JSON.stringify(err));
+        console.error("errCode:" + err.code + ", message:"  + err.message);
     }
   });
   ```
@@ -1178,7 +1178,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 ## geoLocationManager.on('countryCodeChange')
 
-on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;): void;
+on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;): void
 
 Subscribes to country code change events. This API uses an asynchronous callback to return the result.
 
@@ -1209,20 +1209,20 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   import { geoLocationManager } from '@kit.LocationKit';
 
   let callback = (code:geoLocationManager.CountryCode):void => {
-      console.log('countryCodeChange: ' + JSON.stringify(code));
+      console.info('countryCodeChange: ' + JSON.stringify(code));
   }
 
   try {
       geoLocationManager.on('countryCodeChange', callback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.off('countryCodeChange')
 
-off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
+off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void
 
 Unsubscribes from country code change events.
 
@@ -1252,14 +1252,14 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   import { geoLocationManager } from '@kit.LocationKit';
 
   let callback = (code:geoLocationManager.CountryCode):void => {
-      console.log('countryCodeChange: ' + JSON.stringify(code));
+      console.info('countryCodeChange: ' + JSON.stringify(code));
   }
 
   try {
       geoLocationManager.on('countryCodeChange', callback);
       geoLocationManager.off('countryCodeChange', callback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -1300,7 +1300,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   // Method 1: Use CurrentLocationRequest as the input parameter.
   let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   let locationChange = (err:BusinessError, location:geoLocationManager.Location):void => {
@@ -1308,14 +1308,14 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
           console.error('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
-          console.log('locationChanger: location=' + JSON.stringify(location));
+          console.info('locationChanger: location=' + JSON.stringify(location));
       }
   };
 
   try {
       geoLocationManager.getCurrentLocation(requestInfo, locationChange);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   
   // Method 2: Use SingleLocationRequest as the input parameter.
@@ -1325,20 +1325,20 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
           console.error('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
-          console.log('locationChanger: location=' + JSON.stringify(location));
+          console.info('locationChanger: location=' + JSON.stringify(location));
       }
   };
 
   try {
       geoLocationManager.getCurrentLocation(request, locationCallback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 ## geoLocationManager.getCurrentLocation
 
-getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
+getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void
 
 Obtains the current position. This API uses an asynchronous callback to return the result.
 
@@ -1371,20 +1371,20 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   let locationChange = (err:BusinessError, location:geoLocationManager.Location) => {
       if (err) {
           console.error('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
-          console.log('locationChanger: location=' + JSON.stringify(location));
+          console.info('locationChanger: location=' + JSON.stringify(location));
       }
   };
 
   try {
       geoLocationManager.getCurrentLocation(locationChange);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -1429,32 +1429,32 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // Method 1: Use CurrentLocationRequest as the input parameter.
   let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   try {
       geoLocationManager.getCurrentLocation(requestInfo).then((result) => {
-          console.log('current location: ' + JSON.stringify(result));
+          console.info('current location: ' + JSON.stringify(result));
       })  
       .catch((error:BusinessError) => {
           console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   
   // Method 2: Use SingleLocationRequest as the input parameter.
   let request:geoLocationManager.SingleLocationRequest = {'locatingTimeoutMs': 10000, 'locatingPriority': geoLocationManager.LocatingPriority.PRIORITY_ACCURACY};
   try {
       geoLocationManager.getCurrentLocation(request).then((result) => {
-          console.log('current location: ' + JSON.stringify(result));
+          console.info('current location: ' + JSON.stringify(result));
       })  
       .catch((error:BusinessError) => {
           console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -1496,7 +1496,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       let location = geoLocationManager.getLastLocation();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -1533,7 +1533,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       let locationEnabled = geoLocationManager.isLocationEnabled();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -1575,18 +1575,18 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
               console.error('getAddressesFromLocation: err=' + JSON.stringify(err));
           }
           if (data) {
-              console.log('getAddressesFromLocation: data=' + JSON.stringify(data));
+              console.info('getAddressesFromLocation: data=' + JSON.stringify(data));
           }
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.getAddressesFromLocation
 
-getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;;
+getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;
 
 Converts coordinates into geographic descriptions through reverse geocoding. This API uses a promise to return the result. 
 
@@ -1619,17 +1619,17 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   let reverseGeocodeRequest:geoLocationManager.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest).then((data) => {
-          console.log('getAddressesFromLocation: ' + JSON.stringify(data));
+          console.info('getAddressesFromLocation: ' + JSON.stringify(data));
       })
       .catch((error:BusinessError) => {
           console.error('promise, getAddressesFromLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -1664,7 +1664,6 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   let geocodeRequest:geoLocationManager.GeoCodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocationName(geocodeRequest, (err, data) => {
@@ -1672,11 +1671,11 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
               console.error('getAddressesFromLocationName: err=' + JSON.stringify(err));
           }
           if (data) {
-              console.log('getAddressesFromLocationName: data=' + JSON.stringify(data));
+              console.info('getAddressesFromLocationName: data=' + JSON.stringify(data));
           }
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -1716,23 +1715,23 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   let geocodeRequest:geoLocationManager.GeoCodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocationName(geocodeRequest).then((result) => {
-          console.log('getAddressesFromLocationName: ' + JSON.stringify(result));
+          console.info('getAddressesFromLocationName: ' + JSON.stringify(result));
       })
       .catch((error:BusinessError) => {
           console.error('promise, getAddressesFromLocationName: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 ## geoLocationManager.isGeocoderAvailable
 
-isGeocoderAvailable(): boolean;
+isGeocoderAvailable(): boolean
 
 Checks whether the geocoding and reverse geocoding services are available.
 
@@ -1760,14 +1759,14 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       let isAvailable = geoLocationManager.isGeocoderAvailable();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.getCachedGnssLocationsSize
 
-getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
+getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the number of cached GNSS locations. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported. This API uses an asynchronous callback to return the result.
 
@@ -1797,25 +1796,24 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.getCachedGnssLocationsSize((err, size) => {
           if (err) {
               console.error('getCachedGnssLocationsSize: err=' + JSON.stringify(err));
           }
           if (size) {
-              console.log('getCachedGnssLocationsSize: size=' + JSON.stringify(size));
+              console.info('getCachedGnssLocationsSize: size=' + JSON.stringify(size));
           }
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.getCachedGnssLocationsSize
 
-getCachedGnssLocationsSize(): Promise&lt;number&gt;;
+getCachedGnssLocationsSize(): Promise&lt;number&gt;
 
 Obtains the number of cached GNSS locations. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported. This API uses a promise to return the result.
 
@@ -1844,23 +1842,23 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   try {
       geoLocationManager.getCachedGnssLocationsSize().then((result) => {
-          console.log('promise, getCachedGnssLocationsSize: ' + JSON.stringify(result));
+          console.info('promise, getCachedGnssLocationsSize: ' + JSON.stringify(result));
       }) 
       .catch((error:BusinessError) => {
           console.error('promise, getCachedGnssLocationsSize: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.flushCachedGnssLocations
 
-flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
+flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void
 
 Obtains all cached GNSS locations and clears the GNSS cache queue. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported. This API uses an asynchronous callback to return the result.
 
@@ -1891,7 +1889,6 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.flushCachedGnssLocations((err) => {
           if (err) {
@@ -1899,14 +1896,14 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
           }
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.flushCachedGnssLocations
 
-flushCachedGnssLocations(): Promise&lt;void&gt;;
+flushCachedGnssLocations(): Promise&lt;void&gt;
 
 Obtains all cached GNSS locations and clears the GNSS cache queue. This API is supported only by certain GNSS chip models. If the required chip model is not available, error code 801 (Capability not supported) will be reported. This API uses a promise to return the result.
 
@@ -1936,23 +1933,23 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   try {
       geoLocationManager.flushCachedGnssLocations().then(() => {
-          console.log('promise, flushCachedGnssLocations success');
+          console.info('promise, flushCachedGnssLocations success');
       })
       .catch((error:BusinessError) => {
           console.error('promise, flushCachedGnssLocations: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.sendCommand
 
-sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void;
+sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void
 
 Sends an extended command to the location subsystem. This API uses an asynchronous callback to return the result.
 
@@ -1979,7 +1976,6 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   let requestInfo:geoLocationManager.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   try {
       geoLocationManager.sendCommand(requestInfo, (err) => {
@@ -1988,14 +1984,14 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
           }
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.sendCommand
 
-sendCommand(command: LocationCommand): Promise&lt;void&gt;;
+sendCommand(command: LocationCommand): Promise&lt;void&gt;
 
 Sends an extended command to the location subsystem. This API uses a promise to return the result.
 
@@ -2027,24 +2023,24 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   let requestInfo:geoLocationManager.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   try {
       geoLocationManager.sendCommand(requestInfo).then(() => {
-          console.log('promise, sendCommand success');
+          console.info('promise, sendCommand success');
       })  
       .catch((error:BusinessError) => {
           console.error('promise, sendCommand: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.getCountryCode
 
-getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;): void;
+getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;): void
 
 Obtains the current country code. This API uses an asynchronous callback to return the result.
 
@@ -2071,25 +2067,24 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.getCountryCode((err, result) => {
           if (err) {
               console.error('getCountryCode: err=' + JSON.stringify(err));
           }
           if (result) {
-              console.log('getCountryCode: result=' + JSON.stringify(result));
+              console.info('getCountryCode: result=' + JSON.stringify(result));
           }
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.getCountryCode
 
-getCountryCode(): Promise&lt;CountryCode&gt;;
+getCountryCode(): Promise&lt;CountryCode&gt;
 
 Obtains the current country code. This API uses a promise to return the result.
 
@@ -2115,23 +2110,23 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   try {
       geoLocationManager.getCountryCode()
       .then((result) => {
-          console.log('promise, getCountryCode: result=' + JSON.stringify(result));
+          console.info('promise, getCountryCode: result=' + JSON.stringify(result));
       })
       .catch((error:BusinessError) => {
           console.error('promise, getCountryCode: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 ## geoLocationManager.addGnssGeofence<sup>12+</sup>
 
-addGnssGeofence(fenceRequest: GnssGeofenceRequest): Promise&lt;number&gt;;
+addGnssGeofence(fenceRequest: GnssGeofenceRequest): Promise&lt;number&gt;
 
 Adds a GNSS geofence and subscribes to geofence transition events. This API uses a promise to return the result.
 
@@ -2172,7 +2167,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { notificationManager } from '@kit.NotificationKit';
   // Create a geofence.
   let geofence: geoLocationManager.Geofence = {
@@ -2224,7 +2219,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
         console.error('geofenceTransitionCallback: err=' + JSON.stringify(err));
       }
       if (transition) {
-        console.log("GeofenceTransition: %{public}s", JSON.stringify(transition));
+        console.info("GeofenceTransition: %{public}s", JSON.stringify(transition));
     }
     }
   }
@@ -2232,7 +2227,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
     // Add a geofence.
     geoLocationManager.addGnssGeofence(gnssGeofenceRequest).then((id) => {
       // Obtain the geofence ID after the geofence is successfully added.
-      console.log("addGnssGeofence success, fence id: " + id);
+      console.info("addGnssGeofence success, fence id: " + id);
       let fenceId = id;
     }).catch((err: BusinessError) => {
       console.error("addGnssGeofence failed, promise errCode:" + (err as BusinessError).code + 
@@ -2246,7 +2241,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 ## geoLocationManager.removeGnssGeofence<sup>12+</sup>
 
-removeGnssGeofence(geofenceId: number): Promise&lt;void&gt;;
+removeGnssGeofence(geofenceId: number): Promise&lt;void&gt;
 
 Removes a GNSS geofence and unsubscribes from geofence transition events. This API uses a promise to return the result.
 
@@ -2284,12 +2279,12 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   // fenceId is obtained after geoLocationManager.addGnssGeofence is successfully executed.
   let fenceId = 1;
   try {
     geoLocationManager.removeGnssGeofence(fenceId).then(() => {
-      console.log("removeGnssGeofence success fenceId:" + fenceId);
+      console.info("removeGnssGeofence success fenceId:" + fenceId);
     }).catch((error : BusinessError) => {
       console.error("removeGnssGeofence: error=" + JSON.stringify(error));
     });
@@ -2301,7 +2296,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 ## geoLocationManager.getGeofenceSupportedCoordTypes<sup>12+</sup>
 
-getGeofenceSupportedCoordTypes(): Array&lt;CoordinateSystemType&gt;;
+getGeofenceSupportedCoordTypes(): Array&lt;CoordinateSystemType&gt;
 
 Obtains the list of supported coordinate systems.
 
@@ -2328,7 +2323,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   import { geoLocationManager } from '@kit.LocationKit';
   try {
     let supportedCoordTypes: Array<geoLocationManager.CoordinateSystemType> = geoLocationManager.getGeofenceSupportedCoordTypes();
-    console.log("getGeofenceSupportedCoordTypes return:" + JSON.stringify(supportedCoordTypes));
+    console.info("getGeofenceSupportedCoordTypes return:" + JSON.stringify(supportedCoordTypes));
   } catch(error) {
     console.error("getGeofenceSupportedCoordTypes: error=" + JSON.stringify(error));
   }

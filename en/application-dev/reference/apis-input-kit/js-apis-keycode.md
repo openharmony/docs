@@ -24,6 +24,7 @@ Enumerates keycode values.
 | KEYCODE_UNKNOWN                  |  -1 |  Unknown key                       |
 | KEYCODE_HOME                     |  1 | Function (Home) key                 |
 | KEYCODE_BACK                     |  2 | Back key                        |
+| KEYCODE_SEARCH<sup>13+</sup> | 9 | Search key|
 | KEYCODE_MEDIA_PLAY_PAUSE        |  10 | Play/Pause key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
 | KEYCODE_MEDIA_STOP              |  11 | Stop key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
 | KEYCODE_MEDIA_NEXT               |  12 | Next key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                   |
