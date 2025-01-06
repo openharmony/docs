@@ -355,7 +355,7 @@ import { window } from '@kit.ArkUI';
 
 ## WindowDensityInfo<sup>15+</sup>
 
-窗口显示设备逻辑像素密度信息，即显示大小信息。
+窗口显示设备的逻辑密度信息，是与像素单位无关的缩放系数，即显示大小。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -365,7 +365,7 @@ import { window } from '@kit.ArkUI';
 | ------ | -------- | ---- | ---- | ---------- |
 | systemDensity  | number   | 是   | 否   | 窗口所在屏幕的系统显示大小，跟随用户设置变化，该参数应为浮点数。 |
 | defaultDensity | number   | 是   | 否   | 窗口所在屏幕的系统默认显示大小，该参数应为浮点数。 |
-| customDensity | number   | 是   | 否   | 窗口设置的自定义显示大小，该参数应为浮点数。未设置该参数时，将跟随系统显示大小变化，如果调用[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时， 将跟随系统默认显示大小变化。 |
+| customDensity | number   | 是   | 否   | 窗口设置的自定义显示大小，该参数应为浮点数。未设置该参数时，将跟随系统默认显示大小。如果调用[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，将跟随系统默认显示大小变化。 |
 
 ## WindowLayoutInfo<sup>16+</sup>
 
@@ -2011,6 +2011,41 @@ try {
   let properties = windowClass.getWindowProperties();
 } catch (exception) {
   console.error(`Failed to obtain the window properties. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### getWindowDensityInfo<sup>15+</sup>
+
+getWindowDensityInfo(): WindowDensityInfo
+
+获取当前窗口所在屏幕的系统显示大小、系统默认显示大小和自定义显示大小信息。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------------------------- | ------------- |
+| [WindowDensityInfo](#windowdensityinfo15) | 当前窗口的显示大小信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+try {
+  let densityInfo = windowClass.getWindowDensityInfo();
+} catch (exception) {
+  console.error(`Failed to obtain the window densityInfo. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -3912,90 +3947,6 @@ try {
 }
 ```
 
-### on('systemDensityChange')<sup>15+</sup>
-
-on(type: 'systemDensityChange', callback: Callback&lt;number&gt;): void
-
-开启本窗口所处屏幕的系统显示大小变化事件的监听。比如，当调整当前屏幕显示大小选项时，可以从此接口监听到这个行为。
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名   | 类型                       | 必填 | 说明                                                         |
-| -------- | --------------------------| ---- | ------------------------------------------------------------ |
-| type     | string                    | 是   | 监听事件，固定为'systemDensityChange'，即本窗口所处屏幕的系统显示大小变化的事件。 |
-| callback | Callback&lt;number&gt;   | 是   | 回调函数。当本窗口所处屏幕的系统显示大小发生变化后的回调。回调函数返回number类型参数，表示当前窗口所处屏幕的系统显示大小。                               |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.                |
-
-**示例：**
-
-```ts
-const callback = (density: number) => {
-  console.info('System density changed, density=' + JSON.stringify(data));
-}
-try {
-  windowClass.on('systemDensityChange', callback);
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-### off('systemDensityChange')<sup>15+</sup>
-
-off(type: 'systemDensityChange', callback?: Callback&lt;number&gt;): void
-
-关闭本窗口所处屏幕的系统显示大小变化事件的监听。
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名   | 类型                        | 必填 | 说明                                   |
-| -------- |----------------------------| ---- |--------------------------------------|
-| type     | string                     | 是   | 监听事件，固定为'systemDensityChange'，即本窗口所处屏幕的系统显示大小变化的事件。 |
-| callback | Callback&lt;number&gt;    | 否   | 回调函数。当本窗口所处屏幕的系统显示大小发生变化后的回调。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有本窗口所处屏幕的系统显示大小变化事件的回调。            |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.                |
-
-**示例：**
-
-```ts
-const callback = (density: number) => {
-  // ...
-}
-try {
-  // 通过on接口开启监听
-  windowClass.on('systemDensityChange', callback);
-  // 关闭指定callback的监听
-  windowClass.off('systemDensityChange', callback);
-  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-  windowClass.off('systemDensityChange');
-} catch (exception) {
-  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
 ### on('windowVisibilityChange')<sup>11+</sup>
 
 on(type: 'windowVisibilityChange', callback: Callback&lt;boolean&gt;): void
@@ -4077,6 +4028,90 @@ try {
   windowClass.off('windowVisibilityChange', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('windowVisibilityChange');
+} catch (exception) {
+  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### on('systemDensityChange')<sup>15+</sup>
+
+on(type: 'systemDensityChange', callback: Callback&lt;number&gt;): void
+
+开启本窗口所处屏幕的系统显示大小缩放系数变化事件的监听。比如，当调整窗口所在屏幕的显示大小缩放系数时，可以从此接口监听到这个行为。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                                         |
+| -------- | --------------------------| ---- | ------------------------------------------------------------ |
+| type     | string                    | 是   | 监听事件，固定为'systemDensityChange'，即本窗口所处屏幕的系统显示大小变化的事件。 |
+| callback | Callback&lt;number&gt;   | 是   | 回调函数。当本窗口所处屏幕的系统显示大小发生变化后的回调。回调函数返回number类型参数，表示当前窗口所处屏幕的系统显示大小。                               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+
+**示例：**
+
+```ts
+const callback = (density: number) => {
+  console.info('System density changed, density=' + JSON.stringify(data));
+}
+try {
+  windowClass.on('systemDensityChange', callback);
+} catch (exception) {
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+### off('systemDensityChange')<sup>15+</sup>
+
+off(type: 'systemDensityChange', callback?: Callback&lt;number&gt;): void
+
+关闭本窗口所处屏幕的系统显示大小变化事件的监听。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                   |
+| -------- |----------------------------| ---- |--------------------------------------|
+| type     | string                     | 是   | 监听事件，固定为'systemDensityChange'，即本窗口所处屏幕的系统显示大小变化的事件。 |
+| callback | Callback&lt;number&gt;    | 否   | 回调函数。当本窗口所处屏幕的系统显示大小发生变化后的回调。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有本窗口所处屏幕的系统显示大小变化事件的回调。            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+
+**示例：**
+
+```ts
+const callback = (density: number) => {
+  // ...
+}
+try {
+  // 通过on接口开启监听
+  windowClass.on('systemDensityChange', callback);
+  // 关闭指定callback的监听
+  windowClass.off('systemDensityChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('systemDensityChange');
 } catch (exception) {
   console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -10158,41 +10193,6 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### getWindowDensityInfo<sup>15+</sup>
-
-getWindowDensityInfo(): WindowDensityInfo
-
-获取当前窗口所在屏幕的系统显示大小、系统默认显示大小和自定义显示大小信息。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
-**返回值：**
-
-| 类型 | 说明 |
-| ------------------------------------- | ------------- |
-| [WindowDensityInfo](#windowdensityinfo15) | 当前窗口的显示大小信息。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-
-**示例：**
-
-```ts
-try {
-  let densityInfo = windowClass.getWindowDensityInfo();
-} catch (exception) {
-  console.error(`Failed to obtain the window densityInfo. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
 ### loadContent<sup>9+</sup>
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
@@ -10896,9 +10896,7 @@ export default class EntryAbility extends UIAbility {
 
 setCustomDensity(density: number): void
 
-支持应用自定义窗口的显示大小。该接口的优先级和[setDefaultDensityEnabled](#setdefaultdensityenabled12)相等，最后调用的会覆盖之前调用的。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
+支持应用自定义窗口的显示大小。该接口的优先级和[setDefaultDensityEnabled](#setdefaultdensityenabled12)相等，以最终一次的调用结果为准。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -10931,7 +10929,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       windowStage.setCustomDensity(-1.0);
     } catch (exception) {
