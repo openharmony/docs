@@ -206,7 +206,7 @@ struct ClipAndMaskExample {
       Row() {
         Image($r('app.media.testImg')).width('500px').height('280px')
       }
-      .clip(true) // If clip is not set to true, the image is not confined by the rounded corners of the <Row> component and may extend beyond the <Row> component.
+      .clip(true) // If clip is not set to true, the image is not confined by the rounded corners of the Row component and may extend beyond the Row component.
       .borderRadius(20)
       // Clip the image based on a circle with a diameter of 280 px.
       Image($r('app.media.testImg'))
@@ -256,7 +256,7 @@ struct ProgressMaskExample {
           delay: 0, // Animation delay.
           iterations: 1, // Number of playback times.
           playMode: PlayMode.Normal // Animation playback mode.
-        }) // Animation configuration for the width and height attributes of the <Button> component.
+        }) // Animation configuration for the width and height attributes of the Button component.
 
       // Update the progress value of the progress mask.
       Button('updateProgress')

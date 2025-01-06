@@ -46,16 +46,16 @@ In the **GridRow** component, you can use **breakpoints** to customize the value
 - Set **breakpoints** with a monotonically increasing array based on the use case. As **breakpoints** supports a maximum of six breakpoints, the maximum length of the monotonically increasing array is 5.
 
 
-  ```ts
+    ```ts
   breakpoints: {value: ['100vp', '200vp']}
-  ```
+    ```
 
-  Enables three breakpoints: xs, sm, and md. If the value is less than 100 vp, the breakpoint is xs. If the value is 100–200 vp, the breakpoint is sm. If the value is greater than 200 vp, the breakpoint is md.
+   Enables three breakpoints: xs, sm, and md. If the value is less than 100 vp, the breakpoint is xs. If the value is 100–200 vp, the breakpoint is sm. If the value is greater than 200 vp, the breakpoint is md.
 
 
-  ```ts
+    ```ts
   breakpoints: {value: ['320vp', '520vp', '840vp', '1080vp']}
-  ```
+    ```
 
   Enables five breakpoints: xs, sm, md, lg, and xl. If the value is less than 320 vp, the breakpoint is xs. If the value is 320–520 vp, the breakpoint is sm. If the value is 520–840 vp, the breakpoint is md. If the value is 840–1080 vp, the breakpoint is lg. If the value is greater than 1080 vp, the breakpoint is xl.
 
@@ -65,7 +65,9 @@ In the following example, the default number of grid columns is 12. Breakpoints 
 
 
 ```ts
-@State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
+@State bgColors: ResourceColor[] =
+    ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
+      'rgb(255,192,0)', 'rgb(170,10,33)'];
 ...
 GridRow({
   breakpoints: {
@@ -73,7 +75,7 @@ GridRow({
     reference: BreakpointsReference.WindowSize
   }
 }) {
-   ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
+   ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
      GridCol({
        span: {
          xs: 2, // The GridCol component occupies two grid columns on the minimum-width device.
@@ -102,21 +104,23 @@ In the **GridRow**, **columns** is used to set the total number of columns in th
 - The default value of **columns** is 12. If **columns** is not set, the responsive grid layout is divided into 12 columns at any breakpoint.
 
 
-  ```ts
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown,Color.Red, Color.Orange, Color.Yellow, Color.Green];
-  ...
-  GridRow() {
-    ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-      GridCol() {
-        Row() {
-            Text(`${index}`)
-        }.width('100%').height('50')
-      }.backgroundColor(item)
-    })
-  }           
-  ```
+    ```ts
+  @State bgColors: ResourceColor[] =
+      ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
+        'rgb(255,192,0)', 'rgb(170,10,33)', 'rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)'];
+    ...
+    GridRow() {
+      ForEach(this.bgColors, (item:ResourceColor, index?:number|undefined) => {
+        GridCol() {
+          Row() {
+              Text(`${index}`)
+          }.width('100%').height('50')
+        }.backgroundColor(item)
+      })
+    }           
+    ```
 
-  ![en-us_image_0000001563060709](figures/en-us_image_0000001563060709.png)
+    ![en-us_image_0000001563060709](figures/en-us_image_0000001563060709.png)
 
 - When **columns** is set to a number, the responsive grid layout is divided into the specified number of columns regardless of the screen size. The following example sets the number of grid layout columns to 4 and 8 in sequence, where a child component occupies one column by default.
 
@@ -128,12 +132,14 @@ In the **GridRow**, **columns** is used to set the total number of columns in th
     }
   }
   let BorderWH:Record<string,Color|number> = { 'color': Color.Blue, 'width': 2 }
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
+  @State bgColors: ResourceColor[] =
+      ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
+        'rgb(255,192,0)', 'rgb(170,10,33)'];
   @State currentBp: string = 'unknown';
   ...
   Row() {
     GridRow({ columns: 4 }) {
-      ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
+      ForEach(this.bgColors, (item: ResourceColor, index?:number|undefined) => {
         GridCol() {
           Row() {
             Text(`${index}`)
@@ -153,7 +159,7 @@ In the **GridRow**, **columns** is used to set the total number of columns in th
   
   Row() {
     GridRow({ columns: 8 }) {
-      ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
+      ForEach(this.bgColors, (item: ResourceColor, index?:number|undefined) => {
           GridCol() {
             Row() {
               Text(`${index}`)
@@ -177,9 +183,11 @@ In the **GridRow**, **columns** is used to set the total number of columns in th
 - When **columns** is set to a value of the **GridRowColumnOption** type, you can assign values specific to the screen size (xs, sm, md, lg, xl, xxl).
 
   ```ts
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown]
+  @State bgColors: ResourceColor[] =
+      ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
+        'rgb(255,192,0)', 'rgb(170,10,33)'];
   GridRow({ columns: { sm: 4, md: 8 }, breakpoints: { value: ['200vp', '300vp', '400vp', '500vp', '600vp'] } }) {
-    ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
+    ForEach(this.bgColors, (item: ResourceColor, index?:number|undefined) => {
       GridCol() {
         Row() {
           Text(`${index}`)
@@ -201,20 +209,20 @@ In the responsive grid layout, you can set the **direction** attribute of **Grid
 - When child components are arranged from left to right (default):
 
 
-  ```ts
+    ```ts
   GridRow({ direction: GridRowDirection.Row }){}
-  ```
+    ```
 
-  ![en-us_image_0000001511740488](figures/en-us_image_0000001511740488.png)
+    ![en-us_image_0000001511740488](figures/en-us_image_0000001511740488.png)
 
 - When child components are arranged from right to left (default):
 
 
-  ```ts
+    ```ts
   GridRow({ direction: GridRowDirection.RowReverse }){}
-  ```
+    ```
 
-  ![en-us_image_0000001562940517](figures/en-us_image_0000001562940517.png)
+    ![en-us_image_0000001562940517](figures/en-us_image_0000001562940517.png)
 
 
 ### Gutters
@@ -224,20 +232,20 @@ In the **GridRow** component, **gutter** is used to set the spacing between adja
 - When **gutter** is set to a number, the number applies to both the horizontal and vertical directions. In the following example, the horizontal and vertical spacing between adjacent child components is set to **10**.
 
 
-  ```ts
-   GridRow({ gutter: 10 }){}
-  ```
+    ```ts
+  GridRow({ gutter: 10 }){}
+    ```
 
-  ![en-us_image_0000001511740476](figures/en-us_image_0000001511740476.png)
+    ![en-us_image_0000001511740476](figures/en-us_image_0000001511740476.png)
 
 - When **gutter** is set to a value of the **GutterOption** type, the **x** attribute of the value indicates the horizontal gutter, and the **y** attribute indicates the vertical gutter.
 
 
-  ```ts
+    ```ts
   GridRow({ gutter: { x: 20, y: 50 } }){}
-  ```
+    ```
 
-  ![en-us_image_0000001511900456](figures/en-us_image_0000001511900456.png)
+    ![en-us_image_0000001511900456](figures/en-us_image_0000001511900456.png)
 
 
 ## GridCol
@@ -247,34 +255,34 @@ The **\GridCol** component is a child component of the **GridRow** component. Yo
 - Setting **span**
 
 
-  ```ts
+    ```ts
   let Gspan:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
   GridCol({ span: 2 }){}
   GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }){}
   GridCol(){}.span(2)
   GridCol(){}.span(Gspan)
-  ```
+    ```
 
 - Setting **offset**
 
 
-  ```ts
+    ```ts
   let Goffset:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
   GridCol({ offset: 2 }){}
   GridCol({ offset: { xs: 2, sm: 2, md: 2, lg: 2 } }){}
   GridCol(){}.offset(Goffset) 
-  ```
+    ```
 
 - Setting **order**
 
 
-  ```ts
+    ```ts
   let Gorder:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
   GridCol({ order: 2 }){}
   GridCol({ order: { xs: 1, sm: 2, md: 3, lg: 4 } }){}
   GridCol(){}.order(2)
   GridCol(){}.order(Gorder)
-  ```
+    ```
 
 
 ### span
@@ -284,42 +292,46 @@ Sets the number of columns occupied by a child component in the grid layout, whi
 - When the value type is number, the number of columns occupied by the child component is the same across screen sizes.
 
 
-  ```ts
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
-  ...
-  GridRow({ columns: 8 }) {
-    ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
-      GridCol({ span: 2 }) {      
-        Row() {
-          Text(`${index}`)
-        }.width('100%').height('50vp')          
-      }
-      .backgroundColor(color)
-    })
-  }                
-  ```
+    ```ts
+  @State bgColors: ResourceColor[] =
+      ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
+        'rgb(255,192,0)', 'rgb(170,10,33)'];
+    ...
+    GridRow({ columns: 8 }) {
+      ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
+        GridCol({ span: 2 }) {      
+          Row() {
+            Text(`${index}`)
+          }.width('100%').height('50vp')          
+        }
+        .backgroundColor(color)
+      })
+    }                
+    ```
 
-  ![en-us_image_0000001511421264](figures/en-us_image_0000001511421264.png)
+    ![en-us_image_0000001511421264](figures/en-us_image_0000001511421264.png)
 
 - When the value type is **GridColColumnOption**, you can assign values specific to the screen size (xs, sm, md, lg, xl, xxl).
 
 
-  ```ts
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
-  ...
-  GridRow({ columns: 8 }) {
-    ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
-      GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {      
-        Row() {
-          Text(`${index}`)
-        }.width('100%').height('50vp')          
-      }
-      .backgroundColor(color)
-    })
-  }                
-  ```
+    ```ts
+  @State bgColors: ResourceColor[] =
+      ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
+        'rgb(255,192,0)', 'rgb(170,10,33)'];
+    ...
+    GridRow({ columns: 8 }) {
+      ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
+        GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {      
+          Row() {
+            Text(`${index}`)
+          }.width('100%').height('50vp')          
+        }
+        .backgroundColor(color)
+      })
+    }                
+    ```
 
-  ![en-us_image_0000001511740492](figures/en-us_image_0000001511740492.gif)
+    ![en-us_image_0000001511740492](figures/en-us_image_0000001511740492.gif)
 
 
 ### offset
@@ -329,45 +341,49 @@ Sets the column offset of a child component relative to the previous child compo
 - When the value type is number, the column offset of the child component is the same across screen sizes.
 
 
-  ```ts
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
-  ...
-  GridRow() {
-    ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
-      GridCol({ offset: 2 }) {      
-        Row() {
-          Text('' + index)
-        }.width('100%').height('50vp')          
-      }
-      .backgroundColor(color)
-    })
-  }                
-  ```
+    ```ts
+  @State bgColors: ResourceColor[] =
+      ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
+        'rgb(255,192,0)', 'rgb(170,10,33)'];
+    ...
+    GridRow() {
+      ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
+        GridCol({ offset: 2 }) {      
+          Row() {
+            Text('' + index)
+          }.width('100%').height('50vp')          
+        }
+        .backgroundColor(color)
+      })
+    }                
+    ```
 
-  ![en-us_image_0000001563060705](figures/en-us_image_0000001563060705.png)
+    ![en-us_image_0000001563060705](figures/en-us_image_0000001563060705.png)
 
   By default, a grid is divided into 12 columns and each child component occupies one column with an offset of two columns. Each row holds four child components, with three columns per child component plus the gutter.
 
 - When the value type is **GridColColumnOption**, you can assign values specific to the screen size (xs, sm, md, lg, xl, xxl).
 
 
-  ```ts
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
-  ...
+    ```ts
+  @State bgColors: ResourceColor[] =
+      ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
+        'rgb(255,192,0)', 'rgb(170,10,33)'];
+    ...
+  
+    GridRow() {
+      ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
+        GridCol({ offset: { xs: 1, sm: 2, md: 3, lg: 4 } }) {      
+          Row() {
+            Text('' + index)
+          }.width('100%').height('50vp')          
+        }
+        .backgroundColor(color)
+      })
+    }                 
+    ```
 
-  GridRow() {
-    ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
-      GridCol({ offset: { xs: 1, sm: 2, md: 3, lg: 4 } }) {      
-        Row() {
-          Text('' + index)
-        }.width('100%').height('50vp')          
-      }
-      .backgroundColor(color)
-    })
-  }                 
-  ```
-
-  ![en-us_image_0000001562700433](figures/en-us_image_0000001562700433.gif)
+    ![en-us_image_0000001562700433](figures/en-us_image_0000001562700433.gif)
 
 
 ### order
@@ -379,62 +395,62 @@ If **order** is not set for all child components, those that have **order** set 
 - When the value type is number, child components are sorted in the same order across screen sizes.
 
 
-  ```ts
+    ```ts
   GridRow() {
     GridCol({ order: 4 }) {
       Row() {
         Text('1')
       }.width('100%').height('50vp')
-    }.backgroundColor(Color.Red)
+    }.backgroundColor('rgb(213,213,213)')
     GridCol({ order: 3 }) {
       Row() {
         Text('2')
       }.width('100%').height('50vp')
-    }.backgroundColor(Color.Orange)
+    }.backgroundColor('rgb(150,150,150)')
     GridCol({ order: 2 }) {
       Row() {
         Text('3')
       }.width('100%').height('50vp')
-    }.backgroundColor(Color.Yellow)
+    }.backgroundColor('rgb(0,74,175)')
     GridCol({ order: 1 }) {
       Row() {
         Text('4')
       }.width('100%').height('50vp')
-    }.backgroundColor(Color.Green)
-  }            
-  ```
+    }.backgroundColor('rgb(39,135,217)')
+  }
+    ```
 
-  ![en-us_image_0000001511580892](figures/en-us_image_0000001511580892.png)
+    ![en-us_image_0000001511580892](figures/en-us_image_0000001511580892.png)
 
 - When the value type is **GridColColumnOption**, you can assign values specific to the screen size (xs, sm, md, lg, xl, xxl). You can set 1234 for xs, 2341 for sm, 3412 for md, and 2431 for lg.
 
 
-  ```ts
-  GridRow() {
-    GridCol({ order: { xs:1, sm:5, md:3, lg:7}}) {
-      Row() {
-        Text('1')
-      }.width('100%').height('50vp')
-    }.backgroundColor(Color.Red)
-    GridCol({ order: { xs:2, sm:2, md:6, lg:1} }) {
-      Row() {
-        Text('2')
-      }.width('100%').height('50vp')
-    }.backgroundColor(Color.Orange)
-    GridCol({ order: { xs:3, sm:3, md:1, lg:6} }) {
-      Row() {
-        Text('3')
-      }.width('100%').height('50vp')
-    }.backgroundColor(Color.Yellow)
-    GridCol({ order: { xs:4, sm:4, md:2, lg:5} }) {
-      Row() {
-        Text('4')
-      }.width('100%').height('50vp')
-    }.backgroundColor(Color.Green)
-  } 
-  ```
+    ```ts
+    GridRow() {
+      GridCol({ order: { xs:1, sm:5, md:3, lg:7}}) {
+        Row() {
+          Text('1')
+        }.width('100%').height('50vp')
+      }.backgroundColor(Color.Red)
+      GridCol({ order: { xs:2, sm:2, md:6, lg:1} }) {
+        Row() {
+          Text('2')
+        }.width('100%').height('50vp')
+      }.backgroundColor(Color.Orange)
+      GridCol({ order: { xs:3, sm:3, md:1, lg:6} }) {
+        Row() {
+          Text('3')
+        }.width('100%').height('50vp')
+      }.backgroundColor(Color.Yellow)
+      GridCol({ order: { xs:4, sm:4, md:2, lg:5} }) {
+        Row() {
+          Text('4')
+        }.width('100%').height('50vp')
+      }.backgroundColor(Color.Green)
+    } 
+    ```
 
-  ![en-us_image_0000001511900444](figures/en-us_image_0000001511900444.gif)
+    ![en-us_image_0000001511900444](figures/en-us_image_0000001511900444.gif)
 
 
 ## Nesting of Responsive Grid Components

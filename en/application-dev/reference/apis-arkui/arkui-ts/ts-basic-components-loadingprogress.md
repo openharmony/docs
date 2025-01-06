@@ -122,7 +122,7 @@ struct LoadingProgressExample {
 ### Example 2
 
 ```ts
-// This example implements a custom <LoadingProgress> component, enabling the component's visibility to be switched through a button. When the button is clicked, config.enableLoading is switched to false, and the component is not displayed.
+// This example implements a custom LoadingProgress component, enabling the component's visibility to be switched through a button. When the button is clicked, config.enableLoading is switched to false, and the component is not displayed.
 // xxx.ets
 import { hilog } from '@kit.PerformanceAnalysisKit'
 import { promptAction } from '@kit.ArkUI'
@@ -250,7 +250,7 @@ struct LoadingProgressDemoExample {
         }.width('100%').margin({ top: 5 })
       }.height('85%')
 
-      Button ('Switch config.enableloading').onClick () => {
+      Button('Switch config.enableloading').onClick(() => {
         this.clickFlag++
         this.loadingProgressIndex = (this.loadingProgressIndex + 1) % this.loadingProgressList.length
         console.log('enableLoading:' + this.loadingProgressList[this.loadingProgressIndex])

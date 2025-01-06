@@ -23,8 +23,6 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 
 ## DownloadFileButton
 
-Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadStyleOptions)
-
 Creates a download file button, which by default displays both an icon and text.
 
 **Decorator**: @Component
@@ -32,8 +30,6 @@ Creates a download file button, which by default displays both an icon and text.
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
 
 | Name          | Type                                                        | Mandatory| Decorator| Description                            |
 | -------------- | ------------------------------------------------------------ | ---- | ---------- | -------------------------------- |
@@ -158,7 +154,6 @@ struct Index {
         .backgroundColor('#007dff')
         .borderStyle(BorderStyle.Dotted)
         .borderWidth(0)
-        .borderColor('')
         .borderRadius('24vp')
         .position({ x: 0, y: 0 })
         .markAnchor({ x: 0, y: 0 })
