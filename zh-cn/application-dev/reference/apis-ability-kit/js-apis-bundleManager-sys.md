@@ -1855,6 +1855,54 @@ try {
 }
 ```
 
+### bundleManager.cleanAllBundleCache<sup>15+</sup>
+
+cleanAllBundleCache(): Promise\<void>
+
+以异步方法清理全局缓存，使用Promise形式返回。添加可选权限后，运行状态下应用的缓存不会被清理，否则，运行中的应用缓存会被清理。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.REMOVE_CACHE_FILES
+
+**可选权限：** ohos.permission.GET_RUNNING_INFO
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                   |
+| -------- | ---------------------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+try {
+    bundleManager.cleanAllBundleCache().then((data) => {
+        hilog.info(0x0000, 'testTag','cleanAllBundleCache successful.';
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'cleanAllBundleCache failed: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'cleanAllBundleCache failed: %{public}s', message);
+}
+```
+
 ### bundleManager.cleanBundleCacheFiles
 
 cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback\<void>): void
@@ -1964,7 +2012,7 @@ try {
 }
 ```
 
-### bundleManager.cleanBundleCacheFiles
+### bundleManager.cleanBundleCacheFiles<sup>15+</sup>
 
 cleanBundleCacheFiles(bundleName: string, appIndex: number): Promise\<void>
 
