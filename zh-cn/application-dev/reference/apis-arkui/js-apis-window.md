@@ -355,7 +355,7 @@ import { window } from '@kit.ArkUI';
 
 ## WindowDensityInfo<sup>15+</sup>
 
-窗口Density参数。
+窗口显示设备逻辑像素密度信息，即显示大小信息。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -363,9 +363,9 @@ import { window } from '@kit.ArkUI';
 
 | 名称   | 类型 | 可读 | 可写 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
-| SystemDensity  | number   | 是   | 否   | 窗口所在屏幕的Density值，跟随用户显示大小设置变化，该参数应为浮点数。 |
-| DefaultDensity | number   | 是   | 否   | 窗口所在屏幕的默认Density值，该参数应为浮点数。 |
-| CustomDensity | number   | 是   | 否   | 窗口设置的自定义Density值，该参数应为浮点数。未设置该参数时，将跟随SystemDensity变化，如果调用[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时， 将跟随DefaultDensity变化。 |
+| SystemDensity  | number   | 是   | 否   | 窗口所在屏幕的系统显示大小，跟随用户设置变化，该参数应为浮点数。 |
+| DefaultDensity | number   | 是   | 否   | 窗口所在屏幕的系统默认显示大小，该参数应为浮点数。 |
+| CustomDensity | number   | 是   | 否   | 窗口设置的自定义显示大小，该参数应为浮点数。未设置该参数时，将跟随系统显示大小变化，如果调用[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时， 将跟随系统默认显示大小变化。 |
 
 ## WindowLayoutInfo<sup>16+</sup>
 
@@ -3916,7 +3916,7 @@ try {
 
 on(type: 'systemDensityChange', callback: Callback&lt;number&gt;): void
 
-开启本窗口所处屏幕的系统Density变化事件的监听。比如，当调整当前屏幕显示大小选项时，可以从此接口监听到这个行为。
+开启本窗口所处屏幕的系统显示大小变化事件的监听。比如，当调整当前屏幕显示大小选项时，可以从此接口监听到这个行为。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -3926,8 +3926,8 @@ on(type: 'systemDensityChange', callback: Callback&lt;number&gt;): void
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | --------------------------| ---- | ------------------------------------------------------------ |
-| type     | string                    | 是   | 监听事件，固定为'systemDensityChange'，即本窗口所处屏幕的系统Density变化的事件。 |
-| callback | Callback&lt;number&gt;   | 是   | 回调函数。当本窗口所处屏幕的系统Density发生变化后的回调。回调函数返回number类型参数，表示当前窗口所处屏幕的系统Density。                               |
+| type     | string                    | 是   | 监听事件，固定为'systemDensityChange'，即本窗口所处屏幕的系统显示大小变化的事件。 |
+| callback | Callback&lt;number&gt;   | 是   | 回调函数。当本窗口所处屏幕的系统显示大小发生变化后的回调。回调函数返回number类型参数，表示当前窗口所处屏幕的系统显示大小。                               |
 
 **错误码：**
 
@@ -3942,10 +3942,11 @@ on(type: 'systemDensityChange', callback: Callback&lt;number&gt;): void
 **示例：**
 
 ```ts
+const callback = (density: number) => {
+  console.info('System density changed, density=' + JSON.stringify(data));
+}
 try {
-  windowClass.on('systemDensityChange', (data) => {
-    console.info('System density changed, density=' + JSON.stringify(data));
-  });
+  windowClass.on('systemDensityChange', callback);
 } catch (exception) {
   console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -3954,7 +3955,7 @@ try {
 
 off(type: 'systemDensityChange', callback?: Callback&lt;number&gt;): void
 
-关闭本窗口所处屏幕变化事件的监听。
+关闭本窗口所处屏幕的系统显示大小变化事件的监听。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -3964,8 +3965,8 @@ off(type: 'systemDensityChange', callback?: Callback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- |----------------------------| ---- |--------------------------------------|
-| type     | string                     | 是   | 监听事件，固定为'systemDensityChange'，即本窗口所处屏幕的系统Density变化的事件。 |
-| callback | Callback&lt;number&gt;    | 否   | 回调函数。当本窗口所处屏幕的系统Density发生变化后的回调。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有窗口所处屏幕的系统Density变化事件的回调。            |
+| type     | string                     | 是   | 监听事件，固定为'systemDensityChange'，即本窗口所处屏幕的系统显示大小变化的事件。 |
+| callback | Callback&lt;number&gt;    | 否   | 回调函数。当本窗口所处屏幕的系统显示大小发生变化后的回调。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有本窗口所处屏幕的系统显示大小变化事件的回调。            |
 
 **错误码：**
 
@@ -10161,7 +10162,7 @@ export default class EntryAbility extends UIAbility {
 
 getWindowDensityInfo(): WindowDensityInfo
 
-获取当前窗口的Density参数，返回WindowDensityInfo。
+获取当前窗口的系统显示大小、系统默认显示大小和自定义显示大小信息。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -10171,7 +10172,7 @@ getWindowDensityInfo(): WindowDensityInfo
 
 | 类型 | 说明 |
 | ------------------------------------- | ------------- |
-| [WindowDensityInfo](#windowdensityinfo15) | 当前窗口Density参数。 |
+| [WindowDensityInfo](#windowdensityinfo15) | 当前窗口的显示大小信息。 |
 
 **错误码：**
 
@@ -10895,7 +10896,7 @@ export default class EntryAbility extends UIAbility {
 
 setCustomDensity(density: number): void
 
-支持应用自定义窗口的Density。该接口的优先级和[setDefaultDensityEnabled](#setdefaultdensityenabled12)相等，最后调用的会覆盖之前调用的。
+支持应用自定义窗口的显示大小。该接口的优先级和[setDefaultDensityEnabled](#setdefaultdensityenabled12)相等，最后调用的会覆盖之前调用的。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -10907,7 +10908,7 @@ setCustomDensity(density: number): void
 
 | 参数名           | 类型    | 必填 | 说明                         |
 | ---------------- | ------- | ---- | ---------------------------- |
-| density | number | 是   | 自定义Density值。该参数为浮点数，取值范围为[0.5, 4.0]或-1.0。4.0表示窗口可显示的最大Density，-1.0表示窗口使用系统Density。 |
+| density | number | 是   | 自定义显示大小值。该参数为浮点数，取值范围为[0.5, 4.0]或-1.0。4.0表示窗口可显示的最大显示大小，-1.0表示窗口使用系统显示大小。 |
 
 **错误码：**
 
