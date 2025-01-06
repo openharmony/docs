@@ -637,3 +637,5 @@ struct ImageDrag {
   }
 }
 ```
+
+![imageDrag.gif](figures/imageDrag.gif)
