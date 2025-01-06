@@ -196,14 +196,14 @@ c. 生产操作场景:
 
 基础编码流程请参考[视频编码](video-encoding.md)，下面仅针对编码器配置阶段做具体说明。
 
-1. 配置编码器参数。
+配置编码器参数。
    
    在配置编码器参数阶段，配置适合离线转码场景的编码参数。
 
     ```c++
-    // 1.1 创建配置AVFormat
+    // 1. 创建配置AVFormat
     OH_AVFormat *format = OH_AVFormat_Create();
-    // 1.2 填充使能参数键值对（以1080p@15fps SDR输入源为例）
+    // 2. 填充使能参数键值对（以1080p@15fps SDR输入源为例）
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, 1920); // 视频宽
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, 1080); // 视频高
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, AV_PIXEL_FORMAT_NV12); // YUV排布格式
@@ -216,11 +216,11 @@ c. 生产操作场景:
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, 5000); // 关键帧间隔5s
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, OH_VideoEncodeBitrateMode::VBR); // 码控模式配置为VBR
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, 3000000); // 设置码率为3Mbps
-    // 1.3 参数配置
+    // 3. 参数配置
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
-    // 1.4 配置完成后销毁AVFormat
+    // 4. 配置完成后销毁AVFormat
     OH_AVFormat_Destroy(format);
     ```
