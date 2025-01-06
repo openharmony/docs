@@ -1536,52 +1536,6 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawShadow<sup>13+</sup>
-
-drawShadow(path: Path, planeParams: common2D.Point3d, devLightPos: common2D.Point3d, lightRadius: number, ambientColor: number, spotColor: number, flag: ShadowFlag) : void
-
-绘制射灯类型阴影，使用路径描述环境光阴影的轮廓。
-
-**系统能力**：SystemCapability.Graphics.Drawing
-
-**参数：**
-
-| 参数名          | 类型                                       | 必填   | 说明         |
-| ------------ | ---------------------------------------- | ---- | ---------- |
-| path | [Path](#path)                | 是    | 路径对象，可生成阴影。 |
-| planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 表示一个三维向量，用于计算z轴方向的偏移量。 |
-| devLightPos  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 光线相对于画布的位置。 |
-| lightRadius   | number           | 是    | 圆形灯半径，该参数为浮点数。      |
-| ambientColor  |number | 是    | 环境阴影颜色，用16进制ARGB格式的32位无符号整数表示 |
-| spotColor  |number | 是    | 点阴影颜色，用16进制ARGB格式的32位无符号整数表示 |
-| flag         | [ShadowFlag](#shadowflag12)                  | 是    | 阴影标志枚举。    |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
-
-**示例：**
-
-```ts
-import { RenderNode } from '@kit.ArkUI';
-import { common2D, drawing } from '@kit.ArkGraphics2D';
-class DrawingRenderNode extends RenderNode {
-  draw(context : DrawContext) {
-    const canvas = context.canvas;
-    const path = new drawing.Path();
-    path.addCircle(300, 600, 100, drawing.PathDirection.CLOCKWISE);
-    let point1 : common2D.Point3d = {x: 100, y: 80, z:80};
-    let point2 : common2D.Point3d = {x: 200, y: 10, z:40};
-    let shadowFlag : drawing.ShadowFlag = drawing.ShadowFlag.ALL;
-    canvas.drawShadow(path, point1, point2, 30, 0xFF0000FF, 0xFFFF0000, shadowFlag);
-  }
-}
-```
-
 ### getLocalClipBounds<sup>12+</sup>
 
 getLocalClipBounds(): common2D.Rect
@@ -1984,42 +1938,6 @@ class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
     let color: common2D.Color = {alpha: 255, red: 255, green: 0, blue: 0};
-    canvas.clear(color);
-  }
-}
-```
-
-### clear<sup>13+</sup>
-
-clear(color: number): void
-
-使用指定颜色填充画布上的裁剪区域。
-
-**系统能力**：SystemCapability.Graphics.Drawing
-
-**参数：**
-
-| 参数名    | 类型                                                 | 必填 | 说明                             |
-| --------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| color     | number| 是   | 颜色用16进制ARGB格式的32位无符号整数表示。  |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
-**示例：**
-
-```ts
-import { RenderNode } from '@kit.ArkUI';
-import { drawing } from '@kit.ArkGraphics2D';
-class DrawingRenderNode extends RenderNode {
-  draw(context : DrawContext) {
-    const canvas = context.canvas;
-    let color: number = 0xffff0000;
     canvas.clear(color);
   }
 }
@@ -5196,55 +5114,6 @@ class DrawingRenderNode extends RenderNode {
 ```
 ![zh-ch_Lattice.png](figures/zh-ch_Lattice.png)
 
-### createImageLattice<sup>13+</sup>
-
-static createImageLattice(xDivs: Array\<number>, yDivs: Array\<number>, fXCount: number, fYCount: number, fBounds?: common2D.Rect | null, fRectTypes?: Array\<RectType> | null, fColors?: Array\<number> | null): Lattice
-
-创建矩形网格对象。将图像划分为矩形网格，同时处于偶数列和偶数行上的网格是固定的，如果目标网格足够大，则这些固定网格以其原始大小进行绘制。如果目标网格太小，无法容纳这些固定网格，则所有固定网格都会按比例缩小以适应目标网格。其余网格将进行缩放，来适应剩余的空间。
-
-**系统能力：** SystemCapability.Graphics.Drawing
-
-**参数：**
-
-| 参数名       | 类型                                                                | 必填 | 说明                                                                               |
-| ------------ | ------------------------------------------------------------------ | ---- | --------------------------------------------------------------------------------- |
-| xDivs        | Array\<number>                                                     | 是   | 用于划分图像的X坐标值数组。该参数为整数。                                             |
-| yDivs        | Array\<number>                                                     | 是   | 用于划分图像的Y坐标值数组。该参数为整数。                                             |
-| fXCount      | number                                                             | 是   | X坐标值数组的大小。基于功能和性能的考虑，取值范围为[0, 5]。                            |
-| fYCount      | number                                                             | 是   | Y坐标值数组的大小。基于功能和性能的考虑，取值范围为[0, 5]。                            |
-| fBounds      | [common2D.Rect](js-apis-graphics-common2D.md#rect)\|null           | 否   | 可选，要绘制的原始边界矩形，矩形参数须为整数，默认为原始图像矩形大小（若矩形参数为小数，会直接舍弃小数部分，转为整数）。 |
-| fRectTypes   | Array\<[RectType](#recttype12)>\|null                              | 否   | 可选，填充网格类型的数组，默认为空。如果设置，大小必须为(fXCount + 1) * (fYCount + 1)。 |
-| fColors      | Array\<number>\|null | 否   | 可选，填充网格的颜色数组，颜色用16进制ARGB格式的32位无符号整数表示，参数默认为空。如果设置，大小必须为(fXCount + 1) * (fYCount + 1)。 |
-
-**返回值：**
-
-| 类型                       | 说明                                |
-| ------------------------- | ----------------------------------- |
-| [Lattice](#lattice12)     | 返回创建的矩形网格对象。              |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
-
-**示例：**
-
-```ts
-import { RenderNode } from '@kit.ArkUI';
-import { drawing } from '@kit.ArkGraphics2D';
-class DrawingRenderNode extends RenderNode {
-  draw(context : DrawContext) {
-    let xDivs : Array<number> = [1, 2, 4];
-    let yDivs : Array<number> = [1, 2, 4];
-    let colorArray :Array<number>=[0xffffff,0x444444,0x999999,0xffffff,0x444444,0x999999,0xffffff,0x444444,0x999999,0x444444,0x999999,0xffffff,0x444444,0x999999,0xffffff,0x444444];
-    let lattice = drawing.Lattice.createImageLattice(xDivs, yDivs, 3, 3,null,null,colorArray);
-  }
-}
-```
-
 ## RectType<sup>12+</sup>
 
 定义填充网格的矩形类型的枚举。仅在[Lattice](#lattice12)中使用。
@@ -5692,32 +5561,6 @@ const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 const pen = new drawing.Pen();
 pen.setColor(color);
 let colorGet = pen.getColor();
-```
-
-### getHexColor<sup>13+</sup>
-
-getHexColor(): number
-
-获取画笔的颜色。
-
-**系统能力：** SystemCapability.Graphics.Drawing
-
-**返回值：**
-
-| 类型           | 说明            |
-| -------------- | -------------- |
-| number | 返回画笔的颜色，以16进制ARGB格式的32位无符号整数表示。 |
-
-**示例：**
-
-```ts
-import { common2D, drawing } from '@kit.ArkGraphics2D';
-
-let color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
-let pen = new drawing.Pen();
-pen.setColor(color);
-let hex_color: number = pen.getHexColor();
-console.info('getHexColor: ', hex_color.toString(16));
 ```
 
 ### setStrokeWidth
@@ -6466,30 +6309,6 @@ const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 const brush = new drawing.Brush();
 brush.setColor(color);
 let colorGet = brush.getColor();
-```
-
-### getHexColor<sup>13+</sup>
-
-获取画刷的颜色。
-
-**系统能力：** SystemCapability.Graphics.Drawing
-
-**返回值：**
-
-| 类型           | 说明            |
-| -------------- | -------------- |
-| number | 返回画刷的颜色，以16进制ARGB格式的32位无符号整数表示。 |
-
-**示例：**
-
-```ts
-import { common2D, drawing } from '@kit.ArkGraphics2D';
-
-let color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
-let brush = new drawing.Brush();
-brush.setColor(color);
-let hex_color: number = brush.getHexColor();
-console.info('getHexColor: ', hex_color.toString(16));
 ```
 
 ### setAntiAlias
