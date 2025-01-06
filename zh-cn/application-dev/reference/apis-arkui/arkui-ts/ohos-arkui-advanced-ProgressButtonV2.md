@@ -1,4 +1,4 @@
-# ProgressButton
+# ProgressButtonV2
 
 
 文本下载按钮，可显示具体下载进度。
