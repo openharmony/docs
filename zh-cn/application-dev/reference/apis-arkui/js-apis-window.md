@@ -10162,7 +10162,7 @@ export default class EntryAbility extends UIAbility {
 
 getWindowDensityInfo(): WindowDensityInfo
 
-获取当前窗口的系统显示大小、系统默认显示大小和自定义显示大小信息。
+获取当前窗口所在屏幕的系统显示大小、系统默认显示大小和自定义显示大小信息。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
