@@ -410,7 +410,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### occupyEvents
+### occupyEvents<sup>16+</sup>
 
 occupyEvents(eventFlags: number): Promise&lt;void&gt;
 
@@ -424,7 +424,7 @@ occupyEvents(eventFlags: number): Promise&lt;void&gt;
 
 | 参数名 | 类型    | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| eventFlags | [EventFlag](js-apis-arkui-uiExtension.md#EventFlag) | 是 | 占用的事件类型 |
+| eventFlags | [EventFlag](js-apis-arkui-uiExtension.md#EventFlag) | 是 | 占用的事件类型。 |
 
 **返回值：**
 
@@ -467,7 +467,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-## EventFlag
+## EventFlag<sup>16+</sup>
 
 事件类型枚举。
 
@@ -475,13 +475,13 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 | 名称                        | 值              | 说明            |
 |-----------------------------| --------------- |----------------|
-| EVENT_NONE                  | 0x00000000      | 表示无事件      |
-| EVENT_PAN_GESTURE_LEFT      | 0x00000001      | 表示左滑事件    |
-| EVENT_PAN_GESTURE_RIGHT     | 0x00000002      | 表示右滑事件    |
-| EVENT_PAN_GESTURE_UP        | 0x00000004      | 表示上滑事件    |
-| EVENT_PAN_GESTURE_DOWN      | 0x00000008      | 表示下滑事件    |
-| EVENT_CLICK                 | 0x00000100      | 表示点击事件    |
-| EVENT_LONG_PRESS            | 0x00000200      | 表示长按事件    |
+| EVENT_NONE                  | 0x00000000      | 无事件      |
+| EVENT_PAN_GESTURE_LEFT      | 0x00000001      | 左滑事件    |
+| EVENT_PAN_GESTURE_RIGHT     | 0x00000002      | 右滑事件    |
+| EVENT_PAN_GESTURE_UP        | 0x00000004      | 上滑事件    |
+| EVENT_PAN_GESTURE_DOWN      | 0x00000008      | 下滑事件    |
+| EVENT_CLICK                 | 0x00000100      | 点击事件    |
+| EVENT_LONG_PRESS            | 0x00000200      | 长按事件    |
 
 ## AvoidAreaInfo
 
