@@ -2565,7 +2565,7 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口的显示方向属性，使用callback异步回调。仅在支持跟随sensor旋转的设备上生效，子窗口调用后不生效。
+设置主窗口的显示方向属性，使用callback异步回调。<!--RP9-->仅在支持跟随sensor旋转的设备上生效，2in1设备上调用不生效，子窗口调用后不生效。<!--RP9End-->
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2628,7 +2628,7 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 
-设置主窗口的显示方向属性，使用Promise异步回调。仅在支持跟随sensor旋转的设备上生效，子窗口调用后不生效。
+设置主窗口的显示方向属性，使用Promise异步回调。<!--RP9-->仅在支持跟随sensor旋转的设备上生效，2in1设备上调用不生效，子窗口调用后不生效。<!--RP9End-->
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -5872,7 +5872,7 @@ export default class EntryAbility extends UIAbility {
 
 restore(): Promise&lt;void&gt;
 
-将主窗口从最小化状态，恢复到前台显示，并恢复到进入该模式之前的大小和位置。使用Promise异步回调。  
+将主窗口从最小化状态，恢复到前台显示，并恢复到进入该模式之前的大小和位置。使用Promise异步回调。
 此接口仅在多窗层叠布局效果下生效，仅在主窗口为最小化状态且UIAbility生命周期为onForeground时生效，仅2in1设备可用。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
@@ -5924,7 +5924,7 @@ export default class EntryAbility extends UIAbility {
               promise.then(() => {
                   console.info('Succeeded in restoring the window.');
               }).catch((err: BusinessError) => {
-                  console.error(`Failed to restore the window. Cause code: ${err.code}, 
+                  console.error(`Failed to restore the window. Cause code: ${err.code},
                   message: ${err.message}`);
               });
           },5000);
@@ -7375,7 +7375,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       windowClass = data;
-      
+
       // 设置当前窗口禁用返回手势功能
       try {
         let gestureBackEnabled: boolean = false;
@@ -7440,7 +7440,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       windowClass = data;
-      
+
       // 获取当前窗口是否禁用返回手势功能
       try {
         let gestureBackEnabled: boolean = windowClass.isGestureBackEnabled();
@@ -10889,9 +10889,9 @@ setWindowRectAutoSave(enable: boolean): Promise&lt;void&gt;
 
 窗口再次启动时，以记忆的尺寸和模式按照规则进行打开。
 
-层叠规则:  
-1、当前实例是自由窗口时，打开下一实例窗口层叠时，大小要跟随。    
-2、当前实例是最大化或全屏窗口时，打开下一个实例窗口层叠时，保持最大化。 
+层叠规则:
+1、当前实例是自由窗口时，打开下一实例窗口层叠时，大小要跟随。
+2、当前实例是最大化或全屏窗口时，打开下一个实例窗口层叠时，保持最大化。
 
 记忆规则：
 |上一次窗口状态|记忆规则|
