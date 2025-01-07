@@ -17,7 +17,7 @@ import { keyManager } from "@kit.CoreFileKit";
 
 deactivateUserKey(userId: number):void;
 
-**该接口目前仅开放给锁屏应用。**用户锁屏时，同步卸载指定用户对应秘钥。
+**该接口目前仅开放给锁屏应用** 用户锁屏时，同步卸载指定用户对应秘钥。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER_CRYPT
 
