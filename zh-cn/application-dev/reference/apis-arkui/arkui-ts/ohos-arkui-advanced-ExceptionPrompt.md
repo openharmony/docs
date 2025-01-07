@@ -101,10 +101,10 @@ struct Index {
       ExceptionPrompt({
         options: this.options,
         onTipClick: () => {
-          // Click the text on the left to change into the connecting state
+          // 单击左侧的文本切换到连接状态
         },
         onActionTextClick: () => {
-          // Click Set Network to open the Set network pop-up interface
+          // 点击“设置网络”按钮，打开设置网络弹窗界面
         },
       })
     }
