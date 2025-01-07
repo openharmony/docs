@@ -2,20 +2,7 @@
 
 You can call the native APIs provided by the AVMuxer module to mux audio and video streams, that is, to store encoded audio and video data to a file in a certain format.
 
-Currently, the following muxer capabilities are supported:
-
-| Muxing Format| Video Codec Type       | Audio Codec Type  | Cover Type      |
-| -------- | --------------------- | ---------------- | -------------- |
-| mp4      | AVC (H.264) <!--RP1--><!--RP1End-->    | AAC, MPEG (MP3)| jpeg, png, bmp|
-| m4a      | -                     | AAC              | jpeg, png, bmp|
-| mp3      | -                     | MPEG (MP3)     | -              |
-| amr      | -                     | AMR (AMR-NB and AMR-WB)| -             |
-| wav      | -                     | G.711Mu (pcm-mulaw)| -             |
-
-> **NOTE**
->
-> - When the container format is MP4 and the audio codec type is MPEG (MP3), the sampling rate must be greater than or equal to 16000 Hz. 
-> - When the container format is MP4 or M4A and the audio codec type is AAC, the number of audio channels ranges from 1 to 7.
+For details about the supported muxing formats, see [AVCodec Supported Formats](avcodec-support-formats.md#media-data-muxing).
 
 <!--RP2--><!--RP2End-->
 

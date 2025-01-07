@@ -5,6 +5,8 @@
 
 The AVCapability module provides the functions for querying the codec capability.
 
+For details about the development guide and sample, see [Obtaining Supported Codecs](../../media/avcodec/obtain-supported-codecs.md).
+
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**: 10
@@ -31,7 +33,6 @@ The AVCapability module provides the functions for querying the codec capability
 
 | Name| Description| 
 | -------- | -------- |
-| typedef enum [OH_BitrateMode](#oh_bitratemode-1) [OH_BitrateMode](#oh_bitratemode) | Defines an enum for the bit rate modes of an encoder. | 
 | typedef struct [OH_AVRange](_o_h___a_v_range.md) [OH_AVRange](#oh_avrange) | Defines a struct for the value range, which contains the minimum value and maximum value. | 
 | typedef enum [OH_AVCodecCategory](#oh_avcodeccategory-1) [OH_AVCodecCategory](#oh_avcodeccategory) | Defines an enum for the codec categories. | 
 | typedef enum [OH_AVCapabilityFeature](#oh_avcapabilityfeature-1) [OH_AVCapabilityFeature](#oh_avcapabilityfeature) | Defines an enum for the optional features that can be used in specific codec scenarios. | 
@@ -41,7 +42,6 @@ The AVCapability module provides the functions for querying the codec capability
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_BitrateMode](#oh_bitratemode-1) { <br>BITRATE_MODE_CBR = 0, <br>BITRATE_MODE_VBR = 1, <br>BITRATE_MODE_CQ = 2 } | Enumerates the bit rate modes of an encoder. | 
 | [OH_AVCodecCategory](#oh_avcodeccategory-1) { HARDWARE = 0, SOFTWARE } | Enumerates the codec categories. | 
 | [OH_AVCapabilityFeature](#oh_avcapabilityfeature-1) {<br> VIDEO_ENCODER_TEMPORAL_SCALABILITY = 0, <br>VIDEO_ENCODER_LONG_TERM_REFERENCE = 1, <br>VIDEO_LOW_LATENCY = 2 <br>} | Enumerates the optional features that can be used in specific codec scenarios. | 
 
@@ -56,7 +56,7 @@ The AVCapability module provides the functions for querying the codec capability
 | const char \* [OH_AVCapability_GetName](#oh_avcapability_getname) (OH_AVCapability \*capability) | Obtains the codec name. | 
 | int32_t [OH_AVCapability_GetMaxSupportedInstances](#oh_avcapability_getmaxsupportedinstances) (OH_AVCapability \*capability) | Obtains the maximum number of codec instances supported by a codec. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderBitrateRange](#oh_avcapability_getencoderbitraterange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*bitrateRange) | Obtains the bit rate range supported by an encoder. | 
-| bool [OH_AVCapability_IsEncoderBitrateModeSupported](#oh_avcapability_isencoderbitratemodesupported) (OH_AVCapability \*capability, [OH_BitrateMode](#oh_bitratemode) bitrateMode) | Checks whether an encoder supports a specific bit rate mode. | 
+| bool [OH_AVCapability_IsEncoderBitrateModeSupported](#oh_avcapability_isencoderbitratemodesupported) (OH_AVCapability \*capability, [OH_BitrateMode](_codec_base.md#oh_bitratemode) bitrateMode) | Checks whether an encoder supports a specific bit rate mode. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderQualityRange](#oh_avcapability_getencoderqualityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*qualityRange) | Obtains the quality range supported by an encoder. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderComplexityRange](#oh_avcapability_getencodercomplexityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*complexityRange) | Obtains the complexity range supported by an encoder. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetAudioSupportedSampleRates](#oh_avcapability_getaudiosupportedsamplerates) (OH_AVCapability \*capability, const int32_t \*\*sampleRates, uint32_t \*sampleRateNum) | Obtains the sample rates supported by an audio codec. | 
@@ -123,21 +123,6 @@ Defines a struct for the value range, which contains the minimum value and maxim
 
 **Since**: 10
 
-
-### OH_BitrateMode
-
-```
-typedef enum OH_BitrateMode OH_BitrateMode
-```
-**Description**
-
-Defines an enum for the bit rate modes of an encoder.
-
-**System capability**: SystemCapability.Multimedia.Media.CodecBase
-
-**Since**: 10
-
-
 ## Enum Description
 
 
@@ -168,7 +153,7 @@ enum OH_AVCodecCategory
 ```
 **Description**
 
-Defines an enum for codec categories.
+Enumerates the codec categories.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -178,26 +163,6 @@ Defines an enum for codec categories.
 | -------- | -------- |
 | HARDWARE  | Hardware codec.  | 
 | SOFTWARE  | Software codec.  | 
-
-
-### OH_BitrateMode
-
-```
-enum OH_BitrateMode
-```
-**Description**
-
-Defines an enum for bit rate modes of an encoder.
-
-**System capability**: SystemCapability.Multimedia.Media.CodecBase
-
-**Since**: 10
-
-| Value| Description| 
-| -------- | -------- |
-| BITRATE_MODE_CBR  | Constant bit rate.  | 
-| BITRATE_MODE_VBR  | Variable bit rate. The bit rate is for reference only.  | 
-| BITRATE_MODE_CQ  | Constant quality.  | 
 
 
 ## Function Description
