@@ -1536,7 +1536,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawShadow<sup>13+</sup>
+### drawShadow<sup>16+</sup>
 
 drawShadow(path: Path, planeParams: common2D.Point3d, devLightPos: common2D.Point3d, lightRadius: number, ambientColor: number, spotColor: number, flag: ShadowFlag) : void
 
@@ -1552,8 +1552,8 @@ drawShadow(path: Path, planeParams: common2D.Point3d, devLightPos: common2D.Poin
 | planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 表示一个三维向量，用于计算z轴方向的偏移量。 |
 | devLightPos  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 光线相对于画布的位置。 |
 | lightRadius   | number           | 是    | 圆形灯半径，该参数为浮点数。      |
-| ambientColor  |number | 是    | 环境阴影颜色，用16进制ARGB格式的32位无符号整数表示 |
-| spotColor  |number | 是    | 点阴影颜色，用16进制ARGB格式的32位无符号整数表示 |
+| ambientColor  |number | 是    | 环境阴影颜色，用16进制ARGB格式的32位无符号整数表示。 |
+| spotColor  |number | 是    | 点阴影颜色，用16进制ARGB格式的32位无符号整数表示。 |
 | flag         | [ShadowFlag](#shadowflag12)                  | 是    | 阴影标志枚举。    |
 
 **错误码：**
@@ -1903,6 +1903,42 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### drawColor<sup>16+</sup>
+
+drawColor(color: number, blendMode?: BlendMode): void
+
+绘制背景颜色。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型                                                 | 必填 | 说明                             |
+| --------- | ---------------------------------------------------- | ---- | -------------------------------- |
+| color     | number | 是   | 16进制ARGB格式的颜色。                   |
+| blendMode | [BlendMode](#blendmode)                              | 否   | 颜色混合模式，默认模式为SRC_OVER。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    canvas.drawColor(0xff000a0a, drawing.BlendMode.CLEAR);
+  }
+}
+```
+
 ### drawPixelMapMesh<sup>12+</sup>
 
 drawPixelMapMesh(pixelmap: image.PixelMap, meshWidth: number, meshHeight: number, vertices: Array\<number>, vertOffset: number, colors: Array\<number>, colorOffset: number): void
@@ -1989,7 +2025,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### clear<sup>13+</sup>
+### clear<sup>16+</sup>
 
 clear(color: number): void
 
@@ -2001,7 +2037,7 @@ clear(color: number): void
 
 | 参数名    | 类型                                                 | 必填 | 说明                             |
 | --------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| color     | number| 是   | 颜色用16进制ARGB格式的32位无符号整数表示。  |
+| color     | number| 是   | 16进制ARGB格式的颜色。  |
 
 **错误码：**
 
@@ -4902,6 +4938,42 @@ const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 let colorFilter = drawing.ColorFilter.createBlendModeColorFilter(color, drawing.BlendMode.SRC);
 ```
 
+### createBlendModeColorFilter<sup>16+</sup>
+
+static createBlendModeColorFilter(color: number, mode: BlendMode) : ColorFilter
+
+使用指定的颜色和混合模式创建颜色滤波器。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                 | 必填 | 说明             |
+| ------ | ---------------------------------------------------- | ---- | ---------------- |
+| color  | number | 是   | 16进制ARGB格式的颜色。 |
+| mode   | [BlendMode](#blendmode)                              | 是   | 颜色的混合模式。 |
+
+**返回值：**
+
+| 类型                        | 说明               |
+| --------------------------- | ------------------ |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let colorFilter = drawing.ColorFilter.createBlendModeColorFilter(0xffff0000, drawing.BlendMode.SRC);
+```
+
 ### createComposeColorFilter
 
 createComposeColorFilter(outer: ColorFilter, inner: ColorFilter) : ColorFilter
@@ -5196,7 +5268,7 @@ class DrawingRenderNode extends RenderNode {
 ```
 ![zh-ch_Lattice.png](figures/zh-ch_Lattice.png)
 
-### createImageLattice<sup>13+</sup>
+### createImageLattice<sup>16+</sup>
 
 static createImageLattice(xDivs: Array\<number>, yDivs: Array\<number>, fXCount: number, fYCount: number, fBounds?: common2D.Rect | null, fRectTypes?: Array\<RectType> | null, fColors?: Array\<number> | null): Lattice
 
@@ -5239,7 +5311,7 @@ class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     let xDivs : Array<number> = [1, 2, 4];
     let yDivs : Array<number> = [1, 2, 4];
-    let colorArray :Array<number>=[0xffffff,0x444444,0x999999,0xffffff,0x444444,0x999999,0xffffff,0x444444,0x999999,0x444444,0x999999,0xffffff,0x444444,0x999999,0xffffff,0x444444];
+    let colorArray :Array<number>=[0xffffffff,0x44444444,0x99999999,0xffffffff,0x44444444,0x99999999,0xffffffff,0x44444444,0x99999999,0x44444444,0x99999999,0xffffffff,0x44444444,0x99999999,0xffffffff,0x44444444];
     let lattice = drawing.Lattice.createImageLattice(xDivs, yDivs, 3, 3,null,null,colorArray);
   }
 }
@@ -5436,6 +5508,50 @@ class DrawingRenderNode extends RenderNode {
     const canvas = context.canvas;
     let color : common2D.Color = {alpha: 0xFF, red: 0x00, green: 0xFF, blue: 0x00};
     let shadowLayer = drawing.ShadowLayer.create(3, -3, 3, color);
+  }
+}
+```
+
+### create<sup>16+</sup>
+
+static create(blurRadius: number, x: number, y: number, color: number): ShadowLayer
+
+用于创建一个阴影层对象。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名     | 类型      | 必填 | 说明                                 |
+| ---------- | -------- | ---- | ----------------------------------- |
+| blurRadius  | number   | 是   | 阴影的半径，必须为大于零的浮点数。     |
+| x           | number   | 是   | x轴上的偏移点，该参数为浮点数。        |
+| y           | number   | 是   | Y轴上的偏移点，该参数为浮点数。        |
+| color       | number   | 是   | 16进制ARGB格式的颜色。 |
+
+**返回值：**
+
+| 类型                        | 说明                  |
+| --------------------------- | -------------------- |
+| [ShadowLayer](#shadowlayer12) | 返回创建的阴影层对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let shadowLayer = drawing.ShadowLayer.create(3, -3, 3, 0xff00ff00);
   }
 }
 ```
@@ -5669,6 +5785,36 @@ const pen = new drawing.Pen();
 pen.setColor(255, 255, 0, 0);
 ```
 
+### setColor<sup>16+</sup>
+
+setColor(color: number) : void
+
+用于设置画笔的颜色。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                 | 必填 | 说明             |
+| ------ | ---------------------------------------------------- | ---- | ---------------- |
+| color  | number | 是   | 16进制ARGB格式的颜色。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+const pen = new drawing.Pen();
+pen.setColor(0xffff0000);
+```
+
 ### getColor<sup>12+</sup>
 
 getColor(): common2D.Color
@@ -5694,7 +5840,7 @@ pen.setColor(color);
 let colorGet = pen.getColor();
 ```
 
-### getHexColor<sup>13+</sup>
+### getHexColor<sup>16+</sup>
 
 getHexColor(): number
 
@@ -6443,6 +6589,36 @@ const brush = new drawing.Brush();
 brush.setColor(255, 255, 0, 0);
 ```
 
+### setColor<sup>16+</sup>
+
+setColor(color: number) : void
+
+用于设置画刷的颜色。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                 | 必填 | 说明             |
+| ------ | ---------------------------------------------------- | ---- | ---------------- |
+| color  | number | 是   | 16进制ARGB格式的颜色。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+const brush = new drawing.Brush();
+brush.setColor(0xffff0000);
+```
+
 ### getColor<sup>12+</sup>
 
 getColor(): common2D.Color
@@ -6468,7 +6644,9 @@ brush.setColor(color);
 let colorGet = brush.getColor();
 ```
 
-### getHexColor<sup>13+</sup>
+### getHexColor<sup>16+</sup>
+
+getHexColor(): number
 
 获取画刷的颜色。
 
