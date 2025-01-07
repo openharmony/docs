@@ -4052,6 +4052,7 @@ on(type: 'systemDensityChange', callback: Callback&lt;number&gt;): void
 
 **错误码：**
 
+
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
@@ -10897,6 +10898,8 @@ export default class EntryAbility extends UIAbility {
 setCustomDensity(density: number): void
 
 支持应用自定义窗口的显示大小缩放系数。该接口的优先级和[setDefaultDensityEnabled](#setdefaultdensityenabled12)相等，以最终一次的调用结果为准。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
