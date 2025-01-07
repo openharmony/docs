@@ -237,13 +237,13 @@ setPhotoBrowserUIElementVisibility(elements: Array&lt;PhotoBrowserUIElement&gt;,
 | elements    | Array&lt;[PhotoBrowserUIElement](#photobrowseruielement13)&gt; | 是 | 大图页大图预览组件外其他UI元素。 |
 | isVisible | boolean                                                        | 是 | 是否可见。             |
 
-### replacePhotoPickerPreview<sup>14+</sup>
+### replacePhotoPickerPreview<sup>15+</sup>
 
 replacePhotoPickerPreview(originalUri: string, newUri: string, callback: AsyncCallback&lt;void&gt;): void
 
 应用可通过该接口，将photoPicker中用户勾选的图片替换为应用后期编辑修改后的图片。
 
-**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -255,13 +255,13 @@ replacePhotoPickerPreview(originalUri: string, newUri: string, callback: AsyncCa
 | newUri  | boolean   | 是 | 新uri，即替换后的uri。基于originalUri修改后期望在photoPicker上替换originalUri显示的，暂存在应用沙箱的图片/视频uri。      |
 | callback   | AsyncCallback&lt;void&gt;   | 是 | 调用接口完成替换后的回调      |
 
-### saveTrustedPhotoAssets<sup>14+</sup>
+### saveTrustedPhotoAssets<sup>15+</sup>
 
 saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;, configs?: Array&lt;photoAccessHelper.PhotoCreationConfig&gt;, saveMode?: SaveMode): void
 
-应用可通过该接口，保存对应uri列表的文件。使用时，一般结合[replacePhotoPickerPreview](#replacephotopickerpreview14)接口使用，将替换显示成功后的应用沙箱图片/视频newUris保存到图库。
+应用可通过该接口，保存对应uri列表的文件。使用时，一般结合[replacePhotoPickerPreview](#replacephotopickerpreview15)接口使用，将替换显示成功后的应用沙箱图片/视频newUris保存到图库。
 
-**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -269,10 +269,10 @@ saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback
 
 | 参数名         | 类型                                                             | 必填  | 说明                |
 |-------------|----------------------------------------------------------------| ----- |-------------------|
-| trustedUris     | Array&lt;string&gt; | 是 | 需要保存到图库的应用沙箱图片/视频uri。trustedUris一般来自[replacePhotoPickerPreview](#replacephotopickerpreview14)替换显示成功的newUri。 |
+| trustedUris     | Array&lt;string&gt; | 是 | 需要保存到图库的应用沙箱图片/视频uri。trustedUris一般来自[replacePhotoPickerPreview](#replacephotopickerpreview15)替换显示成功的newUri。 |
 | callback  | AsyncCallback&lt;Array&lt;string&gt;&gt;          | 是 | 返回保存后新生成的媒体库文件对应的uri             |
 | configs | Array&lt;[photoAccessHelper.PhotoCreationConfig](js-apis-photoAccessHelper.md#photocreationconfig12)&gt;          | 否 | 需要保存的文件对应的配置参数             |
-| saveMode | [SaveMode](#savemode14)           | 否 | 图片保存模式。             |
+| saveMode | [SaveMode](#savemode15)           | 否 | 图片保存模式。             |
 
 ## BaseItemInfo
 
@@ -475,11 +475,11 @@ Picker的颜色模式。
 | CHECKBOX    | 0   | 大图页勾选框。  |
 | BACK_BUTTON | 1   | 大图页返回按钮。 |
 
-## SaveMode<sup>14+</sup>
+## SaveMode<sup>15+</sup>
 
 图片/视频保存模式。
 
-**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
