@@ -1866,9 +1866,18 @@ struct Index {
 该示例实现了通过ComponentContent预加载子节点。
 
 ```ts
-// xxx.ets
 import { BusinessError } from '@kit.BasicServicesKit'
 import { ComponentContent } from '@kit.ArkUI'
+
+class Params {
+  text: string = ""
+  fontColor: string = ""
+
+  constructor(text: string, fontColor: string) {
+    this.text = text;
+    this.fontColor = fontColor;
+  }
+}
 
 @Component
 struct imageCom {
@@ -1881,13 +1890,13 @@ struct imageCom {
 }
 
 @Builder
-function TabBuilder(name: string) {
+function TabBuilder(params: Params) {
   Column({ space: 4 }) {
     imageCom()
 
-    Text(name)
+    Text(params.text)
       .fontSize(10)
-      .fontColor(Color.Black)
+      .fontColor(params.fontColor)
   }
 }
 
@@ -1897,31 +1906,72 @@ struct TabsPreloadItems {
   @State currentIndex: number = 0
   private tabsController: TabsController = new TabsController()
   context: UIContext = this.getUIContext()
+  unselectedFontColor: string = '#182431'
+  selectedFontColor: string = '#007DFF'
+  tabBar1: ComponentContent<Params> =
+    new ComponentContent<Params>(this.context, wrapBuilder<[Params]>(TabBuilder),
+      new Params('green', this.selectedFontColor));
+  tabBar2: ComponentContent<Params> =
+    new ComponentContent<Params>(this.context, wrapBuilder<[Params]>(TabBuilder),
+      new Params('blue', this.unselectedFontColor));
+  tabBar3: ComponentContent<Params> =
+    new ComponentContent<Params>(this.context, wrapBuilder<[Params]>(TabBuilder),
+      new Params('yellow', this.unselectedFontColor));
+  tabBar4: ComponentContent<Params> =
+    new ComponentContent<Params>(this.context, wrapBuilder<[Params]>(TabBuilder),
+      new Params('pink', this.unselectedFontColor));
 
   build() {
     Column() {
       Tabs({ index: this.currentIndex, controller: this.tabsController }) {
         TabContent() {
           MyComponent({ color: '#00CB87' })
-        }.tabBar(new ComponentContent<string>(this.context, wrapBuilder<[string]>(TabBuilder), 'green'))
+        }.tabBar(this.tabBar1)
 
         TabContent() {
           MyComponent({ color: '#007DFF' })
-        }.tabBar(new ComponentContent<string>(this.context, wrapBuilder<[string]>(TabBuilder), 'blue'))
+        }.tabBar(this.tabBar2)
 
         TabContent() {
           MyComponent({ color: '#FFBF00' })
-        }.tabBar(new ComponentContent<string>(this.context, wrapBuilder<[string]>(TabBuilder), 'yellow'))
+        }.tabBar(this.tabBar3)
 
         TabContent() {
           MyComponent({ color: '#E67C92' })
-        }.tabBar(new ComponentContent<string>(this.context, wrapBuilder<[string]>(TabBuilder), 'pink'))
+        }.tabBar(this.tabBar4)
       }
       .width(360)
       .height(296)
       .backgroundColor('#F1F3F5')
       .onChange((index: number) => {
         this.currentIndex = index
+        switch (this.currentIndex) {
+          case 0:
+            this.tabBar1.update(new Params('green', this.selectedFontColor));
+            this.tabBar2.update(new Params('blue', this.unselectedFontColor));
+            this.tabBar3.update(new Params('yellow', this.unselectedFontColor));
+            this.tabBar4.update(new Params('pink', this.unselectedFontColor));
+            break;
+          case 1:
+            this.tabBar1.update(new Params('green', this.unselectedFontColor));
+            this.tabBar2.update(new Params('blue', this.selectedFontColor));
+            this.tabBar3.update(new Params('yellow', this.unselectedFontColor));
+            this.tabBar4.update(new Params('pink', this.unselectedFontColor));
+            break;
+          case 2:
+            this.tabBar1.update(new Params('green', this.unselectedFontColor));
+            this.tabBar2.update(new Params('blue', this.unselectedFontColor));
+            this.tabBar3.update(new Params('yellow', this.selectedFontColor));
+            this.tabBar4.update(new Params('pink', this.unselectedFontColor));
+            break;
+          case 3:
+            this.tabBar1.update(new Params('green', this.unselectedFontColor));
+            this.tabBar2.update(new Params('blue', this.unselectedFontColor));
+            this.tabBar3.update(new Params('yellow', this.unselectedFontColor));
+            this.tabBar4.update(new Params('pink', this.selectedFontColor));
+            break;
+          default:
+        }
       })
 
       Button('preload items: [1,2,3]')
