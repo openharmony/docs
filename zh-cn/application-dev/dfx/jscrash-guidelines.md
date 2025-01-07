@@ -8,10 +8,6 @@
 
 ### JS Crash日志规格
 
-直接生成的JS Crash日志为二进制格式的rawheap文件，由于.rawheap文件为二进制格式，需要先使用如下方式进行处理：
-1、使用解析脚本手动将日志解析为heapsnapshot文件后进行查看，工具使用方法见[rawheap格式文件转换工具](../tools/rawheap-translator.md)。
-2、DevEco Profiler 提供Raw Heap离线导入能力，可导入一个或多个 .rawheap文件。
-
 以下是进程崩溃日志信息中对应字段解释。
 
 ```
