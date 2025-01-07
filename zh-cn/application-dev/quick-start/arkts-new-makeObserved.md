@@ -279,28 +279,28 @@ struct Index {
           Button('push').onClick(() => {
             this.arrCollect.push(new Info(30));
           })
-          // pop: remove the last one
+          // pop: 删除最后一个
           Button('pop').onClick(() => {
             this.arrCollect.pop();
           })
-          // shift: remove the first one
+          // shift: 删除第一个
           Button('shift').onClick(() => {
             this.arrCollect.shift();
           })
-          // unshift: insert the new item in the start of the array
+          // unshift: 在数组的开头插入新项
           Button('unshift').onClick(() => {
             this.arrCollect.unshift(new Info(50));
           })
-          // splice: Removes elements from the array at the specified position
+          // splice: 从数组的指定位置删除元素
           Button('splice').onClick(() => {
             this.arrCollect.splice(1);
           })
 
-          // Shrinks the ArkTS array to the given arrayLength.
+          // shrinkTo: 将数组长度缩小到给定的长度
           Button('shrinkTo').onClick(() => {
             this.arrCollect.shrinkTo(1);
           })
-          // Extends the ArkTS array to the given arrayLength,
+          // extendTo: 将数组长度扩展到给定的长度
           Button('extendTo').onClick(() => {
             this.arrCollect.extendTo(6, new Info(20));
           })
@@ -313,7 +313,7 @@ struct Index {
           Button('sort').onClick(() => {
             this.arrCollect.sort((a: Info, b: Info) => b.id - a.id);
           })
-          // fill: filling the section identified by start and end with value
+          // fill: 用值填充指定部分
           Button('fill').onClick(() => {
             this.arrCollect.fill(new Info(5), 0, 2);
           })

@@ -132,7 +132,7 @@ get varName(): T {
 struct Index {
   @Local firstName: string = 'Li';
   @Local lastName: string = 'Hua';
-  age: number = 20; // cannot trigger Computed
+  age: number = 20; // 无法触发Computed
 
   @Computed
   get fullName() {

@@ -94,9 +94,9 @@ class Model {
 
 @Prop title: Model;
 // 可以观察到第一层的变化
-this.title.value = 'Hi'
+this.title.value = 'Hi';
 // 观察不到第二层的变化
-this.title.info.value = 'ArkUI' 
+this.title.info.value = 'ArkUI';
 ```
 
 对于嵌套场景，如果class是被\@Observed装饰的，可以观察到class属性的变化，示例请参考[@Prop嵌套场景](#prop嵌套场景)。
@@ -105,15 +105,15 @@ this.title.info.value = 'ArkUI'
 
 ```ts
 // @State装饰的对象为数组时
-@Prop title: string[]
+@Prop title: string[];
 // 数组自身的赋值可以观察到
-this.title = ['1']
+this.title = ['1'];
 // 数组项的赋值可以观察到
-this.title[0] = '2'
+this.title[0] = '2';
 // 删除数组项可以观察到
-this.title.pop()
+this.title.pop();
 // 新增数组项可以观察到
-this.title.push('3')
+this.title.push('3');
 ```
 
 对于\@State和\@Prop的同步场景：
@@ -135,10 +135,10 @@ struct DateComponent {
       Button('child update the new date')
         .margin(10)
         .onClick(() => {
-          this.selectedDate = new Date('2023-09-09')
+          this.selectedDate = new Date('2023-09-09');
         })
       Button(`child increase the year by 1`).onClick(() => {
-        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1)
+        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
       })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -159,12 +159,12 @@ struct ParentComponent {
       Button('parent update the new date')
         .margin(10)
         .onClick(() => {
-          this.parentSelectedDate = new Date('2023-07-07')
+          this.parentSelectedDate = new Date('2023-07-07');
         })
       Button('parent increase the day by 1')
         .margin(10)
         .onClick(() => {
-          this.parentSelectedDate.setDate(this.parentSelectedDate.getDate() + 1)
+          this.parentSelectedDate.setDate(this.parentSelectedDate.getDate() + 1);
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -288,7 +288,7 @@ struct Child {
     Text(`${this.value}`)
       .fontSize(50)
       .onClick(() => {
-        this.value++
+        this.value++;
       })
   }
 }
@@ -509,7 +509,7 @@ struct Library {
           if (this.allBooks.length > 0){
             this.allBooks.shift();
           } else {
-            console.log("length <= 0")
+            console.log("length <= 0");
           }
         })
       Button("Mark read for everyone")
@@ -577,7 +577,7 @@ struct MyComponent {
           .margin({ left: 30, top: 12 })
           .fontColor('#FFFFFF，90%')
           .onClick(() => {
-            this.customCounter2++
+            this.customCounter2++;
           })
       }
 
@@ -612,7 +612,7 @@ struct MainProgram {
             .margin({ left: 30, top: 12 })
             .fontColor('#FFFFFF，90%')
             .onClick(() => {
-              this.mainCounter++
+              this.mainCounter++;
             })
         }
       }
@@ -656,7 +656,7 @@ class Father {
 @Entry
 @Component
 struct Person {
-  @State person: Father = new Father('Hello', new Son('world'))
+  @State person: Father = new Father('Hello', new Son('world'));
 
   build() {
     Column() {
@@ -724,7 +724,7 @@ struct Child {
         .borderRadius(20)
         .textAlign(TextAlign.Center)
         .onClick(() => {
-          this.child.title = 'Bye Bye'
+          this.child.title = 'Bye Bye';
         })
     }
   }
@@ -744,7 +744,7 @@ struct Child {
 ```ts
 @Component
 struct Child {
-  @Prop value: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+  @Prop value: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
 
   build() {
     Column() {
@@ -754,19 +754,19 @@ struct Child {
         Divider()
       })
       Button('child init map').onClick(() => {
-        this.value = new Map([[0, "a"], [1, "b"], [3, "c"]])
+        this.value = new Map([[0, "a"], [1, "b"], [3, "c"]]);
       })
       Button('child set new one').onClick(() => {
-        this.value.set(4, "d")
+        this.value.set(4, "d");
       })
       Button('child clear').onClick(() => {
-        this.value.clear()
+        this.value.clear();
       })
       Button('child replace the first one').onClick(() => {
-        this.value.set(0, "aa")
+        this.value.set(0, "aa");
       })
       Button('child delete the first one').onClick(() => {
-        this.value.delete(0)
+        this.value.delete(0);
       })
     }
   }
@@ -776,7 +776,7 @@ struct Child {
 @Entry
 @Component
 struct MapSample {
-  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
 
   build() {
     Row() {
@@ -801,7 +801,7 @@ struct MapSample {
 ```ts
 @Component
 struct Child {
-  @Prop message: Set<number> = new Set([0, 1, 2, 3, 4])
+  @Prop message: Set<number> = new Set([0, 1, 2, 3, 4]);
 
   build() {
     Column() {
@@ -810,16 +810,16 @@ struct Child {
         Divider()
       })
       Button('init set').onClick(() => {
-        this.message = new Set([0, 1, 2, 3, 4])
+        this.message = new Set([0, 1, 2, 3, 4]);
       })
       Button('set new one').onClick(() => {
-        this.message.add(5)
+        this.message.add(5);
       })
       Button('clear').onClick(() => {
-        this.message.clear()
+        this.message.clear();
       })
       Button('delete the first one').onClick(() => {
-        this.message.delete(0)
+        this.message.delete(0);
       })
     }
     .width('100%')
@@ -830,7 +830,7 @@ struct Child {
 @Entry
 @Component
 struct SetSample {
-  @State message: Set<number> = new Set([0, 1, 2, 3, 4])
+  @State message: Set<number> = new Set([0, 1, 2, 3, 4]);
 
   build() {
     Row() {
@@ -868,13 +868,13 @@ struct Child {
       Button('Child change animals into tigers')
         .onClick(() => {
           // 赋值为Animals的实例
-          this.animal = new Animals("Tiger")
+          this.animal = new Animals("Tiger");
         })
 
       Button('Child change animal to undefined')
         .onClick(() => {
           // 赋值为undefined
-          this.animal = undefined
+          this.animal = undefined;
         })
 
     }.width('100%')
@@ -896,16 +896,16 @@ struct Zoo {
         .onClick(() => {
           // 判断animal的类型，做属性的更新
           if (this.animal instanceof Animals) {
-            this.animal.name = "Dog"
+            this.animal.name = "Dog";
           } else {
-            console.info('num is undefined, cannot change property')
+            console.info('num is undefined, cannot change property');
           }
         })
 
       Button('Parents change animal to undefined')
         .onClick(() => {
           // 赋值为undefined
-          this.animal = undefined
+          this.animal = undefined;
         })
     }
   }
