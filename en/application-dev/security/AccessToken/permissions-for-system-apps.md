@@ -1057,6 +1057,18 @@ Allows a system service to capture internal audio without using the AVScreenCapt
 
 **Valid since**: 16
 
+### ohos.permission.MICROPHONE_BACKGROUND
+
+Allows a system application to use the microphone in the background.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.START_DLP_CRED
 
 Allows a system application or system service to start the DLP credential management application.

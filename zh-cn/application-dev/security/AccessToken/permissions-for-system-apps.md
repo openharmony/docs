@@ -1057,6 +1057,18 @@
 
 **起始版本**：16
 
+### ohos.permission.MICROPHONE_BACKGROUND
+
+允许系统应用在后台使用麦克风。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.START_DLP_CRED
 
 允许系统应用或者系统服务拉起DLP凭据管理应用。
