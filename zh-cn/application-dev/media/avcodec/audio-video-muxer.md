@@ -37,7 +37,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 ### 开发步骤
 
-参考以下示例代码，完成音视频封装的全流程。以封装mp4格式的音视频文件为例。
+参考以下示例代码，完成音视频封装的全流程。以封装mp4格式的音视频文件为例。  
+
+不同的封装格式需要配置的key请参考[AVCodec支持的格式](avcodec-support-formats.md#媒体数据封装)。
 
 1. 添加头文件。
 
