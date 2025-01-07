@@ -365,7 +365,7 @@ import { window } from '@kit.ArkUI';
 | ------ | -------- | ---- | ---- | ---------- |
 | systemDensity  | number   | 是   | 否   | 窗口所在屏幕的系统显示大小缩放系数，跟随用户设置变化，该参数变化范围为0.5-4.0。 |
 | defaultDensity | number   | 是   | 否   | 窗口所在屏幕的系统默认显示大小缩放系数，跟随显示设备屏幕变化，该参数变化范围为0.5-4.0。 |
-| customDensity | number   | 是   | 否   | 窗口设置的自定义显示大小缩放系数，该参数应为浮点数。未设置该参数时，将跟随系统显示大小缩放系数变化。如果调用[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，将跟随系统默认显示大小缩放系数变化。 |
+| customDensity | number   | 是   | 否   | 窗口自定义设置的显示大小缩放系数，该参数取值范围为0.5-4.0。未设置该参数时，将跟随系统显示大小缩放系数变化。如果调用[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，将跟随系统默认显示大小缩放系数变化。 |
 
 ## WindowLayoutInfo<sup>16+</sup>
 
