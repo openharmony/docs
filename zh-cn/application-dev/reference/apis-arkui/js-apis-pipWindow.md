@@ -691,6 +691,40 @@ let controlType: PiPWindow.PiPControlType = PiPWindow.PiPControlType.VIDEO_PLAY_
 let enabled: boolean = false; // 视频播放控制面板中播放/暂停控件为禁用状态。
 pipController.setPiPControlEnabled(controlType, enabled);
 ```
+### getPiPWindowInfo<sup>16+</sup>
+getPiPWindowInfo(): Promise&lt;PiPWindowInfo&gt
+
+获取画中画窗口信息。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                   | 说明                  |
+|----------------------|---------------------|
+| Promise&lt;PiPWindowInfo&gt;  | Promise对象，返回当前画中画窗口信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                        |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 801   | Capability not supported.Failed to call the API due to limited device capabilities.                                                       |
+| 1300014    | PiP internal error.                                    |
+
+**示例：**
+
+```ts
+try {
+  let info = await pipcontroller.getPiPWindowInfo();
+  console.info('Success in get pip window info. Info: ' + JSON.stringify(info));
+} catch (exception) {
+  console.error(`Failed to get pip window info. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
 
 ### on('stateChange')
 
