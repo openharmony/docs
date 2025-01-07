@@ -13,7 +13,7 @@
 
 ## 接口
 
-Toggle(options: ToggleOptions)
+Toggle(options: { type: ToggleType, isOn?: boolean })
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -25,20 +25,8 @@ Toggle(options: ToggleOptions)
 
 | 参数名 | 类型 | 必填   | 说明           |
 | ---- | ---------- | -----| -------------- |
-| options | [ToggleOptions](#toggleoptions14对象说明) | 是   | Toggle的信息。 |
-
-## ToggleOptions<sup>14+</sup>对象说明
-
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 类型                              | 必填 | 说明                                                         |
-| ---- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| type | [ToggleType](#toggletype枚举说明) | 是   | 开关的样式。<br/>默认值：ToggleType.Switch                   |
-| isOn | boolean                           | 否   | 开关是否打开，true：打开，false：关闭。<br/>默认值：false<br />该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| type | [ToggleType](#toggletype枚举说明) | 是   | 开关的样式。<br/>默认值：ToggleType.Switch |
+| isOn | boolean    | 否   | 开关是否打开，true：打开，false：关闭。<br/>默认值：false<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 
 ## ToggleType枚举说明
 
