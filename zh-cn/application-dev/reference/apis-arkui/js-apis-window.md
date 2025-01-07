@@ -365,7 +365,7 @@ import { window } from '@kit.ArkUI';
 | ------ | -------- | ---- | ---- | ---------- |
 | systemDensity  | number   | 是   | 否   | 窗口所在屏幕的系统显示大小缩放系数，跟随用户设置变化，该参数变化范围为0.5-4.0。 |
 | defaultDensity | number   | 是   | 否   | 窗口所在屏幕的系统默认显示大小缩放系数，跟随窗口所在屏幕变化，该参数变化范围为0.5-4.0。 |
-| customDensity | number   | 是   | 否   | 窗口自定义设置的显示大小缩放系数，该参数取值范围为0.5-4.0。未设置该参数时，将跟随系统显示大小缩放系数变化。如果调用[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)，将跟随系统默认显示大小缩放系数变化。 |
+| customDensity | number   | 是   | 否   | 窗口自定义设置的显示大小缩放系数，该参数取值范围为0.5-4.0。未设置该参数时，将跟随系统显示大小缩放系数变化。 |
 
 ## WindowLayoutInfo<sup>16+</sup>
 
@@ -9784,7 +9784,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
     windowStage.getMainWindow((err: BusinessError, data) => {
       const errCode: number = err.code;
@@ -9837,7 +9837,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
     let promise = windowStage.getMainWindow();
     promise.then((data) => {
@@ -9887,7 +9887,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       let windowClass = windowStage.getMainWindowSync();
     } catch (exception) {
@@ -9937,7 +9937,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
     try {
       windowStage.createSubWindow('mySubWindow', (err: BusinessError, data) => {
@@ -10007,7 +10007,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
     try {
       let promise = windowStage.createSubWindow('mySubWindow');
@@ -10129,7 +10129,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window[] = [];
     windowStage.getSubWindow((err: BusinessError, data) => {
       const errCode: number = err.code;
@@ -10181,7 +10181,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window[] = [];
     let promise = windowStage.getSubWindow();
     promise.then((data) => {
@@ -10238,7 +10238,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     this.storage.setOrCreate('storageSimpleProp', 121);
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       windowStage.loadContent('pages/page2', this.storage, (err: BusinessError) => {
         const errCode: number = err.code;
@@ -10304,7 +10304,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     this.storage.setOrCreate('storageSimpleProp', 121);
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       let promise = windowStage.loadContent('pages/page2', this.storage);
       promise.then(() => {
@@ -10360,7 +10360,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       windowStage.loadContent('pages/page2', (err: BusinessError) => {
         const errCode: number = err.code;
@@ -10422,7 +10422,7 @@ export default class EntryAbility extends UIAbility {
   storage: LocalStorage = new LocalStorage();
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     this.storage.setOrCreate('storageSimpleProp', 121);
     try {
       windowStage.loadContentByName(Index.entryName, this.storage, (err: BusinessError) => {
@@ -10503,7 +10503,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       windowStage.loadContentByName(Index.entryName, (err: BusinessError) => {
         const errCode: number = err.code;
@@ -10585,7 +10585,7 @@ export default class EntryAbility extends UIAbility {
   storage: LocalStorage = new LocalStorage();
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     this.storage.setOrCreate('storageSimpleProp', 121);
     try {
       let promise = windowStage.loadContentByName(Index.entryName, this.storage);
@@ -10661,7 +10661,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       windowStage.on('windowStageEvent', (data) => {
         console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
@@ -10713,7 +10713,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     const callback = (windowStageEventType: window.WindowStageEventType) => {
       // ...
     }
@@ -10883,7 +10883,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       windowStage.setDefaultDensityEnabled(true);
     } catch (exception) {
@@ -10897,7 +10897,7 @@ export default class EntryAbility extends UIAbility {
 
 setCustomDensity(density: number): void
 
-支持应用自定义窗口的显示大小缩放系数。该接口的优先级和[setDefaultDensityEnabled](#setdefaultdensityenabled12)相等，以最终一次的调用结果为准。
+支持应用主窗口自定义其显示大小缩放系数，子窗会跟随主窗生效。当存在同时使用该接口和[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，以最终调用的结果设置效果为准。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -10927,6 +10927,7 @@ setCustomDensity(density: number): void
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
