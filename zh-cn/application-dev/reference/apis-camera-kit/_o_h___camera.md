@@ -758,7 +758,7 @@ typedef enum Camera_QualityLevel Camera_QualityLevel
 **起始版本：** 11
 
 
-### Camera_QualityPrioritization 
+### Camera_QualityPrioritization
 
 ```
 typedef enum Camera_QualityPrioritization Camera_QualityPrioritization
