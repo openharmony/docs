@@ -4065,7 +4065,7 @@ on(type: 'systemDensityChange', callback: Callback&lt;number&gt;): void
 
 ```ts
 const callback = (density: number) => {
-  console.info('System density changed, density=' + JSON.stringify(data));
+  console.info('System density changed, density=' + JSON.stringify(density));
 }
 try {
   windowClass.on('systemDensityChange', callback);
