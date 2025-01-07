@@ -744,6 +744,11 @@
 | int32_t [OH_ArkUI_MarshallStyledStringDescriptor](#oh_arkui_marshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息序列化为字节数组。  | 
 | const char \* [OH_ArkUI_ConvertToHtml](#oh_arkui_converttohtml) ([ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息转化成html。  | 
 | int32_t [OH_ArkUI_PostFrameCallback](#oh_arkui_postframecallback)([ArkUI_ContextHandle](#arkui_contexthandle-12) uiContext, void\* userData, void (\*callback)(uint64_t nanoTimestamp, uint32_t frameCount, void\* userData))| 注册一个回调函数，以便在下一帧渲染时执行。不允许在非UI线程调用，检查到非UI线程调用程序会主动abort。 |
+| int32_t [OH_ArkUI_RegisterLayoutCallbackOnNodeHandle](#oh_arkui_registerlayoutcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node, void\* userData, void (\*onLayoutCompleted)(void\* userData))| 注册组件布局完成回调方法。同一组件仅能注册一个布局完成回调方法。  |
+| int32_t [OH_ArkUI_RegisterDrawCallbackOnNodeHandle](#oh_arkui_registerdrawcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node, void\* userData, void (\*onDrawCompleted)(void\* userData))| 注册组件绘制完成回调方法。同一组件仅能注册一个绘制完成回调方法。  |
+| int32_t [OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle](#oh_arkui_unregisterlayoutcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node)| 取消注册组件布局完成回调方法。  |
+| int32_t [OH_ArkUI_UnregisterDrawCallbackOnNodeHandle](#oh_arkui_unregisterdrawcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node)| 取消注册组件绘制完成回调方法。  |
+| [ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md) [OH_ArkUI_NodeEvent_GetTextChangeEvent](#oh_arkui_nodeevent_gettextchangeevent)([ArkUI_NodeEvent](#arkui_nodeevent-12) \*event) | 获取输入框内容改变（包括预上屏内容）事件的相关数据。  |
 
 
 ## 宏定义说明
@@ -3481,7 +3486,7 @@ enum ArkUI_NodeEventType
 | NODE_TEXT_INPUT_ON_DID_INSERT  | 定义在输入完成时，触发回调的枚举值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)。<br/>通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为0的value.f32：插入的值的位置信息。<br/>通过OH_ArkUI_NodeEvent_GetStringValue获取到index为0的buffer字符串：插入的值。 | 
 | NODE_TEXT_INPUT_ON_WILL_DELETE  | 定义在将要删除时，触发回调的枚举值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)。<br/>通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为0的value.f32：删除的值的位置信息。<br/>通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为1的value.i32：删除值的方向，0为向后删除，1为向前删除。<br/>通过OH_ArkUI_NodeEvent_GetStringValue获取到index为0的buffer字符串：删除的值。<br/>返回<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>可通过OH_ArkUI_NodeEvent_SetReturnNumberValue设置返回值。 | 
 | NODE_TEXT_INPUT_ON_DID_DELETE  | 定义在删除完成时，触发回调的枚举值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)。<br/>通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为0的value.f32：删除的值的位置信息。<br/>通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为1的value.i32：删除值的方向，0为向后删除，1为向前删除。<br/>通过OH_ArkUI_NodeEvent_GetStringValue获取到index为0的buffer字符串：删除的值。 | 
-| NODE_TEXT_INPUT_ON_CHANGE_WITH_PREVIEW_TEXT  | 定义在文本内容（包含预上屏内容）改变时，触发回调的枚举值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md)。<br/>[ArkUI_StringAsyncEvent](_ark_u_i___text_change_event.md)中包含3个参数：<br/>**[ArkUI_TextChangeEvent.pStr](_ark_u_i___text_change_event.md#pstr)**：输入的文本内容。<br/>**[ArkUI_TextChangeEvent.pExtendStr](_ark_u_i___text_change_event.md#pExtendStr)**：预上屏输入的文本内容。<br/>**[ArkUI_TextChangeEvent.number](_ark_u_i___text_change_event.md#pstr)**：预上屏文本插入的位置。 | 
+| NODE_TEXT_INPUT_ON_CHANGE_WITH_PREVIEW_TEXT  | 定义在文本内容（包含预上屏内容）改变时，触发回调的枚举值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md)。<br/>[ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md)中包含3个参数：<br/>**[ArkUI_TextChangeEvent.pStr](_ark_u_i___text_change_event.md#pstr)**：输入的文本内容。<br/>**[ArkUI_TextChangeEvent.pExtendStr](_ark_u_i___text_change_event.md#pextendstr)**：预上屏输入的文本内容。<br/>**[ArkUI_TextChangeEvent.number](_ark_u_i___text_change_event.md#number)**：预上屏文本插入的位置。 | 
 | NODE_TEXT_AREA_ON_CHANGE  | 输入内容发生变化时，触发该回调。<br/>触发该事件的条件：输入内容发生变化时。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)。<br/>[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)中包含1个参数：<br/>**[ArkUI_StringAsyncEvent.pStr](_ark_u_i___string_async_event.md#pstr)**：当前输入的文本内容。 | 
 | NODE_TEXT_AREA_ON_PASTE  | 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。<br/>触发该事件的条件：长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)。<br/>[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)中包含1个参数：<br/>**[ArkUI_StringAsyncEvent.pStr](_ark_u_i___string_async_event.md#pstr)**：粘贴的文本内容。 | 
 | NODE_TEXT_AREA_ON_TEXT_SELECTION_CHANGE  | 文本选择的位置发生变化时，触发该回调。<br/>触发该事件的条件：文本选择的位置发生变化时。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含2个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：表示所选文本的起始位置。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32**：表示所选文本的结束位置。 | 
@@ -3494,7 +3499,7 @@ enum ArkUI_NodeEventType
 | NODE_TEXT_AREA_ON_DID_INSERT  | 定义在输入完成时，触发回调的枚举值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)。<br/>通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为0的value.f32：插入的值的位置信息。<br/>通过OH_ArkUI_NodeEvent_GetStringValue获取到index为0的buffer字符串：插入的值。 | 
 | NODE_TEXT_AREA_ON_WILL_DELETE  | 定义在将要删除时，触发回调的枚举值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)。<br/>通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为0的value.f32：删除的值的位置信息。<br/>通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为1的value.i32：删除值的方向，0为向后删除，1为向前删除。<br/>通过OH_ArkUI_NodeEvent_GetStringValue获取到index为0的buffer字符串：删除的值。<br/>返回<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>可通过OH_ArkUI_NodeEvent_SetReturnNumberValue设置返回值。 | 
 | NODE_TEXT_AREA_ON_DID_DELETE  | 定义在删除完成时，触发回调的枚举值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)。<br/>通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为0的value.f32：删除的值的位置信息。<br/>通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为1的value.i32：删除值的方向，0为向后删除，1为向前删除。<br/>通过OH_ArkUI_NodeEvent_GetStringValue获取到index为0的buffer字符串：删除的值。 | 
-| NODE_TEXT_AREA_ON_CHANGE_WITH_PREVIEW_TEXT  | 定义在文本内容（包含预上屏内容）改变时，触发回调的枚举值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md)。<br/>[ArkUI_StringAsyncEvent](_ark_u_i___text_change_event.md)中包含3个参数：<br/>**[ArkUI_TextChangeEvent.pStr](_ark_u_i___text_change_event.md#pstr)**：输入的文本内容。<br/>**[ArkUI_TextChangeEvent.pExtendStr](_ark_u_i___text_change_event.md#pExtendStr)**：预上屏输入的文本内容。<br/>**[ArkUI_TextChangeEvent.number](_ark_u_i___text_change_event.md#pstr)**：预上屏文本插入的位置。 | 
+| NODE_TEXT_AREA_ON_CHANGE_WITH_PREVIEW_TEXT  | 定义在文本内容（包含预上屏内容）改变时，触发回调的枚举值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md)。<br/>[ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md)中包含3个参数：<br/>**[ArkUI_TextChangeEvent.pStr](_ark_u_i___text_change_event.md#pstr)**：输入的文本内容。<br/>**[ArkUI_TextChangeEvent.pExtendStr](_ark_u_i___text_change_event.md#pextendstr)**：预上屏输入的文本内容。<br/>**[ArkUI_TextChangeEvent.number](_ark_u_i___text_change_event.md#number)**：预上屏文本插入的位置。 | 
 | NODE_CHECKBOX_EVENT_ON_CHANGE  | 定义ARKUI_NODE_CHECKBOX当选中状态发生变化时，触发该回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**1:表示已选中, 0: 表示未选中 | 
 | NODE_DATE_PICKER_EVENT_ON_DATE_CHANGE  | 定义ARKUI_NODE_DATE_PICKER列表组件的滚动触摸事件枚举值。<br/>触发该事件的条件：选择日期时触发该事件。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含3个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：表示选中时间的年。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32**：表示选中时间的月，取值范围：[0-11]。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].i32**：表示选中时间的天。 | 
 | NODE_TIME_PICKER_EVENT_ON_CHANGE  | 定义ARKUI_NODE_TIME_PICKER列表组件的滚动触摸事件枚举值。<br/>触发该事件的条件：选择时间时触发该事件。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含2个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：表示选中时间的时，取值范围：[0-23]。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32**：表示选中时间的分，取值范围：[0-59]。 | 
@@ -14714,3 +14719,99 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。
 ARKUI_ERROR_CODE_CAPI_INIT_ERROR CAPI初始化错误。
 ARKUI_ERROR_CODE_UI_CONTEXT_INVALID uiContext对象无效。
 ARKUI_ERROR_CODE_CALLBACK_INVALID 回调函数无效。
+
+
+### OH_ArkUI_RegisterLayoutCallbackOnNodeHandle()
+
+```
+int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle (ArkUI_NodeHandle node, void* userData, void (*onLayoutCompleted)(void* userData))
+```
+**描述：**
+
+注册组件布局完成回调方法。同一组件仅能注册一个布局完成回调方法。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 指定的节点。  | 
+| userData | 自定义事件参数，当事件触发时在回调参数中携带回来。  | 
+| onLayoutCompleted | 事件触发后的回调。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_RegisterDrawCallbackOnNodeHandle()
+
+```
+int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle (ArkUI_NodeHandle node, void* userData, void (*onDrawCompleted)(void* userData))
+```
+**描述：**
+
+注册组件绘制完成回调方法。同一组件仅能注册一个绘制完成回调方法。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 指定的节点。  | 
+| userData | 自定义事件参数，当事件触发时在回调参数中携带回来。  | 
+| onDrawCompleted | 事件触发后的回调。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle()
+
+```
+int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle (ArkUI_NodeHandle node)
+```
+**描述：**
+
+取消注册组件布局完成回调方法。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 指定的节点。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_UnregisterDrawCallbackOnNodeHandle()
+
+```
+int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle (ArkUI_NodeHandle node)
+```
+**描述：**
+
+取消注册组件绘制完成回调方法。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 指定的节点。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。

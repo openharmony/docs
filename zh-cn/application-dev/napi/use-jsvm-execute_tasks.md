@@ -28,15 +28,9 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 cpp代码
 
 ```cpp
-#include "ark_runtime/jsvm.h"
-#include <cassert>
+#include <chrono>
 #include <string.h>
-#include "hilog/log.h"
-#include <unistd.h>
-#undef  LOG_TAG
-#define LOG_TAG "log"
-#undef  LOG_DOMAIN
-#define LOG_DOMAIN 0x1
+
 
 // 待执行的js代码
 static const char *STR_TASK = R"JS( 
@@ -97,12 +91,12 @@ static int32_t TestJSVM() {
     JSVM_VM vm;
     JSVM_CreateVMOptions options;
     memset(&options, 0, sizeof(options));
-    CHECK(OH_JSVM_CreateVM(&options, &vm) == JSVM_OK);
+    CHECK(OH_JSVM_CreateVM(&options, &vm));
     JSVM_VMScope vm_scope;
-    CHECK(OH_JSVM_OpenVMScope(vm, &vm_scope) == JSVM_OK);
+    CHECK(OH_JSVM_OpenVMScope(vm, &vm_scope));
     
     JSVM_Env env;
-    CHECK(OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env) == JSVM_OK);
+    CHECK(OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env));
     JSVM_EnvScope envScope;
     CHECK_RET(OH_JSVM_OpenEnvScope(env, &envScope));
     JSVM_HandleScope handlescope;
@@ -130,14 +124,18 @@ static int32_t TestJSVM() {
     // 关闭并销毁环境和虚拟机
     CHECK_RET(OH_JSVM_CloseHandleScope(env, handlescope));
     CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
-    CHECK(OH_JSVM_DestroyEnv(env) == JSVM_OK);
-    CHECK(OH_JSVM_CloseVMScope(vm, vm_scope) == JSVM_OK);
-    CHECK(OH_JSVM_DestroyVM(vm) == JSVM_OK);
+    CHECK(OH_JSVM_DestroyEnv(env));
+    CHECK(OH_JSVM_CloseVMScope(vm, vm_scope));
+    CHECK(OH_JSVM_DestroyVM(vm));
     return 0;
 }
 
 ```
-
+预期输出结果
+```
+JSVM API TEST: Called with instance [object Object]
+JSVM API TEST: Called Finally
+```
 ### OH_JSVM_SetMicrotaskPolicy
 修改微任务执行策略,通过该接口，用户可以将策略设置为 JSVM_MicrotaskPolicy::JSVM_MICROTASK_EXPLICIT 或 JSVM_MicrotaskPolicy::JSVM_MICROTASK_AUTO。默认模式下，微任务的执行策略为 JSVM_MicrotaskPolicy::JSVM_MICROTASK_AUTO。
 

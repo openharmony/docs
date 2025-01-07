@@ -170,6 +170,7 @@ type ReceiveCallback = Callback\<Record\<string, Object\>\>
 | placeholder<sup>12+<sup> | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 设置占位符，在UIExtensionComponent与UIExtensionAbility建立连接前显示。 |
 | dpiFollowStrategy<sup>12+<sup> | [DpiFollowStrategy](ts-container-ui-extension-component-sys.md#dpifollowstrategy12)                  | 否   | 提供接口支持设置DPI跟随宿主或跟随UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_DPI。 |
 | areaChangePlaceholder<sup>14+<sup> | Record<string, [ComponentContent](../js-apis-arkui-ComponentContent.md)>       | 否   | 设置尺寸变化占位符，在UIExtensionComponent尺寸发生变化并且UIExtension内部渲染未完成时显示, key值支持"FOLD_TO_EXPAND"(折叠展开尺寸变化)、"UNDEFINED"(默认尺寸变化)。 |
+| windowModeFollowStrategy<sup>16+<sup> | [WindowModeFollowStrategy](ts-container-ui-extension-component-sys.md#windowmodefollowstrategy16)    | 否   | 提供接口以支持设置窗口Mode，使其能够跟随宿主或UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_WINDOW_MODE。 |
 
 ## DpiFollowStrategy<sup>12+</sup>
 
@@ -177,6 +178,15 @@ type ReceiveCallback = Callback\<Record\<string, Object\>\>
 | -------------------------------- | --------------- |
 | FOLLOW_HOST_DPI                  | 表示DPI跟随宿主。 |
 | FOLLOW_UI_EXTENSION_ABILITY_DPI  | 表示DPI跟随UIExtensionAbility。 |
+
+## WindowModeFollowStrategy<sup>16+</sup>
+
+窗口Mode跟随策略，用于设置窗口Mode，使其能够跟随宿主或UIExtensionAbility。
+
+| 名称                                     | 值  | 描述             |
+| ---------------------------------------- | ----|--------------- |
+| FOLLOW_HOST_WINDOW_MODE                  | 0   | 表示窗口Mode跟随宿主。 |
+| FOLLOW_UI_EXTENSION_ABILITY_WINDOW_MODE  | 1   | 表示窗口Mode跟随UIExtensionAbility。 |
 
 ## UIExtensionProxy
 
@@ -318,6 +328,7 @@ struct Second {
   @State visible: Visibility = Visibility.Hidden
   @State wid: number = 300
   @State hei: number = 300
+  @State windowStrategy: WindowModeFollowStrategy = WindowModeFollowStrategy.FOLLOW_UI_EXTENSION_ABILITY_WINDOW_MODE;
   private proxy: UIExtensionProxy | null = null;
   private initPlaceholder = new ComponentContent(this.getUIContext(), wrapBuilder(LoadingBuilder), new Params);
   private areaChangePlaceholder = new ComponentContent(this.getUIContext(), wrapBuilder(AreaChangePlaceholderBuilder), new Params);
@@ -339,7 +350,8 @@ struct Second {
             placeholder: this.initPlaceholder,
             areaChangePlaceholder: {
               "FOLD_TO_EXPAND" : this.areaChangePlaceholder,
-            }
+            },
+            windowModeFollowStrategy: this.windowStrategy
           })
           .width(this.wid)
           .height(this.hei)
@@ -406,7 +418,7 @@ import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.Abilit
 
 const TAG: string = '[UIExtAbility]'
 export default class UIExtAbility extends UIExtensionAbility {
-  
+
   onCreate() {
     console.log(TAG, `UIExtAbility onCreate`)
   }
@@ -634,7 +646,7 @@ import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.Abilit
 
 const TAG: string = '[UIExtAbility]'
 export default class UIExtAbility extends UIExtensionAbility {
-  
+
   onCreate() {
     console.log(TAG, `UIExtAbility onCreate`)
   }

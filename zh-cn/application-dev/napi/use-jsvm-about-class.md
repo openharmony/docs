@@ -35,9 +35,7 @@ cpp部分代码
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
+#include <string.h>
 
 std::string ToString(JSVM_Env env, JSVM_Value val) {
     JSVM_Value jsonString;
@@ -107,9 +105,7 @@ cpp部分代码
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
+#include <string>
 
 JSVM_Value CreateInstance(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_Value newTarget;
@@ -220,9 +216,7 @@ cpp部分代码
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
+#include <string>
 
 // OH_JSVM_GetNewTarget、OH_JSVM_DefineClass、OH_JSVM_Wrap、OH_JSVM_Unwrap、OH_JSVM_RemoveWrap的样例方法
 
@@ -231,7 +225,6 @@ struct Object {
     std::string name;
     int32_t age;
 };
-struct Object *obj = new struct Object();
 
 // 定义一个回调函数
 static void DerefItem(JSVM_Env env, void *data, void *hint) {
@@ -241,49 +234,46 @@ static void DerefItem(JSVM_Env env, void *data, void *hint) {
 
 static JSVM_Value WrapObject(JSVM_Env env, JSVM_CallbackInfo info) {
     OH_LOG_INFO(LOG_APP, "JSVM wrap");
+    Object obj;
     // 设置Object属性
-    obj->name = "lilei";
-    obj->age = 18;
-    {
-        HandleScope handleScope(env);
-        // 获取回调信息中的参数数量和将要被封装的值
-        size_t argc = 1;
-        JSVM_Value toWrap = nullptr;
-        JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, &toWrap, nullptr, nullptr));
-        // OH_JSVM_Wrap将自定义结构Object进行封装
-        JSVM_CALL(OH_JSVM_Wrap(env, toWrap, reinterpret_cast<void *>(obj), DerefItem, NULL, NULL));
-        struct Object *data;
-        // OH_JSVM_UnWrap解包先前封装在JavaScript对象中的原生实例
-        JSVM_CALL(OH_JSVM_Unwrap(env, toWrap, reinterpret_cast<void **>(&data)));
-        OH_LOG_INFO(LOG_APP, "JSVM name: %{public}s", data->name.c_str());
-        OH_LOG_INFO(LOG_APP, "JSVM age: %{public}d", data->age);
-    }
-    delete obj;
-    obj = nullptr;
+    obj.name = "lilei";
+    obj.age = 18;
+    Object *objPointer = &obj;
+    // 获取回调信息中的参数数量和将要被封装的值
+    size_t argc = 1;
+    JSVM_Value toWrap = nullptr;
+    JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, &toWrap, nullptr, nullptr));
+    // OH_JSVM_Wrap将自定义结构Object进行封装
+    JSVM_CALL(OH_JSVM_Wrap(env, toWrap, reinterpret_cast<void *>(objPointer), DerefItem, NULL, NULL));
+    Object *data;
+    // OH_JSVM_UnWrap解包先前封装在JavaScript对象中的原生实例
+    JSVM_CALL(OH_JSVM_Unwrap(env, toWrap, reinterpret_cast<void **>(&data)));
+    OH_LOG_INFO(LOG_APP, "JSVM name: %{public}s", data->name.c_str());
+    OH_LOG_INFO(LOG_APP, "JSVM age: %{public}d", data->age);
     return nullptr;
 }
 
-
 static JSVM_Value RemoveWrap(JSVM_Env env, JSVM_CallbackInfo info) {
     OH_LOG_INFO(LOG_APP, "JSVM removeWrap");
+    Object obj;
     // 设置Object属性
-    obj->name = "lilei";
-    obj->age = 18;
+    obj.name = "lilei";
+    obj.age = 18;
+    Object *objPointer = &obj;
     // 获取回调信息中的参数数量和将要被封装的值
     size_t argc = 1;
     JSVM_Value toWrap = nullptr;
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, &toWrap, nullptr, nullptr));
     // 将自定义结构Object封装
-    JSVM_CALL(OH_JSVM_Wrap(env, toWrap, reinterpret_cast<void *>(obj), DerefItem, NULL, NULL));
-    struct Object *data;
+    JSVM_CALL(OH_JSVM_Wrap(env, toWrap, reinterpret_cast<void *>(objPointer), DerefItem, NULL, NULL));
+    Object *data;
     // 解包先前封装的object，并移除封装
-    JSVM_CALL(OH_JSVM_RemoveWrap(env, toWrap, reinterpret_cast<void **>(&obj)));
+    JSVM_CALL(OH_JSVM_RemoveWrap(env, toWrap, reinterpret_cast<void **>(&objPointer)));
     // 检查是否已被移除
     JSVM_Status status = OH_JSVM_Unwrap(env, toWrap, reinterpret_cast<void **>(&data));
     if (status != JSVM_OK) {
         OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_RemoveWrap success");
     }
-    
     return nullptr;
 }
 
@@ -296,7 +286,7 @@ static JSVM_CallbackStruct *method = param;
 // WrapObject、RemoveWrap方法别名，供JS调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"wrapObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-    {"removeWrap", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT}
+    {"removeWrap", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
 
