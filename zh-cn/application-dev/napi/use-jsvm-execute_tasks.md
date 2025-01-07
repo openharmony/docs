@@ -26,15 +26,9 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 cpp代码
 
 ```cpp
-#include "ark_runtime/jsvm.h"
-#include <cassert>
+#include <chrono>
 #include <string.h>
-#include "hilog/log.h"
-#include <unistd.h>
-#undef  LOG_TAG
-#define LOG_TAG "log"
-#undef  LOG_DOMAIN
-#define LOG_DOMAIN 0x1
+
 
 // 待执行的js代码
 static const char *STR_TASK = R"JS( 
@@ -95,12 +89,12 @@ static int32_t TestJSVM() {
     JSVM_VM vm;
     JSVM_CreateVMOptions options;
     memset(&options, 0, sizeof(options));
-    CHECK(OH_JSVM_CreateVM(&options, &vm) == JSVM_OK);
+    CHECK(OH_JSVM_CreateVM(&options, &vm));
     JSVM_VMScope vm_scope;
-    CHECK(OH_JSVM_OpenVMScope(vm, &vm_scope) == JSVM_OK);
+    CHECK(OH_JSVM_OpenVMScope(vm, &vm_scope));
     
     JSVM_Env env;
-    CHECK(OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env) == JSVM_OK);
+    CHECK(OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env));
     JSVM_EnvScope envScope;
     CHECK_RET(OH_JSVM_OpenEnvScope(env, &envScope));
     JSVM_HandleScope handlescope;
@@ -128,10 +122,115 @@ static int32_t TestJSVM() {
     // 关闭并销毁环境和虚拟机
     CHECK_RET(OH_JSVM_CloseHandleScope(env, handlescope));
     CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
-    CHECK(OH_JSVM_DestroyEnv(env) == JSVM_OK);
-    CHECK(OH_JSVM_CloseVMScope(vm, vm_scope) == JSVM_OK);
-    CHECK(OH_JSVM_DestroyVM(vm) == JSVM_OK);
+    CHECK(OH_JSVM_DestroyEnv(env));
+    CHECK(OH_JSVM_CloseVMScope(vm, vm_scope));
+    CHECK(OH_JSVM_DestroyVM(vm));
     return 0;
 }
 
+```
+预期输出结果
+```
+JSVM API TEST: Called with instance [object Object]
+JSVM API TEST: Called Finally
+```
+### OH_JSVM_SetMicrotaskPolicy
+修改微任务执行策略,通过该接口，用户可以将策略设置为 JSVM_MicrotaskPolicy::JSVM_MICROTASK_EXPLICIT 或 JSVM_MicrotaskPolicy::JSVM_MICROTASK_AUTO。默认模式下，微任务的执行策略为 JSVM_MicrotaskPolicy::JSVM_MICROTASK_AUTO。
+
+微任务策略：
+- JSVM_MicrotaskPolicy::JSVM_MICROTASK_EXPLICIT ： 微任务在用户调用 OH_JSVM_PerformMicrotaskCheckpoint 后执行
+- JSVM_MicrotaskPolicy::JSVM_MICROTASK_AUTO： 微任务在 JS 调用栈为空时自动执行
+
+cpp 部分代码
+
+```
+// OH_JSVM_SetMicrotaskPolicy的样例方法
+static int SetMicrotaskPolicy(JSVM_VM vm, JSVM_Env env) {
+    // 默认或将策略设置为 JSVM_MICROTASK_AUTO 的行为
+    const char *scriptEvalMicrotask = R"JS(
+        evaluateMicrotask = false;
+        Promise.resolve().then(()=>{
+            evaluateMicrotask = true;
+        });
+    )JS";
+    JSVM_Script script;
+    JSVM_Value jsSrc;
+    JSVM_Value result;
+    CHECK_RET(OH_JSVM_CreateStringUtf8(env, scriptEvalMicrotask, JSVM_AUTO_LENGTH, &jsSrc));
+    CHECK_RET(OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script));
+    CHECK_RET(OH_JSVM_RunScript(env, script, &result));
+    JSVM_Value global;
+    CHECK_RET(OH_JSVM_GetGlobal(env, &global));
+    JSVM_Value hasEvaluateMicrotask;
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "evaluateMicrotask", &hasEvaluateMicrotask));
+    bool val;
+    CHECK_RET(OH_JSVM_GetValueBool(env, hasEvaluateMicrotask, &val));
+
+    OH_LOG_INFO(LOG_APP, "Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask : %{public}d", val);
+
+    // 策略设置为 JSVM_MICROTASK_EXPLICIT 的行为
+    CHECK_RET(OH_JSVM_SetMicrotaskPolicy(vm, JSVM_MicrotaskPolicy::JSVM_MICROTASK_EXPLICIT));
+    CHECK_RET(OH_JSVM_RunScript(env, script, &result));
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "evaluateMicrotask", &hasEvaluateMicrotask));
+    CHECK_RET(OH_JSVM_GetValueBool(env, hasEvaluateMicrotask, &val));
+    OH_LOG_INFO(
+        LOG_APP,
+        "Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask before calling OH_JSVM_PerformMicrotaskCheckpoint: %{public}d",
+        val);
+
+    CHECK_RET(OH_JSVM_PerformMicrotaskCheckpoint(vm));
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "evaluateMicrotask", &hasEvaluateMicrotask));
+    CHECK_RET(OH_JSVM_GetValueBool(env, hasEvaluateMicrotask, &val));
+    OH_LOG_INFO(
+        LOG_APP,
+        "Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask after calling OH_JSVM_PerformMicrotaskCheckpoint: %{public}d",
+        val);
+
+    return 0;
+}
+
+static void RunDemo(JSVM_VM vm, JSVM_Env env) {
+    if (SetMicrotaskPolicy(vm, env) != 0) {
+        OH_LOG_INFO(LOG_APP, "Run Microtask Policy failed");
+    }
+}
+
+static int32_t TestJSVM() {
+    JSVM_InitOptions initOptions = {0};
+    JSVM_VM vm;
+    JSVM_Env env = nullptr;
+    JSVM_VMScope vmScope;
+    JSVM_EnvScope envScope;
+    JSVM_HandleScope handleScope;
+    JSVM_Value result;
+    // 初始化JavaScript引擎实例
+    if (g_aa == 0) {
+        g_aa++;
+        CHECK(OH_JSVM_Init(&initOptions));
+    }
+    // 创建JSVM环境
+    CHECK(OH_JSVM_CreateVM(nullptr, &vm));
+    CHECK(OH_JSVM_CreateEnv(vm, 0, nullptr, &env));
+    CHECK(OH_JSVM_OpenVMScope(vm, &vmScope));
+    CHECK_RET(OH_JSVM_OpenEnvScope(env, &envScope));
+    CHECK_RET(OH_JSVM_OpenHandleScope(env, &handleScope));
+
+    // 通过script调用测试函数
+    RunDemo(vm, env);
+
+    // 销毁JSVM环境
+    CHECK_RET(OH_JSVM_CloseHandleScope(env, handleScope));
+    CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
+    CHECK(OH_JSVM_CloseVMScope(vm, vmScope));
+    CHECK(OH_JSVM_DestroyEnv(env));
+    CHECK(OH_JSVM_DestroyVM(vm));
+    return 0;
+}
+```
+
+预期输出结果
+```
+Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask : 1
+Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask before calling OH_JSVM_PerformMicrotaskCheckpoint: 0
+Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask after calling OH_JSVM_PerformMicrotaskCheckpoint: 1
 ```
