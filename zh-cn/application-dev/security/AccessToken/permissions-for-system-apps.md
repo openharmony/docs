@@ -325,6 +325,18 @@
 
 **起始版本**：12
 
+### ohos.permission.PLUGIN_UPDATE
+
+允许业务方调用升级相关接口完成插件、AI模型的后下载和更新业务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.RECEIVE_UPDATE_MESSAGE
 
 允许应用、服务监听系统升级流程中的关键事件。
@@ -1036,6 +1048,18 @@
 ### ohos.permission.CAPTURE_PLAYBACK
 
 允许系统服务不通过录屏框架，直接进行音频内录。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.MICROPHONE_BACKGROUND
+
+允许系统应用在后台使用麦克风。
 
 **权限级别**：system_core
 
@@ -3209,18 +3233,6 @@
 
 **起始版本**: 12
 
-### ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
-
-允许系统应用使用红外接口。
-
-**权限级别**：normal
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
 ### ohos.permission.ENABLE_EXPERIENCE_HBM
 
 允许应用启用屏幕HBM（High Brightness Mode）亮度模式。
@@ -4275,7 +4287,7 @@
 
 **ACL使能**：true
 
-**起始版本**：13
+**起始版本**：15
 
 ### ohos.permission.ANTI_FRAUD
 

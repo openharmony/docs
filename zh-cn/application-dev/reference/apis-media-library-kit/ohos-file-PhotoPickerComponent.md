@@ -68,6 +68,7 @@ PhotoPickerComponent({
 | onSelectedItemsDeleted<sup>13+</sup>  | [ItemsDeletedCallback](#itemsdeletedcallback13)                                  | 否   | - | 已勾选的图片被删除时产生的回调，并将被删除图片的相关信息回调给应用。                                                                                                                                                                                                                                                                                                                              |
 | onExceedMaxSelected<sup>13+</sup>     | [ExceedMaxSeletedCallback](#exceedmaxseletedcallback13)                          | 否   | - | 选择达到最大选择数量（最大图片选择数量或者是最大视频选择数量亦或是总的最大选择数量）之后再次点击勾选时产生的回调。<br>- 若选择的数量达到了最大图片选择数量且未达到总的最大选择数量则回调的参数exceedMaxCountType为[MaxCountType](#maxcounttype).PHOTO_MAX_COUNT。<br>- 若选择的数量达到了最大视频选择数量且未达到总的最大选择数量则回调的参数exceedMaxCountType为[MaxCountType](#maxcounttype).VIDEO_MAX_COUNT。<br>- 只要选择的数量达到了总的最大选择数量则回调的的参数exceedMaxCountType为[MaxCountType](#maxcounttype).TOTAL_MAX_COUNT。 |
 | onCurrentAlbumDeleted<sup>13+</sup>   | [CurrentAlbumDeletedCallback](#currentalbumdeletedcallback13)                    | 否   | - | 当前相册被删除时产生的回调。<br>当前相册是指通过pickerContorller.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, currentAlbumUri)接口设置给宫格组件的相册，即“currentAlbumUri”。<br>当前相册被删除后若使用方刷新自己的相册标题栏，使用方可以设置自己的标题栏名称为默认的相册名例如“图片和视频”、“图片”或“视频”，然后通过pickerContorller.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, '')接口传空串去刷新宫格页为默认相册。                                  |
+| onVideoPlayStateChanged<sup>14+</sup>   | [videoPlayStateChangedCallback](#videoplaystatechangedcallback14)                    | 否   | - | 大图页视频播放状态改变时回调。                                  |
 | pickerController        | [PickerController](#pickercontroller)                                            | 否   | @ObjectLink | 应用可通过PickerController向Picker组件发送数据。                                                                                                                                                                                                                                                                                                                             |
 
 ## PickerOptions
@@ -136,6 +137,16 @@ type CurrentAlbumDeletedCallback = () => void
 当前相册被删除时的回调事件。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+## videoPlayStateChangedCallback<sup>14+</sup>
+
+type videoPlayStateChangedCallback = (state: VideoPlayerState) => void
+
+大图页视频播放状态改变时回调。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -225,6 +236,43 @@ setPhotoBrowserUIElementVisibility(elements: Array&lt;PhotoBrowserUIElement&gt;,
 |-------------|----------------------------------------------------------------| ----- |-------------------|
 | elements    | Array&lt;[PhotoBrowserUIElement](#photobrowseruielement13)&gt; | 是 | 大图页大图预览组件外其他UI元素。 |
 | isVisible | boolean                                                        | 是 | 是否可见。             |
+
+### replacePhotoPickerPreview<sup>15+</sup>
+
+replacePhotoPickerPreview(originalUri: string, newUri: string, callback: AsyncCallback&lt;void&gt;): void
+
+应用可通过该接口，将photoPicker中用户勾选的图片替换为应用后期编辑修改后的图片。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名         | 类型                     |     必填     | 说明                |
+|-------------|----------------------------| -------------- |-------------------|
+| originalUri     | string  | 是 | 原uri，将会被替换掉的uri |
+| newUri  | boolean   | 是 | 新uri，即替换后的uri。基于originalUri修改后期望在photoPicker上替换originalUri显示的，暂存在应用沙箱的图片/视频uri。      |
+| callback   | AsyncCallback&lt;void&gt;   | 是 | 调用接口完成替换后的回调      |
+
+### saveTrustedPhotoAssets<sup>15+</sup>
+
+saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;, configs?: Array&lt;photoAccessHelper.PhotoCreationConfig&gt;, saveMode?: SaveMode): void
+
+应用可通过该接口，保存对应uri列表的文件。使用时，一般结合[replacePhotoPickerPreview](#replacephotopickerpreview15)接口使用，将替换显示成功后的应用沙箱图片/视频newUris保存到图库。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名         | 类型                                                             | 必填  | 说明                |
+|-------------|----------------------------------------------------------------| ----- |-------------------|
+| trustedUris     | Array&lt;string&gt; | 是 | 需要保存到图库的应用沙箱图片/视频uri。trustedUris一般来自[replacePhotoPickerPreview](#replacephotopickerpreview15)替换显示成功的newUri。 |
+| callback  | AsyncCallback&lt;Array&lt;string&gt;&gt;          | 是 | 返回保存后新生成的媒体库文件对应的uri             |
+| configs | Array&lt;[photoAccessHelper.PhotoCreationConfig](js-apis-photoAccessHelper.md#photocreationconfig12)&gt;          | 否 | 需要保存的文件对应的配置参数             |
+| saveMode | [SaveMode](#savemode15)           | 否 | 图片保存模式。             |
 
 ## BaseItemInfo
 
@@ -427,6 +475,35 @@ Picker的颜色模式。
 | CHECKBOX    | 0   | 大图页勾选框。  |
 | BACK_BUTTON | 1   | 大图页返回按钮。 |
 
+## SaveMode<sup>15+</sup>
+
+图片/视频保存模式。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称          | 值   | 说明       |
+|-------------|-----|----------|
+| SAVE_AS     | 0   | 另存为新的图片/视频。  |
+| OVERWRITE  | 1   | 覆盖原有图片/视频，覆盖后支持在图库中将保存内容回退，还原成原始图片/视频。 |
+
+## VideoPlayerState<sup>14+</sup>
+
+视频播放状态。
+
+**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                | 值   | 说明                        |
+|-------------------|-----|---------------------------|
+| PLAYING | 0   | 视频播放中。                 |
+| PAUSED | 1   | 视频播放暂停。 |
+| STOPPED | 2   | 视频播放停止。 |
+| SEEK_START | 3   | 开始拖拽进度条。 |
+| SEEK_FINSH | 4   | 结束拖拽进度条。 |
+
 ## 示例
 
 ```ts
@@ -452,7 +529,8 @@ import {
   PhotoBrowserUIElement,
   ItemsDeletedCallback,
   ExceedMaxSelectedCallback,
-  CurrentAlbumDeletedCallback
+  CurrentAlbumDeletedCallback,
+  videoPlayStateChangedCallback
 } from '@ohos.file.PhotoPickerComponent';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
@@ -469,6 +547,7 @@ struct PickerDemo {
   private exceedMaxSeletedCallback: ExceedMaxSelectedCallback =
     (exceedMaxCountType: MaxCountType) => this.onExceedMaxSelected(exceedMaxCountType);
   private currentAlbumDeletedCallback: CurrentAlbumDeletedCallback = () => this.onCurrentAlbumDeleted();
+  private videoPlayStateChangedCallback: videoPlayStateChangedCallback = () => this.videoPlayStateChanged();
 
   aboutToAppear() {
     this.pickerOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
@@ -560,6 +639,9 @@ struct PickerDemo {
     // 当前相册被删除时的回调
   }
 
+  private videoPlayStateChanged(stata: videoPlayerState): void {
+    // 当视频播放状态变化时回调
+  }
   build() {
     Flex({
       direction: FlexDirection.Column,
@@ -589,6 +671,7 @@ struct PickerDemo {
           onSelectedItemsDeleted: this.selectedItemsDeletedCallback,
           onExceedMaxSelected: this.exceedMaxSeletedCallback,
           onCurrentAlbumDeleted: this.currentAlbumDeletedCallback,
+          onVideoPlayStateChanged: this.videoPlayStateChangedCallback,
           pickerController: this.pickerController,
         }).height('60%').width('100%')
 

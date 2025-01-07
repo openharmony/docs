@@ -8,7 +8,7 @@ Linux kernel porting involves basic kernel compilation, building, and verificati
 
 ### Basic Information
 
-The current Linux kernel baseline evolves based on the Linux LTS version 4.19 and incorporates the CVE and bugfix patches. For details, see the [kernel_linux code repository](https://gitee.com/openharmony/kernel_linux). The code path for the **repo** project is **kernel/linux-4.19**.
+The current Linux kernel baseline evolves based on the Linux LTS version 5.10 and incorporates the CVE and bugfix patches. For details, see the [kernel_linux code repository](https://gitee.com/openharmony/kernel_linux_5.10). The code path for the **repo** project is **kernel/linux-5.10**.
 
 
 ### Bootloader
@@ -22,11 +22,11 @@ You can use the Bootloader provided by the chipset vendor or open-source U-Boot 
 
    Source code directory of the configuration files: **kernel/linux/config/**
 
-   Create a **<*YOUR_CHIP*>_small_defconfig** file, such as **hi3516dv300_small_defconfig**, in the **linux-4.19/arch/arm/configs/** directory. The configuration file can be created by combining the general-purpose **small_common_defconfig** file and chipset-specific configurations.
+   Create a **<*YOUR_CHIP*>_small_defconfig** file, such as **hi3516dv300_small_defconfig**, in the **linux-5.10/arch/arm/configs/** directory. The configuration file can be created by combining the general-purpose **small_common_defconfig** file and chipset-specific configurations.
 
 2. Prepare the chipset patches.
    
-   Source code directory of the patch files: **kernel/linux/patches/linux-4.19**
+   Source code directory of the patch files: **kernel/linux/patches/linux-5.10**
    
    Create a **<*YOUR_CHIP*>_patch** directory by referring to the existing patch directory **hi3516dv300_small_patch**, and place the related chipset patches, such as **hdf.patch** (recommended), in this directory.
    
@@ -41,9 +41,9 @@ You can use the Bootloader provided by the chipset vendor or open-source U-Boot 
    (2) The build fails due to kernel version mismatch. In this case, kernel adaptation is required, including function implementation adjustment.
 
    > ![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
-   > - As in the **kernel.mk** file, patches are applied after the code environment of **kernel/linux-4.19** is copied during compilation and building of the OpenHarmony project. Retain the original code environment of **kernel/linux-4.19** before running the OpenHarmony version-level build command.
+   > - As in the **kernel.mk** file, patches are applied after the code environment of **kernel/linux-5.10** is copied during compilation and building of the OpenHarmony project. Retain the original code environment of **kernel/linux-5.10** before running the OpenHarmony version-level build command.
    > 
-   > - You can modify the patches in **out/&lt;\*\*\*&gt;/kernel/linux-4.19**, to which the code environment is copied.
+   > - You can modify the patches in **out/&lt;\*\*\*&gt;/kernel/linux-5.10**, to which the code environment is copied.
 
 4. Burn images and start the development board.
 
@@ -71,7 +71,7 @@ Based on the preceding process, the recommended verification procedure is as fol
 
    - Component configuration
       
-      In the product component configuration file ***vendor*/{*company*}/{*product*}/config.json**, configure the **init** component of the startup subsystem and the **linux_4_1_9** component of the kernel subsystem.
+      In the product component configuration file ***vendor*/{*company*}/{*product*}/config.json**, configure the **init** component of the startup subsystem and the **linux_5_1_0** component of the kernel subsystem.
       
    - System service configuration
       

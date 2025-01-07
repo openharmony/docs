@@ -372,12 +372,78 @@ export default class EntryAbility extends UIAbility {
   }
   onDestroy() {
     hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onDestroy');
-    hceService.stop(element)
+    hceService.stop(element);
   }
   // other life cycle method...
 }
 ```
 
+### off<sup>16+</sup>
+
+off(type: 'hceCmd', callback?: AsyncCallback\<number[]>): void
+
+取消APDU数据接收的订阅。
+
+**需要权限：** ohos.permission.NFC_CARD_EMULATION
+
+**系统能力：** SystemCapability.Communication.NFC.CardEmulation
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                         |
+| -------- | ----------------------- | ---- | -------------------------------------------- |
+| type     | string                  | 是   | 要取消订阅的事件类型，固定填"hceCmd"字符串。                         |
+| callback | AsyncCallback\<number[]> | 否   | 订阅的事件回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
+
+**示例：**
+```js
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { AsyncCallback } from '@kit.BasicServicesKit';
+import { ElementName } from './bundleManager/ElementName'
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+
+let hceService: cardEmulation.HceService = new cardEmulation.HceService();
+let element: ElementName;
+const apduCallback: AsyncCallback<number[]> = (err, data) => {
+  //handle the data and err
+  console.log("AsyncCallback got apdu data");
+};
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, param: AbilityConstant.LaunchParam) {
+    hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onCreate');
+    element = {
+      bundleName: want.bundleName ?? '',
+      abilityName: want.abilityName ?? '',
+      moduleName: want.moduleName
+    }
+    const apduCallback: AsyncCallback<number[]> = (err, data) => {
+      //handle the data and err
+      console.log("got apdu data");
+    };
+    hceService.on('hceCmd', apduCallback);
+  }
+  onDestroy() {
+    hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onDestroy');
+    hceService.off('hceCmd', apduCallback);
+    hceService.stop(element);
+  }
+  // other life cycle method...
+}
+```
 
 ### sendResponse<sup>(deprecated)</sup>
 

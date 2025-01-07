@@ -648,7 +648,7 @@ struct TextPickerExample {
       Row() {
         Text('循环滚动').fontSize(20)
 
-        Toggle({ type: ToggleType.Switch, isOn: true })
+        Toggle({ type: ToggleType.Switch, isOn: false })
           .onChange((isOn: boolean) => {
             this.isLoop = isOn
           })

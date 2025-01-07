@@ -506,6 +506,41 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 | 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
+## tag.getBarcodeTag<sup>16+</sup>
+
+getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BartcodeTag](js-apis-nfctech.md#barcodetag16)
+
+获取BarcodeTag类型Tag对象，通过该对象可访问BarcodeTag技术类型的Tag。
+
+**需要权限：** ohos.permission.NFC_TAG
+
+**系统能力：** SystemCapability.Communication.NFC.Tag
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**参数：**
+| 参数名  | 类型                | 必填 | 说明                                                          |
+| ------- | ------------------- | ---- | ------------------------------------------------------------- |
+| tagInfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从[tag.getTagInfo(want: Want)](#taggettaginfo9)获取。 |
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| [BartcodeTag](js-apis-nfctech.md#barcodetag16) | BarcodeTag类型Tag对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
+| 3100201 | Tag running state is abnormal in service. |
+
+
 ## tag.getTagInfo<sup>9+</sup>
 
 getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md#want)): [TagInfo](#taginfo)
@@ -795,7 +830,7 @@ export default class MainAbility extends UIAbility {
 
 ## tag.ndef.makeUriRecord<sup>9+</sup>
 
-makeUriRecord(uri: string): [NdefRecord](#ndefrecord9)
+makeUriRecord(uri: string): NdefRecord
 
 根据输入的URI，构建NDEF标签的Record数据对象。
 
@@ -844,7 +879,7 @@ try {
 
 ## tag.ndef.makeTextRecord<sup>9+</sup>
 
-makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9)
+makeTextRecord(text: string, locale: string): NdefRecord
 
 根据输入的文本数据和编码类型，构建NDEF标签的Record。
 
@@ -893,10 +928,58 @@ try {
 }
 ```
 
+## tag.ndef.makeApplicationRecord<sup>16+</sup>
+
+makeApplicationRecord(bundleName: string): NdefRecord
+
+根据OpenHarmony应用的bundlename，构建NDEF标签的Record。
+
+**系统能力：** SystemCapability.Communication.NFC.Tag
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                  |
+| ------ | ------ | ---- | ------------------------------------- |
+| bundleName   | string | 是   | 要创建标签的应用包名。 |
+
+**返回值：**
+
+| **类型**                   | **说明**                                                     |
+| -------------------------- | ------------------------------------------------------------ |
+| [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
+**示例：**
+
+```js
+import { tag } from '@kit.ConnectivityKit';
+
+try {
+    let bundleName: string = 'com.demo.test';
+    let ndefRecord : tag.NdefRecord = tag.ndef.makeApplicationRecord(bundleName);
+    if (ndefRecord != undefined) {
+        console.log("ndefMessage makeApplicationRecord rtdType: " + ndefRecord.rtdType);
+        console.log("ndefMessage makeApplicationRecord payload: " + ndefRecord.payload);
+    } else {
+        console.log("ndefMessage makeApplicationRecord ndefRecord: " + ndefRecord);
+    }
+} catch (businessError) {
+    console.error("ndefMessage makeApplicationRecord catch businessError: " + businessError);
+}
+```
 
 ## tag.ndef.makeMimeRecord<sup>9+</sup>
 
-makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9)
+makeMimeRecord(mimeType: string, mimeData: number[]): NdefRecord
 
 根据输入的MIME数据和类型，构建NDEF标签的Record。
 
@@ -946,7 +1029,7 @@ try {
 ```
 ## tag.ndef.makeExternalRecord<sup>9+</sup>
 
-makeExternalRecord(domainName: string, type: string, externalData: number[]): [NdefRecord](#ndefrecord9)
+makeExternalRecord(domainName: string, type: string, externalData: number[]): NdefRecord
 
 根据应用程序特定的外部数据，构建NDEF标签的Record。
 
@@ -1177,6 +1260,7 @@ NFC Tag有多种不同的技术类型，定义常量描述不同的技术类型�
 | NDEF_FORMATABLE<sup>9+</sup> |  number | 7      | 可以格式化的NDEF技术。      |
 | MIFARE_CLASSIC               |  number | 8      | MIFARE Classic技术。        |
 | MIFARE_ULTRALIGHT            |  number | 9      | MIFARE Utralight技术。      |
+| NFC_BARCODE                  |  number | 10     | BARCODE技术。               |
 
 ## TnfType<sup>9+</sup>
 NDEF Record的TNF(Type Name Field)类型值，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。
@@ -1370,6 +1454,18 @@ type NdefFormatableTag = _NdefFormatableTag
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_NdefFormatableTag](./js-apis-nfctech.md#ndefformatabletag9) | NdefFormatableTag为NDEF Formattable的标签提供格式化操作。 |
+
+## BarcodeTag
+
+type BarcodeTag = _BarcodeTag
+
+获取BarcodeTag。
+
+**系统能力**：SystemCapability.Communication.NFC.Tag
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| [_BarcodeTag](./js-apis-nfctech.md#barcodetag16) | 提供对条形码标签的属性和I/O操作的访问。 |
 
 ## NdefMessage
 

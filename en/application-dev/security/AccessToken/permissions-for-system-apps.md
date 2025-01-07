@@ -325,6 +325,18 @@ Allows an application to start the upgrade service to perform assisted or collab
 
 **Valid since**: 12
 
+### ohos.permission.PLUGIN_UPDATE
+
+Allows service parties to invoke upgrade-related interfaces to download and update plug-ins and AI models.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.RECEIVE_UPDATE_MESSAGE
 
 Allows a system application or system ability to listen for the key events occurred in the system update process.
@@ -1036,6 +1048,18 @@ Allows an application to control the microphone, for example, persisting the mut
 ### ohos.permission.CAPTURE_PLAYBACK
 
 Allows a system service to capture internal audio without using the AVScreenCapture framework.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.MICROPHONE_BACKGROUND
+
+Allows a system application to use the microphone in the background.
 
 **Permission level**: system_core
 
@@ -3209,18 +3233,6 @@ Allows a system application or service to preload application processes.
 
 **Valid since**: 12
 
-### ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
-
-Allows a system application to use infrared interfaces.
-
-**Permission level**: normal
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
-
 ### ohos.permission.ENABLE_EXPERIENCE_HBM
 
 Allows an application to enable the High Brightness Mode (HBM) for the screen.
@@ -4275,7 +4287,7 @@ Allows a system application to invoke the services provided by the account Servi
 
 **Enable via ACL**：true
 
-**Valid since**：13
+**Valid since**：15
 
 ### ohos.permission.ANTI_FRAUD
 

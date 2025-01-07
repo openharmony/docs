@@ -93,6 +93,7 @@
 | typedef enum [Camera_VideoStabilizationMode](#camera_videostabilizationmode) [Camera_VideoStabilizationMode](#camera_videostabilizationmode) | 录像防抖模式的枚举。 | 
 | typedef enum [Camera_ImageRotation](#camera_imagerotation) [Camera_ImageRotation](#camera_imagerotation) | 图像旋转角度的枚举。 | 
 | typedef enum [Camera_QualityLevel](#camera_qualitylevel) [Camera_QualityLevel](#camera_qualitylevel) | 图像质量等级的枚举。 | 
+| typedef enum [Camera_QualityPrioritization](#camera_qualityprioritization) [Camera_QualityPrioritization](#camera_qualitylevel) | 录像质量优先级的枚举。 | 
 | typedef enum [Camera_MetadataObjectType](#camera_metadataobjecttype) [Camera_MetadataObjectType](#camera_metadataobjecttype) | 元数据对象类型的枚举。 | 
 | typedef enum [Camera_TorchMode](#camera_torchmode) [Camera_TorchMode](#camera_torchmode) | 手电筒模式的枚举。 | 
 | typedef enum [Camera_SmoothZoomMode](#camera_smoothzoommode) [Camera_SmoothZoomMode](#camera_smoothzoommode) | 平滑变焦模式的枚举。 | 
@@ -155,6 +156,7 @@
 | typedef void(\* [OH_VideoOutput_OnFrameEnd](#oh_videooutput_onframeend)) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, int32_t frameCount) | 在[VideoOutput_Callbacks](_video_output___callbacks.md)中被调用的录像输出帧结束回调。 | 
 | typedef void(\* [OH_VideoOutput_OnError](#oh_videooutput_onerror)) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [Camera_ErrorCode](#camera_errorcode) errorCode) | 在[VideoOutput_Callbacks](_video_output___callbacks.md)中被调用的录像输出错误回调。 | 
 | typedef struct [VideoOutput_Callbacks](_video_output___callbacks.md) [VideoOutput_Callbacks](#videooutput_callbacks) | 用于录像输出的回调。 | 
+| typedef struct [Camera_QualityPrioritization ](#camera_qualityprioritization) [Camera_QualityPrioritization](#camera_qualityprioritization) | 录像质量优先级。 | 
 
 
 ### 枚举
@@ -175,6 +177,7 @@
 | [Camera_VideoStabilizationMode](#camera_videostabilizationmode) {<br/>STABILIZATION_MODE_OFF = 0,<br/>STABILIZATION_MODE_LOW = 1,<br/>STABILIZATION_MODE_MIDDLE = 2,<br/>STABILIZATION_MODE_HIGH = 3,<br/>STABILIZATION_MODE_AUTO = 4<br/>} | 录像防抖模式的枚举。 | 
 | [Camera_ImageRotation](#camera_imagerotation) {<br/>IAMGE_ROTATION_0 = 0,<br/>IAMGE_ROTATION_90 = 90,<br/>IAMGE_ROTATION_180 = 180,<br/>IAMGE_ROTATION_270 = 270 } | 图像旋转角度的枚举。 | 
 | [Camera_QualityLevel](#camera_qualitylevel) {<br/>QUALITY_LEVEL_HIGH = 0,<br/>QUALITY_LEVEL_MEDIUM = 1,<br/>QUALITY_LEVEL_LOW = 2 } | 图像质量等级的枚举。 | 
+| [Camera_QualityPrioritization](#camera_qualityprioritization) {<br/>HIGH_QUALITY  = 0,<br/>POWER_BALANCE  = 1} | 录像质量优先级的枚举。 | 
 | [Camera_MetadataObjectType](#camera_metadataobjecttype) { FACE_DETECTION = 0 } | 元数据对象类型的枚举。 | 
 | [Camera_TorchMode](#camera_torchmode) { OFF = 0, ON = 1, AUTO = 2 } | 手电筒模式的枚举。 | 
 | [Camera_SmoothZoomMode](#camera_smoothzoommode) { NORMAL = 0 } | 平滑变焦模式的枚举。 | 
@@ -334,7 +337,7 @@
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_DeleteFrameRates](#oh_videooutput_deleteframerates) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [Camera_FrameRateRange](_camera___frame_rate_range.md) \*frameRateRange) | 删除帧率列表。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_SetFrameRate](#oh_videooutput_setframerate) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, int32_t minFps, int32_t maxFps) | 设置视频输出帧率。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_GetActiveFrameRate](#oh_videooutput_getactiveframerate) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [Camera_FrameRateRange](_camera___frame_rate_range.md) \*frameRateRange) | 获取当前视频输出帧率。 | 
-
+| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_SetQualityPrioritization](#oh_capturesession_setqualityprioritization) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_QualityPrioritization](#camera_qualityprioritization) qualityPrioritization) | 设置当前录像质量优先级。 | 
 
 ## 类型定义说明
 
@@ -752,6 +755,19 @@ typedef enum Camera_QualityLevel Camera_QualityLevel
 图像质量等级的枚举。
 
 **起始版本：** 11
+
+
+### Camera_QualityPrioritization 
+
+```
+typedef enum Camera_QualityPrioritization Camera_QualityPrioritization
+```
+
+**描述**
+
+录像质量优先级的枚举。
+
+**起始版本：** 14
 
 
 ### Camera_Rect
@@ -1788,7 +1804,7 @@ enum Camera_Position
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| CAMERA_POSITION_UNSPECIFIED | 未指定位置。 | 
+| CAMERA_POSITION_UNSPECIFIED | 相对于设备屏幕没有固定的朝向的相机。 | 
 | CAMERA_POSITION_BACK | 后置。 | 
 | CAMERA_POSITION_FRONT | 前置。 | 
 
@@ -1850,6 +1866,22 @@ enum Camera_QualityLevel
 | QUALITY_LEVEL_MEDIUM | 中等图像质量。 | 
 | QUALITY_LEVEL_LOW | 低图像质量。 | 
 
+### Camera_QualityPrioritization
+
+```
+enum Camera_QualityPrioritization
+```
+
+**描述**
+
+录像质量优先级的枚举。
+
+**起始版本：** 14
+
+| 枚举值        | 描述                 |
+| ------------- | -------------------- |
+| HIGH_QUALITY  | 高录像质量。         |
+| POWER_BALANCE | 功耗平衡的录像质量。 |
 
 ### Camera_SceneMode
 
@@ -1943,7 +1975,7 @@ enum Camera_Type
 | CAMERA_TYPE_DEFAULT | 默认相机类型。 | 
 | CAMERA_TYPE_WIDE_ANGLE | 广角相机。 | 
 | CAMERA_TYPE_ULTRA_WIDE | 超广角相机。 | 
-| CAMERA_TYPE_TELEPHOTO | 电话相机。 | 
+| CAMERA_TYPE_TELEPHOTO | 长焦相机。 | 
 | CAMERA_TYPE_TRUE_DEPTH | 景深相机。 | 
 
 
@@ -4545,6 +4577,39 @@ Camera_ErrorCode OH_CaptureSession_SetMeteringPoint(Camera_CaptureSession* sessi
 | -------- | -------- |
 | session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
 | point | 要设置的目标[Camera_Point](_camera___point.md)。 | 
+
+**返回：**
+
+错误码[Camera_ErrorCode](#camera_errorcode-1)：
+
+- CAMERA_OK：方法调用成功。
+
+- CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。
+
+- CAMERA_SESSION_NOT_CONFIG：捕获会话未配置。
+
+
+### OH_CaptureSession_SetQualityPrioritization()
+
+```
+Camera_ErrorCode OH_CaptureSession_SetQualityPrioritization(Camera_CaptureSession* session, Camera_QualityPrioritization qualityPrioritization)
+```
+
+**描述**
+
+设置录像质量优先级。
+
+> **说明：**
+> 默认为高质量，设置为功耗平衡将降低录像质量以减少功耗。实际功耗收益因平台而异。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| qualityPrioritization | 要设置的质量优先级[Camera_QualityPrioritization ](#camera_qualityprioritization)（默认为高质量）。 | 
 
 **返回：**
 

@@ -1,15 +1,11 @@
 # USB HDI 参考
 
 - 模块
-    - [HdiUsbDdk](_hdi_usb_ddk.md)
     - [HdiUsbfnMtp](_hdi_usbfn_mtp.md)
     - [HdiUsb](_hdi_usb.md)
     - [USB (V1_0)](_u_s_b_v10.md)
     - [USB](_u_s_b.md)
 - 头文件
-    - HdiUsbDdk
-        - [IUsbDdk.idl](_i_usb_ddk_8idl.md)
-        - [UsbDdkTypes.idl](_usb_ddk_types_8idl.md)
     - HdiUsbfnMtp
         - [IUsbfnMtpInterface.idl](_i_usbfn_mtp_interface_8idl.md)
         - [UsbfnMtpTypes.idl](_usbfn_mtp_types_8idl.md)
@@ -27,11 +23,6 @@
         - [usbd_subscriber.h](usbd__subscriber_8h.md)
         - [usbd_type.h](usbd__type_8h.md)
 - 结构体
-    - HdiUsbDdk
-        - [IUsbDdk](interface_i_usb_ddk.md)
-        - [UsbControlRequestSetup](_usb_control_request_setup.md)
-        - [UsbDeviceDescriptor](_usb_device_descriptor.md)
-        - [UsbRequestPipe](_usb_request_pipe.md)
     - HdiUsbfnMtp
         - [IUsbfnMtpInterface](interface_i_usbfn_mtp_interface.md)
         - [UsbFnMtpFileSlice](_usb_fn_mtp_file_slice.md)
