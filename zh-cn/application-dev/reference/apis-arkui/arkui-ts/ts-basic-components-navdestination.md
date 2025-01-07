@@ -12,7 +12,7 @@
 >
 > - 如果页面栈中间页面的生命周期发生变化，跳转之前的栈顶Destination的生命周期(onWillShow, onShown, onHidden, onWillDisappear)与跳转之后的栈顶Destination的生命周期(onWillShow, onShown, onHidden, onWillDisappear)均在最后触发。
 >
-> - NavDestination未设置主副标题和返回键时，不显示标题栏。
+> - NavDestination未设置主副标题并且没有返回键时，不显示标题栏。
 
 ## 子组件
 
@@ -319,7 +319,7 @@ bindToNestedScrollable(scrollers: Array&lt;NestedScrollInfo&gt;)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 枚举值   | 描述 |
+| 名称   | 值   | 说明 |
 | ----  | ---   | ----- |
 | DEFAULT  | 0 | 默认系统转场动画。|
 | NONE| 1 | 无系统转场动画。|

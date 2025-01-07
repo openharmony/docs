@@ -195,8 +195,8 @@ byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | Share
 import { buffer } from '@kit.ArkTS';
 
 let str = '\u00bd + \u00bc = \u00be';
-console.log(`${str}: ${str.length} characters, ${buffer.byteLength(str, 'utf-8')} bytes`);
-// 打印: ½ + ¼ = ¾: 9 characters, 12 bytes
+console.info(`${str}: ${str.length} characters, ${buffer.byteLength(str, 'utf-8')} bytes`);
+// 输出结果：½ + ¼ = ¾: 9 characters, 12 bytes
 ```
 
 ## buffer.compare
@@ -239,7 +239,8 @@ let buf1 = buffer.from('1234');
 let buf2 = buffer.from('0123');
 let res = buf1.compare(buf2);
 
-console.log(Number(res).toString()); // 打印 1
+console.info(Number(res).toString());
+// 输出结果：1
 ```
 
 ## buffer.concat
@@ -282,7 +283,8 @@ import { buffer } from '@kit.ArkTS';
 let buf1 = buffer.from("1234");
 let buf2 = buffer.from("abcd");
 let buf = buffer.concat([buf1, buf2]);
-console.log(buf.toString('hex')); // 3132333461626364
+console.info(buf.toString('hex'));
+// 输出结果：3132333461626364
 ```
 
 ## buffer.from
@@ -321,7 +323,8 @@ from(array: number[]): Buffer;
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
-console.log(buf.toString('hex')); // 627566666572
+console.info(buf.toString('hex'));
+// 输出结果：627566666572
 ```
 
 ## buffer.from
@@ -411,6 +414,7 @@ let uint8Array = new Uint8Array(10);
 let buf3 = buffer.from(uint8Array);
 buf3.fill(1)
 console.info("uint8Array:", uint8Array)
+// 输出结果：1,1,1,1,1,1,1,1,1,1
 ```
 
 ## buffer.from
@@ -467,7 +471,7 @@ from(string: String, encoding?: BufferEncoding): Buffer
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| string | String | 是 | 字符串 |
+| string | String | 是 | 字符串。 |
 | encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式。 默认值: 'utf8'。 |
 
 **返回值：**
@@ -492,8 +496,10 @@ import { buffer } from '@kit.ArkTS';
 let buf1 = buffer.from('this is a test');
 let buf2 = buffer.from('7468697320697320612074c3a97374', 'hex');
 
-console.log(buf1.toString());	// 打印: this is a test
-console.log(buf2.toString()); // 打印: this is a tést
+console.info(buf1.toString());
+// 输出结果：this is a test
+console.info(buf2.toString());
+// 输出结果：this is a tést
 ```
 
 
@@ -511,7 +517,7 @@ isBuffer(obj: Object): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| obj | Object | 是 | 判断对象 |
+| obj | Object | 是 | 判断对象。 |
 
 **返回值：**
 
@@ -524,11 +530,21 @@ isBuffer(obj: Object): boolean
 ```ts
 import { buffer } from '@kit.ArkTS';
 
-let result = buffer.isBuffer(buffer.alloc(10)); // true
-let result1 = buffer.isBuffer(buffer.from('foo')); // true
-let result2 = buffer.isBuffer('a string'); // false
-let result3 = buffer.isBuffer([]); // false
-let result4 = buffer.isBuffer(new Uint8Array(1024)); // false
+let result = buffer.isBuffer(buffer.alloc(10)); // 10: buffer size
+console.info("result = " + result);
+// 输出结果：result = true
+let result1 = buffer.isBuffer(buffer.from('foo'));
+console.info("result1 = " + result1);
+// 输出结果：result1 = true
+let result2 = buffer.isBuffer('a string');
+console.info("result2 = " + result2);
+// 输出结果：result2 = false
+let result3 = buffer.isBuffer([]);
+console.info("result3 = " + result3);
+// 输出结果：result3 = false
+let result4 = buffer.isBuffer(new Uint8Array(1024));
+console.info("result4 = " + result4);
+// 输出结果：result4 = false
 ```
 
 ## buffer.isEncoding
@@ -558,10 +574,14 @@ isEncoding(encoding: string): boolean
 ```ts
 import { buffer } from '@kit.ArkTS';
 
-console.log(buffer.isEncoding('utf-8').toString());	// 打印: true
-console.log(buffer.isEncoding('hex').toString());	// 打印: true
-console.log(buffer.isEncoding('utf/8').toString());	// 打印: false
-console.log(buffer.isEncoding('').toString());	// 打印: false
+console.info(buffer.isEncoding('utf-8').toString());
+// 输出结果：true
+console.info(buffer.isEncoding('hex').toString());
+// 输出结果：true
+console.info(buffer.isEncoding('utf/8').toString());
+// 输出结果：false
+console.info(buffer.isEncoding('').toString());
+// 输出结果：false
 ```
 
 ## buffer.transcode
@@ -602,7 +622,8 @@ transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
 import { buffer } from '@kit.ArkTS';
 
 let newBuf = buffer.transcode(buffer.from('€'), 'utf-8', 'ascii');
-console.log(newBuf.toString('ascii'));
+console.info("newBuf = " + newBuf.toString('ascii'));
+// 输出结果：newBuf = ,
 ```
 
 ## Buffer
@@ -633,10 +654,13 @@ console.log(newBuf.toString('ascii'));
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from("1236");
-console.log(JSON.stringify(buf.length));
+console.info(JSON.stringify(buf.length));
+// 输出结果：4
 let arrayBuffer = buf.buffer;
-console.log(JSON.stringify(new Uint8Array(arrayBuffer)));
-console.log(JSON.stringify(buf.byteOffset));
+console.info(JSON.stringify(new Uint8Array(arrayBuffer)));
+// 输出结果：{"0":49,"1":50,"2":51,"3":54}
+console.info(JSON.stringify(buf.byteOffset));
+// 输出结果：0
 ```
 
 ### compare
@@ -682,9 +706,12 @@ import { buffer } from '@kit.ArkTS';
 let buf1 = buffer.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 let buf2 = buffer.from([5, 6, 7, 8, 9, 1, 2, 3, 4]);
 
-console.log(buf1.compare(buf2, 5, 9, 0, 4).toString());	// 打印: 0
-console.log(buf1.compare(buf2, 0, 6, 4).toString());	// 打印: -1
-console.log(buf1.compare(buf2, 5, 6, 5).toString());	// 打印: 1
+console.info(buf1.compare(buf2, 5, 9, 0, 4).toString());
+// 输出结果：0
+console.info(buf1.compare(buf2, 0, 6, 4).toString());
+// 输出结果：-1
+console.info(buf1.compare(buf2, 5, 6, 5).toString());
+// 输出结果：1
 ```
 
 ### copy
@@ -734,8 +761,8 @@ for (let i = 0; i < 26; i++) {
 }
 
 buf1.copy(buf2, 8, 16, 20);
-console.log(buf2.toString('ascii', 0, 25));
-// 打印: !!!!!!!!qrst!!!!!!!!!!!!!
+console.info(buf2.toString('ascii', 0, 25));
+// 输出结果：!!!!!!!!qrst!!!!!!!!!!!!!
 ```
 
 ### entries
@@ -764,6 +791,14 @@ let pair = buf.entries();
 let next: IteratorResult<Object[]> = pair.next();
 while (!next.done) {
   console.info("buffer: " + next.value);
+  /*
+  输出结果：buffer: 0,98
+           buffer: 1,117
+           buffer: 2,102
+           buffer: 3,102
+           buffer: 4,101
+           buffer: 5,114
+  */
   next = pair.next();
 }
 ```
@@ -807,8 +842,10 @@ let buf1 = buffer.from('ABC');
 let buf2 = buffer.from('414243', 'hex');
 let buf3 = buffer.from('ABCD');
 
-console.log(buf1.equals(buf2).toString());	// 打印: true
-console.log(buf1.equals(buf3).toString());	// 打印: false
+console.info(buf1.equals(buf2).toString());
+// 输出结果：true
+console.info(buf1.equals(buf3).toString());
+// 输出结果：false
 ```
 
 ### fill
@@ -851,7 +888,8 @@ fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number
 import { buffer } from '@kit.ArkTS';
 
 let b = buffer.allocUninitializedFromPool(50).fill('h');
-console.log(b.toString());
+console.info(b.toString());
+// 输出结果：hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
 ```
 
 
@@ -893,8 +931,10 @@ includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, enco
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('this is a buffer');
-console.log(buf.includes('this').toString());	// 打印: true
-console.log(buf.includes('be').toString());	// 打印: false
+console.info(buf.includes('this').toString());
+// 输出结果：true
+console.info(buf.includes('be').toString());
+// 输出结果：false
 ```
 
 ### indexOf
@@ -935,8 +975,10 @@ indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encod
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('this is a buffer');
-console.log(buf.indexOf('this').toString());	// 打印: 0
-console.log(buf.indexOf('is').toString());		// 打印: 2
+console.info(buf.indexOf('this').toString());
+// 输出结果：0
+console.info(buf.indexOf('is').toString());
+// 输出结果：2
 ```
 
 ### keys
@@ -963,7 +1005,15 @@ import { buffer } from '@kit.ArkTS';
 let buf = buffer.from('buffer');
 let numbers = Array.from(buf.keys());
 for (const key of numbers) {
-  console.log(key.toString());
+  console.info(key.toString());
+  /*
+  输出结果：0
+           1
+           2
+           3
+           4
+           5
+  */
 }
 ```
 
@@ -1005,8 +1055,10 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('this buffer is a buffer');
-console.log(buf.lastIndexOf('this').toString());    // 打印: 0
-console.log(buf.lastIndexOf('buffer').toString());  // 打印: 17
+console.info(buf.lastIndexOf('this').toString());
+// 输出结果：0
+console.info(buf.lastIndexOf('buffer').toString());
+// 输出结果：17
 ```
 
 
@@ -1047,11 +1099,14 @@ readBigInt64BE(offset?: number): bigint
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
-        0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigInt64BE(0).toString());
+  0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
+console.info(buf.readBigInt64BE(0).toString());
+// 输出结果：7161960797921896816
 
 let buf1 = buffer.allocUninitializedFromPool(8);
 let result = buf1.writeBigInt64BE(BigInt(0x0102030405060708), 0);
+console.info("result = " + result);
+// 输出结果：result = 8
 ```
 
 ### readBigInt64LE
@@ -1091,11 +1146,14 @@ readBigInt64LE(offset?: number): bigint
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
-        0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigInt64LE(0).toString());
+  0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
+console.info(buf.readBigUInt64BE(0).toString());
+// 输出结果：7161960797921896816
 
 let buf1 = buffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigInt64BE(BigInt(0x0102030405060708), 0);
+let result = buf1.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
+console.info("result = " + result);
+// 输出结果：result = 8
 ```
 
 ### readBigUInt64BE
@@ -1135,11 +1193,13 @@ readBigUInt64BE(offset?: number): bigint
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
-        0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigUInt64BE(0).toString());
-
+  0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
+console.info(buf.readBigUInt64BE(0).toString());
+// 输出结果：7161960797921896816
 let buf1 = buffer.allocUninitializedFromPool(8);
 let result = buf1.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
+console.info("result = " + result);
+// 输出结果：result = 8
 ```
 
 ### readBigUInt64LE
@@ -1179,11 +1239,14 @@ readBigUInt64LE(offset?: number): bigint
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
-        0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigUInt64LE(0).toString());
+  0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
+console.info(buf.readBigUInt64LE(0).toString());
+// 输出结果：8100120198111388771
 
 let buf1 = buffer.allocUninitializedFromPool(8);
 let result = buf1.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
+console.info("result = " + result);
+// 输出结果：result = 8
 ```
 
 ### readDoubleBE
@@ -1223,10 +1286,12 @@ readDoubleBE(offset?: number): number
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readDoubleBE(0).toString());
-
+console.info(buf.readDoubleBE(0).toString());
+// 输出结果：8.20788039913184e-304
 let buf1 = buffer.allocUninitializedFromPool(8);
 let result = buf1.writeDoubleBE(123.456, 0);
+console.info("result = " + result);
+// 输出结果：result = 8
 ```
 
 ### readDoubleLE
@@ -1266,10 +1331,12 @@ readDoubleLE(offset?: number): number
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readDoubleLE(0).toString());
-
+console.info(buf.readDoubleLE(0).toString());
+// 输出结果：5.447603722011605e-270
 let buf1 = buffer.allocUninitializedFromPool(8);
 let result = buf1.writeDoubleLE(123.456, 0);
+console.info("result = " + result);
+// 输出结果：result = 8
 ```
 
 ### readFloatBE
@@ -1309,10 +1376,12 @@ readFloatBE(offset?: number): number
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readFloatBE(0).toString());
-
+console.info(buf.readFloatBE(0).toString());
+// 输出结果：2.387939260590663e-38
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeFloatBE(0xcabcbcbc, 0);
+console.info("result = " + result);
+// 输出结果：result = 4
 ```
 
 ### readFloatLE
@@ -1352,10 +1421,12 @@ readFloatLE(offset?: number): number
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readFloatLE(0).toString());
-
+console.info(buf.readFloatLE(0).toString());
+// 输出结果：1.539989614439558e-36
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeFloatLE(0xcabcbcbc, 0);
+console.info("result = " + result);
+// 输出结果：result = 4
 ```
 
 ### readInt8
@@ -1395,11 +1466,14 @@ readInt8(offset?: number): number
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([-1, 5]);
-console.log(buf.readInt8(0).toString());	// 打印: 0
-console.log(buf.readInt8(1).toString());	// 打印: 5
-
+console.info(buf.readInt8(0).toString());
+// 输出结果：0
+console.info(buf.readInt8(1).toString());
+// 输出结果：5
 let buf1 = buffer.allocUninitializedFromPool(2);
 let result = buf1.writeInt8(0x12);
+console.info("result = " + result);
+// 输出结果：result = 1
 ```
 
 ### readInt16BE
@@ -1439,10 +1513,12 @@ readInt16BE(offset?: number): number
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 5]);
-console.log(buf.readInt16BE(0).toString());	// 打印: 5
-
+console.info(buf.readInt16BE(0).toString());
+// 输出结果：5
 let buf1 = buffer.alloc(2);
 let result = buf1.writeInt16BE(0x1234, 0);
+console.info("result = " + result);
+// 输出结果：result = 2
 ```
 
 ### readInt16LE
@@ -1482,10 +1558,12 @@ readInt16LE(offset?: number): number
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 5]);
-console.log(buf.readInt16LE(0).toString());	// 打印: 1280
-
+console.info(buf.readInt16LE(0).toString());
+// 输出结果：1280
 let buf1 = buffer.alloc(2);
 let result = buf1.writeInt16BE(0x1234, 0);
+console.info("result = " + result);
+// 输出结果：result = 2
 ```
 
 ### readInt32BE
@@ -1525,10 +1603,12 @@ readInt32BE(offset?: number): number
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 0, 0, 5]);
-console.log(buf.readInt32BE(0).toString());	// 打印: 5
-
+console.info(buf.readInt32BE(0).toString());
+// 输出结果：5
 let buf1 = buffer.alloc(4);
 let result = buf1.writeInt32BE(0x12345678, 0);
+console.info("result = " + result);
+// 输出结果：result = 4
 ```
 
 ### readInt32LE
@@ -1568,10 +1648,12 @@ readInt32LE(offset?: number): number
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 0, 0, 5]);
-console.log(buf.readInt32LE(0).toString());	// 打印: 83886080
-
+console.info(buf.readInt32LE(0).toString());
+// 输出结果：83886080
 let buf1 = buffer.alloc(4);
 let result = buf1.writeInt32BE(0x12345678, 0);
+console.info("result = " + result);
+// 输出结果：result = 4
 ```
 
 ### readIntBE
@@ -1614,10 +1696,12 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from("ab");
 let num = buf.readIntBE(0, 1);
-console.log(num.toString()); // 97
-
+console.info(num.toString());
+// 输出结果：97
 let buf1 = buffer.allocUninitializedFromPool(6);
 let result = buf1.writeIntBE(0x123456789011, 0, 6);
+console.info("result = " + result);
+// 输出结果：result = 6
 ```
 
 
@@ -1660,10 +1744,12 @@ readIntLE(offset: number, byteLength: number): number
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
-console.log(buf.readIntLE(0, 6).toString(16));
-
+console.info(buf.readIntLE(0, 6).toString(16));
+// 输出结果：-546f87a9cbee
 let buf1 = buffer.allocUninitializedFromPool(6);
 let result = buf1.writeIntLE(0x123456789011, 0, 6);
+console.info("result = " + result);
+// 输出结果：result = 6
 ```
 
 ### readUInt8
@@ -1704,11 +1790,14 @@ readUInt8(offset?: number): number
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, -2]);
-console.log(buf.readUInt8(0).toString());
-console.log(buf.readUInt8(1).toString());
-
+console.info(buf.readUInt8(0).toString());
+// 输出结果：1
+console.info(buf.readUInt8(1).toString());
+// 输出结果：0
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeUInt8(0x42);
+console.info("result = " + result);
+// 输出结果：result = 1
 ```
 
 ### readUInt16BE
@@ -1749,11 +1838,14 @@ readUInt16BE(offset?: number): number
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56]);
-console.log(buf.readUInt16BE(0).toString(16));
-console.log(buf.readUInt16BE(1).toString(16));
-
+console.info(buf.readUInt16BE(0).toString(16));
+// 输出结果：1234
+console.info(buf.readUInt16BE(1).toString(16));
+// 输出结果：3456
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeUInt16BE(0x1234, 0);
+console.info("result = " + result);
+// 输出结果：result = 2
 ```
 
 ### readUInt16LE
@@ -1794,11 +1886,14 @@ readUInt16LE(offset?: number): number
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56]);
-console.log(buf.readUInt16LE(0).toString(16));
-console.log(buf.readUInt16LE(1).toString(16));
-
+console.info(buf.readUInt16LE(0).toString(16));
+// 输出结果：3412
+console.info(buf.readUInt16LE(1).toString(16));
+// 输出结果：5634
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeUInt16LE(0x1234, 0);
+console.info("result = " + result);
+// 输出结果：result = 2
 ```
 
 ### readUInt32BE
@@ -1839,10 +1934,12 @@ readUInt32BE(offset?: number): number
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78]);
-console.log(buf.readUInt32BE(0).toString(16));
-
+console.info(buf.readUInt32BE(0).toString(16));
+// 输出结果：12345678
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeUInt32BE(0x12345678, 0);
+console.info("result = " + result);
+// 输出结果：result = 4
 ```
 
 ### readUInt32LE
@@ -1883,10 +1980,12 @@ readUInt32LE(offset?: number): number
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78]);
-console.log(buf.readUInt32LE(0).toString(16));
-
+console.info(buf.readUInt32LE(0).toString(16));
+// 输出结果：78563412
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeUInt32LE(0x12345678, 0);
+console.info("result = " + result);
+// 输出结果：result = 4
 ```
 
 ### readUIntBE
@@ -1928,10 +2027,12 @@ readUIntBE(offset: number, byteLength: number): number
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
-console.log(buf.readUIntBE(0, 6).toString(16));
-
+console.info(buf.readUIntBE(0, 6).toString(16));
+// 输出结果：1234567890ab
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeUIntBE(0x13141516, 0, 4);
+console.info("result = " + result);
+// 输出结果：result = 4
 ```
 
 ### readUIntLE
@@ -1973,10 +2074,12 @@ readUIntLE(offset: number, byteLength: number): number
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
-console.log(buf.readUIntLE(0, 6).toString(16));
-
+console.info(buf.readUIntLE(0, 6).toString(16));
+// 输出结果：ab9078563412
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeUIntLE(0x13141516, 0, 4);
+console.info("result = " + result);
+// 输出结果：result = 4
 ```
 
 ### subarray
@@ -2013,8 +2116,8 @@ for (let i = 0; i < 26; i++) {
   buf1.writeInt8(i + 97, i);
 }
 const buf2 = buf1.subarray(0, 3);
-console.log(buf2.toString('ascii', 0, buf2.length));
-// 打印: abc
+console.info(buf2.toString('ascii', 0, buf2.length));
+// 输出结果: abc
 ```
 
 ### swap16
@@ -2048,10 +2151,11 @@ swap16(): Buffer
 import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
-console.log(buf1.toString('hex'));	// 打印: 0102030405060708
-
+console.info(buf1.toString('hex'));
+// 输出结果：0102030405060708
 buf1.swap16();
-console.log(buf1.toString('hex'));	// 打印: 0201040306050807
+console.info(buf1.toString('hex'));
+// 输出结果：0201040306050807
 ```
 
 ### swap32
@@ -2085,10 +2189,11 @@ swap32(): Buffer
 import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
-console.log(buf1.toString('hex'));	// 打印: 0102030405060708
-
+console.info(buf1.toString('hex'));
+// 输出结果：0102030405060708
 buf1.swap32();
-console.log(buf1.toString('hex'));	// 打印: 0403020108070605
+console.info(buf1.toString('hex'));
+// 输出结果：0403020108070605
 ```
 
 ### swap64
@@ -2122,9 +2227,11 @@ swap64(): Buffer
 import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
-console.log(buf1.toString('hex'));	// 打印: 0102030405060708
+console.info(buf1.toString('hex'));
+// 输出结果：0102030405060708
 buf1.swap64();
-console.log(buf1.toString('hex'));	// 打印: 0807060504030201
+console.info(buf1.toString('hex'));
+// 输出结果：0807060504030201
 ```
 
 ### toJSON
@@ -2151,8 +2258,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5]);
 let obj = buf1.toJSON();
-console.log(JSON.stringify(obj));
-// 打印: {"type":"Buffer","data":[1,2,3,4,5]}
+console.info(JSON.stringify(obj));
+// 输出结果: {"type":"Buffer","data":[1,2,3,4,5]}
 ```
 
 ### toString
@@ -2196,8 +2303,8 @@ let buf1 = buffer.allocUninitializedFromPool(26);
 for (let i = 0; i < 26; i++) {
   buf1.writeInt8(i + 97, i);
 }
-console.log(buf1.toString('utf-8'));
-// 打印: abcdefghijklmnopqrstuvwxyz
+console.info(buf1.toString('utf-8'));
+// 输出结果: abcdefghijklmnopqrstuvwxyz
 ```
 
 ### values
@@ -2225,7 +2332,15 @@ let buf1 = buffer.from('buffer');
 let pair = buf1.values()
 let next:IteratorResult<number> = pair.next()
 while (!next.done) {
-  console.log(next.value.toString());
+  console.info(next.value.toString());
+  /*
+  输出结果：98
+           117
+           102
+           102
+           101
+           114
+  */
   next = pair.next();
 }
 ```
@@ -2272,11 +2387,13 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.alloc(256);
 let len = buf.write('\u00bd + \u00bc = \u00be', 0);
-console.log(`${len} bytes: ${buf.toString('utf-8', 0, len)}`);
-// 打印: 12 bytes: ½ + ¼ = ¾
+console.info(`${len} bytes: ${buf.toString('utf-8', 0, len)}`);
+// 输出结果: 12 bytes: ½ + ¼ = ¾
 
 let buffer1 = buffer.alloc(10);
 let length = buffer1.write('abcd', 8);
+console.info("length = " + length);
+// 输出结果：length = 2
 ```
 
 ### writeBigInt64BE
@@ -2319,6 +2436,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigInt64BE(BigInt(0x0102030405060708), 0);
+console.info("result = " + result);
+// 输出结果：result = 8
 ```
 
 ### writeBigInt64LE
@@ -2361,6 +2480,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigInt64LE(BigInt(0x0102030405060708), 0);
+console.info("result = " + result);
+// 输出结果：result = 8
 ```
 
 ### writeBigUInt64BE
@@ -2403,6 +2524,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
+console.info("result = " + result);
+// 输出结果：result = 8
 ```
 
 ### writeBigUInt64LE
@@ -2445,6 +2568,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigUInt64LE(BigInt(0xdecafafecacefade), 0);
+console.info("result = " + result);
+// 输出结果：result = 8
 ```
 
 ### writeDoubleBE
@@ -2487,6 +2612,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeDoubleBE(123.456, 0);
+console.info("result = " + result);
+// 输出结果：result = 8
 ```
 
 ### writeDoubleLE
@@ -2529,6 +2656,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeDoubleLE(123.456, 0);
+console.info("result = " + result);
+// 输出结果：result = 8
 ```
 
 ### writeFloatBE
@@ -2571,6 +2700,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeFloatBE(0xcafebabe, 0);
+console.info("result = " + result);
+// 输出结果：result = 4
 ```
 
 
@@ -2614,6 +2745,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeFloatLE(0xcafebabe, 0);
+console.info("result = " + result);
+// 输出结果：result = 4
 ```
 
 ### writeInt8
@@ -2656,7 +2789,11 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(2);
 let result = buf.writeInt8(2, 0);
+console.info("result = " + result);
+// 输出结果：result = 1
 let result1 = buf.writeInt8(-2, 1);
+console.info("result1 = " + result1);
+// 输出结果：result1 = 2
 ```
 
 
@@ -2700,6 +2837,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(2);
 let result = buf.writeInt16BE(0x0102, 0);
+console.info("result = " + result);
+// 输出结果：result = 2
 ```
 
 
@@ -2743,6 +2882,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(2);
 let result = buf.writeInt16LE(0x0304, 0);
+console.info("result = " + result);
+// 输出结果：result = 2
 ```
 
 ### writeInt32BE
@@ -2785,6 +2926,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeInt32BE(0x01020304, 0);
+console.info("result = " + result);
+// 输出结果：result = 4
 ```
 
 
@@ -2828,6 +2971,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeInt32LE(0x05060708, 0);
+console.info("result = " + result);
+// 输出结果：result = 4
 ```
 
 ### writeIntBE
@@ -2871,6 +3016,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeIntBE(0x1234567890ab, 0, 6);
+console.info("result = " + result);
+// 输出结果：result = 6
 ```
 
 
@@ -2915,6 +3062,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeIntLE(0x1234567890ab, 0, 6);
+console.info("result = " + result);
+// 输出结果：result = 6
 ```
 
 ### writeUInt8
@@ -2957,9 +3106,17 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt8(0x3, 0);
+console.info("result = " + result);
+// 输出结果：result = 1
 let result1 = buf.writeUInt8(0x4, 1);
+console.info("result1 = " + result1);
+// 输出结果：result1 = 2
 let result2 = buf.writeUInt8(0x23, 2);
+console.info("result2 = " + result2);
+// 输出结果：result2 = 3
 let result3 = buf.writeUInt8(0x42, 3);
+console.info("result3 = " + result3);
+// 输出结果：result3 = 4
 ```
 
 ### writeUInt16BE
@@ -3002,7 +3159,11 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt16BE(0xdead, 0);
+console.info("result = " + result);
+// 输出结果：result = 2
 let result1 = buf.writeUInt16BE(0xbeef, 2);
+console.info("result1 = " + result1);
+// 输出结果：result1 = 4
 ```
 
 ### writeUInt16LE
@@ -3045,7 +3206,11 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt16LE(0xdead, 0);
+console.info("result = " + result);
+// 输出结果：result = 2
 let result1 = buf.writeUInt16LE(0xbeef, 2);
+console.info("result1 = " + result1);
+// 输出结果：result1 = 4
 ```
 
 ### writeUInt32BE
@@ -3088,6 +3253,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt32BE(0xfeedface, 0);
+console.info("result = " + result);
+// 输出结果：result = 4
 ```
 
 ### writeUInt32LE
@@ -3130,6 +3297,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt32LE(0xfeedface, 0);
+console.info("result = " + result);
+// 输出结果：result = 4
 ```
 
 ### writeUIntBE
@@ -3173,6 +3342,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeUIntBE(0x1234567890ab, 0, 6);
+console.info("result = " + result);
+// 输出结果：result = 6
 ```
 
 ### writeUIntLE
@@ -3216,6 +3387,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeUIntLE(0x1234567890ab, 0, 6);
+console.info("result = " + result);
+// 输出结果：result = 6
 ```
 
 ## Blob
@@ -3292,8 +3465,9 @@ import { buffer } from '@kit.ArkTS';
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.arrayBuffer();
 pro.then((val: ArrayBuffer) => {
-  let uintarr: Uint8Array = new Uint8Array(val);
-  console.log(uintarr.toString());
+  let uint8Array: Uint8Array = new Uint8Array(val);
+  console.info(uint8Array.toString());
+  // 输出结果：97,98,99
 });
 ```
 ### slice
@@ -3350,6 +3524,7 @@ import { buffer } from '@kit.ArkTS';
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.text();
 pro.then((val: string) => {
-  console.log(val);
+  console.info(val);
+  // 输出结果：abc
 });
 ```

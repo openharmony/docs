@@ -576,11 +576,11 @@ The target to restart does not belong to the current application or is not a UIA
 
 **错误信息**
 
-Restart too frequently. Try again at least 10s later.
+Restart too frequently. Try again at least 3s later.
 
 **错误描述**
 
-当重启应用拉起指定组件时，10s内再次调用，返回该错误码。
+当重启应用拉起指定组件时，3s内再次调用，返回该错误码。
 
 **可能原因**
 
@@ -588,7 +588,7 @@ Restart too frequently. Try again at least 10s later.
 
 **处理步骤**
 
-间隔10s后再次调用。
+间隔3s后再次调用。
 
 ## 16000065 接口只支持Ability在前台时调用
 

@@ -10,6 +10,7 @@
   - [更新关键资产(ArkTS)](asset-js-update.md)
   - [查询关键资产(ArkTS)](asset-js-query.md)
   - [查询需要用户认证的关键资产(ArkTS)](asset-js-query-auth.md)
+  - [管理群组关键资产(ArkTS)](asset-js-group-access-control.md)
   <!--Del-->
   - [指定用户空间进行关键资产操作(仅对系统应用开放)(ArkTS)](asset-as-user-sys.md)
   <!--DelEnd-->
@@ -18,3 +19,4 @@
   - [删除关键资产(C/C++)](asset-native-remove.md)
   - [更新关键资产(C/C++)](asset-native-update.md)
   - [查询关键资产(C/C++)](asset-native-query.md)
+  - [管理群组关键资产(ArkTS)](asset-native-group-access-control.md)

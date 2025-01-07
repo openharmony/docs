@@ -704,6 +704,10 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 **示例：**
 
+> **说明：** 
+>
+> 以下示例代码只是调用bulkTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
+
 ```ts
 //usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
 //把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
@@ -810,6 +814,7 @@ hasAccessoryRight(accessory: USBAccessory): boolean
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = usbManager.hasAccessoryRight(accList[0])
@@ -855,6 +860,7 @@ requestAccessoryRight(accessory: USBAccessory): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = await usbManager.requestAccessoryRight(accList[0])
@@ -894,6 +900,7 @@ cancelAccessoryRight(accessory: USBAccessory): void;
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = await usbManager.requestAccessoryRight(accList[0])
@@ -929,6 +936,7 @@ getAccessoryList(): Array<Readonly&lt;USBAccessory&gt;>
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   hilog.info(0, 'testTag ui', `getAccessoryList success, accList: ${JSON.stringify(accList)}`)
@@ -975,6 +983,7 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle;
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = await usbManager.requestAccessoryRight(accList[0])
@@ -1013,6 +1022,7 @@ closeAccessory(accessoryHandle: USBAccessoryHandle): void;
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = await usbManager.requestAccessoryRight(accList[0])

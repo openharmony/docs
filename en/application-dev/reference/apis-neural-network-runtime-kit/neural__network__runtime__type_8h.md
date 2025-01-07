@@ -13,7 +13,7 @@ Defines the structure and enumeration for Neural Network Runtime.
 
 **Since**: 9
 
-**Related module**: [NeuralNetworkRuntime](_neural_network_runtime.md)
+**Related module**: [NeuralNeworkRuntime](_neural_network_runtime.md)
 
 
 ## Summary

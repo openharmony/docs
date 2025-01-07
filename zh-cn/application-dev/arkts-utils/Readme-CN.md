@@ -62,6 +62,7 @@
             - [全局配置项功能场景](global-configuration-guide.md)
             - [ArkUI数据更新场景](makeobserved-sendable.md)
             - [C++线程间数据共享场景](native-interthread-shared.md)
+            - [TaskPool指定任务并发度场景](taskpool-async-task-guide.md)
 - [ArkTS跨语言交互](arkts-cross-language-interaction.md)
 - ArkTS运行时
     - [ArkTS运行时概述](arkts-runtime-overview.md)
@@ -82,6 +83,8 @@
         - [方舟字节码函数命名规则](arkts-bytecode-function-name.md)
         - [编译期自定义修改方舟字节码](customize-bytecode-during-compilation.md)
     - [Disassembler反汇编工具](tool-disassembler.md)
-    - [ArkGuard源码混淆工具](source-obfuscation.md)
+    - ArkGuard源码混淆
+        - [ArkGuard源码混淆工具](source-obfuscation.md)
+        - [不同包类型的源码混淆建议](source-obfuscation-practice.md)
     - [在build-profile.json5中配置arkOptions](arkoptions-guide.md)
 

@@ -113,7 +113,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-6. 点击IDE界面中的运行按钮，运行应用工程，点击"Hello world"文本。
+6. 点击DevEco Studio界面中的运行按钮，运行应用工程，点击"Hello world"文本。
 
 7. 在DevEco Studio的底部，切换到“Log”窗口，设置日志的过滤条件为“testTag”。
    此时窗口将显示通过OH_HiDebug_GetSystemCpuUsage()接口获取的CPU使用率的相关日志。

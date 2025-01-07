@@ -11,13 +11,17 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 | 方法/宏 | 接口描述 |
 | -------- | -------- |
 | bool OH_LOG_IsLoggable(unsigned int domain, const char \*tag, LogLevel level) | 检查指定domain、tag和日志级别的日志是否可以打印。<br/>如果指定日志可以打印则返回true；否则返回false。 | 
-| int OH_LOG_Print(LogType type, LogLevel level, unsigned int domain, const char \*tag, const char \*fmt, ...) | 输出指定domain、tag和日志级别的日志，并按照printf格式类型和隐私指示确定需要输出的变参。<br/>打印成功则返回日志总字节数；失败则返回-1。 |
+| int OH_LOG_Print(LogType type, LogLevel level, unsigned int domain, const char \*tag, const char \*fmt, ...) | 输出指定domain、tag和日志级别的日志，并按照printf格式类型和隐私指示确定需要输出的变参。<br/>返回值大于等于0表示成功，小于0表示失败。 |
+| int OH_LOG_PrintMsg(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *message) | 输出指定domain、tag和日志级别的日志字符串。<br/>返回值大于等于0表示成功，小于0表示失败。 |
+| int OH_LOG_PrintMsgByLen(LogType type, LogLevel level, unsigned int domain, const char *tag, size_t tagLen, const char *message, size_t messageLen) | 输出指定domain、tag和日志级别的日志字符串，需要指定tag及字符串长度。<br/>返回值大于等于0表示成功，小于0表示失败。 |
+| int OH_LOG_VPrint(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, va_list ap) | 等效于OH_LOG_Print，但是参数列表为va_list。|
 | \#define OH_LOG_DEBUG(type, ...) ((void)OH_LOG_Print((type), LOG_DEBUG, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | DEBUG级别写日志，宏封装接口。 |
 | \#define OH_LOG_INFO(type, ...) ((void)OH_LOG_Print((type), LOG_INFO, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | INFO级别写日志，宏封装接口。 |
 | \#define OH_LOG_WARN(type, ...) ((void)OH_LOG_Print((type), LOG_WARN, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | WARN级别写日志，宏封装接口。 |
 | \#define OH_LOG_ERROR(type, ...) ((void)OH_LOG_Print((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | ERROR级别写日志，宏封装接口。 |
 | \#define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | FATAL级别写日志，宏封装接口。 |
 | void OH_LOG_SetCallback(LogCallback callback) | 注册函数，注册后可通过LogCallback回调获取本进程所有的hilog日志。|
+| void OH_LOG_SetMinLogLevel(LogLevel level)|设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别，[全局日志级别](hilog.md#查看和设置日志级别)默认为Info。|
 
 ### 参数解析
 
@@ -75,16 +79,21 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
    #define LOG_TAG "MY_TAG"   // 全局tag宏，标识模块日志tag
    ```
 
-3. 打印日志，以打印ERROR级别的日志为例：
+3. 打印日志：
 
    ```c++
-   OH_LOG_ERROR(LOG_APP, "Failed to visit %{private}s, reason:%{public}d.", url, errno);
+   OH_LOG_INFO(LOG_APP, "Failed to visit %{private}s, reason:%{public}d.", url, errno);
+   // 设置应用日志最低打印级别，设置完成后，低于Warn级别的日志将无法打印
+   OH_LOG_SetMinLogLevel(LOG_WARN);
+   OH_LOG_INFO(LOG_APP, "this is an info level log");
+   OH_LOG_ERROR(LOG_APP, "this is an info level log");
    ```
 
 4. 输出结果：
 
    ```
-   12-11 12:21:47.579  2695 2695 E A03200/MY_TAG: Failed to visit <private>, reason:11.
+   01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   pid-9012              I     Failed to visit <private>, reason:11.
+   01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   pid-9012              E     this is an info level log
    ```
 
 ### 日志回调接口使用示例

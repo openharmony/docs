@@ -5,12 +5,12 @@
 
 ## 流媒体支持的格式
 
-| 流媒体协议类型 | 典型链接 | 网络点播 | 网络直播 | 字幕 | 内容保护 | 元数据 |
-| -------- | -------- | -------- | -------- | -------- | -------- | -------- |
-| HLS | `https://xxxx/index.m3u8` | 支持 | 支持 | srt/vtt | 支持 | 支持 |
-| DASH | `https://xxxx.mpd` | 支持 | - | srt/vtt/webvtt | 支持 | 支持 |
-| HTTP/HTTPS | `https://xxxx.mp4` | 支持 |-  | srt/vtt | - | 支持 |
-| HTTP-FLV | `https://xxxx.flv` | 支持 | 支持 | srt/vtt | - | 支持 |
+| 流媒体协议类型 | 典型链接 | 网络点播 | 网络直播 |内容保护 |
+| -------- | -------- | -------- | -------- | -------- |
+| HLS | `https://xxxx/index.m3u8` | 支持 | 支持 | 支持，详见[DRM Kit](../drm/drm-overview.md)。 |
+| DASH | `https://xxxx.mpd` | 支持 | - | 支持，详见[DRM Kit](../drm/drm-overview.md)。 |
+| HTTP/HTTPS | `https://xxxx.mp4` | 支持 | - | - |
+| HTTP-FLV | `https://xxxx.flv` | 支持 | 支持 | - |
 
 ## 开发步骤
 
@@ -32,7 +32,7 @@
    | bufferingUpdate | 用于网络播放，监听网络播放缓冲信息，用于上报缓冲百分比以及缓存播放进度。 |
    | audioInterrupt | 监听音频焦点切换信息，搭配属性audioInterruptMode使用。<br/>如果当前设备存在多个音频正在播放，音频焦点被切换（即播放其他媒体如通话等）时将上报该事件，应用可以及时处理。 |
 
-3. 设置资源：设置属性url，AVPlayer进入initialized状态。
+3. 设置资源：[使用AVPlayer设置播放URL](playback-url-setting-method.md)，AVPlayer进入initialized状态。
    > **说明：**
    >
    > 下面代码示例中的url仅作示意使用，开发者需根据实际情况，确认资源有效性并设置：
@@ -53,6 +53,47 @@
 ## 注意事项
 
 播放流媒体的标准流程如上述开发步骤所示，但使用不同的流媒体格式在实际开发的过程中还是会存在一定差异，本节将详细描述不同流媒体格式业务的差异，包括设置视频起播策略、切换音视频轨道等。
+
+### 流媒体缓冲状态
+
+当下载速率低于片源的码率时，可能会出现卡顿，此时播放器检测到缓冲区数据不足，会先缓冲一些数据再播放，避免连续卡顿。一次卡顿对应的缓冲事件上报过程为：BUFFERING_START-> BUFFERING_PERCENT 0 -> ... -> BUFFERING_PERCENT 100 -> BUFFERING_END。而CACHED_DURATION无论是卡顿过程中还是播放过程中，都会持续上报，直至下载至资源末尾。详见[BufferingInfoType缓冲事件类型枚举](../../reference/apis-media-kit/js-apis-media.md#bufferinginfotype8)。
+
+监听当前bufferingUpdate缓冲状态示例代码：
+
+```ts
+avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value : number) => {
+  console.info(`AVPlayer bufferingUpdate, infoType is ${infoType}, value is ${value}.`);
+})
+```
+
+### HLS切换码率
+
+当前流媒体HLS协议流支持多码率播放，默认情况下，播放器会根据网络下载速度选择合适的码率。
+
+1. 通过[on('availableBitrates')](../../reference/apis-media-kit/js-apis-media.md#onavailablebitrates9)监听当前HLS协议流可用的码率，若监听的码率列表长度为0，则不支持设置指定码率。
+
+    ```ts
+    // 创建avPlayer实例对象
+    let avPlayer: media.AVPlayer = await media.createAVPlayer();
+    // 监听当前HLS协议流可用的码率
+    avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
+      consle.info('availableBitrates called, and availableBitrates length is: ' + bitrates.length);
+    })
+    ```
+
+2. 通过[setBitrate](../../reference/apis-media-kit/js-apis-media.md#setbitrate9)接口设置播放码率，若用户设置的码率不在可用码率中，播放器将从可用码率中选择最小且最接近的码率。该接口只能在prepared/playing/paused/completed状态下调用，可通过监听[bitrateDone](../../reference/apis-media-kit/js-apis-media.md#onbitratedone9)事件确认是否生效。
+
+    ```ts
+    // 创建avPlayer实例对象
+    let avPlayer: media.AVPlayer = await media.createAVPlayer();
+    // 监听码率设置是否生效
+    avPlayer.on('bitrateDone', (bitrate: number) => {
+      consle.info('bitrateDone called, and bitrate value is: ' + bitrate);
+    })
+    // 设置播放码率
+    let bitrate: number = 96000;
+    avPlayer.setBitrate(bitrate);
+    ```
 
 ### DASH设置视频起播策略
 
@@ -113,8 +154,7 @@ DASH流媒体资源一般包含多路分辨率、码率、采样率、编码格�
 
 使用avPlayer播放流媒体过程中断网：流媒体模块会根据返回的错误码、服务器请求失败的响应时间、请求次数等因素综合处理。若错误码类型属于不进行请求重试的类型，会向应用上报对应的错误码。若错误码类型需要进行请求重试，会在30s内进行至多10次的请求重试。若请求重试次数超过10次，或重试总时长超过30秒，会上向应用上报对应的错误码。若请求重试成功，则继续播放。
 
-
-## 完整实例
+## 完整示例
 
 参考以下示例，完整地播放一个流媒体视频。
 
@@ -184,7 +224,7 @@ export class AVPlayerDemo {
           break;
       }
     })
-    // 获取流媒体缓冲状态和缓冲进度
+    // 监听流媒体缓冲状态、缓冲百分比、已缓冲数据预估可播放时长
     avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value : number) => {
       console.info(`AVPlayer bufferingUpdate, infoType is ${infoType}, value is ${value}.`);
     })
@@ -254,8 +294,8 @@ export class AVPlayerDemo {
     this.isSeek = true; // 点播支持seek操作
     // 创建mediaSource实例对象，设置媒体来源，定制HTTP请求，如需要，可以键值对的形式设置User-Agent、Cookie、Referer等字段
     let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("https://xxx.xxx",  {"User-Agent" : "User-Agent-Value", "Cookie" : "Cookie-Value", "Referer" : "Referer-Value"});
-    // 设置播放策略，播放片源的尺寸为1920*1080、设置缓冲区大小为20MB
-    let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1920, preferredHeight: 1080, preferredBufferDuration: 20, preferredHdr: false};
+    // 设置播放策略，设置缓冲区数据量为20s
+    let playbackStrategy : media.PlaybackStrategy = {preferredBufferDuration: 20};
     // 为avPlayer设置媒体来源和播放策略
     avPlayer.setMediaSource(mediaSource, playbackStrategy);
   }

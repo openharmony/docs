@@ -50,7 +50,7 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 | secondaryTitleModifier<sup>12+</sup> | [TextModifier](ts-universal-attributes-attribute-modifier.md) | 否 | - | 设置副标题文本属性，如设置标题颜色、字体大小、字重等。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | titleBuilder<sup>12+</sup> | () => void | 否 | @BuildParam | 自定义标题区内容<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | contentMargin<sup>12+</sup> | [LocalizedMargin](ts-types.md#localizedmargin12) | 否 | @Prop | 子标题外边距，不支持设置负数。<br />默认值：<br /> `{start: LengthMetrics.resource(` <br /> `$r('sys.float.margin_left'))`, <br /> `end: LengthMetrics.resource(` <br /> `$r('sys.float.margin_right'))}`<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| contentPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12) | 否 | @Prop | 子标题内边距。<br />默认值：<br />左侧为副标题或副标题加图标时：<br /> {start: LengthMetircs.vp(12), end: LengthMetrics.vp(12)}。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| contentPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12) | 否 | @Prop | 子标题内边距。<br />默认值：<br />左侧为副标题或副标题加图标时：<br /> {start: LengthMetrics.vp(12), end: LengthMetrics.vp(12)}。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 
 ## OperationType
@@ -85,11 +85,13 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 文本内容。 |
-| action | ()=&gt;void | 否 | 事件。 |
-
+| 名称 | 类型 | 必填 | 说明                                                                                                                                                                                                                                                       |
+| -------- | -------- | -------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 文本内容。                                                                                                                                                                                                                                                    |
+| action | ()=&gt;void | 否 | 事件。                                                                                                                                                                                                                                                      |
+| accessibilityLevel<sup>16+<sup>       | string  | 否 | 子标题右侧按钮无障碍重要性。用于控制当前项是否可被无障碍辅助服务所识别。<br/>支持的值为：<br/>"auto"：当前组件会转换'yes'。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| accessibilityText<sup>16+<sup>        | ResourceStr | 否 | 子标题右侧按钮的无障碍文本属性。当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br/>默认值：类型为TEXT_ARROW和BUTTON时默认值为当前项value属性内容，其他类型默认值为“ ”。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| accessibilityDescription<sup>16+<sup> | ResourceStr | 否 | 子标题右侧按钮的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br/>默认值：类型为LOADING时，默认值为“正在加载”，其他类型默认值为“单指双击即可执行”。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。        |
 ## SymbolOptions<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -371,3 +373,73 @@ struct SubHeaderExample {
 ```
 
 ![子标题7](figures/zh-cn_image_subheader_example07.png)
+
+
+### 示例8（右侧按钮自定义播报）
+该示例通过设置subheader的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+```ts
+import { promptAction, OperationType, SubHeader, TextModifier, LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SubHeaderExample {
+  build() {
+    Column() {
+      Divider().color('grey').width('100%').height('2vp')
+      SubHeader({
+        // 图标+二级标题, 右侧button
+        icon: $r('app.media.app_icon'),
+        secondaryTitle: '二级标题',
+        operationType: OperationType.BUTTON,
+        operationItem: [{
+          value: '操作',
+          action: () => {
+            promptAction.showToast({ message: 'demo' })
+          }
+        }]
+      })
+      Divider().color('grey').width('100%').height('2vp')
+      SubHeader({
+        // 右侧text_arrow
+        primaryTitle: '一级标题',
+        secondaryTitle: '二级标题',
+        operationType: OperationType.TEXT_ARROW,
+        operationItem: [{
+          value: '更多',
+          action: () => {
+            promptAction.showToast({ message: 'demo' })
+          }
+        }]
+      })
+      Divider().color('grey').width('100%').height('2vp')
+      SubHeader({
+        //左侧select 右侧是icon_(依次获焦)
+        select: {
+          options: [{ value: 'aaa' }, { value: 'bbb' }, { value: 'ccc' }],
+          value: 'selectdemo',
+          selected: 0,
+          onSelect: (index: number, value?: string) => {
+            console.log(`subheader onselect index : ${index}, value: ${value}`);
+          }
+        },
+        operationType: OperationType.ICON_GROUP,
+        operationItem: [{
+          value: $r('app.media.app_icon'),
+          accessibilityText: '图标1',
+          accessibilityLevel: 'yes',
+        }, {
+          value: $r('app.media.app_icon'),
+          accessibilityText: '图标2',
+          accessibilityLevel: 'no',    
+        }, {
+          value: $r('app.media.app_icon'),
+          accessibilityText: '图标3',
+          accessibilityDescription: '点击操作图标3',
+        }]
+      })
+      Divider().color('grey').width('100%').height('2vp')
+    }
+  }
+}
+```
+![/zh-cn_image_subheader_example08](figures/zh-cn_image_subheader_example08.png)

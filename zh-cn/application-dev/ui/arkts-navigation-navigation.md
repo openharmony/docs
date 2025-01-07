@@ -180,7 +180,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 标题栏在界面顶部，用于呈现界面名称和操作入口，Navigation组件通过titleMode属性设置标题栏模式。
 
 > **说明：**
-> Navigation或NavDestination未设置主副标题和返回键时，不显示标题栏。
+> Navigation或NavDestination未设置主副标题并且没有返回键时，不显示标题栏。
 
 - Mini模式
 
@@ -255,6 +255,7 @@ let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highli
 Navigation() {
   // ...
 }
+// 竖屏最多支持显示3个图标，多余的图标会被放入自动生成的更多图标。
 .menus([TooTmp,
   TooTmp,
   TooTmp,

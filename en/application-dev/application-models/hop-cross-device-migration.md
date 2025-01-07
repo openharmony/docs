@@ -51,19 +51,19 @@ The following figure shows the cross-device migration process when a migration r
 
 1. Configure the **continuable** tag under **abilities** in the [module.json5 file](../quick-start/module-configuration-file.md).
 
-    ```json
-    {
-      "module": {
-        // ...
-        "abilities": [
-          {
-            // ...
-            "continuable": true, // Configure the UIAbility to support migration.
-          }
-        ]
-      }
-    }
-    ```
+   ```json
+   {
+     "module": {
+       // ...
+       "abilities": [
+         {
+           // ...
+           "continuable": true, // Configure the UIAbility to support migration.
+         }
+       ]
+     }
+   }
+   ```
 
    > **NOTE**
    >
@@ -73,49 +73,61 @@ The following figure shows the cross-device migration process when a migration r
 
     When a migration is triggered for the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md), [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) is called on the source device. You can use either synchronous or asynchronous mode to save the data in this callback to implement application compatibility check and migration decision.
 
-    - Saving data to migrate: You can save the data to migrate in key-value pairs in **wantParam**.
-    - Checking application compatibility: You can obtain the application version on the target device from **wantParam.version** in the **onContinue()** callback and compare it with the application version on the source device.
-
-    - Making a migration decision: You can determine whether migration is supported based on the return value of **onContinue()**. For details about the return values, see [AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#oncontinueresult).
+    1. Saving data to migrate: You can save the data to migrate in key-value pairs in **wantParam**.
+    
+    2. (Optional) Checking application compatibility: You can obtain the application version on the target device from **wantParam.version** in the **onContinue()** callback and compare it with the application version on the source device. If the version compatibility check fails, the application should notify users of the cause of the migration failure.
+    
+       > **NOTE**
+       >
+       > If the compatibility issues have little or no impact on migration experience, you can skip this check.
+    
+    3. Returning the migration result: You can determine whether migration is supported based on the return value of **onContinue()**. For details about the return values, see [AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#oncontinueresult).
+    
 
     Certain fields (listed in the table below) in **wantParam** passed in to **onContinue()** are preconfigured in the system. You can use these fields for service processing. When defining custom `wantParam` data, do not use the same keys as the preconfigured ones to prevent data exceptions due to system overwrites.  
+    
     | Field|Description|
     | ---- | ---- |
     | version | Version the application on the target device.|
     | targetDevice | Network ID of the target device.|
-
+    
     ```ts
     import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-
+    import { promptAction } from '@kit.ArkUI';
+    
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
-
+    
     export default class MigrationAbility extends UIAbility {
       // Prepare data to migrate in onContinue.
       onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
         let targetVersion = wantParam.version;
         let targetDevice = wantParam.targetDevice;
         hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${targetVersion}, targetDevice: ${targetDevice}`);
-
-        // Obtain the application version on the source device.
-        let versionSrc: number = -1; // Enter the version number obtained.
-
+    
+        // The application can set the minimum compatible version based on the source version, which can be obtained from the versionCode field in the app.json5 file. This is to prevent incompatibility caused because the target version is too earlier.
+    	let versionThreshold: number = -1; // Use the minimum version supported by the application.
         // Compatibility verification
-        if (targetVersion !== versionSrc) {
+        if (targetVersion < versionThreshold) {
+          // It is recommended that users be notified of the reason why the migration is rejected if the version compatibility check fails.
+          promptAction.showToast({
+              message: 'The target application version is too early to continue. Update the application and try again.',
+              duration: 2000
+          })
           // Return MISMATCH when the compatibility check fails.
           return AbilityConstant.OnContinueResult.MISMATCH;
         }
-
+    
         // Save the data to migrate in the custom field (for example, data) of wantParam.
         const continueInput = 'Data to migrate';
         wantParam['data'] = continueInput;
-
+    
         return AbilityConstant.OnContinueResult.AGREE;
       }
     }
     ```
-
+    
 3. For the UIAbility on the target device, implement [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) to restore the data and load the UI.
 
     The APIs to call vary according to the launch types, as shown below.
@@ -127,11 +139,11 @@ The following figure shows the cross-device migration process when a migration r
     > When an application is launched as a result of a migration, the [onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore) lifecycle callback function, rather than [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate), is triggered following **onCreate()** or **onNewWant()**. This sequence occurs for both cold and hot starts.
     >
     > If you have performed some necessary initialization operations during application launch in **onWindowStageCreate()**, you must perform the same initialization operations in **onWindowStageRestore()** after the migration to avoid application exceptions.
-    
+
     - The **launchReason** parameter in the **onCreate()** or **onNewWant()** callback specifies whether the launch is triggered as a result of a migration (whether the value is **CONTINUATION**).
     - You can obtain the saved data from the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter.
     - To use system-level page stack restoration, you must call [restoreWindowStage()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextrestorewindowstage) to trigger page restoration with page stacks before **onCreate()** or **onNewWant()** is complete. For details, see [On-Demand Page Stack Migration](./hop-cross-device-migration.md#on-demand-page-stack-migration).
-    
+
     ```ts
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -1063,3 +1075,4 @@ export default class MigrationAbility extends UIAbility {
 
 If page stack migration is not disabled for an application, the system migrates and loads the page stack of the application by default. In this case, if you use [loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9) to trigger the loading of a specific page in the [onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore) lifecycle callback function, the loading does not take effect and the page in the page stack is still restored.
 
+ <!--no_check--> 

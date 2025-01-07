@@ -102,7 +102,7 @@ try {
 
 表示的Resource资源信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -116,16 +116,11 @@ try {
 
 ## SendableResource
 
-表示的SendableResource资源信息。
+type SendableResource = _SendableResource
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**参数：**
+| 类型         | 说明     |
+| ---------- | ------ | 
+| [_SendableResource](sendableResource.md#sendableresource-1)|表示的SendableResource资源信息。|
 
-| 名称         | 类型     | 只读   | 可选  |说明          |
-| ---------- | ------ | ----- | ----  | ---------------|
-| bundleName | string | 否    | 否 | 应用的bundle名称。 |
-| moduleName | string | 否    | 否 | 应用的module名称。 |
-| id         | number | 否    | 否 | 资源的id值。      |
-| params     | collections.Array<string \| number> | 否    | 是 | 其他资源参数，包括资源名、格式化接口的替换值、复数接口的量词。      |
-| type       | number | 否    | 是 | 资源的类型。      |

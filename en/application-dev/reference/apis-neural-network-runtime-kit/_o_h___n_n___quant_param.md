@@ -25,7 +25,7 @@ The **clamp** function is defined as follows:
 
 **Substitute**: You are advised to use [NN_QuantParam](_neural_network_runtime.md#nn_quantparam).
 
-**Related module**: [NeuralNetworkRuntime](_neural_network_runtime.md)
+**Related module**: [NeuralNeworkRuntime](_neural_network_runtime.md)
 
 
 ## Summary

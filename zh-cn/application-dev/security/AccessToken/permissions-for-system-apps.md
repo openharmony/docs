@@ -325,6 +325,18 @@
 
 **起始版本**：12
 
+### ohos.permission.PLUGIN_UPDATE
+
+允许业务方调用升级相关接口完成插件、AI模型的后下载和更新业务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.RECEIVE_UPDATE_MESSAGE
 
 允许应用、服务监听系统升级流程中的关键事件。
@@ -1032,6 +1044,30 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.CAPTURE_PLAYBACK
+
+允许系统服务不通过录屏框架，直接进行音频内录。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.MICROPHONE_BACKGROUND
+
+允许系统应用在后台使用麦克风。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
 
 ### ohos.permission.START_DLP_CRED
 
@@ -3197,18 +3233,6 @@
 
 **起始版本**: 12
 
-### ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
-
-允许系统应用使用红外接口。
-
-**权限级别**：normal
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
 ### ohos.permission.ENABLE_EXPERIENCE_HBM
 
 允许应用启用屏幕HBM（High Brightness Mode）亮度模式。
@@ -4103,6 +4127,18 @@
 
 **起始版本**：14
 
+### ohos.permission.ACCESS_CONFIDENTIAL_COMPUTING_ZONE
+
+允许应用访问机密计算空间。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
 
 允许应用获取恢复密钥的简要信息。
@@ -4165,6 +4201,18 @@
 
 **起始版本**：13
 
+### ohos.permission.ACCESS_APP_SINGLE_PERMISSION_MANAGEMENT
+
+允许应用拉起用于修改其他应用授权的界面。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
 ### ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
 
 允许应用禁用本应用的代码运行时完整性保护。
@@ -4177,7 +4225,7 @@
 
 **ACL使能**：true
 
-**起始版本**：13
+**起始版本**：14
 
 ### ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY
 
@@ -4191,7 +4239,7 @@
 
 **ACL使能**：true
 
-**起始版本**：13
+**起始版本**：14
 
 ### ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
 
@@ -4239,7 +4287,7 @@
 
 **ACL使能**：true
 
-**起始版本**：13
+**起始版本**：15
 
 ### ohos.permission.ANTI_FRAUD
 
@@ -4276,6 +4324,42 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.WATCH_READ_EMERGENCY_INFO
+
+允许应用读取SOS个人紧急信息数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.WATCH_WRITE_EMERGENCY_INFO
+
+允许应用写入SOS个人紧急信息数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.WATCH_START_SOS_SERVICE
+
+允许应用启用或访问SOS服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
 
 **变更信息**：API 12-14仅对系统服务开放；从API 15开始对系统应用开放。
 

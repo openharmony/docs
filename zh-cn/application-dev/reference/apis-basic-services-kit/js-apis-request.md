@@ -18,52 +18,48 @@ import { request } from '@kit.BasicServicesKit';
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
 
-### 网络类型
-下载支持自定义网络类型，可以在[DownloadConfig](#downloadconfig)中通过networkType配置成以下网络类型。
+> **说明：**
+>
+> **网络类型**：下载支持自定义网络类型，可以在[DownloadConfig](#downloadconfig)中通过networkType配置成以下网络类型。<br/>
+>
+> **下载任务错误码**：下载[on('fail')<sup>7+</sup>](#onfail7)事件callback的错误参数、[getTaskInfo<sup>9+</sup>](#gettaskinfo9)返回值的failedReason字段取值。<br/>
+>
+> **下载任务暂停原因**：下载相关[getTaskInfo<sup>9+</sup>](#gettaskinfo9)返回值的pausedReason字段取值。<br/>
+>
+> **下载任务状态码**：下载相关[getTaskInfo<sup>9+</sup>](#gettaskinfo9)返回值的status字段取值。
 
 | 名称 | 参数类型 | 数值 | 说明 |
 | -------- | -------- | -------- | -------- |
-| NETWORK_MOBILE | number | 0x00000001 | 使用蜂窝网络时允许下载的位标志。 |
-| NETWORK_WIFI | number | 0x00010000 | 使用WLAN时允许下载的位标志。 |
-
-### 下载任务的错误码
-下载[on('fail')<sup>7+</sup>](#onfail7)事件callback的错误参数、[getTaskInfo<sup>9+</sup>](#gettaskinfo9)返回值的failedReason字段取值。
-
-| 名称 | 参数类型 | 数值 | 说明 |
-| -------- | -------- | -------- | -------- |
-| ERROR_CANNOT_RESUME<sup>7+</sup> | number |   0   | 网络原因导致恢复下载失败。 |
-| ERROR_DEVICE_NOT_FOUND<sup>7+</sup> | number |   1   | 找不到SD卡等存储设备。 |
-| ERROR_FILE_ALREADY_EXISTS<sup>7+</sup> | number |   2   | 要下载的文件已存在，下载会话不能覆盖现有文件。 |
-| ERROR_FILE_ERROR<sup>7+</sup> | number |   3   | 文件操作失败。 |
-| ERROR_HTTP_DATA_ERROR<sup>7+</sup> | number |   4   | HTTP传输失败。 |
-| ERROR_INSUFFICIENT_SPACE<sup>7+</sup> | number |   5   | 存储空间不足。 |
-| ERROR_TOO_MANY_REDIRECTS<sup>7+</sup> | number |   6   | 网络重定向过多导致的错误。 |
-| ERROR_UNHANDLED_HTTP_CODE<sup>7+</sup> | number |   7   | 无法识别的HTTP代码。 |
-| ERROR_UNKNOWN<sup>7+</sup> | number |   8   | 未知错误。（例如API version 12及以下版本，只支持串行的尝试连接域名相关ip，且不支持单个ip的连接时间控制，如果DNS返回的首个ip是阻塞的，可能握手超时造成ERROR_UNKNOWN错误。） |
-| ERROR_OFFLINE<sup>9+</sup> | number |   9   | 网络未连接。 |
-| ERROR_UNSUPPORTED_NETWORK_TYPE<sup>9+</sup> | number |   10   | 网络类型不匹配。 |
-
-### 下载任务暂停原因
-下载相关[getTaskInfo<sup>9+</sup>](#gettaskinfo9)返回值的pausedReason字段取值。
-
-| 名称 | 参数类型 | 数值 | 说明 |
-| -------- | -------- | -------- | -------- |
-| PAUSED_QUEUED_FOR_WIFI<sup>7+</sup> | number |   0   | 下载被暂停并等待WLAN连接，因为文件大小超过了使用蜂窝网络的会话允许的最大值。 |
-| PAUSED_WAITING_FOR_NETWORK<sup>7+</sup> | number |   1   | 由于网络问题（例如网络断开）而暂停下载。 |
-| PAUSED_WAITING_TO_RETRY<sup>7+</sup> | number |   2   | 发生网络错误，将重试下载会话。 |
-| PAUSED_BY_USER<sup>9+</sup> | number |   3   | 用户暂停会话。 |
-| PAUSED_UNKNOWN<sup>7+</sup> | number |   4   | 未知原因导致暂停下载。 |
-
-### 下载任务状态码
-下载相关[getTaskInfo<sup>9+</sup>](#gettaskinfo9)返回值的status字段取值。
-
-| 名称 | 参数类型 | 数值 | 说明 |
-| -------- | -------- | -------- | -------- |
-| SESSION_SUCCESSFUL<sup>7+</sup> | number |   0   | 下载会话已完成。 |
-| SESSION_RUNNING<sup>7+</sup> | number |   1   | 下载会话正在进行中。 |
-| SESSION_PENDING<sup>7+</sup> | number |   2   | 正在调度下载会话。 |
-| SESSION_PAUSED<sup>7+</sup> | number |   3   | 下载会话已暂停。 |
-| SESSION_FAILED<sup>7+</sup> | number |   4   | 下载会话已失败，将不会重试。 |
+| EXCEPTION_PERMISSION<sup>9+</sup> | number |   201   | 通用错误码：权限校验失败。 |
+| EXCEPTION_PARAMCHECK<sup>9+</sup> | number |   401   | 通用错误码：参数检查失败。 |
+| EXCEPTION_UNSUPPORTED<sup>9+</sup> | number |   801   | 通用错误码：该设备不支持此API。 |
+| EXCEPTION_FILEIO<sup>9+</sup> | number |   13400001   | 特有错误码：文件操作异常。 |
+| EXCEPTION_FILEPATH<sup>9+</sup> | number |   13400002   | 特有错误码：文件路径异常。 |
+| EXCEPTION_SERVICE<sup>9+</sup> | number |   13400003   | 特有错误码：服务异常。 |
+| EXCEPTION_OTHERS<sup>9+</sup> | number |   13499999   | 特有错误码：其他错误。 |
+| NETWORK_MOBILE<sup>6+</sup> | number | 0x00000001 | 网络类型：使用蜂窝网络时允许下载的位标志。 |
+| NETWORK_WIFI<sup>6+</sup> | number | 0x00010000 | 网络类型：使用WLAN时允许下载的位标志。 |
+| ERROR_CANNOT_RESUME<sup>7+</sup> | number |   0   | 下载任务错误码：网络原因导致恢复下载失败。 |
+| ERROR_DEVICE_NOT_FOUND<sup>7+</sup> | number |   1   | 下载任务错误码：找不到SD卡等存储设备。 |
+| ERROR_FILE_ALREADY_EXISTS<sup>7+</sup> | number |   2   | 下载任务错误码：要下载的文件已存在，下载会话不能覆盖现有文件。 |
+| ERROR_FILE_ERROR<sup>7+</sup> | number |   3   | 下载任务错误码：文件操作失败。 |
+| ERROR_HTTP_DATA_ERROR<sup>7+</sup> | number |   4   | 下载任务错误码：HTTP传输失败。 |
+| ERROR_INSUFFICIENT_SPACE<sup>7+</sup> | number |   5   | 下载任务错误码：存储空间不足。 |
+| ERROR_TOO_MANY_REDIRECTS<sup>7+</sup> | number |   6   | 下载任务错误码：网络重定向过多导致的错误。 |
+| ERROR_UNHANDLED_HTTP_CODE<sup>7+</sup> | number |   7   | 下载任务错误码：无法识别的HTTP代码。 |
+| ERROR_UNKNOWN<sup>7+</sup> | number |   8   | 下载任务错误码：未知错误。（例如API version 12及以下版本，只支持串行的尝试连接域名相关ip，且不支持单个ip的连接时间控制，如果DNS返回的首个ip是阻塞的，可能握手超时造成ERROR_UNKNOWN错误。） |
+| ERROR_OFFLINE<sup>9+</sup> | number |   9   | 下载任务错误码：网络未连接。 |
+| ERROR_UNSUPPORTED_NETWORK_TYPE<sup>9+</sup> | number |   10   | 下载任务错误码：网络类型不匹配。 |
+| PAUSED_QUEUED_FOR_WIFI<sup>7+</sup> | number |   0   | 下载任务暂停原因：下载被暂停并等待WLAN连接，因为文件大小超过了使用蜂窝网络的会话允许的最大值。 |
+| PAUSED_WAITING_FOR_NETWORK<sup>7+</sup> | number |   1   | 下载任务暂停原因：由于网络问题（例如网络断开）而暂停下载。 |
+| PAUSED_WAITING_TO_RETRY<sup>7+</sup> | number |   2   | 下载任务暂停原因：发生网络错误，将重试下载会话。 |
+| PAUSED_BY_USER<sup>9+</sup> | number |   3   | 下载任务暂停原因：用户暂停会话。 |
+| PAUSED_UNKNOWN<sup>7+</sup> | number |   4   | 下载任务暂停原因：未知原因导致暂停下载。 |
+| SESSION_SUCCESSFUL<sup>7+</sup> | number |   0   | 下载任务状态码：下载会话已完成。 |
+| SESSION_RUNNING<sup>7+</sup> | number |   1   | 下载任务状态码：下载会话正在进行中。 |
+| SESSION_PENDING<sup>7+</sup> | number |   2   | 下载任务状态码：正在调度下载会话。 |
+| SESSION_PAUSED<sup>7+</sup> | number |   3   | 下载任务状态码：下载会话已暂停。 |
+| SESSION_FAILED<sup>7+</sup> | number |   4   | 下载任务状态码：下载会话已失败，将不会重试。 |
 
 
 ## request.uploadFile<sup>9+</sup>
@@ -1298,7 +1294,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| err | number | 是 | 下载失败的错误码，错误原因见[下载任务的错误码](#下载任务的错误码)。 |
+| err | number | 是 | 下载失败的错误码，错误原因见[下载任务的错误码](#常量)。 |
 
 **错误码：**
 
@@ -2328,11 +2324,11 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | 名称 | 类型 |必填 |  说明 |
 | -------- | -------- | -------- | -------- |
 | downloadId | number |是 | 下载任务ID。 |
-| failedReason | number|是 | 下载失败原因，可以是任何[下载任务的错误码](#下载任务的错误码)常量。 |
+| failedReason | number|是 | 下载失败原因，可以是任何[下载任务的错误码](#常量)常量。 |
 | fileName | string |是| 下载的文件名。 |
 | filePath | string |是| 存储文件的URI。 |
-| pausedReason | number |是| 会话暂停的原因，可以是任何[下载任务暂停原因](#下载任务暂停原因)常量。 |
-| status | number |是| 下载状态码，可以是任何[下载任务状态码](#下载任务状态码)常量。 |
+| pausedReason | number |是| 会话暂停的原因，可以是任何[下载任务暂停原因](#常量)常量。 |
+| status | number |是| 下载状态码，可以是任何[下载任务状态码](#常量)常量。 |
 | targetURI | string |是| 下载文件的URI。 |
 | downloadTitle | string |是| 下载任务名称。 |
 | downloadTotalBytes | number |是| 下载的文件的总大小，单位为字节。 |
