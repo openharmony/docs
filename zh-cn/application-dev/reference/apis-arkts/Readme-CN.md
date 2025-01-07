@@ -33,3 +33,4 @@
     - [@ohos.util.Vector (线性容器Vector)](js-apis-vector.md)
 - 错误码
   - [语言基础类库错误码](errorcode-utils.md)
+  - [Typescript Compiler错误码](errorcode-tsc.md)
