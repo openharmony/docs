@@ -61,6 +61,18 @@ Allows an application to turn on and off the location service.
 
 **Valid since**: 12
 
+### ohos.permission.LOCATION_SWITCH_IGNORED
+
+Allows a system application to obtain location information when the location switch is turned off.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.SUBSCRIBE_SWING_ABILITY
 
 Allows an application to use the subscription capability powered by smart sensing.

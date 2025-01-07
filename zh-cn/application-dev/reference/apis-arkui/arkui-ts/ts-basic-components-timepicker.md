@@ -303,8 +303,11 @@ struct TimePickerExample {
         .onChange((value: TimePickerResult) => {
           if (value.hour >= 0) {
             this.selectedTime.setHours(value.hour, value.minute)
-            console.info('select current date is: ' + JSON.stringify(value))
+            console.info('select current time is: ' + JSON.stringify(value))
           }
+        })
+        .onEnterSelectedArea((value: TimePickerResult) => {
+            console.info('item enter selected area, time is: ' + JSON.stringify(value))
         })
     }.width('100%')
   }

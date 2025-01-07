@@ -198,29 +198,29 @@ c. 生产操作场景:
 
 配置编码器参数。
    
-   在配置编码器参数阶段，配置适合离线转码场景的编码参数。
+在配置编码器参数阶段，配置适合离线转码场景的编码参数。
 
-    ```c++
-    // 1. 创建配置AVFormat
-    OH_AVFormat *format = OH_AVFormat_Create();
-    // 2. 填充使能参数键值对（以1080p@15fps SDR输入源为例）
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, 1920); // 视频宽
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, 1080); // 视频高
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, AV_PIXEL_FORMAT_NV12); // YUV排布格式
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_RANGE_FLAG, 0); // 0:limited range/TV 1:full range/PC
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_COLOR_PRIMARIES, OH_ColorPrimary::COLOR_PRIMARY_BT709); // 视频源色域
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_TRANSFER_CHARACTERISTICS, OH_TransferCharacteristic::TRANSFER_CHARACTERISTIC_BT709); // OETF/EOTF曲线
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, OH_MatrixCoefficient:: MATRIX_COEFFICIENT_BT709); // 视频YUV和RGB转换矩阵
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, OH_HEVCProfile::HEVC_PROFILE_MAIN); // 编码profile
-    OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, 25); // 视频帧率
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, 5000); // 关键帧间隔5s
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, OH_VideoEncodeBitrateMode::VBR); // 码控模式配置为VBR
-    OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, 3000000); // 设置码率为3Mbps
-    // 3. 参数配置
-    int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
-    if (ret != AV_ERR_OK) {
-        // 异常处理
-    }
-    // 4. 配置完成后销毁AVFormat
-    OH_AVFormat_Destroy(format);
-    ```
+```c++
+// 1. 创建配置AVFormat
+OH_AVFormat *format = OH_AVFormat_Create();
+// 2. 填充使能参数键值对（以1080p@15fps SDR输入源为例）
+OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, 1920); // 视频宽
+OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, 1080); // 视频高
+OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, AV_PIXEL_FORMAT_NV12); // YUV排布格式
+OH_AVFormat_SetIntValue(format, OH_MD_KEY_RANGE_FLAG, 0); // 0:limited range/TV 1:full range/PC
+OH_AVFormat_SetIntValue(format, OH_MD_KEY_COLOR_PRIMARIES, OH_ColorPrimary::COLOR_PRIMARY_BT709); // 视频源色域
+OH_AVFormat_SetIntValue(format, OH_MD_KEY_TRANSFER_CHARACTERISTICS, OH_TransferCharacteristic::TRANSFER_CHARACTERISTIC_BT709); // OETF/EOTF曲线
+OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, OH_MatrixCoefficient:: MATRIX_COEFFICIENT_BT709); // 视频YUV和RGB转换矩阵
+OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, OH_HEVCProfile::HEVC_PROFILE_MAIN); // 编码profile
+OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, 25); // 视频帧率
+OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, 5000); // 关键帧间隔5s
+OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, OH_VideoEncodeBitrateMode::VBR); // 码控模式配置为VBR
+OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, 3000000); // 设置码率为3Mbps
+// 3. 参数配置
+int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
+if (ret != AV_ERR_OK) {
+    // 异常处理
+}
+// 4. 配置完成后销毁AVFormat
+OH_AVFormat_Destroy(format);
+```

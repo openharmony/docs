@@ -380,8 +380,8 @@ type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: num
 
 | 参数名 | 类型                                       | 必填 | 说明                                              |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| value  | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
-| index  | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
+| value  | string&nbsp;\|&nbsp;string[] | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
+| index  | number&nbsp;\|&nbsp;number[] | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
 
 ## 示例
 
@@ -431,6 +431,9 @@ struct TextPickerExample {
         .onScrollStop((value: string | string[], index: number | number[]) => {
           console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
         }).margin(bott)
+        .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
+          console.info('Picker item enter selected area, value: ' + value + ', index: ' + index)
+        })
 
       TextPicker({ range: this.multi })
         .onChange((value: string | string[], index: number | number[]) => {
@@ -439,6 +442,9 @@ struct TextPickerExample {
         .onScrollStop((value: string | string[], index: number | number[]) => {
           console.info('TextPicker 多列:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         }).margin(bott)
+        .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
+          console.info('TextPicker 多列:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+        })
 
       TextPicker({ range: this.cascade })
         .onChange((value: string | string[], index: number | number[]) => {
@@ -446,6 +452,9 @@ struct TextPickerExample {
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
           console.info('TextPicker 多列联动:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+        })
+        .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
+          console.info('TextPicker 多列联动:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         })
     }
   }
