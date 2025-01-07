@@ -27,6 +27,7 @@ cpp部分代码
 
 ```cpp
 // hello.cpp
+#include <string>
 
 // 待执行的js代码
 static const char *STR_TASK = R"JS(jsonParseNumber();jsonParseObject();)JS";
