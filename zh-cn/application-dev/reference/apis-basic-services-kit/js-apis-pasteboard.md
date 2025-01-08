@@ -2796,8 +2796,6 @@ setAppShareOptions(shareOptions: ShareOption): void
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -2836,8 +2834,6 @@ removeAppShareOptions(): void
 **需要权限**：ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **错误码：**
 
