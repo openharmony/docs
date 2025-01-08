@@ -405,7 +405,7 @@ cachedCount(value: number)
 
 ### cachedCount<sup>14+</sup>
 
-cachedCount(value: number, show: boolean)
+cachedCount(count: number, show: boolean)
 
 设置预加载的FlowItem数量，并配置是否显示预加载节点。
 
@@ -421,7 +421,7 @@ cachedCount(value: number, show: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| value  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：1 |
+| count  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：1 |
 | show  | boolean | 是   | 被预加载的FlowItem是否需要显示。 <br/> 默认值：false |
 
 ## 事件
