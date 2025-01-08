@@ -969,7 +969,7 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle;
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 14400001 | Permission denied. Call requestAccessoryRight to get the right first. |
-| 14400004 | Service exception. Possible causes: 1.No accessory is plugged in. |
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
 | 14401001 | The target USBAccessory not matched.                         |
 | 14401002 | Failed to open the native accessory node.                    |
 | 14401003 | Cannot reopen the accessory.                                 |
