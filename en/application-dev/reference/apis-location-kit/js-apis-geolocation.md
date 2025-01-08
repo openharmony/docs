@@ -31,11 +31,9 @@ API version 9 and later: Apply for **ohos.permission.APPROXIMATELY_LOCATION**, o
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION | Successful| Location accurate to 5 kilometers.|
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION| Successful| Location accurate to meters.|
 
-To access the device location information when running in the background, an application needs to request for the **ohos.permission.LOCATION_IN_BACKGROUND** permission or a continuous task of the background mode. In this way, the system continues to report device location information after your application moves to the background.
+To access the device location information when running in the background, an application needs to request for a continuous task of the LOCATION type. In this way, the system continues to report device location information after your application moves to the background. For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md).
 
 A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for an application on the setting page. For details, see [ohos.permission.LOCATION_IN_BACKGROUND](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background).
-
-For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md).
 
 You can declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
@@ -75,7 +73,7 @@ Registers a listener for location changes with a location request initiated. Thi
   import geolocation from '@ohos.geolocation';
   let requestInfo:geolocation.LocationRequest = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geolocation.Location):void => {
-      console.log('locationChanger: data: ' + JSON.stringify(location));
+      console.info('locationChanger: data: ' + JSON.stringify(location));
   };
   geolocation.on('locationChange', requestInfo, locationChange);
   ```
@@ -108,7 +106,7 @@ Unregisters the listener for location changes with the corresponding location re
   import geolocation from '@ohos.geolocation';
   let requestInfo:geolocation.LocationRequest = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geolocation.Location):void => {
-      console.log('locationChanger: data: ' + JSON.stringify(location));
+      console.info('locationChanger: data: ' + JSON.stringify(location));
   };
   geolocation.on('locationChange', requestInfo, locationChange);
   geolocation.off('locationChange', locationChange);
@@ -141,7 +139,7 @@ Registers a listener for location service status change events. This API uses an
   ```ts
   import geolocation from '@ohos.geolocation';
   let locationServiceState = (state:boolean):void => {
-      console.log('locationServiceState: ' + JSON.stringify(state));
+      console.info('locationServiceState: ' + JSON.stringify(state));
   }
   geolocation.on('locationServiceState', locationServiceState);
   ```
@@ -149,7 +147,7 @@ Registers a listener for location service status change events. This API uses an
 
 ## geolocation.off('locationServiceState')<sup>(deprecated)</sup>
 
-off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;): void;
+off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;): void
 
 Unregisters the listener for location service status change events.
 
@@ -173,7 +171,7 @@ Unregisters the listener for location service status change events.
   ```ts
   import geolocation from '@ohos.geolocation';
   let locationServiceState = (state:boolean):void => {
-      console.log('locationServiceState: state: ' + JSON.stringify(state));
+      console.info('locationServiceState: state: ' + JSON.stringify(state));
   }
   geolocation.on('locationServiceState', locationServiceState);
   geolocation.off('locationServiceState', locationServiceState);
@@ -182,7 +180,7 @@ Unregisters the listener for location service status change events.
 
 ## geolocation.on('cachedGnssLocationsReporting')<sup>(deprecated)</sup>
 
-on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void;
+on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void
 
 Registers a listener for cached GNSS location reports. This API uses an asynchronous callback to return the result.
 
@@ -208,7 +206,7 @@ Registers a listener for cached GNSS location reports. This API uses an asynchro
   ```ts
   import geolocation from '@ohos.geolocation';
   let cachedLocationsCb = (locations:Array<geolocation.Location>):void => {
-      console.log('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
+      console.info('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
   }
   let requestInfo:geolocation.CachedGnssLocationsRequest = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   geolocation.on('cachedGnssLocationsReporting', requestInfo, cachedLocationsCb);
@@ -217,7 +215,7 @@ Registers a listener for cached GNSS location reports. This API uses an asynchro
 
 ## geolocation.off('cachedGnssLocationsReporting')<sup>(deprecated)</sup>
 
-off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Location&gt;&gt;): void;
+off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Location&gt;&gt;): void
 
 Unregisters the listener for cached GNSS location reports.
 
@@ -242,7 +240,7 @@ Unregisters the listener for cached GNSS location reports.
   ```ts
   import geolocation from '@ohos.geolocation';
   let cachedLocationsCb = (locations:Array<geolocation.Location>):void => {
-      console.log('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
+      console.info('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
   }
   let requestInfo:geolocation.CachedGnssLocationsRequest = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   geolocation.on('cachedGnssLocationsReporting', requestInfo, cachedLocationsCb);
@@ -252,7 +250,7 @@ Unregisters the listener for cached GNSS location reports.
 
 ## geolocation.on('gnssStatusChange')<sup>(deprecated)</sup>
 
-on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): void;
+on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): void
 
 Registers a listener for GNSS satellite status change events. This API uses an asynchronous callback to return the result.
 
@@ -277,7 +275,7 @@ Registers a listener for GNSS satellite status change events. This API uses an a
   ```ts
   import geolocation from '@ohos.geolocation';
   let gnssStatusCb = (satelliteStatusInfo:geolocation.SatelliteStatusInfo):void => {
-      console.log('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
+      console.info('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
   geolocation.on('gnssStatusChange', gnssStatusCb);
   ```
@@ -285,7 +283,7 @@ Registers a listener for GNSS satellite status change events. This API uses an a
 
 ## geolocation.off('gnssStatusChange')<sup>(deprecated)</sup>
 
-off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): void;
+off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): void
 
 Unregisters the listener for GNSS satellite status change events.
 
@@ -309,7 +307,7 @@ Unregisters the listener for GNSS satellite status change events.
   ```ts
   import geolocation from '@ohos.geolocation';
   let gnssStatusCb = (satelliteStatusInfo:geolocation.SatelliteStatusInfo) => {
-      console.log('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
+      console.info('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
   geolocation.on('gnssStatusChange', gnssStatusCb);
   geolocation.off('gnssStatusChange', gnssStatusCb);
@@ -318,7 +316,7 @@ Unregisters the listener for GNSS satellite status change events.
 
 ## geolocation.on('nmeaMessageChange')<sup>(deprecated)</sup>
 
-on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void;
+on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void
 
 Registers a listener for GNSS NMEA message change events. This API uses an asynchronous callback to return the result.
 
@@ -343,7 +341,7 @@ Registers a listener for GNSS NMEA message change events. This API uses an async
   ```ts
   import geolocation from '@ohos.geolocation';
   let nmeaCb = (str:string):void => {
-      console.log('nmeaMessageChange: ' + JSON.stringify(str));
+      console.info('nmeaMessageChange: ' + JSON.stringify(str));
   }
   geolocation.on('nmeaMessageChange', nmeaCb );
   ```
@@ -351,7 +349,7 @@ Registers a listener for GNSS NMEA message change events. This API uses an async
 
 ## geolocation.off('nmeaMessageChange')<sup>(deprecated)</sup>
 
-off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;): void;
+off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;): void
 
 Unregisters the listener for GNSS NMEA message change events.
 
@@ -376,7 +374,7 @@ Unregisters the listener for GNSS NMEA message change events.
   ```ts
   import geolocation from '@ohos.geolocation';
   let nmeaCb = (str:string):void => {
-      console.log('nmeaMessageChange: ' + JSON.stringify(str));
+      console.info('nmeaMessageChange: ' + JSON.stringify(str));
   }
   geolocation.on('nmeaMessageChange', nmeaCb);
   geolocation.off('nmeaMessageChange', nmeaCb);
@@ -385,7 +383,7 @@ Unregisters the listener for GNSS NMEA message change events.
 
 ## geolocation.on('fenceStatusChange')<sup>(deprecated)</sup>
 
-on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
+on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void
 
 Registers a listener for status change events of the specified geofence. This API uses an asynchronous callback to return the result.
 
@@ -433,7 +431,7 @@ Registers a listener for status change events of the specified geofence. This AP
 
 ## geolocation.off('fenceStatusChange')<sup>(deprecated)</sup>
 
-off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
+off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void
 
 Unregisters the listener for status change events of the specified geofence.
 
@@ -508,10 +506,10 @@ Obtains the current position. This API uses an asynchronous callback to return t
   let requestInfo:geolocation.CurrentLocationRequest = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
   let locationChange = (err:BusinessError.BusinessError, location:geolocation.Location) => {
       if (err) {
-          console.log('locationChanger: err=' + JSON.stringify(err));
+          console.info('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
-          console.log('locationChanger: location=' + JSON.stringify(location));
+          console.info('locationChanger: location=' + JSON.stringify(location));
       }
   };
   geolocation.getCurrentLocation(requestInfo, locationChange);
@@ -545,10 +543,10 @@ Obtains the current position. This API uses an asynchronous callback to return t
   import BusinessError from "@ohos.base"
   let locationChange = (err:BusinessError.BusinessError, location:geolocation.Location):void => {
       if (err) {
-          console.log('locationChanger: err=' + JSON.stringify(err));
+          console.info('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
-          console.log('locationChanger: location=' + JSON.stringify(location));
+          console.info('locationChanger: location=' + JSON.stringify(location));
       }
   };
   geolocation.getCurrentLocation(locationChange);
@@ -587,7 +585,7 @@ Obtains the current position. This API uses a promise to return the result.
   import geolocation from '@ohos.geolocation';
   let requestInfo:geolocation.CurrentLocationRequest = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
   geolocation.getCurrentLocation(requestInfo).then((result) => {
-      console.log('current location: ' + JSON.stringify(result));
+      console.info('current location: ' + JSON.stringify(result));
   });
   ```
 
@@ -618,10 +616,10 @@ Obtains the previous location. This API uses an asynchronous callback to return 
   import geolocation from '@ohos.geolocation';
   geolocation.getLastLocation((err, data) => {
       if (err) {
-          console.log('getLastLocation: err=' + JSON.stringify(err));
+          console.info('getLastLocation: err=' + JSON.stringify(err));
       }
       if (data) {
-          console.log('getLastLocation: data=' + JSON.stringify(data));
+          console.info('getLastLocation: data=' + JSON.stringify(data));
       }
   });
   ```
@@ -652,7 +650,7 @@ Obtains the previous location. This API uses a promise to return the result.
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.getLastLocation().then((result) => {
-      console.log('getLastLocation: result: ' + JSON.stringify(result));
+      console.info('getLastLocation: result: ' + JSON.stringify(result));
   });
   ```
 
@@ -682,10 +680,10 @@ Checks whether the location service is enabled. This API uses an asynchronous ca
   import geolocation from '@ohos.geolocation';
   geolocation.isLocationEnabled((err, data) => {
       if (err) {
-          console.log('isLocationEnabled: err=' + JSON.stringify(err));
+          console.info('isLocationEnabled: err=' + JSON.stringify(err));
       }
       if (data) {
-          console.log('isLocationEnabled: data=' + JSON.stringify(data));
+          console.info('isLocationEnabled: data=' + JSON.stringify(data));
       }
   });
   ```
@@ -715,7 +713,7 @@ Checks whether the location service is enabled. This API uses a promise to retur
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.isLocationEnabled().then((result) => {
-      console.log('promise, isLocationEnabled: ' + JSON.stringify(result));
+      console.info('promise, isLocationEnabled: ' + JSON.stringify(result));
   });
   ```
 
@@ -745,10 +743,10 @@ Sends a request for enabling the location service. This API uses an asynchronous
   import geolocation from '@ohos.geolocation';
   geolocation.requestEnableLocation((err, data) => {
       if (err) {
-          console.log('requestEnableLocation: err=' + JSON.stringify(err));
+          console.info('requestEnableLocation: err=' + JSON.stringify(err));
       }
       if (data) {
-          console.log('requestEnableLocation: data=' + JSON.stringify(data));
+          console.info('requestEnableLocation: data=' + JSON.stringify(data));
       }
   });
   ```
@@ -778,7 +776,7 @@ Sends a request for enabling the location service. This API uses a promise to re
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.requestEnableLocation().then((result) => {
-      console.log('promise, requestEnableLocation: ' + JSON.stringify(result));
+      console.info('promise, requestEnableLocation: ' + JSON.stringify(result));
   });
   ```
 
@@ -808,10 +806,10 @@ Checks whether the (reverse) geocoding service is available. This API uses an as
   import geolocation from '@ohos.geolocation';
   geolocation.isGeoServiceAvailable((err, data) => {
       if (err) {
-          console.log('isGeoServiceAvailable: err=' + JSON.stringify(err));
+          console.info('isGeoServiceAvailable: err=' + JSON.stringify(err));
       }
       if (data) {
-          console.log('isGeoServiceAvailable: data=' + JSON.stringify(data));
+          console.info('isGeoServiceAvailable: data=' + JSON.stringify(data));
       }
   });
   ```
@@ -841,7 +839,7 @@ Checks whether the (reverse) geocoding service is available. This API uses a pro
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.isGeoServiceAvailable().then((result) => {
-      console.log('promise, isGeoServiceAvailable: ' + JSON.stringify(result));
+      console.info('promise, isGeoServiceAvailable: ' + JSON.stringify(result));
   });
   ```
 
@@ -873,10 +871,10 @@ Converts coordinates into geographic descriptions through reverse geocoding. Thi
   let reverseGeocodeRequest:geolocation.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   geolocation.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
       if (err) {
-          console.log('getAddressesFromLocation: err=' + JSON.stringify(err));
+          console.info('getAddressesFromLocation: err=' + JSON.stringify(err));
       }
       if (data) {
-          console.log('getAddressesFromLocation: data=' + JSON.stringify(data));
+          console.info('getAddressesFromLocation: data=' + JSON.stringify(data));
       }
   });
   ```
@@ -884,7 +882,7 @@ Converts coordinates into geographic descriptions through reverse geocoding. Thi
 
 ## geolocation.getAddressesFromLocation<sup>(deprecated)</sup>
 
-getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;;
+getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;
 
 Converts coordinates into geographic descriptions through reverse geocoding. This API uses a promise to return the result. 
 
@@ -913,7 +911,7 @@ Converts coordinates into geographic descriptions through reverse geocoding. Thi
   import geolocation from '@ohos.geolocation';
   let reverseGeocodeRequest:geolocation.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   geolocation.getAddressesFromLocation(reverseGeocodeRequest).then((data) => {
-      console.log('getAddressesFromLocation: ' + JSON.stringify(data));
+      console.info('getAddressesFromLocation: ' + JSON.stringify(data));
   });
   ```
 
@@ -945,10 +943,10 @@ Converts geographic descriptions into coordinates through geocoding. This API us
   let geocodeRequest:geolocation.GeoCodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
   geolocation.getAddressesFromLocationName(geocodeRequest, (err, data) => {
       if (err) {
-          console.log('getAddressesFromLocationName: err=' + JSON.stringify(err));
+          console.info('getAddressesFromLocationName: err=' + JSON.stringify(err));
       }
       if (data) {
-          console.log('getAddressesFromLocationName: data=' + JSON.stringify(data));
+          console.info('getAddressesFromLocationName: data=' + JSON.stringify(data));
       }
   });
   ```
@@ -985,14 +983,14 @@ Converts geographic descriptions into coordinates through geocoding. This API us
   import geolocation from '@ohos.geolocation';
   let geocodeRequest:geolocation.GeoCodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
   geolocation.getAddressesFromLocationName(geocodeRequest).then((result) => {
-      console.log('getAddressesFromLocationName: ' + JSON.stringify(result));
+      console.info('getAddressesFromLocationName: ' + JSON.stringify(result));
   });
   ```
 
 
 ## geolocation.getCachedGnssLocationsSize<sup>(deprecated)</sup>
 
-getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
+getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the number of cached GNSS locations. This API uses an asynchronous callback to return the result.
 
@@ -1016,10 +1014,10 @@ Obtains the number of cached GNSS locations. This API uses an asynchronous callb
   import geolocation from '@ohos.geolocation';
   geolocation.getCachedGnssLocationsSize((err, size) => {
       if (err) {
-          console.log('getCachedGnssLocationsSize: err=' + JSON.stringify(err));
+          console.info('getCachedGnssLocationsSize: err=' + JSON.stringify(err));
       }
       if (size) {
-          console.log('getCachedGnssLocationsSize: size=' + JSON.stringify(size));
+          console.info('getCachedGnssLocationsSize: size=' + JSON.stringify(size));
       }
   });
   ```
@@ -1050,14 +1048,14 @@ Obtains the number of cached GNSS locations. This API uses a promise to return t
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.getCachedGnssLocationsSize().then((result) => {
-      console.log('promise, getCachedGnssLocationsSize: ' + JSON.stringify(result));
+      console.info('promise, getCachedGnssLocationsSize: ' + JSON.stringify(result));
   });
   ```
 
 
 ## geolocation.flushCachedGnssLocations<sup>(deprecated)</sup>
 
-flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;): void;
+flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;): void
 
 Obtains all cached GNSS locations and clears the GNSS cache queue. This API uses an asynchronous callback to return the result.
 
@@ -1081,10 +1079,10 @@ Obtains all cached GNSS locations and clears the GNSS cache queue. This API uses
   import geolocation from '@ohos.geolocation';
   geolocation.flushCachedGnssLocations((err, result) => {
       if (err) {
-          console.log('flushCachedGnssLocations: err=' + JSON.stringify(err));
+          console.info('flushCachedGnssLocations: err=' + JSON.stringify(err));
       }
       if (result) {
-          console.log('flushCachedGnssLocations: result=' + JSON.stringify(result));
+          console.info('flushCachedGnssLocations: result=' + JSON.stringify(result));
       }
   });
   ```
@@ -1092,7 +1090,7 @@ Obtains all cached GNSS locations and clears the GNSS cache queue. This API uses
 
 ## geolocation.flushCachedGnssLocations<sup>(deprecated)</sup>
 
-flushCachedGnssLocations(): Promise&lt;boolean&gt;;
+flushCachedGnssLocations(): Promise&lt;boolean&gt;
 
 Obtains all cached GNSS locations and clears the GNSS cache queue. This API uses a promise to return the result.
 
@@ -1115,14 +1113,14 @@ Obtains all cached GNSS locations and clears the GNSS cache queue. This API uses
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.flushCachedGnssLocations().then((result) => {
-      console.log('promise, flushCachedGnssLocations: ' + JSON.stringify(result));
+      console.info('promise, flushCachedGnssLocations: ' + JSON.stringify(result));
   });
   ```
 
 
 ## geolocation.sendCommand<sup>(deprecated)</sup>
 
-sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): void;
+sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): void
 
 Sends an extended command to the location subsystem. This API uses an asynchronous callback to return the result.
 
@@ -1148,10 +1146,10 @@ Sends an extended command to the location subsystem. This API uses an asynchrono
   let requestInfo:geolocation.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   geolocation.sendCommand(requestInfo, (err, result) => {
       if (err) {
-          console.log('sendCommand: err=' + JSON.stringify(err));
+          console.info('sendCommand: err=' + JSON.stringify(err));
       }
       if (result) {
-          console.log('sendCommand: result=' + JSON.stringify(result));
+          console.info('sendCommand: result=' + JSON.stringify(result));
       }
   });
   ```
@@ -1159,7 +1157,7 @@ Sends an extended command to the location subsystem. This API uses an asynchrono
 
 ## geolocation.sendCommand<sup>(deprecated)</sup>
 
-sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
+sendCommand(command: LocationCommand): Promise&lt;boolean&gt;
 
 Sends an extended command to the location subsystem. This API uses a promise to return the result.
 
@@ -1189,7 +1187,7 @@ Sends an extended command to the location subsystem. This API uses a promise to 
   import geolocation from '@ohos.geolocation';
   let requestInfo:geolocation.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   geolocation.sendCommand(requestInfo).then((result) => {
-      console.log('promise, sendCommand: ' + JSON.stringify(result));
+      console.info('promise, sendCommand: ' + JSON.stringify(result));
   });
   ```
 
@@ -1205,7 +1203,7 @@ Defines a reverse geocoding request.
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | locale | string | No| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
 | latitude | number | No| No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.|
@@ -1224,7 +1222,7 @@ Defines a reverse geocoding request.
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | locale | string | No| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
 | description | string | No| No| Location description, for example, **No. xx, xx Road, Pudong New District, Shanghai**.|
@@ -1246,7 +1244,7 @@ Geocoding address information.
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | latitude<sup>7+</sup> | number | No| Yes| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.|
 | longitude<sup>7+</sup> | number | No| Yes| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**.|
@@ -1279,13 +1277,13 @@ Defines a location request.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | No| Yes| Priority of the location request. For details about the value range, see [LocationRequestPriority](#locationrequestprioritydeprecated).|
 | scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | No| Yes| Scenario of the location request. For details about the value range, see [LocationRequestScenario](#locationrequestscenariodeprecated).|
 | timeInterval | number | No| Yes| Time interval at which location information is reported, in seconds. The value must be greater than **0**.|
 | distanceInterval | number | No| Yes| Distance interval at which location information is reported. The value must be greater than **0**, in meters.|
-| maxAccuracy | number | No| Yes| Location accuracy, in meters.<br>This parameter is valid only when the precise location function is enabled (both the **ohos.permission.APPROXIMATELY\_LOCATION** and **ohos.permission.LOCATION** permissions are granted), and is invalid when the approximate location function is enabled (only the **ohos.permission.APPROXIMATELY\_LOCATION** permission is enabled).<br>The specified value must be greater than or equal to **0**. The default value is **0**.<br>If **scenario** is set to **NAVIGATION**, **TRAJECTORY\_TRACKING**, or **CAR\_HAILING** or **priority** is set to **ACCURACY**, you are advised to set **maxAccuracy** to a value greater than **10**.<br>If scenario is set to **DAILY\_LIFE_SERVICE** or **NO\_POWER** or **priority** is set to **LOW\_POWER** or **FIRST\_FIX**, you are advised to set **maxAccuracy** to a value greater than **100**.|
+| maxAccuracy | number | No| Yes| Location accuracy, in meters.<br>This parameter is valid only when the precise location function is enabled (both the ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION permissions are granted). This parameter is valid only when the precise location function is enabled (both the **ohos.permission.APPROXIMATELY_LOCATION** and **ohos.permission.LOCATION** permissions are granted), and is invalid when the approximate location function is enabled (only the **ohos.permission.APPROXIMATELY_LOCATION** permission is enabled).<br>The specified value must be greater than or equal to **0**. The default value is **0**.<br>If **scenario** is set to **NAVIGATION**, **TRAJECTORY_TRACKING**, or **CAR_HAILING** or **priority** is set to **ACCURACY**, you are advised to set **maxAccuracy** to a value greater than **10**.<br>If scenario is set to **DAILY_LIFE_SERVICE** or **NO_POWER** or **priority** is set to **LOW_POWER** or **FIRST_FIX**, you are advised to set **maxAccuracy** to a value greater than **100**.|
 
 
 ## CurrentLocationRequest<sup>(deprecated)</sup>
@@ -1299,11 +1297,11 @@ Defines a location request.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | No| Yes| Priority of the location request. For details about the value range, see [LocationRequestPriority](#locationrequestprioritydeprecated).|
 | scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | No| Yes| Scenario of the location request. For details about the value range, see [LocationRequestScenario](#locationrequestscenariodeprecated).|
-| maxAccuracy | number | No| Yes| Location accuracy, in meters.<br>This parameter is valid only when the precise location function is enabled (both the **ohos.permission.APPROXIMATELY\_LOCATION** and **ohos.permission.LOCATION** permissions are granted), and is invalid when the approximate location function is enabled (only the **ohos.permission.APPROXIMATELY\_LOCATION** permission is enabled).<br>The specified value must be greater than or equal to **0**. The default value is **0**.<br>If **scenario** is set to **NAVIGATION**, **TRAJECTORY\_TRACKING**, or **CAR\_HAILING** or **priority** is set to **ACCURACY**, you are advised to set **maxAccuracy** to a value greater than **10**.<br>If scenario is set to **DAILY\_LIFE_SERVICE** or **NO\_POWER** or **priority** is set to **LOW\_POWER** or **FIRST\_FIX**, you are advised to set **maxAccuracy** to a value greater than **100**.|
+| maxAccuracy | number | No| Yes| Location accuracy, in meters.<br>This parameter is valid only when the precise location function is enabled (both the ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION permissions are granted). This parameter is valid only when the precise location function is enabled (both the **ohos.permission.APPROXIMATELY_LOCATION** and **ohos.permission.LOCATION** permissions are granted), and is invalid when the approximate location function is enabled (only the **ohos.permission.APPROXIMATELY_LOCATION** permission is enabled).<br>The specified value must be greater than or equal to **0**. The default value is **0**.<br>If **scenario** is set to **NAVIGATION**, **TRAJECTORY_TRACKING**, or **CAR_HAILING** or **priority** is set to **ACCURACY**, you are advised to set **maxAccuracy** to a value greater than **10**.<br>If scenario is set to **DAILY_LIFE_SERVICE** or **NO_POWER** or **priority** is set to **LOW_POWER** or **FIRST_FIX**, you are advised to set **maxAccuracy** to a value greater than **100**.|
 | timeoutMs | number | No| Yes| Timeout duration, in milliseconds. The minimum value is **1000**. The value must be greater than or equal to **1000**.|
 
 
@@ -1319,7 +1317,7 @@ Defines the satellite status information.
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | satellitesNumber | number | No| No| Number of satellites. The value must be greater than or equal to **0**.|
 | satelliteIds | Array&lt;number&gt; | No| No| Array of satellite IDs. The value must be greater than or equal to **0**.|
@@ -1341,7 +1339,7 @@ Represents a request for reporting cached GNSS locations.
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | reportingPeriodSec | number | No| No| Interval for reporting the cached GNSS locations, in milliseconds. The value must be greater than **0**.|
 | wakeUpCacheQueueFull | boolean | No| No| **true**: reports the cached GNSS locations to the application when the cache queue is full.<br>**false**: discards the cached GNSS locations when the cache queue is full.|
@@ -1359,7 +1357,7 @@ Defines a GNSS geofence. Currently, only circular geofences are supported.
 
 **System capability**: SystemCapability.Location.Location.Geofence
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | latitude | number | No| No|Latitude information. The value ranges from **-90** to **90**.|
 | longitude | number | No| No| Longitude information. The value ranges from **-180** to **180**.|
@@ -1379,7 +1377,7 @@ Defines a geofence request.
 
 **System capability**: SystemCapability.Location.Location.Geofence
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | No| No| Priority of the location information.|
 | scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | No| No| Location scenario.|
@@ -1398,7 +1396,7 @@ Defines a location command.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | scenario | [LocationRequestScenario](#locationrequestscenariodeprecated)  | No| No| Location scenario.|
 | command | string | No| No| Extended command, in the string format.|
@@ -1415,7 +1413,7 @@ Defines location information.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | latitude<sup>7+</sup> | number | No| No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.|
 | longitude<sup>7+</sup> | number | No| No| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**.|

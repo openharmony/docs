@@ -1535,3 +1535,17 @@ Defines the dynamic configuration of certificate pinning.
 | ------------------  |---- |-- | ----------- |
 | publicKeyHash       | string | Yes|Certificate PIN of the string type.|
 | hashAlgorithm        | 'SHA-256' |  Yes |Encryption algorithm. Currently, only SHA-256 is supported.|
+
+## HttpProxy
+
+type HttpProxy = connection.HttpProxy
+
+Defines the network proxy configuration.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| connection.HttpProxy | Network proxy configuration.    |

@@ -50,7 +50,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
   // When receiving the on('open') event, the client can use the send() API to communicate with the server.
   ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
-      console.log("Message sent successfully");
+      console.log("Message send successfully");
     } else {
       console.log("Failed to send the message. Err:" + JSON.stringify(err));
     }
@@ -83,3 +83,4 @@ ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
   }
 });
 ```
+
