@@ -59,7 +59,7 @@ Button(label: ResourceStr, options?: ButtonOptions)
 
 | 名称                      | 类型                                          | 必填 | 说明                                                       |
 | ------------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type                      | [ButtonType](#buttontype枚举说明)             | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE。从API version 14开始，ButtonType的默认值修改为ButtonType.ROUNDED_RECTANGLE。API version 13及之前的版本，ButtonType的默认值为ButtonType.Capsule。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| type                      | [ButtonType](#buttontype枚举说明)             | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | stateEffect               | boolean                                       | 否   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11枚举说明) | 否   | 描述按钮的样式和重要程度。<br/>默认值：ButtonStyleMode.EMPHASIZED <br/>**说明：**  <br/>按钮重要程度：强调按钮>普通按钮>文字按钮。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | controlSize<sup>11+</sup> | [ControlSize](#controlsize11枚举说明)         | 否   | 描述按钮的尺寸。<br/>默认值：ControlSize.NORMAL<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -85,7 +85,7 @@ type(value: ButtonType)
 
 | 参数名 | 类型                              | 必填 | 说明                                        |
 | ------ | --------------------------------- | ---- | ------------------------------------------- |
-| value  | [ButtonType](#buttontype枚举说明) | 是   | Button样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE |
+| value  | [ButtonType](#buttontype枚举说明) | 是   | Button样式。<br/>默认值：ButtonType.Capsule |
 
 ### fontSize
 
@@ -298,7 +298,6 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 | Capsule | 胶囊型按钮（圆角默认为高度的一半）。 |
 | Circle  | 圆形按钮。              |
 | Normal  | 普通按钮（默认不带圆角）。      |
-| ROUNDED_RECTANGLE<sup>14+</sup> | 圆角矩形按钮（默认值：controlSize为NORMAL，圆角大小20vp，controlSize为SMALL，圆角大小14vp）。 |
 
 >  **说明：**
 >  - 按钮圆角通过[通用属性borderRadius](ts-universal-attributes-border.md#borderradius)设置。
@@ -306,7 +305,6 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 >  - 当按钮类型为Circle时，若同时设置了宽和高，则borderRadius不生效，且按钮半径为宽高中较小值的一半；若只设置宽、高中的一个，则borderRadius不生效，且按钮半径为所设宽或所设高值的一半；若不设置宽高，则borderRadius为按钮半径；若borderRadius的值为负，则borderRadius的值按照0处理。
 >  - 按钮文本通过[fontSize](#fontsize)、[fontColor](#fontcolor)、[fontStyle](#fontstyle8)、[fontFamily](#fontfamily8)、[fontWeight](#fontweight)进行设置。
 >  - 设置[颜色渐变](ts-universal-attributes-gradient-color.md)需先设置[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)为透明色。
->  - 在不设置borderRadius时，圆角矩形按钮的圆角大小保持默认值不变。圆角大小不会随按钮高度变化而变化，和controlSize属性有关，controlSize为NORMAL时圆角大小20vp，controlSize为SMALL时圆角大小14vp。
 
 ## LabelStyle<sup>10+</sup>对象说明
 
@@ -666,43 +664,3 @@ struct ButtonExample {
 }
 ```
 ![buttonrole](figures/buttonbuilder.gif)
-
-### 示例7（设置圆角矩形按钮）
-该示例通过配置ButtonType.ROUNDED_RECTANGLE创建圆角矩形按钮。
-```ts
-@Entry
-@Component
-struct ButtonExample {
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
-      Text('Rounded rectangle button with rounded corners by default.').fontSize(9).fontColor(0xCCCCCC)
-      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-        Button('Rounded rectangle')
-          .type(ButtonType.ROUNDED_RECTANGLE)
-          .backgroundColor(0x317aff)
-          .controlSize(ControlSize.NORMAL)
-          .width(180)
-      }
-      Text('Rounded rectangle button configured with a borderRadius of 5.').fontSize(9).fontColor(0xCCCCCC)
-      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-        Button('Rounded rectangle')
-          .type(ButtonType.ROUNDED_RECTANGLE)
-          .backgroundColor(0x317aff)
-          .controlSize(ControlSize.NORMAL)
-          .width(180)
-          .borderRadius(5)
-      }
-      Text('Rounded rectangle button configured extra long text.').fontSize(9).fontColor(0xCCCCCC)
-      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-        Button('Rounded rectangle Rounded rectangle Rounded rectangle Rounded rectangle')
-          .type(ButtonType.ROUNDED_RECTANGLE)
-          .backgroundColor(0x317aff)
-          .width(180)
-            //.buttonStyle(ButtonStyleMode.NORMAL)
-          .labelStyle({overflow:TextOverflow.Ellipsis, maxLines:3, minFontSize: 0})
-      }
-    }.height(400).padding({ left: 35, right: 35, top: 35 })
-  }
-}
-```
-![roundedrectbutton](figures/roundedrectbutton.jpeg)
