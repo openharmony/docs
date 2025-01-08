@@ -8472,3 +8472,45 @@ struct MarqueeExample {
   }
 }
 ```
+## dispatchKeyEvent<sup>16+</sup>
+
+按键事件分发到具体组件上。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                          | 必填 | 说明               |
+| ------ | ----------------------------- | ---- | ------------------ |
+| node  | number \| string | 是   | 组件的key或者id。 |
+| event  |[KeyEvent](./arkui-ts/ts-universal-events-key.md#keyevent对象说明) | 是   | KeyEvent对象。 |
+
+**示例：**
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Row() {
+        Button().id('button1').onKeyEvent((event) => {
+          console.log("button1");
+          return true
+        })
+        Button().id('button2').onKeyEvent((event) => {
+          console.log("button2");
+          return true
+        })
+      }
+      .width('100%')
+      .height('100%')
+      .onKeyEventDispatch((event)=>{
+         return this.getUIContext().dispatchKeyEvent('button1', event);
+      })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
