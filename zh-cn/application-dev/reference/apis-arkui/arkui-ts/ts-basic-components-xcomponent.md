@@ -145,7 +145,7 @@ enableSecure(isSecure: boolean)
 
 ### onLoad
 
-onLoad(callback: OnNativeLoadCallback )
+onLoad(callback: (event?: object) => void )
 
 插件加载完成时回调事件。
 
@@ -157,7 +157,7 @@ onLoad(callback: OnNativeLoadCallback )
 
 | 参数名   | 类型   | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
-| callback | [OnNativeLoadCallback](#onnativeloadcallback14) | 是    | XComponent持有的Surface创建后回调事件。 |
+| event | object | 否    | 获取XComponent实例对象的context，context上挂载的方法由开发者在c++层定义。 |
 
 ### onDestroy
 
@@ -174,22 +174,6 @@ onDestroy(event: VoidCallback )
 | 参数名   | 类型   | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
 | event | [VoidCallback](ts-types.md#voidcallback12) | 是    | XComponent销毁后回调事件。 |
-
-## OnNativeLoadCallback<sup>14+</sup>
-
-type OnNativeLoadCallback = (event?: object) =\> void
-
-XComponent持有的Surface创建后回调事件。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数:**
-
-| 参数名   | 类型   | 必填   | 说明                                       |
-| ----- | ------ | ---- | ---------------------------------------- |
-| event | object | 否    | 获取XComponent实例对象的context，context上挂载的方法由开发者在Native层定义。 |
 
 ## XComponentController
 
