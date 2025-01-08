@@ -5313,7 +5313,7 @@ class DrawingRenderNode extends RenderNode {
 | ------ | - | ------------------ |
 | TRANSLATE | 0 | 不会随着路径旋转，只会平移。 |
 | ROTATE  | 1 | 随着路径的旋转而旋转。 |
-| MORPH  | 2 | 随着路径的旋转而旋转，但是在拐点的地方，会增加平滑度。 |
+| MORPH  | 2 | 随着路径的旋转而旋转，但是在转折处的地方，会拉伸或压缩等增加平滑度。 |
 
 ## PathEffect<sup>12+</sup>
 
@@ -5374,9 +5374,9 @@ static createPathDashEffect(path: Path, advance: number, phase: number, style: P
 
 | 参数名     | 类型           | 必填    | 说明                                               |
 | ---------- | ------------- | ------- | -------------------------------------------------- |
-| path  | [Path](#path) | 是 | 指定用于虚线效果的路径。|
-| advance | number | 是 | 指定虚线效果的前进距离, 该参数为大于0的浮点数。 |
-| phase | number | 是 | 指示虚线效果的相位偏移，该参数为浮点数。 |
+| path  | [Path](#path) | 是 | 通过该路径生成一个图形，用来填充每个虚线段。|
+| advance | number | 是 | 虚线段的步长，该参数为大于0的浮点数，否则会抛错误码。 |
+| phase | number | 是 | 表示虚线段内图形在虚线步长范围内的偏移量，该参数为浮点数，效果为先对偏移量取绝对值，然后对步长取模。 |
 | style | [PathDashStyle](#pathdashstyle16) | 是 | 指定虚线效果的样式。 |
 
 **返回值：**
@@ -5419,7 +5419,7 @@ class DrawingRenderNode extends RenderNode {
     path1.lineTo(20, 10);
     path1.lineTo(0,10);
 
-    let pathEffect1: drawing.PathEffect = drawing.PathEffect.createPathDashEffect(path1, 20, -30,
+    let pathEffect1: drawing.PathEffect = drawing.PathEffect.createPathDashEffect(path1, 50, -30,
         drawing.PathDashStyle.MORPH);
     pen.setPathEffect(pathEffect1);
 
@@ -5528,8 +5528,8 @@ static createDiscretePathEffect(segLength: number, dev: number, seedAssist?: num
 
 | 参数名     | 类型           | 必填    | 说明                                               |
 | ---------- | ------------- | ------- | -------------------------------------------------- |
-| segLength  | number        | 是      | 路径中子线段的长度，该长度为浮点数，负数和0时无效果。 |
-| dev        | number        | 是      | 绘制时的末端点的移动偏离量，该偏移量为浮点数。 |
+| segLength  | number        | 是      | 路径中每进行一次打散操作的长度，该长度为浮点数，负数和0时无效果。 |
+| dev        | number        | 是      | 绘制时的末端点的最大移动偏离量，该偏移量为浮点数。 |
 | seedAssist | number        | 否      | 生成效果伪随机种子辅助变量，默认值为0，该参数为32位无符号整数。 |
 
 **返回值：**
