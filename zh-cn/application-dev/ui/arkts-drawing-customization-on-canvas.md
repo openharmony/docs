@@ -182,20 +182,22 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
 - 文本绘制。
 
-  可以通过[fillText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#filltext)（绘制填充类文本）、[strokeText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext)（绘制描边类文本）等接口进行文本绘制。
+  可以通过[fillText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#filltext)（文本填充）、[strokeText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext)（文本描边）等接口进行文本绘制。
 
   ```ts
   Canvas(this.context)
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
-    .onReady(() =>{
-       //绘制填充类文本
-       this.context.font = '50px sans-serif';
-       this.context.fillText("Hello World!", 50, 100);
-       //绘制描边类文本
-       this.context.font = '55px sans-serif';
-       this.context.strokeText("Hello World!", 50, 150);
+    .onReady(() => {
+      // 文本填充
+      this.context.font = '50px bolder sans-serif';
+      this.context.fillText("Hello World!", 50, 100);
+      // 文本描边
+      this.context.strokeStyle = "#ff0000"
+      this.context.lineWidth = 2
+      this.context.font = '50px bolder sans-serif';
+      this.context.strokeText("Hello World!", 50, 150);
     })
   ```
 
