@@ -1759,7 +1759,7 @@ struct Index {
 
 ### 示例10（通过ComponentContent设置TabBar）
 
-该示例实现了通过ComponentContent设置TabBar。
+该示例实现了通过ComponentContent封装组件内容，设置TabBar。通过ComponentContent的update函数更新TabBar。
 
 ```ts
 // xxx.ets
@@ -1863,7 +1863,7 @@ struct Index {
 
 ### 示例11（通过ComponentContent预加载子节点）
 
-该示例实现了通过ComponentContent预加载子节点。
+该示例实现了通过ComponentContent设置TabBar，使用TabsController的preloadItems预加载子节点。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit'

@@ -1255,7 +1255,7 @@ struct WaterFlowDemo {
 
 ### 示例7（WaterFlow组件设置和改变尾部组件）
 
-该示例通过footerContent接口，实现了WaterFlow组件设置和改变尾部组件。
+该示例通过footerContent接口，实现了WaterFlow组件设置尾部组件。通过ComponentContent的update函数更新尾部组件。
 
 ```ts
 // Index.ets
