@@ -28,7 +28,7 @@
       - [app对象内部结构](quick-start/app-structure.md)
       - [deviceConfig内部结构](quick-start/deviceconfig-structure.md)
       - [module对象内部结构](quick-start/module-structure.md)
-    - 典型场景的开发指导
+    - 典型场景的开发指导<!--application-typical-scenarios-->
       - [集成态HSP](quick-start/integrated-hsp.md)
       - [HAR转HSP指导](quick-start/har-to-hsp.md)
       - [HSP转HAR指导](quick-start/hsp-to-har.md)
@@ -118,7 +118,7 @@
       - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
       - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
       - [ContentSlot：混合开发](quick-start/arkts-rendering-control-contentslot.md)
-- 开发
+- 开发<!--application-develop-->
   - 应用框架<!--app-framework-->
     - Ability Kit（程序框架服务）<!--ability-kit-->
       - [Ability Kit简介](application-models/abilitykit-overview.md)
@@ -1074,7 +1074,7 @@
       - Basic Services Kit（基础服务）<!--basic-services-kit-->
         - [Basic Services Kit简介](basic-services/basic-services-kit-overview.md)
         - 进程线程通信<!--app-events-->
-          - 使用公共事件进行进程间通信
+          - 使用公共事件进行进程间通信<!--common-event-communication-->
               - [公共事件简介](basic-services/common-event/common-event-overview.md)
               - [动态订阅公共事件](basic-services/common-event/common-event-subscription.md)
               <!--Del-->
@@ -1582,7 +1582,7 @@
         - [JSVM-API简介](napi/jsvm-introduction.md)
         - [JSVM-API支持的数据类型和接口](napi/jsvm-data-types-interfaces.md)
         - [使用JSVM-API实现JS与C/C++语言交互开发流程](napi/use-jsvm-process.md)
-        - JSVM-API开发规范
+        - JSVM-API开发规范<!--jsvm-development-standards-->
             - [JSVM-API使用规范](napi/jsvm-guidelines.md)
             - [JSVM-API常见问题](napi/jsvm-frequently-questions.md)
         - JSVM-API使用指导<!--jsvm-use-->
@@ -1611,7 +1611,7 @@
             - [使用JSVM-API判断给定的两个JS value是否严格相等](napi/use-jsvm-strict-equals.md)
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
-            - JSVM-API调优&高性能使用示例
+            - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
               - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
               - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
               - [JSVM 通用调优实践](napi/jsvm-optimizations.md)
@@ -1706,7 +1706,7 @@
         - [高效利用HWC的低功耗设计](performance/utilize_hwc_effiently.md)
   <!--DelEnd-->
 
-- API参考
+- API参考<!--api-reference-->
   - API参考概述<!--ref-overview-api-->
     - [系统能力SystemCapability使用指南](reference/syscap.md)
     - [系统能力SystemCapability列表](reference/syscap-list.md)
@@ -1714,7 +1714,7 @@
   - 应用框架<!--app-framework-api-->
     - Ability Kit（程序框架服务）<!--ability-api-->
       - ArkTS API<!--ability-arkts-->
-        - Stage模型能力的接口
+        - Stage模型能力的接口<!--stage-api-reference-->
           - [@ohos.app.ability.Ability (Ability基类)](reference/apis-ability-kit/js-apis-app-ability-ability.md)
           - [@ohos.app.ability.AbilityConstant (AbilityConstant)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md)
           - [@ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)](reference/apis-ability-kit/js-apis-app-ability-abilityLifecycleCallback.md)
@@ -1763,11 +1763,11 @@
           - [@ohos.app.ability.StartOptions (StartOptions)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-startOptions-sys.md)
           - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md)
           <!--DelEnd-->
-        - FA模型能力的接口
+        - FA模型能力的接口<!--fa-api-reference-->
           - [@ohos.ability.ability (Ability)](reference/apis-ability-kit/js-apis-ability-ability.md)
           - [@ohos.ability.featureAbility (FeatureAbility模块)](reference/apis-ability-kit/js-apis-ability-featureAbility.md)
           - [@ohos.ability.particleAbility (ParticleAbility模块)](reference/apis-ability-kit/js-apis-ability-particleAbility.md)
-        - 通用能力的接口(推荐)
+        - 通用能力的接口(推荐)<!--common-api-reference-->
           - [@ohos.abilityAccessCtrl (程序访问控制管理)](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)
           - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)](reference/apis-ability-kit/js-apis-screenLockFileManager.md)
           - [@ohos.app.ability.appManager (appManager)](reference/apis-ability-kit/js-apis-app-ability-appManager.md)
@@ -1812,7 +1812,7 @@
           - [@ohos.privacyManager (隐私管理)(系统接口)](reference/apis-ability-kit/js-apis-privacyManager-sys.md)
           <!--DelEnd-->
         - 接口依赖的元素及定义<!--ability-api-interface-depend-->
-          - ability
+          - ability<!--ability-api-interface-depend-ability-->
             - [abilityResult](reference/apis-ability-kit/js-apis-inner-ability-abilityResult.md)
             - [connectOptions](reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)
             - [dataAbilityHelper](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md)
@@ -1820,11 +1820,11 @@
             - [dataAbilityResult](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityResult.md)
             - [startAbilityParameter](reference/apis-ability-kit/js-apis-inner-ability-startAbilityParameter.md)
             - [want](reference/apis-ability-kit/js-apis-inner-ability-want.md)
-          - app
+          - app<!--ability-api-interface-depend-app-->
             - [appVersionInfo](reference/apis-ability-kit/js-apis-inner-app-appVersionInfo.md)
             - [context](reference/apis-ability-kit/js-apis-inner-app-context.md)
             - [processInfo](reference/apis-ability-kit/js-apis-inner-app-processInfo.md)
-          - application
+          - application<!--ability-api-interface-depend-application-->
             - [abilityMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityMonitor.md)
             - [AbilityStageContext](reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)
             - [abilityStageMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md)
@@ -1880,7 +1880,7 @@
             - [ViewData(系统接口)](reference/apis-ability-kit/js-apis-inner-application-viewData-sys.md)
             - [AutoFillRect(系统接口)](reference/apis-ability-kit/js-apis-inner-application-autoFillRect-sys.md)
             <!--DelEnd-->
-          - bundleManager
+          - bundleManager<!--ability-api-interface-depend-bundleManager-->
             - [abilityInfo](reference/apis-ability-kit/js-apis-bundleManager-abilityInfo.md)
             - [applicationInfo](reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md)
             - [bundleInfo](reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md)
@@ -1906,15 +1906,15 @@
             - [SharedBundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-sharedBundleInfo-sys.md)
             - [shortcutInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-shortcutInfo-sys.md)
             <!--DelEnd-->
-          - continuation
+          - continuation<!--ability-api-interface-depend-continuation-->
             - [continuationExtraParams](reference/apis-ability-kit/js-apis-continuation-continuationExtraParams.md)
             - [continuationResult](reference/apis-ability-kit/js-apis-continuation-continuationResult.md)
-          - security
+          - security<!--ability-api-interface-depend-security-->
             - [PermissionRequestResult](reference/apis-ability-kit/js-apis-permissionrequestresult.md)
-          - wantAgent
+          - wantAgent<!--ability-api-interface-depend-wantAgent-->
             - [triggerInfo](reference/apis-ability-kit/js-apis-inner-wantAgent-triggerInfo.md)
             - [wantAgentInfo](reference/apis-ability-kit/js-apis-inner-wantAgent-wantAgentInfo.md)
-        - 已停止维护的接口
+        - 已停止维护的接口<!--ability-arkts-dep-->
           - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis-ability-kit/js-apis-ability-dataUriUtils.md)
           - [@ohos.ability.errorCode (ErrorCode)](reference/apis-ability-kit/js-apis-ability-errorCode.md)
           - [@ohos.ability.wantConstant (wantConstant)](reference/apis-ability-kit/js-apis-ability-wantConstant.md)
@@ -1937,7 +1937,7 @@
           - [@ohos.distributedBundle (分布式包管理)(系统接口)](reference/apis-ability-kit/js-apis-Bundle-distributedBundle-sys.md)
           <!--DelEnd-->
           - [@system.package (应用管理)](reference/apis-ability-kit/js-apis-system-package.md)
-          - bundle
+          - bundle<!--ability-bundle-arkts-dep-->
             - [abilityInfo](reference/apis-ability-kit/js-apis-bundle-AbilityInfo.md)
             - [applicationInfo](reference/apis-ability-kit/js-apis-bundle-ApplicationInfo.md)
             - [bundleInfo](reference/apis-ability-kit/js-apis-bundle-BundleInfo.md)
@@ -2006,7 +2006,7 @@
           - [@ohos.data.rdb (关系型数据库)](reference/apis-arkdata/js-apis-data-rdb.md)
           - [@ohos.data.storage (轻量级存储)](reference/apis-arkdata/js-apis-data-storage.md)
           - [@system.storage数据存储](reference/apis-arkdata/js-apis-system-storage.md)
-          - data/rdb
+          - data/rdb<!--arkdata-rdb-arkts-dep-->
             - [resultSet结果集](reference/apis-arkdata/js-apis-data-resultset.md)
       - C API<!--arkdata-c-->
         - 模块<!--arkdata-module-->
@@ -2088,7 +2088,7 @@
         - [语言基础类库错误码](reference/apis-arkts/errorcode-utils.md)
     - ArkUI（方舟UI框架）<!--arkui-api-->
       - ArkTS API<!--arkui-arkts-->
-        - UI界面
+        - UI界面<!--arkui-ui-interface-->
           - [@ohos.animator (动画)](reference/apis-arkui/js-apis-animator.md)
           - [@ohos.arkui.componentSnapshot (组件截图)](reference/apis-arkui/js-apis-arkui-componentSnapshot.md)
           - [@ohos.arkui.componentUtils (componentUtils)](reference/apis-arkui/js-apis-arkui-componentUtils.md)
@@ -2124,7 +2124,7 @@
           - [@ohos.arkui.UIContext (UIContext)(系统接口)](reference/apis-arkui/js-apis-arkui-UIContext-sys.md)
           - [@ohos.promptAction (弹窗)(系统接口)](reference/apis-arkui/js-apis-promptAction-sys.md)
           <!--DelEnd-->
-          - arkui
+          - arkui<!--ui-interface-arkui-->
             - [BuilderNode](reference/apis-arkui/js-apis-arkui-builderNode.md)
             - [ComponentContent](reference/apis-arkui/js-apis-arkui-ComponentContent.md)
             - [FrameNode](reference/apis-arkui/js-apis-arkui-frameNode.md)
@@ -2134,7 +2134,7 @@
             - [AttributeUpdater](reference/apis-arkui/js-apis-arkui-AttributeUpdater.md)
             - [Content](reference/apis-arkui/js-apis-arkui-Content.md)
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
-        - 图形图像
+        - 图形图像<!--arkui-graphics-images-->
           - [@ohos.display (屏幕属性)](reference/apis-arkui/js-apis-display.md)
           - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
           - [@ohos.window (窗口)](reference/apis-arkui/js-apis-window.md)
@@ -2157,8 +2157,8 @@
           - [@system.router (页面路由)](reference/apis-arkui/js-apis-system-router.md)
           - [XComponentNode](reference/apis-arkui/js-apis-arkui-xcomponentNode.md)
       - ArkTS组件<!--arkui-declarative-comp-->
-        - 组件通用信息
-          - 通用事件
+        - 组件通用信息<!--general-information-of-components-->
+          - 通用事件<!--general-events-->
             - [点击事件](reference/apis-arkui/arkui-ts/ts-universal-events-click.md)
             - [触摸事件](reference/apis-arkui/arkui-ts/ts-universal-events-touch.md)
             - [挂载卸载事件](reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md)
