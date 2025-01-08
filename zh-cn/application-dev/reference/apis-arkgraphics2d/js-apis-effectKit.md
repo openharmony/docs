@@ -306,6 +306,8 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 着色器效果平铺模式的枚举。
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
 | 名称                   | 值   | 说明                           |
 | ---------------------- | ---- | ------------------------------ |
 | CLAMP     | 0    | 如果着色器效果超出其原始边界，剩余区域使用着色器的边缘颜色填充。 |
