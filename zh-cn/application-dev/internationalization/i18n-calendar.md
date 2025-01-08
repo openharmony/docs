@@ -53,11 +53,11 @@
       let isWeekend : boolean= calendar.isWeekend(new Date(2023, 9, 15)); // true
 
       // 在日历的给定字段进行加减操作
-      calendar.set(2023, 10, 15);
+      calendar.set(2023, 10, 15); // 设置时间日期为2023.11.15
       calendar.add("date", 2);
       calendar.get("date"); // 17
 
-      // 比较日历和指定日期相差的天数
+      // 比较日历和指定日期2023.11.15相差的天数
       calendar.compareDays(new Date(2023, 10, 15)); // -3
     ```
 
