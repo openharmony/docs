@@ -8,6 +8,10 @@
   <!--Del-->
   - [@ohos.i18n (Internationalization) (System API)](js-apis-i18n-sys.md)
   <!--DelEnd-->
+  - Globalization
+    - [RawFileDescriptor](rawFileDescriptor.md) 
+    - [Resource](resource.md)
+    - [SendableResource](sendableResource.md)
 - C API
   - Modules
     - [Rawfile](rawfile.md)
