@@ -95,7 +95,7 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 | ------ | ------ | ------ |-------------------------------- |
 | enableloading | boolean | true |LoadingProgress动画是否显示。<br/>默认值：true。 |
 
-## LoadingProgressType<sup>(deprecated)</sup>枚举说明
+## LoadingProgressStyle<sup>(deprecated)</sup>枚举说明
 
 从API version 8开始废弃。
 
