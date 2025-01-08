@@ -517,3 +517,35 @@ atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSION
 | CAMERA  | 0    | 表示相机全局开关。 |
 | MICROPHONE | 1     | 表示麦克风全局开关。 |
 | LOCATION | 2     | 表示位置全局开关。 |
+
+## PermissionRequestResult<sup>10+</sup>
+
+type PermissionRequestResult = _PermissionRequestResult
+
+权限请求结果对象。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [PermissionRequestResult](js-apis-permissionrequestresult.md) | 权限请求结果对象。 |
+
+## Context<sup>10+</sup>
+
+type Context = _Context
+
+提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [Context](js-apis-inner-application-context.md) | 提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。 |
