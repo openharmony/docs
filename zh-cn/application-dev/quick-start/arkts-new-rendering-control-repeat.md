@@ -597,6 +597,7 @@ struct DemoList {
 
   aboutToAppear(): void {
     for (let i = 0; i < 10; i++) {
+      // 此处app.media.listItem0、app.media.listItem1、app.media.listItem2仅作示例，请开发者自行替换
       this.videoList.push(new DemoListItemInfo('视频' + i,
         i % 3 == 0 ? $r("app.media.listItem0") :
         i % 3 == 1 ? $r("app.media.listItem1") : $r("app.media.listItem2")));
@@ -706,6 +707,7 @@ struct DemoGrid {
 
   aboutToAppear(): void {
     for (let i = 0; i < 10; i++) {
+      // 此处app.media.gridItem0、app.media.gridItem1、app.media.gridItem2仅作示例，请开发者自行替换
       this.itemList.push(new DemoGridItemInfo('视频' + i,
         i % 3 == 0 ? $r("app.media.gridItem0") :
         i % 3 == 1 ? $r("app.media.gridItem1") : $r("app.media.gridItem2")));
@@ -771,8 +773,9 @@ struct DemoGrid {
       .onRefreshing(() => {
         setTimeout(() => {
           this.itemList.splice(10, 1);
-          this.itemList.unshift(new DemoGridItemInfo('refresh', $r('app.media.gridItem0')));
+          this.itemList.unshift(new DemoGridItemInfo('refresh', $r('app.media.gridItem0'))); // 此处app.media.gridItem0仅作示例，请开发者自行替换
           for (let i = 0; i < 10; i++) {
+            // 此处aapp.media.gridItem0、app.media.gridItem1、app.media.gridItem2仅作示例，请开发者自行替换
             this.itemList.unshift(new DemoGridItemInfo('新视频' + this.num,
               i % 3 == 0 ? $r("app.media.gridItem0") :
               i % 3 == 1 ? $r("app.media.gridItem1") : $r("app.media.gridItem2")));
