@@ -5400,6 +5400,7 @@ import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
+    const canvas = context.canvas;
     let pen = new drawing.Pen();
     const penColor: common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 }
     pen.setColor(penColor);
