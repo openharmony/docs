@@ -18,11 +18,11 @@
 
     ```ts
       let calendar : i18n.Calendar = i18n.getCalendar("zh-Hans", "gregory");
-      //设置日历对象的日期为2022年6月13日8时0分0秒
+      // 设置日历对象的时间日期为2022.06.13 08:00:00
       calendar.setTime(new Date(2022, 5, 13, 8, 0, 0));
       calendar.setTime(10540800000);
 
-      // 设置日历对象的年、月、日、时、分、秒
+      // 设置日历对象的时间日期为2022.06.13 08:00:00
       calendar.set(2022, 5, 13, 8, 0, 0);
 
       // 设置日历对象的时区
@@ -49,7 +49,7 @@
       // 获取日历对象本地化名称
       let calendarName: string = calendar.getDisplayName("zh-Hans"); // 公历
 
-      // 判断指定的日期在日历中是否为周末
+      // 判断指定的日期2023.10.15在日历中是否为周末
       let isWeekend : boolean= calendar.isWeekend(new Date(2023, 9, 15)); // true
 
       // 在日历的给定字段进行加减操作
@@ -65,7 +65,7 @@
 
     ```ts
       let calendar : i18n.Calendar = i18n.getCalendar("zh-Hans", "chinese");
-      //将公历信息设置到calendar对象
+      //将公历信息设置到calendar对象，时间日期为2023.07.25 08:00:00
       calendar.setTime(new Date(2023, 6, 25, 8, 0, 0));
       //获取农历年月日
       calendar.get("year"); // 返回干支纪年40，范围1-60
