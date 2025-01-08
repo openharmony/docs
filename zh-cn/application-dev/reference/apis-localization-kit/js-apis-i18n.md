@@ -772,7 +772,8 @@ setTime(date: Date): void
 **示例：**
   ```ts
   let calendar: i18n.Calendar = i18n.getCalendar("en-US", "gregory");
-  let date: Date = new Date(2021, 10, 7, 8, 0, 0, 0);
+  // 设置时间日期为2021.11.07 08:00:00
+  let date: Date = new Date(2021, 10, 7, 8, 0, 0);
   calendar.setTime(date);
   ```
 
@@ -1076,9 +1077,9 @@ isWeekend(date?: Date): boolean
 **示例：**
   ```ts
   let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-  calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.12.11 08:00:00
+  calendar.set(2021, 11, 11, 8, 0, 0); // 设置时间为2021.12.11 08:00:00
   calendar.isWeekend(); // true
-  let date: Date = new Date(2011, 11, 6, 9, 0, 0);
+  let date: Date = new Date(2011, 11, 6, 9, 0, 0); // 时间日期为2011.12.06 09:00:00
   calendar.isWeekend(date); // false
   ```
 
@@ -2785,7 +2786,7 @@ isHoliday(date?: Date): boolean
     let holidayManager= new i18n.HolidayManager("/system/lib/US.ics");
     let isHoliday = holidayManager.isHoliday();
     console.log(isHoliday.toString());
-    let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25));
+    let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25)); // 时间日期为2023.06.25
     console.log(isHoliday2.toString());
   } catch(error) {
     let err: BusinessError = error as BusinessError;
@@ -2988,7 +2989,7 @@ format(date: Date): string
   import { intl } from '@kit.LocalizationKit';
 
   let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
-  let date : Date = new Date(2024, 11, 13);
+  let date : Date = new Date(2024, 11, 13); // 时间日期为2024.12.13
 
   let formatterWithText : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
   let result : string = formatterWithText.format(date); // result = month(12)
