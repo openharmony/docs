@@ -19,7 +19,7 @@ import { hichecker } from '@kit.PerformanceAnalysisKit';
 
 **系统能力：** SystemCapability.HiviewDFX.HiChecker
 
-| 名称                                             | 参数类型  | 值         | 说明                                                   |
+| 名称                                             | 类型      | 值         | 说明                                                   |
 | ------------------------------------------------ | -------- | -----------| ------------------------------------------------------ |
 | RULE_CAUTION_PRINT_LOG                           | bigint   | 1ULL << 63 | 告警规则，当有告警时记录日志。                            |
 | RULE_CAUTION_TRIGGER_CRASH                       | bigint   | 1ULL << 62 | 告警规则，当有告警时让应用退出。                          |
