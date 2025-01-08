@@ -46,7 +46,7 @@ hdc server启动时，默认会监听PC的8710端口，hdc client使用tcp协议
 选择指定的设备执行命令，使用-t参数：
 
    ```shell
-   hdc -t connect-key shell echo "hello word"
+   hdc -t connect-key shell echo "Hello world"
    ```
 
 | 参数 | 说明 |
@@ -104,7 +104,7 @@ hdc server启动时，默认会监听PC的8710端口，hdc client使用tcp协议
 **执行shell命令**
 
    ```shell
-   hdc shell echo "hello word"
+   hdc shell echo "Hello world"
    ```
 
 **获取帮助**
