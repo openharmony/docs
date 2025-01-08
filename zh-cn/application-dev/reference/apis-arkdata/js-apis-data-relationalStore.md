@@ -497,7 +497,6 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
 | 14801001  | The operation is supported in the stage model only.   |
 | 14801002  | Invalid data ground ID.   |
 
-
 **示例：**
 
 FA模型示例：
@@ -547,6 +546,25 @@ class EntryAbility extends UIAbility {
   }
 }
 ```
+## relationalStore.isVectorSupported<sup>16+</sup>
+
+isVectorSupported(): boolean
+
+判断系统是否提供向量数据库能力。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**返回值**：
+
+| 类型    | 说明                                              |
+| ------- | ------------------------------------------------- |
+| boolean | 系统具备向量数据库能力时返回true，否则返回false。 |
+
+**示例：**
+
+```
+let result = relationalStore.isVectorSupported();
+```
 
 ## StoreConfig
 
@@ -565,6 +583,7 @@ class EntryAbility extends UIAbility {
 | isReadOnly<sup>12+</sup> | boolean | 否 | 指定数据库是否只读，默认为数据库可读写。<br/>true:只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。<br/>false:允许对数据库进行读写操作。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | pluginLibs<sup>12+</sup> | Array\<string> | 否 | 表示包含有fts（Full-Text Search，即全文搜索引擎）等能力的动态库名的数组。<br/>**使用约束：** <br/>1. 动态库名的数量限制最多为16个，如果超过该数量会开库失败，返回错误。<br/>2. 动态库名需为本应用沙箱路径下或系统路径下的动态库，如果动态库无法加载会开库失败，返回错误。<br/>3. 动态库名需为完整路径，用于被sqlite加载。<br/>样例：[context.bundleCodeDir+ "/libs/arm64/" + libtokenizer.so]，其中context.bundleCodeDir是应用沙箱对应的路径，"/libs/arm64/"表示子目录，libtokenizer.so表示动态库的文件名。当此参数不填时，默认不加载动态库。<br/>4. 动态库需要包含其全部依赖，避免依赖项丢失导致无法运行。<br/>例如：在ndk工程中，使用默认编译参数构建libtokenizer.so，此动态库依赖c++标准库。在加载此动态库时，由于namespace与编译时不一致，链接到了错误的libc++_shared.so，导致`__emutls_get_address`符号找不到。要解决此问题，需在编译时静态链接c++标准库，具体请参见[NDK工程构建概述](../../napi/build-with-ndk-overview.md)。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | cryptoParam<sup>14+</sup> | [CryptoParam](#cryptoparam14) | 否 | 指定用户自定义的加密参数。<br/>当此参数不填时，使用默认的加密参数，见[CryptoParam](#cryptoparam14)各参数默认值。<br/>此配置只有在encrypt选项设置为真时才有效。<br/>从API version 14开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| vector<sup>16+</sup> | boolean | 否 | 指定数据库是否是向量数据库，true表示向量数据库，false表示关系型数据库，默认为false。<br/>向量数据库适用于存储和处理高维向量数据，关系型数据库适用于存储和处理结构化数据。<br/>向量数据库目前支持[execute](#execute12-1)，[querySql](#querysql-1)，[beginTrans](#begintrans12)，[commit](#commit12)，[rollback](#rollback12)，[backup](#backup)，[restore](#restore)以及[ResultSet](#resultset)类型操作接口。当使用向量数据库时，在调用deleteRdbStore接口前，应当确保向量数据库已经被正确关闭。**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## SecurityLevel
 
@@ -806,7 +825,7 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 | ------- | ---- |----------------------------------------------------------------------------------------------------------------|
 | NONE    | 0    | 表示数据库未进行重建。                                                                                                    |
 | REBUILT | 1    | 表示数据库进行了重建并且生成了空数据库，需要应用重新建表和恢复数据。                                                                             |
-| REPAIRED | 2    | 表示数据库进行了修复，恢复了未损坏的数据，<!--RP2-->当前只有[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)具备该能力。<!--RP2End--> |
+| REPAIRED | 2    | 表示数据库进行了修复，恢复了未损坏的数据，当前只有[向量数据库](#storeconfig)具备该能力。 |
 
 ## ChangeType<sup>10+</sup>
 
@@ -3959,6 +3978,8 @@ querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
 
+[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；特殊语法有<->和<=>，分别是计算向量的相似度和余弦距离。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -3980,6 +4001,8 @@ querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
 | 14800015  | The database does not respond. |
 
 **示例：**
+
+关系型数据库：
 
 ```ts
 if(store != undefined) {
@@ -4003,11 +4026,29 @@ if(store != undefined) {
 }
 ```
 
+向量数据库：
+
+```ts
+// 相似度的计算符号是<->, 余弦距离的计算符号是<=>
+const querySql = "select id, repr <-> '[1.5,5.6]' as distance from test ORDER BY repr <-> '[1.5,5.6]' limit 10 offset 1;";
+let resultSet = await store.querySql(querySql);
+
+// 聚合查询，其中group by支持多列
+const querySql1 = "select id, repr from test group by id, repr having max(repr<=>[1.5,5.6]);";
+let resultSet1 = await store.querySql(querySql1);
+
+// 子查询，最大支持嵌套32层
+const querySql2 = "select * from test where id in (select id from test1)";
+let resultSet2 = await store.querySql(querySql2);
+```
+
 ### querySql
 
 querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
+
+[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；特殊语法有<->和<=>，分别是计算向量的相似度和余弦距离。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4060,6 +4101,8 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用Promise异步回调。
 
+[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；特殊语法有<->和<=>，分别是计算向量的相似度和余弦距离。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -4088,6 +4131,8 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 **示例：**
 
+关系型数据库：
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -4108,6 +4153,15 @@ if(store != undefined) {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
   })
 }
+```
+
+向量数据库：
+
+```ts
+// 查询id为1，与[1.5, 2.5]相似度小于0.5，且以相似度进行升序排序的前10条数据
+const querySql = "select id, repr <-> ? as distance from test where id = ? and repr <-> ? < 0.5 ORDER BY repr <-> ? limit 10;";
+const vectorValue: Float32Array = new Float32Array([1.5, 2.5]);
+let resultSet = await store.querySql(querySql, [vectorValue, 1, vectorValue, vectorValue]); 
 ```
 
 ### querySqlSync<sup>12+</sup>
@@ -4417,6 +4471,8 @@ execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 
 **示例：**
 
+关系型数据库：
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -4451,16 +4507,30 @@ if(store != undefined) {
 }
 ```
 
+向量数据库：
+
+```ts
+// FLOATVECTOR(2)是维度为2的向量属性，后续操作repr需依照该维度进行。
+let createSql = "CREATE TABLE test (ID text PRIMARY KEY,REPR FLOATVECTOR(2));";
+// 建表
+await store!.execute(createSql);
+// 使用参数绑定插入数据
+let insertSql= "insert into test VALUES(?, ?);";
+const vectorValue: Float32Array = Float32Array.from([1.5, 6.6]);
+await store!.execute(insertSql, [0, vectorValue]); 
+// 不使用绑定参数直接执行
+await store!.execute("insert into test values(1, '[3.5, 1.8]');");
+```
+
 ### execute<sup>12+</sup>
 
 execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;ValueType&gt;
 
 执行包含指定参数的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用Promise异步回调。
 
-<!--RP1-->
-该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。<!--RP1End-->
+该接口仅支持[向量数据库](#storeconfig)使用。
 
-此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
+此接口不支持执行查询，可以使用[querySql](#querysql10)接口代替。
 
 不支持分号分隔的多条语句。
 
@@ -4811,8 +4881,7 @@ beginTrans(): Promise&lt;number&gt;
 
 与[beginTransaction](#begintransaction)的区别在于：该接口会返回事务ID，[execute](#execute12-1)可以指定不同事务ID达到事务隔离目的。
 
-<!--RP1-->
-该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。<!--RP1End-->
+该接口仅支持[向量数据库](#storeconfig)使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4990,8 +5059,7 @@ commit(txId : number):Promise&lt;void&gt;
 
 提交已执行的SQL语句，跟[beginTrans](#begintrans12)配合使用。
 
-<!--RP1-->
-该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。<!--RP1End-->
+该接口仅支持[向量数据库](#storeconfig)使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -5123,8 +5191,7 @@ rollback(txId : number):Promise&lt;void&gt;
 
 回滚已经执行的SQL语句，跟[beginTrans](#begintrans12)配合使用。
 
-<!--RP1-->
-该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。<!--RP1End-->
+该接口仅支持[向量数据库](#storeconfig)使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
