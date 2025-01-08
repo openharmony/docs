@@ -11,7 +11,7 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
 
 ### 配置module.json5文件
 
-为了能够支持被其他应用访问，目标应用需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置[skills标签](../quick-start/module-configuration-file.md#skills标签)。其中，uri字段的scheme的取值支持自定义，可以定义为任意不包含特殊字符、非`ohos`开头的字符串。
+为了能够支持被其他应用访问，目标应用需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置[skills标签](../quick-start/module-configuration-file.md#skills标签)。其中，scheme的取值支持自定义，可以定义为任意不包含特殊字符、非`ohos`开头的字符串。
 
 > **说明：**
 > 
