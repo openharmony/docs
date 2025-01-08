@@ -102,6 +102,7 @@ contentOpacity(value: number | Resource)
 @Component
 struct QRCodeExample {
   private value: string = 'hello world'
+
   build() {
     Column({ space: 5 }) {
       Text('normal').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)

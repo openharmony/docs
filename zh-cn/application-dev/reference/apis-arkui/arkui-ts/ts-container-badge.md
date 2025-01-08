@@ -152,7 +152,8 @@ BadgeParamWithString继承自[BadgeParam](#badgeparam对象说明)，具有Badge
 @Entry
 @Component
 struct BadgeExample {
-  @Builder tabBuilder(index: number) {
+  @Builder
+  tabBuilder(index: number) {
     Column() {
       if (index === 2) {
         Badge({
@@ -180,7 +181,8 @@ struct BadgeExample {
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
   }
 
-  @Builder itemBuilder(value: string) {
+  @Builder
+  itemBuilder(value: string) {
     Row() {
       Image('common/public_icon.svg').width(32).height(32).opacity(0.6)
       Text(value)
@@ -286,7 +288,12 @@ struct BadgeExample {
         .backgroundColor('#FFFFFF')
         .borderRadius(24)
         .padding({ top: 4, bottom: 4 })
-        .divider({ strokeWidth: 0.5, color: 'rgba(0,0,0,0.1)', startMargin: 60, endMargin: 12 })
+        .divider({
+          strokeWidth: 0.5,
+          color: 'rgba(0,0,0,0.1)',
+          startMargin: 60,
+          endMargin: 12
+        })
       }.width('100%').backgroundColor('#F1F3F5').padding({ bottom: 12 })
     }.width('100%')
   }
@@ -313,11 +320,12 @@ struct Index {
         style: {},
         position: BadgePosition.RightTop,
       }) {
-        Image($r("app.media.icon"))
-        .width(50)
-        .height(50)
+        Image($r("app.media.startIcon"))
+          .width(50)
+          .height(50)
       }
       .width(55)
+
       Button('count 0').onClick(() => {
         this.badgeCount = 0
       })
@@ -325,7 +333,7 @@ struct Index {
         this.badgeCount = 1
       })
     }
-    .margin({top: 20})
+    .margin({ top: 20 })
   }
 }
 ```
