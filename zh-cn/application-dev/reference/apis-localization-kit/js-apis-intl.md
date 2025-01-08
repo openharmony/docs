@@ -291,7 +291,7 @@ format(date: Date): string
 
 **示例：** 
   ```ts
-  let date = new Date(2021, 11, 17, 3, 24, 0);
+  let date = new Date(2021, 11, 17, 3, 24, 0); // 时间日期为2021.12.17 03:24:00
   // 使用 en-GB locale创建DateTimeFormat对象
   let datefmt = new intl.DateTimeFormat("en-GB");
   let formattedDate = datefmt.format(date); // formattedDate "17/12/2021"
@@ -328,8 +328,8 @@ formatRange(startDate: Date, endDate: Date): string
 
 **示例：** 
   ```ts
-  let startDate = new Date(2021, 11, 17, 3, 24, 0);
-  let endDate = new Date(2021, 11, 18, 3, 24, 0);
+  let startDate = new Date(2021, 11, 17, 3, 24, 0); // 时间日期为2021.12.17 03:24:00
+  let endDate = new Date(2021, 11, 18, 3, 24, 0); // 时间日期为2021.12.18 03:24:00
   // 使用 en-GB locale创建DateTimeFormat对象
   let datefmt = new intl.DateTimeFormat("en-GB");
   let formattedDateRange = datefmt.formatRange(startDate, endDate); // formattedDateRange = "17/12/2021 - 18/12/2021"
