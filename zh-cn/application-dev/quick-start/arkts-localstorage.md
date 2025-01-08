@@ -209,7 +209,7 @@ storage.setOrCreate('PropA', 48);
 ```ts
 let para: Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para); // 创建新实例并使用给定对象初始化
-let propA: number | undefined = storage.get('PropA') // propA == 47
+let propA: number | undefined = storage.get('PropA'); // propA == 47
 let link1: SubscribedAbstractProperty<number> = storage.link('PropA'); // link1.get() == 47
 let link2: SubscribedAbstractProperty<number> = storage.link('PropA'); // link2.get() == 47
 let prop: SubscribedAbstractProperty<number> = storage.prop('PropA'); // prop.get() == 47
@@ -317,7 +317,7 @@ struct Parent {
       // 点击后从47开始加1，只改变当前组件显示的storageProp1，不会同步到LocalStorage中
       Button(`Parent from LocalStorage ${this.storageProp1}`)
         .onClick(() => {
-          this.storageProp1 += 1
+          this.storageProp1 += 1;
         })
       Child()
     }
@@ -364,7 +364,7 @@ struct Parent {
         // 点击“incr @LocalStorageLink variable”，this.storageLink加1，改变同步回storage，全局变量linkToPropA也会同步改变
 
         .onClick(() => {
-          this.storageLink += 1
+          this.storageLink += 1;
         })
 
       // 并不建议在组件内使用全局变量linkToPropA.get()，因为可能会有生命周期不同引起的错误。
@@ -392,7 +392,7 @@ Child自定义组件中的变化：
 1. playCountLink的刷新会同步回LocalStorage，并且引起兄弟组件和父组件相应的刷新。
 
 ```ts
-let count: Record<string, number> = { 'countStorage': 1 }
+let count: Record<string, number> = { 'countStorage': 1 };
 let storage: LocalStorage = new LocalStorage(count);
 
 @Component
@@ -464,12 +464,14 @@ import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
-para:Record<string, number> = { 'PropA': 47 };
-storage: LocalStorage = new LocalStorage(this.para);
+  para: Record<string, number> = {
+    'PropA': 47
+  };
+  storage: LocalStorage = new LocalStorage(this.para);
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-windowStage.loadContent('pages/Index', this.storage);
-}
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent('pages/Index', this.storage);
+  }
 }
 ```
 > **说明：**
@@ -712,7 +714,7 @@ struct Index {
 @Component
 struct Child {
   @State count: number = 5;
-  // 'Hello World'，和localStorage2中'PropB'的双向同步，localStorage2中没有'PropB'，则使用默认值'Hello World'
+  // 'Hello World'，和localStorage2中'PropB'的双向同步，如果localStorage2中没有'PropB'，则使用默认值'Hello World'
   @LocalStorageLink('PropB') PropB: string = 'Hello World';
 
   build() {
