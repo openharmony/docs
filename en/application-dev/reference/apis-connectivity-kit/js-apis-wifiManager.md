@@ -894,7 +894,7 @@ Obtains WLAN connection information. This API uses a promise to return the resul
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
-If **macType** to be obtained is **1** (device MAC address), the caller must have the ohos.permission.GET_WIFI_LOCAL_MAC permission, which is available only for system applications. Without this permission, an empty string is returned in **macAddress**.
+If **macType** to be obtained is **1** (device MAC address), the caller must have the **ohos.permission.GET_WIFI_LOCAL_MAC** permission, which is available only for system applications. Without this permission, a random MAC address is returned in **macAddress**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -925,7 +925,7 @@ Obtains WLAN connection information. This API uses an asynchronous callback to r
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
-If **macType** to be obtained is **1** (device MAC address), the caller must have the ohos.permission.GET_WIFI_LOCAL_MAC permission, which is available only for system applications. Without this permission, an empty string is returned in **macAddress**.
+If **macType** to be obtained is **1** (device MAC address), the caller must have the **ohos.permission.GET_WIFI_LOCAL_MAC** permission, which is available only for system applications. Without this permission, a random MAC address is returned in **macAddress**.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -974,7 +974,7 @@ Obtains the WLAN connection information. This API returns the result synchronous
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
-If **macType** to be obtained is **1** (device MAC address), the caller must have the ohos.permission.GET_WIFI_LOCAL_MAC permission, which is available only for system applications. Without this permission, an empty string is returned in **macAddress**.
+If **macType** to be obtained is **1** (device MAC address), the caller must have the **ohos.permission.GET_WIFI_LOCAL_MAC** permission, which is available only for system applications. Without this permission, a random MAC address is returned in **macAddress**.
 
 **Atomic service API**: This API can be used in atomic services since API version 16.
 
