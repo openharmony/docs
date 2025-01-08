@@ -18,7 +18,7 @@
 
     ```ts
       let calendar : i18n.Calendar = i18n.getCalendar("zh-Hans", "gregory");
-      //设置日历对象的日期
+      //设置日历对象的日期为2022年6月13日8时0分0秒
       calendar.setTime(new Date(2022, 5, 13, 8, 0, 0));
       calendar.setTime(10540800000);
 
