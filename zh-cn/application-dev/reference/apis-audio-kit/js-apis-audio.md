@@ -3190,6 +3190,46 @@ audioVolumeGroupManager.on('micStateChange', (micStateChange: audio.MicStateChan
 });
 ```
 
+### off('micStateChange')<sup>12+</sup>
+
+off(type: 'micStateChange', callback?: Callback&lt;MicStateChangeEvent&gt;): void
+
+取消监听系统麦克风状态更改事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- |----| ------------------------------------------------------------ |
+| type     | string                                 | 是  | 监听事件，固定为：'micStateChange'。 |
+| callback | Callback<[MicStateChangeEvent](#micstatechangeevent9)> | 否  | 回调函数，返回变更后的麦克风状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters missing; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听
+audioVolumeGroupManager.off('micStateChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let micStateChangeCallback = (micStateChange: audio.MicStateChangeEvent) => {
+  console.info(`Current microphone status is: ${micStateChange.mute} `);
+});
+
+audioVolumeGroupManager.on('micStateChange', micStateChangeCallback);
+
+audioVolumeGroupManager.off('micStateChange', micStateChangeCallback);
+```
+
 ### isVolumeUnadjustable<sup>10+</sup>
 
 isVolumeUnadjustable(): boolean
