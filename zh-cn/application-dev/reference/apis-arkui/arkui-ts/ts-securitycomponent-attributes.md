@@ -734,7 +734,7 @@ maxLines(line: number): T
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| value  | number | 是   | 文本的最大行数。 |
+| value  | number | 是   | 文本的最大行数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按默认值100000处理。 |
 
 **返回值：**
 
@@ -755,6 +755,8 @@ heightAdaptivePolicy(policy: TextHeightAdaptivePolicy): T
 当设置为TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST时，优先使用[minFontSize](#minfontsize16)属性来调整文本高度。如果使用minFontSize属性可以将文本布局在一行中，则尝试在minFontSize和[maxFontSize](#maxfontsize16)的范围内增大字体并使用最大可能的字体大小；如果使用minFontSize属性无法将文本布局在一行中，则尝试使用[maxLines](#maxlines16)属性进行布局，如果此时仍不能完整显示文本信息，安全控件会自适应调整高度以使得文本完整显示。
 
 当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，优先使用布局约束来调整文本高度。如果布局大小超过布局约束，则尝试在[minFontSize](#minfontsize16)和[maxFontSize](#maxfontsize16)的范围内缩小字体以满足布局约束。如果将字体大小缩小到minFontSize后，布局大小仍然超过布局约束，则删除超过布局约束的行；如果设置了[maxLines](#maxlines16)属性，布局后行数不超过maxlines值（可能存在横向截断）；如果未设置maxlines属性值，布局后的行数不限制。
+
+当布局无需调整即可完整显示文本时，控件文本不涉及自适应调节。
 
 安全控件文字未完全显示时，点击不授权。
 
