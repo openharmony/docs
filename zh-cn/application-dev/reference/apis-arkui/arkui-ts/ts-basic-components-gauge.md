@@ -278,7 +278,8 @@ GaugeShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptions10
 @Entry
 @Component
 struct Gauge1 {
-  @Builder descriptionBuilder() {
+  @Builder
+  descriptionBuilder() {
     Text('说明文本')
       .maxFontSize('30sp')
       .minFontSize("10.0vp")
@@ -346,7 +347,8 @@ struct Gauge1 {
 @Entry
 @Component
 struct Gauge2 {
-  @Builder descriptionBuilderImage() {
+  @Builder
+  descriptionBuilderImage() {
     Image($r('sys.media.ohos_ic_public_clock')).width(72).height(72)
   }
 
@@ -388,7 +390,8 @@ struct Gauge2 {
 @Entry
 @Component
 struct Gauge3 {
-  @Builder descriptionBuilder() {
+  @Builder
+  descriptionBuilder() {
     Text('说明文本')
       .maxFontSize('30sp')
       .minFontSize("10.0vp")
