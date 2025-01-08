@@ -3144,3 +3144,4 @@ struct Index {
 | GENERIC  | 1 << 1 | 系统字体类型。 |
 | STYLISH  | 1 << 2 | 风格字体类型。风格字体类型是专为2in1设备设计的字体类型。 |
 | INSTALLED  | 1 << 3 | 用户已安装的字体类型。 |
+| CUSTOMIZED<sup>16+</sup>  | 1 << 4 | 自定义字体类型。 |
