@@ -91,7 +91,7 @@ array = ["Pingguo", "Li", "Xiangjiao", "Shiliu", "Ganzhe", "Putao", "Juzi"];
 array.sort((a, b) => {
     return collator.compare(a, b);
 })
-console.log("result: ", array);  // Ganzhe, Juzi, Li, Pingguo, Putao, Shiliu, Xiangjiao
+console.log("result:", array); // Ganzhe, Juzi, Li, Pingguo, Putao, Shiliu, Xiangjiao
 
 // Stroke sorting
 options = {
@@ -100,10 +100,21 @@ options = {
     collation: "stroke"
 };
 collator = new intl.Collator("zh-CN", options);
-array = ["苹果", "梨", "香蕉", "石榴", "甘蔗", "葡萄", "橘子"];
+array = ["Pingguo", "Li", "Xiangjiao", "Shiliu", "Ganzhe", "Putao", "Juzi"];
 array.sort((a, b) => {
     return collator.compare(a, b);
 })
-console.log("result: ", array);  // 甘蔗,石榴,苹果,香蕉,梨,葡萄,橘子
+console.log("result:", array); // 甘蔗,石榴,苹果,香蕉,梨,葡萄,橘子
+
+// Search for the matched string.
+options = {
+    usage: "search",
+    sensitivity: "base"
+};
+collator = new intl.Collator("tr", options);
+let sourceArray = ['Türkiye', 'TüRkiye', 'salt', 'bright'];
+let s = 'türkiye';
+let matches = sourceArray.filter(item => collator.compare(item, s) === 0);
+console.log(matches.toString());  // Türkiye,TüRkiye
 ```
 <!--no_check-->

@@ -47,13 +47,11 @@ Provides functions such as event injection and status query.
 | typedef void(\* [Input_MouseEventCallback](input.md#input_mouseeventcallback)) (const [Input_MouseEvent](input.md#input_mouseevent) \*mouseEvent) | Defines a lifecycle callback for **mouseEvent**. If the callback is triggered, **mouseEvent** will be destroyed. | 
 | typedef void(\* [Input_TouchEventCallback](input.md#input_toucheventcallback)) (const [Input_TouchEvent](input.md#input_touchevent) \*touchEvent) | Defines a lifecycle callback for **touchEvent**. If the callback is triggered, **touchEvent** will be destroyed. | 
 | typedef void(\* [Input_AxisEventCallback](input.md#input_axiseventcallback)) (const [Input_AxisEvent](input.md#input_axisevent) \*axisEvent) | Defines a lifecycle callback for **axisEvent**. If the callback is triggered, **axisEvent** will be destroyed. | 
-| typedef void(\* [Input_HotkeyCallback](input.md#input_hotkeycallback)) ([Input_Hotkey](input.md#input_hotkey) \*hotkey) | Defines the callback used to return shortcut key events. |
 | typedef void(\* [Input_DeviceAddedCallback](input.md#input_deviceaddedcallback)) (int32_t deviceId) | Defines a callback used to receive device insertion events. | 
 | typedef void(\* [Input_DeviceRemovedCallback](input.md#input_deviceremovedcallback)) (int32_t deviceId) | Defines a callback used to receive device removal events. | 
 | typedef struct [Input_InterceptorEventCallback](_input___interceptor_event_callback.md) [Input_InterceptorEventCallback](input.md#input_interceptoreventcallback) | Defines the structure of the interceptor for callback events, including mouse events, touch events, and axis events. | 
 | typedef struct [Input_DeviceListener](_input___device_listener.md) [Input_DeviceListener](input.md#input_devicelistener) | Defines a listener for device hot swap events. | 
 | typedef struct [Input_InterceptorOptions](input.md#input_interceptoroptions) [Input_InterceptorOptions](input.md#input_interceptoroptions) | Defines event interception options. | 
-| typedef struct [Input_Hotkey](input.md#input_hotkey) [Input_Hotkey](input.md#input_hotkey) | Defines the shortcut key structure. | 
 | typedef struct [Input_DeviceInfo](input.md#input_deviceinfo) [Input_DeviceInfo](input.md#input_deviceinfo) | Defines the input device information. | 
 
 
@@ -69,7 +67,7 @@ Provides functions such as event injection and status query.
 | [Input_TouchEventAction](input.md#input_toucheventaction) { [TOUCH_ACTION_CANCEL](input.md) = 0, [TOUCH_ACTION_DOWN](input.md) = 1, [TOUCH_ACTION_MOVE](input.md) = 2, [TOUCH_ACTION_UP](input.md) = 3 } | Provides the enum values of touch actions. | 
 | [InputEvent_SourceType](input.md#inputevent_sourcetype) { [SOURCE_TYPE_MOUSE](input.md) = 1, [SOURCE_TYPE_TOUCHSCREEN](input.md) = 2, [SOURCE_TYPE_TOUCHPAD](input.md) = 3 } | Provides the enum values of event source types. | 
 | [Input_KeyboardType](input.md#input_keyboardtype) {<br>[KEYBOARD_TYPE_NONE](input.md) = 0, [KEYBOARD_TYPE_UNKNOWN](input.md) = 1, [KEYBOARD_TYPE_ALPHABETIC](input.md) = 2, [KEYBOARD_TYPE_DIGITAL](input.md) = 3,<br>[KEYBOARD_TYPE_STYLUS](input.md) = 4, [KEYBOARD_TYPE_REMOTE_CONTROL](input.md) = 5<br>} | Provides the enum values of keyboard types of the input device. | 
-| [Input_Result](input.md#input_result) {<br>[INPUT_SUCCESS](input.md) = 0, [INPUT_PERMISSION_DENIED](input.md) = 201, [INPUT_NOT_SYSTEM_APPLICATION](input.md) = 202, [INPUT_PARAMETER_ERROR](input.md) = 401,<br>[INPUT_SERVICE_EXCEPTION](input.md) = 3800001, [INPUT_REPEAT_INTERCEPTOR](input.md) = 4200001, [INPUT_OCCUPIED_BY_SYSTEM](input.md) = 4200002, [INPUT_OCCUPIED_BY_OTHER](input.md) = 4200003<br>} | Provides the enum values of error codes. | 
+| [Input_Result](input.md#input_result) {<br>[INPUT_SUCCESS](input.md) = 0, [INPUT_PERMISSION_DENIED](input.md) = 201, [INPUT_NOT_SYSTEM_APPLICATION](input.md) = 202, [INPUT_PARAMETER_ERROR](input.md) = 401,<br>[INPUT_SERVICE_EXCEPTION](input.md) = 3800001, [INPUT_REPEAT_INTERCEPTOR](input.md) = 4200001<br>} | Provides the enum values of error codes. | 
 
 
 ### Functions
@@ -155,20 +153,6 @@ Provides functions such as event injection and status query.
 | [Input_Result](input.md#input_result) [OH_Input_AddInputEventInterceptor](input.md#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback [Input_InterceptorOptions](input.md#input_interceptoroptions) \*option) | Adds an interceptor for input events, including mouse, touch, and axis events. If multiple interceptors are added, only the first one takes effect. | 
 | [Input_Result](input.md#input_result) [OH_Input_RemoveKeyEventInterceptor](input.md#oh_input_removekeyeventinterceptor) () | Removes the interceptor for key events. | 
 | [Input_Result](input.md#input_result) [OH_Input_RemoveInputEventInterceptor](input.md#oh_input_removeinputeventinterceptor) () | Removes the interceptor for input events, including mouse, touch, and axis events. | 
-| int32_t [OH_Input_GetIntervalSinceLastInput](input.md#oh_input_getintervalsincelastinput) (int64_t \*timeInterval) | Obtains the interval since the last system input event. | 
-| [Input_Hotkey](input.md#input_hotkey) \* [OH_Input_CreateHotkey](input.md#oh_input_createhotkey) () | Creates a shortcut key object. | 
-| void [OH_Input_DestroyHotkey](input.md#oh_input_destroyhotkey) ([Input_Hotkey](input.md#input_hotkey) \*\*hotkey) | Destroys a shortcut key object. | 
-| void [OH_Input_SetPreKeys](input.md#oh_input_setprekeys) ([Input_Hotkey](input.md#input_hotkey) \*hotkey, int32_t \*preKeys, int32_t size) | Sets the modifier key. | 
-| [Input_Result](input.md#input_result) [OH_Input_GetPreKeys](input.md#oh_input_getprekeys) (const [Input_Hotkey](input.md#input_hotkey) \*hotkey, int32_t \*\*preKeys, int32_t \*preKeyCount) | Obtains the modifier key. | 
-| void [OH_Input_SetFinalKey](input.md#oh_input_setfinalkey) ([Input_Hotkey](input.md#input_hotkey) \*hotkey, int32_t finalKey) | Sets the modified key. | 
-| [Input_Result](input.md#input_result) [OH_Input_GetFinalKey](input.md#oh_input_getfinalkey) (const [Input_Hotkey](input.md#input_hotkey) \*hotkey, int32_t \*finalKeyCode) | Obtains the modified key. | 
-| [Input_Hotkey](input.md#input_hotkey) \*\* [OH_Input_CreateAllSystemHotkeys](input.md#oh_input_createallsystemhotkeys) (int32_t count) | Creates an array of [Input_Hotkey](input.md#input_hotkey) instances. | 
-| void [OH_Input_DestroyAllSystemHotkeys](input.md#oh_input_destroyallsystemhotkeys) ([Input_Hotkey](input.md#input_hotkey) \*\*hotkeys, int32_t count) | Destroys the array of [Input_Hotkey](input.md#input_hotkey) instances and reclaims the memory. | 
-| [Input_Result](input.md#input_result) [OH_Input_GetAllSystemHotkeys](input.md#oh_input_getallsystemhotkeys) ([Input_Hotkey](input.md#input_hotkey) \*\*hotkey, int32_t \*count) | Obtains all configured shortcut keys. | 
-| void [OH_Input_SetRepeat](input.md#oh_input_setrepeat) ([Input_Hotkey](input.md#input_hotkey) \*hotkey, bool isRepeat) | Specifies whether to report repeated key events. | 
-| [Input_Result](input.md#input_result) [OH_Input_GetRepeat](input.md#oh_input_getrepeat) (const [Input_Hotkey](input.md#input_hotkey) \*hotkey, bool \*isRepeat) | Checks whether to report repeated key events. | 
-| [Input_Result](input.md#input_result) [OH_Input_AddHotkeyMonitor](input.md#oh_input_addhotkeymonitor) (const [Input_Hotkey](input.md#input_hotkey) \*hotkey, [Input_HotkeyCallback](input.md#input_hotkeycallback) callback) | Subscribes to shortcut key events. | 
-| [Input_Result](input.md#input_result) [OH_Input_RemoveHotkeyMonitor](input.md#oh_input_removehotkeymonitor) (const [Input_Hotkey](input.md#input_hotkey) \*hotkey, [Input_HotkeyCallback](input.md#input_hotkeycallback) callback) | Unsubscribes from shortcut key events. | 
 | [Input_Result](input.md#input_result) [OH_Input_GetDeviceIds](input.md#oh_input_getdeviceids) (int32_t \*deviceIds, int32_t inSize, int32_t \*outSize) | Obtains the IDs of all input devices. | 
 | [Input_Result](input.md#input_result) [OH_Input_GetDevice](input.md#oh_input_getdevice) (int32_t deviceId, [Input_DeviceInfo](input.md#input_deviceinfo) \*\*deviceInfo) | Obtains information about the input device. | 
 | [Input_DeviceInfo](input.md#input_deviceinfo) \* [OH_Input_CreateDeviceInfo](input.md#oh_input_createdeviceinfo) (void) | Creates a **deviceInfo** object. | 
