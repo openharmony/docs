@@ -1756,7 +1756,8 @@ getDisplayId(): Promise<number>
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 12800013 | input method manager service error. |
+| 12800008 | input method manager service error. |
+| 12800013 | window manager service error. |
 
 **示例：**
 
