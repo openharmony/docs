@@ -2,7 +2,7 @@
 
 Screen capture is mainly used to record the main screen.
 
-You can call the ArkTS APIs of the AVScreenCaptureRecorder module to record the screen and collect audio and video source data output by the device and microphone. You can call the APIs to obtain audio and video files and transfer the files to other modules for playback or processing. In this way, screen content can be shared in the form of files.
+You can call the ArkTS APIs of the [AVScreenCaptureRecorder](media-kit-intro.md#avscreencapture) module to record the screen and collect audio and video source data output by the device and microphone. You can call the APIs to obtain audio and video files and transfer the files to other modules for playback or processing. In this way, screen content can be shared in the form of files.
 
 The AVScreenCaptureRecorder, Window, and Graphics modules together implement the entire video capture process.
 
@@ -16,13 +16,15 @@ If microphone data collection is configured, configure the permission **ohos.per
 
 ## Applying for Permission
 
-Before development, configure the following permissions for your application. For details about permission configuration, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
+Before your development, configure the following permissions for your application.
 
-| Permission| Description| Authorization Mode| APL|
-| ------ | ----- | --------| ------- |
-| ohos.permission.MICROPHONE | Allows an application to access the microphone. (This permission is optional.)| user_grant | normal |
-| ohos.permission.READ_IMAGEVIDEO | Allows an application to read media files in the user's external storage.| user_grant | normal |
-| ohos.permission.WRITE_IMAGEVIDEO | Allows an application to read and write media files in the user's external storage.| user_grant | normal |
+- To use the microphone, request the ohos.permission.MICROPHONE permission. For details about how to request user authorization, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
+- To read images or videos, you are advised to use the media library [Picker to access them](../medialibrary/photoAccessHelper-photoviewpicker.md).
+- To save images or videos, use the [security component to save them](../medialibrary/photoAccessHelper-savebutton.md).
+
+> **NOTE**
+>
+> When the application needs to clone, back up, or synchronize images and videos in users' public directory, request the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions for reading and writing audio files. For details, see <!--RP1-->[Requesting Restricted Permissions](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->.
 
 ## How to Develop
 
@@ -33,7 +35,7 @@ After an **AVScreenCaptureRecorder** instance is created, different APIs can be 
     ```javascript
     import media from '@ohos.multimedia.media';
     ```
-    
+
 2. Create the member variable **screenCapture** of the **AVScreenCaptureRecorder** type.
 
     ```javascript
@@ -114,7 +116,7 @@ After an **AVScreenCaptureRecorder** instance is created, different APIs can be 
         audioChannelCount: 2,
         audioBitrate: 96000,
         preset: media.AVScreenCaptureRecordPreset.SCREEN_RECORD_PRESET_H264_AAC_MP4
-    }
+    };
     ```
 
 5. Call **init()** to initialize the **screenCapture** instance based on the preset screen capture parameters.
@@ -174,7 +176,7 @@ export class AVScreenCaptureDemo {
     audioBitrate: 96000,
     preset: media.AVScreenCaptureRecordPreset.SCREEN_RECORD_PRESET_H264_AAC_MP4
   };
-	
+
   // Call startRecording to start screen capture. To stop screen capture, click the stop button in the screen capture capsule.
   public async startRecording() {
     this.screenCapture = await media.createAVScreenCaptureRecorder();
@@ -232,11 +234,11 @@ export class AVScreenCaptureDemo {
       console.info("Handle exceptions.");
     })
     await this.screenCapture?.init(this.captureConfig);
-    
+
     // Exempt privacy windows.
     let windowIDs = [57, 86];
     await this.screenCapture?.skipPrivacyMode(windowIDs);
-    
+
     await this.screenCapture?.startRecording();
   }
 
@@ -247,7 +249,7 @@ export class AVScreenCaptureDemo {
       return;
     }
     await this.screenCapture?.stopRecording();
-    
+
     // Call release() to release the instance.
     await this.screenCapture?.release();
 
