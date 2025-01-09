@@ -154,7 +154,7 @@ struct Index {
 }
 ```
 
-![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.png)
+![zh-cn_image_editabletitlebar_example01](figures/zh-cn_image_editabletitlebar_example01.png)
 
 ### 示例2（头像与背景模糊标题栏）
 该示例主要演示EditableTitleBar设置背景模糊、头像；取消右侧保存图标及自定义标题栏外边距的效果。
@@ -258,7 +258,7 @@ struct Index {
 }
 ```
 
-![zh-cn_image_EditableTitleBar](figures/zh-cn_image_EditableTitleBar.png)
+![zh-cn_image_editabletitlebar_example02](figures/zh-cn_image_editabletitlebar_example02.png)
 
 ### 示例3（右侧自定义按钮播报）
 该示例通过设置标题栏的右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
