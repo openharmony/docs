@@ -574,7 +574,7 @@ changeIndex(index: number, useAnimation?: boolean)
 
 ### finishAnimation
 
-finishAnimation(callback?: VoidCallback)
+finishAnimation(callback?: () => void)
 
 停止播放动画。
 
@@ -588,7 +588,7 @@ finishAnimation(callback?: VoidCallback)
 
 | 参数名      | 类型       | 必填  | 说明     |
 | -------- | ---------- | ---- | -------- |
-| callback | [VoidCallback](./ts-types.md#voidcallback12) | 否    | 动画结束的回调。 |
+| callback | () => void | 否    | 动画结束的回调。 |
 
 ## Indicator<sup>10+</sup>
 
@@ -1109,7 +1109,7 @@ DigitIndicator的构造函数。
 
 ### onChange
 
-onChange(event: Callback\<number>)
+onChange(event: (index: number) => void)
 
 当前显示的子组件索引变化时触发该事件，返回值为当前显示的子组件的索引值。
 
@@ -1125,13 +1125,13 @@ Swiper组件结合LazyForEach使用时，不能在onChange事件里触发子页�
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 当前显示元素的索引。 |
+| index  | number | 是   | 当前显示元素的索引。 |
 
 ### onAnimationStart<sup>9+</sup>
 
-onAnimationStart(event: OnSwiperAnimationStartCallback)
+onAnimationStart(event: (index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => void)
 
-切换动画开始时触发该回调。
+切换动画开始时触发该回调。参数为动画开始前的index值（不是最终结束动画的index值），多列Swiper时，index为最左侧组件的索引。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -1141,9 +1141,11 @@ onAnimationStart(event: OnSwiperAnimationStartCallback)
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| event  | [OnSwiperAnimationStartCallback](#onswiperanimationstartcallback14) | 是   | 切换动画开始时触发的回调。 |
+| 参数名                    | 类型                                                       | 必填 | 说明                                                         |
+| ------------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| index                     | number                                                     | 是   | 当前显示元素的索引。                                         |
+| targetIndex<sup>10+</sup> | number                                                     | 是   | 切换动画目标元素的索引。                                     |
+| extraInfo<sup>10+</sup>   | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Swiper起始位置的位移，以及离手速度。 |
 
 >**说明：**
 >
@@ -1151,9 +1153,9 @@ onAnimationStart(event: OnSwiperAnimationStartCallback)
 
 ### onAnimationEnd<sup>9+</sup>
 
-onAnimationEnd(event: OnSwiperAnimationEndCallback)
+onAnimationEnd(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
 
-切换动画结束时触发该回调。
+当Swiper切换动效结束时触发，包括动画过程中手势中断，通过SwiperController调用finishAnimation。参数为动画结束后的index值，多列Swiper时，index为最左侧组件的索引。
 
 当Swiper切换动效结束时触发，包括动画过程中手势中断，通过SwiperController调用finishAnimation。
 
@@ -1165,9 +1167,10 @@ onAnimationEnd(event: OnSwiperAnimationEndCallback)
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| event  | [OnSwiperAnimationEndCallback](#onswiperanimationendcallback14) | 是   | 切换动画结束时触发的回调。 |
+| 参数名                  | 类型                                                       | 必填 | 说明                                                         |
+| ----------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| index                   | number                                                     | 是   | 当前显示元素的索引。                                         |
+| extraInfo<sup>10+</sup> | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
 
 >**说明：**
 >
@@ -1175,9 +1178,9 @@ onAnimationEnd(event: OnSwiperAnimationEndCallback)
 
 ### onGestureSwipe<sup>10+</sup>
 
-onGestureSwipe(event: OnSwiperGestureSwipeCallback)
+onGestureSwipe(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
 
-在页面跟手滑动过程中，逐帧触发该回调。
+在页面跟手滑动过程中，逐帧触发该回调。多列Swiper时，index为最左侧组件的索引。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1185,9 +1188,10 @@ onGestureSwipe(event: OnSwiperGestureSwipeCallback)
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| event  | [OnSwiperGestureSwipeCallback](#onswipergestureswipecallback14) | 是   | 在页面跟手滑动过程中，逐帧触发的回调。 |
+| 参数名    | 类型                                                       | 必填 | 说明                                                         |
+| --------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| index     | number                                                     | 是   | 当前显示元素的索引。                                         |
+| extraInfo | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
 
 ### customContentTransition<sup>12+</sup>
 
@@ -1228,66 +1232,6 @@ onContentDidScroll(handler: ContentDidScrollCallback)
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
 | handler | [ContentDidScrollCallback](#contentdidscrollcallback12) | 是 | Swiper滑动时触发的回调。 |
-
-## 回调函数
-
-### OnSwiperAnimationStartCallback<sup>14+</sup>
-
-type OnSwiperAnimationStartCallback = (index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => void
-
-切换动画开始时触发的回调。
-
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名                    | 类型                                                       | 必填 | 说明                                                         |
-| ------------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| index                     | number                                                     | 是   | 当前显示元素的索引。多列Swiper时，index为最左侧组件的索引。                                         |
-| targetIndex<sup>10+</sup> | number                                                     | 是   | 切换动画目标元素的索引。                                     |
-| extraInfo<sup>10+</sup>   | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Swiper起始位置的位移，以及离手速度。 |
-
-### OnSwiperAnimationEndCallback<sup>14+</sup>
-
-type OnSwiperAnimationEndCallback = (index: number, extraInfo: SwiperAnimationEvent) => void
-
-切换动画结束时触发的回调。
-
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名                  | 类型                                                       | 必填 | 说明                                                         |
-| ----------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| index                   | number                                                     | 是   | 当前显示元素的索引。多列Swiper时，index为最左侧组件的索引。                                         |
-| extraInfo<sup>10+</sup> | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
-
-### OnSwiperGestureSwipeCallback<sup>14+</sup>
-
-type OnSwiperGestureSwipeCallback = (index: number, extraInfo: SwiperAnimationEvent) => void
-
-在页面跟手滑动过程中，逐帧触发的回调。
-
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名    | 类型                                                       | 必填 | 说明                                                         |
-| --------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| index     | number                                                     | 是   | 当前显示元素的索引。多列Swiper时，index为最左侧组件的索引。                                         |
-| extraInfo | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
 
 ## SwiperAnimationEvent<sup>10+</sup>对象说明
 
