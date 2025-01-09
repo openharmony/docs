@@ -7,6 +7,16 @@ The Image_NativeModule module provides image processing capabilities, including 
 
 The APIs of this module do not need to be imported through the JS interface. You can directly use the NDK to develop the features.
 
+You can refer to the corresponding development guide and samples based on your development requirements.
+
+- [Using Image_NativeModule to Decode Images](../../media/image/image-source-c.md)
+- [Using Image_NativeModule to Decode Pictures](../../media/image/image-source-picture-c.md)
+- [Using Image_NativeModule to Receive Images](../../media/image/image-receiver-c.md)
+- [Using Image_NativeModule for PixelMap Operations](../../media/image/pixelmap-c.md)
+- [Using Image_NativeModule to Process Image Information](../../media/image/image-info-c.md)
+- [Using Image_NativeModule to Encode Images](../../media/image/image-packer-c.md)
+- [Using Image_NativeModule to Encode Pictures](../../media/image/image-packer-picture-c.md)
+
 **Since**: 12
 
 
@@ -15,387 +25,387 @@ The APIs of this module do not need to be imported through the JS interface. You
 
 ### Files
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [image_common.h](image__common_8h.md) | Declares the common enums and structs used by the image interface. |
-| [image_native.h](image__native_8h.md) | Declares the cropping rectangle, size, and component data of an image. |
-| [image_packer_native.h](image__packer__native_8h.md) | Declares the APIs for image encoding. |
-| [image_receiver_native.h](image__receiver__native_8h.md) | Declares the APIs used to obtain image data from the native layer. |
-| [image_source_native.h](image__source__native_8h.md) | Declares the APIs for image decoding. |
-| [picture_native.h](picture__native_8h.md) | Declares the APIs for obtaining picture data and information. |
-| [pixelmap_native.h](pixelmap__native_8h.md) | Declares the APIs for accessing a PixelMap. |
+| [image_common.h](image__common_8h.md) | Declares the common enums and structs used by the image interface. | 
+| [image_native.h](image__native_8h.md) | Declares the cropping rectangle, size, and component data of an image. | 
+| [image_packer_native.h](image__packer__native_8h.md) | Declares the APIs for image encoding. | 
+| [image_receiver_native.h](image__receiver__native_8h.md) | Declares the APIs used to obtain image data from the native layer. | 
+| [image_source_native.h](image__source__native_8h.md) | Declares the APIs for image decoding. | 
+| [picture_native.h](picture__native_8h.md) | Declares the APIs for obtaining picture data and information. | 
+| [pixelmap_native.h](pixelmap__native_8h.md) | Declares the APIs for accessing a PixelMap. | 
 
 
 ### Structs
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| struct  [Image_Size](_image___size.md) | Describes the image size. |
-| struct  [Image_Region](_image___region.md) | Describes the region of an image to decode. |
-| struct  [Image_String](_image___string.md) | Describes an image string. |
-| struct  [OH_Pixelmap_HdrStaticMetadata](_o_h___pixelmap___hdr_static_metadata.md) | Describes the static metadata values available for the key **HDR_STATIC_METADATA**. |
-| struct  [OH_Pixelmap_HdrDynamicMetadata](_o_h___pixelmap___hdr_dynamic_metadata.md) | Describes the dynamic metadata values available for the key **DR_DYNAMIC_METADATA**. |
-| struct  [OH_Pixelmap_HdrGainmapMetadata](_o_h___pixelmap___hdr_gainmap_metadata.md) | Describes the gain map metadata values available for the key **HDR_GAINMAP_METADATA**. For details, see ISO 21496-1. |
-| struct  [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) | Describes the HDR metadata values used by the PixelMap and available for the key **OH_Pixelmap_HdrMetadataKey**. |
+| struct  [Image_Size](_image___size.md) | Describes the image size. | 
+| struct  [Image_Region](_image___region.md) | Describes the region of an image to decode. | 
+| struct  [Image_String](_image___string.md) | Describes an image string. | 
+| struct  [OH_Pixelmap_HdrStaticMetadata](_o_h___pixelmap___hdr_static_metadata.md) | Describes the static metadata values available for the key **HDR_STATIC_METADATA**. | 
+| struct  [OH_Pixelmap_HdrDynamicMetadata](_o_h___pixelmap___hdr_dynamic_metadata.md) | Describes the dynamic metadata values available for the key **DR_DYNAMIC_METADATA**. | 
+| struct  [OH_Pixelmap_HdrGainmapMetadata](_o_h___pixelmap___hdr_gainmap_metadata.md) | Describes the gain map metadata values available for the key **HDR_GAINMAP_METADATA**. For details, see ISO 21496-1. | 
+| struct  [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) | Describes the HDR metadata values used by the PixelMap and available for the key **OH_Pixelmap_HdrMetadataKey**. | 
 
 
 ### Types
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| typedef struct [Image_Size](_image___size.md) [Image_Size](#image_size) | Defines a struct for the image size. |
-| typedef struct [Image_Region](_image___region.md) [Image_Region](#image_region) | Defines a struct for the region of an image to decode. |
-| typedef struct [OH_PictureMetadata](#oh_picturemetadata) [OH_PictureMetadata](#oh_picturemetadata) | Defines a struct for the picture metadata. |
-| typedef struct [Image_String](_image___string.md) [Image_String](#image_string) | Defines a struct for an image string. |
-| typedef struct [Image_String](_image___string.md) [Image_MimeType](#image_mimetype) | Defines a struct for an image format type. |
-| typedef struct [OH_ImageNative](#oh_imagenative) [OH_ImageNative](#oh_imagenative) | Defines the alias for an image object at the native layer. |
-| typedef struct [OH_ImagePackerNative](#oh_imagepackernative) [OH_ImagePackerNative](#oh_imagepackernative) | Defines a struct for the image packer, which is used to perform operations related to an image packer. |
-| typedef struct [OH_PackingOptions](#oh_packingoptions) [OH_PackingOptions](#oh_packingoptions) | Defines a struct for image encoding parameters. |
-| typedef struct [OH_ImageReceiverNative](#oh_imagereceivernative) [OH_ImageReceiverNative](#oh_imagereceivernative) | Defines the data type name of the image receiver at the native layer. |
-| typedef struct [OH_ImageReceiverOptions](#oh_imagereceiveroptions) [OH_ImageReceiverOptions](#oh_imagereceiveroptions) | Defines the data type name of the image receiver options. |
-| typedef void(\* [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver) | Defines the callbacks for the image receiver at the native layer. |
-| typedef struct [OH_ImageSourceNative](#oh_imagesourcenative) [OH_ImageSourceNative](#oh_imagesourcenative) | Defines a struct for the image source, which is used to perform operations related to an image source. |
-| typedef struct [OH_ImageSource_Info](#oh_imagesource_info) [OH_ImageSource_Info](#oh_imagesource_info) | Defines a struct for the image source information, which is created by calling [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create).|
-| typedef struct [OH_DecodingOptions](#oh_decodingoptions) [OH_DecodingOptions](#oh_decodingoptions) | Defines a struct for decoding parameters, which are used in [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap). |
-| typedef struct [OH_PictureNative](#oh_picturenative) [OH_PictureNative](#oh_picturenative) | Defines a struct for the picture, which is used to perform operations related to the picture. |
-| typedef struct [OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) [OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) | Defines a struct for the auxiliary picture, which is used to perform operations related to the auxiliary picture. |
-| typedef struct [OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) [OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) | Defines a struct for the auxiliary picture information, which is used to perform operations related to the auxiliary picture information. |
-| typedef struct [OH_PixelmapNative](#oh_pixelmapnative) [OH_PixelmapNative](#oh_pixelmapnative) | Defines a struct for the PixelMap, which is used to perform operations related to a PixelMap.|
-| typedef struct [OH_NativeBuffer](#oh_nativebuffer) [OH_NativeBuffer](#oh_nativebuffer) | Defines a struct for the native buffer, which is used to perform operations related to the native buffer.|
-| typedef struct [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) | Defines a struct for the native color space manager, which is used to perform operations related to the native color space manager. |
-| typedef struct [OH_Pixelmap_HdrStaticMetadata](_o_h___pixelmap___hdr_static_metadata.md) [OH_Pixelmap_HdrStaticMetadata](#oh_pixelmap_hdrstaticmetadata) | Defines a struct for the static metadata values available for the key **HDR_STATIC_METADATA**. |
-| typedef struct [OH_Pixelmap_HdrDynamicMetadata](_o_h___pixelmap___hdr_dynamic_metadata.md) [OH_Pixelmap_HdrDynamicMetadata](#oh_pixelmap_hdrdynamicmetadata) | Defines a struct for the dynamic metadata values available for the key **DR_DYNAMIC_METADATA**. |
-| typedef struct [OH_Pixelmap_HdrGainmapMetadata](_o_h___pixelmap___hdr_gainmap_metadata.md) [OH_Pixelmap_HdrGainmapMetadata](#oh_pixelmap_hdrgainmapmetadata) | Defines a struct for the gain map metadata values available for the key **HDR_GAINMAP_METADATA**. For details, see ISO 21496-1. |
-| typedef struct [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) [OH_Pixelmap_HdrMetadataValue](#oh_pixelmap_hdrmetadatavalue) | Defines a struct for the HDR metadata values used by the PixelMap and available for the key **OH_Pixelmap_HdrMetadataKey**. |
-| typedef struct [OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) [OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) | Defines a struct for the initialization parameters.|
-| typedef struct [OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) [OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) | Defines a struct for the image information.|
+| typedef struct [Image_Size](_image___size.md) [Image_Size](#image_size) | Defines a struct for the image size. | 
+| typedef struct [Image_Region](_image___region.md) [Image_Region](#image_region) | Defines a struct for the region of an image to decode. | 
+| typedef struct [OH_PictureMetadata](#oh_picturemetadata) [OH_PictureMetadata](#oh_picturemetadata) | Defines a struct for the picture metadata. | 
+| typedef struct [Image_String](_image___string.md) [Image_String](#image_string) | Defines a struct for an image string. | 
+| typedef struct [Image_String](_image___string.md) [Image_MimeType](#image_mimetype) | Defines a struct for an image format type. | 
+| typedef struct [OH_ImageNative](#oh_imagenative) [OH_ImageNative](#oh_imagenative) | Defines the alias for an image object at the native layer. | 
+| typedef struct [OH_ImagePackerNative](#oh_imagepackernative) [OH_ImagePackerNative](#oh_imagepackernative) | Defines a struct for the image packer, which is used to perform operations related to an image packer. | 
+| typedef struct [OH_PackingOptions](#oh_packingoptions) [OH_PackingOptions](#oh_packingoptions) | Defines a struct for image encoding parameters. | 
+| typedef struct [OH_ImageReceiverNative](#oh_imagereceivernative) [OH_ImageReceiverNative](#oh_imagereceivernative) | Defines the data type name of the image receiver at the native layer. | 
+| typedef struct [OH_ImageReceiverOptions](#oh_imagereceiveroptions) [OH_ImageReceiverOptions](#oh_imagereceiveroptions) | Defines the data type name of the image receiver options. | 
+| typedef void(\* [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver) | Defines the callbacks for the image receiver at the native layer. | 
+| typedef struct [OH_ImageSourceNative](#oh_imagesourcenative) [OH_ImageSourceNative](#oh_imagesourcenative) | Defines a struct for the image source, which is used to perform operations related to an image source. | 
+| typedef struct [OH_ImageSource_Info](#oh_imagesource_info) [OH_ImageSource_Info](#oh_imagesource_info) | Defines a struct for the image source information, which is created by calling [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create).| 
+| typedef struct [OH_DecodingOptions](#oh_decodingoptions) [OH_DecodingOptions](#oh_decodingoptions) | Defines a struct for decoding parameters, which are used in [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap). | 
+| typedef struct [OH_PictureNative](#oh_picturenative) [OH_PictureNative](#oh_picturenative) | Defines a struct for the picture, which is used to perform operations related to the picture. | 
+| typedef struct [OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) [OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) | Defines a struct for the auxiliary picture, which is used to perform operations related to the auxiliary picture. | 
+| typedef struct [OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) [OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) | Defines a struct for the auxiliary picture information, which is used to perform operations related to the auxiliary picture information. | 
+| typedef struct [OH_PixelmapNative](#oh_pixelmapnative) [OH_PixelmapNative](#oh_pixelmapnative) | Defines a struct for the PixelMap, which is used to perform operations related to a PixelMap.| 
+| typedef struct [OH_NativeBuffer](#oh_nativebuffer) [OH_NativeBuffer](#oh_nativebuffer) | Defines a struct for the native buffer, which is used to perform operations related to the native buffer.| 
+| typedef struct [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) | Defines a struct for the native color space manager, which is used to perform operations related to the native color space manager. | 
+| typedef struct [OH_Pixelmap_HdrStaticMetadata](_o_h___pixelmap___hdr_static_metadata.md) [OH_Pixelmap_HdrStaticMetadata](#oh_pixelmap_hdrstaticmetadata) | Defines a struct for the static metadata values available for the key **HDR_STATIC_METADATA**. | 
+| typedef struct [OH_Pixelmap_HdrDynamicMetadata](_o_h___pixelmap___hdr_dynamic_metadata.md) [OH_Pixelmap_HdrDynamicMetadata](#oh_pixelmap_hdrdynamicmetadata) | Defines a struct for the dynamic metadata values available for the key **DR_DYNAMIC_METADATA**. | 
+| typedef struct [OH_Pixelmap_HdrGainmapMetadata](_o_h___pixelmap___hdr_gainmap_metadata.md) [OH_Pixelmap_HdrGainmapMetadata](#oh_pixelmap_hdrgainmapmetadata) | Defines a struct for the gain map metadata values available for the key **HDR_GAINMAP_METADATA**. For details, see ISO 21496-1. | 
+| typedef struct [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) [OH_Pixelmap_HdrMetadataValue](#oh_pixelmap_hdrmetadatavalue) | Defines a struct for the HDR metadata values used by the PixelMap and available for the key **OH_Pixelmap_HdrMetadataKey**. | 
+| typedef struct [OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) [OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) | Defines a struct for the initialization parameters.| 
+| typedef struct [OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) [OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) | Defines a struct for the image information.| 
 
 
 ### Enums
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [Image_ErrorCode](#image_errorcode) {<br>IMAGE_SUCCESS = 0, <br>IMAGE_BAD_PARAMETER = 401, <br>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, <br>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br>IMAGE_TOO_LARGE = 7600103, <br>IMAGE_DMA_NOT_EXIST = 7600173, <br>IMAGE_DMA_OPERATION_FAILED = 7600174, <br>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br>IMAGE_UNSUPPORTED_METADATA = 7600202, <br>IMAGE_UNSUPPORTED_CONVERSION = 7600203, <br>IMAGE_INVALID_REGION = 7600204, <br>IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205, <br>IMAGE_ALLOC_FAILED = 7600301,<br>IMAGE_COPY_FAILED = 7600302, <br>IMAGE_UNKNOWN_ERROR = 7600901, <br>IMAGE_BAD_SOURCE = 7700101, <br>IMAGE_DECODE_FAILED = 7700301,<br>IMAGE_ENCODE_FAILED = 7800301<br>} | Enumerates the error codes. |
-| [Image_MetadataType](#image_metadatatype-1) { EXIF_METADATA = 1, FRAGMENT_METADATA = 2 } | Enumerates the metadata types. |
-| [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range) {<br>IMAGE_PACKER_DYNAMIC_RANGE_AUTO = 0,<br>IMAGE_PACKER_DYNAMIC_RANGE_SDR = 1 } | Enumerates the desired dynamic range for encoding.|
-| [IMAGE_DYNAMIC_RANGE](#image_dynamic_range) {<br>IMAGE_DYNAMIC_RANGE_AUTO = 0,<br>IMAGE_DYNAMIC_RANGE_SDR = 1,<br>IMAGE_DYNAMIC_RANGE_HDR = 2 } | Enumerates the desired dynamic range for decoding.|
-| [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) {<br>AUXILIARY_PICTURE_TYPE_GAINMAP = 1, AUXILIARY_PICTURE_TYPE_DEPTH_MAP = 2, AUXILIARY_PICTURE_TYPE_UNREFOCUS_MAP = 3, AUXILIARY_PICTURE_TYPE_LINEAR_MAP = 4,<br>AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP = 5<br>} | Enumerates the auxiliary picture types. |
-| [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2 } | Enumerates the alpha types of a PixelMap.|
-| [PIXEL_FORMAT](#pixel_format) {<br>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br>PIXEL_FORMAT_NV12 = 9<br>} | Enumerates the image pixel formats.|
-| [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) { <br>OH_PixelmapNative_AntiAliasing_NONE = 0, <br>OH_PixelmapNative_AntiAliasing_LOW = 1, <br>OH_PixelmapNative_AntiAliasing_MEDIUM = 2, <br>OH_PixelmapNative_AntiAliasing_HIGH = 3 <br>} | Enumerates the antialiasing levels used for scaling PixelMaps. |
-| [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) { <br>HDR_METADATA_TYPE = 0, <br>HDR_STATIC_METADATA = 1, <br>HDR_DYNAMIC_METADATA = 2, <br>HDR_GAINMAP_METADATA = 3 } | Enumerates the keys of the HDR related metadata information used by the PixelMap. It is used in [OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata) and [OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata). |
-| [OH_Pixelmap_HdrMetadataType](#oh_pixelmap_hdrmetadatatype) { <br>HDR_METADATA_TYPE_NONE = 0, <br>HDR_METADATA_TYPE_BASE = 1, <br>HDR_METADATA_TYPE_GAINMAP = 2, <br>HDR_METADATA_TYPE_ALTERNATE = 3 } | Enumerates the HDR metadata types, which are the values of **HDR_METADATA_TYPE**. |
+| [Image_ErrorCode](#image_errorcode) {<br/>IMAGE_SUCCESS = 0, <br/>IMAGE_BAD_PARAMETER = 401, <br/>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, <br/>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br/>IMAGE_TOO_LARGE = 7600103, <br/>IMAGE_DMA_NOT_EXIST = 7600173, <br/>IMAGE_DMA_OPERATION_FAILED = 7600174, <br/>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br/>IMAGE_UNSUPPORTED_METADATA = 7600202, <br/>IMAGE_UNSUPPORTED_CONVERSION = 7600203, <br/>IMAGE_INVALID_REGION = 7600204, <br/>IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205, <br/>IMAGE_ALLOC_FAILED = 7600301,<br/>IMAGE_COPY_FAILED = 7600302, <br/>IMAGE_UNKNOWN_ERROR = 7600901, <br/>IMAGE_BAD_SOURCE = 7700101, <br/>IMAGE_DECODE_FAILED = 7700301,<br/>IMAGE_ENCODE_FAILED = 7800301<br/>} | Enumerates the error codes.| 
+| [Image_MetadataType](#image_metadatatype-1) { EXIF_METADATA = 1, FRAGMENT_METADATA = 2 } | Enumerates the metadata types. | 
+| [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range) {<br>IMAGE_PACKER_DYNAMIC_RANGE_AUTO = 0,<br>IMAGE_PACKER_DYNAMIC_RANGE_SDR = 1 } | Enumerates the desired dynamic range for encoding.| 
+| [IMAGE_DYNAMIC_RANGE](#image_dynamic_range) {<br>IMAGE_DYNAMIC_RANGE_AUTO = 0,<br>IMAGE_DYNAMIC_RANGE_SDR = 1,<br>IMAGE_DYNAMIC_RANGE_HDR = 2 } | Enumerates the desired dynamic range for decoding.| 
+| [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) {<br>AUXILIARY_PICTURE_TYPE_GAINMAP = 1, AUXILIARY_PICTURE_TYPE_DEPTH_MAP = 2, AUXILIARY_PICTURE_TYPE_UNREFOCUS_MAP = 3, AUXILIARY_PICTURE_TYPE_LINEAR_MAP = 4,<br>AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP = 5<br>} | Enumerates the auxiliary picture types. | 
+| [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2 } | Enumerates the alpha types of a PixelMap.| 
+| [PIXEL_FORMAT](#pixel_format) {<br>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br>PIXEL_FORMAT_NV12 = 9<br>} | Enumerates the image pixel formats.| 
+| [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) { <br>OH_PixelmapNative_AntiAliasing_NONE = 0, <br>OH_PixelmapNative_AntiAliasing_LOW = 1, <br>OH_PixelmapNative_AntiAliasing_MEDIUM = 2, <br>OH_PixelmapNative_AntiAliasing_HIGH = 3 <br>} | Enumerates the anti-aliasing levels used for scaling PixelMaps. | 
+| [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) { <br>HDR_METADATA_TYPE = 0, <br>HDR_STATIC_METADATA = 1, <br>HDR_DYNAMIC_METADATA = 2, <br>HDR_GAINMAP_METADATA = 3 } | Enumerates the keys of the HDR related metadata information used by the PixelMap. It is used in [OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata) and [OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata). | 
+| [OH_Pixelmap_HdrMetadataType](#oh_pixelmap_hdrmetadatatype) { <br>HDR_METADATA_TYPE_NONE = 0, <br>HDR_METADATA_TYPE_BASE = 1, <br>HDR_METADATA_TYPE_GAINMAP = 2, <br>HDR_METADATA_TYPE_ALTERNATE = 3 } | Enumerates the HDR metadata types, which are the values of **HDR_METADATA_TYPE**. | 
 
 
 ### Functions
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [Image_ErrorCode](#image_errorcode) [OH_PictureMetadata_Create](#oh_picturemetadata_create) ([Image_MetadataType](#image_metadatatype) metadataType, [OH_PictureMetadata](#oh_picturemetadata) \*\*metadata) | Creates the pointer to an **OH_PictureMetadata** struct. |
-| [Image_ErrorCode](#image_errorcode) [OH_PictureMetadata_GetProperty](#oh_picturemetadata_getproperty) ([OH_PictureMetadata](#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | Obtains a property of metadata based on the key. |
-| [Image_ErrorCode](#image_errorcode) [OH_PictureMetadata_SetProperty](#oh_picturemetadata_setproperty) ([OH_PictureMetadata](#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | Sets a property of metadata based on the key. |
-| [Image_ErrorCode](#image_errorcode) [OH_PictureMetadata_Release](#oh_picturemetadata_release) ([OH_PictureMetadata](#oh_picturemetadata) \*metadata) | Releases the pointer to an **OH_PictureMetadata** struct. |
-| [Image_ErrorCode](#image_errorcode) [OH_PictureMetadata_Clone](#oh_picturemetadata_clone) ([OH_PictureMetadata](#oh_picturemetadata) \*oldMetadata, [OH_PictureMetadata](#oh_picturemetadata) \*\*newMetadata) | Clones metadata. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetImageSize](#oh_imagenative_getimagesize) ([OH_ImageNative](#oh_imagenative) \*image, [Image_Size](_image___size.md) \*size) | Obtains the [Image_Size](_image___size.md) information of a native [OH_ImageNative](#oh_imagenative) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetComponentTypes](#oh_imagenative_getcomponenttypes) ([OH_ImageNative](#oh_imagenative) \*image, uint32_t \*\*types, size_t \*typeSize) | Obtains the component types of a native [OH_ImageNative](#oh_imagenative) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetByteBuffer](#oh_imagenative_getbytebuffer) ([OH_ImageNative](#oh_imagenative) \*image, uint32_t componentType, OH_NativeBuffer \*\*nativeBuffer) | Obtains the buffer corresponding to a component type in a native [OH_ImageNative](#oh_imagenative) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetBufferSize](#oh_imagenative_getbuffersize) ([OH_ImageNative](#oh_imagenative) \*image, uint32_t componentType, size_t \*size) | Obtains the size of the buffer corresponding to a component type in a native [OH_ImageNative](#oh_imagenative) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetRowStride](#oh_imagenative_getrowstride) ([OH_ImageNative](#oh_imagenative) \*image, uint32_t componentType, int32_t \*rowStride) | Obtains the row stride corresponding to a component type in a native [OH_ImageNative](#oh_imagenative) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetPixelStride](#oh_imagenative_getpixelstride) ([OH_ImageNative](#oh_imagenative) \*image, uint32_t componentType, int32_t \*pixelStride) | Obtains the pixel stride corresponding to a component type in a native [OH_ImageNative](#oh_imagenative) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetTimestamp](#oh_imagenative_gettimestamp) ([OH_ImageNative](#oh_imagenative) \*image, int64_t \*timestamp) | Obtains the timestamp of a native [OH_ImageNative](#oh_imagenative) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_Release](#oh_imagenative_release) ([OH_ImageNative](#oh_imagenative) \*image) | Releases a native [OH_ImageNative](#oh_imagenative) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_Create](#oh_packingoptions_create) ([OH_PackingOptions](#oh_packingoptions) \*\*options) | Creates the pointer to an **OH_PackingOptions** struct. |
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_GetMimeType](#oh_packingoptions_getmimetype) ([OH_PackingOptions](#oh_packingoptions) \*options, [Image_MimeType](#image_mimetype) \*format) | Obtains the MIME type.|
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_SetMimeType](#oh_packingoptions_setmimetype) ([OH_PackingOptions](#oh_packingoptions) \*options, [Image_MimeType](#image_mimetype) \*format) | Sets the MIME type.|
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_GetQuality](#oh_packingoptions_getquality) ([OH_PackingOptions](#oh_packingoptions) \*options, uint32_t \*quality) | Obtains the encoding quality. |
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_SetQuality](#oh_packingoptions_setquality) ([OH_PackingOptions](#oh_packingoptions) \*options, uint32_t quality) | Sets the encoding quality. |
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_GetDesiredDynamicRange](#oh_packingoptions_getdesireddynamicrange) ([OH_PackingOptions](#oh_packingoptions) \*options, int32_t \*desiredDynamicRange) | Obtains the desired dynamic range during encoding. |
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_SetDesiredDynamicRange](#oh_packingoptions_setdesireddynamicrange) ([OH_PackingOptions](#oh_packingoptions) \*options, int32_t desiredDynamicRange) | Sets the desired dynamic range during encoding. |
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_Release](#oh_packingoptions_release) ([OH_PackingOptions](#oh_packingoptions) \*options) | Releases the pointer to an **OH_PackingOptions** struct. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_Create](#oh_imagepackernative_create) ([OH_ImagePackerNative](#oh_imagepackernative) \*\*imagePacker) | Creates the pointer to an **OH_ImagePackerNative** object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromImageSource](#oh_imagepackernative_packtodatafromimagesource) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_ImageSourceNative](#oh_imagesourcenative) \*imageSource, uint8_t \*outData, size_t \*size) | Encodes an image source into data in a given format. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromPixelmap](#oh_imagepackernative_packtodatafrompixelmap) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*outData, size_t \*size) | Encodes a PixelMap into data in a given format. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromPicture](#oh_imagepackernative_packtodatafrompicture) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PictureNative](#oh_picturenative) \*picture, uint8_t \*outData, size_t \*size) | Encodes a picture into data in a given format. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromImageSource](#oh_imagepackernative_packtofilefromimagesource) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_ImageSourceNative](#oh_imagesourcenative) \*imageSource, int32_t fd) | Encodes an image source into a file. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromPixelmap](#oh_imagepackernative_packtofilefrompixelmap) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, int32_t fd) | Encodes a PixelMap into a file. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromPicture](#oh_imagepackernative_packtofilefrompicture) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PictureNative](#oh_picturenative) \*picture, int32_t fd) | Encodes a picture into a file. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_Release](#oh_imagepackernative_release) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker) | Releases the pointer to an **OH_ImagePackerNative** object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_Create](#oh_imagereceiveroptions_create) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*\*options) | Creates an **OH_ImageReceiverOptions** object at the application layer. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_GetSize](#oh_imagereceiveroptions_getsize) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, [Image_Size](_image___size.md) \*size) | Obtains the [Image_Size](_image___size.md) information of an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_SetSize](#oh_imagereceiveroptions_setsize) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, [Image_Size](_image___size.md) size) | Sets the [Image_Size](_image___size.md) information for an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_GetCapacity](#oh_imagereceiveroptions_getcapacity) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, int32_t \*capacity) | Obtains the capacity of an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_SetCapacity](#oh_imagereceiveroptions_setcapacity) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, int32_t capacity) | Sets the capacity for an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_Release](#oh_imagereceiveroptions_release) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options) | Releases an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_Create](#oh_imagereceivernative_create) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, [OH_ImageReceiverNative](#oh_imagereceivernative) \*\*receiver) | Creates an **OH_ImageReceiverNative** object at the application layer. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, uint64_t \*surfaceId) | Obtains the receiver ID through an [OH_ImageReceiverNative](#oh_imagereceivernative) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_ReadLatestImage](#oh_imagereceivernative_readlatestimage) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageNative](#oh_imagenative) \*\*image) | Obtains the latest image through an [OH_ImageReceiverNative](#oh_imagereceivernative) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_ReadNextImage](#oh_imagereceivernative_readnextimage) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageNative](#oh_imagenative) \*\*image) | Obtains the next image through an [OH_ImageReceiverNative](#oh_imagereceivernative) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_On](#oh_imagereceivernative_on) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback) callback) | Registers the callback defined in [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback). |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_Off](#oh_imagereceivernative_off) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver) | Unregisters the callback defined in [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback). |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetSize](#oh_imagereceivernative_getsize) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [Image_Size](_image___size.md) \*size) | Obtains the size of an image receiver, which is an [OH_ImageReceiverNative](#oh_imagereceivernative) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetCapacity](#oh_imagereceivernative_getcapacity) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, int32_t \*capacity) | Obtains the capacity of an image receiver, which is an [OH_ImageReceiverNative](#oh_imagereceivernative) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_Release](#oh_imagereceivernative_release) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver) | Releases a native [OH_ImageReceiverNative](#oh_imagereceivernative) object. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create) ([OH_ImageSource_Info](#oh_imagesource_info) \*\*info) | Creates the pointer to an **OH_ImageSource_Info** struct. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceInfo_GetWidth](#oh_imagesourceinfo_getwidth) ([OH_ImageSource_Info](#oh_imagesource_info) \*info, uint32_t \*width) | Obtains the image width. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceInfo_GetHeight](#oh_imagesourceinfo_getheight) ([OH_ImageSource_Info](#oh_imagesource_info) \*info, uint32_t \*height) | Obtains the image height. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceInfo_GetDynamicRange](#oh_imagesourceinfo_getdynamicrange) ([OH_ImageSource_Info](#oh_imagesource_info) \*info, bool \*isHdr) | Obtains the dynamic range of an image. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceInfo_Release](#oh_imagesourceinfo_release) ([OH_ImageSource_Info](#oh_imagesource_info) \*info) | Releases the pointer to an **OH_ImageSource_Info** struct. |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_Create](#oh_decodingoptions_create) ([OH_DecodingOptions](#oh_decodingoptions) \*\*options) | Creates the pointer to an **OH_DecodingOptions** struct. |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetPixelFormat](#oh_decodingoptions_getpixelformat) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t \*pixelFormat) | Obtains the pixel format. |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetPixelFormat](#oh_decodingoptions_setpixelformat) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t pixelFormat) | Sets the pixel format. |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetIndex](#oh_decodingoptions_getindex) ([OH_DecodingOptions](#oh_decodingoptions) \*options, uint32_t \*index) | Obtains the index of an image. |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetIndex](#oh_decodingoptions_setindex) ([OH_DecodingOptions](#oh_decodingoptions) \*options, uint32_t index) | Sets the index for an image. |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetRotate](#oh_decodingoptions_getrotate) ([OH_DecodingOptions](#oh_decodingoptions) \*options, float \*rotate) | Obtains the rotation degree. |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetRotate](#oh_decodingoptions_setrotate) ([OH_DecodingOptions](#oh_decodingoptions) \*options, float rotate) | Sets the rotation angle. |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetDesiredSize](#oh_decodingoptions_getdesiredsize) ([OH_DecodingOptions](#oh_decodingoptions) \*options, [Image_Size](_image___size.md) \*desiredSize) | Obtains the desired output size. |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetDesiredSize](#oh_decodingoptions_setdesiredsize) ([OH_DecodingOptions](#oh_decodingoptions) \*options, [Image_Size](_image___size.md) \*desiredSize) | Sets the desired output size. |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetDesiredRegion](#oh_decodingoptions_getdesiredregion) ([OH_DecodingOptions](#oh_decodingoptions) \*options, [Image_Region](_image___region.md) \*desiredRegion) | Obtains the region to decode. |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetDesiredRegion](#oh_decodingoptions_setdesiredregion) ([OH_DecodingOptions](#oh_decodingoptions) \*options, [Image_Region](_image___region.md) \*desiredRegion) | Sets the region to decode. |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetDesiredDynamicRange](#oh_decodingoptions_getdesireddynamicrange) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t \*desiredDynamicRange) | Obtains the desired dynamic range configured during decoding. |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetDesiredDynamicRange](#oh_decodingoptions_setdesireddynamicrange) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t desiredDynamicRange) | Sets the desired dynamic range during decoding. |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_Release](#oh_decodingoptions_release) ([OH_DecodingOptions](#oh_decodingoptions) \*options) | Releases the pointer to an **OH_DecodingOptions** struct. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromUri](#oh_imagesourcenative_createfromuri) (char \*uri, size_t uriSize, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object based on a URI. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromFd](#oh_imagesourcenative_createfromfd) (int32_t fd, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object based on a file descriptor. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromData](#oh_imagesourcenative_createfromdata) (uint8_t \*data, size_t dataSize, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object based on buffer data. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromRawFile](#oh_imagesourcenative_createfromrawfile) (RawFileDescriptor \*rawFile, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object by using the raw file descriptor of an image resource file. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates the pointer to an **OH_PixelmapNative** object based on image decoding parameters. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmapList](#oh_imagesourcenative_createpixelmaplist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, OH_PixelmapNative \*resVecPixMap[], size_t size) | Creates an array of **OH_PixelmapNative** objects based on image decoding parameters. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePicture](#oh_imagesourcenative_createpicture) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, OH_DecodingOptionsForPicture \*options, [OH_PictureNative](#oh_picturenative) \*\*picture) | Creates the pointer to an **OH_PictureNative** object based on image decoding parameters. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetDelayTimeList](#oh_imagesourcenative_getdelaytimelist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, int32_t \*delayTimeList, size_t size) | Obtains the image delay time list. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetImageInfo](#oh_imagesourcenative_getimageinfo) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, int32_t index, [OH_ImageSource_Info](#oh_imagesource_info) \*info) | Obtains the information about an image with a given index. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetImageProperty](#oh_imagesourcenative_getimageproperty) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | Obtains the value of an image property. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_ModifyImageProperty](#oh_imagesourcenative_modifyimageproperty) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | Modifies the value of an image property. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetFrameCount](#oh_imagesourcenative_getframecount) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, uint32_t \*frameCount) | Obtains the number of image frames. |
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_Release](#oh_imagesourcenative_release) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source) | Releases the pointer to an **OH_ImageSourceNative** object. |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_Create](#oh_decodingoptionsforpicture_create) (OH_DecodingOptionsForPicture \*\*options) | Creates the pointer to an **OH_DecodingOptionsForPicture** struct. |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_GetDesiredAuxiliaryPictures](#oh_decodingoptionsforpicture_getdesiredauxiliarypictures) (OH_DecodingOptionsForPicture \*options, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) \*\*desiredAuxiliaryPictures, size_t \*length) | Obtains desired auxiliary pictures in the decoding parameters (auxiliary pictures contained in **picture** expected to be decoded.) |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures](#oh_decodingoptionsforpicture_setdesiredauxiliarypictures) (OH_DecodingOptionsForPicture \*options, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) \*desiredAuxiliaryPictures, size_t length) | Sets desired auxiliary pictures in the decoding parameters. |
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_Release](#oh_decodingoptionsforpicture_release) (OH_DecodingOptionsForPicture \*options) | Releases the pointer to an **OH_DecodingOptionsForPicture** struct. |
-| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_CreatePicture](#oh_picturenative_createpicture) (OH_PixelmapNative \*mainPixelmap, [OH_PictureNative](#oh_picturenative) \*\*picture) | Creates the pointer to an **OH_PictureNative** object. |
-| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_GetMainPixelmap](#oh_picturenative_getmainpixelmap) ([OH_PictureNative](#oh_picturenative) \*picture, OH_PixelmapNative \*\*mainPixelmap) | Obtains the pointer to an **OH_PixelmapNative** object of a main picture. |
-| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_GetHdrComposedPixelmap](#oh_picturenative_gethdrcomposedpixelmap) ([OH_PictureNative](#oh_picturenative) \*picture, OH_PixelmapNative \*\*hdrPixelmap) | Obtains the pointer to an **OH_PixelmapNative** object of an HDR picture. |
-| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_GetGainmapPixelmap](#oh_picturenative_getgainmappixelmap) ([OH_PictureNative](#oh_picturenative) \*picture, OH_PixelmapNative \*\*gainmapPixelmap) | Obtains the pointer to an **OH_PixelmapNative** object of a gain map. |
-| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_SetAuxiliaryPicture](#oh_picturenative_setauxiliarypicture) ([OH_PictureNative](#oh_picturenative) \*picture, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) type, [OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*auxiliaryPicture) | Sets an auxiliary picture. |
-| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_GetAuxiliaryPicture](#oh_picturenative_getauxiliarypicture) ([OH_PictureNative](#oh_picturenative) \*picture, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) type, [OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*\*auxiliaryPicture) | Obtains an auxiliary picture by type. |
-| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_GetMetadata](#oh_picturenative_getmetadata) ([OH_PictureNative](#oh_picturenative) \*picture, [Image_MetadataType](#image_metadatatype) metadataType, [OH_PictureMetadata](#oh_picturemetadata) \*\*metadata) | Obtains the metadata of a main picture. |
-| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_SetMetadata](#oh_picturenative_setmetadata) ([OH_PictureNative](#oh_picturenative) \*picture, [Image_MetadataType](#image_metadatatype) metadataType, [OH_PictureMetadata](#oh_picturemetadata) \*metadata) | Sets the metadata for a main picture. |
-| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_Release](#oh_picturenative_release) ([OH_PictureNative](#oh_picturenative) \*picture) | Releases the pointer to an **OH_PictureNative** object. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_Create](#oh_auxiliarypicturenative_create) (uint8_t \*data, size_t dataLength, [Image_Size](_image___size.md) \*size, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) type, [OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*\*auxiliaryPicture) | Creates the pointer to an **OH_AuxiliaryPictureNative** object. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_WritePixels](#oh_auxiliarypicturenative_writepixels) ([OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*auxiliaryPicture, uint8_t \*source, size_t bufferSize) | Reads the pixels in the buffer and writes the result to an auxiliary picture. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_ReadPixels](#oh_auxiliarypicturenative_readpixels) ([OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*auxiliaryPicture, uint8_t \*destination, size_t \*bufferSize) | Reads the pixels of an auxiliary picture and writes the result to the buffer. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_GetType](#oh_auxiliarypicturenative_gettype) ([OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*auxiliaryPicture, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) \*type) | Obtains the type of an auxiliary picture. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_GetInfo](#oh_auxiliarypicturenative_getinfo) ([OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*auxiliaryPicture, [OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*\*info) | Obtains the auxiliary picture information. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_SetInfo](#oh_auxiliarypicturenative_setinfo) ([OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*auxiliaryPicture, [OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info) | Sets the auxiliary picture information. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_GetMetadata](#oh_auxiliarypicturenative_getmetadata) ([OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*auxiliaryPicture, [Image_MetadataType](#image_metadatatype) metadataType, [OH_PictureMetadata](#oh_picturemetadata) \*\*metadata) | Obtains the metadata of an auxiliary picture. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_SetMetadata](#oh_auxiliarypicturenative_setmetadata) ([OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*auxiliaryPicture, [Image_MetadataType](#image_metadatatype) metadataType, [OH_PictureMetadata](#oh_picturemetadata) \*metadata) | Sets the metadata for an auxiliary picture. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_Release](#oh_auxiliarypicturenative_release) ([OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*picture) | Releases the pointer to an **OH_AuxiliaryPictureNative** object. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_Create](#oh_auxiliarypictureinfo_create) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*\*info) | Creates an **OH_AuxiliaryPictureInfo** object. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_GetType](#oh_auxiliarypictureinfo_gettype) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) \*type) | Obtains the auxiliary picture type from the auxiliary picture information. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_SetType](#oh_auxiliarypictureinfo_settype) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) type) | Sets the auxiliary picture type in the auxiliary picture information. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_GetSize](#oh_auxiliarypictureinfo_getsize) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info, [Image_Size](_image___size.md) \*size) | Obtains the size of an auxiliary picture. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_SetSize](#oh_auxiliarypictureinfo_setsize) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info, [Image_Size](_image___size.md) \*size) | Sets the size of an auxiliary picture. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_GetRowStride](#oh_auxiliarypictureinfo_getrowstride) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info, uint32_t \*rowStride) | Obtains the row stride of an auxiliary picture. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_SetRowStride](#oh_auxiliarypictureinfo_setrowstride) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info, uint32_t rowStride) | Sets the row stride of an auxiliary picture. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_GetPixelFormat](#oh_auxiliarypictureinfo_getpixelformat) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info, PIXEL_FORMAT \*pixelFormat) | Obtains the pixel format of an auxiliary picture. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_SetPixelFormat](#oh_auxiliarypictureinfo_setpixelformat) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info, PIXEL_FORMAT pixelFormat) | Sets the pixel format of an auxiliary picture. |
-| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_Release](#oh_auxiliarypictureinfo_release) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info) | Releases the pointer to an **OH_AuxiliaryPictureInfo** object. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_Create](#oh_pixelmapinitializationoptions_create) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*\*options) | Creates the pointer to an **OH_Pixelmap_InitializationOptions** struct.|
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetWidth](#oh_pixelmapinitializationoptions_getwidth) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, uint32_t \*width) | Obtains the image width. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetWidth](#oh_pixelmapinitializationoptions_setwidth) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, uint32_t width) | Sets the image width. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetHeight](#oh_pixelmapinitializationoptions_getheight) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, uint32_t \*height) | Obtains the image height. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetHeight](#oh_pixelmapinitializationoptions_setheight) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, uint32_t height) | Sets the image height. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetPixelFormat](#oh_pixelmapinitializationoptions_getpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*pixelFormat) | Obtains the pixel format. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetPixelFormat](#oh_pixelmapinitializationoptions_setpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t pixelFormat) | Sets the pixel format. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetSrcPixelFormat](#oh_pixelmapinitializationoptions_getsrcpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*srcpixelFormat) | Obtains the source pixel format. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetSrcPixelFormat](#oh_pixelmapinitializationoptions_setsrcpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t srcpixelFormat) | Sets the source pixel format. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetRowStride](#oh_pixelmapinitializationoptions_getrowstride) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*rowStride) | Obtains the row stride. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetRowStride](#oh_pixelmapinitializationoptions_setrowstride) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t rowStride) | Sets the row stride. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetAlphaType](#oh_pixelmapinitializationoptions_getalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*alphaType) | Obtains the alpha type. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetAlphaType](#oh_pixelmapinitializationoptions_setalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t alphaType) | Sets the alpha type. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_Release](#oh_pixelmapinitializationoptions_release) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options) | Releases the pointer to an **OH_Pixelmap_InitializationOptions** struct. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_Create](#oh_pixelmapimageinfo_create) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*\*info) | Creates the pointer to an **OH_Pixelmap_ImageInfo** struct. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_GetWidth](#oh_pixelmapimageinfo_getwidth) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info, uint32_t \*width) | Obtains the image width. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_GetHeight](#oh_pixelmapimageinfo_getheight) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info, uint32_t \*height) | Obtains the image height. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_GetRowStride](#oh_pixelmapimageinfo_getrowstride) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info, uint32_t \*rowStride) | Obtains the row stride. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_GetPixelFormat](#oh_pixelmapimageinfo_getpixelformat) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info, int32_t \*pixelFormat) | Obtains the pixel format. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_GetAlphaType](#oh_pixelmapimageinfo_getalphatype) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info, int32_t \*alphaType) | Obtains the alpha type. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_GetDynamicRange](#oh_pixelmapimageinfo_getdynamicrange) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info, bool \*isHdr) | Obtains the dynamic range of a PixelMap. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_Release](#oh_pixelmapimageinfo_release) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info) | Releases the pointer to an **OH_Pixelmap_ImageInfo** struct. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_CreatePixelmap](#oh_pixelmapnative_createpixelmap) (uint8_t \*data, size_t dataLength, [OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates a PixelMap based on properties. By default, the BGRA_8888 format is used for data processing. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ConvertPixelmapNativeToNapi](#oh_pixelmapnative_convertpixelmapnativetonapi) (napi_env env, [OH_PixelmapNative](#oh_pixelmapnative) \*pixelmapNative, napi_value \*pixelmapNapi) | Converts a **nativePixelMap** object to a **PixelMapnapi** object. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ConvertPixelmapNativeFromNapi](#oh_pixelmapnative_convertpixelmapnativefromnapi) (napi_env env, napi_value pixelmapNapi, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmapNative) | Converts a **PixelMapnapi** object to a **nativePixelMap** object. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ReadPixels](#oh_pixelmapnative_readpixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*destination, size_t \*bufferSize) | Reads the pixels of a PixelMap and writes the result to an ArrayBuffer. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_WritePixels](#oh_pixelmapnative_writepixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*source, size_t bufferSize) | Reads the pixels in the buffer and writes the result to a PixelMap. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetArgbPixels](#oh_pixelmapnative_getargbpixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*destination, size_t \*bufferSize) | Reads data in ARGB format from a PixelMap. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ToSdr](#oh_pixelmapnative_tosdr) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | Converts a PixelMap from the HDR format to the SDR format. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetImageInfo](#oh_pixelmapnative_getimageinfo) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*imageInfo) | Obtains the image information of a PixelMap. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Opacity](#oh_pixelmapnative_opacity) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float rate) | Sets the opacity rate to enable the PixelMap to achieve the corresponding opacity effect. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Scale](#oh_pixelmapnative_scale) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float scaleX, float scaleY) | Scales a PixelMap based on a given width and height. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ScaleWithAntiAliasing](#oh_pixelmapnative_scalewithantialiasing) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float scaleX, float scaleY, [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) level) | Scales a PixelMap based on the specified antialiasing level, width, and height. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Translate](#oh_pixelmapnative_translate) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float x, float y) | Translates a PixelMap based on given coordinates. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Rotate](#oh_pixelmapnative_rotate) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float angle) | Rotates a PixelMap based on a given angle. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Flip](#oh_pixelmapnative_flip) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, bool shouldFilpHorizontally, bool shouldFilpVertically) | Flips a PixelMap based on a given angle. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Crop](#oh_pixelmapnative_crop) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [Image_Region](_image___region.md) \*region) | Crops a PixelMap based on a given size. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Release](#oh_pixelmapnative_release) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | Releases the pointer to an **OH_PixelmapNative** object. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ConvertAlphaFormat](#oh_pixelmapnative_convertalphaformat) ([OH_PixelmapNative](#oh_pixelmapnative) \*srcpixelmap, [OH_PixelmapNative](#oh_pixelmapnative) \*dstpixelmap, const bool isPremul) | Converts pixel data of a PixelMap from premultiplied alpha to non-premultiplied alpha, or vice versa. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_CreateEmptyPixelmap](#oh_pixelmapnative_createemptypixelmap) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates an empty PixelMap using **OH_Pixelmap_InitializationOptions**. The memory data is 0. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetNativeBuffer](#oh_pixelmapnative_getnativebuffer) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, OH_NativeBuffer \*\*nativeBuffer) | Obtains the **NativeBuffer** object from a PixelMap in the DMA memory. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) key, [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) \*\*value) | Obtains the metadata. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) key, [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) \*value) | Sets the metadata. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetColorSpaceNative](#oh_pixelmapnative_setcolorspacenative) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) \*colorSpaceNative) | Sets a **NativeColorSpaceManager** object. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetColorSpaceNative](#oh_pixelmapnative_getcolorspacenative) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) \*\*colorSpaceNative) | Obtains a **NativeColorSpaceManager** object. |
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetMemoryName](#oh_pixelmapnative_setmemoryname) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, char \*name, size_t \*size) | Sets the memory name of a PixelMap. |
+| [Image_ErrorCode](#image_errorcode) [OH_PictureMetadata_Create](#oh_picturemetadata_create) ([Image_MetadataType](#image_metadatatype) metadataType, [OH_PictureMetadata](#oh_picturemetadata) \*\*metadata) | Creates the pointer to an **OH_PictureMetadata** struct. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PictureMetadata_GetProperty](#oh_picturemetadata_getproperty) ([OH_PictureMetadata](#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | Obtains a property of metadata based on the key. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PictureMetadata_SetProperty](#oh_picturemetadata_setproperty) ([OH_PictureMetadata](#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | Sets a property of metadata based on the key. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PictureMetadata_Release](#oh_picturemetadata_release) ([OH_PictureMetadata](#oh_picturemetadata) \*metadata) | Releases the pointer to an **OH_PictureMetadata** struct. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PictureMetadata_Clone](#oh_picturemetadata_clone) ([OH_PictureMetadata](#oh_picturemetadata) \*oldMetadata, [OH_PictureMetadata](#oh_picturemetadata) \*\*newMetadata) | Clones metadata. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetImageSize](#oh_imagenative_getimagesize) ([OH_ImageNative](#oh_imagenative) \*image, [Image_Size](_image___size.md) \*size) | Obtains the [Image_Size](_image___size.md) information of a native [OH_ImageNative](#oh_imagenative) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetComponentTypes](#oh_imagenative_getcomponenttypes) ([OH_ImageNative](#oh_imagenative) \*image, uint32_t \*\*types, size_t \*typeSize) | Obtains the component types of a native [OH_ImageNative](#oh_imagenative) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetByteBuffer](#oh_imagenative_getbytebuffer) ([OH_ImageNative](#oh_imagenative) \*image, uint32_t componentType, OH_NativeBuffer \*\*nativeBuffer) | Obtains the buffer corresponding to a component type in a native [OH_ImageNative](#oh_imagenative) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetBufferSize](#oh_imagenative_getbuffersize) ([OH_ImageNative](#oh_imagenative) \*image, uint32_t componentType, size_t \*size) | Obtains the size of the buffer corresponding to a component type in a native [OH_ImageNative](#oh_imagenative) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetRowStride](#oh_imagenative_getrowstride) ([OH_ImageNative](#oh_imagenative) \*image, uint32_t componentType, int32_t \*rowStride) | Obtains the row stride corresponding to a component type in a native [OH_ImageNative](#oh_imagenative) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetPixelStride](#oh_imagenative_getpixelstride) ([OH_ImageNative](#oh_imagenative) \*image, uint32_t componentType, int32_t \*pixelStride) | Obtains the pixel stride corresponding to a component type in a native [OH_ImageNative](#oh_imagenative) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetTimestamp](#oh_imagenative_gettimestamp) ([OH_ImageNative](#oh_imagenative) \*image, int64_t \*timestamp) | Obtains the timestamp of a native [OH_ImageNative](#oh_imagenative) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_Release](#oh_imagenative_release) ([OH_ImageNative](#oh_imagenative) \*image) | Releases a native [OH_ImageNative](#oh_imagenative) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_Create](#oh_packingoptions_create) ([OH_PackingOptions](#oh_packingoptions) \*\*options) | Creates the pointer to an **OH_PackingOptions** struct. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_GetMimeType](#oh_packingoptions_getmimetype) ([OH_PackingOptions](#oh_packingoptions) \*options, [Image_MimeType](#image_mimetype) \*format) | Obtains the MIME type.| 
+| [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_SetMimeType](#oh_packingoptions_setmimetype) ([OH_PackingOptions](#oh_packingoptions) \*options, [Image_MimeType](#image_mimetype) \*format) | Sets the MIME type.| 
+| [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_GetQuality](#oh_packingoptions_getquality) ([OH_PackingOptions](#oh_packingoptions) \*options, uint32_t \*quality) | Obtains the encoding quality. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_SetQuality](#oh_packingoptions_setquality) ([OH_PackingOptions](#oh_packingoptions) \*options, uint32_t quality) | Sets the encoding quality. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_GetDesiredDynamicRange](#oh_packingoptions_getdesireddynamicrange) ([OH_PackingOptions](#oh_packingoptions) \*options, int32_t \*desiredDynamicRange) | Obtains the desired dynamic range during encoding. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_SetDesiredDynamicRange](#oh_packingoptions_setdesireddynamicrange) ([OH_PackingOptions](#oh_packingoptions) \*options, int32_t desiredDynamicRange) | Sets the desired dynamic range during encoding. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_Release](#oh_packingoptions_release) ([OH_PackingOptions](#oh_packingoptions) \*options) | Releases the pointer to an **OH_PackingOptions** struct. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_Create](#oh_imagepackernative_create) ([OH_ImagePackerNative](#oh_imagepackernative) \*\*imagePacker) | Creates the pointer to an **OH_ImagePackerNative** object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromImageSource](#oh_imagepackernative_packtodatafromimagesource) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_ImageSourceNative](#oh_imagesourcenative) \*imageSource, uint8_t \*outData, size_t \*size) | Encodes an image source into data in a given format. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromPixelmap](#oh_imagepackernative_packtodatafrompixelmap) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*outData, size_t \*size) | Encodes a PixelMap into data in a given format. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromPicture](#oh_imagepackernative_packtodatafrompicture) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PictureNative](#oh_picturenative) \*picture, uint8_t \*outData, size_t \*size) | Encodes a picture into data in a given format. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromImageSource](#oh_imagepackernative_packtofilefromimagesource) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_ImageSourceNative](#oh_imagesourcenative) \*imageSource, int32_t fd) | Encodes an image source into a file. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromPixelmap](#oh_imagepackernative_packtofilefrompixelmap) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, int32_t fd) | Encodes a PixelMap into a file. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromPicture](#oh_imagepackernative_packtofilefrompicture) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PictureNative](#oh_picturenative) \*picture, int32_t fd) | Encodes a picture into a file. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_Release](#oh_imagepackernative_release) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker) | Releases the pointer to an **OH_ImagePackerNative** object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_Create](#oh_imagereceiveroptions_create) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*\*options) | Creates an **OH_ImageReceiverOptions** object at the application layer. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_GetSize](#oh_imagereceiveroptions_getsize) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, [Image_Size](_image___size.md) \*size) | Obtains the [Image_Size](_image___size.md) information of an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_SetSize](#oh_imagereceiveroptions_setsize) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, [Image_Size](_image___size.md) size) | Sets the [Image_Size](_image___size.md) information for an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_GetCapacity](#oh_imagereceiveroptions_getcapacity) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, int32_t \*capacity) | Obtains the capacity of an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_SetCapacity](#oh_imagereceiveroptions_setcapacity) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, int32_t capacity) | Sets the capacity for an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_Release](#oh_imagereceiveroptions_release) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options) | Releases an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_Create](#oh_imagereceivernative_create) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, [OH_ImageReceiverNative](#oh_imagereceivernative) \*\*receiver) | Creates an **OH_ImageReceiverNative** object at the application layer. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, uint64_t \*surfaceId) | Obtains the receiver ID through an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_ReadLatestImage](#oh_imagereceivernative_readlatestimage) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageNative](#oh_imagenative) \*\*image) | Obtains the latest image through an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_ReadNextImage](#oh_imagereceivernative_readnextimage) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageNative](#oh_imagenative) \*\*image) | Obtains the next image through an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_On](#oh_imagereceivernative_on) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback) callback) | Registers the callback defined in [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback). | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_Off](#oh_imagereceivernative_off) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver) | Unregisters the callback defined in [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback). | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetSize](#oh_imagereceivernative_getsize) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [Image_Size](_image___size.md) \*size) | Obtains the size of an image receiver, which is an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetCapacity](#oh_imagereceivernative_getcapacity) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, int32_t \*capacity) | Obtains the capacity of an image receiver, which is an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_Release](#oh_imagereceivernative_release) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver) | Releases a native [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create) ([OH_ImageSource_Info](#oh_imagesource_info) \*\*info) | Creates the pointer to an **OH_ImageSource_Info** struct. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceInfo_GetWidth](#oh_imagesourceinfo_getwidth) ([OH_ImageSource_Info](#oh_imagesource_info) \*info, uint32_t \*width) | Obtains the image width. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceInfo_GetHeight](#oh_imagesourceinfo_getheight) ([OH_ImageSource_Info](#oh_imagesource_info) \*info, uint32_t \*height) | Obtains the image height. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceInfo_GetDynamicRange](#oh_imagesourceinfo_getdynamicrange) ([OH_ImageSource_Info](#oh_imagesource_info) \*info, bool \*isHdr) | Obtains the dynamic range of an image. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceInfo_Release](#oh_imagesourceinfo_release) ([OH_ImageSource_Info](#oh_imagesource_info) \*info) | Releases the pointer to an **OH_ImageSource_Info** struct. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_Create](#oh_decodingoptions_create) ([OH_DecodingOptions](#oh_decodingoptions) \*\*options) | Creates the pointer to an **OH_DecodingOptions** struct. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetPixelFormat](#oh_decodingoptions_getpixelformat) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t \*pixelFormat) | Obtains the pixel format. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetPixelFormat](#oh_decodingoptions_setpixelformat) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t pixelFormat) | Sets the pixel format. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetIndex](#oh_decodingoptions_getindex) ([OH_DecodingOptions](#oh_decodingoptions) \*options, uint32_t \*index) | Obtains the index of an image. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetIndex](#oh_decodingoptions_setindex) ([OH_DecodingOptions](#oh_decodingoptions) \*options, uint32_t index) | Sets the index for an image. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetRotate](#oh_decodingoptions_getrotate) ([OH_DecodingOptions](#oh_decodingoptions) \*options, float \*rotate) | Obtains the rotation degree. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetRotate](#oh_decodingoptions_setrotate) ([OH_DecodingOptions](#oh_decodingoptions) \*options, float rotate) | Sets the rotation angle. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetDesiredSize](#oh_decodingoptions_getdesiredsize) ([OH_DecodingOptions](#oh_decodingoptions) \*options, [Image_Size](_image___size.md) \*desiredSize) | Obtains the desired output size. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetDesiredSize](#oh_decodingoptions_setdesiredsize) ([OH_DecodingOptions](#oh_decodingoptions) \*options, [Image_Size](_image___size.md) \*desiredSize) | Sets the desired output size. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetDesiredRegion](#oh_decodingoptions_getdesiredregion) ([OH_DecodingOptions](#oh_decodingoptions) \*options, [Image_Region](_image___region.md) \*desiredRegion) | Obtains the region to decode. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetDesiredRegion](#oh_decodingoptions_setdesiredregion) ([OH_DecodingOptions](#oh_decodingoptions) \*options, [Image_Region](_image___region.md) \*desiredRegion) | Sets the region to decode. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetDesiredDynamicRange](#oh_decodingoptions_getdesireddynamicrange) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t \*desiredDynamicRange) | Obtains the desired dynamic range configured during decoding. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetDesiredDynamicRange](#oh_decodingoptions_setdesireddynamicrange) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t desiredDynamicRange) | Sets the desired dynamic range during decoding. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_Release](#oh_decodingoptions_release) ([OH_DecodingOptions](#oh_decodingoptions) \*options) | Releases the pointer to an **OH_DecodingOptions** struct. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromUri](#oh_imagesourcenative_createfromuri) (char \*uri, size_t uriSize, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object based on a URI. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromFd](#oh_imagesourcenative_createfromfd) (int32_t fd, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object based on a file descriptor. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromData](#oh_imagesourcenative_createfromdata) (uint8_t \*data, size_t dataSize, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object based on buffer data. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromRawFile](#oh_imagesourcenative_createfromrawfile) (RawFileDescriptor \*rawFile, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object by using the raw file descriptor of an image resource file. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates the pointer to an **OH_PixelmapNative** object based on image decoding parameters. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmapList](#oh_imagesourcenative_createpixelmaplist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, OH_PixelmapNative \*resVecPixMap[], size_t size) | Creates an array of **OH_PixelmapNative** objects based on image decoding parameters. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePicture](#oh_imagesourcenative_createpicture) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, OH_DecodingOptionsForPicture \*options, [OH_PictureNative](#oh_picturenative) \*\*picture) | Creates the pointer to an **OH_PictureNative** object based on image decoding parameters. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetDelayTimeList](#oh_imagesourcenative_getdelaytimelist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, int32_t \*delayTimeList, size_t size) | Obtains the image delay time list. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetImageInfo](#oh_imagesourcenative_getimageinfo) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, int32_t index, [OH_ImageSource_Info](#oh_imagesource_info) \*info) | Obtains the information about an image with a given index. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetImageProperty](#oh_imagesourcenative_getimageproperty) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | Obtains the value of an image property. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_ModifyImageProperty](#oh_imagesourcenative_modifyimageproperty) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | Modifies the value of an image property. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetFrameCount](#oh_imagesourcenative_getframecount) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, uint32_t \*frameCount) | Obtains the number of image frames. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_Release](#oh_imagesourcenative_release) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source) | Releases the pointer to an **OH_ImageSourceNative** object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_Create](#oh_decodingoptionsforpicture_create) (OH_DecodingOptionsForPicture \*\*options) | Creates the pointer to an **OH_DecodingOptionsForPicture** struct. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_GetDesiredAuxiliaryPictures](#oh_decodingoptionsforpicture_getdesiredauxiliarypictures) (OH_DecodingOptionsForPicture \*options, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) \*\*desiredAuxiliaryPictures, size_t \*length) | Obtains desired auxiliary pictures in the decoding parameters (auxiliary pictures contained in **picture** expected to be decoded.) | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures](#oh_decodingoptionsforpicture_setdesiredauxiliarypictures) (OH_DecodingOptionsForPicture \*options, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) \*desiredAuxiliaryPictures, size_t length) | Sets desired auxiliary pictures in the decoding parameters. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_Release](#oh_decodingoptionsforpicture_release) (OH_DecodingOptionsForPicture \*options) | Releases the pointer to an **OH_DecodingOptionsForPicture** struct. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_CreatePicture](#oh_picturenative_createpicture) (OH_PixelmapNative \*mainPixelmap, [OH_PictureNative](#oh_picturenative) \*\*picture) | Creates the pointer to an **OH_PictureNative** object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_GetMainPixelmap](#oh_picturenative_getmainpixelmap) ([OH_PictureNative](#oh_picturenative) \*picture, OH_PixelmapNative \*\*mainPixelmap) | Obtains the pointer to an **OH_PixelmapNative** object of a main picture. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_GetHdrComposedPixelmap](#oh_picturenative_gethdrcomposedpixelmap) ([OH_PictureNative](#oh_picturenative) \*picture, OH_PixelmapNative \*\*hdrPixelmap) | Obtains the pointer to an **OH_PixelmapNative** object of an HDR picture. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_GetGainmapPixelmap](#oh_picturenative_getgainmappixelmap) ([OH_PictureNative](#oh_picturenative) \*picture, OH_PixelmapNative \*\*gainmapPixelmap) | Obtains the pointer to an **OH_PixelmapNative** object of a gain map. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_SetAuxiliaryPicture](#oh_picturenative_setauxiliarypicture) ([OH_PictureNative](#oh_picturenative) \*picture, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) type, [OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*auxiliaryPicture) | Sets an auxiliary picture. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_GetAuxiliaryPicture](#oh_picturenative_getauxiliarypicture) ([OH_PictureNative](#oh_picturenative) \*picture, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) type, [OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*\*auxiliaryPicture) | Obtains an auxiliary picture by type. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_GetMetadata](#oh_picturenative_getmetadata) ([OH_PictureNative](#oh_picturenative) \*picture, [Image_MetadataType](#image_metadatatype) metadataType, [OH_PictureMetadata](#oh_picturemetadata) \*\*metadata) | Obtains the metadata of a main picture. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_SetMetadata](#oh_picturenative_setmetadata) ([OH_PictureNative](#oh_picturenative) \*picture, [Image_MetadataType](#image_metadatatype) metadataType, [OH_PictureMetadata](#oh_picturemetadata) \*metadata) | Sets the metadata for a main picture. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PictureNative_Release](#oh_picturenative_release) ([OH_PictureNative](#oh_picturenative) \*picture) | Releases the pointer to an **OH_PictureNative** object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_Create](#oh_auxiliarypicturenative_create) (uint8_t \*data, size_t dataLength, [Image_Size](_image___size.md) \*size, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) type, [OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*\*auxiliaryPicture) | Creates the pointer to an **OH_AuxiliaryPictureNative** object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_WritePixels](#oh_auxiliarypicturenative_writepixels) ([OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*auxiliaryPicture, uint8_t \*source, size_t bufferSize) | Reads the pixels in the buffer and writes the result to an auxiliary picture. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_ReadPixels](#oh_auxiliarypicturenative_readpixels) ([OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*auxiliaryPicture, uint8_t \*destination, size_t \*bufferSize) | Reads the pixels of an auxiliary picture and writes the result to the buffer. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_GetType](#oh_auxiliarypicturenative_gettype) ([OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*auxiliaryPicture, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) \*type) | Obtains the type of an auxiliary picture. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_GetInfo](#oh_auxiliarypicturenative_getinfo) ([OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*auxiliaryPicture, [OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*\*info) | Obtains the auxiliary picture information. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_SetInfo](#oh_auxiliarypicturenative_setinfo) ([OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*auxiliaryPicture, [OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info) | Sets the auxiliary picture information. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_GetMetadata](#oh_auxiliarypicturenative_getmetadata) ([OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*auxiliaryPicture, [Image_MetadataType](#image_metadatatype) metadataType, [OH_PictureMetadata](#oh_picturemetadata) \*\*metadata) | Obtains the metadata of an auxiliary picture. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_SetMetadata](#oh_auxiliarypicturenative_setmetadata) ([OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*auxiliaryPicture, [Image_MetadataType](#image_metadatatype) metadataType, [OH_PictureMetadata](#oh_picturemetadata) \*metadata) | Sets the metadata for an auxiliary picture. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureNative_Release](#oh_auxiliarypicturenative_release) ([OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) \*picture) | Releases the pointer to an **OH_AuxiliaryPictureNative** object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_Create](#oh_auxiliarypictureinfo_create) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*\*info) | Creates an **OH_AuxiliaryPictureInfo** object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_GetType](#oh_auxiliarypictureinfo_gettype) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) \*type) | Obtains the auxiliary picture type from the auxiliary picture information. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_SetType](#oh_auxiliarypictureinfo_settype) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) type) | Sets the auxiliary picture type in the auxiliary picture information. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_GetSize](#oh_auxiliarypictureinfo_getsize) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info, [Image_Size](_image___size.md) \*size) | Obtains the size of an auxiliary picture. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_SetSize](#oh_auxiliarypictureinfo_setsize) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info, [Image_Size](_image___size.md) \*size) | Sets the size of an auxiliary picture. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_GetRowStride](#oh_auxiliarypictureinfo_getrowstride) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info, uint32_t \*rowStride) | Obtains the row stride of an auxiliary picture. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_SetRowStride](#oh_auxiliarypictureinfo_setrowstride) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info, uint32_t rowStride) | Sets the row stride of an auxiliary picture. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_GetPixelFormat](#oh_auxiliarypictureinfo_getpixelformat) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info, PIXEL_FORMAT \*pixelFormat) | Obtains the pixel format of an auxiliary picture. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_SetPixelFormat](#oh_auxiliarypictureinfo_setpixelformat) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info, PIXEL_FORMAT pixelFormat) | Sets the pixel format of an auxiliary picture. | 
+| [Image_ErrorCode](#image_errorcode) [OH_AuxiliaryPictureInfo_Release](#oh_auxiliarypictureinfo_release) ([OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) \*info) | Releases the pointer to an **OH_AuxiliaryPictureInfo** object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_Create](#oh_pixelmapinitializationoptions_create) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*\*options) | Creates the pointer to an **OH_Pixelmap_InitializationOptions** struct.| 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetWidth](#oh_pixelmapinitializationoptions_getwidth) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, uint32_t \*width) | Obtains the image width. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetWidth](#oh_pixelmapinitializationoptions_setwidth) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, uint32_t width) | Sets the image width. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetHeight](#oh_pixelmapinitializationoptions_getheight) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, uint32_t \*height) | Obtains the image height. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetHeight](#oh_pixelmapinitializationoptions_setheight) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, uint32_t height) | Sets the image height. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetPixelFormat](#oh_pixelmapinitializationoptions_getpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*pixelFormat) | Obtains the pixel format. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetPixelFormat](#oh_pixelmapinitializationoptions_setpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t pixelFormat) | Sets the pixel format. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetSrcPixelFormat](#oh_pixelmapinitializationoptions_getsrcpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*srcpixelFormat) | Obtains the source pixel format. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetSrcPixelFormat](#oh_pixelmapinitializationoptions_setsrcpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t srcpixelFormat) | Sets the source pixel format. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetRowStride](#oh_pixelmapinitializationoptions_getrowstride) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*rowStride) | Obtains the row stride. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetRowStride](#oh_pixelmapinitializationoptions_setrowstride) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t rowStride) | Sets the row stride. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetAlphaType](#oh_pixelmapinitializationoptions_getalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*alphaType) | Obtains the alpha type. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetAlphaType](#oh_pixelmapinitializationoptions_setalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t alphaType) | Sets the alpha type. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_Release](#oh_pixelmapinitializationoptions_release) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options) | Releases the pointer to an **OH_Pixelmap_InitializationOptions** struct. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_Create](#oh_pixelmapimageinfo_create) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*\*info) | Creates the pointer to an **OH_Pixelmap_ImageInfo** struct. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_GetWidth](#oh_pixelmapimageinfo_getwidth) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info, uint32_t \*width) | Obtains the image width. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_GetHeight](#oh_pixelmapimageinfo_getheight) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info, uint32_t \*height) | Obtains the image height. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_GetRowStride](#oh_pixelmapimageinfo_getrowstride) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info, uint32_t \*rowStride) | Obtains the row stride. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_GetPixelFormat](#oh_pixelmapimageinfo_getpixelformat) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info, int32_t \*pixelFormat) | Obtains the pixel format. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_GetAlphaType](#oh_pixelmapimageinfo_getalphatype) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info, int32_t \*alphaType) | Obtains the alpha type. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_GetDynamicRange](#oh_pixelmapimageinfo_getdynamicrange) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info, bool \*isHdr) | Obtains the dynamic range of a PixelMap. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_Release](#oh_pixelmapimageinfo_release) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info) | Releases the pointer to an **OH_Pixelmap_ImageInfo** struct. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_CreatePixelmap](#oh_pixelmapnative_createpixelmap) (uint8_t \*data, size_t dataLength, [OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates a PixelMap based on properties. By default, the BGRA_8888 format is used for data processing. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ConvertPixelmapNativeToNapi](#oh_pixelmapnative_convertpixelmapnativetonapi) (napi_env env, [OH_PixelmapNative](#oh_pixelmapnative) \*pixelmapNative, napi_value \*pixelmapNapi) | Converts a **nativePixelMap** object to a **PixelMapnapi** object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ConvertPixelmapNativeFromNapi](#oh_pixelmapnative_convertpixelmapnativefromnapi) (napi_env env, napi_value pixelmapNapi, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmapNative) | Converts a **PixelMapnapi** object to a **nativePixelMap** object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ReadPixels](#oh_pixelmapnative_readpixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*destination, size_t \*bufferSize) | Reads the pixels of a PixelMap and writes the result to an ArrayBuffer. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_WritePixels](#oh_pixelmapnative_writepixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*source, size_t bufferSize) | Reads the pixels in the buffer and writes the result to a PixelMap. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetArgbPixels](#oh_pixelmapnative_getargbpixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*destination, size_t \*bufferSize) | Reads data in ARGB format from a PixelMap. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ToSdr](#oh_pixelmapnative_tosdr) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | Converts a PixelMap from the HDR format to the SDR format. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetImageInfo](#oh_pixelmapnative_getimageinfo) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*imageInfo) | Obtains the image information of a PixelMap. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Opacity](#oh_pixelmapnative_opacity) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float rate) | Sets the opacity rate to enable the PixelMap to achieve the corresponding opacity effect. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Scale](#oh_pixelmapnative_scale) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float scaleX, float scaleY) | Scales a PixelMap based on a given width and height. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ScaleWithAntiAliasing](#oh_pixelmapnative_scalewithantialiasing) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float scaleX, float scaleY, [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) level) | Scales a PixelMap based on the specified anti-aliasing level, width, and height. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Translate](#oh_pixelmapnative_translate) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float x, float y) | Translates a PixelMap based on given coordinates. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Rotate](#oh_pixelmapnative_rotate) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float angle) | Rotates a PixelMap based on a given angle. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Flip](#oh_pixelmapnative_flip) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, bool shouldFilpHorizontally, bool shouldFilpVertically) | Flips a PixelMap based on a given angle. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Crop](#oh_pixelmapnative_crop) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [Image_Region](_image___region.md) \*region) | Crops a PixelMap based on a given size. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Release](#oh_pixelmapnative_release) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | Releases the pointer to an **OH_PixelmapNative** object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ConvertAlphaFormat](#oh_pixelmapnative_convertalphaformat) ([OH_PixelmapNative](#oh_pixelmapnative) \*srcpixelmap, [OH_PixelmapNative](#oh_pixelmapnative) \*dstpixelmap, const bool isPremul) | Converts pixel data of a PixelMap from premultiplied alpha to non-premultiplied alpha, or vice versa. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_CreateEmptyPixelmap](#oh_pixelmapnative_createemptypixelmap) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates an empty PixelMap using **OH_Pixelmap_InitializationOptions**. The memory data is 0. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetNativeBuffer](#oh_pixelmapnative_getnativebuffer) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, OH_NativeBuffer \*\*nativeBuffer) | Obtains the **NativeBuffer** object from a PixelMap in the DMA memory. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) key, [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) \*\*value) | Obtains the metadata. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) key, [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) \*value) | Sets the metadata. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetColorSpaceNative](#oh_pixelmapnative_setcolorspacenative) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) \*colorSpaceNative) | Sets a **NativeColorSpaceManager** object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetColorSpaceNative](#oh_pixelmapnative_getcolorspacenative) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) \*\*colorSpaceNative) | Obtains a **NativeColorSpaceManager** object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetMemoryName](#oh_pixelmapnative_setmemoryname) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, char \*name, size_t \*size) | Sets the memory name of a PixelMap. | 
 
 
 ### Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| static const char \*[MIME_TYPE_BMP](#mime_type_bmp) = "image/bmp" | BMP image format.|
-| static const char \*[MIME_TYPE_JPEG](#mime_type_jpeg) = "image/jpeg" | JPEG image format.|
-| static const char \*[MIME_TYPE_HEIC](#mime_type_heic) = "image/heic" | HEIF image format.|
-| static const char \*[MIME_TYPE_PNG](#mime_type_png) = "image/png" | PNG image format.|
-| static const char \*[MIME_TYPE_WEBP](#mime_type_webp) = "image/webp" | WebP image format.|
-| static const char \*[MIME_TYPE_GIF](#mime_type_gif) = "image/gif" | GIF image format.|
-| static const char \*[MIME_TYPE_ICON](#mime_type_icon) = "image/x-icon" | ICO image format.|
-| static const char \*[OHOS_IMAGE_PROPERTY_BITS_PER_SAMPLE](#ohos_image_property_bits_per_sample) = "BitsPerSample" | Number of bits per sample.|
-| static const char \*[OHOS_IMAGE_PROPERTY_ORIENTATION](#ohos_image_property_orientation) = "Orientation" | Image orientation.|
-| static const char \*[OHOS_IMAGE_PROPERTY_IMAGE_LENGTH](#ohos_image_property_image_length) = "ImageLength" | Image length.|
-| static const char \*[OHOS_IMAGE_PROPERTY_IMAGE_WIDTH](#ohos_image_property_image_width) = "ImageWidth" | Image width.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_LATITUDE](#ohos_image_property_gps_latitude) = "GPSLatitude" | Image latitude.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_LONGITUDE](#ohos_image_property_gps_longitude) = "GPSLongitude" | Image longitude.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_LATITUDE_REF](#ohos_image_property_gps_latitude_ref) = "GPSLatitudeRef" | Whether the latitude is north or south latitude.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_LONGITUDE_REF](#ohos_image_property_gps_longitude_ref) = "GPSLongitudeRef" | Whether the longitude is east or west longitude.|
-| static const char \*[OHOS_IMAGE_PROPERTY_DATE_TIME_ORIGINAL](#ohos_image_property_date_time_original) = "DateTimeOriginal" | Shooting time, for example, 2022:09:06 15:48:00.|
-| static const char \*[OHOS_IMAGE_PROPERTY_EXPOSURE_TIME](#ohos_image_property_exposure_time) = "ExposureTime" | Exposure time, for example, 1/33 seconds.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SCENE_TYPE](#ohos_image_property_scene_type) = "SceneType" | Type of the scene, for example, portrait, scenery, motion, and night.|
-| static const char \*[OHOS_IMAGE_PROPERTY_ISO_SPEED_RATINGS](#ohos_image_property_iso_speed_ratings) = "ISOSpeedRatings" | ISO sensitivity or ISO speed, for example, 400.|
-| static const char \*[OHOS_IMAGE_PROPERTY_F_NUMBER](#ohos_image_property_f_number) = "FNumber" | F number, for example, f/1.8.|
-| static const char \*[OHOS_IMAGE_PROPERTY_COMPRESSED_BITS_PER_PIXEL](#ohos_image_property_compressed_bits_per_pixel) = "CompressedBitsPerPixel" | Number of bits per pixel. It is specific to compressed data.|
-| static const char \*[OHOS_IMAGE_PROPERTY_COMPRESSION](#ohos_image_property_compression) = "Compression" | Compression scheme used on the image data.|
-| static const char \*[OHOS_IMAGE_PROPERTY_PHOTOMETRIC_INTERPRETATION](#ohos_image_property_photometric_interpretation) = "PhotometricInterpretation" | Color space of the image data, for example, RGB or YCbCr.|
-| static const char \*[OHOS_IMAGE_PROPERTY_STRIP_OFFSETS](#ohos_image_property_strip_offsets) = "StripOffsets" | Byte offset of each strip.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL](#ohos_image_property_samples_per_pixel) = "SamplesPerPixel" | Number of components per pixel. The value is **3** for RGB and YCbCr images. The **JPEG** key is used in JPEG compressed data.|
-| static const char \*[OHOS_IMAGE_PROPERTY_ROWS_PER_STRIP](#ohos_image_property_rows_per_strip) = "RowsPerStrip" | Number of rows per strip.|
-| static const char \*[OHOS_IMAGE_PROPERTY_STRIP_BYTE_COUNTS](#ohos_image_property_strip_byte_counts) = "StripByteCounts" | Number of bytes in each strip after compression.|
-| static const char \*[OHOS_IMAGE_PROPERTY_X_RESOLUTION](#ohos_image_property_x_resolution) = "XResolution" | Number of pixels per ResolutionUnit in the image width (X) direction.|
-| static const char \*[OHOS_IMAGE_PROPERTY_Y_RESOLUTION](#ohos_image_property_y_resolution) = "YResolution" | Number of pixels per ResolutionUnit in the image height (Y) direction.|
-| static const char \*[OHOS_IMAGE_PROPERTY_PLANAR_CONFIGURATION](#ohos_image_property_planar_configuration) = "PlanarConfiguration" | Storage format of components of each pixel, which can be chunky or planar.|
-| static const char \*[OHOS_IMAGE_PROPERTY_RESOLUTION_UNIT](#ohos_image_property_resolution_unit) = "ResolutionUnit" | Unit of measurement for XResolution and YResolution.|
-| static const char \*[OHOS_IMAGE_PROPERTY_TRANSFER_FUNCTION](#ohos_image_property_transfer_function) = "TransferFunction" | Transfer function for the image, which is usually used for color correction.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SOFTWARE](#ohos_image_property_software) = "Software" | Name and version number of the software used to create the image.|
-| static const char \*[OHOS_IMAGE_PROPERTY_ARTIST](#ohos_image_property_artist) = "Artist" | Person who created the image.|
-| static const char \*[OHOS_IMAGE_PROPERTY_WHITE_POINT](#ohos_image_property_white_point) = "WhitePoint" | Chromaticity of the white point of the image.|
-| static const char \*[OHOS_IMAGE_PROPERTY_PRIMARY_CHROMATICITIES](#ohos_image_property_primary_chromaticities) = "PrimaryChromaticities" | Chromaticities of the primaries of the image.|
-| static const char \*[OHOS_IMAGE_PROPERTY_YCBCR_COEFFICIENTS](#ohos_image_property_ycbcr_coefficients) = "YCbCrCoefficients" | Transformation from RGB to YCbCr image data.|
-| static const char \*[OHOS_IMAGE_PROPERTY_YCBCR_SUB_SAMPLING](#ohos_image_property_ycbcr_sub_sampling) = "YCbCrSubSampling" | Subsampling factors used for the chrominance components of a YCbCr image.|
-| static const char \*[OHOS_IMAGE_PROPERTY_YCBCR_POSITIONING](#ohos_image_property_ycbcr_positioning) = "YCbCrPositioning" | Positioning of subsampled chrominance components relative to luminance samples.|
-| static const char \*[OHOS_IMAGE_PROPERTY_REFERENCE_BLACK_WHITE](#ohos_image_property_reference_black_white) = "ReferenceBlackWhite" | A pair of headroom and footroom image data values (codes) for each pixel component.|
-| static const char \*[OHOS_IMAGE_PROPERTY_COPYRIGHT](#ohos_image_property_copyright) = "Copyright" | Copyright notice of the image.|
-| static const char \*[OHOS_IMAGE_PROPERTY_JPEG_INTERCHANGE_FORMAT](#ohos_image_property_jpeg_interchange_format) = "JPEGInterchangeFormat" | Offset of the SOI marker of a JPEG interchange format bitstream.|
-| static const char \*[OHOS_IMAGE_PROPERTY_JPEG_INTERCHANGE_FORMAT_LENGTH](#ohos_image_property_jpeg_interchange_format_length) = "JPEGInterchangeFormatLength" | Number of bytes of the JPEG stream.|
-| static const char \*[OHOS_IMAGE_PROPERTY_EXPOSURE_PROGRAM](#ohos_image_property_exposure_program) = "ExposureProgram" | Class of the program used by the camera to set exposure when the image was captured.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SPECTRAL_SENSITIVITY](#ohos_image_property_spectral_sensitivity) = "SpectralSensitivity" | Spectral sensitivity of each channel of the camera.|
-| static const char \*[OHOS_IMAGE_PROPERTY_OECF](#ohos_image_property_oecf) = "OECF" | Opto-Electric Conversion Function (OECF) specified in ISO 14524.|
-| static const char \*[OHOS_IMAGE_PROPERTY_EXIF_VERSION](#ohos_image_property_exif_version) = "ExifVersion" | Version of the supported EXIF standard.|
-| static const char \*[OHOS_IMAGE_PROPERTY_DATE_TIME_DIGITIZED](#ohos_image_property_date_time_digitized) = "DateTimeDigitized" | Date and time when the image was stored as digital data, in the format of YYYY:MM:DD HH:MM:SS.|
-| static const char \*[OHOS_IMAGE_PROPERTY_COMPONENTS_CONFIGURATION](#ohos_image_property_components_configuration) = "ComponentsConfiguration" | Specific information about compressed data.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SHUTTER_SPEED_VALUE](#ohos_image_property_shutter_speed_value) = "ShutterSpeedValue" | Shutter speed, expressed in Additive System of Photographic Exposure (APEX) values.|
-| static const char \*[OHOS_IMAGE_PROPERTY_BRIGHTNESS_VALUE](#ohos_image_property_brightness_value) = "BrightnessValue" | Value of brightness, expressed in APEX values.|
-| static const char \*[OHOS_IMAGE_PROPERTY_MAX_APERTURE_VALUE](#ohos_image_property_max_aperture_value) = "MaxApertureValue" | Smallest F number of the lens.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SUBJECT_DISTANCE](#ohos_image_property_subject_distance) = "SubjectDistance" | Distance to the subject, in meters.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SUBJECT_AREA](#ohos_image_property_subject_area) = "SubjectArea" | Location and area of the main subject in the entire scene.|
-| static const char \*[OHOS_IMAGE_PROPERTY_MAKER_NOTE](#ohos_image_property_maker_note) = "MakerNote" | Marker used by EXIF/DCF manufacturers to record any required information.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SUBSEC_TIME](#ohos_image_property_subsec_time) = "SubsecTime" | Tag used to record fractions of seconds for the **DateTime** tag.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SUBSEC_TIME_ORIGINAL](#ohos_image_property_subsec_time_original) = "SubsecTimeOriginal" | Tag used to record fractions of seconds for the **DateTimeOriginal** tag.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SUBSEC_TIME_DIGITIZED](#ohos_image_property_subsec_time_digitized) = "SubsecTimeDigitized" | Tag used to record fractions of seconds for the **DateTimeDigitized** tag.|
-| static const char \*[OHOS_IMAGE_PROPERTY_FLASHPIX_VERSION](#ohos_image_property_flashpix_version) = "FlashpixVersion" | FlashPix format version supported by an FPXR file. It is used to enhance device compatibility.|
-| static const char \*[OHOS_IMAGE_PROPERTY_COLOR_SPACE](#ohos_image_property_color_space) = "ColorSpace" | Color space information, which is usually recorded as a color space specifier.|
-| static const char \*[OHOS_IMAGE_PROPERTY_RELATED_SOUND_FILE](#ohos_image_property_related_sound_file) = "RelatedSoundFile" | Name of an audio file related to the image data.|
-| static const char \*[OHOS_IMAGE_PROPERTY_FLASH_ENERGY](#ohos_image_property_flash_energy) = "FlashEnergy" | Strobe energy at the time the image was captured, in Beam Candle Power Seconds (BCPS).|
-| static const char \*[OHOS_IMAGE_PROPERTY_SPATIAL_FREQUENCY_RESPONSE](#ohos_image_property_spatial_frequency_response) = "SpatialFrequencyResponse" | Spatial frequency table of the camera or input device.|
-| static const char \*[OHOS_IMAGE_PROPERTY_FOCAL_PLANE_X_RESOLUTION](#ohos_image_property_focal_plane_x_resolution) = "FocalPlaneXResolution" | Number of pixels in the image width (X) direction per FocalPlaneResolutionUnit.|
-| static const char \*[OHOS_IMAGE_PROPERTY_FOCAL_PLANE_Y_RESOLUTION](#ohos_image_property_focal_plane_y_resolution) = "FocalPlaneYResolution" | Number of pixels in the image height (Y) direction per FocalPlaneResolutionUnit.|
-| static const char \*[OHOS_IMAGE_PROPERTY_FOCAL_PLANE_RESOLUTION_UNIT](#ohos_image_property_focal_plane_resolution_unit) = "FocalPlaneResolutionUnit" | Unit for measuring FocalPlaneXResolution and FocalPlaneYResolution.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SUBJECT_LOCATION](#ohos_image_property_subject_location) = "SubjectLocation" | Location of the main subject relative to the left edge.|
-| static const char \*[OHOS_IMAGE_PROPERTY_EXPOSURE_INDEX](#ohos_image_property_exposure_index) = "ExposureIndex" | Exposure index selected at the time the image is captured.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SENSING_METHOD](#ohos_image_property_sensing_method) = "SensingMethod" | Type of the image sensor on the camera.|
-| static const char \*[OHOS_IMAGE_PROPERTY_FILE_SOURCE](#ohos_image_property_file_source) = "FileSource" | Image source.|
-| static const char \*[OHOS_IMAGE_PROPERTY_CFA_PATTERN](#ohos_image_property_cfa_pattern) = "CFAPattern" | Color Filter Array (CFA) geometric pattern of the image sensor.|
-| static const char \*[OHOS_IMAGE_PROPERTY_CUSTOM_RENDERED](#ohos_image_property_custom_rendered) = "CustomRendered" | Special processing on image data.|
-| static const char \*[OHOS_IMAGE_PROPERTY_EXPOSURE_MODE](#ohos_image_property_exposure_mode) = "ExposureMode" | Exposure mode set when the image was captured.|
-| static const char \*[OHOS_IMAGE_PROPERTY_DIGITAL_ZOOM_RATIO](#ohos_image_property_digital_zoom_ratio) = "DigitalZoomRatio" | Digital zoom ratio when the image was captured.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SCENE_CAPTURE_TYPE](#ohos_image_property_scene_capture_type) = "SceneCaptureType" | Type of the scene that was captured.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GAIN_CONTROL](#ohos_image_property_gain_control) = "GainControl" | Degree of overall image gain adjustment.|
-| static const char \*[OHOS_IMAGE_PROPERTY_CONTRAST](#ohos_image_property_contrast) = "Contrast" | Direction of contrast processing used by the camera.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SATURATION](#ohos_image_property_saturation) = "Saturation" | Direction of saturation processing used by the camera.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SHARPNESS](#ohos_image_property_sharpness) = "Sharpness" | Direction of sharpness processing used by the camera.|
-| static const char \*[OHOS_IMAGE_PROPERTY_DEVICE_SETTING_DESCRIPTION](#ohos_image_property_device_setting_description) = "DeviceSettingDescription" | Information about the photographing conditions of a specific camera model.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SUBJECT_DISTANCE_RANGE](#ohos_image_property_subject_distance_range) = "SubjectDistanceRange" | Distance to the subject.|
-| static const char \*[OHOS_IMAGE_PROPERTY_IMAGE_UNIQUE_ID](#ohos_image_property_image_unique_id) = "ImageUniqueID" | Unique identifier assigned to each image.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_VERSION_ID](#ohos_image_property_gps_version_id) = "GPSVersionID" | Version of GPSInfoIFD.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_ALTITUDE_REF](#ohos_image_property_gps_altitude_ref) = "GPSAltitudeRef" | Whether the latitude is north or south latitude.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_ALTITUDE](#ohos_image_property_gps_altitude) = "GPSAltitude" | Altitude based on the reference in GPSAltitudeRef.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_SATELLITES](#ohos_image_property_gps_satellites) = "GPSSatellites" | GPS satellites used for measurement.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_STATUS](#ohos_image_property_gps_status) = "GPSStatus" | Status of the GPS receiver when the image was recorded.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_MEASURE_MODE](#ohos_image_property_gps_measure_mode) = "GPSMeasureMode" | GPS measurement pmode.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DOP](#ohos_image_property_gps_dop) = "GPSDOP" | GPS DOP (data degree of precision)|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_SPEED_REF](#ohos_image_property_gps_speed_ref) = "GPSSpeedRef" | Unit used to express the movement speed of the GPS receiver.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_SPEED](#ohos_image_property_gps_speed) = "GPSSpeed" | Movement speed of the GPS receiver.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_TRACK_REF](#ohos_image_property_gps_track_ref) = "GPSTrackRef" | Reference of the movement direction of the GPS receiver.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_TRACK](#ohos_image_property_gps_track) = "GPSTrack" | Movement direction of the GPS receiver.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_IMG_DIRECTION_REF](#ohos_image_property_gps_img_direction_ref) = "GPSImgDirectionRef" | Reference of the direction of the image when it was captured.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_IMG_DIRECTION](#ohos_image_property_gps_img_direction) = "GPSImgDirection" | Direction of the image when it was captured.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_MAP_DATUM](#ohos_image_property_gps_map_datum) = "GPSMapDatum" | Geodetic survey data used by the GPS receiver.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_LATITUDE_REF](#ohos_image_property_gps_dest_latitude_ref) = "GPSDestLatitudeRef" | Whether the latitude of the destination point is north or south latitude.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_LATITUDE](#ohos_image_property_gps_dest_latitude) = "GPSDestLatitude" | Latitude of the destination point.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_LONGITUDE_REF](#ohos_image_property_gps_dest_longitude_ref) = "GPSDestLongitudeRef" | Whether the longitude of the destination point is east or west longitude.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_PROCESSING_METHOD](#ohos_image_property_gps_processing_method) = "GPSProcessingMethod" | String that records the name of the method used for positioning.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_AREA_INFORMATION](#ohos_image_property_gps_area_information) = "GPSAreaInformation" | String that records the name of the GPS area.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DIFFERENTIAL](#ohos_image_property_gps_differential) = "GPSDifferential" | Whether differential correction is applied to the GPS receiver. It is critical to accurate location accuracy.|
-| static const char \*[OHOS_IMAGE_PROPERTY_BODY_SERIAL_NUMBER](#ohos_image_property_body_serial_number) = "BodySerialNumber" | Serial number of the camera body.|
-| static const char \*[OHOS_IMAGE_PROPERTY_CAMERA_OWNER_NAME](#ohos_image_property_camera_owner_name) = "CameraOwnerName" | Name of the camera owner.|
-| static const char \*[OHOS_IMAGE_PROPERTY_COMPOSITE_IMAGE](#ohos_image_property_composite_image) = "CompositeImage" | Whether the image is a composite image.|
-| static const char \*[OHOS_IMAGE_PROPERTY_DNG_VERSION](#ohos_image_property_dng_version) = "DNGVersion" | DNG version. It encodes the DNG 4-tier version number.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_LONGITUDE](#ohos_image_property_gps_dest_longitude) = "GPSDestLongitude" | Longitude of the destination point.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_BEARING_REF](#ohos_image_property_gps_dest_bearing_ref) = "GPSDestBearingRef" | Reference of the bearing to the destination point.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_BEARING](#ohos_image_property_gps_dest_bearing) = "GPSDestBearing" | Bearing to the destination point.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_DISTANCE_REF](#ohos_image_property_gps_dest_distance_ref) = "GPSDestDistanceRef" | Unit used to express the distance to the destination point.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_DISTANCE](#ohos_image_property_gps_dest_distance) = "GPSDestDistance" | Distance to the destination point.|
-| static const char \*[OHOS_IMAGE_PROPERTY_DEFAULT_CROP_SIZE](#ohos_image_property_default_crop_size) = "DefaultCropSize" | Size of the final image area, in raw image coordinates, taking into account extra pixels around the edges of the final image.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GAMMA](#ohos_image_property_gamma) = "Gamma" | Gamma value.|
-| static const char \*[OHOS_IMAGE_PROPERTY_ISO_SPEED_LATITUDEYYY](#ohos_image_property_iso_speed_latitudeyyy) = "ISOSpeedLatitudeyyy" | ISO speed latitude yyy value of the camera or input device, which is defined in ISO 12232.|
-| static const char \*[OHOS_IMAGE_PROPERTY_ISO_SPEED_LATITUDEZZZ](#ohos_image_property_iso_speed_latitudezzz) = "ISOSpeedLatitudezzz" | ISO speed latitude zzz value of the camera or input device, which is defined in ISO 12232.|
-| static const char \*[OHOS_IMAGE_PROPERTY_LENS_MAKE](#ohos_image_property_lens_make) = "LensMake" | Manufacturer of the lens.|
-| static const char \*[OHOS_IMAGE_PROPERTY_LENS_MODEL](#ohos_image_property_lens_model) = "LensModel" | Model of the lens.|
-| static const char \*[OHOS_IMAGE_PROPERTY_LENS_SERIAL_NUMBER](#ohos_image_property_lens_serial_number) = "LensSerialNumber" | Serial number of the lens.|
-| static const char \*[OHOS_IMAGE_PROPERTY_LENS_SPECIFICATION](#ohos_image_property_lens_specification) = "LensSpecification" | Specifications of the lens.|
-| static const char \*[OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE](#ohos_image_property_new_subfile_type) = "NewSubfileType" | Data type of a subfile, such as a full-resolution image, a thumbnail, or a part of a multi-frame image. The value is a bit mask. The value 0 indicates a full-resolution image, **1** indicates a thumbnail, and **2** indicates a part of a multi-frame image.|
-| static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME](#ohos_image_property_offset_time) = "OffsetTime" | Time with an offset from UTC when the image was captured, in the format of ¡ÀHH:MM.|
-| static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_DIGITIZED](#ohos_image_property_offset_time_digitized) = "OffsetTimeDigitized" | Time with an offset from UTC when the image was digitized. It helps to accurately adjust the timestamp.|
-| static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_ORIGINAL](#ohos_image_property_offset_time_original) = "OffsetTimeOriginal" | Time with an offset from UTC when the original image was created. It is critical for time-sensitive applications.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SOURCE_EXPOSURE_TIMES_OF_COMPOSITE_IMAGE](#ohos_image_property_source_exposure_times_of_composite_image) = "SourceExposureTimesOfCompositeImage" | Exposure time of source images of the composite image.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SOURCE_IMAGE_NUMBER_OF_COMPOSITE_IMAGE](#ohos_image_property_source_image_number_of_composite_image) = "SourceImageNumberOfCompositeImage" | Number of source images of the composite image.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SUBFILE_TYPE](#ohos_image_property_subfile_type) = "SubfileType" | Type of data contained in this subfile. This tag has been deprecated. Use **NewSubfileType** instead.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GPS_H_POSITIONING_ERROR](#ohos_image_property_gps_h_positioning_error) = "GPSHPositioningError" | Horizontal positioning error, in meters.|
-| static const char \*[OHOS_IMAGE_PROPERTY_PHOTOGRAPHIC_SENSITIVITY](#ohos_image_property_photographic_sensitivity) = "PhotographicSensitivity" | Sensitivity of the camera or input device when the image was captured.|
-| static const char \*[OHOS_IMAGE_PROPERTY_BURST_NUMBER](#ohos_image_property_burst_number) = "HwMnoteBurstNumber" | Number of burst shooting times.|
-| static const char \*[OHOS_IMAGE_PROPERTY_FACE_CONF](#ohos_image_property_face_conf) = "HwMnoteFaceConf" | Face confidence.|
-| static const char \*[OHOS_IMAGE_PROPERTY_FACE_LEYE_CENTER](#ohos_image_property_face_leye_center) = "HwMnoteFaceLeyeCenter" | Left eye centered. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesourcenative_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesourcenative_modifyimageproperty).|
-| static const char \*[OHOS_IMAGE_PROPERTY_FACE_MOUTH_CENTER](#ohos_image_property_face_mouth_center) = "HwMnoteFaceMouthCenter" | Mouth centered.|
-| static const char \*[OHOS_IMAGE_PROPERTY_FACE_POINTER](#ohos_image_property_face_pointer) = "HwMnoteFacePointer" | Face pointer.|
-| static const char \*[OHOS_IMAGE_PROPERTY_FACE_RECT](#ohos_image_property_face_rect) = "HwMnoteFaceRect" | Face rectangle.|
-| static const char \*[OHOS_IMAGE_PROPERTY_FACE_REYE_CENTER](#ohos_image_property_face_reye_center) = "HwMnoteFaceReyeCenter" | Right eye centered.|
-| static const char \*[OHOS_IMAGE_PROPERTY_FACE_SMILE_SCORE](#ohos_image_property_face_smile_score) = "HwMnoteFaceSmileScore" | Smile score of for faces.|
-| static const char \*[OHOS_IMAGE_PROPERTY_FACE_VERSION](#ohos_image_property_face_version) = "HwMnoteFaceVersion" | Facial recognition algorithm version.|
-| static const char \*[OHOS_IMAGE_PROPERTY_FRONT_CAMERA](#ohos_image_property_front_camera) = "HwMnoteFrontCamera" | Whether the front camera is used to take a selfie.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SCENE_POINTER](#ohos_image_property_scene_pointer) = "HwMnoteScenePointer" | Pointer to the scene.|
-| static const char \*[OHOS_IMAGE_PROPERTY_SCENE_VERSION](#ohos_image_property_scene_version) = "HwMnoteSceneVersion" | Scene algorithm version.|
-| static const char \*[OHOS_IMAGE_PROPERTY_GIF_LOOP_COUNT](#ohos_image_property_gif_loop_count) = "GIFLoopCount" | Number of GIF loops.|
-| static const char \*[OHOS_IMAGE_PROPERTY_X_IN_ORIGINAL](#ohos_image_property_x_in_original) = "XInOriginal" | X coordinate of the upper left corner of the fragment map in the original image. |
-| static const char \*[OHOS_IMAGE_PROPERTY_Y_IN_ORIGINAL](#ohos_image_property_y_in_original) = "XInOriginal" | Y coordinate of the upper left corner of the fragment map in the original image. |
-| static const char \*[OHOS_IMAGE_PROPERTY_FRAGMENT_WIDTH](#ohos_image_property_fragment_width) = "FragmentImageWidth"| Width of the fragment map. |
-| static const char \*[OHOS_IMAGE_PROPERTY_FRAGMENT_HEIGHT](#ohos_image_property_fragment_height) = "FragmentImageHeight" | Height of the fragment map. |
+| static const char \*[MIME_TYPE_BMP](#mime_type_bmp) = "image/bmp" | BMP image format.| 
+| static const char \*[MIME_TYPE_JPEG](#mime_type_jpeg) = "image/jpeg" | JPEG image format.| 
+| static const char \*[MIME_TYPE_HEIC](#mime_type_heic) = "image/heic" | HEIF image format.| 
+| static const char \*[MIME_TYPE_PNG](#mime_type_png) = "image/png" | PNG image format.| 
+| static const char \*[MIME_TYPE_WEBP](#mime_type_webp) = "image/webp" | WebP image format.| 
+| static const char \*[MIME_TYPE_GIF](#mime_type_gif) = "image/gif" | GIF image format.| 
+| static const char \*[MIME_TYPE_ICON](#mime_type_icon) = "image/x-icon" | ICO image format.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_BITS_PER_SAMPLE](#ohos_image_property_bits_per_sample) = "BitsPerSample" | Number of bits per sample.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_ORIENTATION](#ohos_image_property_orientation) = "Orientation" | Image orientation.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_IMAGE_LENGTH](#ohos_image_property_image_length) = "ImageLength" | Image length.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_IMAGE_WIDTH](#ohos_image_property_image_width) = "ImageWidth" | Image width.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_LATITUDE](#ohos_image_property_gps_latitude) = "GPSLatitude" | Image latitude.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_LONGITUDE](#ohos_image_property_gps_longitude) = "GPSLongitude" | Image longitude.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_LATITUDE_REF](#ohos_image_property_gps_latitude_ref) = "GPSLatitudeRef" | Whether the latitude is north or south latitude.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_LONGITUDE_REF](#ohos_image_property_gps_longitude_ref) = "GPSLongitudeRef" | Whether the longitude is east or west longitude.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_DATE_TIME_ORIGINAL](#ohos_image_property_date_time_original) = "DateTimeOriginal" | Shooting time, for example, 2022:09:06 15:48:00.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_EXPOSURE_TIME](#ohos_image_property_exposure_time) = "ExposureTime" | Exposure time, for example, 1/33 seconds.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SCENE_TYPE](#ohos_image_property_scene_type) = "SceneType" | Type of the scene, for example, portrait, scenery, motion, and night.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_ISO_SPEED_RATINGS](#ohos_image_property_iso_speed_ratings) = "ISOSpeedRatings" | ISO sensitivity or ISO speed, for example, 400.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_F_NUMBER](#ohos_image_property_f_number) = "FNumber" | F number, for example, f/1.8.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_COMPRESSED_BITS_PER_PIXEL](#ohos_image_property_compressed_bits_per_pixel) = "CompressedBitsPerPixel" | Number of bits per pixel. It is specific to compressed data.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_COMPRESSION](#ohos_image_property_compression) = "Compression" | Compression scheme used on the image data.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_PHOTOMETRIC_INTERPRETATION](#ohos_image_property_photometric_interpretation) = "PhotometricInterpretation" | Color space of the image data, for example, RGB or YCbCr.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_STRIP_OFFSETS](#ohos_image_property_strip_offsets) = "StripOffsets" | Byte offset of each strip.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL](#ohos_image_property_samples_per_pixel) = "SamplesPerPixel" | Number of components per pixel. The value is **3** for RGB and YCbCr images. The **JPEG** key is used in JPEG compressed data.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_ROWS_PER_STRIP](#ohos_image_property_rows_per_strip) = "RowsPerStrip" | Number of rows per strip.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_STRIP_BYTE_COUNTS](#ohos_image_property_strip_byte_counts) = "StripByteCounts" | Number of bytes in each strip after compression.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_X_RESOLUTION](#ohos_image_property_x_resolution) = "XResolution" | Number of pixels per ResolutionUnit in the image width (X) direction.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_Y_RESOLUTION](#ohos_image_property_y_resolution) = "YResolution" | Number of pixels per ResolutionUnit in the image height (Y) direction.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_PLANAR_CONFIGURATION](#ohos_image_property_planar_configuration) = "PlanarConfiguration" | Storage format of components of each pixel, which can be chunky or planar.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_RESOLUTION_UNIT](#ohos_image_property_resolution_unit) = "ResolutionUnit" | Unit of measurement for XResolution and YResolution.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_TRANSFER_FUNCTION](#ohos_image_property_transfer_function) = "TransferFunction" | Transfer function for the image, which is usually used for color correction.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SOFTWARE](#ohos_image_property_software) = "Software" | Name and version number of the software used to create the image.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_ARTIST](#ohos_image_property_artist) = "Artist" | Person who created the image.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_WHITE_POINT](#ohos_image_property_white_point) = "WhitePoint" | Chromaticity of the white point of the image.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_PRIMARY_CHROMATICITIES](#ohos_image_property_primary_chromaticities) = "PrimaryChromaticities" | Chromaticities of the primaries of the image.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_YCBCR_COEFFICIENTS](#ohos_image_property_ycbcr_coefficients) = "YCbCrCoefficients" | Transformation from RGB to YCbCr image data.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_YCBCR_SUB_SAMPLING](#ohos_image_property_ycbcr_sub_sampling) = "YCbCrSubSampling" | Subsampling factors used for the chrominance components of a YCbCr image.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_YCBCR_POSITIONING](#ohos_image_property_ycbcr_positioning) = "YCbCrPositioning" | Positioning of subsampled chrominance components relative to luminance samples.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_REFERENCE_BLACK_WHITE](#ohos_image_property_reference_black_white) = "ReferenceBlackWhite" | A pair of headroom and footroom image data values (codes) for each pixel component.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_COPYRIGHT](#ohos_image_property_copyright) = "Copyright" | Copyright notice of the image.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_JPEG_INTERCHANGE_FORMAT](#ohos_image_property_jpeg_interchange_format) = "JPEGInterchangeFormat" | Offset of the SOI marker of a JPEG interchange format bitstream.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_JPEG_INTERCHANGE_FORMAT_LENGTH](#ohos_image_property_jpeg_interchange_format_length) = "JPEGInterchangeFormatLength" | Number of bytes of the JPEG stream.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_EXPOSURE_PROGRAM](#ohos_image_property_exposure_program) = "ExposureProgram" | Class of the program used by the camera to set exposure when the image was captured.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SPECTRAL_SENSITIVITY](#ohos_image_property_spectral_sensitivity) = "SpectralSensitivity" | Spectral sensitivity of each channel of the camera.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_OECF](#ohos_image_property_oecf) = "OECF" | Opto-Electric Conversion Function (OECF) specified in ISO 14524.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_EXIF_VERSION](#ohos_image_property_exif_version) = "ExifVersion" | Version of the supported EXIF standard.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_DATE_TIME_DIGITIZED](#ohos_image_property_date_time_digitized) = "DateTimeDigitized" | Date and time when the image was stored as digital data, in the format of YYYY:MM:DD HH:MM:SS.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_COMPONENTS_CONFIGURATION](#ohos_image_property_components_configuration) = "ComponentsConfiguration" | Specific information about compressed data.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SHUTTER_SPEED_VALUE](#ohos_image_property_shutter_speed_value) = "ShutterSpeedValue" | Shutter speed, expressed in Additive System of Photographic Exposure (APEX) values.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_BRIGHTNESS_VALUE](#ohos_image_property_brightness_value) = "BrightnessValue" | Value of brightness, expressed in APEX values.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_MAX_APERTURE_VALUE](#ohos_image_property_max_aperture_value) = "MaxApertureValue" | Smallest F number of the lens.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SUBJECT_DISTANCE](#ohos_image_property_subject_distance) = "SubjectDistance" | Distance to the subject, in meters.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SUBJECT_AREA](#ohos_image_property_subject_area) = "SubjectArea" | Location and area of the main subject in the entire scene.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_MAKER_NOTE](#ohos_image_property_maker_note) = "MakerNote" | Marker used by EXIF/DCF manufacturers to record any required information.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SUBSEC_TIME](#ohos_image_property_subsec_time) = "SubsecTime" | Tag used to record fractions of seconds for the **DateTime** tag.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SUBSEC_TIME_ORIGINAL](#ohos_image_property_subsec_time_original) = "SubsecTimeOriginal" | Tag used to record fractions of seconds for the **DateTimeOriginal** tag.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SUBSEC_TIME_DIGITIZED](#ohos_image_property_subsec_time_digitized) = "SubsecTimeDigitized" | Tag used to record fractions of seconds for the **DateTimeDigitized** tag.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_FLASHPIX_VERSION](#ohos_image_property_flashpix_version) = "FlashpixVersion" | FlashPix format version supported by an FPXR file. It is used to enhance device compatibility.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_COLOR_SPACE](#ohos_image_property_color_space) = "ColorSpace" | Color space information, which is usually recorded as a color space specifier.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_RELATED_SOUND_FILE](#ohos_image_property_related_sound_file) = "RelatedSoundFile" | Name of an audio file related to the image data.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_FLASH_ENERGY](#ohos_image_property_flash_energy) = "FlashEnergy" | Strobe energy at the time the image was captured, in Beam Candle Power Seconds (BCPS).| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SPATIAL_FREQUENCY_RESPONSE](#ohos_image_property_spatial_frequency_response) = "SpatialFrequencyResponse" | Spatial frequency table of the camera or input device.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_FOCAL_PLANE_X_RESOLUTION](#ohos_image_property_focal_plane_x_resolution) = "FocalPlaneXResolution" | Number of pixels in the image width (X) direction per FocalPlaneResolutionUnit.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_FOCAL_PLANE_Y_RESOLUTION](#ohos_image_property_focal_plane_y_resolution) = "FocalPlaneYResolution" | Number of pixels in the image height (Y) direction per FocalPlaneResolutionUnit.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_FOCAL_PLANE_RESOLUTION_UNIT](#ohos_image_property_focal_plane_resolution_unit) = "FocalPlaneResolutionUnit" | Unit for measuring FocalPlaneXResolution and FocalPlaneYResolution.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SUBJECT_LOCATION](#ohos_image_property_subject_location) = "SubjectLocation" | Location of the main subject relative to the left edge.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_EXPOSURE_INDEX](#ohos_image_property_exposure_index) = "ExposureIndex" | Exposure index selected at the time the image is captured.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SENSING_METHOD](#ohos_image_property_sensing_method) = "SensingMethod" | Type of the image sensor on the camera.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_FILE_SOURCE](#ohos_image_property_file_source) = "FileSource" | Image source.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_CFA_PATTERN](#ohos_image_property_cfa_pattern) = "CFAPattern" | Color Filter Array (CFA) geometric pattern of the image sensor.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_CUSTOM_RENDERED](#ohos_image_property_custom_rendered) = "CustomRendered" | Special processing on image data.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_EXPOSURE_MODE](#ohos_image_property_exposure_mode) = "ExposureMode" | Exposure mode set when the image was captured.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_DIGITAL_ZOOM_RATIO](#ohos_image_property_digital_zoom_ratio) = "DigitalZoomRatio" | Digital zoom ratio when the image was captured.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SCENE_CAPTURE_TYPE](#ohos_image_property_scene_capture_type) = "SceneCaptureType" | Type of the scene that was captured.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GAIN_CONTROL](#ohos_image_property_gain_control) = "GainControl" | Degree of overall image gain adjustment.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_CONTRAST](#ohos_image_property_contrast) = "Contrast" | Direction of contrast processing used by the camera.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SATURATION](#ohos_image_property_saturation) = "Saturation" | Direction of saturation processing used by the camera.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SHARPNESS](#ohos_image_property_sharpness) = "Sharpness" | Direction of sharpness processing used by the camera.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_DEVICE_SETTING_DESCRIPTION](#ohos_image_property_device_setting_description) = "DeviceSettingDescription" | Information about the photographing conditions of a specific camera model.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SUBJECT_DISTANCE_RANGE](#ohos_image_property_subject_distance_range) = "SubjectDistanceRange" | Distance to the subject.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_IMAGE_UNIQUE_ID](#ohos_image_property_image_unique_id) = "ImageUniqueID" | Unique identifier assigned to each image.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_VERSION_ID](#ohos_image_property_gps_version_id) = "GPSVersionID" | Version of GPSInfoIFD.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_ALTITUDE_REF](#ohos_image_property_gps_altitude_ref) = "GPSAltitudeRef" | Whether the latitude is north or south latitude.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_ALTITUDE](#ohos_image_property_gps_altitude) = "GPSAltitude" | Altitude based on the reference in GPSAltitudeRef.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_SATELLITES](#ohos_image_property_gps_satellites) = "GPSSatellites" | GPS satellites used for measurement.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_STATUS](#ohos_image_property_gps_status) = "GPSStatus" | Status of the GPS receiver when the image was recorded.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_MEASURE_MODE](#ohos_image_property_gps_measure_mode) = "GPSMeasureMode" | GPS measurement pmode.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DOP](#ohos_image_property_gps_dop) = "GPSDOP" | GPS DOP (data degree of precision)| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_SPEED_REF](#ohos_image_property_gps_speed_ref) = "GPSSpeedRef" | Unit used to express the movement speed of the GPS receiver.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_SPEED](#ohos_image_property_gps_speed) = "GPSSpeed" | Movement speed of the GPS receiver.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_TRACK_REF](#ohos_image_property_gps_track_ref) = "GPSTrackRef" | Reference of the movement direction of the GPS receiver.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_TRACK](#ohos_image_property_gps_track) = "GPSTrack" | Movement direction of the GPS receiver.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_IMG_DIRECTION_REF](#ohos_image_property_gps_img_direction_ref) = "GPSImgDirectionRef" | Reference of the direction of the image when it was captured.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_IMG_DIRECTION](#ohos_image_property_gps_img_direction) = "GPSImgDirection" | Direction of the image when it was captured.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_MAP_DATUM](#ohos_image_property_gps_map_datum) = "GPSMapDatum" | Geodetic survey data used by the GPS receiver.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_LATITUDE_REF](#ohos_image_property_gps_dest_latitude_ref) = "GPSDestLatitudeRef" | Whether the latitude of the destination point is north or south latitude.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_LATITUDE](#ohos_image_property_gps_dest_latitude) = "GPSDestLatitude" | Latitude of the destination point.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_LONGITUDE_REF](#ohos_image_property_gps_dest_longitude_ref) = "GPSDestLongitudeRef" | Whether the longitude of the destination point is east or west longitude.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_PROCESSING_METHOD](#ohos_image_property_gps_processing_method) = "GPSProcessingMethod" | String that records the name of the method used for positioning.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_AREA_INFORMATION](#ohos_image_property_gps_area_information) = "GPSAreaInformation" | String that records the name of the GPS area.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DIFFERENTIAL](#ohos_image_property_gps_differential) = "GPSDifferential" | Whether differential correction is applied to the GPS receiver. It is critical to accurate location accuracy.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_BODY_SERIAL_NUMBER](#ohos_image_property_body_serial_number) = "BodySerialNumber" | Serial number of the camera body.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_CAMERA_OWNER_NAME](#ohos_image_property_camera_owner_name) = "CameraOwnerName" | Name of the camera owner.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_COMPOSITE_IMAGE](#ohos_image_property_composite_image) = "CompositeImage" | Whether the image is a composite image.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_DNG_VERSION](#ohos_image_property_dng_version) = "DNGVersion" | DNG version. It encodes the DNG 4-tier version number.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_LONGITUDE](#ohos_image_property_gps_dest_longitude) = "GPSDestLongitude" | Longitude of the destination point.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_BEARING_REF](#ohos_image_property_gps_dest_bearing_ref) = "GPSDestBearingRef" | Reference of the bearing to the destination point.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_BEARING](#ohos_image_property_gps_dest_bearing) = "GPSDestBearing" | Bearing to the destination point.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_DISTANCE_REF](#ohos_image_property_gps_dest_distance_ref) = "GPSDestDistanceRef" | Unit used to express the distance to the destination point.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_DISTANCE](#ohos_image_property_gps_dest_distance) = "GPSDestDistance" | Distance to the destination point.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_DEFAULT_CROP_SIZE](#ohos_image_property_default_crop_size) = "DefaultCropSize" | Size of the final image area, in raw image coordinates, taking into account extra pixels around the edges of the final image.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GAMMA](#ohos_image_property_gamma) = "Gamma" | Gamma value.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_ISO_SPEED_LATITUDEYYY](#ohos_image_property_iso_speed_latitudeyyy) = "ISOSpeedLatitudeyyy" | ISO speed latitude yyy value of the camera or input device, which is defined in ISO 12232.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_ISO_SPEED_LATITUDEZZZ](#ohos_image_property_iso_speed_latitudezzz) = "ISOSpeedLatitudezzz" | ISO speed latitude zzz value of the camera or input device, which is defined in ISO 12232.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_LENS_MAKE](#ohos_image_property_lens_make) = "LensMake" | Manufacturer of the lens.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_LENS_MODEL](#ohos_image_property_lens_model) = "LensModel" | Model of the lens.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_LENS_SERIAL_NUMBER](#ohos_image_property_lens_serial_number) = "LensSerialNumber" | Serial number of the lens.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_LENS_SPECIFICATION](#ohos_image_property_lens_specification) = "LensSpecification" | Specifications of the lens.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE](#ohos_image_property_new_subfile_type) = "NewSubfileType" | Data type of a subfile, such as a full-resolution image, a thumbnail, or a part of a multi-frame image. The value is a bit mask. The value 0 indicates a full-resolution image, **1** indicates a thumbnail, and **2** indicates a part of a multi-frame image.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME](#ohos_image_property_offset_time) = "OffsetTime" | Time with an offset from UTC when the image was captured, in the format of ¡ÀHH:MM.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_DIGITIZED](#ohos_image_property_offset_time_digitized) = "OffsetTimeDigitized" | Time with an offset from UTC when the image was digitized. It helps to accurately adjust the timestamp.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_ORIGINAL](#ohos_image_property_offset_time_original) = "OffsetTimeOriginal" | Time with an offset from UTC when the original image was created. It is critical for time-sensitive applications.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SOURCE_EXPOSURE_TIMES_OF_COMPOSITE_IMAGE](#ohos_image_property_source_exposure_times_of_composite_image) = "SourceExposureTimesOfCompositeImage" | Exposure time of source images of the composite image.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SOURCE_IMAGE_NUMBER_OF_COMPOSITE_IMAGE](#ohos_image_property_source_image_number_of_composite_image) = "SourceImageNumberOfCompositeImage" | Number of source images of the composite image.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SUBFILE_TYPE](#ohos_image_property_subfile_type) = "SubfileType" | Type of data contained in this subfile. This tag has been deprecated. Use **NewSubfileType** instead.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_H_POSITIONING_ERROR](#ohos_image_property_gps_h_positioning_error) = "GPSHPositioningError" | Horizontal positioning error, in meters.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_PHOTOGRAPHIC_SENSITIVITY](#ohos_image_property_photographic_sensitivity) = "PhotographicSensitivity" | Sensitivity of the camera or input device when the image was captured.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_BURST_NUMBER](#ohos_image_property_burst_number) = "HwMnoteBurstNumber" | Number of burst shooting times.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_CONF](#ohos_image_property_face_conf) = "HwMnoteFaceConf" | Face confidence.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_LEYE_CENTER](#ohos_image_property_face_leye_center) = "HwMnoteFaceLeyeCenter" | Left eye centered. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesourcenative_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesourcenative_modifyimageproperty).| 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_MOUTH_CENTER](#ohos_image_property_face_mouth_center) = "HwMnoteFaceMouthCenter" | Mouth centered.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_POINTER](#ohos_image_property_face_pointer) = "HwMnoteFacePointer" | Face pointer.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_RECT](#ohos_image_property_face_rect) = "HwMnoteFaceRect" | Face rectangle.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_REYE_CENTER](#ohos_image_property_face_reye_center) = "HwMnoteFaceReyeCenter" | Right eye centered.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_SMILE_SCORE](#ohos_image_property_face_smile_score) = "HwMnoteFaceSmileScore" | Smile score of for faces.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_VERSION](#ohos_image_property_face_version) = "HwMnoteFaceVersion" | Facial recognition algorithm version.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_FRONT_CAMERA](#ohos_image_property_front_camera) = "HwMnoteFrontCamera" | Whether the front camera is used to take a selfie.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SCENE_POINTER](#ohos_image_property_scene_pointer) = "HwMnoteScenePointer" | Pointer to the scene.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_SCENE_VERSION](#ohos_image_property_scene_version) = "HwMnoteSceneVersion" | Scene algorithm version.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_GIF_LOOP_COUNT](#ohos_image_property_gif_loop_count) = "GIFLoopCount" | Number of GIF loops.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_X_IN_ORIGINAL](#ohos_image_property_x_in_original) = "XInOriginal" | X coordinate of the upper left corner of the fragment map in the original image. | 
+| static const char \*[OHOS_IMAGE_PROPERTY_Y_IN_ORIGINAL](#ohos_image_property_y_in_original) = "XInOriginal" | Y coordinate of the upper left corner of the fragment map in the original image. | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FRAGMENT_WIDTH](#ohos_image_property_fragment_width) = "FragmentImageWidth"| Width of the fragment map. | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FRAGMENT_HEIGHT](#ohos_image_property_fragment_height) = "FragmentImageHeight" | Height of the fragment map. | 
 
 
 ## Type Description
@@ -778,13 +788,13 @@ Enumerates the auxiliary picture types.
 
 **Since**: 13
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| AUXILIARY_PICTURE_TYPE_GAINMAP  | Gain map, a mechanism for transforming an SDR image into an HDR image capable of adjustable display adjustment. It is a set of combinations describing how to apply gain map metadata.  |
-| AUXILIARY_PICTURE_TYPE_DEPTH_MAP  | Depth map, which stores the depth data of an image. It captures the distance between each pixel and the camera to provide 3D scene structure. It is usually used for 3D modeling and scene comprehension.  |
-| AUXILIARY_PICTURE_TYPE_UNREFOCUS_MAP  | Defocused portrait original image, which provides a method to emphasize background blur in portrait photographing. It helps users select a focus region in post-processing, allowing for greater creative control.  |
-| AUXILIARY_PICTURE_TYPE_LINEAR_MAP  | Linear map, which is used to provide additional viewpoints or supplementary information. It is usually used to enhance visual effects and can contain linear representations of lighting, colors, or other visual elements in a scene.  |
-| AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP  | Fragment map, which indicates regions obscured by watermarks in the original image. It is used to remove or correct the watermark interference, thereby enhancing the image completeness and visibility.  |
+| AUXILIARY_PICTURE_TYPE_GAINMAP  | Gain map, a mechanism for transforming an SDR image into an HDR image capable of adjustable display adjustment. It is a set of combinations describing how to apply gain map metadata.  | 
+| AUXILIARY_PICTURE_TYPE_DEPTH_MAP  | Depth map, which stores the depth data of an image. It captures the distance between each pixel and the camera to provide 3D scene structure. It is usually used for 3D modeling and scene comprehension.  | 
+| AUXILIARY_PICTURE_TYPE_UNREFOCUS_MAP  | Defocused portrait original image, which provides a method to emphasize background blur in portrait photographing. It helps users select a focus region in post-processing, allowing for greater creative control.  | 
+| AUXILIARY_PICTURE_TYPE_LINEAR_MAP  | Linear map, which is used to provide additional viewpoints or supplementary information. It is usually used to enhance visual effects and can contain linear representations of lighting, colors, or other visual elements in a scene.  | 
+| AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP  | Fragment map, which indicates regions obscured by watermarks in the original image. It is used to remove or correct the watermark interference, thereby enhancing the image completeness and visibility.  | 
 
 
 ### IMAGE_DYNAMIC_RANGE
@@ -799,11 +809,11 @@ Enumerates the desired dynamic range for decoding.
 
 **Since**: 12
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| IMAGE_DYNAMIC_RANGE_AUTO  | Adaptive processing.  |
-| IMAGE_DYNAMIC_RANGE_SDR  | Standard dynamic range (SDR).  |
-| IMAGE_DYNAMIC_RANGE_HDR  | High dynamic range (HDR).  |
+| IMAGE_DYNAMIC_RANGE_AUTO  | Adaptive processing.  | 
+| IMAGE_DYNAMIC_RANGE_SDR  | Standard dynamic range (SDR).  | 
+| IMAGE_DYNAMIC_RANGE_HDR  | High dynamic range (HDR).  | 
 
 
 ### Image_ErrorCode
@@ -818,26 +828,26 @@ Enumerates the error codes.
 
 **Since**: 12
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| IMAGE_SUCCESS  | Operation successful.|
-| IMAGE_BAD_PARAMETER  | Invalid parameter.|
-| IMAGE_UNSUPPORTED_MIME_TYPE  | Unsupported MIME type.|
-| IMAGE_UNKNOWN_MIME_TYPE  | Unknown MIME type.|
-| IMAGE_TOO_LARGE  | The data or image is too large.|
-| IMAGE_DMA_NOT_EXIST  | The memory is not the DMA memory.|
-| IMAGE_DMA_OPERATION_FAILED  | The operation on the DMA memory fails.|
-| IMAGE_UNSUPPORTED_OPERATION  | Unsupported operation.|
-| IMAGE_UNSUPPORTED_METADATA  | Unsupported metadata.|
-| IMAGE_UNSUPPORTED_CONVERSION  | Unsupported conversion.|
-| IMAGE_INVALID_REGION  | Invalid region.|
-| IMAGE_UNSUPPORTED_MEMORY_FORMAT  | The memory format is not supported.<br>**Since**: 13|
-| IMAGE_ALLOC_FAILED  | Failed to allocate the memory.|
-| IMAGE_COPY_FAILED  | Failed to copy the memory.|
-| IMAGE_UNKNOWN_ERROR  | Unknown error.|
-| IMAGE_BAD_SOURCE  | Abnormal data source.|
-| IMAGE_DECODE_FAILED  | Decoding failed.|
-| IMAGE_ENCODE_FAILED  | Encoding failed.|
+| IMAGE_SUCCESS  | Operation successful.| 
+| IMAGE_BAD_PARAMETER  | Invalid parameter.| 
+| IMAGE_UNSUPPORTED_MIME_TYPE  | Unsupported MIME type.| 
+| IMAGE_UNKNOWN_MIME_TYPE  | Unknown MIME type.| 
+| IMAGE_TOO_LARGE  | The data or image is too large.| 
+| IMAGE_DMA_NOT_EXIST  | The memory is not the DMA memory.| 
+| IMAGE_DMA_OPERATION_FAILED  | The operation on the DMA memory fails.| 
+| IMAGE_UNSUPPORTED_OPERATION  | Unsupported operation.| 
+| IMAGE_UNSUPPORTED_METADATA  | Unsupported metadata.| 
+| IMAGE_UNSUPPORTED_CONVERSION  | Unsupported conversion.| 
+| IMAGE_INVALID_REGION  | Invalid region.| 
+| IMAGE_UNSUPPORTED_MEMORY_FORMAT  | The memory format is not supported.<br>**Since**: 13| 
+| IMAGE_ALLOC_FAILED  | Failed to allocate the memory.| 
+| IMAGE_COPY_FAILED  | Failed to copy the memory.| 
+| IMAGE_UNKNOWN_ERROR  | Unknown error.| 
+| IMAGE_BAD_SOURCE  | Abnormal data source.| 
+| IMAGE_DECODE_FAILED  | Decoding failed.| 
+| IMAGE_ENCODE_FAILED  | Encoding failed.| 
 
 
 ### Image_MetadataType
@@ -852,10 +862,10 @@ Enumerates the metadata types.
 
 **Since**: 13
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| EXIF_METADATA  | Exif metadata.  |
-| FRAGMENT_METADATA  | Fragment map metadata.  |
+| EXIF_METADATA  | Exif metadata.  | 
+| FRAGMENT_METADATA  | Fragment map metadata.  | 
 
 
 ### IMAGE_PACKER_DYNAMIC_RANGE
@@ -870,10 +880,10 @@ Enumerates the desired dynamic range for encoding.
 
 **Since**: 12
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| IMAGE_PACKER_DYNAMIC_RANGE_AUTO  | Adaptive processing.  |
-| IMAGE_PACKER_DYNAMIC_RANGE_SDR  | SDR.  |
+| IMAGE_PACKER_DYNAMIC_RANGE_AUTO  | Adaptive processing.  | 
+| IMAGE_PACKER_DYNAMIC_RANGE_SDR  | SDR.  | 
 
 
 ### PIXEL_FORMAT
@@ -888,16 +898,16 @@ Enumerates the image pixel formats.
 
 **Since**: 12
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| PIXEL_FORMAT_UNKNOWN | Unknown format.|
-| PIXEL_FORMAT_RGB_565 | RGB_565 format.|
-| PIXEL_FORMAT_RGBA_8888 | RGBA_8888 format.|
-| PIXEL_FORMAT_BGRA_8888 | BGRA_8888 format.|
-| PIXEL_FORMAT_RGB_888 | RGB_888 format.|
-| PIXEL_FORMAT_ALPHA_8 | ALPHA_8 format.|
-| PIXEL_FORMAT_RGBA_F16 | RGBA_F16 format.|
-| PIXEL_FORMAT_NV21 | NV21 format.|
+| PIXEL_FORMAT_UNKNOWN | Unknown format.| 
+| PIXEL_FORMAT_RGB_565 | RGB_565 format.| 
+| PIXEL_FORMAT_RGBA_8888 | RGBA_8888 format.| 
+| PIXEL_FORMAT_BGRA_8888 | BGRA_8888 format.| 
+| PIXEL_FORMAT_RGB_888 | RGB_888 format.| 
+| PIXEL_FORMAT_ALPHA_8 | ALPHA_8 format.| 
+| PIXEL_FORMAT_RGBA_F16 | RGBA_F16 format.| 
+| PIXEL_FORMAT_NV21 | NV21 format.| 
 | PIXEL_FORMAT_NV12 | NV12 format.|
 | PIXEL_FORMAT_RGBA_1010102 | RGBA_1010102 format. | 
 | PIXEL_FORMAT_YCBCR_P010 | YCBCR_P010 format. | 
@@ -916,12 +926,12 @@ Enumerates the keys of the HDR related metadata information used by the PixelMap
 
 **Since**: 12
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| HDR_METADATA_TYPE  | Metadata type used by the PixelMap.  |
-| HDR_STATIC_METADATA  | Static metadata.  |
-| HDR_DYNAMIC_METADATA  | Dynamic metadata.  |
-| HDR_GAINMAP_METADATA  | Metadata used by gain maps.  |
+| HDR_METADATA_TYPE  | Metadata type used by the PixelMap.  | 
+| HDR_STATIC_METADATA  | Static metadata.  | 
+| HDR_DYNAMIC_METADATA  | Dynamic metadata.  | 
+| HDR_GAINMAP_METADATA  | Metadata used by gain maps.  | 
 
 
 ### OH_Pixelmap_HdrMetadataType
@@ -936,12 +946,12 @@ Enumerates the HDR metadata types, which are the values of **HDR_METADATA_TYPE**
 
 **Since**: 12
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| HDR_METADATA_TYPE_NONE  | No metadata.  |
-| HDR_METADATA_TYPE_BASE  | Metadata used for base graphics.  |
-| HDR_METADATA_TYPE_GAINMAP  | Metadata used for gain maps.  |
-| HDR_METADATA_TYPE_ALTERNATE  | Metadata used for synthesized HDR graphics.  |
+| HDR_METADATA_TYPE_NONE  | No metadata.  | 
+| HDR_METADATA_TYPE_BASE  | Metadata used for base graphics.  | 
+| HDR_METADATA_TYPE_GAINMAP  | Metadata used for gain maps.  | 
+| HDR_METADATA_TYPE_ALTERNATE  | Metadata used for synthesized HDR graphics.  | 
 
 
 ### OH_PixelmapNative_AntiAliasingLevel
@@ -952,16 +962,16 @@ enum OH_PixelmapNative_AntiAliasingLevel
 
 **Description**
 
-Enumerates the antialiasing levels used for scaling PixelMaps.
+Enumerates the anti-aliasing levels used for scaling PixelMaps.
 
 **Since**: 12
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| OH_PixelmapNative_AntiAliasing_NONE  | Nearest neighbor.  |
-| OH_PixelmapNative_AntiAliasing_LOW  | Bilinear interpolation.  |
-| OH_PixelmapNative_AntiAliasing_MEDIUM  | Bilinear interpolation with mipmap enabled.  |
-| OH_PixelmapNative_AntiAliasing_HIGH  | Cubic convolution.  |
+| OH_PixelmapNative_AntiAliasing_NONE  | Nearest neighbor interpolation.  | 
+| OH_PixelmapNative_AntiAliasing_LOW  | Bilinear interpolation.  | 
+| OH_PixelmapNative_AntiAliasing_MEDIUM  | Bilinear interpolation with mipmap enabled. You are advised to use this value when zooming out an image.  | 
+| OH_PixelmapNative_AntiAliasing_HIGH  | Cubic interpolation.  | 
 
 
 ### PIXELMAP_ALPHA_TYPE
@@ -976,11 +986,11 @@ Enumerates the alpha types of a PixelMap.
 
 **Since**: 12
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| PIXELMAP_ALPHA_TYPE_UNKNOWN | Unknown format.|
-| PIXELMAP_ALPHA_TYPE_OPAQUE | Opaque format.|
-| PIXELMAP_ALPHA_TYPE_PREMULTIPLIED | Premultiplied format.|
+| PIXELMAP_ALPHA_TYPE_UNKNOWN | Unknown format.| 
+| PIXELMAP_ALPHA_TYPE_OPAQUE | Opaque format.| 
+| PIXELMAP_ALPHA_TYPE_PREMULTIPLIED | Premultiplied format.| 
 
 
 ## Function Description
@@ -1000,9 +1010,9 @@ Creates an **OH_AuxiliaryPictureInfo** object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Double pointer to the **OH_AuxiliaryPictureInfo** object created. |
+| info | Double pointer to the **OH_AuxiliaryPictureInfo** object created. | 
 
 **Returns**
 
@@ -1023,10 +1033,10 @@ Obtains the pixel format of an auxiliary picture.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_AuxiliaryPictureInfo** object. |
-| pixelFormat | Pointer to the pixel format obtained. |
+| info | Pointer to an **OH_AuxiliaryPictureInfo** object. | 
+| pixelFormat | Pointer to the pixel format obtained. | 
 
 **Returns**
 
@@ -1047,10 +1057,10 @@ Obtains the row stride of an auxiliary picture.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_AuxiliaryPictureInfo** object. |
-| rowStride | Pointer to the row stride, which is the number of bytes from one row of pixels in memory to the next row of pixels in memory. |
+| info | Pointer to an **OH_AuxiliaryPictureInfo** object. | 
+| rowStride | Pointer to the row stride, which is the number of bytes from one row of pixels in memory to the next row of pixels in memory. | 
 
 **Returns**
 
@@ -1071,10 +1081,10 @@ Obtains the size of an auxiliary picture.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_AuxiliaryPictureInfo** object. |
-| size | Pointer to the size. |
+| info | Pointer to an **OH_AuxiliaryPictureInfo** object. | 
+| size | Pointer to the size. | 
 
 **Returns**
 
@@ -1095,10 +1105,10 @@ Obtains the auxiliary picture type from the auxiliary picture information.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_AuxiliaryPictureInfo** object. |
-| type | Pointer to the type of the auxiliary picture. |
+| info | Pointer to an **OH_AuxiliaryPictureInfo** object. | 
+| type | Pointer to the type of the auxiliary picture. | 
 
 **Returns**
 
@@ -1119,9 +1129,9 @@ Releases the pointer to an **OH_AuxiliaryPictureInfo** object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_AuxiliaryPictureInfo** object. |
+| info | Pointer to an **OH_AuxiliaryPictureInfo** object. | 
 
 **Returns**
 
@@ -1142,10 +1152,10 @@ Sets the pixel format of an auxiliary picture.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_AuxiliaryPictureInfo** object. |
-| pixelFormat | Pixel format. |
+| info | Pointer to an **OH_AuxiliaryPictureInfo** object. | 
+| pixelFormat | Pixel format. | 
 
 **Returns**
 
@@ -1166,10 +1176,10 @@ Sets the row stride of an auxiliary picture.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_AuxiliaryPictureInfo** object. |
-| rowStride | Row stride, which is the number of bytes from one row of pixels in memory to the next row of pixels in memory. |
+| info | Pointer to an **OH_AuxiliaryPictureInfo** object. | 
+| rowStride | Row stride, which is the number of bytes from one row of pixels in memory to the next row of pixels in memory. | 
 
 **Returns**
 
@@ -1190,10 +1200,10 @@ Sets the size of an auxiliary picture.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_AuxiliaryPictureInfo** object. |
-| size | Pointer to the size. |
+| info | Pointer to an **OH_AuxiliaryPictureInfo** object. | 
+| size | Pointer to the size. | 
 
 **Returns**
 
@@ -1214,10 +1224,10 @@ Sets the auxiliary picture type in the auxiliary picture information.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_AuxiliaryPictureInfo** object. |
-| type | Type of the auxiliary picture. |
+| info | Pointer to an **OH_AuxiliaryPictureInfo** object. | 
+| type | Type of the auxiliary picture. | 
 
 **Returns**
 
@@ -1238,13 +1248,13 @@ Creates the pointer to an **OH_AuxiliaryPictureNative** object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| data | Pointer to the image data. |
-| dataLength | Length of the image data. |
-| size | Pointer to the size of the auxiliary picture. |
-| type | Type of the auxiliary picture. |
-| auxiliaryPicture | Double pointer to the **OH_AuxiliaryPictureNative** object created. |
+| data | Pointer to the image data. | 
+| dataLength | Length of the image data. | 
+| size | Pointer to the size of the auxiliary picture. | 
+| type | Type of the auxiliary picture. | 
+| auxiliaryPicture | Double pointer to the **OH_AuxiliaryPictureNative** object created. | 
 
 **Returns**
 
@@ -1265,10 +1275,10 @@ Obtains the auxiliary picture information.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| auxiliaryPicture | Pointer to an **OH_AuxiliaryPictureNative** object. |
-| info | Double pointer to the auxiliary picture information. |
+| auxiliaryPicture | Pointer to an **OH_AuxiliaryPictureNative** object. | 
+| info | Double pointer to the auxiliary picture information. | 
 
 **Returns**
 
@@ -1289,11 +1299,11 @@ Obtains the metadata of an auxiliary picture.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| auxiliaryPicture | Pointer to an **OH_AuxiliaryPictureNative** object. |
-| metadataType | Metadata type. |
-| metadata | Double pointer to the metadata. |
+| auxiliaryPicture | Pointer to an **OH_AuxiliaryPictureNative** object. | 
+| metadataType | Metadata type. | 
+| metadata | Double pointer to the metadata. | 
 
 **Returns**
 
@@ -1314,10 +1324,10 @@ Obtains the type of an auxiliary picture.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| auxiliaryPicture | Pointer to an **OH_AuxiliaryPictureNative** object. |
-| type | Type of the auxiliary picture. |
+| auxiliaryPicture | Pointer to an **OH_AuxiliaryPictureNative** object. | 
+| type | Type of the auxiliary picture. | 
 
 **Returns**
 
@@ -1338,11 +1348,11 @@ Reads the pixels of an auxiliary picture and writes the result to the buffer.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| auxiliaryPicture | Pointer to an **OH_AuxiliaryPictureNative** object. |
-| destination | Pointer to the buffer to which the pixels of the auxiliary data will be written. |
-| bufferSize | Pointer to the buffer size. |
+| auxiliaryPicture | Pointer to an **OH_AuxiliaryPictureNative** object. | 
+| destination | Pointer to the buffer to which the pixels of the auxiliary data will be written. | 
+| bufferSize | Pointer to the buffer size. | 
 
 **Returns**
 
@@ -1363,9 +1373,9 @@ Releases the pointer to an **OH_AuxiliaryPictureNative** object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| picture | Pointer to an **OH_AuxiliaryPictureNative** object. |
+| picture | Pointer to an **OH_AuxiliaryPictureNative** object. | 
 
 **Returns**
 
@@ -1386,10 +1396,10 @@ Sets the auxiliary picture information.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| auxiliaryPicture | Pointer to an **OH_AuxiliaryPictureNative** object. |
-| info | Pointer to the auxiliary picture information. |
+| auxiliaryPicture | Pointer to an **OH_AuxiliaryPictureNative** object. | 
+| info | Pointer to the auxiliary picture information. | 
 
 **Returns**
 
@@ -1410,11 +1420,11 @@ Sets the metadata for an auxiliary picture.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| auxiliaryPicture | Pointer to an **OH_AuxiliaryPictureNative** object. |
-| metadataType | Metadata type. |
-| metadata | Pointer to the metadata. |
+| auxiliaryPicture | Pointer to an **OH_AuxiliaryPictureNative** object. | 
+| metadataType | Metadata type. | 
+| metadata | Pointer to the metadata. | 
 
 **Returns**
 
@@ -1435,11 +1445,11 @@ Reads the pixels in the buffer and writes the result to an auxiliary picture.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| auxiliaryPicture | Pointer to an **OH_AuxiliaryPictureNative** object. |
-| source | Pixels to be written. |
-| bufferSize | Buffer size. |
+| auxiliaryPicture | Pointer to an **OH_AuxiliaryPictureNative** object. | 
+| source | Pixels to be written. | 
+| bufferSize | Buffer size. | 
 
 **Returns**
 
@@ -1460,9 +1470,9 @@ Creates the pointer to an **OH_DecodingOptions** struct.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Double pointer to the **OH_DecodingOptions** struct created. |
+| options | Double pointer to the [OH_DecodingOptions](#oh_decodingoptions) struct created. | 
 
 **Returns**
 
@@ -1483,10 +1493,10 @@ Obtains the desired dynamic range configured during decoding.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. |
-| desiredDynamicRange | Pointer to the desired dynamic range. For details about the available options, see [IMAGE_DYNAMIC_RANGE](#image_dynamic_range). |
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
+| desiredDynamicRange | Pointer to the desired dynamic range. For details about the available options, see [IMAGE_DYNAMIC_RANGE](#image_dynamic_range). | 
 
 **Returns**
 
@@ -1507,10 +1517,10 @@ Obtains the region to decode.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. |
-| desiredRegion | Pointer to the region to decode. |
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
+| desiredRegion | Pointer to the region to decode. | 
 
 **Returns**
 
@@ -1531,10 +1541,10 @@ Obtains the desired output size.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. |
-| desiredSize | Pointer to the desired output size. |
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
+| desiredSize | Pointer to the desired output size. | 
 
 **Returns**
 
@@ -1555,10 +1565,10 @@ Obtains the index of an image.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. |
-| index | Pointer to the index of the image to decode. |
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
+| index | Pointer to the index of the image to decode. | 
 
 **Returns**
 
@@ -1579,10 +1589,10 @@ Obtains the pixel format.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. |
-| pixelFormat | Pointer to the pixel format. For details about the available options, see [PIXEL_FORMAT](#pixel_format).|
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
+| pixelFormat | Pointer to the pixel format. For details about the available options, see [PIXEL_FORMAT](#pixel_format).| 
 
 **Returns**
 
@@ -1603,10 +1613,10 @@ Obtains the rotation degree.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. |
-| rotate | Pointer to the angle to rotate, in degrees. |
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
+| rotate | Pointer to the angle to rotate, in degrees. | 
 
 **Returns**
 
@@ -1627,9 +1637,9 @@ Releases the pointer to an **OH_DecodingOptions** struct.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. |
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
 
 **Returns**
 
@@ -1651,10 +1661,10 @@ Sets the desired dynamic range during decoding.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. |
-| desiredDynamicRange | Desired dynamic range. For details about the available options, see [IMAGE_DYNAMIC_RANGE](#image_dynamic_range). |
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
+| desiredDynamicRange | Desired dynamic range. For details about the available options, see [IMAGE_DYNAMIC_RANGE](#image_dynamic_range). | 
 
 **Returns**
 
@@ -1675,10 +1685,10 @@ Sets the region to decode.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. |
-| desiredRegion | Pointer to the region to decode. |
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
+| desiredRegion | Pointer to the region to decode. | 
 
 **Returns**
 
@@ -1699,10 +1709,10 @@ Sets the desired output size.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. |
-| desiredSize | Pointer to the desired output size. |
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
+| desiredSize | Pointer to the desired output size. | 
 
 **Returns**
 
@@ -1723,10 +1733,10 @@ Sets the index for an image.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. |
-| index | Index of the image to decode. |
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
+| index | Index of the image to decode. | 
 
 **Returns**
 
@@ -1747,10 +1757,10 @@ Sets the pixel format.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. |
-| pixelFormat | Pixel format. For details about the available options, see [PIXEL_FORMAT](#pixel_format). |
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
+| pixelFormat | Pixel format. For details about the available options, see [PIXEL_FORMAT](#pixel_format). | 
 
 **Returns**
 
@@ -1771,10 +1781,10 @@ Sets the rotation angle.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. |
-| rotate | Angle to rotate, in degrees. |
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
+| rotate | Angle to rotate, in degrees. | 
 
 **Returns**
 
@@ -1795,9 +1805,9 @@ Creates the pointer to an **OH_DecodingOptionsForPicture** struct.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Double pointer to the **OH_DecodingOptionsForPicture** struct created. |
+| options | Double pointer to the **OH_DecodingOptionsForPicture** struct created. | 
 
 **Returns**
 
@@ -1818,11 +1828,11 @@ Obtains desired auxiliary pictures in the decoding parameters (auxiliary picture
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptionsForPicture** struct. |
-| desiredAuxiliaryPictures | Double pointer to the desired auxiliary pictures. |
-| length | Pointer to the length of the desired auxiliary pictures. |
+| options | Pointer to an **OH_DecodingOptionsForPicture** struct. | 
+| desiredAuxiliaryPictures | Double pointer to the desired auxiliary pictures. | 
+| length | Pointer to the length of the desired auxiliary pictures. | 
 
 **Returns**
 
@@ -1843,9 +1853,9 @@ Releases the pointer to an **OH_DecodingOptionsForPicture** struct.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptionsForPicture** struct. |
+| options | Pointer to an **OH_DecodingOptionsForPicture** struct. | 
 
 **Returns**
 
@@ -1866,11 +1876,11 @@ Sets desired auxiliary pictures in the decoding parameters.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptionsForPicture** struct. |
-| desiredAuxiliaryPictures | Pointer to the desired auxiliary pictures. |
-| length | Length of the desired auxiliary pictures. |
+| options | Pointer to an **OH_DecodingOptionsForPicture** struct. | 
+| desiredAuxiliaryPictures | Pointer to the desired auxiliary pictures. | 
+| length | Length of the desired auxiliary pictures. | 
 
 **Returns**
 
@@ -1891,11 +1901,11 @@ Obtains the size of the buffer corresponding to a component type in a native [OH
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| image | Pointer to a native [OH_ImageNative](#oh_imagenative) object. |
-| componentType | Component type. |
-| size | Pointer to the size of the buffer. |
+| image | Pointer to a native [OH_ImageNative](#oh_imagenative) object. | 
+| componentType | Component type. | 
+| size | Pointer to the size of the buffer. | 
 
 **Returns**
 
@@ -1916,11 +1926,11 @@ Obtains the buffer corresponding to a component type in a native [OH_ImageNative
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| image | Pointer to a native [OH_ImageNative](#oh_imagenative) object. |
-| componentType | Component type. |
-| nativeBuffer | Double pointer to the buffer, which is an **OH_NativeBuffer** object. |
+| image | Pointer to a native [OH_ImageNative](#oh_imagenative) object. | 
+| componentType | Component type. | 
+| nativeBuffer | Double pointer to the buffer, which is an **OH_NativeBuffer** object. | 
 
 **Returns**
 
@@ -1941,11 +1951,11 @@ Obtains the component types of a native [OH_ImageNative](#oh_imagenative) object
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| image | Pointer to a native [OH_ImageNative](#oh_imagenative) object. |
-| types | Double pointer to the component types obtained. |
-| typeSize | Pointer to the number of component types obtained. |
+| image | Pointer to a native [OH_ImageNative](#oh_imagenative) object. | 
+| types | Double pointer to the component types obtained. | 
+| typeSize | Pointer to the number of component types obtained. | 
 
 **Returns**
 
@@ -1962,16 +1972,16 @@ Image_ErrorCode OH_ImageNative_GetImageSize(OH_ImageNative *image, Image_Size *s
 
 Obtains the [Image_Size](_image___size.md) information of a native [OH_ImageNative](#oh_imagenative) object.
 
-If the [OH_ImageNative](#oh_imagenative) object stores the camera preview stream data (YUV image data), the width and height in [Image_Size](_image___size.md) obtained correspond to those of the YUV image. If the [OH_ImageNative](#oh_imagenative) object stores the camera photo stream data (JPEG image data, which is already encoded), the width in [Image_Size](_image___size.md) obtained is the JPEG data size, and the height is 1. The type of data stored in the [OH_ImageNative](#oh_imagenative) object depends on whether the application passes the surface ID in the receiver to a **previewOutput** or **captureOutput** object of the camera.
+If the [OH_ImageNative](#oh_imagenative) object stores the camera preview stream data (YUV image data), the width and height in [Image_Size](_image___size.md) obtained correspond to those of the YUV image. If the [OH_ImageNative](#oh_imagenative) object stores the camera photo stream data (JPEG image data, which is already encoded), the width in [Image_Size](_image___size.md) obtained is the JPEG data size, and the height is 1. The type of data stored in the [OH_ImageNative](#oh_imagenative) object depends on whether the application passes the surface ID in the receiver to a **previewOutput** or **captureOutput** object of the camera. For details about the best practices of camera preview and photo capture, see [Secondary Processing of Preview Streams (C/C++)](../../media/camera/native-camera-preview-imageReceiver.md) and [Photo Capture (C/C++)](../../media/camera/native-camera-shooting.md).
 
 **Since**: 12
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| image | Pointer to a native [OH_ImageNative](#oh_imagenative) object. |
-| size | Pointer to the [Image_Size](_image___size.md) object obtained. |
+| image | Pointer to a native [OH_ImageNative](#oh_imagenative) object. | 
+| size | Pointer to the [Image_Size](_image___size.md) object obtained. | 
 
 **Returns**
 
@@ -1992,11 +2002,11 @@ Obtains the pixel stride corresponding to a component type in a native [OH_Image
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| image | Pointer to a native [OH_ImageNative](#oh_imagenative) object. |
-| componentType | Component type. |
-| pixelStride | Pointer to the pixel stride obtained. |
+| image | Pointer to a native [OH_ImageNative](#oh_imagenative) object. | 
+| componentType | Component type. | 
+| pixelStride | Pointer to the pixel stride obtained. | 
 
 **Returns**
 
@@ -2019,11 +2029,11 @@ Camera preview stream data must be read based on the stride. For details, see [S
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| image | Pointer to a native [OH_ImageNative](#oh_imagenative) object. |
-| componentType | Component type. |
-| rowStride | Pointer to the row stride obtained. |
+| image | Pointer to a native [OH_ImageNative](#oh_imagenative) object. | 
+| componentType | Component type. | 
+| rowStride | Pointer to the row stride obtained. | 
 
 **Returns**
 
@@ -2046,9 +2056,9 @@ Timestamps, measured in nanoseconds, are usually monotonically increasing. The s
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| image | Pointer to a native [OH_ImageNative](#oh_imagenative) object. |
+| image | Pointer to a native [OH_ImageNative](#oh_imagenative) object. | 
 | timestamp | Pointer to the timestamp. |
 
 **Returns**
@@ -2070,9 +2080,9 @@ Releases a native [OH_ImageNative](#oh_imagenative) object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| image | Pointer to a native [OH_ImageNative](#oh_imagenative) object. |
+| image | Pointer to a native [OH_ImageNative](#oh_imagenative) object. | 
 
 **Returns**
 
@@ -2093,9 +2103,9 @@ Creates the pointer to an **OH_ImagePackerNative** object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Double pointer to the **OH_ImagePackerNative** object created. |
+| options | Double pointer to the **OH_ImagePackerNative** object created. | 
 
 **Returns**
 
@@ -2116,13 +2126,13 @@ Encodes an image source into data in a given format.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| imagePacker | Pointer to an **OH_ImagePackerNative** object. |
-| options | Pointer to an [OH_PackingOptions](#oh_packingoptions) struct. |
-| imageSource | Pointer to the image source to encode. |
-| outData | Pointer to the buffer used to store the output data. |
-| size | Pointer to the size of the buffer. |
+| imagePacker | Pointer to an **OH_ImagePackerNative** object. | 
+| options | Pointer to an [OH_PackingOptions](#oh_packingoptions) struct. | 
+| imageSource | Pointer to the image source to encode. | 
+| outData | Pointer to the buffer used to store the output data. | 
+| size | Pointer to the size of the buffer. | 
 
 **Returns**
 
@@ -2143,13 +2153,13 @@ Encodes a picture into data in a given format.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| imagePacker | Pointer to an **OH_ImagePackerNative** object. |
-| options | Pointer to an [OH_PackingOptions](#oh_packingoptions) struct. |
-| picture | Pointer to the picture to encode. |
-| outData | Pointer to the buffer used to store the output data. |
-| size | Pointer to the size of the buffer. |
+| imagePacker | Pointer to an **OH_ImagePackerNative** object. | 
+| options | Pointer to an [OH_PackingOptions](#oh_packingoptions) struct. | 
+| picture | Pointer to the picture to encode. | 
+| outData | Pointer to the buffer used to store the output data. | 
+| size | Pointer to the size of the buffer. | 
 
 **Returns**
 
@@ -2170,13 +2180,13 @@ Encodes a PixelMap into data in a given format.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| imagePacker | Pointer to an **OH_ImagePackerNative** object. |
-| options | Pointer to an [OH_PackingOptions](#oh_packingoptions) struct. |
-| pixelmap | Pointer to the PixelMap to encode. |
-| outData | Pointer to the buffer used to store the output data. |
-| size | Pointer to the size of the buffer. |
+| imagePacker | Pointer to an **OH_ImagePackerNative** object. | 
+| options | Pointer to an [OH_PackingOptions](#oh_packingoptions) struct. | 
+| pixelmap | Pointer to the PixelMap to encode. | 
+| outData | Pointer to the buffer used to store the output data. | 
+| size | Pointer to the size of the buffer. | 
 
 **Returns**
 
@@ -2197,12 +2207,12 @@ Encodes an image source into a file.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| imagePacker | Pointer to an **OH_ImagePackerNative** object. |
-| options | Pointer to an [OH_PackingOptions](#oh_packingoptions) struct. |
-| imageSource | Pointer to the image source to encode. |
-| fd | File descriptor, which is writable. |
+| imagePacker | Pointer to an **OH_ImagePackerNative** object. | 
+| options | Pointer to an [OH_PackingOptions](#oh_packingoptions) struct. | 
+| imageSource | Pointer to the image source to encode. | 
+| fd | File descriptor, which is writable. | 
 
 **Returns**
 
@@ -2223,12 +2233,12 @@ Encodes a picture into a file.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| imagePacker | Pointer to an **OH_ImagePackerNative** object. |
-| options | Pointer to an [OH_PackingOptions](#oh_packingoptions) struct. |
-| picture | Pointer to the picture to encode. |
-| fd | File descriptor, which is writable. |
+| imagePacker | Pointer to an **OH_ImagePackerNative** object. | 
+| options | Pointer to an [OH_PackingOptions](#oh_packingoptions) struct. | 
+| picture | Pointer to the picture to encode. | 
+| fd | File descriptor, which is writable. | 
 
 **Returns**
 
@@ -2249,12 +2259,12 @@ Encodes a PixelMap into a file.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| imagePacker | Pointer to an **OH_ImagePackerNative** object. |
-| options | Pointer to an [OH_PackingOptions](#oh_packingoptions) struct. |
-| pixelmap | Pointer to the PixelMap to encode. |
-| fd | File descriptor, which is writable. |
+| imagePacker | Pointer to an **OH_ImagePackerNative** object. | 
+| options | Pointer to an [OH_PackingOptions](#oh_packingoptions) struct. | 
+| pixelmap | Pointer to the PixelMap to encode. | 
+| fd | File descriptor, which is writable. | 
 
 **Returns**
 
@@ -2275,9 +2285,9 @@ Releases the pointer to an **OH_ImagePackerNative** object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| imagePacker | Pointer to an **OH_ImagePackerNative** object. |
+| imagePacker | Pointer to an **OH_ImagePackerNative** object. | 
 
 **Returns**
 
@@ -2298,10 +2308,10 @@ Creates an **OH_ImageReceiverNative** object at the application layer.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. |
-| receiver | Double pointer to the [OH_ImageReceiverNative](#oh_imagereceivernative) object created. |
+| options | Pointer to an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. | 
+| receiver | Double pointer to the [OH_ImageReceiverNative](#oh_imagereceivernative) object created. | 
 
 **Returns**
 
@@ -2322,10 +2332,10 @@ Obtains the capacity of an image receiver, which is an [OH_ImageReceiverNative](
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| receiver | Pointer to an [OH_ImageReceiverNative](#oh_imagereceivernative) object. |
-| capacity | Pointer to the capacity obtained. |
+| receiver | Pointer to an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
+| capacity | Pointer to the capacity obtained. | 
 
 **Returns**
 
@@ -2350,10 +2360,10 @@ Obtains the receiver ID through an [OH_ImageReceiverNative](#oh_imagereceivernat
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| receiver | Pointer to an [OH_ImageReceiverNative](#oh_imagereceivernative) object. |
-| surfaceId | Pointer to the surface ID obtained. |
+| receiver | Pointer to an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
+| surfaceId | Pointer to the surface ID obtained. | 
 
 **Returns**
 
@@ -2378,10 +2388,10 @@ Obtains the size of an image receiver, which is an [OH_ImageReceiverNative](#oh_
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| receiver | Pointer to an [OH_ImageReceiverNative](#oh_imagereceivernative) object. |
-| size | Pointer to the [Image_Size](_image___size.md) object obtained. |
+| receiver | Pointer to an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
+| size | Pointer to the [Image_Size](_image___size.md) object obtained. | 
 
 **Returns**
 
@@ -2408,9 +2418,9 @@ The callback is registered by calling [OH_ImageReceiverNative_On](#oh_imagerecei
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| receiver | Pointer to an [OH_ImageReceiverNative](#oh_imagereceivernative) object. |
+| receiver | Pointer to an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
 
 **Returns**
 
@@ -2437,10 +2447,10 @@ This callback is triggered whenever a new image is received.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| receiver | Pointer to an [OH_ImageReceiverNative](#oh_imagereceivernative) object. |
-| callback | Callback defined in [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback). |
+| receiver | Pointer to an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
+| callback | Callback defined in [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback). | 
 
 **Returns**
 
@@ -2461,14 +2471,18 @@ Image_ErrorCode OH_ImageReceiverNative_ReadLatestImage(OH_ImageReceiverNative* r
 
 Obtains the latest image through an [OH_ImageReceiverNative](#oh_imagereceivernative) object.
 
+> **NOTE**
+>
+> This function can be called to receive data only after the [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback) callback is triggered. When the [OH_ImageNative](#oh_imagenative) object returned by this function is no longer needed, call [OH_ImageNative_Release](#oh_imagenative_release) to release the object. New data can be received only after the release.
+
 **Since**: 12
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| receiver | Pointer to an [OH_ImageReceiverNative](#oh_imagereceivernative) object. |
-| image | Double pointer to the image obtained, which is an **OH_ImageNative** object at the application layer. |
+| receiver | Pointer to an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
+| image | Double pointer to the image obtained, which is an **OH_ImageNative** object at the application layer. | 
 
 **Returns**
 
@@ -2489,14 +2503,18 @@ Image_ErrorCode OH_ImageReceiverNative_ReadNextImage(OH_ImageReceiverNative* rec
 
 Obtains the next image through an [OH_ImageReceiverNative](#oh_imagereceivernative) object.
 
+> **NOTE**
+>
+> This function can be called to receive data only after the [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback) callback is triggered. When the [OH_ImageNative](#oh_imagenative) object returned by this function is no longer needed, call [OH_ImageNative_Release](#oh_imagenative_release) to release the object. New data can be received only after the release.
+
 **Since**: 12
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| receiver | Pointer to an [OH_ImageReceiverNative](#oh_imagereceivernative) object. |
-| image | Double pointer to the image obtained, which is an **OH_ImageNative** object at the application layer. |
+| receiver | Pointer to an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
+| image | Double pointer to the image obtained, which is an **OH_ImageNative** object at the application layer. | 
 
 **Returns**
 
@@ -2521,9 +2539,9 @@ Releases a native [OH_ImageReceiverNative](#oh_imagereceivernative) object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| receiver | Pointer to a native [OH_ImageReceiverNative](#oh_imagereceivernative) object. |
+| receiver | Pointer to an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
 
 **Returns**
 
@@ -2548,9 +2566,9 @@ Creates an **OH_ImageReceiverOptions** object at the application layer.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Double pointer to the [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object created. |
+| options | Double pointer to the [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object created. | 
 
 **Returns**
 
@@ -2571,10 +2589,10 @@ Obtains the capacity of an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) o
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. |
-| capacity | Pointer to the capacity obtained. |
+| options | Pointer to an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. | 
+| capacity | Pointer to the capacity obtained. | 
 
 **Returns**
 
@@ -2595,10 +2613,10 @@ Obtains the [Image_Size](_image___size.md) information of an [OH_ImageReceiverOp
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. |
-| size | Pointer to the [Image_Size](_image___size.md) object obtained. |
+| options | Pointer to an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. | 
+| size | Pointer to the [Image_Size](_image___size.md) object obtained. | 
 
 **Returns**
 
@@ -2619,9 +2637,9 @@ Releases an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. |
+| options | Pointer to an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. | 
 
 **Returns**
 
@@ -2646,10 +2664,10 @@ Sets the capacity for an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) obj
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. |
-| capacity | Capacity to set. |
+| options | Pointer to an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. | 
+| capacity | Capacity to set. | 
 
 **Returns**
 
@@ -2670,10 +2688,10 @@ Sets the [Image_Size](_image___size.md) information for an [OH_ImageReceiverOpti
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. |
-| size | [Image_Size](_image___size.md) object. |
+| options | Pointer to an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. | 
+| size | [Image_Size](_image___size.md) object. | 
 
 **Returns**
 
@@ -2694,9 +2712,9 @@ Creates the pointer to an **OH_ImageSource_Info** struct.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Double pointer to the **OH_ImageSource_Info** struct created. |
+| info | Double pointer to the **OH_ImageSource_Info** struct created. | 
 
 **Returns**
 
@@ -2717,10 +2735,10 @@ Obtains the dynamic range of an image.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_ImageSource_Info** struct. |
-| isHdr | Pointer to a Boolean that specifies whether the HDR is used. |
+| info | Pointer to an **OH_ImageSource_Info** struct. | 
+| isHdr | Pointer to a Boolean that specifies whether the HDR is used. | 
 
 **Returns**
 
@@ -2741,10 +2759,10 @@ Obtains the image height.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_ImageSource_Info** struct. |
-| height | Pointer to the image height, in px. |
+| info | Pointer to an **OH_ImageSource_Info** struct. | 
+| height | Pointer to the image height, in px. | 
 
 **Returns**
 
@@ -2765,10 +2783,10 @@ Obtains the image width.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_ImageSource_Info** struct. |
-| width | Pointer to the image width, in px. |
+| info | Pointer to an **OH_ImageSource_Info** struct. | 
+| width | Pointer to the image width, in px. | 
 
 **Returns**
 
@@ -2789,9 +2807,9 @@ Releases the pointer to an **OH_ImageSource_Info** struct.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_ImageSource_Info** struct. |
+| info | Pointer to an **OH_ImageSource_Info** struct. | 
 
 **Returns**
 
@@ -2814,11 +2832,11 @@ The buffer data must be undecoded. Do not pass the pixel buffer data such as RBG
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| data | Pointer to the buffer data. |
-| dataSize | Size of the buffer. |
-| res | Double pointer to the **OH_ImageSourceNative** object created at the C++ local layer. |
+| data | Pointer to the buffer data. | 
+| dataSize | Size of the buffer. | 
+| res | Double pointer to the **OH_ImageSourceNative** object created at the C++ local layer. | 
 
 **Returns**
 
@@ -2839,10 +2857,10 @@ Creates the pointer to an **OH_ImageSourceNative** object based on a file descri
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| fd | File descriptor. |
-| res | Double pointer to the **OH_ImageSourceNative** object created at the C++ local layer. |
+| fd | File descriptor. | 
+| res | Double pointer to the **OH_ImageSourceNative** object created at the C++ local layer. | 
 
 **Returns**
 
@@ -2863,10 +2881,10 @@ Creates the pointer to an **OH_ImageSourceNative** object by using the raw file 
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| rawFile | Pointer to the file descriptor of the raw file. |
-| res | Double pointer to the **OH_ImageSourceNative** object created at the C++ local layer. |
+| rawFile | Pointer to the file descriptor of the raw file. | 
+| res | Double pointer to the **OH_ImageSourceNative** object created at the C++ local layer. | 
 
 **Returns**
 
@@ -2887,11 +2905,11 @@ Creates the pointer to an **OH_ImageSourceNative** object based on a URI.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
 | uri | Pointer to the URI of the image source. Only file URIs or Base64 URIs are accepted. Currently, only absolute paths are supported. |
-| uriSize | URI length. |
-| res | Double pointer to the **OH_ImageSourceNative** object created at the C++ local layer. |
+| uriSize | URI length. | 
+| res | Double pointer to the **OH_ImageSourceNative** object created at the C++ local layer. | 
 
 **Returns**
 
@@ -2912,11 +2930,11 @@ Creates the pointer to an **OH_PictureNative** object based on image decoding pa
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| source | Pointer to an **OH_ImageSourceNative** object. |
-| options | Pointer to the image decoding parameters. |
-| picture | Double pointer to the **OH_PictureNative** object created at the C++ local layer. |
+| source | Pointer to an **OH_ImageSourceNative** object. | 
+| options | Pointer to the image decoding parameters. | 
+| picture | Double pointer to the **OH_PictureNative** object created at the C++ local layer. | 
 
 **Returns**
 
@@ -2937,11 +2955,11 @@ Creates the pointer to an **OH_PixelmapNative** object based on image decoding p
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| source | Pointer to an **OH_ImageSourceNative** object. |
-| options | Pointer to the image decoding parameters. |
-| resPixMap | Double pointer to the **OH_PixelmapNative** object created at the C++ local layer. |
+| source | Pointer to an **OH_ImageSourceNative** object. | 
+| options | Pointer to the image decoding parameters. | 
+| resPixMap | Double pointer to the **OH_PixelmapNative** object created at the C++ local layer. | 
 
 **Returns**
 
@@ -2962,12 +2980,12 @@ Creates an array of **OH_PixelmapNative** objects based on image decoding parame
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| source | Pointer to an **OH_ImageSourceNative** object. |
-| options | Pointer to the image decoding parameters. |
-| resVecPixMap | Pointer to an array of **OH_PixelmapNative** objects created at the C++ local layer. |
-| size | Size of the array. You can use [OH_ImageSourceNative_GetFrameCount](#oh_imagesourcenative_getframecount) to obtain the size. |
+| source | Pointer to an **OH_ImageSourceNative** object. | 
+| options | Pointer to the image decoding parameters. | 
+| resVecPixMap | Pointer to an array of **OH_PixelmapNative** objects created at the C++ local layer. | 
+| size | Size of the array. You can use [OH_ImageSourceNative_GetFrameCount](#oh_imagesourcenative_getframecount) to obtain the size. | 
 
 **Returns**
 
@@ -2988,11 +3006,11 @@ Obtains the image delay time list.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| source | Pointer to an **OH_ImageSourceNative** object. |
-| delayTimeList | Pointer to the delay time list obtained. It cannot be a null pointer. |
-| size | Size of the delay time list. You can use [OH_ImageSourceNative_GetFrameCount](#oh_imagesourcenative_getframecount) to obtain the size. |
+| source | Pointer to an **OH_ImageSourceNative** object. | 
+| delayTimeList | Pointer to the delay time list obtained. It cannot be a null pointer. | 
+| size | Size of the delay time list. You can use [OH_ImageSourceNative_GetFrameCount](#oh_imagesourcenative_getframecount) to obtain the size. | 
 
 **Returns**
 
@@ -3013,10 +3031,10 @@ Obtains the number of image frames.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| source | Pointer to an **OH_ImageSourceNative** object. |
-| frameCount | Pointer to the number of frames obtained. |
+| source | Pointer to an **OH_ImageSourceNative** object. | 
+| frameCount | Pointer to the number of frames obtained. | 
 
 **Returns**
 
@@ -3037,11 +3055,11 @@ Obtains the information about an image with a given index.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| source | Pointer to an **OH_ImageSourceNative** object. |
-| index | Index of an image. For a GIF image, the value range is [0, N-1], where N indicates the number of GIF frames. For an image with only one frame, you can pass in **0**. |
-| info | Pointer to the image information obtained, which is an **OH_ImageSource_Info** struct. |
+| source | Pointer to an **OH_ImageSourceNative** object. | 
+| index | Index of an image. For a GIF image, the value range is [0, N-1], where N indicates the number of GIF frames. For an image with only one frame, you can pass in **0**. | 
+| info | Pointer to the image information obtained, which is an **OH_ImageSource_Info** struct. | 
 
 **Returns**
 
@@ -3062,11 +3080,11 @@ Obtains the value of an image property.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| source | Pointer to an **OH_ImageSourceNative** object. |
-| key | Pointer to the property key. For details, see [Image_String](_image___string.md). For details about the value range of **key**, see the definition of **OHOS_IMAGE_PROPERTY_XXX**. The memory must be released after the image source is used. For details, see [OH_ImageSourceNative_Release](#oh_imagesourcenative_release). |
-| value | Pointer to the value obtained. You can pass in a null pointer with the size set to zero. In this case, the system will allocate memory, but you must release the memory after use. |
+| source | Pointer to an **OH_ImageSourceNative** object. | 
+| key | Pointer to the property key. For details, see [Image_String](_image___string.md). For details about the value range of **key**, see the definition of **OHOS_IMAGE_PROPERTY_XXX**. The memory must be released after the image source is used. For details, see [OH_ImageSourceNative_Release](#oh_imagesourcenative_release). | 
+| value | Pointer to the value obtained. You can pass in a null pointer with the size set to zero. In this case, the system will allocate memory, but you must release the memory after use. | 
 
 **Returns**
 
@@ -3087,11 +3105,11 @@ Modifies the value of an image property.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| source | Pointer to an **OH_ImageSourceNative** object. |
-| key | Pointer to the property key. For details, see [Image_String](_image___string.md). **key** is an EXIF constant. The memory must be released after the image source is used. For details, see [OH_ImageSourceNative_Release](#oh_imagesourcenative_release). |
-| value | Pointer to the new value. |
+| source | Pointer to an **OH_ImageSourceNative** object. | 
+| key | Pointer to the property key. For details, see [Image_String](_image___string.md). **key** is an EXIF constant. The memory must be released after the image source is used. For details, see [OH_ImageSourceNative_Release](#oh_imagesourcenative_release). | 
+| value | Pointer to the new value. | 
 
 **Returns**
 
@@ -3112,9 +3130,9 @@ Releases the pointer to an **OH_ImageSourceNative** object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| source | Pointer to an **OH_ImageSourceNative** object. |
+| source | Pointer to an **OH_ImageSourceNative** object. | 
 
 **Returns**
 
@@ -3135,9 +3153,9 @@ Creates the pointer to an **OH_PackingOptions** struct.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Double pointer to the **OH_PackingOptions** struct created. |
+| options | Double pointer to the **OH_PackingOptions** struct created. | 
 
 **Returns**
 
@@ -3158,10 +3176,10 @@ Obtains the desired dynamic range during encoding.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_PackingOptions** struct. |
-| desiredDynamicRange | Pointer to the desired dynamic range. For details about the available options, see [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range). |
+| options | Pointer to an **OH_PackingOptions** struct. | 
+| desiredDynamicRange | Pointer to the desired dynamic range. For details about the available options, see [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range). | 
 
 **Returns**
 
@@ -3182,10 +3200,10 @@ Obtains the MIME type.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_PackingOptions** struct. |
-| format | Pointer to the image format. You can pass in a null pointer with the size set to zero. In this case, the system will allocate memory, but you must release the memory after use. |
+| options | Pointer to an **OH_PackingOptions** struct. | 
+| format | Pointer to the image format. You can pass in a null pointer with the size set to zero. In this case, the system will allocate memory, but you must release the memory after use. | 
 
 **Returns**
 
@@ -3206,10 +3224,10 @@ Obtains the encoding quality.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_PackingOptions** struct. |
-| quality | Pointer to the encoding quality. |
+| options | Pointer to an **OH_PackingOptions** struct. | 
+| quality | Pointer to the encoding quality. | 
 
 **Returns**
 
@@ -3230,9 +3248,9 @@ Releases the pointer to an **OH_PackingOptions** struct.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_PackingOptions** struct. |
+| options | Pointer to an **OH_PackingOptions** struct. | 
 
 **Returns**
 
@@ -3253,10 +3271,10 @@ Sets the desired dynamic range during encoding.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_PackingOptions** struct. |
-| desiredDynamicRange | Desired dynamic range. For details about the available options, see [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range). |
+| options | Pointer to an **OH_PackingOptions** struct. | 
+| desiredDynamicRange | Desired dynamic range. For details about the available options, see [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range). | 
 
 **Returns**
 
@@ -3277,10 +3295,10 @@ Sets the MIME type.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_PackingOptions** struct. |
-| format | Pointer to the image format. |
+| options | Pointer to an **OH_PackingOptions** struct. | 
+| format | Pointer to the image format. | 
 
 **Returns**
 
@@ -3301,10 +3319,10 @@ Sets the encoding quality.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_PackingOptions** struct. |
-| quality | Encoding quality. |
+| options | Pointer to an **OH_PackingOptions** struct. | 
+| quality | Encoding quality. | 
 
 **Returns**
 
@@ -3325,10 +3343,10 @@ Clones metadata.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| oldMetadata | Pointer to an **OH_PictureMetadata** struct. |
-| newMetadata | Double pointer to the **OH_PictureMetadata** struct obtained. |
+| oldMetadata | Pointer to an **OH_PictureMetadata** struct. | 
+| newMetadata | Double pointer to the **OH_PictureMetadata** struct obtained. | 
 
 **Returns**
 
@@ -3349,10 +3367,10 @@ Creates the pointer to an **OH_PictureMetadata** struct.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| metadataType | Metadata type. |
-| metadata | Double pointer to the **OH_PictureMetadata** struct created. |
+| metadataType | Metadata type. | 
+| metadata | Double pointer to the **OH_PictureMetadata** struct created. | 
 
 **Returns**
 
@@ -3373,11 +3391,11 @@ Obtains a property of metadata based on the key.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| metadata | Pointer to an **OH_PictureMetadata** struct. |
-| key | Pointer to the key of the property. |
-| value | Pointer to the value of the property. |
+| metadata | Pointer to an **OH_PictureMetadata** struct. | 
+| key | Pointer to the key of the property. | 
+| value | Pointer to the value of the property. | 
 
 **Returns**
 
@@ -3398,9 +3416,9 @@ Releases the pointer to an **OH_PictureMetadata** struct.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| metadata | Pointer to an **OH_PictureMetadata** struct. |
+| metadata | Pointer to an **OH_PictureMetadata** struct. | 
 
 **Returns**
 
@@ -3421,11 +3439,11 @@ Sets a property of metadata based on the key.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| metadata | Pointer to an **OH_PictureMetadata** struct. |
-| key | Pointer to the key of the property. |
-| value | Pointer to the value of the property. |
+| metadata | Pointer to an **OH_PictureMetadata** struct. | 
+| key | Pointer to the key of the property. | 
+| value | Pointer to the value of the property. | 
 
 **Returns**
 
@@ -3446,10 +3464,10 @@ Creates the pointer to an **OH_PictureNative** object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| mainPixelmap | Pointer to the **OH_PixelmapNative** object of the main picture. |
-| picture | Double pointer to the **OH_PictureNative** object created. |
+| mainPixelmap | Pointer to the **OH_PixelmapNative** object of the main picture. | 
+| picture | Double pointer to the **OH_PictureNative** object created. | 
 
 **Returns**
 
@@ -3470,11 +3488,11 @@ Obtains an auxiliary picture by type.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| picture | Pointer to an **OH_PictureNative** object. |
-| type | Type of the auxiliary picture. |
-| auxiliaryPicture | Double pointer to the **OH_AuxiliaryPictureNative** object obtained. |
+| picture | Pointer to an **OH_PictureNative** object. | 
+| type | Type of the auxiliary picture. | 
+| auxiliaryPicture | Double pointer to the **OH_AuxiliaryPictureNative** object obtained. | 
 
 **Returns**
 
@@ -3495,10 +3513,10 @@ Obtains the pointer to an **OH_PixelmapNative** object of a gain map.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| picture | Pointer to an **OH_PictureNative** object. |
-| gainmapPixelmap | Double pointer to the **OH_PixelmapNative** object of the gain map. |
+| picture | Pointer to an **OH_PictureNative** object. | 
+| gainmapPixelmap | Double pointer to the **OH_PixelmapNative** object of the gain map. | 
 
 **Returns**
 
@@ -3519,10 +3537,10 @@ Obtains the pointer to **OH_PixelmapNative** of an HDR picture.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| picture | Pointer to an **OH_PictureNative** object. |
-| hdrPixelmap | Double pointer to the **OH_PixelmapNative** object of the HDR picture. |
+| picture | Pointer to an **OH_PictureNative** object. | 
+| hdrPixelmap | Double pointer to the **OH_PixelmapNative** object of the HDR picture. | 
 
 **Returns**
 
@@ -3543,10 +3561,10 @@ Obtains the pointer to an **OH_PixelmapNative** object of a main picture.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| picture | Pointer to an **OH_PictureNative** object. |
-| mainPixelmap | Double pointer to the **OH_PixelmapNative** object obtained. |
+| picture | Pointer to an **OH_PictureNative** object. | 
+| mainPixelmap | Double pointer to the **OH_PixelmapNative** object obtained. | 
 
 **Returns**
 
@@ -3567,11 +3585,11 @@ Obtains the metadata of a main picture.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| picture | Pointer to an **OH_PictureNative** object. |
-| metadataType | Metadata type. |
-| metadata | Double pointer to the metadata of the picture. |
+| picture | Pointer to an **OH_PictureNative** object. | 
+| metadataType | Metadata type. | 
+| metadata | Double pointer to the metadata of the picture. | 
 
 **Returns**
 
@@ -3592,9 +3610,9 @@ Releases the pointer to an **OH_PictureNative** object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| picture | Pointer to an **OH_PictureNative** object. |
+| picture | Pointer to an **OH_PictureNative** object. | 
 
 **Returns**
 
@@ -3615,11 +3633,11 @@ Sets an auxiliary picture.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| picture | Pointer to an **OH_PictureNative** object. |
-| type | Type of the auxiliary picture. |
-| auxiliaryPicture | Pointer to an **OH_AuxiliaryPictureNative** object. |
+| picture | Pointer to an **OH_PictureNative** object. | 
+| type | Type of the auxiliary picture. | 
+| auxiliaryPicture | Pointer to an **OH_AuxiliaryPictureNative** object. | 
 
 **Returns**
 
@@ -3640,11 +3658,11 @@ Sets the metadata for a main picture.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| picture | Pointer to an **OH_PictureNative** object. |
-| metadataType | Metadata type. |
-| metadata | Pointer to the metadata. |
+| picture | Pointer to an **OH_PictureNative** object. | 
+| metadataType | Metadata type. | 
+| metadata | Pointer to the metadata. | 
 
 **Returns**
 
@@ -3665,9 +3683,9 @@ Creates the pointer to an **OH_Pixelmap_ImageInfo** struct.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Double pointer to the **OH_Pixelmap_ImageInfo** struct created. |
+| info | Double pointer to the **OH_Pixelmap_ImageInfo** struct created. | 
 
 **Returns**
 
@@ -3688,10 +3706,10 @@ Obtains the alpha type.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_Pixelmap_ImageInfo** struct. |
-| alphaType | Pointer to the alpha type. For details about the available options, see [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type). |
+| info | Pointer to an **OH_Pixelmap_ImageInfo** struct. | 
+| alphaType | Pointer to the alpha type. For details about the available options, see [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type). | 
 
 **Returns**
 
@@ -3712,10 +3730,10 @@ Obtains the dynamic range of a PixelMap.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_Pixelmap_ImageInfo** struct. |
-| isHdr | Pointer to a Boolean that specifies whether the HDR is used. |
+| info | Pointer to an **OH_Pixelmap_ImageInfo** struct. | 
+| isHdr | Pointer to a Boolean that specifies whether the HDR is used. | 
 
 **Returns**
 
@@ -3736,10 +3754,10 @@ Obtains the image height.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_Pixelmap_ImageInfo** struct. |
-| height | Pointer to the image height, in px. |
+| info | Pointer to an **OH_Pixelmap_ImageInfo** struct. | 
+| height | Pointer to the image height, in px. | 
 
 **Returns**
 
@@ -3760,10 +3778,10 @@ Obtains the pixel format.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_Pixelmap_ImageInfo** struct. |
-| pixelFormat | Pointer to the pixel format. |
+| info | Pointer to an **OH_Pixelmap_ImageInfo** struct. | 
+| pixelFormat | Pointer to the pixel format. | 
 
 **Returns**
 
@@ -3784,10 +3802,10 @@ Obtains the row stride.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_Pixelmap_ImageInfo** struct. |
-| rowStride | Pointer to the row stride, which is the number of bytes from one row of pixels in memory to the next row of pixels in memory. |
+| info | Pointer to an **OH_Pixelmap_ImageInfo** struct. | 
+| rowStride | Pointer to the row stride, which is the number of bytes from one row of pixels in memory to the next row of pixels in memory. | 
 
 **Returns**
 
@@ -3808,10 +3826,10 @@ Obtains the image width.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_Pixelmap_ImageInfo** struct. |
-| width | Pointer to the image width, in px. |
+| info | Pointer to an **OH_Pixelmap_ImageInfo** struct. | 
+| width | Pointer to the image width, in px. | 
 
 **Returns**
 
@@ -3832,9 +3850,9 @@ Releases the pointer to an **OH_Pixelmap_ImageInfo** struct.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| info | Pointer to an **OH_Pixelmap_ImageInfo** struct. |
+| info | Pointer to an **OH_Pixelmap_ImageInfo** struct. | 
 
 **Returns**
 
@@ -3855,9 +3873,9 @@ Creates the pointer to an **OH_Pixelmap_InitializationOptions** struct.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Double pointer to the **OH_Pixelmap_InitializationOptions** struct created. |
+| options | Double pointer to the **OH_Pixelmap_InitializationOptions** struct created. | 
 
 **Returns**
 
@@ -3878,10 +3896,10 @@ Obtains the alpha type.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. |
-| alphaType | Pointer to the alpha type. For details about the available options, see [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type). |
+| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. | 
+| alphaType | Pointer to the alpha type. For details about the available options, see [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type). | 
 
 **Returns**
 
@@ -3902,10 +3920,10 @@ Obtains the image height.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. |
-| height | Pointer to the image height, in px. |
+| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. | 
+| height | Pointer to the image height, in px. | 
 
 **Returns**
 
@@ -3926,10 +3944,10 @@ Obtains the pixel format.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. |
-| pixelFormat | Pointer to the pixel format. For details about the available options, see [PIXEL_FORMAT](#pixel_format).|
+| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. | 
+| pixelFormat | Pointer to the pixel format. For details about the available options, see [PIXEL_FORMAT](#pixel_format).| 
 
 **Returns**
 
@@ -3952,10 +3970,10 @@ The stride is the actual memory size occupied by each row of the image, in bytes
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. |
-| rowStride | Pointer to the stride, in bytes. |
+| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. | 
+| rowStride | Pointer to the stride, in bytes. | 
 
 **Returns**
 
@@ -3976,10 +3994,10 @@ Obtains the source pixel format.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. |
-| srcpixelFormat | Pointer to the source pixel format. For details about the available options, see [PIXEL_FORMAT](#pixel_format). |
+| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. | 
+| srcpixelFormat | Pointer to the source pixel format. For details about the available options, see [PIXEL_FORMAT](#pixel_format). | 
 
 **Returns**
 
@@ -4000,10 +4018,10 @@ Obtains the image width.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. |
-| width | Pointer to the image width, in px. |
+| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. | 
+| width | Pointer to the image width, in px. | 
 
 **Returns**
 
@@ -4024,9 +4042,9 @@ Releases the pointer to an **OH_Pixelmap_InitializationOptions** struct.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. |
+| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. | 
 
 **Returns**
 
@@ -4047,10 +4065,10 @@ Sets the alpha type.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. |
-| alphaType | Alpha type. For details about the available options, see [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type). |
+| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. | 
+| alphaType | Alpha type. For details about the available options, see [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type). | 
 
 **Returns**
 
@@ -4071,10 +4089,10 @@ Sets the image height.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. |
-| height | Image height, in px. |
+| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. | 
+| height | Image height, in px. | 
 
 **Returns**
 
@@ -4095,10 +4113,10 @@ Sets the pixel format.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. |
-| pixelFormat | Pixel format. For details about the available options, see [PIXEL_FORMAT](#pixel_format).|
+| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. | 
+| pixelFormat | Pixel format. For details about the available options, see [PIXEL_FORMAT](#pixel_format).| 
 
 **Returns**
 
@@ -4121,10 +4139,10 @@ The stride is the actual memory size occupied by each row of the image, in bytes
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. |
-| rowStride | Pointer to the stride, in bytes. |
+| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. | 
+| rowStride | Pointer to the stride, in bytes. | 
 
 **Returns**
 
@@ -4145,10 +4163,10 @@ Sets the source pixel format.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. |
-| srcpixelFormat | Source pixel format. For details about the available options, see [PIXEL_FORMAT](#pixel_format). |
+| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. | 
+| srcpixelFormat | Source pixel format. For details about the available options, see [PIXEL_FORMAT](#pixel_format). | 
 
 **Returns**
 
@@ -4169,10 +4187,10 @@ Sets the image width.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. |
-| width | Image width, in px. |
+| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. | 
+| width | Image width, in px. | 
 
 **Returns**
 
@@ -4193,11 +4211,11 @@ Converts pixel data of a PixelMap from premultiplied alpha to non-premultiplied 
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| srcpixelmap | Pointer to the source PixelMap, which is an **OH_PixelmapNative** object. |
-| dstpixelmap | Pointer to the destination PixelMap, which is an **OH_PixelmapNative** object. This pointer must be different from the pointer to the source PixelMap. |
-| isPremul | Conversion mode. The value **true** means a conversion from premultiplied alpha to non-premultiplied alpha, and **false** means a conversion from non-premultiplied alpha to premultiplied alpha. |
+| srcpixelmap | Pointer to the source PixelMap, which is an **OH_PixelmapNative** object. | 
+| dstpixelmap | Pointer to the destination PixelMap, which is an **OH_PixelmapNative** object. This pointer must be different from the pointer to the source PixelMap. | 
+| isPremul | Conversion mode. The value **true** means a conversion from premultiplied alpha to non-premultiplied alpha, and **false** means a conversion from non-premultiplied alpha to premultiplied alpha. | 
 
 **Returns**
 
@@ -4218,11 +4236,11 @@ Converts a **PixelMapnapi** object to a **nativePixelMap** object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| env | Pointer to the NAPI environment. |
-| pixelmapNapi | **PixelMapnapi** object. |
-| pixelmapNative | Double pointer to the **OH_PixelmapNative** object. |
+| env | Pointer to the NAPI environment. | 
+| pixelmapNapi | **PixelMapnapi** object. | 
+| pixelmapNative | Double pointer to the **OH_PixelmapNative** object. | 
 
 **Returns**
 
@@ -4243,11 +4261,11 @@ Converts a **nativePixelMap** object to a **PixelMapnapi** object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| env | Pointer to the NAPI environment. |
-| pixelmapNative | Pointer to an **OH_PixelmapNative** object. |
-| pixelmapNapi | Double pointer to the **PixelMapnapi** object. |
+| env | Pointer to the NAPI environment. | 
+| pixelmapNative | Pointer to an **OH_PixelmapNative** object. | 
+| pixelmapNapi | Double pointer to the **PixelMapnapi** object. | 
 
 **Returns**
 
@@ -4268,10 +4286,10 @@ Creates an empty PixelMap using **OH_Pixelmap_InitializationOptions**. The memor
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| options | Pointer to the properties. |
-| pixelmap | Double pointer to the **OH_PixelmapNative** object created. |
+| options | Pointer to the properties. | 
+| pixelmap | Double pointer to the **OH_PixelmapNative** object created. | 
 
 **Returns**
 
@@ -4286,18 +4304,18 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLengt
 
 **Description**
 
-Creates a PixelMap based on properties. By default, the BGRA_8888 format is used for data processing.
+Creates a PixelMap based on properties. By default, the BGRA_8888 format is used for data processing. For details about other formats, see [OH_PixelmapInitializationOptions_SetSrcPixelFormat](#oh_pixelmapinitializationoptions_setsrcpixelformat).
 
 **Since**: 12
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| data | Pointer to the color array in BGRA_8888 format. |
-| dataLength | Size of the array. |
-| options | Pointer to the properties. |
-| pixelmap | Double pointer to the **OH_PixelmapNative** object created. |
+| data | Pointer to the color array in BGRA_8888 format. | 
+| dataLength | Size of the array. | 
+| options | Pointer to the properties. | 
+| pixelmap | Double pointer to the **OH_PixelmapNative** object created. | 
 
 **Returns**
 
@@ -4318,10 +4336,10 @@ Crops a PixelMap based on a given size.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to an **OH_PixelmapNative** object. |
-| region | Pointer to the region of the image after cropping. |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
+| region | Pointer to the region of the image after cropping. | 
 
 **Returns**
 
@@ -4342,15 +4360,17 @@ Flips a PixelMap based on a given angle.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to an **OH_PixelmapNative** object. |
-| shouldFilpHorizontally | Whether to flip the image horizontally. |
-| shouldFilpVertically | Whether to flip the image vertically. |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
+| shouldFilpHorizontally | Whether to flip the image horizontally. | 
+| shouldFilpVertically | Whether to flip the image vertically. | 
 
 **Returns**
 
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
+
+
 
 
 ### OH_PixelmapNative_GetArgbPixels()
@@ -4367,15 +4387,17 @@ Reads data in ARGB format from a PixelMap.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to an **OH_PixelmapNative** object. |
-| destination | Pointer to the buffer to which the pixels will be written. |
-| bufferSize | Pointer to the buffer size. |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
+| destination | Pointer to the buffer to which the pixels will be written. | 
+| bufferSize | Pointer to the buffer size. | 
 
 **Returns**
 
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_UNSUPPORTED_CONVERSION** if the PixelMap format does not support ARGB data reading; returns **IMAGE_ALLOC_FAILED** if the memory allocation fails; returns **IMAGE_COPY_FAILED** if the memory data fails to be copied, read, or operated. For details, see [Image_ErrorCode](#image_errorcode). For details, see [Image_ErrorCode](#image_errorcode).
+
+
 
 
 ### OH_PixelmapNative_GetColorSpaceNative()
@@ -4392,10 +4414,10 @@ Obtains a **NativeColorSpaceManager** object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to the source PixelMap of the **NativeColorSpaceManager**. |
-| colorSpaceNative | Double pointer to the **NativeColorSpaceManager** object obtained. |
+| pixelmap | Pointer to the source PixelMap of the **NativeColorSpaceManager**. | 
+| colorSpaceNative | Double pointer to the **NativeColorSpaceManager** object obtained. | 
 
 **Returns**
 
@@ -4416,10 +4438,10 @@ Obtains the image information of a PixelMap.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to an **OH_PixelmapNative** object. |
-| imageInfo | Pointer to the image information. |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
+| imageInfo | Pointer to the image information. | 
 
 **Returns**
 
@@ -4440,11 +4462,11 @@ Obtains the metadata.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to an **OH_PixelmapNative** object. |
-| key | Metadata key. For details, see [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey). |
-| value | Double pointer to the value of the metadata key. For details, see [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md). |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
+| key | Metadata key. For details, see [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey). | 
+| value | Double pointer to the value of the metadata key. For details, see [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md). | 
 
 **Returns**
 
@@ -4465,10 +4487,10 @@ Obtains the **NativeBuffer** object from a PixelMap in the DMA memory.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to the PixelMap. |
-| nativeBuffer | Double pointer to the **NativeBuffer** object obtained. |
+| pixelmap | Pointer to the PixelMap. | 
+| nativeBuffer | Double pointer to the **NativeBuffer** object obtained. | 
 
 **Returns**
 
@@ -4489,10 +4511,10 @@ Sets the opacity rate to enable the PixelMap to achieve the corresponding opacit
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to an **OH_PixelmapNative** object. |
-| rate | Opacity rate to set. |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
+| rate | Opacity rate to set. | 
 
 **Returns**
 
@@ -4513,11 +4535,11 @@ Reads the pixels of a PixelMap and writes the result to the buffer based on the 
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to an **OH_PixelmapNative** object. |
-| destination | Pointer to the buffer to which the pixels will be written. |
-| bufferSize | Pointer to the buffer size. The buffer size of the RGBA format is equal to width * height * 4, and the buffer size of the NV21 and NV12 formats is equal to width * height+((width+1)/2) * ((height+1)/2) * 2. |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
+| destination | Pointer to the buffer to which the pixels will be written. | 
+| bufferSize | Pointer to the buffer size. The buffer size of the RGBA format is equal to width * height * 4, and the buffer size of the NV21 and NV12 formats is equal to width * height+((width+1)/2) * ((height+1)/2) * 2. | 
 
 **Returns**
 
@@ -4538,9 +4560,9 @@ Releases the pointer to an **OH_PixelmapNative** object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to an **OH_PixelmapNative** object. |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
 
 **Returns**
 
@@ -4561,10 +4583,10 @@ Rotates a PixelMap based on a given angle.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to an **OH_PixelmapNative** object. |
-| angle | Image rotation angle, in degrees. |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
+| angle | Image rotation angle, in degrees. | 
 
 **Returns**
 
@@ -4585,11 +4607,11 @@ Scales a PixelMap based on a given width and height.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to an **OH_PixelmapNative** object. |
-| scaleX | Scale ratio of the width. |
-| scaleY | Scale ratio of the height. |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
+| scaleX | Scale ratio of the width. | 
+| scaleY | Scale ratio of the height. | 
 
 **Returns**
 
@@ -4604,18 +4626,18 @@ Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixel
 
 **Description**
 
-Scales a PixelMap based on the specified antialiasing level, width, and height.
+Scales a PixelMap based on the specified anti-aliasing level, width, and height.
 
 **Since**: 12
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to an **OH_PixelmapNative** object. |
-| scaleX | Scale ratio of the width. |
-| scaleY | Scale ratio of the height. |
-| level | Antialiasing level. |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
+| scaleX | Scale ratio of the width. | 
+| scaleY | Scale ratio of the height. | 
+| level | Anti-aliasing level. | 
 
 **Returns**
 
@@ -4636,10 +4658,10 @@ Sets a **NativeColorSpaceManager** object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to the target PixelMap of the **NativeColorSpaceManager** object. |
-| colorSpaceNative | Pointer to a **NativeColorSpaceManager** object. |
+| pixelmap | Pointer to the target PixelMap of the **NativeColorSpaceManager** object. | 
+| colorSpaceNative | Pointer to a **NativeColorSpaceManager** object. | 
 
 **Returns**
 
@@ -4660,11 +4682,11 @@ Sets the memory name of a PixelMap.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to an **OH_PixelmapNative** object. |
-| name | Pointer to the memory name. |
-| size | Pointer to the memory size (in bytes). |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
+| name | Pointer to the memory name. | 
+| size | Pointer to the memory size (in bytes). | 
 
 **Returns**
 
@@ -4685,11 +4707,11 @@ Sets the metadata.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to an **OH_PixelmapNative** object. |
-| key | Metadata key. For details, see [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey). |
-| value | Pointer to the value of the metadata key. For details, see [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md). |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
+| key | Metadata key. For details, see [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey). | 
+| value | Pointer to the value of the metadata key. For details, see [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md). | 
 
 **Returns**
 
@@ -4710,9 +4732,9 @@ Converts a PixelMap from the HDR format to the SDR format.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to an **OH_PixelmapNative** object. |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
 
 **Returns**
 
@@ -4733,15 +4755,17 @@ Translates a PixelMap based on given coordinates.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to an **OH_PixelmapNative** object. |
-| x | X coordinate to translate. |
-| y | Y coordinate to translate. |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
+| x | X coordinate to translate. | 
+| y | Y coordinate to translate. | 
 
 **Returns**
 
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
+
+
 
 
 ### OH_PixelmapNative_WritePixels()
@@ -4758,11 +4782,11 @@ Reads the pixels in the buffer and writes the result to the PixelMap based on th
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to an **OH_PixelmapNative** object. |
-| source | Pointer to the buffer from which the pixels will be read. |
-| bufferSize | Buffer size. |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
+| source | Pointer to the buffer from which the pixels will be read. | 
+| bufferSize | Buffer size. | 
 
 **Returns**
 

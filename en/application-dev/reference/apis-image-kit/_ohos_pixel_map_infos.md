@@ -21,7 +21,7 @@ The **OhosPixelMapInfos** struct describes the information about a PixelMap.
 | -------- | -------- |
 | uint32_t [width](#width) | Image width, in pixels. | 
 | uint32_t [height](#height) | Image height, in pixels. | 
-| uint32_t [rowSize](#rowsize) | Number of bytes per row. In the case of Direct Memory Access (DMA), the formula is as follows: Image width x Roundup(256 x Number of bytes per pixel). (The roundup means that each row is automatically padded.) In the case of other types of memory, the formula is as follows: Image width x Number of bytes per pixel. | 
+| uint32_t [rowSize](#rowsize) | Number of bytes that each row of the image occupies in the memory.| 
 | int32_t [pixelFormat](#pixelformat) | Pixel format. | 
 
 
@@ -58,9 +58,9 @@ uint32_t OhosPixelMapInfos::rowSize
 
 **Description**
 
-Number of bytes per row.
+Number of bytes that each row of the image occupies in the memory.
 
-In the case of Direct Memory Access (DMA), the formula is as follows: Image width x Roundup(256 x Number of bytes per pixel). (The roundup means that each row is automatically padded.) In the case of other types of memory, the formula is as follows: Image width x Number of bytes per pixel.
+In the case of DMA, the formula is as follows: Image width x Number of bytes of each pixel + Number of padding bytes at the end of each row. In the case of other types of memory, the formula is as follows: Image width x Number of bytes of each pixel.
 
 
 ### width
