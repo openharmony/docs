@@ -110,7 +110,7 @@ TextInput()
     console.info(value);
   })
   .onFocus(() => {
-    console.info ('Get Focus');
+    console.info('Get Focus');
   })
 ```
 

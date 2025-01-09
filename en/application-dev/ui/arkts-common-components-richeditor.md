@@ -333,7 +333,7 @@ RichEditor(this.options)
         })
     })
     .onPaste(() => {
-        this.controller1.addTextSpan ('The onPaste callback is invoked.\n', {
+        this.controller1.addTextSpan('The onPaste callback is invoked.\n', {
             style: {
                 fontColor: Color.Gray,
                 fontSize: 10
@@ -363,7 +363,7 @@ RichEditor(this.options)
         })
     })
     .onCut(() => {
-        this.controller1.addTextSpan ('The onCut callback is invoked.\n', {
+        this.controller1.addTextSpan('The onCut callback is invoked.\n', {
             style: {
                 fontColor: Color.Gray,
                 fontSize: 10
@@ -393,7 +393,7 @@ RichEditor(this.options)
         })
     })
     .onCopy(() => {
-        this.controller1.addTextSpan ('The onCopy callback is invoked.\n', {
+        this.controller1.addTextSpan('The onCopy callback is invoked.\n', {
             style: {
                 fontColor: Color.Gray,
                 fontSize: 10
@@ -636,7 +636,7 @@ RichEditor(this.options)
     })
     .width(300)
     .height(50)
-Text('View the return value of getSpans: ').fontSize (10).fontColor(Color.Gray).width(300)
+Text('View the return value of getSpans: ').fontSize(10).fontColor(Color.Gray).width(300)
 RichEditor(this.options1)
     .width(300)
     .height(50)

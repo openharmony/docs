@@ -276,7 +276,7 @@ Specifies whether anti-aliasing is enabled.
 struct LineExample {
   build() {
     Column({ space: 10 }) {
-      // The coordinates of the start and end points of the line are determined relative to the coordinates of the drawing area of the <Line> component.
+      // The coordinates of the start and end points of the line are determined relative to the coordinates of the drawing area of the Line component.
       Line()
         .width(200)
         .height(150)
@@ -304,7 +304,7 @@ struct LineExample {
         .strokeDashArray([10, 3])
         .strokeDashOffset(5)
         .backgroundColor('#F5F5F5')
-      // If the coordinates of a point are beyond the width and height range of the <Line> component, the line will exceed the drawing area.
+      // If the coordinates of a point are beyond the width and height range of the Line component, the line will exceed the drawing area.
       Line()
         .width(50)
         .height(50)

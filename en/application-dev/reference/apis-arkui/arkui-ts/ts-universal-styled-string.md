@@ -53,7 +53,7 @@ Obtains the text of this styled string.
 **Return value**
 
 | Type             |Description      |
-| ------- | --------------------------------- | 
+| ------- | --------------------------------- |
 | string | Text of the styled string.<br>**NOTE**<br>If the styled string contains an image, the image is represented by a space in the return value.|
 
 ### equals
@@ -75,7 +75,7 @@ Checks whether this styled string the same as another styled string.
 **Return value**
 
 | Type             |       Description      |
-| ------- | --------------------------------- | 
+| ------- | --------------------------------- |
 | boolean | Whether two styled strings are equal.<br>**NOTE**<br>The two styled strings are the same if they have the same text and style.<br>**GestureStyle** in styled strings is not compared. This means that, if two styled strings are the same except for the event configured, they are the same.<br>In comparing **CustomSpan** objects, addresses are compared. The objects that have the same address are the same.|
 
 ### subStyledString
@@ -98,7 +98,7 @@ Obtains a substring of this styled string.
 **Return value**
 
 | Type             |       Description      |
-| ------- | --------------------------------- | 
+| ------- | --------------------------------- |
 | [StyledString](#styledstring) | Styled substring.<br>**NOTE**<br>If the value of **start** is valid, the difference between the length of the styled string and the value of **start** is used as the default value of **length**.<br>If the values of **start** and **length** are out of the acceptable range or if any mandatory parameter is passed as **undefined**, an exception is thrown.|
 
 **Error codes**
@@ -130,7 +130,7 @@ Obtains the styles in the specified range of a styled string.
 **Return value**
 
 | Type             |       Description      |
-| ------- | --------------------------------- | 
+| ------- | --------------------------------- |
 | Array<[SpanStyle](#spanstyle)> | Array of styles.<br>**NOTE**<br>If no style is set for the specified range in the styled string, an empty array is returned.<br>If the values of **start** and **length** are out of the acceptable range or if any mandatory parameter is passed as **undefined**, an exception is thrown.<br>If **styledKey** is set to an invalid value or **undefined**, an exception is thrown.<br>If **styledKey** is a **CustomSpan** object, the style returned is the one passed to create the object. That is, modifying the style object also affects the actual display effect.|
 
 **Error codes**
@@ -832,7 +832,7 @@ Called to obtain the size of a custom span.
 **Return value**
 
 | Type             |       Description      |
-| ------- | --------------------------------- | 
+| ------- | --------------------------------- |
 | [CustomSpanMetrics](#customspanmetrics) | Size of the custom span.<br>**NOTE**<br>The final height of the custom span is subject to the line height of the **Text** component. If no value is specified for **height**, the custom span takes the **fontSize** value of the **Text** component as its height. If the value specified is greater than the height of other child components on the same line, the custom span takes the line height of the **Text** component as its height.|
 
 ### onDraw
@@ -1946,7 +1946,7 @@ struct styled_string_demo7 {
 
 ### Example 8: Implementing Conversion Between Styled Strings and HTML-Formatted Strings
 
-his example demonstrates the conversion between styled strings and HTML-formatted strings using the **toHtml** and **fromHtml** APIs.
+This example demonstrates the conversion between styled strings and HTML-formatted strings using the **toHtml** and **fromHtml** APIs.
 
 ```ts
 // xxx.ets

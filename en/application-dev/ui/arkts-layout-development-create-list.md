@@ -191,7 +191,7 @@ List() {
         .height(40)
         .margin(10)
 
-      Text ('Tom')
+      Text('Tom')
         .fontSize(20)
     }
   }
@@ -203,7 +203,7 @@ List() {
         .height(40)
         .margin(10)
 
-      Text ('Tracy')
+      Text('Tracy')
         .fontSize(20)
     }
   }
@@ -236,8 +236,8 @@ class Contact {
 @Component
 struct SimpleContacts {
   private contacts: Array<object> = [
-    new Contact ('Tom', $r ("app.media.iconA")),
-    new Contact ('Tracy', $r ("app.media.iconB")),
+    new Contact('Tom', $r ("app.media.iconA")),
+    new Contact('Tracy', $r ("app.media.iconB")),
   ]
 
   build() {
@@ -546,7 +546,7 @@ struct ContactsList {
         // Recalculate the value of this.selectedIndex in the alphabetical index bar based on the index of the item to which the list has scrolled.
       })
 
-      // <AlphabetIndexer> component
+      // AlphabetIndexer component
       AlphabetIndexer({ arrayValue: alphabets, selected: 0 })
         .selected(this.selectedIndex)
     }
@@ -625,7 +625,7 @@ ListItem() {
     position: BadgePosition.RightTop,
     style: { badgeSize: 16, badgeColor: '#FA2A2D' }
   }) {
-    // The <Image> component implements the contact profile picture.
+    // The Image component implements the contact profile picture.
     // ...
   }
 }
@@ -878,7 +878,7 @@ The process of implementing the deletion feature is as follows:
     ```
     ```ts
     // Implementation reference
-    Button ('Delete')
+    Button('Delete')
       .onClick(() => {
         // this.toDoData is the to-do list item, which can be constructed based on service requirements. After an item is clicked, the corresponding data is removed.
         let leftData = this.toDoData.filter((item) => {

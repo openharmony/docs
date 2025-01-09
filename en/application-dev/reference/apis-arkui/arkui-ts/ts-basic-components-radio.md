@@ -165,8 +165,8 @@ You need a custom class to implement the **ContentModifier** API.
 
 
 ## Example
-### Example 1
-This example shows how to set the color of the background when the radio button is selected.
+### Example 1: Setting the Background Color
+This example demonstrates how to set **checkedBackgroundColor** to customize the background color of a radio button.
 ```ts
 // xxx.ets
 @Entry
@@ -215,8 +215,8 @@ struct RadioExample {
 }
 ```
 ![radio](figures/radio.gif)
-### Example 2
-This example shows how to set the indicator of the radio button to an image.
+### Example 2: Setting the Indicator Type
+This example shows how to customize the appearance of a radio button when it is selected by configuring **indicatorType** and **indicatorBuilder**.
 ```ts
 // xxx.ets
 @Entry
@@ -267,8 +267,8 @@ struct RadioExample {
 }
 ```
 ![radio](figures/radio_2.gif)
-### Example 3
-This example shows how to set the style of the radio button in selected or deselected state.
+### Example 3: Implementing a Custom Radio Button
+This example illustrates how to implement a custom radio button using the **contentModifier** API.
 ```ts
 class MyRadioStyle implements ContentModifier<RadioConfiguration> {
   type: number = 0

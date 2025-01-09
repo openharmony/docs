@@ -135,7 +135,7 @@ struct GestureSettingsExample {
       .padding(20)
       .margin(20)
       .border({ width: 3 })
-      // When priorityGesture is set, the tap gesture on the <Column> component is prioritized over the tap gesture on the child <Text> component.
+      // When priorityGesture is set, the tap gesture on the Column component is prioritized over the tap gesture on the child Text component.
       .priorityGesture(
         TapGesture()
           .onAction((event: GestureEvent) => {
@@ -155,7 +155,7 @@ struct GestureSettingsExample {
       .padding(20)
       .margin(20)
       .border({ width: 3 })
-      // When parallelGesture is set, the tap gestures on the <Column> component and on the child <Text> component are both recognized.
+      // When parallelGesture is set, the tap gestures on the Column component and on the child Text component are both recognized.
       .parallelGesture(
         TapGesture()
           .onAction((event: GestureEvent) => {

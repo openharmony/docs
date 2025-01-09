@@ -1,7 +1,7 @@
 # SubHeader
 
 
-A subheader signifies the top of a list or the beginning a subdivision of content and tells the user what the list or subdivision is about.
+The **SubHeader** component represents a subheader that signifies the top of a list or the beginning a subdivision of content and tells the user what the list or subdivision is about.
 
 
 > **NOTE**
@@ -21,11 +21,12 @@ import { SubHeader } from '@kit.ArkUI'
 Not supported
 
 ## Attributes
+
 The [universal attributes](ts-universal-attributes-size.md) are supported.
 
 > **NOTE**
 >
-> The [universal text attributes](ts-universal-attributes-text-style.md) are not supported.
+> Text-related settings are not supported.
 
 ## SubHeader
 
@@ -34,10 +35,6 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 **Decorator**: @Component
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-
-**Parameters**
-
 
 | Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -60,6 +57,8 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | TEXT_ARROW |  0  | Text button with a right arrow.|
@@ -71,31 +70,39 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | Array&lt;[SelectOption](ts-basic-components-select.md#selectoption)&gt; | Yes| Value of an option in the drop-down list box.|
-| selected | number | No| Index of the initial selected option in the drop-down list.<br>The index of the first option is 0.<br>If this attribute is not set,<br>the default value **-1** is used, indicating that the option is not selected.|
+| options | Array&lt;[SelectOption](ts-basic-components-select.md#selectoption)&gt; | Yes| Options of an item in the drop-down list box.|
+| selected | number | No| Index of the initially selected item in the drop-down list box.<br>The index of the first item is 0.<br>If this property is not set,<br>the default value **-1** is used, indicating that the option is not selected.|
 | value | string | No| Text content of the drop-down list button itself.|
-| onSelect | (index: number, value?: string) =&gt; void | No| Invoked when an option in the drop-down list box is selected.<br>- **index**: index of the selected option.<br>- **value**: value of the selected option.|
+| onSelect | (index: number, value?: string) =&gt; void | No| Callback invoked when an item in the drop-down list box is selected.<br>- **index**: index of the selected option.<br>- **value**: value of the selected option.|
 
 ## OperationOption
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | Yes| Text content.|
-| action | ()=&gt;void | No| Event.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+| Name| Type| Mandatory| Description                                                                                                                                                                                                                                                      |
+| -------- | -------- | -------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| value | [ResourceStr](ts-types.md#resourcestr) | Yes| Text content.                                                                                                                                                                                                                                                   |
+| action | ()=&gt;void | No| Event.                                                                                                                                                                                                                                                     |
+| accessibilityLevel<sup>16+<sup>       | string  | No| Accessibility level. It determines whether the component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: It is treated as "yes" by the system.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| accessibilityText<sup>16+<sup>        | ResourceStr | No| Accessibility text, that is, accessible label name. If a component does not contain text information, it will not be announced by the screen reader when selected. In this case, the screen reader user cannot know which component is selected. To solve this problem, you can set accessibility text for components without text information. When such a component is selected, the screen reader announces the specified accessibility text, informing the user which component is selected.<br>Default value: value of the **value** property if the operation type is **TEXT_ARROW** or **BUTTON** and an empty string otherwise.<br>**Atomic service API**: This API can be used in atomic services since API version 16. |
+| accessibilityDescription<sup>16+<sup> | ResourceStr | No| Accessible description. You can provide comprehensive text explanations to help users understand the operation they are about to perform and its potential consequences, especially when these cannot be inferred from the component's attributes and accessibility text alone. If a component contains both text information and the accessible description, the text is announced first and then the accessible description, when the component is selected.<br>Default value: "Loading" when the operation type is **LOADING** and **"Double-tap to activate"** otherwise.<br>**Atomic service API**: This API can be used in atomic services since API version 16.       |
 ## SymbolOptions<sup>12+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| fontColor | [ResourceStr](ts-types.md#resourcestr) | No| Color of the [symbol glyph](ts-basic-components-symbolGlyph.md).<br>Default value: depending on the rendering strategy|
+| fontColor | Array&lt;[ResourceColor](ts-types.md#resourcecolor)&gt; | No| Color of the [symbol glyph](ts-basic-components-symbolGlyph.md).<br>Default value: depending on the rendering strategy|
 | fontSize | number \|string \|[Resource](ts-types.md#Resource) | No| Size of the [symbol glyph](ts-basic-components-symbolGlyph.md).<br>Default value: system default value|
-| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight)\|number \|string | No| Font weight of the [symbol glyph](ts-basic-components-symbolGlyph.md).<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
+| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | No| Font weight of the [symbol glyph](ts-basic-components-symbolGlyph.md).<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
 | renderingStrategy | [SymbolRenderingStrategy](ts-basic-components-symbolGlyph.md#symbolrenderingstrategy11) | No| Rendering strategy of the [symbol glyph](ts-basic-components-symbolGlyph.md).<br>Default value: **SymbolRenderingStrategy.SINGLE**<br>**NOTE**<br>For the resources referenced in **$r('sys.symbol.ohos_*')**, only **ohos_trash_circle**, **ohos_folder_badge_plus**, and **ohos_lungs** support the **MULTIPLE_COLOR** modes.|
 | effectStrategy | [SymbolEffectStrategy](ts-basic-components-symbolGlyph.md#symboleffectstrategy11) | No| Effect strategy of the [symbol glyph](ts-basic-components-symbolGlyph.md).<br>Default value: **SymbolEffectStrategy.NONE**<br>**NOTE**<br>For the resources referenced in **$r('sys.symbol.ohos_*')**, only **ohos_wifi** supports the hierarchical effect.|
 
@@ -103,7 +110,8 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 The [universal events](ts-universal-events-click.md) are supported.
 
 ## Example
-### Example 1
+### Example 1: Implementing an Efficiency-Oriented Subheader
+This example demonstrates how to implement a subheader where the left side contains an icon and a secondary title, and the right side has a text button.
 
 ```ts
 import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
@@ -130,7 +138,8 @@ struct SubHeaderExample {
 
 ![Subheader 1](figures/en-us_image_subheader_example01.png)
 
-### Example 2
+### Example 2: Implementing a Double-Line Text Content-Rich Subheader
+This example showcases a subheader with a primary title and a secondary title on the left, and a text button with a right arrow on the right.
 
 ```ts
 import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
@@ -157,7 +166,8 @@ struct SubHeaderExample {
 
 ![Subheader 2](figures/en-us_image_subheader_example02.png)
 
-### Example 3
+### Example 3: Implementing a Spinner Content-Rich Subheader
+This example showcases a subheader with content and events for selection on the left, and an icon-attached button on the right.
 
 ```ts
 import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
@@ -201,7 +211,8 @@ struct SubHeaderExample {
 
 ![Subheader 3](figures/en-us_image_subheader_example03.png)
 
-### Example 4
+### Example 4: Setting the Icon Symbol for the Left Side
+This example demonstrates how to set the icon symbol for the left side of the subheader.
 
 ```ts
 
@@ -232,7 +243,8 @@ struct SubHeaderExample {
 
 ![Subheader 4](figures/en-us_image_subheader_example04.gif)
 
-### Example 5
+### Example 5: Setting the Icon Symbol for the Right Side
+The following example shows how to set **operationType** to **OperationType.ICON_GROUP** for the right side of the subheader, with **operationItem** set to a symbol icon.
 
 ```ts
 import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
@@ -285,10 +297,10 @@ struct SubHeaderExample {
 
 ![Subheader 5](figures/en-us_image_subheader_example05.png)
 
-### Example 6
+### Example 6: Customizing Title Content
+ This example demonstrates how to customize the title content with a **titleBuilder** object for the subheader.
 
 ```ts
-// This example customizes the title content with a titleBuilder object in the SubHeader component.
 import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
@@ -326,10 +338,10 @@ struct SubHeaderExample {
 
 ![Subheader 6](figures/en-us_image_subheader_example06.png)
 
-### Example 7
+### Example 7: Customizing Title Style
+This example demonstrates how to set the font style, margin, and padding for the primary and secondary titles in the subheader.
 
 ```ts
-// This example demonstrates how to set the font style, margin, and padding for the primary and secondary titles in the SubHeader component.
 import { promptAction, OperationType, SubHeader, LengthMetrics, TextModifier } from '@kit.ArkUI';
 
 @Entry
@@ -361,3 +373,73 @@ struct SubHeaderExample {
 ```
 
 ![Subheader 7](figures/en-us_image_subheader_example07.png)
+
+
+### Example 8: Implementing Screen Reader Announcement for the Button on the Right Side
+This example customizes the screen reader announcement text by setting the **accessibilityText**, **accessibilityDescription**, and **accessibilityLevel** properties of the button on the right side of the subheader.
+```ts
+import { promptAction, OperationType, SubHeader, TextModifier, LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SubHeaderExample {
+  build() {
+    Column() {
+      Divider().color('grey').width('100%').height('2vp')
+      SubHeader({
+        // Icon + secondary title, with a button on the right
+        icon: $r('app.media.app_icon'),
+        secondaryTitle: 'Secondary title',
+        operationType: OperationType.BUTTON,
+        operationItem: [{
+          value: 'Operation',
+          action: () => {
+            promptAction.showToast({ message: 'demo' })
+          }
+        }]
+      })
+      Divider().color('grey').width('100%').height('2vp')
+      SubHeader({
+        // Text button with right arrow on the right
+        primaryTitle: 'Primary title',
+        secondaryTitle: 'Secondary title',
+        operationType: OperationType.TEXT_ARROW,
+        operationItem: [{
+          value: 'More',
+          action: () => {
+            promptAction.showToast({ message: 'demo' })
+          }
+        }]
+      })
+      Divider().color('grey').width('100%').height('2vp')
+      SubHeader({
+        // Selection on the left and icons (focused in sequence) on the right
+        select: {
+          options: [{ value: 'aaa' }, { value: 'bbb' }, { value: 'ccc' }],
+          value: 'selectdemo',
+          selected: 0,
+          onSelect: (index: number, value?: string) => {
+            console.log(`subheader onselect index : ${index}, value: ${value}`);
+          }
+        },
+        operationType: OperationType.ICON_GROUP,
+        operationItem: [{
+          value: $r('app.media.app_icon'),
+          accessibilityText: 'Icon 1',
+          accessibilityLevel: 'yes',
+        }, {
+          value: $r('app.media.app_icon'),
+          accessibilityText: 'Icon 2',
+          accessibilityLevel: 'no',    
+        }, {
+          value: $r('app.media.app_icon'),
+          accessibilityText: 'Icon 3',
+          accessibilityDescription: 'Tap to operate icon 3',
+        }]
+      })
+      Divider().color('grey').width('100%').height('2vp')
+    }
+  }
+}
+```
+![/en-us_image_subheader_example08](figures/en-us_image_subheader_example08.png)
