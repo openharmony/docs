@@ -13,6 +13,122 @@
 import { observer } from '@kit.TelephonyKit';
 ```
 
+## NetworkState
+
+type NetworkState = radio.NetworkState
+
+网络注册状态。
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| [radio.NetworkState](js-apis-radio.md#networkstate) | 网络注册状态。 |
+
+## SignalInformation
+
+type SignalInformation = radio.SignalInformation
+
+网络信号强度信息对象。
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| [radio.SignalInformation](js-apis-radio.md#signalinformation) | 网络信号强度信息对象。 |
+
+
+## CellInformation
+
+type CellInformation = radio.CellInformation
+
+小区信息。
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| [radio.CellInformation](js-apis-radio.md#cellinformation8) | 小区信息。 |
+
+
+## DataConnectState
+
+type DataConnectState = data.DataConnectState
+
+描述蜂窝数据链路连接状态。
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| [data.DataConnectState](js-apis-telephony-data.md#dataconnectstate) | 描述蜂窝数据链路连接状态。 |
+
+
+## RatType
+
+type RatType = radio.RadioTechnology
+
+无线接入技术。
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| [radio.RadioTechnology](js-apis-radio.md#radiotechnology) | 无线接入技术。 |
+
+
+## DataFlowType
+
+type DataFlowType = data.DataFlowType
+
+描述蜂窝数据流类型。
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| [data.DataFlowType](js-apis-telephony-data.md#dataflowtype) | 描述蜂窝数据流类型。 |
+
+
+## CallState
+
+type CallState = call.CallState
+
+通话状态码。
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| [call.CallState](js-apis-call.md#callstate) | 通话状态码。 |
+
+
+## CardType
+
+type CardType = sim.CardType
+
+卡类型。
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| [sim.CardType](js-apis-sim.md#cardtype7) | 卡类型。 |
+
+
+## SimState
+
+type SimState = sim.SimState
+
+SIM卡状态。
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| [sim.SimState](js-apis-sim.md#simstate) | SIM卡状态。 |
+
+
 ## observer.on('networkStateChange')
 
 on\(type: \'networkStateChange\', callback: Callback\<NetworkState\>\): void
