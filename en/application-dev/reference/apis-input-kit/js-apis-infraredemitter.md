@@ -28,7 +28,7 @@ Generates IR signals at the specified frequency and level.
 | Name      | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | infraredFrequency | number             | Yes   | IR frequency, in Hz.|
-| pattern | Array&lt;number&gt; | Yes   | IR level signal, in μs. For example, in [100, 200, 300, 400], 100 μs is a high level signal, 200 μs is a low level signal, 300 μs is a high level signal, and 400 μs is a low level signal. The number of arrays must be in the range of [0, 1024]. |
+| pattern | Array&lt;number&gt; | Yes   | IR level signal in μs, which ranges from 0 to 1024.<br>For example, in the IR level signal array [100,200,300,400], 100 μs is a high-level signal, 200 μs is a low-level signal, 300 μs is a high-level signal, and 400 μs is a low-level signal.|
 
 **Error codes**
 
