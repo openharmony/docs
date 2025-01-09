@@ -598,6 +598,7 @@ export default class EntryAbility extends UIAbility {
     }
   }
 
+  // 长时任务通知进度更新
   updateProcess(process: Number) {
     // 应用定义下载类通知模版
     let downLoadTemplate: notificationManager.NotificationTemplate = {
