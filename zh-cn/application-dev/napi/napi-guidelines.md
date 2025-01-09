@@ -446,3 +446,13 @@ delete arrayBufferPtr; // 这一步是禁止的，创建的arrayBufferPtr生命�
 napi_object_freeze等同于Object.freeze语义，freeze后对象的所有属性都不可能以任何方式被修改；napi_object_seal等同于Object.seal语义，对象不可增删属性。两者的主要区别是，freeze不能改属性的值，seal还可以改属性的值。
 
 开发者使用以上语义时，需确保约束条件是自己需要的，一旦违背以上语义严格模式下就会抛出Error（默认严格模式）。
+
+## 参考文档
+
+[Native侧子线程与UI主线程通信开发](https://developer.huawei.com/consumer/cn/doc/best-practices-V5/bpta-native-sub-main-comm-V5);
+
+[如何在Native侧C++子线程直接调用ArkTS接口，不用通过ArkTS侧触发回调](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-ndk-8-V5);
+
+[napi_env、napi_value实例是否可以跨worker线程共享](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-ndk-55-V5);
+
+[Native如何创建子线程，有什么约束，与主线程如何通信](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-ndk-68-V5).
