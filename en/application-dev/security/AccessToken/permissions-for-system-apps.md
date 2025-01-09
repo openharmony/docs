@@ -4657,6 +4657,20 @@ Allows a system application to register the animation plugin to obtain animation
 
 **Valid since**: 16
 
+### ohos.permission.VIRTUAL_KEYBOARD_WINDOW
+
+Allows a system application to create a virtual keyboard window.
+
+With this permission, the system application can create a virtual keyboard window successfully. Currently, this permission is available only to system applications running on 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.
