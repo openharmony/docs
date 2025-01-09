@@ -7,6 +7,16 @@ The Image_NativeModule module provides image processing capabilities, including 
 
 The APIs of this module do not need to be imported through the JS interface. You can directly use the NDK to develop the features.
 
+You can refer to the corresponding development guide and samples based on your development requirements.
+
+- [Using Image_NativeModule to Decode Images](../../media/image/image-source-c.md)
+- [Using Image_NativeModule to Decode Pictures](../../media/image/image-source-picture-c.md)
+- [Using Image_NativeModule to Receive Images](../../media/image/image-receiver-c.md)
+- [Using Image_NativeModule for PixelMap Operations](../../media/image/pixelmap-c.md)
+- [Using Image_NativeModule to Process Image Information](../../media/image/image-info-c.md)
+- [Using Image_NativeModule to Encode Images](../../media/image/image-packer-c.md)
+- [Using Image_NativeModule to Encode Pictures](../../media/image/image-packer-picture-c.md)
+
 **Since**: 12
 
 
@@ -76,14 +86,14 @@ The APIs of this module do not need to be imported through the JS interface. You
 
 | Name| Description| 
 | -------- | -------- |
-| [Image_ErrorCode](#image_errorcode) {<br>IMAGE_SUCCESS = 0, <br>IMAGE_BAD_PARAMETER = 401, <br>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, <br>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br>IMAGE_TOO_LARGE = 7600103, <br>IMAGE_DMA_NOT_EXIST = 7600173, <br>IMAGE_DMA_OPERATION_FAILED = 7600174, <br>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br>IMAGE_UNSUPPORTED_METADATA = 7600202, <br>IMAGE_UNSUPPORTED_CONVERSION = 7600203, <br>IMAGE_INVALID_REGION = 7600204, <br>IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205, <br>IMAGE_ALLOC_FAILED = 7600301,<br>IMAGE_COPY_FAILED = 7600302, <br>IMAGE_UNKNOWN_ERROR = 7600901, <br>IMAGE_BAD_SOURCE = 7700101, <br>IMAGE_DECODE_FAILED = 7700301,<br>IMAGE_ENCODE_FAILED = 7800301<br>} | Enumerates the error codes. | 
+| [Image_ErrorCode](#image_errorcode) {<br/>IMAGE_SUCCESS = 0, <br/>IMAGE_BAD_PARAMETER = 401, <br/>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, <br/>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br/>IMAGE_TOO_LARGE = 7600103, <br/>IMAGE_DMA_NOT_EXIST = 7600173, <br/>IMAGE_DMA_OPERATION_FAILED = 7600174, <br/>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br/>IMAGE_UNSUPPORTED_METADATA = 7600202, <br/>IMAGE_UNSUPPORTED_CONVERSION = 7600203, <br/>IMAGE_INVALID_REGION = 7600204, <br/>IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205, <br/>IMAGE_ALLOC_FAILED = 7600301,<br/>IMAGE_COPY_FAILED = 7600302, <br/>IMAGE_UNKNOWN_ERROR = 7600901, <br/>IMAGE_BAD_SOURCE = 7700101, <br/>IMAGE_DECODE_FAILED = 7700301,<br/>IMAGE_ENCODE_FAILED = 7800301<br/>} | Enumerates the error codes.  | 
 | [Image_MetadataType](#image_metadatatype-1) { EXIF_METADATA = 1, FRAGMENT_METADATA = 2 } | Enumerates the metadata types. | 
 | [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range) {<br>IMAGE_PACKER_DYNAMIC_RANGE_AUTO = 0,<br>IMAGE_PACKER_DYNAMIC_RANGE_SDR = 1 } | Enumerates the desired dynamic range for encoding.| 
 | [IMAGE_DYNAMIC_RANGE](#image_dynamic_range) {<br>IMAGE_DYNAMIC_RANGE_AUTO = 0,<br>IMAGE_DYNAMIC_RANGE_SDR = 1,<br>IMAGE_DYNAMIC_RANGE_HDR = 2 } | Enumerates the desired dynamic range for decoding.| 
 | [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) {<br>AUXILIARY_PICTURE_TYPE_GAINMAP = 1, AUXILIARY_PICTURE_TYPE_DEPTH_MAP = 2, AUXILIARY_PICTURE_TYPE_UNREFOCUS_MAP = 3, AUXILIARY_PICTURE_TYPE_LINEAR_MAP = 4,<br>AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP = 5<br>} | Enumerates the auxiliary picture types. | 
 | [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2 } | Enumerates the alpha types of a PixelMap.| 
 | [PIXEL_FORMAT](#pixel_format) {<br>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br>PIXEL_FORMAT_NV12 = 9<br>} | Enumerates the image pixel formats.| 
-| [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) { <br>OH_PixelmapNative_AntiAliasing_NONE = 0, <br>OH_PixelmapNative_AntiAliasing_LOW = 1, <br>OH_PixelmapNative_AntiAliasing_MEDIUM = 2, <br>OH_PixelmapNative_AntiAliasing_HIGH = 3 <br>} | Enumerates the antialiasing levels used for scaling PixelMaps. | 
+| [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) { <br>OH_PixelmapNative_AntiAliasing_NONE = 0, <br>OH_PixelmapNative_AntiAliasing_LOW = 1, <br>OH_PixelmapNative_AntiAliasing_MEDIUM = 2, <br>OH_PixelmapNative_AntiAliasing_HIGH = 3 <br>} | Enumerates the anti-aliasing levels used for scaling PixelMaps. | 
 | [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) { <br>HDR_METADATA_TYPE = 0, <br>HDR_STATIC_METADATA = 1, <br>HDR_DYNAMIC_METADATA = 2, <br>HDR_GAINMAP_METADATA = 3 } | Enumerates the keys of the HDR related metadata information used by the PixelMap. It is used in [OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata) and [OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata). | 
 | [OH_Pixelmap_HdrMetadataType](#oh_pixelmap_hdrmetadatatype) { <br>HDR_METADATA_TYPE_NONE = 0, <br>HDR_METADATA_TYPE_BASE = 1, <br>HDR_METADATA_TYPE_GAINMAP = 2, <br>HDR_METADATA_TYPE_ALTERNATE = 3 } | Enumerates the HDR metadata types, which are the values of **HDR_METADATA_TYPE**. | 
 
@@ -244,7 +254,7 @@ The APIs of this module do not need to be imported through the JS interface. You
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetImageInfo](#oh_pixelmapnative_getimageinfo) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*imageInfo) | Obtains the image information of a PixelMap. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Opacity](#oh_pixelmapnative_opacity) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float rate) | Sets the opacity rate to enable the PixelMap to achieve the corresponding opacity effect. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Scale](#oh_pixelmapnative_scale) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float scaleX, float scaleY) | Scales a PixelMap based on a given width and height. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ScaleWithAntiAliasing](#oh_pixelmapnative_scalewithantialiasing) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float scaleX, float scaleY, [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) level) | Scales a PixelMap based on the specified antialiasing level, width, and height. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ScaleWithAntiAliasing](#oh_pixelmapnative_scalewithantialiasing) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float scaleX, float scaleY, [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) level) | Scales a PixelMap based on the specified anti-aliasing level, width, and height. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Translate](#oh_pixelmapnative_translate) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float x, float y) | Translates a PixelMap based on given coordinates. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Rotate](#oh_pixelmapnative_rotate) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float angle) | Rotates a PixelMap based on a given angle. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Flip](#oh_pixelmapnative_flip) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, bool shouldFilpHorizontally, bool shouldFilpVertically) | Flips a PixelMap based on a given angle. | 
@@ -976,16 +986,16 @@ enum OH_PixelmapNative_AntiAliasingLevel
 
 **Description**
 
-Enumerates the antialiasing levels used for scaling PixelMaps.
+Enumerates the anti-aliasing levels used for scaling PixelMaps.
 
 **Since**: 12
 
 | Value| Description| 
 | -------- | -------- |
-| OH_PixelmapNative_AntiAliasing_NONE  | Nearest neighbor.  | 
+| OH_PixelmapNative_AntiAliasing_NONE  | Nearest neighbor interpolation.  | 
 | OH_PixelmapNative_AntiAliasing_LOW  | Bilinear interpolation.  | 
-| OH_PixelmapNative_AntiAliasing_MEDIUM  | Bilinear interpolation with mipmap enabled.  | 
-| OH_PixelmapNative_AntiAliasing_HIGH  | Cubic convolution.  | 
+| OH_PixelmapNative_AntiAliasing_MEDIUM  | Bilinear interpolation with mipmap enabled. You are advised to use this value when zooming out an image.  | 
+| OH_PixelmapNative_AntiAliasing_HIGH  | Cubic interpolation.  | 
 
 
 ### PIXELMAP_ALPHA_TYPE
@@ -1486,7 +1496,7 @@ Creates the pointer to an **OH_DecodingOptions** struct.
 
 | Name| Description| 
 | -------- | -------- |
-| options | Double pointer to the **OH_DecodingOptions** struct created. | 
+| options | Double pointer to the [OH_DecodingOptions](#oh_decodingoptions) struct created. | 
 
 **Returns**
 
@@ -1509,7 +1519,7 @@ Obtains the desired dynamic range configured during decoding.
 
 | Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. | 
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
 | desiredDynamicRange | Pointer to the desired dynamic range. For details about the available options, see [IMAGE_DYNAMIC_RANGE](#image_dynamic_range). | 
 
 **Returns**
@@ -1533,7 +1543,7 @@ Obtains the region to decode.
 
 | Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. | 
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
 | desiredRegion | Pointer to the region to decode. | 
 
 **Returns**
@@ -1557,7 +1567,7 @@ Obtains the desired output size.
 
 | Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. | 
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
 | desiredSize | Pointer to the desired output size. | 
 
 **Returns**
@@ -1581,7 +1591,7 @@ Obtains the index of an image.
 
 | Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. | 
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
 | index | Pointer to the index of the image to decode. | 
 
 **Returns**
@@ -1605,7 +1615,7 @@ Obtains the pixel format.
 
 | Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. | 
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
 | pixelFormat | Pointer to the pixel format. For details about the available options, see [PIXEL_FORMAT](#pixel_format).| 
 
 **Returns**
@@ -1629,7 +1639,7 @@ Obtains the rotation degree.
 
 | Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. | 
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
 | rotate | Pointer to the angle to rotate, in degrees. | 
 
 **Returns**
@@ -1653,7 +1663,7 @@ Releases the pointer to an **OH_DecodingOptions** struct.
 
 | Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. | 
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
 
 **Returns**
 
@@ -1677,7 +1687,7 @@ Sets the desired dynamic range during decoding.
 
 | Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. | 
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
 | desiredDynamicRange | Desired dynamic range. For details about the available options, see [IMAGE_DYNAMIC_RANGE](#image_dynamic_range). | 
 
 **Returns**
@@ -1701,7 +1711,7 @@ Sets the region to decode.
 
 | Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. | 
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
 | desiredRegion | Pointer to the region to decode. | 
 
 **Returns**
@@ -1725,7 +1735,7 @@ Sets the desired output size.
 
 | Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. | 
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
 | desiredSize | Pointer to the desired output size. | 
 
 **Returns**
@@ -1749,7 +1759,7 @@ Sets the index for an image.
 
 | Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. | 
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
 | index | Index of the image to decode. | 
 
 **Returns**
@@ -1773,7 +1783,7 @@ Sets the pixel format.
 
 | Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. | 
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
 | pixelFormat | Pixel format. For details about the available options, see [PIXEL_FORMAT](#pixel_format). | 
 
 **Returns**
@@ -1797,7 +1807,7 @@ Sets the rotation angle.
 
 | Name| Description| 
 | -------- | -------- |
-| options | Pointer to an **OH_DecodingOptions** struct. | 
+| options | Pointer to an [OH_DecodingOptions](#oh_decodingoptions) struct. | 
 | rotate | Angle to rotate, in degrees. | 
 
 **Returns**
@@ -1986,7 +1996,7 @@ Image_ErrorCode OH_ImageNative_GetImageSize(OH_ImageNative *image, Image_Size *s
 
 Obtains the [Image_Size](_image___size.md) information of a native [OH_ImageNative](#oh_imagenative) object.
 
-If the [OH_ImageNative](#oh_imagenative) object stores the camera preview stream data (YUV image data), the width and height in [Image_Size](_image___size.md) obtained correspond to those of the YUV image. If the [OH_ImageNative](#oh_imagenative) object stores the camera photo stream data (JPEG image data, which is already encoded), the width in [Image_Size](_image___size.md) obtained is the JPEG data size, and the height is 1. The type of data stored in the [OH_ImageNative](#oh_imagenative) object depends on whether the application passes the surface ID in the receiver to a **previewOutput** or **captureOutput** object of the camera.
+If the [OH_ImageNative](#oh_imagenative) object stores the camera preview stream data (YUV image data), the width and height in [Image_Size](_image___size.md) obtained correspond to those of the YUV image. If the [OH_ImageNative](#oh_imagenative) object stores the camera photo stream data (JPEG image data, which is already encoded), the width in [Image_Size](_image___size.md) obtained is the JPEG data size, and the height is 1. The type of data stored in the [OH_ImageNative](#oh_imagenative) object depends on whether the application passes the surface ID in the receiver to a **previewOutput** or **captureOutput** object of the camera. For details about the best practices of camera preview and photo capture, see [Secondary Processing of Preview Streams (C/C++)](../../media/camera/native-camera-preview-imageReceiver.md) and [Photo Capture (C/C++)](../../media/camera/native-camera-shooting.md).
 
 **Since**: 12
 
@@ -2321,7 +2331,7 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePack
 
 **Description**
 
-Packs a PixelMap sequence into a file.
+Encodes a PixelMap sequence into a file.
 
 **Since**: 13
 
@@ -2540,6 +2550,10 @@ Image_ErrorCode OH_ImageReceiverNative_ReadLatestImage(OH_ImageReceiverNative* r
 
 Obtains the latest image through an [OH_ImageReceiverNative](#oh_imagereceivernative) object.
 
+> **NOTE**
+>
+> This function can be called to receive data only after the [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback) callback is triggered. When the [OH_ImageNative](#oh_imagenative) object returned by this function is no longer needed, call [OH_ImageNative_Release](#oh_imagenative_release) to release the object. New data can be received only after the release.
+
 **Since**: 12
 
 **Parameters**
@@ -2567,6 +2581,10 @@ Image_ErrorCode OH_ImageReceiverNative_ReadNextImage(OH_ImageReceiverNative* rec
 **Description**
 
 Obtains the next image through an [OH_ImageReceiverNative](#oh_imagereceivernative) object.
+
+> **NOTE**
+>
+> This function can be called to receive data only after the [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback) callback is triggered. When the [OH_ImageNative](#oh_imagenative) object returned by this function is no longer needed, call [OH_ImageNative_Release](#oh_imagenative_release) to release the object. New data can be received only after the release.
 
 **Since**: 12
 
@@ -3577,7 +3595,7 @@ Sets the disposal type array for image sequence encoding.
 | -------- | -------- |
 | options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
 | disposalTypes | Pointer to the disposal type array. | 
-| disposalTypesLength | Length the disposal type array. | 
+| disposalTypesLength | Length of the disposal type array. | 
 
 **Returns**
 
@@ -4607,7 +4625,7 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLengt
 
 **Description**
 
-Creates a PixelMap based on properties. By default, the BGRA_8888 format is used for data processing.
+Creates a PixelMap based on properties. By default, the BGRA_8888 format is used for data processing. For details about other formats, see [OH_PixelmapInitializationOptions_SetSrcPixelFormat](#oh_pixelmapinitializationoptions_setsrcpixelformat).
 
 **Since**: 12
 
@@ -4672,6 +4690,7 @@ Flips a PixelMap based on a given angle.
 **Returns**
 
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
+
 
 
 ### OH_PixelmapNative_GetArgbPixels()
@@ -4925,7 +4944,7 @@ Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixel
 
 **Description**
 
-Scales a PixelMap based on the specified antialiasing level, width, and height.
+Scales a PixelMap based on the specified anti-aliasing level, width, and height.
 
 **Since**: 12
 
@@ -4936,7 +4955,7 @@ Scales a PixelMap based on the specified antialiasing level, width, and height.
 | pixelmap | Pointer to an **OH_PixelmapNative** object. | 
 | scaleX | Scale ratio of the width. | 
 | scaleY | Scale ratio of the height. | 
-| level | Antialiasing level. | 
+| level | Anti-aliasing level. | 
 
 **Returns**
 
