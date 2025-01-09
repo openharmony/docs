@@ -13,8 +13,11 @@
    - 密钥属性集同样与密钥生成中指定的密钥属性一致，须包含[HuksKeyAlg](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeyalg)、[HuksKeySize](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeysize)、[HuksKeyPurpose](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeypurpose)属性。
    - 密钥材料须符合[HUKS密钥材料格式](huks-concepts.md#密钥材料格式)，并以Uint8Array形式赋值给[HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions)的inData字段。
 
-3. 调用[huks.importKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksimportkeyitem9)，传入密钥别名和密钥属性集，即可导入密钥。
+3. 调用[huks.importKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksimportkeyitem9)，传入密钥别名和密钥属性集，即可导入密钥。  
 
+    HuksParam和HuksOptions的含义参考：[HuksParam](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam) 和 [HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions)
+
+### 导入AES256密钥
 ```ts
 /* 以下以导入AES256密钥的Callback操作使用为例 */
 import { huks } from '@kit.UniversalKeystoreKit'
@@ -26,8 +29,8 @@ let plainTextSize32 = new Uint8Array([
 ]);
 /* 1.确定密钥别名 */
 let keyAlias = 'AES256Alias_sample';
-/* 2.封装密钥属性集和密钥材料 */
 
+/* 2.封装密钥属性集和密钥材料 */
 let properties: Array<huks.HuksParam> = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -59,7 +62,7 @@ try {
   console.error(`callback: importKeyItem input arg invalid` + JSON.stringify(error));
 }
 ```
-
+### 导入RSA2048密钥对
 ```ts
 /* 以下以导入RSA2048密钥的Callback操作使用为例 */
 import { huks } from '@kit.UniversalKeystoreKit'
@@ -149,8 +152,57 @@ try {
   console.error(`callback: importKeyItem input arg invalid` + error);
 }
 ```
+### 导入X25519密钥公钥
+```ts
+/* 以下以导入X25519密钥的Callback操作使用为例 */
+import { huks } from '@kit.UniversalKeystoreKit'
+// X25519的公钥数据。X25519 密钥对中的私钥和公钥都是 32 字节（256 位），关于算法原理请自行参考相关密钥学资料。
+let x25519KeyPubMaterial = new Uint8Array([
+  0x30, 0x2A, 0x30, 0x05, 0x06, 0x03, 0x2B, 0x65, 0x6E, 0x03, 0x21, 0x00, 0xD2, 0x36, 0x9E, 0xCF,
+  0xF0, 0x61, 0x5B, 0x73, 0xCE, 0x4F, 0xF0, 0x40, 0x2B, 0x89, 0x18, 0x3E, 0x06, 0x33, 0x60, 0xC6
+]);
 
-
+/* 1.确定密钥别名 */
+let keyAlias = 'X25519_Pub_import_sample';
+/* 2.封装密钥属性集和密钥材料 */
+let properties: Array<huks.HuksParam> = [
+  {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_X25519
+  },
+  {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256
+  },
+  {
+    // 此 tag表示密钥导入后的用途，导入后将不可更改
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+  },
+  {
+    // 此 tag表示需导入的密钥类型
+    tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+    // 此 value表示导入密钥的公钥，若改为HUKS_KEY_TYPE_KEY_PAIR时表示导入密钥对
+    value: huks.HuksImportKeyType.HUKS_KEY_TYPE_PUBLIC_KEY
+  },
+]
+let options: huks.HuksOptions = {
+  properties: properties,
+  inData: x25519KeyPubMaterial
+};
+/* 3.明文导入密钥 */
+try {
+  huks.importKeyItem(keyAlias, options, (error, data) => {
+    if (error) {
+      console.error(`callback: importKeyItem failed` + error);
+    } else {
+      console.info(`callback: importKeyItem success`);
+    }
+  });
+} catch (error) {
+  console.error(`callback: importKeyItem input arg invalid` + error);
+}
+```
 ## 调测验证
 
 调用[huks.isKeyItemExist](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksiskeyitemexist9)验证密钥是否存在，如密钥存在即表示密钥导入成功。

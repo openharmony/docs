@@ -52,12 +52,14 @@ static JSVM_Value GetValueStringUtf8(JSVM_Env env, JSVM_CallbackInfo info)
     status = OH_JSVM_GetValueStringUtf8(env, args[0], buf, length + 1, &length);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetValueStringUtf8 fail");
+        free(buf);
         return nullptr;
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM GetValueStringUtf8 success: %{public}s", buf);
     }
     JSVM_Value result = nullptr;
     OH_JSVM_CreateStringUtf8(env, buf, length, &result);
+    free(buf);
     return result;
 }
 // GetValueStringUtf8注册回调
@@ -79,9 +81,7 @@ const char *srcCallNative = R"JS(
 
 预期输出结果
 
-```ts
-JSVM GetValueStringUtf8 success: aaBC+-$%^你好123
-```
+![GetValueStringUtf8](figures/jsvm_about_string_GetValueStringUtf8.png)
 
 **注意事项**：`getValueStringUtf8(arg)`入参`arg`非字符串型数据时接口会调用失败。
 
@@ -130,10 +130,7 @@ const char *srcCallNative = R"JS(
 
 预期输出结果
 
-
-```ts
-JSVM CreateStringUtf8 success: 你好, World!, successes to create UTF-8 string!
-```
+![CreateStringUtf8](figures/jsvm_about_string_CreateStringUtf8.png)
 
 ### OH_JSVM_GetValueStringUtf16
 
@@ -196,9 +193,7 @@ const char *srcCallNative = R"JS(
 
 预期输出结果
 
-```ts
-JSVM GetValueStringUtf16 success: ahello。
-```
+![GetValueStringUtf16](figures/jsvm_about_string_GetValueStringUtf16.png)
 
 **注意事项**：`getValueStringUtf16(arg)`入参`arg`非字符串型数据时接口会调用失败。
 
@@ -254,9 +249,7 @@ const char *srcCallNative = R"JS(
 
 预期输出结果
 
-```ts
-JSVM CreateStringUtf16 success: 你好, World!, successes to create UTF-16 string!
-```
+![CreateStringUtf16](figures/jsvm_about_string_CreateStringUtf16.png)
 
 ### OH_JSVM_GetValueStringLatin1
 
@@ -309,10 +302,8 @@ const char *srcCallNative = R"JS(
 
 预期输出结果
 
-```ts
-// ISO-8859-1编码不支持中文，传入中文字符会乱码
-JSVM GetValueStringLatin1 success: - 
-```
+*ISO-8859-1编码不支持中文，传入中文字符会乱码*
+![GetValueStringLatin1](figures/jsvm_about_string_GetValueStringLatin1.png)
 
 **注意事项**：`getValueStringLatin1(arg)`入参`arg`非字符串型数据时接口会调用失败。
 
@@ -365,6 +356,4 @@ const char *srcCallNative = R"JS(
 
 预期输出结果
 
-```ts
-JSVM CreateStringLatin1 success: Hello, World! éçñ, successes to create Latin1 string!
-```
+![CreateStringLatin1](figures/jsvm_about_string_CreateStringLatin1.png)

@@ -12,15 +12,16 @@
     <!--Del-->
     - [申请使用受控权限](declare-permissions-in-acl.md)
     <!--DelEnd-->
-  - 应用权限列表
-    - [对所有应用开放](permissions-for-all.md)
+  - [应用权限列表](app-permissions.md)
+    - [开放权限（系统授权）](permissions-for-all.md)
+    - [开放权限（用户授权）](permissions-for-all-user.md)
     <!--Del-->
-    - [仅对系统应用开放](permissions-for-system-apps.md)
+    - [系统应用可用权限](permissions-for-system-apps.md)
     <!--DelEnd-->
-    - [仅对MDM应用开放](permissions-for-mdm-apps.md)
+    - [企业类应用可用权限](permissions-for-enterprise-apps.md)
+    - [仅MDM应用可用权限](permissions-for-mdm-apps.md)
   - [应用权限组列表](app-permission-group-list.md)
 - 使用安全控件
   - [安全控件概述](security-component-overview.md)
   - [使用粘贴控件](pastebutton.md)
   - [使用保存控件](savebutton.md)
-  - [使用位置控件](locationbutton.md)

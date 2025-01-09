@@ -647,7 +647,7 @@ function parseAdResponse(adResponse: string, context: common.UIAbilityContext): 
 
 registerWebAdInterface(controller: web_webview.WebviewController, context: common.UIAbilityContext): void
 
-Injects an ad JavaScript object to the **\<Web>** component.
+Injects an ad JavaScript object to the **Web** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -658,7 +658,7 @@ Injects an ad JavaScript object to the **\<Web>** component.
 
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| controller | web_webview.[WebviewController](../apis-arkweb/js-apis-webview.md#webviewcontroller) | Yes| Controller of the **\<Web>** component.| 
+| controller | web_webview.[WebviewController](../apis-arkweb/js-apis-webview.md#webviewcontroller) | Yes| Controller of the **Web** component.| 
 | context | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | Yes| UIAbility context.| 
 
 

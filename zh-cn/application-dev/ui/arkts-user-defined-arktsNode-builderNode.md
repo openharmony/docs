@@ -1,14 +1,20 @@
-# BuilderNode
+# 自定义声明式节点 (BuilderNode)
 
 ## 概述
 
-[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)提供能够挂载原生组件的能力，支持通过无状态的UI方法[全局自定义构建函数](../quick-start/arkts-builder.md#全局自定义构建函数)@Builder生成组件树，并通过[getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode)获取组件树的根[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)节点。该节点可以通过[NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md)直接返回，挂载在[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)节点下，也可以在FrameNode树结构和[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)树结构嵌入声明式的组件结构，实现混合显示的能力。同时BuilderNode可以提供纹理导出的功能，导出的纹理用于在[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)中进行同层渲染显示。
+自定义声明式节点 ([BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md))提供能够挂载系统组件的能力，支持采用无状态的UI方式，通过[全局自定义构建函数](../quick-start/arkts-builder.md#全局自定义构建函数)@Builder定制组件树。组件树的根[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)节点可通过[getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode)获取，该节点既可直接由[NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md)返回并挂载于[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)节点下，亦可在FrameNode树与[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)树中嵌入声明式组件，实现混合显示。同时，BuilderNode具备纹理导出功能，导出的纹理可在[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)中实现同层渲染。
 
-BuilderNode创建的ArkTS原生控件树支持与自定义节点(例如：FrameNode、RenderNode)进行关联使用，实现了原生组件与自定义节点的混合显示。对于使用自定义节点的能力进行对接的三方框架，BuilderNode为其提供了嵌入原生组件的能力。
+由BuilderNode构建的ArkTS原生控件树，支持与自定义节点（如FrameNode、RenderNode）关联使用，确保了系统组件与自定义节点的混合显示效果。对于需与自定义节点对接的第三方框架，BuilderNode提供了嵌入系统组件的方法。
 
-BuilderNode提供了组件预创建的能力，能够自定义原生组件的创建开始的时间，在后续的业务中动态挂载显示。对于一些在创建初始化耗时较长的声明式组件，比如[Web](../reference/apis-arkweb/ts-basic-components-web.md)、[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)等，预创建可以有效减少组件初始化的耗时。
+此外，BuilderNode还提供了组件预创建的能力，能够自定义系统组件的创建开始的时间，在后续业务中实现动态挂载与显示。此功能尤其适用于初始化耗时较长的声明式组件，如[Web](../reference/apis-arkweb/ts-basic-components-web.md)、[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)等，通过预创建，可以有效减少初始化时间，优化组件加载效率。
 
 ![zh-cn_image_builder-node](figures/builder-node.png)
+
+## 基本概念
+
+- 系统组件：组件是UI的必要元素，形成了在界面中的样子，由ArkUI直接提供的称为[系统组件](arkts-ui-development-overview.md)。
+
+- 实体节点：由后端创建的Native节点。
 
 BuilderNode仅可作为叶子节点进行使用。如有更新需要，建议通过BuilderNode中的[update](../reference/apis-arkui/js-apis-arkui-builderNode.md#update)方式触发更新，不建议通过BuilderNode中获取的RenderNode对节点进行修改操作。
 
@@ -369,6 +375,287 @@ struct MyComponent {
           }
         })
     }
+  }
+}
+```
+
+## 节点复用能力
+
+将[reuse](../reference/apis-arkui/js-apis-arkui-builderNode.md#reuse12)事件和[recycle](../reference/apis-arkui/js-apis-arkui-builderNode.md#recycle12)事件传递至BuilderNode中的自定义组件，以实现BuilderNode节点的复用。
+
+```ts
+import { FrameNode,NodeController,BuilderNode,UIContext } from "@kit.ArkUI";
+
+class MyDataSource {
+  private dataArray: string[] = [];
+  private listener: DataChangeListener | null = null
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number) {
+    return this.dataArray[index];
+  }
+
+  public pushData(data: string) {
+    this.dataArray.push(data);
+  }
+
+  public reloadListener(): void {
+    this.listener?.onDataReloaded();
+  }
+
+  public registerDataChangeListener(listener: DataChangeListener): void {
+    this.listener = listener;
+  }
+
+  public unregisterDataChangeListener(): void {
+    this.listener = null;
+  }
+}
+
+class Params {
+  item: string = '';
+
+  constructor(item: string) {
+    this.item = item;
+  }
+}
+
+@Builder
+function buildNode(param: Params = new Params("hello")) {
+  ReusableChildComponent2({ item: param.item });
+}
+
+class MyNodeController extends NodeController {
+  public builderNode: BuilderNode<[Params]> | null = null;
+  public item: string = "";
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    if (this.builderNode == null) {
+      this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 300, height: 200 } });
+      this.builderNode.build(wrapBuilder<[Params]>(buildNode), new Params(this.item));
+    }
+    return this.builderNode.getFrameNode();
+  }
+}
+
+@Reusable
+@Component
+struct ReusableChildComponent {
+  @State item: string = '';
+  private controller: MyNodeController = new MyNodeController();
+
+  aboutToAppear() {
+    this.controller.item = this.item;
+  }
+
+  aboutToRecycle(): void {
+    console.log("ReusableChildComponent aboutToRecycle " + this.item);
+    this.controller?.builderNode?.recycle();
+  }
+
+  aboutToReuse(params: object): void {
+    console.log("ReusableChildComponent aboutToReuse " + JSON.stringify(params));
+    this.controller?.builderNode?.reuse(params);
+  }
+
+  build() {
+    NodeContainer(this.controller);
+  }
+}
+
+@Component
+struct ReusableChildComponent2 {
+  @Prop item: string = "false";
+
+  aboutToReuse(params: Record<string, object>) {
+    console.log("ReusableChildComponent2 Reusable 2 " + JSON.stringify(params));
+  }
+
+  aboutToRecycle(): void {
+    console.log("ReusableChildComponent2 aboutToRecycle 2 " + this.item);
+  }
+
+  build() {
+    Row() {
+      Text(this.item)
+        .fontSize(20)
+        .backgroundColor(Color.Yellow)
+        .margin({ left: 10 })
+    }.margin({ left: 10, right: 10 })
+  }
+}
+
+
+@Entry
+@Component
+struct Index {
+  @State data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0;i < 100; i++) {
+      this.data.pushData(i.toString());
+    }
+  }
+
+  build() {
+    Column() {
+      List({ space: 3 }) {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            ReusableChildComponent({ item: item })
+          }
+        }, (item: string) => item)
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+}
+```
+
+## 通过系统环境变化更新节点
+
+使用[updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#reuse12)来监听[系统环境变化](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)事件，以触发节点的全量更新。
+
+> **说明：**
+>
+> updateConfiguration接口用于通知对象进行更新，更新所使用的系统环境取决于应用当前系统环境的变化。
+
+```ts
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+import { AbilityConstant, Configuration, EnvironmentCallback } from '@kit.AbilityKit';
+
+class Params {
+  text: string = ""
+
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+// 自定义组件
+@Component
+struct TextBuilder {
+  // 作为自定义组件中需要更新的属性，数据类型为基础属性，定义为@Prop
+  @Prop message: string = "TextBuilder";
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .margin({ bottom: 36 })
+          .fontColor($r(`app.color.text_color`))
+          .backgroundColor($r(`app.color.start_window_background`))
+      }
+    }
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+      .fontColor($r(`app.color.text_color`))
+    TextBuilder({ message: params.text }) // 自定义组件
+  }.backgroundColor($r(`app.color.start_window_background`))
+}
+
+class TextNodeController extends NodeController {
+  private textNode: BuilderNode<[Params]> | null = null;
+  private message: string = "";
+
+  constructor(message: string) {
+    super()
+    this.message = message;
+  }
+
+  makeNode(context: UIContext): FrameNode | null {
+    return this.textNode?.getFrameNode() ? this.textNode?.getFrameNode() : null;
+  }
+
+  createNode(context: UIContext) {
+    this.textNode = new BuilderNode(context);
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
+    builderNodeMap.push(this.textNode);
+  }
+
+  deleteNode() {
+    let node = builderNodeMap.pop();
+    node?.dispose();
+  }
+
+  update(message: string) {
+    if (this.textNode !== null) {
+      // 调用update进行更新。
+      this.textNode.update(new Params(message));
+    }
+  }
+}
+
+// 记录创建的自定义节点对象
+const builderNodeMap: Array<BuilderNode<[Params]>> = new Array();
+
+function updateColorMode() {
+  builderNodeMap.forEach((value, index) => {
+    // 通知BuilderNode环境变量改变
+    value.updateConfiguration();
+  })
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = "hello"
+  private textNodeController: TextNodeController = new TextNodeController(this.message);
+  private count = 0;
+
+  aboutToAppear(): void {
+    let environmentCallback: EnvironmentCallback = {
+      onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
+        console.log('onMemoryLevel');
+      },
+      onConfigurationUpdated: (config: Configuration): void => {
+        console.log('onConfigurationUpdated ' + JSON.stringify(config));
+        updateColorMode();
+      }
+    }
+    // 注册监听回调
+    this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
+    //创建自定义节点并添加至map
+    this.textNodeController.createNode(this.getUIContext());
+  }
+
+  aboutToDisappear(): void {
+    //移除map中的引用，并将自定义节点释放
+    this.textNodeController.deleteNode();
+  }
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(this.textNodeController)
+          .width('100%')
+          .height(200)
+          .backgroundColor('#FFF0F0F0')
+        Button('Update')
+          .onClick(() => {
+            this.count += 1;
+            const message = "Update " + this.count.toString();
+            this.textNodeController.update(message);
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
   }
 }
 ```

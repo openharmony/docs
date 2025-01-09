@@ -33,6 +33,8 @@ want的Params操作的常量。
 | CALLER_REQUEST_CODE<sup>12+</sup>  | ohos.extra.param.key.callerRequestCode  | 当调用[startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult)或[openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)拉起目标方Ability时, 需要目标方返回结果。为了确保目标方能够将结果准确返回到调用方，系统会自动生成唯一的requestCode，以标识本次调用。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | APP_INSTANCE_KEY<sup>14+</sup>  | ohos.extra.param.key.appInstance  | 指示具体的应用实例。 |
 | CREATE_APP_INSTANCE_KEY<sup>14+</sup>  | ohos.extra.param.key.createAppInstance  | 指示创建新应用实例。 |
+| CALLER_APP_CLONE_INDEX<sup>14+</sup>  | ohos.param.callerAppCloneIndex  | 指示拉起方应用的分身索引。|
+| LAUNCH_REASON_MESSAGE<sup>16+</sup>  | ohos.params.launchReasonMessage  | 调用方拉起目标方Ability时，可通过该字段设置拉起原因。调用方必须为系统应用，且需要申请ohos.permission.SET_LAUNCH_REASON_MESSAGE权限。 <br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## Flags
 

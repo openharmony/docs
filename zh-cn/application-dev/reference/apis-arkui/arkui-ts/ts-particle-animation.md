@@ -600,7 +600,7 @@ interface ParticleColorOptions {
 
 ## 示例
 
-### 示例1
+### 示例1（圆形初始化粒子）
 
 描述粒子动画基础用法，通过圆形初始化粒子。
 
@@ -718,7 +718,7 @@ struct ParticleExample {
 
 ![particle](figures/particle.gif)
 
-### 示例2
+### 示例2（图片初始化粒子）
 
 描述粒子动画基础用法，通过图片初始化粒子。
 
@@ -1109,9 +1109,10 @@ struct ParticleExample {
 ```
 ![particle](figures/particle_inage_one.gif)
 
-### 示例3
+### 示例3（粒子扰动场的干扰下运动轨迹发生变化）
 
-粒子扰动场的干扰下运动轨迹发生变化。
+该示例主要演示如何通过粒子扰动场的干扰下来实现运动轨迹发生变化的效果。
+
 ```
 @Entry
 @Component
@@ -1233,7 +1234,7 @@ struct ParticleExample {
 ```
 ![particle](figures/disturbanceFields.gif)
 
-### 示例4
+### 示例4（调整粒子发射器位置）
 通过emitter()调整粒子发射器的位置。
 ```ts
 @Entry

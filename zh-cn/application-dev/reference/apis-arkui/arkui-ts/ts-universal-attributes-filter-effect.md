@@ -72,6 +72,9 @@ compositingFilter(filter: Filter): T
 
 
 ## 示例
+
+该示例主要演示前景滤镜、背景滤镜和合成滤镜的模糊效果。
+
 ```ts
 // xxx.ets
 import { uiEffect } from '@kit.ArkGraphics2D';

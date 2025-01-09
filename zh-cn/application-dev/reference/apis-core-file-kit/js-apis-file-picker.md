@@ -388,19 +388,21 @@ async function example12(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
-### getSelectedIndex<sup>13+</sup>;
+### getSelectedIndex<sup>14+</sup>;
 
 getSelectedIndex(): number
 
-**原子化服务API:** 从API version 13开始，该接口支持在原子化服务中使用。
+获取保存成功后的文件后缀类型的下标。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService
+该方法只在调用 [save()](#save)时使用生效，其他场景下不可以使用。
 
-通过getSelectedIndex()方法获取保存成功后的文件后缀类型的下标。
-  > **注意**：
-  > <br>**1**、getSelectedIndex()方法只在调用 [save()](#save)时使用生效，其他场景下不可以使用。
-  > <br>**2**、getSelectedIndex()方法需要配置参数[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)使用。
-  > <br>**3**、getSelectedIndex()方法返回的是所选后缀类型的下标(number)，所选的后缀类型是开发者所传的参数[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)里的某个后缀类型，如果没有传参，并且调用了getSelectedIndex()方法，返回值为-1。
+该方法需要配置参数[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)使用。
+
+该方法返回的是所选后缀类型的下标(number)，所选的后缀类型是开发者所传的参数[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)里的某个后缀类型，如果没有传参，并且调用了getSelectedIndex()方法，返回值为-1。
+
+**原子化服务API:** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -893,7 +895,7 @@ constructor()
 let photoPicker = new picker.PhotoViewPicker(); // 不推荐使用无参构造，会出现概率性拉起失败问题
 ```
 
-### select<sup>(deprecated)</sup>
+### select
 
 select(option?: PhotoSelectOptions): Promise&lt;PhotoSelectResult&gt;
 
@@ -945,7 +947,7 @@ async function example01(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
-### select<sup>(deprecated)</sup>
+### select
 
 select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
@@ -994,7 +996,7 @@ async function example02(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
-### select<sup>(deprecated)</sup>
+### select
 
 select(callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
@@ -1039,7 +1041,7 @@ async function example03(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
-### save<sup>(deprecated)</sup>
+### save
 
 save(option?: PhotoSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
@@ -1088,7 +1090,7 @@ async function example04(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
-### save<sup>(deprecated)</sup>
+### save
 
 save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
@@ -1134,7 +1136,7 @@ async function example05(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
-### save<sup>(deprecated)</sup>
+### save
 
 save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 

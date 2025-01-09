@@ -1664,7 +1664,7 @@ struct Index {
 }
 ```
 
-## appManager.getSupportedProcessCachePids<sup>13+</sup>
+## appManager.getSupportedProcessCachePids<sup>14+</sup>
 
 getSupportedProcessCachePids(bundleName : string): Promise\<Array\<number>>
 

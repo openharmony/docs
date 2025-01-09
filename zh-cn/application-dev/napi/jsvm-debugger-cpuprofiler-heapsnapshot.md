@@ -41,7 +41,7 @@ JSVM，既标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执
 4. 调用OH_JSVM_WaitForDebugger，等待建立socket连接。
 5. 检查端侧端口是否打开成功。hdc shell "netstat -anp | grep 9225"。结果为9225端口状态为“LISTEN"即可。
 6. 转发端口。hdc fport tcp:9229 tcp:9225。转发PC侧端口9229到端侧端口9225。结果为"Forwardport result:OK"即可。
-7. 在chrome浏览器地址栏输入"localhost:9229/json"，回车。获取端口连接信息。拷贝"devtoolsFrontendUrl"字段url内容到地址栏，回车，进入DevTools源码页，将看到在应用中通过OH_JSVM_RunScript执行的JS源码，此时暂停在第一行JS源码处。
+7. 在chrome浏览器地址栏输入"localhost:9229/json"，回车。获取端口连接信息。拷贝"devtoolsFrontendUrl"字段url内容到地址栏，回车，进入DevTools源码页，将看到在应用中通过OH_JSVM_RunScript执行的JS源码，此时暂停在第一行JS源码处。(注："devtoolsFrontendUrl"字段url只支持使用Chrome、Edge浏览器打开，不支持使用Firefox、Safari等浏览器打开。)
 8. 用户可在源码页打断点，通过按钮发出各种调试命令控制JS代码执行，并查看变量。
 9. 调用OH_JSVM_CloseInspector关闭inspector，结束socket连接。
 
@@ -142,7 +142,7 @@ void TestJSVM() {
 4. 调用OH_JSVM_WaitForDebugger，等待建立socket连接。
 5. 检查端侧端口是否打开成功。hdc shell "cat /proc/net/unix | grep jsvm"。结果出现可用的 unix 端口即可, 如: jsvm_devtools_remote_9229_123, 其中 9229 为 tcp 端口号, 123 为对应的 pid
 6. 转发端口。hdc fport tcp:9229 tcp:9229。转发PC侧端口9229到端侧端口9229。结果为"Forwardport result:OK"即可。
-7. 在 chrome 浏览器地址栏输入 "localhost:9229/json"，回车。获取端口连接信息。打开Chrome开发者工具，拷贝"devtoolsFrontendUrl"字段url内容到地址栏，回车，进入DevTools源码页，将看到在应用中通过OH_JSVM_RunScript执行的JS源码，此时暂停在第一行JS源码处。
+7. 在 chrome 浏览器地址栏输入 "localhost:9229/json"，回车。获取端口连接信息。打开Chrome开发者工具，拷贝"devtoolsFrontendUrl"字段url内容到地址栏，回车，进入DevTools源码页，将看到在应用中通过OH_JSVM_RunScript执行的JS源码，此时暂停在第一行JS源码处。(注："devtoolsFrontendUrl"字段url只支持使用Chrome、Edge浏览器打开，不支持使用Firefox、Safari等浏览器打开。)
 8. 用户可在源码页打断点，通过按钮发出各种调试命令控制JS代码执行，并查看变量。
 9. 调用OH_JSVM_CloseInspector关闭inspector，结束socket连接。
 
@@ -158,6 +158,19 @@ static void EnableInspector(JSVM_Env env) {
     OH_JSVM_WaitForDebugger(env, true);
 }
 ```
+
+### 使用 Chrome inspect 页面进行调试
+除了使用上述打开"devtoolsFrontendUrl"字段url的方法调试代码之外，也可以直接通过Chrome浏览器的 chrome://inspect/#devices 页面进行调试。方法如下：
+1. Chrome浏览器中打开 chrome://inspect/#devices，勾选以下内容：
+   <div align=left><img src="figures/jsvm-debugger-cpuprofiler-heapsnapshot_1.png"/></div>
+2. 执行端口转发命令：hdc fport [pc侧端口号] [端侧端口号]  
+例如：hdc fport tcp:9227 tcp:9226
+1. 点击Port forwarding按钮，左侧输入pc侧端口，右侧输入端侧端口号，点击done。如下图所示：
+   <div align=left><img src="figures/jsvm-debugger-cpuprofiler-heapsnapshot_2.png"/></div>
+2. 点击Configure按钮，输入pc侧的端口号，如localhost:9227。如下图所示：
+   <div align=left><img src="figures/jsvm-debugger-cpuprofiler-heapsnapshot_3.png"/></div>
+3. 稍等片刻，会在target下出现调试的内容，点击inspect即可调试。如下图所示：
+   <div align=left><img src="figures/jsvm-debugger-cpuprofiler-heapsnapshot_4.png"/></div>
 
 ## CPU Profiler及Heap Snapshot使用方法
 

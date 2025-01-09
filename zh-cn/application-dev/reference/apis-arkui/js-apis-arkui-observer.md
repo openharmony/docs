@@ -23,15 +23,15 @@ NavDestination组件状态。
 
 | 名称      | 值  | 说明                     |
 | --------- | --- | ------------------------ |
-| ON_SHOWN  | 0   | NavDestination组件显示。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。 |
-| ON_HIDDEN | 1   | NavDestination组件隐藏。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。 |
-| ON_APPEAR<sup>12+</sup> | 2   | NavDestination从组件树上挂载。<br/> **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
-| ON_DISAPPEAR<sup>12+</sup> | 3   | NavDestination从组件树上卸载。 <br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
-| ON_WILL_SHOW<sup>12+</sup> | 4   | NavDestination组件显示之前。 <br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
-| ON_WILL_HIDE<sup>12+</sup> | 5   | NavDestination组件隐藏之前。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| ON_WILL_APPEAR<sup>12+</sup>| 6   | NavDestination挂载到组件树之前。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
-| ON_WILL_DISAPPEAR<sup>12+</sup>| 7   | NavDestination从组件树上卸载之前。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
-| ON_BACKPRESS<sup>12+</sup> | 100   | NavDestination组件返回。 <br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
+| ON_SHOWN  | 0   | NavDestination组件显示。 |
+| ON_HIDDEN | 1   | NavDestination组件隐藏。 |
+| ON_APPEAR<sup>12+</sup> | 2   | NavDestination从组件树上挂载。|
+| ON_DISAPPEAR<sup>12+</sup> | 3   | NavDestination从组件树上卸载。 |
+| ON_WILL_SHOW<sup>12+</sup> | 4   | NavDestination组件显示之前。 |
+| ON_WILL_HIDE<sup>12+</sup> | 5   | NavDestination组件隐藏之前。 |
+| ON_WILL_APPEAR<sup>12+</sup>| 6   | NavDestination挂载到组件树之前。|
+| ON_WILL_DISAPPEAR<sup>12+</sup>| 7   | NavDestination从组件树上卸载之前。|
+| ON_BACKPRESS<sup>12+</sup> | 100   | NavDestination组件返回。 |
 
 ## ScrollEventType<sup>12+</sup>
 
@@ -91,6 +91,8 @@ NavDestination组件信息。
 | index<sup>12+</sup>        | number        | 是   | NavDestination在页面栈中的索引。                   |
 | param<sup>12+</sup>        | Object        | 否   | NavDestination组件的参数。                   |
 | navDestinationId<sup>12+</sup>        | string        | 是   | NavDestination组件的唯一标识ID。                   |
+| mode<sup>16+</sup>        | [NavDestinationMode](arkui-ts/ts-basic-components-navdestination.md#navdestinationmode枚举说明-11)        | 是   | NavDestination类型。                   |
+| uniqueId<sup>16+</sup>        | number        | 是   | NavDestination组件的uniqueId。                   |
 
 ## NavigationInfo<sup>12+</sup>
 
@@ -225,9 +227,54 @@ on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
 **示例：**
 
 ```ts
-observer.on('navDestinationUpdate', (info) => {
-  console.info('NavDestination state update', JSON.stringify(info));
-});
+// Index.ets
+// 演示 observer.on('navDestinationUpdate', callback)
+// observer.off('navDestinationUpdate', callback)
+import { uiObserver as observer } from '@kit.ArkUI';
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    observer.on('navDestinationUpdate', (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    observer.off('navDestinationUpdate');
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## observer.off('navDestinationUpdate')
@@ -249,9 +296,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo\>): vo
 
 **示例：**
 
-```ts
-observer.off('navDestinationUpdate');
-```
+参考[observer.on('navDestinationUpdate')](#observeronnavdestinationupdate)示例。
 
 ## observer.on('navDestinationUpdate')
 
@@ -274,9 +319,55 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 **示例：**
 
 ```ts
-observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
-    console.info('NavDestination state update', JSON.stringify(info));
-});
+// Index.ets
+// 演示 observer.on('navDestinationUpdate', navigationId, callback)
+// observer.off('navDestinationUpdate', navigationId, callback)
+import { uiObserver as observer } from '@kit.ArkUI';
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    observer.off('navDestinationUpdate', { navigationId: "testId" });
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .id("testId")
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## observer.off('navDestinationUpdate')
@@ -299,9 +390,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 **示例：**
 
-```ts
-observer.off('navDestinationUpdate', { navigationId: "testId" });
-```
+参考[observer.on('navDestinationUpdate')](#observeronnavdestinationupdate-1)示例。
 
 ## observer.on('scrollEvent')<sup>12+</sup>
 
@@ -636,6 +725,7 @@ struct Index {
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
       Button('注册屏幕像素密度变化监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
           this.message = '已注册监听'
           observer.on('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
@@ -721,6 +811,7 @@ struct Index {
   build() {
     Column() {
       Button('注册绘制指令下发监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
           observer.on('willDraw', this.getUIContext(), this.willDrawCallback);
         })
@@ -804,6 +895,7 @@ struct Index {
   build() {
     Column() {
       Button('注册布局完成监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
           observer.on('didLayout', this.getUIContext(), this.didLayoutCallback);
         })
@@ -930,7 +1022,7 @@ struct Index {
     Column() {
       Navigation(this.stack) {
         Button("push").onClick(() => {
-          this.stack.pushPath({name: "pageOne"});
+          this.stack.pushPath({ name: "pageOne" });
         })
       }
       .title("Navigation")
@@ -1000,12 +1092,16 @@ function callBackFunc(info: observer.NavDestinationSwitchInfo) {
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    observer.on('navDestinationSwitch', this.context, { navigationId: "myNavId" }, callBackFunc);
+    observer.on('navDestinationSwitch', this.context, {
+      navigationId: "myNavId"
+    }, callBackFunc);
   }
 
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
-    observer.off('navDestinationSwitch', this.context, { navigationId: "myNavId" }, callBackFunc);
+    observer.off('navDestinationSwitch', this.context, {
+      navigationId: "myNavId"
+    }, callBackFunc);
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
@@ -1079,7 +1175,7 @@ struct Index {
     Column() {
       Navigation(this.stack) {
         Button("push").onClick(() => {
-          this.stack.pushPath({name: "pageOne"});
+          this.stack.pushPath({ name: "pageOne" });
         })
       }
       .id("myNavId")

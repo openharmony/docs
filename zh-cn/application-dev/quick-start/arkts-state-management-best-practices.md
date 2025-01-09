@@ -11,79 +11,79 @@
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class MyClass {
+  public num: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(num: number) {
+    this.num = num;
   }
 }
 
 @Component
 struct PropChild {
-  @Prop testNum: ClassA; // @Prop 装饰状态变量会深拷贝
+  @Prop testClass: MyClass; // @Prop 装饰状态变量会深拷贝
 
   build() {
-    Text(`PropChild testNum ${this.testNum.c}`)
+    Text(`PropChild testNum ${this.testClass.num}`)
   }
 }
 
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State testClass: MyClass[] = [new MyClass(1)];
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent testNum ${this.testClass[0].num}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.testClass[0].num += 1;
         })
 
-      // PropChild没有改变@Prop testNum: ClassA的值，所以这时最优的选择是使用@ObjectLink
-      PropChild({ testNum: this.testNum[0] })
+      // PropChild没有改变@Prop testClass: MyClass的值，所以这时最优的选择是使用@ObjectLink
+      PropChild({ testClass: this.testClass[0] })
     }
   }
 }
 ```
 
-在上文的示例中，PropChild组件没有改变\@Prop testNum: ClassA的值，所以这时较优的选择是使用\@ObjectLink，因为\@Prop是会深拷贝数据，具有拷贝的性能开销，所以这个时候\@ObjectLink是比\@Link和\@Prop更优的选择。
+在上文的示例中，PropChild组件没有改变\@Prop testClass: MyClass的值，所以这时较优的选择是使用\@ObjectLink，因为\@Prop是会深拷贝数据，具有拷贝的性能开销，所以这个时候\@ObjectLink是比\@Link和\@Prop更优的选择。
 
 【正例】
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class MyClass {
+  public num: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(num: number) {
+    this.num = num;
   }
 }
 
 @Component
 struct PropChild {
-  @ObjectLink testNum: ClassA; // @ObjectLink 装饰状态变量不会深拷贝
+  @ObjectLink testClass: MyClass; // @ObjectLink 装饰状态变量不会深拷贝
 
   build() {
-    Text(`PropChild testNum ${this.testNum.c}`)
+    Text(`PropChild testNum ${this.testClass.num}`)
   }
 }
 
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State testClass: MyClass[] = [new MyClass(1)];
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent testNum ${this.testClass[0].num}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.testClass[0].num += 1;
         })
 
       // 当子组件不需要发生本地改变时，优先使用@ObjectLink，因为@Prop是会深拷贝数据，具有拷贝的性能开销，所以这个时候@ObjectLink是比@Link和@Prop更优的选择
-      PropChild({ testNum: this.testNum[0] })
+      PropChild({ testClass: this.testClass[0] })
     }
   }
 }
@@ -98,42 +98,42 @@ struct Parent {
 ```ts
 @Entry
 @Component
-struct CompA {
+struct MyComponent {
   @State needsUpdate: boolean = true;
-  realState1: Array<number> = [4, 1, 3, 2]; // 未使用状态变量装饰器
-  realState2: Color = Color.Yellow;
+  realStateArr: Array<number> = [4, 1, 3, 2]; // 未使用状态变量装饰器
+  realState: Color = Color.Yellow;
 
-  updateUI1(param: Array<number>): Array<number> {
+  updateUIArr(param: Array<number>): Array<number> {
     const triggerAGet = this.needsUpdate;
     return param;
   }
-  updateUI2(param: Color): Color {
+  updateUI(param: Color): Color {
     const triggerAGet = this.needsUpdate;
     return param;
   }
   build() {
     Column({ space: 20 }) {
-      ForEach(this.updateUI1(this.realState1),
+      ForEach(this.updateUIArr(this.realStateArr),
         (item: Array<number>) => {
           Text(`${item}`)
         })
       Text("add item")
         .onClick(() => {
-          // 改变realState1不会触发UI视图更新
-          this.realState1.push(this.realState1[this.realState1.length-1] + 1);
+          // 改变realStateArr不会触发UI视图更新
+          this.realStateArr.push(this.realStateArr[this.realStateArr.length-1] + 1);
 
           // 触发UI视图更新
           this.needsUpdate = !this.needsUpdate;
         })
       Text("chg color")
         .onClick(() => {
-          // 改变realState2不会触发UI视图更新
-          this.realState2 = this.realState2 == Color.Yellow ? Color.Red : Color.Yellow;
+          // 改变realState不会触发UI视图更新
+          this.realState = this.realState == Color.Yellow ? Color.Red : Color.Yellow;
 
           // 触发UI视图更新
           this.needsUpdate = !this.needsUpdate;
         })
-    }.backgroundColor(this.updateUI2(this.realState2))
+    }.backgroundColor(this.updateUI(this.realState))
     .width(200).height(500)
   }
 }
@@ -143,38 +143,38 @@ struct CompA {
 
 - 应用程序希望控制UI更新逻辑，但在ArkUI中，UI更新的逻辑应该是由框架来检测应用程序状态变量的更改去实现。
 
-- this.needsUpdate是一个自定义的UI状态变量，应该仅应用于其绑定的UI组件。变量this.realState1、this.realState2没有被装饰，他们的变化将不会触发UI刷新。
+- this.needsUpdate是一个自定义的UI状态变量，应该仅应用于其绑定的UI组件。变量this.realStateArr、this.realState没有被装饰，他们的变化将不会触发UI刷新。
 
-- 但是在该应用中，用户试图通过this.needsUpdate的更新来带动常规变量this.realState1、this.realState2的更新，此方法不合理且更新性能较差。
+- 但是在该应用中，用户试图通过this.needsUpdate的更新来带动常规变量this.realStateArr、this.realState的更新，此方法不合理且更新性能较差。
 
 【正例】
 
-要解决此问题，应将realState1和realState2成员变量用\@State装饰。一旦完成此操作，就不再需要变量needsUpdate。
+要解决此问题，应将realStateArr和realState成员变量用\@State装饰。一旦完成此操作，就不再需要变量needsUpdate。
 
 
 ```ts
 @Entry
 @Component
 struct CompA {
-  @State realState1: Array<number> = [4, 1, 3, 2];
-  @State realState2: Color = Color.Yellow;
+  @State realStateArr: Array<number> = [4, 1, 3, 2];
+  @State realState: Color = Color.Yellow;
   build() {
     Column({ space: 20 }) {
-      ForEach(this.realState1,
+      ForEach(this.realStateArr,
         (item: Array<number>) => {
           Text(`${item}`)
         })
       Text("add item")
         .onClick(() => {
-          // 改变realState1触发UI视图更新
-          this.realState1.push(this.realState1[this.realState1.length-1] + 1);
+          // 改变realStateArr触发UI视图更新
+          this.realStateArr.push(this.realStateArr[this.realStateArr.length-1] + 1);
         })
       Text("chg color")
         .onClick(() => {
-          // 改变realState2触发UI视图更新
-          this.realState2 = this.realState2 == Color.Yellow ? Color.Red : Color.Yellow;
+          // 改变realState触发UI视图更新
+          this.realState = this.realState == Color.Yellow ? Color.Red : Color.Yellow;
         })
-    }.backgroundColor(this.realState2)
+    }.backgroundColor(this.realState)
     .width(200).height(500)
   }
 }

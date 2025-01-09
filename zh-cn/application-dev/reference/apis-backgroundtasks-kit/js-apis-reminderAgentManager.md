@@ -1,6 +1,6 @@
 # @ohos.reminderAgentManager (后台代理提醒)
 
-本模块提供后台代理提醒的能力，即当应用被冻结或应用退出时，计时和提醒的功能将被系统服务代理。在开发过程中，开发者可以调用本模块接口创建定时提醒，提醒类型支持倒计时、日历、闹钟三种。
+本模块提供后台代理提醒的能力，即当应用被冻结或应用退出时，计时和提醒的功能将被系统服务代理。开发者可以调用本模块接口创建定时提醒，提醒类型支持倒计时、日历、闹钟三种。
 
 > **说明：**
 >
@@ -81,14 +81,16 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **参数**：
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | reminderReq | [ReminderRequest](#reminderrequest) | 是 | 需要发布的代理提醒实例。 |
 
 **返回值**：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise\<number> | Promise对象，返回提醒的id。 |
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<number> | Promise对象，返回当前发布提醒的id。 |
 
 **错误码：**
 
@@ -121,7 +123,7 @@ reminderAgentManager.publishReminder(timer).then((reminderId: number) => {
 
 cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
-取消指定Id的代理提醒。使用callback异步回调。
+取消指定id的代理提醒。使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -129,7 +131,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 需要取消的代理提醒的Id。 |
+| reminderId | number | 是 | 需要取消的代理提醒的id。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，取消代理提醒成功，err为undefined，否则返回err信息。 |
 
 **错误码：**
@@ -161,7 +163,7 @@ reminderAgentManager.cancelReminder(reminderId, (err: BusinessError) => {
 
 cancelReminder(reminderId: number): Promise\<void>
 
-取消指定Id的代理提醒。使用Promise异步回调。
+取消指定id的代理提醒。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -169,7 +171,7 @@ cancelReminder(reminderId: number): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 需要取消的代理提醒的Id。 |
+| reminderId | number | 是 | 需要取消的代理提醒的id。 |
 
 **返回值**：
 
@@ -204,13 +206,7 @@ reminderAgentManager.cancelReminder(reminderId).then(() => {
 
 getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
-获取当前应用设置的所有有效（未过期）的代理提醒。使用callback异步回调。
-
-> **说明：**
->
-> 当到达设置的提醒时间点时，通知中心会弹出相应提醒的通知卡片（通知栏消息）。若未点击通知卡片上的关闭/CLOSE按钮，则代理提醒是有效/未过期的；若点击了关闭/CLOSE按钮，则代理提醒过期。
->
-> 当代理提醒类型是闹钟时，若设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
+获取当前应用设置的所有[有效（未过期）的代理提醒](../../task-management/agent-powered-reminder.md#约束与限制)。使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -269,13 +265,7 @@ reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<rem
 
 getValidReminders(): Promise\<Array\<ReminderRequest>>
 
-获取当前应用设置的所有有效（未过期）的代理提醒。使用promise异步回调。
-
-> **说明：**
->
-> 当到达设置的提醒时间点时，通知中心会弹出相应提醒的通知卡片（通知栏消息）。若未点击通知卡片上的关闭/CLOSE按钮，则代理提醒是有效/未过期的；若点击了关闭/CLOSE按钮，则代理提醒过期。
->
-> 当代理提醒类型是闹钟时，若设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
+获取当前应用设置的所有[有效（未过期）的代理提醒](../../task-management/agent-powered-reminder.md#约束与限制)。使用promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -405,7 +395,7 @@ reminderAgentManager.cancelAllReminders().then(() => {
 
 addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): void
 
-添加NotificationSlot（通知槽）。使用callback异步回调。
+添加通知槽。使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -448,7 +438,7 @@ reminderAgentManager.addNotificationSlot(mySlot, (err: BusinessError) => {
 
 addNotificationSlot(slot: NotificationSlot): Promise\<void>
 
-添加NotificationSlot（通知槽）。使用promise异步回调。
+添加通知槽。使用promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -493,7 +483,7 @@ reminderAgentManager.addNotificationSlot(mySlot).then(() => {
 
 removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\<void>): void
 
-删除目标NotificationSlot（通知槽），使用callback异步回调。
+删除目标通知槽，使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -533,7 +523,7 @@ reminderAgentManager.removeNotificationSlot(notificationManager.SlotType.CONTENT
 
 removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
-删除目标NotificationSlot（通知槽），使用Promise异步回调。
+删除目标通知槽，使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -574,13 +564,7 @@ reminderAgentManager.removeNotificationSlot(notificationManager.SlotType.CONTENT
 
 getAllValidReminders(): Promise\<Array\<ReminderInfo>>
 
-获取当前应用设置的所有有效（未过期）的代理提醒。使用promise异步回调。
-
-> **说明：**
->
-> 当到达设置的提醒时间点时，通知中心会弹出相应提醒的通知卡片（通知栏消息）。若未点击通知卡片上的关闭/CLOSE按钮，则代理提醒是有效/未过期的；若点击了关闭/CLOSE按钮，则代理提醒过期。
->
-> 当代理提醒类型是闹钟时，若设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
+获取当前应用设置的所有[有效（未过期）的代理提醒](../../task-management/agent-powered-reminder.md#约束与限制)。使用promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -636,16 +620,16 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
 
 addExcludeDate(reminderId: number, date: Date): Promise\<void>
 
-为指定id的重复日历添加不提醒日期，即在设定的日期范围内不提醒。使用Promise异步回调。
+为指定id的周期性的日历提醒，添加不提醒日期（如每天提醒的日历，设置周二不提醒）。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
-| 参数名     | 类型   | 必填 | 说明                             |
-| ---------- | ------ | ---- | -------------------------------- |
-| reminderId | number | 是   | 需要添加不提醒日期的重复日历Id。 |
-| date       | Date   | 是   | 不提醒的日期。                   |
+| 参数名     | 类型   | 必填 | 说明                               |
+| ---------- | ------ | ---- | ---------------------------------- |
+| reminderId | number | 是   | 需要添加不提醒日期的周期性日历id。 |
+| date       | Date   | 是   | 不提醒的日期。                     |
 
 **返回值**：
 
@@ -681,15 +665,15 @@ reminderAgentManager.addExcludeDate(reminderId, date).then(() => {
 
 deleteExcludeDates(reminderId: number): Promise\<void>
 
-删除重复日历设置的所有不提醒日期，通过Id指定具体重复日历。使用Promise异步回调。
+为指定id的周期性的日历提醒，删除设置的所有不提醒日期。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
-| 参数名     | 类型   | 必填 | 说明                             |
-| ---------- | ------ | ---- | -------------------------------- |
-| reminderId | number | 是   | 需要删除不提醒日期的重复日历Id。 |
+| 参数名     | 类型   | 必填 | 说明                               |
+| ---------- | ------ | ---- | ---------------------------------- |
+| reminderId | number | 是   | 需要删除不提醒日期的周期性日历id。 |
 
 **返回值**：
 
@@ -723,15 +707,15 @@ reminderAgentManager.deleteExcludeDates(reminderId).then(() => {
 
 getExcludeDates(reminderId: number): Promise\<Array\<Date>>
 
-查询重复日历设置的所有不提醒日期，通过Id指定具体重复日历。使用Promise异步回调。
+为指定id的周期性的日历提醒，查询设置的所有不提醒日期。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
-| 参数名     | 类型   | 必填 | 说明                             |
-| ---------- | ------ | ---- | -------------------------------- |
-| reminderId | number | 是   | 需要查询不提醒日期的重复日历Id。 |
+| 参数名     | 类型   | 必填 | 说明                               |
+| ---------- | ------ | ---- | ---------------------------------- |
+| reminderId | number | 是   | 需要查询不提醒日期的周期性日历id。 |
 
 **返回值**：
 
@@ -766,14 +750,14 @@ reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
 
 ## ActionButtonType
 
-按钮的类型。
+提醒上的按钮的类型。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | ACTION_BUTTON_TYPE_CLOSE | 0 | 表示关闭提醒的按钮。 |
-| ACTION_BUTTON_TYPE_SNOOZE | 1 | 表示延迟提醒的按钮。 |
+| ACTION_BUTTON_TYPE_SNOOZE | 1 | 表示延时提醒的按钮，提醒次数和间隔通过 [ReminderRequest](#reminderrequest) 中snoozeTimes和timeInterval设置。 |
 
 ## ReminderType
 
@@ -790,7 +774,7 @@ reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
 
 ## ActionButton
 
-弹出的提醒通知中按钮的类型和标题。
+弹出的提醒中按钮的类型和标题。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -818,7 +802,7 @@ reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
 
 ## MaxScreenWantAgent
 
-提醒到达时，全屏显示自动拉起目标的ability信息。该接口为预留接口，暂不支持使用。
+通知中心弹出提醒时，全屏显示自动拉起目标的ability信息。该接口为预留接口，暂不支持使用。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -841,18 +825,22 @@ reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
 | wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时，全屏显示自动拉起目标的ability信息。如果设备正在使用中，则弹出一个通知横幅框。 <br> 说明：该接口为预留接口，暂不支持使用。|
 | ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |
-| snoozeTimes | number | 否 | 指明延迟提醒次数，默认0次(不适用于倒计时提醒类型)。 |
-| timeInterval | number | 否 | 执行延迟提醒间隔（单位：秒），最少5分钟(不适用于倒计时提醒类型)。 |
+| snoozeTimes | number | 否 | 指明延时提醒次数，默认0次(不适用于倒计时提醒类型)。 |
+| timeInterval | number | 否 | 执行延时提醒间隔（单位：秒），最少5分钟(不适用于倒计时提醒类型)。 |
 | title | string | 否 | 指明提醒标题。 |
+| titleResourceId<sup>16+</sup> | number | 否 | 指明提醒标题的资源ID。 |
 | content | string | 否 | 指明提醒内容。 |
+| contentResourceId<sup>16+</sup> | number | 否 | 指明提醒内容的资源ID。 |
 | expiredContent | string | 否 | 指明提醒过期后需要显示的内容。 |
-| snoozeContent | string | 否 | 指明延迟提醒时需要显示的内容(不适用于倒计时提醒类型)。 |
+| expiredContentResourceId<sup>16+</sup> | number | 否 | 指明提醒过期后内容的资源ID。 |
+| snoozeContent | string | 否 | 指明延时提醒时需要显示的内容(不适用于倒计时提醒类型)。 |
+| snoozeContentResourceId<sup>16+</sup> | number | 否 | 指明延时提醒内容的资源ID。 |
 | notificationId | number | 否 | 指明提醒使用的通知的id号，需开发者传入，相同id号的提醒会覆盖。 |
 | groupId<sup>11+</sup> | string | 否 | 指明提醒使用相同的组id。相同组id中，一个提醒被点击不在提醒后，组内其他提醒也会被取消。 |
-| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 指明提醒的slot类型。 |
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 指明提醒的通道渠道类型。 |
 | tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，具体请参考[NotificationRequest.tapDismissed](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)。  |
 | autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，具体请参考[NotificationRequest.autoDeletedTime](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
-| snoozeSlotType<sup>11+</sup> | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 指明延迟提醒的slot类型(不适用于倒计时提醒类型)。 |
+| snoozeSlotType<sup>11+</sup> | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 指明延时提醒的通道渠道类型(不适用于倒计时提醒类型)。 |
 | customRingUri<sup>11+</sup> | string | 否 | 指明自定义提示音的uri，提示音文件必须放在resources/rawfile目录下，支持m4a、aac、mp3、ogg、wav、flac、amr等格式。 |
 
 ## ReminderRequestCalendar
@@ -921,8 +909,8 @@ ReminderRequestTimer extends ReminderRequest
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
-| 名称        | 类型                                | 只读 | 可选 | 说明                  |
-| ----------- | ----------------------------------- | ---- | ---- | --------------------- |
-| reminderId  | number                              | 否   | 否   | 发布提醒后返回的 Id。 |
-| reminderReq | [ReminderRequest](#reminderrequest) | 否   | 否   | 代理提醒对象。        |
+| 名称        | 类型                                | 只读 | 可选 | 说明                 |
+| ----------- | ----------------------------------- | ---- | ---- | -------------------- |
+| reminderId  | number                              | 否   | 否   | 发布提醒后返回的id。 |
+| reminderReq | [ReminderRequest](#reminderrequest) | 否   | 否   | 代理提醒对象。       |
 

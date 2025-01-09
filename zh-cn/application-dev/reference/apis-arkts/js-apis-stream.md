@@ -652,7 +652,7 @@ console.info('Readable data is', dataChunk); // Readable data is test
 
 resume(): Readable
 
-将流的读取模式从暂停切换到流动模式。
+将流的读取模式从暂停切换到流动模式，可用接口isPaused判断是否切换到流动模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -678,14 +678,14 @@ class TestReadable extends stream.Readable {
 
 let readableStream = new TestReadable();
 readableStream.resume();
-console.info("Readable test resume", readableStream.isPaused()); // Readable test resume false
+console.info("Readable test resume", !readableStream.isPaused()); // 切换流动模式成功时，此处日志将打印"Readable test resume true"
 ```
 
 ### pause
 
 pause(): Readable
 
-将流的读取模式从流动切换到暂停模式。
+将流的读取模式从流动切换到暂停模式，可用接口isPaused判断是否切换到暂停模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -917,6 +917,7 @@ readable.unpipe(writable);
 readable.on('data', () => {
   console.info("Readable test unpipe data event called");
 });
+// unpipe成功断开连接之后，data事件将不会触发，不会打印"Readable test unpipe data event called"
 ```
 
 ### on
@@ -1011,6 +1012,7 @@ readable.setEncoding('utf8');
 readable.on('readable', read);
 readable.off('readable');
 readable.push('test');
+// off注销对readable事件的监听后，read函数不会被调用，"read() called"也不会被打印
 ```
 
 ### doInitialize

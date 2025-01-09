@@ -829,6 +829,170 @@ try {
 }
 ```
 
+## appControl.setUninstallDisposedRule<sup>15+</sup>
+
+setUninstallDisposedRule(appIdentifier: string, rule: UninstallDisposedRule, appIndex:? number): void
+
+设置指定应用或分身应用的卸载处置规则。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
+
+**参数：**
+
+| 参数名       | 类型     | 必填   | 说明                                    |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appIdentifier  | string | 是    | 要设置卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
+| rule | [UninstallDisposedRule](#uninstalldisposedrule15) | 是 | 表示要设置的卸载处置规则。 |
+| appIndex   | number  | 否   | 表示分身应用的索引。<br> appIndex为0时，为主应用设置卸载处置规则。            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                |
+| ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied. A non-system application is not allowed to call a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
+| 17700061 | AppIndex is not in the valid range. |
+| 17700074 | The specified appIdentifier is invalid. |
+| 17700075 | The specified bundleName of want is not the same with caller. |
+
+**示例：**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+let appIdentifier = "com.example.myapplication_xxxxx";
+let want: Want = {
+  bundleName: "com.example.myapplication",
+  moduleName: "entry",
+  abilityName: "EntryAbility"
+};
+let rule: appControl.UninstallDisposedRule = {
+  want: want,
+  uninstallComponentType: appControl.UninstallComponentType.EXTENSION,
+  priority: 100
+};
+
+try {
+  appControl.setUninstallDisposedRule(appIdentifier, rule, 1);
+} catch (error) {
+  let message = (error as BusinessError).message;
+  console.error('setUninstallDisposedRule failed ' + message);
+}
+```
+
+## appControl.getUninstallDisposedRule<sup>15+</sup>
+
+getUninstallDisposedRule(appIdentifier: string, appIndex:? number): UninstallDisposedRule
+
+获取指定应用或分身应用已设置的卸载处置规则。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS 或 ohos.permission.GET_DISPOSED_APP_STATUS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
+
+**参数：**
+
+| 参数名       | 类型     | 必填   | 说明                                    |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appIdentifier  | string | 是    | 要获取卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，设置方法参见[获取应用的appId](#获取应用的appid)。  |
+| appIndex   | number  | 否   | 表示分身应用的索引。<br> appIndex为0时，表示获取主应用的卸载处置规则。              |
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| [UninstallDisposedRule](#uninstalldisposedrule15) | 表示应用的卸载处置规则。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                |
+| ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied. A non-system application is not allowed to call a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
+| 17700061 | AppIndex is not in the valid range. |
+| 17700074 | The specified appIdentifier is invalid. |
+
+**示例：**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
+let appIdentifier = "com.example.myapplication_xxxxx";
+
+try {
+  let data = appControl.getUninstallDisposedRule(appIdentifier, 1);
+  console.info('getUninstallDisposedRule successfully. Data: ' + JSON.stringify(data));
+} catch (error) {
+  let message = (error as BusinessError).message;
+  console.error('getUninstallDisposedRule failed ' + message);
+}
+```
+
+## appControl.deleteUninstallDisposedRule<sup>15+</sup>
+
+deleteUninstallDisposedRule(appIdentifier: string, appIndex:? number): void
+
+删除指定应用或分身应用的卸载处置规则。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
+
+**参数：**
+
+| 参数名       | 类型     | 必填   | 说明                                    |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appIdentifier  | string | 是    | 要删除卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，删除方法参见[获取应用的appId](#获取应用的appid)。  |
+| appIndex   | number  | 否   | 表示分身应用的索引。<br> appIndex为0时，表示删除主应用的卸载处置规则。            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                |
+| ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied. A non-system application is not allowed to call a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
+| 17700061 | AppIndex is not in the valid range. |
+| 17700074 | The specified appIdentifier is invalid. |
+
+**示例：**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
+let appIdentifier = "com.example.myapplication_xxxxx";
+
+try {
+  appControl.deleteUninstallDisposedRule(appIdentifier, 1);
+} catch (error) {
+  let message = (error as BusinessError).message;
+  console.error('deleteUninstallDisposedRule failed ' + message);
+}
+```
+
 ## DisposedRule<sup>11+</sup>
 
 标识拦截规则。
@@ -885,3 +1049,29 @@ try {
 | ------- | ---- | -------------------- |
 | ALLOWED_LIST | 1    | 允许运行指定功能的列表。 |
 | DISALLOWED_LIST | 2    | 不允许运行指定功能的列表。 |
+
+## UninstallDisposedRule<sup>15+</sup>
+
+标识卸载处置规则。
+
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.AppControl。
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称      | 类型           | 可读 | 可写 | 说明                        |
+| --------- | -------------- | ---- | ---- | --------------------------- |
+| want | [Want](js-apis-app-ability-want.md)     | 是   | 是   | 指定应用被拦截时，跳转到的页面。 |
+| UninstallComponentType | [UninstallComponentType](#uninstallcomponenttype15)  | 是   | 是   | 拦截时将拉起能力的类型。 |
+| priority | number | 是 | 是 | 拦截规则的优先级。 |
+
+### UninstallComponentType<sup>15+</sup>
+
+标识卸载时功能组件类型。
+
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.AppControl。
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称    | 值   | 说明                 |
+| ------- | ---- | -------------------- |
+| EXTENSION | 1    | 服务扩展能力类型。 |

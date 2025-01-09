@@ -78,7 +78,7 @@ import { display } from '@kit.ArkUI';
 
 >**说明：**<br>
 >&bullet; 对于大屏内折产品，内屏显示状态为FOLD_DISPLAY_MODE_FULL，外屏显示状态为FOLD_DISPLAY_MODE_MAIN。<br>
->&bullet; 对于小屏内折产品，内屏显示状态为FOLD_DISPLAY_MODE_FULL，外屏显示状态为FOLD_DISPLAY_MODE_SUB。
+>&bullet; 对于小屏内折产品，内屏显示状态为FOLD_DISPLAY_MODE_MAIN，外屏显示状态为FOLD_DISPLAY_MODE_SUB。
 
 ## FoldCreaseRegion<sup>10+</sup>
 
@@ -148,6 +148,19 @@ import { display } from '@kit.ArkUI';
 | foldDisplayMode             | [FoldDisplayMode](#folddisplaymode10) | 是   | 否   | 折叠设备的显示模式。 |
 | physicalWidth   | number | 是 | 否 | 折叠设备的宽度，单位为px，该参数应为大于0的整数。|
 | physicalHeight  | number | 是 | 否 | 折叠设备的高度，单位为px，该参数应为大于0的整数。|
+
+## ScreenShape<sup>16+</sup>
+
+显示设备的屏幕形状枚举。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| RECTANGLE | 0 | 表示设备屏幕形状为矩形。|
+| ROUND | 1 | 表示设备屏幕形状为圆形。|
 
 ## display.getDisplayByIdSync<sup>12+</sup>
 
@@ -1098,6 +1111,7 @@ promise.then((data: Array<display.Display>) => {
 | hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | 是 | 否 | 显示设备支持的所有HDR格式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                               |
 | availableWidth<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域宽度，单位为px，该参数为大于0的整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | availableHeight<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域高度，单位为px，该参数为大于0的整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
+| screenShape<sup>16+</sup> | [ScreenShape](#screenshape16) | 是 | 是 | 显示设备的屏幕形状，默认值为RECTANGLE。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                    |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
@@ -1180,7 +1194,7 @@ promise.then((data: display.CutoutInfo) => {
 ### getAvailableArea<sup>12+</sup>
 getAvailableArea(): Promise&lt;Rect&gt;
 
-获取当前2in1设备屏幕的可用区域，使用Promise异步回调。
+获取当前设备屏幕的可用区域，使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1224,7 +1238,7 @@ try {
 ### on('availableAreaChange')<sup>12+</sup>
 on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
 
-开启当前2in1设备屏幕的可用区域监听。当前2in1设备屏幕有可用区域变化时，触发回调函数，返回可用区域。
+开启当前设备屏幕的可用区域监听。当前设备屏幕有可用区域变化时，触发回调函数，返回可用区域。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1269,7 +1283,7 @@ try {
 
 off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
 
-关闭当前2in1设备屏幕可用区域变化的监听。
+关闭当前设备屏幕可用区域变化的监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

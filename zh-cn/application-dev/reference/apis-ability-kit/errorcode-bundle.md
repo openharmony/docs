@@ -727,7 +727,7 @@ Failed to install the HAP because the HAP requests wrong permissions.
 
 **处理步骤**<br/>
 1. 排查是否申请了<!--Del-->[<!--DelEnd-->MDM类型的权限<!--Del-->](../../security/AccessToken/permissions-for-mdm-apps.md)<!--DelEnd-->，MDM类型的权限仅针对应用类型为MDM的应用开放。
-2. 排查申请的权限是否为开放权限。详情请见[权限列表](../../security/AccessToken/permissions-for-all.md)。
+2. 排查申请的权限是否为开放权限。详情请见[权限列表](../../security/AccessToken/app-permissions.md)。
 
 ## 17700055 指定的link无效
 
@@ -835,6 +835,20 @@ The appIndex is invalid.
 2. 检查应用是否有该索引的分身。
 3. 检查是否调用createAppClone，且该索引的应用分身是否已存在。
 
+## 17700062 应用设置了卸载处置规则，不允许直接卸载
+
+**错误信息**<br/>
+Failed to uninstall the app because the app has uninstall rule.
+
+**错误描述**<br/>
+卸载应用时，应用存在卸载处置规则，不允许直接卸载。
+
+**可能原因**<br/>
+应用存在卸载处置规则，不允许直接卸载。
+
+**处理步骤**<br/>
+检查应用是否设置了卸载处置规则，由设置方对规则进行处理。
+
 ## 17700065 ShortcutInfo结构体中指定的want，不支持被拉起
 
 **错误信息**<br/>
@@ -939,6 +953,34 @@ Failed to install the HAP because an application with the same bundle name but d
 **处理步骤**<br/>
 1、卸载设备上相同包名的应用。
 2、若设备上存在相同包名但签名信息不一致的应用被保留数据地卸载，导致安装失败，则先安装已卸载的应用之后不保留数据地卸载掉。
+
+## 17700074 传入的appIdentifier无效
+
+**错误信息**<br/>
+The specified appIdentifier is invalid.
+
+**错误描述**<br/>
+调用appControl模块中的相关接口时，传入的appIdentifier为无效。
+
+**可能原因**<br/>
+传入的appIdentifier为空字符串。
+
+**处理步骤**<br/>
+检查appIdentifier是否为空字符串。
+
+## 17700075 want指定的bundleName与调用方不符
+
+**错误信息**<br/>
+The specified bundleName of want is not the same with caller. 
+
+**错误描述**<br/>
+设置卸载处置规则时，want指定的bundleName与调用方不相同。
+
+**可能原因**<br/>
+设置卸载处置规则时，want指定的bundleName与调用方不相同。
+
+**处理步骤**<br/>
+修改want指定的bundleName与调用方相同。
 
 ## 17700201 abc文件校验失败
 **错误信息**<br/>

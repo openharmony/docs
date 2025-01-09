@@ -179,6 +179,9 @@ Navigation组件通过mode属性设置页面的显示模式。
 
 标题栏在界面顶部，用于呈现界面名称和操作入口，Navigation组件通过titleMode属性设置标题栏模式。
 
+> **说明：**
+> Navigation或NavDestination未设置主副标题并且没有返回键时，不显示标题栏。
+
 - Mini模式
 
   普通型标题栏，用于一级页面不需要突出标题的场景。
@@ -252,6 +255,7 @@ let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highli
 Navigation() {
   // ...
 }
+// 竖屏最多支持显示3个图标，多余的图标会被放入自动生成的更多图标。
 .menus([TooTmp,
   TooTmp,
   TooTmp,
@@ -281,7 +285,11 @@ Navigation() {
 
 Navigation路由相关的操作都是基于页面栈[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)提供的方法进行，每个Navigation都需要创建并传入一个NavPathStack对象，用于管理页面。主要涉及页面跳转、页面返回、页面替换、页面删除、参数获取、路由拦截等功能。
 
-从API version 12开始，页面栈允许被继承。开发者可以在派生类中自定义属性和方法，也可以重写父类的方法。派生类对象可以替代基类NavPathStack对象使用。具体示例代码参见：[页面栈继承示例代码](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例10)。
+从API version 12开始，页面栈允许被继承。开发者可以在派生类中自定义属性和方法，也可以重写父类的方法。派生类对象可以替代基类NavPathStack对象使用。具体示例代码参见：[页面栈继承示例代码](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例10定义路由栈派生类)。
+
+> **说明：**
+>
+> 不建议开发者通过监听生命周期的方式管理自己的页面栈。
 
 ```ts
 @Entry
@@ -619,7 +627,7 @@ Navigation通过[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts
 2. 实现一个转场协议对象[NavigationAnimatedTransition](..//reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navigationanimatedtransition11)，其中timeout属性表示转场结束的超时时间，默认为1000ms，transition属性为自定义的转场动画方法，开发者要在这里实现自己的转场动画逻辑，系统会在转场开始时调用该方法，onTransitionEnd为转场结束时的回调。
 3. 调用customNavContentTransition方法，返回实现的转场协议对象，如果返回undefined，则使用系统默认转场。
 
-具体示例代码可以参考[Navigation自定义转场示例](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例3)。
+具体示例代码可以参考[Navigation自定义转场示例](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例3设置可交互转场动画)。
 
 ### 共享元素转场
 

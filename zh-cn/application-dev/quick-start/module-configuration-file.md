@@ -116,7 +116,7 @@ module.json5配置文件包含以下标签。
 | type | 标识当前Module的类型。支持的取值如下：<br/>-&nbsp;entry：应用的主模块。<br/>-&nbsp;feature：应用的动态特性模块。<br/>-&nbsp;har：静态共享包模块。<br/>-&nbsp;shared：动态共享包模块。 | 字符串 | 该标签不可缺省。 |
 | srcEntry | 标识当前Module所对应的代码路径，取值为长度不超过127字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | description | 标识当前Module的描述信息，取值为长度不超过255字节的字符串，可以采用字符串资源索引格式。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| <!--DelRow-->process | 标识当前Module的进程名，取值为长度不超过31字节的字符串。如果在HAP标签下配置了process，则该应用的所有UIAbility、DataShareExtensionAbility、ServiceExtensionAbility都运行在该进程中。<br/>**说明：**<br/>开启[多实例特权](../../device-dev/subsystems/subsys-app-privilege-config-guide.md#可由设备厂商配置的特权)生效，三方应用配置不生效。 | 字符串 | 该标签可缺省，缺省为app.json5文件下app标签下的bundleName。 |
+| <!--DelRow-->process | 标识当前Module的进程名，取值为长度不超过31字节的字符串。如果在HAP标签下配置了process，则该Module的所有UIAbility、DataShareExtensionAbility、ServiceExtensionAbility都运行在该进程中。<br/>**说明：**<br/>开启[多实例特权](../../device-dev/subsystems/subsys-app-privilege-config-guide.md#可由设备厂商配置的特权)生效，三方应用配置不生效。 | 字符串 | 该标签可缺省，缺省为app.json5文件下app标签下的bundleName。 |
 | mainElement | 标识当前Module的入口UIAbility名称或者ExtensionAbility名称，取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [deviceTypes](#devicetypes标签) | 标识当前Module可以运行在哪类设备上。<br/>**说明：**<br/>当存在多个模块时，各模块中的配置可以不一致，但必须包含所需的设备类型以确保正常运行。 | 字符串数组 | 该标签不可缺省。 |
 | deliveryWithInstall | 标识当前Module是否在用户主动安装的时候安装，即该Module对应的HAP是否跟随应用一起安装。<br/>-&nbsp;true：主动安装时安装。<br/>-&nbsp;false：主动安装时不安装。 | 布尔值 | 该标签不可缺省。 |
@@ -136,7 +136,7 @@ module.json5配置文件包含以下标签。
 | [proxyData](#proxydata标签) | 标识当前Module提供的数据代理列表。| 对象数组 | 该标签可缺省，缺省值为空。|
 | isolationMode | 标识当前Module的多进程配置项。支持的取值如下：<br/>-&nbsp;nonisolationFirst：优先在非独立进程中运行。<br/>-&nbsp;isolationFirst：优先在独立进程中运行。<br/>-&nbsp;isolationOnly：只在独立进程中运行。<br/>-&nbsp;nonisolationOnly：只在非独立进程中运行。 |字符串|该标签可缺省，缺省值为nonisolationFirst。|
 | generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。当配置为true时，如果系统OTA升级时应用versionCode保持不变，可根据哈希值判断应用是否需要升级。<br/>该字段仅在[app.json5文件](./app-configuration-file.md)中的generateBuildHash字段为false时使能。<br/>**说明：**<br/>该字段仅对预置应用生效。|布尔值|该标签可缺省，缺省值为false。|
-| compressNativeLibs | 在打包hap时，该字段标识libs库是否以压缩存储的方式打包到HAP。<br/>-&nbsp;true：libs库以压缩方式存储。<br/>-&nbsp;false：libs库以不压缩方式存储。<br>在应用安装时，该字段用于标识libs库是否需要解压出来（API14及之后版本支持，之前的版本均默认解压libs库）。<br/>-&nbsp;true：libs库会解压出来。<br/>-&nbsp;false：libs库不会解压出来。 | 布尔值 | 该标签可缺省，在打包hap时缺省值为false。在安装应用时，该字段未配置时默认为true。 |
+| compressNativeLibs | 在打包hap时，该字段标识libs库是否以压缩存储的方式打包到HAP。<br/>-&nbsp;true：libs库以压缩方式存储。<br/>-&nbsp;false：libs库以不压缩方式存储。<br>在应用安装时，该字段用于标识libs库是否需要解压出来（API16及之后版本支持，之前的版本均默认解压libs库）。<br/>-&nbsp;true：libs库会解压出来。<br/>-&nbsp;false：libs库不会解压出来。 | 布尔值 | 该标签可缺省，在打包hap时缺省值为false。在安装应用时，该字段未配置时默认为true。 |
 | libIsolation | 用于区分同应用不同HAP下的.so文件，以防止.so冲突。<br/>-&nbsp;true：当前HAP的.so文件会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前HAP的.so文件会直接储存在libs目录中。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | fileContextMenu | 标识当前HAP的右键菜单配置项。取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | querySchemes | 标识允许当前应用进行跳转查询的URL schemes，只允许entry类型模块配置，最多50个，每个字符串取值不超过128字节。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
@@ -331,15 +331,15 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | minWindowWidth | 标识当前UIAbility组件支持的最小的窗口宽度，&nbsp;宽度单位为vp。<br/>最小取值为平台支持的最小窗口宽度，最大取值为maxWindowWidth。窗口尺寸可以参考[窗口大小限制](../windowmanager/window-overview.md#约束与限制)。 | 数值 | 该标签可缺省，缺省值为平台支持的最小的窗口宽度。 |
 | maxWindowHeight | 标识当前UIAbility组件支持的最大的窗口高度，&nbsp;高度单位为vp。<br/>最小取值为minWindowHeight，最大取值为平台支持的最大窗口高度。 窗口尺寸可以参考[窗口大小限制](../windowmanager/window-overview.md#约束与限制)。| 数值 | 该标签可缺省，缺省值为平台支持的最大的窗口高度。 |
 | minWindowHeight | 标识当前UIAbility组件支持的最小的窗口高度，&nbsp;高度单位为vp。<br/>最小取值为平台支持的最小窗口高度，最大取值为maxWindowHeight。窗口尺寸可以参考[窗口大小限制](../windowmanager/window-overview.md#约束与限制)。| 数值 | 该标签可缺省，缺省值为平台支持的最小的窗口高度。 |
-| <!--DelRow-->excludeFromMissions | 标识当前UIAbility组件是否在最近任务列表中显示。<br/>-&nbsp;true：表示不在任务列表中显示。<br/>-&nbsp;false：表示在任务列表中显示。<br/>**说明：**<br/>仅支持系统应用配置，且需申请应用特权AllowAbilityExcludeFromMissions，三方应用配置不生效<!--Del-->，详见[应用特权配置指导](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)<!--DelEnd-->。| 布尔值 | 该标签可缺省，缺省值为false。 |
+| <!--DelRow-->excludeFromMissions | 标识当前UIAbility组件是否在最近任务列表中显示。<br/>-&nbsp;true：表示不在任务列表中显示。<br/>-&nbsp;false：表示在任务列表中显示。<br/>**说明：**<br/>仅支持系统应用配置，且需申请应用特权AllowAbilityExcludeFromMissions，三方应用配置不生效，详见[应用特权配置指导](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。| 布尔值 | 该标签可缺省，缺省值为false。 |
 | recoverable | 标识当前UIAbility组件是否支持在检测到应用故障后，恢复到应用原界面。<br/>-&nbsp;true：支持检测到出现故障后，恢复到原界面。<br/>-&nbsp;false：不支持检测到出现故障后，恢复到原界面。 | 布尔值 | 该标签可缺省，缺省值为false。 |
-| unclearableMission | 标识当前UIAbility组件是否支持从最近任务列表中移除。<br/>-&nbsp;true：表示在任务列表中不可移除。<br/>-&nbsp;false：表示在任务列表中可以移除。<br/>**说明：**<br/>单独配置该字段不可生效，需要申请对应的<!--Del-->[<!--DelEnd-->AllowMissionNotCleared<!--Del-->](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)<!--DelEnd-->特权之后，该字段才能生效。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| <!--DelRow-->unclearableMission | 标识当前UIAbility组件是否支持从最近任务列表中移除。<br/>-&nbsp;true：表示在任务列表中不可移除。<br/>-&nbsp;false：表示在任务列表中可以移除。<br/>**说明：**<br/>单独配置该字段不可生效，需要申请对应的[AllowMissionNotCleared](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)特权之后，该字段才能生效。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | isolationProcess | 标识组件能否运行在独立的进程中。<br/>-&nbsp;true：表示能运行在独立的进程中。<br/>-&nbsp;false：表示不能运行在独立的进程中。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | excludeFromDock | 标识当前UIAbility组件是否支持从dock区域隐藏图标。<br/>-&nbsp;true：表示在dock区域隐藏。<br/>-&nbsp;false：表示不能在dock区域隐藏。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | preferMultiWindowOrientation | 标识当前UIAbility组件多窗布局方向：<br/>-&nbsp;default：缺省值，参数不配置默认值，建议其他应用类配置。<br/>-&nbsp;portrait：多窗布局方向为竖向，建议竖向游戏类应用配置。<br/>-&nbsp;landscape：多窗布局方向为横向，配置后支持横屏悬浮窗和上下分屏，建议横向游戏类应用配置。<br/>-&nbsp;landscape_auto：多窗布局动态可变为横向，需要配合API enableLandScapeMultiWindow/disableLandScapeMultiWindow使用，建议视频类应用配置。 | 字符串 | 该标签可缺省，缺省值为default。 |
 | continueType | 标识当前UIAbility组件的跨端迁移类型。 | 字符串数组 | 该标签可缺省，缺省值为当前组件的名称。 |
 | continueBundleName | 标识当前应用支持跨端迁移的其它应用名称列表。<br/>**说明：**<br/>不能配置为本应用包名，仅为了做异包名迁移使用。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| process | 标识组件的进程标签。<br/>**说明：**<br/>仅在[2in1](./module-configuration-file.md#devicetypes标签)设备上生效，UIAbility组件和ExtensionAbility组件标签一致时运行在同一个进程中。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| process | 标识组件的进程标签。<br/>**说明：**<br/>仅在[2in1](./module-configuration-file.md#devicetypes标签)设备上生效，UIAbility组件和type为embeddedUI的ExtensionAbility组件标签一致时运行在同一个进程中。 | 字符串 | 该标签可缺省，缺省值为空。 |
 
 abilities示例：
 
@@ -422,8 +422,8 @@ abilities示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| scheme | 标识URI的协议名部分，常见的有http、https、file、ftp等。 | 字符串 | uris中仅配置type时可以缺省，缺省值为空，否则不可缺省。 |
-| host | 标识URI的主机地址部分，该字段在scheme存在时才有意义。常见的方式：<br/>-&nbsp;域名方式，如example.com。<br/>-&nbsp;IP地址方式，如10.10.10.1。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| scheme | 标识URI的协议名部分，常见的有http、https、file、ftp等。<br/>**说明：**<br/>从API 16开始参与隐式Want匹配时该字段不区分大小写。 | 字符串 | uris中仅配置type时可以缺省，缺省值为空，否则不可缺省。 |
+| host | 标识URI的主机地址部分，该字段在scheme存在时才有意义。常见的方式：<br/>-&nbsp;域名方式，如example.com。<br/>-&nbsp;IP地址方式，如10.10.10.1。<br/>**说明：**<br/>从API 16开始参与隐式Want匹配时该字段不区分大小写。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | port | 标识URI的端口部分。如http默认端口为80，https默认端口是443，ftp默认端口是21。该字段在scheme和host都存在时才有意义。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | path&nbsp;\|&nbsp;pathStartWith&nbsp;\|&nbsp;pathRegex | 标识URI的路径部分，path、pathStartWith和pathRegex配置时三选一。path标识URI与want中的路径部分全匹配，pathStartWith标识URI与want中的路径部分允许前缀匹配，pathRegex标识URI与want中的路径部分允许正则匹配。该字段在scheme和host都存在时才有意义。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | type | 标识与Want相匹配的数据类型，使用MIME（Multipurpose&nbsp;Internet&nbsp;Mail&nbsp;Extensions）类型规范和[UniformDataType](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型规范。可与scheme同时配置，也可以单独配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
@@ -478,8 +478,8 @@ skills示例：
 | description | 标识当前ExtensionAbility组件的描述，取值为长度不超过255字节的字符串，可以是对描述内容的资源索引，用于支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | icon | 标识当前ExtensionAbility组件的图标，取值为资源文件的索引。如果ExtensionAbility组件被配置为MainElement，该标签必须配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | label | 标识当前ExtensionAbility组件对用户显示的名称，取值为该名称的资源索引，以支持多语言，字符串长度不超过255字节。如果ExtensionAbility被配置当前Module的mainElement时，该标签必须配置，且要确保应用内唯一。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| type | 标识当前ExtensionAbility组件的类型，支持的取值如下：<br/>-&nbsp;form：卡片的ExtensionAbility。<br/>-&nbsp;workScheduler：延时任务的ExtensionAbility。<br/>-&nbsp;inputMethod：输入法的ExtensionAbility。<!--Del--><br/>-&nbsp;service：后台运行的service组件。<!--DelEnd--><br/>-&nbsp;accessibility：辅助能力的ExtensionAbility。<!--Del--><br/>-&nbsp;fileAccess：公共数据访问的ExtensionAbility，允许应用程序提供文件和文件夹给文件管理类应用展示。<br/>-&nbsp;dataShare：数据共享的ExtensionAbility。<!--DelEnd--><br/>-&nbsp;staticSubscriber：静态广播的ExtensionAbility。<br/>-&nbsp;wallpaper：壁纸的ExtensionAbility。<br/>-&nbsp;backup：数据备份的ExtensionAbility。<br/>-&nbsp;window：该ExtensionAbility会在启动过程中创建一个window，为开发者提供界面开发。开发者开发出来的界面将通过UIExtensionComponent控件组合到其他应用的窗口中。<br/>-&nbsp;thumbnail：获取文件缩略图的ExtensionAbility，开发者可以对自定义文件类型的文件提供缩略。<br/>-&nbsp;preview：该ExtensionAbility会将文件解析后在一个窗口中显示，开发者可以通过将此窗口组合到其他应用窗口中。<br/>-&nbsp;print：打印框架的ExtensionAbility。<br/>-&nbsp;push：推送的ExtensionAbility。<br/>-&nbsp;driver：驱动框架的ExtensionAbility。<br/>-&nbsp;remoteNotification：远程通知的ExtensionAbility。<br/>-&nbsp;remoteLocation：远程定位的ExtensionAbility。<br/>-&nbsp;voip：网络音视频通话的ExtensionAbility。<br/>-&nbsp;action：自定义操作业务模板的ExtensionAbility，为开发者提供基于UIExtension的自定义操作业务模板。<!--Del--><br/>-&nbsp;adsService：广告业务的ExtensionAbility，提供广告业务框架。<!--DelEnd--><br/>-&nbsp;embeddedUI：嵌入式UI扩展能力，提供跨进程界面嵌入的能力。<br/>-&nbsp;insightIntentUI：为开发者提供能被小艺意图调用，以窗口形态呈现内容的扩展能力。<br/>-&nbsp;ads：广告业务的ExtensionAbility，与AdComponent控件组合使用，将广告页面展示到其他应用中。仅支持设备厂商使用。<br/>-&nbsp;photoEditor：图片编辑业务的ExtensionAbility，为开发者提供基于UIExtension的图片编辑业务模版。<br/>-&nbsp;appAccountAuthorization：应用账号授权扩展能力的ExtensionAbility，用于处理账号授权请求，比如账号登录授权。<br/>-&nbsp;autoFill/password：用于账号和密码自动填充业务的ExtensionAbility，支持数据的保存、填充能力。<br/>-&nbsp;hms/account：应用账号管理能力的ExtensionAbility。<!--Del--><br/>-&nbsp;sysDialog/atomicServicePanel：提供构建原子化服务服务面板的基础能力的ExtensionAbility，使用时基于UIExtensionAbility实现。<br/>-&nbsp;sysDialog/userAuth：本地用户鉴权的ExtensionAbility。<br/>-&nbsp;sysDialog/common：通用弹窗的ExtensionAbility。<br/>-&nbsp;sysDialog/power：关机重启弹窗的ExtensionAbility。<br/>-&nbsp;sysDialog/print：打印模态弹窗的ExtensionAbility。<br/>-&nbsp;sysDialog/meetimeCall：畅连通话的ExtensionAbility。<br/>-&nbsp;sysDialog/meetimeContact：畅连联系人的ExtensionAbility。<br/>-&nbsp;sysPicker/meetimeMessage：畅连消息的ExtensionAbility。<br/>-&nbsp;sysPicker/meetimeContact：畅连联系人列表的ExtensionAbility。<br/>-&nbsp;sysPicker/meetimeCallLog：畅连通话记录列表的ExtensionAbility。<br/>-&nbsp;sysPicker/share：系统分享的ExtensionAbility。<br/>-&nbsp;sysPicker/mediaControl：投播组件的ExtensionAbility。<br/>-&nbsp;sysPicker/photoPicker：三方应用通过对应的UIExtensionType拉起图库picker界面。<br/>-&nbsp;sysPicker/filePicker：文件下载弹窗的ExtensionAbility。<br/>-&nbsp;sysPicker/audioPicker：音频管理弹窗的ExtensionAbility。<br/>-&nbsp;sysPicker/photoEditor：图片编辑弹窗的ExtensionAbility。<br/>-&nbsp;sys/commonUI：非通用的ExtensionAbility，提供业务属性强相关的嵌入式显示或弹框。<!--DelEnd--><br/>-&nbsp;autoFill/smart：用于情景化场景自动填充业务的ExtensionAbility，支持数据的保存、填充能力。<br/>-&nbsp;uiService：弹窗服务组件，在启动过程中会创建window，并支持双向通信。<br/>-&nbsp;statusBarView：一步直达的ExtensionAbility。<br/>-&nbsp;recentPhoto：最近照片推荐的ExtensionAbility。<!--Del--><br/>**说明：**<br/>其中service、adsService、sys/commonUI、fileAccess、sysDialog类型、sysPicker类型、dataShare类型和uiService类型，仅支持系统应用配置，三方应用配置不生效。<!--DelEnd--> | 字符串 | 该标签不可缺省。 |
-| permissions | 标识当前ExtensionAbility组件自定义的权限信息。当其他应用访问该ExtensionAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为[系统预定义的权限](../security/AccessToken/permissions-for-all.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
+| type | 标识当前ExtensionAbility组件的类型，支持的取值如下：<br/>-&nbsp;form：卡片的ExtensionAbility。<br/>-&nbsp;workScheduler：延时任务的ExtensionAbility。<br/>-&nbsp;inputMethod：输入法的ExtensionAbility。<!--Del--><br/>-&nbsp;service：后台运行的service组件。<!--DelEnd--><br/>-&nbsp;accessibility：辅助能力的ExtensionAbility。<!--Del--><br/>-&nbsp;fileAccess：公共数据访问的ExtensionAbility，允许应用程序提供文件和文件夹给文件管理类应用展示。<br/>-&nbsp;dataShare：数据共享的ExtensionAbility。<!--DelEnd--><br/>-&nbsp;staticSubscriber：静态广播的ExtensionAbility。<br/>-&nbsp;wallpaper：壁纸的ExtensionAbility。<br/>-&nbsp;backup：数据备份的ExtensionAbility。<br/>-&nbsp;window：该ExtensionAbility会在启动过程中创建一个window，为开发者提供界面开发。开发者开发出来的界面将通过UIExtensionComponent控件组合到其他应用的窗口中。<br/>-&nbsp;thumbnail：获取文件缩略图的ExtensionAbility，开发者可以对自定义文件类型的文件提供缩略。<br/>-&nbsp;preview：该ExtensionAbility会将文件解析后在一个窗口中显示，开发者可以通过将此窗口组合到其他应用窗口中。<br/>-&nbsp;print：打印框架的ExtensionAbility。<br/>-&nbsp;push：推送的ExtensionAbility。<br/>-&nbsp;driver：驱动框架的ExtensionAbility。<br/>-&nbsp;remoteNotification：远程通知的ExtensionAbility。<br/>-&nbsp;remoteLocation：远程定位的ExtensionAbility。<br/>-&nbsp;voip：网络音视频通话的ExtensionAbility。<br/>-&nbsp;action：自定义操作业务模板的ExtensionAbility，为开发者提供基于UIExtension的自定义操作业务模板。<!--Del--><br/>-&nbsp;adsService：广告业务的ExtensionAbility，提供广告业务框架。<!--DelEnd--><br/>-&nbsp;embeddedUI：嵌入式UI扩展能力，提供跨进程界面嵌入的能力。<br/>-&nbsp;insightIntentUI：为开发者提供能被小艺意图调用，以窗口形态呈现内容的扩展能力。<br/>-&nbsp;ads：广告业务的ExtensionAbility，与AdComponent控件组合使用，将广告页面展示到其他应用中。仅支持设备厂商使用。<br/>-&nbsp;photoEditor：图片编辑业务的ExtensionAbility，为开发者提供基于UIExtension的图片编辑业务模版。<br/>-&nbsp;appAccountAuthorization：应用账号授权扩展能力的ExtensionAbility，用于处理账号授权请求，比如账号登录授权。<br/>-&nbsp;autoFill/password：用于账号和密码自动填充业务的ExtensionAbility，支持数据的保存、填充能力。<br/>-&nbsp;hms/account：应用账号管理能力的ExtensionAbility。<!--Del--><br/>-&nbsp;sysDialog/atomicServicePanel：提供构建原子化服务服务面板的基础能力的ExtensionAbility，使用时基于UIExtensionAbility实现。<br/>-&nbsp;sysDialog/userAuth：本地用户鉴权的ExtensionAbility。<br/>-&nbsp;sysDialog/common：通用弹窗的ExtensionAbility。<br/>-&nbsp;sysDialog/power：关机重启弹窗的ExtensionAbility。<br/>-&nbsp;sysDialog/print：打印模态弹窗的ExtensionAbility。<br/>-&nbsp;sysDialog/meetimeCall：畅连通话的ExtensionAbility。<br/>-&nbsp;sysDialog/meetimeContact：畅连联系人的ExtensionAbility。<br/>-&nbsp;sysPicker/meetimeMessage：畅连消息的ExtensionAbility。<br/>-&nbsp;sysPicker/meetimeContact：畅连联系人列表的ExtensionAbility。<br/>-&nbsp;sysPicker/meetimeCallLog：畅连通话记录列表的ExtensionAbility。<br/>-&nbsp;sysPicker/share：系统分享的ExtensionAbility。<br/>-&nbsp;sysPicker/mediaControl：投播组件的ExtensionAbility。<br/>-&nbsp;sysPicker/photoPicker：三方应用通过对应的UIExtensionType拉起图库picker界面。<br/>-&nbsp;sysPicker/filePicker：文件下载弹窗的ExtensionAbility。<br/>-&nbsp;sysPicker/audioPicker：音频管理弹窗的ExtensionAbility。<br/>-&nbsp;sysPicker/photoEditor：图片编辑弹窗的ExtensionAbility。<br/>-&nbsp;sys/commonUI：非通用的ExtensionAbility，提供业务属性强相关的嵌入式显示或弹框。<!--DelEnd--><br/>-&nbsp;autoFill/smart：用于情景化场景自动填充业务的ExtensionAbility，支持数据的保存、填充能力。<br/>-&nbsp;uiService：弹窗服务组件，在启动过程中会创建window，并支持双向通信。<br/>-&nbsp;statusBarView：一步直达的ExtensionAbility。<br/>-&nbsp;recentPhoto：最近照片推荐的ExtensionAbility。<!--Del--><br/>-&nbsp;fence：地理围栏的ExtensionAbility。<br/>-&nbsp;callerInfoQuery：企业联系人查询的ExtensionAbility。<br/>-&nbsp;assetAcceleration：资源预下载的ExtensionAbility。<br/>**说明：**<br/>其中service、adsService、sys/commonUI、fileAccess、sysDialog类型、sysPicker类型、dataShare类型和uiService类型，仅支持系统应用配置，三方应用配置不生效。<!--DelEnd--> | 字符串 | 该标签不可缺省。 |
+| permissions | 标识当前ExtensionAbility组件自定义的权限信息。当其他应用访问该ExtensionAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为[系统预定义的权限](../security/AccessToken/app-permissions.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | readPermission | 标识读取当前ExtensionAbility组件数据所需的权限，取值为长度不超过255字节的字符串。仅当ExtensionAbility组件的type为dataShare时支持配置该标签。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | writePermission | 标识向当前ExtensionAbility组件写数据所需的权限，取值为长度不超过255字节的字符串。仅当ExtensionAbility组件的type为dataShare时支持配置该标签。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | uri | 标识当前ExtensionAbility组件提供的数据URI，取值为长度不超过255字节的字符数组，用反向域名的格式表示。<br/>**说明：**<br/>该标签在type为dataShare类型的ExtensionAbility时，不可缺省。 | 字符串 | 该标签可缺省，缺省值为空。 |
@@ -489,6 +489,7 @@ skills示例：
 | extensionProcessMode | 标识当前ExtensionAbility组件的多进程实例模型,当前只对UIExtensionAbility以及从UIExtensionAbility扩展的ExtensionAbility生效。<br/>-&nbsp;instance：表示该ExtensionAbility每个实例一个进程。<br/>-&nbsp;type：表示该ExtensionAbility实例都运行在同一个进程里，与其他ExtensionAbility分离进程。<br/>-&nbsp;bundle：表示该ExtensionAbility实例都运行在应用统一进程里，与其他配置了bundle模型的ExtensionAbility共进程。<br>-&nbsp;runWithMainProcess：表示该ExtensionAbility和应用主进程共进程，只有一步直达的ExtensionAbility可以配置runWithMainProcess。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | dataGroupIds | 标识当前ExtensionAbility组件的dataGroupId集合。如果当前ExtensionAbility组件所在的应用在应用市场申请的证书里groupIds也申请了某个dataGroupId，那么当前ExtensionAbility组件可以和应用共享这一个dataGroupId生成的目录，所以ExtensionAbility组件的dataGroupId需要是应用的证书中groupIds字段里配置的才能生效。 且该字段仅在当前ExtensionAbility组件存在独立的沙箱目录时生效。详见[dataGroupId申请流程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ime-kit-security-V5#section4219152220459)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | process | 标识组件的进程标签，只有type为embeddedUI时可以配置该字段。<br/>**说明：**<br/>仅在[2in1](./module-configuration-file.md#devicetypes标签)设备上生效，UIAbility组件和ExtensionAbility组件标签一致时运行在同一个进程中。 | 字符串 | 该标签可缺省，缺省值为空。 |
+
 extensionAbilities示例：
 
 
@@ -542,7 +543,7 @@ metadata中指定shortcut信息，其中：
 
 | 属性名称 | 含义 | 类型  | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| shortcutId | 标识快捷方式的ID，取值为长度不超过63字节的字符串。 | 字符串 | 该标签不可缺省。 |
+| shortcutId | 标识快捷方式的ID，取值为长度不超过63字节的字符串。**不支持通过资源索引的方式（$string）配置该字段。** | 字符串 | 该标签不可缺省。 |
 | label | 标识快捷方式的标签信息，即快捷方式对外显示的文字描述信息。取值为长度不超过255字节的字符串，可以是描述性内容，也可以是标识label的资源索引。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | icon | 标识快捷方式的图标，取值为资源文件的索引。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [wants](#wants标签) | 标识快捷方式内定义的目标wants信息集合，在调用launcherBundleManager的startShortcut接口时，会拉起wants标签里的第一个目标组件，推荐只配置一个wants元素。 | 对象 | 该标签可缺省，缺省为空。 |
@@ -878,8 +879,8 @@ dependencies标签示例：
 | 属性名称    | 含义                           | 数据类型 | 是否可缺省 |
 | ----------- | ------------------------------ | -------- | ---------- |
 | uri | 标识用于访问该数据代理的URI，不同的数据代理配置的URI不可重复，且需要满足`datashareproxy://当前应用包名/xxx`的格式。取值为长度不超过255字节的字符串。 | 字符串   | 该标签不可缺省。 |
-| requiredReadPermission  | 标识从该数据代理中读取数据所需要的权限，若不配置，则其他应用无法使用该代理。非系统应用配置的权限的等级需为system_basic或system_core，系统应用配置的权限的等级没有限制。权限等级可以参考[权限列表](../security/AccessToken/permissions-for-all.md)。取值为长度不超过255字节的字符串。 | 字符串   | 该标签可缺省，缺省值为空。 |
-| requiredWritePermission | 标识向该数据代理中写入数据所需要的权限，若不配置，则其他应用无法使用该代理。非系统应用配置的权限的等级需为system_basic或system_core，系统应用配置的权限的等级没有限制。权限等级可以参考[权限列表](../security/AccessToken/permissions-for-all.md)。取值为长度不超过255字节的字符串。 | 字符串   | 该标签可缺省，缺省值为空。 |
+| requiredReadPermission  | 标识从该数据代理中读取数据所需要的权限，若不配置，则其他应用无法使用该代理。非系统应用配置的权限的等级需为system_basic或system_core，系统应用配置的权限的等级没有限制。权限等级可以参考[权限列表](../security/AccessToken/app-permissions.md)。取值为长度不超过255字节的字符串。 | 字符串   | 该标签可缺省，缺省值为空。 |
+| requiredWritePermission | 标识向该数据代理中写入数据所需要的权限，若不配置，则其他应用无法使用该代理。非系统应用配置的权限的等级需为system_basic或system_core，系统应用配置的权限的等级没有限制。权限等级可以参考[权限列表](../security/AccessToken/app-permissions.md)。取值为长度不超过255字节的字符串。 | 字符串   | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识该数据代理的元信息，只支持配置name和resource字段。 | 对象 | 该标签可缺省，缺省值为空。 |
 
 proxyData标签示例：
@@ -1131,12 +1132,12 @@ fileContextMenu标签示例
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| menuKind | 表示什么情况下触发该右键菜单：0：空白处 1：文件 2: 文件夹 3：文件和文件夹。 | 数值 | 不可缺省 |
-| menuRule | 用来表示是单选/多选下选择单个文件/文件夹，或者两种情况都显示。单选：single, 多选：multi 单选+多选：both（全小写）。 | 字符串 | 不可缺省，当menuKind为1或2读取 |
-| fileSupportType | 当选中的文件列表里包含这些文件类型时，显示该右键菜单。 | 字符串数组 | 不可缺省，仅menuKind为1时候读取，为*才读取fileNotSupportType字段，如果为具体值，不读取fileNotSupportType字段，如果为空，这条策略废弃 |
-| fileNotSupportType | 当选中的文件列表里包含这些文件类型时，不显示该右键菜单。 | 字符串数组 | 仅menuKind为1，且fileSupportType为*才读取该字段 |
+| menuKind | 表示单击如下类型时会触发右键菜单。取值范围如下：<br/>-&nbsp;0：空白处<br/>-&nbsp;1：文件<br/>-&nbsp;2：文件夹<br/>-&nbsp;3：文件和文件夹 | 数值 | 不可缺省 |
+| menuRule | 表示采用什么方式选择文件或文件夹时，会触发右键菜单。取值范围如下：<br/>-&nbsp;single：单选<br/>-&nbsp;multi：多选<br/>-&nbsp;both：单选或多选 | 字符串 | 仅当menuKind为1或2时，才会读取该字段，此时不可缺省。 |
+| fileSupportType | 表示当选中的文件列表里包含指定的文件类型时，显示右键菜单。<br/>当该字段取值为["*"]时，将会读取fileNotSupportType字段。<br/>当该字段取值为[]时，将不做任何处理。 | 字符串数组 | 仅当menuKind为1时，才会读取该字段，此时不可缺省。 |
+| fileNotSupportType | 	表示当选中的文件列表里包含这些文件类型时，不显示该右键菜单。<br/>仅当menuKind为1、且fileSupportType为["*"]时，才会读取该字段。 | 字符串数组 | 可缺省，缺省值为空。 |
 
-fileContextMenu配置文件示例
+resources/base/profile路径下的menu.json资源文件示例如下：
 ```json
 {
   "fileContextMenu": [

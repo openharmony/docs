@@ -265,7 +265,7 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 不支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
-
+通过树视图组件的控制器对树的节点进行新增、删除、重命名，展示新增不同参数节点的实现效果。
 ```ts
 import { TreeController, TreeListener, TreeListenerManager, TreeListenType, NodeParam, TreeView, CallbackParam } from '@kit.ArkUI'
 

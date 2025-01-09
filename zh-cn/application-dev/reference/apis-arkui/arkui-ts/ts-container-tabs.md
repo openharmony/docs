@@ -47,7 +47,7 @@ Tabs组件参数，设置Tabs的页签位置，当前显示页签的索引和Tab
 | 参数名         | 类型                              | 必填   | 说明                                     |
 | ----------- | --------------------------------- | ---- | ---------------------------------------- |
 | barPosition | [BarPosition](#barposition枚举说明)| 否    | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start   |
-| index       | number                            | 否    | 设置当前显示页签的索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>直接修改index跳页时，切换动效不生效。 使用TabController的changeIndex时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| index       | number                            | 否    | 设置当前显示页签的索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>直接修改index跳页时，切换动效不生效。 使用TabController的changeIndex时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>Tabs重建、系统资源切换（如系统字体切换、系统深浅色切换）或者组件属性变化时，会跳转到index对应的页面。若需要在上述情况下不跳转，建议使用双向绑定。 |
 | controller  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。                               |
 
 ## BarPosition枚举说明
@@ -312,13 +312,13 @@ barBackgroundBlurStyle(value: BlurStyle)
 | ------ | -------------------------------------------- | ---- | ---------------------------------------- |
 | value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | TabBar的背景模糊材质。<br />默认值：BlurStyle.NONE |
 
-### barBackgroundBlurStyle<sup>13+</sup>
+### barBackgroundBlurStyle<sup>14+</sup>
 
 barBackgroundBlurStyle(value: BlurStyle, options: BackgroundBlurStyleOptions)
 
 为TabBar提供一种在背景和内容之间的模糊能力，通过枚举值的方式封装了不同的模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -361,13 +361,13 @@ edgeEffect(edgeEffect: Optional&lt;EdgeEffect&gt;)
 | ------ | --------------------------------------------- | ---- | -------------------------------------------- |
 | edgeEffect  | Optional&lt;[EdgeEffect](ts-appendix-enums.md#edgeeffect)&gt; | 是   | 边缘滑动效果。<br/>默认值：EdgeEffect.Spring |
 
-### barBackgroundEffect<sup>13+</sup>
+### barBackgroundEffect<sup>14+</sup>
 
 barBackgroundEffect(options: BackgroundEffectOptions)
 
 设置TabBar背景属性，包含背景模糊半径，亮度，饱和度，颜色等参数。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -376,6 +376,22 @@ barBackgroundEffect(options: BackgroundEffectOptions)
 | 参数名  | 类型                                                         | 必填 | 说明                                       |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
 | options | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 是   | 设置TabBar背景属性包括：模糊半径，亮度，饱和度，颜色等。 |
+
+### pageFlipMode<sup>14+</sup>
+
+pageFlipMode(value: PageFlipMode)
+
+设置鼠标滚轮翻页模式。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                        | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [PageFlipMode](ts-appendix-enums.md#pageflipmode14) | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
 
 ## DividerStyle<sup>10+</sup>对象说明
 
@@ -1689,6 +1705,8 @@ import { CommonUtil } from '../common/CommonUtil'
 @Entry
 @Component
 struct TabsExample {
+  @State colorArray: [string, string][] =
+    [['green', '#00CB87'], ['blue', '#007DFF'], ['yellow', '#FFBF00'], ['pink', '#E67C92']]
   @State currentIndex: number = 0
   @State animationDuration: number = 300
   @State indicatorLeftMargin: number = 0
@@ -1696,6 +1714,12 @@ struct TabsExample {
   private tabsWidth: number = 0
   private textInfos: [number, number][] = []
   private isStartAnimateTo: boolean = false
+
+  aboutToAppear():void {
+    for (let i = 0; i < this.colorArray.length; i++) {
+      this.textInfos.push([0, 0]);
+    }
+  }
 
   @Builder
   tabBuilder(index: number, name: string) {
@@ -1707,6 +1731,9 @@ struct TabsExample {
         .id(index.toString())
         .onAreaChange((oldValue: Area, newValue: Area) => {
           this.textInfos[index] = [newValue.globalPosition.x as number, newValue.width as number]
+          if (!this.isStartAnimateTo && this.currentIndex === index && this.tabsWidth > 0) {
+            this.setIndicatorAttr(this.textInfos[this.currentIndex][0], this.textInfos[this.currentIndex][1])
+          }
         })
     }.width('100%')
   }
@@ -1714,21 +1741,11 @@ struct TabsExample {
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       Tabs({ barPosition: BarPosition.Start }) {
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#00CB87')
-        }.tabBar(this.tabBuilder(0, 'green'))
-
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#007DFF')
-        }.tabBar(this.tabBuilder(1, 'blue'))
-
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#FFBF00')
-        }.tabBar(this.tabBuilder(2, 'yellow'))
-
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#E67C92')
-        }.tabBar(this.tabBuilder(3, 'pink'))
+        ForEach(this.colorArray, (item: [string, string], index:number) => {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(item[1])
+          }.tabBar(this.tabBuilder(index, item[0]))
+        })
       }
       .onAreaChange((oldValue: Area, newValue: Area)=> {
         this.tabsWidth = newValue.width as number
@@ -1774,7 +1791,8 @@ struct TabsExample {
     let nextIndex = index
     if (index > 0 && (CommonUtil.getIsRTL() ? event.currentOffset < 0 : event.currentOffset > 0)) {
       nextIndex--
-    } else if (index < 3 && (CommonUtil.getIsRTL() ? event.currentOffset > 0 : event.currentOffset < 0)) {
+    } else if (index < this.textInfos.length - 1 &&
+        (CommonUtil.getIsRTL() ? event.currentOffset > 0 : event.currentOffset < 0)) {
       nextIndex++
     }
     let indexInfo = this.textInfos[index]

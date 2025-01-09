@@ -214,3 +214,41 @@ try {
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
+
+**示例4：**
+
+以模应用方式进行用户身份认证。
+
+```ts
+// API version 16
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  const widgetParam: userAuth.WidgetParam = {
+    title: '请输入密码',
+    uiContext: this.getUIContext().getHostContext(),
+  };
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
+  // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
+  userAuthInstance.on('result', {
+    onResult (result) {
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
+    }
+  });
+  console.info('auth on success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+}
+```

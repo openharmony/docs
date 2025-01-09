@@ -44,7 +44,7 @@ ArkTS提供了渲染控制的能力。条件渲染可根据应用的不同状态
 ```ts
 @Entry
 @Component
-struct ViewA {
+struct MyComponent {
   @State count: number = 0;
 
   build() {
@@ -194,7 +194,7 @@ struct MainView {
 ```ts
 @Entry
 @Component
-struct CompA {
+struct MyComponent {
   @State toggle: boolean = false;
   @State toggleColor: boolean = false;
 

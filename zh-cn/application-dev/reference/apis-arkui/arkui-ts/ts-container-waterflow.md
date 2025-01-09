@@ -40,6 +40,7 @@ WaterFlow(options?:  WaterFlowOptions)
 | 名称     | 类型                                        | 必填 | 说明                                     |
 | ---------- | ----------------------------------------------- | ------ | -------------------------------------------- |
 | footer |  [CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置WaterFlow尾部组件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| footerContent<sup>16+</sup> | [ComponentContent](../js-apis-arkui-ComponentContent.md) | 否 | 设置WaterFlow尾部组件。<br/>该参数的优先级高于参数footer，即同时设置footer和footerContent时，以footerContent设置的组件为准。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器，与可滚动组件绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | sections<sup>12+</sup> |  [WaterFlowSections](#waterflowsections12) | 否   | 设置FlowItem分组，实现同一个瀑布流组件内部各分组使用不同列数混合布局。<br/>**说明：** <br/>1. 使用分组混合布局时会忽略columnsTemplate和rowsTemplate属性。<br/>2. 使用分组混合布局时不支持单独设置footer，可以使用最后一个分组作为尾部组件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | layoutMode<sup>12+</sup> |[WaterFlowLayoutMode](#waterflowlayoutmode12枚举说明) | 否 | 设置WaterFlow的布局模式，根据使用场景选择更切合的模式。<br/>**说明：** <br/>默认值：[ALWAYS_TOP_DOWN](#waterflowlayoutmode12枚举说明)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -48,6 +49,10 @@ WaterFlow(options?:  WaterFlowOptions)
 ## WaterFlowSections<sup>12+</sup>
 
 瀑布流分组信息。
+
+> **说明：**
+>
+> 使用splice、push、update修改分组信息后需要保证所有分组子节点总数与瀑布流实际子节点总数一致，否则会出现瀑布流因为不能正常布局而无法滑动的问题。
 
 ### constructor
 
@@ -210,7 +215,7 @@ type GetItemMainSizeByIndex = (index: number) => number
 | 名称 | 值 | 说明 |
 | ------ | ------ | -------------------- |
 | ALWAYS_TOP_DOWN | 0 | 默认的从上到下的布局模式。视窗内的FlowItem依赖视窗上方所有FlowItem的布局信息。因此跳转或切换列数时，需要计算出上方所有的FlowItem的布局信息。 |
-| SLIDING_WINDOW | 1 | 移动窗口式的布局模式。只考虑视窗内的布局信息，对视窗上方的FlowItem没有依赖关系，因此向后跳转或切换列数时只需要布局视窗内的FlowItem。有频繁切换列数的场景的应用建议使用该模式。 <br/>**说明：** <br/>1. 无动画跳转到较远的位置时，会以目标位置为基准，向前或向后布局FlowItem。这之后如果滑回跳转前的位置，内容的布局效果可能和之前不一致。 这个效果会导致跳转后回滑到顶部时，顶部节点可能不对齐。所以该布局模式下会在滑动到顶部后自动调整布局，保证顶部对齐。在有多个分组的情况下，会在滑动结束时调整在视窗内的分组。<br/> 2. 该模式不支持使用滚动条，就算设置了滚动条也无法显示。 <br/> 3. 不支持[scroller](#waterflowoptions对象说明)的[scrollTo](ts-container-scroll.md#scrollto)接口。 <br/> 4. [scroller](#waterflowoptions对象说明)的[currentOffset](ts-container-scroll.md#currentoffset)接口返回的总偏移量在触发跳转或数据更新后不准确，在回滑到顶部时会重新校准。 <br/> 5. 如果在同一帧内调用跳转（如无动画的[scrollToIndex](ts-container-scroll.md#scrolltoindex)、[scrollEdge](ts-container-scroll.md#scrolledge)）和输入偏移量（如滑动手势或滚动动画），两者都会生效。 <br/> 6. 调用无动画的[scrollToIndex](ts-container-scroll.md#scrolltoindex)进行跳转，如果跳转到较远位置（超过视窗内的FlowItem数量的位置）时，由于移动窗口模式对总偏移量没有估算，此时总偏移量没有变化，所以不会触发[onDidScroll](ts-container-scroll.md#ondidscroll12)事件。 |
+| SLIDING_WINDOW | 1 | 移动窗口式的布局模式。只考虑视窗内的布局信息，对视窗上方的FlowItem没有依赖关系，因此向后跳转或切换列数时只需要布局视窗内的FlowItem。有频繁切换列数的场景的应用建议使用该模式。 <br/>**说明：** <br/>1. 无动画跳转到较远的位置时，会以目标位置为基准，向前或向后布局FlowItem。这之后如果滑回跳转前的位置，内容的布局效果可能和之前不一致。 这个效果会导致跳转后回滑到顶部时，顶部节点可能不对齐。所以该布局模式下会在滑动到顶部后自动调整布局，保证顶部对齐。在有多个分组的情况下，会在滑动结束时调整在视窗内的分组。<br/> 2. [scroller](#waterflowoptions对象说明)的[currentOffset](ts-container-scroll.md#currentoffset)接口返回的总偏移量在触发跳转或数据更新后不准确，在回滑到顶部时会重新校准。 <br/> 3. 如果在同一帧内调用跳转（如无动画的[scrollToIndex](ts-container-scroll.md#scrolltoindex)、[scrollEdge](ts-container-scroll.md#scrolledge)）和输入偏移量（如滑动手势或滚动动画），两者都会生效。 <br/> 4. 调用无动画的[scrollToIndex](ts-container-scroll.md#scrolltoindex)进行跳转，如果跳转到较远位置（超过视窗内的FlowItem数量的位置）时，移动窗口模式对总偏移量进行估算。 |
 
 
 ## 属性
@@ -401,7 +406,7 @@ cachedCount(value: number)
 
 ### cachedCount<sup>14+</sup>
 
-cachedCount(value: number, show: boolean)
+cachedCount(count: number, show: boolean)
 
 设置预加载的FlowItem数量，并配置是否显示预加载节点。
 
@@ -417,7 +422,7 @@ cachedCount(value: number, show: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| value  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：1 |
+| count  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：1 |
 | show  | boolean | 是   | 被预加载的FlowItem是否需要显示。 <br/> 默认值：false |
 
 ## 事件
@@ -1123,7 +1128,7 @@ struct WaterFlowDemo {
 ![pinch](figures/waterflow-pinch.gif)
 
 ### 示例5（设置边缘渐隐效果）
-该示例通过[fadingEdge](ts-container-scrollable-common.md#fadingedge13)实现了WaterFlow组件开启边缘渐隐效果，并通过fadingEdgeLength参数设置边缘渐隐长度。
+该示例通过[fadingEdge](ts-container-scrollable-common.md#fadingedge14)实现了WaterFlow组件开启边缘渐隐效果，并通过fadingEdgeLength参数设置边缘渐隐长度。
 ```ts
 // Index.ets
 import { LengthMetrics } from '@kit.ArkUI'
@@ -1184,3 +1189,66 @@ struct WaterFlowDemo {
 ```
 
 ![fadingEdge_waterFlow](figures/fadingEdge_waterFlow.gif)
+
+### 示例6（单边边缘效果）
+
+该示例通过edgeEffect接口，实现了WaterFlow组件设置单边边缘效果。
+
+```ts
+//index.ets
+import { WaterFlowDataSource } from '../data/WaterFlowDataSource'
+@Entry
+@Component
+struct WaterFlowDemo {
+  @State minSize: number = 80
+  @State maxSize: number = 180
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
+  scroller: Scroller = new Scroller()
+  private itemWidthArray: number[] = []
+  private itemHeightArray: number[] = []
+
+  // 计算FlowItem宽/高
+  getSize() {
+    let ret = Math.floor(Math.random() * this.maxSize)
+    return (ret > this.minSize ? ret : this.minSize)
+  }
+
+  // 设置FlowItem宽/高数组
+  setItemSizeArray() {
+    for (let i = 0; i < 100; i++) {
+      this.itemWidthArray.push(this.getSize())
+      this.itemHeightArray.push(this.getSize())
+    }
+  }
+
+  aboutToAppear() {
+    this.setItemSizeArray()
+  }
+
+  build() {
+    Column({ space: 2 }) {
+      WaterFlow({ scroller:this.scroller }) {
+        LazyForEach(this.dataSource, (item: number) => {
+          FlowItem() {
+            Column() {
+              Text("N" + item).fontSize(12).height('16')
+            }
+          }
+          .width('100%')
+          .height(this.itemHeightArray[item % 100])
+          .backgroundColor(this.colors[item % 5])
+        }, (item: string) => item)
+      }
+      .columnsTemplate('repeat(auto-fill,80)')
+      .columnsGap(10)
+      .rowsGap(5)
+      .height('90%')
+      .edgeEffect(EdgeEffect.Spring,{alwaysEnabled:true,effectEdge:EffectEdge.START})
+
+    }
+  }
+}
+```
+
+![edgeEffect_waterFlow](figures/edgeEffect_waterFlow.gif)

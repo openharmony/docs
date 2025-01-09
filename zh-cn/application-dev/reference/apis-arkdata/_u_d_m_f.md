@@ -165,7 +165,7 @@
 | [UDMF_META_OPENHARMONY_STYLED_STRING](#udmf_meta_openharmony_styled_string)   "openharmony.styled-string" | 系统定义的样式字符串类型，归属类型为COMPOSITE_OBJECT。 | 
 | [UDMF_META_OPENHARMONY_WANT](#udmf_meta_openharmony_want)   "openharmony.want" | 系统定义的Want类型，归属类型为OBJECT。 | 
 | [UDMF_META_GENERAL_FILE_URI](#udmf_meta_general_file_uri)   "general.file-uri" | 文件地址类型，归属类型为TEXT。 | 
-
+| [UDMF_METE_GENERAL_CONTENT_FORM](#udmf_mete_general_content_form)   "general.content-form" | 内容卡片类型，归属类型为OBJECT。 | 
 
 ### 类型定义
 
@@ -188,7 +188,7 @@
 | typedef struct [OH_UdsPixelMap](#oh_udspixelmap) [OH_UdsPixelMap](#oh_udspixelmap) | 描述像素图片类型的统一数据结构。 | 
 | typedef struct [OH_UdsArrayBuffer](#oh_udsarraybuffer) [OH_UdsArrayBuffer](#oh_udsarraybuffer) | 描述ArrayBuffer类型的统一数据结构。 | 
 | typedef struct [OH_Utd](#oh_utd) [OH_Utd](#oh_utd) | 统一数据类型描述符。 | 
-
+| typedef struct [OH_UdsContentForm](#oh_udscontentform) [OH_UdsContentForm](#oh_udscontentform) | 描述内容卡片类型的统一数据结构。 |
 
 ### 枚举
 
@@ -203,6 +203,23 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| int [OH_UdmfRecord_AddContentForm](#oh_udmfrecord_addcontentform) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsContentForm](#oh_udscontentform) \*contentForm) | 增加一个内容卡片类型[OH_UdsContentForm](#oh_udscontentform)的数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
+| int [OH_UdmfRecord_GetContentForm](#oh_udmfrecord_getcontentform) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsContentForm](#oh_udscontentform) \*contentForm) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取内容卡片类型[OH_UdsContentForm](#oh_udscontentform)数据。 | 
+| [OH_UdsContentForm](#oh_udscontentform) \* [OH_UdsContentForm_Create](#oh_udscontentform_create) () | 创建内容卡片类型[OH_UdsContentForm](#oh_udscontentform)指针及实例对象 | 
+| void [OH_UdsContentForm_Destroy](#oh_udscontentform_destroy) ([OH_UdsContentForm](#oh_udscontentform) \*pThis) | 销毁内容卡片类型数据[OH_UdsContentForm](#oh_udscontentform)指针指向的实例对象。 | 
+| const char \* [OH_UdsContentForm_GetType](#oh_udscontentform_gettype) ([OH_UdsContentForm](#oh_udscontentform) \*pThis) | 从内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中获取类型ID。 | 
+| int [OH_UdsContentForm_GetThumbData](#oh_udscontentform_getthumbdata) ([OH_UdsContentForm](#oh_udscontentform) \*pThis, unsigned char \*\*thumbData, unsigned int \*len) | 从内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中获取图片数据。 | 
+| const char \* [OH_UdsContentForm_GetDescription](#oh_udscontentform_getdescription) ([OH_UdsContentForm](#oh_udscontentform) \*pThis) | 从内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中获取描述信息。 | 
+| const char \* [OH_UdsContentForm_GetTitle](#oh_udscontentform_gettitle) ([OH_UdsContentForm](#oh_udscontentform) \*pThis) | 从内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中获取标题信息。 | 
+| int [OH_UdsContentForm_GetAppIcon](#oh_udscontentform_getappicon) ([OH_UdsContentForm](#oh_udscontentform) \*pThis, unsigned char \*\*appIcon, unsigned int \*len) | 从内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中获取应用图标数据。 | 
+| const char \* [OH_UdsContentForm_GetAppName](#oh_udscontentform_getappname) ([OH_UdsContentForm](#oh_udscontentform) \*pThis) | 从内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中获取应用名称信息。 | 
+| const char \* [OH_UdsContentForm_GetLinkUri](#oh_udscontentform_getlinkuri) ([OH_UdsContentForm](#oh_udscontentform) \*pThis) | 从内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中获取超链接信息。 | 
+| int [OH_UdsContentForm_SetThumbData](#oh_udscontentform_setthumbdata) ([OH_UdsContentForm](#oh_udscontentform) \*pThis, const unsigned char \*thumbData, unsigned int len) | 设置内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中的图片数据。 | 
+| int [OH_UdsContentForm_SetDescription](#oh_udscontentform_setdescription) ([OH_UdsContentForm](#oh_udscontentform) \*pThis, const char \*description) | 设置内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中的描述信息。 | 
+| int [OH_UdsContentForm_SetTitle](#oh_udscontentform_settitle) ([OH_UdsContentForm](#oh_udscontentform) \*pThis, const char \*title) | 设置内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中的标题信息。 | 
+| int [OH_UdsContentForm_SetAppIcon](#oh_udscontentform_setappicon) ([OH_UdsContentForm](#oh_udscontentform) \*pThis, const unsigned char \*appIcon, unsigned int len) | 设置内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中的应用图标数据。 | 
+| int [OH_UdsContentForm_SetAppName](#oh_udscontentform_setappname) ([OH_UdsContentForm](#oh_udscontentform) \*pThis, const char \*appName) | 设置内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中的应用名称数据。 | 
+| int [OH_UdsContentForm_SetLinkUri](#oh_udscontentform_setlinkuri) ([OH_UdsContentForm](#oh_udscontentform) \*pThis, const char \*linkUri) | 设置内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中的超链接数据。 | 
 | [OH_UdmfData](#oh_udmfdata) \* [OH_UdmfData_Create](#oh_udmfdata_create) () | 创建统一数据对象[OH_UdmfData](#oh_udmfdata)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdmfData_Destroy](#oh_udmfdata_destroy)销毁实例对象，否则会导致内存泄漏。 | 
 | void [OH_UdmfData_Destroy](#oh_udmfdata_destroy) ([OH_UdmfData](#oh_udmfdata) \*pThis) | 销毁统一数据对象[OH_UdmfData](#oh_udmfdata)指针指向的实例对象。 | 
 | int [OH_UdmfData_AddRecord](#oh_udmfdata_addrecord) ([OH_UdmfData](#oh_udmfdata) \*pThis, [OH_UdmfRecord](#oh_udmfrecord) \*record) | 添加一个数据记录[OH_UdmfRecord](#oh_udmfrecord)到统一数据对象[OH_UdmfData](#oh_udmfdata)中。 | 
@@ -241,7 +258,7 @@
 | void [OH_UdmfProperty_Destroy](#oh_udmfproperty_destroy) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | 销毁数据属性[OH_UdmfProperty](#oh_udmfproperty)指针指向的实例对象。 | 
 | const char \* [OH_UdmfProperty_GetTag](#oh_udmfproperty_gettag) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | 从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取用户自定义标签值。 | 
 | int64_t [OH_UdmfProperty_GetTimestamp](#oh_udmfproperty_gettimestamp) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | 从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取时间戳。 | 
-| [Udmf_ShareOption](#udmf_shareoption)[OH_UdmfProperty_GetShareOption](#oh_udmfproperty_getshareoption) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | 从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取设备内适用范围属性。 | 
+| [Udmf_ShareOption](#udmf_shareoption) [OH_UdmfProperty_GetShareOption](#oh_udmfproperty_getshareoption) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | 从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取设备内适用范围属性。 | 
 | int [OH_UdmfProperty_GetExtrasIntParam](#oh_udmfproperty_getextrasintparam) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*key, int defaultValue) | 从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取自定义的附加整型参数。 | 
 | const char \* [OH_UdmfProperty_GetExtrasStringParam](#oh_udmfproperty_getextrasstringparam) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*key) | 从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取自定义的附加字符串参数。 | 
 | int [OH_UdmfProperty_SetTag](#oh_udmfproperty_settag) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*tag) | 设置数据属性[OH_UdmfProperty](#oh_udmfproperty)的自定义标签值。 | 
@@ -322,6 +339,17 @@
 
 ## 宏定义说明
 
+### UDMF_METE_GENERAL_CONTENT_FORM
+
+```
+#define UDMF_METE_GENERAL_CONTENT_FORM   "general.content-form"
+```
+
+**描述**
+
+内容卡片类型，归属类型为OBJECT。
+
+**起始版本：** 14
 
 ### UDMF_KEY_BUFFER_LEN
 
@@ -2106,6 +2134,17 @@ ZIP存档文件类型，归属类型为ARCHIVE。
 
 ## 类型定义说明
 
+### OH_UdsContentForm
+
+```
+typedef struct OH_UdsContentForm OH_UdsContentForm
+```
+
+**描述**
+
+描述内容卡片类型的统一数据结构。
+
+**起始版本：** 14
 
 ### OH_UdmfData
 
@@ -2405,6 +2444,492 @@ UDMF支持的设备内使用范围类型枚举。
 
 
 ## 函数说明
+
+### OH_UdmfRecord_AddContentForm()
+
+```
+int OH_UdmfRecord_AddContentForm (OH_UdmfRecord* pThis, OH_UdsContentForm* contentForm )
+```
+
+**描述**
+
+增加一个内容卡片类型[OH_UdsContentForm](#oh_udscontentform)的数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例的指针。 | 
+| contentForm | 表示指向内容卡片类型[OH_UdsContentForm](#oh_udscontentform)实例的指针。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdmfRecord](#oh_udmfrecord)
+
+[OH_UdsContentForm](#oh_udscontentform)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfRecord_GetContentForm()
+
+```
+int OH_UdmfRecord_GetContentForm (OH_UdmfRecord* pThis, OH_UdsContentForm* contentForm )
+```
+
+**描述**
+
+从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取内容卡片类型[OH_UdsContentForm](#oh_udscontentform)数据。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例的指针。 | 
+| contentForm | 该参数是输出参数，表示指向内容卡片类型[OH_UdsContentForm](#oh_udscontentform)实例的指针。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdmfRecord](#oh_udmfrecord)
+
+[OH_UdsContentForm](#oh_udscontentform)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdsContentForm_Create()
+
+```
+OH_UdsContentForm* OH_UdsContentForm_Create ()
+```
+
+**描述**
+
+创建内容卡片类型[OH_UdsContentForm](#oh_udscontentform)指针及实例对象
+
+**起始版本：** 14
+
+**返回：**
+
+执行成功则返回一个指向内容卡片类型[OH_UdsContentForm](#oh_udscontentform)实例对象的指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdsContentForm](#oh_udscontentform)
+
+
+### OH_UdsContentForm_Destroy()
+
+```
+void OH_UdsContentForm_Destroy (OH_UdsContentForm* pThis)
+```
+
+**描述**
+
+销毁内容卡片类型数据[OH_UdsContentForm](#oh_udscontentform)指针指向的实例对象。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向[OH_UdsContentForm](#oh_udscontentform)实例的指针。 | 
+
+**参见：**
+
+[OH_UdsContentForm](#oh_udscontentform)
+
+
+### OH_UdsContentForm_GetAppIcon()
+
+```
+int OH_UdsContentForm_GetAppIcon (OH_UdsContentForm* pThis, unsigned char** appIcon, unsigned int* len )
+```
+
+**描述**
+
+从内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中获取应用图标数据。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向[OH_UdsContentForm](#oh_udscontentform)实例的指针。 | 
+| appIcon | 该参数是输出参数，表示内容卡片中的应用图标二进制数据。 | 
+| len | 该参数是输出参数，表示内容卡片中的应用图标二进制数据的大小。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。 若返回UDMF_ERR，表示出现了内部系统错误。
+
+**参见：**
+
+[OH_UdsContentForm](#oh_udscontentform)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdsContentForm_GetAppName()
+
+```
+const char* OH_UdsContentForm_GetAppName (OH_UdsContentForm* pThis)
+```
+
+**描述**
+
+从内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中获取应用名称信息。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向[OH_UdsContentForm](#oh_udscontentform)实例的指针。 | 
+
+**返回：**
+
+输入有效入参时返回应用名称信息的字符串指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdsContentForm](#oh_udscontentform)
+
+
+### OH_UdsContentForm_GetDescription()
+
+```
+const char* OH_UdsContentForm_GetDescription (OH_UdsContentForm* pThis)
+```
+
+**描述**
+
+从内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中获取描述信息。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向[OH_UdsContentForm](#oh_udscontentform)实例的指针。 | 
+
+**返回：**
+
+输入有效入参时返回描述信息的字符串指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdsContentForm](#oh_udscontentform)
+
+
+### OH_UdsContentForm_GetLinkUri()
+
+```
+const char* OH_UdsContentForm_GetLinkUri (OH_UdsContentForm* pThis)
+```
+
+**描述**
+
+从内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中获取超链接信息。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向[OH_UdsContentForm](#oh_udscontentform)实例的指针。 | 
+
+**返回：**
+
+输入有效入参时返回超链接的字符串指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdsContentForm](#oh_udscontentform)
+
+
+### OH_UdsContentForm_GetThumbData()
+
+```
+int OH_UdsContentForm_GetThumbData (OH_UdsContentForm* pThis, unsigned char** thumbData, unsigned int* len )
+```
+
+**描述**
+
+从内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中获取图片数据。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向[OH_UdsContentForm](#oh_udscontentform)实例的指针。 | 
+| thumbData | 该参数是输出参数，表示内容卡片中的图片二进制数据。 | 
+| len | 该参数是输出参数，表示内容卡片中的图片二进制数据的大小。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。 若返回UDMF_ERR，表示出现了内部系统错误。
+
+**参见：**
+
+[OH_UdsContentForm](#oh_udscontentform)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdsContentForm_GetTitle()
+
+```
+const char* OH_UdsContentForm_GetTitle (OH_UdsContentForm* pThis)
+```
+
+**描述**
+
+从内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中获取标题信息。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向[OH_UdsContentForm](#oh_udscontentform)实例的指针。 | 
+
+**返回：**
+
+输入有效入参时返回标题信息的字符串指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdsContentForm](#oh_udscontentform)
+
+
+### OH_UdsContentForm_GetType()
+
+```
+const char* OH_UdsContentForm_GetType (OH_UdsContentForm* pThis)
+```
+
+**描述**
+
+从内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中获取类型ID。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向[OH_UdsContentForm](#oh_udscontentform)实例的指针。 | 
+
+**返回：**
+
+输入有效入参时返回类型ID的字符串指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdsContentForm](#oh_udscontentform)
+
+
+### OH_UdsContentForm_SetAppIcon()
+
+```
+int OH_UdsContentForm_SetAppIcon (OH_UdsContentForm* pThis, const unsigned char* appIcon, unsigned int len )
+```
+
+**描述**
+
+设置内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中的应用图标数据。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向[OH_UdsContentForm](#oh_udscontentform)实例的指针。 | 
+| appIcon | 表示内容卡片中的应用图标二进制数据。 | 
+| len | 表示内容卡片中的应用图标二进制数据的大小。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效的参数。
+
+**参见：**
+
+[OH_UdsContentForm](#oh_udscontentform)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdsContentForm_SetAppName()
+
+```
+int OH_UdsContentForm_SetAppName (OH_UdsContentForm* pThis, const char* appName )
+```
+
+**描述**
+
+设置内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中的应用名称数据。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向[OH_UdsContentForm](#oh_udscontentform)实例的指针。 | 
+| appName | 表示内容卡片中的应用名称。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效的参数。
+
+**参见：**
+
+[OH_UdsContentForm](#oh_udscontentform)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdsContentForm_SetDescription()
+
+```
+int OH_UdsContentForm_SetDescription (OH_UdsContentForm* pThis, const char* description )
+```
+
+**描述**
+
+设置内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中的描述信息。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向[OH_UdsContentForm](#oh_udscontentform)实例的指针。 | 
+| description | 表示描述信息。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效的参数。
+
+**参见：**
+
+[OH_UdsContentForm](#oh_udscontentform)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdsContentForm_SetLinkUri()
+
+```
+int OH_UdsContentForm_SetLinkUri (OH_UdsContentForm* pThis, const char* linkUri )
+```
+
+**描述**
+
+设置内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中的超链接数据。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向[OH_UdsContentForm](#oh_udscontentform)实例的指针。 | 
+| linkUri | 表示内容卡片中的超链接。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效的参数。
+
+**参见：**
+
+[OH_UdsContentForm](#oh_udscontentform)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdsContentForm_SetThumbData()
+
+```
+int OH_UdsContentForm_SetThumbData (OH_UdsContentForm* pThis, const unsigned char* thumbData, unsigned int len )
+```
+
+**描述**
+
+设置内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中的图片数据。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向[OH_UdsContentForm](#oh_udscontentform)实例的指针。 | 
+| thumbData | 表示内容卡片中的图片二进制数据。 | 
+| len | 表示内容卡片中的图片二进制数据的大小。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效的参数。
+
+**参见：**
+
+[OH_UdsContentForm](#oh_udscontentform)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdsContentForm_SetTitle()
+
+```
+int OH_UdsContentForm_SetTitle (OH_UdsContentForm* pThis, const char* title )
+```
+
+**描述**
+
+设置内容卡片类型[OH_UdsContentForm](#oh_udscontentform)中的标题信息。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向[OH_UdsContentForm](#oh_udscontentform)实例的指针。 | 
+| title | 表示标题信息。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效的参数。
+
+**参见：**
+
+[OH_UdsContentForm](#oh_udscontentform)
+
+[Udmf_ErrCode](#udmf_errcode)
 
 
 ### OH_Udmf_GetUnifiedData()
@@ -3787,7 +4312,7 @@ int OH_UdmfRecordProvider_SetData (OH_UdmfRecordProvider* provider, void* contex
 
 [OH_UdmfRecordProvider_GetData](#oh_udmfrecordprovider_getdata)
 
-[UdmfData_Finalize](#udmfdata_finalize)[Udmf_ErrCode](#udmf_errcode)
+[UdmfData_Finalize](#udmfdata_finalize) [Udmf_ErrCode](#udmf_errcode)
 
 
 ### OH_UdsAppItem_Create()

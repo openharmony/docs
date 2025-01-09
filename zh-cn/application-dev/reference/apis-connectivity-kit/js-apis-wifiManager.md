@@ -894,7 +894,7 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 。 
 
-当macType是1 - 设备MAC地址时，获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress 返回空字符串。
+当macType是1 - 设备MAC地址时，获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress 返回随机MAC地址。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -925,7 +925,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 。 
 
-当macType是1 - 设备MAC地址时，获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress 返回空字符串。
+当macType是1 - 设备MAC地址时，获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress 返回随机MAC地址。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -966,6 +966,47 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
   });
 ```
 
+## wifiManager.getLinkedInfoSync<sup>16+</sup>
+
+getLinkedInfoSync(): WifiLinkedInfo;
+
+获取WLAN连接信息，使用同步方式返回结果。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO 。 
+
+当macType是1 - 设备MAC地址时，获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress 返回随机MAC地址。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | [WifiLinkedInfo](#wifilinkedinfo9) | 表示WLAN连接信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled.|
+
+**示例：**
+```ts
+  import { wifiManager } from '@kit.ConnectivityKit';
+  try {
+    let linkInfo = wifiManager.getLinkedInfoSync();
+    console.info("get linked info:" + JSON.stringify(linkInfo));
+  } catch(error) {
+    console.error("get linked info failed:" + JSON.stringify(error));
+  }
+```
 
 ## WifiLinkedInfo<sup>9+</sup>
 

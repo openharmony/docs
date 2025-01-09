@@ -3,7 +3,7 @@
 
 ## Overview
 
-The NativeDisplayManager_WaterfallDisplayAreaRects struct describes the curved area (an area that is not intended for displaying content) on the waterfall display.
+The NativeDisplayManager_WaterfallDisplayAreaRects struct describes the curved area on a waterfall display.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -22,4 +22,4 @@ The NativeDisplayManager_WaterfallDisplayAreaRects struct describes the curved a
 | [NativeDisplayManager_Rect](_native_display_manager___rect.md) **left** | Rectangle of the curved area on the left of the waterfall display.| 
 | [NativeDisplayManager_Rect](_native_display_manager___rect.md) **top** | Rectangle of the curved area on the top of the waterfall display.| 
 | [NativeDisplayManager_Rect](_native_display_manager___rect.md) **right** | Rectangle of the curved area on the right of the waterfall display.| 
-| [NativeDisplayManager_Rect](_native_display_manager___rect.md) **bottom** | Rectangle of the curved area on the bottom of the waterfall display.| 
+| [NativeDisplayManager_Rect](_native_display_manager___rect.md) **bottom** | Rectangle of the curved area at the bottom of the waterfall display.| 

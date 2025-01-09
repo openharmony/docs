@@ -84,7 +84,9 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 ## 示例
 
-### 示例1
+### 示例1（设置事件派发策略为FORWARD_COMPETITION）
+
+该示例点击List下方空白区域后拖动，能够拖动List滑动。点击Button按钮，Button会响应onClick事件。
 
 ```ts
 // xxx.ets
@@ -153,11 +155,12 @@ struct ListExample {
   }
 }
 ```
-点击List下方空白区域后拖动，能够拖动List滑动；点击Button按钮，Button会响应onClick事件。
 
 ![onchildtouchtest](figures/on-child-touch-test-competition.gif)
 
-### 示例2
+### 示例2（设置事件派发策略为FORWARD）
+
+点击List下方空白区域后拖动，能够拖动List滑动。点击Button按钮，Button不会响应onClick事件。
 
 ```ts
 // xxx.ets
@@ -226,11 +229,12 @@ struct ListExample {
   }
 }
 ```
-点击List下方空白区域后拖动，能够拖动List滑动；点击Button按钮，Button不会响应onClick事件。
 
 ![onchildtouchtest](figures/on-child-touch-test-forward.gif)
 
-### 示例3
+### 示例3（设置事件派发策略为DEFAULT）
+
+点击List下方空白区域后拖动，List不会滑动。点击Button按钮，Button会响应onClick事件。
 
 ```ts
 // xxx.ets
@@ -294,6 +298,5 @@ struct ListExample {
   }
 }
 ```
-点击List下方空白区域后拖动，List不会滑动；点击Button按钮，Button会响应onClick事件。
 
 ![onchildtouchtest](figures/on-child-touch-test-default.gif)

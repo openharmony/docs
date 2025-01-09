@@ -275,36 +275,6 @@ Allows a device administrator application to set enterprise information.
 
 **Valid since**: 9
 
-## ohos.permission.SET_FILE_GUARD_POLICY
-
-Allows an application to update the file guard policy.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-<!--Del-->
-**Enable via ACL**: true<!--DelEnd-->
-
-**Valid since**: 10
-
-**Changelog**: For API versions 10 to 14, this permission is of the system_core level and available only to MDM applications. Starting from API version 14, the permission level is changed to system_basic and this permission is accessible to normal enterprise applications.
-
-## ohos.permission.FILE_GUARD_MANAGER
-
-Allows an application to scan media and sandbox and set file extended properties.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-<!--Del-->
-**Enable via ACL**: true<!--DelEnd-->
-
-**Valid since**: 10
-
-**Changelog**: For API versions 10 to 14, this permission is of the system_core level and available only to MDM applications. Starting from API version 14, the permission level is changed to system_basic and this permission is accessible to normal enterprise applications.
-
 ## ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
 Allows a device administrator application to set security management policies for devices.
@@ -461,19 +431,6 @@ Allows a device administrator application to manage the device administrator.
 
 **Valid since**: 12
 
-## ohos.permission.QUERY_AUDIT_EVENT
-
-Allows an MDM application to query security audit events.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-<!--Del-->
-**Enable via ACL**: true<!--DelEnd-->
-
-**Valid since**: 12
-
 ## ohos.permission.ENTERPRISE_RECOVERY_KEY
 
 Allows an application to manage the enterprise recovery keys.
@@ -489,7 +446,7 @@ Allows an application to manage the enterprise recovery keys.
 
 ## ohos.permission.ENTERPRISE_MANAGE_DELEGATED_POLICY
 
-Allows a device administrator application to delegated other applications to set device management policies.
+Allows a device administrator application to delegate other applications to set device management policies.
 
 **Permission level**: system_basic
 

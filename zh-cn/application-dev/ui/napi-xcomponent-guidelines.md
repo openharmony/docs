@@ -94,7 +94,7 @@ XComponent组件作为一种渲染组件，可用于EGL/OpenGLES和媒体数据�
     }
         
     interface XComponentAttrs {
-    id: string;
+        id: string;
         type: number;
         libraryname: string;
     }
@@ -116,7 +116,7 @@ XComponent组件作为一种渲染组件，可用于EGL/OpenGLES和媒体数据�
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Init", "napi_define_properties failed");
             return nullptr;
         }
-        // 方法内检查环境变量是否包含XComponent组件实例，若实例存在注册绘制相关接口
+        // 方法内检查环境变量是否包含XComponent组件实例，若实例存在则导出绘制相关接口
         PluginManager::GetInstance()->Export(env, exports);
         return exports;
     }
@@ -140,8 +140,44 @@ XComponent组件作为一种渲染组件，可用于EGL/OpenGLES和媒体数据�
     {
         napi_module_register(&nativerenderModule);
     }
-    
-    // 使用Node-API中的napi_define_properties方法，向ArkTS侧暴露drawPattern()方法，在ArkTS侧调用drawPattern()来绘制内容。
+    ```
+    ```c++
+    // 检查环境变量是否包含XComponent组件实例，若实例存在则导出绘制相关接口
+    void PluginManager::Export(napi_env env, napi_value exports)
+    {
+        // ...
+        // 获取nativeXComponent
+        OH_NativeXComponent* nativeXComponent = nullptr;
+        if (napi_unwrap(env, exportInstance, reinterpret_cast<void**>(&nativeXComponent)) != napi_ok) {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "Export: napi_unwrap fail");
+            return;
+        }
+ 
+        // 获取XComponent的id，即ArkTS侧XComponent组件构造中的id参数
+        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
+        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+        if (OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+            OH_LOG_Print(
+                LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "Export: OH_NativeXComponent_GetXComponentId fail");
+            return;
+        }
+
+        std::string id(idStr);
+        auto context = PluginManager::GetInstance();
+        if ((context != nullptr) && (nativeXComponent != nullptr)) {
+            context->SetNativeXComponent(id, nativeXComponent);
+            auto render = context->GetRender(id);
+            if (render != nullptr) {
+                // 注册回调函数
+                render->RegisterCallback(nativeXComponent);
+                // 方法内使用Node-API，导出绘制相关接口，向ArkTS侧暴露绘制相关方法
+                render->Export(env, exports);
+            }
+        }
+    }
+    ```
+    ```c++
+    // 使用Node-API中的napi_define_properties方法，向ArkTS侧暴露drawPattern()方法，在ArkTS侧调用drawPattern()来绘制内容
     void PluginRender::Export(napi_env env, napi_value exports)
     {
         // ...
@@ -1131,7 +1167,7 @@ Native侧
 
 **开发步骤**
 
-以下步骤以SURFACE类型为例，描述了如何使用`XComponent组件`在ArkTS侧传入Surfaceid，在native侧创建NativeWindow实例，然后创建`EGL/GLES`环境，实现在主页面绘制图形，并可以改变图形的颜色。
+以下步骤以SURFACE类型为例，描述了如何使用`XComponent组件`在ArkTS侧传入SurfaceId，在native侧创建NativeWindow实例，然后创建`EGL/GLES`环境，实现在主页面绘制图形，并可以改变图形的颜色。
 
 1. 在界面中定义XComponent。
    
@@ -1297,7 +1333,7 @@ Native侧
         static std::unordered_map<int64_t, OHNativeWindow *> windowMap_;
     };
     
-    // 解析从ArkTS侧传入的surfaceId
+    // 解析从ArkTS侧传入的surfaceId，此处surfaceId是一个64位int值
     int64_t ParseId(napi_env env, napi_callback_info info) {
         if ((env == nullptr) || (info == nullptr)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ParseId", "env or info is null");
@@ -1567,7 +1603,7 @@ Native侧
 ```typescript
 @Builder
 function myComponent() {
-  XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' })
+  XComponent({ id: 'xcomponentId1', type: XComponentType.SURFACE, libraryname: 'nativerender' })
     .onLoad((context) => {})
     .onDestroy(() => {})
 }

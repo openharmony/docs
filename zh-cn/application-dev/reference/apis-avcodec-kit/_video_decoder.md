@@ -5,6 +5,8 @@
 
 VideoDecoder模块提供用于视频解码的接口。
 
+对应的开发指南及样例可参考[视频解码](../../media/avcodec/video-decoding.md)。
+
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
 
 **起始版本：** 9

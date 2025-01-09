@@ -222,7 +222,9 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 
 ## 示例
 
-### 示例1
+### 示例1（基本样式用法）
+
+设置边框的宽度、颜色、边框圆角半径以及点、线样式。
 
 ```ts
 // xxx.ets
@@ -264,11 +266,12 @@ struct BorderExample {
 
 ![zh-cn_image_0000001219982705](figures/zh-cn_image_0000001219982705.gif)
 
-### 示例2
+### 示例2（边框宽度类型和边框颜色）
+
+border属性的width、radius、color属性值使用LocalizedEdgeWidths类型和LocalizedEdgeColors类型。
+
 ```ts
 // xxx.ets
-// border属性的width、radius、color属性值使用LocalizedEdgeWidths类型和LocalizedEdgeColors类型
-
 import { LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component

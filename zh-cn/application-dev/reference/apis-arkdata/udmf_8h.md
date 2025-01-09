@@ -52,6 +52,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| int [OH_UdmfRecord_AddContentForm](_u_d_m_f.md#oh_udmfrecord_addcontentform) ([OH_UdmfRecord](_u_d_m_f.md#oh_udmfrecord) \*pThis, [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*contentForm) | 增加一个内容卡片类型[OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform)的数据至统一数据记录[OH_UdmfRecord](_u_d_m_f.md#oh_udmfrecord)中。 | 
+| int [OH_UdmfRecord_GetContentForm](_u_d_m_f.md#oh_udmfrecord_getcontentform) ([OH_UdmfRecord](_u_d_m_f.md#oh_udmfrecord) \*pThis, [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*contentForm) | 从统一数据记录[OH_UdmfRecord](_u_d_m_f.md#oh_udmfrecord)中获取内容卡片类型[OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform)数据。 | 
 | [OH_UdmfData](_u_d_m_f.md#oh_udmfdata) \* [OH_UdmfData_Create](_u_d_m_f.md#oh_udmfdata_create) () | 创建统一数据对象[OH_UdmfData](_u_d_m_f.md#oh_udmfdata)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdmfData_Destroy](_u_d_m_f.md#oh_udmfdata_destroy)销毁实例对象，否则会导致内存泄漏。 | 
 | void [OH_UdmfData_Destroy](_u_d_m_f.md#oh_udmfdata_destroy) ([OH_UdmfData](_u_d_m_f.md#oh_udmfdata) \*pThis) | 销毁统一数据对象[OH_UdmfData](_u_d_m_f.md#oh_udmfdata)指针指向的实例对象。 | 
 | int [OH_UdmfData_AddRecord](_u_d_m_f.md#oh_udmfdata_addrecord) ([OH_UdmfData](_u_d_m_f.md#oh_udmfdata) \*pThis, [OH_UdmfRecord](_u_d_m_f.md#oh_udmfrecord) \*record) | 添加一个数据记录[OH_UdmfRecord](_u_d_m_f.md#oh_udmfrecord)到统一数据对象[OH_UdmfData](_u_d_m_f.md#oh_udmfdata)中。 | 

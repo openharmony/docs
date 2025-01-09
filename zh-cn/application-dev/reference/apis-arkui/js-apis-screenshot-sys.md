@@ -27,6 +27,7 @@ import { screenshot } from '@kit.ArkUI';
 | imageSize              | [Size](#size) | 否   | 表示截取图像的大小，不传值默认为全屏。                       |
 | rotation               | number        | 否   | 表示截取图像的旋转角度，当前仅支持输入值为0，默认值为0，该参数应为整数。     |
 | displayId<sup>8+</sup> | number        | 否   | 表示截取图像的显示设备[Display](js-apis-display.md#display)的ID号，该参数应为整数。 |
+| isNotificationNeeded<sup>14+</sup>| boolean        | 否   | 表示截取图像之后是否发送截屏通知，true表示发送截屏通知，false表示不发送截屏通知，默认值为true。截屏通知可以通过[captureStatusChange](js-apis-display.md#displayoncapturestatuschange12)接口监听。   |
 
 ## Size
 
@@ -57,7 +58,7 @@ save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;):
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [ScreenshotOptions](#screenshotoptions) | 是   | 该类型的参数包含screenRect、imageSize、rotation、displayId四个参数，可以分别设置这四个参数。 |
+| options  | [ScreenshotOptions](#screenshotoptions) | 是   | 要截取的图像信息。 |
 | callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | 是   | 回调函数。返回一个PixelMap对象。                                   |
 
 **错误码：**
@@ -87,7 +88,8 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
     "width": 300,
     "height": 300 },
   "rotation": 0,
-  "displayId": 0
+  "displayId": 0,
+  "isNotificationNeeded": true
 };
 try {
   screenshot.save(screenshotOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
@@ -167,7 +169,7 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [ScreenshotOptions](#screenshotoptions) | 否   | 该类型的参数包含screenRect、imageSize、rotation、displayId四个参数，可以分别设置这四个参数。 |
+| options | [ScreenshotOptions](#screenshotoptions) | 否   | 要截取的图像信息。 |
 
 **返回值：**
 
@@ -202,7 +204,8 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
     "width": 300,
     "height": 300 },
   "rotation": 0,
-  "displayId": 0
+  "displayId": 0,
+  "isNotificationNeeded": true
 };
 try {
   let promise = screenshot.save(screenshotOptions);

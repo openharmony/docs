@@ -6,6 +6,16 @@ Ability assistant（Ability助手，简称为aa），是用于启动应用和启
 
 在使用本工具前，开发者需要先获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
 
+本文中命令介绍均基于交互式命令环境。如果直接执行hdc shell [aa命令]，则需要采用""来包裹aa命令，确保命令中的传参能被正确识别。示例如下：
+
+```bash
+# 启动命令
+hdc shell "aa start -A ohos.want.action.viewData -U 'https://www.example.com'"
+
+# 应用调试/调优命令
+hdc shell "aa process -b com.example.myapplication -a EntryAbility -p perf-cmd"
+```
+
 ## aa工具命令列表
 
 | 命令 | 描述 |
@@ -34,10 +44,10 @@ aa help
 
 ```bash
 # 显示启动Ability
-aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-S] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
+aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-R] [-S] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
 
 # 隐式启动Ability。如果命令中的参数都不填，会导致启动失败。
-aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
+aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [-R] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
 ```
 
   **启动命令参数列表**
@@ -53,7 +63,6 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
   | -A | 可选参数，action。      |
   | -e | 可选参数，entity。      |
   | -t | 可选参数，type。        |
-  | -S | 可选参数，调试时是否进入应用沙箱。携带该参数代表进入，不携带代表不进入。 |
   | --pi  | 可选参数，整型类型键值对。     |
   | --pb  | 可选参数，布尔类型键值对。     |
   | --ps  | 可选参数，字符串类型键值对。    |
@@ -62,6 +71,8 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
   | --wt | 可选参数，windowTop，窗口上边距，单位px。<br>**约束：**<br>仅当2in1设备处于开发者模式下，且被启动应用采用调试签名时，该字段生效。|
   | --wh | 可选参数，windowHeight，窗口高度，单位px。<br>**约束：**<br>仅当2in1设备处于开发者模式下，且被启动应用采用调试签名时，该字段生效。|
   | --ww | 可选参数，windowWidth，窗口宽度，单位px。<br>**约束：**<br>仅当2in1设备处于开发者模式下，且被启动应用采用调试签名时，该字段生效。|
+  | -R | 可选参数，调试时是否开启多线程错误检测。携带该参数代表开启，不携带代表关闭。<br>**说明：** 从API version 14开始，支持该参数。 |
+  | -S | 可选参数，调试时是否进入应用沙箱。携带该参数代表进入，不携带代表不进入。 |
   | -D | 可选参数，调试模式。        |
   | -p | 可选参数，调优命令。命令由调用方自定义。        |
 

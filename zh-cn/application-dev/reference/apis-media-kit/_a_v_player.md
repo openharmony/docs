@@ -5,6 +5,11 @@
 
 为媒体源提供播放能力的API。
 
+开发者可根据实际的开发需求，参考对应的开发指南及样例：
+
+- [使用AVPlayer播放音频](../../media/media/using-ndk-avplayer-for-playback.md)
+- [使用AVPlayer播放视频](../../media/media/using-ndk-avplayer-for-video-playback.md)
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **起始版本：** 11
@@ -1607,7 +1612,7 @@ const char* OH_PLAYER_BITRATE_ARRAY
 **描述**
 获取比特率列表的关键字, 对应值类型是uint8_t字节数组。通过该关键字获取信息时：
 - 需要先使用 uint8_t 类型指针变量保存比特率列表，使用 size_t 类型变量保存字节数组长度。
-- 然后分配若干个 uint32_t 类型的存储空间，接收将 uint8_t 字节数组转换为 uint32_t 类型比特率整数值。可以参考[完整实例](../../media/media/using-ndk-avplayer-for-playerback.md#完整示例)中**OHAVPlayerOnInfoCallback**函数。
+- 然后分配若干个 uint32_t 类型的存储空间，接收将 uint8_t 字节数组转换为 uint32_t 类型比特率整数值。可以参考[完整实例](../../media/media/using-ndk-avplayer-for-playback.md#完整示例)中**OHAVPlayerOnInfoCallback**函数。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 

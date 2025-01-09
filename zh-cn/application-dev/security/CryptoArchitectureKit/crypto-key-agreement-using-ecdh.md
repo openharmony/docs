@@ -12,7 +12,7 @@
 
 2. 调用[cryptoFramework.createKeyAgreement](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekeyagreement)，指定字符串参数'ECC256'，创建密钥算法为ECC、密钥长度为256位的密钥协议生成器（KeyAgreement）。
 
-3. 调用[KeyAgreement.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-1)，基于传入的私钥（KeyPair.priKey）与公钥（KeyPair.pubKey）进行密钥协商，返回共享秘密。
+3. 调用[KeyAgreement.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-1)，基于传入的私钥（KeyPair.priKey）与公钥（KeyPair.pubKey）进行密钥协商，返回共享秘钥。
 
 - 以使用await方式，完成密钥协商为例：
 
@@ -34,7 +34,7 @@
     // 使用A的私钥和B的公钥进行密钥协商
     let secret2 = await eccKeyAgreement.generateSecret(keyPairA.priKey, keyPairB.pubKey);
     // 两种协商的结果应当一致
-    if (secret1.data.toString() == secret2.data.toString()) {
+    if (secret1.data.toString() === secret2.data.toString()) {
       console.info('ecdh success');
       console.info('ecdh output is ' + secret1.data);
     } else {
@@ -63,7 +63,7 @@
     // 使用A的私钥和B的公钥进行密钥协商
     let secret2 = eccKeyAgreement.generateSecretSync(keyPairA.priKey, keyPairB.pubKey);
     // 两种协商的结果应当一致
-    if (secret1.data.toString() == secret2.data.toString()) {
+    if (secret1.data.toString() === secret2.data.toString()) {
       console.info('ecdh success');
       console.info('ecdh output is ' + secret1.data);
     } else {

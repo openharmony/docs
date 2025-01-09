@@ -33,6 +33,8 @@ restoreId(value: number)
 
 ## 示例
 
+该示例通过restoreId设置了List组件的分布式迁移标识。
+
 ```ts
 // xxx.ets
 @Entry

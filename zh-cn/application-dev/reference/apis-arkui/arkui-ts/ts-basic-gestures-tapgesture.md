@@ -48,6 +48,8 @@ TapGesture(value?: TapGestureParameters)
 
 ## 示例
 
+该示例通过TapGesture实现了双击手势的识别。
+
 ```ts
 // xxx.ets
 @Entry

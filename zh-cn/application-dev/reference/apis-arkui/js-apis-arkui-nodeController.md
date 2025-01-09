@@ -73,6 +73,98 @@ aboutToDisappear?(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+### onAttach<sup>16+</sup>
+
+onAttach?(): void
+
+当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)挂载至主节点树时触发此回调。
+
+> **说明：**
+>
+> 回调时机参考[onAttach](arkui-ts/ts-universal-events-show-hide.md#onattach)。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onDetach<sup>16+</sup>
+
+onDetach?(): void
+
+当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)从主节点树卸载时触发此回调。
+
+> **说明：**
+>
+> 回调时机参考[onDetach](arkui-ts/ts-universal-events-show-hide.md#ondetach)。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onWillBind<sup>16+</sup>
+
+onWillBind?(containerId: number): void
+
+当NodeController与[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)即将绑定前触发此回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                      | 必填 | 说明                                                                                                          |
+| ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
+| containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)即将绑定。|
+
+### onWillUnbind<sup>16+</sup>
+
+onWillUnbind?(containerId: number): void
+
+当NodeController与[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)即将解绑前触发此回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                      | 必填 | 说明                                                                                                          |
+| ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
+| containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)即将解绑。|
+
+### onBind<sup>16+</sup>
+
+onBind?(containerId: number): void
+
+当NodeController与[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)绑定后触发此回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                      | 必填 | 说明                                                                                                          |
+| ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
+| containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)绑定完成。|
+
+### onUnbind<sup>16+</sup>
+
+onUnbind?(containerId: number): void
+
+当NodeController与[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)解绑后触发此回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                      | 必填 | 说明                                                                                                          |
+| ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
+| containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)解绑完成。|
+
 ### aboutToResize
 
 aboutToResize?(size: Size): void
@@ -120,7 +212,13 @@ rebuild(): void
 >
 > 监听回调等UI上下文不明确时，可以通过[UIContext](./js-apis-arkui-UIContext.md)的[runScopedTask](./js-apis-arkui-UIContext.md#runscopedtask)方法明确调用时的UI上下文。
 
-### 示例
+## 示例
+
+### 示例1（添加节点布局、Touch、挂载和卸载时的生命周期回调）
+
+该示例通过aboutToResize、onTouchEvent，实现了NodeContainer节点布局、收到Touch事件时的生命周期回调功能。
+
+并通过aboutToAppear、aboutToDisappear接口，实现了NodeContainer节点挂载、卸载时的生命周期回调功能。
 
 通过NodeController挂载BuilderNode节点。
 
@@ -187,3 +285,97 @@ struct Index {
 }
 ```
 ![patternlock](figures/node_controller.jpg)
+
+### 示例2（添加节点上下树和绑定解绑前后的生命周期回调）
+
+该示例通过onAttach、onDetach接口，实现了NodeContainer节点上下主节点树的生命周期回调功能。
+
+并通过onWillBind、onWillUnbind、onBind、onUnbind接口，实现了NodeContainer节点绑定和解绑前后的生命周期回调功能。
+
+```ts
+import { NodeController, BuilderNode, Size, FrameNode, UIContext } from '@kit.ArkUI';
+class Params {
+  text: string = "this is a text"
+}
+
+@Builder
+function buttonBuilder(params: Params) {
+  Column() {
+    Button(params.text)
+      .fontSize(20)
+      .borderRadius(8)
+      .borderWidth(2)
+      .backgroundColor(Color.Grey)
+  }
+}
+
+class MyNodeController extends NodeController {
+  private buttonNode: BuilderNode<[Params]> | null = null;
+  private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(buttonBuilder);
+
+  makeNode(uiContext: UIContext): FrameNode {
+    if (this.buttonNode == null) {
+      this.buttonNode = new BuilderNode(uiContext);
+      this.buttonNode.build(this.wrapBuilder, { text: "This is a Button" })
+    }
+    return this.buttonNode!.getFrameNode()!;
+  }
+
+  onAttach(): void {
+    console.log("myButton on attach");
+  }
+
+  onDetach(): void {
+    console.log("myButton on detach");
+  }
+
+  onWillBind(containerId: number): void{
+    console.log("myButton on WillBind" + containerId);
+  }
+
+  onWillUnbind(containerId: number): void{
+    console.log("myButton on WillUnbind" + containerId);
+  }
+
+  onBind(containerId: number): void {
+    console.log("myButton on bind: " + containerId);
+  }
+
+  onUnbind(containerId: number): void {
+    console.log("myButton on unbind: " + containerId);
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State buttonShow: boolean = true
+  @State buttonIndex: number = 0
+  private buttonController: MyNodeController = new MyNodeController();
+  private buttonNull: null = null;
+  private buttonControllerArray: Array < MyNodeController | null > = [this.buttonController,this.buttonNull]
+
+  build() {
+    Column() {
+      Row(){
+        Button("Bind/Unbind")
+          .onClick(() => {
+            this.buttonIndex++;
+          }).margin(5)
+        Button("onAttach/onDetach")
+          .onClick(() => {
+            this.buttonShow = !this.buttonShow
+          }).margin(5)
+      }
+      if(this.buttonShow){
+        NodeContainer(this.buttonControllerArray[this.buttonIndex % this.buttonControllerArray.length])
+      }
+    }
+    .padding({ left: 35, right: 35})
+    .width("100%")
+    .height("100%")
+  }
+}
+```
+
+![patternlock2](figures/node_controller2.jpg)

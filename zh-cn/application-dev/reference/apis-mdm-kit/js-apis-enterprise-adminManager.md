@@ -110,7 +110,7 @@ let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGE
 
 try {
   adminManager.subscribeManagedEventSync(wantTemp, events);
-  console.info('Succeeded in subscribe managed event.');
+  console.info('Succeeded in subscribing managed event.');
 } catch (err) {
   console.error(`Failed to subscribe managed event. Code: ${err.code}, message: ${err.message}`);
 }
@@ -160,9 +160,173 @@ let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGE
 
 try {
   adminManager.unsubscribeManagedEventSync(wantTemp, events);
-  console.info('Succeeded in subscribe managed event.');
+  console.info('Succeeded in unsubscribing managed event.');
 } catch (err) {
-  console.error(`Failed to subscribe managed event. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to unsubscribe managed event. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## adminManager.setDelegatedPolicies<sup>14+</sup>
+
+setDelegatedPolicies(admin: Want, bundleName: string, policies: Array&lt;string&gt;): void;
+
+委托其他应用来设置设备的管控策略。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_DELEGATED_POLICY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**模型约束**: 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名        | 类型                                                    | 必填 | 说明               |
+| ------------- | ------------------------------------------------------- | ---- | ------------------ |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。     |
+| bundleName | string                   | 是   | 被委托应用包名。被委托应用仅支持enterprise_mdm和enterprise_normal两种类型，应用的分发类型具体请参考[指南](https://gitee.com/nezha-father/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md)。 |
+| policies |  Array&lt;string&gt;                   | 是   | [委托策略列表](#可委托策略列表)。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device.                       |
+| 9200009  | Failed to grant the permission to the application.                       |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let admin: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+let policies: Array<string> = ["disabled_hdc"];
+
+try {
+  adminManager.setDelegatedPolicies(admin, "com.example.enterprise.xxx", policies);
+  console.info('Succeeded in setting delegated policies.');
+} catch (err) {
+  console.error(`Failed to set delegated policies. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## adminManager.getDelegatedPolicies<sup>14+</sup>
+
+getDelegatedPolicies(admin: Want, bundleName: string): Array&lt;string&gt;;
+
+查询被委托应用可访问的策略列表。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_DELEGATED_POLICY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**模型约束**: 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名        | 类型                                                    | 必填 | 说明               |
+| ------------- | ------------------------------------------------------- | ---- | ------------------ |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。     |
+| bundleName | string                   | 是   | 被委托应用包名。被委托应用仅支持enterprise_mdm和enterprise_normal两种类型，应用的分发类型具体请参考[指南](https://gitee.com/nezha-father/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md)。 |
+
+
+**返回值：**
+
+| 类型                   | 说明                      |
+| --------------------- | ------------------------- |
+| Array&lt;string&gt; | 委托策略列表。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device.                       |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let admin: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+
+try {
+  let policies: Array<string> = adminManager.getDelegatedPolicies(admin, "com.example.enterprise.xxx");
+  console.info(`Succeeded in getting delegated policies.${JSON.stringify(policies)}`);
+} catch (err) {
+  console.error(`Failed to get delegated policies. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## adminManager.getDelegatedBundleNames<sup>14+</sup>
+
+getDelegatedBundleNames(admin: Want, policy: string): Array&lt;string&gt;;
+
+查询可以访问某个委托策略的被委托应用，输出被委托应用列表。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_DELEGATED_POLICY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**模型约束**: 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名        | 类型                                                    | 必填 | 说明               |
+| ------------- | ------------------------------------------------------- | ---- | ------------------ |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。     |
+| policy | string                   | 是   | 委托策略。 |
+
+
+**返回值：**
+
+| 类型                   | 说明                      |
+| --------------------- | ------------------------- |
+| Array&lt;string&gt; | 被委托应用列表。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device.                       |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let admin: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+
+try {
+  let bundleNames: Array<string> = adminManager.getDelegatedBundleNames(admin, "disabled_hdc");
+  console.info(`Succeeded in getting delegated bundles.${JSON.stringify(bundleNames)}`);
+} catch (err) {
+  console.error(`Failed to get delegated bundles. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -181,3 +345,41 @@ try {
 | MANAGED_EVENT_APP_START      | 2    | 应用启动事件。 |
 | MANAGED_EVENT_APP_STOP       | 3    | 应用停止事件。 |
 | MANAGED_EVENT_SYSTEM_UPDATE  | 4    | 系统更新事件。 |
+
+## 附录
+### 可委托策略列表
+| 策略名称 | 对应接口                                                     | 说明 |
+| --- | --- | --- |
+|disallow_add_local_account| [accountManager.disallowOsAccountAddition](js-apis-enterprise-accountManager.md#accountmanagerdisallowosaccountaddition)<br>[accountManager.isOsAccountAdditionDisallowed](js-apis-enterprise-accountManager.md#accountmanagerisosaccountadditiondisallowed) | 不传accountId参数，禁止设备创建本地用户。<br>不传accountId参数，查询是否禁止设备创建本地用户。|
+|disallow_add_os_account_by_user| [accountManager.disallowOsAccountAddition](js-apis-enterprise-accountManager.md#accountmanagerdisallowosaccountaddition)<br>[accountManager.isOsAccountAdditionDisallowed](js-apis-enterprise-accountManager.md#accountmanagerisosaccountadditiondisallowed) | 需传入accountId参数，禁止指定用户添加账号。<br>需传入accountId参数，查询是否禁止指定用户添加账号。|
+|disallow_running_bundles|[applicationManager.addDisallowedRunningBundlesSync](js-apis-enterprise-applicationManager.md#applicationmanageradddisallowedrunningbundlessync)<br>[applicationManager.removeDisallowedRunningBundlesSync](js-apis-enterprise-applicationManager.md#applicationmanagerremovedisallowedrunningbundlessync)<br>[applicationManager.getDisallowedRunningBundlesSync](js-apis-enterprise-applicationManager.md#applicationmanagergetdisallowedrunningbundlessync)|添加应用至应用运行黑名单，添加至黑名单的应用不允许在当前/指定用户下运行。<br>从应用运行黑名单中移除应用。<br>获取当前/指定用户下的应用运行黑名单。 |
+|manage_auto_start_apps|[applicationManager.addAutoStartApps](js-apis-enterprise-applicationManager.md#applicationmanageraddautostartapps)<br>[applicationManager.removeAutoStartApps](js-apis-enterprise-applicationManager.md#applicationmanagerremoveautostartapps)<br>[applicationManager.getAutoStartApps](js-apis-enterprise-applicationManager.md#applicationmanagergetautostartapps)|添加开机自启动应用名单。该能力当前仅支持2in1设备。<br>从开机自启动应用名单中移除应用。该能力当前仅支持2in1设备。<br>查询开机自启动应用名单。该能力当前仅支持2in1设备。
+|allowed_bluetooth_devices|[bluetoothManager.addAllowedBluetoothDevices](js-apis-enterprise-bluetoothManager.md#bluetoothmanageraddallowedbluetoothdevices)<br>[bluetoothManager.removeAllowedBluetoothDevices](js-apis-enterprise-bluetoothManager.md#bluetoothmanagerremoveallowedbluetoothdevices)<br>[bluetoothManager.getAllowedBluetoothDevices](js-apis-enterprise-bluetoothManager.md#bluetoothmanagergetallowedbluetoothdevices)|添加蓝牙设备可用白名单。<br>从蓝牙设备可用白名单中移除。<br>查询蓝牙设备可用白名单。
+|set_browser_policies|[browser.setPolicySync](js-apis-enterprise-browser.md#browsersetpolicysync)<br>[browser.getPoliciesSync](js-apis-enterprise-browser.md#browsergetpoliciessync)|为指定的浏览器设置浏览器子策略。<br>获取指定浏览器的策略。
+|allowed_install_bundles|[bundleManager.addAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageraddallowedinstallbundlessync)<br>[bundleManager.removeAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremoveallowedinstallbundlessync)<br>[bundleManager.getAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetallowedinstallbundlessync)|添加应用至包安装白名单，添加至白名单的应用允许在当前/指定用户下安装，否则不允许安装。<br>从包安装白名单中移除应用。<br>获取当前/指定用户下的包安装白名单。|
+|disallowed_install_bundles|[bundleManager.addDisallowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageradddisallowedinstallbundlessync)<br>[bundleManager.removeDisallowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremoveallowedinstallbundlessync)<br>[bundleManager.getDisallowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetdisallowedinstallbundlessync)|添加应用至包安装黑名单，添加至黑名单的应用不允许在当前/指定用户下安装。<br>从包安装黑名单中移除应用。<br>获取当前/指定用户下的包安装黑名单。|
+|disallowed_uninstall_bundles|[bundleManager.addDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageradddisalloweduninstallbundlessync)<br>[bundleManager.removeDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremovedisalloweduninstallbundlessync)<br>[bundleManager.getDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetdisalloweduninstallbundlessync)|添添加应用至包卸载黑名单，添加至黑名单的应用不允许在当前/指定用户下卸载。<br>从包卸载黑名单中移除应用。<br>获取当前/指定用户下包卸载黑名单接口。|
+|get_device_info|[deviceInfo.getDeviceInfo](js-apis-enterprise-deviceInfo#deviceinfogetdeviceinfo)|获取设备信息。|
+|location_policy|[locationManager.setLocationPolicy](js-apis-enterprise-locationManager.md#locationmanagersetlocationpolicy)<br>[locationManager.getLocationPolicy](js-apis-enterprise-locationManager.md#locationmanagergetlocationpolicy)|设置位置服务管理策略。<br>查询位置服务策略。|
+|disabled_network_interface|[networkManager.setNetworkInterfaceDisabledSync](js-apis-enterprise-networkManager.md#networkmanagersetnetworkinterfacedisabledsync)<br>[networkManager.isNetworkInterfaceDisabledSync](js-apis-enterprise-networkManager.md#networkmanagerisnetworkinterfacedisabledsync)|禁止设备使用指定网络。<br>查询指定网络接口是否被禁用。|
+|global_proxy|[networkManager.setGlobalProxySync](js-apis-enterprise-networkManager.md#networkmanagersetglobalproxysync)<br>[networkManager.getGlobalProxySync](js-apis-enterprise-networkManager.md#networkmanagergetglobalproxysync)|设置网络全局代理。<br>获取网络全局代理。|
+|disabled_bluetooth|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入bluetooth，禁用/启用蓝牙能力。<br>feature传入bluetooth，查询是否禁用蓝牙能力。|
+|disallow_modify_datetime|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入modifyDateTime，禁用/启用设置系统时间能力。<br>feature传入modifyDateTime，查询是否禁用修改系统时间能力。|
+|disabled_printer|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入printer，禁用/启用打印能力。<br>feature传入printer，查询是否禁用打印能力。|
+|disabled_hdc|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入hdc，禁用/启用HDC能力。<br>feature传入hdc，查询是否禁用HDC能力。|
+|disable_microphone|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入microphone，禁用/启用麦克风能力。<br>feature传入microphone，查询是否禁用麦克风能力。|
+|fingerprint_auth|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)<br>[restrictions.setDisallowedPolicyForAccount](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicyforaccount14)<br>[restrictions.getDisallowedPolicyForAccount](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicyforaccount14)|feature传入fingerprint，禁用/启用指纹认证能力。<br>feature传入fingerprint，查询是否禁用指纹认证能力。<br>feature传入fingerprint，禁用/启用指定用户的指纹认证能力。<br>feature传入fingerprint，查询是否禁用指定用户的指纹认证能力。|
+|disable_usb|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入usb，禁用/启用USB能力。<br>feature传入usb，查询是否禁用USB能力。|
+|disable_wifi|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入wifi，禁用/启用WIFI能力。<br>feature传入wifi，查询是否禁用WIFI能力。|
+|disallowed_tethering|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入tethering，禁用/启用网络共享能力。<br>feature传入tethering，查询是否禁用网络共享能力。|
+|inactive_user_freeze|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入inactiveUserFreeze，禁用/启用非活跃用户运行能力。<br>feature传入inactiveUserFreeze，查询是否禁用非活跃用户运行能力。|
+|snapshot_skip|[restrictions.addDisallowedListForAccount](js-apis-enterprise-restrictions.md#restrictionsadddisallowedlistforaccount14)<br>[restrictions.removeDisallowedListForAccount](js-apis-enterprise-restrictions.md#restrictionsremovedisallowedlistforaccount14)<br>[restrictions.getDisallowedListForAccount](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedlistforaccount14)|feature传入snapshotSkip，禁用屏幕快照能力的应用名单。<br>feature传入snapshotSkip，从禁用屏幕快照能力的应用名单中移除。<br>feature传入snapshotSkip，查询禁用屏幕快照能力的应用名单。|
+|password_policy|[securityManager.setPasswordPolicy](js-apis-enterprise-securityManager.md#securitymanagersetpasswordpolicy12)<br>[securityManager.getPasswordPolicy](js-apis-enterprise-securityManager.md#securitymanagergetpasswordpolicy12)|设置设备口令策略。<br>获取设备口令策略|
+|clipboard_policy|[securityManager.setAppClipboardPolicy](js-apis-enterprise-securityManager.md#securitymanagersetappclipboardpolicy12)<br>[securityManager.getAppClipboardPolicy](js-apis-enterprise-securityManager.md#securitymanagergetappclipboardpolicy12)|设置设备剪贴板策略。<br>获取设备剪贴板策略。|
+|watermark_image_policy|[securityManager.setWatermarkImage](js-apis-enterprise-securityManager.md#securitymanagersetwatermarkimage14)<br>[securityManager.cancelWatermarkImage](js-apis-enterprise-securityManager.md#securitymanagercancelwatermarkimage14)|设置水印策略，当前仅支持2in1使用。<br>取消水印策略，当前仅支持2in1使用。|
+|ntp_server|[systemManager.setNTPServer](js-apis-enterprise-systemManager.md#systemmanagersetntpserver)<br>[systemManager.getNTPServer](js-apis-enterprise-systemManager.md#systemmanagergetntpserver)|设置NTP服务器的策略。<br>获取NTP服务器信息。|
+|set_update_policy|[systemManager.setOtaUpdatePolicy](js-apis-enterprise-systemManager.md#systemmanagersetotaupdatepolicy)<br>[systemManager.getOtaUpdatePolicy](js-apis-enterprise-systemManager.md#systemmanagergetotaupdatepolicy)|设置升级策略。<br>查询升级策略。|
+|notify_upgrade_packages|[systemManager.notifyUpdatePackages](js-apis-enterprise-systemManager.md#systemmanagernotifyupdatepackages)<br>[systemManager.getUpdateResult](js-apis-enterprise-systemManager.md#systemmanagergetupdateresult)|通知系统更新包信息。<br>获取系统更新结果。|
+|allowed_usb_devices|[usbManager.addAllowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanageraddallowedusbdevices)<br>[usbManager.removeAllowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanagerremoveallowedusbdevices)<br>[usbManager.getAllowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanagergetallowedusbdevices)|添加USB设备可用白名单。<br>移除USB设备可用白名单。<br>获取USB设备可用白名单。|
+|usb_read_only|[usbManager.setUsbStorageDeviceAccessPolicy](js-apis-enterprise-usbManager.md#usbmanagersetusbstoragedeviceaccesspolicy)<br>[usbManager.getUsbStorageDeviceAccessPolicy](js-apis-enterprise-usbManager.md#usbmanagergetusbstoragedeviceaccesspolicy)|设置USB存储设备访问策略。<br>获取USB存储设备访问策略。|
+|disallowed_usb_devices|[usbManager.addDisallowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanageradddisallowedusbdevices14)<br>[usbManager.removeDisallowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanagerremovedisallowedusbdevices14)<br>[usbManager.getDisallowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanagergetdisallowedusbdevices14)|添加禁止使用的USB设备类型。<br>移除禁止使用的USB设备类型。<br>获取禁止使用的USB设备类型。|

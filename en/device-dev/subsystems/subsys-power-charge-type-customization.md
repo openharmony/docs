@@ -8,6 +8,7 @@ By default, OpenHarmony supports multiple charging types. You can charge devices
 
 ### Constraints
 
+ 
 The configuration path for battery level customization is subject to the [configuration policy](https://gitee.com/openharmony/customization_config_policy). In this development guide, `/vendor` is used as an example of the configuration path. During actual development, you need to modify the customization path based on the product configuration policy.
 
 ## How to Develop
@@ -36,7 +37,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     ├── battery_config.json
     ```
 
-3. Write the custom `battery_config.json` file by referring to the `battery_config.json` file in the default folder of charging type configuration. For example:
+3. Write the custom `battery_config.json` file by referring to the [battery_config.json](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/battery_config.json) file in the default folder of charging type configuration. For example:
 
     ```shell
     {
@@ -48,7 +49,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     }
     ``` 
 
-4. Write the `BUILD.gn` file by referring to the `BUILD.gn` in the default folder of charging type configuration to pack the `battery_config.json` file to the `//vendor/etc/battery` directory. The configuration is as follows:
+4. Write the `BUILD.gn` file by referring to the [BUILD.gn](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/BUILD.gn) file in the default folder of charging type configuration to pack the `battery_config.json` file to the `//vendor/etc/battery` directory. The configuration is as follows:
 
     ```shell
     import("//build/ohos.gni")                # Reference build/ohos.gni.
@@ -103,7 +104,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     cd /data/service/el0/battery/
     ```
 
-3. Modify the charging status, simulate reporting of the charging status, and check whether the displayed animation is correct. The following uses the default charging type and animation mapping as an example.
+3. Modify the charging status, simulate reporting of the battery power change, and check whether the returned battery level is correct. The following uses the default charging type as an example.
     1. Modify the charging type.
     ```
     echo 1 > charger_type
@@ -141,6 +142,8 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 ## Reference
 During development, you can refer to the [default charging type configuration](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/battery_config.json), as shown below:
 
+ 
+
     ```shell
     {
         "charger": {
@@ -151,4 +154,4 @@ During development, you can refer to the [default charging type configuration](h
     }
     ``` 
 
-Packing path: `/system/etc/battery`
+Packing path: /system/etc/battery

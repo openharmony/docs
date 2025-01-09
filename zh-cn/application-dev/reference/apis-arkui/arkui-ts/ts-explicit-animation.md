@@ -21,12 +21,12 @@ animateTo(value: AnimateParam, event: () => void): void
 
 > **说明：**
 > - 在duration为0的动画闭包函数中改变属性，以实现停止该属性动画的效果。
-> - 如果需要在组件出现时创建动画，可以参考[示例1](#示例1)，在onAppear中实现动画的创建。
+> - 如果需要在组件出现时创建动画，可以参考[示例1](#示例1设置动画在onappear中执行)，在onAppear中实现动画的创建。
 > - 不推荐在aboutToAppear、aboutToDisappear中调用动画。
 > - 如果在[aboutToAppear](./ts-custom-component-lifecycle.md#abouttoappear)中调用动画，自定义组件内的build还未执行，内部组件还未创建，动画时机过早，动画属性没有初值无法对组件产生动画。
 > - 执行[aboutToDisappear](./ts-custom-component-lifecycle.md#abouttodisappear)时，组件即将销毁，不能在aboutToDisappear里面做动画。
 > - 也可以使用[组件内转场](./ts-transition-animation-component.md)，在组件出现和消失时做动画。
-> - 组件内转场不支持的属性，可以参考[示例2](#示例2)，使用animationTo实现组件消失动画效果。
+> - 组件内转场不支持的属性，可以参考[示例2](#示例2动画执行结束后组件消失)，使用animateTo实现组件消失动画效果。
 
 **参数：**
 | 参数    | 类型                                | 是否必填 | 描述                                    |
@@ -77,13 +77,16 @@ animateTo(value: AnimateParam, event: () => void): void
 | max | number | 期望的最大帧率。 |
 | expected | number | 期望的最优帧率。 |
 
-## 示例1
+## 示例
+
+### 示例1（设置动画在onAppear中执行）
 
 > **说明：**
 > 
 > 直接使用animateTo可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[animateTo](../js-apis-arkui-UIContext.md#animateto)调用绑定实例的animateTo。
 
-在组件的onAppear中执行动画。
+该示例主要演示如何在组件的onAppear中执行动画。
+
 ```ts
 // xxx.ets
 @Entry
@@ -159,9 +162,10 @@ struct AnimateToExample {
 
 ![animation1](figures/animation1.gif)
 
-## 示例2
+### 示例2（动画执行结束后组件消失）
 
-动画执行完后组件消失。
+该示例主要演示如何实现在动画执行结束后组件消失。
+
 ```ts
 // xxx.ets
 @Entry

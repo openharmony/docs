@@ -25,6 +25,7 @@ Promise是JavaScript中用来处理异步操作的对象，Promise有pending（�
 | OH_JSVM_CreatePromise        | 创建一个延迟对象和一个JavaScript promise|
 | OH_JSVM_ResolveDeferred      | 通过与之关联的延迟对象来解析JavaScript promise|
 | OH_JSVM_RejectDeferred       | 通过与之关联的延迟对象来拒绝JavaScript Promise|
+| OH_JSVM_PromiseRegisterHandler | 为 Promise 创建兑现或拒绝后的回调 |
 
 ## 使用示例
 
@@ -180,4 +181,101 @@ hilog.info(0x0000, 'JSVM', 'ResolveRejectDeferred: %{public}s', result);
 let rejectScript: string = `resolveRejectDeferred('success','fail', false);`;
 let rejectResult = napitest.runJsVm(rejectScript);
 hilog.info(0x0000, 'JSVM', 'ResolveRejectDeferred: %{public}s', rejectResult);
+```
+
+## OH_JSVM_PromiseRegisterHandler
+
+用于设置 Promise 解析或拒绝后的回调，效果等价于调用原生的 `Promise.then()` 或 `Promise.catch()`
+
+cpp 部分代码
+```
+static int PromiseRegisterHandler(JSVM_VM vm, JSVM_Env env) {
+    const char *defineFunction = R"JS(
+        var x1 = 0;
+        var x2 = 0;
+        function f1(x) {
+            x1 = x;
+            return x + 1;
+        }
+        function f2(x) {
+            x2 = x;
+            return x + 1;
+        }
+    )JS";
+
+    const char *init = R"JS(
+        x1 = 0;
+        x2 = 0;
+    )JS";
+
+    JSVM_Script script;
+    JSVM_Value jsSrc;
+    JSVM_Value result;
+
+    // 定义 JS 函数 f1 和 f2
+    CHECK_RET(OH_JSVM_CreateStringUtf8(env, defineFunction, JSVM_AUTO_LENGTH, &jsSrc));
+    CHECK_RET(OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script));
+    CHECK_RET(OH_JSVM_RunScript(env, script, &result));
+
+    // 初始化 x1， x2 为 0
+    CHECK_RET(OH_JSVM_CreateStringUtf8(env, init, JSVM_AUTO_LENGTH, &jsSrc));
+    CHECK_RET(OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script));
+    CHECK_RET(OH_JSVM_RunScript(env, script, &result));
+
+    // 获取函数 f1 和 f2
+    JSVM_Value global;
+    CHECK_RET(OH_JSVM_GetGlobal(env, &global));
+    JSVM_Value f1;
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "f1", &f1));
+    JSVM_Value f2;
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "f2", &f2));
+
+    // 创建 Promise
+    JSVM_Value promise;
+    JSVM_Deferred deferred;
+    CHECK_RET(OH_JSVM_CreatePromise(env, &deferred, &promise));
+    // 为 promise 注册回调函数，并将 then 调用的结果（新的 Promise）赋值给 promise1
+    JSVM_Value promise1;
+    CHECK_RET(OH_JSVM_PromiseRegisterHandler(env, promise, f1, nullptr, &promise1));
+    // 为 promise1 注册回调函数
+    CHECK_RET(OH_JSVM_PromiseRegisterHandler(env, promise1, f2, nullptr, nullptr));
+
+    // 获取 promise 解析前 x1 和 x2 的值
+    JSVM_Value x1;
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "x1", &x1));
+    int32_t x1Int;
+    CHECK_RET(OH_JSVM_GetValueInt32(env, x1, &x1Int));
+    JSVM_Value x2;
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "x2", &x2));
+    int32_t x2Int;
+    CHECK_RET(OH_JSVM_GetValueInt32(env, x2, &x2Int));
+    OH_LOG_INFO(LOG_APP, "Before promise resolved, x1: %{public}d, x2: %{public}d", x1Int, x2Int);
+
+    // 解析 promise
+    JSVM_Value resolveValue;
+    CHECK_RET(OH_JSVM_CreateInt32(env, 2, &resolveValue));
+    OH_JSVM_ResolveDeferred(env, deferred, resolveValue);
+    deferred = nullptr;
+
+    // 获取 promise 解析后 x1 和 x2 的值
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "x1", &x1));
+    CHECK_RET(OH_JSVM_GetValueInt32(env, x1, &x1Int));
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "x2", &x2));
+    CHECK_RET(OH_JSVM_GetValueInt32(env, x2, &x2Int));
+    OH_LOG_INFO(LOG_APP, "After promise resolved, x1: %{public}d, x2: %{public}d", x1Int, x2Int);
+
+    return 0;
+}
+
+static void RunDemo(JSVM_VM vm, JSVM_Env env) {
+    if (PromiseRegisterHandler(vm, env) != 0) {
+        OH_LOG_INFO(LOG_APP, "Run PromiseRegisterHandler failed");
+    }
+}
+```
+
+预期结果
+```
+Before promise resolved, x1: 0, x2: 0
+After promise resolved, x1: 2, x2: 3
 ```

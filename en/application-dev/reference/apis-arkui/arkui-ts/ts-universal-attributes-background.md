@@ -25,7 +25,7 @@ Sets the background color of the component.
 
 >  **NOTE**
 >
->  The custom background takes some time to render, during which it cannot respond to events, or be dynamically updated. This attribute cannot be nested or be previewed in the previewer.
+>  The custom background takes some time to render, during which it cannot respond to events, or be dynamically updated. This attribute cannot be nested or be previewed in DevEco Studio Previewer.
 
 ## backgroundColor
 
@@ -47,7 +47,7 @@ Sets the background color of the component.
 
 >  **NOTE**
 >
->  If the background color is specified by inactiveColor in [backgroundBlurStyle] (#backgroundblurstyle9), you are advised not to set the background color by using backgroundColor.
+>  If the background color is specified through **inactiveColor** in [backgroundBlurStyle](#backgroundblurstyle9), avoid setting the background color again using **backgroundColor**.
 
 ## backgroundImage
 
@@ -147,7 +147,7 @@ Defines the blur style to apply between the background and content of a componen
 
 >  **NOTE**
 >
->  If the background color is specified through **inactiveColor** in **backgroundBlurStyle**, avoid setting the background color again using [backgroundColor] (#backgroundcolor).
+>  If the background color is specified through **inactiveColor** in **backgroundBlurStyle**, avoid setting the background color again using [backgroundColor](#backgroundcolor).
 
 ## backdropBlur
 
@@ -203,8 +203,8 @@ Describes the background effect.
 | color        | [ResourceColor](ts-types.md#resourcecolor)         |   No  |   Color.<br>Default value: transparent |
 | adaptiveColor | [AdaptiveColor](ts-universal-attributes-foreground-blur-style.md#adaptivecolor10) |   No | Adaptive color mode used for the background blur effect.<br>Default value: **DEFAULT** When set to **AVERAGE**, the adaptive color mode takes effect only when the color has transparency.  |
 | blurOptions  | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) |   No  |   Grayscale blur.<br>Default value: **[0, 0]** |
-| policy<sup>13+</sup>    | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | No   | Blur activation policy.<br> Default value: **BlurStyleActivePolicy.ALWAYS_ACTIVE**|
-| inactiveColor<sup>13+</sup>  | [ResourceColor](ts-types.md#resourcecolor)  | No   | Background color of the components within the window after the window loses focus (in which case, the blur effect on the components within the window is removed).|
+| policy<sup>14+</sup>    | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy14) | No   | Blur activation policy.<br> Default value: **BlurStyleActivePolicy.ALWAYS_ACTIVE**|
+| inactiveColor<sup>14+</sup>  | [ResourceColor](ts-types.md#resourcecolor)  | No   | Background color of the components within the window after the window loses focus (in which case, the blur effect on the components within the window is removed).|
 
 ## backgroundImageResizable<sup>12+</sup>
 
@@ -236,8 +236,8 @@ Inherited from [BlurStyleOptions](ts-universal-attributes-foreground-blur-style.
 
 | Name| Type                                                        | Mandatory| Description                                                |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| policy<sup>13+</sup>  | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | No   | Blur activation policy.<br> Default value: **BlurStyleActivePolicy.ALWAYS_ACTIVE**|
-| inactiveColor<sup>13+</sup>  | [ResourceColor](ts-types.md#resourcecolor) | No   | Background color of the components within the window after the window loses focus (in which case, the blur effect on the components within the window is removed).|
+| policy<sup>14+</sup>  | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy14) | No   | Blur activation policy.<br> Default value: **BlurStyleActivePolicy.ALWAYS_ACTIVE**|
+| inactiveColor<sup>14+</sup>  | [ResourceColor](ts-types.md#resourcecolor) | No   | Background color of the components within the window after the window loses focus (in which case, the blur effect on the components within the window is removed).|
 
 
 ## backgroundBrightness<sup>12+</sup> 
@@ -275,7 +275,9 @@ Sets the background brightness of the component.
 
 ## Example
 
-### Example 1
+### Example 1: Setting Basic Background Styles
+
+This example shows how to configure basic background styles by setting **backgroundColor**, **backgroundImage**, **backgroundImageSize**, and **backgroundImagePosition**.
 
 ```ts
 // xxx.ets
@@ -345,7 +347,9 @@ struct BackgroundExample {
 
 ![en-us_image_0000001211898502](figures/en-us_image_0000001211898502.png)
 
-### Example 2
+### Example 2: Setting the Background Blur Style
+
+This example sets the background blur style using **backgroundBlurStyle**.
 
 ```ts
 // xxx.ets
@@ -372,7 +376,9 @@ struct BackgroundBlurStyleDemo {
 
 ![en-us_image_background_blur_style](figures/en-us_image_background_blur_style.png)
 
-### Example 3
+### Example 3: Setting the Component Background
+
+This example sets the component background using **background**.
 
 ```ts
 // xxx.ets
@@ -404,9 +410,9 @@ struct BackgroundExample {
 
 ![en-us_image_background](figures/en-us_image_background.png)
 
-### Example 4
+### Example 4: Setting Component Background Brightness
 
-This example shows how to set the background brightness for the component.
+This example sets the component background brightness using **backgroundBrightness**.
 
 ```ts
 // xxx.ets
@@ -446,8 +452,10 @@ The following figure shows how the component looks without the background bright
 
 ![en-us_image_background_brightness3](figures/en-us_image_background_brightness3.png)
 
-### Example 5
-This example uses **blur** to apply a foreground blur effect and **backdropBlur** to apply a background blur effect.
+### Example 5: Setting Blur Effects
+
+This example shows how to use **blur** to apply a foreground blur effect and **backdropBlur** to apply a background blur effect.
+
 ```ts
 // xxx.ets
 @Entry
@@ -485,10 +493,10 @@ struct BlurEffectsExample {
 
 ![textblur](figures/textblur.png)
 
-### Example 6
+### Example 6: Setting Text Blur Effects
 
-This example uses **blendMode** with **backgroundEffect** to implement the gradient effect of text and images.<br>
-If unwanted lines appear, make sure the sizes of the two owning components of **blendMode** are the same. If the issue persists, the component bounds may have fallen on the floating-point coordinates. In this case, set the universal attribute [pixelRound](ts-universal-attributes-layout-constraints.md#pixelRound11) to align the component bounds on both sides of the unwanted lines with the integer pixel coordinates.
+This example applies anamorphic blur effects on text using **blendMode** and **backgroundEffect**.<br>
+If unwanted lines appear, make sure the sizes of the two owning components of **blendMode** are the same. If the issue persists, the component bounds may have fallen on the floating-point coordinates. In this case, set the universal attribute [pixelRound](ts-universal-attributes-pixelRound.md#pixelround) to align the component bounds on both sides of the unwanted lines with the integer pixel coordinates.
 
 ```ts
 // xxx.ets
@@ -580,8 +588,9 @@ struct Index {
 
 ![testDestinationIn_lockDemo](figures/testDestinationIn_lockDemo.jpeg)
 
-### Example 7
-This example demonstrates the differences between using **backgroundEffect**, **backDropBlur**, and **backgroundBlurStyle** to apply blur effects.
+### Example 7: Comparing Blur Effects
+
+This example compares three different blur effects: **backgroundEffect**, **backDropBlur**, and **backgroundBlurStyle**.
 
 ```ts
 // xxx.ets

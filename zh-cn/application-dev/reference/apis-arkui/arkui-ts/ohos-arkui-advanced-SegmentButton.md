@@ -460,7 +460,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 | 名称 | 类型                                   | 必填 | 说明      |
 | ---- | -------------------------------------- | ---- | ---------- |
 | text | [ResourceStr](ts-types.md#resourcestr) | 是   | 按钮文本。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| accessibilityLevel<sup>13+</sup> | string | 否   | 无障碍重要性，用于控制当前组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：当前组件不可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| accessibilityLevel<sup>13+</sup> | string | 否   | 无障碍重要性，用于控制当前组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：当前组件可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 无障碍说明，用于为用户进一步说明当前组件，开发人员可为组件的该属性设置相对较详细的解释文本，帮助用户理解将要执行的操作。如帮助用户理解将要执行的操作可能导致什么后果，尤其是当这些后果无法从组件本身属性与无障碍文本中了解到时。若组件既拥有文本属性又拥有无障碍说明属性，则组件被选中时，先播报组件的文本属性，再播报无障碍说明属性的内容。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## SegmentButtonIconItem
@@ -475,7 +475,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 | iconAccessibilityText<sup>13+</sup>         | [ResourceStr](ts-types.md#resourcestr) | 否   | 未选中态按钮图标的无障碍文本。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 是   | 选中态的按钮图标。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | selectedIconAccessibilityText<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 选中态按钮图标的无障碍文本。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
-| accessibilityLevel<sup>13+</sup> | string | 否   | 无障碍重要性，用于控制当前组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：当前组件不可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
+| accessibilityLevel<sup>13+</sup> | string | 否   | 无障碍重要性，用于控制当前组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：当前组件可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 | accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 无障碍说明，用于为用户进一步说明当前组件，开发人员可为组件的该属性设置相对较详细的解释文本，帮助用户理解将要执行的操作。如帮助用户理解将要执行的操作可能导致什么后果，尤其是当这些后果无法从组件本身属性与无障碍文本中了解到时。若组件既拥有文本属性又拥有无障碍说明属性，则组件被选中时，先播报组件的文本属性，再播报无障碍说明属性的内容。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 
 >**说明：**
@@ -497,7 +497,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 | selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 是   | 选中态的按钮图标。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | selectedIconAccessibilityText<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 选中态按钮图标的无障碍文本。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 | text         | [ResourceStr](ts-types.md#resourcestr) | 是   | 按钮文本。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
-| accessibilityLevel<sup>13+</sup> | string | 否   | 无障碍重要性，用于控制当前组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：当前组件不可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
+| accessibilityLevel<sup>13+</sup> | string | 否   | 无障碍重要性，用于控制当前组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：当前组件可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 | accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 无障碍说明，用于为用户进一步说明当前组件，开发人员可为组件的该属性设置相对较详细的解释文本，帮助用户理解将要执行的操作。如帮助用户理解将要执行的操作可能导致什么后果，尤其是当这些后果无法从组件本身属性与无障碍文本中了解到时。若组件既拥有文本属性又拥有无障碍说明属性，则组件被选中时，先播报组件的文本属性，再播报无障碍说明属性的内容。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 
 >**说明：**
@@ -521,7 +521,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 | selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否   | 选中态的按钮图标。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | selectedIconAccessibilityText<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 选中态按钮图标的无障碍文本。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 | text         | [ResourceStr](ts-types.md#resourcestr) | 否   | 按钮文本。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
-| accessibilityLevel<sup>13+</sup> | string | 否   | 无障碍重要性，用于控制当前组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：当前组件不可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
+| accessibilityLevel<sup>13+</sup> | string | 否   | 无障碍重要性，用于控制当前组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：当前组件可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 | accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 无障碍说明，用于为用户进一步说明当前组件，开发人员可为组件的该属性设置相对较详细的解释文本，帮助用户理解将要执行的操作。如帮助用户理解将要执行的操作可能导致什么后果，尤其是当这些后果无法从组件本身属性与无障碍文本中了解到时。若组件既拥有文本属性又拥有无障碍说明属性，则组件被选中时，先播报组件的文本属性，再播报无障碍说明属性的内容。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 
 ### constructor
@@ -556,7 +556,7 @@ SegmentButtonItemOptions的构造参数。
 | selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否   | 选中态的按钮图标。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | selectedIconAccessibilityText<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 选中态按钮图标的无障碍文本。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 | text         | [ResourceStr](ts-types.md#resourcestr) | 否   | 按钮文本。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
-| accessibilityLevel<sup>13+</sup> | string | 否   | 无障碍重要性，用于控制当前组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：当前组件不可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
+| accessibilityLevel<sup>13+</sup> | string | 否   | 无障碍重要性，用于控制当前组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：当前组件可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 | accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 无障碍说明，用于为用户进一步说明当前组件，开发人员可为组件的该属性设置相对较详细的解释文本，帮助用户理解将要执行的操作。如帮助用户理解将要执行的操作可能导致什么后果，尤其是当这些后果无法从组件本身属性与无障碍文本中了解到时。若组件既拥有文本属性又拥有无障碍说明属性，则组件被选中时，先播报组件的文本属性，再播报无障碍说明属性的内容。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 
 ## 示例
@@ -664,15 +664,20 @@ struct Index {
     buttons: [{ text: '页签按钮1' }, { text: '页签按钮2' }, {
       text: '页签按钮3'
     }] as ItemRestriction<SegmentButtonTextItem>,
-    backgroundColor: Color.Green,
-    selectedBackgroundColor: Color.Orange,
-    textPadding: { top: 10, right: 10, bottom: 10, left: 10 },
+    backgroundColor: 'rgb(213,213,213)',
+    selectedBackgroundColor: 'rgb(112,112,112)',
+    textPadding: {
+      top: 10,
+      right: 10,
+      bottom: 10,
+      left: 10
+    },
   })
   @State singleSelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
     buttons: [{ text: '单选按钮1' }, { text: '单选按钮2' }, { text: '单选按钮3' }] as SegmentButtonItemTuple,
     multiply: false,
-    fontColor: Color.Black,
-    selectedFontColor: Color.Yellow,
+    fontColor: 'rgb(0,74,175)',
+    selectedFontColor: 'rgb(247,247,247)',
     backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State multiplySelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
@@ -692,7 +697,12 @@ struct Index {
     ] as SegmentButtonItemTuple,
     multiply: false,
     imageSize: { width: 40, height: 40 },
-    buttonPadding: { top: 6, right: 10, bottom: 6, left: 10 },
+    buttonPadding: {
+      top: 6,
+      right: 10,
+      bottom: 6,
+      left: 10
+    },
     backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State iconTextCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
@@ -717,14 +727,22 @@ struct Index {
       Column() {
         Column({ space: 20 }) {
           SegmentButton({ options: this.tabOptions, selectedIndexes: $tabSelectedIndexes })
-          SegmentButton({ options: this.singleSelectCapsuleOptions,
-            selectedIndexes: $singleSelectCapsuleSelectedIndexes })
-          SegmentButton({ options: this.multiplySelectCapsuleOptions,
-            selectedIndexes: $multiplySelectCapsuleSelectedIndexes })
-          SegmentButton({ options: this.iconCapsuleOptions,
-            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes })
-          SegmentButton({ options: this.iconTextCapsuleOptions,
-            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes })
+          SegmentButton({
+            options: this.singleSelectCapsuleOptions,
+            selectedIndexes: $singleSelectCapsuleSelectedIndexes
+          })
+          SegmentButton({
+            options: this.multiplySelectCapsuleOptions,
+            selectedIndexes: $multiplySelectCapsuleSelectedIndexes
+          })
+          SegmentButton({
+            options: this.iconCapsuleOptions,
+            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes
+          })
+          SegmentButton({
+            options: this.iconTextCapsuleOptions,
+            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes
+          })
         }.width('90%')
       }.width('100%')
     }.height('100%')

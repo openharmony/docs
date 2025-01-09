@@ -312,31 +312,31 @@ struct Child {
 ```ts
 @Entry
 @ComponentV2
-struct Parent {
+struct Index {
   @Provider() val: number = 10;
 
   build() {
     Column() {
-      AComp()
+      Parent()
     }
   }
 }
 
 @ComponentV2
-struct AComp {
+struct Parent {
   @Provider() val: number = 20;
   @Consumer("val") val2: number = 0; // 10
 
   build() {
     Column() {
       Text(`${this.val2}`)
-      A1Comp()
+      Child()
     }
   }
 }
 
 @ComponentV2
-struct A1Comp {
+struct Child {
   @Consumer() val: number = 0; // 20
 
   build() {
@@ -349,50 +349,50 @@ struct A1Comp {
 
 上面的例子中：
 
-- AComp中\@Consumer向上查找，查找到Parent中定义的` @Provider() val: number = 10`，所以初始化为10。
-- A1Comp中\@Consumer向上查找，查找到AComp中定义的`@Provider() val: number = 20`后停止，不会继续向上查找，所以初始化为20。
+- Parent中\@Consumer向上查找，查找到Index中定义的` @Provider() val: number = 10`，所以初始化为10。
+- Child中\@Consumer向上查找，查找到Parent中定义的`@Provider() val: number = 20`后停止，不会继续向上查找，所以初始化为20。
 
 ### \@Provider和\@Consumer初始化\@Param
 
-- 点击Text(\`@Consumer val: ${this.val}\`)，触发`@Consumer() val`的变化，变化同步给Parent中`@Provider() val`，从而触发子组件`Text(@Param val2: ${this.val2})`的刷新。
-- `@Consumer() val`的变化也会同步给A1Comp，触发`Text(A1Comp @Param val ${this.val})`的刷新。
+- 点击Text(\`Parent @Consumer val: ${this.val}\`)，触发`@Consumer() val`的变化，变化同步给Index中`@Provider() val`，从而触发子组件`Text(Parent @Param val2: ${this.val2})`的刷新。
+- `Parent @Consumer() val`的变化也会同步给Child，触发`Text(Child @Param val ${this.val})`的刷新。
 
 ```ts
 @Entry
 @ComponentV2
-struct Parent {
+struct Index {
   @Provider() val: number = 10;
 
   build() {
     Column() {
-      AComp({ val2: this.val })
+      Parent({ val2: this.val })
     }
   }
 }
 
 @ComponentV2
-struct AComp {
+struct Parent {
   @Consumer() val: number = 0;
   @Param val2: number = 0;
 
   build() {
     Column() {
-      Text(`AComp @Consumer val: ${this.val}`).fontSize(30).onClick(() => {
+      Text(`Parent @Consumer val: ${this.val}`).fontSize(30).onClick(() => {
         this.val++;
       })
-      Text(`AComp @Param val2: ${this.val2}`).fontSize(30)
-      A1Comp({ val: this.val })
+      Text(`Parent @Param val2: ${this.val2}`).fontSize(30)
+      Child({ val: this.val })
     }.border({ width: 2, color: Color.Green })
   }
 }
 
 @ComponentV2
-struct A1Comp {
+struct Child {
   @Param val: number = 0;
 
   build() {
     Column() {
-      Text(`A1Comp @Param val ${this.val}`).fontSize(30)
+      Text(`Child @Param val ${this.val}`).fontSize(30)
     }.border({ width: 2, color: Color.Pink })
   }
 }

@@ -45,8 +45,8 @@
 
   @Entry
   @Component
-  struct attributeDemo {
-    @State modifier: MyButtonModifier = new MyButtonModifier()
+  struct AttributeDemo {
+    @State modifier: MyButtonModifier = new MyButtonModifier();
 
     build() {
       Row() {
@@ -67,7 +67,7 @@
   ```ts
   // setAttribute.ets
   export class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
-    isDark: boolean = false
+    isDark: boolean = false;
     applyNormalAttribute(instance: ButtonAttribute): void {
       if (this.isDark) {
         instance.backgroundColor(Color.Black)
@@ -81,14 +81,15 @@
 - 定义在组件内的\@Styles可以通过this访问组件的常量和状态变量，并可以在\@Styles里通过事件来改变状态变量的值，示例如下：
 
   ```ts
+  @Entry
   @Component
   struct FancyUse {
-    @State heightValue: number = 100
+    @State heightValue: number = 100;
     @Styles fancy() {
       .height(this.heightValue)
       .backgroundColor(Color.Yellow)
       .onClick(() => {
-        this.heightValue = 200
+        this.heightValue = 200;
       })
     }
   }
@@ -116,19 +117,19 @@
 
 - 不支持在\@Styles方法内使用逻辑组件，在逻辑组件内的属性不生效。
 
-```ts
-// 错误写法
-@Styles function backgroundColorStyle() {
-  if (true) {
+  ```ts
+  // 错误写法
+  @Styles function backgroundColorStyle() {
+    if (true) {
+      .backgroundColor(Color.Red)
+    }
+  }
+
+  // 正确写法
+  @Styles function backgroundColorStyle() {
     .backgroundColor(Color.Red)
   }
-}
-
-// 正确写法
-@Styles function backgroundColorStyle() {
-  .backgroundColor(Color.Red)
-}
-```
+  ```
 
 ## 使用场景
 
@@ -147,7 +148,7 @@
 @Entry
 @Component
 struct FancyUse {
-  @State heightValue: number = 100
+  @State heightValue: number = 100;
   // 定义在组件内的@Styles封装的样式
   @Styles fancy() {
     .width(200)

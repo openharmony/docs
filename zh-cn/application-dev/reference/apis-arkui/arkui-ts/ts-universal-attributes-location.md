@@ -199,7 +199,7 @@ alignRules(alignRule: LocalizedAlignRuleOptions)
 chainMode(direction: Axis, style: ChainStyle)
 
 指定以该组件为链头所构成的链的参数，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。链头指满足[规则说明](ts-container-relativecontainer.md#规则说明)中成链规则时链的第一个组件（水平方向从左边起始，镜像语言下从右边起始；竖直方向从上边起始）。
-详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。
+详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -208,7 +208,7 @@ chainMode(direction: Axis, style: ChainStyle)
 | 参数名 | 类型                                        | 必填 | 说明                     |
 | ------ | ------------------------------------------- | ---- | ------------------------ |
 | direction  | [Axis](ts-appendix-enums.md#axis) | 是   | 链的方向。 |
-| style  | [ChainStyle](chainstyle12) | 是   | 链的样式。 |
+| style  | [ChainStyle](#chainstyle12) | 是   | 链的样式。 |
 
 ## ChainStyle<sup>12+</sup>
 
@@ -220,13 +220,32 @@ chainMode(direction: Axis, style: ChainStyle)
 
 | 名称          | 说明                                                         |
 | ------------- | ------------------------------------------------------------ |
-| SPREAD        | 组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。 |
-| SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。 |
-| PACKED        | 链内子组件无间隙。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。 |
+| SPREAD        | 组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。 |
+| SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。 |
+| PACKED        | 链内子组件无间隙。详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。 |
+
+## chainWeight<sup>14+</sup>
+
+chainWeight(chainWeight: ChainWeightOptions)
+
+对形成链的组件进行重新布局。仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型                                        | 必填 | 说明                     |
+| ------ | ------------------------------------------- | ---- | ------------------------ |
+| chainWeight  | [ChainWeightOptions](ts-types.md#chainweightoptions14对象说明) | 是   | 设置了chainWeight属性的组件与同一条链上的兄弟组件在水平或竖直方向的尺寸会按照设置的权重进行分配，分配时会忽略组件本身尺寸设置，按分配的权重自适应占满剩余空间。 |
 
 ## 示例
 
-### 示例1
+### 示例1（对齐方式和主轴方向上的布局）
+
+设置内容在元素内的对齐方式和子元素在父容器主轴方向上的布局。
+
 ```ts
 // xxx.ets
 @Entry
@@ -275,7 +294,10 @@ struct PositionExample1 {
 
 ![align.png](figures/align.png)
 
-### 示例2
+### 示例2（位置偏移）
+
+基于父组件、相对定位、锚点作出位置偏移。
+
 ```ts
 // xxx.ets
 @Entry
@@ -361,7 +383,10 @@ struct PositionExample2 {
 
 ![position.png](figures/position.png)
 
-### 示例3
+### 示例3（绝对定位和相对偏移）
+
+使用position设置绝对定位，确定子组件相对父组件的位置。使用offset设置相对偏移，组件相对原本的布局位置进行偏移。
+
 ```ts
 // xxx.ets
 @Entry
@@ -400,12 +425,12 @@ struct Example3 {
 
 ![position.png](figures/position2.jpeg)
 
-### 示例4
+### 示例4（镜像效果）
+
+通用布局属性支持镜像能力。从上到下依次通过position，offset，markAnchor实现镜像效果。黄色赋值为原本效果，粉色赋值为镜像效果。
+
 ```ts
-// xxx.ets 
-// 通用布局属性支持镜像能力
-// 从上到下依次为position，offset，markAnchor接口效果
-// 黄色赋值为原本效果，粉色赋值为镜像效果
+// xxx.ets
 import { LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component

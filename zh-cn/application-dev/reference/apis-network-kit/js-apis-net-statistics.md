@@ -791,3 +791,15 @@ statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
   console.error(JSON.stringify(err));
 });
 ```
+
+## NetBearType
+
+type NetBearType = connection.NetBearType
+
+网络类型。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| connection.NetBearType | 枚举网络类型。    |

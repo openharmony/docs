@@ -120,7 +120,7 @@ Sets the height of the panel in the **PanelType.Full** type.
 
 halfHeight(value: number | string)
 
-Sets the height of the panel in **PanelMode.Mini** mode.
+Sets the height of the panel in **PanelMode.Half** mode.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

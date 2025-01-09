@@ -1,6 +1,6 @@
 # @ohos.app.ability.abilityManager (AbilityManager)
 
-AbilityManager模块提供获取Ability相关信息和状态信息进行的能力。
+AbilityManager模块提供获取Ability相关信息和运行状态信息的能力。
 
 > **说明：**
 >
@@ -11,6 +11,23 @@ AbilityManager模块提供获取Ability相关信息和状态信息进行的能�
 ```ts
 import { abilityManager } from '@kit.AbilityKit';
 ```
+
+
+## AbilityState
+
+Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)返回Ability的状态。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称 | 值 | 说明 | 
+| -------- | -------- | -------- |
+| INITIAL | 0 | 表示ability为初始化状态。| 
+| FOCUS | 2 | 表示ability为获焦状态。 |
+| FOREGROUND | 9 | 表示ability为前台状态。  | 
+| BACKGROUND | 10 | 表示ability为后台状态。  | 
+| FOREGROUNDING | 11 | 表示ability为前台调度中状态。  | 
+| BACKGROUNDING | 12 | 表示ability为后台调度中状态。  | 
+
 
 ## getAbilityRunningInfos
 

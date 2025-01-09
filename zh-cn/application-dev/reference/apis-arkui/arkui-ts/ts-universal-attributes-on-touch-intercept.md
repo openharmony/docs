@@ -24,6 +24,8 @@ onTouchIntercept(callback: Callback<TouchEvent, HitTestMode>)
 
 ## 示例
 
+该示例通过onTouchIntercept修改组件的HitTestMode属性。
+
 ```ts
 // xxx.ets
 @Entry

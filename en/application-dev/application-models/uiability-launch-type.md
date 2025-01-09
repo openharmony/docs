@@ -12,11 +12,11 @@ The launch type of the [UIAbility](../reference/apis-ability-kit/js-apis-app-abi
 
 > **NOTE**
 >
-> **standard** is the former name of **multiton** and provides the same effect as the multiton mode.
+> standard is the former name of multiton and provides the same effect as the multiton mode.
 
 ## Singleton
 
-**singleton** is the default launch type.
+singleton is the default launch type.
 
 Each time [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, if a [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance of this type already exists in the application process, the instance is reused. In other words, UIAbility of this type can have only one instance in the system, meaning that only one mission is displayed in the system application Recents.
 
@@ -74,13 +74,23 @@ To use the multiton mode, set **launchType** in the [module.json5 file](../quick
 
 ## Specified
 
-The **specified** mode is used in some special scenarios. For example, in a document application, you may want a document instance to be created each time you create a document, and you may also want to use the same document instance when you open an existing document.
+The specified mode is used in some special scenarios. For example, in a document application, you may want a document instance to be created each time you create a document, and you may also want to use the same document instance when you open an existing document.
 
-**Figure 3** Demonstration effect in specified mode
+**Figure 3** Principle in specified mode
+
+![uiability-launch-type3-principle](figures/uiability-launch-type3-principle.png)  
+
+This section assumes that an application has two [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instances: EntryAbility and SpecifiedAbility, and EntryAbility will start SpecifiedAbility in specified mode. The basic principle is as follows:
+
+  1. EntryAbility calls [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) and sets a unique key in the **parameters** field of [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) to identify SpecifiedAbility.
+  2. Before starting SpecifiedAbility, the system invokes the [onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant) lifecycle callback of the corresponding [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) to obtain the key that identifies the target UIAbility.
+  3. The system matches the UIAbility based on the key obtained.
+      * If a UIAbility instance is matched, that UIAbility instance is started, and its [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) lifecycle callback is invoked.
+      * If no UIAbility instance is matched, a new UIAbility instance is created, and its [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) and [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) lifecycle callbacks are invoked.
+
+**Figure 4** Demonstration effect in specified mode
 
 ![uiability-launch-type3](figures/uiability-launch-type3.gif)  
-
-In the following example, there are two [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) components: EntryAbility and SpecifiedAbility (with the launch type **specified**). To start SpecifiedAbility from EntryAbility, proceed as follows:
 
 1. In SpecifiedAbility, set **launchType** in the [module.json5 file](../quick-start/module-configuration-file.md) to **specified**.
 
@@ -98,7 +108,7 @@ In the following example, there are two [UIAbility](../reference/apis-ability-ki
    }
    ```
 
-2. Create a unique string key for the SpecifiedAbility instance. Each time [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, the application, based on the key, identifies the UIAbility instance used to respond to the request. In EntryAbility, add a custom parameter, for example, **instanceKey**, to the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter in [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to distinguish the UIAbility instances.
+2. In EntryAbility, pass the custom parameter **instanceKey** as the unique identifier into the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter in [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to specify the target UIAbility instance. In the example, **instanceKey** is set to **'KEY'**.
 
    ```ts
     // Configure a unique key for each UIAbility instance.
@@ -123,7 +133,7 @@ In the following example, there are two [UIAbility](../reference/apis-ability-ki
         Row() {
           Column() {
             // ...
-            Button()// ...
+            Button()
               .onClick(() => {
                 let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
                 // context is the UIAbilityContext of the initiator UIAbility.
@@ -145,7 +155,7 @@ In the following example, there are two [UIAbility](../reference/apis-ability-ki
                 this.KEY_NEW = this.KEY_NEW + 'a';
               })
             // ...
-            Button()// ...
+            Button()
               .onClick(() => {
                 let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
                 // context is the UIAbilityContext of the initiator UIAbility.
@@ -175,9 +185,7 @@ In the following example, there are two [UIAbility](../reference/apis-ability-ki
     }
    ```
    
-3. Before SpecifiedAbility is started, the [onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant) callback of the corresponding AbilityStage instance is invoked to obtain the key of the target [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md). If a UIAbility instance matching the key exists, the system starts the UIAbility instance and invokes its [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback. Otherwise, the system creates a new UIAbility instance and invokes its [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) and [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) callbacks.
-
-   In the sample code, the [onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant) callback uses the passed [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter to obtain the custom parameter **instanceKey**. The service logic returns a key string based on the **instanceKey** parameter to identify the UIAbility instance. If the returned key maps to a started UIAbility instance, the system pulls the UIAbility instance back to the foreground and gives it the focus. If the returned key does not map to a started UIAbility instance, the system creates a new UIAbility instance and starts it.
+3. Set the UIAbility identifier based on the [onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant) lifecycle callback of SpecifiedAbility. In the example, the identifier is set to **SpecifiedAbilityInstance_KEY**.
 
    ```ts
     import { AbilityStage, Want } from '@kit.AbilityKit';
@@ -187,7 +195,7 @@ In the following example, there are two [UIAbility](../reference/apis-ability-ki
         // In the AbilityStage instance of the callee, a key string corresponding to a UIAbility instance is returned for UIAbility whose launch type is specified.
         // In this example, SpecifiedAbility of module1 is returned.
         if (want.abilityName === 'SpecifiedFirstAbility' || want.abilityName === 'SpecifiedSecondAbility') {
-          // The returned key string is a custom string.
+          // The returned KEY string is a custom string.
           if (want.parameters) {
             return `SpecifiedAbilityInstance_${want.parameters.instanceKey}`;
           }

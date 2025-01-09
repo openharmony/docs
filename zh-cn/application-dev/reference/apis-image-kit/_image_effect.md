@@ -5,6 +5,8 @@
 
 提供图片编辑能力。
 
+对应的开发指南及样例可参考[使用ImageEffect编辑图片](../../media/image/image-effect-guidelines.md)。
+
 **起始版本：** 12
 
 

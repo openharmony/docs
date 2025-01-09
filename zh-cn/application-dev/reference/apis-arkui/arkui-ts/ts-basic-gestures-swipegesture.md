@@ -48,6 +48,8 @@ SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: num
 
 ## 示例
 
+该示例通过配置SwipeGesture实现了滑动手势的识别。
+
 ```ts
 // xxx.ets
 @Entry

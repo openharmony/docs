@@ -25,6 +25,8 @@ reuseId(id: string)
 
 ## 示例
 
+该示例通过reused标识自定义组件的复用组。
+
 ```ts
 // xxx.ets
 @Entry

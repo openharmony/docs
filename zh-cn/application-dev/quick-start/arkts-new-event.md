@@ -42,7 +42,7 @@
     @Event message: string = "abcd"; // 错误用法，装饰非方法类型变量，@Event无作用
   }
   @Component
-  struct CompA {
+  struct Index {
     @Event changeFactory: ()=>void = ()=>{}; // 错误用法，编译时报错
   }
   ```

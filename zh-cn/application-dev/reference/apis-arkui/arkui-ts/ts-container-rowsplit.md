@@ -48,6 +48,8 @@ resizeable(value: boolean)
 
 ## 示例
 
+RowSplit的基本用法。设置可拖动的、横向布局的子组件。
+
 ```ts
 // xxx.ets
 @Entry

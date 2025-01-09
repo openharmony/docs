@@ -224,6 +224,8 @@ Represents a tuple used to store button information.
 
 ## SegmentButtonItemTuple
 
+type SegmentButtonItemTuple = ItemRestriction\<SegmentButtonTextItem> | ItemRestriction\<SegmentButtonIconItem> | ItemRestriction\<SegmentButtonIconTextItem>
+
 Represents the tuple union type used to store button information.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -237,6 +239,8 @@ Represents the tuple union type used to store button information.
 | [ItemRestriction](#itemrestriction)\<[SegmentButtonIconTextItem](#segmentbuttonicontextitem)\> | A tuple of icon and text button information.|
 
 ## SegmentButtonItemArray
+
+type SegmentButtonItemArray = Array\<SegmentButtonTextItem> | Array\<SegmentButtonIconItem> | Array\<SegmentButtonIconTextItem>
 
 Represents the array union type used to store button information.
 
@@ -456,7 +460,7 @@ Provides text button information.
 | Name| Type                                  | Mandatory| Description     |
 | ---- | -------------------------------------- | ---- | ---------- |
 | text | [ResourceStr](ts-types.md#resourcestr) | Yes  | Button text.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| accessibilityLevel<sup>13+</sup> | string | No  | Accessibility level, which is used to set whether the current component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: The component cannot be recognized by accessibility services.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| accessibilityLevel<sup>13+</sup> | string | No  | Accessibility level, which is used to set whether the current component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: The component can be recognized by accessibility services.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 | accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility description. You can specify further explanation of the current component, for example, possible operation consequences, especially those that cannot be learned from component attributes and accessibility text. If a component contains both text information and the accessibility description, the text is read first and then the accessibility description, when the component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 
 ## SegmentButtonIconItem
@@ -471,7 +475,7 @@ Provides icon button information.
 | iconAccessibilityText<sup>13+</sup>         | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility text of the unselected item.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 | selectedIcon | [ResourceStr](ts-types.md#resourcestr) | Yes  | Icon of the selected item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
 | selectedIconAccessibilityText<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility text of the selected item.<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
-| accessibilityLevel<sup>13+</sup> | string | No  | Accessibility level, which is used to set whether the current component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: The component cannot be recognized by accessibility services.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
+| accessibilityLevel<sup>13+</sup> | string | No  | Accessibility level, which is used to set whether the current component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: The component can be recognized by accessibility services.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
 | accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility description. You can specify further explanation of the current component, for example, possible operation consequences, especially those that cannot be learned from component attributes and accessibility text. If a component contains both text information and the accessibility description, the text is read first and then the accessibility description, when the component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
 
 >**NOTE**
@@ -493,7 +497,7 @@ Provides icon+text button information.
 | selectedIcon | [ResourceStr](ts-types.md#resourcestr) | Yes  | Icon of the selected item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
 | selectedIconAccessibilityText<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility text of the selected item.<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
 | text         | [ResourceStr](ts-types.md#resourcestr) | Yes  | Button text.<br>**Atomic service API**: This API can be used in atomic services since API version 12.          |
-| accessibilityLevel<sup>13+</sup> | string | No  | Accessibility level, which is used to set whether the current component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: The component cannot be recognized by accessibility services.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
+| accessibilityLevel<sup>13+</sup> | string | No  | Accessibility level, which is used to set whether the current component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: The component can be recognized by accessibility services.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
 | accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility description. You can specify further explanation of the current component, for example, possible operation consequences, especially those that cannot be learned from component attributes and accessibility text. If a component contains both text information and the accessibility description, the text is read first and then the accessibility description, when the component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
 
 >**NOTE**
@@ -517,7 +521,7 @@ Describes options of the items in the **SegmentButton** component.
 | selectedIcon | [ResourceStr](ts-types.md#resourcestr) | No  | Icon of the selected item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
 | selectedIconAccessibilityText<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility text of the selected item.<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
 | text         | [ResourceStr](ts-types.md#resourcestr) | No  | Button text.<br>**Atomic service API**: This API can be used in atomic services since API version 12.          |
-| accessibilityLevel<sup>13+</sup> | string | No  | Accessibility level, which is used to set whether the current component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: The component cannot be recognized by accessibility services.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
+| accessibilityLevel<sup>13+</sup> | string | No  | Accessibility level, which is used to set whether the current component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: The component can be recognized by accessibility services.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
 | accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility description. You can specify further explanation of the current component, for example, possible operation consequences, especially those that cannot be learned from component attributes and accessibility text. If a component contains both text information and the accessibility description, the text is read first and then the accessibility description, when the component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
 
 ### constructor
@@ -552,12 +556,14 @@ Describes the constructor parameters of **SegmentButtonItemOptions**.
 | selectedIcon | [ResourceStr](ts-types.md#resourcestr) | No  | Icon of the selected item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
 | selectedIconAccessibilityText<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility text of the selected item.<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
 | text         | [ResourceStr](ts-types.md#resourcestr) | No  | Button text.<br>**Atomic service API**: This API can be used in atomic services since API version 12.          |
-| accessibilityLevel<sup>13+</sup> | string | No  | Accessibility level, which is used to set whether the current component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: The component cannot be recognized by accessibility services.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
+| accessibilityLevel<sup>13+</sup> | string | No  | Accessibility level, which is used to set whether the current component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: The component can be recognized by accessibility services.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
 | accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility description. You can specify further explanation of the current component, for example, possible operation consequences, especially those that cannot be learned from component attributes and accessibility text. If a component contains both text information and the accessibility description, the text is read first and then the accessibility description, when the component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
 
 ## Example
 
-### Example 1
+### Example 1: Setting the Type of the SegmentButton component
+
+This example demonstrates how to create two different types of **SegmentButton** components by configuring **SegmentButtonOptions** with **tab** and **capsule** types.
 
 ```ts
 // xxx.ets
@@ -637,7 +643,9 @@ struct Index {
 
 ![segmentbutton-sample1](figures/segmentbutton-sample1.png)
 
-### Example 2
+### Example 2: Setting the Style of the SegmentButton component
+
+This example demonstrates how to use **CommonSegmentButtonOptions** to customize the text and background style of the **SegmentButton** component.
 
 ```ts
 // xxx.ets
@@ -726,7 +734,9 @@ struct Index {
 
 ![segmentbutton-sample2](figures/segmentbutton-sample2.png)
 
-### Example 3
+### Example 3: Performing Array Operations on the SegmentButton Component
+
+This example shows how to perform operations such as adding and removing segmented buttons using array functions like **pop**, **shift**, and **unshift**.
 
 ```ts
 import {
@@ -791,8 +801,8 @@ struct Index {
 
 ![segmentbutton-sample3](figures/segmentbutton-sample3.gif)
 
-### Example 4
-This example shows a mirrored layout of segment buttons.
+### Example 4: Implementing a Mirror Effect
+This example shows how to implement a mirror effect by configuring the **direction** property of the **SegmentButton** component.
 
 ```ts
 // xxx.ets
@@ -896,8 +906,8 @@ struct Index {
 
 ![segmentbutton-sample4](figures/segmentbutton-sample4.png)
 
-### Example 5
-This example implements the accessibility feature of the segment button.
+### Example 5: Setting Accessibility
+This example showcases how to implement accessibility features for the **SegmentButton** component by configuring properties such as **accessibilityLevel** and **selectedIconAccessibilityText**.
 
 ```ts
 // xxx.ets

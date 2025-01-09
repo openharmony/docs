@@ -6,7 +6,7 @@ Layouts in the user interface (UI) are a key part of interactions between users 
 
 ## Common Layouts
 
-The layout defines how components are laid out in the UI. ArkUI offers a diverse array of layouts. Besides the basic layouts – [linear](../ui/arkts-layout-development-linear.md) ([\<Row>](../reference/arkui-ts/ts-container-row.md)/[\<Column>](../reference/arkui-ts/ts-container-column.md)), [stack](../ui/arkts-layout-development-stack-layout.md) ([\<Stack>](../reference/arkui-ts/ts-container-stack.md)), [flex](../ui/arkts-layout-development-flex-layout.md) ([\<Flex>](../reference/arkui-ts/ts-container-flex.md)), [relative](../ui/arkts-layout-development-relative-layout.md) ([\<RelativeContainer>](../reference/arkui-ts/ts-container-relativecontainer.md)), and [responsive grid](../ui/arkts-layout-development-grid-layout.md) ([\<GridCol>](../reference/arkui-ts/ts-container-gridcol.md)), you also have access to the advanced [list](../ui/arkts-layout-development-create-list.md) ([\<List>](../reference/arkui-ts/ts-container-list.md)), [grid](../ui/arkts-layout-development-create-grid.md) ([\<Grid>](../reference/arkui-ts/ts-container-grid.md)/[\<GridItem>](../reference/arkui-ts/ts-container-griditem.md)), and [swiper](../ui/arkts-layout-development-create-looping.md) ([\<Swiper>](../reference/arkui-ts/ts-container-swiper.md)) layouts.
+The layout defines how components are laid out in the UI. ArkUI offers a diverse array of layouts. Besides the basic layouts – [linear](../ui/arkts-layout-development-linear.md) ([Row](../reference/apis-arkui/arkui-ts/ts-container-row.md)/[Column](../reference/apis-arkui/arkui-ts/ts-container-column.md)), [stack](../ui/arkts-layout-development-stack-layout.md) ([Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md)), [flex](../ui/arkts-layout-development-flex-layout.md) ([Flex](../reference/apis-arkui/arkui-ts/ts-container-flex.md)), [relative](../ui/arkts-layout-development-relative-layout.md) ([RelativeContainer](../reference/apis-arkui/arkui-ts/ts-container-relativecontainer.md)), and [responsive grid](../ui/arkts-layout-development-grid-layout.md) ([GridCol](../reference/apis-arkui/arkui-ts/ts-container-gridcol.md)), you also have access to the advanced [list](../ui/arkts-layout-development-create-list.md) ([List](../reference/apis-arkui/arkui-ts/ts-container-list.md)), [grid](../ui/arkts-layout-development-create-grid.md) ([Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)/[\<GridItem>](../reference/apis-arkui/arkui-ts/ts-container-griditem.md)), and [swiper](../ui/arkts-layout-development-create-looping.md) ([Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)) layouts.
 
 ## Optimizing Layout Structure
 
@@ -20,7 +20,7 @@ Redundant nesting results in unnecessary component nodes and deepens the hierarc
 
 Nonexample:
 
-The following uses the **\<Grid>** component to implement a grid, outside of which three layers of stack containers with different attributes are deployed.
+The following uses the **Grid** component to implement a grid, outside of which three layers of stack containers with different attributes are deployed.
 
 ```ts
 @Entry
@@ -109,7 +109,7 @@ The component tree structure is as follows:
 
 **Flattening Layout**
 
-In implementing an adaptive layout, use of the **\<Flex>** component can cause multi-level nesting. In this scenario, you are advised to use **\<RelativeContainer>** to flatten the layout to effectively reduce nesting and shorten the component creation time.
+In implementing an adaptive layout, use of the **Flex** component can cause multi-level nesting. In this scenario, you are advised to use **RelativeContainer** to flatten the layout to effectively reduce nesting and shorten the component creation time.
 
 The figure below shows an adaptive UI.
 
@@ -201,7 +201,7 @@ The figure below illustrates the layout of the elements.
 
 Example:
 
-The figure above shows a clear relative layout relationship. In light of this, a **\<RelativeContainer>** can be adopted to improve performance. Below is the specific code implementation.
+The figure above shows a clear relative layout relationship. In light of this, a **RelativeContainer** can be adopted to improve performance. Below is the specific code implementation.
 
 ```ts
 @Entry  
@@ -287,15 +287,15 @@ As shown in the preceding examples, the flattened layout presents clearer logic 
 
 ![layout-relative-introduce](figures/layout-relative-introduce.png)
 
-Tools available for flattening the layout include, among others, the [\<RelativeContainer>](../reference/arkui-ts/ts-container-relativecontainer.md) component, [\<Grid>](../reference/arkui-ts/ts-container-grid.md) component, [absolute location](../reference/arkui-ts/ts-universal-attributes-location.md), and [custom layout](../reference/arkui-ts/ts-custom-component-lifecycle.md).
+Tools available for flattening the layout include, among others, the [RelativeContainer](../reference/apis-arkui/arkui-ts/ts-container-relativecontainer.md) component, [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) component, and [absolute location](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md).
 
 ### Using High-Performance Layout Components
 
 **Replacing Flex Containers with Columns/Rows**
 
-If you are using the flex container to merely implement a horizontal or vertical layout, the **\<Row>** and **\<Column>** components are better choices in terms of rendering performance benefits. For details about the impact of the flex container on performance, see [Flex Layout Performance Improvement](flex-development-performance-boost.md).
+If you are using the flex container to merely implement a horizontal or vertical layout, the **Row** and **Column** components are better choices in terms of rendering performance benefits. For details about the impact of the flex container on performance, see [Flex Layout Performance Improvement](flex-development-performance-boost.md).
 
-For details about how to replace the flex container components with **\<Row>** and **\<Column>** components to avoid secondary rendering, see [More Performance Improvement Methods](arkts-performance-improvement-recommendation.md).
+For details about how to replace the flex container components with **Row** and **Column** components to avoid secondary rendering, see [More Performance Improvement Methods](arkts-performance-improvement-recommendation.md).
 
 **Reducing Use of if/else**
 
@@ -303,7 +303,7 @@ In the build function of ArkUI, **if/else** is also regarded as a component and 
 
 Nonexample:
 
-In the following code, the value of **isVisible** is used to control the visibility of the **\<Image>** component. As a result, the **\<Image>** component is continuously created and destroyed during the selection switchover.
+In the following code, the value of **isVisible** is used to control the visibility of the **Image** component. As a result, the **Image** component is continuously created and destroyed during the selection switchover.
 
 ```ts
 @Entry  
@@ -351,7 +351,7 @@ Component tree when **isVisible** is **false**:
 
 Example:
 
-In the following example, the **visibility** attribute is used to control the visibility of the **\<Image>** component, avoiding the re-layout and re-rendered caused by **if/else**.
+In the following example, the **visibility** attribute is used to control the visibility of the **Image** component, avoiding the re-layout and re-rendered caused by **if/else**.
 
 ```ts
 @Entry  

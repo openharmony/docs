@@ -12,25 +12,25 @@
   - 当应用同时申请权限ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION（均属于位置信息权限组）时，应用用户将收到一个请求位置信息的弹窗，包含两个权限的申请。
   - 当应用同时申请权限ohos.permission.APPROXIMATELY_LOCATION（属于位置信息权限组）和ohos.permission.CAMERA（属于相机权限组）时，应用用户将收到请求位置信息、请求使用相机的两个弹窗。
 
-- 当前系统支持的权限组如下所示，各子权限的含义请查阅[应用权限列表](permissions-for-all.md)。
+- 当前系统支持的权限组如下所示，各子权限的含义请查阅[应用权限列表](permissions-for-all-user.md)。
 
 <!--RP1-->
 
 ## 位置信息
 
-- [ohos.permission.LOCATION_IN_BACKGROUND](permissions-for-all.md#ohospermissionlocation_in_background)
+- [ohos.permission.LOCATION_IN_BACKGROUND](permissions-for-all-user.md#ohospermissionlocation_in_background)
 
-- [ohos.permission.LOCATION](permissions-for-all.md#ohospermissionlocation)
+- [ohos.permission.LOCATION](permissions-for-all-user.md#ohospermissionlocation)
 
-- [ohos.permission.APPROXIMATELY_LOCATION](permissions-for-all.md#ohospermissionapproximately_location)
+- [ohos.permission.APPROXIMATELY_LOCATION](permissions-for-all-user.md#ohospermissionapproximately_location)
 
 ## 相机
 
-- [ohos.permission.CAMERA](permissions-for-all.md#ohospermissioncamera)
+- [ohos.permission.CAMERA](permissions-for-all-user.md#ohospermissioncamera)
 
 ## 麦克风
 
-- [ohos.permission.MICROPHONE](permissions-for-all.md#ohospermissionmicrophone)
+- [ohos.permission.MICROPHONE](permissions-for-all-user.md#ohospermissionmicrophone)
 
 ## 通讯录
 
@@ -40,9 +40,9 @@
 
 ## 日历
 
-- [ohos.permission.READ_CALENDAR](permissions-for-all.md#ohospermissionread_calendar)
+- [ohos.permission.READ_CALENDAR](permissions-for-all-user.md#ohospermissionread_calendar)
 
-- [ohos.permission.WRITE_CALENDAR](permissions-for-all.md#ohospermissionwrite_calendar)
+- [ohos.permission.WRITE_CALENDAR](permissions-for-all-user.md#ohospermissionwrite_calendar)
 
 - [ohos.permission.READ_WHOLE_CALENDAR](permissions-for-system-apps.md#ohospermissionread_whole_calendar)
 
@@ -50,11 +50,11 @@
 
 ## 健身运动
 
-- [ohos.permission.ACTIVITY_MOTION](permissions-for-all.md#ohospermissionactivity_motion)
+- [ohos.permission.ACTIVITY_MOTION](permissions-for-all-user.md#ohospermissionactivity_motion)
 
 ## 身体传感器
 
-- [ohos.permission.READ_HEALTH_DATA](permissions-for-all.md#ohospermissionread_health_data)
+- [ohos.permission.READ_HEALTH_DATA](permissions-for-all-user.md#ohospermissionread_health_data)
 
 ## 图片和视频
 
@@ -62,7 +62,7 @@
 
 - [ohos.permission.READ_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionread_imagevideo)
 
-- [ohos.permission.MEDIA_LOCATION](permissions-for-all.md#ohospermissionmedia_location)
+- [ohos.permission.MEDIA_LOCATION](permissions-for-all-user.md#ohospermissionmedia_location)
 
 - [ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionshort_term_write_imagevideo)
 
@@ -74,7 +74,7 @@
 
 ## 广告跟踪
 
-- [ohos.permission.APP_TRACKING_CONSENT](permissions-for-all.md#ohospermissionapp_tracking_consent)
+- [ohos.permission.APP_TRACKING_CONSENT](permissions-for-all-user.md#ohospermissionapp_tracking_consent)
 
 ## 读取已安装应用列表
 
@@ -82,11 +82,11 @@
 
 ## 多设备协同
 
-- [ohos.permission.DISTRIBUTED_DATASYNC](permissions-for-all.md#ohospermissiondistributed_datasync)
+- [ohos.permission.DISTRIBUTED_DATASYNC](permissions-for-all-user.md#ohospermissiondistributed_datasync)
 
 ## 蓝牙
 
-- [ohos.permission.ACCESS_BLUETOOTH](permissions-for-all.md#ohospermissionaccess_bluetooth)
+- [ohos.permission.ACCESS_BLUETOOTH](permissions-for-all-user.md#ohospermissionaccess_bluetooth)
 
 ## 电话
 
@@ -120,15 +120,15 @@
 
 ## 文件夹
 
-- [ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](permissions-for-all.md#ohospermissionread_write_download_directory)
+- [ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](permissions-for-all-user.md#ohospermissionread_write_download_directory)
 
 - [ohos.permission.READ_WRITE_DESKTOP_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_desktop_directory)
 
-- [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](permissions-for-all.md#ohospermissionread_write_documents_directory)
+- [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](permissions-for-all-user.md#ohospermissionread_write_documents_directory)
 
 ## 星闪
 
-- [ohos.permission.ACCESS_NEARLINK](permissions-for-all.md#ohospermissionaccess_nearlink)
+- [ohos.permission.ACCESS_NEARLINK](permissions-for-all-user.md#ohospermissionaccess_nearlink)
 
 <!--RP1End-->
 

@@ -1,7 +1,7 @@
 # SplitLayout
 
 
-The split layout component allows you to split the available space into different content areas, which can be text only or a mixture of imagery and text.
+**SplitLayout** is a component that enables you to divide the available space vertically into separate sections, each of which can contain solely text or a combination of text and images.
 
 
 > **NOTE**
@@ -34,8 +34,6 @@ SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, t
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
 | Name| Type| Mandatory| Decorator       | Description    |
 | -------- | -------- | -------- |---------------|--------|
 | mainImage | [ResourceStr](ts-types.md#resourcestr) | Yes| -             | Image. |
@@ -48,7 +46,7 @@ SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, t
 The [universal events](ts-universal-events-click.md) are not supported.
 
 ## Example
-
+This example demonstrates how to use **SplitLayout** to achieve a page layout that is both adaptable and responsive.
 ```ts
 import { SplitLayout } from '@kit.ArkUI'
 

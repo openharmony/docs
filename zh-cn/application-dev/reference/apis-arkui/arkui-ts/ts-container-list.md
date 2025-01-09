@@ -50,7 +50,7 @@
 
 ## 接口
 
-List(value?: [ListOptions](#listoptions14对象说明))
+List(value?: [ListOptions](#listoptions16对象说明))
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -62,15 +62,15 @@ List(value?: [ListOptions](#listoptions14对象说明))
 
 | 参数名  | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| value    | [ListOptions](#listoptions14对象说明)  | 否   | 设置List组件参数。 |
+| value    | [ListOptions](#listoptions16对象说明)  | 否   | 设置List组件参数。 |
 
-## ListOptions<sup>14+</sup>对象说明
+## ListOptions<sup>16+</sup>对象说明
 
 用于设置List组件参数。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -104,7 +104,7 @@ listDirection(value: Axis)
 
 ### divider
 
-divider(value: [ListDividerOptions](#listdivideroptions14对象说明) | null)
+divider(value: [ListDividerOptions](#listdivideroptions16对象说明) | null)
 
 设置ListItem分割线样式，默认无分割线。
 
@@ -128,7 +128,7 @@ ListItem设置[多态样式](ts-universal-attributes-polymorphic-style.md)时，
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ListDividerOptions](#listdivideroptions14对象说明) \|&nbsp;null | 是   | ListItem分割线样式。<br/>默认值：null |
+| value  | [ListDividerOptions](#listdivideroptions16对象说明) \|&nbsp;null | 是   | ListItem分割线样式。<br/>默认值：null |
 
 ### scrollBar
 
@@ -325,7 +325,7 @@ sticky(value: StickyStyle)
 
 > **说明：** 
 >
-> 由于浮点数计算精度，设置sticky后，在List滑动过程中小概率产生缝隙，可以通过[pixelRound](ts-universal-attributes-layout-constraints.md#pixelround11)指定当前组件向下像素取整解决该问题。
+> 由于浮点数计算精度，设置sticky后，在List滑动过程中小概率产生缝隙，可以通过[pixelRound](ts-universal-attributes-pixelRound.md#pixelround)指定当前组件向下像素取整解决该问题。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -348,6 +348,8 @@ scrollSnapAlign(value: ScrollSnapAlign)
 只支持ListItem等高情况下，设置列表项滚动结束对齐效果。
 
 触控板和鼠标滑动List结束后不支持对齐效果。
+
+对齐动画期间onWillScroll事件上报的滚动操作来源类型为ScrollSource.FLING。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -534,13 +536,13 @@ maintainVisibleContentPosition(enabled: boolean)
 | ------- | -------- | ---- | ---------------------- |
 | onFinish | ()=>void | 否   | 在收起动画完成后触发。 |
 
-## ListDividerOptions<sup>14+</sup>对象说明
+## ListDividerOptions<sup>16+</sup>对象说明
 
 用于设置List或ListItemGroup组件的分割线样式。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -906,13 +908,13 @@ getItemRectInGroup(index: number, indexInGroup: number): RectResult
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100004   | Controller not bound to component.                               |
-### getVisibleListContentInfo<sup>13+</sup>
+### getVisibleListContentInfo<sup>14+</sup>
 
 getVisibleListContentInfo(x:number, y: number): VisibleListContentInfo
 
 根据坐标获取子组件的索引信息。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1466,3 +1468,38 @@ struct ListExample {
 ```
 
 ![fadingEdge_list](figures/fadingEdge_list.gif)
+
+### 示例8（单边边缘效果）
+
+该示例通过edgeEffect接口，实现了List组件设置单边边缘效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ListExample {
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  scrollerForList: Scroller = new Scroller()
+  build() {
+    Column() {
+      List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
+        ForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('' + item)
+              .width('100%').height(100).fontSize(16)
+              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+          }
+        }, (item: string) => item)
+      }
+      .edgeEffect(EdgeEffect.Spring,{alwaysEnabled:true,effectEdge:EffectEdge.START})
+      .width('90%').height('90%')
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+    .padding({ top: 5 })
+  }
+}
+```
+
+![edgeEffect_list](figures/edgeEffect_list.gif)

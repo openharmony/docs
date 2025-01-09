@@ -393,6 +393,23 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_instanceof | 判断给定object是否为给定constructor的实例。 |
 | napi_type_tag_object | 将tag指针的值与Object关联。 |
 | napi_check_object_type_tag | 判断给定的tag指针是否被关联到了JS Object上。 |
+| napi_create_symbol | 创建一个JS Symbol对象。 |
+| napi_create_external | 用于创建一个JS外部对象，该对象可以用于将C/C++中的自定义数据结构或对象传递到JS中，并且可以在JS中访问其属性和方法。 |
+| napi_get_value_external | 用于获得napi_create_external创建的绑定了外部数据的JS值，此函数可以在JS和C/C++之间传递数据。 |
+
+### 基本数据类型相关
+
+| 接口 | 功能说明 |
+| -------- | -------- |
+| napi_create_int32 | 通过一个C的int32数据创建JS number。 |
+| napi_create_uint32 | 通过一个C的uint32数据创建JS number。 |
+| napi_create_int64 | 通过一个C的int64数据创建JS number。 |
+| napi_create_double | 通过一个C的double数据创建JS number。 |
+| napi_get_value_int32 | 获取给定JS number对应的C int32值。 |
+| napi_get_value_uint32 | 获取给定JS number对应的C uint32值。 |
+| napi_get_value_int64 | 获取给定JS number对应的C int64值。 |
+| napi_get_value_double | 获取给定JS number对应的C double值。 |
+|napi_get_value_bool|获取给定js Boolean对应的C bool值。|
 
 ### bigint相关
 
@@ -457,12 +474,6 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_async_destroy | 销毁先前创建的异步资源上下文环境（不支持与async_hook相关能力）。|
 | napi_open_callback_scope | 创建一个回调作用域（不支持与async_hook相关能力）。 |
 | napi_close_callback_scope | 关闭先前创建的回调作用域（不支持与async_hook相关能力）。|
-
-### 判断给定的两个JS value是否严格相等
-
-| 接口 | 功能说明 |
-| -------- | -------- |
-| napi_strict_equals | 判断给定的两个JS value是否严格相等。 |
 
 ### uv相关
 
@@ -728,4 +739,6 @@ napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void**
 
 | 接口 | 功能说明 |
 | -------- | -------- |
+| napi_get_version | 获取Node运行时支持的最高 NAPI 版本。 |
 | node_api_get_module_file_name | 用于获取加载项加载位置的绝对路径。|
+| napi_strict_equals | 在某些情况下，希望确保两个值不仅具有相同的值，还具有相同的类型——例如正在处理一些需要特定类型的数据结构或算法——使用napi_strict_equals可以确保数据的一致性。 |

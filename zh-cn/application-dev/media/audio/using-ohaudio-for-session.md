@@ -65,7 +65,7 @@ target_link_libraries(sample PUBLIC libohaudio.so)
 
 在使用AudioSession功能的过程中，推荐应用监听[音频会话停用事件（OH_AudioSession_DeactivatedEvent）](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedevent)。
 
-当AudioSession被停用（非主动停用）时，应用会收到[音频会话停用事件（OH_AudioSession_DeactivatedEvent）](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedevent)。，其中包含[音频会话停用原因（OH_AudioSession_DeactivatedReason）](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedreason)。
+当AudioSession被停用（非主动停用）时，应用会收到[音频会话停用事件（OH_AudioSession_DeactivatedEvent）](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedevent)，其中包含[音频会话停用原因（OH_AudioSession_DeactivatedReason）](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedreason)。
 
 在收到AudioSessionDeactivatedEvent时，应用可根据自身业务需求，做相应的处理，例如释放相应资源、重新激活AudioSession等。
 

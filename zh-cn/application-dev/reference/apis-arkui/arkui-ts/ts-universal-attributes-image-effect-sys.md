@@ -29,7 +29,7 @@ advancedBlendMode(effect: BlendMode | Blender, type?: BlendApplyType): T
 
 ## 示例
 
-使用advancedBlendMode给组件添加提亮效果。
+该示例主要通过advancedBlendMode给组件添加提亮效果。
 
 ```ts
 // xxx.ets

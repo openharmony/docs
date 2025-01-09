@@ -4,7 +4,7 @@
 
 Mobile devices have become an integral part of every life. For example, people listen to music with Bluetooth headphones, surf the Internet over Wi-Fi, and use their mobile phone as a transit pass or credit card.
 In these applications, NFC implements short-range interactions like payments and access control, Bluetooth provides basic wireless connections for devices, such as headphones, wearables, and peripheral devices, and Wi-Fi provides high-speed Internet access.
-You can use Connectivity Kit to design mobile applications to meet different user requirements.
+You can use Connectivity Kit to design mobile applications to meet diverse user needs in their daily lives.
 
 ### Bluetooth
 
@@ -84,6 +84,4 @@ Connectivity Kit provides basic communication services for applications. Before 
 ### Constraints
 
 Device capabilities can be used only after the related switch is enabled after user authorization. Otherwise, the system does not provide services for third-party applications.
-
-
 

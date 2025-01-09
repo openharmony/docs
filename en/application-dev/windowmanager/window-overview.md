@@ -58,7 +58,7 @@ The application window mode refers to the display mode of the main window when i
 
 The window implementation and development vary according to the application development model, which can be FA model or stage model.
 
-For details about the overall architecture and design ideas of the two models, see [Interpretation of the Application Model](../application-models/application-models.md).
+For details about the overall architecture and design ideas of the two models, see [Application Models](../application-models/application-models.md).
 
 You are advised to use the stage model for window development.
 
@@ -69,4 +69,4 @@ You are advised to use the stage model for window development.
 
 -  The application main window and subwindow have the following size limits: [320, 2560] in width and [240, 2560] in height, both in units of vp.
 
--  The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
+-  The system window has the following size limits: (0, 2560] in width and (0, 2560] in height, both in units of vp.

@@ -52,7 +52,7 @@ The table below lists the common APIs used for application window development. F
 
 ## Setting the Main Window of an Application
 
-In the stage model, the main window of an application is created and maintained by a **UIAbility** instance. In the **onWindowStageCreate** callback of the **UIAbility** instance, use **WindowStage** to obtain the main window of the application and set its properties. You can also set the properties (for example, **maxWindowWidth**) in the [module.json5 file](../quick-start/module-configuration-file.md#abilities).
+In the stage model, the main window of an application is created and maintained by a **UIAbility** instance. In the **onWindowStageCreate** callback of the **UIAbility** instance, use **WindowStage** to obtain the main window of the application and set its properties. You can also set the properties (for example, **maxWindowWidth**) in the [abilities tag of the module.json5 file](../quick-start/module-configuration-file.md#abilities).
 
 ### How to Develop
 

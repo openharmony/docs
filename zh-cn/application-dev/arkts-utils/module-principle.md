@@ -35,7 +35,7 @@ CommonJS模块是JavaScript社区2009年提出的标准，首先在Node.js采用
 | 加载类型 | 模块导入 | 模块导出（不能把module.exports与exports混用） |
 | -------- | -------- | -------- |
 | 变量 | const ohos = require('ohos') | exports.add = add<br/>module.exports.name = name |
-| const ohos = require('ohos') | module.exports = add |
+| 变量 | const ohos = require('ohos') | module.exports = add |
 | 函数 | const ohos = require('ohos')<br/>ohos.fun(); | exports.fun = function foo () {}<br/>module.exports.fun = function foo () {} |
 
 > **说明：**

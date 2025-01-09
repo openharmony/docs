@@ -1,10 +1,10 @@
 # 自定义占位节点
 
-ArkUI提供了ArkTS原生组件作为自定义节点的占位节点。该占位节点具备组件的通用属性。
+ArkUI提供了系统组件[NodeContainer](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)和[ContentSlot](../../application-dev/reference/apis-arkui/arkui-ts/ts-components-contentSlot.md)作为自定义节点的占位节点。主要用于自定义节点以及自定义节点树的显示。
 
-## NodeContainer和NodeController
+[NodeContainer](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)作为容器节点存在，具备通用属性，是UI节点。[ContentSlot](../quick-start/arkts-rendering-control-contentslot.md)只是一个语法节点，无通用属性，不参与布局和渲染。支持混合模式开发，当容器是ArkTS组件，子组件在Native侧创建时，推荐使用ContentSlot占位组件。具体使用参考[ContentSlot](../../application-dev/reference/apis-arkui/arkui-ts/ts-components-contentSlot.md)的接口文档说明。
 
-[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)作为原生组件，仅具备组件的通用属性，其节点规格参考默认左上角对齐的[Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md)组件。[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)作为一个占位容器组件，主要是用于自定义节点以及自定义节点树的显示和复用。
+[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)是用来占位的系统组件，主要用于自定义节点以及自定义节点树的显示，支持组件的通用属性，对通用属性的处理请参考默认左上角对齐的[Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md)组件。
 
 [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md)提供了一系列生命周期回调，通过[makeNode](../reference/apis-arkui/js-apis-arkui-nodeController.md#makenode)回调返回一个 [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#framenode) 节点树的根节点。将[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)节点树挂载到对应的[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)下。同时提供了[aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)、[aboutToDisappear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)、[aboutToResize](../reference/apis-arkui/js-apis-arkui-nodeController.md#abouttoresize)、[onTouchEvent](../reference/apis-arkui/js-apis-arkui-nodeController.md#ontouchevent)、[rebuild](../reference/apis-arkui/js-apis-arkui-nodeController.md#rebuild)五个回调方法用于监听对应的[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)的状态。
 
@@ -17,6 +17,10 @@ ArkUI提供了ArkTS原生组件作为自定义节点的占位节点。该占位�
 > - 从API Version 12开始支持的接口，可以通过FrameNode的查询接口返回原生组件的代理节点，代理节点可以作为makeNode的返回值进行返回，但代理节点无法成功挂载在组件树上，最终的显示结果为代理节点挂载失败。
 > 
 > - 需要保证一个节点只能作为一个父节点的子节点去使用，否则可能存在显示异常或者功能异常，尤其是页面路由场景或者动效场景。例如，如果通过NodeController将同一个节点挂载在多个NodeContainer上，仅一个占位容器下会显示节点，且多个NodeContainer的可见性、透明度等影响子组件状态的属性更新均会影响被挂载的子节点。
+
+## 使用NodeContainer挂载自定义节点
+
+通过NodeController在NodeContainer下挂载自定义节点。
 
 ```ts
 // common.ets
@@ -132,3 +136,118 @@ struct Index {
   }
 }
 ```
+
+## NodeContainer和ContentSlot添加子节点布局差异
+
+[NodeContainer](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)是一个容器节点，布局参考默认左上角对齐的[Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md)组件，不会按照父容器的布局规则进行布局。[ContentSlot](../../application-dev/reference/apis-arkui/arkui-ts/ts-components-contentSlot.md)只是一个语法节点，不参与布局，添加的子节点会按照父容器的布局规则进行布局。
+
+```ts
+import { FrameNode, NodeContent, NodeController, typeNode, UIContext } from '@kit.ArkUI';
+
+class NodeContentCtrl {
+  content: NodeContent
+  textNode: Array<typeNode.Text> = new Array();
+  uiContext: UIContext
+  width: number
+
+  constructor(uiContext: UIContext) {
+    this.content = new NodeContent()
+    this.uiContext = uiContext
+    this.width = Infinity
+  }
+
+  AddNode() {
+    let node = typeNode.createNode(this.uiContext, "Text")
+    node.initialize("ContentText:" + this.textNode.length).fontSize(20)
+    this.textNode.push(node)
+    this.content.addFrameNode(node)
+  }
+
+  RemoveNode() {
+    let node = this.textNode.pop()
+    this.content.removeFrameNode(node)
+  }
+
+  RemoveFront() {
+    let node = this.textNode.shift()
+    this.content.removeFrameNode(node)
+  }
+
+  GetContent(): NodeContent {
+    return this.content
+  }
+}
+
+class MyNodeController extends NodeController {
+  public rootNode: FrameNode | null = null;
+  textNode: Array<typeNode.Text> = new Array();
+  makeNode(uiContext: UIContext): FrameNode {
+    this.rootNode = new FrameNode(uiContext);
+    return this.rootNode;
+  }
+
+  AddNode(frameNode: FrameNode | null, uiContext: UIContext) {
+    let node = typeNode.createNode(uiContext, "Text")
+    node.initialize("ControllerText:" + this.textNode.length).fontSize(20)
+    this.textNode.push(node)
+    frameNode?.appendChild(node)
+  }
+
+  RemoveNode(frameNode: FrameNode | null) {
+    let node = this.textNode.pop()
+    frameNode?.removeChild(node)
+  }
+
+  RemoveFront(frameNode: FrameNode | null) {
+    let node = this.textNode.shift()
+    frameNode?.removeChild(node)
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  controller = new NodeContentCtrl(this.getUIContext());
+  myNodeController = new MyNodeController();
+  build() {
+    Row() {
+      Column() {
+        ContentSlot(this.controller.GetContent())
+        Button("AddToSlot")
+          .onClick(() => {
+            this.controller.AddNode()
+          })
+        Button("RemoveBack")
+          .onClick(() => {
+            this.controller.RemoveNode()
+          })
+        Button("RemoveFront")
+          .onClick(() => {
+            this.controller.RemoveFront()
+          })
+      }
+      .width('50%')
+      Column() {
+        NodeContainer(this.myNodeController)
+        Button("AddToNodeContainer")
+          .onClick(() => {
+            this.myNodeController.AddNode(this.myNodeController.rootNode, this.getUIContext())
+          })
+        Button("RemoveBack")
+          .onClick(() => {
+            this.myNodeController.RemoveNode(this.myNodeController.rootNode)
+          })
+        Button("RemoveFront")
+          .onClick(() => {
+            this.myNodeController.RemoveFront(this.myNodeController.rootNode)
+          })
+      }
+      .width('50%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_user-defined-node-01](figures/user-defined-node-01.gif)

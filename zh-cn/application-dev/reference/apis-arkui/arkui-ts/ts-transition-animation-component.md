@@ -111,7 +111,9 @@ TransitionOptions通过指定结构体内的参数来指定转场效果。
 
 ## 示例
 
-下面是一个出现消失使用同一TransitionEffect（出现和消失互为逆过程）的示例。
+### 示例1（使用同一接口实现图片出现消失）
+
+该示例主要演示如何通过同一TransitionEffect来实现图片的出现与消失，出现和消失互为逆过程。
 ```ts
 // xxx.ets
 @Entry
@@ -148,7 +150,9 @@ struct TransitionEffectExample1 {
 示意图：<br/>
 ![transitionComponent2](figures/transitionComponent2.gif)
 
-下面是一个出现和消失使用不同TransitionEffect的示例。
+### 示例2（使用不同接口实现图片出现消失）
+
+该示例主要演示使用不同TransitionEffect来实现图片的出现和消失。
 ```ts
 // xxx.ets
 @Entry
@@ -204,7 +208,9 @@ struct TransitionEffectExample2 {
 示意图：<br/>
 ![transitionComponent3](figures/transitionComponent3.gif)
 
-下面是一个父子组件都配置transition的示例。
+### 示例3（设置父子组件为transition）
+
+该示例主要演示通过父子组件都配置transition来实现图片的出现和消失。
 ```ts
 // xxx.ets
 @Entry

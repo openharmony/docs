@@ -12,8 +12,8 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 颜色名称                     | 颜色值           | 颜色示意                                     |
-| ------------------------ | ------------- | ---------------------------------------- |
+| 名称                     | 值            | 说明                                                         |
+| ------------------------ | ------------- | ------------------------------------------------------------ |
 | Black                    | 0x000000      | ![zh-cn_image_0000001219864153](figures/zh-cn_image_0000001219864153.png) |
 | Blue                     | 0x0000ff      | ![zh-cn_image_0000001174104404](figures/zh-cn_image_0000001174104404.png) |
 | Brown                    | 0xa52a2a      | ![zh-cn_image_0000001219744201](figures/zh-cn_image_0000001219744201.png) |
@@ -25,7 +25,7 @@
 | Red                      | 0xff0000      | ![zh-cn_image_0000001219662665](figures/zh-cn_image_0000001219662665.png) |
 | White                    | 0xffffff      | ![zh-cn_image_0000001174582866](figures/zh-cn_image_0000001174582866.png) |
 | Yellow                   | 0xffff00      | ![zh-cn_image_0000001174582864](figures/zh-cn_image_0000001174582864.png) |
-| Transparent<sup>9+</sup> | rgba(0,0,0,0) | 透明色                                      |
+| Transparent<sup>9+</sup> | rgba(0,0,0,0) | 透明色                                                       |
 
 ## ImageFit
 
@@ -48,6 +48,7 @@
 | BOTTOM_START<sup>12+</sup> | 图像显示在Image组件的底部起始端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | BOTTOM<sup>12+</sup>    | 图像显示在Image组件的底部横向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | BOTTOM_END<sup>12+</sup>| 图像显示在Image组件的底部尾端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| MATRIX<sup>16+</sup>| 配合[imageMatrix](ts-basic-components-image.md#imagematrix16)使用，使图像在Image组件自定义位置显示，保持原有尺寸显示。不支持svg图源。<br/>**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 
 ## BorderStyle
@@ -118,6 +119,48 @@
 | Release | 鼠标按键松开。 |
 | Move    | 鼠标移动。   |
 | Hover   | 鼠标悬浮。<br/>**说明：** 该枚举值无效。   |
+| Cancel<sup>16+</sup>  | 鼠标按键被取消。 |
+
+## ModifierKey<sup>10+</sup>
+
+输入法修饰键类型。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 描述           |
+| ----- | ------------ |
+| CTRL  | 表示键盘上Ctrl键。  |
+| SHIFT | 表示键盘上Shift键。 |
+| ALT   | 表示键盘上Alt键。   |
+
+## FunctionKey<sup>10+</sup>
+
+输入法功能键类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 描述           |
+| ---- | ------------ |
+| ESC  | 表示键盘上ESC功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| F1   | 表示键盘上F1功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F2   | 表示键盘上F2功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F3   | 表示键盘上F3功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F4   | 表示键盘上F4功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F5   | 表示键盘上F5功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F6   | 表示键盘上F6功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F7   | 表示键盘上F7功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F8   | 表示键盘上F8功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F9   | 表示键盘上F9功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F10  | 表示键盘上F10功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| F11  | 表示键盘上F11功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| F12  | 表示键盘上F12功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| TAB<sup>12+</sup>  | 表示键盘上TAB功能键。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| DPAD_UP<sup>12+</sup>   | 表示键盘上UP方向键。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| DPAD_DOWN<sup>12+</sup> | 表示键盘上DOWN方向键。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| DPAD_LEFT<sup>12+</sup> | 表示键盘上LEFT方向键。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| DPAD_RIGHT<sup>12+</sup> | 表示键盘上RIGHT方向键。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## Curve
 
@@ -211,6 +254,7 @@
 | -------- | ---------- |
 | Unknown  | 输入设备类型未知。  |
 | Keyboard | 输入设备类型为键盘。 |
+| JOYSTICK<sup>15+</sup> | 输入设备类型为游戏手柄。 |
 
 ## Edge
 
@@ -731,6 +775,18 @@
 | ----------- | ------------------------ |
 | PLACEHOLDER | 显示的数据为通用占位符。 |
 
+## ColoringStrategy<sup>10+</sup>
+
+智能取色枚举类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 描述              |
+| ------ | --------------- |
+| INVERT | 设置前景色为控件背景色的反色。仅支持在[foregroundColor](ts-universal-attributes-foreground-color.md#foregroundcolor)中设置该枚举。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+
 ## ClickEffectLevel<sup>10+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -742,6 +798,17 @@
 | LIGHT  | 小面积（轻盈） | 弹簧动效， 刚性：410，阻尼：38，初始速度：1 | 90% |
 | MIDDLE | 中面积（稳定） | 弹簧动效， 刚性：350，阻尼：35，初始速度：0.5 | 95% |
 | HEAVY  | 大面积（厚重） | 弹簧动效， 刚性：240，阻尼：28，初始速度：0 | 95% |
+
+## CheckBoxShape<sup>11+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 值   | 说明     |
+| -------------- | ---- | -------- |
+| CIRCLE         | 0    | 圆形     |
+| ROUNDED_SQUARE | 1    | 圆角方形 |
 
 ## FoldStatus<sup>11+</sup>
 
@@ -797,6 +864,7 @@ Nullable\<T> {
 | NORMAL  | CJK(中文、日文、韩文)文本可以在任意2个字符间断行，而Non-CJK文本（如英文等）只能在空白符处断行。 |
 | BREAK_ALL | 对于Non-CJK的文本，可在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 | BREAK_WORD | 与BREAK_ALL相同，对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行，保障单词优先完整显示。若整一行文本均无断行破发点时，则在任意2个字符间断行。对于CJK与NORMAL效果一致。|
+| HYPHENATION<sup>16+</sup> | 对于Non-CJK的文本，可以按照音节断行。对于CJK的文本，换行效果与NORMAL效果保持一致。|
 
 ## LineBreakStrategy<sup>12+</sup>
 
@@ -821,6 +889,19 @@ Nullable\<T> {
 | SELECTABLE_UNFOCUSABLE  | 文本可选择，但不可获焦，设置属性selection、bindSelectionMenu、copyOption不影响当前行为。 |
 | SELECTABLE_FOCUSABLE | 文本可选择，可获焦并Touch后获得焦点。 |
 | UNSELECTABLE     | 文本不可选择，不可获焦，设置属性selection、bindSelectionMenu、copyOption都不生效。  |
+
+## AccessibilityHoverType<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 值 | 说明                                                         |
+| ------------ | - | ------------------------------------------------------------ |
+| HOVER_ENTER  | 0 | 手指按下时触发。         |
+| HOVER_MOVE   | 1 | 触摸移动时触发。         |
+| HOVER_EXIT   | 2 | 抬手触发。              |
+| HOVER_CANCEL | 3 | 打断取消当前触发的事件。  |
 
 ## EllipsisMode<sup>11+</sup>
 
@@ -859,7 +940,7 @@ Nullable\<T> {
 
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
-组件边界像素级取整计算策略。
+组件边界像素取整计算策略。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -978,11 +1059,11 @@ Nullable\<T> {
 | TEXTURE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容会和XComponent组件的内容合成后展示到屏幕上。1、保持帧同步，保持在同一帧将图形处理器（GPU）纹理和ArkUI其他的绘制指令统一发给渲染服务(RenderService)。2、动效和原生组件统一。3、走图形处理器（GPU）合成，相比surface可能走显示子系统（DSS）功耗更高。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NODE<sup>12+</sup>            | 用于Native UI节点的占位容器，开发者通过Native API 开发的页面组件可展示在此容器区域内。<br/>**说明：**<br/>该类型不再演进，推荐使用[ContentSlot](../../../quick-start/arkts-rendering-control-contentslot.md)占位组件管理Native API创建的组件，ContentSlot在内存和性能方面都优于NODE类型的XComponent。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
-## HoverModeAreaType<sup>13+</sup>
+## HoverModeAreaType<sup>14+</sup>
 
 悬停态显示区域类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
@@ -991,7 +1072,7 @@ Nullable\<T> {
 | TOP_SCREEN | 上半屏。|
 | BOTTOM_SCREEN | 下半屏。|
 
-### WidthBreakpoint<sup>13+</sup>
+## WidthBreakpoint<sup>13+</sup>
 
 表示窗口不同宽度阈值下对应的宽度断点枚举值。通过[getWindowWidthBreakpoint](../js-apis-arkui-UIContext.md#getwindowwidthbreakpoint13)返回。
 
@@ -1007,7 +1088,7 @@ Nullable\<T> {
 | WIDTH_LG | 3   | 窗口宽度大于等于840vp，且小于1440vp。 |
 | WIDTH_XL | 4   | 窗口宽度大于等于1440vp。 |
 
-### HeightBreakpoint<sup>13+</sup>
+## HeightBreakpoint<sup>13+</sup>
 
 表示窗口不同高宽比阈值下对应的高度断点枚举值。通过[getWindowHeightBreakpoint](../js-apis-arkui-UIContext.md#getwindowheightbreakpoint13)返回
 
@@ -1020,3 +1101,46 @@ Nullable\<T> {
 | HEIGHT_SM | 0   | 窗口高宽比小于0.8。 |
 | HEIGHT_MD | 1   | 窗口高宽比大于等于0.8，且小于1.2。 |
 | HEIGHT_LG | 2   | 窗口高宽比大于等于1.2。 |
+
+## PageFlipMode<sup>14+</sup>
+
+表示鼠标滚轮翻页模式。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值   | 说明                   |
+| -------- | ---- | ---------------------- |
+| CONTINUOUS | 0   | 连续翻页模式，鼠标滚轮连续滚动时连续翻多页。 |
+| SINGLE | 1   | 单次翻页模式，在一次翻页动画结束前不响应滚轮事件。 |
+
+## RenderFit<sup>10+</sup>
+
+表示宽高动画过程中组件内容的填充方式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+| 名称                          | 说明                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------- |
+| CENTER                      | 保持动画终态的内容大小，并且内容始终与组件保持中心对齐。               ![renderfit_center](figures/renderfit_center.png) |
+| TOP                         | 保持动画终态的内容大小，并且内容始终与组件保持顶部中心对齐。             ![renderfit_top](figures/renderfit_top.png) |
+| BOTTOM                      | 保持动画终态的内容大小，并且内容始终与组件保持底部中心对齐。             ![renderfit_bottom](figures/renderfit_bottom.png) |
+| LEFT                        | 保持动画终态的内容大小，并且内容始终与组件保持左侧对齐。               ![renderfit_left](figures/renderfit_left.png) |
+| RIGHT                       | 保持动画终态的内容大小，并且内容始终与组件保持右侧对齐。              ![renderfit_right](figures/renderfit_right.png) |
+| TOP_LEFT                    | 保持动画终态的内容大小，并且内容始终与组件保持左上角对齐。              ![renderfit_top_left](figures/renderfit_top_left.png) |
+| TOP_RIGHT                   | 保持动画终态的内容大小，并且内容始终与组件保持右上角对齐。             ![renderfit_top_right](figures/renderfit_top_right.png) |
+| BOTTOM_LEFT                 | 保持动画终态的内容大小，并且内容始终与组件保持左下角对齐。              ![renderfit_bottom_left](figures/renderfit_bottom_left.png) |
+| BOTTOM_RIGHT                | 保持动画终态的内容大小，并且内容始终与组件保持右下角对齐。              ![renderfit_bottom_right](figures/renderfit_bottom_right.png) |
+| RESIZE_FILL                 | 不考虑动画终态内容的宽高比，并且内容始终缩放到组件的大小。              ![renderfit_resize_fill](figures/renderfit_resize_fill.png) |
+| RESIZE_CONTAIN              | 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内，且与组件保持中心对齐。   ![renderfit_resize_contain](figures/renderfit_resize_contain.png) |
+| RESIZE_CONTAIN_TOP_LEFT     | 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内。当组件宽方向有剩余时，内容与组件保持左侧对齐，当组件高方向有剩余时，内容与组件保持顶部对齐。   ![renderfit_resize_contain_top_left](figures/renderfit_resize_contain_top_left.png) |
+| RESIZE_CONTAIN_BOTTOM_RIGHT | 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内。当组件宽方向有剩余时，内容与组件保持右侧对齐，当组件高方向有剩余时，内容与组件保持底部对齐。   ![renderfit_resize_contain_bottom_right](figures/renderfit_resize_contain_bottom_right.png) |
+| RESIZE_COVER                | 保持动画终态内容的宽高比进行缩小或放大，使内容两边都大于或等于组件两边，且与组件保持中心对齐，显示内容的中间部分。   ![renderfit_resize_cover](figures/renderfit_resize_cover.png) |
+| RESIZE_COVER_TOP_LEFT       | 保持动画终态内容的宽高比进行缩小或放大，使内容的两边都恰好大于或等于组件两边。当内容宽方向有剩余时，内容与组件保持左侧对齐，显示内容的左侧部分。当内容高方向有剩余时，内容与组件保持顶部对齐，显示内容的顶侧部分。   ![renderfit_resize_cover_top_left](figures/renderfit_resize_cover_top_left.png) |
+| RESIZE_COVER_BOTTOM_RIGHT   | 保持动画终态内容的宽高比进行缩小或放大，使内容的两边都恰好大于或等于组件两边。当内容宽方向有剩余时，内容与组件保持右侧对齐，显示内容的右侧部分。当内容高方向有剩余时，内容与组件保持底部对齐，显示内容的底侧部分。   ![renderfit_resize_cover_bottom_right](figures/renderfit_resize_cover_bottom_right.png) |
+
+> **说明：**
+>
+> - 示意图中，蓝色区域表示内容，橙黄色区域表示节点大小。
+> - 不同的内容填充方式在宽高动画过程中效果不一致，开发者需要选择合适的内容填充方式以实现需要的动画效果。

@@ -56,9 +56,9 @@ let hi2 = 'hello, world';
 
 ### 类型
 
-#### `Number`类型
+#### `number`类型
 
-ArkTS提供`number`和`Number`类型，任何整数和浮点数都可以被赋给此类型的变量。
+ArkTS提供`number`类型，任何整数和浮点数都可以被赋给此类型的变量。
 
 数字字面量包括整数字面量和十进制浮点数字面量。
 
@@ -97,7 +97,16 @@ factorial(n3)  //  1
 factorial(n4)  //  9.33262154439441e+157 
 ```
 
-#### `Boolean`类型
+`number`类型在表示大整数时会造成精度丢失。在开发时可以按需使用`bigInt`类型来确保精度：
+
+```typescript
+
+let bigIntger: BigInt = BigInt('999999999999999999999999999999999999999999999999999999999999');
+console.log('bigIntger' + bigIntger.toString());
+
+```
+
+#### `boolean`类型
 
 `boolean`类型由`true`和`false`两个逻辑值组成。
 
@@ -113,7 +122,7 @@ if (isDone) {
 }
 ```
 
-#### `String`类型
+#### `string`类型
 
 `string`代表字符序列；可以使用转义字符来表示字符。
 
@@ -126,7 +135,7 @@ let a = 'Success';
 let s3 = `The result is ${a}`;
 ```
 
-#### `Void`类型
+#### `void`类型
 
 `void`类型用于指定函数没有返回值。
 此类型只有一个值，同样是`void`。由于`void`是引用类型，因此它可以用于泛型类型参数。
@@ -140,9 +149,9 @@ let instance: Class <void>
 
 #### `Object`类型
 
-`Object`类型是所有引用类型的基类型。任何值，包括基本类型的值（它们会被自动装箱），都可以直接被赋给`Object`类型的变量。`object`类型则用于表示除非基本类型外的类型。
+`Object`类型是所有引用类型的基类型。任何值，包括基本类型的值（它们会被自动装箱），都可以直接被赋给`Object`类型的变量。`object`类型则用于表示除基本类型外的类型。
 
-#### `Array`类型
+#### `array`类型
 
 `array`，即数组，是由可赋值给数组声明中指定的元素类型的数据组成的对象。
 数组可由数组复合字面量（即用方括号括起来的零个或多个表达式的列表，其中每个表达式为数组中的一个元素）来赋值。数组的长度由数组中元素的个数来确定。数组中第一个元素的索引为0。
@@ -153,7 +162,7 @@ let instance: Class <void>
 let names: string[] = ['Alice', 'Bob', 'Carol'];
 ```
 
-#### `Enum`类型
+#### `enum`类型
 
 `enum`类型，又称枚举类型，是预先定义的一组命名值的值类型，其中命名值又称为枚举常量。
 使用枚举常量时必须以枚举类型名称为前缀。
@@ -357,13 +366,12 @@ switch (expression) {
 condition ? expression1 : expression2
 ```
 
-如果`condition`的为真值（转换后为`true`的值），则使用`expression1`作为该表达式的结果；否则，使用`expression2`。
+如果`condition`的值为真值（转换后为`true`的值），则使用`expression1`作为该表达式的结果；否则，使用`expression2`。
 
 示例：
 
 ```typescript
-let isValid = Math.random() > 0.5 ? true : false;
-let message = isValid ? 'Valid' : 'Failed';
+let message = Math.random() > 0.5 ? 'Valid' : 'Failed';
 ```
 
 #### `For`语句
@@ -674,7 +682,7 @@ console.log(x);
 type trigFunc = (x: number) => number // 这是一个函数类型
 
 function do_action(f: trigFunc) {
-   f(3.141592653589); // 调用函数
+  f(3.141592653589); // 调用函数
 }
 
 do_action(Math.sin); // 将函数作为参数传入
@@ -1637,8 +1645,6 @@ p.spouse?.nick; // undefined
 
 未导出的声明名称被视为私有名称，只能在声明该名称的模块中使用。
 
-**注意**：通过export方式导出，在导入时要加{}。
-
 ```typescript
 export class Point {
   x: number = 0;
@@ -1670,7 +1676,7 @@ export function Distance(p1: Point, p2: Point): number {
 导入绑定`* as A`表示绑定名称“A”，通过`A.name`可访问从导入路径指定的模块导出的所有实体：
 
 ```typescript
-import * as Utils from './utils'
+import * as Utils from './utils';
 Utils.X // 表示来自Utils的X
 Utils.Y // 表示来自Utils的Y
 ```
@@ -1678,7 +1684,7 @@ Utils.Y // 表示来自Utils的Y
 导入绑定`{ ident1, ..., identN }`表示将导出的实体与指定名称绑定，该名称可以用作简单名称：
 
 ```typescript
-import { X, Y } from './utils'
+import { X, Y } from './utils';
 X // 表示来自utils的X
 Y // 表示来自utils的Y
 ```
@@ -1686,7 +1692,7 @@ Y // 表示来自utils的Y
 如果标识符列表定义了`ident as alias`，则实体`ident`将绑定在名称`alias`下：
 
 ```typescript
-import { X as Z, Y } from './utils'
+import { X as Z, Y } from './utils';
 Z // 表示来自Utils的X
 Y // 表示来自Utils的Y
 X // 编译时错误：'X'不可见
@@ -1694,14 +1700,23 @@ X // 编译时错误：'X'不可见
 
 #### 动态导入
 应用开发的有些场景中，如果希望根据条件导入模块或者按需导入模块，可以使用动态导入代替静态导入。
-import()语法通常称为动态导入dynamic import，是一种类似函数的表达式，用来动态导入模块。以这种方式调用，将返回一个promise。
+import()语法通常称为动态导入（dynamic import），是一种类似函数的表达式，用来动态导入模块。以这种方式调用，将返回一个promise。
 如下例所示，import(modulePath)可以加载模块并返回一个promise，该promise resolve为一个包含其所有导出的模块对象。该表达式可以在代码中的任意位置调用。
 
 ```typescript
-let modulePath = prompt("Which module to load?");
-import(modulePath)
-.then(obj => <module object>)
-.catch(err => <loading error, e.g. if no such module>)
+// Calc.ts
+export function add(a:number, b:number):number {
+  let c = a + b;
+  console.info('Dynamic import, %d + %d = %d', a, b, c);
+  return c;
+}
+
+// Index.ts
+import("./Calc").then((obj: ESObject) => {
+  console.info(obj.add(3, 5));  
+}).catch((err: Error) => {
+  console.error("Module dynamic import error: ", err);
+});
 ```
 
 如果在异步函数中，可以使用let module = await import(modulePath)。

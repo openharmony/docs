@@ -22,6 +22,22 @@ clickEffect(value: ClickEffect | null)
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [ClickEffect](#clickeffect对象说明)&nbsp;\|&nbsp;null | 是   | 设置当前组件点击回弹效果。<br/>**说明：**<br/>可通过undefined或者null取消点击回弹效果。<br/>不建议在组件大小动态变化的场景中使用该功能。<br/>当组件无法触发通用事件时，不支持该属性。 |
 
+## clickEffect<sup>16+</sup>
+
+clickEffect(effect: Optional\<ClickEffect | null>)
+
+设置当前组件点击回弹效果。与[clickEffect](#clickeffect)相比，effect参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| effect | Optional\<[ClickEffect](#clickeffect对象说明)&nbsp;\|&nbsp;null> | 是   | 设置当前组件点击回弹效果。<br/>**说明：**<br/>可通过undefined或者null取消点击回弹效果。<br/>不建议在组件大小动态变化的场景中使用该功能。<br/>当组件无法触发通用事件时，不支持该属性。 |
+
 ## ClickEffect对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -32,6 +48,8 @@ clickEffect(value: ClickEffect | null)
 | scale | number                                                      | 否   | 回弹缩放比例，支持在设置ClickEffectLevel的基础上微调回弹缩放比例。<br/>**说明：**<br/>level等于ClickEffectLevel.LIGHT时，默认值：0.90<br/>level等于ClickEffectLevel.MIDDLE或者ClickEffectLevel.HEAVY时，默认值：0.95<br/>level等于undefined或者null时，level为ClickEffectLevel.LIGHT，默认值：0.90<br/>scale等于undefined或者null时，scale与当前设置的level对应的默认缩放比相同。<br/> |
 
 ## 示例
+
+该示例主要演示不同组件的点击回弹效果。
 
 ```ts
 // xxx.ets

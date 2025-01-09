@@ -58,7 +58,7 @@ color(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                  |
 | ------ | ------------------------------------------ | ---- | ------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 分割线颜色。<br/>默认值：'\#33182431' |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 分割线颜色。<br/>默认值：'\#33182431' <br/>支持通过[WithTheme](ts-container-with-theme.md#withtheme)设置通用分割线颜色|
 
 ### strokeWidth
 
@@ -98,6 +98,8 @@ lineCap(value: LineCapStyle)
 
 
 ## 示例
+
+定义了Divider的样式，如方向、颜色及宽度。
 
 ```ts
 // xxx.ets

@@ -17,14 +17,28 @@ Custom components cannot be used as child components. Only the [TabContent](ts-c
 >
 >  If the child component has the **visibility** attribute set to **None** or **Hidden**, it is hidden but still takes up space in the layout.
 >
->  The **TabContent** child component is not destroyed once it is displayed. If you need to implement lazy loading and resource release of pages, see [Example 12](#example-12).
+>  The **TabContent** child component is not destroyed once it is displayed. If you need to implement lazy loading and resource release of pages, see [Example 12](#example-12-implementing-lazy-loading-and-resource-release-of-pages).
 
 
 ## APIs
 
-Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsController})
+Tabs(options?: TabsOptions)
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type        | Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options | [TabsOptions](#tabsoptions14) | No| Options of the **Tabs** component.|
+
+## TabsOptions<sup>14+</sup>
+
+Provides options of the **Tabs** component, including the position, index of the currently displayed tab, and tab controller.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -33,7 +47,7 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsContro
 | Name        | Type                             | Mandatory  | Description                                    |
 | ----------- | --------------------------------- | ---- | ---------------------------------------- |
 | barPosition | [BarPosition](#barposition)| No   | Position of the **Tabs** component.<br>Default value: **BarPosition.Start**  |
-| index       | number                            | No   | Index of the currently displayed tab.<br>Default value: **0**<br>**NOTE**<br><br>A value less than 0 evaluates to the default value.<br>The value ranges from 0 to the number of **TabContent** subnodes minus 1.<br>When the tab is switched by changing the index, the tab switching animation does not take effect. When **changeIndex** of **TabController** is used for tab switching, the tab switching animation is enabled by default. You can disable the animation by setting **animationDuration** to **0**.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| index       | number                            | No   | Index of the currently displayed tab.<br>Default value: **0**<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value ranges from 0 to the number of **TabContent** nodes minus 1.<br>When the tab is switched by changing the index, the tab switching animation does not take effect. When **changeIndex** of **TabController** is used for tab switching, the tab switching animation is enabled by default. You can disable the animation by setting **animationDuration** to **0**.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 | controller  | [TabsController](#tabscontroller) | No   | Tab controller.                              |
 
 ## BarPosition
@@ -156,7 +170,9 @@ Sets the width of the tab bar. If the set value is less than 0 or greater than t
 
 barHeight(value: Length)
 
-Sets the height of the tab bar. If this attribute is set to **'auto'**, which takes effect only in horizontal mode, the tab bar adapts to the height of its child components. If the set value is less than 0 or greater than the height of the **Tabs** component, the default value is used. If a fixed value is set, the tab bar will not be able to expand into the bottom safe area.
+Sets the height of the tab bar. If this attribute is set to **'auto'**, which takes effect only in horizontal mode, the tab bar adapts to the height of its child components. If the set value is less than 0 or greater than the height of the **Tabs** component, the default value is used.
+
+In versions earlier than API version 14, setting **barHeight** to a fixed value restricts the tab bar from extending beyond the bottom safe area. Since API version 14, the [safeAreaPadding](./ts-universal-attributes-size.md#safeareapadding14) attribute is supported. When **safeAreaPadding** is set to 0 or is not explicitly set, the tab bar is allowed to extend beyond the bottom safe area.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -166,7 +182,7 @@ Sets the height of the tab bar. If this attribute is set to **'auto'**, which ta
 
 | Name| Type                                     | Mandatory| Description                                                        |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length)<sup>8+</sup> | Yes  | Height of the tab bar.<br>Default value:<br>If the tab bar has the **vertical** attribute set to **false** and does not have a style specified, the default value is 56 vp.<br>If the tab bar has the **vertical** attribute set to **true** and does not have a style specified, the default value is the height of the **Tabs** component.<br>If [SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9) is set, and the **vertical** attribute is **false**, the default value is 56 vp.<br>If **SubTabBarStyle** is set, and the **vertical** attribute is **true**, the default value is the height of the **Tabs** component.<br>If [BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9) is set, and the **vertical** attribute is **true**, the default value is the height of the **Tabs** component.<br>If **BottomTabBarStyle** is set, and the **vertical** attribute is **false**, the default value is 56 vp in versions earlier than API version 12 and 52 vp since API version 12.|
+| value  | [Length](ts-types.md#length)<sup>8+</sup> | Yes  | Height of the tab bar.<br>Default value:<br>If the tab bar has the **vertical** attribute set to **false** and does not have a style specified, the default value is 56 vp.<br>If the tab bar has the **vertical** attribute set to **true** and does not have a style specified, the default value is the height of the **Tabs** component.<br>If [SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9) is set, and the **vertical** attribute is **false**, the default value is 56 vp.<br>If **SubTabBarStyle** is set, and the **vertical** attribute is **true**, the default value is the height of the **Tabs** component.<br>If [BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9) is set, and the **vertical** attribute is **true**, the default value is the height of the **Tabs** component.<br>If **BottomTabBarStyle** is set, and the **vertical** attribute is **false**, the default value is 56 vp in versions earlier than API version 12 and 48 vp since API version 12.|
 
 ### animationDuration
 
@@ -198,7 +214,7 @@ Sets the animation mode for switching between tabs.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| mode  | Optional\<[AnimationMode](#animationmode12)\>| Yes  | Animation mode for switching between tabs.<br>The default value varies.<br>The default value is **AnimationMode.CONTENT_FIRST**, indicating that the content of the target page is loaded before the switching animation starts in the process of switching between tabs.|
+| mode  | Optional\<[AnimationMode](#animationmode12)\>| Yes  | Animation mode for switching between tabs.<br>Default value:<br>**AnimationMode.CONTENT_FIRST**, indicating that the content of the target page is loaded before the switching animation starts in the process of switching between tabs.|
 
 ### barPosition<sup>9+</sup>
 
@@ -252,7 +268,7 @@ Sets whether the tab fades out when it exceeds the container width. It is recomm
 
 barOverlap(value: boolean)
 
-Sets whether the tab bar is superimposed on the **TabContent** component after having its background blurred. If **barOverlap** is set to **true**, the default background color of the tab bar is changed to **#F2F1F3F5** and a blur effect is applied to the background.
+Sets whether the tab bar is superimposed on the **TabContent** component after having its background blurred.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -262,7 +278,7 @@ Sets whether the tab bar is superimposed on the **TabContent** component after h
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether the tab bar is superimposed on the **TabContent** component after having its background blurred.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether the tab bar is superimposed on the **TabContent** component after having its background blurred. When **barOverlap** is set to **true**, the default value of **BlurStyle** for the **TabBar** is automatically changed to **'BlurStyle.COMPONENT_THICK'**.<br>Default value: **false**|
 
 ### barBackgroundColor<sup>10+</sup>
 
@@ -361,6 +377,22 @@ Sets the background effect of the tab bar, including the blur radius, brightness
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
 | options | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | Yes  | Background effect options, including the blur radius, brightness, saturation, and color.|
 
+### pageFlipMode<sup>14+</sup>
+
+pageFlipMode(value: PageFlipMode)
+
+Sets the mode for flipping pages using the mouse wheel.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                       | Mandatory| Description                                                        |
+| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [PageFlipMode](ts-appendix-enums.md#pageflipmode14) | Yes  | Mode for flipping pages using the mouse wheel.<br>Default value: **PageFlipMode.CONTINUOUS**|
+
 ## DividerStyle<sup>10+</sup>
 
 Describes the divider style.
@@ -442,9 +474,9 @@ Enumerates the tab layout styles of the tab bar when not scrolling in scrollable
 
 | Name        | Value| Description                                    |
 | ---------- | -- | ---------------------------------------- |
-| ALWAYS_CENTER | 0 | When the tab content exceeds the tab bar width, the tabs are scrollable.<br>Otherwise, the tabs are compactly centered and not scrollable.|
-| ALWAYS_AVERAGE_SPLIT | 1 | When the tab content exceeds the tab bar width, the tabs are scrollable.<br>Otherwise, the tabs are not scrollable, and the tab bar width is distributed evenly between all tabs.|
-| SPACE_BETWEEN_OR_CENTER      | 2 | When the tab content exceeds the tab bar width, the tabs are scrollable.<br>When the tab content exceeds half of the tab bar width but still within the tab bar width, the tabs are compactly centered and not scrollable.<br>When the tab content does not exceed half of the tab bar width, the tabs are centered within half of the tab bar width, with even spacing between, and not scrollable.|
+| ALWAYS_CENTER | 0 | If the tab content exceeds the tab bar width, the tabs are scrollable.<br>If not, the tabs are compactly centered on the tab bar and not scrollable.|
+| ALWAYS_AVERAGE_SPLIT | 1 | If the tab content exceeds the tab bar width, the tabs are scrollable.<br>If not, the tabs are not scrollable, and the width of the tab bar is evenly distributed among all tabs.|
+| SPACE_BETWEEN_OR_CENTER      | 2 | If the tab content exceeds the tab bar width, the tabs are scrollable.<br>If the tab content exceeds half the width of the tab bar but is still within the tab bar width, the tabs are compactly centered and not scrollable.<br>If the tab content does not exceed half the width of the tab bar, the tabs are centered within half the width of the tab bar with even spacing between them and are not scrollable.|
 
 ## Events
 
@@ -452,19 +484,23 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ### onChange
 
-onChange(event: (index: number) =&gt; void)
+onChange(event: Callback\<number>)
 
 Triggered when a tab is switched.
 
 This event is triggered when any of the following conditions is met:
 
-1. The **TabContent** component supports sliding, and the user slides on the tab bar.
+1. The swiping animation is completed, followed by tab switching.
 
 2. The [Controller](#tabscontroller) API is called.
 
 3. The attribute value is updated using a [state variable](../../../quick-start/arkts-state.md).
 
 4. A tab is clicked.
+
+>  **NOTE**
+>
+>  When a custom tab is used, the synchronization between tabs and swipe gestures in the **onChange** event may be performed only after tab switching occurs. This can lead to a delay in switching to the custom tab. To address this issue, listen for the current tab index in [onAnimationStart](#onanimationstart11) and update the tab index accordingly. For details about the implementation, see [Example 1](#example-1-setting-up-custom-tab-switching-synchronization).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -474,11 +510,11 @@ This event is triggered when any of the following conditions is met:
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| index  | number | Yes  | Index of the active tab. The index starts from 0.|
+| event  | [Callback](./ts-types.md#callback12)\<number> | Yes  | Index of the active tab. The index starts from 0.|
 
 ### onTabBarClick<sup>10+</sup>
 
-onTabBarClick(event: (index: number) =&gt; void)
+onTabBarClick(event: Callback\<number>)
 
 Triggered when a tab is clicked.
 
@@ -490,13 +526,13 @@ Triggered when a tab is clicked.
 
 | Name| Type  | Mandatory| Description                                |
 | ------ | ------ | ---- | ------------------------------------ |
-| index  | number | Yes  | Index of the clicked tab. The index starts from 0.|
+| event  | [Callback](./ts-types.md#callback12)\<number> | Yes  | Index of the clicked tab. The index starts from 0.|
 
 ### onAnimationStart<sup>11+</sup>
 
-onAnimationStart(handler: (index: number, targetIndex: number, event: TabsAnimationEvent) => void)
+onAnimationStart(handler: OnTabsAnimationStartCallback)
 
-Triggered when the tab switching animation starts. The **index** parameter indicates the index of the animation before it starts (not the final index when the animation ends). This callback is not triggered when **animationDuration** is set to **0**, which effectively disables the animation.
+Triggered when the tab switching animation starts. This callback is not triggered when **animationDuration** is set to **0**, which effectively disables the animation.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -504,17 +540,15 @@ Triggered when the tab switching animation starts. The **index** parameter indic
 
 **Parameters**
 
-| Name     | Type                                                  | Mandatory| Description                                                        |
-| ----------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index       | number                                                 | Yes  | Index of the currently displayed element.                                        |
-| targetIndex | number                                                 | Yes  | Index of the target element to switch to.                                    |
-| event       | [TabsAnimationEvent](#tabsanimationevent11) | Yes  | Extra information of the animation, including the offset of the currently displayed element and target element relative to the start position of the **Tabs** along the main axis, and the hands-off velocity.|
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| handler  | [OnTabsAnimationStartCallback](#ontabsanimationstartcallback14) | Yes  | Callback triggered when the switching animation starts.|
 
 ### onAnimationEnd<sup>11+</sup>
 
-onAnimationEnd(handler: (index: number, event: TabsAnimationEvent) => void)
+onAnimationEnd(handler: OnTabsAnimationEndCallback)
 
-Triggered when the tab switching animation ends. This event is triggered when the tab switching animation ends, whether it is caused by gesture interruption or not. The **index** parameter indicates the index after the animation ends. This callback is not triggered when **animationDuration** is set to **0**, which effectively disables the animation.
+Triggered when the tab switching animation ends. This event is triggered when the tab switching animation ends, whether it is caused by gesture interruption or not. This callback is not triggered when **animationDuration** is set to **0**, which effectively disables the animation.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -522,14 +556,13 @@ Triggered when the tab switching animation ends. This event is triggered when th
 
 **Parameters**
 
-| Name| Type                                                  | Mandatory| Description                                                        |
-| ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index  | number                                                 | Yes  | Index of the currently displayed element.                                        |
-| event  | [TabsAnimationEvent](#tabsanimationevent11) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **Tabs** along the main axis.|
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| handler  | [OnTabsAnimationEndCallback](#ontabsanimationendcallback14) | Yes  | Callback triggered when the switching animation ends.|
 
 ### onGestureSwipe<sup>11+</sup>
 
-onGestureSwipe(handler: (index: number, event: TabsAnimationEvent) => void)
+onGestureSwipe(handler: OnTabsGestureSwipeCallback)
 
 Triggered on a frame-by-frame basis when the tab is switched by a swipe.
 
@@ -539,14 +572,13 @@ Triggered on a frame-by-frame basis when the tab is switched by a swipe.
 
 **Parameters**
 
-| Name| Type                                                  | Mandatory| Description                                                        |
-| ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index  | number                                                 | Yes  | Index of the currently displayed element.                                        |
-| event  | [TabsAnimationEvent](#tabsanimationevent11) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **Tabs** along the main axis.|
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| handler  | [OnTabsGestureSwipeCallback](#ontabsgestureswipecallback14) | Yes  | Triggered on a frame-by-frame basis when the page is turned by a swipe.|
 
 ### customContentTransition<sup>11+</sup>
 
-customContentTransition(delegate: (from: number, to: number) => TabContentAnimatedTransition \| undefined)
+customContentTransition(delegate: TabsCustomContentTransitionCallback)
 
 Sets the custom tab switching animation.
 
@@ -562,10 +594,9 @@ Instructions:
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                           |
-| ------ | ------ | ---- | ------------------------------- |
-| from   | number | Yes  | Index of the currently displayed tab before the animation starts.|
-| to     | number | Yes  | Index of the target tab before the animation starts.|
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| delegate  | [TabsCustomContentTransitionCallback](#tabscustomcontenttransitioncallback14) | Yes  | Callback invoked when the custom tab switching animation starts.|
 
 **Return value**
 
@@ -575,7 +606,7 @@ Instructions:
 
 ### onContentWillChange<sup>12+</sup>
 
-onContentWillChange(handler: (currentIndex: number, comingIndex: number) => boolean)
+onContentWillChange(handler: OnTabsContentWillChangeCallback)
 
 Triggered when a new page is about to be displayed.
 
@@ -597,16 +628,113 @@ Specifically, this event is triggered in the following cases:
 
 **Parameters**
 
-| Name      | Type  | Mandatory| Description                                      |
-| ------------ | ------ | ---- | ------------------------------------------ |
-| currentIndex | number | Yes  | Index of the active tab. The index starts from 0.|
-| comingIndex  | number | Yes  | Index of the new tab to be displayed.             |
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| handler  | [OnTabsContentWillChangeCallback](#ontabscontentwillchangecallback14) | Yes  | Callback invoked when a new page is about to be displayed.|
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
 | boolean | The value **true** means that the tab can switch to the new page.<br>The value **false** means that the tab cannot switch to the new page and will remain on the current page.|
+
+## Callbacks
+
+### OnTabsAnimationStartCallback<sup>14+</sup>
+
+type OnTabsAnimationStartCallback = (index: number, targetIndex: number, extraInfo: TabsAnimationEvent) => void
+
+Defines the callback triggered when the switching animation starts.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type                                                  | Mandatory| Description                                                        |
+| ----------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| index       | number                                                 | Yes  | Index of the currently displayed element.                                        |
+| targetIndex | number                                                 | Yes  | Index of the target element to switch to.                                    |
+| event       | [TabsAnimationEvent](#tabsanimationevent11) | Yes  | Extra information of the animation, including the offset of the currently displayed element and target element relative to the start position of the **Tabs** along the main axis, and the hands-off velocity.|
+
+### OnTabsAnimationEndCallback<sup>14+</sup>
+
+type OnTabsAnimationEndCallback = (index: number, extraInfo: TabsAnimationEvent) => void
+
+Defines the callback triggered when the switching animation ends.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                  | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| index  | number                                                 | Yes  | Index of the currently displayed element.                                        |
+| event  | [TabsAnimationEvent](#tabsanimationevent11) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **Tabs** along the main axis.|
+
+### OnTabsGestureSwipeCallback<sup>14+</sup>
+
+type OnTabsGestureSwipeCallback = (index: number, extraInfo: TabsAnimationEvent) => void
+
+Defines the callback invoked on a frame-by-frame basis when the page is turned by a swipe.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                  | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| index  | number                                                 | Yes  | Index of the currently displayed element.                                        |
+| event  | [TabsAnimationEvent](#tabsanimationevent11) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **Tabs** along the main axis.|
+
+### TabsCustomContentTransitionCallback<sup>14+</sup>
+
+type TabsCustomContentTransitionCallback = (from: number, to: number) => TabContentAnimatedTransition | undefined
+
+Defines the callback invoked when the custom tab switching animation starts.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                           |
+| ------ | ------ | ---- | ------------------------------- |
+| from   | number | Yes  | Index of the currently displayed tab before the animation starts.|
+| to     | number | Yes  | Index of the target tab before the animation starts.|
+
+### OnTabsContentWillChangeCallback<sup>14+</sup>
+
+type OnTabsContentWillChangeCallback = (currentIndex: number, comingIndex: number) => boolean
+
+Defines the callback invoked when a new page is about to be displayed.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name      | Type  | Mandatory| Description                                      |
+| ------------ | ------ | ---- | ------------------------------------------ |
+| currentIndex | number | Yes  | Index of the active tab. The index starts from 0.|
+| comingIndex  | number | Yes  | Index of the new tab to be displayed.             |
 
 ## TabsAnimationEvent<sup>11+</sup>
 
@@ -635,7 +763,7 @@ Provides the information about the custom tab page switching animation.
 | Name           | Type        | Mandatory  | Description                                      |
 | ------------- | ---------------------- | ---- |---------------------- |
 | timeout | number | No| Timeout for the custom switching animation. The timer starts when the switching begins. If this timeframe passes without you calling the **finishTransition** API in [TabContentTransitionProxy](#tabcontenttransitionproxy11), the component will assume that the custom animation has ended and will proceed directly with subsequent operations. Unit: ms<br>Default value: **1000**|
-| transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11)) => void | Yes| Content of the custom switching animation.|
+| transition | [Callback](./ts-types.md#callback12)\<[TabContentTransitionProxy](#tabcontenttransitionproxy11)> | Yes| Content of the custom switching animation.|
 
 ## TabContentTransitionProxy<sup>11+</sup>
 
@@ -763,7 +891,7 @@ setTabBarOpacity(opacity: number): void
 
 Sets the opacity of the tab bar.
 
-> **NOTE**<br>
+> **NOTE**
 >
 > When **bindTabsToScrollable** or **bindTabsToNestedScrollable** is used to bind the **Tabs** component with a scrollable container, scrolling the container will trigger the display and hide animations of the tab bar for all **Tabs** components bound to it. In this case, calling the **setTabBarOpacity** API has no effect. Therefore, avoid using **bindTabsToScrollable**, **bindTabsToNestedScrollable**, and **setTabBarOpacity** simultaneously.
 >
@@ -780,9 +908,9 @@ Sets the opacity of the tab bar.
 
 ## Example
 
-### Example 1
+### Example 1: Setting Up Custom Tab Switching Synchronization
 
-This example uses **onChange** to implement the linkage between **tabBar** and **TabContent**.
+This example demonstrates how to use **onAnimationStart** and **onChange** to synchronize tabs with swiping gestures during tab switching.
 
 ```ts
 // xxx.ets
@@ -837,6 +965,7 @@ struct TabsExample {
       .onChange((index: number) => {
         // currentIndex controls which tab is displayed.
         this.currentIndex = index
+        this.selectedIndex = index
       })
       .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
         if (index === targetIndex) {
@@ -856,7 +985,7 @@ struct TabsExample {
 
 ![tabs2](figures/tabs2.gif)
 
-### Example 2
+### Example 2: Setting the Basic Attributes of the Divider
 
 This example uses **divider** to present dividers in different styles.
 
@@ -949,11 +1078,11 @@ struct TabsDivider1 {
             this.startMargin -= 2
           }
         })
-      Button ('Increase Bottom Margin').width ('100%').margin ({ bottom:'12vp'})
+      Button('Increase Bottom Margin').width('100%').margin({ bottom:'12vp'})
         .onClick(() => {
           this.endMargin += 2
         })
-      Button ('Decrease Bottom Margin').width ('100%').margin ({ bottom:'12vp' })
+      Button('Decrease Bottom Margin').width('100%').margin({ bottom:'12vp' })
         .onClick(() => {
           if (this.endMargin > 2) {
             this.endMargin -= 2
@@ -966,7 +1095,7 @@ struct TabsDivider1 {
 
 ![tabs3](figures/tabs3.gif)
 
-### Example 3
+### Example 3: Setting Tab Bar Fading
 
 This example uses **fadingEdge** to specify whether to fade out tabs.
 
@@ -1080,7 +1209,7 @@ struct TabsOpaque {
 
 ![tabs4](figures/tabs4.gif)
 
-### Example 4
+### Example 4: Setting the Tab Bar to Be Superimposed on the TabContent Component
 
 This example uses **barOverlap** to specify whether the tab bar is superimposed on the **TabContent** component after having its background blurred.
 
@@ -1088,13 +1217,12 @@ This example uses **barOverlap** to specify whether the tab bar is superimposed 
 // xxx.ets
 @Entry
 @Component
-struct barBackgroundColorTest {
-  private controller: TabsController = new TabsController()
+struct barHeightTest {
+  @State arr: number[] = [0, 1, 2, 3]
   @State barOverlap: boolean = true;
-  @State barBackgroundColor: string = '#88888888';
-
   build() {
     Column() {
+      Text(`barOverlap ${this.barOverlap}`).fontSize(16)
       Button("Change barOverlap").width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
           if (this.barOverlap) {
@@ -1104,41 +1232,25 @@ struct barBackgroundColorTest {
           }
         })
 
-      Tabs({ barPosition: BarPosition.Start, index: 0, controller: this.controller }) {
+      Tabs({ barPosition: BarPosition.End }) {
         TabContent() {
           Column() {
-            Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })
-            Text(`barBackgroundColor ${this.barBackgroundColor}`).fontSize(16)
-          }.width('100%').width('100%').height('100%')
+            List({ space: 10 }) {
+              ForEach(this.arr, (item: number) => {
+                ListItem() {
+                  Text("item" + item).width('80%').height(200).fontSize(16).textAlign(TextAlign.Center).backgroundColor('#fff8b81e')
+                }
+              }, (item: string) => item)
+            }.width('100%').height('100%')
+            .lanes(2).alignListItem(ListItemAlign.Center)
+          }.width('100%').height('100%')
           .backgroundColor(Color.Pink)
         }
-        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), "1"))
-
-        TabContent() {
-          Column() {
-            Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })
-            Text(`barBackgroundColor ${this.barBackgroundColor}`).fontSize(16)
-          }.width('100%').width('100%').height('100%')
-          .backgroundColor(Color.Yellow)
-        }
-        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), "2"))
-
-        TabContent() {
-          Column() {
-            Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })
-            Text(`barBackgroundColor ${this.barBackgroundColor}`).fontSize(16)
-          }.width('100%').width('100%').height('100%')
-          .backgroundColor(Color.Green)
-        }
-        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), "3"))
+        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_icon_mask_svg'), "test 0"))
       }
-      .vertical(false)
-      .barMode(BarMode.Fixed)
+      .scrollable(false)
       .height('60%')
       .barOverlap(this.barOverlap)
-      .scrollable(true)
-      .animationDuration(10)
-      .barBackgroundColor(this.barBackgroundColor)
     }
     .height(500)
     .padding({ top: '24vp', left: '24vp', right: '24vp' })
@@ -1148,7 +1260,7 @@ struct barBackgroundColorTest {
 
 ![tabs5](figures/tabs5.gif)
 
-### Example 5
+### Example 5: Setting the Grid-Aligned Visible Area for the TabBar
 
 This example uses **barGridAlign** to set the visible area of the tab bar in grid mode.
 
@@ -1253,7 +1365,7 @@ struct TabsExample5 {
 
 ![tabs5](figures/tabs6.gif)
 
-### Example 6
+### Example 6: Setting the Layout Style for a Scrollable TabBar
 
 This example implements the **ScrollableBarModeOptions** parameter of **barMode**. This parameter is effective only in **Scrollable** mode.
 
@@ -1289,7 +1401,7 @@ struct TabsExample6 {
       }
 
       Row() {
-        Button ("Add Text")
+        Button("Add Text")
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1297,7 +1409,7 @@ struct TabsExample6 {
             this.text += 'Add Text'
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button ("Reset Text")
+        Button("Reset Text")
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1371,7 +1483,7 @@ struct TabsExample6 {
 
 ![tabs5](figures/tabs7.gif)
 
-### Example 7
+### Example 7: Implementing a Custom Tab Switching Animation
 
 This example uses **customContentTransition** to implement a custom tab switching animation.
 
@@ -1460,9 +1572,10 @@ struct TabsCustomAnimationExample {
 ```
 
 ![tabs5](figures/tabs8.gif)
-### Example 8
 
-This example uses **onContentWillChange** to switch to a new page on swiping.
+### Example 8: Intercepting Page Switching
+
+This example uses **onContentWillChange** to intercept and customize the gesture-based swiping actions for page switching.
 
 ```ts
 //xxx.ets
@@ -1540,9 +1653,12 @@ struct TabsExample {
 ```
 
 ![tabs9](figures/tabs9.gif)
-### Example 9
+
+### Example 9: Customizing the Tab Bar Switching Animation
 
 This example uses **onChange**, **onAnimationStart**, **onAnimationEnd**, and **onGestureSwipe** APIs to customize the tab bar switching animation.
+
+<!--code_no_check-->
 
 ```ts
 // EntryAbility.ets
@@ -1560,6 +1676,8 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+<!--code_no_check-->
+
 ```ts
 // CommonUtil.ets
 import { i18n, intl } from '@kit.LocalizationKit'
@@ -1576,6 +1694,8 @@ export class CommonUtil {
   }
 }
 ```
+
+<!--code_no_check-->
 
 ```ts
 // xxx.ets
@@ -1688,7 +1808,7 @@ struct TabsExample {
       duration: duration, // Animation duration.
       curve: Curve.Linear, // Animation curve.
       iterations: 1, // Number of playback times.
-      playMode: PlayMode.Normal // Animation playback mode.
+      playMode: PlayMode.Normal, // Animation playback mode.
       onFinish: () => {
         this.isStartAnimateTo = false
         console.info('play end')
@@ -1711,7 +1831,7 @@ struct TabsExample {
 
 ![tabs10](figures/tabs10.gif)
 
-### Example 10
+### Example 10: Preloading Child Nodes
 
 In this example, the **preloadItems** API is used to preload specified child nodes.
 
@@ -1788,7 +1908,7 @@ struct MyComponent {
 }
 ```
 
-### Example 11
+### Example 11: Setting Tab Bar Translation and Opacity
 
 This example demonstrates how to set the translation distance and opacity of the tab bar using the **setTabBarTranslate** and **setTabBarOpacity** APIs.
 
@@ -1840,7 +1960,7 @@ struct TabsExample {
 
 ![tabs11](figures/tabs11.gif)
 
-### Example 12
+### Example 12: Implementing Lazy Loading and Resource Release of Pages
 
 This example demonstrates how to use a custom tab bar with the **Swiper** component and **LazyForEach** to implement lazy loading and resource release of pages.
 
@@ -1904,8 +2024,8 @@ struct TabsSwiperExample {
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.Start, controller: this.tabsController }) {
-        ForEach(this.list, (index: number) =>{
-          TabContent().tabBar(this.tabBuilder(index, 'Tab ' + this.list[index]))
+        ForEach(this.list, (item: number) => {
+          TabContent().tabBar(this.tabBuilder(item, 'Tab ' + this.list[item]))
         })
       }
       .onTabBarClick((index: number) => {
@@ -1934,6 +2054,9 @@ struct TabsSwiperExample {
         }, (item: string) => item)
       }
       .loop(false)
+      .onChange((index: number) => {
+        this.currentIndex = index
+      })
       .onAnimationStart((index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => {
         this.currentIndex = targetIndex
         this.tabsController.changeIndex(targetIndex)

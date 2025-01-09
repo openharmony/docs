@@ -1,6 +1,6 @@
 # @ohos.window (Window) (System API)
 
-The **Window** module provides basic window management capabilities, such as creating and destroying the current window, setting properties for the current window, and managing and scheduling windows.
+The Window module provides basic window management capabilities, such as creating and destroying the current window, setting properties for the current window, and managing and scheduling windows.
 
 This module provides the following common window-related functions:
 
@@ -27,7 +27,7 @@ Enumerates the window types.
 
 | Name                                 | Value| Description                                                                                    |
 |-------------------------------------| ------ |----------------------------------------------------------------------------------------|
-| TYPE_INPUT_METHOD<sup>(deprecated)</sup>      | 2      | Input method window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**NOTE**: This API is supported since API version 9 and deprecated since API version 13. There is no alternative window type. To control the input method, call [Input method framework APIs](../../inputmethod/inputmethod_application_guide.md).<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| TYPE_INPUT_METHOD<sup>(deprecated)</sup>      | 2      | Input method window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**NOTE**: This API is supported since API version 9 and deprecated since API version 13. There is no alternative window type. To control the input method, call [Input method framework APIs](../../inputmethod/inputmethod-application-guide.md).<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
 | TYPE_STATUS_BAR<sup>9+</sup>        | 3      | Status bar.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
 | TYPE_PANEL<sup>9+</sup>             | 4      | Notification panel.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
 | TYPE_KEYGUARD<sup>9+</sup>          | 5      | Lock screen.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
@@ -613,7 +613,7 @@ const callback = (bool: boolean) => {
 try {
   window.on('gestureNavigationEnabledChange', callback);
   window.off('gestureNavigationEnabledChange', callback);
-  // If multiple callbacks are enabled in on(), they will all be disabled.
+  // Unregister all the callbacks that have been registered through on().
   window.off('gestureNavigationEnabledChange');
 } catch (exception) {
   console.error(`Failed to enable or disable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -2888,142 +2888,6 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setResizeByDragEnabled<sup>10+</sup>
-
-setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-Sets whether to enable the main window to resize itself by dragging. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Window.SessionManager
-
-**Parameters**
-
-| Name  | Type                     | Mandatory| Description      |
-| -------- | ------------------------- | ---- | ---------- |
-| enable   | boolean                   | Yes  | Whether to enable the main window to resize itself by dragging. The value **true** means to enable the main window to resize itself by dragging, and **false** means the opposite.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
-
-| ID| Error Message|
-| ------- | ------------------------------ |
-| 202     | Permission verification failed. A non-system application calls a system API. |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-| 1300003 | This window manager service works abnormally. |
-
-**Example**
-
-```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // Load content for the main window.
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // Obtain the main window.
-        let mainWindow: window.Window | undefined = undefined;
-
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-
-            let enabled = false;
-            // Call setResizeByDragEnabled.
-            mainWindow.setResizeByDragEnabled(enabled, (err) => {
-                if (err.code) {
-                    console.error(`Failed to set the function of disabling the resize by dragg window. Cause code: ${err.code}, message: ${err.message}`);
-                    return;
-                }
-                console.info('Succeeded in setting the function of disabling the resize by dragg window.');
-            });
-        });
-    }
-};
-```
-
-### startMoving<sup>13+</sup>
-
-startMoving(): Promise&lt;void&gt;
-
-Starts moving this window. This API uses a promise to return the result.
-
-The window moves with the mouse only when this API is called in the callback function of the [onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent) event, the type of which must be **TouchType.Down**.
-
-This API takes effect only for the system window on 2-in-1 devices. If this API is called for other device types, an error is reported.
-
-**System capability**: SystemCapability.Window.SessionManager
-
-**System API**: This is a system API.
-
-**Return value**
-
-| Type               | Description                     |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
-
-| ID| Error Message|
-| -------- | -------------------------------------------- |
-| 202     | Permission verification failed. A non-system application calls a system API.   |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300001 | Repeated operation. |
-| 1300002 | This window state is abnormal.                |
-| 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
-
-**Example**
-
-```ts
-// ets/pages/Index.ets
-import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World';
-  build() {
-    row() {
-      Column() {
-        // Set the minimum width to 160.
-        Blank('160').onTouch((event: TouchEvent) => {
-          if (event.type === TouchType.Down) {
-            try {
-              windowClass.startMoving().then(() => {
-                console.info('Succeeded in starting moving window.')
-              }).catch((err: BusinessError) => {
-                console.error(`Failed to start moving. Cause code: ${err.code}, message: ${err.message}`);
-              });
-            } catch (exception) {
-              console.error(`Failed to start moving window. Cause code: ${exception.code}, message: ${exception.message}`);
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
 ### enableDrag<sup>13+</sup>
 
 enableDrag(enable: boolean): Promise&lt;void&gt;
@@ -3077,81 +2941,6 @@ try {
 } catch (exception) {
   console.error(`Failed to set window draggable. Cause code: ${exception.code}, message: ${exception.message}`);
 }
-```
-
-### setResizeByDragEnabled<sup>10+</sup>
-
-setResizeByDragEnabled(enable: boolean): Promise&lt;void&gt;
-
-Sets whether to enable the main window to resize itself by dragging. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Window.SessionManager
-
-**Parameters**
-
-| Name  | Type                     | Mandatory| Description      |
-| -------- | ------------------------- | ---- | ---------- |
-| enable   | boolean                   | Yes  | Whether to enable the main window to resize itself by dragging. The value **true** means to enable the main window to resize itself by dragging, and **false** means the opposite.|
-
-**Return value**
-
-| Type               | Description                     |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
-
-| ID| Error Message|
-| ------- | ------------------------------ |
-| 202     | Permission verification failed. A non-system application calls a system API. |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-| 1300003 | This window manager service works abnormally. |
-
-**Example**
-
-```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // Load content for the main window.
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // Obtain the main window.
-        let mainWindow: window.Window | undefined = undefined;
-
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-
-            let enabled = false;
-            // Promise object of the setResizeByDragEnabled API.
-            let promise = mainWindow.setResizeByDragEnabled(enabled);
-            promise.then(()=> {
-                console.info('Succeeded in setting the function of disabling the resize by dragg window.');
-            }).catch((err: BusinessError)=>{
-                console.error(`Failed to set the function of disabling the resize by dragg window. Cause code: ${err.code}, message: ${err.message}`);
-            });
-        });
-    }
-};
 ```
 
 ### hideNonSystemFloatingWindows<sup>11+</sup>
@@ -3554,6 +3343,58 @@ promise.then(() => {
 });
 ```
 
+### requestFocus<sup>13+</sup>
+
+requestFocus(isFocused: boolean): Promise&lt;void&gt;
+
+Allows this window to proactively request to gain or lose focus. This API uses a promise to return the result. A value is returned as long as the API is successfully called. The return value does not indicate that the window has gained or lost focus. You can use [on('windowEvent')](js-apis-window.md#onwindowevent10) to listen for the focus status of the window.
+
+When a focus request is sent, whether the window can successfully gain focus depends on its capability of being focused and its current visibility. To gain focus, the window must be capable of receiving focus and in a visible state (actively displayed and not hidden or destroyed).
+
+Conversely, once a blur request is sent, the window will lose focus without any conditions.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| isFocused | boolean | Yes  | Whether to gain or lose focus. The value **true** means to gain focus, and **false** means to lose focus.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let isFocused: boolean = true;
+let promise = windowClass.requestFocus(isFocused);
+promise.then(() => {
+  console.info('Succeeded in requesting focus.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to request focus. Cause code: ${err.code}, message: ${err.message}`);
+});
+```
+
 ## SubWindowOptions<sup>11+</sup>
 
 Describes the parameters used for creating a subwindow.
@@ -3575,6 +3416,8 @@ Before calling any of the following APIs, you must use [onWindowStageCreate()](.
 disableWindowDecor(): void
 
 Disables window decorators.
+
+When window decorators are disabled and the main window transitions into full-screen mode, hovering the cursor over the hot zone of the top window's title bar will cause a floating title bar to appear. To prevent the floating title bar from appearing, call [setTitleAndDockHoverShown()](./js-apis-window.md#settitleanddockhovershown14).
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -3921,7 +3764,7 @@ try {
 }
 ```
 
-## ExtensionWindowAttribute<sup>12+</sup>
+## ExtensionWindowAttribute<sup>14+</sup>
 
 Enumerates the attributes of a window for a UI ServiceExtensionAbility.
 
@@ -3936,7 +3779,7 @@ Enumerates the attributes of a window for a UI ServiceExtensionAbility.
 | SYSTEM_WINDOW  | 0 | System window|
 | SUB_WINDOW  | 1 | Subwindow.|
 
-## SystemWindowOptions<sup>12+</sup>
+## SystemWindowOptions<sup>14+</sup>
 
 Describes the parameters for creating a system window.
 
@@ -3948,9 +3791,9 @@ Describes the parameters for creating a system window.
 
 | Name| Type                     | Read Only |Optional| Description      |
 | ------ | ------------------------- | ---- | ---- |---------- |
-| windowType   | [WindowType](#windowtype7) | No  | No  | Window type. There is no default value. If null is passed in, the window fails to be created.|
+| windowType   | [WindowType](#windowtype7) | No  | No  | Window type. There is no default value. If null is passed in, the window fails to be created. **TYPE_DIALOG** is not supported.|
 
-## ExtensionWindowConfig<sup>12+</sup>
+## ExtensionWindowConfig<sup>14+</sup>
 
 Describes the parameters for creating a window for a UI ServiceExtensionAbility.
 
@@ -3963,7 +3806,9 @@ Describes the parameters for creating a window for a UI ServiceExtensionAbility.
 | Name| Type                     | Read Only |Optional| Description      |
 | ------ | ------------------------- | ---- | ---- |---------- |
 | windowName   | string | No| No | Window name.|
-| windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute12) | No| No  | Window attribute. It specifies whether the created window is a subwindow or a system window. When **windowAttribute** is set to **SUB_WINDOW**, **subWindowOptions** is mandatory. When **windowAttribute** is set to **SYSTEM_WINDOW**, **systemWindowOptions** is mandatory. Otherwise, the window fails to be created.|
+| windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute14) | No| No  | Window attribute. It specifies whether the created window is a subwindow or a system window. When **windowAttribute** is set to **SUB_WINDOW**, **subWindowOptions** is mandatory. When **windowAttribute** is set to **SYSTEM_WINDOW**, **systemWindowOptions** is mandatory. Otherwise, the window fails to be created.|
 | windowRect   | [Rect](js-apis-window.md#rect7) | No| No  | Rectangular area of the window.|
-| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions11) | No| Yes| Parameters used for creating a subwindow. There is no default value. This parameter is mandatory when **windowAttribute** is set to **SUB_WINDOW**. Otherwise, the window fails to be created.|
-| systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions12) | No| Yes| Parameters for creating a system window. There is no default value. This parameter is mandatory when **windowAttribute** is set to **SYSTEM_WINDOW**. Otherwise, the window fails to be created.|
+| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions12) | No| Yes| Parameters used for creating a subwindow. There is no default value. This parameter is mandatory when **windowAttribute** is set to **SUB_WINDOW**. Otherwise, the window fails to be created.|
+| systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions14) | No| Yes| Parameters for creating a system window. There is no default value. This parameter is mandatory when **windowAttribute** is set to **SYSTEM_WINDOW**. Otherwise, the window fails to be created.|
+
+ <!--no_check--> 

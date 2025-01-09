@@ -200,7 +200,7 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 ## 示例
 
-该示例通过设置start、step、loop、fromStart、src展示了跑马灯运行的效果。  
+该示例通过设置start、step、loop、fromStart、src、marqueeUpdateStrategy展示了跑马灯内容动态更新时运行的效果。  
 
 ```ts
 // xxx.ets
@@ -232,31 +232,31 @@ struct MarqueeExample {
         src: this.marqueeText + this.src
       })
         .marqueeUpdateStrategy(MarqueeUpdateStrategy.PRESERVE_POSITION)
-        .width(300)
-        .height(80)
+        .width('300vp')
+        .height('80vp')
         .fontColor('#FFFFFF')
-        .fontSize(48)
+        .fontSize('48fp')
         .fontWeight(700)
         .backgroundColor('#182431')
-        .margin({ bottom: 40 })
+        .margin({ bottom: '40vp' })
         .onStart(() => {
-          console.info('Marquee animation complete onStart')
+          console.info('Succeeded in completing the onStart callback of marquee animation')
         })
         .onBounce(() => {
-          console.info('Marquee animation complete onBounce')
+          console.info('Succeeded in completing the onBounce callback of marquee animation')
         })
         .onFinish(() => {
-          console.info('Marquee animation complete onFinish')
+          console.info('Succeeded in completing the onFinish callback of marquee animation')
         })
       Button('Start')
         .onClick(() => {
           this.start = true
-          //启动文本时钟
+          // 启动文本时钟
           this.controller.start()
         })
-        .width(120)
-        .height(40)
-        .fontSize(16)
+        .width('120vp')
+        .height('40vp')
+        .fontSize('16fp')
         .fontWeight(500)
         .backgroundColor('#007DFF')
       TextClock({ timeZoneOffset: -8, controller: this.controller })
@@ -264,8 +264,8 @@ struct MarqueeExample {
         .onDateChange((value: number) => {
           this.src = this.convert2time(value);
         })
-        .margin(20)
-        .fontSize(30)
+        .margin('20vp')
+        .fontSize('30fp')
     }
     .width('100%')
     .height('100%')

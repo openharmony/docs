@@ -34,7 +34,8 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 | -------- | -------- |
 | onAction(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | onActionEnd(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，最后一根手指抬起后触发回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，接收到触摸取消事件触发回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| onActionCancel(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void)<sup>16+</sup> | LongPress手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 ## 属性
 
@@ -45,6 +46,8 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 
 
 ## 示例
+
+该示例通过TapGesture实现了长按手势的识别。
 
 ```ts
 // xxx.ets

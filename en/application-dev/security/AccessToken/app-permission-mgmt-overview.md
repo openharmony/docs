@@ -40,7 +40,7 @@ A user_grant permission must be authorized by the user. An application with this
 
 This type of permissions must be declared in the application installation package and authorized by the user in a dialog box during the running of the application. The application has the permission only after user authorization.
 
-For example, the permissions related to the microphone and camera in the [Permissions for All Applications](permissions-for-all.md) are user_grant permissions. The list of user_grant permissions must be presented on the application details page in the application market.
+For example, the permissions related to the microphone and camera in the [Open user_grant Permissions](permissions-for-all-user.md) are user_grant permissions. The list of user_grant permissions must be presented on the application details page in the application market.
 
 ## Permission Groups and Permissions
 

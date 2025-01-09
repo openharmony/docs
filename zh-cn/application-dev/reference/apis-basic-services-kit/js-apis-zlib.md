@@ -273,7 +273,8 @@ import { zlib, BusinessError } from '@kit.BasicServicesKit';
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
 let options: zlib.Options = {
-  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+  parallel: zlib.ParallelStrategy.PARALLEL_STRATEGY_PARALLEL_DECOMPRESSION
 };
 
 try {
@@ -2455,17 +2456,25 @@ inflateBack(strm: ZStream, backIn: InflateBackInputCallback, inDesc: object, bac
 | backOut | InflateBackOutputCallback | 是   | 将解压缩的数据写入目标输出。                                 |
 | outDesc | object                    | 是   | 通用对象。                                                   |
 
-InflateBackInputCallback的说明：
+### InflateBackInputCallback
 
 InflateBackInputCallback = (inDesc: object) => ArrayBuffer
+
+用于输入数据的回调函数。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称   | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
 | inDesc | object | 是   | 用户定义数据对象 |
 
-InflateBackOutputCallback的说明：
+### InflateBackOutputCallback
 
 InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) => number
+
+用于输出数据的回调函数。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称    | 类型        | 必填 | 说明                   |
 | ------- | ----------- | ---- | ---------------------- |
@@ -3704,6 +3713,7 @@ async function demo() {
 | level    | CompressLevel     | 是   | 否  | 参考[CompressLevel枚举定义](#compresslevel)。       |
 | memLevel | MemLevel         | 是   | 否  | 参考[MemLevel枚举定义](#memlevel)。                 |
 | strategy | CompressStrategy | 是   | 否  | 参考[CompressStrategy枚举定义](#compressstrategy)。 |
+| parallel | ParallelStrategy | 是   | 否  | 参考[ParallelStrategy枚举定义](#parallelstrategy16)。 |
 
 ## CompressLevel
 
@@ -3743,6 +3753,17 @@ async function demo() {
 | COMPRESS_STRATEGY_HUFFMAN_ONLY     | 2    | 霍夫曼编码格式压缩策略。   |
 | COMPRESS_STRATEGY_RLE              | 3    | 游标编码压缩策略。         |
 | COMPRESS_STRATEGY_FIXED            | 4    | 固定的压缩策略。           |
+
+## ParallelStrategy<sup>16+</sup>
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+| 名称                                     | 值   | 说明                      |
+| ---------------------------------------- | ---- | ------------------------ |
+| PARALLEL_STRATEGY_SEQUENTIAL             | 0    | 默认值，串行压缩/解压策略。|
+| PARALLEL_STRATEGY_PARALLEL_DECOMPRESSION | 1    | 并行解压策略。            |
 
 ## ErrorCode
 

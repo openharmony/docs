@@ -184,9 +184,9 @@ barrier参数，用于定义一条barrier的id、方向和生成时所依赖的�
 
 ## 示例
 
-### 示例1
+### 示例1（以容器和容器内组件作为锚点进行布局）
 
-本示例展示了以容器和容器内组件作为锚点进行布局的用法。
+本示例通过alignRules接口实现了以容器和容器内组件作为锚点进行布局的功能。
 
 ```ts
 @Entry
@@ -195,57 +195,72 @@ struct Index {
   build() {
     Row() {
       RelativeContainer() {
-        Row(){Text('row1')}.justifyContent(FlexAlign.Center)
-          .width(100).height(100)
-          .backgroundColor("#FF3333")
-          .alignRules({
-            top: {anchor: "__container__", align: VerticalAlign.Top},
-            left: {anchor: "__container__", align: HorizontalAlign.Start}
-          })
-          .id("row1")
+        Row() {
+          Text('row1')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#a3cf62')
+        .alignRules({
+          top: { anchor: "__container__", align: VerticalAlign.Top },
+          left: { anchor: "__container__", align: HorizontalAlign.Start }
+        })
+        .id("row1")
 
-        Row(){Text('row2')}.justifyContent(FlexAlign.Center)
-          .width(100).height(100)
-          .backgroundColor("#FFCC00")
-          .alignRules({
-            top: {anchor: "__container__", align: VerticalAlign.Top},
-            right: {anchor: "__container__", align: HorizontalAlign.End}
-          })
-          .id("row2")
+        Row() {
+          Text('row2')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#00ae9d')
+        .alignRules({
+          top: { anchor: "__container__", align: VerticalAlign.Top },
+          right: { anchor: "__container__", align: HorizontalAlign.End }
+        })
+        .id("row2")
 
-        Row(){Text('row3')}.justifyContent(FlexAlign.Center)
-          .height(100)
-          .backgroundColor("#FF6633")
-          .alignRules({
-            top: {anchor: "row1", align: VerticalAlign.Bottom},
-            left: {anchor: "row1", align: HorizontalAlign.End},
-            right: {anchor: "row2", align: HorizontalAlign.Start}
-          })
-          .id("row3")
+        Row() {
+          Text('row3')
+        }
+        .justifyContent(FlexAlign.Center)
+        .height(100)
+        .backgroundColor('#0a59f7')
+        .alignRules({
+          top: { anchor: "row1", align: VerticalAlign.Bottom },
+          left: { anchor: "row1", align: HorizontalAlign.End },
+          right: { anchor: "row2", align: HorizontalAlign.Start }
+        })
+        .id("row3")
 
-        Row(){Text('row4')}.justifyContent(FlexAlign.Center)
-          .backgroundColor("#FF9966")
-          .alignRules({
-            top: {anchor: "row3", align: VerticalAlign.Bottom},
-            bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
-            left: {anchor: "__container__", align: HorizontalAlign.Start},
-            right: {anchor: "row1", align: HorizontalAlign.End}
-          })
-          .id("row4")
+        Row() {
+          Text('row4')
+        }.justifyContent(FlexAlign.Center)
+        .backgroundColor('#2ca9e0')
+        .alignRules({
+          top: { anchor: "row3", align: VerticalAlign.Bottom },
+          bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          right: { anchor: "row1", align: HorizontalAlign.End }
+        })
+        .id("row4")
 
-        Row(){Text('row5')}.justifyContent(FlexAlign.Center)
-          .backgroundColor("#FF66FF")
-          .alignRules({
-            top: {anchor: "row3", align: VerticalAlign.Bottom},
-            bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
-            left: {anchor: "row2", align: HorizontalAlign.Start},
-            right: {anchor: "__container__", align: HorizontalAlign.End}
-          })
-          .id("row5")
+        Row() {
+          Text('row5')
+        }.justifyContent(FlexAlign.Center)
+        .backgroundColor('#30c9f7')
+        .alignRules({
+          top: { anchor: "row3", align: VerticalAlign.Bottom },
+          bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
+          left: { anchor: "row2", align: HorizontalAlign.Start },
+          right: { anchor: "__container__", align: HorizontalAlign.End }
+        })
+        .id("row5")
       }
       .width(300).height(300)
-      .margin({left: 50})
-      .border({width:2, color: "#6699FF"})
+      .margin({ left: 50 })
+      .border({ width: 2, color: "#6699FF" })
     }
     .height('100%')
   }
@@ -253,9 +268,9 @@ struct Index {
 ```
 ![relative container](figures/relativecontainer.png)
 
-### 示例2
+### 示例2（子组件设置外边距）
 
-本示例展示了容器内子组件设置margin的用法。
+本示例展示了容器内子组件设置外边距的用法。
 
 ```ts
 @Entry
@@ -264,47 +279,63 @@ struct Index {
   build() {
     Row() {
       RelativeContainer() {
-        Row(){Text('row1')}.justifyContent(FlexAlign.Center)
-          .width(100).height(100)
-          .backgroundColor("#FF3333")
-          .alignRules({
-            top: {anchor: "__container__", align: VerticalAlign.Top},
-            left: {anchor: "__container__", align: HorizontalAlign.Start}
-          })
-          .id("row1")
-          .margin(10)
+        Row() {
+          Text('row1')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#a3cf62')
+        .alignRules({
+          top: { anchor: "__container__", align: VerticalAlign.Top },
+          left: { anchor: "__container__", align: HorizontalAlign.Start }
+        })
+        .id("row1")
+        .margin(10)
 
-        Row(){Text('row2')}.justifyContent(FlexAlign.Center)
-          .width(100).height(100)
-          .backgroundColor("#FFCC00")
-          .alignRules({
-            left: {anchor: "row1", align: HorizontalAlign.End},
-            top: {anchor: "row1", align: VerticalAlign.Top}
-          })
-          .id("row2")
+        Row() {
+          Text('row2')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#00ae9d')
+        .alignRules({
+          left: { anchor: "row1", align: HorizontalAlign.End },
+          top: { anchor: "row1", align: VerticalAlign.Top }
+        })
+        .id("row2")
 
-        Row(){Text('row3')}.justifyContent(FlexAlign.Center)
-          .width(100).height(100)
-          .backgroundColor("#FF6633")
-          .alignRules({
-            left: {anchor: "row1", align: HorizontalAlign.Start},
-            top: {anchor: "row1", align: VerticalAlign.Bottom}
-          })
-          .id("row3")
+        Row() {
+          Text('row3')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#0a59f7')
+        .alignRules({
+          left: { anchor: "row1", align: HorizontalAlign.Start },
+          top: { anchor: "row1", align: VerticalAlign.Bottom }
+        })
+        .id("row3")
 
-        Row(){Text('row4')}.justifyContent(FlexAlign.Center)
-          .width(100).height(100)
-          .backgroundColor("#FF9966")
-          .alignRules({
-            left: {anchor: "row3", align: HorizontalAlign.End},
-            top: {anchor: "row2", align: VerticalAlign.Bottom}
-          })
-          .id("row4")
-          .margin(10)
+        Row() {
+          Text('row4')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#2ca9e0')
+        .alignRules({
+          left: { anchor: "row3", align: HorizontalAlign.End },
+          top: { anchor: "row2", align: VerticalAlign.Bottom }
+        })
+        .id("row4")
+        .margin(10)
       }
       .width(300).height(300)
-      .margin({left: 50})
-      .border({width:2, color: "#6699FF"})
+      .margin({ left: 50 })
+      .border({ width: 2, color: "#6699FF" })
     }
     .height('100%')
   }
@@ -312,9 +343,9 @@ struct Index {
 ```
 ![relative container](figures/relativecontainer1.png)
 
-### 示例3
+### 示例3（设置容器大小自适应内容）
 
-本示例展示了容器大小适应内容（声明size为"auto"）的用法。
+本示例展示了容器大小适应内容（声明width或height为"auto"）的用法。
 
 ```ts
 @Entry
@@ -323,41 +354,57 @@ struct Index {
   build() {
     Row() {
       RelativeContainer() {
-        Row(){Text('row1')}.justifyContent(FlexAlign.Center)
-          .width(100).height(100)
-          .backgroundColor("#FF3333")
-          .id("row1")
+        Row() {
+          Text('row1')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#a3cf62')
+        .id("row1")
 
-        Row(){Text('row2')}.justifyContent(FlexAlign.Center)
-          .width(100).height(100)
-          .backgroundColor("#FFCC00")
-          .alignRules({
-            left: {anchor: "row1", align: HorizontalAlign.End},
-            top: {anchor: "row1", align: VerticalAlign.Top}
-          })
-          .id("row2")
+        Row() {
+          Text('row2')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#00ae9d')
+        .alignRules({
+          left: { anchor: "row1", align: HorizontalAlign.End },
+          top: { anchor: "row1", align: VerticalAlign.Top }
+        })
+        .id("row2")
 
-        Row(){Text('row3')}.justifyContent(FlexAlign.Center)
-          .width(100).height(100)
-          .backgroundColor("#FF6633")
-          .alignRules({
-            left: {anchor: "row1", align: HorizontalAlign.Start},
-            top: {anchor: "row1", align: VerticalAlign.Bottom}
-          })
-          .id("row3")
+        Row() {
+          Text('row3')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#0a59f7')
+        .alignRules({
+          left: { anchor: "row1", align: HorizontalAlign.Start },
+          top: { anchor: "row1", align: VerticalAlign.Bottom }
+        })
+        .id("row3")
 
-        Row(){Text('row4')}.justifyContent(FlexAlign.Center)
-          .width(100).height(100)
-          .backgroundColor("#FF9966")
-          .alignRules({
-            left: {anchor: "row3", align: HorizontalAlign.End},
-            top: {anchor: "row2", align: VerticalAlign.Bottom}
-          })
-          .id("row4")
+        Row() {
+          Text('row4')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#2ca9e0')
+        .alignRules({
+          left: { anchor: "row3", align: HorizontalAlign.End },
+          top: { anchor: "row2", align: VerticalAlign.Bottom }
+        })
+        .id("row4")
       }
       .width("auto").height("auto")
-      .margin({left: 50})
-      .border({width:2, color: "#6699FF"})
+      .margin({ left: 50 })
+      .border({ width: 2, color: "#6699FF" })
     }
     .height('100%')
   }
@@ -365,9 +412,9 @@ struct Index {
 ```
 ![relative container](figures/relativecontainer2.png)
 
-### 示例4
+### 示例4（设置偏移）
 
-本示例展示了bias的用法。
+本示例通过[bias](ts-universal-attributes-location.md#bias对象说明)实现了子组件的位置在竖直方向的两个锚点间偏移的效果
 
 ```ts
 @Entry
@@ -376,20 +423,22 @@ struct Index {
   build() {
     Row() {
       RelativeContainer() {
-        Row().width(100).height(100)
-          .backgroundColor("#FF3333")
+        Row()
+          .width(100)
+          .height(100)
+          .backgroundColor('#a3cf62')
           .alignRules({
-            top: {anchor: "__container__", align: VerticalAlign.Top},
-            bottom : {anchor : "__container__", align : VerticalAlign.Bottom},
-            left: {anchor: "__container__", align: HorizontalAlign.Start},
-            right : {anchor : "__container__", align: HorizontalAlign.End},
-            bias : {vertical : 0.3}
+            top: { anchor: "__container__", align: VerticalAlign.Top },
+            bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
+            left: { anchor: "__container__", align: HorizontalAlign.Start },
+            right: { anchor: "__container__", align: HorizontalAlign.End },
+            bias: { vertical: 0.3 }
           })
           .id("row1")
       }
       .width(300).height(300)
-      .margin({left: 50})
-      .border({width:2, color: "#6699FF"})
+      .margin({ left: 50 })
+      .border({ width: 2, color: "#6699FF" })
     }
     .height('100%')
   }
@@ -397,9 +446,9 @@ struct Index {
 ```
 ![relative container](figures/relativecontainer3.png)
 
-### 示例5
+### 示例5（设置辅助线）
 
-本示例展示了guideline的声明和以guideline为锚点的用法。
+本示例展示了相对布局组件通过[guideLine](#guideline12)接口设置辅助线，子组件以辅助线为锚点的功能。
 
 ```ts
 @Entry
@@ -408,19 +457,22 @@ struct Index {
   build() {
     Row() {
       RelativeContainer() {
-        Row().width(100).height(100)
-          .backgroundColor("#FF3333")
+        Row()
+          .width(100)
+          .height(100)
+          .backgroundColor('#a3cf62')
           .alignRules({
-            left: {anchor: "guideline1", align: HorizontalAlign.End},
-            top: {anchor: "guideline2", align: VerticalAlign.Top}
+            left: { anchor: "guideline1", align: HorizontalAlign.End },
+            top: { anchor: "guideline2", align: VerticalAlign.Top }
           })
           .id("row1")
       }
-      .width(300).height(300)
-      .margin({left: 50})
-      .border({width:2, color: "#6699FF"})
-      .guideLine([{id:"guideline1", direction: Axis.Vertical, position:{start:50}},
-        {id:"guideline2", direction: Axis.Horizontal, position:{start:50}}])
+      .width(300)
+      .height(300)
+      .margin({ left: 50 })
+      .border({ width: 2, color: "#6699FF" })
+      .guideLine([{ id: "guideline1", direction: Axis.Vertical, position: { start: 50 } },
+        { id: "guideline2", direction: Axis.Horizontal, position: { start: 50 } }])
     }
     .height('100%')
   }
@@ -428,9 +480,9 @@ struct Index {
 ```
 ![relative container](figures/relativecontainer4.png)
 
-### 示例6
+### 示例6（设置屏障）
 
-本示例展示了barrier的声明和以barrier为锚点的用法。
+本示例展示了相对布局组件通过[barrier](#barrier12)接口设置屏障，子组件以屏障为锚点的用法。
 
 ```ts
 @Entry
@@ -439,43 +491,60 @@ struct Index {
   build() {
     Row() {
       RelativeContainer() {
-        Row(){Text('row1')}.justifyContent(FlexAlign.Center)
-          .width(100).height(100)
-          .backgroundColor("#FF3333")
-          .id("row1")
+        Row() {
+          Text('row1')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#a3cf62')
+        .id("row1")
 
-        Row(){Text('row2')}.justifyContent(FlexAlign.Center)
-          .width(100).height(100)
-          .backgroundColor("#FFCC00")
-          .alignRules({
-            middle: {anchor: "row1", align: HorizontalAlign.End},
-            top: {anchor: "row1", align: VerticalAlign.Bottom}
-          })
-          .id("row2")
+        Row() {
+          Text('row2')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#00ae9d')
+        .alignRules({
+          middle: { anchor: "row1", align: HorizontalAlign.End },
+          top: { anchor: "row1", align: VerticalAlign.Bottom }
+        })
+        .id("row2")
 
-        Row(){Text('row3')}.justifyContent(FlexAlign.Center)
-          .width(100).height(100)
-          .backgroundColor("#FF6633")
-          .alignRules({
-            left: {anchor: "barrier1", align: HorizontalAlign.End},
-            top: {anchor: "row1", align: VerticalAlign.Top}
-          })
-          .id("row3")
+        Row() {
+          Text('row3')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#0a59f7')
+        .alignRules({
+          left: { anchor: "barrier1", align: HorizontalAlign.End },
+          top: { anchor: "row1", align: VerticalAlign.Top }
+        })
+        .id("row3")
 
-        Row(){Text('row4')}.justifyContent(FlexAlign.Center)
-          .width(50).height(50)
-          .backgroundColor("#FF9966")
-          .alignRules({
-            left: {anchor: "row1", align: HorizontalAlign.Start},
-            top: {anchor: "barrier2", align: VerticalAlign.Bottom}
-          })
-          .id("row4")
+        Row() {
+          Text('row4')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(50)
+        .height(50)
+        .backgroundColor('#2ca9e0')
+        .alignRules({
+          left: { anchor: "row1", align: HorizontalAlign.Start },
+          top: { anchor: "barrier2", align: VerticalAlign.Bottom }
+        })
+        .id("row4")
       }
-      .width(300).height(300)
-      .margin({left: 50})
-      .border({width:2, color: "#6699FF"})
-      .barrier([{id: "barrier1", direction: BarrierDirection.RIGHT, referencedId:["row1", "row2"]},
-        {id: "barrier2", direction: BarrierDirection.BOTTOM, referencedId:["row1", "row2"]}])
+      .width(300)
+      .height(300)
+      .margin({ left: 50 })
+      .border({ width: 2, color: "#6699FF" })
+      .barrier([{ id: "barrier1", direction: BarrierDirection.RIGHT, referencedId: ["row1", "row2"] },
+        { id: "barrier2", direction: BarrierDirection.BOTTOM, referencedId: ["row1", "row2"] }])
     }
     .height('100%')
   }
@@ -483,9 +552,9 @@ struct Index {
 ```
 ![relative container](figures/relativecontainer5.png)
 
-### 示例7
+### 示例7（设置链）
 
-本示例通过chainMode接口从上至下分别实现了水平方向的SPREAD链，SPREAD_INSIDE链和PACKED链。
+本示例通过[chainMode](ts-universal-attributes-location.md#chainmode12)接口从上至下分别实现了水平方向的[SPREAD链，SPREAD_INSIDE链和PACKED链](ts-universal-attributes-location.md#chainstyle12)。
 
 ```ts
 @Entry
@@ -494,102 +563,138 @@ struct Index {
   build() {
     Row() {
       RelativeContainer() {
-        Row(){Text('row1')}.justifyContent(FlexAlign.Center)
-          .width(80).height(80)
-          .backgroundColor("#FF3333")
-          .alignRules({
-            left: {anchor: "__container__", align: HorizontalAlign.Start},
-            right: {anchor: "row2", align : HorizontalAlign.Start},
-            top: {anchor: "__container__", align: VerticalAlign.Top}
-          })
-          .id("row1")
-          .chainMode(Axis.Horizontal, ChainStyle.SPREAD)
+        Row() {
+          Text('row1')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(80)
+        .height(80)
+        .backgroundColor('#a3cf62')
+        .alignRules({
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          right: { anchor: "row2", align: HorizontalAlign.Start },
+          top: { anchor: "__container__", align: VerticalAlign.Top }
+        })
+        .id("row1")
+        .chainMode(Axis.Horizontal, ChainStyle.SPREAD)
 
-        Row(){Text('row2')}.justifyContent(FlexAlign.Center)
-          .width(80).height(80)
-          .backgroundColor("#FFCC00")
-          .alignRules({
-            left: {anchor: "row1", align: HorizontalAlign.End},
-            right: {anchor: "row3", align : HorizontalAlign.Start},
-            top: {anchor: "row1", align: VerticalAlign.Top}
-          })
-          .id("row2")
+        Row() {
+          Text('row2')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(80)
+        .height(80)
+        .backgroundColor('#00ae9d')
+        .alignRules({
+          left: { anchor: "row1", align: HorizontalAlign.End },
+          right: { anchor: "row3", align: HorizontalAlign.Start },
+          top: { anchor: "row1", align: VerticalAlign.Top }
+        })
+        .id("row2")
 
-        Row(){Text('row3')}.justifyContent(FlexAlign.Center)
-          .width(80).height(80)
-          .backgroundColor("#FF6633")
-          .alignRules({
-            left: {anchor: "row2", align: HorizontalAlign.End},
-            right: {anchor: "__container__", align : HorizontalAlign.End},
-            top: {anchor: "row1", align: VerticalAlign.Top}
-          })
-          .id("row3")
+        Row() {
+          Text('row3')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(80)
+        .height(80)
+        .backgroundColor('#0a59f7')
+        .alignRules({
+          left: { anchor: "row2", align: HorizontalAlign.End },
+          right: { anchor: "__container__", align: HorizontalAlign.End },
+          top: { anchor: "row1", align: VerticalAlign.Top }
+        })
+        .id("row3")
 
-        Row(){Text('row4')}.justifyContent(FlexAlign.Center)
-          .width(80).height(80)
-          .backgroundColor("#FF3333")
-          .alignRules({
-            left: {anchor: "__container__", align: HorizontalAlign.Start},
-            right: {anchor: "row5", align : HorizontalAlign.Start},
-            center: {anchor: "__container__", align: VerticalAlign.Center}
-          })
-          .id("row4")
-          .chainMode(Axis.Horizontal, ChainStyle.SPREAD_INSIDE)
+        Row() {
+          Text('row4')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(80)
+        .height(80)
+        .backgroundColor('#a3cf62')
+        .alignRules({
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          right: { anchor: "row5", align: HorizontalAlign.Start },
+          center: { anchor: "__container__", align: VerticalAlign.Center }
+        })
+        .id("row4")
+        .chainMode(Axis.Horizontal, ChainStyle.SPREAD_INSIDE)
 
-        Row(){Text('row5')}.justifyContent(FlexAlign.Center)
-          .width(80).height(80)
-          .backgroundColor("#FFCC00")
-          .alignRules({
-            left: {anchor: "row4", align: HorizontalAlign.End},
-            right: {anchor: "row6", align : HorizontalAlign.Start},
-            top: {anchor: "row4", align: VerticalAlign.Top}
-          })
-          .id("row5")
+        Row() {
+          Text('row5')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(80)
+        .height(80)
+        .backgroundColor('#00ae9d')
+        .alignRules({
+          left: { anchor: "row4", align: HorizontalAlign.End },
+          right: { anchor: "row6", align: HorizontalAlign.Start },
+          top: { anchor: "row4", align: VerticalAlign.Top }
+        })
+        .id("row5")
 
-        Row(){Text('row6')}.justifyContent(FlexAlign.Center)
-          .width(80).height(80)
-          .backgroundColor("#FF6633")
-          .alignRules({
-            left: {anchor: "row5", align: HorizontalAlign.End},
-            right: {anchor: "__container__", align : HorizontalAlign.End},
-            top: {anchor: "row4", align: VerticalAlign.Top}
-          })
-          .id("row6")
+        Row() {
+          Text('row6')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(80)
+        .height(80)
+        .backgroundColor('#0a59f7')
+        .alignRules({
+          left: { anchor: "row5", align: HorizontalAlign.End },
+          right: { anchor: "__container__", align: HorizontalAlign.End },
+          top: { anchor: "row4", align: VerticalAlign.Top }
+        })
+        .id("row6")
 
-        Row(){Text('row7')}.justifyContent(FlexAlign.Center)
-          .width(80).height(80)
-          .backgroundColor("#FF3333")
-          .alignRules({
-            left: {anchor: "__container__", align: HorizontalAlign.Start},
-            right: {anchor: "row8", align : HorizontalAlign.Start},
-            bottom: {anchor: "__container__", align: VerticalAlign.Bottom}
-          })
-          .id("row7")
-          .chainMode(Axis.Horizontal, ChainStyle.PACKED)
+        Row() {
+          Text('row7')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(80)
+        .height(80)
+        .backgroundColor('#a3cf62')
+        .alignRules({
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          right: { anchor: "row8", align: HorizontalAlign.Start },
+          bottom: { anchor: "__container__", align: VerticalAlign.Bottom }
+        })
+        .id("row7")
+        .chainMode(Axis.Horizontal, ChainStyle.PACKED)
 
-        Row(){Text('row8')}.justifyContent(FlexAlign.Center)
-          .width(80).height(80)
-          .backgroundColor("#FFCC00")
-          .alignRules({
-            left: {anchor: "row7", align: HorizontalAlign.End},
-            right: {anchor: "row9", align : HorizontalAlign.Start},
-            top: {anchor: "row7", align: VerticalAlign.Top}
-          })
-          .id("row8")
+        Row() {
+          Text('row8')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(80)
+        .height(80)
+        .backgroundColor('#00ae9d')
+        .alignRules({
+          left: { anchor: "row7", align: HorizontalAlign.End },
+          right: { anchor: "row9", align: HorizontalAlign.Start },
+          top: { anchor: "row7", align: VerticalAlign.Top }
+        })
+        .id("row8")
 
-        Row(){Text('row9')}.justifyContent(FlexAlign.Center)
-          .width(80).height(80)
-          .backgroundColor("#FF6633")
-          .alignRules({
-            left: {anchor: "row8", align: HorizontalAlign.End},
-            right: {anchor: "__container__", align : HorizontalAlign.End},
-            top: {anchor: "row7", align: VerticalAlign.Top}
-          })
-          .id("row9")
+        Row() {
+          Text('row9')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(80)
+        .height(80)
+        .backgroundColor('#0a59f7')
+        .alignRules({
+          left: { anchor: "row8", align: HorizontalAlign.End },
+          right: { anchor: "__container__", align: HorizontalAlign.End },
+          top: { anchor: "row7", align: VerticalAlign.Top }
+        })
+        .id("row9")
       }
       .width(300).height(300)
-      .margin({left: 50})
-      .border({width:2, color: "#6699FF"})
+      .margin({ left: 50 })
+      .border({ width: 2, color: "#6699FF" })
     }
     .height('100%')
   }
@@ -597,9 +702,9 @@ struct Index {
 ```
 ![relative container](figures/relativecontainer6.png)
 
-### 示例8
+### 示例8（链中设置偏移）
 
-本示例通过chainMode和bias接口实现了水平方向的带bias的PACKED链。
+本示例通过[chainMode](ts-universal-attributes-location.md#chainmode12)和[bias](ts-universal-attributes-location.md#bias对象说明)接口实现了水平方向的带偏移的[PACKED链](ts-universal-attributes-location.md#chainstyle12)。
 
 ```ts
 @Entry
@@ -608,41 +713,53 @@ struct Index {
   build() {
     Row() {
       RelativeContainer() {
-        Row(){Text('row1')}.justifyContent(FlexAlign.Center)
-          .width(80).height(80)
-          .backgroundColor("#FF3333")
-          .alignRules({
-            left: {anchor: "__container__", align: HorizontalAlign.Start},
-            right: {anchor: "row2", align : HorizontalAlign.Start},
-            center: {anchor: "__container__", align: VerticalAlign.Center},
-            bias : {horizontal : 0}
-          })
-          .id("row1")
-          .chainMode(Axis.Horizontal, ChainStyle.PACKED)
+        Row() {
+          Text('row1')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(80)
+        .height(80)
+        .backgroundColor('#a3cf62')
+        .alignRules({
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          right: { anchor: "row2", align: HorizontalAlign.Start },
+          center: { anchor: "__container__", align: VerticalAlign.Center },
+          bias: { horizontal: 0 }
+        })
+        .id("row1")
+        .chainMode(Axis.Horizontal, ChainStyle.PACKED)
 
-        Row(){Text('row2')}.justifyContent(FlexAlign.Center)
-          .width(80).height(80)
-          .backgroundColor("#FFCC00")
-          .alignRules({
-            left: {anchor: "row1", align: HorizontalAlign.End},
-            right: {anchor: "row3", align : HorizontalAlign.Start},
-            top: {anchor: "row1", align: VerticalAlign.Top}
-          })
-          .id("row2")
+        Row() {
+          Text('row2')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(80)
+        .height(80)
+        .backgroundColor('#00ae9d')
+        .alignRules({
+          left: { anchor: "row1", align: HorizontalAlign.End },
+          right: { anchor: "row3", align: HorizontalAlign.Start },
+          top: { anchor: "row1", align: VerticalAlign.Top }
+        })
+        .id("row2")
 
-        Row(){Text('row3')}.justifyContent(FlexAlign.Center)
-          .width(80).height(80)
-          .backgroundColor("#FF6633")
-          .alignRules({
-            left: {anchor: "row2", align: HorizontalAlign.End},
-            right: {anchor: "__container__", align : HorizontalAlign.End},
-            top: {anchor: "row1", align: VerticalAlign.Top}
-          })
-          .id("row3")
+        Row() {
+          Text('row3')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(80)
+        .height(80)
+        .backgroundColor('#0a59f7')
+        .alignRules({
+          left: { anchor: "row2", align: HorizontalAlign.End },
+          right: { anchor: "__container__", align: HorizontalAlign.End },
+          top: { anchor: "row1", align: VerticalAlign.Top }
+        })
+        .id("row3")
       }
       .width(300).height(300)
-      .margin({left: 50})
-      .border({width:2, color: "#6699FF"})
+      .margin({ left: 50 })
+      .border({ width: 2, color: "#6699FF" })
     }
     .height('100%')
   }
@@ -650,9 +767,9 @@ struct Index {
 ```
 ![relative container](figures/relativecontainer7.png)
 
-### 示例9
+### 示例9（设置镜像模式）
 
-本示例展示了在RTL模式下以barrier为锚点时使用LocalizedAlignRuleOptions和LocalizedBarrierDirection设置对齐方式的用法。
+本示例展示了在镜像模式（direction声明Direction.Rtl）下以屏障为锚点时使用[LocalizedAlignRuleOptions](ts-universal-attributes-location.md#localizedalignruleoptions12对象说明)和[LocalizedBarrierDirection](#localizedbarrierdirection12枚举说明)设置对齐方式的用法。
 
 ```ts
 @Entry
@@ -661,44 +778,61 @@ struct Index {
   build() {
     Row() {
       RelativeContainer() {
-        Row(){Text('row1')}.justifyContent(FlexAlign.Center)
-          .width(100).height(100)
-          .backgroundColor("#FF3333")
-          .id("row1")
+        Row() {
+          Text('row1')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#a3cf62')
+        .id("row1")
 
-        Row(){Text('row2')}.justifyContent(FlexAlign.Center)
-          .width(100).height(100)
-          .backgroundColor("#FFCC00")
-          .alignRules({
-            middle: {anchor: "row1", align: HorizontalAlign.End},
-            top: {anchor: "row1", align: VerticalAlign.Bottom}
-          })
-          .id("row2")
+        Row() {
+          Text('row2')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#00ae9d')
+        .alignRules({
+          middle: { anchor: "row1", align: HorizontalAlign.End },
+          top: { anchor: "row1", align: VerticalAlign.Bottom }
+        })
+        .id("row2")
 
-        Row(){Text('row3')}.justifyContent(FlexAlign.Center)
-          .width(100).height(100)
-          .backgroundColor("#FF6633")
-          .alignRules({
-            start: {anchor: "barrier1", align: HorizontalAlign.End},
-            top: {anchor: "row1", align: VerticalAlign.Top}
-          })
-          .id("row3")
+        Row() {
+          Text('row3')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#0a59f7')
+        .alignRules({
+          start: { anchor: "barrier1", align: HorizontalAlign.End },
+          top: { anchor: "row1", align: VerticalAlign.Top }
+        })
+        .id("row3")
 
-        Row(){Text('row4')}.justifyContent(FlexAlign.Center)
-          .width(50).height(50)
-          .backgroundColor("#FF9966")
-          .alignRules({
-            start: {anchor: "row1", align: HorizontalAlign.Start},
-            top: {anchor: "barrier2", align: VerticalAlign.Bottom}
-          })
-          .id("row4")
+        Row() {
+          Text('row4')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(50)
+        .height(50)
+        .backgroundColor('#2ca9e0')
+        .alignRules({
+          start: { anchor: "row1", align: HorizontalAlign.Start },
+          top: { anchor: "barrier2", align: VerticalAlign.Bottom }
+        })
+        .id("row4")
       }
       .direction(Direction.Rtl)
-      .width(300).height(300)
-      .margin({left: 50})
-      .border({width:2, color: "#6699FF"})
-      .barrier([{id: "barrier1", localizedDirection: LocalizedBarrierDirection.END, referencedId:["row1", "row2"]},
-        {id: "barrier2", localizedDirection: LocalizedBarrierDirection.BOTTOM, referencedId:["row1", "row2"]}])
+      .width(300)
+      .height(300)
+      .margin({ left: 50 })
+      .border({ width: 2, color: "#6699FF" })
+      .barrier([{ id: "barrier1", localizedDirection: LocalizedBarrierDirection.END, referencedId: ["row1", "row2"] },
+        { id: "barrier2", localizedDirection: LocalizedBarrierDirection.BOTTOM, referencedId: ["row1", "row2"] }])
     }
     .height('100%')
   }

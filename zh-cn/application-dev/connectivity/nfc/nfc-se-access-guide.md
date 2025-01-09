@@ -12,7 +12,7 @@
 
 | 接口名                             | 功能描述                                                                       |
 | ---------------------------------- | ------------------------------------------------------------------------------ |
-| newSEService(type: 'serviceState', callback: Callback\<ServiceState>): SEService                    | 建立一个可用于连接到系统中所有可用SE的新连接。                                                               |
+| createService(): Promise\<SEService>                    | 建立一个可用于连接到系统中所有可用SE的新连接。                                                               |
 | getReaders(): Reader[]                      | 返回可用SE Reader的数组，包含该设备上支持的所有的安全单元。                                                                |
 | openSession(): Session                 | 在SE Reader实例上创建连接会话，返回Session实例。                                                                |
 | openLogicalChannel(aid: number[]): Promise\<Channel>                  | 打开逻辑通道，返回逻辑Channel实例对象。                                                                |

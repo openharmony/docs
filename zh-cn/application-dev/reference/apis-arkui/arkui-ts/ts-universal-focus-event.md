@@ -35,6 +35,8 @@ onBlur(event:()&nbsp;=&gt;&nbsp;void)
 
 ## 示例
 
+该示例展示了组件获焦和失焦的情况，按钮获焦和失焦时会改变按钮的颜色。
+
 ```ts
 // xxx.ets
 @Entry

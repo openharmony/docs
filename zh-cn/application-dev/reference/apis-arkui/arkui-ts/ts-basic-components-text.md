@@ -182,11 +182,13 @@ minFontSize(value: number | string | Resource)
 
 设置文本最小显示字号。
 
-需配合[maxFontSize](#maxfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件和属性字符串不生效。
+需配合[maxFontSize](#maxfontsize)以及[maxLines](#maxlines)或布局大小限制使用，单独设置不生效。
 
 自适应字号生效时，fontSize设置不生效。
 
 minFontSize小于或等于0时，自适应字号不生效。
+
+从API Version 16开始支持在子组件和属性字符串上生效，未设置字号的部分自适应字号。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -206,9 +208,11 @@ maxFontSize(value: number | string | Resource)
 
 设置文本最大显示字号。
 
-需配合[minFontSize](#minfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件和属性字符串不生效。
+需配合[minFontSize](#minfontsize)以及[maxLines](#maxlines)或布局大小限制使用，单独设置不生效。
 
 自适应字号生效时，fontSize设置不生效。
+
+从API Version 16开始支持在子组件和属性字符串上生效，未设置字号的部分自适应字号。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -414,7 +418,7 @@ heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 
 设置文本自适应高度的方式。
 
-当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用[maxlines](#maxlines)属性来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](#minfontsize)和[maxFontSize](#maxfontsize)的范围内缩小字体以显示更多文本。
+当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用[maxLines](#maxlines)属性来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](#minfontsize)和[maxFontSize](#maxfontsize)的范围内缩小字体以显示更多文本。
 
 当设置为TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST时，优先使用minFontSize属性来调整文本高度。如果使用minFontSize属性可以将文本布局在一行中，则尝试在minFontSize和maxFontSize的范围内增大字体并使用最大可能的字体大小。
 
@@ -724,7 +728,7 @@ minFontScale(scale: number | Resource)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩放倍数。<br/>取值范围：(0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理，设置的值大于1，按值为1处理，异常值默认不生效。 |
+| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩放倍数。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理，设置的值大于1，按值为1处理，异常值默认不生效。 |
 
 ### maxFontScale<sup>12+</sup>
 
@@ -831,7 +835,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 ### caretColor<sup>14+</sup>
 
-caretColor(value: ResourceColor)
+caretColor(color: ResourceColor)
 
 设置文本框选中区域手柄颜色。
 
@@ -843,11 +847,11 @@ caretColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                   |
 | ------ | ------------------------------------------ | ---- | -------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中手柄颜色。<br/>默认值：'#007DFF' |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中手柄颜色。<br/>默认值：'#007DFF' |
 
 ### selectedBackgroundColor<sup>14+</sup>
 
-selectedBackgroundColor(value: ResourceColor)
+selectedBackgroundColor(color: ResourceColor)
 
 设置文本选中底板颜色。如果未设置不透明度，默认为20%不透明度。
 
@@ -859,7 +863,7 @@ selectedBackgroundColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                       |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。<br/>默认值：'#007DFF' |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。<br/>默认值：'#007DFF' |
 
 ## TextSpanType<sup>11+</sup>枚举说明
 
@@ -940,6 +944,22 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 | selectionStart | number | 是   | 所选文本的起始位置。 |
 | selectionEnd   | number | 是   | 所选文本的结束位置。 |
 
+### onMarqueeStateChange<sup>16+</sup>
+
+onMarqueeStateChange(callback: Callback\<MarqueeState\>)
+
+跑马灯动画进行到一些特定的阶段时，触发该回调。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                             | 必填  | 说明                       |
+|--------|---------------------------------------------------|-----|--------------------------|
+| state  | [Callback\<MarqueeState\>](#marqueestate16枚举说明) | 是   | 通过state参数指定触发回调的状态，状态由MarqueeState枚举定义，例如开始滚动、滚动一次、滚动完成。 |
+
 ## TextOptions<sup>11+</sup>
 
 Text初始化参数。
@@ -1007,6 +1027,51 @@ getLayoutManager(): LayoutManager
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
 | [LayoutManager](ts-text-common.md#LayoutManager) | 布局管理器对象。 |
+
+## marqueeOptions<sup>16+</sup>
+
+当textOverflow设置为TextOverflow.MARQUEE时，marqueeOptions的设置方能生效。
+
+| 名称             | 类型                                             | 必填 | 说明            |
+|----------------|------------------------------------------------| -------- |---------------|
+| marqueeOptions | [TextMarqueeOptions](#marqueeoptions16) | 是 | 当text组件的textOverflow属性设置为MARQUEE时，可通过marqueeOptions设置跑马灯动效具体的属性，如开关、步长、循环次数、方向等。 |
+
+## TextMarqueeOptions<sup>16+</sup>
+
+Marquee初始化参数。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名                | 类型                                              | 必填 | 说明                                                                                  |
+|--------------------|-------------------------------------------------|----|-------------------------------------------------------------------------------------|
+| start              | boolean                                         | 是  | 控制跑马灯进入播放状态。                                                                        |
+| step               | number                                          | 否  | 滚动动画文本滚动步长。<br/>默认值：4.0vp                                                           |
+| loop               | number                                          | 否  | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1                                                    |
+| fromStart          | boolean                                         | 否  | 设置文本从头开始滚动或反向滚动。<br/>默认值：true                                                       |
+| delay              | number                                          | 否  | 设置每次滚动的时间间隔。<br/>默认值：0                                                              |
+| fadeout            | boolean                                         | 否  | 设置文字超长时的渐隐效果。当Text内容超出显示范围时，未完全展现的文字边缘将应用渐隐效果。若两端均有文字未完全显示，则两端同时应用渐隐效果。在渐隐效果开启状态下，clip属性将自动锁定为true，不允许设置为false。<br/>默认值：false  |
+| marqueeStartPolicy | [MarqueeStartPolicy](#marqueestartpolicy16枚举说明) | 否  | 设置跑马灯启动策略。<br/>默认值：MarqueeStartPolicy.DEFAULT                                       |
+
+## MarqueeStartPolicy<sup>16+</sup>枚举说明
+
+Marquee的滚动方式，可选择默认持续滚动或条件触发滚动。
+
+| 名称        | 值 | 描述            |
+|----------|----|---------------|
+| DEFAULT  | 0  |默认持续滚动。       |
+| ON_FOCUS | 1  |获焦以及鼠标悬浮时开始滚动。 |
+
+## MarqueeState<sup>16+</sup>枚举说明
+
+Marquee状态回调的返回值。
+
+| 名称     | 值 |描述                            |
+|--------|----|-------------------------------|
+| START  |0  |跑马灯滚动开始。                     |
+| BOUNCE |1  |完成一次跑马灯滚动，如果循环次数不是1，将会多次返回。 |
+| FINISH |2  |跑马灯全部循环次数完成。              |
 
 ## 示例
 
@@ -1232,6 +1297,24 @@ struct TextExample3 {
       Text('This is the text with the text overflow set marquee')
         .textOverflow({ overflow: TextOverflow.MARQUEE })
         .style()
+        .marqueeOptions({
+            start: true,
+            fromStart: true,
+            step: 6,
+            loop: -1,
+            delay: 0,
+            fadeout: false,
+            marqueeStartPolicy: MarqueeStartPolicy.DEFAULT
+          })
+        .onMarqueeStateChange((state:MarqueeState) => {
+            if (state == MarqueeState.START) {
+              // "收到状态: START";
+            } else if(state == MarqueeState.BOUNCE){
+              // "收到状态: BOUNCE";
+            } else if(state == MarqueeState.FINISH){
+              // "收到状态: FINISH";
+            }
+          })
 
       Text('ellipsisMode').fontSize(9).fontColor(0xCCCCCC)
       // 设置文本超长时省略号的位置
@@ -1640,12 +1723,15 @@ struct TextExample9 {
 
 ```ts
 // xxx.ets
+import { text } from '@kit.ArkGraphics2D'
+
 @Entry
 @Component
 struct TextExample10 {
   @State lineCount: string = ""
   @State glyphPositionAtCoordinate: string = ""
   @State lineMetrics: string = ""
+  @State rectsForRangeStr: string = ""
   controller: TextController = new TextController()
   @State textStr: string =
     'Hello World! 您好，世界！'
@@ -1654,7 +1740,7 @@ struct TextExample10 {
     Scroll() {
       Column() {
         Text('Text组件getLayoutManager接口获取段落相对组件的信息')
-          .fontSize(9)
+          .fontSize(15)
           .fontColor(0xCCCCCC)
           .width('90%')
           .padding(10)
@@ -1666,10 +1752,10 @@ struct TextExample10 {
             this.lineCount = "LineCount: " + layoutManager.getLineCount()
           })
 
-        Text('LineCount').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Text('LineCount').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Text(this.lineCount)
 
-        Text('GlyphPositionAtCoordinate').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Text('GlyphPositionAtCoordinate').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Button("相对组件坐标[150,50]字形信息")
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager()
@@ -1681,12 +1767,12 @@ struct TextExample10 {
           .margin({ bottom: 20, top: 10 })
         Text(this.glyphPositionAtCoordinate)
 
-        Text('LineMetrics').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Text('LineMetrics').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Button("首行行信息、文本样式信息、以及字体属性信息")
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager()
             let lineMetrics: LineMetrics = layoutManager.getLineMetrics(0)
-            this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + '\n\n'
+            this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + "\n\n"
             let runMetrics = lineMetrics.runMetrics
             runMetrics.forEach((value, key) => {
               this.lineMetrics += "runMetrics key is " + key + " " + JSON.stringify(value) + "\n\n"
@@ -1694,6 +1780,21 @@ struct TextExample10 {
           })
           .margin({ bottom: 20, top: 10 })
         Text(this.lineMetrics)
+
+        Text('getRectsForRange').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
+        Button("获取指定矩形宽度和高度下，文本中任意区间范围内字符或占位符的绘制区域信息")
+          .onClick(() => {
+            let layoutManager: LayoutManager = this.controller.getLayoutManager()
+            let range: TextRange = { start: 0, end: 1 }
+            let rectsForRangeInfo: text.TextBox[] =
+              layoutManager.getRectsForRange(range, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT)
+            this.rectsForRangeStr = "getRectsForRange result is " + "\n\n"
+            rectsForRangeInfo.forEach((value, key) => {
+              this.rectsForRangeStr += "rectsForRange key is " + key + " " + JSON.stringify(value) + "\n\n"
+            })
+          })
+          .margin({ bottom: 20, top: 10 })
+        Text(this.rectsForRangeStr)
       }
       .margin({ top: 100, left: 8, right: 8 })
     }
@@ -1741,8 +1842,7 @@ struct TextExample11 {
 @Component
 struct TextExample12 {
   @State text: string = 'Text editMenuOptions'
-
-  onCreateMenu(menuItems: Array<TextMenuItem>) {
+  onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'custom1',
       icon: $r('app.media.startIcon'),
@@ -1757,29 +1857,31 @@ struct TextExample12 {
     menuItems.unshift(item2)
     return menuItems
   }
+  onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
+    if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
+      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
+      return false
+    }
+    return false
+  }
+  @State editMenuOptions: EditMenuOptions = {
+    onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+  }
 
   build() {
     Column() {
       Text(this.text)
         .fontSize(20)
         .copyOption(CopyOptions.LocalDevice)
-        .editMenuOptions({
-          onCreateMenu: this.onCreateMenu, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
-            if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-              console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-              return true
-            }
-            if (menuItem.id.equals(TextMenuItemId.COPY)) {
-              console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
-              return true
-            }
-            if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-              console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-              return false
-            }
-            return false
-          }
-        })
+        .editMenuOptions(this.editMenuOptions)
         .margin({ top: 100 })
     }
     .width("90%")

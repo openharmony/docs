@@ -33,11 +33,11 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_NativeBundle_GetCurrentApplicationInfo](#oh_nativebundle_getcurrentapplicationinfo) | 获取应用自身的相关信息。 |
-| [OH_NativeBundle_GetAppId](#oh_nativebundle_getappid) | 获取自身应用的appId信息。 |
-| [OH_NativeBundle_GetAppIdentifier](#oh_nativebundle_getappidentifier) | 获取自身应用的appIdentifier信息。 |
-| [OH_NativeBundle_GetMainElementName](#oh_nativebundle_getmainelementname) | 获取自身应用入口的信息。 |
-| [OH_NativeBundle_GetCompatibleDeviceType](_bundle.md#oh_nativebundle_getcompatibledevicetype) | 获取自身应用适用的设备类型。 |
+| [OH_NativeBundle_GetCurrentApplicationInfo](#oh_nativebundle_getcurrentapplicationinfo) | 获取当前应用的信息。 |
+| [OH_NativeBundle_GetAppId](#oh_nativebundle_getappid) | 获取当前应用的appId信息。 |
+| [OH_NativeBundle_GetAppIdentifier](#oh_nativebundle_getappidentifier) | 获取当前应用的appIdentifier信息。 |
+| [OH_NativeBundle_GetMainElementName](#oh_nativebundle_getmainelementname) | 获取当前应用的入口信息。 |
+| [OH_NativeBundle_GetCompatibleDeviceType](_bundle.md#oh_nativebundle_getcompatibledevicetype) | 获取当前应用适用的设备类型。 |
 
 
 ## 函数说明

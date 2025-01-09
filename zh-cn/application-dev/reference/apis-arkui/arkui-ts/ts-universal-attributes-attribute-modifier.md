@@ -99,9 +99,9 @@ CommonModifier、ColumnModifier、ColumnSplitModifier、RowModifier、RowSplitMo
 6. 多次通过attributeModifier设置属性时，生效的属性为所有属性的并集，相同属性按照设置顺序生效。   
 
 ## 示例
-### 示例1
+### 示例1（组件绑定Modifier）
 
-如果配合状态管理V2使用，详情见：[Modifier与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#modifier)。
+该示例通过Button绑定Modifier实现了按压态的效果。如果配合状态管理V2使用，详情见：[Modifier与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#modifier)。
 
 ```ts
 // xxx.ets
@@ -171,8 +171,10 @@ struct attributePressedDemo {
 ```
 ![attributeModifier_ifelse](figures/attributeModifier_ifelse.gif)
 
-### 示例2
-自定义Modifier不支持@State标注的状态数据的变化感知。
+### 示例2（自定义Modifier不支持感知@State装饰的状态数据变化）
+
+该示例通过状态数据设置自定义Modifier的宽度，自定义Modifier不支持感知@State装饰的状态数据变化，点击按钮后宽度不发生改变。
+
 ```ts
 import { CommonModifier } from "@kit.ArkUI"
 
@@ -219,9 +221,12 @@ struct Index {
   }
 }
 ```
-![attributeModifier2](figures/attributeModifier2.gif)  
-### 示例3
-自定义Modifier设置了width和height，点击按钮时设置borderStyle和borderWidth，点击后4个属性同时生效。 
+![attributeModifier2](figures/attributeModifier2.gif)
+
+### 示例3（Modifier和自定义Modifier的属性同时生效）
+
+该示例通过自定义Modifier设置了width和height，点击按钮时设置borderStyle和borderWidth，点击后4个属性同时生效。 
+
 ```ts
 import { CommonModifier } from "@kit.ArkUI"
 

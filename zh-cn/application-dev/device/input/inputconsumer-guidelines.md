@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-组合按键提供订阅组合按键、设置屏蔽按键拦截状态等能力。使用场景例如：当用户需要组合按键实现快捷功能时，开发者可以通过订阅组合按键，通过组合按键启用快捷功能。
+组合按键提供订阅组合按键、设置屏蔽按键拦截状态等能力。使用场景例如：当用户需要组合按键实现快捷功能时，开发者可以订阅组合按键，通过组合按键启用快捷功能。
 
 ## 导入模块
 
@@ -26,8 +26,7 @@ import { inputConsumer } from '@kit.InputKit';
 
 ## 开发步骤
 
-使用特定组合按键的应用开启时调用[on](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeron)方法订阅组合键，当应用
-应用关闭时再用[off](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeroff)方法取消组合键订阅。
+特定组合按键的应用开启时调用[on](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeron)方法订阅组合键，应用关闭时再用[off](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeroff)方法取消订阅组合键。
 
 ```js
 let leftAltKey = 2045;

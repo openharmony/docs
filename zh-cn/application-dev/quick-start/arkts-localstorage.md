@@ -20,11 +20,11 @@ LocalStorage还提供了API接口，可以让开发者通过接口在自定义�
 
 LocalStorage是ArkTS为构建页面级别状态变量提供存储的内存内的“数据库”。
 
-- 应用程序可以创建多个LocalStorage实例，LocalStorage实例可以在页面内共享，也可以通过GetShared接口，实现跨页面、UIAbility实例内共享。
+- 应用程序可以创建多个LocalStorage实例，LocalStorage实例可以在页面内共享，也可以通过getShared接口，实现跨页面、UIAbility实例内共享。
 
 - 组件树的根节点，即被\@Entry装饰的\@Component，可以被分配一个LocalStorage实例，此组件的所有子组件实例将自动获得对该LocalStorage实例的访问权限。
 
-- 被\@Component装饰的组件最多可以访问一个LocalStorage实例和[AppStorage](arkts-appstorage.md)，未被\@Entry装饰的组件不可被独立分配LocalStorage实例，只能接受父组件通过\@Entry传递来的LocalStorage实例。一个LocalStorage实例在组件树上可以被分配给多个组件。
+- \@Component装饰的组件既可以自动继承来自父组件的LocalStorage实例，也可以传入指定的LocalStorage的实例，详见：[自定义组件接收LocalStorage实例](#自定义组件接收localstorage实例)。
 
 - LocalStorage中的所有属性都是可变的。
 
@@ -209,7 +209,7 @@ storage.setOrCreate('PropA', 48);
 ```ts
 let para: Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para); // 创建新实例并使用给定对象初始化
-let propA: number | undefined = storage.get('PropA') // propA == 47
+let propA: number | undefined = storage.get('PropA'); // propA == 47
 let link1: SubscribedAbstractProperty<number> = storage.link('PropA'); // link1.get() == 47
 let link2: SubscribedAbstractProperty<number> = storage.link('PropA'); // link2.get() == 47
 let prop: SubscribedAbstractProperty<number> = storage.prop('PropA'); // prop.get() == 47
@@ -227,12 +227,12 @@ link1.set(49); // 双向同步: link1.get() == link2.get() == prop.get() == 49
 
 - 使用构造函数创建LocalStorage实例storage；
 
-- 使用\@Entry装饰器将storage添加到CompA顶层组件中；
+- 使用\@Entry装饰器将storage添加到Parent顶层组件中；
 
 - \@LocalStorageLink绑定LocalStorage对给定的属性，建立双向数据同步。
 
  ```ts
-class PropB {
+class Data {
   code: number;
 
   constructor(code: number) {
@@ -242,21 +242,22 @@ class PropB {
 // 创建新实例并使用给定对象初始化
 let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
-storage.setOrCreate('PropB', new PropB(50));
+storage.setOrCreate('PropB', new Data(50));
 
 @Component
 struct Child {
   // @LocalStorageLink变量装饰器与LocalStorage中的'PropA'属性建立双向绑定
   @LocalStorageLink('PropA') childLinkNumber: number = 1;
   // @LocalStorageLink变量装饰器与LocalStorage中的'PropB'属性建立双向绑定
-  @LocalStorageLink('PropB') childLinkObject: PropB = new PropB(0);
+  @LocalStorageLink('PropB') childLinkObject: Data = new Data(0);
 
   build() {
-    Column() {
+    Column({ space: 15 }) {
       Button(`Child from LocalStorage ${this.childLinkNumber}`) // 更改将同步至LocalStorage中的'PropA'以及Parent.parentLinkNumber
         .onClick(() => {
           this.childLinkNumber += 1;
         })
+
       Button(`Child from LocalStorage ${this.childLinkObject.code}`) // 更改将同步至LocalStorage中的'PropB'以及Parent.parentLinkObject.code
         .onClick(() => {
           this.childLinkObject.code += 1;
@@ -267,11 +268,11 @@ struct Child {
 // 使LocalStorage可从@Component组件访问
 @Entry(storage)
 @Component
-struct CompA {
+struct Parent {
   // @LocalStorageLink变量装饰器与LocalStorage中的'PropA'属性建立双向绑定
   @LocalStorageLink('PropA') parentLinkNumber: number = 1;
   // @LocalStorageLink变量装饰器与LocalStorage中的'PropB'属性建立双向绑定
-  @LocalStorageLink('PropB') parentLinkObject: PropB = new PropB(0);
+  @LocalStorageLink('PropB') parentLinkObject: Data = new Data(0);
 
   build() {
     Column({ space: 15 }) {
@@ -284,7 +285,7 @@ struct CompA {
         .onClick(() => {
           this.parentLinkObject.code += 1;
         })
-      // @Component子组件自动获得对CompA LocalStorage实例的访问权限。
+      // @Component子组件自动获得对Parent LocalStorage实例的访问权限。
       Child()
     }
   }
@@ -294,9 +295,9 @@ struct CompA {
 
 ### \@LocalStorageProp和LocalStorage单向同步的简单场景
 
-在下面的示例中，CompA 组件和Child组件分别在本地创建了与storage的'PropA'对应属性的单向同步的数据，我们可以看到：
+在下面的示例中，Parent 组件和Child组件分别在本地创建了与storage的'PropA'对应属性的单向同步的数据，我们可以看到：
 
-- CompA中对this.storageProp1的修改，只会在CompA中生效，并没有同步回storage；
+- Parent中对this.storageProp1的修改，只会在Parent中生效，并没有同步回storage；
 
 - Child组件中，Text绑定的storageProp2 依旧显示47。
 
@@ -307,7 +308,7 @@ let storage: LocalStorage = new LocalStorage(para);
 // 使LocalStorage可从@Component组件访问
 @Entry(storage)
 @Component
-struct CompA {
+struct Parent {
   // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
   @LocalStorageProp('PropA') storageProp1: number = 1;
 
@@ -316,7 +317,7 @@ struct CompA {
       // 点击后从47开始加1，只改变当前组件显示的storageProp1，不会同步到LocalStorage中
       Button(`Parent from LocalStorage ${this.storageProp1}`)
         .onClick(() => {
-          this.storageProp1 += 1
+          this.storageProp1 += 1;
         })
       Child()
     }
@@ -330,7 +331,7 @@ struct Child {
 
   build() {
     Column({ space: 15 }) {
-      // 当CompA改变时，当前storageProp2不会改变，显示47
+      // 当Parent改变时，当前storageProp2不会改变，显示47
       Text(`Parent from LocalStorage ${this.storageProp2}`)
     }
   }
@@ -352,9 +353,9 @@ let linkToPropA: SubscribedAbstractProperty<object> = storage.link('PropA');
 
 @Entry(storage)
 @Component
-struct CompA {
+struct Parent {
 
-  // @LocalStorageLink('PropA')在CompA自定义组件中创建'PropA'的双向同步数据，初始值为47，因为在构造LocalStorage已经给“PropA”设置47
+  // @LocalStorageLink('PropA')在Parent自定义组件中创建'PropA'的双向同步数据，初始值为47，因为在构造LocalStorage已经给“PropA”设置47
   @LocalStorageLink('PropA') storageLink: number = 1;
 
   build() {
@@ -363,7 +364,7 @@ struct CompA {
         // 点击“incr @LocalStorageLink variable”，this.storageLink加1，改变同步回storage，全局变量linkToPropA也会同步改变
 
         .onClick(() => {
-          this.storageLink += 1
+          this.storageLink += 1;
         })
 
       // 并不建议在组件内使用全局变量linkToPropA.get()，因为可能会有生命周期不同引起的错误。
@@ -391,8 +392,8 @@ Child自定义组件中的变化：
 1. playCountLink的刷新会同步回LocalStorage，并且引起兄弟组件和父组件相应的刷新。
 
 ```ts
-let ls: Record<string, number> = { 'countStorage': 1 }
-let storage: LocalStorage = new LocalStorage(ls);
+let count: Record<string, number> = { 'countStorage': 1 };
+let storage: LocalStorage = new LocalStorage(count);
 
 @Component
 struct Child {
@@ -463,12 +464,14 @@ import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
-para:Record<string, number> = { 'PropA': 47 };
-storage: LocalStorage = new LocalStorage(this.para);
+  para: Record<string, number> = {
+    'PropA': 47
+  };
+  storage: LocalStorage = new LocalStorage(this.para);
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-windowStage.loadContent('pages/Index', this.storage);
-}
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent('pages/Index', this.storage);
+  }
 }
 ```
 > **说明：**
@@ -481,7 +484,6 @@ windowStage.loadContent('pages/Index', this.storage);
 在下面的用例中，Index页面中的propA通过getShared()方法获取到共享的LocalStorage实例。点击Button跳转到Page页面，点击Change propA改变propA的值，back回Index页面后，页面中propA的值也同步修改。
 ```ts
 // index.ets
-import { router } from '@kit.ArkUI';
 
 // 通过getShared接口获取stage共享的LocalStorage实例
 @Entry({ storage: LocalStorage.getShared() })
@@ -489,56 +491,82 @@ import { router } from '@kit.ArkUI';
 struct Index {
   // 可以使用@LocalStorageLink/Prop与LocalStorage实例中的变量建立联系
   @LocalStorageLink('PropA') propA: number = 1;
+  pageStack: NavPathStack = new NavPathStack();
 
   build() {
-    Row() {
-      Column() {
-        Text(`${this.propA}`)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        Button("To Page")
-          .onClick(() => {
-            this.getUIContext().getRouter().pushUrl({
-              url: 'pages/Page'
+    Navigation(this.pageStack) {
+      Row(){
+        Column() {
+          Text(`${this.propA}`)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
+          Button("To Page")
+            .onClick(() => {
+              this.pageStack.pushPathByName('Page', null);
             })
-          })
+        }
+        .width('100%')
       }
-      .width('100%')
+      .height('100%')
     }
-    .height('100%')
   }
 }
 ```
 
 ```ts
 // Page.ets
-import { router } from '@kit.ArkUI';
 
-@Entry({ storage: LocalStorage.getShared() })
+@Builder
+export function PageBuilder() {
+  Page()
+}
+
+// Page组件获得了父亲Index组件的LocalStorage实例
 @Component
 struct Page {
   @LocalStorageLink('PropA') propA: number = 2;
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
-    Row() {
-      Column() {
-        Text(`${this.propA}`)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
+    NavDestination() {
+      Row(){
+        Column() {
+          Text(`${this.propA}`)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
 
-        Button("Change propA")
-          .onClick(() => {
-            this.propA = 100;
-          })
+          Button("Change propA")
+            .onClick(() => {
+              this.propA = 100;
+            })
 
-        Button("Back Index")
-          .onClick(() => {
-            this.getUIContext().getRouter().back()
-          })
+          Button("Back Index")
+            .onClick(() => {
+              this.pathStack.pop();
+            })
+        }
+        .width('100%')
       }
-      .width('100%')
     }
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
   }
+}
+```
+使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page页面的路径，并且在module.json5中添加："routerMap": "$profile:route_map"。
+```json
+{
+  "routerMap": [
+    {
+      "name": "Page",
+      "pageSourceFile": "src/main/ets/pages/Page.ets",
+      "buildFunction": "PageBuilder",
+      "data": {
+        "description" : "LocalStorage example"
+      }
+    }
+  ]
 }
 ```
 
@@ -598,7 +626,7 @@ struct Index {
 @Component
 struct Child {
   @Link count: number;
-  //  'Hello World'，和localStorage2中'PropB'的双向同步，localStorage2中没有'PropB'，则使用默认值'Hello World'
+  //  'Hello World'，和localStorage2中'PropB'的双向同步，如果localStorage2中没有'PropB'，则使用默认值'Hello World'
   @LocalStorageLink('PropB') PropB: string = 'Hello World';
 
   build() {
@@ -686,7 +714,7 @@ struct Index {
 @Component
 struct Child {
   @State count: number = 5;
-  // 'Hello World'，和localStorage2中'PropB'的双向同步，localStorage2中没有'PropB'，则使用默认值'Hello World'
+  // 'Hello World'，和localStorage2中'PropB'的双向同步，如果localStorage2中没有'PropB'，则使用默认值'Hello World'
   @LocalStorageLink('PropB') PropB: string = 'Hello World';
 
   build() {
@@ -868,17 +896,17 @@ struct NavigationContentMsgStack {
 ```ts
 @Component
 struct LocalStorLink {
-  @LocalStorageLink("AA") A: number | null = null;
-  @LocalStorageLink("BB") B: number | undefined = undefined;
+  @LocalStorageLink("LinkA") LinkA: number | null = null;
+  @LocalStorageLink("LinkB") LinkB: number | undefined = undefined;
 
   build() {
     Column() {
       Text("@LocalStorageLink接口初始化，@LocalStorageLink取值")
-      Text(this.A + "").fontSize(20).onClick(() => {
-        this.A ? this.A = null : this.A = 1;
+      Text(this.LinkA + "").fontSize(20).onClick(() => {
+        this.LinkA ? this.LinkA = null : this.LinkA = 1;
       })
-      Text(this.B + "").fontSize(20).onClick(() => {
-        this.B ? this.B = undefined : this.B = 1;
+      Text(this.LinkB + "").fontSize(20).onClick(() => {
+        this.LinkB ? this.LinkB = undefined : this.LinkB = 1;
       })
     }
     .borderWidth(3).borderColor(Color.Green)
@@ -888,17 +916,17 @@ struct LocalStorLink {
 
 @Component
 struct LocalStorProp {
-  @LocalStorageProp("AAA") A: number | null = null;
-  @LocalStorageProp("BBB") B: number | undefined = undefined;
+  @LocalStorageProp("PropA") PropA: number | null = null;
+  @LocalStorageProp("PropB") PropB: number | undefined = undefined;
 
   build() {
     Column() {
       Text("@LocalStorageProp接口初始化，@LocalStorageProp取值")
-      Text(this.A + "").fontSize(20).onClick(() => {
-        this.A ? this.A = null : this.A = 1;
+      Text(this.PropA + "").fontSize(20).onClick(() => {
+        this.PropA ? this.PropA = null : this.PropA = 1;
       })
-      Text(this.B + "").fontSize(20).onClick(() => {
-        this.B ? this.B = undefined : this.B = 1;
+      Text(this.PropB + "").fontSize(20).onClick(() => {
+        this.PropB ? this.PropB = undefined : this.PropB = 1;
       })
     }
     .borderWidth(3).borderColor(Color.Yellow)
@@ -906,11 +934,11 @@ struct LocalStorProp {
   }
 }
 
-let storage1: LocalStorage = new LocalStorage();
+let storage: LocalStorage = new LocalStorage();
 
-@Entry(storage1)
+@Entry(storage)
 @Component
-struct TestCase3 {
+struct Index {
   build() {
     Row() {
       Column() {

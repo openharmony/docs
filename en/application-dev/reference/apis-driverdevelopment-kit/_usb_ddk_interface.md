@@ -11,7 +11,7 @@ Defines a USB DDK interface, which is a collection of alternate settings for a p
 
 **Related Modules**
 
-[UsbDdk](_usb_ddk.md)
+[USB DDK](_usb_ddk.md)
 
 
 ## Summary

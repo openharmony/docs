@@ -2,7 +2,7 @@
 
 屏幕录制主要为主屏幕录屏功能。
 
-开发者可以调用录屏（AVScreenCaptureRecorder）模块的ArkTs接口，完成屏幕录制，采集设备内、麦克风等的音视频源数据。可以调用录屏模块获取音视频文件，然后通过文件的形式流转到其他模块进行播放或处理，达成文件形式分享屏幕内容的场景。
+开发者可以调用录屏（[AVScreenCaptureRecorder](media-kit-intro.md#avscreencapture)）模块的ArkTs接口，完成屏幕录制，采集设备内、麦克风等的音视频源数据。可以调用录屏模块获取音视频文件，然后通过文件的形式流转到其他模块进行播放或处理，达成文件形式分享屏幕内容的场景。
 
 录屏模块和窗口（Window）、图形（Graphic）等模块协同完成整个视频采集的流程。
 
@@ -21,7 +21,7 @@
 - 当需要使用麦克风时，需要申请**ohos.permission.MICROPHONE**麦克风权限。申请方式请参考：[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 - 当需要读取图片或视频文件时，请优先使用媒体库[Picker选择媒体资源](../medialibrary/photoAccessHelper-photoviewpicker.md)。
 - 当需要保存图片或视频文件时，请优先使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)。
-  
+
 > **说明：**
 >
 > 仅应用需要克隆、备份或同步用户公共目录的图片、视频类文件时，可申请ohos.permission.READ_IMAGEVIDEO、ohos.permission.WRITE_IMAGEVIDEO权限来读写音频文件，申请方式请参考<!--RP1-->[申请受控权限](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->。
@@ -35,7 +35,7 @@
     ```javascript
     import media from '@ohos.multimedia.media';
     ```
-    
+
 2. 创建AVScreenCaptureRecorder类型的成员变量screenCapture。
 
     ```javascript
@@ -99,9 +99,9 @@
 
 4. 配置屏幕录制参数。
 
-    ​	创建AVScreenCaptureRecorder实例screenCapture后，可以设置屏幕录制所需要的参数。
+    ​创建AVScreenCaptureRecorder实例screenCapture后，可以设置屏幕录制所需要的参数。
 
-    ​	参数videoBitrate、audioSampleRate、audioChannelCount、audioBitrate、preset为可选参数，若不设置则可按默认值进行设置，如下示例中提供了可选参数的默认值。麦克风和系统音的音频流共用一套音频参数，分别是音频采样率、音频通道数和音频比特率，对应audioSampleRate、audioChannelCount和audioBitrate参数。
+    ​参数videoBitrate、audioSampleRate、audioChannelCount、audioBitrate、preset为可选参数，若不设置则可按默认值进行设置，如下示例中提供了可选参数的默认值。麦克风和系统音的音频流共用一套音频参数，分别是音频采样率、音频通道数和音频比特率，对应audioSampleRate、audioChannelCount和audioBitrate参数。
 
     ```javascript
     captureConfig: media.AVScreenCaptureRecordConfig = {
@@ -116,7 +116,7 @@
         audioChannelCount: 2,
         audioBitrate: 96000,
         preset: media.AVScreenCaptureRecordPreset.SCREEN_RECORD_PRESET_H264_AAC_MP4
-    }
+    };
     ```
 
 5. 基于预先配置的屏幕录制参数，调用init()方法初始化screenCapture。
@@ -176,7 +176,7 @@ export class AVScreenCaptureDemo {
     audioBitrate: 96000,
     preset: media.AVScreenCaptureRecordPreset.SCREEN_RECORD_PRESET_H264_AAC_MP4
   };
-	
+
   // 调用startRecording方法可以开始一次录屏存文件的流程，结束录屏可以通过点击录屏胶囊停止按钮进行操作。
   public async startRecording() {
     this.screenCapture = await media.createAVScreenCaptureRecorder();
@@ -234,11 +234,11 @@ export class AVScreenCaptureDemo {
       console.info("处理异常情况");
     })
     await this.screenCapture?.init(this.captureConfig);
-    
+
     // 豁免隐私窗口
     let windowIDs = [57, 86];
     await this.screenCapture?.skipPrivacyMode(windowIDs);
-    
+
     await this.screenCapture?.startRecording();
   }
 
@@ -249,7 +249,7 @@ export class AVScreenCaptureDemo {
       return;
     }
     await this.screenCapture?.stopRecording();
-    
+
     // 调用release()方法销毁实例，释放资源。
     await this.screenCapture?.release();
 

@@ -68,7 +68,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | 名称    | 类型                                      | 描述         |
 | ---------| ----------------------------------------  | -----------|
 | target   | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象显示区域。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| timestamp| number | 事件时间戳。<br>单位：ns<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| timestamp| number | 事件时间戳，触发事件时距离系统启动的时间间隔。<br>单位：ns<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | source   | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | pressure | number | 按压的压力大小。<br/>默认值：0<br/>取值范围：[0,1]，典型值0.913168，压感大小与数值正相关。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | tiltX | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -154,7 +154,10 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | speed         | number | 滑动手势速度，即所有手指相对当前组件元素原始区域滑动的平均速度，单位为vp/s。  |
 ## 示例
 
-### 示例1
+### 示例1（自定义手势判定）
+
+该示例通过配置onGestureJudgeBegin实现了对长按、滑动和拖动手势的自定义判定。
+
 ```ts
 // xxx.ets
 @Entry
@@ -234,7 +237,11 @@ struct Index {
 }
 ```
 ![gestures1](figures/gestures1.gif)
-### 示例2
+
+### 示例2（自定义区域手势判定）
+
+该示例通过配置onGestureJudgeBegin判定区域决定长按手势和拖拽是否响应。
+
 ```ts
 // xxx.ets
 import { promptAction } from '@kit.ArkUI';

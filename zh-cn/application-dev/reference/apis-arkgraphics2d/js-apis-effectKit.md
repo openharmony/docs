@@ -302,6 +302,19 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 | blue  | number | 是   | 否   | 蓝色分量值，取值范围[0x0, 0xFF]。           |
 | alpha | number | 是   | 否   | 透明通道分量值，取值范围[0x0, 0xFF]。       |
 
+## TileMode<sup>14+</sup>
+
+着色器效果平铺模式的枚举。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称                   | 值   | 说明                           |
+| ---------------------- | ---- | ------------------------------ |
+| CLAMP     | 0    | 如果着色器效果超出其原始边界，剩余区域使用着色器的边缘颜色填充。 |
+| REPEAT    | 1    | 在水平和垂直方向上重复着色器效果。 |
+| MIRROR    | 2    | 在水平和垂直方向上重复着色器效果，交替镜像图像，以便相邻图像始终接合。 |
+| DECAL     | 3    | 仅在其原始边界内渲染着色器效果。|
+
 ## ColorPicker
 
 取色类，用于从一张图像数据中获取它的主要颜色。在调用ColorPicker的方法前，需要先通过[createColorPicker](#effectkitcreatecolorpicker)创建一个ColorPicker实例。
@@ -706,6 +719,56 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 })
 ```
 ![zh-ch_image_Add_Blur.png](figures/zh-ch_image_Add_Blur.png)
+
+### blur<sup>14+</sup>
+
+blur(radius: number, tileMode: TileMode): Filter
+
+将模糊效果添加到效果链表中，结果返回效果链表的头节点。
+
+>  **说明：**
+>
+>  该接口为静态模糊接口，为静态图像提供模糊化效果，如果要对组件进行实时渲染的模糊，可以使用[动态模糊](../../ui/arkts-blur-effect.md)。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                                                         |
+| ------ | ----------- | ---- | ------------------------------------------------------------ |
+|  radius   | number | 是   | 模糊半径，单位是像素。模糊效果与所设置的值成正比，值越大效果越明显。 |
+|  tileMode   | [TileMode](#tilemode14) | 是   | 着色器效果平铺模式。影响图像边缘的模糊效果。目前仅支持CPU渲染，所以目前着色器平铺模式仅支持DECAL。 |
+
+**返回值：**
+
+| 类型           | 说明                                            |
+| :------------- | :---------------------------------------------- |
+| [Filter](#filter) | 返回已添加的图像效果。 |
+
+**示例：**
+
+```ts
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let radius = 30;
+  let headFilter = effectKit.createEffect(pixelMap);
+  if (headFilter != null) {
+    headFilter.blur(radius, effectKit.TileMode.DECAL);
+  }
+})
+```
+![zh-ch_image_Add_Blur_With_TileMode.png](figures/zh-ch_image_Add_Blur_With_TileMode.png)
 
 ### invert<sup>12+</sup>
 

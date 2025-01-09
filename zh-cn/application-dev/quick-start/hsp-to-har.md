@@ -2,7 +2,7 @@
 HSP存在bundleName和签名的一致性要求，而且在调试阶段需要先安装HSP包，导致多模块集成开发存在很多集成的问题，在此场景下推荐使用HAR包的方式提供能力。本文通过配置项的变更将HSP工程变成HAR工程。
 ## HSP转HAR的操作步骤
 
-1. 修改HSP模块下的module.json5文件，type字段值修改成har，删除deliveryWithInstall字段。
+1. 修改HSP模块下的module.json5文件，type字段值修改成har，删除deliveryWithInstall和pages字段。
     ```json
     // MyApplication\library\src\main\module.json5
     {

@@ -30,7 +30,7 @@
 >
 >  - 当Swiper子组件设置了offset属性时，会按照子组件的层级进行绘制，层级高的子组件会覆盖层级低的子组件。例如，Swiper包含3个子组件，其中第3个子组件设置了offset({ x : 100 })，那么在横向循环滑动中，第3个子组件会覆盖第1个子组件，此时可设置第1个子组件的zIndex属性值大于第3个子组件，使第1个子组件层级高于第3个子组件。
 >
->  - 不建议在执行翻页动画过程中增加或减少子组件，会导致未进行动画的子组件提前进入视窗，引起显示异常。
+>  - 当使用渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)、[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)）时，不要在组件动画过程中对数据源进行操作，否则会导致布局出现异常。
 
 ## 接口
 
@@ -226,7 +226,7 @@ displayMode(value: SwiperDisplayMode)
 
 ### cachedCount<sup>8+</sup>
 
-cachedCount(value: number)
+cachedCount(value: number, isShown?: boolean)
 
 设置预加载子组件个数，以当前页面为基准，加载当前显示页面的前后个数。例如cachedCount=1时，会将当前显示的页面的前面一页和后面一页的子组件都预加载。如果设置为按组翻页，即displayCount的swipeByGroup参数设为true，预加载时会以组为基本单位。例如cachedCount=1，swipeByGroup=true时，会将当前组的前面一组和后面一组的子组件都预加载。
 
@@ -241,6 +241,7 @@ cachedCount(value: number)
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
 | value  | number | 是   | 预加载子组件个数。<br/>默认值：1 |
+| isShown<sup>16+</sup>  | boolean | 否   | 预加载范围内的节点是否全部进行绘制，不下渲染树。<br/>默认值：false |
 
 ### disableSwipe<sup>8+</sup>
 
@@ -311,6 +312,8 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 当按组进行翻页时，如果最后一组的子元素数量小于displayCount时，会使用占位子元素补齐。占位子元素只是用于布局占位，不显示任何内容。在占位子元素的位置会直接显示Swiper自身的背景样式。
 
 在按组翻页时，判断翻页的拖拽距离阈值条件，会更新为Swiper自身宽度的一半。（按子元素翻页时，该阈值为子元素自身宽度的一半）。
+
+从API version 16开始，当按组进行翻页时，如果设置导航点样式为圆点导航，圆点导航点的个数与组数保持一致（组数的计算逻辑为子元素总数除以视窗内显示的子元素个数，当无法除尽时，向上取整）。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -441,6 +444,22 @@ indicatorInteractive(value: boolean)
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 导航点是否可交互。<br/>默认值：true |
+
+### pageFlipMode<sup>14+</sup>
+
+pageFlipMode(value: PageFlipMode)
+
+设置鼠标滚轮翻页模式。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                        | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [PageFlipMode](ts-appendix-enums.md#pageflipmode14) | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
 
 ## IndicatorStyle<sup>(deprecated)</sup>对象说明
 
@@ -573,6 +592,41 @@ finishAnimation(callback?: VoidCallback)
 | 参数名      | 类型       | 必填  | 说明     |
 | -------- | ---------- | ---- | -------- |
 | callback | [VoidCallback](./ts-types.md#voidcallback12) | 否    | 动画结束的回调。 |
+
+### preloadItems<sup>16+</sup>
+
+preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
+
+控制Swiper预加载指定子节点。调用该接口后会一次性加载所有指定的子节点，因此为了性能考虑，建议分批加载子节点。
+
+如果SwiperController对象未绑定任何Swiper组件，直接调用该接口，会抛出JS异常，并返回错误码100004。因此使用该接口时，建议通过try-catch捕获异常。
+
+与[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和自定义组件结合使用时，由于[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)只会保留缓存范围内的自定义组件，在缓存范围外的会被删除，因此需要开发者保证通过该接口预加载的节点index在缓存范围内。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填   | 说明                                     |
+| ----- | ------ | ---- | ---------------------------------------- |
+| indices | Optional\<Array\<number>> | 是 | 需预加载的子节点的下标数组。<br/>默认值：空数组。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                     |
+| ------------------------------------------------------------ | ------------------------ |
+| Promise\<void> | 预加载完成后触发的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[滚动类组件错误码](../../apis-arkui/errorcode-scroll.md)错误码。
+
+| 错误码ID   | 错误信息                                      |
+| --------   | -------------------------------------------- |
+| 401 | Parameter invalid. Possible causes: 1. The parameter type is not Array\<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
+| 100004 | Controller not bound to component. |
 
 ## Indicator<sup>10+</sup>
 
@@ -718,7 +772,7 @@ static digit(): DigitIndicator
 
 ## DotIndicator<sup>10+</sup>
 
-圆点指示器属性及功能继承自[Indicator](#indicator10)。
+构造圆点指示器的样式，继承自[Indicator](#indicator10)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -932,7 +986,7 @@ DotIndicator的构造函数。
 
 ## DigitIndicator<sup>10+</sup>
 
-数字指示器属性及功能继承自[Indicator](#indicator10)。
+构造数字指示器的样式，继承自[Indicator](#indicator10)。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -1009,7 +1063,7 @@ Swiper组件数字导航点的字体样式。
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 设置Swiper组件数字导航点的字体样式。<br/>默认值：<br/>{&nbsp;size:&nbsp;14,&nbsp;weight:&nbsp;FontWeight.Normal&nbsp;} |
+| value  | [Font](ts-types.md#font) | 是   | 设置Swiper组件数字导航点的字体样式。<br/>只支持Font中size和weight参数，family和style设置不生效。<br/>默认值：<br/>{&nbsp;size:&nbsp;14,&nbsp;weight:&nbsp;FontWeight.Normal&nbsp;} |
 
 **返回值：** 
 
@@ -1815,3 +1869,75 @@ struct Index {
 ```
 
 ![swiper](figures/point_animation.gif)
+
+### 示例6（预加载子节点）
+
+本示例通过preloadItems接口实现了预加载指定子节点。
+
+```ts
+// xxx.ets
+import { BusinessError } from '@kit.BasicServicesKit'
+
+@Entry
+@Component
+struct SwiperPreloadItems {
+  @State currentIndex: number = 1
+  private swiperController: SwiperController = new SwiperController()
+  @State arr: string[] = ["0", "1", "2", "3", "4", "5"]
+
+  build() {
+    Column() {
+      Swiper(this.swiperController) {
+        ForEach(this.arr, (item: string) => {
+          MyComponent({ txt: item })
+        })
+      }
+      .cachedCount(1, true)
+      .width("70%")
+      .height("50%")
+
+
+      Button('preload items: [2, 3]')
+        .margin(5)
+        .onClick(() => {
+          // 预加载index=2和index=3的子节点
+          try {
+            this.swiperController.preloadItems([2, 3])
+              .then(() => {
+                console.info('preloadItems [2, 3] success.')
+              })
+              .catch((error: BusinessError) => {
+                console.error('preloadItems [2, 3] failed, error code: ' + error.code + ', error message: ' + error.message)
+              })
+          } catch (error) {
+            console.error('preloadItems [2, 3] failed, error code: ' + error.code + ', error message: ' + error.message)
+          }
+
+        })
+    }
+    .width("100%")
+    .margin(5)
+  }
+}
+
+@Component
+struct MyComponent {
+  private txt: string = ""
+
+  aboutToAppear(): void {
+    console.info('aboutToAppear txt:' + this.txt)
+  }
+
+  aboutToDisappear(): void {
+    console.info('aboutToDisappear txt:' + this.txt)
+  }
+
+  build() {
+    Text(this.txt)
+      .textAlign(TextAlign.Center)
+      .width('100%')
+      .height('100%')
+      .backgroundColor(0xAFEEEE)
+  }
+}
+```

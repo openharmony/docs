@@ -87,7 +87,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_AI_ContextCreate](#oh_ai_contextcreate) () | 创建一个上下文的对象。 |
+| [OH_AI_ContextCreate](#oh_ai_contextcreate) () | 创建一个上下文的对象。注意：此接口需跟[OH_AI_ContextDestroy](#oh_ai_contextdestroy)配套使用。 |
 | [OH_AI_ContextDestroy](#oh_ai_contextdestroy) ([OH_AI_ContextHandle](#oh_ai_contexthandle) \*context) | 释放上下文对象。 |
 | [OH_AI_ContextSetThreadNum](#oh_ai_contextsetthreadnum) ([OH_AI_ContextHandle](#oh_ai_contexthandle) context, int32_t thread_num) | 设置运行时的线程数量。 |
 | [OH_AI_ContextGetThreadNum](#oh_ai_contextgetthreadnum) (const [OH_AI_ContextHandle](#oh_ai_contexthandle) context) | 获取线程数量。 |
@@ -735,7 +735,7 @@ OH_AI_API OH_AI_ContextHandle OH_AI_ContextCreate ()
 
 **描述**
 
-创建一个上下文的对象。
+创建一个上下文的对象。注意：此接口需跟[OH_AI_ContextDestroy](#oh_ai_contextdestroy)配套使用。
 
 **起始版本：** 9
 

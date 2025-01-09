@@ -27,6 +27,18 @@ Describes the region of the screen to capture.
 | width  | number | Yes  | Width of the screen region to capture, in px. The value must be an integer.|
 | height | number | Yes  | Height of the screen region to capture, in px. The value must be an integer.|
 
+## CaptureOption<sup>14+</sup>
+
+Describes the capture options.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| displayId | number | No| ID of the [display](js-apis-display.md#display) to capture. The default value is **0**. The value must be an integer greater than or equal to 0. If a non-integer is passed, a parameter error is reported.|
+
 ## PickInfo
 
 Describes the screenshot options.
@@ -34,7 +46,6 @@ Describes the screenshot options.
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
-
 
 | Name                | Type         | Mandatory| Description                                                        |
 | -------------------- | ------------- | ---- | ------------------------------------------------------------ |
@@ -84,3 +95,61 @@ try {
   console.error('Failed to pick Code: ' + JSON.stringify(exception));
 };
 ```
+
+## screenshot.capture<sup>14+</sup>
+
+capture(options?: CaptureOption): Promise&lt;image.PixelMap&gt;
+
+Takes a screenshot of the entire screen. This API can be used only on tablets and 2-in-1 devices.
+
+Different from [pick](#screenshotpick), this API can be used to capture a full-screen screenshot on the specified display
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Required permissions**: ohos.permission.CUSTOM_SCREEN_CAPTURE
+
+**Parameters**
+
+| Name | Type                                   | Mandatory| Description                                                        |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [CaptureOption](#captureoption14) | No|  Capture options. The value can contain the display ID. If this parameter is left blank, the display with ID 0 is captured by default.|
+
+**Return value**
+
+| Type                         | Description                                           |
+| ----------------------------- | ----------------------------------------------- |
+| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return a **PixelMap** object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------- |
+| 201     | Permission verification failed.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device.|
+| 1400003 | This display manager service works abnormally.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+
+let captureOption: screenshot.CaptureOption = {
+  "displayId": 0
+};
+try {
+  let promise = screenshot.capture(captureOption);
+  promise.then((pixelMap: image.PixelMap) => {
+    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    pixelMap.release(); // Release the memory in time after the PixelMap is used.
+  }).catch((err: BusinessError) => {
+    console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
+};

@@ -101,6 +101,8 @@ onDec(event:&nbsp;VoidCallback)
 
 ## 示例
 
+该示例展示了Counter组件的基本使用方法。点击+、-按钮可以修改value值。
+
 ```ts
 // xxx.ets
 @Entry

@@ -35,12 +35,16 @@ import { insightIntentDriver } from '@kit.AbilityKit';
 | insightIntentParam | string | 是 | 意图调用参数。 |
 | executeMode | [insightIntent.ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) | 是 | 意图调用执行模式。 |
 | displayId<sup>12+</sup> | number | 否 | 意图调用时指定的物理屏幕id，该参数应为整数，仅在executeMode为UI_ABILITY_FOREGROUND时生效。 |
+| uris<sup>16+</sup> | Array&lt;string&gt; | 否 | 意图调用时，意图调用方给意图执行方授权的URI列表。 |
+| flags<sup>16+</sup> | number | 否 | 意图调用时，意图调用方给意图执行方授权的uris的[flags](js-apis-app-ability-wantConstant.md#flags)。 <br/>**说明：**<br/>该参数仅支持FLAG_AUTH_READ_URI_PERMISSION 、 FLAG_AUTH_WRITE_URI_PERMISSION。 |
 
 ## insightIntentDriver.execute
 
 execute(param: ExecuteParam, callback: AsyncCallback<insightIntent.ExecuteResult>): void
 
 执行意图调用的接口。使用callback异步回调。
+当调用方在后台时，需要申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+当意图调用执行模式[ExecuteMode](js-apis-app-ability-insightIntent.md#executemode)取值为UI_ABILITY_BACKGROUND时，需要申请`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`权限。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -120,6 +124,8 @@ execute(param: ExecuteParam, callback: AsyncCallback<insightIntent.ExecuteResult
 execute(param: ExecuteParam): Promise<insightIntent.ExecuteResult>
 
 执行意图调用的接口。使用Promise异步回调。
+当调用方在后台时，需要申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+当意图调用执行模式[ExecuteMode](js-apis-app-ability-insightIntent.md#executemode)取值为UI_ABILITY_BACKGROUND时，需要申请`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`权限。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 

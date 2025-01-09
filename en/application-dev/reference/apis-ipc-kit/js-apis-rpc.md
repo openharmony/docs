@@ -120,9 +120,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900008  | proxy or remote object is invalid |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900008  | The proxy or remote object is invalid. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -166,8 +166,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900008  | proxy or remote object is invalid |
-| 1900010  | read data from message sequence failed |
+| 1900008  | The proxy or remote object is invalid. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -213,8 +213,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes:<br> 1.The number of parameters is incorrect;<br> 2.The parameter type does not match;<br> 3.The string length exceeds 40960 bytes;<br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -252,7 +252,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -343,7 +343,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
 
 **Example**
 
@@ -382,8 +382,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900011  | parcel memory alloc failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900011  | Memory allocation failed |
 
 **Example**
 
@@ -526,7 +526,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
 
 **Example**
 
@@ -570,7 +570,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
 
 **Example**
 
@@ -612,8 +612,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------  |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -651,7 +651,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | ------- | --------  |
-| 1900010 | read data from message sequence failed |
+| 1900010 | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -697,8 +697,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -736,7 +736,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -782,8 +782,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -821,7 +821,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -867,8 +867,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -906,7 +906,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -952,8 +952,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -975,7 +975,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readFloat(): number
 
-Reads the floating-pointer number from this **MessageSequence** object.
+Reads the floating-point number from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -991,7 +991,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1037,8 +1037,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1076,7 +1076,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1122,8 +1122,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1161,7 +1161,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1207,8 +1207,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1246,7 +1246,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1292,8 +1292,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1331,7 +1331,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1377,8 +1377,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1435,9 +1435,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900010  | read data from message sequence failed |
-| 1900012  | call js callback function failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect. |
+| 1900010  | Failed to read data from the message sequence. |
+| 1900012  | Failed to call the JS callback function. |
 
 **Example**
 
@@ -1496,8 +1496,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array. <br> 5.The type of the element in the array is incorrect. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1536,8 +1536,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900010  | read data from message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1585,7 +1585,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 | ID| Error Message|
 | -------- | -------- |
 | 401      | check param failed |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1632,8 +1632,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1671,8 +1671,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900010  | read data from message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1718,7 +1718,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1764,8 +1764,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1803,8 +1803,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900010  | read data from message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1850,7 +1850,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1896,8 +1896,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1935,8 +1935,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900010  | read data from message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1982,7 +1982,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2028,8 +2028,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -2067,8 +2067,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900010  | read data from message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2114,7 +2114,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2160,8 +2160,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -2199,8 +2199,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900010  | read data from message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2246,7 +2246,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2292,8 +2292,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -2331,8 +2331,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900010  | read data from message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2378,7 +2378,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2424,8 +2424,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -2463,8 +2463,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900010  | read data from message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2510,7 +2510,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2556,8 +2556,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The string length exceeds 40960 bytes; <br> 5.The number of bytes copied to the buffer is different from the length of the obtained string. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -2595,8 +2595,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900010  | read data from message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2642,7 +2642,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2682,7 +2682,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900009  | write data to message sequence failed |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -2727,7 +2727,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2764,7 +2764,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -2822,8 +2822,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -2883,9 +2883,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900010  | read data from message sequence failed |
-| 1900012  | call js callback function failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The length of the array passed when reading is not equal to the length passed when writing to the array; <br> 5.The element does not exist in the array. |
+| 1900010  | Failed to read data from the message sequence. |
+| 1900012  | Failed to call the JS callback function. |
 
 **Example**
 
@@ -2947,8 +2947,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The obtained remoteObject is null. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -2997,8 +2997,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900010  | read data from message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The length of the array passed when reading is not equal to the length passed when writing to the array. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -3049,7 +3049,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -3100,7 +3100,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
 
 **Example**
 
@@ -3146,8 +3146,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900013  | call os dup function failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900013  | Failed to call dup. |
 
 **Example**
 
@@ -3228,8 +3228,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -3270,7 +3270,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900010  | read data from message sequence failed |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -3319,8 +3319,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | ------- |
-| 401      | check param failed |
-| 1900003  | write to ashmem failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter is not an instance of the Ashmem object. |
+| 1900003  | Failed to write data to the shared memory. |
 
 **Example**
 
@@ -3367,7 +3367,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 | ID| Error Message|
 | -------- | -------- |
 | 401      | check param failed |
-| 1900004  | read from ashmem failed |
+| 1900004  | Failed to read data from the shared memory. |
 
 **Example**
 
@@ -3426,7 +3426,7 @@ Obtains the maximum amount of raw data that can be held by this **MessageSequenc
 
 ### writeRawData<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 11. Use [writeRawDataBuffer](#writerawdatabuffer11) instead.
+>**NOTE**<br>This API is deprecated since API version 11. Use [writeRawDataBuffer](#writerawdatabuffer11) instead.
 
 writeRawData(rawData: number[], size: number): void
 
@@ -3447,8 +3447,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The transferred size cannot be obtained; <br> 5.The transferred size is less than or equal to 0;<br> 6.The element does not exist in the array; <br> 7.Failed to obtain typedArray information; <br> 8.The array is not of type int32; <br> 9.The length of typedarray is smaller than the size of the original data sent. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -3488,8 +3488,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain arrayBuffer information; <br> 4.The transferred size cannot be obtained; <br> 5.The transferred size is less than or equal to 0; <br> 6.The transferred size is greater than the byte length of ArrayBuffer. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -3515,7 +3515,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### readRawData<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 11. Use [readRawDataBuffer](#readrawdatabuffer11) instead.
+>**NOTE**<br>This API is deprecated since API version 11. Use [readRawDataBuffer](#readrawdatabuffer11) instead.
 
 readRawData(size: number): number[]
 
@@ -3541,8 +3541,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900010  | read data from message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -3595,8 +3595,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900010  | read data from message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -3650,8 +3650,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900009  | write data to message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The obtained value of typeCode is incorrect; <br> 5.Failed to obtain arrayBuffer information. |
+| 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -3703,8 +3703,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900010  | read data from message sequence failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The obtained value of typeCode is incorrect; |
+| 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -3741,7 +3741,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ## MessageParcel<sup>(deprecated)</sup>
 
->**NOTE**<br>This class is no longer maintained since API version 9. Use [MessageSequence](#messagesequence9) instead.
+>**NOTE**<br>This API is deprecated since API version 9. Use [MessageSequence](#messagesequence9) instead.
 
 Provides APIs for reading and writing data in specific format. During RPC, the sender can use the **write()** method provided by **MessageParcel** to write data in specific format to a **MessageParcel** object. The receiver can use the **read()** method provided by **MessageParcel** to read data in specific format from a **MessageParcel** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
 
@@ -4426,7 +4426,7 @@ Reads the Long int value from this **MessageParcel** object.
 
 | Type  | Description          |
 | ------ | -------------- |
-| number | Long int value read.|
+| number | Long integer read.|
 
 **Example**
 
@@ -4642,7 +4642,7 @@ Writes a Char value to this **MessageParcel** object.
 
 readChar(): number
 
-Reads the Char value from this **MessageParcel** object.
+Reads the single character value from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -4650,7 +4650,7 @@ Reads the Char value from this **MessageParcel** object.
 
 | Type  | Description            |
 | ------ | ---------------- |
-| number | Char value read.|
+| number | Single character value read.|
 
 **Example**
 
@@ -5649,7 +5649,7 @@ Reads the exception information from this **MessageParcel** object.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendRequest()** of the proxy object is called to send a message.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -6269,16 +6269,15 @@ Marshals this **Parcelable** object into a **MessageSequence** object.
     unmarshalling(messageSequence: rpc.MessageSequence): boolean {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
+      hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + this.num + ' readString is ' + this.str);
       return true;
     }
   }
   let parcelable = new MyParcelable(1, "aaa");
   let data = rpc.MessageSequence.create();
-  let result = data.writeParcelable(parcelable);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeParcelable is ' + result);
+  data.writeParcelable(parcelable);
   let ret = new MyParcelable(0, "");
-  let result2 = data.readParcelable(ret);
-  hilog.info(0x0000, 'testTag', 'RpcClient: readParcelable is ' + result2);
+  data.readParcelable(ret);
   ```
 
 ### unmarshalling
@@ -6321,21 +6320,20 @@ Unmarshals this **Parcelable** object from a **MessageSequence** object.
     unmarshalling(messageSequence: rpc.MessageSequence): boolean {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
+      hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + this.num + ' readString is ' + this.str);
       return true;
     }
   }
   let parcelable = new MyParcelable(1, "aaa");
   let data = rpc.MessageSequence.create();
-  let result = data.writeParcelable(parcelable);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeParcelable is ' + result);
+  data.writeParcelable(parcelable);
   let ret = new MyParcelable(0, "");
-  let result2 = data.readParcelable(ret);
-  hilog.info(0x0000, 'testTag', 'RpcClient: readParcelable is ' + result2);
+  data.readParcelable(ret);
   ```
 
 ## Sequenceable<sup>(deprecated)</sup>
 
->**NOTE**<br>This class is no longer maintained since API version 9. Use [Parcelable](#parcelable9) instead.
+>**NOTE**<br>This API is deprecated since API version 9. Use [Parcelable](#parcelable9) instead.
 
 Writes objects of classes to a **MessageParcel** and reads them from the **MessageParcel** during IPC.
 
@@ -6445,7 +6443,7 @@ Unmarshals this sequenceable object from a **MessageParcel** object.
 
 ## IRemoteBroker
 
-Provides the holder of a remote proxy object.
+Represents the holder of a remote proxy object.
 
 ### asObject
 
@@ -6507,7 +6505,7 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **asObject()** of the proxy object is called to obtain the proxy or remote object.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **asObject()** of the proxy object is called to obtain the proxy or remote object.
 
   ```ts
   class TestProxy {
@@ -6561,9 +6559,9 @@ Defines the response to the request.
 | data    | [MessageSequence](#messagesequence9) | Yes  | No  | **MessageSequence** object sent to the remote process.|
 | reply   | [MessageSequence](#messagesequence9) | Yes  | No  | **MessageSequence** object returned by the remote process.  |
 
-## SendRequestResult<sup>8+(deprecated)</sup>
+## SendRequestResult<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [RequestResult](#requestresult9) instead.
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [RequestResult](#requestresult9) instead.
 
 Defines the response to the request.
 
@@ -6606,11 +6604,11 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [getLocalInterface](#getlocalinterface9) instead.
+>**NOTE**<br>This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9) instead.
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
@@ -6632,11 +6630,11 @@ Queries the string of the interface descriptor.
 
 ### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 8. Use [sendMessageRequest](#sendmessagerequest9) instead.
+>**NOTE**<br>This API is deprecated since API version 8. Use [sendMessageRequest](#sendmessagerequest9) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message does not contain any content. If synchronous mode is set in **options** , a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message does not contain any content. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6684,11 +6682,11 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
 
-### sendRequest<sup>8+(deprecated)</sup>
+### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [sendMessageRequest](#sendmessagerequest9) instead.
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -6701,7 +6699,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 | Name | Type                                     | Mandatory| Description                                                                                  |
 | ------- | ----------------------------------------  | ---- | -------------------------------------------------------------------------------------- |
 | code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                              |
+| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
 | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
 | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
@@ -6709,13 +6707,13 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 | Type                                                        | Description                                         |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Promise used to return the **sendRequestResult** object.|
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Promise used to return a **sendRequestResult** instance.|
 
 ### sendMessageRequest<sup>9+</sup>
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6724,7 +6722,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 | Name  | Type                                | Mandatory| Description                                                                                  |
 | -------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
 | code     | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                            |
+| data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
 | reply    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
 | options  | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 | callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | Yes  | Callback for receiving the sending result.                                                                  |
@@ -6735,15 +6733,15 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
 
-### sendRequest<sup>8+(deprecated)</sup>
+### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [sendMessageRequest](#sendmessagerequest9-1) instead.
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-1) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6752,16 +6750,16 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | code     | number                                                       | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data     | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object holding the data to send.                    |
+| data     | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object holding the data to send.                   |
 | reply    | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object that receives the response.                           |
 | options  | [MessageOption](#messageoption)                              | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                        |
-| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Yes  | Callback for receiving the sending result.                                        |
+| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Yes  | Callback for receiving the sending result.                                        |
 
 ### registerDeathRecipient<sup>9+</sup>
 
 registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
-Registers a callback for receiving death notifications of the remote object. The callback will be called if the remote object process matching the **RemoteProxy** object is killed.
+Registers a callback for receiving death notifications of the remote object. This callback will be called if the remote object process matching the **RemoteProxy** object is killed.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6778,12 +6776,12 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900008  | proxy or remote object is invalid |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
+| 1900008  | The proxy or remote object is invalid. |
 
 ### addDeathrecipient<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [registerDeathRecipient](#registerdeathrecipient9) instead.
+>**NOTE**<br>This API is deprecated since API version 9. Use [registerDeathRecipient](#registerdeathrecipient9) instead.
 
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -6825,12 +6823,12 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900008  | proxy or remote object is invalid |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
+| 1900008  | The proxy or remote object is invalid. |
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [unregisterDeathRecipient](#unregisterdeathrecipient9) instead.
+>**NOTE**<br>This API is deprecated since API version 9. Use [unregisterDeathRecipient](#unregisterdeathrecipient9) instead.
 
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -6871,11 +6869,11 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900008  | proxy or remote object is invalid |
+| 1900008  | The proxy or remote object is invalid. |
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [getDescriptor](#getdescriptor9) instead.
+>**NOTE**<br>This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9) instead.
 
 getInterfaceDescriptor(): string
 
@@ -6903,8 +6901,6 @@ Checks whether this object is dead.
 | ------- | ---------------------------------- |
 | boolean | Returns **true** if the object is dead; returns **false** otherwise.|
 
-
-
 ## RemoteProxy
 
 Provides APIs to implement **IRemoteObject**.
@@ -6921,7 +6917,7 @@ Provides APIs to implement **IRemoteObject**.
 
 ### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 8. Use [sendMessageRequest](#sendmessagerequest9-2) instead.
+>**NOTE**<br>This API is deprecated since API version 8. Use [sendMessageRequest](#sendmessagerequest9-2) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -6979,7 +6975,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendRequest()** of the proxy object is called to send a message.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -6992,9 +6988,9 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   if (proxy != undefined) {
     let ret: boolean = proxy.sendRequest(1, data, reply, option);
     if (ret) {
-    hilog.info(0x0000, 'testTag', 'sendRequest got result');
-    let msg = reply.readString();
-    hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
+      hilog.info(0x0000, 'testTag', 'sendRequest got result');
+      let msg = reply.readString();
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
     } else {
       hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed');
     }
@@ -7034,7 +7030,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
 
 **Example**
 
@@ -7071,7 +7067,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7103,9 +7099,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
+### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [sendMessageRequest](#sendmessagerequest9-2) instead.
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-2) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -7126,7 +7122,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 | Type                                                        | Description                                         |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Promise used to return a **sendRequestResult** instance.|
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Promise used to return a **sendRequestResult** instance.|
 
 **Example**
 
@@ -7163,7 +7159,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendRequest()** of the proxy object is called to send a message.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7200,7 +7196,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked at certain time after the response to **sendMessageRequest** is returned, and the reply contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked at certain time after the response to **RequestResult** is returned, and the reply contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7221,7 +7217,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
 
 **Example**
 
@@ -7273,7 +7269,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7295,9 +7291,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
+### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [sendMessageRequest](#sendmessagerequest9-3) instead.
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-3) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
@@ -7313,7 +7309,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 | data     | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object holding the data to send.                   |
 | reply    | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object that receives the response.                           |
 | options  | [MessageOption](#messageoption)                              | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                        |
-| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Yes  | Callback for receiving the sending result.                                        |
+| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Yes  | Callback for receiving the sending result.                                        |
 
 **Example**
 
@@ -7365,7 +7361,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendRequest()** of the proxy object is called to send a message.
 
   ```ts
   let option = new rpc.MessageOption();
@@ -7405,7 +7401,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 | ID| Error Message|
 | -------- | -------- |
 | 401      | check param failed |
-| 1900006  | only remote object permitted |
+| 1900006  | Operation allowed only for the remote object. |
 
 **Example**
 
@@ -7442,7 +7438,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getLocalInterface()** of the proxy object is called to obtain the interface descriptor.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getLocalInterface()** of the proxy object is called to obtain the interface descriptor.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7450,8 +7446,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
   if (proxy != undefined) {
     try {
-    let broker: rpc.IRemoteBroker = proxy.getLocalInterface("testObject");
-    hilog.info(0x0000, 'testTag', 'RpcClient: getLocalInterface is ' + broker);
+      let broker: rpc.IRemoteBroker = proxy.getLocalInterface("testObject");
+      hilog.info(0x0000, 'testTag', 'RpcClient: getLocalInterface is ' + broker);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
@@ -7462,7 +7458,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [getLocalInterface](#getlocalinterface9-1) instead.
+>**NOTE**<br>This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9-1) instead.
 
 queryLocalInterface(interface: string): IRemoteBroker
 
@@ -7517,7 +7513,7 @@ Obtains the **LocalInterface** object of an interface token.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **queryLocalInterface()** of the proxy object is called to obtain the interface descriptor.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **queryLocalInterface()** of the proxy object is called to obtain the interface descriptor.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7532,7 +7528,7 @@ Obtains the **LocalInterface** object of an interface token.
 
 registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
-Registers a callback for receiving death notifications of the remote object. The callback will be invoked when the remote object process matching the **RemoteProxy** object is killed.
+Registers a callback for receiving death notifications of the remote object. This callback will be called if the remote object process matching the **RemoteProxy** object is killed.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7549,8 +7545,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900008  | proxy or remote object is invalid |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
+| 1900008  | The proxy or remote object is invalid. |
 
 **Example**
 
@@ -7612,7 +7608,7 @@ The proxy object in the **onConnect** callback can be assigned a value only afte
 
 ### addDeathRecipient<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [registerDeathRecipient](#registerdeathrecipient9-1) instead.
+>**NOTE**<br>This API is deprecated since API version 9. Use [registerDeathRecipient](#registerdeathrecipient9-1) instead.
 
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -7705,8 +7701,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900008  | proxy or remote object is invalid |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
+| 1900008  | The proxy or remote object is invalid. |
 
 **Example**
 
@@ -7769,7 +7765,7 @@ The proxy object in the **onConnect** callback can be assigned a value only afte
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [unregisterDeathRecipient](#unregisterdeathrecipient9-1) instead.
+>**NOTE**<br>This API is deprecated since API version 9. Use [unregisterDeathRecipient](#unregisterdeathrecipient9-1) instead.
 
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -7825,7 +7821,7 @@ Removes the callback used to receive death notifications of the remote object.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **removeDeathRecipient()** of the proxy object is called to remove the callback used to receive the death notification of the remote object.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **removeDeathRecipient()** of the proxy object is called to remove the callback used to receive the death notification of the remote object.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7862,8 +7858,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900008  | proxy or remote object is invalid |
-| 1900007  | communication failed              |
+| 1900007  | communication failed.              |
+| 1900008  | The proxy or remote object is invalid. |
 
 **Example**
 
@@ -7899,7 +7895,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   // Save the connection ID, which will be used for the subsequent service disconnection.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getDescriptor()** of the proxy object is called to obtain the interface descriptor of the object.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getDescriptor()** of the proxy object is called to obtain the interface descriptor of the object.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7919,7 +7915,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [getDescriptor](#getdescriptor9-1) instead.
+>**NOTE**<br>This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9-1) instead.
 
 getInterfaceDescriptor(): string
 
@@ -7968,7 +7964,7 @@ Obtains the interface descriptor of this proxy object.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getInterfaceDescriptor()** of the proxy object is called to obtain the interface descriptor of the current proxy object.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getInterfaceDescriptor()** of the proxy object is called to obtain the interface descriptor of the current proxy object.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -8028,7 +8024,7 @@ Checks whether the **RemoteObject** is dead.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **isObjectDead()** of the proxy object is called to check whether this object is dead.
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **isObjectDead()** of the proxy object is called to check whether this object is dead.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -8064,7 +8060,7 @@ A constructor used to create a **MessageOption** object.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| async  | boolean | No  | Whether to execute the call asynchronously. The value **true** means to execute the call asynchronously; the value **false** means to execute the call synchronously. By default, calls are made synchronously.|
+| async  | boolean | No  | Whether to execute the call asynchronously. The value **true** means to execute the call asynchronously; the value **false** means to execute the call synchronously. The default value is **synchronous**.|
 
 **Example**
 
@@ -8439,7 +8435,7 @@ Obtains the local device ID. This API is a static method.
 
 static isLocalCalling(): boolean
 
-Checks whether the remote process is a process of the local device. This API is a static method.
+Checks whether the peer process is a process of the local device. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8447,7 +8443,7 @@ Checks whether the remote process is a process of the local device. This API is 
 
 | Type   | Description                                              |
 | ------- | -------------------------------------------------- |
-| boolean | Returns **true** if the local and remote processes are on the same device; returns **false** otherwise.|
+| boolean | Returns **true** if the local and peer processes are on the same device; returns **false** otherwise.|
 
 **Example**
 
@@ -8483,7 +8479,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
 
 **Example**
 
@@ -8508,7 +8504,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### flushCommands<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [flushCmdBuffer](#flushcmdbuffer9) instead.
+>**NOTE**<br>This API is deprecated since API version 9. Use [flushCmdBuffer](#flushcmdbuffer9) instead.
 
 static flushCommands(object: IRemoteObject): number
 
@@ -8597,7 +8593,7 @@ Restores the UID and PID of the remote user. This API is a static method. It is 
 
 | Name  | Type  | Mandatory| Description                                                              |
 | -------- | ------ | ---- | ------------------------------------------------------------------ |
-| identity | string | Yes  | String containing the remote user UID and PID, which are returned by **resetCallingIdentity**.|
+| identity | string | Yes  | String containing the remote user's UID and PID, which are returned by **resetCallingIdentity**.|
 
 **Error codes**
 
@@ -8605,7 +8601,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 **Example**
 
@@ -8624,7 +8620,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### setCallingIdentity<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [restoreCallingIdentity](#restorecallingidentity9) instead.
+>**NOTE**<br>This API is deprecated since API version 9. Use [restoreCallingIdentity](#restorecallingidentity9) instead.
 
 static setCallingIdentity(identity: string): boolean
 
@@ -8636,7 +8632,7 @@ Sets the UID and PID of the remote user. This API is a static method. It is usua
 
 | Name  | Type  | Mandatory| Description                                                              |
 | -------- | ------ | ---- | ------------------------------------------------------------------ |
-| identity | string | Yes  | String containing the remote user's UID and PID, which are returned by **resetCallingIdentity**. |
+| identity | string | Yes  | String containing the remote user's UID and PID, which are returned by **resetCallingIdentity**.|
 
 **Return value**
 
@@ -8680,7 +8676,7 @@ A constructor used to create a **RemoteObject** object.
 
 ### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 8. Use [sendMessageRequest](#sendmessagerequest9-4) instead.
+>**NOTE**<br>This API is deprecated since API version 8. Use [sendMessageRequest](#sendmessagerequest9-4) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -8776,7 +8772,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
 
 **Example**
 
@@ -8814,9 +8810,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
     });
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
+### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [sendMessageRequest](#sendmessagerequest9-4) instead.
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-4) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -8837,7 +8833,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 | Type                                                        | Description                                         |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Promise used to return a **sendRequestResult** instance.|
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Promise used to return a **sendRequestResult** instance.|
 
 **Example**
 
@@ -8915,7 +8911,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
 
 **Example**
 
@@ -8951,9 +8947,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   testRemoteObject.sendMessageRequest(1, data, reply, option, sendRequestCallback);
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
+### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [sendMessageRequest](#sendmessagerequest9-5) instead.
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-5) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
@@ -8969,7 +8965,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 | data          | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object holding the data to send.                   |
 | reply         | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object that receives the response.                           |
 | options       | [MessageOption](#messageoption)                              | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                        |
-| callback      | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Yes  | Callback for receiving the sending result.                                        |
+| callback      | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Yes  | Callback for receiving the sending result.                                        |
 
 **Example**
 
@@ -9163,7 +9159,7 @@ Called to return a response to **sendMessageRequest()**. The server processes th
 
 ### onRemoteRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [onRemoteMessageRequest](#onremotemessagerequest9) instead.
+>**NOTE**<br>This API is deprecated since API version 9. Use [onRemoteMessageRequest](#onremotemessagerequest9) instead.
 
 onRemoteRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -9302,7 +9298,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 **Example**
 
@@ -9345,7 +9341,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [getLocalInterface](#getlocalinterface9-2) instead.
+>**NOTE**<br>This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9-2) instead.
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
@@ -9417,7 +9413,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900008  | proxy or remote object is invalid |
+| 1900008  | The proxy or remote object is invalid. |
 
 **Example**
 
@@ -9457,7 +9453,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [getDescriptor](#getdescriptor9-2) instead.
+>**NOTE**<br>This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9-2) instead.
 
 getInterfaceDescriptor(): string
 
@@ -9521,7 +9517,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 **Example**
 
@@ -9563,7 +9559,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### attachLocalInterface<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [modifyLocalInterface](#modifylocalinterface9) instead.
+>**NOTE**<br>This API is deprecated since API version 9. Use [modifyLocalInterface](#modifylocalinterface9) instead.
 
 attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
@@ -9651,7 +9647,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The Ashmem name passed is empty; <br> 4.The Ashmem size passed is less than or equal to 0. |
 
 **Example**
 
@@ -9671,9 +9667,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### createAshmem<sup>8+(deprecated)</sup>
+### createAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [create](#create9) instead.
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [create](#create9) instead.
 
 static createAshmem(name: string, size: number): Ashmem
 
@@ -9730,7 +9726,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The passed parameter is not an Ahmem object; <br> 3.The ashmem instance for obtaining packaging is empty. |
 
 **Example**
 
@@ -9750,9 +9746,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### createAshmemFromExisting<sup>8+(deprecated)</sup>
+### createAshmemFromExisting<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [create](#create9-1) instead.
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [create](#create9-1) instead.
 
 static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
@@ -9857,8 +9853,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900001  | call mmap function failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect;  <br> 2.The parameter type does not match; <br> 3.The passed mapType exceeds the maximum protection level. |
+| 1900001  | Failed to call mmap. |
 
 **Example**
 
@@ -9876,9 +9872,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### mapAshmem<sup>8+(deprecated)</sup>
+### mapAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [mapTypedAshmem](#maptypedashmem9) instead.
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [mapTypedAshmem](#maptypedashmem9) instead.
 
 mapAshmem(mapType: number): boolean
 
@@ -9922,7 +9918,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900001  | call mmap function failed |
+| 1900001  | Failed to call mmap. |
 
 **Example**
 
@@ -9940,9 +9936,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### mapReadAndWriteAshmem<sup>8+(deprecated)</sup>
+### mapReadAndWriteAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [mapReadWriteAshmem](#mapreadwriteashmem9) instead.
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [mapReadWriteAshmem](#mapreadwriteashmem9) instead.
 
 mapReadAndWriteAshmem(): boolean
 
@@ -9980,7 +9976,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 1900001  | call mmap function failed |
+| 1900001  | Failed to call mmap. |
 
 **Example**
 
@@ -9998,9 +9994,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### mapReadOnlyAshmem<sup>8+(deprecated)</sup>
+### mapReadOnlyAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [mapReadonlyAshmem](#mapreadonlyashmem9) instead.
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [mapReadonlyAshmem](#mapreadonlyashmem9) instead.
 
 mapReadOnlyAshmem(): boolean
 
@@ -10044,8 +10040,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900002  | call os ioctl function failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900002  | Failed to call ioctl. |
 
 **Example**
 
@@ -10063,9 +10059,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### setProtection<sup>8+(deprecated)</sup>
+### setProtection<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [setProtectionType](#setprotectiontype9) instead.
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [setProtectionType](#setprotectiontype9) instead.
 
 setProtection(protectionType: number): boolean
 
@@ -10117,8 +10113,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900003  | write to ashmem failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain arrayBuffer information. |
+| 1900003  | Failed to write data to the shared memory. |
 
 **Example**
 
@@ -10143,9 +10139,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### writeAshmem<sup>9+(deprecated)</sup>
+### writeAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 11. Use [writeDataToAshmem](#writedatatoashmem11) instead.
+>**NOTE**<br>This API is supported since API version 9 and deprecated since API version 11. Use [writeDataToAshmem](#writedatatoashmem11) instead.
 
 writeAshmem(buf: number[], size: number, offset: number): void
 
@@ -10167,8 +10163,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900003  | write to ashmem failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The element does not exist in the array. |
+| 1900003  | Failed to write data to the shared memory. |
 
 **Example**
 
@@ -10188,9 +10184,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### writeToAshmem<sup>8+(deprecated)</sup>
+### writeToAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [writeDataToAshmem](#writedatatoashmem11) instead.
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [writeDataToAshmem](#writedatatoashmem11) instead.
 
 writeToAshmem(buf: number[], size: number, offset: number): boolean
 
@@ -10252,8 +10248,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900004  | read from ashmem failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900004  | Failed to read data from the shared memory. |
 
 **Example**
 
@@ -10287,9 +10283,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### readAshmem<sup>9+(deprecated)</sup>
+### readAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [readDataFromAshmem](#readdatafromashmem11) instead.
+>**NOTE**<br>This API is supported since API version 9 and deprecated since API version 11. Use [readDataFromAshmem](#readdatafromashmem11) instead.
 
 readAshmem(size: number, offset: number): number[]
 
@@ -10316,8 +10312,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | check param failed |
-| 1900004  | read from ashmem failed |
+| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+| 1900004  | Failed to read data from the shared memory. |
 
 **Example**
 
@@ -10339,9 +10335,9 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### readFromAshmem<sup>8+(deprecated)</sup>
+### readFromAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. Use [readDataFromAshmem](#readdatafromashmem11) instead.
+>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [readDataFromAshmem](#readdatafromashmem11) instead.
 
 readFromAshmem(size: number, offset: number): number[]
 

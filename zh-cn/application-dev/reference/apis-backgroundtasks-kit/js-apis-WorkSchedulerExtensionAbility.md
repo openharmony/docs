@@ -14,7 +14,17 @@
 import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 ```
 
-## 属性
+## WorkSchedulerExtensionContext
+
+type WorkSchedulerExtensionContext = _WorkSchedulerExtensionContext
+
+| 类型 | 说明 |
+| -------- |  -------- |
+| WorkSchedulerExtensionContext|  WorkSchedulerExtension的上下文环境。 |
+
+## WorkSchedulerExtensionAbility
+
+### 属性
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -22,7 +32,7 @@ import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context<sup>10+</sup> | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | 是 | 否 | WorkSchedulerExtension的上下文环境，继承自ExtensionContext。 |
 
-## WorkSchedulerExtensionAbility.onWorkStart
+### onWorkStart
 
 onWorkStart(work: workScheduler.WorkInfo): void
 
@@ -48,7 +58,7 @@ onWorkStart(work: workScheduler.WorkInfo): void
   }
   ```
 
-## WorkSchedulerExtensionAbility.onWorkStop
+### onWorkStop
 
 onWorkStop(work: workScheduler.WorkInfo): void
 

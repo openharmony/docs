@@ -25,6 +25,8 @@ hoverEffect(value: HoverEffect)
 
 ## 示例
 
+该示例通过hoverEffect设置组件的鼠标悬浮态显示效果。
+
 ```ts
 // xxx.ets
 @Entry
@@ -47,7 +49,7 @@ struct HoverExample {
 
         Text('Board').fontSize(20).fontColor(Color.Gray).width('90%').position({ x: 0, y: 380 })
         Column()
-          .width('80%').height(200).backgroundColor(Color.Gray)
+          .width('80%').height(200).backgroundColor(Color.Yellow)
           .hoverEffect(HoverEffect.Highlight)
           .position({ x: 40, y: 420 })
           .onHover((isHover?: boolean) => {
@@ -65,3 +67,4 @@ struct HoverExample {
   }
 }
 ```
+![onHover](figures/onHover.gif)

@@ -58,7 +58,7 @@ Different OpenHarmony systems use kernels of different forms. LiteOS applies to 
 | Level| Mini System| Small System| Standard System|
 | -------- | -------- | -------- | -------- |
 | LiteOS-M | √ | × | × |
-| LiteOS-A | × | √ | √ |
+| LiteOS-A | × | √ | x |
 | Linux | × | √ | √ |
 
 

@@ -52,6 +52,8 @@ SizeChangeCallback = (oldValue: SizeOptions, newValue: SizeOptions) => void
 
 ## 示例
 
+该示例通过Text组件设置组件尺寸变化事件，当Text尺寸变化时可以触发onSizeChange事件，获取相关参数。
+
 ```ts
 // xxx.ets
 @Entry

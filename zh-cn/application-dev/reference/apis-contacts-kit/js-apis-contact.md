@@ -64,7 +64,7 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
   });
 ```
 
-## contact.addContact(deprecated)<sup>7+</sup>
+## contact.addContact<sup>(deprecated)7+</sup>
 
 addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 
@@ -160,7 +160,7 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
   });
 ```
 
-## contact.addContact(deprecated)<sup>7+</sup>
+## contact.addContact<sup>(deprecated)7+</sup>
 
 addContact(contact: Contact): Promise&lt;number&gt;
 
@@ -245,7 +245,7 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
   });
 ```
 
-## contact.deleteContact(deprecated)<sup>7+</sup>
+## contact.deleteContact<sup>(deprecated)7+</sup>
 
 deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -324,7 +324,7 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
   });
   ```
 
-## contact.deleteContact(deprecated)<sup>7+</sup>
+## contact.deleteContact<sup>(deprecated)7+</sup>
 
 deleteContact(key: string): Promise&lt;void&gt;
 
@@ -411,7 +411,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
   });
   ```
 
-## contact.updateContact(deprecated)<sup>7+</sup>
+## contact.updateContact<sup>(deprecated)7+</sup>
 
 updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
@@ -470,7 +470,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | contact  | [Contact](#contact)                     | 是   | 联系人信息。id必填。                                         |
-| attrs    | [ContactAttributes](#contactattributes) | 是   | 联系人的属性列表。                                           |
+| attrs    | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
 | callback | AsyncCallback&lt;void&gt;               | 是   | 回调函数。成功返回更新的联系人id；失败返回失败的错误码。     |
 
 **错误码：**
@@ -505,7 +505,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
   });
   ```
 
-## contact.updateContact(deprecated)<sup>7+</sup>
+## contact.updateContact<sup>(deprecated)7+</sup>
 
 updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallback&lt;void&gt;): void
 
@@ -606,7 +606,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
   });
 ```
 
-## contact.updateContact(deprecated)<sup>7+</sup>
+## contact.updateContact<sup>(deprecated)7+</sup>
 
 updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
@@ -695,7 +695,7 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
   });
   ```
 
-## contact.isLocalContact(deprecated)<sup>7+</sup>
+## contact.isLocalContact<sup>(deprecated)7+</sup>
 
 isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -773,7 +773,7 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
   });
 ```
 
-## contact.isLocalContact(deprecated)<sup>7+</sup>
+## contact.isLocalContact<sup>(deprecated)7+</sup>
 
 isLocalContact(id: number): Promise&lt;boolean&gt;
 
@@ -851,7 +851,7 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
   });
 ```
 
-## contact.isMyCard(deprecated)<sup>7+</sup>
+## contact.isMyCard<sup>(deprecated)7+</sup>
 
 isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -930,7 +930,7 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
   });
 ```
 
-## contact.isMyCard(deprecated)<sup>7+</sup>
+## contact.isMyCard<sup>(deprecated)7+</sup>
 
 isMyCard(id: number): Promise&lt;boolean&gt;
 
@@ -1007,7 +1007,7 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
   });
 ```
 
-## contact.queryMyCard(deprecated)<sup>7+</sup>
+## contact.queryMyCard<sup>(deprecated)7+</sup>
 
 queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1082,7 +1082,7 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
   });
 ```
 
-## contact.queryMyCard(deprecated)<sup>7+</sup>
+## contact.queryMyCard<sup>(deprecated)7+</sup>
 
 queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1164,7 +1164,7 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
   });
 ```
 
-## contact.queryMyCard(deprecated)<sup>7+</sup>
+## contact.queryMyCard<sup>(deprecated)7+</sup>
 
 queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
@@ -1204,7 +1204,7 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
   ```
 
 
-## contact.selectContact(deprecated)<sup>7+</sup>
+## contact.selectContact<sup>(deprecated)7+</sup>
 
 selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1236,7 +1236,7 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
   ```
 
 
-## contact.selectContact(deprecated)<sup>7+</sup>
+## contact.selectContact<sup>(deprecated)7+</sup>
 
 selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -1448,7 +1448,7 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1499,7 +1499,7 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
-| holder   | [Holder](#holder)                        | 是   | 创建联系人的应用信息。                                       |
+| holder   | [Holder](#holder)                        | 否   | 创建联系人的应用信息。                                       |
 | callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数。成功返回查询的联系人对象；失败返回失败的错误码。   |
 
 **错误码：**
@@ -1528,7 +1528,7 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1610,7 +1610,7 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1695,7 +1695,7 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
   });
 ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1789,7 +1789,7 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
@@ -1873,7 +1873,7 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1950,7 +1950,7 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2030,7 +2030,7 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2113,7 +2113,7 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2204,7 +2204,7 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -2289,7 +2289,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2369,7 +2369,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2451,7 +2451,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2536,7 +2536,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2630,7 +2630,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -2716,7 +2716,7 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2795,7 +2795,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2877,7 +2877,7 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2962,7 +2962,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -3056,7 +3056,7 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -3141,7 +3141,7 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
   });
   ```
 
-## contact.queryGroups(deprecated)<sup>7+</sup>
+## contact.queryGroups<sup>(deprecated)7+</sup>
 
 queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
@@ -3218,7 +3218,7 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
   });
   ```
 
-## contact.queryGroups(deprecated)<sup>7+</sup>
+## contact.queryGroups<sup>(deprecated)7+</sup>
 
 queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
@@ -3304,7 +3304,7 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
   });
   ```
 
-## contact.queryGroups(deprecated)<sup>7+</sup>
+## contact.queryGroups<sup>(deprecated)7+</sup>
 
 queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
@@ -3385,7 +3385,7 @@ queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt
   });
   ```
 
-## contact.queryHolders(deprecated)<sup>7+</sup>
+## contact.queryHolders<sup>(deprecated)7+</sup>
 
 queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
@@ -3461,7 +3461,7 @@ queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
   });
   ```
 
-## contact.queryHolders(deprecated)<sup>7+</sup>
+## contact.queryHolders<sup>(deprecated)7+</sup>
 
 queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
@@ -3533,7 +3533,7 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
   });
   ```
 
-## contact.queryKey(deprecated)<sup>7+</sup>
+## contact.queryKey<sup>(deprecated)7+</sup>
 
 queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
@@ -3612,7 +3612,7 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
   });
   ```
 
-## contact.queryKey(deprecated)<sup>7+</sup>
+## contact.queryKey<sup>(deprecated)7+</sup>
 
 queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
@@ -3700,7 +3700,7 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
   });
   ```
 
-## contact.queryKey(deprecated)<sup>7+</sup>
+## contact.queryKey<sup>(deprecated)7+</sup>
 
 queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
@@ -3767,9 +3767,9 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 ### 常量
 
-| 名称               | 值   | 说明             |
-| ------------------ | ---- | ---------------- |
-| INVALID_CONTACT_ID | -1   | 默认联系人的id。 |
+| 名称               | 值   |只读   | 说明             |
+| ------------------ | ---- | ---- | ---------------- |
+| INVALID_CONTACT_ID | -1   |是   | 默认联系人的id。 |
 
 
 ### 属性
@@ -3937,11 +3937,11 @@ email.email = "xxx@email.com";
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
-| 名称        | 类型   | 可读 | 可写 | 说明         |
-| ----------- | ------ | ---- | ---- | ------------ |
-| bundleName  | string | 是   | 否   | Bundle名称，值为com.ohos.contacts。 |
-| displayName | string | 是   | 否   | 应用名称。   |
-| holderId    | number | 是   | 是   | 应用ID。     |
+| 名称        | 类型   | 可读 | 可写 | 必填 | 说明         |
+| ----------- | ------ | ---- | ---- | ---- | ------------ |
+| bundleName  | string | 是   | 否   | 是   | Bundle名称，值为com.ohos.contacts。 |
+| displayName | string | 是   | 否   | 否   | 应用名称。   |
+| holderId    | number | 是   | 是   | 否   | 应用ID。     |
 
 
 **对象创建示例：**

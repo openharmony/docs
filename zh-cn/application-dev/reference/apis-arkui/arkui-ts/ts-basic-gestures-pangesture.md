@@ -1,6 +1,6 @@
 # PanGesture
 
-拖动手势事件，当滑动的最小距离达到设定的最小值时触发拖动手势事件。
+滑动手势事件，当滑动的最小距离达到设定的最小值时触发滑动手势事件。
 
 >  **说明：**
 >
@@ -17,9 +17,9 @@ PanGesture(value?: { fingers?: number, direction?: PanDirection, distance?: numb
 
 | 参数名称 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| fingers | number | 否 | 用于指定触发拖动的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1<br/>取值范围：[1,10]<br/>**说明：** <br/>当设置的值小于1或不设置时，会被转化为默认值。 |
-| direction | [PanDirection](#pandirection枚举说明) | 否 | 用于指定触发拖动的手势方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。<br/>默认值：PanDirection.All |
-| distance | number | 否 | 用于指定触发拖动手势事件的最小拖动距离，单位为vp。<br/>默认值：5<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。<br/>当设定的值小于0时，按默认值5处理。 |
+| fingers | number | 否 | 用于指定触发滑动的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1<br/>取值范围：[1,10]<br/>**说明：** <br/>当设置的值小于1或不设置时，会被转化为默认值。 |
+| direction | [PanDirection](#pandirection枚举说明) | 否 | 用于指定触发滑动的手势方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。<br/>默认值：PanDirection.All |
+| distance | number | 否 | 用于指定触发滑动手势事件的最小滑动距离，单位为vp。<br/>默认值：5<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该滑动手势事件同时存在时，可将distance值设为1，使滑动更灵敏，避免造成事件错乱。<br/>当设定的值小于0时，按默认值5处理。 |
 
 ## PanDirection枚举说明
 
@@ -32,11 +32,11 @@ PanGesture(value?: { fingers?: number, direction?: PanDirection, distance?: numb
 | All | 所有方向。 |
 | Horizontal | 水平方向。 |
 | Vertical | 竖直方向。 |
-| Left | 向左拖动。 |
-| Right | 向右拖动。 |
-| Up | 向上拖动。 |
-| Down | 向下拖动。 |
-| None | 任何方向都不可触发拖动手势事件。 |
+| Left | 向左滑动。 |
+| Right | 向右滑动。 |
+| Up | 向上滑动。 |
+| Down | 向下滑动。 |
+| None | 任何方向都不可触发滑动手势事件。 |
 
 
 ## PanGestureOptions
@@ -53,7 +53,7 @@ PanGestureOptions(value?: { fingers?: number, direction?: PanDirection, distance
 | --------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | fingers   | number                                | 否   | 用于指定触发滑动的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1 |
 | direction | [PanDirection](#pandirection枚举说明) | 否   | 用于指定设置滑动方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。<br/>默认值：PanDirection.All |
-| distance  | number                                | 否   | 用于指定触发拖动手势事件的最小拖动距离，单位为vp。<br/>默认值：5<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。<br/>当设定的值小于0时，按默认值5处理。<br/>建议设置合理的拖动距离，拖动距离设置过大时会导致滑动不跟手（响应时延慢）的问题。 |
+| distance  | number                                | 否   | 用于指定触发滑动手势事件的最小滑动距离，单位为vp。<br/>默认值：5<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该滑动手势事件同时存在时，可将distance值设为1，使滑动更灵敏，避免造成事件错乱。<br/>当设定的值小于0时，按默认值5处理。<br/>建议设置合理的滑动距离，滑动距离设置过大时会导致滑动不跟手（响应时延慢）的问题。 |
 
 **接口**
 
@@ -72,7 +72,8 @@ PanGestureOptions(value?: { fingers?: number, direction?: PanDirection, distance
 | onActionStart(event:&nbsp;(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势识别成功回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | onActionUpdate(event:&nbsp;(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势移动过程中回调。<br/>fingerList为多根手指时，该回调监听每次只会更新一根手指的位置信息。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | onActionEnd(event:&nbsp;(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，手指抬起后触发回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，接收到触摸取消事件触发回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| onActionCancel(event:&nbsp;(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void)<sup>16+</sup> | Pan手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 ## 属性
 
@@ -82,6 +83,8 @@ PanGestureOptions(value?: { fingers?: number, direction?: PanDirection, distance
 | allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)>  | 设置Pan手势支持的事件输入源。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
+
+该示例通过PanGesture实现了单指/双指滑动手势的识别。
 
 ```ts
 // xxx.ets
@@ -105,7 +108,7 @@ struct PanGestureExample {
       .border({ width: 3 })
       .margin(50)
       .translate({ x: this.offsetX, y: this.offsetY, z: 0 }) // 以组件左上角为坐标原点进行移动
-      // 左右拖动触发该手势事件
+      // 左右滑动触发该手势事件
       .gesture(
       PanGesture(this.panOption)
         .onActionStart((event: GestureEvent) => {
@@ -126,7 +129,7 @@ struct PanGestureExample {
 
       Button('修改PanGesture触发条件')
         .onClick(() => {
-          // 将PanGesture手势事件触发条件改为双指以任意方向拖动
+          // 将PanGesture手势事件触发条件改为双指以任意方向滑动
           this.panOption.setDirection(PanDirection.All)
           this.panOption.setFingers(2)
         })
@@ -137,10 +140,10 @@ struct PanGestureExample {
 
 示意图：
 
-向左拖动：
+向左滑动：
 
 ![zh-cn_image_0000001174264374](figures/zh-cn_image_0000001174264374.png) 
 
-点击按钮修改PanGesture触发条件，双指向左下方拖动：
+点击按钮修改PanGesture触发条件，双指向左下方滑动：
 
  ![zh-cn_image1_0000001174264374](figures/zh-cn_image1_0000001174264374.png) 

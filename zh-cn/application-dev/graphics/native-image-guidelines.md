@@ -11,7 +11,7 @@ NativeImage是提供**Surface关联OpenGL外部纹理**的模块，表示图形�
 
 | 接口名                                                       | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarget) | 创建一个OH_NativeImage实例，该实例与OpenGL ES的纹理ID和纹理目标相关联。 |
+| OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarget) | 创建一个OH_NativeImage实例，该实例与OpenGL ES的纹理ID和纹理目标相关联。本接口需要与OH_NativeImage_Destroy接口配合使用，否则会存在内存泄露。 |
 | OH_NativeImage_AcquireNativeWindow (OH_NativeImage \*image)  | 获取与OH_NativeImage相关联的OHNativeWindow指针，该OHNativeWindow在调用OH_NativeImage_Destroy时会将其释放，不需要调用OH_NativeWindow_DestroyNativeWindow释放，否则会出现访问已释放内存错误，可能会导致崩溃。 |
 | OH_NativeImage_AttachContext (OH_NativeImage \*image, uint32_t textureId) | 将OH_NativeImage实例附加到当前OpenGL ES上下文，且该OpenGL ES纹理会绑定到 GL_TEXTURE_EXTERNAL_OES，并通过OH_NativeImage进行更新。 |
 | OH_NativeImage_DetachContext (OH_NativeImage \*image)        | 将OH_NativeImage实例从当前OpenGL ES上下文分离。              |
@@ -155,13 +155,13 @@ libnative_buffer.so
        // 创建上下文
        eglContext_ = eglCreateContext(eglDisplay_, config_, EGL_NO_CONTEXT, context_attribs);
        if (eglContext_ == EGL_NO_CONTEXT) {
-           std::cout << "Failed to create egl context %{public}x, error:" << eglGetError() << std::endl;
+           std::cout << "Failed to create egl context, error:" << eglGetError() << std::endl;
        }
    
        // 创建eglSurface
        eglSurface_ = eglCreateWindowSurface(eglDisplay_, config_, reinterpret_cast<EGLNativeWindowType>(eglNativeWindow_), context_attribs);
        if (eglSurface_ == EGL_NO_SURFACE) {
-           std::cout << "Failed to create egl surface %{public}x, error:" << eglGetError() << std::endl;
+           std::cout << "Failed to create egl surface, error:" << eglGetError() << std::endl;
        }
    
        // 关联上下文
@@ -198,9 +198,9 @@ libnative_buffer.so
    int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, width, height);
    ```
 
-5. **将生产的内容写入NativeWindowBuffer**。
+5. **将生产的内容写入OHNativeWindowBuffer**。
 
-   1. 从NativeWindow中获取NativeWindowBuffer。
+   1. 从NativeWindow中获取OHNativeWindowBuffer。
 
       ```c++
       OHNativeWindowBuffer *buffer = nullptr;
@@ -211,7 +211,7 @@ libnative_buffer.so
       BufferHandle *handle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
       ```
 
-   2. 将生产的内容写入NativeWindowBuffer。
+   2. 将生产的内容写入OHNativeWindowBuffer。
 
       ```c++
       // 使用系统mmap接口拿到bufferHandle的内存虚拟地址
@@ -234,10 +234,10 @@ libnative_buffer.so
       }
       ```
 
-   3. 将NativeWindowBuffer提交到NativeWindow。
+   3. 将OHNativeWindowBuffer提交到NativeWindow。
 
       ```c++
-      // 设置刷新区域，如果Region中的Rect为nullptr,或者rectNumber为0，则认为NativeWindowBuffer全部有内容更改。
+      // 设置刷新区域，如果Region中的Rect数组为nullptr,或者rectNumber为0，则认为OHNativeWindowBuffer全部内容有更改。
       Region region{nullptr, 0};
       // 通过OH_NativeWindow_NativeWindowFlushBuffer 提交给消费者使用，例如：显示在屏幕上。
       OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, buffer, fenceFd, region);
@@ -298,3 +298,4 @@ libnative_buffer.so
 针对NativeImage的开发，有以下相关实例可供参考：
 
 - [Native Window（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeWindow)
+- [基于NdkNativeImage的平滑渐变动画效果（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeImage)

@@ -44,15 +44,29 @@ Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 
 
 **错误描述**
 
-参数检查失败，包括必选参数没有传入，参数类型错误。无论是同步还是异步接口，此类异常大部分都通过同步的方式抛出。
+1. 必填参数为空。
+
+2. 参数类型不正确。
+
+3. 参数校验失败。无论是同步还是异步接口，此类异常大部分都通过同步的方式抛出。
 
 **可能原因**
 
-必选参数没有传入，或者参数类型错误。
+1. 必选参数没有传入。
+
+2. 参数类型错误 (Type Error)。
+
+3. 参数数量错误 (Argument Count Error)。
+
+4. 空参数错误 (Null Argument Error)。
+
+5. 参数格式错误 (Format Error)。
+
+6. 参数值范围错误 (Value Range Error)。
 
 **处理步骤**
 
-请检查必选参数是否没有传入，或者传的参数类型是否错误。
+请检查必选参数是否传入，或者传入的参数类型是否错误。对于参数校验失败，阅读参数规格约束，按照可能原因进行排查。
 
 ## 801 该设备不支持此API
 
@@ -62,12 +76,12 @@ Capability not supported. Failed to call the API due to limited device capabilit
 
 **错误描述**
 
-该设备不支持此API，通常用于在设备已支持该SysCap时，针对其少量的API的支持处理。
+该设备不支持此API，因此无法正常调用。
 
 **可能原因**
 
-该设备不支持此API。
+可能出现该错误码的场景为：该设备已支持该API所属的Syscap, 但是并不支持此API。
 
 **处理步骤**
 
-请检查设备是否支持使用的API。
+应避免在该设备上使用此API，或在代码中通过判断来规避异常场景下应用在不同设备上运行所产生的影响。

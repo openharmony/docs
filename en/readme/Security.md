@@ -1,12 +1,10 @@
 # Security
 
-
-
 ## Introduction
 
 The security subsystem provides capabilities to protect the system security, data security, and application security of OpenHarmony.
 
-The open security capabilities include application integrity verification, application permission management, device authentication, universal keystore management, and data transfer management.
+The open security capabilities include application integrity verification, application permission management, device authentication, universal keystore, and data transfer management.
 
 ## System Architecture
 
@@ -17,16 +15,17 @@ The open security capabilities include application integrity verification, appli
 - **Interface layer**: provides APIs, some of which are available only for system applications.
 - **Device authentication**: verifies devices in distributed scenarios and sets up secure connection channels between trusted devices for data transfer.
 
-- **Universal keystore management**: provides full lifecycle management of keys for upper-layer services, system applications, and system abilities. The universal keystore management includes generation, use, storage, and destruction of keys.
-- **Data transfer control**: controls data transfer between devices based on the data security level and device security level. Data can be transferred only between the devices whose security levels match the security level of the data.
+- **Universal keystore**: provides full lifecycle management of keys for upper-layer services, system applications, and system abilities. The universal keystore provides generation, use, storage, and destruction of keys.
+
+- **Data transfer control**: controls data transfer between devices based on the data security level and device security level. During the cross-device migration for the services with distributed data management, data can be transferred only between the devices whose security levels match the security level of the data.
 
 - **Crypto Framework**: provides unified APIs for cryptographic operations. The crypto framework shields the differences between the underlying hardware and encryption/decryption algorithm libraries and encapsulates algorithm libraries, making development a more enjoyable experience.
 
 - **Certificate framework**: provides system-level certificates, CRL verification, parsing, and output capabilities, and certificate chain and CRL chain capabilities for services.
+
 - **Certificate management**: provides full lifecycle management of CA root certificates and service certificates for upper-layer services and system applications or abilities on devices. The certificate management includes generation, storage, query and access, and deletion of certificates.
 
 - **Device security management**: implements device management based on the device security level and provides APIs for querying the security levels of the local and peer devices.
-
 
 
 ## Directory Structure
@@ -85,7 +84,6 @@ A unified device binding and authentication solution that covers 1+8+N devices i
 
 In OpenHarmony, the data transfer control module provides cross-device data transfer management and control policies for distributed services. The module defines a sef of APIs to offer policies for cross-device data transfer and obtain the highest risk level of data to be sent to the peer device.
 
-
 ### Security Issue Response Team Work Charter
 
 [security](https://gitee.com/openharmony/security)
@@ -109,6 +107,3 @@ Security
 [security_certificate_framework](https://gitee.com/openharmony/security_certificate_framework)
 
 [security_asset](https://gitee.com/openharmony/security_asset)
-
-
-<!--no_check-->

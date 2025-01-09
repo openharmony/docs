@@ -100,7 +100,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 ![zh-cn_image_0000001266874320](figures/zh-cn_image_0000001266874320.png)
 
-用鼠标左键将default目录拖拽到新建的product目录中，在IDE弹出的确认窗口中，点击“Refactor”即可。
+用鼠标左键将default目录拖拽到新建的product目录中，在DevEco Studio弹出的确认窗口中，点击“Refactor”即可。
 
 ![zh-cn_image_0000001315714137](figures/zh-cn_image_0000001315714137.png)
 
@@ -152,4 +152,4 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 本章主要介绍了如何实现推荐的工程结构，以便更好的进行多设备应用开发。
 
-关于IDE的基本使用，比如如何进行编译构建、如何签名、如何使用预览器等，[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-tools-overview-V13)中已经有非常详尽的介绍，本文不再重复介绍。
+关于DevEco Studio的基本使用，比如如何进行编译构建、如何签名、如何使用预览器等，[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-tools-overview-V13)中已经有非常详尽的介绍，本文不再重复介绍。

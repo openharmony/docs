@@ -74,12 +74,21 @@ multiton启动模式的开发使用，在[module.json5配置文件](../quick-sta
 
 specified启动模式为指定实例模式，针对一些特殊场景使用（例如文档应用中每次新建文档希望都能新建一个文档实例，重复打开一个已保存的文档希望打开的都是同一个文档实例）。
 
-**图3** 指定实例模式演示效果   
+**图3** 指定实例启动模式原理  
+![uiability-launch-type3-principle](figures/uiability-launch-type3-principle.png)  
+
+假设应用有两个[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例，即EntryAbility和SpecifiedAbility。EntryAbility以specified模式启动SpecifiedAbility。基本原理如下：
+
+  1. EntryAbility调用[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法，并在[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)的parameters字段中设置唯一的Key值，用于标识SpecifiedAbility。
+  2. 系统在拉起SpecifiedAbility之前，会先进入对应的[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)的[onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)生命周期回调，获取用于标识目标UIAbility的Key值。
+  3. 系统会根据获取的Key值来匹配UIAbility。
+      * 如果匹配到对应的UIAbility，则会启动该UIAbility实例，并进入[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)生命周期回调。
+      * 如果无法匹配对应的UIAbility，则会创建一个新的UIAbility实例，并进入该UIAbility实例的[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)生命周期回调和[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期回调。
+
+**图4** 指定实例模式演示效果   
 ![uiability-launch-type3](figures/uiability-launch-type3.gif)  
 
-例如有两个[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)：EntryAbility和SpecifiedAbility，SpecifiedAbility配置为指定实例模式启动，需要从EntryAbility的页面中启动SpecifiedAbility。
-
-1. 在SpecifiedAbility中，将[module.json5配置文件](../quick-start/module-configuration-file.md)的`launchType`字段配置为`specified`。
+1. 在SpecifiedAbility中，需要将[module.json5配置文件](../quick-start/module-configuration-file.md)的`launchType`字段配置为`specified`。
 
    ```json
    {
@@ -95,7 +104,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
    }
    ```
 
-2. 在创建UIAbility实例之前，开发者可以为该实例指定一个唯一的字符串Key，这样在调用[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，应用就可以根据指定的Key来识别响应请求的UIAbility实例。在EntryAbility中，调用[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，可以在[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)参数中增加一个自定义参数，例如`instanceKey`，以此来区分不同的UIAbility实例。
+2. 在EntryAbility中，调用[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，可以在[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)参数中传入了自定义参数`instanceKey`作为唯一标识符，以此来区分不同的UIAbility实例。示例中`instanceKey`的value值设置为字符串'KEY'。
 
    ```ts
     // 在启动指定实例模式的UIAbility时，给每一个UIAbility实例配置一个独立的Key标识
@@ -120,7 +129,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
         Row() {
           Column() {
             // ...
-            Button()// ...
+            Button()
               .onClick(() => {
                 let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
                 // context为调用方UIAbility的UIAbilityContext;
@@ -142,7 +151,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
                 this.KEY_NEW = this.KEY_NEW + 'a';
               })
             // ...
-            Button()// ...
+            Button()
               .onClick(() => {
                 let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
                 // context为调用方UIAbility的UIAbilityContext;
@@ -172,9 +181,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
     }
    ```
    
-3. 由于SpecifiedAbility的启动模式被配置为指定实例启动模式，因此在SpecifiedAbility启动之前，会先进入对应的AbilityStage的[onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)生命周期回调中，以获取该[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例的Key值。然后系统会自动匹配，如果存在与该UIAbility实例匹配的Key，则会启动与之绑定的UIAbility实例，并进入该UIAbility实例的[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调函数；否则会创建一个新的UIAbility实例，并进入该UIAbility实例的[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)回调函数和[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)回调函数。
-
-   示例代码中，通过实现[onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)生命周期回调函数，解析传入的[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)参数，获取自定义参数`instanceKey`。业务逻辑会根据这个参数返回一个字符串Key，用于标识当前UIAbility实例。如果返回的Key已经对应一个已启动的UIAbility实例，系统会将该UIAbility实例拉回前台并获焦，而不会创建新的实例。如果返回的Key没有对应已启动的UIAbility实例，则系统会创建新的UIAbility实例并启动。
+3. 开发者根据业务在SpecifiedAbility的[onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)生命周期回调设置该UIAbility的标识。示例中标识设置为`SpecifiedAbilityInstance_KEY`。
 
    ```ts
     import { AbilityStage, Want } from '@kit.AbilityKit';
@@ -184,7 +191,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
         // 在被调用方的AbilityStage中，针对启动模式为specified的UIAbility返回一个UIAbility实例对应的一个Key值
         // 当前示例指的是module1 Module的SpecifiedAbility
         if (want.abilityName === 'SpecifiedFirstAbility' || want.abilityName === 'SpecifiedSecondAbility') {
-          // 返回的字符串Key标识为自定义拼接的字符串内容
+          // 返回的字符串KEY标识为自定义拼接的字符串内容
           if (want.parameters) {
             return `SpecifiedAbilityInstance_${want.parameters.instanceKey}`;
           }

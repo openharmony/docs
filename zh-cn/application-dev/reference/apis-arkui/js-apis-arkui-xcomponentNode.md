@@ -2,7 +2,7 @@
 
 提供XComponent节点XComponentNode，表示组件树中的[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md#xcomponent)，用于[EGL](../native-lib/egl.md)/[OpenGLES](../native-lib/opengles.md)和媒体数据写入，并支持动态修改节点渲染类型。
 
-> **说明：** 从API version 12开始，该接口不再维护，推荐使用[BuilderNode](./js-apis-arkui-builderNode.md#buildernode)+[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md#xcomponent)的方式实现。
+> **说明：** 从API version 12开始，该接口不再维护，推荐使用[XComponent类型typeNode](./js-apis-arkui-frameNode.md#xcomponent12)的方式实现。
 >
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 

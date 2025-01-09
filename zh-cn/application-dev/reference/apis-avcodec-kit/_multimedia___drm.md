@@ -5,6 +5,8 @@
 
 三方应用自行实现媒体解封装，可使用本模块提供的接口设置解密参数， 且当DRM实例和会话创建完成后，以实现DRM加密节目的解密功能。
 
+对应的开发指南及样例可参考[媒体数据解析](../../media/avcodec/audio-video-demuxer.md)。
+
 **系统能力：** SystemCapability.Multimedia.Media.Spliter
 
 **起始版本：** 12

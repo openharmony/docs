@@ -26,6 +26,8 @@ monopolizeEvents(monopolize: boolean)
 
 ## 示例
 
+该示例通过配置monopolizeEvents实现组件是否独占事件。
+
 ```ts
 // xxx.ets
 @Entry

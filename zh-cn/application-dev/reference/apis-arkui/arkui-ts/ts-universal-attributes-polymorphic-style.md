@@ -59,7 +59,9 @@ stateStyles(value: StateStyles)
 
 ## 示例
 
-### 示例1
+### 示例1（设置Text多态样式）
+
+该示例展示了状态为pressed和disabled时Text组件的样式变化。
 
 ```ts
 // xxx.ets
@@ -157,7 +159,9 @@ struct StyleExample {
 
 ![zh-cn_image_0000001188742468](figures/zh-cn_image_0000001188742468.gif)
 
-### 示例2
+### 示例2（设置Radio多态样式）
+
+该示例展示了状态为selected时Radio组件的样式变化。
 
 ```ts
 // xxx.ets

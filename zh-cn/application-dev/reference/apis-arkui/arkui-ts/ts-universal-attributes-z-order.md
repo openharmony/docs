@@ -27,7 +27,9 @@ zIndex(value: number)
 
 ## 示例
 
-### 示例1
+### 示例1（设置组件堆叠顺序）
+
+该示例通过zIndex设置组件堆叠顺序。
 
 ```ts
 // xxx.ets
@@ -59,9 +61,9 @@ Stack容器子组件设置zIndex后效果
 
 ![zindex.png](figures/zindex.png)
 
-### 示例2
+### 示例2（动态修改zIndex属性）
 
-使用Button组件动态修改zIndex属性。
+该示例使用Button组件动态修改zIndex属性。
 
 ```ts
 // xxx.ets

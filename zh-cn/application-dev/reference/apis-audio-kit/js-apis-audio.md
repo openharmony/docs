@@ -5326,9 +5326,15 @@ audioSessionManager.off('audioSessionDeactivated', audioSessionDeactivatedCallba
 
 ## AudioRendererChangeInfoArray<sup>9+</sup>
 
+type AudioRendererChangeInfoArray = Array&lt;Readonly&lt;AudioRendererChangeInfo&gt;&gt;
+
 数组类型，AudioRenderChangeInfo数组，只读。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+| 类型      | 说明                                                            |
+|---------|---------------------------------------------------------------|
+| Array&lt;Readonly&lt;AudioRendererChangeInfo&gt;&gt; | 数组类型，[AudioRenderChangeInfo](#audiorendererchangeinfo9)数组，只读。 |
 
 ## AudioRendererChangeInfo<sup>9+</sup>
 
@@ -5375,9 +5381,15 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 
 ## AudioCapturerChangeInfoArray<sup>9+</sup>
 
+type AudioCapturerChangeInfoArray = Array&lt;Readonly&lt;AudioCapturerChangeInfo&gt;&gt;
+
 数组类型，AudioCapturerChangeInfo数组，只读。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 类型      | 说明                                                              |
+|---------|-----------------------------------------------------------------|
+| Array&lt;Readonly&lt;AudioCapturerChangeInfo&gt;&gt; | 数组类型，[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)数组，只读。 |
 
 ## AudioCapturerChangeInfo<sup>9+</sup>
 
@@ -5423,13 +5435,29 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 ## AudioEffectInfoArray<sup>10+</sup>
 
+type AudioEffectInfoArray = Array&lt;Readonly&lt;AudioEffectMode&gt;&gt;
+
 待查询ContentType和StreamUsage组合场景下的音效模式数组类型，[AudioEffectMode](#audioeffectmode10)数组，只读。
 
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+| 类型      | 说明                                                            |
+|---------|---------------------------------------------------------------|
+| Array&lt;Readonly&lt;AudioEffectMode&gt;&gt; | 待查询ContentType和StreamUsage组合场景下的音效模式数组类型，[AudioEffectMode](#audioeffectmode10)数组，只读。 |
+
 ## AudioDeviceDescriptors
+
+type AudioDeviceDescriptors = Array&lt;Readonly&lt;AudioDeviceDescriptor&gt;&gt;
 
 设备属性数组类型，为[AudioDeviceDescriptor](#audiodevicedescriptor)的数组，只读。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 类型      | 说明                                                            |
+|---------|---------------------------------------------------------------|
+| Array&lt;Readonly&lt;AudioDeviceDescriptor&gt;&gt; | 设备属性数组类型，为[AudioDeviceDescriptor](#audiodevicedescriptor)的数组，只读。 |
 
 ## AudioDeviceDescriptor
 
@@ -7775,6 +7803,8 @@ on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 
 监听音频数据写入回调事件（当需要写入音频数据时触发），使用 callback 方式返回结果。
 
+回调函数仅用来写入音频数据，请勿在回调函数中调用AudioRenderer相关接口。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
@@ -9040,7 +9070,9 @@ audioCapturer.on('stateChange', (state: audio.AudioState) => {
 
 on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 
-监听音频数据读入回调事件（当需要读取音频流数据时触发），使用callback方式返回结果。
+监听音频数据读取回调事件（当需要读取音频流数据时触发），使用callback方式返回结果。
+
+回调函数仅用来读取音频数据，请勿在回调函数中调用AudioCapturer相关接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -9100,7 +9132,7 @@ audioCapturer.start((err: BusinessError) => {
 
 off(type: 'readData', callback?: Callback\<ArrayBuffer>): void
 
-取消监听音频数据读入回调事件，使用callback方式返回结果。
+取消监听音频数据读取回调事件，使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 

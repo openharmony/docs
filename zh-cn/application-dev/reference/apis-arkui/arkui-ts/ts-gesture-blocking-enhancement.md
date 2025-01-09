@@ -341,7 +341,9 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 
 ## 示例
 
-### 示例1
+### 示例1（嵌套滚动）
+
+该示例通过shouldBuiltInrecognizerParallelWith和onGestureRecognizerJudgeBegin实现了嵌套滚动的功能。内部组件优先响应滑动手势，当内部组件滑动至顶部或底部时，外部组件能够接替滑动。
 
 ```ts
 // xxx.ets
@@ -500,7 +502,7 @@ struct FatherControlChild {
 }
 ```
 
-### 示例2
+### 示例2（嵌套场景下拦截内部容器手势）
 
 本示例通过将参数exposeInnerGesture设置为true，实现了一级Tabs容器在嵌套二级Tabs的场景下，能够屏蔽二级Tabs内置Swiper的滑动手势，从而触发一级Tabs内置Swiper滑动手势的功能。
 开发者自行定义变量来记录内层Tabs的索引值，通过该索引值判断当滑动达到内层Tabs的边界处时，触发回调返回屏蔽使外层Tabs产生滑动手势。

@@ -1,7 +1,6 @@
 # Performance Analysis Kit（性能分析服务）
 
 - ArkTS API
-  - [@ohos.faultLogger (故障日志获取)](js-apis-faultLogger.md)
   - [@ohos.hichecker (检测模式)](js-apis-hichecker.md)
   - [@ohos.hidebug (Debug调试)](js-apis-hidebug.md)
   - [@ohos.hilog (HiLog日志打印)](js-apis-hilog.md)
@@ -16,6 +15,7 @@
   - 已停止维护的接口
     - [@ohos.bytrace (性能打点)](js-apis-bytrace.md)
     - [@ohos.hiAppEvent (应用打点)](js-apis-hiappevent.md)
+    - [@ohos.faultLogger (故障日志获取)](js-apis-faultLogger.md)
 - C API
   - 模块
     - [HiAppEvent](_hi_app_event.md)
@@ -41,7 +41,8 @@
     - [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)
     - [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md)
     - [HiTraceId](_hi_trace_id.md)
-    - [HiCollie](_hi_hicollie___detection_param.md)
+    - [HiCollie_DetectionParam](_hi_hicollie___detection_param.md)
+    - [HiCollie_SetTimerParam](_hi_hicollie___set_timer_param.md)
 - 错误码
   - [Faultlogger错误码](errorcode-faultlogger.md)
   - [应用事件打点错误码](errorcode-hiappevent.md)

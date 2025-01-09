@@ -887,7 +887,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000063 | The target to restart does not belong to the current application or is not a UIAbility. |
-| 16000064 | Restart too frequently. Try again at least 10s later. |
+| 16000064 | Restart too frequently. Try again at least 3s later. |
 
 **Example**
 
@@ -1081,7 +1081,7 @@ Sets the scale ratio for the font size of this application. It can be called onl
 
 | Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
-| fontSizeScale | number | Yes  | Font scale ratio. The value is a non-negative number. When the application's [fontSizeScale](../../quick-start/app-configuration-file.md#configuration) is set to **followSystem** and the value set here exceeds the value of [fontSizeMaxScale](../../quick-start/app-configuration-file.md#configuration), the value of [fontSizeMaxScale](../../quick-start/app-configuration-file.md#configuration) takes effect. |
+| fontSizeScale | number | Yes  | Font scale ratio. The value is a non-negative number. When the application's [fontSizeScale](../../quick-start/app-configuration-file.md#configuration) is set to **followSystem** and the value set here exceeds the value of [fontSizeMaxScale](../../quick-start/app-configuration-file.md#configuration), the value of [fontSizeMaxScale](../../quick-start/app-configuration-file.md#configuration) takes effect.|
 
 **Error codes**
 

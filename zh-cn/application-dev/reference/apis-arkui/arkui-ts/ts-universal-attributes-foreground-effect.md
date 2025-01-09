@@ -35,7 +35,7 @@ foregroundEffect(options: ForegroundEffectOptions)
 
 ## 示例
 
-通过foregroundEffect接口设置前景属性
+该示例主要演示通过foregroundEffect接口设置前景属性。
 
 ```ts
 // xxx.ets

@@ -1,10 +1,10 @@
 # Vulkan支持能力
 
-[Vulkan](https://www.vulkan.org/)是一套2D和3D绘图应用程序接口，具有跨平台、高性能的特点。OpenHarmony现已支持Vulkan v1.3.231版本。
+[Vulkan](https://www.vulkan.org/)是一套2D和3D绘图应用程序接口，具有跨平台、高性能的特点。OpenHarmony现已支持Vulkan v1.3.275版本。
 
 ## 支持的标准库接口列表
 
-支持Vulkan v1.3.231版本的部分接口能力，具体请见下表。
+支持Vulkan v1.3.275版本的部分接口能力，具体请见下表。
 
 |符号类型|符号名|
 | --- | --- | 
@@ -261,5 +261,8 @@
 |FUNC|vkCreateSurfaceOHOS|
 |FUNC|vkGetNativeBufferPropertiesOHOS|
 |FUNC|vkGetMemoryNativeBufferOHOS|
+|FUNC|vkGetSwapchainGrallocUsageOHOS|
+|FUNC|vkAcquireImageOHOS|
+|FUNC|vkQueueSignalReleaseImageOHOS|
 
 新增接口的详细介绍请见[Vulkan模块](_vulkan.md)。

@@ -383,6 +383,7 @@ usbManager.requestRight (#usbrequestright)会触发弹框请求用户授权；ad
 | 错误码ID | 错误信息                                                                                                |
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **返回值：**
@@ -394,7 +395,7 @@ usbManager.requestRight (#usbrequestright)会触发弹框请求用户授权；ad
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
+import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let devicesName: string = "1-1";
 let tokenId: string = "";
@@ -445,6 +446,7 @@ getFunctionsFromString(funcs: string): number
 | 错误码ID | 错误信息                                                                        |
 | -------- | ------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
@@ -489,6 +491,7 @@ getStringFromFunctions(funcs: FunctionType): string
 | 错误码ID | 错误信息                                                                                                |
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **返回值：**
@@ -533,7 +536,10 @@ setDeviceFunctions(funcs: FunctionType): Promise\<void\>
 | 错误码ID | 错误信息                                                                                                |
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 14400002 | Permission denied. The HDC is disabled by the system.                                                   |
+| 14400006 | Unsupported operation. The function is not supported.                                                   |
 
 **返回值：**
 
@@ -576,6 +582,7 @@ getDeviceFunctions(): FunctionType
 | 错误码ID | 错误信息                                                                        |
 | -------- | ------------------------------------------------------------------------------- |
 | 401      | Parameter error. No parameters are required.                                    |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
@@ -612,6 +619,7 @@ getPortList(): Array\<USBPort\>
 
 | 错误码ID | 错误信息                                                                                                |
 | -------- | ------------------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **返回值：**
@@ -651,6 +659,7 @@ getPortSupportModes(portId: number): PortModeType
 | 错误码ID | 错误信息                                                                                                |
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **返回值：**
@@ -696,6 +705,7 @@ setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleTyp
 | 错误码ID | 错误信息                                                                                                |
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 | 14400003 | Unsupported operation. The current device does not support port role switching.                         |
 
@@ -753,11 +763,13 @@ usbManager.requestAccessoryRight会触发弹窗请求用户授权；addAccessory
 **示例：**
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { bundleManager } from '@kit.AbilityKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flags = bundleManager.BundleFlah.GET_BUNDLE_INFO_WITH_APPLICATION | boundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY
+  let flags = bundleManager.BundleFlah.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY
   let bundleInfo = await bundleManager.getBundleInfoForSelf(flags)
-  let tokenId: number = boundleInfo.appInfo.accessTokenId
+  let tokenId: number = bundleInfo.appInfo.accessTokenId
   usbManager.addAccessoryRight(tokenId, accList[0])
   hilog.info(0, 'testTag ui', `addAccessoryRight success`)
 } catch (error) {
@@ -807,8 +819,8 @@ USB设备侧功能。
 | ACM          | 1   | acm功能。  |
 | ECM          | 2   | ecm功能。  |
 | HDC          | 4   | hdc功能。  |
-| MTP          | 8   | 媒体传输（暂不支持）。 |
-| PTP          | 16  | 图片传输（暂不支持）。 |
+| MTP          | 8   | 媒体传输。 |
+| PTP          | 16  | 图片传输。 |
 | RNDIS        | 32  | 网络共享（暂不支持）。 |
 | MIDI         | 64  | midi功能（暂不支持）。 |
 | AUDIO_SOURCE | 128 | 音频功能（暂不支持）。 |

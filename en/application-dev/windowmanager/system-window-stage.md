@@ -17,7 +17,7 @@ However, you can customize an animation to be played during the display or hidin
 
 ## Available APIs
 
-For details about more APIs, see [Window](../reference/apis-arkui/js-apis-window.md).
+For details about more APIs, see [Window](../reference/apis-arkui/js-apis-window-sys.md).
 
 | Instance           | API                                                      | Description                                                        |
 | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -30,7 +30,7 @@ For details about more APIs, see [Window](../reference/apis-arkui/js-apis-window
 | Window            | hide (callback: AsyncCallback\<void>): void                  | Hides this window. This is a system API.                            |
 | Window            | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | Destroys this window.                                              |
 | Window            | getTransitionController(): TransitionController              | Obtains the transition animation controller. This is a system API.                  |
-| TransitionContext | completeTransition(isCompleted: boolean): void               | Completes the transition. This API can be called only after [animateTo()](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md) is executed. This is a system API. |
+| TransitionContext | completeTransition(isCompleted: boolean): void               | Completes the transition. This API can be called only after [animateTo()](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md) is executed. This is a system API.|
 | Window            | showWithAnimation(callback: AsyncCallback\<void>): void      | Shows this window and plays an animation during the process. This is a system API.            |
 | Window            | hideWithAnimation(callback: AsyncCallback\<void>): void      | Hides this window and plays an animation during the process. This is a system API.            |
 
@@ -267,7 +267,7 @@ struct transferCtrlSubWindow {
       .onClick(() => {
         let subWin = AppStorage.get<window.Window>("TransferSubWindow");
         subWin?.destroyWindow();
-        AppStorage.SetOrCreate<window.Window>("TransferSubWindow", undefined);
+        AppStorage.setOrCreate<window.Window>("TransferSubWindow", undefined);
       })
     }.height('100%').width('100%').backgroundColor('#ff556243').shadow({radius: 30,color: '#ff555555',offsetX: 15,offsetY: 15})
   }

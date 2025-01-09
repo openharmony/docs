@@ -1,6 +1,6 @@
 # ArrayBuffer对象
 
-ArrayBuffer内部包含一块Native内存。其JS对象壳与普通对象一样，需要经过序列化与反序列化拷贝传递，但是Native内存有两种传输方式：拷贝和转移。
+ArrayBuffer内部包含一块Native内存，该ArrayBuffer的JS对象壳被分配在虚拟机本地堆（LocalHeap）。与普通对象一样，需要经过序列化与反序列化拷贝传递，但是Native内存有两种传输方式：拷贝和转移。
 
 传输时采用拷贝的话，需要经过深拷贝（递归遍历），传输后两个线程都可以独立访问ArrayBuffer。通信过程如下图所示：
 

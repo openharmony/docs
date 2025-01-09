@@ -6,7 +6,7 @@
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 示例效果请以真机运行为准，当前IDE预览器不支持。
+> 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 >
 > 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
 

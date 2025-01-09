@@ -1,62 +1,8 @@
 # Transition from Router to Navigation
 
-## Architecture Differences
+This topic guides you through the transition from using APIs in the **Router** module to using the **Navigation** component. The **Navigation** component stands out due its wider range of animations, higher flexibility in one-time development for multi-device deployment, and more adaptable stack operations.
 
-In the ArkUI component tree hierarchy, pages that were originally managed by the **Router** module are located beneath the stage management node of the page stack. **Navigation**, as a navigation container component, can be mounted under a single page node and can also be stacked and nested. **Navigation** manages the title bar, content area, and toolbar. The content area is designed to display the content of custom pages and supports page routing capabilities. The design of **Navigation** has the following advantages:
-
-![image](figures/navigation-and-router-architecture.png)
-
-1. Explicitly distinguishes the title bar, content area, and toolbar in the API for enhanced management and UX animation flexibility.
-
-2. Provides the concept of a routing container, allowing you to decide the location of the routing container, and supports display in a modal, sheet, or dialog box.
-
-3. Integrates UX design and one-time development for multi-device deployment capabilities, with default capabilities for unified title display, page switching, and single or double column adaptation.
-
-4. Enables flexible page configuration by allowing you to determine the relationship between page aliases and UI through [UIBuilder](../quick-start/arkts-builder.md).
-
-5. Transforms page transition animations into component property animations, offering a richer and more flexible range of transition effects.
-
-6. Provides an inheritable page stack object for improved page display management.
-
-## Capability Comparison 
-
-| Scenario                                     | Navigation                            | Router                                 |
-| --------------------------------------------- | ------------------------------------- | -------------------------------------- |
-| One-time development for multi-device deployment                                     | Supported. The Auto mode is provided to automatically adapt to single- or double-column layout.   | Not supported                                |
-| Navigation to a specific page                                 | pushPath & pushDestination            | pushUrl & pushNameRoute                |
-| Navigation to a page within an HSP                                | Supported                                 | Supported                                  |
-| Navigation to a page within a HAR                                | Supported                                 | Supported                                  |
-| Passing parameters during navigation                                     | Supported                                 | Supported                                  |
-| Obtaining parameters of a specific page                             | Supported                                 | Not supported                                |
-| Type of parameters passed                                     | Passed as an object                       | Passed as an object, methods not supported within the object|
-| Navigation result callback                                 | Supported                                 | Supported                                  |
-| Navigation to a singleton page                                 | Supported                                 | Supported                                  |
-| Return to a previous page                                     | Supported                                 | Supported                                  |
-| Passing parameters on returning to a previous page                                 | Supported                                 | Supported                                  |
-| Returning to a specific route                                 | Supported                                 | Supported                                  |
-| Dialog box for returning to a previous page                                 | Supported, implemented through route interception               | showAlertBeforeBackPage                |
-| Route replacement                                     | replacePath & replacePathByName       | replaceUrl & replaceNameRoute          |
-| Clearing the navigation stack                                   | clear                                 | clear                                  |
-| Removing specific routes from the navigation stack                                 | removeByIndexes & removeByName        | Not supported                                |
-| Transition animation                                     | Supported                                 | Supported                                  |
-| Custom transition animation                               | Supported                                 | Supported, with limited animation types                    |
-| Disabling transition animation                                 | Supported, with global or one-time setting                       | Supported, by setting **duration** in the **pageTransition** API to **0**|
-| Shared element animation with **geometryTransition**               | Supported (shared between **NavDestination** components)       | Not supported                                |
-| Listening for page lifecycle                             | UIObserver.on('navDestinationUpdate') | UIObserver.on('routerPageUpdate')      |
-| Obtaining a page stack object                               | Supported                                 | Not supported                                |
-| Route interception                                     | Supported through **setInterception**      | Not supported                                |
-| Route stack information query                               | Supported                                 | getState() & getLength()               |
-| Move operations within the navigation stack                               | moveToTop & moveIndexToTop            | Not supported                                |
-| Immersive pages                                   | Supported                                 | Not supported; requires window configuration              |
-| Setting the title bar and toolbar| Supported                                 | Not supported                                |
-| Modal nested routing                                 | Supported                                 | Not supported                                |
-
-
-
-
-## Transition Guidelines
-
-### Page Structure
+## Page Structure
 
 Pages managed by **Router** are @Entry decorated components, each of which must be declared in **main_page.json**.
 
@@ -79,7 +25,6 @@ import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
-
 struct Index {
   @State message: string = 'Hello World';
 
@@ -96,13 +41,13 @@ struct Index {
           .onClick(() => {
             router.pushUrl({
               url: 'pages/pageOne' // Target URL.
-              }, router.RouterMode.Standard, (err) => {
-                if (err) {
-                  console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
-                  return;
-                }
-                console.info('Invoke pushUrl succeeded.');
-              })
+            }, router.RouterMode.Standard, (err) => {
+              if (err) {
+                console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
+                return;
+              }
+              console.info('Invoke pushUrl succeeded.');
+            })
           })
       }
       .width('100%')
@@ -222,7 +167,7 @@ Each subpage also needs to be configured in the system configuration file **rout
 }
 ```
 
-### Route Operations
+## Route Operations
 
 To use the **Router** for page operations, you must import the **@ohos.router** module.
 
@@ -259,7 +204,7 @@ struct Index {
   build() {
     // Set NavPathStack and pass it to Navigation.
     Navigation(this.pathStack) {
-        // ...
+      // ...
     }.width('100%').height('100%')
     .title("Navigation")
     .mode(NavigationMode.Stack)
@@ -288,7 +233,7 @@ let size: number = this.pathStack.size()
 this.pathStack.removeByName("pageOne")
 
 // Remove the page with the specified index.
-this.pathStack.removeByIndexes([1,3,5])
+this.pathStack.removeByIndexes([1, 3, 5])
 
 // Obtain all page names in the stack.
 this.pathStack.getAllPathName()
@@ -397,23 +342,21 @@ export struct PageOne {
 **Method 4**: Call the custom component query API. For details, see [queryNavigationInfo](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#querynavigationinfo12).
 
 ```ts
-import { uiObserver } from '@kit.ArkUI';
-
 // Custom component on the subpage
 @Component
 struct CustomNode {
-  pathStack : NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack()
 
   aboutToAppear() {
     // query navigation info
-    let  navigationInfo : NavigationInfo = this.queryNavigationInfo() as NavigationInfo
+    let navigationInfo: NavigationInfo = this.queryNavigationInfo() as NavigationInfo
     this.pathStack = navigationInfo.pathStack;
   }
 
   build() {
     Row() {
       Button('Go to PageTwo')
-        .onClick(()=>{
+        .onClick(() => {
           this.pathStack.pushPath({ name: 'pageTwo' })
         })
     }
@@ -421,7 +364,7 @@ struct CustomNode {
 }
 ```
 
-### Lifecycle
+## Lifecycle
 
 The lifecycle of a **Router** page is managed by universal methods within the @Entry page, which mainly includes the following lifecycle events:
 
@@ -453,7 +396,6 @@ For details about the lifecycle, see [Page Lifecycle](arkts-navigation-navigatio
 ```ts
 @Component
 struct PageOne {
-
   aboutToDisappear() {
   }
 
@@ -464,27 +406,27 @@ struct PageOne {
     NavDestination() {
       // ...
     }
-    .onWillAppear(()=>{
+    .onWillAppear(() => {
     })
-    .onAppear(()=>{
+    .onAppear(() => {
     })
-    .onWillShow(()=>{
+    .onWillShow(() => {
     })
-    .onShown(()=>{
+    .onShown(() => {
     })
-    .onWillHide(()=>{
+    .onWillHide(() => {
     })
-    .onHidden(()=>{
+    .onHidden(() => {
     })
-    .onWillDisappear(()=>{
+    .onWillDisappear(() => {
     })
-    .onDisAppear(()=>{
+    .onDisAppear(() => {
     })
   }
 }
 ```
 
-### Transition Animation
+## Transition Animation
 
 Both **Router** and **Navigation** offer built-in system transition animations as well as the capability to customize these animations.
 
@@ -492,14 +434,14 @@ For **Router**, custom page transition animations are implemented through the un
 
 For **Navigation**, a routing container component, page transition animations are essentially property animations between components. You can custom page transition animations through the [customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11) event in **Navigation**. For details, see [Customizing a Transition](arkts-navigation-navigation.md#customizing-a-transition). (Note: Dialog-type pages currently do not have transition animations.)
 
-### Shared Element Transition
+## Shared Element Transition
 
 To animate shared elements during page transitions with **Router**, use the **sharedTransition** API. For details, see
 [Shared Element Transition (sharedTransition)](../reference/apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md).
 
 To animate shared elements during page transitions with **Navigation**, use the **geometryTransition** API. For details, see [Defining a Shared Element Transition](arkts-navigation-navigation.md#defining-a-shared-element-transition).
 
-### Cross-Package Routing
+## Cross-Package Routing
 
 To implement cross-package routing, with **Router**, use named routes.
 
@@ -600,17 +542,18 @@ As a routing component, **Navigation** natively supports cross-package navigatio
    
     @Builder pageMap(name: string) {
       if (name === 'PageInHSP') {
-   	 // 2. Define the route mapping table.
-   	 PageInHSP()
+   	    // 2. Define the route mapping table.
+   	    PageInHSP()
       }
     }
+
     build() {
       Navigation(this.pageStack) {
-   	 Button("Push HSP Page")
-   	   .onClick(() => {
-   		  // 3. Navigate to the page in the HSP.
-   		  this.pageStack.pushPath({ name: "PageInHSP"});
-   	 })
+        Button("Push HSP Page")
+          .onClick(() => {
+            // 3. Navigate to the page in the HSP.
+            this.pageStack.pushPath({ name: "PageInHSP" });
+          })
       }
       .mode(NavigationMode.Stack)
       .navDestination(this.pageMap)
@@ -620,7 +563,7 @@ As a routing component, **Navigation** natively supports cross-package navigatio
 
 In the above approaches, static dependencies are used for cross-package routing. In large-scale projects, inter-module development generally requires decoupling, which relies on the capability of dynamic routing.
 
-### Dynamic Routing
+## Dynamic Routing
 
 Dynamic routing facilitates the reuse of service modules across different products (HAPs) and ensures module decoupling by using a routing table for transitions without interdependencies. It also streamlines the expansion and integration of routing features.
 
@@ -656,7 +599,7 @@ The basic implementation is similar to the aforementioned dynamic routing with *
 Since API version 12, **Navigation** supports a system-wide cross-module routing table solution, which centralizes routing management through individual **router_map.json** files in each service module (HSP/HAR). When a route transition is initiated using **NavPathStack**, the system automatically performs dynamic module loading, component construction, and completes the route transition, achieving module decoupling at the development level.
 For details, see [System Routing Table](arkts-navigation-navigation.md#system-routing-table).
 
-### Lifecycle Listening
+## Lifecycle Listening
 
 You can use the observer to register for lifecycle events with the **Router**. For details about the APIs, see [observer.on('routerPageUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#observeronrouterpageupdate11).
 
@@ -704,7 +647,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### Page Information Query
+## Page Information Query
 
 To achieve decoupling between custom components and their containing pages, a global API for querying page information is provided within custom components.
 
@@ -773,7 +716,7 @@ struct MyComponent {
 }
 ```
 
-### Route Interception
+## Route Interception
 
 **Router** does not natively provide route interception, so you must implement it by creating custom routing APIs for redirection and interception logic.
 

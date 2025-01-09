@@ -97,6 +97,22 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
 | enableLoading | boolean | 否 | 否 |LoadingProgress动画是否显示。<br/>默认值：true |
 
+## LoadingProgressStyle<sup>(deprecated)</sup>枚举说明
+
+从API version 8开始废弃。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                     | 说明                                     |
+| ---------------------- | ---------------------------------------- |
+| Default       | 默认加载样式。API version 8及以后不支持设置。            |
+| Circular      | 环形加载样式。API version 8及以后不支持设置。            |
+| Orbital       | 彗星形加载样式。API version 8及以后默认为彗星形样式。         |
+
 ## 示例
 
 ### 示例1（设置颜色）

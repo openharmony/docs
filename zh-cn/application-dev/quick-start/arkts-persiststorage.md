@@ -15,6 +15,12 @@ PersistentStorage将选定的AppStorage属性保留在设备磁盘上。应用�
 
 PersistentStorage和AppStorage中的属性建立双向同步。应用开发通常通过AppStorage访问PersistentStorage，另外还有一些接口可以用于管理持久化属性，但是业务逻辑始终是通过AppStorage获取和设置属性的。
 
+PersistentStorage的存储路径为module级别，即哪个module调用了PersistentStorage，数据副本存入对应module的持久化文件中。如果多个module使用相同的key，则数据为最先使用PersistentStorage的module，并且数据也会存入最先使用PersistentStorage的module里。
+
+PersistentStorage的存储路径在应用第一个ability启动时就已确定，为该ability所属的module。如果一个ability调用了PersistentStorage，并且该ability能被不同module的拉起， 那么ability存在多少种启动方式，就会有多少份数据副本。
+
+PersistentStorage功能上耦合了AppStorage，并且数据在不同module中使用也会有问题，因此推荐开发者使用PersistenceV2的globalConnect接口替换掉PersistentStorage的persistProp接口。PersistentStorage向PersistenceV2迁移的方案见[PersistentStorage->PersistenceV2](arkts-v1-v2-migration.md#persistentstorage-persistencev2)。PersistenceV2相关介绍参考文档[PersistenceV2](arkts-new-persistencev2.md)。
+
 ## 限制条件
 
 PersistentStorage允许的类型和值有：
@@ -86,8 +92,8 @@ PersistentStorage.persistProp('aProp', 47);
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
-  @StorageLink('aProp') aProp: number = 48
+  @State message: string = 'Hello World';
+  @StorageLink('aProp') aProp: number = 48;
 
   build() {
     Row() {
@@ -107,7 +113,7 @@ struct Index {
 - 新应用安装后首次启动运行：
   1. 调用persistProp初始化PersistentStorage，首先查询在PersistentStorage本地文件中是否存在“aProp”，查询结果为不存在，因为应用是第一次安装。
   2. 接着查询属性“aProp”在AppStorage中是否存在，依旧不存在。
-  3. 在AppStorge中创建名为“aProp”的number类型属性，属性初始值是定义的默认值47。
+  3. 在AppStorage中创建名为“aProp”的number类型属性，属性初始值是定义的默认值47。
   4. PersistentStorage将属性“aProp”和值47写入磁盘，AppStorage中“aProp”对应的值和其后续的更改将被持久化。
   5. 在Index组件中创建状态变量\@StorageLink('aProp') aProp，和AppStorage中“aProp”双向绑定，在创建的过程中会在AppStorage中查找，成功找到“aProp”，所以使用其在AppStorage找到的值47。
 
@@ -215,10 +221,13 @@ struct PersistedDate {
           Text(`Persisted Date is ${this.persistedDate.toString()}`)
             .margin(20)
 
-          Text(`Persisted Date month is ${this.persistedDate.getMonth()}`)
+          Text(`Persisted Date year is ${this.persistedDate.getFullYear()}`)
             .margin(20)
 
-          Text(`Persisted Date day is ${this.persistedDate.getDay()}`)
+          Text(`Persisted Date hours is ${this.persistedDate.getHours()}`)
+            .margin(20)
+
+          Text(`Persisted Date minutes is ${this.persistedDate.getMinutes()}`)
             .margin(20)
 
           Text(`Persisted Date time is ${this.persistedDate.toLocaleTimeString()}`)

@@ -2,7 +2,7 @@
 
 为了增强状态管理框架对应用全局UI状态变量存储的能力，开发者可以使用AppStorageV2存储应用全局UI状态变量数据。
 
-AppStageV2是提供状态变量在应用级全局共享的能力，开发者可以通过connect绑定同一个key，进行跨ability的数据共享。
+AppStorageV2是提供状态变量在应用级全局共享的能力，开发者可以通过connect绑定同一个key，进行跨ability的数据共享。
 
 在阅读本文当前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，配合阅读：[AppStorageV2-API文档](../reference/apis-arkui/js-apis-StateManagement.md#appstoragev2)。
 
@@ -91,7 +91,7 @@ static keys(): Array<string>;
 
 页面1
 ```ts
-import { router, AppStorageV2 } from '@kit.ArkUI';
+import { AppStorageV2 } from '@kit.ArkUI';
 import { Sample } from '../Sample';
 
 @Entry
@@ -99,44 +99,45 @@ import { Sample } from '../Sample';
 struct Page1 {
   // 在AppStorageV2中创建一个key为Sample的键值对（如果存在，则返回AppStorageV2中的数据），并且和prop关联
   @Local prop: Sample = AppStorageV2.connect(Sample, () => new Sample())!;
+  pageStack: NavPathStack = new NavPathStack();
 
   build() {
-    Column() {
-      Button('Go to page2')
-        .onClick(() => {
-          router.pushUrl({
-            url: 'pages/Page2'
+    Navigation(this.pageStack) {
+      Column() {
+        Button('Go to page2')
+          .onClick(() => {
+            this.pageStack.pushPathByName('Page2', null);
           })
-        })
 
-      Button('Page1 connect the key Sample')
-        .onClick(() => {
-          // 在AppStorageV2中创建一个key为Sample的键值对（如果存在，则返回AppStorageV2中的数据），并且和prop关联
-          this.prop = AppStorageV2.connect(Sample, 'Sample', () => new Sample())!;
-        })
+        Button('Page1 connect the key Sample')
+          .onClick(() => {
+            // 在AppStorageV2中创建一个key为Sample的键值对（如果存在，则返回AppStorageV2中的数据），并且和prop关联
+            this.prop = AppStorageV2.connect(Sample, 'Sample', () => new Sample())!;
+          })
 
-      Button('Page1 remove the key Sample')
-        .onClick(() => {
-          // 从AppStorageV2中删除后，prop将不会再与key为Sample的值关联
-          AppStorageV2.remove(Sample);
-        })
+        Button('Page1 remove the key Sample')
+          .onClick(() => {
+            // 从AppStorageV2中删除后，prop将不会再与key为Sample的值关联
+            AppStorageV2.remove(Sample);
+          })
 
-      Text(`Page1 add 1 to prop.p1: ${this.prop.p1}`)
-        .fontSize(30)
-        .onClick(() => {
-          this.prop.p1++;
-        })
+        Text(`Page1 add 1 to prop.p1: ${this.prop.p1}`)
+          .fontSize(30)
+          .onClick(() => {
+            this.prop.p1++;
+          })
 
-      Text(`Page1 add 1 to prop.p2: ${this.prop.p2}`)
-        .fontSize(30)
-        .onClick(() => {
-          // 页面不刷新，但是p2的值改变了
-          this.prop.p2++;
-        })
+        Text(`Page1 add 1 to prop.p2: ${this.prop.p2}`)
+          .fontSize(30)
+          .onClick(() => {
+            // 页面不刷新，但是p2的值改变了
+            this.prop.p2++;
+          })
 
-      // 获取当前AppStorageV2里面的所有key
-      Text(`all keys in AppStorage: ${AppStorageV2.keys()}`)
-        .fontSize(30)
+        // 获取当前AppStorageV2里面的所有key
+        Text(`all keys in AppStorage: ${AppStorageV2.keys()}`)
+          .fontSize(30)
+      }
     }
   }
 }
@@ -147,38 +148,63 @@ struct Page1 {
 import { AppStorageV2 } from '@kit.ArkUI';
 import { Sample } from '../Sample';
 
-@Entry
+@Builder
+export function Page2Builder() {
+  Page2()
+}
+
 @ComponentV2
 struct Page2 {
   // 在AppStorageV2中创建一个key为Sample的键值对（如果存在，则返回AppStorageV2中的数据），并且和prop关联
   @Local prop: Sample = AppStorageV2.connect(Sample, () => new Sample())!;
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
-    Column() {
-      Button('Page2 connect the key Sample1')
-        .onClick(() => {
-          // 在AppStorageV2中创建一个key为Sample1的键值对（如果存在，则返回AppStorageV2中的数据），并且和prop关联
-          this.prop = AppStorageV2.connect(Sample, 'Sample1', () => new Sample())!;
-        })
+    NavDestination() {
+      Column() {
+        Button('Page2 connect the key Sample1')
+          .onClick(() => {
+            // 在AppStorageV2中创建一个key为Sample1的键值对（如果存在，则返回AppStorageV2中的数据），并且和prop关联
+            this.prop = AppStorageV2.connect(Sample, 'Sample1', () => new Sample())!;
+          })
 
-      Text(`Page2 add 1 to prop.p1: ${this.prop.p1}`)
-        .fontSize(30)
-        .onClick(() => {
-          this.prop.p1++;
-        })
+        Text(`Page2 add 1 to prop.p1: ${this.prop.p1}`)
+          .fontSize(30)
+          .onClick(() => {
+            this.prop.p1++;
+          })
 
-      Text(`Page2 add 1 to prop.p2: ${this.prop.p2}`)
-        .fontSize(30)
-        .onClick(() => {
-          // 页面不刷新，但是p2的值改变了；只有重新初始化才会改变
-          this.prop.p2++;
-        })
+        Text(`Page2 add 1 to prop.p2: ${this.prop.p2}`)
+          .fontSize(30)
+          .onClick(() => {
+            // 页面不刷新，但是p2的值改变了；只有重新初始化才会改变
+            this.prop.p2++;
+          })
 
-      // 获取当前AppStorageV2里面的所有key
-      Text(`all keys in AppStorage: ${AppStorageV2.keys()}`)
-        .fontSize(30)
+        // 获取当前AppStorageV2里面的所有key
+        Text(`all keys in AppStorage: ${AppStorageV2.keys()}`)
+          .fontSize(30)
+      }
     }
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
   }
+}
+```
+使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径，并且在module.json5中添加："routerMap": "$profile:route_map"。
+```json
+{
+  "routerMap": [
+    {
+      "name": "Page2",
+      "pageSourceFile": "src/main/ets/pages/PersistenceV2-2.ets",
+      "buildFunction": "Page2Builder",
+      "data": {
+        "description" : "PersistenceV2 example"
+      }
+    }
+  ]
 }
 ```
 

@@ -75,6 +75,8 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnReadData)(OH_Aud
 **描述**
 该函数指针将指向用于读取音频数据的回调函数。
 
+回调函数仅用来读取音频数据，请勿在回调函数中调用AudioCapturer相关接口。
+
 **参数:**
 
 | 名称 | 描述 | 

@@ -38,6 +38,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | CM_DIGEST_SHA256 | 4      | SHA256摘要算法。 |
 | CM_DIGEST_SHA384 | 5      | SHA384摘要算法。 |
 | CM_DIGEST_SHA512 | 6      | SHA512摘要算法。 |
+| CM_DIGEST_SM3<sup>16+</sup> | 7 | SM3摘要算法。 |
 
 ## CmKeyPadding
 
@@ -164,6 +165,40 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | CM_ERROR_INCORRECT_FORMAT  | 17500003      | 表示输入证书或凭据的数据格式无效。 |
 | CM_ERROR_MAX_CERT_COUNT_REACHED<sup>12+</sup>  | 17500004      | 表示证书或凭据数量达到上限。 |
 | CM_ERROR_NO_AUTHORIZATION<sup>12+</sup>  | 17500005      | 表示应用未经用户授权。 |
+
+## CertType<sup>16+</sup>
+
+表示证书类型。
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+| 名称       | 值 |  说明      |
+| ---------- | ------ | --------- |
+| CA_CERT_SYSTEM   | 0      | 表示系统CA证书。 |
+| CA_CERT_USER   | 1      | 表示用户CA证书。 |
+
+## CertScope<sup>16+</sup>
+
+表示证书的位置。
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+| 名称       | 值 |  说明      |
+| ---------- | ------ | --------- |
+| CURRENT_USER   | 1      | 表示当前用户。 |
+| GLOBAL_USER   | 2      | 表示设备公共，即所有用户都可以访问的位置。 |
+
+## CertStoreProperty<sup>16+</sup>
+
+表示获取证书存储位置的参数集合，包括证书的类型及证书的位置。
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+| 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
+| -------------- | --------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| certType          | [CertType](#certtype16)                     | 否  | 否  | 表示证书的类型。 |
+| certScope        | [CertScope](#certscope16)                     | 否   | 是  | 表示证书的存储位置。当证书类型为CURRENT_USER时，此项为必选项。 |
+
 
 ## certificateManager.installPrivateCertificate
 
@@ -477,6 +512,64 @@ try {
   })
 } catch (error) {
   console.error(`Failed to uninstall private certificate. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## certificateManager.installUserTrustedCertificateSync<sup>16+</sup>
+
+installUserTrustedCertificateSync(cert: Uint8Array, certScope: CertScope) : CMResult
+
+表示安装用户CA证书。
+
+**需要权限：** ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT<!--Del-->或ohos.permission.ACCESS_USER_TRUSTED_CERT<!--DelEnd-->
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+**参数**：
+
+| 参数名       | 类型                         | 必填 | 说明           |
+|-----------|----------------------------|----|--------------|
+| cert      | Uint8Array                 | 是  | 表示CA证书数据。    |
+| certScope | [CertScope](#certscope16)  | 是  | 表示CA证书安装的位置。 |
+
+**返回值**：
+
+| 类型                    | 说明                                |
+|-----------------------|-----------------------------------|
+| [CMResult](#cmresult) | 表示CA证书的安装结果，返回值CMResult对象中的uri属性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
+
+| 错误码ID                  | 错误信息                                                                                                                                            |
+|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| 201                    | Permission verification failed. The application does not have the permission required to call the API.                                          |
+| 401                    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001               | Internal error.                                                                                                                                 |
+| 17500003               | Indicates that the certificate is in an invalid format.                                                                                         |
+| 17500004<sup>12+</sup> | Indicates that the number of certificates reaches the maximum allowed.                                                                          |
+| 17500007<sup>16+</sup> | Indicates that the device enters advanced security mode. In this mode, the user CA certificate cannot be installed.                             |
+
+**示例**：
+
+```ts
+import {certificateManager} from '@kit.DeviceCertificateKit';
+
+/* 安装的CA证书数据需要业务赋值，本例数据非CA证书数据 */
+let certData: Uint8Array = new Uint8Array([
+    0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01,
+]);
+try {
+    let result: certificateManager.CMResult = certificateManager.installUserTrustedCertificateSync(certData, certificateManager.CertScope.CURRENT_USER);
+    let certUri = result.uri;
+    if (certUri === undefined) {
+        console.error("The result of install user trusted certificate is undefined.");
+    } else {
+        console.info("Successed to install user trusted certificate.");
+    }
+} catch (error) {
+    console.error(`Failed to install user trusted certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1086,7 +1179,7 @@ try {
 
 getAllUserTrustedCertificates(): Promise\<CMResult>
 
-表示获取所有用户根CA证书列表，使用Promise方式异步返回结果。
+表示获取当前用户和设备公共位置的所有用户根CA证书列表，使用Promise方式异步返回结果。
 
 **需要权限：** ohos.permission.ACCESS_CERT_MANAGER
 
@@ -1114,7 +1207,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getAllUserTrustedCertificates().then((cmResult) => {
-    if (cmResult?.certList == undefined) {
+    if (cmResult == undefined) { // 用户根CA证书个数为0时，返回cmResult为undefined
+      console.info('the count of the user trusted certificates is 0');
+    } else if (cmResult.certList == undefined) {
       console.info('The result of getting all user trusted certificates is undefined.');
     } else {
       let list = cmResult.certList;
@@ -1125,6 +1220,64 @@ try {
   })
 } catch (error) {
   console.error(`Failed to get all user trusted certificates. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## certificateManager.getAllUserTrustedCertificates<sup>16+</sup>
+
+getAllUserTrustedCertificates(scope: CertScope): Promise\<CMResult>
+
+表示根据证书的位置获取用户根CA证书列表，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_CERT_MANAGER
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+**参数**：
+
+| 参数名 | 类型                      | 必填 | 说明             |
+| ------ | ------------------------- | ---- | ---------------- |
+| scope  | [CertScope](#certscope16) | 是   | 表示证书的位置。 |
+
+**返回值**：
+
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise对象。表示获取用户根CA证书列表的结果，返回值[CMResult](#cmresult)对象中的certList属性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.                                              |
+
+**示例**：
+
+```ts
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  /* 获取当前用户下的用户根CA证书列表; 如果需要获取设备公共位置的用户根CA列表，则传入GLOBAL_USER */
+  let scope: certificateManager.CertScope = certificateManager.CertScope.CURRENT_USER;
+  certificateManager.getAllUserTrustedCertificates(scope).then((cmResult) => {
+    if (cmResult == undefined) { // 用户根CA证书个数为0时，返回cmResult为undefined
+      console.info('the count of the user trusted certificates is 0');
+    } else if (cmResult.certList == undefined) {
+      console.info('The result of getting current user trusted certificates is undefined.');
+    } else {
+      let list = cmResult.certList;
+      console.info('Succeeded in getting current user trusted certificates.');
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get current user trusted certificates. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (error) {
+  console.error(`Failed to get current user trusted certificates. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1214,7 +1367,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getPrivateCertificates().then((cmResult) => {
-    if (cmResult?.credentialList == undefined) {
+    if (cmResult == undefined) { // 应用安装的凭据个数为0时，返回cmResult为undefined
+      console.info('the count of the private certificates is 0');
+    } else if (cmResult.credentialList == undefined) {
       console.info('The result of getting all private certificates installed by the application is undefined.');
     } else {
       let list = cmResult.credentialList;
@@ -1227,3 +1382,65 @@ try {
   console.error(`Failed to get all private certificates installed by the application. Code: ${error.code}, message: ${error.message}`);
 }
 ```
+## certificateManager.getCertificateStorePath<sup>16+</sup>
+
+getCertificateStorePath(property: CertStoreProperty): string;
+
+表示获取证书的存储位置。
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+**参数**：
+
+| 参数名   | 类型                                      | 必填 | 说明                             |
+| -------- | ----------------------------------------- | ---- | -------------------------------- |
+| property | [CertStoreProperty](#certstoreproperty16) | 是   | 表示获取证书存储位置的参数集合。 |
+
+**返回值**：
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| string | 表示证书的存储位置。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+
+**示例**：
+```ts
+import { certificateManager } from '@kit.DeviceCertificateKit';
+
+try {
+  /* 获取系统CA的存储位置 */
+  let property1: certificateManager.CertStoreProperty = {
+    certType: certificateManager.CertType.CA_CERT_SYSTEM,
+  }
+  let systemCAPath = certificateManager.getCertificateStorePath(property1);
+  console.info(`Success to get system ca path: ${systemCAPath}`);
+    
+  /* 获取当前用户的用户CA存储位置 */
+  let property2: certificateManager.CertStoreProperty = {
+    certType: certificateManager.CertType.CA_CERT_USER,
+    certScope: certificateManager.CertScope.CURRENT_USER,
+  }
+  let userCACurrentPath = certificateManager.getCertificateStorePath(property2);
+  console.info(`Success to get current user's user ca path: ${userCACurrentPath}`);
+  
+  /* 获取设备公共的用户CA存储位置 */
+  let property3: certificateManager.CertStoreProperty = {
+    certType: certificateManager.CertType.CA_CERT_USER,
+    certScope: certificateManager.CertScope.GLOBAL_USER,
+  }
+  let globalCACurrentPath = certificateManager.getCertificateStorePath(property3);
+  console.info(`Success to get global user's user ca path: ${globalCACurrentPath}`);
+} catch (error) {
+  console.error(`Failed to get store path. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+

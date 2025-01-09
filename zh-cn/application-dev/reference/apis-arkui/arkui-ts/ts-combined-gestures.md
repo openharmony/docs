@@ -39,6 +39,8 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 ## 示例
 
+该示例通过配置GestureGroup实现了长按和拖动的组合手势顺序识别。
+
 ```ts
 // xxx.ets
 @Entry

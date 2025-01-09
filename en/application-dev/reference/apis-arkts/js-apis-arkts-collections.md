@@ -6,7 +6,7 @@ By default, ArkTS containers are passed by reference between concurrent instance
 
 ArkTS containers are not thread-safe. They adopt the fail-fast approach. An exception is thrown if multiple concurrent instances make structural changes to a container instance at the same time. Therefore, in update scenarios, you must use the ArkTS asynchronous lock to ensure secure access to the ArkTS containers.
 
-Currently, the following ArkTS containers are provided: [Array](#collectionsarray), [Map](#collectionsmap), [Set](#collectionsset), [TypedArray](#collectionstypedarray), [ArrayBuffer](#collectionsarraybuffer), [BitVector](#collectionsbitvector), and [ConcatArray] (#collectionsconcatarray).
+Currently, the following ArkTS containers are provided: [Array](#collectionsarray), [Map](#collectionsmap), [Set](#collectionsset), [TypedArray](#collectionstypedarray), [ArrayBuffer](#collectionsarraybuffer), [BitVector](#collectionsbitvector), and [ConcatArray](#collectionsconcatarray).
 
 > **NOTE**
 >

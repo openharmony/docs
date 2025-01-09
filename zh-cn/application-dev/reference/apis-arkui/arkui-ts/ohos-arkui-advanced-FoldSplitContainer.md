@@ -104,9 +104,11 @@ onHoverStatusChange事件处理。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
+**参数：** 
+
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | (status: [HoverModeStatus](#hovermodestatus)) => void | 是 | 折叠屏进入或退出悬停模式时触发的回调函数。 |
+| status | [HoverModeStatus](#hovermodestatus) | 是 | 折叠屏进入或退出悬停模式时触发的回调函数。 |
 
 ## HoverModeStatus
 

@@ -173,7 +173,7 @@ import { distributedKVStore } from '@kit.ArkData';
 | root    | [FieldNode](#fieldnode) | 是   | 是   | 存放了Value中所有字段的定义。 |
 | indexes | Array\<string>          | 是   | 是   | 索引字段定义，只有通过此字段指定的FieldNode才会创建索引，如果不需要创建任何索引，则此indexes字段可以不定义。格式为：`'$.field1'`, `'$.field2'`。|
 | mode    | number                  | 是   | 是   | Schema的模式，可以取值0或1，0表示COMPATIBLE模式，1表示STRICT模式。|
-| skip    | number                  | 是   | 是   | 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0,4M-2]。|
+| skip    | number                  | 是   | 是   | 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0, 4 * 1024 * 1024 - 2]字节。|
 
 STRICT：意味着严格模式，在此模式用户插入的Value格式与Schema定义必须严格匹配，字段不能多也不能少，如果不匹配则插入数据时数据库会返回错误。
 
@@ -393,7 +393,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&l
 
 > 注意：
 >
-> 在获取已有的分布式键值数据库时，若该数据库文件已损坏，将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。开发者可观测异常查询行为识别该现象，并进行备份数据恢复，异常查询行为例如数据被清空、已有数据无法查询等。
+> 在获取已有的分布式键值数据库时，若该数据库文件已无法打开（例如文件头损坏），将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。对于重要且无法重新生成的数据推荐使用备份恢复功能，防止数据丢失，备份恢复使用方法可见[数据库备份与恢复](../../database/data-backup-and-restore.md)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -458,7 +458,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
 > 注意：
 >
-> 在获取已有的分布式键值数据库时，若该数据库文件已损坏，将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。开发者可观测异常查询行为识别该现象，并进行备份数据恢复，异常查询行为例如数据被清空、已有数据无法查询等。
+> 在获取已有的分布式键值数据库时，若该数据库文件已无法打开（例如文件头损坏），将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。对于重要且无法重新生成的数据推荐使用备份恢复功能，防止数据丢失，备份恢复使用方法可见[数据库备份与恢复](../../database/data-backup-and-restore.md)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3078,7 +3078,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 删除指定设备的数据，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
+> 其中deviceId为[DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo)中的networkId，通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -3087,7 +3087,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | ------------------------- | ---- | ---------------------- |
-| deviceId | string                    | 是   | 表示要删除设备的名称。 |
+| deviceId | string                    | 是   | 表示要删除设备的networkId。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。删除指定设备的数据成功，err为undefined，否则为错误对象。    |
 
 **错误码：**
@@ -3138,7 +3138,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 删除指定设备的数据，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
+> 其中deviceId为[DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo)中的networkId，通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -3147,7 +3147,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 | 参数名   | 类型 | 必填 | 说明                   |
 | -------- | -------- | ---- | ---------------------- |
-| deviceId | string   | 是   | 表示要删除设备的名称。 |
+| deviceId | string   | 是   | 表示要删除设备的networkId。 |
 
 **返回值：**
 

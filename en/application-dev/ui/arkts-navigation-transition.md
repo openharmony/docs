@@ -141,7 +141,7 @@ export struct MyCommonPage {
           .fontColor(0x666666)
           .textAlign(TextAlign.Center)
           .padding({ top: 45 })
-        Button ('Back')
+        Button('Back')
           .width('50%')
           .height(40)
           .margin({ top: 50 })

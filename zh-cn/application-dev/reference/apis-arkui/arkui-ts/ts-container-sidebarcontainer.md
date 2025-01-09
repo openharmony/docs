@@ -379,6 +379,8 @@ onChange(callback: (value: boolean) =&gt; void)
 
 ## 示例
 
+该示例主要演示如何使用侧边栏组件及页面布局效果。
+
 ```ts
 // xxx.ets
 @Entry

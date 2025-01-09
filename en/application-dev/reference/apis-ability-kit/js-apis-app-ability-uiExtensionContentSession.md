@@ -56,6 +56,85 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
+## UIExtensionContentSession.loadContentByName<sup>16+</sup>
+
+loadContentByName(name: string, storage?: LocalStorage): void
+
+Loads a [named route](../../ui/arkts-routing.md#named-route) page for a [UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md), with state properties passed to the page through [LocalStorage](../../quick-start/arkts-localstorage.md). This API is used to load a named route page in the [onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate) lifecycle of the UIExtensionAbility.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ------ | ------ |
+| name | string | Yes| Name of the named route page.|
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No| A page-level UI state storage unit, which is used to pass state properties to the page. The default value is null.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------ | ------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 16000050 | Internal error. |
+
+**Example**
+
+Implementation of the UIExtensionAbility:
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import './pages/UIExtensionPage'; // Import the named route page. The ./pages/UIExtensionPage.ets file is used as an example in the sample code. Change the path and file name to the actual ones during your development.
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // Other lifecycles and implementations
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let storage: LocalStorage = new LocalStorage();
+    storage.setOrCreate('session', session);
+
+    let name: string = 'UIExtPage'; // Name of the named route page.
+    try {
+      session.loadContentByName(name, storage);
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`Failed to load content by name ${name}, code: ${code}, msg: ${message}`);
+    }
+  }
+
+  // Other lifecycles and implementations
+}
+```
+
+Implementation of the named route page loaded by the UIExtensionAbility:
+```ts
+// Implementation of the ./pages/UIExtensionPage.ets file.
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+
+@Entry ({routeName: 'UIExtPage'}) // Use routeName to define the name of the named route page.
+@Component
+struct UIExtensionPage {
+  @State message: string = 'Hello world';
+  storage: LocalStorage | undefined = LocalStorage.getShared();
+  private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ## UIExtensionContentSession.terminateSelf
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void

@@ -45,6 +45,24 @@ backgroundColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置组件的背景色。 |
 
+## backgroundColor<sup>16+</sup>
+
+backgroundColor(color: Optional\<ResourceColor>)
+
+设置组件背景色。与[backgroundColor](#backgroundcolor)相比，color参数新增了对undefined类型的支持。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                  | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| color  | Optional\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 设置组件的背景色。<br/>当color的值为undefined时，恢复为默认透明的背景色。 |
+
 >  **说明：**
 >
 >  当通过[backgroundBlurStyle](#backgroundblurstyle9)中的inactiveColor指定背景色时，不建议再通过backgroundColor设置背景色。
@@ -142,8 +160,27 @@ backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
 
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                 | [BlurStyle](#blurstyle9)                 | 是   | 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。 |
+| value                 | [BlurStyle](#blurstyle9)                                     | 是   | 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。 |
 | options<sup>10+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10对象说明) | 否   | 背景模糊选项。                                               |
+
+## backgroundBlurStyle<sup>16+</sup>
+
+backgroundBlurStyle(style: Optional\<BlurStyle>, options?: BackgroundBlurStyleOptions)
+
+为当前组件提供一种在背景和内容之间的模糊能力，通过枚举值的方式封装了不同的模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度。与[backgroundBlurStyle<sup>9+</sup>](#backgroundblurstyle9)相比，style参数新增了对undefined类型的支持。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                | 类型                                                         | 必填 | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style                 | Optional\<[BlurStyle](#blurstyle9)>                          | 是   | 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。<br/>当style的值为undefined时，恢复为默认关闭模糊的背景。 |
+| options<sup>16+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10对象说明) | 否   | 背景模糊选项。                                               |
 
 >  **说明：**
 >
@@ -163,10 +200,29 @@ backdropBlur(value: number, options?: BlurOptions)
 
 **参数：** 
 
-| 参数名                | 类型                                              | 必填 | 说明                                                         |
-| --------------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value                 | number                                            | 是   | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。 |
+| 参数名                | 类型                                                         | 必填 | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value                 | number                                                       | 是   | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。 |
 | options<sup>11+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶梯参数。                                                 |
+
+## backdropBlur<sup>16+</sup>
+
+backdropBlur(radius: Optional\<number>, options?: BlurOptions)
+
+为组件添加背景模糊效果，可以自定设置模糊半径和灰阶参数。与[backdropBlur](#backdropblur)相比，radius参数新增了对undefined类型的支持。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                | 类型                                                         | 必填 | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| radius                | Optional\<number>                                            | 是   | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>当radius的值为undefined时，恢复为默认无模糊的背景。 |
+| options<sup>16+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶梯参数。                                                 |
 
 >  **说明：**
 >
@@ -184,9 +240,25 @@ backgroundEffect(options: BackgroundEffectOptions)
 
 **参数：** 
 
-| 参数名  | 类型                                                         | 必填 | 说明                                       |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| 参数名  | 类型                                                  | 必填 | 说明                                       |
+| ------- | ----------------------------------------------------- | ---- | ------------------------------------------ |
 | options | [BackgroundEffectOptions](#backgroundeffectoptions11) | 是   | 设置组件背景属性包括：饱和度，亮度，颜色。 |
+
+## backgroundEffect<sup>16+</sup> 
+
+backgroundEffect(options: Optional\<BackgroundEffectOptions>)
+
+设置组件背景属性，包含背景模糊半径，亮度，饱和度，颜色等参数。与[backgroundEffect<sup>11+</sup>](#backgroundeffect11 )相比，options参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| options | Optional\<[BackgroundEffectOptions](#backgroundeffectoptions11)> | 是   | 设置组件背景属性包括：饱和度，亮度，颜色。<br/>当options的值为undefined时，恢复为无效果的背景。 |
 
 ## BackgroundEffectOptions<sup>11+</sup>
 背景效果参数。
@@ -239,7 +311,6 @@ backgroundImageResizable(value: ResizableOptions)
 | policy<sup>14+</sup>  | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy14) | 否    | 模糊激活策略。<br/> 默认值：BlurStyleActivePolicy.ALWAYS_ACTIVE |
 | inactiveColor<sup>14+</sup>  | [ResourceColor](ts-types.md#resourcecolor) | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。 |
 
-
 ## backgroundBrightness<sup>12+</sup> 
 
 backgroundBrightness(params: BackgroundBrightnessOptions)
@@ -255,6 +326,22 @@ backgroundBrightness(params: BackgroundBrightnessOptions)
 | 参数名 | 类型                                                         | 必填 | 说明                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | params | [BackgroundBrightnessOptions](#backgroundbrightnessoptions12对象说明) | 是   | 设置组件背景提亮效果，包括：亮度变化速率，提亮程度。 |
+
+## backgroundBrightness<sup>16+</sup> 
+
+backgroundBrightness(options: Optional\<BackgroundBrightnessOptions>)
+
+设置组件背景提亮效果。与[backgroundBrightness<sup>12+</sup>](#backgroundbrightness12)相比，options参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| options | Optional\<[BackgroundBrightnessOptions](#backgroundbrightnessoptions12对象说明)> | 是   | 设置组件背景提亮效果，包括：亮度变化速率，提亮程度。<br/>当options的值为undefined时，恢复为无提亮效果的背景。 |
 
 ## BackgroundBrightnessOptions<sup>12+</sup>对象说明
 
@@ -275,7 +362,9 @@ backgroundBrightness(params: BackgroundBrightnessOptions)
 
 ## 示例
 
-### 示例1
+### 示例1（设置背景基础样式）
+
+该示例通过配置backgroundColor、backgroundImage、backgroundImageSize和backgroundImagePosition设置背景的基础样式。
 
 ```ts
 // xxx.ets
@@ -345,7 +434,9 @@ struct BackgroundExample {
 
 ![zh-cn_image_0000001219982703](figures/zh-cn_image_0000001219982703.png)
 
-### 示例2
+### 示例2（设置背景模糊样式）
+
+该示例通过backgroundBlurStyle设置背景模糊样式。
 
 ```ts
 // xxx.ets
@@ -372,7 +463,9 @@ struct BackgroundBlurStyleDemo {
 
 ![zh-cn_image_background_blur_style](figures/zh-cn_image_background_blur_style.png)
 
-### 示例3
+### 示例3（设置组件背景）
+
+该示例通过background设置组件背景。
 
 ```ts
 // xxx.ets
@@ -404,9 +497,9 @@ struct BackgroundExample {
 
 ![zh-cn_image_background](figures/zh-cn_image_background.png)
 
-### 示例4
+### 示例4（设置组件背景提亮效果）
 
-设置组件背景提亮效果
+该示例通过backgroundBrightness设置组件背景提亮效果。
 
 ```ts
 // xxx.ets
@@ -446,8 +539,10 @@ rate和lightUpDegree参数值为0.5,0.5：
 
 ![zh-cn_image_background_brightness3](figures/zh-cn_image_background_brightness3.png)
 
-### 示例5
-模糊属性的用法，blur内容模糊，backdropBlur背景模糊。
+### 示例5（设置模糊属性）
+
+该示例提供了模糊属性的实现方法。通过blur设置内容模糊，通过backdropBlur设置背景模糊。
+
 ```ts
 // xxx.ets
 @Entry
@@ -485,10 +580,10 @@ struct BlurEffectsExample {
 
 ![textblur](figures/textblur.png)
 
-### 示例6
+### 示例6（设置文字异形模糊效果）
 
-blendMode搭配backgroundEffect实现文字异形模糊效果。<br/>
-如果出现漏线问题，开发者应首先确保两个blendMode所在组件大小严格相同。如果确认相同，可能是组件边界落在浮点数坐标上导致，可尝试设置[pixelRound](ts-universal-attributes-layout-constraints.md#pixelRound11)通用属性，使产生的白线、暗线两侧的组件边界对齐到整数像素坐标上。
+该示例通过blendMode和backgroundEffect实现文字异形模糊效果。<br/>
+如果出现漏线问题，开发者应首先确保两个blendMode所在组件大小严格相同。如果确认相同，可能是组件边界落在浮点数坐标上导致，可尝试设置[pixelRound](ts-universal-attributes-pixelRound.md#pixelround)通用属性，使产生的白线、暗线两侧的组件边界对齐到整数像素坐标上。
 
 ```ts
 // xxx.ets
@@ -580,8 +675,9 @@ struct Index {
 
 ![testDestinationIn_lockDemo](figures/testDestinationIn_lockDemo.jpeg)
 
-### 示例7
-backgroundEffect,backDropBlur,backgroundBlurStyle 模糊效果对比。
+### 示例7（模糊效果对比）
+
+该示例对比了backgroundEffect、backDropBlur和backgroundBlurStyle三种不同的模糊效果。
 
 ```ts
 // xxx.ets

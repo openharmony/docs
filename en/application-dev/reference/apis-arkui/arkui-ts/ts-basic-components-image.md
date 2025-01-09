@@ -10,7 +10,7 @@ The **Image** component is usually used to display images in applications. It su
 >
 > The **Image** component supports SVG image sources. For details about SVG tags, see [SVG Tags](./ts-basic-svg.md).
 >
-> For animated images, the animation stops when the **Image** component is invisible. The component's visibility is determined by the value of **ratios** in the [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event callback: If the value is greater than 0, the component is visible.
+> For animated images, animation playback is disabled by default and depends on the visibility of the **Image** component. When the component is visible, the animation is started through the callback. When the component is invisible, the animation is stopped. The visibility status of the **Image** component can be identified through the [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event. If the value of **ratios** is greater than 0, the component is visible.
 
 ## Required Permissions
 
@@ -128,6 +128,24 @@ Sets how the image is resized to fit its container.
 | Name| Type                                     | Mandatory| Description                                       |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------- |
 | value  | [ImageFit](ts-appendix-enums.md#imagefit) | Yes  | How the image is resized to fit its container.<br>Default value: **ImageFit.Cover**|
+
+### imageMatrix<sup>16+</sup>
+
+imageMatrix(matrix: ImageMatrix)
+
+Sets the transformation matrix of the image.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                | Mandatory| Description          |
+| ------ | --------------------------------------------------- | ---- | -------------- |
+| matrix  | [ImageMatrix](../js-apis-matrix4.md#matrix4transit) | Yes  | Transformation matrix of the image.|
 
 ### objectRepeat
 
@@ -381,7 +399,7 @@ Sets whether to enable the AI analyzer, which supports subject recognition, text
 
 This attribute cannot be used together with the [overlay](ts-universal-attributes-overlay.md) attribute. If they are set at the same time, the **CustomBuilder** attribute in **overlay** has no effect. This attribute depends on device capabilities.
 
-Images to be analyzed must be static, non-vector images. That is, SVG and GIF images cannot be analyzed. [Pixel maps](../../apis-image-kit/js-apis-image.md#pixelmap7) in [RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7) format can be passed in for analysis. For details, see [Example 4](#example-4).
+Images to be analyzed must be static, non-vector images. That is, SVG and GIF images cannot be analyzed. [Pixel maps](../../apis-image-kit/js-apis-image.md#pixelmap7) in [RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7) format can be passed in for analysis. For details, see [Example 4](#example-4-enabling-the-ai-analyzer).
 
 The placeholder images (specified by **alt**) cannot be analyzed. An image can be analyzed only when **objectRepeat** is set to **ImageRepeat.NoRepeat** and [obscured](ts-universal-attributes-obscured.md) is disabled.
 
@@ -1151,7 +1169,7 @@ struct ImageExample {
 
 ### Example 11: Setting the Scan Effect for an Image
 
-This examples shows how to enable the scan effect for an image using [linearGradient](./ts-basic-components-datapanel.md#lineargradient10) and [animateTo ()] (./ts-explicit-animation.md).
+This example shows how to enable the scan effect for an image using [linearGradient](./ts-basic-components-datapanel.md#lineargradient10) and [animateTo()](./ts-explicit-animation.md).
 
 ```ts
 import { curves } from '@kit.ArkUI';

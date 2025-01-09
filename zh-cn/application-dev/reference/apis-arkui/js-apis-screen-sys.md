@@ -970,6 +970,108 @@ screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
 });
 ```
 
+## screen.setMultiScreenMode<sup>13+</sup>
+
+setMultiScreenMode(primaryScreenId: number, secondaryScreenId: number, secondaryScreenMode: MultiScreenMode): Promise&lt;void&gt;
+
+设置扩展屏幕的显示模式（镜像/扩展），使用Promise异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名       | 类型                 | 必填 | 说明                |
+| ------------ | ------------------- | ---- |--------------------|
+| primaryScreenId   | number           | 是  | 主屏的id，该参数应为正整数。 |
+| secondaryScreenId | number           | 是  | 扩展屏幕的id，该参数应为正整数。|
+| secondaryScreenMode | [MultiScreenMode](#multiscreenmode13)  | 是  | 扩展屏幕的显示模式。|
+
+**返回值：**
+
+| 类型               | 说明                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 202     | Permission verification failed, non-system application uses system API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let primaryScreenId: number = 0;
+let secondaryScreenId: number = 12;
+let screenMode: screen.MultiScreenMode = screen.MultiScreenMode.SCREEN_MIRROR;
+screen.setMultiScreenMode(primaryScreenId, secondaryScreenId, screenMode).then(() => {
+  console.info('Succeeded in setting multi screen mode. Data: ');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set multi screen mode. Code:${err.code},message is ${err.message}`);
+});
+```
+
+## screen.setMultiScreenRelativePosition<sup>13+</sup>
+
+setMultiScreenRelativePosition(mainScreenOptions: MultiScreenPositionOptions, secondaryScreenOptions: MultiScreenPositionOptions): Promise&lt;void&gt;
+
+仅在扩展模式下，设置主屏和扩展屏幕的位置信息，使用Promise异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名       | 类型                 | 必填 | 说明               |
+| ------------ | ------------------- | ---- |--------------------|
+| mainScreenOptions      | [MultiScreenPositionOptions](#multiscreenpositionoptions13)  | 是  | 主屏的位置信息。|
+| secondaryScreenOptions | [MultiScreenPositionOptions](#multiscreenpositionoptions13)  | 是  | 扩展屏幕的位置信息。|
+
+**返回值：**
+
+| 类型                | 说明                       |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 202     | Permission verification failed, non-system application uses system API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let mainScreenOptions: screen.MultiScreenPositionOptions = {
+  id : 0,
+  startX : 0,
+  startY : 0
+};
+
+let secondaryScreenOptions: screen.MultiScreenPositionOptions = {
+  id : 12,
+  startX : 1000,
+  startY : 1000
+};
+
+screen.setMultiScreenRelativePosition(mainScreenOptions, secondaryScreenOptions).then(() => {
+  console.info('Succeeded in setting multi screen relative position. Data: ');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set multi screen relative position. Code:${err.code},message is ${err.message}`);
+});
+```
+
 ## ExpandOption
 
 扩展屏幕的参数。
@@ -981,6 +1083,29 @@ screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
 | screenId | number   | 是   | 是   | 屏幕的id，该参数应为整数。          |
 | startX   | number   | 是   | 是   | 屏幕的起始X轴坐标，该参数应为整数。 |
 | startY   | number   | 是   | 是   | 屏幕的起始Y轴坐标，该参数应为整数。 |
+
+## MultiScreenMode<sup>13+</sup>
+
+屏幕模式枚举。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 参数              | 值  | 说明                            |
+| ------------------ | ---- | -------------------------------- |
+| SCREEN_MIRROR      | 0    | 表示屏幕为镜像模式。 |
+| SCREEN_EXTAND      | 1    | 表示屏幕为扩展模式。 |
+
+## MultiScreenPositionOptions<sup>13+</sup>
+
+屏幕位置信息。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 参数名    | 类型     | 可读 | 可写  | 说明                |
+| -------- | -------- | ---- | ---- | ------------------- |
+| id       | number   | 是   | 是   | 屏幕的id，该参数应为正整数，非正整数会作为非法参数报错。|
+| startX   | number   | 是   | 是   | 屏幕的起始X轴坐标。以两块屏幕外接矩形的左上顶点为原点，向右为正方向。该参数应为正整数，非正整数会作为非法参数报错。 |
+| startY   | number   | 是   | 是   | 屏幕的起始Y轴坐标。以两块屏幕外接矩形的左上顶点为原点，向下为正方向。该参数应为正整数，非正整数会作为非法参数报错。 |
 
 ## VirtualScreenOption
 

@@ -163,7 +163,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。 |
+| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数 |
 | options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
@@ -192,7 +192,7 @@ async function CreatePixelMap() {
 
 createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: AsyncCallback\<PixelMap>): void
 
-通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，通过回调函数返回结果。
+通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，通过callback返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -200,7 +200,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 | 参数名   | 类型                                             | 必填 | 说明                       |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
-| colors   | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。 |
+| colors   | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数 |
 | options  | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 | callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | 是   | 回调函数，当创建PixelMap成功，err为undefined，data为获取到的PixelMap对象；否则为错误对象。 |
 
@@ -413,11 +413,93 @@ async function Demo(surfaceId: string) {
 }
 ```
 
+## image.createPixelMapFromSurface<sup>16+</sup>
+
+createPixelMapFromSurface(surfaceId: string): Promise\<PixelMap>
+
+从Surface id创建一个PixelMap对象。使用Promise异步回调，返回PixelMap。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名                 | 类型                 | 必填 | 说明                                     |
+| ---------------------- | -------------       | ---- | ---------------------------------------- |
+| surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
+
+**返回值：**
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise对象，返回PixelMap。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+| 62980105 | Failed to get the data|
+| 62980178 | Failed to create the PixelMap|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo(surfaceId: string) {
+  image.createPixelMapFromSurface(surfaceId).then(() => {
+    console.info('Succeeded in creating pixelmap from Surface');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
+  });
+} 
+```
+
+## image.createPixelMapFromSurfaceSync<sup>16+</sup>
+
+createPixelMapFromSurfaceSync(surfaceId: string): PixelMap
+
+从Surface id创建一个pixelMap对象，同步返回PixelMap结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名                 | 类型                 | 必填 | 说明                                     |
+| ---------------------- | -------------       | ---- | ---------------------------------------- |
+| surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
+
+**返回值：**
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+| 62980105 | Failed to get the data|
+| 62980178 | Failed to create the PixelMap|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo(surfaceId: string) {
+  let pixelMap : image.PixelMap = image.createPixelMapFromSurfaceSync(surfaceId);
+  return pixelMap;
+}
+```
 ## image.createPixelMapSync<sup>12+</sup>
 
 createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMap
 
-通过属性创建PixelMap，同步返回PixelMap结果。
+通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，同步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -425,7 +507,7 @@ createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMa
 
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。 |
+| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数 |
 | options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
@@ -1641,7 +1723,7 @@ async function WritePixels() {
 
 writePixelsSync(area: PositionArea): void
 
-固定按照BGRA_8888格式，读取[PositionArea](#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](#positionarea7).region指定，同步回结果。
+固定按照BGRA_8888格式，读取[PositionArea](#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](#positionarea7).region指定，同步返回结果。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2234,7 +2316,11 @@ async function CreateAlphaPixelmapSync() {
 
 scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
-根据输入的宽高对图片进行缩放，使用callback形式返回。
+根据输入的宽高的缩放倍数对图片进行缩放，使用callback形式返回。
+
+> **说明：**
+> 1. 建议宽高的缩放倍数取非负数，否则会产生翻转效果。
+> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2275,7 +2361,11 @@ async function Scale() {
 
 scale(x: number, y: number): Promise\<void>
 
-根据输入的宽高对图片进行缩放，使用Promise形式返回。
+根据输入的宽高的缩放倍数对图片进行缩放，使用Promise形式返回。
+
+> **说明：**
+> 1. 建议宽高的缩放倍数取非负数，否则会产生翻转效果。
+> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2319,7 +2409,11 @@ async function Scale() {
 
 scaleSync(x: number, y: number): void
 
-以同步方法根据输入的宽高对图片进行缩放。
+根据输入的宽高的缩放倍数对图片进行缩放，同步返回结果。
+
+> **说明：**
+> 1. 建议宽高的缩放倍数取非负数，否则会产生翻转效果。
+> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2359,7 +2453,11 @@ async function ScaleSync() {
 
 scale(x: number, y: number, level: AntiAliasingLevel): Promise\<void>
 
-根据输入的宽高对图片进行缩放，使用Promise形式返回。
+根据指定的缩放算法和输入的宽高的缩放倍数对图片进行缩放，使用Promise形式返回。
+
+> **说明：**
+> 1. 建议宽高的缩放倍数取非负数，否则会产生翻转效果。
+> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2413,7 +2511,11 @@ async function Scale() {
 
 scaleSync(x: number, y: number, level: AntiAliasingLevel): void
 
-以同步方法根据输入的宽高对图片进行缩放。
+根据指定的缩放算法和输入的宽高的缩放倍数对图片进行缩放，同步返回结果。
+
+> **说明：**
+> 1. 建议宽高的缩放倍数取非负数，否则会产生翻转效果。
+> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2450,11 +2552,107 @@ async function ScaleSync() {
 }
 ```
 
+### createScaledPixelMap<sup>16+</sup>
+
+createScaledPixelMap(x: number, y: number, level?: AntiAliasingLevel): Promise\<PixelMap>
+
+根据指定的缩放算法和输入的宽高的缩放倍数，创建一个新的缩放后的图片，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | 否   | 采用的缩放算法。|
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise对象，返回PixelMap。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function CreateScaledPixelMap() {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+      pixelMap.createScaledPixelMap(scaleX, scaleY, image.AntiAliasingLevel.LOW).then((scaledPixelMap: image.PixelMap) => {
+      console.info('Succeeded in creating scaledPixelMap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to create scaledPixelMap. Error code is ${error.code}, error message is ${error.message}`);
+    })
+  }
+}
+```
+
+### createScaledPixelMapSync<sup>16+</sup>
+
+createScaledPixelMapSync(x: number, y: number, level?: AntiAliasingLevel): PixelMap
+
+根据指定的缩放算法和输入的宽高的缩放倍数，创建一个新的缩放后的图片，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | 是   | 采用的缩放算法。|
+
+**返回值：**
+
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function CreateScaledPixelMapSync() {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    let scaledPixelMap = pixelMap.createScaledPixelMapSync(scaleX, scaleY, image.AntiAliasingLevel.LOW);
+  }
+}
+```
+
 ### translate<sup>9+</sup>
 
 translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
-根据输入的坐标对图片进行位置变换，translate后的图片尺寸：width+X ，height+Y，使用callback形式返回。
+根据输入的坐标对图片进行位置变换，使用callback形式返回。
+
+translate后的图片尺寸改变为：width+X ，height+Y，建议translate后的图片尺寸宽高不要超过屏幕的宽高。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2466,8 +2664,8 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| x        | number               | 是   | 区域横坐标。                  |
-| y        | number               | 是   | 区域纵坐标。                  |
+| x        | number               | 是   | 区域横坐标。单位：像素。 |
+| y        | number               | 是   | 区域纵坐标。单位：像素。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当对图片进行位置变换成功，err为undefined，否则为错误对象。|
 
 **示例：**
@@ -2495,7 +2693,9 @@ async function Translate() {
 
 translate(x: number, y: number): Promise\<void>
 
-根据输入的坐标对图片进行位置变换，translate后的图片尺寸：width+X ，height+Y，使用Promise形式返回。
+根据输入的坐标对图片进行位置变换，使用Promise形式返回。
+
+translate后的图片尺寸改变为：width+X ，height+Y，建议translate后的图片尺寸宽高不要超过屏幕的宽高。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2507,8 +2707,8 @@ translate(x: number, y: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明        |
 | ------ | ------ | ---- | ----------- |
-| x      | number | 是   | 区域横坐标。|
-| y      | number | 是   | 区域纵坐标。|
+| x      | number | 是   | 区域横坐标。单位：像素。 |
+| y      | number | 是   | 区域纵坐标。单位：像素。 |
 
 **返回值：**
 
@@ -2538,7 +2738,9 @@ async function Translate() {
 
 translateSync(x: number, y: number): void
 
-根据输入的坐标对图片进行位置变换并同步返回结果。
+根据输入的坐标对图片进行位置变换，同步返回结果。
+
+translate后的图片尺寸改变为：width+X ，height+Y，建议translate后的图片尺寸宽高不要超过屏幕的宽高。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2548,8 +2750,8 @@ translateSync(x: number, y: number): void
 
 | 参数名   | 类型                 | 必填 | 说明                            |
 | -------- | -------------------- | ---- | ------------------------------- |
-| x        | number               | 是   | 区域横坐标。|
-| y        | number               | 是   | 区域纵坐标。|
+| x        | number               | 是   | 区域横坐标。单位：像素。 |
+| y        | number               | 是   | 区域纵坐标。单位：像素。 |
 
 **错误码：**
 
@@ -2580,6 +2782,10 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 
 根据输入的角度对图片进行旋转，使用callback形式返回。
 
+> **说明：**
+> 1. 图片旋转的角度取值范围：0-360。超出取值范围时，根据圆周360度自动矫正。例如，-100度与260度效果相同。
+> 2. 如果图片旋转的角度不是90的整数倍，旋转后图片的尺寸会发生改变。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -2590,7 +2796,7 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| angle    | number               | 是   | 图片旋转的角度。              |
+| angle    | number               | 是   | 图片旋转的角度。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当对图片进行旋转成功，err为undefined，否则为错误对象。|
 
 **示例：**
@@ -2619,6 +2825,10 @@ rotate(angle: number): Promise\<void>
 
 根据输入的角度对图片进行旋转，使用Promise形式返回。
 
+> **说明：**
+> 1. 图片旋转的角度取值范围：0-360。超出取值范围时，根据圆周360度自动矫正。例如，-100度与260度效果相同。
+> 2. 如果图片旋转的角度不是90的整数倍，旋转后图片的尺寸会发生改变。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -2629,7 +2839,7 @@ rotate(angle: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                          |
 | ------ | ------ | ---- | ----------------------------- |
-| angle  | number | 是   | 图片旋转的角度。              |
+| angle  | number | 是   | 图片旋转的角度。 |
 
 **返回值：**
 
@@ -2658,7 +2868,11 @@ async function Rotate() {
 
 rotateSync(angle: number): void
 
-根据输入的角度对图片进行旋转并同步返回结果。
+根据输入的角度对图片进行旋转，同步返回结果。
+
+> **说明：**
+> 1. 图片旋转的角度取值范围：0-360。超出取值范围时，根据圆周360度自动矫正。例如，-100度与260度效果相同。
+> 2. 如果图片旋转的角度不是90的整数倍，旋转后图片的尺寸会发生改变。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2668,7 +2882,7 @@ rotateSync(angle: number): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| angle    | number               | 是   | 图片旋转的角度。              |
+| angle    | number               | 是   | 图片旋转的角度。 |
 
 **错误码：**
 
@@ -2832,7 +3046,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](#region8)   | 是   | 裁剪的尺寸。                  |
+| region   | [Region](#region8)   | 是   | 裁剪的尺寸。取值范围不能超过图片的宽高。 |
 | callback | AsyncCallback\<void> | 是   |  回调函数。当对图片进行裁剪成功，err为undefined，否则为错误对象。|
 
 **示例：**
@@ -2871,7 +3085,7 @@ crop(region: Region): Promise\<void>
 
 | 参数名 | 类型               | 必填 | 说明        |
 | ------ | ------------------ | ---- | ----------- |
-| region | [Region](#region8) | 是   | 裁剪的尺寸。|
+| region | [Region](#region8) | 是   | 裁剪的尺寸。取值范围不能超过图片的宽高。 |
 
 **返回值：**
 
@@ -2911,7 +3125,7 @@ cropSync(region: Region): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](#region8)   | 是   | 裁剪的尺寸。                  |
+| region   | [Region](#region8)   | 是   | 裁剪的尺寸。取值范围不能超过图片的宽高。 |
 
 **错误码：**
 
@@ -4026,7 +4240,7 @@ imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLengt
 
 | 名称             | 类型           | 可读 | 可写 | 说明                                                         |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，dng，heif<sup>12+</sup>（不同硬件设备支持情况不同）。 |
+| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，dng，heic<sup>12+</sup>（不同硬件设备支持情况不同）。 |
 
 ### getImageInfo
 
@@ -5321,7 +5535,7 @@ const imagePackerApi: image.ImagePacker = image.createImagePacker();
 
 | 名称             | 类型           | 可读 | 可写 | 说明                       |
 | ---------------- | -------------- | ---- | ---- | -------------------------- |
-| supportedFormats | Array\<string> | 是   | 否   | 图片打包支持的格式 jpeg、webp、png、heif<sup>12+</sup>（不同硬件设备支持情况不同）。 |
+| supportedFormats | Array\<string> | 是   | 否   | 图片打包支持的格式 jpeg、webp、png、heic<sup>12+</sup>（不同硬件设备支持情况不同）。 |
 
 ### packToData<sup>13+</sup>
 
@@ -5385,6 +5599,9 @@ imagePackerApi.packToData(imageSourceApi, packOpts)
 packToData(source: PixelMap, options: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
+
+> **注意：**
+> 接口如果返回401错误码，表明参数异常，可能是PixelMap对象被提前释放了。需要调用方排查，在该方法调用结束后再释放PixelMap对象。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -5503,7 +5720,7 @@ async function Packing() {
 }
 ```
 
-### packing<sup>13+</sup>
+### packing<sup>16+</sup>
 
 packing(pixelmapSequence: Array\<PixelMap>, options: PackingOptionsForSequence): Promise\<ArrayBuffer>
 
@@ -5516,7 +5733,7 @@ packing(pixelmapSequence: Array\<PixelMap>, options: PackingOptionsForSequence):
 | 参数名           | 类型                                                      | 必填 | 说明                   |
 | ---------------- | --------------------------------------------------------- | ---- | ---------------------- |
 | pixelmapSequence | Array\<[PixelMap](#pixelmap7)>                            | 是   | 待编码的PixelMap序列。 |
-| options          | [PackingOptionsForSequence](#packingoptionsforsequence13) | 是   | 动图编码参数。         |
+| options          | [PackingOptionsForSequence](#packingoptionsforsequence16) | 是   | 动图编码参数。         |
 
 **返回值：**
 
@@ -5651,6 +5868,9 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 >
 > 从API version 8开始支持，从API version 13开始废弃，建议使用[packToData](#packtodata13)代替。
 
+> **注意：**
+> 接口如果返回"PixelMap mismatch"，表明参数异常，可能是PixelMap对象被提前释放了。需要调用方排查，在该方法调用结束后再释放PixelMap对象。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
@@ -5693,6 +5913,9 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 > **说明：**
 >
 > 从API version 8开始支持，从API version 13开始废弃，建议使用[packToData](#packtodata13)代替。
+
+> **注意：**
+> 接口如果返回"PixelMap mismatch"，表明参数异常，可能是PixelMap对象被提前释放了。需要调用方排查，在该方法调用结束后再释放PixelMap对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -5910,6 +6133,9 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 
 指定打包参数，将PixelMap图片源编码后直接打包进文件。使用callback形式返回结果。
 
+> **注意：**
+> 接口如果返回62980115错误码，表明参数异常，可能是PixelMap对象被提前释放了。需要调用方排查，在该方法调用结束后再释放PixelMap对象。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
@@ -5966,6 +6192,9 @@ image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
 packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void>
 
 指定打包参数，将PixelMap图片源编码后直接打包进文件。使用Promise形式返回结果。
+
+> **注意：**
+> 接口如果返回62980115错误码，表明参数异常，可能是PixelMap对象被提前释放了。需要调用方排查，在该方法调用结束后再释放PixelMap对象。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -6091,7 +6320,7 @@ async function PackToFile() {
 }
 ```
 
-### packToFile<sup>13+</sup>
+### packToFile<sup>16+</sup>
 
 packToFile(pixelmapSequence: Array\<PixelMap>, fd: number, options: PackingOptionsForSequence): Promise\<void>
 
@@ -6105,7 +6334,7 @@ packToFile(pixelmapSequence: Array\<PixelMap>, fd: number, options: PackingOptio
 | ---------------- | --------------------------------------------------------- | ---- | ---------------------- |
 | pixelmapSequence | Array<[PixelMap](#pixelmap7)>                             | 是   | 待编码的PixelMap序列。 |
 | fd               | number                                                    | 是   | 文件描述符。           |
-| options          | [PackingOptionsForSequence](#packingoptionsforsequence13) | 是   | 动图编码参数。         |
+| options          | [PackingOptionsForSequence](#packingoptionsforsequence16) | 是   | 动图编码参数。         |
 
 **返回值：**
 
@@ -7651,7 +7880,7 @@ img.release().then(() => {
 
 | 名称   | 类型               | 只读|  可选| 说明                                                         |
 | ------ | ------------------ | ---| -----|------------------------------------------------------- |
-| pixels | ArrayBuffer        | 否 |   否   | 像素。                                                       |
+| pixels | ArrayBuffer        | 否 |   否  | 像素。仅支持BGRA_8888格式的图像像素数据。 |
 | offset | number             | 否 |   否  |  偏移量。                                                     |
 | stride | number             | 否 |   否  | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4。                   |
 | region | [Region](#region8) | 否 |   否  |区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
@@ -7696,6 +7925,7 @@ img.release().then(() => {
 | 名称                   |   值   | 说明              |
 | ---------------------- | ------ | ----------------- |
 | UNKNOWN                | 0      | 未知格式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。        |
+| ARGB_8888<sup>16+</sup> | 1 | 格式为ARGB_8888 。 该格式当前仅支持PixelMap的接口。|
 | RGB_565                | 2      | 格式为RGB_565。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
 | RGBA_8888              | 3      | 格式为RGBA_8888。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
@@ -7852,9 +8082,9 @@ PixelMap的初始化选项。
 
 | 名称 | 类型          | 只读 | 可选| 说明         |
 | ---- | ------------- | ---- | ---- | ------------ |
-| size | [Size](#size) | 否   | 否   | 区域大小。   |
-| x    | number        | 否   | 否  | 区域横坐标。 |
-| y    | number        | 否  | 否  | 区域纵坐标。 |
+| size<sup>7+</sup> | [Size](#size) | 否   | 否   | 区域大小。   |
+| x<sup>7+</sup>    | number        | 否   | 否  | 区域横坐标。 |
+| y<sup>7+</sup>    | number        | 否  | 否  | 区域纵坐标。 |
 
 ## PackingOption
 
@@ -7864,13 +8094,13 @@ PixelMap的初始化选项。
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp"、"image/png"和"image/heif"<sup>12+</sup>（不同硬件设备支持情况不同）。<br>**说明：** 因为jpeg不支持透明通道，若使用带透明通道的数据编码jpeg格式，透明色将变为黑色。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp"、"image/png"和"image/heic(或者image/heif)"<sup>12+</sup>（不同硬件设备支持情况不同）。<br>**说明：** 因为jpeg不支持透明通道，若使用带透明通道的数据编码jpeg格式，透明色将变为黑色。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | quality | number | 否   | 否   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | bufferSize<sup>9+</sup> | number | 否   | 是   | 接收编码数据的缓冲区大小，单位为Byte。如果不设置大小，默认为25M。如果编码图片超过25M，需要指定大小。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 是   | 目标动态范围。默认值为SDR。 |
 | needsPackProperties<sup>12+</sup> | boolean | 否   | 是   | 是否需要编码图片属性信息，例如EXIF。默认值为false。 |
 
-## PackingOptionsForSequence<sup>13+</sup>
+## PackingOptionsForSequence<sup>16+</sup>
 
 描述图像序列打包的选项。
 
@@ -7921,7 +8151,7 @@ PixelMap的初始化选项。
 | SUBFILE_TYPE <sup>12+</sup>               | "SubfileType"               | **读写能力：** 可读写<br> 此标签指示此子文件中的数据类型。标签已弃用，请使用NewSubfileType替代。|
 | IMAGE_WIDTH                               | "ImageWidth"                | **读写能力：** 可读写<br> 图片宽度。|
 | IMAGE_LENGTH                              | "ImageLength"               | **读写能力：** 可读写<br> 图片长度。|
-| BITS_PER_SAMPLE                           | "BitsPerSample"             | **读写能力：** 可读写<br> 每个像素比特数。|
+| BITS_PER_SAMPLE                           | "BitsPerSample"             | **读写能力：** 可读写<br> 像素各分量的位数，如RGB，3分量，格式是8, 8, 8。|
 | COMPRESSION <sup>12+</sup>                | "Compression"               | **读写能力：** 可读写<br> 图像压缩方案。|
 | PHOTOMETRIC_INTERPRETATION <sup>12+</sup> | "PhotometricInterpretation" | **读写能力：** 可读写<br> 像素构成，例如 RGB 或 YCbCr。|
 | IMAGE_DESCRIPTION<sup>10+</sup>           | "ImageDescription"          | **读写能力：** 可读写<br> 图像信息描述。|
@@ -7938,7 +8168,7 @@ PixelMap的初始化选项。
 | RESOLUTION_UNIT <sup>12+</sup>            | "ResolutionUnit"            | **读写能力：** 可读写<br> 用于测量XResolution和YResolution的单位。|
 | TRANSFER_FUNCTION <sup>12+</sup>          | "TransferFunction"          | **读写能力：** 可读写<br> 图像的传递函数，通常用于颜色校正。|
 | SOFTWARE <sup>12+</sup>                   | "Software"                  | **读写能力：** 可读写<br> 用于生成图像的软件的名称和版本。|
-| DATE_TIME<sup>10+</sup>                   | "DateTime"                  | **读写能力：** 可读写<br> 日期时间。|
+| DATE_TIME<sup>10+</sup>                   | "DateTime"                  | **读写能力：** 可读写<br> 日期时间。格式如2024:01:25 05:51:34。|
 | ARTIST <sup>12+</sup>                     | "Artist"                    | **读写能力：** 可读写<br> 创建图像的用户名称。|
 | WHITE_POINT <sup>12+</sup>                | "WhitePoint"                | **读写能力：** 可读写<br> 图像的白点色度。|
 | PRIMARY_CHROMATICITIES <sup>12+</sup>     | "PrimaryChromaticities"     | **读写能力：** 可读写<br> 图像的主要颜色的色度。|
@@ -8004,13 +8234,13 @@ PixelMap的初始化选项。
 | COMPONENTS_CONFIGURATION <sup>12+</sup>   | "ComponentsConfiguration"   | **读写能力：** 可读写<br> 压缩数据的特定信息。|
 | COMPRESSED_BITS_PER_PIXEL <sup>12+</sup>  | "CompressedBitsPerPixel"    | **读写能力：** 可读写<br> 用于压缩图像的压缩模式，单位为每像素位数。|
 | SHUTTER_SPEED <sup>12+</sup>              | "ShutterSpeedValue"         | **读写能力：** 可读写<br> 快门速度，以APEX（摄影曝光的加法系统）值表示。|
-| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"             | **读写能力：** 可读写<br> 光圈值。|
+| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"             | **读写能力：** 可读写<br> 光圈值。格式如4/1。|
 | BRIGHTNESS_VALUE <sup>12+</sup>           | "BrightnessValue"           | **读写能力：** 可读写<br> 图像的亮度值，以APEX单位表示。|
 | EXPOSURE_BIAS_VALUE<sup>10+</sup>         | "ExposureBiasValue"         | **读写能力：** 可读写<br> 曝光偏差值。|
 | MAX_APERTURE_VALUE <sup>12+</sup>         | "MaxApertureValue"          | **读写能力：** 可读写<br> 最小F数镜头。|
 | SUBJECT_DISTANCE <sup>12+</sup>           | "SubjectDistance"           | **读写能力：** 可读写<br> 测量单位为米的主体距离。|
 | METERING_MODE<sup>10+</sup>               | "MeteringMode"              | **读写能力：** 可读写<br> 测光模式。|
-| LIGHT_SOURCE<sup>10+</sup>                | "LightSource"               | **读写能力：** 可读写<br> 光源。|
+| LIGHT_SOURCE<sup>10+</sup>                | "LightSource"               | **读写能力：** 可读写<br> 光源。例如Fluorescent。|
 | FLASH <sup>10+</sup>                      | "Flash"                     | **读写能力：** 可读写<br> 闪光灯,记录闪光灯状态。|
 | FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"               | **读写能力：** 可读写<br> 焦距。|
 | SUBJECT_AREA <sup>12+</sup>               | "SubjectArea"               | **读写能力：** 可读写<br> 该标签指示整个场景中主要主体的位置和区域。|

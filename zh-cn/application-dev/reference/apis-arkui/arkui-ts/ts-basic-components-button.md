@@ -59,7 +59,7 @@ Button(label: ResourceStr, options?: ButtonOptions)
 
 | 名称                      | 类型                                          | 必填 | 说明                                                       |
 | ------------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type                      | [ButtonType](#buttontype枚举说明)             | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE。从API version 14开始，ButtonType的默认值修改为ButtonType.ROUNDED_RECTANGLE。API version 13及之前的版本，ButtonType的默认值为ButtonType.Capsule。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| type                      | [ButtonType](#buttontype枚举说明)             | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE。从API version 16开始，ButtonType的默认值修改为ButtonType.ROUNDED_RECTANGLE。API version 15及之前的版本，ButtonType的默认值为ButtonType.Capsule。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | stateEffect               | boolean                                       | 否   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11枚举说明) | 否   | 描述按钮的样式和重要程度。<br/>默认值：ButtonStyleMode.EMPHASIZED <br/>**说明：**  <br/>按钮重要程度：强调按钮>普通按钮>文字按钮。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | controlSize<sup>11+</sup> | [ControlSize](#controlsize11枚举说明)         | 否   | 描述按钮的尺寸。<br/>默认值：ControlSize.NORMAL<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -177,6 +177,10 @@ stateEffect(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true |
 
+>  **说明：**
+> 
+>  使用多态样式设置按压态时，需优先设置stateEffect为false，防止内置按压态与多态样式按压态冲突。
+
 ### fontFamily<sup>8+</sup>
 
 fontFamily(value: string | Resource)
@@ -283,18 +287,14 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 ## ButtonType枚举说明
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 说明               |
 | ------- | ------------------ |
-| Capsule | 胶囊型按钮（圆角默认为高度的一半）。 |
-| Circle  | 圆形按钮。              |
-| Normal  | 普通按钮（默认不带圆角）。      |
-| ROUNDED_RECTANGLE<sup>14+</sup> | 圆角矩形按钮（默认值：controlSize为NORMAL，圆角大小20vp，controlSize为SMALL，圆角大小14vp）。 |
+| Capsule | 胶囊型按钮（圆角默认为高度的一半）。**<br>卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。**<br>原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Circle  | 圆形按钮。**<br>卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。**<br>原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。              |
+| Normal  | 普通按钮（默认不带圆角）。 **<br>卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。**<br>原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。     |
+| ROUNDED_RECTANGLE<sup>16+</sup> | 圆角矩形按钮（默认值：controlSize为NORMAL，圆角大小20vp，controlSize为SMALL，圆角大小14vp）。**<br>卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。**<br>原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 >  **说明：**
 >  - 按钮圆角通过[通用属性borderRadius](ts-universal-attributes-border.md#borderradius)设置。
@@ -371,9 +371,9 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 | ------ | ------ | ---------------- | ---------------- | ---------------- |
 | label | string | 否 | 否 | Button的文本标签。 |
 | pressed | boolean | 否 | 否 | 指示是否按下Button。<br/>**说明：**  <br/>此属性指示的是原本Button是否被按压，而非build出来的新组件。若新build出来的组件超过原本组件的大小，那么超出部分按压不触发。 |
-| triggerClick | [ButtonTriggerClickCallback](#buttontriggerclickcallback12对象说明) | 否 | 否 | 使用builder新构建出来组件的点击事件。 |
+| triggerClick | [ButtonTriggerClickCallback](#buttontriggerclickcallback12) | 否 | 否 | 使用builder新构建出来组件的点击事件。 |
 
-## ButtonTriggerClickCallback<sup>12+</sup>对象说明
+## ButtonTriggerClickCallback<sup>12+</sup>
 
 type ButtonTriggerClickCallback = (xPos: number, yPos: number) => void
 

@@ -5,6 +5,11 @@
 
 调用本模块下的接口，应用可以完成屏幕录制的功能。
 
+开发者可根据实际的开发需求，参考对应的开发指南及样例：
+
+- [使用AVScreenCapture录屏取码流](../../media/media/using-avscreencapture-for-buffer.md)
+- [使用AVScreenCapture录屏写文件](../../media/media/using-avscreencapture-for-file.md)
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 10
@@ -51,7 +56,7 @@
 | typedef enum [OH_AudioCodecFormat](#oh_audiocodecformat-1) [OH_AudioCodecFormat](#oh_audiocodecformat) | 枚举，表示音频编码格式。 | 
 | typedef enum [OH_VideoCodecFormat](#oh_videocodecformat-1) [OH_VideoCodecFormat](#oh_videocodecformat) | 枚举，表示视频编码格式。 | 
 | typedef enum [OH_DataType](#oh_datatype-1) [OH_DataType](#oh_datatype) | 枚举，表示屏幕录制流的数据格式。 | 
-| typedef enum [OH_VideoSourceType](#oh_videosourcetype-1) [OH_VideoSourceType](#oh_videosourcetype) | 枚举，表示视频源格式。 | 
+| typedef enum [OH_VideoSourceType](#oh_videosourcetype-1) [OH_VideoSourceType](#oh_videosourcetype) | 枚举，表示视频源格式。当前仅支持RGBA格式。 | 
 | typedef enum [OH_ContainerFormatType](#oh_containerformattype-1) [OH_ContainerFormatType](#oh_containerformattype) | 枚举，表示屏幕录制生成的文件类型。 | 
 | typedef struct [OH_AudioCaptureInfo](_o_h___audio_capture_info.md) [OH_AudioCaptureInfo](#oh_audiocaptureinfo) | 音频采样信息。 | 
 | typedef struct [OH_AudioEncInfo](_o_h___audio_enc_info.md) [OH_AudioEncInfo](#oh_audioencinfo) | 音频编码信息。 | 
@@ -85,7 +90,7 @@
 | [OH_AudioCodecFormat](#oh_audiocodecformat-1) {<br/>OH_AUDIO_DEFAULT = 0,<br/>OH_AAC_LC = 3,<br/>OH_AUDIO_CODEC_FORMAT_BUTT<br/>} | 枚举，表示音频编码格式。 | 
 | [OH_VideoCodecFormat](#oh_videocodecformat-1) {<br/>OH_VIDEO_DEFAULT = 0,<br/>OH_H264 = 2,<br/>OH_H265 = 4,<br/>OH_MPEG4 = 6,<br/>OH_VP8 = 8,<br/>OH_VP9 = 10,<br/>OH_VIDEO_CODEC_FORMAT_BUTT<br/>} | 枚举，表示视频编码格式。 | 
 | [OH_DataType](#oh_datatype-1) {<br/>OH_ORIGINAL_STREAM = 0,<br/>OH_ENCODED_STREAM = 1,<br/>OH_CAPTURE_FILE = 2,<br/>OH_INVAILD = -1<br/>} | 枚举，表示屏幕录制流的数据格式。 | 
-| [OH_VideoSourceType](#oh_videosourcetype-1) {<br/>OH_VIDEO_SOURCE_SURFACE_YUV = 0,<br/>OH_VIDEO_SOURCE_SURFACE_ES,<br/>OH_VIDEO_SOURCE_SURFACE_RGBA,<br/>OH_VIDEO_SOURCE_BUTT<br/>} | 枚举，表示视频源格式。 | 
+| [OH_VideoSourceType](#oh_videosourcetype-1) {<br/>OH_VIDEO_SOURCE_SURFACE_YUV = 0,<br/>OH_VIDEO_SOURCE_SURFACE_ES,<br/>OH_VIDEO_SOURCE_SURFACE_RGBA,<br/>OH_VIDEO_SOURCE_BUTT<br/>} | 枚举，表示视频源格式。当前仅支持RGBA格式。 | 
 | [OH_ContainerFormatType](#oh_containerformattype) {<br/>CFT_MPEG_4A = 0,<br/>CFT_MPEG_4 = 1<br/>} | 枚举，表示屏幕录制生成的文件类型。 | 
 | [OH_AVScreenCaptureStateCode](#oh_avscreencapturestatecode-1) {<br/>OH_SCREEN_CAPTURE_STATE_STARTED = 0,<br/>OH_SCREEN_CAPTURE_STATE_CANCELED = 1,<br/>OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER = 2,<br/>OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER = 3,<br/>OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL = 4,<br/>OH_SCREEN_CAPTURE_STATE_MIC_UNAVAILABLE = 5,<br/>OH_SCREEN_CAPTURE_STATE_MIC_MUTED_BY_USER = 6,<br/>OH_SCREEN_CAPTURE_STATE_MIC_UNMUTED_BY_USER = 7,<br/>OH_SCREEN_CAPTURE_STATE_ENTER_PRIVATE_SCENE = 8,<br/>OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE = 9<br/>OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES = 10<br/>} | 枚举，表示状态码。 | 
 | [OH_AVScreenCaptureBufferType](#oh_avscreencapturebuffertype-1) {<br/>OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO = 0,<br/>OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER = 1,<br/>OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC = 2<br/>} | 枚举，表示buffer类型。 | 
@@ -604,7 +609,7 @@ typedef struct OH_VideoInfo OH_VideoInfo
 typedef enum OH_VideoSourceType OH_VideoSourceType
 ```
 **描述**
-枚举，表示视频源格式。
+枚举，表示视频源格式。当前仅支持RGBA格式。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -835,7 +840,7 @@ enum OH_VideoCodecFormat
 enum OH_VideoSourceType
 ```
 **描述**
-枚举，表示视频源格式。
+枚举，表示视频源格式。当前仅支持RGBA格式。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -843,8 +848,8 @@ enum OH_VideoSourceType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OH_VIDEO_SOURCE_SURFACE_YUV  | YUV格式。   | 
-| OH_VIDEO_SOURCE_SURFACE_ES  | raw格式。   | 
+| OH_VIDEO_SOURCE_SURFACE_YUV  | YUV格式。当前版本暂不支持。   | 
+| OH_VIDEO_SOURCE_SURFACE_ES  | raw格式。当前版本暂不支持。  | 
 | OH_VIDEO_SOURCE_SURFACE_RGBA  | RGBA格式。   | 
 | OH_VIDEO_SOURCE_BUTT  | 无效格式。   | 
 
@@ -1649,6 +1654,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMaxVideoFrameRate (struct OH_A
 
 该接口设置最大帧率时，实际设置的帧率受限设备的能力，由底层的系统能力决定。
 
+调用该接口设置录屏最大帧率时，实际帧率将受限于设备能力。目前接口入参的最大值不设限制，但当前支持的最高帧率为60FPS，当入参设置超过60FPS，将以60FPS处理。不超过上限时，则按照实际入参值处理。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 14
@@ -1668,4 +1675,4 @@ AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
 AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针，或者输入参数frameRate不支持。
 
-AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作。
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：操作受限，建议重试。

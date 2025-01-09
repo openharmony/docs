@@ -1,11 +1,12 @@
 # Media Kit（媒体服务）
 
 - [Media Kit简介](media-kit-intro.md)
-- [开发准备](media-preparation.md)
+- [Media Kit开发速览](media-kit-quick-overview.md)
 - 媒体开发指导(ArkTS)<!--media-kit-dev--arkts-->
   - 播放<!--media-playback-arkts-->
     - [使用AVPlayer播放音频(ArkTS)](using-avplayer-for-playback.md)
     - [使用AVPlayer播放视频(ArkTS)](video-playback.md)
+    - [使用AVPlayer设置播放URL](playback-url-setting-method.md)
     - [使用AVPlayer播放流媒体(ArkTS)](streaming-media-playback-development-guide.md)
     - [使用AVPlayer添加视频外挂字幕(ArkTS)](video-subtitle.md)
     - [使用SoundPool播放短音频(ArkTS)](using-soundpool-for-playback.md)
@@ -20,7 +21,8 @@
     - [使用AVTranscoder实现视频转码(ArkTS)](using-avtranscoder-for-transcodering.md)
 - 媒体开发指导(C/C++)<!--media-kit-dev--c-->
   - 播放<!--media-playback-c-->
-    - [使用AVPlayer播放音频(C/C++)](using-ndk-avplayer-for-playerback.md)
+    - [使用AVPlayer播放音频(C/C++)](using-ndk-avplayer-for-playback.md)
+    - [使用AVPlayer播放视频(C/C++)](using-ndk-avplayer-for-video-playback.md)
   - 录屏<!--media-recording-c-->
     - [使用AVScreenCapture录屏取码流(C/C++)](using-avscreencapture-for-buffer.md)
     - [使用AVScreenCapture录屏写文件(C/C++)](using-avscreencapture-for-file.md)

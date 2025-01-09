@@ -10,7 +10,7 @@ AccessibilityExtensionContext是AccessibilityExtensionAbility上下文环境，�
 
 ## 使用说明
 
-在使用AccessibilityExtensionContext的功能前，需要通过AccessibilityExtensionAbility子类实例获取AccessibilityExtensionContex的实例。
+在使用AccessibilityExtensionContext的功能前，需要通过AccessibilityExtensionAbility子类实例获取AccessibilityExtensionContext的实例。
 
 ```ts
 import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
@@ -83,6 +83,9 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | textType<sup>12+</sup>             | string                                                             | 是   | 否   | 元素的无障碍文本类型，由组件accessibilityTextHint属性配置。 |
 | offset<sup>12+</sup>             | number                                                             | 是   | 否   | 对于可滚动类控件，如List、Grid，内容区相对控件的顶部坐标滚动的像素偏移量。 |
 | hotArea<sup>12+</sup>             | [Rect](#rect)                                                              | 是   | 否   | 元素的可触摸区域。 |
+| customComponentType<sup>16+</sup>             | string                                                             | 是   | 否   | 自定义组件类型。 |
+| accessibilityNextFocusId<sup>16+</sup>             | number                                                             | 是   | 否   | 下一个要聚焦的组件ID。 |
+| extraInfo<sup>16+</sup>             | string                                                             | 是   | 否   | 扩展属性，用于定义一些特定组件才拥有的属性。 |
 
 ## FocusDirection
 

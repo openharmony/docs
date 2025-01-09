@@ -120,7 +120,7 @@
       */
      public static async doSurfaceShot(surfaceId: string) {
        console.info(`doSurfaceShot surfaceId:${surfaceId}.`);
-       if ('' === surfaceId) {
+       if (surfaceId === '') {
          console.error('surface not ready!');
          return;
        }
@@ -136,7 +136,7 @@
          let imageInfo: image.ImageInfo = await this.surfaceShot.getImageInfo();
          console.info('doSurfaceShot surfaceShot:' + JSON.stringify(imageInfo.size));
        } catch (err) {
-         console.error(JSON.stringify(err))
+         console.error(JSON.stringify(err));
        }
      }
    
@@ -215,7 +215,7 @@
        // 直板机前置截图内容旋转补偿270°
        await shotPixel.rotate(270);
        // 直板机前置截图组件旋转补偿180°
-       this.shotImgRotation = { y: 0.5, angle: 180 };;
+       this.shotImgRotation = { y: 0.5, angle: 180 };
      }
      this.screenshotPixelMap = shotPixel;
      // 初始化动效参数

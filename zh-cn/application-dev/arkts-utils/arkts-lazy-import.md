@@ -100,14 +100,16 @@
         main executed
     ```
 
-## 语法规格
+## 语法规格及起始支持版本
 
 - lazy-import支持如下指令实现：
 
-| 语法                               | ModuleRequest | ImportName  | LocalName   | API12是否支持lazy加载    |
-| :--------------------------------- | :------------ | :---------- | :---------- | :------------------- |
-| import lazy { x } from "mod";        | "mod"         | "x"         | "x"         | 支持                  |
-| import lazy { x as v } from "mod";   | "mod"         | "x"         | "v"         | 支持                  |
+| 语法                                            | ModuleRequest  | ImportName | LocalName   | 开始支持的API版本 |
+|:----------------------------------------------|:---------------|:-----------|:------------|:-----------|
+| import lazy { x } from "mod";                 | "mod"          | "x"        | "x"         | API12      |
+| import lazy { x as v } from "mod";            | "mod"          | "x"        | "v"         | API12      |
+| import lazy x from "mod";                     | "mod"          | "default"  | "x"         | API16      |
+| import lazy { KitClass } from "@kit.SomeKit"; | "@kit.SomeKit" | "KitClass" | "KitClass"  | API16      |
 
 - 延迟加载共享模块或依赖路径内包含共享模块。
     延迟加载对于共享模块依旧生效，使用限制参考[共享模块开发指导](../arkts-utils/arkts-sendable-module.md)。
@@ -117,19 +119,19 @@
 以下写法将引起编译报错。
 
 ```typescript
-    export lazy var v;                  // 编译器提示报错：应用编译报错
-    export lazy default function f(){}; // 编译器提示报错：应用编译报错
-    export lazy default function(){};   // 编译器提示报错：应用编译报错
-    export lazy default 42;             // 编译器提示报错：应用编译报错
+    export lazy var v;                    // 编译器提示报错：应用编译报错
+    export lazy default function f(){};   // 编译器提示报错：应用编译报错
+    export lazy default function(){};     // 编译器提示报错：应用编译报错
+    export lazy default 42;               // 编译器提示报错：应用编译报错
     export lazy { x };                    // 编译器提示报错：应用编译报错
     export lazy { x as v };               // 编译器提示报错：应用编译报错
     export lazy { x } from "mod";         // 编译器提示报错：应用编译报错
     export lazy { x as v } from "mod";    // 编译器提示报错：应用编译报错
-    export lazy * from "mod";           // 编译器提示报错：应用编译报错
-    
-    import lazy v from "mod";           // 编译器提示报错：应用编译报错
-    import lazy * as ns from "mod";     // 编译器提示报错：应用编译报错
+    export lazy * from "mod";             // 编译器提示报错：应用编译报错
 
+    import lazy * as ns from "mod";            // 编译器提示报错：应用编译报错
+    import lazy KitClass from "@kit.SomeKit"   // 编译器提示报错：应用编译报错
+    impott lazy * as MyKit from "@kit.SomeKit" // 编译器提示报错：应用编译报错
 ```
 
 与type关键词同时使用将会导致报错。
@@ -193,8 +195,6 @@
     ReferenceError: module environment is undefined
         at func_main_0 (A_ns.js:2:13)
     ```
-
-- 暂不支持lazy-import延迟加载kit。
 
 - 开发者需要评估使用延迟加载存在的影响。
     * 不依赖该模块的执行的side-effect(如初始化全局变量，挂载globalThis等)。

@@ -23,7 +23,7 @@
 | VOIP<sup>13+</sup> | 音视频通话 | voip  | 某些聊天类应用（具有音视频业务）音频、视频通话时退后台。|
 | TASK_KEEPING | 计算任务（仅对2in1开放） | taskKeeping  | 如杀毒软件。 |
 
-关于DATA_TRANSFE（数据传输）说明：
+关于DATA_TRANSFER（数据传输）说明：
 
 - 在数据传输时，若应用使用[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统，即使申请DATA_TRANSFER的后台任务，应用退后台时还是会被挂起。
 
@@ -121,13 +121,40 @@
    **设备本应用**申请长时任务示例代码如下：
 
    ```ts
+
+    function callback(info: backgroundTaskManager.ContinuousTaskCancelInfo) {
+      // 长时任务id
+      console.info('OnContinuousTaskCancel callback id ' + info.id);
+      // 长时任务取消原因
+      console.info('OnContinuousTaskCancel callback reason ' + info.reason);
+    }
+
     @Entry
     @Component
     struct Index {
       @State message: string = 'ContinuousTask';
      // 通过getContext方法，来获取page所在的UIAbility上下文。
       private context: Context = getContext(this);
-   
+
+      OnContinuousTaskCancel() {
+        try {
+           backgroundTaskManager.on("continuousTaskCancel", callback);
+           console.info(`Succeeded in operationing OnContinuousTaskCancel.`);
+        } catch (error) {
+           console.error(`Operation OnContinuousTaskCancel failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+      }
+
+      OffContinuousTaskCancel() {
+        try {
+           // callback参数不传，则取消所有已注册的回调
+           backgroundTaskManager.off("continuousTaskCancel", callback);
+           console.info(`Succeeded in operationing OffContinuousTaskCancel.`);
+        } catch (error) {
+           console.error(`Operation OffContinuousTaskCancel failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+      }
+
       startContinuousTask() {
         let wantAgentInfo: wantAgent.WantAgentInfo = {
           // 点击通知后，将要执行的动作列表
@@ -145,18 +172,27 @@
           // 点击通知后，动作执行属性
           actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
-   
-        // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
-        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
-          backgroundTaskManager.startBackgroundRunning(this.context,
-            backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
-            // 此处执行具体的长时任务逻辑，如放音等。
-            console.info(`Succeeded in operationing startBackgroundRunning.`);
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
+
+        try {
+          // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
+          wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
+            try {
+              let list: Array<string> = ["audioRecording"];
+              backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
+                console.info("Operation startBackgroundRunning succeeded");
+                // 此处执行具体的长时任务逻辑，如录音，录制等。
+              }).catch((error: BusinessError) => {
+                console.error(`Failed to Operation startBackgroundRunning. code is ${error.code} message is ${error.message}`);
+              });
+            } catch (error) {
+              console.error(`Failed to Operation startBackgroundRunning. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+            }
           });
-        });
+        } catch (error) {
+          console.error(`Failed to Operation getWantAgent. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
       }
+
    
       stopContinuousTask() {
          backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
@@ -199,6 +235,32 @@
    
               // 通过按钮取消长时任务
               this.stopContinuousTask();
+            })
+
+            Button() {
+              Text('注册长时任务取消回调').fontSize(25).fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .margin({ top: 10 })
+            .backgroundColor('#0D9FFB')
+            .width(250)
+            .height(40)
+            .onClick(() => {
+              // 通过按钮注册长时任务取消回调
+              this.OnContinuousTaskCancel();
+            })
+
+            Button() {
+              Text('取消注册长时任务取消回调').fontSize(25).fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .margin({ top: 10 })
+            .backgroundColor('#0D9FFB')
+            .width(250)
+            .height(40)
+            .onClick(() => {
+              // 通过按钮取消注册长时任务取消回调
+              this.OffContinuousTaskCancel();
             })
           }
           .width('100%')

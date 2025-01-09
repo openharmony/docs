@@ -3,6 +3,7 @@
 
 ArkTS会对自定义组件的成员变量使用的访问限定符private/public/protected进行校验，当不按规范使用访问限定符private/public/protected时，会产生对应的日志信息。
 
+在阅读本文档前，建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)。
 
 > **说明：**
 >
@@ -11,15 +12,15 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
 
 ## 使用限制
 
-- 对于\@State/\@Prop/\@Provide/\@BuilderParam/常规成员变量(不涉及更新的普通变量)，当使用private修饰时，在自定义组件构造时，不允许进行赋值传参，否则会有编译告警日志提示。
+- 对于[\@State](./arkts-state.md)/[\@Prop](./arkts-prop.md)/[\@Provide](./arkts-provide-and-consume.md)/[\@BuilderParam](./arkts-builderparam.md)/常规成员变量(不涉及更新的普通变量)，当使用private修饰时，在自定义组件构造时，不允许进行赋值传参，否则会有编译告警日志提示。
 
-- 对于\@StorageLink/\@StorageProp/\@LocalStorageLink/\@LocalStorageProp/\@Consume变量，当使用public修饰时，会有编译告警日志提示。
+- 对于[\@StorageLink](./arkts-appstorage.md)/[\@StorageProp](./arkts-appstorage.md)/[\@LocalStorageLink](./arkts-localstorage.md)/[\@LocalStorageProp](./arkts-localstorage.md)/[\@Consume](./arkts-provide-and-consume.md)变量，当使用public修饰时，会有编译告警日志提示。
 
-- 对于\@Link/\@ObjectLink变量，当使用private修饰时，会有编译告警日志提示。
+- 对于[\@Link](./arkts-link.md)/[\@ObjectLink](./arkts-observed-and-objectlink.md)变量，当使用private修饰时，会有编译告警日志提示。
 
 - 由于struct没有继承能力，上述所有的这些变量使用protected修饰时，会有编译告警日志提示。
 
-- 当\@Require和private同时修饰自定义组件struct的\@State/\@Prop/\@Provide/\@BuilderParam/常规成员变量(不涉及更新的普通变量)时，会有编译告警日志提示。
+- 当[\@Require](./arkts-require.md)和private同时修饰自定义组件struct的[\@State](./arkts-state.md)/[\@Prop](./arkts-prop.md)/[\@Provide](./arkts-provide-and-consume.md)/[\@BuilderParam](./arkts-builderparam.md)/常规成员变量(不涉及更新的普通变量)时，会有编译告警日志提示。
 
 
 ## 使用场景

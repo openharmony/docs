@@ -31,6 +31,8 @@ motionPath(value: MotionPathOptions)
 
 ## 示例
 
+该示例主要演示如何设置组件进行位移动画时的运动路径。
+
 ```ts
 // xxx.ets
 @Entry

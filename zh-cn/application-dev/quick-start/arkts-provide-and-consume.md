@@ -27,12 +27,12 @@
 
 ```ts
 // 通过相同的变量名绑定
-@Provide a: number = 0;
-@Consume a: number;
+@Provide age: number = 0;
+@Consume age: number;
 
 // 通过相同的变量别名绑定
-@Provide('a') b: number = 0;
-@Consume('a') c: number;
+@Provide('a') id: number = 0;
+@Consume('a') age: number;
 ```
 
 
@@ -106,7 +106,7 @@
 
 ```ts
 @Component
-struct CompD {
+struct Child {
   @Consume selectedDate: Date;
 
   build() {
@@ -131,7 +131,7 @@ struct CompD {
 
 @Entry
 @Component
-struct CompA {
+struct Parent {
   @Provide selectedDate: Date = new Date('2021-08-08')
 
   build() {
@@ -151,7 +151,7 @@ struct CompA {
         end: new Date('2100-1-1'),
         selected: this.selectedDate
       })
-      CompD()
+      Child()
     }
   }
 }
@@ -211,7 +211,7 @@ struct Child {
 
 @Entry
 @Component
-struct Example {
+struct Parent {
   @Provide message: string = 'Hello';
 
   build() {
@@ -328,54 +328,54 @@ struct Parent {
 
 ## 使用场景
 
-在下面的示例是与后代组件双向同步状态\@Provide和\@Consume场景。当分别点击CompA和CompD组件内Button时，reviewVotes 的更改会双向同步在CompA和CompD中。
+在下面的示例是与后代组件双向同步状态\@Provide和\@Consume场景。当分别点击ToDo和ToDoItem组件内Button时，count 的更改会双向同步在ToDo和ToDoItem中。
 
 
 
 ```ts
 @Component
-struct CompD {
-  // @Consume装饰的变量通过相同的属性名绑定其祖先组件CompA内的@Provide装饰的变量
-  @Consume reviewVotes: number;
+struct ToDoItem {
+  // @Consume装饰的变量通过相同的属性名绑定其祖先组件ToDo内的@Provide装饰的变量
+  @Consume count: number;
 
   build() {
     Column() {
-      Text(`reviewVotes(${this.reviewVotes})`)
-      Button(`reviewVotes(${this.reviewVotes}), give +1`)
-        .onClick(() => this.reviewVotes += 1)
+      Text(`count(${this.count})`)
+      Button(`count(${this.count}), count + 1`)
+        .onClick(() => this.count += 1)
     }
     .width('50%')
   }
 }
 
 @Component
-struct CompC {
+struct ToDoList {
   build() {
     Row({ space: 5 }) {
-      CompD()
-      CompD()
+      ToDoItem()
+      ToDoItem()
     }
   }
 }
 
 @Component
-struct CompB {
+struct ToDoDemo {
   build() {
-    CompC()
+    ToDoList()
   }
 }
 
 @Entry
 @Component
-struct CompA {
-  // @Provide装饰的变量reviewVotes由入口组件CompA提供其后代组件
-  @Provide reviewVotes: number = 0;
+struct ToDo {
+  // @Provide装饰的变量index由入口组件ToDo提供其后代组件
+  @Provide count: number = 0;
 
   build() {
     Column() {
-      Button(`reviewVotes(${this.reviewVotes}), give +1`)
-        .onClick(() => this.reviewVotes += 1)
-      CompB()
+      Button(`count(${this.count}), count + 1`)
+        .onClick(() => this.count += 1)
+      ToDoDemo()
     }
   }
 }
@@ -561,6 +561,8 @@ struct MyComponent {
   @Provide({allowOverride : "reviewVotes"}) reviewVotes: number = 10;
 }
 ```
+
+完整示例如下：
 
 ```ts
 @Component
@@ -762,78 +764,78 @@ class Animal {
     this.age = age;
   }
 
-  static changeName1(animal:Animal) {
-    animal.name = 'Black';
+  static changeName(animal:Animal) {
+    animal.name = 'Jack';
   }
-  static changeAge1(animal:Animal) {
+  static changeAge(animal:Animal) {
     animal.age += 1;
   }
 }
 
 @Entry
 @Component
-struct Demo1 {
+struct Zoo {
   @Provide dog:Animal = new Animal('WangCai', 'dog', 2);
 
-  changeAge2(animal:Animal) {
+  changeZooDogAge(animal:Animal) {
     animal.age += 2;
   }
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo1: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+      Text(`Zoo: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
         .fontColor(Color.Red)
         .fontSize(30)
-      Button('changeAge1')
+      Button('changeAge')
         .onClick(()=>{
           // 通过静态方法调用，无法触发UI刷新
-          Animal.changeAge1(this.dog);
+          Animal.changeAge(this.dog);
         })
-      Button('changeAge2')
+      Button('changeZooDogAge')
         .onClick(()=>{
           // 使用this通过自定义组件内部方法调用，无法触发UI刷新
-          this.changeAge2(this.dog);
+          this.changeZooDogAge(this.dog);
         })
-      Demo2()
+      ZooChild()
     }
   }
 }
 
 @Component
-struct Demo2 {
+struct ZooChild {
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo2.`)
+      Text(`ZooChild`)
         .fontColor(Color.Blue)
         .fontSize(30)
-      Demo3()
+      ZooGrandChild()
     }
   }
 }
 
 @Component
-struct Demo3 {
+struct ZooGrandChild {
   @Consume dog:Animal;
 
-  changeName2(animal:Animal) {
-    animal.name = 'White';
+  changeZooGrandChildName(animal:Animal) {
+    animal.name = 'Marry';
   }
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo3: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+      Text(`ZooGrandChild: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
         .fontColor(Color.Yellow)
         .fontSize(30)
-      Button('changeName1')
+      Button('changeName')
         .onClick(()=>{
           // 通过静态方法调用，无法触发UI刷新
-          Animal.changeName1(this.dog);
+          Animal.changeName(this.dog);
         })
-      Button('changeName2')
+      Button('changeZooGrandChildName')
         .onClick(()=>{
           // 使用this通过自定义组件内部方法调用，无法触发UI刷新
-          this.changeName2(this.dog);
+          this.changeZooGrandChildName(this.dog);
         })
     }
   }
@@ -856,82 +858,82 @@ class Animal {
     this.age = age;
   }
 
-  static changeName1(animal:Animal) {
-    animal.name = 'Black';
+  static changeName(animal:Animal) {
+    animal.name = 'Jack';
   }
-  static changeAge1(animal:Animal) {
+  static changeAge(animal:Animal) {
     animal.age += 1;
   }
 }
 
 @Entry
 @Component
-struct Demo1 {
+struct Zoo {
   @Provide dog:Animal = new Animal('WangCai', 'dog', 2);
 
-  changeAge2(animal:Animal) {
+  changeZooDogAge(animal:Animal) {
     animal.age += 2;
   }
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo1: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+      Text(`Zoo: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
         .fontColor(Color.Red)
         .fontSize(30)
-      Button('changeAge1')
+      Button('changeAge')
         .onClick(()=>{
           // 通过赋值添加 Proxy 代理
-          let a1 = this.dog;
-          Animal.changeAge1(a1);
+          let newDog = this.dog;
+          Animal.changeAge(newDog);
         })
-      Button('changeAge2')
+      Button('changeZooDogAge')
         .onClick(()=>{
           // 通过赋值添加 Proxy 代理
-          let a2 = this.dog;
-          this.changeAge2(a2);
+          let newDog = this.dog;
+          this.changeZooDogAge(newDog);
         })
-      Demo2()
+      ZooChild()
     }
   }
 }
 
 @Component
-struct Demo2 {
+struct ZooChild {
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo2.`)
+      Text(`ZooChild.`)
         .fontColor(Color.Blue)
         .fontSize(30)
-      Demo3()
+      ZooGrandChild()
     }
   }
 }
 
 @Component
-struct Demo3 {
+struct ZooGrandChild {
   @Consume dog:Animal;
 
-  changeName2(animal:Animal) {
-    animal.name = 'White';
+  changeZooGrandChildName(animal:Animal) {
+    animal.name = 'Marry';
   }
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo3: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+      Text(`ZooGrandChild: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
         .fontColor(Color.Yellow)
         .fontSize(30)
-      Button('changeName1')
+      Button('changeName')
         .onClick(()=>{
           // 通过赋值添加 Proxy 代理
-          let b1 = this.dog;
-          Animal.changeName1(b1);
+          let newDog = this.dog;
+          Animal.changeName(newDog);
         })
-      Button('changeName2')
+      Button('changeZooGrandChildName')
         .onClick(()=>{
           // 通过赋值添加 Proxy 代理
-          let b2 = this.dog;
-          this.changeName2(b2);
+          let newDog = this.dog;
+          this.changeZooGrandChildName(newDog);
         })
     }
   }

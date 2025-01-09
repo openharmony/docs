@@ -28,6 +28,8 @@ animateToImmediately(value: AnimateParam , event: () => void): void
 
 ## 示例
 
+该示例主要演示通过animateToImmediately接口来实现显式动画立即下发。
+
 ```ts
 // xxx.ets
 @Entry

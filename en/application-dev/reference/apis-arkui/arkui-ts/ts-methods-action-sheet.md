@@ -38,10 +38,10 @@ Shows an action sheet in the given settings.
 | subtitle<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Subtitle of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | message    | string \| [Resource](ts-types.md#resource) | Yes    | Content of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | autoCancel | boolean                           | No    | Whether to close the dialog box when the overlay is clicked.<br>Default value: **true**<br>The value **true** means to close the dialog box when the overlay is clicked, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| confirm    | [ActionSheetButtonOptions](#actionsheetbuttonoptions13) | No | Information about the confirm button. When the dialog box has focus and focus has not been shifted using the **Tab** key, the button responds to the **Enter** key by default, and multiple dialog boxes can gain focus consecutively to respond automatically. The default response to the **Enter** key does not work when **defaultFocus** is set to **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| confirm    | [ActionSheetButtonOptions](#actionsheetbuttonoptions14) | No | Information about the confirm button. When the dialog box has focus and focus has not been shifted using the **Tab** key, the button responds to the **Enter** key by default, and multiple dialog boxes can gain focus consecutively to respond automatically. The default response to the **Enter** key does not work when **defaultFocus** is set to **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | cancel     | () =&gt; void           | No    | Callback invoked when the dialog box is closed after the overlay is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | alignment  | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment) | No    |  Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Bottom**<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**NOTE**<br>If **showInSubWindow** is set to **true** in **UIExtension**, the dialog box is aligned with the host window based on **UIExtension**.|
-| offset     | [ActionSheetOffset](#actionsheetoffset13) | No     | Offset of the dialog box relative to the alignment position.<br>Default value:<br>1. When alignment is set to **Top**, **TopStart**, or **TopEnd**: {dx: 0,dy: "40vp"}<br>2. When **alignment** is set to any other value: {dx: 0,dy: "-40vp"}<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| offset     | [ActionSheetOffset](#actionsheetoffset14) | No     | Offset of the dialog box relative to the alignment position.<br>Default value:<br>1. When alignment is set to **Top**, **TopStart**, or **TopEnd**: {dx: 0,dy: "40vp"}<br>2. When **alignment** is set to any other value: {dx: 0,dy: "-40vp"}<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | sheets     | Array&lt;[SheetInfo](#sheetinfo)&gt; | Yes      | Options in the dialog box. Each option supports the image, text, and callback.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | maskRect<sup>10+</sup> | [Rectangle](ts-methods-alert-dialog-box.md#rectangle8) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**<br>**NOTE**<br>**maskRect** does not take effect when **showInSubWindow** is set to **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | showInSubWindow<sup>11+</sup> | boolean | No| Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.<br>Default value: **false**<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -87,9 +87,9 @@ Provides information about the action to dismiss the dialog box.
 | dismiss | Callback&lt;void&gt;                                         | No  | No  | Callback for dismissing the dialog box. This API is called only when the dialog box needs to be exited.|
 | reason  | [DismissReason](../js-apis-promptAction.md#dismissreason12) | No  | No  | Reason why the dialog box cannot be dismissed. You must specify whether to close the dialog box for each of the listed actions.|
 
-## ActionSheetButtonOptions<sup>13+</sup>
+## ActionSheetButtonOptions<sup>14+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -101,9 +101,9 @@ Provides information about the action to dismiss the dialog box.
 | value        |  string \| [Resource](ts-types.md#resource) |    Yes | Button text.|
 | action       | [VoidCallback](ts-types.md#voidcallback12)      |   Yes  | Callback invoked when the button is selected.|
 
-## ActionSheetOffset<sup>13+</sup>
+## ActionSheetOffset<sup>14+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -118,7 +118,9 @@ Provides information about the action to dismiss the dialog box.
 >
 > For clarity in UI execution context, use the [showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext).
 
-### Example 1
+### Example 1: Displaying an Action Sheet
+
+This example demonstrates how to display an action sheet when a button is touched.
 
 ```ts
 @Entry
@@ -185,7 +187,9 @@ struct ActionSheetExample {
 
 ![en-us_image_action](figures/en-us_image_action.gif)
 
-### Example 2
+### Example 2: Opening an Action Sheet Outside the Main Window
+
+This example demonstrates how to configure an action sheet to display outside the main window by setting **showInSubWindow** to **true**.
 
 ```ts
 @Entry
@@ -254,8 +258,9 @@ struct ActionSheetExample {
 
 ![en-us_image_action_showinsubwindow](figures/en-us_image_action_showinsubwindow.jpg)
 
-### Example 3
-This example sets a 3s entrance animation and a 100 ms exit animation for the action sheet.
+### Example 3: Setting the Action Sheet Animation
+This example illustrates how to use the **transition** API to create custom animation effects for the dialog box's appearance and disappearance.
+
 ```ts
 @Entry
 @Component
@@ -312,7 +317,7 @@ struct ActionSheetExample {
 
 ![en-us_image_action_animation](figures/en-us_image_action_animation.gif)
 
-### Example 4
+### Example 4: Setting the Action Sheet Style
 This example demonstrates how to set styles of an action sheet, including the width, height, background color, and shadow.
 ```ts
 @Entry
@@ -387,7 +392,7 @@ struct ActionSheetExample {
 
 ![en-us_image_action_style](figures/en-us_image_action_style.gif)
 
-### Example 5
+### Example 5: Configuring an Action Sheet in the Hover State
 
 This example demonstrates how to set the layout area of an action sheet in hover mode on a foldable device.
 

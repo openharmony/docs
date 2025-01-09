@@ -4,7 +4,9 @@
 
 > **说明：**
 >
-> 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 从API Version 16开始，位置控件不再维护，推荐调用[requestPermissionsFromUser](../../apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9-1)拉起权限弹窗，请求用户授权。
 
 ## 子组件
 
@@ -48,8 +50,15 @@ LocationButton(options:LocationButtonOptions)
 
 > **说明：**
 > 
-> icon或text需至少传入一个。<br>
-> 如果icon、text都不传入，[LocationButton](#locationbutton-1)中的options参数不起效，创建的LocationButton为默认样式。
+> - icon或text需至少传入一个。<br>
+> - 如果icon、text都不传入，[LocationButton](#locationbutton-1)中的options参数不起效，创建的LocationButton为默认样式，默认样式：
+>
+>   LocationIconStyle默认样式为LINES；
+>
+>   LocationDescription默认样式为CURRENT_LOCATION；
+>
+>   ButtonType默认样式为Capsule。
+> - icon、text、buttonType不支持动态修改。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

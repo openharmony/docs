@@ -1,4 +1,4 @@
-# 使用Node-API接口设置JavaScript对象的属性
+# 使用JSVM-API接口设置JavaScript对象的属性
 
 ## 简介
 
@@ -609,6 +609,7 @@ static JSVM_Value DefineProperties(JSVM_Env env, JSVM_CallbackInfo info) {
         char *buf = (char *)malloc(length + 1);
         OH_JSVM_GetValueStringUtf8(env, jsVmResult1, buf, length + 1, &length);
         OH_LOG_INFO(LOG_APP, "JSVM defineStringPropertiesExample success:%{public}s", buf);
+        free(buf);
     }
     // 调用obj的getterCallback()并将结果字符串返回给JavaScript
     static std::string srcGetter;
@@ -620,6 +621,7 @@ static JSVM_Value DefineProperties(JSVM_Env env, JSVM_CallbackInfo info) {
         char *buf = (char *)malloc(length + 1);
         OH_JSVM_GetValueStringUtf8(env, jsVmResult2, buf, length + 1, &length);
         OH_LOG_INFO(LOG_APP, "JSVM getterCallback success:%{public}s", buf);
+        free(buf);
     }
     return jsVmResult;
 }

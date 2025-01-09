@@ -72,7 +72,7 @@
     let len = 24; // Generate a 24-byte random number.
     try {
       let randData = rand.generateRandomSync(len);
-      if (randData != null) {
+      if (randData !== null) {
         console.info("[Sync]: rand result: " + randData.data);
       } else {
         console.error("[Sync]: get rand result fail!");

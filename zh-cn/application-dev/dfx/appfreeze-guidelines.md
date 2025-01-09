@@ -113,7 +113,7 @@ MSG:ablity:EntryAbility background timeout
 
 > **说明：**
 >
-> 在整机高负载的情况下，采用低开销方式获取调用栈或抓栈超时的情况，可能损失函数符号和build-id信息。
+> 在整机高负载的情况下，采用低开销方式获取调用栈的情况，可能损失函数名称和build-id信息。
 
 MSG字段信息主要包括卡死上报的原因，以及当前应用主线程的队列中任务堆积信息。
 
@@ -299,7 +299,7 @@ MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08
  Uid: 20010039
  Process name: com.ohos.huawei.myapplication
  Tid:1561 Name:i.myapplication
-   at anonymous (D:/project/OpenHarmonyOS/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets,pages/Index_.js:0:1)
+   at anonymous entry (D:/project/OpenHarmonyOS/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets,pages/Index_.js:0:1)
    #00 pc 0017909c /system/lib/libark_jsruntime.so
    #01 pc 00177ebb /system/lib/libark_jsruntime.so
    #02 pc 0024b4bb /system/lib/libark_jsruntime.so(panda:FunctionRef:Call(panda:ecmascript:EcmaVM const*,panda:Local<panda:JSValueRef>,panda
@@ -340,7 +340,7 @@ Pid:1561
 Uid:20010039
 Process name:com.ohos.huawei.myapplication
 Tid:1561 Name:i.myapplication
-  at anonymous (D:/project/OpenHarmony0S/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets/pages/Index_.js:0:1)
+  at anonymous entry (D:/project/OpenHarmony0S/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets/pages/Index_.js:0:1)
   #00 pc 00178dcc /system/lib/libark_jsruntime.so
   #01 pc 00177ebb /system/lib/libark_jsruntime.so
   #02 pc 0024b4bb /system/lib/libark_jsruntime.so(panda:FunctionRef:Call(panda:ecmascript:EcmaVM const*,panda:Local<panda:JSValueRef>,par
@@ -411,11 +411,11 @@ MSG:ability:EntryAbility background timeout
     hiAppEvent 提供了故障订阅接口，可以订阅各类故障打点，详见[HiAppEvent介绍](hiappevent-intro.md)。
 
 <!--Del-->
-- 方式三：通过shell获取日志
+- 方式三：设备ROOT模式下通过shell获取日志
 
-    应用无响应日志是以appfreeze-开头，生成在”设备/data/log/faultlog/faultlogger/”路径下。该日志文件名格式为“appfreeze-应用包名-应用UID-秒级时间”。
+    应用无响应日志是以appfreeze-开头，生成在”设备/data/log/faultlog/faultlogger/”路径下。该日志文件名格式为“appfreeze-应用包名-应用UID-毫秒级时间.log”。
 
-    ![appfreeze_20230308145160](figures/appfreeze_20230308145160.png)
+    ![appfreeze_2024111501](figures/appfreeze_2024111501.png)
 <!--DelEnd-->
 
 ### 确认基本信息
@@ -719,7 +719,7 @@ waitTime 表示的是本次ipc通信时长，如果该值远小于故障检测�
 
 4、无调用关系，栈为ipc栈
 
-确定是否为瞬时栈，即waring/block栈是否一致，可能场景是：warning为ipc栈，block栈为其他瞬时栈，表面抓取binder时ipc请求已经结束，本次ipc请求耗时并不长。
+确定是否为瞬时栈，即waring/block栈是否一致，可能场景是：warning为ipc栈，block栈为其他瞬时栈，表明抓取binder时ipc请求已经结束，本次ipc请求耗时并不长。
 需要提到的是：binder信息并不是在发生故障时刻实时获取的，有一定的延迟性；对于存在半周期检测的故障类型来说，binder抓取比较准确，绝大多数都可以在故障时间段内完成采集；而其他故障类型在上报存在延迟的情况下可能抓取到非现场binder。
 
 当然，结合 trace 分析更能直观查看binder的耗时情况。

@@ -25,6 +25,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](#oh_avcodec_mimetype_audio_amr_nb) | AMR_NB音频解码器的MIME类型。                           |
 | [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。                           |
 | [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
+| [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | VVC(H.266)视频编解码器的MIME类型。                    |
 | [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | HEVC(H.265)视频编解码器的MIME类型。                    |
 | [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | AVC(H.264)视频编解码器的MIME类型。                     |
 | [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | MPEG4视频编码的MIME类型，仅用于封装MPEG4视频码流使用。 |
@@ -126,8 +127,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | 名称                                                         | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [OH_MD_KEY_VIDEO_IS_HDR_VIVID](#oh_md_key_video_is_hdr_vivid) | 媒体文件中的视频轨是否为HDR Vivid的键，支持封装和解封装，值类型为int32_t。该键是可选的。  |
-| [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | 媒体文件中第一帧起始位置开始时间的键，值类型为int64_t。该键是可选的。            |
-| [OH_MD_KEY_TRACK_START_TIME](#oh_md_key_track_start_time) | 轨道开始时间的键，值类型为int64_t。该键是可选的。            |
+| [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | 媒体文件中第一帧起始位置开始时间的键，以微秒为单位，值类型为int64_t。该键是可选的。            |
+| [OH_MD_KEY_TRACK_START_TIME](#oh_md_key_track_start_time) | 轨道开始时间的键，以微秒为单位，值类型为int64_t。该键是可选的。            |
 | [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type)                | 轨道媒体类型的键，值类型为int32_t，请参见[OH_MediaType](#oh_mediatype-1)。该键是可选的。 |
 | [OH_MD_KEY_DURATION](#oh_md_key_duration)                    | 媒体文件持续时间的键，值类型为int64_t。该键是可选的。                  |
 | [OH_MD_KEY_TITLE](#oh_md_key_title)                          | 媒体文件标题的键，值类型为string。该键是可选的。               |
@@ -146,6 +147,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_DECODING_TIMESTAMP](#oh_md_key_decoding_timestamp) | AVBuffer中携带的音视频或字幕的sample对应的解码时间戳的键，以微秒为单位，值类型为int64_t。该键是可选的。            |
 | [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime)                | 编解码器[MIME](#媒体编解码格式)类型的键，值类型为string。该键是可选的。         |
 | [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar)                  | 样本长宽比的键，值类型为double。 |
+| [OH_MD_KEY_CREATION_TIME](#oh_md_key_creation_time)          | 媒体文件创建时间的元数据，值类型为string。 |
 
 
 ## 汇总
@@ -210,7 +212,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [AudioChannelSet](#audiochannelset) : uint64_t {<br/>FRONT_LEFT = 1ULL &lt;&lt; 0U,<br/>FRONT_RIGHT = 1ULL &lt;&lt; 1U,<br/>FRONT_CENTER = 1ULL &lt;&lt; 2U,<br/>LOW_FREQUENCY = 1ULL &lt;&lt; 3U,<br/>BACK_LEFT = 1ULL &lt;&lt; 4U,<br/>BACK_RIGHT = 1ULL &lt;&lt; 5U,<br/>FRONT_LEFT_OF_CENTER = 1ULL &lt;&lt; 6U,<br/>FRONT_RIGHT_OF_CENTER = 1ULL &lt;&lt; 7U,<br/>BACK_CENTER = 1ULL &lt;&lt; 8U,<br/>SIDE_LEFT = 1ULL &lt;&lt; 9U,<br/>SIDE_RIGHT = 1ULL &lt;&lt; 10U,<br/>TOP_CENTER = 1ULL &lt;&lt; 11U,<br/>TOP_FRONT_LEFT = 1ULL &lt;&lt; 12U,<br/>TOP_FRONT_CENTER = 1ULL &lt;&lt; 13U,<br/>TOP_FRONT_RIGHT = 1ULL &lt;&lt; 14U,<br/>TOP_BACK_LEFT = 1ULL &lt;&lt; 15U,<br/>TOP_BACK_CENTER = 1ULL &lt;&lt; 16U,<br/>TOP_BACK_RIGHT = 1ULL &lt;&lt; 17U,<br/>STEREO_LEFT = 1ULL &lt;&lt; 29U,<br/>STEREO_RIGHT = 1ULL &lt;&lt; 30U,<br/>WIDE_LEFT = 1ULL &lt;&lt; 31U,<br/>WIDE_RIGHT = 1ULL &lt;&lt; 32U,<br/>SURROUND_DIRECT_LEFT = 1ULL &lt;&lt; 33U,<br/>SURROUND_DIRECT_RIGHT = 1ULL &lt;&lt; 34U,<br/>LOW_FREQUENCY_2 = 1ULL &lt;&lt; 35U,<br/>TOP_SIDE_LEFT = 1ULL &lt;&lt; 36U,<br/>TOP_SIDE_RIGHT = 1ULL &lt;&lt; 37U,<br/>BOTTOM_FRONT_CENTER = 1ULL &lt;&lt; 38U,<br/>BOTTOM_FRONT_LEFT = 1ULL &lt;&lt; 39U,<br/>BOTTOM_FRONT_RIGHT = 1ULL &lt;&lt; 40U,<br/>AMBISONICS_ACN0 = 1ULL &lt;&lt; 41U,<br/>AMBISONICS_ACN1 = 1ULL &lt;&lt; 42U,<br/>AMBISONICS_ACN2 = 1ULL &lt;&lt; 43U,<br/>AMBISONICS_ACN3 = 1ULL &lt;&lt; 44U,<br/>AMBISONICS_W = AMBISONICS_ACN0,<br/>AMBISONICS_Y = AMBISONICS_ACN1,<br/>AMBISONICS_Z = AMBISONICS_ACN2,<br/>AMBISONICS_X = AMBISONICS_ACN3,<br/>AMBISONICS_ACN4 = 1ULL &lt;&lt; 45U,<br/>AMBISONICS_ACN5 = 1ULL &lt;&lt; 46U,<br/>AMBISONICS_ACN6 = 1ULL &lt;&lt; 47U,<br/>AMBISONICS_ACN7 = 1ULL &lt;&lt; 48U,<br/>AMBISONICS_ACN8 = 1ULL &lt;&lt; 49U,<br/>AMBISONICS_ACN9 = 1ULL &lt;&lt; 50U,<br/>AMBISONICS_ACN10 = 1ULL &lt;&lt; 51U,<br/>AMBISONICS_ACN11 = 1ULL &lt;&lt; 52U,<br/>AMBISONICS_ACN12 = 1ULL &lt;&lt; 53U,<br/>AMBISONICS_ACN13 = 1ULL &lt;&lt; 54U,<br/>AMBISONICS_ACN14 = 1ULL &lt;&lt; 55U,<br/>AMBISONICS_ACN15 = 1ULL &lt;&lt; 56U<br/>} | 音频声道数集合， 将每一个声道数映射为int64_t的变量。（API11废弃）| 
 | [AudioChannelLayout](#audiochannellayout) : uint64_t {<br/>UNKNOWN_CHANNEL_LAYOUT = 0,<br/>MONO = (AudioChannelSet::FRONT_CENTER),<br/>STEREO = (AudioChannelSet::FRONT_LEFT \| AudioChannelSet::FRONT_RIGHT),<br/>CH_2POINT1 = (STEREO \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_2_1 = (STEREO \| AudioChannelSet::BACK_CENTER),<br/>SURROUND = (STEREO \| AudioChannelSet::FRONT_CENTER),<br/>CH_3POINT1 = (SURROUND \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_4POINT0 = (SURROUND \| AudioChannelSet::BACK_CENTER),<br/>CH_4POINT1 = (CH_4POINT0 \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_2_2 = (STEREO \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br/>QUAD = (STEREO \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br/>CH_5POINT0 = (SURROUND \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br/>CH_5POINT1 = (CH_5POINT0 \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_5POINT0_BACK = (SURROUND \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br/>CH_5POINT1_BACK = (CH_5POINT0_BACK \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_6POINT0 = (CH_5POINT0 \| AudioChannelSet::BACK_CENTER),<br/>CH_6POINT0_FRONT = (CH_2_2 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br/>HEXAGONAL = (CH_5POINT0_BACK \| AudioChannelSet::BACK_CENTER),<br/>CH_6POINT1 = (CH_5POINT1 \| AudioChannelSet::BACK_CENTER),<br/>CH_6POINT1_BACK = (CH_5POINT1_BACK \| AudioChannelSet::BACK_CENTER),<br/>CH_6POINT1_FRONT = (CH_6POINT0_FRONT \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_7POINT0 = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br/>CH_7POINT0_FRONT = (CH_5POINT0 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br/>CH_7POINT1 = (CH_5POINT1 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br/>CH_7POINT1_WIDE = (CH_5POINT1 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br/>CH_7POINT1_WIDE_BACK, CH_3POINT1POINT2 = (CH_3POINT1 \| AudioChannelSet::TOP_FRONT_LEFT \| AudioChannelSet::TOP_FRONT_RIGHT),<br/>CH_5POINT1POINT2 = (CH_5POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br/>CH_5POINT1POINT4, CH_7POINT1POINT2 = (CH_7POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br/>CH_7POINT1POINT4, CH_9POINT1POINT4 = (CH_7POINT1POINT4 \| AudioChannelSet::WIDE_LEFT \| AudioChannelSet::WIDE_RIGHT),<br/>CH_9POINT1POINT6 = (CH_9POINT1POINT4 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br/>CH_10POINT2, CH_22POINT2, OCTAGONAL = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_CENTER \| AudioChannelSet::BACK_RIGHT),<br/>HEXADECAGONAL, STEREO_DOWNMIX = (AudioChannelSet::STEREO_LEFT \| AudioChannelSet::STEREO_RIGHT),<br/>HOA_FIRST,<br/>HOA_SECOND,<br/>HOA_THIRD<br/>} | 音频声道数类型， 将用户申请的解码器输出格式表示为编解码器的声道类型。 | 
 | [OH_MediaType](#oh_mediatype-1) {<br/>MEDIA_TYPE_AUD = 0,<br/>MEDIA_TYPE_VID = 1，<br/>MEDIA_TYPE_SUBTITILE = 2<br/>} | 媒体类型。 |
-| [OH_AACProfile](#oh_aacprofile-1) {<br/>AAC_PROFILE_LC = 0,<br/>AAC_PROFILE_HE = 3,<br/>AAC_PROFILE_HE_V2 = 4<br/>} | AAC档次。 | 
+| [OH_AACProfile](#oh_aacprofile-1) {<br/>AAC_PROFILE_LC = 0,<br/>AAC_PROFILE_HE = 3,<br/>AAC_PROFILE_HE_V2 = 4<br/>} | AAC档次。<!--Del--><br/>（AAC_PROFILE_HE, AAC_PROFILE_HE_V2暂未开放）<!--DelEnd--> | 
 | [OH_AVCProfile](#oh_avcprofile-1) {<br/>AVC_PROFILE_BASELINE = 0,<br/>AVC_PROFILE_HIGH = 4,<br/>AVC_PROFILE_MAIN = 8<br/>} | AVC档次。 | 
 | [OH_HEVCProfile](#oh_hevcprofile-1) {<br/>HEVC_PROFILE_MAIN = 0,<br/>HEVC_PROFILE_MAIN_10 = 1,<br/>HEVC_PROFILE_MAIN_STILL = 2,<br/>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br/>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br/>} | HEVC档次。<br>HEVC_PROFILE_MAIN_10_HDR10、HEVC_PROFILE_MAIN_10_HDR10_PLUS在API 14废弃。| 
 | [OH_VVCProfile](#oh_vvcprofile-1) {<br/>VVC_PROFILE_MAIN_10 = 1, <br/>VVC_PROFILE_MAIN_12 = 2, <br/>VVC_PROFILE_MAIN_12_INTRA = 10, <br/>VVC_PROFILE_MULTI_MAIN_10 = 17, <br/>VVC_PROFILE_MAIN_10_444 = 33, <br/>VVC_PROFILE_MAIN_12_444 = 34, <br/>VVC_PROFILE_MAIN_16_444 = 36, <br/>VVC_PROFILE_MAIN_12_444_INTRA = 42, <br/>VVC_PROFILE_MAIN_16_444_INTRA = 44, <br/>VVC_PROFILE_MULTI_MAIN_10_444 = 49, <br/>VVC_PROFILE_MAIN_10_STILL = 65, <br/>VVC_PROFILE_MAIN_12_STILL = 66, <br/>VVC_PROFILE_MAIN_10_444_STILL = 97, <br/>VVC_PROFILE_MAIN_12_444_STILL = 98, <br/>VVC_PROFILE_MAIN_16_444_STILL = 100 <br/>} | VVC档次。 | 
@@ -241,6 +243,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](#oh_avcodec_mimetype_audio_amr_nb) | AMR_NB音频解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | VVC(H.266)视频编解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | HEVC(H.265)视频编解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | AVC(H.264)视频编解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | MPEG4视频编码的MIME类型，仅用于封装MPEG4视频码流使用。 |
@@ -308,8 +311,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_AUDIO_OBJECT_NUMBER](#oh_md_key_audio_object_number) | 音频对象数目的键，值类型为int32_t，只有Audio Vivid解码使用。 |
 | const char \* [OH_MD_KEY_AUDIO_VIVID_METADATA](#oh_md_key_audio_vivid_metadata) | Audio Vivid元数据的键，值类型为uint8_t\*，只有Audio Vivid解码使用。 |
 | const char \* [OH_MD_KEY_VIDEO_IS_HDR_VIVID](#oh_md_key_video_is_hdr_vivid) | 媒体文件中的视频轨是否为HDR Vivid的键，支持封装和解封装，值类型为int32_t。 |
-| const char \* [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | 媒体文件中第一帧起始位置开始时间的键，值类型为int64_t。     |
-| const char \* [OH_MD_KEY_TRACK_START_TIME](#oh_md_key_track_start_time) | 轨道开始时间的键，值类型为int64_t。     |
+| const char \* [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | 媒体文件中第一帧起始位置开始时间的键，以微秒为单位，值类型为int64_t。     |
+| const char \* [OH_MD_KEY_TRACK_START_TIME](#oh_md_key_track_start_time) | 轨道开始时间的键，以微秒为单位，值类型为int64_t。     |
 | const char \* [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type) | 轨道媒体类型的键，值类型为int32_t，请参见[OH_MediaType](#oh_mediatype-1)。 |
 | const char \* [OH_MD_KEY_DURATION](#oh_md_key_duration) | 媒体文件持续时间的键，值类型为int64_t。 |
 | const char \* [OH_MD_KEY_TITLE](#oh_md_key_title) | 媒体文件标题的键，值类型为string。 |
@@ -327,7 +330,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_BUFFER_DURATION](#oh_md_key_buffer_duration) | AVBuffer中携带的音视频或字幕的sample对应的持续时间的键，以微秒为单位，值类型为int64_t。       |
 | const char \* [OH_MD_KEY_DECODING_TIMESTAMP](#oh_md_key_decoding_timestamp) | AVBuffer中携带的音视频或字幕的sample对应的解码时间戳的键，以微秒为单位，值类型为int64_t。  |
 | const char \* [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime) | 编解码器[MIME](#媒体编解码格式)类型的键，值类型为string。 |
-| const char \* [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar)            | 样本长宽比的键，值类型为double。 |
+| const char \* [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar) | 样本长宽比的键，值类型为double。 |
+| const char \* [OH_MD_KEY_CREATION_TIME](#oh_md_key_creation_time) | 媒体文件创建时间的元数据，值类型为string。 |
 
 
 ## 类型定义说明
@@ -961,8 +965,8 @@ AAC档次。
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | AAC_PROFILE_LC  | AAC编码档次为Low Complexity级别。   | 
-| AAC_PROFILE_HE  | AAC编码档次为High Efficiency级别。<br>**起始版本：** 14 | 
-| AAC_PROFILE_HE_V2 | AAC编码档次为High Efficiency v2级别。<br>**起始版本：** 14 | 
+| AAC_PROFILE_HE  | AAC编码档次为High Efficiency级别。<!--Del-->（此规格暂未开放）<!--DelEnd--> <br>**起始版本：** 14 | 
+| AAC_PROFILE_HE_V2 | AAC编码档次为High Efficiency v2级别。<!--Del-->（此规格暂未开放）<!--DelEnd--> <br>**起始版本：** 14 | 
 
 
 ### OH_AVCLevel
@@ -1590,6 +1594,19 @@ HEVC(H.265)视频编解码器的MIME类型。
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 10
+
+
+### OH_AVCODEC_MIMETYPE_VIDEO_VVC
+
+```
+const char* OH_AVCODEC_MIMETYPE_VIDEO_VVC
+```
+**描述**
+VVC(H.266)视频编解码器的MIME类型。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
 
 
 ### OH_AVCODEC_MIMETYPE_VIDEO_MPEG4
@@ -2525,7 +2542,7 @@ AVBuffer中携带的音视频或字幕的sample对应的持续时间的键，以
 const char* OH_MD_KEY_START_TIME
 ```
 **描述**
-媒体文件中第一帧起始位置开始时间的键，值类型为int64_t。
+媒体文件中第一帧起始位置开始时间的键，以微秒为单位，值类型为int64_t。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2537,7 +2554,7 @@ const char* OH_MD_KEY_START_TIME
 const char* OH_MD_KEY_TRACK_START_TIME
 ```
 **描述**
-轨道开始时间的键，值类型为int64_t。
+轨道开始时间的键，以微秒为单位，值类型为int64_t。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2725,3 +2742,16 @@ const char* OH_MD_KEY_VIDEO_SAR
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 12
+
+
+### OH_MD_KEY_CREATION_TIME
+
+```
+const char* OH_MD_KEY_CREATION_TIME
+```
+**描述**
+媒体文件创建时间的元数据，值类型为string。使用ISO 8601标准的时间格式且为UTC时间，时间格式参考："2024-12-28T00:00:00:000000Z"。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 14

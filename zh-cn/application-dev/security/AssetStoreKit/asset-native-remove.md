@@ -31,10 +31,13 @@
 | ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | 类型为uint8[]，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
 | ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | 类型为uint8[]，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
 | ASSET_TAG_REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | 类型为bool。 | 可选 | 是否删除业务自定义附属信息被加密的数据，默认删除业务附属信息不加密的数据。|
+| ASSET_TAG_GROUP_ID<sup>16+</sup> | 类型为uint8[]，长度为7-127字节。 | 可选 | 待删除的关键资产所属群组，默认删除不属于任何群组的关键资产。|
 
 ## 代码示例
 
 删除别名是demo_alias的关键资产。
+
+在指定群组中删除一条关键资产的示例代码详见[删除群组关键资产](asset-native-group-access-control.md#删除群组关键资产)。
 
 1. 在CMake脚本中链接相关动态库
    ```txt
@@ -52,7 +55,7 @@
       Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
 
       Asset_Attr attr[] = {
-         { .tag = ASSET_TAG_ALIAS, .value.blob = alias }, // 此处指定别名删除，也可不指定别名删除多条数据
+         { .tag = ASSET_TAG_ALIAS, .value.blob = alias }, // 此处指定别名删除单条关键资产，也可不指定别名删除多条关键资产
       };
 
       int32_t ret = OH_Asset_Remove(attr, sizeof(attr) / sizeof(attr[0]));

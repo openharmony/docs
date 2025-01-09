@@ -271,8 +271,8 @@ struct DragControllerPage {
 | pointerId   | number                                                 | 是   | 设置启动拖拽时屏幕上触摸点的Id。         |
 | data        | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。               |
 | extraParams | string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |
-| touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标，不配置时，默认居中。 |
-| previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 拖拽背板自定义配置。 |
+| touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标。不配置时，左右居中，顶部向下偏移20%。 |
+| previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 设置拖拽过程中背板图处理模式及数量角标的显示。 |
 
 ## dragController.createDragAction<sup>11+</sup>
 
@@ -506,25 +506,28 @@ struct DragControllerPage {
     Column() {
       Button('touch to execute drag')
         .onTouch((event?:TouchEvent) => {
-          let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-          let text = new unifiedDataChannel.Text()
-          let unifiedData = new unifiedDataChannel.UnifiedData(text)
-          let dragInfo: dragController.DragInfo = {
-            pointerId: 0,
-            data: unifiedData,
-            extraParams: ''
-          }
-          try{
-            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo); // 建议使用 this.getUIContext().getDragController().createDragAction()接口
-            if(!dragAction){
-              console.info("listener dragAction is null");
-              return
+          if (event && event.type == TouchType.Down) {
+            let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+            customBuilders.push(()=>{});
+            let text = new unifiedDataChannel.Text()
+            let unifiedData = new unifiedDataChannel.UnifiedData(text)
+            let dragInfo: dragController.DragInfo = {
+              pointerId: 0,
+              data: unifiedData,
+              extraParams: ''
             }
-            dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
-              console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
-            })
-          }catch(err) {
-            console.info("create dragAction Error:" + err.message);
+            try{
+              let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo); // 建议使用 this.getUIContext().getDragController().createDragAction()接口
+              if(!dragAction){
+                console.info("listener dragAction is null");
+                return
+              }
+              dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+                console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+              })
+            }catch(err) {
+              console.info("create dragAction Error:" + err.message);
+            }
           }
         })
     }
@@ -546,7 +549,7 @@ struct DragControllerPage {
 | 参数名     | 类型  | 必填    | 说明             |
 | ------ | ------ | ------- | ---------------- |
 |  type  | string | 是      | 监听事件，固定为'statusChange'，即取消监听拖拽状态改变事件。|
-|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | 否      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo11)组件状态， 不设置取消所有监听。|
+|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | 否      | 回调函数，取消注册了该回调函数的事件， 不设置取消所有监听。|
 
 **示例：**
 
@@ -565,25 +568,28 @@ struct DragControllerPage {
     Column() {
       Button('touch to execute drag')
         .onTouch((event?:TouchEvent) => {
-          let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-          let text = new unifiedDataChannel.Text()
-          let unifiedData = new unifiedDataChannel.UnifiedData(text)
-          let dragInfo: dragController.DragInfo = {
-            pointerId: 0,
-            data: unifiedData,
-            extraParams: ''
-          }
-          try{
-            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo); // 建议使用 this.getUIContext().getDragController().createDragAction()接口
-            if(!dragAction){
-              console.info("listener dragAction is null");
-              return
+          if (event && event.type == TouchType.Down) {
+            let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+            customBuilders.push(()=>{});
+            let text = new unifiedDataChannel.Text()
+            let unifiedData = new unifiedDataChannel.UnifiedData(text)
+            let dragInfo: dragController.DragInfo = {
+              pointerId: 0,
+              data: unifiedData,
+              extraParams: ''
             }
-            dragAction.off('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
-              console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
-            })
-          }catch(err) {
-            console.info("create dragAction Error:" + err.message);
+            try{
+              let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo); // 建议使用 this.getUIContext().getDragController().createDragAction()接口
+              if(!dragAction){
+                console.info("listener dragAction is null");
+                return
+              }
+              dragAction.off('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+                console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
+              })
+            }catch(err) {
+              console.info("create dragAction Error:" + err.message);
+            }
           }
         })
     }

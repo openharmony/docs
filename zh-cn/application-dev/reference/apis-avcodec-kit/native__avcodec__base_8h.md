@@ -61,7 +61,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [OH_MediaType](_codec_base.md#oh_mediatype-1) {<br/>MEDIA_TYPE_AUD = 0,<br/>MEDIA_TYPE_VID = 1,<br/>MEDIA_TYPE_SUBTITILE = 2<br/>} | 媒体类型。 |
-| [OH_AACProfile](_codec_base.md#oh_aacprofile-1) {<br/>AAC_PROFILE_LC = 0,<br/>AAC_PROFILE_HE = 3,<br/>AAC_PROFILE_HE_V2 = 4<br/>} | AAC档次。 | 
+| [OH_AACProfile](_codec_base.md#oh_aacprofile-1) {<br/>AAC_PROFILE_LC = 0,<br/>AAC_PROFILE_HE = 3,<br/>AAC_PROFILE_HE_V2 = 4<br/>} | AAC档次。<!--Del--><br/>（AAC_PROFILE_HE, AAC_PROFILE_HE_V2暂未开放）<!--DelEnd--> | 
 | [OH_AVCProfile](_codec_base.md#oh_avcprofile-1) {<br/>AVC_PROFILE_BASELINE = 0,<br/>AVC_PROFILE_HIGH = 4,<br/>AVC_PROFILE_MAIN = 8<br/>} | AVC档次。 | 
 | [OH_HEVCProfile](_codec_base.md#oh_hevcprofile-1) {<br/>HEVC_PROFILE_MAIN = 0,<br/>HEVC_PROFILE_MAIN_10 = 1,<br/>HEVC_PROFILE_MAIN_STILL = 2,<br/>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br/>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br/>} | HEVC档次。<br>HEVC_PROFILE_MAIN_10_HDR10、HEVC_PROFILE_MAIN_10_HDR10_PLUS在API 14废弃 | 
 | [OH_VVCProfile](_codec_base.md#oh_vvcprofile-1) {<br/>VVC_PROFILE_MAIN_10 = 1, <br/>VVC_PROFILE_MAIN_12 = 2, <br/>VVC_PROFILE_MAIN_12_INTRA = 10, <br/>VVC_PROFILE_MULTI_MAIN_10 = 17, <br/>VVC_PROFILE_MAIN_10_444 = 33, <br/>VVC_PROFILE_MAIN_12_444 = 34, <br/>VVC_PROFILE_MAIN_16_444 = 36, <br/>VVC_PROFILE_MAIN_12_444_INTRA = 42, <br/>VVC_PROFILE_MAIN_16_444_INTRA = 44, <br/>VVC_PROFILE_MULTI_MAIN_10_444 = 49, <br/>VVC_PROFILE_MAIN_10_STILL = 65, <br/>VVC_PROFILE_MAIN_12_STILL = 66, <br/>VVC_PROFILE_MAIN_10_444_STILL = 97, <br/>VVC_PROFILE_MAIN_12_444_STILL = 98, <br/>VVC_PROFILE_MAIN_16_444_STILL = 100 <br/>} | VVC档次。 | 
@@ -98,6 +98,7 @@
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](_codec_base.md#oh_avcodec_mimetype_audio_opus) | OPUS音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->  | 
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](_codec_base.md#oh_avcodec_mimetype_audio_g711mu) | G711MU音频编解码器的MIME类型。 | 
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](_codec_base.md#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_VVC](_codec_base.md#oh_avcodec_mimetype_video_vvc) | VVC(H.266)视频编解码器的MIME类型。 | 
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](_codec_base.md#oh_avcodec_mimetype_subtitle_srt) |SRT字幕解封装器的MIME类型。                         |
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT](_codec_base.md#oh_avcodec_mimetype_subtitle_webvtt) |WEBVTT字幕解封装器的MIME类型。                         |
 | const char \* [OH_ED_KEY_TIME_STAMP](_codec_base.md#oh_ed_key_time_stamp) | 表示surfacebuffer中时间戳的键，值类型为int64_t。（API14废弃） |
@@ -125,7 +126,7 @@
 | const char \* [OH_MD_KEY_REQUEST_I_FRAME](_codec_base.md#oh_md_key_request_i_frame) | 请求立即编码I帧的键。值类型为int32_t。 |
 | const char \* [OH_MD_KEY_QUALITY](_codec_base.md#oh_md_key_quality) | 所需编码质量的键。值类型为int32_t，此键仅适用于配置在恒定质量模式下的编码器。 | 
 | const char \* [OH_MD_KEY_CODEC_CONFIG](_codec_base.md#oh_md_key_codec_config) | 编解码器特定数据的键，值类型为uint8_t\*。 <!--Del-->（视频编解码此功能暂未支持）<!--DelEnd--> |
-| const char \* [OH_MD_KEY_TRACK_START_TIME](_codec_base.md#oh_md_key_track_start_time) | 轨道开始时间的键，值类型为int64_t。     |
+| const char \* [OH_MD_KEY_TRACK_START_TIME](_codec_base.md#oh_md_key_track_start_time) | 轨道开始时间的键，以微秒为单位，值类型为int64_t。     |
 | const char \* [OH_MD_KEY_TITLE](_codec_base.md#oh_md_key_title) | 媒体文件的标题的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_ARTIST](_codec_base.md#oh_md_key_artist) | 媒体文件艺术家的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_ALBUM](_codec_base.md#oh_md_key_album) | 专辑的媒体文件的键，值类型为string。 | 
@@ -176,7 +177,7 @@
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_MSE](_codec_base.md#oh_md_key_video_encoder_mse)     |描述视频帧平方误差的键，值类型为double。  |
 | const char \* [OH_MD_KEY_DECODING_TIMESTAMP](_codec_base.md#oh_md_key_decoding_timestamp) | AVBuffer中携带的音视频或字幕的sample对应的解码时间戳的键，以微秒为单位，值类型为int64_t。  |
 | const char \* [OH_MD_KEY_BUFFER_DURATION](_codec_base.md#oh_md_key_buffer_duration) | AVBuffer中携带的音视频或字幕的sample对应的持续时间的键，以微秒为单位，值类型为int64_t。       |
-| const char \* [OH_MD_KEY_START_TIME](_codec_base.md#oh_md_key_start_time) | 媒体文件中第一帧起始位置的开始时间的键，值类型为int64_t。     |
+| const char \* [OH_MD_KEY_START_TIME](_codec_base.md#oh_md_key_start_time) | 媒体文件中第一帧起始位置的开始时间的键，以微秒为单位，值类型为int64_t。     |
 | const char \* [OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE](_codec_base.md#oh_md_key_video_decoder_output_color_space)   | 设置视频解码器输出色彩空间的键，值类型为int32_t。 支持的值为OH_COLORSPACE_BT709_LIMIT。|
-| const char \* [OH_MD_KEY_TRACK_START_TIME](_codec_base.md#oh_md_key_track_start_time) | 轨道开始时间的键，值类型为int64_t。     |
 | const char \* [OH_MD_KEY_VIDEO_SAR](_codec_base.md#oh_md_key_video_sar)            | 样本长宽比的键，值类型为double。 |
+| const char \* [OH_MD_KEY_CREATION_TIME](_codec_base.md#oh_md_key_creation_time) | 媒体文件创建时间的元数据，值类型为string。 |

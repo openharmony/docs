@@ -76,7 +76,9 @@ close(): void
 
 ## 示例
 
-### 示例1
+### 示例1（加载图片）
+
+通过ImageBitMap加载本地图片。
 
   ```ts
   // xxx.ets
@@ -106,7 +108,9 @@ close(): void
 
   ![zh-cn_image_0000001194352442](figures/zh-cn_image_0000001194352442.png)
 
-### 示例2
+### 示例2（创建ImageBitmap）
+
+通过PixelMap创建ImageBitmap对象。
 
   ```ts
 // xxx.ets
@@ -140,9 +144,12 @@ struct Demo {
   ![zh-cn_image_0000001194352442](figures/zh-cn_image_0000001194352444.png)
 
 
-### 示例3
+### 示例3（支持并发线程绘制）
+
+通过创建Worker线程，实现并发线程绘制。
+
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 @Entry
 @Component

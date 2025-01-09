@@ -12,7 +12,7 @@ The meanings of T and S in this topic are as follows:
 
 | Type  | Description                                    |
 | ---- | -------------------------------------- |
-| T    | Class, number, boolean, string, and arras of these types.|
+| T    | Class, number, boolean, string, and arrays of these types.|
 | S    | number, boolean, string.                |
 
 
@@ -50,11 +50,11 @@ Stores key-value pair data in the application memory. If the given key already e
 
 >**NOTE**
 >
->1. If no key is specified, the second parameter is used as the default constructor; otherwise, the third parameter is used as the default constructor.
+>1. The second parameter is used when no key is specified, and the third parameter is used otherwise.
 >
->2. If the data has been stored in AppStorageV2, you can obtain the stored data without using the default constructor. Otherwise, you must specify the default constructor. If no constructor is specified, an application exception will occur.
+>2. If the data has been stored in AppStorageV2, you can obtain the stored data without using the default constructor. If the data has not been stored, you must specify a default constructor; otherwise, an application exception will be thrown.
 >
->3. Ensure type compatibility. Connecting data of different types with the same key will cause an application exception.
+>3. Ensure that the data types match the key. Connecting different types of data to the same key will result in an application exception.
 >
 >4. You are advised to use meaningful values for the key, with a length not exceeding 255 characters. The behavior of using illegal characters or empty characters is undefined.
 
@@ -107,6 +107,7 @@ Removes the specified key-value pair from [AppStorageV2](../../quick-start/arkts
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 // Assuming that there is a key named key_as2 in AppStorageV2, the following will remove the corresponding key-value pair from AppStorageV2.
 AppStorageV2.remove('key_as2');
@@ -179,13 +180,13 @@ Stores the key-value pair data on the application disk (for persistence). If the
 
 >**NOTE**
 >
->1. If no key is specified, the second parameter is used as the default constructor; if the second parameter is invalid, the third parameter is used as the default constructor
+>1. The third parameter is used when no **key** is specified or the second parameter is invalid, and the third parameter is used in all other cases.
 >
->2. If the data has been stored in PersistenceV2, you can obtain the stored data without using the default constructor. Otherwise, you must specify the default constructor. If no constructor is specified, an application exception occurs.
+>2. If the data has been stored in PersistenceV2, you can obtain the stored data without using the default constructor. If the data has not been stored, you must specify a default constructor; otherwise, an application exception will be thrown.
 >
->3. Ensure type compatibility. Connecting data of different types with the same key will cause an application exception.
+>3. Ensure that the data types match the key. Connecting different types of data to the same key will result in an application exception.
 >
->4. You are advised to use meaningful values for keys. The values can contain letters, digits, and underscores (_) and a maximum of 255 characters. If use invalid characters or null characters, undefined behavior will occur.
+>4. You are advised to use meaningful values for keys. The values can contain letters, digits, and underscores (_) and a maximum of 255 characters. Using invalid characters or null characters will result in undefined behavior.
 
 **Return value**
 
@@ -254,7 +255,7 @@ Removes the specified key-value pair from [PersistenceV2](../../quick-start/arkt
 
 | Name  | Type  | Mandatory| Description              |
 | -------- | ------ | ---- | ---------------------- |
-| keyOrType | string \| TypeConstructorWithArgs\<T\> | Yes  | Key to be removed. If a type is specified, the key to be deleted is the name of that type.|
+| keyOrType | string \| TypeConstructorWithArgs\<T\> | Yes  | Key to be removed. If a type is specified, the key to be removed is the name of that type.|
 
 >**NOTE**
 >
@@ -263,6 +264,7 @@ Removes the specified key-value pair from [PersistenceV2](../../quick-start/arkt
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 // Assuming that there is a key named key_as2 in PersistenceV2, the following will remove the corresponding key-value pair from PersistenceV2.
 PersistenceV2.remove('key_as2');
@@ -323,13 +325,14 @@ Persists the specified key-value pair data once.
 
 >**NOTE**
 >
->Since changes to non-[\@Trace](../../quick-start/arkts-new-observedV2-and-trace.md) decorated data do not trigger automatic persistence by [PersistenceV2](../../quick-start/arkts-new-persistencev2.md), this API can be called if necessary to persist the data for the corresponding key.
+>Since changes to non-[\@Trace](../../quick-start/arkts-new-observedV2-and-trace.md) decorated data do not automatically trigger persistence through [PersistenceV2](../../quick-start/arkts-new-persistencev2.md), you can call this API to manually persist the data for the corresponding key when needed.
 >
 >It is useless to manually persist the keys that are not in the **connect** state in the memory.
 
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 // Assuming there is a key named key_as2 in PersistenceV2, the following will persist the data for this key-value pair.
 PersistenceV2.save('key_as2');

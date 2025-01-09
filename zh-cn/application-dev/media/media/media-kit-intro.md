@@ -1,8 +1,16 @@
 # Media Kit简介
 
-Media Kit（媒体服务）提供了[AVPlayer](#avplayer)、[SoundPool](#soundpool)、[AVRecorder](#avrecorder)、[AVScreenCapture](#avscreencapture)、[AVMetadataExtractor](#avmetadataextractor)、[AVImageGenerator](#avimagegenerator)和[AVTranscoder](#avtranscoder)用于播放、录制音视频、获取音视频元数据和视频缩略图、视频转码。
+Media Kit（媒体服务）用于开发音视频播放或录制的各类功能。在Media Kit的开发指导中，将详细介绍音视频多个模块的开发方式，指导开发者如何使用系统提供的音视频API实现对应功能。比如使用SoundPool实现简单的提示音，当设备接收到新消息时，会发出短促的“滴滴”声；使用AVPlayer实现音乐播放器，循环播放一首音乐。
 
-在Media Kit的开发指导中，将介绍各种涉及音频、视频播放或录制功能场景的开发方式，指导开发者如何使用系统提供的音视频API实现对应功能。比如使用SoundPool实现简单的提示音，当设备接收到新消息时，会发出短促的“滴滴”声；使用AVPlayer实现音乐播放器，循环播放一首音乐。
+Media Kit提供的模块有：
+
+- [AVPlayer](#avplayer)：播放音视频
+- [SoundPool](#soundpool)：播放短音频
+- [AVRecorder](#avrecorder)：录制音视频
+- [AVScreenCapture](#avscreencapture)：录制屏幕
+- [AVMetadataExtractor](#avmetadataextractor)：获取音视频元数据
+- [AVImageGenerator](#avimagegenerator)：获取视频缩略图
+- [AVTranscoder](#avtranscoder)：视频转码
 
 ## 亮点/特征
 
@@ -42,15 +50,13 @@ AVPlayer提供功能完善一体化播放能力，应用只需要提供流媒体
 
 ### 音频播放
 
-当使用AVPlayer开发音乐应用播放音频时，其交互关系如图所示。
-
-**图1** 音频播放外部模块交互图  
+当使用AVPlayer开发音乐应用播放音频时，AVPlayer与外部模块的交互关系如图所示。
 
 ![Audio Playback Interaction Diagram](figures/audio-playback-interaction-diagram.png)
 
 音乐类应用通过调用JS接口层提供的AVPlayer接口实现相应功能时，框架层会通过播放服务（Player Framework）将资源解析成音频数据流（PCM），音频数据流经过软件解码后输出至音频服务（Audio Framework），由音频服务输出至音频驱动渲染，实现音频播放功能。完整的音频播放需要应用、Player Framework、Audio Framework、音频HDI共同实现。
 
-图1中，数字标注表示需要数据与外部模块的传递。
+上图中，数字标注表示需要数据与外部模块的传递。
 
 1. 音乐应用将媒体资源传递给AVPlayer接口。
 
@@ -58,9 +64,7 @@ AVPlayer提供功能完善一体化播放能力，应用只需要提供流媒体
 
 ### 视频播放
 
-当使用AVPlayer开发视频应用播放视频时，其交互关系如图所示。
-
-**图2** 视频播放外部模块交互图  
+当使用AVPlayer开发视频应用播放视频时，AVPlayer与外部模块的交互关系如图所示。
 
 ![Video playback interaction diagram](figures/video-playback-interaction-diagram.png)
 
@@ -68,7 +72,7 @@ AVPlayer提供功能完善一体化播放能力，应用只需要提供流媒体
 
 完整的视频播放需要：应用、XComponent、Player Framework、Graphic Framework、Audio Framework、显示HDI和音频HDI共同实现。
 
-图2中，数字标注表示需要数据与外部模块的传递。
+图中的数字标注表示需要数据与外部模块的传递。
 
 1. 应用从XComponent组件获取窗口SurfaceID，获取方式参考[XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
@@ -140,17 +144,13 @@ SoundPool主要工作是将音频媒体资源（比如mp3/m4a/wav等）转码为
 
 SoundPool提供短音频的播放能力，应用只需要提供音频资源来源，不负责数据解析和解码就可达成播放效果。
 
-### 音频播放
-
-当使用SoundPool开发应用播放音频时，其交互关系如图所示。
-
-**图3** 音频池外部模块交互图  
+当使用SoundPool开发应用播放音频时，SoundPool与外部模块的交互关系如图所示。
 
 ![SoundPool Interaction Diagram](figures/soundpool-interaction-diagram.png)
 
 音乐类应用通过调用JS接口层提供的SoundPool接口实现相应功能时，框架层会通过播放服务（Player Framework）将资源解析成音频数据流（PCM），音频数据流经过软件解码后输出至音频服务（Audio Framework），由音频服务输出至音频驱动渲染，实现音频播放功能。完整的音频播放需要应用、Player Framework、Audio Framework、音频HDI共同实现。
 
-图3中，数字标注表示需要数据与外部模块的传递。
+图中的数字标注表示需要数据与外部模块的传递。
 
 1. 音乐应用将媒体资源传递给SoundPool接口。
 
@@ -180,7 +180,7 @@ SoundPool提供短音频的播放能力，应用只需要提供音频资源来�
 
 AVRecorder主要工作是捕获音频信号，接收视频信号，完成音视频编码并保存到文件中，帮助开发者轻松实现音视频录制功能，包括开始录制、暂停录制、恢复录制、停止录制、释放资源等功能控制。它允许调用者指定录制的编码格式、封装格式、文件路径等参数。
 
-**图4** 视频录制外部模块交互图  
+当使用AVRecorder开发应用录制视频时，AVRecorder与外部模块的交互关系如图所示。
 
 ![Video recording interaction diagram](figures/video-recording-interaction-diagram.png)
 
@@ -190,7 +190,7 @@ AVRecorder主要工作是捕获音频信号，接收视频信号，完成音视�
 
 通过音视频录制组合，可分别实现纯音频录制、纯视频录制、音视频录制。
 
-图4中，数字标注表示需要数据与外部模块的传递。
+图中的数字标注表示需要数据与外部模块的传递。
 
 1. 应用通过AVRecorder接口从录制服务获取SurfaceID。
 
@@ -237,9 +237,10 @@ AVRecorder主要工作是捕获音频信号，接收视频信号，完成音视�
 | wav | 音频的容器格式，wav。 | 
 
 ## AVScreenCapture
+
 AVScreenCapture主要工作是捕获音频信号、视频信号，并通过音视频编码将屏幕信息保存到文件中，帮助开发者轻松实现屏幕录制功能，主要包括录屏存文件和录屏取码流两套接口，它允许调用者指定屏幕录制的编码格式、封装格式和文件路径等参数。
 
-**图5** 屏幕录制外部模块交互图  
+当使用AVScreenCapture开发应用录制屏幕时，AVScreenCapture与外部模块的交互关系如图所示。
 
 ![AvScreenCapture interaction diagram](figures/avscreencapture-interaction-diagram.png)
 
@@ -247,6 +248,7 @@ AVScreenCapture主要工作是捕获音频信号、视频信号，并通过音�
 - 屏幕录制：应用通过调用JS/Native接口层提供的AVScreenCapture接口实现屏幕录制时，框架层会通过录屏框架，调用图形图像服务通过视频捕获屏幕数据，通过软件编码封装后保存至文件中，实现屏幕录制功能。
 
 ### 支持的格式
+
 支持的音频源如下：
 
 | 音频源类型 | 说明 | 
@@ -280,40 +282,49 @@ AVScreenCapture主要工作是捕获音频信号、视频信号，并通过音�
 | m4a | 纯音频的容器格式，M4A。 | 
 
 ## AVMetadataExtractor
+
 AVMetadataExtractor 主要用于获取音视频元数据。通过使用 AVMetadataExtractor，开发者可以从原始媒体资源中提取出丰富的元数据信息。以音频资源为例，我们可以获取到关于该音频的标题、艺术家、专辑名称、时长等详细信息。视频资源的元数据获取流程与音频类似，由于视频没有专辑封面，所以无法获取视频资源的专辑封面。
 
-- 获取音频资源的元数据的全流程包含：创建AVMetadataExtractor，设置资源，获取元数据，获取专辑封面（可选），销毁资源。
+获取音频资源的元数据的全流程包含：创建AVMetadataExtractor，设置资源，获取元数据，获取专辑封面（可选），销毁资源。
 
 ### 支持的格式
-支持的音视频源参考[媒体数据解析](../avcodec/audio-video-demuxer.md)
+
+支持的音视频源参考[媒体数据解析](../avcodec/audio-video-demuxer.md)。
 
 ## AVImageGenerator
+
 AVImageGenerator 主要用于获取视频缩略图。通过使用 AVImageGenerator，开发者可以实现从原始媒体资源中获取视频指定时间的视频帧。
 
 ### 支持的格式
-支持的视频源参考[视频解码](../avcodec/video-decoding.md)
+
+支持的视频源参考[视频解码](../avcodec/video-decoding.md)。
 
 ## AVTranscoder
-AVTranscoder 主要用于将已压缩编码的视频文件按照指定参数转换为另一种格式的视频。
+
+AVTranscoder主要用于将已压缩编码的视频文件按照指定参数转换为另一种格式的视频。
+
+### 支持的格式
 
 当前版本AVTranscoder提供以下转码服务：
 
 支持修改源视频文件的编码参数（格式、码率）和封装格式。源视频的音视频编码和封装格式为系统AVCodec支持的解码和解封装格式，目标视频的音视频编码和封装格式为系统AVCodec支持的编码和封装格式。
+
 - 支持的源视频格式：
-    - [解封装格式](../avcodec/audio-video-demuxer.md)
-    - [音频解码格式](../avcodec/audio-decoding.md)
-    - [视频解码格式](../avcodec/video-decoding.md)
-       <!--Del-->
-       > **说明：**
-       > 当前不支持H.265。
-       <!--DelEnd-->
+  - [解封装格式](../avcodec/audio-video-demuxer.md)
+  - [音频解码格式](../avcodec/audio-decoding.md)
+  - [视频解码格式](../avcodec/video-decoding.md)
+    <!--Del-->
+    > **说明：**
+    > 当前不支持H.265。
+    <!--DelEnd-->
 - 支持的目标视频格式：
-    - [封装格式](../avcodec/audio-video-muxer.md)
-    - [音频编码格式](../avcodec/audio-encoding.md)
-    - [视频编码格式](../avcodec/video-encoding.md)
-      <!--Del-->
-      > **说明：**
-      > 当前不支持H.265。
-      <!--DelEnd-->
+  - [封装格式](../avcodec/audio-video-muxer.md)
+  - [音频编码格式](../avcodec/audio-encoding.md)
+  - [视频编码格式](../avcodec/video-encoding.md)
+    <!--Del-->
+    > **说明：**
+    > 当前不支持H.265。
+   
+    <!--DelEnd-->
 
 <!--RP1--><!--RP1End-->

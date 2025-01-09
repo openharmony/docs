@@ -18,7 +18,7 @@ import { PiPWindow } from '@kit.ArkUI';
 
 isPiPEnabled(): boolean
 
-Checks whether the PiP feature is enabled.
+Checks whether the PiP feature is supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -28,7 +28,7 @@ Checks whether the PiP feature is enabled.
 
 | Type      | Description                                 |
 |----------|-------------------------------------|
-| boolean  | Status of the PiP feature. The value **true** means that the PiP feature is enabled, and **false** means the opposite.|
+| boolean  | Status of the PiP feature. The value **true** means that the PiP feature is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -180,12 +180,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { PiPWindow } from '@kit.ArkUI';
+import { PiPWindow, UIContext } from '@kit.ArkUI';
 import { typeNode } from '@ohos.arkui.node';
 
 let pipController: PiPWindow.PiPController | undefined = undefined;
 let xComponentController: XComponentController = new XComponentController();
-let xComponent = typeNode.createNode(this.getUIContext(), "XComponent");
+let context: UIContext | undefined = undefined; // You can pass UIContext or use this.getUIContext () in the layout to assign a valid value to context.
+let xComponent = typeNode.createNode(context, 'XComponent');
 xComponent.initialize({
   id:'xcomponent',
   type:XComponentType.SURFACE,
@@ -221,11 +222,11 @@ Defines the parameters for creating a PiP controller.
 | Name                 | Type                                                                        | Mandatory | Description                                                                                                                                                                                                                                                                                                                                       |
 |---------------------|----------------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | context             | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Context environment.                                                                                                                                                                                                                                                                                                                                 |
-| componentController | [XComponentController](arkui-ts/ts-basic-components-xcomponent.md)         | Yes  | Original [XComponent](../../ui/arkts-common-components-xcomponent.md) controller.                                                                                                                                                                                                                                                                     |
+| componentController | [XComponentController](arkui-ts/ts-basic-components-xcomponent.md)         | Yes  | Original [XComponent](arkui-ts/ts-basic-components-xcomponent.md) controller.                                                                                                                                                                                                                                                                     |
 | navigationId        | string                                                                     | No  | Navigation ID of the current page.<br>1. When the UIAbility uses [Navigation](arkui-ts/ts-basic-components-navigation.md) to manage pages, set the ID of the **Navigation** component for the PiP controller. This ensures that the original page can be restored from the PiP window.<br>2. When the UIAbility uses [Router](js-apis-router.md) to manage pages, you do not need to set the ID of the **Navigation** component for the PiP controller.<br>3. If the UIAbility has only one page, you do not need to set the navigation ID. The original page can be restored from the PiP window.|
 | templateType        | [PiPTemplateType](#piptemplatetype)                                        | No  | Template type, which is used to distinguish video playback, video call, and video meeting scenarios.                                                                                                                                                                                                                                                                                                                 |
-| contentWidth        | number                                                                     | No  | Width of the original content, in px. It is used to determine the aspect ratio of the PiP window. When the PiP controller is created in [typeNode mode](#pipwindowcreate12), the default value is 1920. When the PiP controller is created [not in typeNode mode](#pipwindowcreate), the default value is the width of the [XComponent](../../ui/arkts-common-components-xcomponent.md).                                                                |
-| contentHeight       | number                                                                     | No  | Height of the original content, in px. It is used to determine the aspect ratio of the PiP window. It is used to determine the aspect ratio of the PiP window. When the PiP controller is created in [typeNode mode](#pipwindowcreate12), the default value is 1080. When the PiP controller is created [not in typeNode mode](#pipwindowcreate), the default value is the height of the [XComponent](../../ui/arkts-common-components-xcomponent.md).                                                                |
+| contentWidth        | number                                                                     | No  | Width of the original content, in px. It is used to determine the aspect ratio of the PiP window. When the PiP controller is created in [typeNode mode](#pipwindowcreate12), the default value is 1920. When the PiP controller is created [not in typeNode mode](#pipwindowcreate), the default value is the width of the [XComponent](arkui-ts/ts-basic-components-xcomponent.md).                                                                |
+| contentHeight       | number                                                                     | No  | Height of the original content, in px. It is used to determine the aspect ratio of the PiP window. It is used to determine the aspect ratio of the PiP window. When the PiP controller is created in [typeNode mode](#pipwindowcreate12), the default value is 1080. When the PiP controller is created [not in typeNode mode](#pipwindowcreate), the default value is the height of the [XComponent](arkui-ts/ts-basic-components-xcomponent.md).                                                                |
 | controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | No  | A list of optional component groups of the PiP controller. An application can configure whether to display these optional components. If this parameter is not set for an application, the basic components (for example, play/pause of the video playback component group) are displayed. A maximum of three components can be configured in the list.                                                                                                                                                                                                                                                  |
 | customUIController<sup>12+</sup>      | [NodeController](js-apis-arkui-nodeController.md)           | No  | Custom UI that can be displayed at the top of the PiP window.                                                                                                                                                                                                                                                                                            |
 

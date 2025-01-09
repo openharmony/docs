@@ -39,6 +39,9 @@ Optional\<T>
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 ## 示例
+
+在Column组件上设置自定义属性，并在其对应的FrameNode上获取所设置的自定义属性。
+
 ```ts
 // xxx.ets
 import { FrameNode, UIContext } from '@kit.ArkUI';

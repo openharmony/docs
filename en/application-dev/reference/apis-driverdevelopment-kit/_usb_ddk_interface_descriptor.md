@@ -11,7 +11,7 @@ Defines interface descriptors.
 
 **Related Modules**
 
-[UsbDdk](_usb_ddk.md)
+[USB DDK](_usb_ddk.md)
 
 
 ## Summary

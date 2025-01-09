@@ -56,7 +56,7 @@ import { MeasureText } from '@kit.ArkUI'
 @Component
 struct Index {
   @State textWidth: number = MeasureText.measureText({ // 建议使用 this.getUIContext().getMeasureUtils().measureText()接口
-    textContent: "Hello word",
+    textContent: "Hello World",
     fontSize: '50px'
   })
 
@@ -108,7 +108,7 @@ import { MeasureText } from '@kit.ArkUI'
 @Component
 struct Index {
   textSize : SizeOptions = MeasureText.measureTextSize({ // 建议使用 this.getUIContext().getMeasureUtils().measureText()接口
-    textContent: "Hello word",
+    textContent: "Hello World",
     fontSize: '50px'
   })
   build() {

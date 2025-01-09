@@ -1,6 +1,7 @@
 # 适配不同折叠状态的摄像头变更(ArkTS)
 
-在开发相机应用时，需要先申请相机相关权限[开发准备](camera-preparation.md)。
+在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+
 一台可折叠设备在不同折叠状态下，可使用不同的摄像头，应用可调用[CameraManager.on('foldStatusChange')](../../reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12)或[display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10)监听设备的折叠状态变化，并调用[CameraManager.getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras)获取当前状态下可用摄像头，完成相应适配，确保应用在折叠状态变更时的用户体验。
 
 详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/js-apis-camera.md)。
@@ -55,7 +56,7 @@
 
 此处提供两种方案供开发者选择。
 
-- **方案一：使用相机框架提供的[CameraManager.on('foldStatusChange')](../../../application-dev/reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12)监听折叠屏折叠态变化。**
+- **方案一：使用相机框架提供的[CameraManager.on('foldStatusChange')](../../../application-dev/reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12)监听设备折叠态变化。**
     ```ts
     import { camera } from '@kit.CameraKit';
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -70,7 +71,7 @@
     cameraManager.on('foldStatusChange', registerFoldStatusChanged);
     //cameraManager.off('foldStatusChange', registerFoldStatusChanged);
     ```
-- **方案二：使用图形图像的[display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10)监听折叠态变化。**
+- **方案二：使用图形图像的[display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10)监听设备折叠态变化。**
     ```ts
     import { display } from '@kit.ArkUI';
     let preFoldStatus: display.FoldStatus = display.getFoldStatus();
@@ -197,19 +198,39 @@ struct Index {
 
   async releaseCamera(): Promise<void> {
     // 停止当前会话
-    await this.mPhotoSession?.stop();
-  
+    try {
+      await this.mPhotoSession?.stop();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(TAG + 'Failed to stop session, errorCode = ' + err.code);
+    }
+
     // 释放相机输入流
-    await this.mCameraInput?.close();
-  
+    try {
+      await this.mCameraInput?.close();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(TAG + 'Failed to close device, errorCode = ' + err.code);
+    }
+
     // 释放预览输出流
-    await this.mPreviewOutput?.release();
-  
+    try {
+      await this.mPreviewOutput?.release();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(TAG + 'Failed to release previewOutput, errorCode = ' + err.code);
+    }
+
     this.mPreviewOutput = undefined;
-  
+
     // 释放会话
-    await this.mPhotoSession?.release();
-  
+    try {
+      await this.mPhotoSession?.release();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(TAG + 'Failed to release photoSession, errorCode = ' + err.code);
+    }
+
     // 会话置空
     this.mPhotoSession = undefined;
   }
@@ -258,29 +279,30 @@ struct Index {
       console.error(TAG + 'camera.getCameraManager error');
       return;
     }
-  
+
     // 获取相机列表
     let cameraArray: Array<camera.CameraDevice> = this.mCameraManager.getSupportedCameras();
     if (cameraArray.length <= 0) {
-      console.error(TAG + "cameraManager.getSupportedCameras error");
+      console.error(TAG + 'cameraManager.getSupportedCameras error');
       return;
     }
-  
+
     for (let index = 0; index < cameraArray.length; index++) {
       console.info(TAG + 'cameraId : ' + cameraArray[index].cameraId); // 获取相机ID
       console.info(TAG + 'cameraPosition : ' + cameraArray[index].cameraPosition); // 获取相机位置
       console.info(TAG + 'cameraType : ' + cameraArray[index].cameraType); // 获取相机类型
       console.info(TAG + 'connectionType : ' + cameraArray[index].connectionType); // 获取相机连接类型
     }
-  
+
     let deviceIndex = cameraArray.findIndex((cameraDevice: camera.CameraDevice) => {
       return cameraDevice.cameraPosition === cameraPosition;
     })
     if (deviceIndex === -1) {
-      console.error(TAG + "not found camera");
-      return;
+      deviceIndex = 0;
+      console.error(TAG + 'not found camera');
     }
     this.curCameraDevice = cameraArray[deviceIndex];
+
     // 创建相机输入流
     try {
       this.mCameraInput = this.mCameraManager.createCameraInput(this.curCameraDevice);
@@ -291,9 +313,15 @@ struct Index {
     if (this.mCameraInput === undefined) {
       return;
     }
+
     // 打开相机
-    await this.mCameraInput.open();
-  
+    try {
+      await this.mCameraInput.open();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(TAG + 'Failed to open device, errorCode = ' + err.code);
+    }
+
     // 获取支持的模式类型
     let sceneModes: Array<camera.SceneMode> = this.mCameraManager.getSupportedSceneModes(this.curCameraDevice);
     let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
@@ -301,22 +329,22 @@ struct Index {
       console.error(TAG + 'photo mode not support');
       return;
     }
+
     // 获取相机设备支持的输出流能力
     let cameraOutputCapability: camera.CameraOutputCapability =
       this.mCameraManager.getSupportedOutputCapability(this.curCameraDevice, camera.SceneMode.NORMAL_PHOTO);
     if (!cameraOutputCapability) {
-      console.error(TAG + "cameraManager.getSupportedOutputCapability error");
+      console.error(TAG + 'cameraManager.getSupportedOutputCapability error');
       return;
     }
-    console.info(TAG + "outputCapability: " + JSON.stringify(cameraOutputCapability));
-  
+    console.info(TAG + 'outputCapability: ' + JSON.stringify(cameraOutputCapability));
     let previewProfile = this.getPreviewProfile(cameraOutputCapability);
     if (previewProfile === undefined) {
       console.error(TAG + 'The resolution of the current preview stream is not supported.');
       return;
     }
     this.previewProfileObj = previewProfile;
-  
+
     // 创建预览输出流,其中参数 surfaceId 参考上文 XComponent 组件，预览流为XComponent组件提供的surface
     try {
       this.mPreviewOutput = this.mCameraManager.createPreviewOutput(this.previewProfileObj, surfaceId);
@@ -327,7 +355,7 @@ struct Index {
     if (this.mPreviewOutput === undefined) {
       return;
     }
-  
+
     //创建会话
     try {
       this.mPhotoSession = this.mCameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
@@ -338,7 +366,7 @@ struct Index {
     if (this.mPhotoSession === undefined) {
       return;
     }
-  
+
     // 开始配置会话
     try {
       this.mPhotoSession.beginConfig();
@@ -346,7 +374,7 @@ struct Index {
       let err = error as BusinessError;
       console.error(TAG + 'Failed to beginConfig. errorCode = ' + err.code);
     }
-  
+
     // 向会话中添加相机输入流
     try {
       this.mPhotoSession.addInput(this.mCameraInput);
@@ -354,7 +382,7 @@ struct Index {
       let err = error as BusinessError;
       console.error(TAG + 'Failed to addInput. errorCode = ' + err.code);
     }
-  
+
     // 向会话中添加预览输出流
     try {
       this.mPhotoSession.addOutput(this.mPreviewOutput);
@@ -362,14 +390,22 @@ struct Index {
       let err = error as BusinessError;
       console.error(TAG + 'Failed to addOutput(previewOutput). errorCode = ' + err.code);
     }
-  
+
     // 提交会话配置
-    await this.mPhotoSession.commitConfig();
-  
+    try {
+      await this.mPhotoSession.commitConfig();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(TAG + 'Failed to commit session configuration, errorCode = ' + err.code);
+    }
+
     // 启动会话
-    await this.mPhotoSession.start().then(() => {
-      console.info(TAG + 'Promise returned to indicate the session start success.');
-    });
+    try {
+      await this.mPhotoSession.start()
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(TAG + 'Failed to start session. errorCode = ' + err.code);
+    }
   }
 
   build() {

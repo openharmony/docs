@@ -2,9 +2,7 @@
 
 ## Sendable class只能继承自Sendable class
 
-> **说明：**
->
-> 这里的class不包括变量。Sendable class不能继承自变量。
+Sendable对象布局及原型链不可变，非Sendable对象可以通过特殊方式修改布局，不允许互相继承。这里的class不包括变量。Sendable class不能继承自变量。
 
 **正例：**
 
@@ -42,6 +40,7 @@ class B extends A {
 
 ## 非Sendable class只能继承自非Sendable class
 
+Sendable对象布局及原型链不可变，由于非Sendable对象可以通过特殊方式修改布局，因此不允许互相继承。
 **正例：**
 
 ```ts
@@ -76,6 +75,8 @@ class B extends A {
 
 ## 非Sendable class只能实现非Sendable interface
 
+如果非Sendable class实现了Sendable interface，可能会被认为是Sendable的，实际是非Sendable的，导致错误使用。
+
 **正例：**
 
 ```ts
@@ -98,6 +99,8 @@ class B implements I {};
 
 
 ## Sendable class/interface成员变量必须是Sendable支持的数据类型
+
+Sendable数据不能持有非Sendable数据，因此Sendable数据的成员属性必须为Sendable数据。
 
 **正例：**
 
@@ -124,6 +127,8 @@ class A {
 
 ## Sendable class/interface的成员变量不支持使用!断言
 
+Sendable对象的成员属性必须赋初值，!修饰的变量可以不赋初值，因此不支持使用!。
+
 **正例：**
 
 ```ts
@@ -148,6 +153,8 @@ class A {
 
 
 ## Sendable class/interface的成员变量不支持使用计算属性名
+
+Sendable对象的布局不可变，计算属性不能静态确定对象布局，因此不支持。
 
 **正例：**
 
@@ -177,6 +184,8 @@ class A {
 
 
 ## 泛型类中的Sendable class，collections.Array，collections.Map，collections.Set的模板类型必须是Sendable类型
+
+Sendable数据不能持有非Sendable数据，因此泛型类中的Sendable数据的模版类型必须是Sendable类型。
 
 **正例：**
 
@@ -210,7 +219,7 @@ try {
 
 ## Sendable class的内部不允许使用当前模块内上下文环境中定义的变量
 
-由于Sendable对象在不同并发实例间的上下文环境不同，如果直接访问会有非预期行为。不支持Sendable对象使用当前模块内上下文环境中定义的变量，如果违反，编译阶段会报错。
+由于Sendable对象在不同并发实例间的上下文环境不同，属于单个虚拟机实例，如果直接访问会有非预期行为。不支持Sendable对象使用当前模块内上下文环境中定义的变量，如果违反，编译阶段会报错。
 
 > **说明：**
 >
@@ -305,7 +314,7 @@ class C {
 
 ## 不能使用对象字面量/数组字面量初始化Sendable类型
 
-Sendable数据类型只能通过Sendable类型的new表达式创建。
+对象字面量/数组字面量是非Sendable类型，Sendable数据类型只能通过Sendable类型的new表达式创建。
 
 **正例：**
 
@@ -328,9 +337,7 @@ let arr4: number[] = new collections.Array<number>(1, 2, 3); // 编译报错
 
 ## 非Sendable类型不可以as成Sendable类型
 
-> **说明：**
->
-> Sendable类型在不违反Sendable规则的前提下需要和非Sendable类型行为兼容，因此Sendable类型可以as成非Sendable类型。
+除了Object类型，非Sendable类型不可以as成Sendable类型。非Sendable类型通过as强转成Sendable类型后实际是非Sendable的类型数据，会导致错误使用。Sendable类型在不违反Sendable规则的前提下需要和非Sendable类型行为兼容，因此Sendable类型可以as成非Sendable类型。
 
 **正例：**
 
@@ -365,7 +372,7 @@ let a2: SendableA = new A() as SendableA;
 
 ## 箭头函数不支持共享
 
-箭头函数不支持使用Sendable装饰器。
+箭头函数不支持使用Sendable装饰器，是非Sendable函数，因此不支持共享。
 
 **正例：**
 
@@ -405,7 +412,7 @@ class SendableClass {
 
 ## Sendable装饰器修饰类型时仅支持修饰函数类型
 
-Sendable装饰器修饰类型时仅支持修饰函数类型。
+当前仅支持声明Sendable函数类型，因此只能修饰函数类型。
 
 **正例：**
 

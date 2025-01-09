@@ -46,6 +46,8 @@ constructor(width: number, height: number, data?: Uint8ClampedArray, unit?: Leng
 
 **示例：**
 
+使用getImageData接口获得一个ImageData对象。
+
   ```ts
   // xxx.ets
   @Entry

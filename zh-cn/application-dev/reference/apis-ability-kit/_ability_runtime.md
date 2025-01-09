@@ -35,6 +35,13 @@
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetCacheDir](#oh_abilityruntime_applicationcontextgetcachedir)(char* buffer, int32_t bufferSize, int32_t* writeLength) | 获取应用级别的缓存目录。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetAreaMode](#oh_abilityruntime_applicationcontextgetareamode)([AbilityRuntime_AreaMode](#abilityruntime_areamode)* areaMode) | 获取应用级别的数据加密等级。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetBundleName](#oh_abilityruntime_applicationcontextgetbundlename)(char* buffer, int32_t bufferSize, int32_t* writeLength) | 获取应用包名。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetTempDir](#oh_abilityruntime_applicationcontextgettempdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取应用级别的临时文件目录。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetFilesDir](#oh_abilityruntime_applicationcontextgetfilesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取应用级别的通用文件目录。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetDatabaseDir](#oh_abilityruntime_applicationcontextgetdatabasedir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取应用级别的数据库文件目录。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetPreferencesDir](#oh_abilityruntime_applicationcontextgetpreferencesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取应用级别的首选项文件目录。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetBundleCodeDir](#oh_abilityruntime_applicationcontextgetbundlecodedir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取应用级别的安装文件目录。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetDistributedFilesDir](#oh_abilityruntime_applicationcontextgetdistributedfilesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取应用级别的分布式文件目录。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetCloudFileDir](#oh_abilityruntime_applicationcontextgetcloudfiledir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取应用级别的云文件目录。 |
 
 ## 枚举类型说明
 
@@ -159,3 +166,199 @@ ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 查询成功。
 ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - 入参buffer或者writeLength为空，或者缓冲区大小小于需要写入的大小。
 
 ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST  - 当前环境的上下文不存在，如在应用创建的[子进程](c-apis-ability-childprocess.md)中应用级别上下文不存在。
+
+### OH_AbilityRuntime_ApplicationContextGetTempDir
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetTempDir(char* buffer, const int32_t bufferSize, int32_t* writeLength)
+```
+
+**描述**
+
+获取应用级别的临时文件目录。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| buffer      | 缓冲区，缓存目录字符串写入该区域。                           |
+| bufferSize  | 缓冲区大小。                                                 |
+| writeLength | 在返回ABILITY_RUNTIME_ERROR_CODE_NO_ERROR时，表示实际写入到缓冲区的字符串长度。 |
+
+**返回：**
+
+ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 查询成功。
+
+ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - 入参buffer或者writeLength为空，或者缓冲区大小小于需要写入的大小。
+
+ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - 当前环境的上下文不存在，如在应用创建的[子进程](c-apis-ability-childprocess.md)中应用级别上下文不存在。
+
+### OH_AbilityRuntime_ApplicationContextGetFilesDir
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetFilesDir(char* buffer, const int32_t bufferSize, int32_t* writeLength)
+```
+
+**描述**
+
+获取应用级别的通用文件目录。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| buffer      | 缓冲区，缓存目录字符串写入该区域。                           |
+| bufferSize  | 缓冲区大小。                                                 |
+| writeLength | 在返回ABILITY_RUNTIME_ERROR_CODE_NO_ERROR时，表示实际写入到缓冲区的字符串长度。 |
+
+**返回：**
+
+ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 查询成功。
+
+ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - 入参buffer或者writeLength为空，或者缓冲区大小小于需要写入的大小。
+
+ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - 当前环境的上下文不存在，如在应用创建的[子进程](c-apis-ability-childprocess.md)中应用级别上下文不存在。
+
+### OH_AbilityRuntime_ApplicationContextGetDatabaseDir
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(char* buffer, const int32_t bufferSize, int32_t* writeLength);
+```
+
+**描述**
+
+获取应用级别的数据库文件目录。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| buffer      | 缓冲区，缓存目录字符串写入该区域。                           |
+| bufferSize  | 缓冲区大小。                                                 |
+| writeLength | 在返回ABILITY_RUNTIME_ERROR_CODE_NO_ERROR时，表示实际写入到缓冲区的字符串长度。 |
+
+**返回：**
+
+ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 查询成功。
+
+ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - 入参buffer或者writeLength为空，或者缓冲区大小小于需要写入的大小。
+
+ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - 当前环境的上下文不存在，如在应用创建的[子进程](c-apis-ability-childprocess.md)中应用级别上下文不存在。
+
+### OH_AbilityRuntime_ApplicationContextGetPreferencesDir
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetPreferencesDir(char* buffer, const int32_t bufferSize, int32_t* writeLength)
+```
+
+**描述**
+
+获取应用级别的首选项文件目录。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| buffer      | 缓冲区，缓存目录字符串写入该区域。                           |
+| bufferSize  | 缓冲区大小。                                                 |
+| writeLength | 在返回ABILITY_RUNTIME_ERROR_CODE_NO_ERROR时，表示实际写入到缓冲区的字符串长度。 |
+
+**返回：**
+
+ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 查询成功。
+
+ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - 入参buffer或者writeLength为空，或者缓冲区大小小于需要写入的大小。
+
+ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - 当前环境的上下文不存在，如在应用创建的[子进程](c-apis-ability-childprocess.md)中应用级别上下文不存在。
+
+### OH_AbilityRuntime_ApplicationContextGetBundleCodeDir
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleCodeDir(char* buffer, const int32_t bufferSize, int32_t* writeLength)
+```
+
+**描述**
+
+获取应用级别的安装文件目录。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| buffer      | 缓冲区，缓存目录字符串写入该区域。                           |
+| bufferSize  | 缓冲区大小。                                                 |
+| writeLength | 在返回ABILITY_RUNTIME_ERROR_CODE_NO_ERROR时，表示实际写入到缓冲区的字符串长度。 |
+
+**返回：**
+
+ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 查询成功。
+
+ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - 入参buffer或者writeLength为空，或者缓冲区大小小于需要写入的大小。
+
+ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - 当前环境的上下文不存在，如在应用创建的[子进程](c-apis-ability-childprocess.md)中应用级别上下文不存在。
+
+### OH_AbilityRuntime_ApplicationContextGetDistributedFilesDir
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDistributedFilesDir(char* buffer, const int32_t bufferSize, int32_t* writeLength)
+```
+
+**描述**
+
+获取应用级别的分布式文件目录。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| buffer      | 缓冲区，缓存目录字符串写入该区域。                           |
+| bufferSize  | 缓冲区大小。                                                 |
+| writeLength | 在返回ABILITY_RUNTIME_ERROR_CODE_NO_ERROR时，表示实际写入到缓冲区的字符串长度。 |
+
+**返回：**
+
+ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 查询成功。
+
+ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - 入参buffer或者writeLength为空，或者缓冲区大小小于需要写入的大小。
+
+ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - 当前环境的上下文不存在，如在应用创建的[子进程](c-apis-ability-childprocess.md)中应用级别上下文不存在。
+
+### OH_AbilityRuntime_ApplicationContextGetCloudFileDir
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCloudFileDir(char* buffer, const int32_t bufferSize, int32_t* writeLength)
+```
+
+**描述**
+
+获取应用级别的云文件目录。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| buffer      | 缓冲区，缓存目录字符串写入该区域。                           |
+| bufferSize  | 缓冲区大小。                                                 |
+| writeLength | 在返回ABILITY_RUNTIME_ERROR_CODE_NO_ERROR时，表示实际写入到缓冲区的字符串长度。 |
+
+**返回：**
+
+ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 查询成功。
+
+ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - 入参buffer或者writeLength为空，或者缓冲区大小小于需要写入的大小。
+
+ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - 当前环境的上下文不存在，如在应用创建的[子进程](c-apis-ability-childprocess.md)中应用级别上下文不存在。

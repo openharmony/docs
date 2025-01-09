@@ -7,7 +7,7 @@
 
 **起始版本：** 9
 
-**相关模块：**[NeuralNeworkRuntime](_neural_nework_runtime.md)
+**相关模块：**[NeuralNeworkRuntime](_neural_network_runtime.md)
 
 
 ## 汇总

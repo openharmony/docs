@@ -89,6 +89,8 @@ onDisAppear(event: () => void): T
 
 ## 示例
 
+该示例通过按钮控制组件的卸载和挂载，触发onAttach和onDetach事件。
+
 ```ts
 // xxx.ets
 import { promptAction } from '@kit.ArkUI'

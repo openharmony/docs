@@ -4,7 +4,7 @@ If you want to draw and update a UI component at an independent frame rate, you 
 
 ## How to Develop
 
-This section describes how to use different frame rates to change the font size of the **\<Text>** component. This operation simulates the effect of different frame rates on the UI components.
+This section describes how to use different frame rates to change the font size of the **Text** component. This operation simulates the effect of different frame rates on the UI components.
 
 1. Import the DisplaySync module.
 
@@ -24,7 +24,7 @@ This section describes how to use different frame rates to change the font size 
    }
    ```
 
-3. Define two **\<Text>** components.
+3. Define two **Text** components.
 
    ```ts
    @State drawFirstSize: number = 25;

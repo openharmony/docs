@@ -13,7 +13,6 @@
 
 * 仅支持Stage工程
 * 编译模式为release
-* 模块及模块依赖的HAR均未配置关闭混淆的规则`-disable-obfuscation`
 
 ### 混淆范围
 
@@ -22,81 +21,129 @@
 * ArkTS文件
 * TS文件
 * JS文件
+  
+### 局限性
+
+1.语言的限制
+
+代码混淆工具在处理不同编程语言时，其类型分析机制、混淆策略和执行效率都会因目标语言的特性而呈现差异。以业界常用的ProGuard为例，其主要面向Java这类强类型语言进行混淆。由于强类型语言具有严格的类型系统，每个类型都有明确的定义来源。这种特性使得混淆过程中的类型关系追踪和处理更为精确，从而大幅减少了需要配置保留规则的场景。
+
+相比之下，Arkguard混淆工具主要针对JS、TS和ArkTS语言。JS支持运行时动态修改对象、函数，而混淆是在编译阶段进行的静态处理，这种差异可能导致混淆后的名称在运行时无法被正确解析，进而引发运行时异常。TS和ArkTS虽然引入了静态类型系统，但采用了结构性类型机制，即具有相同结构的不同命名类型会被视为等价类型。因此，在TS和ArkTS中仍然无法追溯类型的确切来源。基于这些特性，使用Arkguard时需要对更多的语法场景进行白名单配置，同时，Arkguard采用全局生效的属性保留机制，根据白名单统一保留所有同名属性，而无法支持针对特性类型的精确保留配置。
+
+具体而言，可以参考以下示例：
+
+假设Arkguard支持配置指定类型的白名单，配置类A1作为白名单，类A1的属性prop1在白名单中，而A2中的prop1属性不在白名单中。此时，a2作为参数被传入test函数中，调用prop1属性时会导致功能异常。
+
+```typescript
+// 混淆前
+class A1 {
+  prop1: string = '';
+}
+
+class A2 {
+  prop1: string = '';
+}
+
+function test(input: A1) {
+  console.log(input.prop1);
+}
+
+let a2 = new A2();
+a2.prop1 = 'prop a2';
+test(a2);
+```
+
+```typescript
+// 混淆后
+class A1 {
+  prop1: string = '';
+}
+
+class A2 {
+  a: string = '';
+}
+
+function test(input: A1) {
+  console.log(input.prop1);
+}
+
+let a2 = new A2();
+a2.a = 'prop a2';
+test(a2);
+```
+
+综上所述，开发者应了解这种语言差异带来的混淆效果差异，并尽量使用不重复的名称，以使在各种场景下的混淆效果更好。
+
+2.安全保证的有限性
+
+与其他代码混淆工具一样，混淆只能在一定程度上增加逆向过程的难度，并不能真正阻止逆向工程。
+
+并且，由于ArkGuard混淆工具仅支持基础混淆能力，开发者不应只依赖ArkGuard来保证应用的安全性，对于源码安全有高要求的开发者，应考虑使用[应用加密](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/code-protect-V5)、第三方安全加固等安全措施来保护代码。
 
 ## 开启代码混淆
 
+### 开启混淆步骤
 代码混淆能力已在系统中集成，可通过以下方式在DevEco Studio开启使用。
 
-代码混淆目前只提供名称混淆的能力(因为其它混淆能力会劣化性能)。 开启代码混淆可以混淆以下名称:
-
-* 参数名和局部变量名  
-* 顶层作用域的名称  
-* 属性名称
-* 导出名称
-* 文件名称
-
-混淆开启后，默认使能对参数名和局部变量名的混淆，无需选项配置。顶层作用域名称混淆、属性名称的混淆、导出名称混淆、文件名混淆打开可能会导致运行时错误，这些混淆功能通过混淆配置选项来开启/关闭它们。
-
-创建一个模块的时候，模块级`build-profile.json5`中会自动生成以下内容:
-
-```
-"arkOptions": {
-  "obfuscation": {
-    "ruleOptions": {
-      "enable": true,
-      "files": ["./obfuscation-rules.txt"],
-    }
-  }
-}
-```
-
-创建一个新的library的时候，还会额外生成consumerFiles属性:
-
-```
-"arkOptions": {
-  "obfuscation": {
-    "ruleOptions": {
-      "enable": true,
-      "files": ["./obfuscation-rules.txt"],
-    }
-    "consumerFiles": ["./consumer-rules.txt"]
-  }
-}
-```
-
-混淆功能被关闭希望重新开启混淆需要满足条件: 属性ruleOptions.enable的值为true。
-
-属性ruleOptions.files中指定的混淆配置文件会在构建HAP、HSP或HAR的时候生效。  
-属性consumerFiles中指定的混淆配置文件会在构建依赖这个library的模块时生效。这些混淆配置文件的内容还会被合并到HAR包中的obfuscation.txt文件。
-
-当构建HAP、HSP和HAR的时候，最终的混淆规则是当前构建模块的ruleOptions.files属性，依赖library的consumerFiles属性，以及依赖HAR包中的obfuscation.txt文件的合并。  
-如果构建的是HAR，HAR包中的obfuscation.txt是自身的consumerFiles属性， 依赖library的consumerFiles属性，以及依赖HAR包中的obfuscation.txt文件的合并。构建HAP、HSP不会生成obfuscation.txt。详细合并的策略可以查看[混淆规则合并策略](#混淆规则合并策略)。
-
-### 混淆规则配置文件
-
-在创建工程或library的时候，DevEco Studio会自动生成`obfuscation-rules.txt`和`consumer-rules.txt`文件。混淆规则可以写到这些文件中，或者其它自定义文件，然后将文件路径放到`ruleOptions.files`和`consumerFiles`中，如下面的例子所示。
-
-```
-"buildOption": {
-  "arkOptions": {
-    "obfuscation": {
-      "ruleOptions": {
-        "enable": true,
-        "files": ["./obfuscation-rules.txt", "./myrules.txt"], //myrules.txt放入配置文件build-profile.json5同级目录下
+* 开启混淆开关  
+在本模块`build-profile.json5`配置文件中的`arkOptions.obfuscation.ruleOptions`字段中，通过`enable`字段配置是否开启混淆。使用不同版本的DevEco Studio，`enable`字段的默认值可能会有所不同，具体可以参考[版本变更说明](#代码混淆简介)。
+    ```
+    "arkOptions": {
+      "obfuscation": {
+        "ruleOptions": {
+          "enable": true,
+          "files": ["./obfuscation-rules.txt"],
+        }
       }
-      "consumerFiles": ["./consumer-rules.txt", "./my-consumer-rules.txt"]
     }
-  }
-}
-```
+    ```
 
-## 配置混淆规则
+* 配置混淆规则  
+打开混淆开关，仅开启默认混淆功能，默认混淆范围为局部变量和参数。若需要开启更多混淆功能，需要在`files`字段对应的混淆配置文件`obfuscation-rules.txt`中进行选项配置。使用不同版本的DevEco Studio，`obfuscation-rules.txt`文件中的默认值可能会有所不同，具体可以参考[版本变更说明](#代码混淆简介)。
+
+* 指定release编译  
+代码混淆当前仅支持release编译，不支持debug编译。即开启混淆开关后，若为release编译则会进行混淆，若为debug编译则不会进行混淆。开发者可参考[指定构建模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-compilation-options-customizing-guide-V5#section192461528194916)查看和修改构建模式。
+
+    > **注意：**
+    >
+    > release编译与debug编译的区别并不只包含混淆，若需要明确应用行为差异是否由于混淆，应该通过开启或关闭混淆开关排查，而不是仅通过切换release或debug编译来区分。
+
+### 三种混淆配置文件
+* `obfuscation-rules.txt`  
+不论是HAP、HAR还是HSP，在本模块的`build-profile.json5`配置文件中都有`arkOptions.obfuscation.ruleOptions.files`字段，用于指定在编译本模块时需要生效的混淆规则，新建工程时会创建默认文件`obfuscation-rules.txt`。
+
+* `consumer-rules.txt`  
+对于HAR和HSP模块，在`build-profile.json5`中额外有一个`arkOptions.obfuscation.consumerFiles`字段，**用于指定当本包被依赖时，期望在其他模块生效的混淆规则**，新建HAR或HSP模块时会创建默认文件`consumer-rules.txt`。它与`obfuscation-rules`字段的区别是：**`obfuscation-rules`在编译本模块时生效，`consumer-rules`在编译依赖本模块的其他模块时生效**。
+    ```
+    "arkOptions": {
+      "obfuscation": {
+        "ruleOptions": {
+          "enable": true,
+          "files": ["./obfuscation-rules.txt"],
+        }
+        "consumerFiles": ["./consumer-rules.txt"]
+      }
+    }
+    ```
+
+* `obfuscation.txt`  
+不同于以上两种开发者可自行修改的配置文件，`obfuscation.txt`是在编译构建HAR或HSP时根据`consumer-rules.txt`和依赖模块的混淆规则文件自动生成的文件，它作为一种编译产物存在于发布的HAR包中，用于在其他应用使用该发布包时应用相应的混淆规则。obfuscation.txt内容的生成逻辑请参考[混淆规则合并策略](#混淆规则合并策略)。
+
+下表简要总结了三种配置文件的差异：
+
+| 配置文件（示例） | 配置类型 |  是否可修改配置  |  是否影响本模块的混淆  |  是否影响其他模块的混淆  |
+| --- | --- | --- | --- | --- |
+| obfuscation-rules.txt | 自定义  | 是 | 是 | 否 |
+| consumer-rules.txt    | 自定义  | 是 | 否 | 是 |
+| obfuscation.txt       | 编译产物 | 不涉及，构建HAR时自动生成 | 不涉及 | 是 |
+
+## 混淆规则
 
 混淆规则分为两种类型，一种是[混淆选项](#混淆选项)，一种是[保留选项](#保留选项)；前者是提供顶层作用域名称、属性名称、文件名称等多种混淆功能配置开关，后者是提供各种混淆功能的白名单配置能力。
 
 **注意**
 
-若修改应用混淆配置，新配置需要重新全量编译应用才能生效。
+若修改应用的混淆配置文件，新配置需要重新全量编译才能生效。
 
 ### 混淆选项
 
@@ -142,7 +189,7 @@
     -enable-string-property-obfuscation
     ```
 
-    **注意**：  
+    **注意**：
 
     **1.** 如果代码里面有字符串属性名包含特殊字符(除了`a-z, A-Z, 0-9, _`之外的字符)，例如`let obj = {"\n": 123, "": 4, " ": 5}`，建议不要开启`-enable-string-property-obfuscation`选项，因为可能无法通过[保留选项](#保留选项)来指定保留这些名字。  
     **2.** SDK API的属性白名单中不包含声明文件中使用的字符串常量值，例如示例中的字符串'ohos.want.action.home'未包含在属性白名单中
@@ -183,20 +230,14 @@ const module = import('../directory/filename');
 * oh-package.json5文件中'main'、'types'字段配置的文件/文件夹名称不会被混淆。
 * 模块内module.json5文件中'srcEntry'字段配置的文件/文件夹名称不会被混淆。
 * 被[-keep-file-name](#保留选项)指定的文件/文件夹名称不会被混淆。
-* 非ECMAScript模块引用方式（ECMAScript模块示例：`import {foo} from './filename'`）
-* 非路径引用方式，例如例子中的json5不会被混淆 `import module from 'json5'`  
+* 非ECMAScript模块引用方式（例如：`const module = require('./module')`）。
+* 非路径引用方式，例如例子中的json5不会被混淆 `import module from 'json5'`。
 
-**注意**：  
+**注意**：
 
 由于系统会在应用运行时加载某些指定的文件，针对这类文件，开发者需要手动在[-keep-file-name](#保留选项)选项中配置相应的白名单，防止指定文件被混淆，导致运行失败。
-上述需要手动配置白名单的情况，包括但不限于以下场景：  
 
-* 当模块中包含Ability组件时。用户需要将`src/main/module.json5`中，'abilities'字段下所有'srcEntry'对应的路径配置到白名单中。  
-* 当模块中包含Worker多线程服务时，用户需要将`build-profiles.json5`中，'buildOption'-'sourceOption'-'workers'字段下所有的路径配置到白名单中。
-
-**提醒**：
-
-编译入口、Ability组件、Worker多线程，这三种不能混淆的文件名在DevEco Studio 5.0.3.500版本已被自动收集进白名单中，无需再手动配置，其它不能混淆文件名的场景仍需开发者手动配置
+编译入口、Ability组件、Worker多线程，这三种不能混淆的文件名在DevEco Studio 5.0.3.500版本已被自动收集进白名单中，无需再手动配置，其它不能混淆文件名的场景仍需开发者手动配置。
 
 #### -enable-export-obfuscation
 
@@ -208,16 +249,16 @@ const module = import('../directory/filename');
 
 **注意**：
 
-1. 混淆导入或导出的类中属性名称需要同时开启`-enable-property-obfuscation`与`-enable-export-obfuscation`选项。  
+1. 混淆导入或导出的类中属性名称需要同时开启`-enable-property-obfuscation`与`-enable-export-obfuscation`选项。
 2. 编译HSP时，如果开启`-enable-export-obfuscation`选项，需要在模块中的混淆配置文件`obfuscation-rules.txt`中保留对外暴露的接口。
-3. HAP/HSP/HAR依赖HSP场景下，编译时如果开启`-enable-export-obfuscation`选项，需要在模块中的混淆配置文件`obfuscation-rules.txt`中保留HSP导入的接口。  
+3. HAP/HSP/HAR依赖HSP场景下，编译时如果开启`-enable-export-obfuscation`选项，需要在模块中的混淆配置文件`obfuscation-rules.txt`中保留HSP导入的接口。
 
     ```
     // 代码示例(HSP中入口文件Index.ets)：
     export { add, customApiName } from './src/main/ets/utils/Calc'
 
     // 保留接口名称配置示例：
-    // HSP以及依赖此HSP的模块中obfuscation-rules.txt文件配置： 
+    // HSP以及依赖此HSP的模块中obfuscation-rules.txt文件配置：
     -keep-global-name
     add
     customApiName
@@ -236,13 +277,25 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 删除以下场景中对 console.*语句的调用，要求console.*语句返回值未被调用。
 
 1. 文件顶层的调用
-2. 代码块Block中的调用
-3. 模块Module中的调用
+2. 代码块中的调用  
+   例如：
+   ```
+   function foo() {
+    console.log('in block');
+   }
+   ```
+3. module或namespace中的调用  
+   例如：
+   ```
+   namespace ns {
+    console.log('in ns');
+   }
+   ```
 4. switch语句中的调用
 
 #### -print-namecache *filepath*
 
-将名称缓存保存到指定的文件路径。名称缓存包含名称混淆前后的映射。  
+将名称缓存保存到指定的文件路径。名称缓存包含名称混淆前后的映射。
 
 **注意**：
 
@@ -258,9 +311,9 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 
 #### -remove-comments
 
-删除编译生成的声明文件中的JsDoc注释。  
+删除编译生成的声明文件中的JsDoc注释。
 
-**注意**：  
+**注意**：
 
 编译生成的源码文件中的注释默认会被全部删除，不支持配置保留。  
 可通过`keep-comments`配置来保留编译生成的声明文件中的JsDoc注释。
@@ -320,6 +373,69 @@ enum Test {
 
 其中，编译hap/hsp模块的情况下，enum白名单内容为['outdoor', 'member1']；编译字节码har模块的情况下，enum白名单内容为['outdoor', 'member1', 'member2']。
 
+#### -extra-options strip-language-default
+
+混淆的预置语言白名单中**默认包含了typescript的系统接口中关于dom、webworker、scriphost等API的名称以及Web API的名称**。如果开发者源码中的属性与这部分名称重名，混淆工具会对这些属性进行保留。
+
+如果开发者需要混淆这部分代码，需要配置`-extra-options strip-language-default`选项。
+
+开发者可通过以下方式确定混淆工具默认保留的API的具体减少范围：
+
+开启`-print-kept-names`选项，对比开启和关闭`-extra-options strip-language-default`选项时全量白名单（whitelist.json）中`lang`字段的内容差异，该差异即为预置语言白名单的具体减少范围。
+
+#### -extra-options strip-system-api-args
+
+当前混淆的系统API白名单中**默认包含了系统API中的局部变量名称**，且系统API白名单默认对开发者源码中的局部变量生效。如果开发者源码中的属性与系统API中的局部变量重名或源码中的局部变量与系统API白名单重名，混淆工具会对这部分属性和局部变量名称进行保留。
+
+如果开发者需要混淆这部分代码，需要配置`-extra-options strip-system-api-args`选项。
+
+系统API白名单文件（systemApiCache.json）的ReservedLocalNames、ReservedPropertyNames和ReservedGlobalNames字段可以查看系统API白名单的具体内容。系统API白名单文件位于模块目录下build/default/cache/{...}/release/obfuscation路径中，记录了SDK中的接口与属性名称，与其重名的源码不会被混淆。
+
+开发者可通过以下方式确定系统白名单减少的具体范围：
+
+通过对比开启和关闭`-extra-options strip-system-api-args`选项时系统API白名单文件（systemApiCache.json）中ReservedLocalNames和ReservedPropertyNames字段的内容差异，该差异即为系统白名单的具体减少范围，ReservedGlobalNames字段的内容不会产生变化。
+
+**如何使用-extra-options选项**：
+
+需要在混淆配置文件中添加`-extra-options`前缀，且前缀与选项之间没有其他内容时，白名单优化选项才生效。支持开启单个选项和同时开启两个选项，例如下面的写法：
+
+单个选项：
+
+```
+-extra-options
+strip-language-default
+
+-extra-options strip-language-default
+```
+
+同时开启两个选项：
+
+```
+-extra-options strip-language-default, strip-system-api-args
+
+-extra-options strip-language-default strip-system-api-args
+
+-extra-options strip-language-default
+-extra-options strip-system-api-args
+```
+#### -keep-parameter-names
+保留声明文件中对外接口的参数名称。开启此选项后，有如下效果：
+- 对于函数与类中成员方法，如果函数或方法名称没有被混淆，则保留其参数名称。
+- 对于类的构造器，如果类名没有被混淆，则保留构造器中的参数名称。
+
+> **说明**：
+> - 对于非上述场景（如匿名函数）中的参数名称，无法通过此选项保留。
+> - 源码文件中的参数名称仍然会被混淆，无法通过此选项保留。
+
+#### -enable-lib-obfuscation-options  
+配置此开关后，依赖模块的混淆选项将被合并到当前编译模块的混淆配置中。  
+
+混淆配置分为[混淆选项](#混淆选项)和[保留选项](#保留选项)：  
+- **默认情况下**，生效的混淆配置为当前编译模块的混淆配置与依赖模块的保留选项的合并结果。  
+- **启用该开关后**，生效的混淆配置为当前编译模块的混淆配置与依赖模块的混淆配置的合并结果。 
+混淆规则合并逻辑参考[混淆规则合并策略](#混淆规则合并策略)。
+ 
+
 ### 保留选项
 
 #### -keep-property-name *[,identifiers,...]*
@@ -341,34 +457,41 @@ lastName
 
 **哪些属性名应该被保留?**
 
-为了保障混淆的正确性，建议保留所有不通过点语法访问的属性。
-
-例子:
+1.为了保障混淆的正确性，建议保留所有不通过点语法访问的属性。例如，通过字符串访问的对象属性：
 
 ```
 var obj = {x0: 0, x1: 0, x2: 0};
 for (var i = 0; i <= 2; i++) {
-    console.info(obj['x' + i]);  // x0, x1, x2 应该被保留
+    console.info(obj['x' + i]);  // x0, x1, x2应该被保留
 }
 
-Object.defineProperty(obj, 'y', {});  // y 应该被保留
+Object.defineProperty(obj, 'y', {});  // y应该被保留
+Object.getOwnPropertyDescriptor(obj, 'y');  // y应该被保留
 console.info(obj.y);
 
 obj.s = 0;
 let key = 's';
-console.info(obj[key]);        // s 应该被保留
+console.info(obj[key]);        // key对应的变量值s应该被保留
 
-obj.u = 0;
-console.info(obj.u);           // u 可以被正确地混淆
-
-obj.t = 0;
-console.info(obj['t']);        // 在开启字符串字面量属性名混淆时t和't'会被正确地混淆，但是建议保留
-
-obj['v'] = 0;
-console.info(obj['v']);        // 在开启字符串字面量属性名混淆时'v'会被正确地混淆，但是建议保留
+obj.t1 = 0;
+console.info(obj['t' + '1']);        // t1应该被保留
 ```
 
-对于间接导出的场景，例如`export MyClass`和`let a = MyClass; export {a};`，如果不想混淆它们的属性名，那么需要使用[保留选项](#保留选项)来保留这些属性名。另外，对于直接导出的类或对象的属性的属性名，例如下面例子中的`name`和`age`, 如果不想混淆它们，那么也需要使用[保留选项](#保留选项)来保留这些属性名。
+对于如下的字符串常量形式的属性调用，可以选择性保留：
+
+```
+// 混淆配置：
+// -enable-property-obfuscation
+// -enable-string-property-obfuscation
+
+obj.t = 0;
+console.info(obj['t']); // 此时，'t'会被正确混淆，t可以选择性保留
+
+obj.['v'] = 0;
+console.info(obj['v']); // 此时，'v'会被正确混淆，v可以选择性保留
+```
+
+2.对于间接导出的场景，例如`export MyClass`和`let a = MyClass; export {a};`，如果不想混淆它们的属性名，那么需要使用[保留选项](#保留选项)来保留这些属性名。另外，对于直接导出的类或对象的属性的属性名，例如下面例子中的`name`和`age`, 如果不想混淆它们，那么也需要使用[保留选项](#保留选项)来保留这些属性名。
 
 ```
 export class MyClass {
@@ -376,30 +499,49 @@ export class MyClass {
 }
 ```
 
-so库的API（例如示例中的foo），如果要在ArkTS/TS/JS文件中使用需手动保留API名称。
+3.so库的API（例如示例中的foo），如果要在ArkTS/TS/JS文件中使用需手动保留API名称。
 
 ```
 import testNapi from 'library.so'
 testNapi.foo() // foo需要保留，示例如：-keep-property-name foo
 ```
 
-使用到的json文件中的字段，需要手动保留。
+4.JSON数据解析及对象序列化时，需要保留使用到的字段，例如：
 
 ```
-const jsonData = ('./1.json')
-let jsonStr = JSON.parse(jsonData)
-let jsonObj = jsonStr.jsonProperty  // jsonProperty 需要被保留
+// 示例JSON文件结构(test.json)：
+/*
+{
+  "jsonProperty": "value",
+  "otherProperty": "value2"
+}
+*/
+
+const jsonData = fs.readFileSync('./test.json', 'utf8');
+let jsonObj = JSON.parse(jsonData);
+let jsonProp = jsonObj.jsonProperty; // jsonProperty应该被保留
+
+class jsonTest {
+  prop1: string = '';
+  prop2: number = 0
+}
+
+let obj = new jsonTest();
+const jsonStr = JSON.stringify(obj); // prop1、prop2会被混淆，应该被保留
 ```
 
-使用到的数据库相关的字段，需要手动保留。
+5.使用到的数据库相关的字段，需要手动保留。例如，数据库键值对类型（ValuesBucket）中的属性：
 
 ```
-const dataToInsert = {  
-  value1: 'example1',   // value1 需要被保留
-};
+const valueBucket: ValuesBucket = {
+  'ID1': ID1, // ID1应该被保留
+  'NAME1': name, // NAME1应该被保留
+  'AGE1': age, // AGE1应该被保留
+  'SALARY1': salary // SALARY1应该被保留
+}
 ```
 
-源码中自定义装饰器修饰了成员变量、成员方法、参数，同时其源码编译的中间产物为js文件时（如编译release源码HAR或者源码包含@ts-ignore、@ts-nocheck），这些装饰器所在的成员变量/成员方法名称需要被保留。这是由于ts高级语法特性转换为js标准语法时，将上述装饰器所在的成员变量/成员方法名称硬编码为字符串常量。
+6.源码中自定义装饰器修饰了成员变量、成员方法、参数，同时其源码编译的中间产物为js文件时（如编译release源码HAR或者源码包含@ts-ignore、@ts-nocheck），这些装饰器所在的成员变量/成员方法名称需要被保留。这是由于ts高级语法特性转换为js标准语法时，将上述装饰器所在的成员变量/成员方法名称硬编码为字符串常量。
 
 示例：
 
@@ -419,7 +561,7 @@ class A {
 
 #### -keep-global-name *[,identifiers,...]*
 
-指定要保留的顶层作用域的名称，支持使用名称类通配符。例如，
+指定要保留的顶层作用域或导入和导出元素的名称，支持使用名称类通配符。例如，
 
 ```
 -keep-global-name
@@ -427,7 +569,7 @@ Person
 printPersonName
 ```
 
-namespace中导出的名称也可以通过`-keep-global-name`保留。
+`namespace`中导出的名称可以通过`-keep-global-name`选项保留，示例如下：
 
 ```
 export namespace Ns {
@@ -487,14 +629,14 @@ entry
 const module1 = require('./file1')   // file1 应该被保留
 ```
 
-2.对于动态引用方式，由于无法识别`import`函数中的参数是否为路径，因此这种情况下路径应该被保留。
+2.对于动态导入的路径名，由于无法识别`import`函数中的参数是否为路径，因此这种情况下路径应该被保留。
 
 ```
-const moduleName = './file2'         // file2 应该被保留
+const moduleName = './file2'         // moduleName对应的路径名file2应该被保留
 const module2 = import(moduleName)
 ```
 
-3.在使用[动态路由](../ui/arkts-navigation-navigation.md#跨包动态路由)进行路由跳转时，传递给路由的路径应该被保留。动态路由提供系统路由表和自定义路由表两种方式。若采用自定义路由表进行跳转，配置白名单的方式与上述第二种动态引用场景一致。而若采用系统路由表进行跳转，则需要将模块下`resources/base/profile/route_map.json`文件中`pageSourceFile`字段对应的路径添加到白名单中。
+3.在使用[动态路由](../ui/arkts-navigation-navigation.md#跨包动态路由)进行路由跳转时，传递给动态路由的路径应该被保留。动态路由提供系统路由表和自定义路由表两种方式。若采用自定义路由表进行跳转，配置白名单的方式与上述第二种动态引用场景一致。而若采用系统路由表进行跳转，则需要将模块下`resources/base/profile/route_map.json`文件中`pageSourceFile`字段对应的路径添加到白名单中。
 
 ```
   {
@@ -547,6 +689,34 @@ export class exportClass {}
 ../folder                    // folder目录下文件及子文件夹中的名称都不混淆
 ../oh_modules/json5          // 引用的三方库json5里所有文件中的名称都不混淆
 ```
+
+**如何在模块中保留远程HAR包**
+
+方式一：指定远程`HAR`包在模块级`oh_modules`中的具体路径（该路径为软链接路径，真实路径为工程级`oh_modules`中的文件路径）。因为在配置模块级`oh_modules`中的路径作为白名单时，需要具体到包名或之后的目录才能正确地软链接到真实的目录路径，所以不能仅配置`HAR`包的上级目录名称。
+
+```
+// 正例
+-keep
+./oh_modules/harName1         // harName1目录下所有文件及子文件夹中的名称都不混淆
+./oh_modules/harName1/src     // src目录下所有文件及子文件夹中的名称都不混淆
+./oh_modules/folder/harName2  // harName2目录下所有文件及子文件夹中的名称都不混淆
+
+// 反例
+-keep
+./oh_modules                  // 保留模块级oh_modules里HAR包时，不支持配置HAR包的上级目录名称
+```
+
+方式二：指定远程`HAR`包在工程级`oh_modules`中的具体路径。因为工程级`oh_modules`中的文件路径都为真实路径，所以其路径均可配置。
+
+```
+-keep
+../oh_modules                  // 工程级oh_modules目录下所有文件及子文件夹中的名称都不混淆
+../oh_modules/harName3          // harName3目录下所有文件及子文件夹中的名称都不混淆
+```
+
+模块级`oh_moudles`和工程级`oh_modules`在`DevEco Studio`中的目录结构如下图所示：
+
+![oh_modules](./figures/oh_modules.png)
 
 **注意**：
 
@@ -677,76 +847,49 @@ lastName
 age
 ```
 
-构建HAR时，注释不会被合并到最后的`obfuscation.txt`文件中。
+构建HAR和HSP时，注释不会被合并到最后的`obfuscation.txt`文件中。
 
 ### 混淆规则合并策略
 
-一个工程中经常会有许多混淆规则文件，这些文件来自于:
+在编译一个模块时，生效的混淆规则是**当前编译模块混淆规则**和**依赖模块混淆规则**的合并结果，具体规则如下：
 
-* 主工程的`ruleOptions.files` (这里主工程指的是正在构建的工程)
-* 本地依赖的library中的`consumerFiles`选项中指定的文件
-* 远程依赖的HAR包中的`obfuscation.txt`文件
+**当前编译模块混淆规则**  
+指当前模块配置文件`build-profile.json5`中`arkOptions.obfuscation.ruleOptions.files`字段指定的混淆配置文件内容。  
 
-当构建主工程的时候，这些文件中的混淆规则会按照下面的合并策略(伪代码)进行合并:
+**依赖模块混淆规则**  
+根据依赖模块的类型，混淆规则分为以下两个来源:
 
-```
-let `listRules` 表示上面提到的所有混淆规则文件的列表
-let finalRule = {
-    disableObfuscation: false,
-    enablePropertyObfuscation: false,
-    enableToplevelObfuscation: false,
-    compact: false,
-    removeLog: false,
-    keepPropertyName: [],
-    keepGlobalName: [],
-    keepDts: [],
-    printNamecache: string,
-    applyNamecache: string
-}
-for each file in `listRules`:
-    for each option in file:
-        switch(option) {
-            case -disable-obfuscation:
-                finalRule.disableObfuscation = true;
-                continue;
-            case -enable-property-obfuscation:
-                finalRule.enablePropertyObfuscation = true;
-                continue;
-            case -enable-toplevel-obfuscation:
-                finalRule.enableToplevelObfuscation = true;
-                continue;
-            case -compact:
-                finalRule.compact = true;
-                continue;
-            case -remove-log:
-                finalRule.removeLog = true;
-                continue;
-            case -print-namecache:
-                finalRule.printNamecache = #{指定的路径名};
-                continue;
-            case -apply-namecache:
-                finalRule.applyNamecache = #{指定的路径名};
-                continue;
-            case -keep-property-name:
-                finalRule.keepPropertyName.push(#{指定的名称});
-                continue;
-            case -keep-global-name:
-                finalRule.keepGlobalName.push(#{指定的名称});
-                continue;
-            case -keep-dts:
-                finalRule.keepDts.push(#{指定的路径});
-                continue;
-        }
-    end-for
-end-for
-```
+- **本地HAR/HSP模块**  
+  指该模块配置文件`build-profile.json5`中`arkOptions.obfuscation.consumerFiles`字段指定的混淆配置文件内容。
 
-最后使用的混淆规则来自于对象`finalRule`。
+- **远程HAR/HSP包**  
+  指该远程HAR/HSP包中`obfuscation.txt`文件内容。  
 
-如果构建的是HAR，那么最终的`obfuscation.txt`文件内容来自于自身和本地依赖的library的`consumerFiles`选项，以及依赖的HAR的`obfuscation.txt`文件的合并。
+当构建HAP、HSP和HAR的时候，最终的混淆规则是下列文件的合并：
+* 当前构建模块的ruleOptions.files属性
+* 依赖的本地HSP的consumerFiles属性
+* 依赖的本地HAR的consumerFiles属性
+* 依赖的远程HAR和远程HSP中的obfuscation.txt文件
 
-当`consumerFiles`指定的混淆配置文件中包含以下混淆规则时，这些混淆规则会被合并到HAR包的`obfuscation.txt`文件中，而其他混淆规则不会。
+如果构建的是HAR，生成的远程HAR中的obfuscation.txt是下列文件的合并：
+* 自身的consumerFiles属性
+* 依赖的本地HSP的consumerFiles属性
+* 依赖的本地HAR的consumerFiles属性
+* 依赖的远程HAR和远程HSP中的obfuscation.txt文件
 
+如果构建的是HSP，生成的远程HSP中的obfuscation.txt仅包含自身的consumerFiles属性。
+如果构建的是HAP，则不会生成obfuscation.txt。
+
+#### 混淆规则合并逻辑
+
+混淆选项：使用或运算进行合并，即开关选项只要在参与合并的任意一个规则文件中存在，最终的合并结果中就会包含该开关选项。  
+保留选项：合并时，对于白名单选项，其内容取并集。
+
+- **如果当前编译模块混淆配置未包含`-enable-lib-obfuscation-options`选项**：合并对象为当前模块的所有混淆规则与依赖模块混淆规则中的[保留选项](#保留选项)。  
+
+- **如果当前编译模块混淆配置包含`-enable-lib-obfuscation-options`选项**：合并对象为当前模块的所有混淆规则与依赖模块的所有混淆规则。  
+
+当`consumerFiles`指定的混淆配置文件中包含以下混淆规则时，这些混淆规则会被合并到远程HAR和远程HSP的`obfuscation.txt`文件中，而其他混淆规则不会。
 ```
 // 混淆选项
 -enable-property-obfuscation
@@ -760,9 +903,9 @@ end-for
 -keep-global-name
 ```
 
-**library中混淆注意事项**
+**HSP和HAR中混淆注意事项**
 
-1. 如果`consumerFiles`指定的混淆配置文件中包含上述混淆选项，当其他模块依赖该HAR包时，这些混淆选项会与主模块的混淆规则合并，从而影响主模块。因此不建议开发者在`consumer-rules.txt`文件中配置混淆选项，建议仅配置保留选项。
+1. 如果`consumerFiles`指定的混淆配置文件中包含上述混淆选项，当其他模块依赖该模块的时候，这些混淆选项会与主模块的混淆规则合并，从而影响主模块。因此不建议开发者在`consumer-rules.txt`文件中配置混淆选项，建议仅配置保留选项。
 
 2. 如果在`consumerFiles`指定的混淆配置文件中添加`-keep-dts`选项，会被转换成`-keep-global-name`和`-keep-property-name`。
 
@@ -816,7 +959,7 @@ end-for
 ## 说明
 
 * 目前不支持在hvigor构建流程中插入自定义混淆插件。
-* 混淆的HAR包被模块依赖，若模块开启混淆，则HAR包会被二次混淆。
+* 混淆的HAR被模块依赖，若模块开启混淆，则HAR会被二次混淆。
 * DevEco Studio右上角Product选项，将其中Build Mode选择release，可开启release编译模式。  
 ![product-release](figures/product-release.png)
 
@@ -886,7 +1029,7 @@ end-for
 假设当前模块未配置`-compact`，但是混淆的中间产物中代码都被压缩成一行，可按照以下步骤排查混淆选项：
 
 1. 查看当前模块的oh-package.json5中的dependencies，此字段记录了当前模块的依赖信息。
-2. 在依赖的模块/三方库中的混淆配置文件内检索"-comapct"：
+2. 在依赖的模块/三方库中的混淆配置文件内检索"-compact"：
     * 在本地依赖的library中的consumer-rules.txt文件中检索"-compact"。
     * 在工程目录下的oh_modules文件夹中，对全部的obfuscation.txt文件检索"-compact"。
 
@@ -930,7 +1073,7 @@ let jsonObj = jsonStr.i
 
 **解决方案：** 使用`-keep-property-name`选项将使用到的数据库字段配置到白名单。
 
-#### 开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
+#### 同时开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
 
 **当开启这两个选项时，主模块调用其他模块方法时涉及的方法名称混淆情况如下：**
 
@@ -982,7 +1125,7 @@ import {a3} from './file1'
 let person1 = new a3.person1()
 ```
 
-namespace里的 "person1" 属于顶层作用域的class名称，通过 "ns1.person1" 来调用时，它是属于一个属性，由于未开启属性混淆，所以在使用它时没有被混淆。
+namespace里的 "person1" 属于export元素，当通过 "ns1.person1" 调用时，它被视为一个属性。由于未开`-enable-property-obfuscation`选项，导致在使用时未对其进行混淆。
 
 **解决方案：**
 
@@ -1017,9 +1160,9 @@ person["b"] = 22; // 混淆后
 
 **解决方案：**
 
-1. 确认是否有依赖的HAR包开启了字符串属性名混淆，若开启了，则会影响主工程，需将其关闭。
+1. 确认是否有依赖的HAR开启了字符串属性名混淆，若开启了，则会影响主工程，需将其关闭。
 2. 若不能关闭`-enable-string-property-obfuscation`选项，将属性名配置到白名单中。
-3. 若依赖HAR包未开启字符串属性名混淆，同时SDK版本小于4.1.5.3，请更新SDK。
+3. 若依赖的HAR未开启字符串属性名混淆，同时SDK版本小于4.1.5.3，请更新SDK。
 
 #### 开启-enable-filename-obfuscation选项后，可能会出现的问题
 
@@ -1064,3 +1207,73 @@ AppAbility
 
 1. 将HAP与HSP共同依赖的本地源码HAR改造为[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section179161312181613)，这样此HAR在被依赖时不会被二次混淆。
 2. 将HAP与HSP共同依赖的本地源码HAR以[release模式构建打包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section19788284410)，这样此HAR在被依赖时，其文件名与对外接口不会被混淆。
+
+#### 同时开启-enable-property-obfuscation和-keep选项可能会出现的问题
+
+**问题现象**
+
+使用如下混淆配置：
+
+```
+-enable-property-obfuscation
+-keep
+./file1.ts
+```
+
+并且在`file2.ts`中导入`file1.ts`的接口。此时，接口中有属性的类型为对象类型，该对象类型的属性在`file1.ts`中被保留，在`file2.ts`中被混淆，从而导致调用时引发功能异常。示例如下：
+
+```
+// 混淆前
+// file1.ts
+export interface MyInfo {
+  age: number;
+  address: {
+    city1: string;
+  }
+}
+
+// file2.ts
+import { MyInfo } from './file1';
+const person: MyInfo = {
+  age: 20,
+  address: {
+    city1: "shanghai"
+  }
+}
+
+// 混淆后，file1.ts的代码被保留
+// file2.ts
+import { MyInfo } from './file1';
+const person: MyInfo = {
+  age: 20,
+  address: {
+    i: "shanghai"
+  }
+}
+```
+
+**问题原因**
+
+`-keep`选项保留`file1.ts`文件时，`file1.ts`中代码不会被混淆。对于导出属性（如address）所属类型内的属性，不会被自动收集在属性白名单中。因此，该类型内的属性在其他文件中被使用时，会被混淆。
+
+**解决方案**
+
+方案一：使用`interface`定义该属性的类型，并使用`export`进行导出，这样该属性会被自动被收集到属性白名单中。示例如下：
+
+```
+// file1.ts
+export interface AddressType {
+  city1: string
+}
+export interface MyInfo {
+  age: number;
+  address: AddressType;
+}
+```
+
+方案二：使用`-keep-property-name`选项，将未直接导出的类型内的属性配置到属性白名单中。示例如下：
+
+```
+-keep-property-name
+city1
+```

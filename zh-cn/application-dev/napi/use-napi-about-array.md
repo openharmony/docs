@@ -425,6 +425,7 @@ export const napiDeleteElement: <T>(arr: Array<T>, index: number) => boolean;
 ArkTS侧示例代码
 
 ```ts
+// 需要同时导入前文示例代码中的napiHasElement、napiGetElement接口
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 
@@ -602,7 +603,7 @@ static napi_value IsTypedarray(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isTypedarray: <T>(data: T) => boolean | void;
+export const isTypedarray: (data: Object) => boolean | void;
 ```
 
 ArkTS侧示例代码
@@ -613,8 +614,8 @@ import testNapi from 'libentry.so'
 try {
   let value = new Uint8Array([1, 2, 3, 4]);
   let data = "123";
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray<number>(value));
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray<string>(data));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray(value));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray(data));
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_typedarray error: %{public}s', error.message);
 }
@@ -661,13 +662,13 @@ static napi_value GetTypedarrayInfo(napi_env env, napi_callback_info info)
         napi_create_int32(env, length, &napiLength);
         result = napiLength;
         break;
-    case INFO_ARRAY_BUFFER:
+    case INFO_BYTE_OFFSET:
         // TypedArray数组的第一个元素所在的基础原生数组中的字节偏移量
         napi_value napiByteOffset;
         napi_create_int32(env, byteOffset, &napiByteOffset);
         result = napiByteOffset;
         break;
-    case INFO_BYTE_OFFSET:
+    case INFO_ARRAY_BUFFER:
         // TypedArray下的ArrayBuffer
         result = arraybuffer;
         break;
@@ -703,7 +704,7 @@ enum InfoType {
 };
 let arrbuff = testNapi.getTypedarrayInfo(int8Array, InfoType.ARRAY_BUFFER) as ArrayBuffer;
 // 将arraybuffer转为数组
-let arr = Array.prototype.slice.call(new Int8Array(arrbuff));
+let arr = new Array(new Int8Array(arrbuff));
 hilog.info(0x0000, 'Node-API', 'get_typedarray_info_arraybuffer: %{public}s', arr.toString());
 hilog.info(0x0000, 'Node-API', 'get_typedarray_info_isIn8Array: %{public}s', testNapi.getTypedarrayInfo(int8Array, InfoType.TYPE).toString());
 hilog.info(0x0000, 'Node-API', 'get_typedarray_info_length: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.LENGTH));

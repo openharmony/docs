@@ -2310,7 +2310,7 @@ saveLayer(): void
   // xxx.ets
   @Entry
   @Component
-  struct ResetTransform {
+  struct saveLayer {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
@@ -2323,12 +2323,18 @@ saveLayer(): void
           .backgroundColor('#ffff00')
           .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
-            offContext.setTransform(1,0.5, -0.5, 1, 10, 10)
-            offContext.fillStyle = 'rgb(0,0,255)'
-            offContext.fillRect(0, 0, 100, 100)
-            offContext.resetTransform()
-            offContext.fillStyle = 'rgb(255,0,0)'
-            offContext.fillRect(0, 0, 100, 100)
+            offContext.fillStyle = "#0000ff"
+            offContext.fillRect(50,100,300,100)
+            offContext.fillStyle = "#00ffff"
+            offContext.fillRect(50,150,300,100)
+            offContext.globalCompositeOperation = 'destination-over'
+            offContext.saveLayer()
+            offContext.globalCompositeOperation = 'source-over'
+            offContext.fillStyle = "#ff0000"
+            offContext.fillRect(100,50,100,300)
+            offContext.fillStyle = "#00ff00"
+            offContext.fillRect(150,50,100,300)
+            offContext.restoreLayer()
             let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
@@ -2338,7 +2344,7 @@ saveLayer(): void
     }
   }
   ```
-   ![zh-cn_image_resetTransform](figures/zh-cn_image_ResetTransform.png)
+  ![zh-cn_image_CanvasSavelayer](figures/zh-cn_image_CanvasSavelayer.png)
 
 ### restoreLayer<sup>12+</sup>
 
@@ -2371,6 +2377,7 @@ resetTransform(): void
   struct ResetTransform {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2378,13 +2385,16 @@ resetTransform(): void
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.context.setTransform(1,0.5, -0.5, 1, 10, 10)
-            this.context.fillStyle = 'rgb(0,0,255)'
-            this.context.fillRect(0, 0, 100, 100)
-            this.context.resetTransform()
-            this.context.fillStyle = 'rgb(255,0,0)'
-            this.context.fillRect(0, 0, 100, 100)
+          .onReady(() => {
+            let offContext = this.offCanvas.getContext("2d", this.settings)
+            offContext.setTransform(1,0.5, -0.5, 1, 10, 10)
+            offContext.fillStyle = 'rgb(0,0,255)'
+            offContext.fillRect(0, 0, 100, 100)
+            offContext.resetTransform()
+            offContext.fillStyle = 'rgb(255,0,0)'
+            offContext.fillRect(0, 0, 100, 100)
+            let image = this.offCanvas.transferToImageBitmap()
+            this.context.transferFromImageBitmap(image)
           })
       }
       .width('100%')
@@ -2392,6 +2402,7 @@ resetTransform(): void
     }
   }
   ```
+  ![zh-cn_image_0000001239032417](figures/zh-cn_image_ResetTransform.png)
 
 ### rotate
 

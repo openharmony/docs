@@ -464,6 +464,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
 | 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
 | 17700060 | The specified application cannot be uninstalled. |
+| 17700062 | Failed to uninstall the app because the app is locked. |
 | 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
 
 **示例：**
@@ -597,6 +598,7 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
 | 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
 | 17700060 | The specified application cannot be uninstalled. |
+| 17700062 | Failed to uninstall the app because the app is locked. |
 | 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
 
 **示例：**
@@ -1506,6 +1508,80 @@ try {
 }
 ```
 
+## BundleInstaller.destroyAppClone<sup>15+</sup>
+
+destroyAppClone(bundleName: string, appIndex: number, destroyAppCloneParam?: DestroyAppCloneParam): Promise\<void\>;
+
+以异步方法删除应用分身，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.UNINSTALL_CLONE_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名        | 类型                          | 必填 | 说明                                                          |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName   | string                        | 是   | 待删除应用分身的包名。                                         |
+| appIndex     | number                        | 是   | 待删除应用分身的索引。                                         |
+| destroyAppCloneParam       | [DestroyAppCloneParam](#destroyappcloneparam15)   | 否   | 指定删除应用分身所需的其他参数，默认值：参照[DestroyAppCloneParam](#destroyappcloneparam15)的默认值。   |
+
+**返回值：**
+
+| 类型            | 说明                                   |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.UNINSTALL_CLONE_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 17700001 | The specified bundleName cannot be found or the bundle is not installed by the specified user. |
+| 17700004 | The userId is invalid. |
+| 17700061 | The appIndex is invalid. |
+| 17700062 | Failed to uninstall the app because the app is locked. |
+
+**示例：**
+```ts
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+let bundleName = 'com.ohos.camera';
+let index = 1;
+let userId = 100;
+let key = 'ohos.bms.param.verifyUninstallRule';
+let value = 'false';
+let item: installer.Parameters = {key, value};
+let destroyAppCloneOpt: installer.DestroyAppCloneParam = {
+    userId: userId,
+    parameters: [item]
+};
+
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.destroyAppClone(bundleName, index, destroyAppCloneOpt)
+            .then(() => {
+                console.info('destroyAppClone successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('destroyAppClone failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
 ## BundleInstaller.installPreexistingApp<sup>12+</sup>
 
 installPreexistingApp(bundleName: string, userId?: number): Promise\<void\>;
@@ -1603,6 +1679,7 @@ try {
 | additionalInfo<sup>10+</sup> | string | 否 |应用安装时的额外信息，默认值为空，最大长度为3000字节。该字段通常由操作系统运营方的应用市场在安装企业应用时指定，用于保存应用的额外信息。 |
 | verifyCodeParams<sup>deprecated<sup> | Array<[VerifyCodeParam](#verifycodeparamdeprecated)> | 否 | 代码签名文件参数，默认值为空。         |
 | pgoParams<sup>11+</sup> | Array<[PGOParam](#pgoparam11)> | 否 | PGO配置文件参数，默认值为空。         |
+| parameters<sup>15+</sup> | Array<[Parameters](#parameters15)> | 否 | 扩展参数，默认值为空。         |
 
 ## UninstallParam<sup>10+</sup>
 
@@ -1645,6 +1722,19 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 | moduleName | string | 是 | 应用程序模块名称。 |
 | pgoFilePath  | string | 是 | PGO配置文件路径。           |
 
+## Parameters<sup>15+</sup>
+
+扩展参数信息。
+
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称     | 类型   | 必填 | 说明             |
+| ---------- | ------ | ---------------- | ---------------- |
+| key | string | 是 | 扩展参数键。 |
+| value  | string | 是 | 扩展参数值。  |
+
 ## CreateAppCloneParam<sup>12+</sup>
 
 创建分身应用可指定的参数信息。
@@ -1657,3 +1747,16 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | userId      | number | 否   | 指定创建分身应用所在的用户id。默认值：调用方所在用户。            |
 | appIndex    | number | 否   | 指定创建分身应用的索引值。默认值：当前可用的最小索引值。           |
+
+## DestroyAppCloneParam<sup>15+</sup>
+
+删除分身应用可指定的参数信息。
+
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称        | 类型   | 必填 | 说明                                                          |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| userId      | number | 否   | 指定删除分身应用所在的用户id。默认值：调用方所在用户。            |
+| parameters  | Array<[Parameters](#parameters15)> | 否   | 指定删除分身应用扩展参数，默认值为空。            |

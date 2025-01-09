@@ -4,9 +4,16 @@
 系统的进程模型如下图所示。
 
 
-- 应用中（同一Bundle名称）的所有UIAbility、ServiceExtensionAbility和DataShareExtensionAbility均是运行在同一个独立进程（主进程）中，如下图中绿色部分的“Main Process”。
+- 通常情况下，应用中（同一Bundle名称）的所有UIAbility、ServiceExtensionAbility和DataShareExtensionAbility均是运行在同一个独立进程（主进程）中，如下图中绿色部分的“Main Process”。
 - 应用中（同一Bundle名称）的所有同一类型ExtensionAbility（除ServiceExtensionAbility和DataShareExtensionAbility外）均是运行在一个独立进程中，如下图中蓝色部分的“FormExtensionAbility Process”、“InputMethodExtensionAbility Process”、其他ExtensionAbility Process。
 - WebView拥有独立的渲染进程，如下图中黄色部分的“Render Process”。
+
+> **说明**：
+>
+> 仅2in1设备支持将HAP和UIAbility设置为独立进程，设置方法如下：
+> - 如果需要指定某个HAP运行在独立进程中，可以在module.json5文件中将isolationMode字段配置为isolationOnly（只在独立进程中运行）或者isolationFirst（优先在独立进程中运行）。
+> - 如果需要指定某个UIAbility运行在独立进程中，可以在module.json5文件中将isolationProcess字段配置为true，同时需要在[onNewProcessRequest](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)回调中返回一个唯一的进程标识符。
+
 
 
 **图1** 进程模型示意图  

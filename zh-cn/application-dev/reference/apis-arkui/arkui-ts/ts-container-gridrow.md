@@ -215,6 +215,8 @@ onBreakpointChange(callback: (breakpoints: string) => void)
 
 ## 示例
 
+栅格布局的基本用法。
+
 ```ts
 // xxx.ets
 @Entry

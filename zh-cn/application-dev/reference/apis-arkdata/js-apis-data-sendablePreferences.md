@@ -30,7 +30,7 @@ import { sendablePreferences } from '@kit.ArkData';
 | 名称             | 参数类型 | 可读 | 可写 | 说明                                    |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
 | MAX_KEY_LENGTH   | number   | 是   | 否   | Key的最大长度限制为1024个字节。     |
-| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为16 * 1024 * 1024个字节。 |
+| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为16MB。 |
 
 ## sendablePreferences.getPreferences
 
@@ -738,6 +738,10 @@ flush(): Promise&lt;void&gt;
 
 将缓存的Preferences实例中的数据异步存储到共享用户首选项的持久化文件中，使用Promise异步回调。
 
+  > **说明：**
+  >
+  > 当数据未修改或修改后的数据与缓存数据一致时，不会刷新持久化文件。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
@@ -774,6 +778,10 @@ promise.then(() => {
 flushSync(): void
 
 将缓存的Preferences实例中的数据存储到共享用户首选项的持久化文件中。
+
+  > **说明：**
+  >
+  > 当数据未修改或修改后的数据与缓存数据一致时，不会刷新持久化文件。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -901,7 +909,9 @@ preferences.flush().then(() => {
 
 on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
-订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程发生变更后，执行[flush](#flush)方法后，触发callback回调。
+订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程（包括本进程）发生变更后，执行[flush](#flush)方法后，触发callback回调。
+
+本接口提供给申请了[dataGroupId](#options)的应用进行使用，未申请的应用不推荐使用，多进程操作可能会损坏持久化文件，导致数据丢失。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1037,6 +1047,8 @@ preferences.flush().then(() => {
 off(type: 'multiProcessChange', callback?: Callback&lt;string&gt;): void
 
 取消订阅进程间数据变更。
+
+本接口提供给申请了[dataGroupId](#options)的应用进行使用，未申请的应用不推荐使用，多进程操作可能会损坏持久化文件，导致数据丢失。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

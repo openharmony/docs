@@ -24,7 +24,7 @@ APIs involved in MindSpore Lite model inference are categorized into context API
 
 | API       | Description       |
 | ------------------ | ----------------- |
-|OH_AI_ContextHandle OH_AI_ContextCreate()|Creates a context object.|
+|OH_AI_ContextHandle OH_AI_ContextCreate()|Creates a context object. This API must be used together with **OH_AI_ContextDestroy**.|
 |void OH_AI_ContextSetThreadNum(OH_AI_ContextHandle context, int32_t thread_num)|Sets the number of runtime threads.|
 | void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, int mode)|Sets the affinity mode for binding runtime threads to CPU cores, which are classified into large, medium, and small cores based on the CPU frequency. You only need to bind the large or medium cores, but not small cores.
 |OH_AI_DeviceInfoHandle OH_AI_DeviceInfoCreate(OH_AI_DeviceType device_type)|Creates a runtime device information object.|
@@ -177,12 +177,13 @@ The development process consists of the following main steps:
     if (ret != OH_AI_STATUS_SUCCESS) {
       printf("OH_AI_ModelBuildFromFile failed, ret: %d.\n", ret);
       OH_AI_ModelDestroy(&model);
+      OH_AI_ContextDestroy(&context);
       return ret;
     }
     ```
 
 4. Input data.
- 
+
     Before executing model inference, you need to populate data to the input tensor. In this example, random data is used to populate the model.
 
     ```c
@@ -191,6 +192,7 @@ The development process consists of the following main steps:
     if (inputs.handle_list == NULL) {
       printf("OH_AI_ModelGetInputs failed, ret: %d.\n", ret);
       OH_AI_ModelDestroy(&model);
+      OH_AI_ContextDestroy(&context);
       return ret;
     }
     // Use random data to populate the tensor.
@@ -198,6 +200,7 @@ The development process consists of the following main steps:
     if (ret != OH_AI_STATUS_SUCCESS) {
       printf("GenerateInputDataWithRandom failed, ret: %d.\n", ret);
       OH_AI_ModelDestroy(&model);
+      OH_AI_ContextDestroy(&context);
       return ret;
     }
    ```
@@ -213,6 +216,7 @@ The development process consists of the following main steps:
     if (ret != OH_AI_STATUS_SUCCESS) {
       printf("OH_AI_ModelPredict failed, ret: %d.\n", ret);
       OH_AI_ModelDestroy(&model);
+      OH_AI_ContextDestroy(&context);
       return ret;
     }
     ```
@@ -225,7 +229,7 @@ The development process consists of the following main steps:
     // Obtain the output tensor and print the information.
     for (size_t i = 0; i < outputs.handle_num; ++i) {
       OH_AI_TensorHandle tensor = outputs.handle_list[i];
-      int64_t element_num = OH_AI_TensorGetElementNum(tensor);
+      long long element_num = OH_AI_TensorGetElementNum(tensor);
       printf("Tensor name: %s, tensor size is %zu ,elements num: %lld.\n", OH_AI_TensorGetName(tensor),
             OH_AI_TensorGetDataSize(tensor), element_num);
       const float *data = (const float *)OH_AI_TensorGetData(tensor);
@@ -243,8 +247,9 @@ The development process consists of the following main steps:
     If the MindSpore Lite inference framework is no longer needed, you need to destroy the created model.
 
     ```c
-    // Destroy the model.
+    // Release the model and context.
     OH_AI_ModelDestroy(&model);
+    OH_AI_ContextDestroy(&context);
     ```
 
 ## Verification
@@ -265,7 +270,7 @@ The development process consists of the following main steps:
     )
     ```
    - To use ohos-sdk for cross compilation, you need to set the native toolchain path for the CMake tool as follows: `-DCMAKE_TOOLCHAIN_FILE="/xxx/native/build/cmake/ohos.toolchain.cmake"`.
-    
+
    - The toolchain builds a 64-bit application by default. To build a 32-bit application, add the following configuration: `-DOHOS_ARCH="armeabi-v7a"`.
 
 2. Run the CMake tool.
@@ -280,8 +285,9 @@ The development process consists of the following main steps:
     The inference is successful if the output is similar to the following:
 
     ```shell
-    # ./QuickStart ./mobilenetv2.ms                                            
+    # ./demo ./mobilenetv2.ms                                            
     Tensor name: Softmax-65, tensor size is 4004 ,elements num: 1001.
     output data is:
     0.000018 0.000012 0.000026 0.000194 0.000156 0.001501 0.000240 0.000825 0.000016 0.000006 0.000007 0.000004 0.000004 0.000004 0.000015 0.000099 0.000011 0.000013 0.000005 0.000023 0.000004 0.000008 0.000003 0.000003 0.000008 0.000014 0.000012 0.000006 0.000019 0.000006 0.000018 0.000024 0.000010 0.000002 0.000028 0.000372 0.000010 0.000017 0.000008 0.000004 0.000007 0.000010 0.000007 0.000012 0.000005 0.000015 0.000007 0.000040 0.000004 0.000085 0.000023 
     ```
+
