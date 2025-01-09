@@ -6,7 +6,7 @@
 
 当前所有Picker的save接口都是用户可感知的，具体行为是拉起FilePicker, 将文件保存在系统文件管理器管理的特定目录，与图库管理的资源隔离，无法在图库中看到。
 
-如需要在图库中看到所保存的图片、视频资源，请使用用户无感的[安全控件创建媒体资源](../media/medialibrary/photoAccessHelper-savebutton.md#使用安全控件创建媒体资源)。
+如果开发者需要保存图片、视频资源到图库，可使用用户无感的[安全控件进行保存](../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 ## 保存图片或视频类文件
 
