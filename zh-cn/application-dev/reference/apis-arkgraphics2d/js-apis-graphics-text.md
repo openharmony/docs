@@ -437,7 +437,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | fullName | string | 否 | 是 | 字体名称，可取任意值，默认值为空字符串。 |
 | fontFamily | string | 否 | 是 | 字体家族，可取任意值，默认值为空字符串。 |
 | fontSubfamily | string | 否 | 是 | 子字体家族，可取任意值，默认值为空字符串。 |
-| weight | [FontWeight](#fontweight) | 否 | 是 | 字体字重，默认值为FontWeight.W100的取值，即0。作为[matchFontDescriptors](#textmatchfontdescriptors14)接口入参使用时，不使用该字段视作该字段为默认值。 |
+| weight | [FontWeight](#fontweight) | 否 | 是 | 字体字重，默认值为FontWeight.W100的取值，即0。 |
 | width | number | 否 | 是 | 字体宽度，取值范围是1-9整数，默认值为0。 |
 | italic | number | 否 | 是 | 是否是斜体字体，0表示非斜体，1表示斜体字体，默认值为0。 |
 | monoSpace | boolean | 否 | 是 | 是否是等宽字体，true表示等宽字体，false表示非等宽字体，默认值为false。 |
