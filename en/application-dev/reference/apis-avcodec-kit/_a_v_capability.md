@@ -5,6 +5,8 @@
 
 The AVCapability module provides the functions for querying the codec capability.
 
+For details about the development guide and sample, see [Obtaining Supported Codecs](../../media/avcodec/obtain-supported-codecs.md).
+
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**: 10
@@ -41,7 +43,7 @@ The AVCapability module provides the functions for querying the codec capability
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_BitrateMode](#oh_bitratemode-1) { <br>BITRATE_MODE_CBR = 0, <br>BITRATE_MODE_VBR = 1, <br>BITRATE_MODE_CQ = 2 } | Enumerates the bit rate modes of an encoder. | 
+| [OH_BitrateMode](#oh_bitratemode-1) { <br/>BITRATE_MODE_CBR = 0, <br/>BITRATE_MODE_VBR = 1, <br/>BITRATE_MODE_CQ = 2 } | Enumerates the bit rate modes of an encoder. | 
 | [OH_AVCodecCategory](#oh_avcodeccategory-1) { HARDWARE = 0, SOFTWARE } | Enumerates the codec categories. | 
 | [OH_AVCapabilityFeature](#oh_avcapabilityfeature-1) {<br> VIDEO_ENCODER_TEMPORAL_SCALABILITY = 0, <br>VIDEO_ENCODER_LONG_TERM_REFERENCE = 1, <br>VIDEO_LOW_LATENCY = 2 <br>} | Enumerates the optional features that can be used in specific codec scenarios. | 
 
@@ -129,6 +131,7 @@ Defines a struct for the value range, which contains the minimum value and maxim
 ```
 typedef enum OH_BitrateMode OH_BitrateMode
 ```
+
 **Description**
 
 Defines an enum for the bit rate modes of an encoder.
@@ -136,7 +139,6 @@ Defines an enum for the bit rate modes of an encoder.
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**: 10
-
 
 ## Enum Description
 
@@ -168,7 +170,7 @@ enum OH_AVCodecCategory
 ```
 **Description**
 
-Defines an enum for codec categories.
+Enumerates the codec categories.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -179,15 +181,15 @@ Defines an enum for codec categories.
 | HARDWARE  | Hardware codec.  | 
 | SOFTWARE  | Software codec.  | 
 
-
 ### OH_BitrateMode
 
 ```
 enum OH_BitrateMode
 ```
+
 **Description**
 
-Defines an enum for bit rate modes of an encoder.
+Enumerates the bit rate modes of an encoder.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -195,9 +197,9 @@ Defines an enum for bit rate modes of an encoder.
 
 | Value| Description| 
 | -------- | -------- |
-| BITRATE_MODE_CBR  | Constant bit rate.  | 
-| BITRATE_MODE_VBR  | Variable bit rate. The bit rate is for reference only.  | 
-| BITRATE_MODE_CQ  | Constant quality.  | 
+| BITRATE_MODE_CBR  | Constant bit rate.   | 
+| BITRATE_MODE_VBR  | Variable bit rate. The bit rate is for reference only.   | 
+| BITRATE_MODE_CQ  | Constant quality.   | 
 
 
 ## Function Description
