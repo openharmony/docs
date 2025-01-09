@@ -501,6 +501,14 @@ Navigation路由栈，允许被继承<sup>12+</sup>。开发者可以在派生�
 >
 > 2.不建议开发者通过监听生命周期的方式管理自己的页面栈。
 
+### constructor
+
+constructor()
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### pushPath<sup>10+</sup>
 
 pushPath(info: NavPathInfo, animated?: boolean): void
