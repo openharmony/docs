@@ -4445,6 +4445,18 @@ Allows a UIExtensionAbility to be displayed on the locked screen.
 
 **Valid since**: 14
 
+### ohos.permission.GET_ANIM_POLICY
+
+允许系统应用注册动效插件，获取动效使用策略。
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.
