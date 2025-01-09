@@ -246,7 +246,7 @@ struct Index {
 
 整个过程主要包括的逻辑实现为：
 
-1. 在入口main函数所在的UI主线程创建ArkTS运行环境，并创建Sendable对象保存到result中，然后将result引用的Sendable对象序列化到一个全局序列化数据serializationData中。
+1. 在入口main函数所在的UI主线程创建ArkTS运行环境，并发起一个C++子线程创建Sendable对象保存到result中，然后将result引用的Sendable对象序列化到一个全局序列化数据serializationData中。
 
 2. 当这些流程完成后，发起另外一个C++子线程，并在这个新的线程中创建ArkTS运行环境。然后再通过反序列化接口从serializationData中反序列化出UI主线程创建的Sendable对象，并保存到result中，从而实现了Sendable对象的跨C++线程传递。反序列化完成后，需要销毁反序列化数据避免内存泄露。这时UI主线程和子线程都同时持有这个Sendable共享对象，即可通过Node-API进行对象操作，比如读写或者传递到ArkTS层等。
 
