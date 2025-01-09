@@ -5,6 +5,8 @@
 
 The **OH_AVCodecCallback** struct defines all the asynchronous callback function pointers of an **OH_AVCodec** instance. To ensure the normal running of **OH_AVCodec**, you must register the instance of this struct with the **OH_AVCodec** instance and process the information reported by the callback function.
 
+For details about the development guide, see step 4 in surface mode or step 3 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md).
+
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**: 11
