@@ -413,6 +413,79 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
+### occupyEvents<sup>16+</sup>
+
+occupyEvents(eventFlags: number): Promise&lt;void&gt;
+
+设置组件（EmbeddedComponent或UIExtensionComponent）占用事件，宿主将不响应组件区域内被占用的事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| eventFlags | [EventFlag](js-apis-arkui-uiExtension.md#EventFlag) | 是 | 占用的事件类型。 |
+
+**返回值：**
+
+| 类型                | 说明                     |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 1300002  | This window state is abnormal. |
+| 1300003  | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionWindow = session.getUIExtensionWindowProxy();
+    // 占用事件
+    try {
+      let promise = extensionWindow.occupyEvents(uiExtension.EventFlag.EVENT_CLICK | uiExtension.EventFlag.EVENT_LONG_PRESS);
+      promise.then(() => {
+        console.info('Succeeded in occupy events');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to  occupy events. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (e) {
+      console.error(`Occupy events got exception`);
+    }
+  }
+}
+```
+
+## EventFlag<sup>16+</sup>
+
+事件类型枚举。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                        | 值              | 说明            |
+|-----------------------------| --------------- |----------------|
+| EVENT_NONE                  | 0x00000000      | 无事件      |
+| EVENT_PAN_GESTURE_LEFT      | 0x00000001      | 左滑事件    |
+| EVENT_PAN_GESTURE_RIGHT     | 0x00000002      | 右滑事件    |
+| EVENT_PAN_GESTURE_UP        | 0x00000004      | 上滑事件    |
+| EVENT_PAN_GESTURE_DOWN      | 0x00000008      | 下滑事件    |
+| EVENT_CLICK                 | 0x00000100      | 点击事件    |
+| EVENT_LONG_PRESS            | 0x00000200      | 长按事件    |
+
 ## AvoidAreaInfo
 
 用于表示窗口规避区的信息。
