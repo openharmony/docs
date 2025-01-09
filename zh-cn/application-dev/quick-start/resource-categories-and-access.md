@@ -49,7 +49,7 @@ base目录是默认存在的目录，二级子目录element用于存放字符串
 
 限定词目录可以由一个或多个表征应用场景或设备特征的限定词组合而成，包括移动国家码和移动网络码、语言、文字、国家或地区、横竖屏、设备类型、颜色模式和屏幕密度等维度，限定词之间通过下划线（\_）或者中划线（\-）连接。开发者在创建限定词目录时，需要遵守限定词目录的命名规则。
 
-- 限定词的组合顺序：\_移动国家码_移动网络码-语言_文字_国家或地区-横竖屏-设备类型-颜色模式-屏幕密度_。开发者可以根据应用的使用场景和设备特征，选择其中的一类或几类限定词组成目录名称。
+- 限定词的组合顺序：移动国家码_移动网络码-语言_文字_国家或地区-横竖屏-设备类型-颜色模式-屏幕密度。开发者可以根据应用的使用场景和设备特征，选择其中的一类或几类限定词组成目录名称。
 
 - 限定词的连接方式：语言、文字、国家或地区之间采用下划线（\_）连接，移动国家码和移动网络码之间也采用下划线（\_）连接，除此之外的其他限定词之间均采用中划线（-）连接。例如：**zh_Hant_CN**、**zh_CN-car-ldpi**。
 
@@ -112,6 +112,7 @@ base目录是默认存在的目录，二级子目录element用于存放字符串
 
 color.json文件的内容如下：
 
+标准的十六进制颜色值由六位十六进制数字组成，下面的value值前两位表示透明度，后六位表示颜色值。
 ```json
 {
     "color": [
@@ -193,13 +194,13 @@ plural.json文件的内容如下：
 
 ## 创建资源目录和资源文件
 
-在resources目录下，可按照限定词目录命名规则，以及资源组目录支持的文件类型和说明，创建资源目录和资源组目录，添加特定类型资源。DevEco Studio支持同时创建资源目录和资源文件，也支持单独创建资源目录或资源文件。
+在resources目录下，可按照限定词目录命名规则，以及资源组目录支持的文件类型，创建资源目录和资源组目录，添加特定类型资源。DevEco Studio支持同时创建资源目录和资源文件，也支持单独创建资源目录或资源文件。
 
 ### 创建资源目录和资源文件
 
 在resources目录右键菜单选择“New > Resource File”，可同时创建资源目录和资源文件，文件默认创建在base目录的对应资源组。如果选择了限定词，则会按照命名规范自动生成限定词和资源组目录，并将文件创建在限定词目录中。
 
-图中File name为需要创建的文件名。Resource type为资源组类型，默认是element。Root Element为资源类型。Avaliable qualifiers为供选择的限定词目录，通过右边的小箭头可添加或者删除。<br/>创建的目录名自动生成，格式固定为“限定词.资源组”，例如：创建一个限定词为dark的element目录，自动生成的目录名称为“dark.element”。
+图中File name为需要创建的文件名。Resource type为资源组类型，默认是element。Root Element为资源类型。Avaliable qualifiers为供选择的限定词目录，通过右边的小箭头可添加或者删除。<br/>创建的目录名自动生成，格式固定为“限定词.资源组”，例如：创建一个限定词为dark的element目录，自动生成的目录名称为“dark/element”。
 
   ![create-resource-file-1](figures/create-resource-file-1.png)
 
@@ -274,7 +275,7 @@ string资源配置attr属性示例如下：
 
 ### 单HAP包应用资源
 
- - 通过```"$r"```或```"$rawfile"```访问资源。<br/>对于“color”、“float”、“string”、“plural”、“media”、“profile”等类型的资源，通过```"$r('app.type.name')"```形式访问。其中，app为resources目录中定义的资源；type为资源类型或资源的存放位置；name为资源名，开发者定义资源时确定。<br/>对于string.json中使用多个占位符的情况，通过```$r('app.string.label','aaa','bbb',444)```形式访问。<br/>对于rawfile目录资源，通过```"$rawfile('filename')"```形式访问。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
+ - 通过```$r```或```$rawfile```访问资源。<br/>对于color、float、string、plural、media、profile等类型的资源，通过```$r('app.type.name')```形式访问。其中，app为resources目录中定义的资源；type为资源类型；name为资源名，开发者定义资源时确定。<br/>对于string.json中使用多个占位符的情况，通过```$r('app.string.label','aaa','bbb',444)```形式访问。<br/>对于rawfile目录资源，通过```"$rawfile('filename')"```形式访问。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
 
    > **说明：**
    >
@@ -285,19 +286,19 @@ string资源配置attr属性示例如下：
   ```ts
     //通过$r('app.type.name')访问
     Text($r('app.string.string_hello'))
-    .fontColor($r('app.color.ohos_id_color_emphasize'))
-    .fontSize($r('app.float.ohos_id_text_size_headline1'))
-    .fontFamily($r('app.string.ohos_id_text_font_family_medium'))
-    .backgroundColor($r('app.color.ohos_id_color_palette_aux1'))
+    .fontColor($r('app.color.color_emphasize'))
+    .fontSize($r('app.float.text_size_headline1'))
+    .fontFamily($r('app.string.font_family_medium'))
+    .backgroundColor($r('app.color.color_palette_aux1'))
 
-    Image($r('app.media.ohos_app_icon'))
+    Image($r('app.media.app_icon'))
     .border({
-      color: $r('app.color.ohos_id_color_palette_aux1'),
-      radius: $r('app.float.ohos_id_corner_radius_button'), width: 2
+      color: $r('app.color.color_palette_aux1'),
+      radius: $r('app.float.corner_radius_button'), width: 2
     })
     .margin({
-      top: $r('app.float.ohos_id_elements_margin_horizontal_m'),
-      bottom: $r('app.float.ohos_id_elements_margin_horizontal_l')
+      top: $r('app.float.elements_margin_horizontal_m'),
+      bottom: $r('app.float.elements_margin_horizontal_l')
     })
     .height(200)
     .width(300)
