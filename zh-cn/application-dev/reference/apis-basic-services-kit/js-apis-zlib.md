@@ -2455,11 +2455,13 @@ inflateBack(strm: ZStream, backIn: InflateBackInputCallback, inDesc: object, bac
 | backOut | InflateBackOutputCallback | 是   | 将解压缩的数据写入目标输出。                                 |
 | outDesc | object                    | 是   | 通用对象。                                                   |
 
-### InflateBackInputCallback
+### InflateBackInputCallback<sup>12+</sup>
 
-InflateBackInputCallback = (inDesc: object) => ArrayBuffer
+type InflateBackInputCallback = (inDesc: object) => ArrayBuffer
 
 用于输入数据的回调函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2467,11 +2469,13 @@ InflateBackInputCallback = (inDesc: object) => ArrayBuffer
 | ------ | ------ | ---- | ---------------- |
 | inDesc | object | 是   | 用户定义数据对象 |
 
-### InflateBackOutputCallback
+### InflateBackOutputCallback<sup>12+</sup>
 
-InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) => number
+type InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) => number
 
 用于输出数据的回调函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
