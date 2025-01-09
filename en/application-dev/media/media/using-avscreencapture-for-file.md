@@ -2,7 +2,7 @@
 
 Screen capture is mainly used to record the main screen.
 
-You can call the C APIs of the AVScreenCapture module to record the screen and collect audio and video source data output by the device and microphone. You can call the APIs to obtain audio and video files and transfer the files to other modules for playback or processing. In this way, screen content can be shared in the form of files.
+You can call the C APIs of the [AVScreenCapture](media-kit-intro.md#avscreencapture) module to record the screen and collect audio and video source data output by the device and microphone. You can call the APIs to obtain audio and video files and transfer the files to other modules for playback or processing. In this way, screen content can be shared in the form of files.
 
 The AVScreenCapture, Window, and Graphics modules together implement the entire video capture process.
 

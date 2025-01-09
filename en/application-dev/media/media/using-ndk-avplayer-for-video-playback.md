@@ -1,9 +1,9 @@
-# Using AVPlayer to Play Audio (C/C++)
+# Using AVPlayer to Play Video (C/C++)
 
-The [AVPlayer](media-kit-intro.md#avplayer) is used to play raw media assets in an end-to-end manner. In this topic, you will learn how to use the AVPlayer to play a complete piece of music.
+The [AVPlayer](../../reference/apis-media-kit/_a_v_player.md#avplayer) is used to play raw media assets in an end-to-end manner. In this topic, you will learn how to use the AVPlayer to play a complete video.
 
 
-The full playback process includes creating an AVPlayer instance, setting callback functions, setting the media asset to play, setting playback parameters (volume, speed, and focus mode), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the AVPlayer instance.
+The full playback process includes creating an AVPlayer instance, setting callback functions, setting the media asset to play, setting playback parameters (volume, speed, and focus mode), setting the playback window, controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the AVPlayer instance.
 
 
 During application development, you can obtain the playback process information through the callbacks [OH_AVPlayerOnInfoCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfocallback) and [OH_AVPlayerOnErrorCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeronerrorcallback) of the AVPlayer. If the application performs an operation when the AVPlayer is not in the given state, the system may throw an exception or generate other undefined behavior.
@@ -25,7 +25,7 @@ This topic describes only how to implement the playback of a media asset. In pra
 - Use [OH_AVPlayer_SetOnInfoCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setoninfocallback) and [OH_AVPlayer_SetOnErrorCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setonerrorcallback) to set the information callback [OH_AVPlayerOnInfoCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfocallback) and error callback [OH_AVPlayerOnErrorCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeronerrorcallback), respectively. After [OH_AVPlayerOnInfoCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfocallback) is set, the callback [OH_AVPlayerOnInfo](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfo) set through [OH_AVPlayer_SetPlayerCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setplayercallback) is not executed. After [OH_AVPlayerOnErrorCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeronerrorcallback) is set, the callback [OH_AVPlayerOnError](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeronerror) set through [OH_AVPlayer_SetPlayerCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setplayercallback) is not executed.
 
 ## How to Develop
-Link the following dynamic library in the CMake script:
+Link the dynamic library in the CMake script.
 ```
 target_link_libraries(sample PUBLIC libavplayer.so)
 ```
@@ -45,7 +45,7 @@ In addition, link the following dynamic link library in the CMake script:
 target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
 ```
 
-You can use C/C++ APIs related to audio playback by including the header files [avplayer.h](../../reference/apis-media-kit/avplayer_8h.md), [avpalyer_base.h](../../reference/apis-media-kit/avplayer__base_8h.md), and [native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md).
+You can use C/C++ APIs related to video playback by including the header files [avplayer.h](../../reference/apis-media-kit/avplayer_8h.md), [avpalyer_base.h](../../reference/apis-media-kit/avplayer__base_8h.md), and [native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md).
 Read [AVPlayer](../../reference/apis-media-kit/_a_v_player.md) for the API reference.
 
 1. Create an AVPlayer instance by calling [OH_AVPlayer_Create()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_create). The AVPlayer is initialized to the [AV_IDLE](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1) state.
@@ -64,21 +64,24 @@ Read [AVPlayer](../../reference/apis-media-kit/_a_v_player.md) for the API refer
 
 5. (Optional) Set the audio interruption mode by calling [OH_AVPlayer_SetAudioInterruptMode()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudiointerruptmode).
 
-6. Prepare for the playback by calling [OH_AVPlayer_Prepare()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_prepare). The AVPlayer enters the [AV_PREPARED](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1) state. In this case, you can obtain the duration and set the volume.
+6. Set the playback window by calling [OH_AVPlayer_SetVideoSurface()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setvideosurface). This function must be called after **SetSource** and before **Prepare**.
 
-7. (Optional) Set the audio effect mode of the AVPlayer by calling [OH_AVPlayer_SetAudioEffectMode()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudioeffectmode).
+7. Prepare for the playback by calling [OH_AVPlayer_Prepare()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_prepare). The AVPlayer enters the [AV_PREPARED](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1) state. In this case, you can obtain the duration and set the volume.
 
-8. Control the playback. You can call [OH_AVPlayer_Play()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_play), [OH_AVPlayer_Pause()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_pause), [OH_AVPlayer_Seek()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_seek), and [OH_AVPlayer_Stop()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_stop) to trigger different control operations.
+8. (Optional) Set the audio effect mode of the AVPlayer by calling [OH_AVPlayer_SetAudioEffectMode()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudioeffectmode).
 
-9. (Optional) Reset the media asset by calling [OH_AVPlayer_Reset()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_reset). The AVPlayer enters the [AV_IDLE](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1) state again and you can change the media asset URL.
+9. Control the playback. You can call [OH_AVPlayer_Play()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_play), [OH_AVPlayer_Pause()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_pause), [OH_AVPlayer_Seek()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_seek), and [OH_AVPlayer_Stop()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_stop) to trigger different control operations.
 
-10. Exit the playback. Specifically, call [OH_AVPlayer_Release()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_release) to destroy the instance. The AVPlayer enters the [AV_RELEASED](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1) state and exits the playback. Further actions on the AVPlayer instance may lead to undefined behavior, such as the process crashing or the application terminating unexpectedly.
+10. (Optional) Reset the media asset by calling [OH_AVPlayer_Reset()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_reset). The AVPlayer enters the [AV_IDLE](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1) state again and you can change the media asset URL.
+
+11. Exit the playback. Specifically, call [OH_AVPlayer_Release()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_release) to destroy the instance. The AVPlayer enters the [AV_RELEASED](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1) state and exits the playback. Further actions on the AVPlayer instance may lead to undefined behavior, such as the process crashing or the application terminating unexpectedly.
 
 ## Sample Code
 
-```c
+```c++
 #include "napi/native_api.h"
 
+#include <ace/xcomponent/native_interface_xcomponent.h>
 #include <multimedia/player_framework/avplayer.h>
 #include <multimedia/player_framework/avplayer_base.h>
 #include <multimedia/player_framework/native_averrors.h>
@@ -106,6 +109,8 @@ typedef struct DemoNdkPlayer {
     int32_t width = -1;
     int32_t height = -1;
 
+    static OHNativeWindow *nativeWindow;
+
     AVPlayerBufferingType bufferType = AVPLAYER_BUFFERING_START;
     int32_t bufferValue = -1;
 
@@ -118,7 +123,10 @@ typedef struct DemoNdkPlayer {
     int32_t interruptHint = -1;
 } DemoNdkPlayer;
 
+OHNativeWindow *DemoNdkPlayer::nativeWindow = nullptr;
+
 void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
+    OH_AVErrCode ret;
     switch (state) {
         case AV_IDLE: // This state is reported upon a successful callback of OH_AVPlayer_Reset().
 //            ret = OH_AVPlayer_SetURLSource(player, url); // Set the URL.
@@ -127,9 +135,11 @@ void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
 //        }
             break;
         case AV_INITIALIZED:
+            ret = OH_AVPlayer_SetVideoSurface(player, DemoNdkPlayer::nativeWindow); // Set the video playback surface.
+            LOG("OH_AVPlayer_SetVideoSurface ret:%d", ret);
             ret = OH_AVPlayer_Prepare(player); // This state is reported when the AVPlayer sets the playback source.
             if (ret != AV_ERR_OK) {
-            // Exception processing.
+            // Handle the exception.
             }
             break;
         case AV_PREPARED:
@@ -139,7 +149,7 @@ void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
 //            }  
             ret = OH_AVPlayer_Play(player); // Call OH_AVPlayer_Play() to start playback.
             if (ret != AV_ERR_OK) {
-            // Exception processing.
+            // Handle the exception.
             }
             break;
         case AV_PLAYING:
@@ -157,13 +167,13 @@ void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
         case AV_STOPPED:
             ret = OH_AVPlayer_Release(player); // Call OH_AVPlayer_Reset() to reset the AVPlayer state.
             if (ret != AV_ERR_OK) {
-            // Exception processing.
+            // Handle the exception.
             }
             break;
         case AV_COMPLETED:
             ret = OH_AVPlayer_Stop(player);// Call OH_AVPlayer_Stop() to stop the playback.
             if (ret != AV_ERR_OK) {
-            // Exception processing.
+            // Handle the exception.
             }
             break;
         default:
@@ -172,7 +182,7 @@ void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
 }
 
 void OHAVPlayerOnInfoCallback(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_AVFormat *infoBody, void *userData) {
-    int32_t ret;
+    OH_AVErrCode ret;
     int32_t value = -1;
 
     DemoNdkPlayer *demoNdkPlayer = reinterpret_cast<DemoNdkPlayer *>(userData);
@@ -303,9 +313,10 @@ void OHAVPlayerOnErrorCallback(OH_AVPlayer *player, int32_t errorCode, const cha
 }
 
 // Describe the mapped play method in the index.d.ts file and pass in a parameter of the string type.
-// When calling the player method in the .ets file, pass in the file path testNapi.play("/data/test/test.mp3").
+// When calling the player method in the .ets file, pass in the file path testNapi.play("/data/test/test.mp4").
 static napi_value Play(napi_env env, napi_callback_info info)
 {
+    OH_AVErrCode ret;
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     
@@ -314,26 +325,26 @@ static napi_value Play(napi_env env, napi_callback_info info)
     // Obtain the parameter type.
     napi_valuetype stringType;
     if (napi_ok != napi_typeof(env, args[0], &stringType)) {
-        // Exception processing.
+        // Handle the exception.
         return nullptr;
     }
     
     // Verify the parameter.
     if (napi_null == stringType) {
-        // Exception processing.
+        // Handle the exception.
         return nullptr;
     }
     
     // Obtain the length of the passed-in string.
     size_t length = 0;
     if (napi_ok != napi_get_value_string_utf8(env, args[0], nullptr, 0, &length)) {
-        // Exception processing.
+        // Handle the exception.
         return nullptr;
     }
     
     // If "" is passed in, the result is directly returned.
     if (length == 0) {
-        // Exception processing.
+        // Handle the exception.
         return nullptr;
     }
     
@@ -342,12 +353,13 @@ static napi_value Play(napi_env env, napi_callback_info info)
     if (napi_ok != napi_get_value_string_utf8(env, args[0], url, length + 1, &length)) {
         delete[] url;
         url = nullptr;
-        // Exception processing.
+        // Handle the exception.
         return nullptr;
     }
 
     // Use the new function to set the information callback and error callback. Do not use OH_AVPlayer_SetPlayerCallback.
     // Release the object when it is no longer needed.
+    OH_AVPlayer *player = OH_AVPlayer_Create();
     DemoNdkPlayer *demoNdkPlayer = new DemoNdkPlayer({
         .player = player,
         .url = url,
@@ -360,11 +372,11 @@ static napi_value Play(napi_env env, napi_callback_info info)
     LOG("OH_AVPlayer_SetPlayerOnErrorCallback ret:%d", ret);
 
     if (ret != AV_ERR_OK) {
-    // Exception processing.
+    // Handle the exception.
     }
     ret = OH_AVPlayer_SetURLSource(player, url); // Set the URL.
     if (ret != AV_ERR_OK) {
-    // Exception processing.
+    // Handle the exception.
     }
     // Set the audio stream type.
     OH_AudioStream_Usage streamUsage = OH_AudioStream_Usage::AUDIOSTREAM_USAGE_UNKNOWN;
@@ -383,13 +395,55 @@ static napi_value Play(napi_env env, napi_callback_info info)
     return value;
 }
 
+// Define the surface callback.
+void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
+    LOG("OnSurfaceCreatedCB...");
+    // Obtain an OHNativeWindow instance.
+    OHNativeWindow * nativeWindow = static_cast<OHNativeWindow *>(window);
+    DemoNdkPlayer::nativeWindow = nativeWindow;
+    // ...
+}
+
+void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
+    LOG("OnSurfaceDestroyedCB...");
+    // Obtain an OHNativeWindow instance.
+    OHNativeWindow * nativeWindow = static_cast<OHNativeWindow *>(window);
+    // ...
+}
+
+void Export(napi_env env, napi_value exports) {
+    if ((env == nullptr) || (exports == nullptr)) {
+        LOG("Export: env or exports is null");
+        return;
+    }
+    napi_value exportInstance = nullptr;
+    if (napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance) != napi_ok) {
+        LOG("Export: napi_get_named_property fail");
+        return;
+    }
+    OH_NativeXComponent *nativeXComponent = nullptr;
+    if (napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&nativeXComponent)) != napi_ok) {
+        LOG("Export: napi_unwrap fail");
+        return;
+    }
+    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
+    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+    if (OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+        LOG("OH_NativeXComponent_GetXComponentId fail");
+        return;
+    }
+    LOG("call Export surfaceID=%s", idStr);
+}
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
-        { "play", nullptr, Play, nullptr, nullptr, nullptr, napi_default, nullptr }
+        { "Play", nullptr, Play, nullptr, nullptr, nullptr, napi_default, nullptr }
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+
+    Export(env, exports);
     return exports;
 }
 EXTERN_C_END
