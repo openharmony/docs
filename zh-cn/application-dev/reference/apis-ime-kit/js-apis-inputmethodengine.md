@@ -1686,6 +1686,94 @@ try {
 }
 ```
 
+### startMoving<sup>16+</sup>
+
+startMoving(): void
+发送移动命令给窗口，不产生实际移动效果（仅在鼠标点击作用才可以移动）。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+|    |    |      |    |
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+|void| 无返回结果。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 12800008 | input method manager service error. |
+| 12800017 | invalid panel type or panel flag. |
+| 12800013 | window manager service error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  panel.startMoving().then(() => {
+    console.log('Succeeded in moving the panel.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to move panel: ${JSON.stringify(err)}`);
+  });
+} catch (err) {
+  console.error(`Failed to move panel: ${JSON.stringify(err)}`);
+}
+```
+
+### startMoving<sup>16+</sup>
+
+getDisplayId(): Promise<number>
+获取当前窗口的displayid，使用promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+|    |    |      |    |
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+|number| Promise对象。返回窗口的displayId。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 12800013 | input method manager service error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  panel.getDisplayId().then((result: number) => {
+    console.log('get displayId:' + result);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get displayId: ${JSON.stringify(err)}`);
+  });
+} catch (err) {
+  console.error(`Failed to get displayId: ${JSON.stringify(err)}`);
+}
+```
+
 ### show<sup>10+</sup>
 
 show(callback: AsyncCallback\<void>): void
