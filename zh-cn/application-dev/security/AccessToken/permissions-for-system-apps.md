@@ -4645,6 +4645,18 @@
 
 **起始版本**：16
 
+### ohos.permission.GET_ANIM_POLICY
+
+允许系统应用注册动效插件，获取动效使用策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ## user_grant，允许ACL跨级申请
 
 以下权限的授权方式均为user_grant（用户授权），且允许通过ACL的方式申请。
