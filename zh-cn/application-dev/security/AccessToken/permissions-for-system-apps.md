@@ -4621,6 +4621,30 @@
 
 **起始版本**：14
 
+### ohos.permission.USE_USER_ACCESS_MANAGER
+
+允许应用查询和配置用户身份认证策略、校验用户身份认证结果。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：false
+
+**起始版本**：16
+
+### ohos.permission.SET_LAUNCH_REASON_MESSAGE
+
+允许系统应用拉起其他应用时设置拉起原因。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：false
+
+**起始版本**：16
+
 ### ohos.permission.GET_ANIM_POLICY
 
 允许系统应用注册动效插件，获取动效使用策略。
