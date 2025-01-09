@@ -137,7 +137,7 @@ struct SubHeaderExample {
 }
 ```
 
-![子标题1](figures/zh-cn_image_subheader_example01.png)
+![zh-cn_image_subheader_example01](figures/zh-cn_image_subheader_example01.png)
 
 ### 示例2（双行文本内容型子标题）
 该示例主要演示子标题左侧为primaryTitle、secondaryTitle，右侧operationType类型为TEXT_ARROW。
@@ -180,6 +180,7 @@ struct SubHeaderExample {
   build() {
     Column() {
       SubHeader({
+        // 左侧为select选择器
         select: {
           options: [{ value: 'aaa' }, { value: 'bbb' }, { value: 'ccc' }],
           value: 'selectDemo',
@@ -189,6 +190,7 @@ struct SubHeaderExample {
           }
         },
         operationType: OperationType.ICON_GROUP,
+        // 右侧为三个icon图标
         operationItem: [{
           value: $r('sys.media.ohos_ic_public_email'),
           action: () => {
@@ -211,7 +213,7 @@ struct SubHeaderExample {
 }
 ```
 
-![子标题5](figures/zh-cn_image_subheader_example03.png)
+![zh-cn_image_subheader_example03](figures/zh-cn_image_subheader_example03.png)
 
 ### 示例4（设置左侧symbol图标）
 该示例主要演示子标题左侧icon设置symbol图标。
@@ -302,7 +304,7 @@ struct SubHeaderExample {
 }
 ```
 
-![子标题5](figures/zh-cn_image_subheader_example05.png)
+![zh-cn_image_subheader_example05](figures/zh-cn_image_subheader_example05.png)
 
 ### 示例6（自定义标题内容）
  该示例主要演示SubHeader设置titleBuilder自定义标题内容的效果。
@@ -345,7 +347,7 @@ struct SubHeaderExample {
 }
 ```
 
-![子标题6](figures/zh-cn_image_subheader_example06.png)
+![zh-cn_image_subheader_example06](figures/zh-cn_image_subheader_example06.png)
 
 ### 示例7（自定义标题样式）
 该示例主要演示SubHeader设置标题和副标题字体样式以及标题内外边距的效果。
@@ -453,4 +455,4 @@ struct SubHeaderExample {
   }
 }
 ```
-![/zh-cn_image_subheader_example08](figures/zh-cn_image_subheader_example08.png)
+![figures/zh-cn_image_subheader_example08](figures/zh-cn_image_subheader_example08.png)
