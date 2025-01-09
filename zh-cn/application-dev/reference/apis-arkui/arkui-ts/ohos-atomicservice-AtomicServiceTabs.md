@@ -62,7 +62,7 @@ AtomicServiceTabs ({
 | barBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | @Prop | 设置TabBar的背景颜色。|
 | index | number | 否 | @Prop | 设置当前显示页签的索引。|
 | barOverlap | boolean| 否 | @Prop | 设置TabBar是否背后变模糊并叠加在TabContent之上。|
-| controller|[TabsController](ts-container-tabs#tabscontroller) | 否 | @Prop |Tabs组件的控制器，用于控制Tabs组件进行页签切换。|
+| controller|[TabsController](ts-container-tabs#tabscontroller) | 否 | - |Tabs组件的控制器，用于控制Tabs组件进行页签切换。|
 | onChange | Callback\<number\> | 否 | - | Tabs页签切换后触发的事件。 |
 | onTabBarClick | Callback\<number\> | 否 | - |Tabs页签点击后触发的事件。|
 | onContentWillChange | [OnContentWillChangeCallback](#oncontentwillchangecallback) | 否 | - | Tabs页面切换拦截事件能力，新页面即将显示时触发该回调。|
