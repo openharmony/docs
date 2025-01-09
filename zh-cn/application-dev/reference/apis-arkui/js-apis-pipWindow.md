@@ -660,6 +660,47 @@ let status: PiPWindow.PiPControlStatus = PiPWindow.PiPControlStatus.PLAY; // 视
 pipController.updatePiPControlStatus(controlType, status);
 ```
 
+### updateContentNode<sup>16+</sup>
+updateContentNode(contentNode: typeNode.XComponent): Promise&lt;void&gt;
+
+更新画中画节点内容
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名          | 类型                                       | 必填        | 说明                                                                                                                                                                                                                                     |
+|--------------|------------------------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| contentNode       | [typeNode.XComponent](js-apis-arkui-frameNode.md#xcomponent12)    | 是         | 用于渲染画中画窗口中的内容。该参数不能为空。|
+
+**返回值：**
+
+| 类型                   | 说明                  |
+|----------------------|---------------------|
+| Promise&lt;void&gt;  | 无返回结果的Promise对象。    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                        |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 401   | Params error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed |
+| 801   | Capability not supported.Failed to call the API due to limited device capabilities.                                                       |
+| 1300014    | PiP internal error.                                    |
+
+**示例：**
+
+```ts
+try {
+  pipcontroller.updateContentNode(contentNode);
+} catch (exception) {
+  console.error(`Failed to update content node. Cause: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### setPiPControlEnabled<sup>12+</sup>
 setPiPControlEnabled(controlType: PiPControlType, enabled: boolean): void
 
