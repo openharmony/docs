@@ -26,7 +26,7 @@ NA
 
 **错误信息**
 
-Dialog content error.
+The ComponentContent is incorrect.
 
 **错误描述**
 
@@ -44,7 +44,7 @@ NA
 
 **错误信息**
 
-Dialog content already exists.
+The ComponentContent already exists.
 
 **错误描述**
 
@@ -62,7 +62,7 @@ NA
 
 **错误信息**
 
-Dialog content not found.
+The ComponentContent cannot be found.
 
 **错误描述**
 
