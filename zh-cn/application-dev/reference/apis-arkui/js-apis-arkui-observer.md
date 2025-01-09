@@ -202,6 +202,7 @@ TabContent页面的切换信息。
 | tabContentId | string                                             | 是   | TabContent组件的id。                          |
 | tabContentUniqueId | number                                       | 是   | TabContent组件的uniqueId。                    |
 | state        | [TabContentState](#tabcontentstate12)              | 是   | TabContent组件的状态。                        |
+| index        | number                                             | 是   | TabContent组件的下标索引。                        |
 | id           | string                                             | 是   | Tabs组件的id。                                |
 | uniqueId     | number                                             | 是   | Tabs组件的uniqueId。                          |
 
