@@ -153,7 +153,7 @@ struct Index {
       })
 
       Button('changed age').onClick(() => {
-        this.age++;  // cannot trigger Computed
+        this.age++;  // 无法触发Computed
       })
     }
   }
