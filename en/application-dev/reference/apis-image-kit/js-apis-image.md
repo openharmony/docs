@@ -26,7 +26,7 @@ Creates a **PixelMap** object with the default BGRA_8888 format and specified pi
 
 | Name | Type                                            | Mandatory| Description                                                            |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| colors  | ArrayBuffer                                      | Yes  | Buffer for storing the pixel data. It is used to initialize the pixels of the PixelMap. Before initialization, the pixel format in the buffer must be specified by [InitializationOptions](#initializationoptions8).srcPixelFormat.|
+| colors  | ArrayBuffer                                      | Yes  | Buffer for storing the pixel data. It is used to initialize the pixels of the PixelMap. Before initialization, the pixel format in the buffer must be specified by [InitializationOptions](#initializationoptions8).srcPixelFormat.<br>**NOTE**: The length of the buffer required for storing the pixel data is determined by multiplying the width, height, and the number of bytes per pixel.|
 | options | [InitializationOptions](#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
 
 **Return value**
@@ -40,9 +40,9 @@ Creates a **PixelMap** object with the default BGRA_8888 format and specified pi
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreatePixelMap() {
   const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
     console.info('Succeeded in creating pixelmap.');
   }).catch((error: BusinessError) => {
@@ -63,7 +63,7 @@ Creates a **PixelMap** object with the default BGRA_8888 format and specified pi
 
 | Name  | Type                                            | Mandatory| Description                      |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
-| colors   | ArrayBuffer                                      | Yes  | Buffer for storing the pixel data. It is used to initialize the pixels of the PixelMap. Before initialization, the pixel format in the buffer must be specified by [InitializationOptions](#initializationoptions8).srcPixelFormat.|
+| colors   | ArrayBuffer                                      | Yes  | Buffer for storing the pixel data. It is used to initialize the pixels of the PixelMap. Before initialization, the pixel format in the buffer must be specified by [InitializationOptions](#initializationoptions8).srcPixelFormat.<br>**NOTE**: The length of the buffer required for storing the pixel data is determined by multiplying the width, height, and the number of bytes per pixel.|
 | options  | [InitializationOptions](#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
 | callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the **PixelMap** object obtained; otherwise, **err** is an error object.|
 
@@ -72,9 +72,9 @@ Creates a **PixelMap** object with the default BGRA_8888 format and specified pi
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreatePixelMap() {
   const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   image.createPixelMap(color, opts, (error: BusinessError, pixelMap: image.PixelMap) => {
     if(error) {
       console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
@@ -149,7 +149,7 @@ class MySequence implements rpc.Parcelable {
     return true;
   }
 }
-async function Demo() {
+async function CreatePixelMapFromParcel() {
   const color: ArrayBuffer = new ArrayBuffer(96);
   let bufferArr: Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -157,9 +157,9 @@ async function Demo() {
   }
   let opts: image.InitializationOptions = {
     editable: true,
-    pixelFormat: 4,
+    pixelFormat: image.PixelMapFormat.BGRA_8888,
     size: { height: 4, width: 6 },
-    alphaType: 3
+    alphaType: image.AlphaType.UNPREMUL
   }
   let pixelMap: image.PixelMap | undefined = undefined;
   image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
@@ -188,7 +188,9 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 Creates a **PixelMap** object based on the surface ID and region information. The size of the region is specified by [Region](#region8).size. This API uses a promise to return the result.
 
 > **NOTE**
+>
 > The width and height of [Region](#region8).size must be the same as those of the [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
+>
 > You need to adjust the width and height of the [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) when switching the folded state of a foldable device.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
@@ -220,7 +222,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo(surfaceId: string) {
+async function CreatePixelMapFromSurface(surfaceId: string) {
   let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
   image.createPixelMapFromSurface(surfaceId, region).then(() => {
     console.info('Succeeded in creating pixelmap from Surface');
@@ -237,7 +239,9 @@ createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 Creates a **PixelMap** object based on the surface ID and region information. This API returns the result synchronously. The size of the region is specified by [Region](#region8).size.
 
 > **NOTE**
+>
 > The width and height of [Region](#region8).size must be the same as those of the [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
+>
 > You need to adjust the width and height of the [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) when switching the folded state of a foldable device.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
@@ -269,7 +273,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo(surfaceId: string) {
+async function CreatePixelMapFromSurfaceSync(surfaceId: string) {
   let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
   let pixelMap : image.PixelMap = image.createPixelMapFromSurfaceSync(surfaceId, region);
   return pixelMap;
@@ -280,7 +284,7 @@ async function Demo(surfaceId: string) {
 
 createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMap
 
-Creates a **PixelMap** object with the specified pixel properties. This API returns the result synchronously.
+Creates a **PixelMap** object with the default BGRA_8888 format and specified pixel properties. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -288,7 +292,7 @@ Creates a **PixelMap** object with the specified pixel properties. This API retu
 
 | Name | Type                                            | Mandatory| Description                                                            |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| colors  | ArrayBuffer                                      | Yes  | Buffer for storing the pixel data. It is used to initialize the pixels of the PixelMap. Before initialization, the pixel format in the buffer must be specified by [InitializationOptions](#initializationoptions8).srcPixelFormat.|
+| colors  | ArrayBuffer                                      | Yes  | Buffer for storing the pixel data. It is used to initialize the pixels of the PixelMap. Before initialization, the pixel format in the buffer must be specified by [InitializationOptions](#initializationoptions8).srcPixelFormat.<br>**NOTE**: The length of the buffer required for storing the pixel data is determined by multiplying the width, height, and the number of bytes per pixel.|
 | options | [InitializationOptions](#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
 
 **Return value**
@@ -309,9 +313,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreatePixelMapSync() {
   const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
   return pixelMap;
 }
@@ -349,8 +353,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+async function CreatePixelMapSync() {
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   let pixelMap : image.PixelMap = image.createPixelMapSync(opts);
   return pixelMap;
 }
@@ -388,7 +392,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreatePremultipliedPixelMap() {
   const color: ArrayBuffer = new ArrayBuffer(16); // 16 is the size of the pixel buffer to create. The value is calculated as follows: height * width * 4.
   let bufferArr = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i += 4) {
@@ -397,9 +401,9 @@ async function Demo() {
     bufferArr[i+2] = 122;
     bufferArr[i+3] = 122;
   }
-  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 2, width: 2 } , alphaType: image.AlphaType.UNPREMUL}
   let srcPixelmap = image.createPixelMapSync(color, optsForUnpre);
-  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 2, width: 2 } , alphaType: image.AlphaType.PREMUL}
   let dstPixelMap = image.createPixelMapSync(optsForPre);
   image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
     if(error) {
@@ -449,7 +453,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreatePremultipliedPixelMap() {
   const color: ArrayBuffer = new ArrayBuffer(16); // 16 is the size of the pixel buffer to create. The value is calculated as follows: height * width * 4.
   let bufferArr = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i += 4) {
@@ -458,9 +462,9 @@ async function Demo() {
     bufferArr[i+2] = 122;
     bufferArr[i+3] = 122;
   }
-  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 2, width: 2 } , alphaType: image.AlphaType.UNPREMUL}
   let srcPixelmap = image.createPixelMapSync(color, optsForUnpre);
-  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 2, width: 2 } , alphaType: image.AlphaType.PREMUL}
   let dstPixelMap = image.createPixelMapSync(optsForPre);
   image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
     console.info('Succeeded in converting pixelmap.');
@@ -502,7 +506,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreateUnpremultipliedPixelMap() {
   const color: ArrayBuffer = new ArrayBuffer(16); // 16 is the size of the pixel buffer to create. The value is calculated as follows: height * width * 4.
   let bufferArr = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i += 4) {
@@ -511,9 +515,9 @@ async function Demo() {
     bufferArr[i+2] = 122;
     bufferArr[i+3] = 122;
   }
-  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 2, width: 2 } , alphaType: image.AlphaType.PREMUL}
   let srcPixelmap = image.createPixelMapSync(color, optsForPre);
-  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 2, width: 2 } , alphaType: image.AlphaType.UNPREMUL}
   let dstPixelMap = image.createPixelMapSync(optsForUnpre);
   image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
     if(error) {
@@ -563,7 +567,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreateUnpremultipliedPixelMap() {
   const color: ArrayBuffer = new ArrayBuffer(16); // 16 is the size of the pixel buffer to create. The value is calculated as follows: height * width * 4.
   let bufferArr = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i += 4) {
@@ -572,9 +576,9 @@ async function Demo() {
     bufferArr[i+2] = 122;
     bufferArr[i+3] = 122;
   }
-  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 2, width: 2 } , alphaType: image.AlphaType.PREMUL}
   let srcPixelmap = image.createPixelMapSync(color, optsForPre);
-  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 2, width: 2 } , alphaType: image.AlphaType.UNPREMUL}
   let dstPixelMap = image.createPixelMapSync(optsForUnpre);
   image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
     console.info('Succeeded in converting pixelmap.');
@@ -606,7 +610,7 @@ Before calling any API in **PixelMap**, you must use [image.createPixelMap](#ima
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-Reads the pixels of this PixelMap and writes the data to the buffer based on the pixel format of the PixelMap. This API uses a promise to return the result.
+Reads the pixels of this **PixelMap** object based on the PixelMap's pixel format and writes the data to the buffer. This API uses a promise to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -631,7 +635,7 @@ Reads the pixels of this PixelMap and writes the data to the buffer based on the
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ReadPixelsToBuffer() {
   const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
   if (pixelMap != undefined) {
     pixelMap.readPixelsToBuffer(readBuffer).then(() => {
@@ -647,7 +651,7 @@ async function Demo() {
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-Reads the pixels of this PixelMap and writes the data to the buffer based on the pixel format of the PixelMap. This API uses an asynchronous callback to return the result.
+Reads the pixels of this **PixelMap** object based on the PixelMap's pixel format and writes the data to the buffer. This API uses an asynchronous callback to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -667,7 +671,7 @@ Reads the pixels of this PixelMap and writes the data to the buffer based on the
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ReadPixelsToBuffer() {
   const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
   if (pixelMap != undefined) {
     pixelMap.readPixelsToBuffer(readBuffer, (error: BusinessError, res: void) => {
@@ -686,7 +690,7 @@ async function Demo() {
 
 readPixelsToBufferSync(dst: ArrayBuffer): void
 
-Reads the pixels of this PixelMap and writes the data to the buffer based on the pixel format of the PixelMap. This API returns the result synchronously.
+Reads the pixels of this **PixelMap** object based on the PixelMap's pixel format and writes the data to the buffer. This API returns the result synchronously.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -714,7 +718,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ReadPixelsToBufferSync() {
   const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
   if (pixelMap != undefined) {
     pixelMap.readPixelsToBufferSync(readBuffer);
@@ -726,9 +730,7 @@ async function Demo() {
 
 readPixels(area: PositionArea): Promise\<void>
 
-Reads the pixels in the area (specified by [PositionArea] (#positionarea7).region) of this PixelMap and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API uses a promise to return the result.
-
-When the pixel format of the PixelMap is RGB, the data is read from the PixelMap in the BGRA_8888 format.
+Reads the pixels in the area specified by [PositionArea](#positionarea7).region of this **PixelMap** object in the BGRA_8888 format and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API uses a promise to return the result.
 
 You can use a formula to calculate the size of the memory to be applied for based on **PositionArea**.
 
@@ -759,7 +761,7 @@ RGBA region calculation formula: region to read (region.size{width * height}) * 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ReadPixels() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 4.
     offset: 0,
@@ -775,7 +777,7 @@ async function Demo() {
   }
 }
 
-async function Demo() {
+async function ReadPixels() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6),  // 6 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 1.5.
     offset: 0,
@@ -796,9 +798,7 @@ async function Demo() {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Reads the pixels in the area (specified by [PositionArea] (#positionarea7).region) of this PixelMap and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API uses an asynchronous callback to return the result.
-
-When the pixel format of the PixelMap is RGB, the data is read from the PixelMap in the BGRA_8888 format.
+Reads the pixels in the area specified by [PositionArea](#positionarea7).region of this **PixelMap** object in the BGRA_8888 format and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API uses an asynchronous callback to return the result.
 
 You can use a formula to calculate the size of the memory to be applied for based on **PositionArea**.
 
@@ -824,7 +824,7 @@ RGBA region calculation formula: region to read (region.size{width * height}) * 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ReadPixels() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 4.
     offset: 0,
@@ -843,7 +843,7 @@ async function Demo() {
   }
 }
 
-async function Demo() {
+async function ReadPixels() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6),  // 6 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 1.5.
     offset: 0,
@@ -867,9 +867,7 @@ async function Demo() {
 
 readPixelsSync(area: PositionArea): void
 
-Reads the pixels in the area (specified by [PositionArea] (#positionarea7).region) of this PixelMap and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API returns the result synchronously.
-
-When the pixel format of the PixelMap is RGB, the data is read from the PixelMap in the BGRA_8888 format.
+Reads the pixels in the area specified by [PositionArea](#positionarea7).region of this **PixelMap** object in the BGRA_8888 format and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -895,7 +893,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ReadPixelsSync() {
   const area : image.PositionArea = {
     pixels: new ArrayBuffer(8),
     offset: 0,
@@ -912,9 +910,7 @@ async function Demo() {
 
 writePixels(area: PositionArea): Promise\<void>
 
-Reads the pixels from the [PositionArea] (#positionarea7).pixels buffer and writes the data to the area (specified by [PositionArea](#positionarea7).region) in the PixelMap. This API uses a promise to return the result.
-
-When the pixel format of the PixelMap is RGB, the data is written to the PixelMap in the BGRA_8888 format.
+Reads the pixels in the [PositionArea](#positionarea7).pixels buffer in the BGRA_8888 format and writes the data to the area specified by [PositionArea](#positionarea7).region in this **PixelMap** object. This API uses a promise to return the result.
 
 You can use a formula to calculate the size of the memory to be applied for based on **PositionArea**.
 
@@ -945,7 +941,7 @@ RGBA region calculation formula: region to read (region.size{width * height}) * 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function WritePixels() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 4.
     offset: 0,
@@ -965,7 +961,7 @@ async function Demo() {
   }
 }
 
-async function Demo() {
+async function WritePixels() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6),  // 6 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 1.5.
     offset: 0,
@@ -990,9 +986,7 @@ async function Demo() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Reads the pixels from the [PositionArea] (#positionarea7).pixels buffer and writes the data to the area (specified by [PositionArea](#positionarea7).region) in the PixelMap. This API uses an asynchronous callback to return the result.
-
-When the pixel format of the PixelMap is RGB, the data is written to the PixelMap in the BGRA_8888 format.
+Reads the pixels in the [PositionArea](#positionarea7).pixels buffer in the BGRA_8888 format and writes the data to the area specified by [PositionArea](#positionarea7).region in this **PixelMap** object. This API uses an asynchronous callback to return the result.
 
 You can use a formula to calculate the size of the memory to be applied for based on **PositionArea**.
 
@@ -1018,7 +1012,7 @@ RGBA region calculation formula: region to read (region.size{width * height}) * 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function WritePixels() {
   const area: image.PositionArea = { pixels: new ArrayBuffer(8), // 8 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 4.
     offset: 0,
     stride: 8,
@@ -1040,7 +1034,7 @@ async function Demo() {
   }
 }
 
-async function Demo() {
+async function WritePixels() {
   const area: image.PositionArea = { pixels: new ArrayBuffer(6), // 6 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 1.5.
     offset: 0,
     stride: 8,
@@ -1067,9 +1061,7 @@ async function Demo() {
 
 writePixelsSync(area: PositionArea): void
 
-Reads the pixels from the [PositionArea] (#positionarea7).pixels buffer and writes the data to the area (specified by [PositionArea](#positionarea7).region) in the PixelMap. This API returns the result synchronously.
-
-When the pixel format of the PixelMap is RGB, the data is written to the PixelMap in the BGRA_8888 format.
+Reads the pixels in the [PositionArea](#positionarea7).pixels buffer in the BGRA_8888 format and writes the data to the area specified by [PositionArea](#positionarea7).region in this **PixelMap** object. This API returns the result synchronously.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1097,7 +1089,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function WritePixelsSync() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8),
     offset: 0,
@@ -1118,7 +1110,7 @@ async function Demo() {
 
 writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
-Reads the pixels in the buffer and writes the data to the PixelMap based on the pixel format of the PixelMap. This API uses a promise to return the result.
+Reads the pixels in the buffer based on the PixelMap's pixel format and writes the data to this **PixelMap** object. This API uses a promise to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1143,7 +1135,7 @@ Reads the pixels in the buffer and writes the data to the PixelMap based on the 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function WriteBufferToPixels() {
   const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
   let bufferArr: Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -1163,7 +1155,7 @@ async function Demo() {
 
 writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-Reads the pixels in the buffer and writes the data to the PixelMap based on the pixel format of the PixelMap. This API uses an asynchronous callback to return the result.
+Reads the pixels in the buffer based on the PixelMap's pixel format and writes the data to this **PixelMap** object. This API uses an asynchronous callback to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1183,7 +1175,7 @@ Reads the pixels in the buffer and writes the data to the PixelMap based on the 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function WriteBufferToPixels() {
   const color: ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
   let bufferArr: Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -1206,7 +1198,7 @@ async function Demo() {
 
 writeBufferToPixelsSync(src: ArrayBuffer): void
 
-Reads the pixels in the buffer and writes the data to the PixelMap based on the pixel format of the PixelMap. This API returns the result synchronously.
+Reads the pixels in the buffer based on the PixelMap's pixel format and writes the data to this **PixelMap** object. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1232,7 +1224,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function WriteBufferToPixelsSync() {
   const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
   let bufferArr : Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -1268,7 +1260,7 @@ Obtains the image information. This API uses a promise to return the result.
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function GetImageInfo() {
   if (pixelMap != undefined) {
     pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
       if (imageInfo != undefined) {
@@ -1304,7 +1296,7 @@ Obtains the image information. This API uses an asynchronous callback to return 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function GetImageInfo() {
   if (pixelMap != undefined) {
     pixelMap.getImageInfo((error: BusinessError, imageInfo: image.ImageInfo) => {
       if (error) {
@@ -1349,7 +1341,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function GetImageInfoSync() {
   if (pixelMap != undefined) {
     let imageInfo : image.ImageInfo = pixelMap.getImageInfoSync();
     return imageInfo;
@@ -1454,7 +1446,7 @@ Sets an opacity rate for this image. This API uses an asynchronous callback to r
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Opacity() {
   let rate: number = 0.5;
   if (pixelMap != undefined) {
     pixelMap.opacity(rate, (err: BusinessError) => {
@@ -1498,7 +1490,7 @@ Sets an opacity rate for this image. This API uses a promise to return the resul
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Opacity() {
   let rate: number = 0.5;
   if (pixelMap != undefined) {
     pixelMap.opacity(rate).then(() => {
@@ -1540,7 +1532,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function OpacitySync() {
   let rate : number = 0.5;
   if (pixelMap != undefined) {
     pixelMap.opacitySync(rate);
@@ -1571,7 +1563,7 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreateAlphaPixelmap() {
   if (pixelMap != undefined) {
     pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
       console.info('Succeeded in creating alpha pixelmap.');
@@ -1605,7 +1597,7 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreateAlphaPixelmap() {
   if (pixelMap != undefined) {
     pixelMap.createAlphaPixelmap((err: BusinessError, alphaPixelMap: image.PixelMap) => {
       if (alphaPixelMap == undefined) {
@@ -1649,7 +1641,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreateAlphaPixelmapSync() {
   if (pixelMap != undefined) {
     let pixelmap : image.PixelMap = pixelMap.createAlphaPixelmapSync();
     return pixelmap;
@@ -1662,7 +1654,13 @@ async function Demo() {
 
 scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
-Scales this image based on a given scaling multiple of the width and height. This API uses an asynchronous callback to return the result.
+Scales this image based on the scale factors of the width and height. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> You are advised to set the scale factors to non-negative numbers to avoid a flipping effect.
+>
+> Scale factors of the width and height = Width and height of the resized image/Width and height of the original image
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1674,8 +1672,8 @@ Scales this image based on a given scaling multiple of the width and height. Thi
 
 | Name  | Type                | Mandatory| Description                           |
 | -------- | -------------------- | ---- | ------------------------------- |
-| x        | number               | Yes  | Scaling multiple of the width.|
-| y        | number               | Yes  | Scaling multiple of the height.|
+| x        | number               | Yes  | Scale factor of the width.|
+| y        | number               | Yes  | Scale factor of the height.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -1683,7 +1681,7 @@ Scales this image based on a given scaling multiple of the width and height. Thi
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Scale() {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -1703,7 +1701,13 @@ async function Demo() {
 
 scale(x: number, y: number): Promise\<void>
 
-Scales this image based on a given scaling multiple of the width and height. This API uses a promise to return the result.
+Scales this image based on the scale factors of the width and height. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> You are advised to set the scale factors to non-negative numbers to avoid a flipping effect.
+>
+> Scale factors of the width and height = Width and height of the resized image/Width and height of the original image
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1715,8 +1719,8 @@ Scales this image based on a given scaling multiple of the width and height. Thi
 
 | Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| x      | number | Yes  | Scaling multiple of the width.|
-| y      | number | Yes  | Scaling multiple of the height.|
+| x      | number | Yes  | Scale factor of the width.|
+| y      | number | Yes  | Scale factor of the height.|
 
 **Return value**
 
@@ -1729,7 +1733,7 @@ Scales this image based on a given scaling multiple of the width and height. Thi
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Scale() {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -1747,7 +1751,13 @@ async function Demo() {
 
 scaleSync(x: number, y: number): void
 
-Scales this image based on a given width and height. This API returns the result synchronously.
+Scales this image based on the scale factors of the width and height. This API returns the result synchronously.
+
+> **NOTE**
+>
+> You are advised to set the scale factors to non-negative numbers to avoid a flipping effect.
+>
+> Scale factors of the width and height = Width and height of the resized image/Width and height of the original image
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1757,8 +1767,8 @@ Scales this image based on a given width and height. This API returns the result
 
 | Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| x      | number | Yes  | Scaling multiple of the width.|
-| y      | number | Yes  | Scaling multiple of the height.|
+| x      | number | Yes  | Scale factor of the width.|
+| y      | number | Yes  | Scale factor of the height.|
 
 **Error codes**
 
@@ -1774,7 +1784,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ScaleSync() {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -1787,7 +1797,13 @@ async function Demo() {
 
 scale(x: number, y: number, level: AntiAliasingLevel): Promise\<void>
 
-Scales this image based on a given scaling multiple of the width and height. This API uses a promise to return the result.
+Scales this image based on the specified anti-aliasing level and the scale factors for the width and height. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> You are advised to set the scaling factors to non-negative numbers to avoid a flipping effect.
+>
+> Scale factors of the width and height = Width and height of the resized image/Width and height of the original image
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1799,8 +1815,8 @@ Scales this image based on a given scaling multiple of the width and height. Thi
 
 | Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| x      | number | Yes  | Scaling multiple of the width.|
-| y      | number | Yes  | Scaling multiple of the height.|
+| x      | number | Yes  | Scale factor of the width.|
+| y      | number | Yes  | Scale factor of the height.|
 | level  | [AntiAliasingLevel](#antialiasinglevel12) | Yes  | Anti-aliasing level.|
 
 **Return value**
@@ -1823,7 +1839,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Scale() {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -1841,7 +1857,13 @@ async function Demo() {
 
 scaleSync(x: number, y: number, level: AntiAliasingLevel): void
 
-Scales this image based on a given width and height. This API returns the result synchronously.
+Scales this image based on the specified anti-aliasing level and the scale factors for the width and height. This API returns the result synchronously.
+
+> **NOTE**
+>
+> You are advised to set the scaling factors to non-negative numbers to avoid a flipping effect.
+>
+> Scale factors of the width and height = Width and height of the resized image/Width and height of the original image
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1851,8 +1873,8 @@ Scales this image based on a given width and height. This API returns the result
 
 | Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| x      | number | Yes  | Scaling multiple of the width.|
-| y      | number | Yes  | Scaling multiple of the height.|
+| x      | number | Yes  | Scale factor of the width.|
+| y      | number | Yes  | Scale factor of the height.|
 | level  | [AntiAliasingLevel](#antialiasinglevel12) | Yes  | Anti-aliasing level.|
 
 **Error codes**
@@ -1869,7 +1891,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ScaleSync() {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -1882,7 +1904,9 @@ async function Demo() {
 
 translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
-Translates this image based on given coordinates, with the new dimensions being width+X and height+Y. This API uses an asynchronous callback to return the result.
+Translates this image based on given coordinates. This API uses an asynchronous callback to return the result.
+
+The size of the translated image is changed to width+X and height+Y. It is recommended that the new width and height not exceed the width and height of the screen.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1894,8 +1918,8 @@ Translates this image based on given coordinates, with the new dimensions being 
 
 | Name  | Type                | Mandatory| Description                         |
 | -------- | -------------------- | ---- | ----------------------------- |
-| x        | number               | Yes  | X coordinate to translate.                 |
-| y        | number               | Yes  | Y coordinate to translate.                 |
+| x        | number               | Yes  | X coordinate to translate, in pixels.|
+| y        | number               | Yes  | Y coordinate to translate, in pixels.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -1903,7 +1927,7 @@ Translates this image based on given coordinates, with the new dimensions being 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Translate() {
   let translateX: number = 50.0;
   let translateY: number = 10.0;
   if (pixelMap != undefined) {
@@ -1923,7 +1947,9 @@ async function Demo() {
 
 translate(x: number, y: number): Promise\<void>
 
-Translates this image based on given coordinates, with the new dimensions being width+X and height+Y. This API uses a promise to return the result.
+Translates this image based on given coordinates. This API uses a promise to return the result.
+
+The size of the translated image is changed to width+X and height+Y. It is recommended that the new width and height not exceed the width and height of the screen.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1935,8 +1961,8 @@ Translates this image based on given coordinates, with the new dimensions being 
 
 | Name| Type  | Mandatory| Description       |
 | ------ | ------ | ---- | ----------- |
-| x      | number | Yes  | X coordinate to translate.|
-| y      | number | Yes  | Y coordinate to translate.|
+| x      | number | Yes  | X coordinate to translate, in pixels.|
+| y      | number | Yes  | Y coordinate to translate, in pixels.|
 
 **Return value**
 
@@ -1949,7 +1975,7 @@ Translates this image based on given coordinates, with the new dimensions being 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Translate() {
   let translateX: number = 50.0;
   let translateY: number = 10.0;
   if (pixelMap != undefined) {
@@ -1968,6 +1994,8 @@ translateSync(x: number, y: number): void
 
 Translates this image based on given coordinates. This API returns the result synchronously.
 
+The size of the translated image is changed to width+X and height+Y. It is recommended that the new width and height not exceed the width and height of the screen.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
@@ -1976,8 +2004,8 @@ Translates this image based on given coordinates. This API returns the result sy
 
 | Name  | Type                | Mandatory| Description                           |
 | -------- | -------------------- | ---- | ------------------------------- |
-| x        | number               | Yes  | X coordinate to translate.|
-| y        | number               | Yes  | Y coordinate to translate.|
+| x        | number               | Yes  | X coordinate to translate, in pixels.|
+| y        | number               | Yes  | Y coordinate to translate, in pixels.|
 
 **Error codes**
 
@@ -1993,7 +2021,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function TranslateSync() {
   let translateX : number = 50.0;
   let translateY : number = 10.0;
   if (pixelMap != undefined) {
@@ -2008,6 +2036,12 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 
 Rotates this image based on a given angle. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> The allowable range for image rotation angles is between 0 and 360 degrees. Angles outside this range are automatically adjusted according to the 360-degree cycle. For example, an angle of -100 degrees will produce the same result as 260 degrees.
+>
+> If the rotation angle is not an integer multiple of 90 degrees, the image size will change after rotation.
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -2018,7 +2052,7 @@ Rotates this image based on a given angle. This API uses an asynchronous callbac
 
 | Name  | Type                | Mandatory| Description                         |
 | -------- | -------------------- | ---- | ----------------------------- |
-| angle    | number               | Yes  | Angle to rotate.             |
+| angle    | number               | Yes  | Angle to rotate.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -2026,7 +2060,7 @@ Rotates this image based on a given angle. This API uses an asynchronous callbac
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Rotate() {
   let angle: number = 90.0;
   if (pixelMap != undefined) {
     pixelMap.rotate(angle, (err: BusinessError) => {
@@ -2047,6 +2081,12 @@ rotate(angle: number): Promise\<void>
 
 Rotates this image based on a given angle. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> The allowable range for image rotation angles is between 0 and 360 degrees. Angles outside this range are automatically adjusted according to the 360-degree cycle. For example, an angle of -100 degrees will produce the same result as 260 degrees.
+>
+> If the rotation angle is not an integer multiple of 90 degrees, the image size will change after rotation.
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -2057,7 +2097,7 @@ Rotates this image based on a given angle. This API uses a promise to return the
 
 | Name| Type  | Mandatory| Description                         |
 | ------ | ------ | ---- | ----------------------------- |
-| angle  | number | Yes  | Angle to rotate.             |
+| angle  | number | Yes  | Angle to rotate.|
 
 **Return value**
 
@@ -2070,7 +2110,7 @@ Rotates this image based on a given angle. This API uses a promise to return the
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Rotate() {
   let angle: number = 90.0;
   if (pixelMap != undefined) {
     pixelMap.rotate(angle).then(() => {
@@ -2088,6 +2128,12 @@ rotateSync(angle: number): void
 
 Rotates this image based on a given angle. This API returns the result synchronously.
 
+> **NOTE**
+>
+> The allowable range for image rotation angles is between 0 and 360 degrees. Angles outside this range are automatically adjusted according to the 360-degree cycle. For example, an angle of -100 degrees will produce the same result as 260 degrees.
+>
+> If the rotation angle is not an integer multiple of 90 degrees, the image size will change after rotation.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
@@ -2096,7 +2142,7 @@ Rotates this image based on a given angle. This API returns the result synchrono
 
 | Name  | Type                | Mandatory| Description                         |
 | -------- | -------------------- | ---- | ----------------------------- |
-| angle    | number               | Yes  | Angle to rotate.             |
+| angle    | number               | Yes  | Angle to rotate.|
 
 **Error codes**
 
@@ -2112,7 +2158,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function RotateSync() {
   let angle : number = 90.0;
   if (pixelMap != undefined) {
     pixelMap.rotateSync(angle);
@@ -2145,7 +2191,7 @@ Flips this image horizontally or vertically, or both. This API uses an asynchron
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Flip() {
   let horizontal: boolean = true;
   let vertical: boolean = false;
   if (pixelMap != undefined) {
@@ -2191,7 +2237,7 @@ Flips this image horizontally or vertically, or both. This API uses a promise to
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Flip() {
   let horizontal: boolean = true;
   let vertical: boolean = false;
   if (pixelMap != undefined) {
@@ -2235,7 +2281,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function FlipSync() {
   let horizontal : boolean = true;
   let vertical : boolean = false;
   if (pixelMap != undefined) {
@@ -2260,7 +2306,7 @@ Crops this image based on a given size. This API uses an asynchronous callback t
 
 | Name  | Type                | Mandatory| Description                         |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](#region8)   | Yes  | Size of the image after cropping.                 |
+| region   | [Region](#region8)   | Yes  | Size of the image after cropping.|
 | callback | AsyncCallback\<void> | Yes  |  Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -2268,7 +2314,7 @@ Crops this image based on a given size. This API uses an asynchronous callback t
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Crop() {
   let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
   if (pixelMap != undefined) {
     pixelMap.crop(region, (err: BusinessError) => {
@@ -2312,7 +2358,7 @@ Crops this image based on a given size. This API uses a promise to return the re
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Crop() {
   let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
   if (pixelMap != undefined) {
     pixelMap.crop(region).then(() => {
@@ -2339,7 +2385,7 @@ Crops this image based on a given size. This API returns the result synchronousl
 
 | Name  | Type                | Mandatory| Description                         |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](#region8)   | Yes  | Size of the image after cropping.                 |
+| region   | [Region](#region8)   | Yes  | Size of the image after cropping. |
 
 **Error codes**
 
@@ -2355,7 +2401,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CropSync() {
   let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
   if (pixelMap != undefined) {
     pixelMap.cropSync(region);
@@ -2390,7 +2436,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-async function Demo() {
+async function GetColorSpace() {
   if (pixelMap != undefined) {
     let csm = pixelMap.getColorSpace();
   }
@@ -2424,7 +2470,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
-async function Demo() {
+async function SetColorSpace() {
   let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
   let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
@@ -2465,7 +2511,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ApplyColorSpace() {
   let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
   let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
@@ -2518,7 +2564,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ApplyColorSpace() {
   let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
   let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
@@ -2686,7 +2732,7 @@ let staticMetadata: image.HdrStaticMetadata = {
   maxFrameAverageLightLevel: 2.1,
 }
 const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
   pixelMap.setMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA, staticMetadata).then((pixelMap: image.PixelMap) => {
     console.info('Succeeded in setting pixelMap metadata.');
@@ -2764,6 +2810,9 @@ struct Demo {
       });
     });
   }
+  build() {
+    // ...
+  }
 }
 ```
 
@@ -2818,7 +2867,7 @@ class MySequence implements rpc.Parcelable {
     return true;
   }
 }
-async function Demo() {
+async function Marshalling() {
   const color: ArrayBuffer = new ArrayBuffer(96);
   let bufferArr: Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -2826,9 +2875,9 @@ async function Demo() {
   }
   let opts: image.InitializationOptions = {
     editable: true,
-    pixelFormat: 4,
+    pixelFormat: image.PixelMapFormat.BGRA_8888,
     size: { height: 4, width: 6 },
-    alphaType: 3
+    alphaType: image.AlphaType.UNPREMUL
   }
   let pixelMap: image.PixelMap | undefined = undefined;
   image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
@@ -2906,7 +2955,7 @@ class MySequence implements rpc.Parcelable {
     return true;
   }
 }
-async function Demo() {
+async function Unmarshalling() {
   const color: ArrayBuffer = new ArrayBuffer(96);
   let bufferArr: Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -2914,9 +2963,9 @@ async function Demo() {
   }
   let opts: image.InitializationOptions = {
     editable: true,
-    pixelFormat: 4,
+    pixelFormat: image.PixelMapFormat.BGRA_8888,
     size: { height: 4, width: 6 },
-    alphaType: 3
+    alphaType: image.AlphaType.UNPREMUL
   }
   let pixelMap: image.PixelMap | undefined = undefined;
   image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
@@ -2960,7 +3009,7 @@ ArkTS supports memory reclamation. Even if the application does not call **relea
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Release() {
   if (pixelMap != undefined) {
     pixelMap.release().then(() => {
       console.info('Succeeded in releasing pixelmap object.');
@@ -2996,7 +3045,7 @@ ArkTS supports memory reclamation. Even if the application does not call **relea
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Release() {
   if (pixelMap != undefined) {
     pixelMap.release((err: BusinessError) => {
       if (err) {
@@ -4118,7 +4167,7 @@ let decodingOptions: image.DecodingOptions = {
   editable: true,
   desiredSize: { width: 1, height: 2 },
   rotate: 10,
-  desiredPixelFormat: 3,
+  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
   desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
   index: 0
 };
@@ -4165,7 +4214,7 @@ let decodingOptions: image.DecodingOptions = {
   editable: true,
   desiredSize: { width: 1, height: 2 },
   rotate: 10,
-  desiredPixelFormat: 3,
+  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
   desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
   index: 0
 };
@@ -4231,7 +4280,7 @@ let decodeOpts: image.DecodingOptions = {
   editable: true,
   desiredSize: { width: 198, height: 202 },
   rotate: 0,
-  desiredPixelFormat: 3,
+  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
   index: 0,
 };
 imageSourceApi.createPixelMapList(decodeOpts).then((pixelMapList: Array<image.PixelMap>) => {
@@ -4342,7 +4391,7 @@ let decodeOpts: image.DecodingOptions = {
   editable: true,
   desiredSize: { width: 198, height: 202 },
   rotate: 0,
-  desiredPixelFormat: 3,
+  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
   index: 0,
 };
 imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
@@ -4666,6 +4715,7 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 
 Packs an image. This API uses an asynchronous callback to return the result.
 
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
@@ -4702,6 +4752,7 @@ imagePackerApi.packing(imageSourceApi, packOpts, (err: BusinessError, data: Arra
 packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 Packs an image. This API uses a promise to return the result.
+
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4744,6 +4795,10 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 
 Packs an image. This API uses an asynchronous callback to return the result.
 
+
+> **NOTE**
+> If the message "PixelMap mismatch" is returned, the parameters are abnormal. The possible cause is that the **PixelMap** object is released in advance. You need to check the code and ensure that the **PixelMap** object is released after this API is called.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
@@ -4762,7 +4817,7 @@ Packs an image. This API uses an asynchronous callback to return the result.
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
   imagePackerApi.packing(pixelMap, packOpts, (err: BusinessError, data: ArrayBuffer) => {
@@ -4782,6 +4837,10 @@ image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
 packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 Packs an image. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> If the message "PixelMap mismatch" is returned, the parameters are abnormal. The possible cause is that the **PixelMap** object is released in advance. You need to check the code and ensure that the **PixelMap** object is released after this API is called.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4806,7 +4865,7 @@ Packs an image. This API uses a promise to return the result.
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
   imagePackerApi.packing(pixelMap, packOpts)
@@ -4895,6 +4954,7 @@ Encodes an **ImageSource** object and packs it into a file. This API uses an asy
 | options   | [PackingOption](#packingoption) | Yes  | Option for image packing.                |
 | callback | AsyncCallback\<void>            | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
+
 **Example**
 
 ```ts
@@ -4940,6 +5000,7 @@ Encodes an **ImageSource** object and packs it into a file. This API uses a prom
 | -------------- | --------------------------------- |
 | Promise\<void> |  Promise that returns no value.|
 
+
 **Example**
 
 ```ts
@@ -4967,6 +5028,10 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 
 Encodes a **PixelMap** object and packs it into a file. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> If error code 62980115 is returned, the parameters are abnormal. The possible cause is that the **PixelMap** object is released in advance. You need to check the code and ensure that the **PixelMap** object is released after this API is called.
+
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 **Parameters**
@@ -4978,6 +5043,7 @@ Encodes a **PixelMap** object and packs it into a file. This API uses an asynchr
 | options   | [PackingOption](#packingoption) | Yes  | Option for image packing.                |
 | callback | AsyncCallback\<void>            | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
+
 **Example**
 
 ```ts
@@ -4985,7 +5051,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
 const context: Context = getContext(this);
 const path: string = context.filesDir + "/pixel_map.jpg";
 image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
@@ -5008,6 +5074,10 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 
 Encodes a **PixelMap** object and packs it into a file. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> If error code 62980115 is returned, the parameters are abnormal. The possible cause is that the **PixelMap** object is released in advance. You need to check the code and ensure that the **PixelMap** object is released after this API is called.
+
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 **Parameters**
@@ -5024,6 +5094,7 @@ Encodes a **PixelMap** object and packs it into a file. This API uses a promise 
 | -------------- | --------------------------------- |
 | Promise\<void> |  Promise that returns no value.|
 
+
 **Example**
 
 ```ts
@@ -5031,7 +5102,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
 const context: Context = getContext(this);
 const path: string = context.filesDir + "/pixel_map.jpg";
 image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
@@ -5713,7 +5784,7 @@ Provides APIs for basic image operations, including obtaining image information 
 | Name    | Type              | Readable| Writable| Description                                              |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
 | clipRect | [Region](#region8) | Yes  | Yes  | Image area to be cropped.                                |
-| size     | [Size](#size)      | Yes  | No  | Image size. If the **image** object stores the camera preview stream data (YUV image data), the width and height in **size** obtained correspond to those of the YUV image. If the **image** object stores the camera photo stream data (JPEG image data, which is already encoded), the width in **size** obtained is the JPEG data size, and the height is 1. The type of data stored in the **image** object depends on whether the application passes the surface ID in the receiver to a **previewOutput** or **captureOutput** object of the camera.                               |
+| size     | [Size](#size)      | Yes  | No  | Image size. If the **image** object stores the camera preview stream data (YUV image data), the width and height in **size** obtained correspond to those of the YUV image. If the **image** object stores the camera photo stream data (JPEG image data, which is already encoded), the width in **size** obtained is the JPEG data size, and the height is 1. The type of data stored in the **image** object depends on whether the application passes the surface ID in the receiver to a **previewOutput** or **captureOutput** object of the camera.                                |
 | format   | number             | Yes  | No  | Image format. For details, see [OH_NativeBuffer_Format](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_format).|
 | timestamp<sup>12+</sup> | number         | Yes     | No  | Image timestamp. Timestamps, measured in nanoseconds, are usually monotonically increasing. The specific meaning and baseline of these timestamps are determined by the image producer, which is the camera in the camera preview and photo scenarios. As a result, images from different producers may carry timestamps with distinct meanings and baselines, making direct comparison between them infeasible. To obtain the generation time of a photo, you can use [getImageProperty](#getimageproperty11) to read the related EXIF information.|
 
@@ -5852,7 +5923,7 @@ Describes area information in an image.
 
 | Name  | Type              | Read Only|  Optional| Description                                                        |
 | ------ | ------------------ | ---| -----|------------------------------------------------------- |
-| pixels | ArrayBuffer        | No|   No  | Pixels of the image.                                                      |
+| pixels | ArrayBuffer        | No|   No | Pixels of the image. Only pixel data in BGRA_8888 format is supported.|
 | offset | number             | No|   No |  Offset for data reading.                                                    |
 | stride | number             | No|   No | Number of bytes from one row of pixels in memory to the next row of pixels in memory. The value of **stride** must be greater than or equal to the value of **region.size.width** multiplied by 4.                  |
 | region | [Region](#region8) | No|   No |Region to read or write. The width of the region to write plus the X coordinate cannot be greater than the width of the original image. The height of the region to write plus the Y coordinate cannot be greater than the height of the original image.|
@@ -6004,9 +6075,9 @@ Describes the region information.
 
 | Name| Type         | Read Only| Optional| Description        |
 | ---- | ------------- | ---- | ---- | ------------ |
-| size | [Size](#size) | No  | No  | Region size.  |
-| x    | number        | No  | No | X coordinate to translate.|
-| y    | number        | No | No | Y coordinate of the region.|
+| size<sup>7+</sup> | [Size](#size) | No  | No  | Region size.  |
+| x<sup>7+</sup>    | number        | No  | No | X coordinate of the region.|
+| y<sup>7+</sup>    | number        | No | No | Y coordinate of the region.|
 
 ## PackingOption
 
@@ -6060,7 +6131,7 @@ Describes the exchangeable image file format (EXIF) data of an image.
 | SUBFILE_TYPE <sup>12+</sup>               | "SubfileType"               | **Read/Write capability**: readable and writable<br> Type of data contained in this subfile. This tag has been deprecated. Use **NewSubfileType** instead.|
 | IMAGE_WIDTH                               | "ImageWidth"                | **Read/Write capability**: readable and writable<br> Image width.|
 | IMAGE_LENGTH                              | "ImageLength"               | **Read/Write capability**: readable and writable<br> Image length.|
-| BITS_PER_SAMPLE                           | "BitsPerSample"             | **Read/Write capability**: readable and writable<br> Number of bits per component.|
+| BITS_PER_SAMPLE                           | "BitsPerSample"             | **Read/Write capability**: readable and writable<br> Number of bits per sample. For example, for RGB, which has three components, the format is 8, 8, 8.|
 | COMPRESSION <sup>12+</sup>                | "Compression"               | **Read/Write capability**: readable and writable<br> Compression scheme used on the image data.|
 | PHOTOMETRIC_INTERPRETATION <sup>12+</sup> | "PhotometricInterpretation" | **Read/Write capability**: readable and writable<br> Color space of the image data, for example, RGB or YCbCr.|
 | IMAGE_DESCRIPTION<sup>10+</sup>           | "ImageDescription"          | **Read/Write capability**: readable and writable<br> Image description.|
@@ -6077,7 +6148,7 @@ Describes the exchangeable image file format (EXIF) data of an image.
 | RESOLUTION_UNIT <sup>12+</sup>            | "ResolutionUnit"            | **Read/Write capability**: readable and writable<br> Unit of measurement for XResolution and YResolution.|
 | TRANSFER_FUNCTION <sup>12+</sup>          | "TransferFunction"          | **Read/Write capability**: readable and writable<br> Transfer function for the image, which is usually used for color correction.|
 | SOFTWARE <sup>12+</sup>                   | "Software"                  | **Read/Write capability**: readable and writable<br> Name and version number of the software used to create the image.|
-| DATE_TIME<sup>10+</sup>                   | "DateTime"                  | **Read/Write capability**: readable and writable<br> Date and time of image creation.|
+| DATE_TIME<sup>10+</sup>                   | "DateTime"                  | **Read/Write capability**: readable and writable<br> Date and time of image creation. An example in the correct format is 2024:01:25 05:51:34.|
 | ARTIST <sup>12+</sup>                     | "Artist"                    | **Read/Write capability**: readable and writable<br> Person who created the image.|
 | WHITE_POINT <sup>12+</sup>                | "WhitePoint"                | **Read/Write capability**: readable and writable<br> Chromaticity of the white point of the image.|
 | PRIMARY_CHROMATICITIES <sup>12+</sup>     | "PrimaryChromaticities"     | **Read/Write capability**: readable and writable<br> Chromaticities of the primaries of the image.|
@@ -6143,13 +6214,13 @@ Describes the exchangeable image file format (EXIF) data of an image.
 | COMPONENTS_CONFIGURATION <sup>12+</sup>   | "ComponentsConfiguration"   | **Read/Write capability**: readable and writable<br> Specific information about compressed data.|
 | COMPRESSED_BITS_PER_PIXEL <sup>12+</sup>  | "CompressedBitsPerPixel"    | **Read/Write capability**: readable and writable<br> Number of bits per pixel. It is specific to compressed data.|
 | SHUTTER_SPEED <sup>12+</sup>              | "ShutterSpeedValue"         | **Read/Write capability**: readable and writable<br> Shutter speed, expressed in Additive System of Photographic Exposure (APEX) values.|
-| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"             | **Read/Write capability**: readable and writable<br> Lens aperture.|
+| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"             | **Read/Write capability**: readable and writable<br> Lens aperture. An example in the correct format is 4/1.|
 | BRIGHTNESS_VALUE <sup>12+</sup>           | "BrightnessValue"           | **Read/Write capability**: readable and writable<br> Value of brightness, expressed in APEX values.|
 | EXPOSURE_BIAS_VALUE<sup>10+</sup>         | "ExposureBiasValue"         | **Read/Write capability**: readable and writable<br> Exposure bias.|
 | MAX_APERTURE_VALUE <sup>12+</sup>         | "MaxApertureValue"          | **Read/Write capability**: readable and writable<br> Smallest F number of the lens.|
 | SUBJECT_DISTANCE <sup>12+</sup>           | "SubjectDistance"           | **Read/Write capability**: readable and writable<br> Distance to the subject, in meters.|
 | METERING_MODE<sup>10+</sup>               | "MeteringMode"              | **Read/Write capability**: readable and writable<br> Metering mode.|
-| LIGHT_SOURCE<sup>10+</sup>                | "LightSource"               | **Read/Write capability**: readable and writable<br> Light source.|
+| LIGHT_SOURCE<sup>10+</sup>                | "LightSource"               | **Read/Write capability**: readable and writable<br> Light source. An example value is **Fluorescent**.|
 | FLASH <sup>10+</sup>                      | "Flash"                     | **Read/Write capability**: readable and writable<br> Flash status.|
 | FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"               | **Read/Write capability**: readable and writable<br> Focal length of the lens.|
 | SUBJECT_AREA <sup>12+</sup>               | "SubjectArea"               | **Read/Write capability**: readable and writable<br> Location and area of the main subject in the entire scene.|
@@ -6270,7 +6341,7 @@ Describes the color components of an image.
 | Name         | Type                            | Read Only| Optional| Description        |
 | ------------- | -------------------------------- | ---- | ---- | ------------ |
 | componentType | [ComponentType](#componenttype9) | Yes  | No  | Color component type.  |
-| rowStride     | number                           | Yes  | No  | Row stride.      |
+| rowStride     | number                           | Yes  | No  | Row stride.       |
 | pixelStride   | number                           | Yes  | No  | Pixel stride.  |
 | byteBuffer    | ArrayBuffer                      | Yes  | No  | Component buffer.|
 
@@ -6288,7 +6359,7 @@ Describes the desired dynamic range of an image during decoding.
 
 ## PackingDynamicRange<sup>12+</sup>
 
-Describes the desired dynamic range of a PixelMap during encoding.
+Describes the desired dynamic range of an image during encoding.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -6393,10 +6464,10 @@ Enumerates the anti-aliasing levels.
 
 | Name                  |   Value  | Description             |
 | ---------------------- | ------ | ----------------- |
-| NONE                | 0      | The nearest neighbor interpolation algorithm is used by default.       |
-| LOW                 | 1      | Bilinear interpolation.    |
-| MEDIUM              | 2      | Bilinear interpolation with mipmap enabled.|
-| HIGH                | 3      | Cubic convolution.|
+| NONE                | 0      | Nearest neighbor interpolation.  |
+| LOW                 | 1      | Bilinear interpolation.  |
+| MEDIUM              | 2      | Bilinear interpolation with mipmap enabled. You are advised to use this value when zooming out an image.  |
+| HIGH                | 3      | Cubic interpolation.  |
 
 ## Supplementary Information
 ### SVG Tags
