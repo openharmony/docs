@@ -302,6 +302,22 @@ bindToNestedScrollable(scrollers: Array&lt;NestedScrollInfo&gt;)
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | scrollInfos | Array<[NestedScrollInfo](#nestedscrollinfo14)> | 是   | 嵌套的可滚动容器组件的控制器。 |
 
+### hideBackButton<sup>16+</sup>
+
+hideBackButton(hide: Optional&lt;boolean&gt;)
+
+设置是否隐藏标题栏中的返回键。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| hide  | Optional&lt;boolean&gt; | 是   | 是否隐藏标题栏中的返回键。 <br/>默认值：false<br/>true: 隐藏返回键。<br/>false: 显示返回键。 |
+
 ## NavDestinationMode枚举说明 <sup>11+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
