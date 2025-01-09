@@ -291,6 +291,8 @@ Navigation路由相关的操作都是基于页面栈[NavPathStack](../reference/
 >
 > 不建议开发者通过监听生命周期的方式管理自己的页面栈。
 
+不建议开发者通过监听生命周期的方式管理自己的页面栈。
+
 ```ts
 @Entry
 @Component
