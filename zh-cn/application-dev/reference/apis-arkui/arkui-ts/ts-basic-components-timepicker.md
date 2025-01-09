@@ -182,7 +182,7 @@ enableCascade(enable: boolean)
 
 onChange(callback: Optional\<OnTimePickerChangeCallback>)
 
-选择时间时触发该事件。
+滑动TimePicker后，时间选项归位至选中项位置时，触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -193,6 +193,24 @@ onChange(callback: Optional\<OnTimePickerChangeCallback>)
 | 参数名   | 类型                                                         | 必填 | 说明                   |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------- |
 | callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnTimePickerChangeCallback](#ontimepickerchangecallback16)> | 是   | 选择时间时触发该回调。 |
+
+### onEnterSelectedArea<sup>16+</sup>
+
+onEnterSelectedArea(callback: Callback\<TimePickerResult>)
+
+滑动TimePicker过程中，选项进入分割线区域内，触发该回调。
+
+与onChange事件的差别在于，该事件的触发时机早于onChange事件，当当前滑动列滑动距离超过选中项高度的一半时，选项此时已经进入分割线区域内，会触发该事件。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                       | 必填 | 说明                                       |
+| -------- | -------------------------- | ---- | ------------------------------------------ |
+| callback | Callback\<[TimePickerResult](#timepickerresult对象说明)> | 是   | 滑动TimePicker过程中，选项进入分割线区域时触发的回调。 |
 
 ## OnTimePickerChangeCallback<sup>16+</sup>
 
@@ -285,8 +303,11 @@ struct TimePickerExample {
         .onChange((value: TimePickerResult) => {
           if (value.hour >= 0) {
             this.selectedTime.setHours(value.hour, value.minute)
-            console.info('select current date is: ' + JSON.stringify(value))
+            console.info('select current time is: ' + JSON.stringify(value))
           }
+        })
+        .onEnterSelectedArea((value: TimePickerResult) => {
+            console.info('item enter selected area, time is: ' + JSON.stringify(value))
         })
     }.width('100%')
   }
