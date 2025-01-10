@@ -1651,6 +1651,8 @@ function myComponent() {
 
 ![onDestroy](./figures/onDestroy1.png)
 
+<!--RP1--><!--RP1End-->
+
 ## 相关实例
 
 针对Native XComponent的使用，有以下相关实例可供参考：
