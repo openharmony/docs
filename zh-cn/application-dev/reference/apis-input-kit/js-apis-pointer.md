@@ -643,6 +643,26 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
   });
 });
 ```
+## CustomCursor
+
+自定义光标，包括自定义光标资源和焦点位置
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+| 名称                               | 类型     | 说明     |
+| ------- | ------ | ------ |
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 自定义光标资源, 取值范围：大于等于0*0 |
+| focusX  | number | 自定义光标焦点x, 取值范围：大于等于0，默认为0。 |
+| focusY  | number | 自定义光标焦点y，取值范围：大于等于0，默认为0。 |
+
+## CursorConfig
+
+自定义光标设置。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+| 名称                               | 类型     | 说明     |
+| ------- | ------ | ------ |
+| followSystem  | boolean | 是否跟随系统光标样式。 false表示使用自定义光标样式。 |
 
 ## pointer.setCustomCursor<sup>14+</sup>
 
@@ -664,7 +684,7 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 
 | 参数                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | 有返回结果的Promise对象。 |
+| Promise&lt;void&gt; | 有返回结果的Promise对象。0为设置成功，其他值为设置失败。 |
 
 **错误码**：
 
@@ -673,7 +693,6 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 26500001  | Invalid windowId. |
 
 **示例**：
 

@@ -643,6 +643,26 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
   });
 });
 ```
+## CustomCursor
+Custom cursor, including the custom cursor resource and focus position.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ------- |
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes   | Pixel map resource.|
+| focusX  | number | No   | Focus x of the custom cursor. The value is greater than or equal to **0**. The default value is **0**.|
+| focusY  | number | No   | Focus y of the custom cursor. The value is greater than or equal to **0**. The default value is **0**.|
+
+## CursorConfig
+Custom cursor config.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ------- |
+| followSystem  | boolean | No   | Whether to adjust the cursor size based on the system settings. The default value is **false**.|
+
 
 ## pointer.setCustomCursor<sup>14+</sup>
 
@@ -664,7 +684,7 @@ Sets the custom cursor. You can set whether to adjust the cursor size based on t
 
 | Name                 | Description              |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise object with a return value.|
+| Promise&lt;void&gt; | Promise object with a return value. 0 indicates success in the setting, any other value indicates failure. |
 
 **Error codes**
 
