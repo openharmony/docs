@@ -77,3 +77,13 @@
 |appIdentifier<sup>11+</sup>| string         | 是   | 否   | 应用的唯一标识，由云端统一分配。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。            |
 |certificate<sup>13+</sup>| string         | 是   | 是   | 应用的证书公钥。            |
 
+## AppCloneIdentity<sup>14+<sup>
+
+描述应用包的身份信息。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+
+| 名称      | 类型           | 只读 | 可选 | 说明                        |
+| --------- | -------------- | ---- | ---- | --------------------------- |
+| bundleName | string         | 是   | 否   | 应用的bundleName。          |
+| appIndex | number | 是   | 否   | 应用包的分身索引信息。 |
