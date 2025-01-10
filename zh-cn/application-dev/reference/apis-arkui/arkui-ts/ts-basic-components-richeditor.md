@@ -2781,6 +2781,7 @@ struct Index {
         Text(this.textFlag)
           .copyOption(CopyOptions.InApp)
           .fontSize(50)
+          .height(150)
       }
       Divider()
       Column() {
