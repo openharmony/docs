@@ -29,6 +29,11 @@ RichEditor(this.options)
 相较于不使用属性字符串构建的RichEditor组件，此种方式提供了多种文本修改方式，包括调整字号、添加字体颜色、使文本具备可点击性，以及支持自定义文本绘制等。此外，此种方式还提供了多种类型样式对象，覆盖了各种常见的文本样式格式，如文本装饰线样式、文本行高样式、文本阴影样式等。
 
 ```ts
+fontStyle: TextStyle = new TextStyle({
+    fontColor: Color.Pink
+  });
+//自定义字体样式
+
 mutableStyledString: MutableStyledString = new MutableStyledString("创建使用属性字符串构建的RichEditor组件。",
     [{
         start: 0,
@@ -36,6 +41,7 @@ mutableStyledString: MutableStyledString = new MutableStyledString("创建使用
         styledKey: StyledStringKey.FONT,
         styledValue: this.fontStyle
     }]);
+//创建属性字符串
 
 controller: RichEditorStyledStringController = new RichEditorStyledStringController();
 options: RichEditorStyledStringOptions = {controller: this.controller};
@@ -57,54 +63,101 @@ RichEditor(this.options)
 当自定义菜单超长时，建议内部嵌套Scroll组件使用，避免键盘被遮挡。
 
 ```ts
+export interface SelectionMenuTheme {
+  imageSize: number;
+  buttonSize: number;
+  menuSpacing: number;
+  editorOptionMargin: number;
+  expandedOptionPadding: number;
+  defaultMenuWidth: number;
+  imageFillColor: Resource;
+  backGroundColor: Resource;
+  iconBorderRadius: Resource;
+  containerBorderRadius: Resource;
+  cutIcon: Resource;
+  copyIcon: Resource;
+  pasteIcon: Resource;
+  selectAllIcon: Resource;
+  shareIcon: Resource;
+  translateIcon: Resource;
+  searchIcon: Resource;
+  arrowDownIcon: Resource;
+  iconPanelShadowStyle: ShadowStyle;
+  iconFocusBorderColor: Resource;
+}
+
+export const defaultTheme: SelectionMenuTheme = {
+  imageSize: 24,
+  buttonSize: 48,
+  menuSpacing: 8,
+  editorOptionMargin: 1,
+  expandedOptionPadding: 3,
+  defaultMenuWidth: 256,
+  imageFillColor: $r('sys.color.ohos_id_color_primary'),
+  backGroundColor: $r('sys.color.ohos_id_color_dialog_bg'),
+  iconBorderRadius: $r('sys.float.ohos_id_corner_radius_default_m'),
+  containerBorderRadius: $r('sys.float.ohos_id_corner_radius_card'),
+  cutIcon: $r("sys.media.ohos_ic_public_cut"),
+  copyIcon: $r("sys.media.ohos_ic_public_copy"),
+  pasteIcon: $r("sys.media.ohos_ic_public_paste"),
+  selectAllIcon: $r("sys.media.ohos_ic_public_select_all"),
+  shareIcon: $r("sys.media.ohos_ic_public_share"),
+  translateIcon: $r("sys.media.ohos_ic_public_translate_c2e"),
+  searchIcon: $r("sys.media.ohos_ic_public_search_filled"),
+  arrowDownIcon: $r("sys.media.ohos_ic_public_arrow_down"),
+  iconPanelShadowStyle: ShadowStyle.OUTER_DEFAULT_MD,
+  iconFocusBorderColor: $r('sys.color.ohos_id_color_focused_outline'),
+}
+//定义startIcon信息
+
 RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('组件设置了自定义菜单，长按可触发。', {
-            style: {
-                fontColor: Color.Black,
-                fontSize: 18
-            }
-        })
+.onReady(() => {
+    this.controller.addTextSpan('组件设置了自定义菜单，长按可触发。', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 18
+      }
     })
-    .bindSelectionMenu(RichEditorSpanType.TEXT, this.SystemMenu, ResponseType.LongPress, {
-        onDisappear: () => {
-            this.sliderShow = false
-        }
-    })
-    .width(300)
-    .height(300)
+  })
+  .bindSelectionMenu(RichEditorSpanType.TEXT, this.SystemMenu, ResponseType.LongPress, {
+    onDisappear: () => {
+      this.sliderShow = false
+    }
+  })//绑定自定义菜单
+  .width(300)
+  .height(300)
 
 @Builder
-SystemMenu() {
+  SystemMenu() {
     Column() {
-            Menu() {
-                    if (this.controller) {
-                        MenuItemGroup() {
-                            MenuItem({
-                                startIcon: this.theme.cutIcon,
-                                content: "剪切",
-                                labelInfo: "Ctrl+X",
-                            })
-                            MenuItem({
-                                startIcon: this.theme.copyIcon,
-                                content: "复制",
-                                labelInfo: "Ctrl+C"
-                            })
-                            MenuItem({
-                                startIcon: this.theme.pasteIcon,
-                                content: "粘贴",
-                                labelInfo: "Ctrl+V"
-                            })
-                        }
-                    }
-                }
-                .radius(this.theme.containerBorderRadius)
-                .clip(true)
-                .backgroundColor(Color.White)
-                .width(this.theme.defaultMenuWidth)
+      Menu() {
+        if (this.controller) {
+          MenuItemGroup() {
+            MenuItem({
+              startIcon: this.theme.cutIcon,
+              content: "剪切",
+              labelInfo: "Ctrl+X",
+            })
+            MenuItem({
+              startIcon: this.theme.copyIcon,
+              content: "复制",
+              labelInfo: "Ctrl+C"
+            })
+            MenuItem({
+              startIcon: this.theme.pasteIcon,
+              content: "粘贴",
+              labelInfo: "Ctrl+V"
+            })
+          }
         }
-        .width(this.theme.defaultMenuWidth)
-}
+      }
+      .radius(this.theme.containerBorderRadius)
+      .clip(true)
+      .backgroundColor(Color.White)
+      .width(this.theme.defaultMenuWidth)
+    }
+    .width(this.theme.defaultMenuWidth)
+  }
 ```
 
 ![alt text](figures/richeditor_image_bindselectionmenu.gif)
@@ -116,17 +169,17 @@ SystemMenu() {
 
 ```ts
 RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('组件设置了光标手柄颜色。', {
-            style: {
-                fontColor: Color.Black,
-                fontSize: 15
-            }
-        })
+  .onReady(() => {
+    this.controller.addTextSpan('组件设置了光标手柄颜色。', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
     })
-    .caretColor(Color.Orange)
-    .width(300)
-    .height(300)
+  })
+  .caretColor(Color.Orange)
+  .width(300)
+  .height(300)
 ```
 
 ![alt text](figures/richeditor_image_caretcolor.gif)
@@ -602,6 +655,12 @@ Button('addSymbolSpan', {
 此接口适用于已有的内容样式获取与检查，例如在模板应用场景下，可利用此接口获取文本样式。此外，它还适用于内容解析与处理，例如在文本分析应用中，此接口能够获取特定范围内的文本信息。
 
 ```ts
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller }
+controller1: RichEditorController = new RichEditorController();
+options1: RichEditorOptions = { controller: this.controller1 }
+//定义两个富文本组件
+
 RichEditor(this.options)
     .onReady(() => {
         this.controller.addTextSpan('点击按钮获取此处span信息。', {
