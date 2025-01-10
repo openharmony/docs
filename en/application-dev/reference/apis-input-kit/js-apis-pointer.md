@@ -693,7 +693,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 26500001  | Invalid windowId. |
 
 **Example**
 
