@@ -133,7 +133,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 import { audio } from '@kit.AudioKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
   channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
@@ -1621,6 +1621,215 @@ async function selectOutputDeviceByFilter(){
 }
 ```
 
+### selectInputDeviceByFilter<sup>14+</sup>
+
+selectInputDeviceByFilter(filter: AudioCapturerFilter, inputAudioDeviceDescriptor: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
+
+Selects an audio input device based on the filter criteria. Currently, only one input device can be selected. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                        | Type                                                               | Mandatory| Description                                     |
+|-----------------------------|-------------------------------------------------------------------| ---- |-----------------------------------------|
+| filter                      | [AudioCapturerFilter](#audiocapturerfilter14)                     | Yes  | Filter criteria.                                 |
+| outputAudioDeviceDescriptor | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | Yes  | Input device.                                 |
+| callback                    | AsyncCallback&lt;void&gt;                                         | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Example**
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
+    uid : 20010041,
+    capturerInfo : {
+        source: audio.SourceType.SOURCE_TYPE_MIC,
+        capturerFlags: 0
+    }
+};
+
+let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
+    deviceRole : audio.DeviceRole.INPUT_DEVICE,
+    deviceType : audio.DeviceType.MIC,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+    displayName : "",
+}];
+
+async function selectInputDeviceByFilter() {
+    let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
+    let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of AudioManager to create an AudioRoutingManager instance.
+    audioRoutingManager.selectInputDeviceByFilter(inputAudioCapturerFilter, inputAudioDeviceDescriptor, (err: BusinessError) => {
+    if (err) {
+        console.error(`Result ERROR: ${err}`);
+    } else {
+        console.info('Select input devices by filter result callback: SUCCESS'); }
+    });
+}
+```
+
+### selectInputDeviceByFilter<sup>14+</sup>
+
+selectInputDeviceByFilter(filter: AudioCapturerFilter, outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
+
+Selects an audio input device based on the filter criteria. Currently, only one input device can be selected. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                | Type                                                        | Mandatory| Description    |
+| ----------------------| ------------------------------------------------------------ | ---- |--------|
+| filter                      | [AudioCapturerFilter](#audiocapturerfilter14)                     | Yes  | Filter criteria.|
+| outputAudioDeviceDescriptor | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | Yes  | Input device.|
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise that returns no value.|
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
+    uid : 20010041,
+    capturerInfo : {
+        source: audio.SourceType.SOURCE_TYPE_MIC,
+        capturerFlags: 0
+    }
+};
+
+let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
+    deviceRole : audio.DeviceRole.INPUT_DEVICE,
+    deviceType : audio.DeviceType.MIC,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+    displayName : "",
+}];
+
+async function selectInputDeviceByFilter(){
+    let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
+    let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of AudioManager to create an AudioRoutingManager instance.
+    audioRoutingManager.selectInputDeviceByFilter(inputAudioCapturerFilter, inputAudioDeviceDescriptor).then(() => {
+        console.info('Select input devices by filter result promise: SUCCESS');
+    }).catch((err: BusinessError) => {
+        console.error(`Result ERROR: ${err}`);
+    })
+}
+```
+
+### getPreferredOutputDeviceByFilter<sup>14+</sup>
+
+getPreferredOutputDeviceByFilter(filter: AudioRendererFilter):  AudioDeviceDescriptors
+
+Obtains an audio output device based on the filter criteria.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                      | Type                                                        | Mandatory| Description                     |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| filter                      | [AudioRendererFilter](#audiorendererfilter9)                 | Yes  | Filter criteria.              |
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)| return the device list. |
+
+**Example**
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let outputAudioRendererFilter: audio.AudioRendererFilter = {
+  uid : 20010041,
+  rendererInfo : {
+    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags : 0
+  },
+  rendererId : 0
+};
+
+async function selectOutputDeviceByFilter(){
+    let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
+    let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of AudioManager to create an AudioRoutingManager instance.
+    let desc : audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredOutputDeviceByFilter(outputAudioRendererFilter);
+    console.info(`device descriptor: ${desc}`);
+}
+```
+
+### getPreferredInputDeviceByFilter<sup>14+</sup>
+
+getPreferredInputDeviceByFilter(filter: AudioRendererFilter): AudioDeviceDescriptors
+
+Obtains an audio input device based on the filter criteria. Currently, only one input device can be acquired.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                | Type                                                        | Mandatory| Description                     |
+|---------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| filter              | [AudioCapturerFilter](#audiocapturerfilter14)                     | Yes  | Filter criteria.|
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | return the device list. |
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
+    uid : 20010041,
+    capturerInfo : {
+        source: audio.SourceType.SOURCE_TYPE_MIC,
+        capturerFlags: 0
+    }
+};
+
+async function getPreferredInputDeviceByFilter(){
+    let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
+    let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of AudioManager to create an AudioRoutingManager instance.
+    let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredInputDeviceByFilter(inputAudioCapturerFilter);
+    console.info(`device descriptor: ${desc}`);
+}
+```
+
 ## AudioRendererChangeInfo<sup>9+</sup>
 
 Describes the audio renderer change event.
@@ -1677,6 +1886,30 @@ let outputAudioRendererFilter: audio.AudioRendererFilter = {
     rendererFlags : 0
   },
   rendererId : 0
+};
+```
+## AudioCapturerFilter<sup>14+</sup>
+
+Filter criteria. Before calling **selectOutputDeviceByFilter**, you must obtain an **AudioCapturerFilter** instance.
+
+**System API**: This is a system API.
+
+| Name         | Type                                    | Mandatory| Description         |
+| -------------| ---------------------------------------- | ---- | -------------- |
+| uid          | number                                   |  No | Application ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Core|
+| capturerInfo | [AudioCapturerInfo](js-apis-audio.md#audiocapturerinfo8) |  No | Audio capturer information.<br> **System capability**: SystemCapability.Multimedia.Audio.Capturer|
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
+    uid : 20010041,
+    capturerInfo : {
+        source: audio.SourceType.SOURCE_TYPE_MIC,
+        capturerFlags: 0
+    }
 };
 ```
 
