@@ -15605,7 +15605,7 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 ## BackForwardCacheSupportedFeatures<sup>12+<sup>
 
-选择性允许使用以下特性的页面进入前进后退缓存。
+选择性允许使用以下特性的页面进入前进后退缓存。完整示例代码参考[enableBackForwardCache](#enablebackforwardcache12)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -15614,9 +15614,17 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 | nativeEmbed | boolean | 是 | 是否允许使用同层渲染的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。 |
 | mediaTakeOver | boolean | 是 | 是否允许使用视频托管的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。|
 
+### constructor<sup>12+</sup>
+
+constructor()
+
+BackForwardCacheSupportedFeatures的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ## BackForwardCacheOptions<sup>12+<sup>
 
-前进后退缓存相关设置对象，用来控制Web组件前进后退缓存相关选项。
+前进后退缓存相关设置对象，用来控制Web组件前进后退缓存相关选项。完整示例代码参考[BackForwardCacheOptions](#backforwardcacheoptions12)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -15624,6 +15632,14 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 |------|------|------|------|
 | size | number | 是 | 设置每个Web组件允许缓存的最大页面个数。默认为1，最大可设置为50。设置为0或负数时，前进后退缓存功能不生效。Web会根据内存压力对缓存进行回收。 |
 | timeToLive | number | 是 | 设置每个Web组件允许页面在前进后退缓存中停留的时间，默认为600秒。设置为0或负数时，前进后退缓存功能不生效。|
+
+### constructor<sup>12+</sup>
+
+constructor()
+
+BackForwardCacheOptions的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ## AdsBlockManager<sup>12+</sup>
 
