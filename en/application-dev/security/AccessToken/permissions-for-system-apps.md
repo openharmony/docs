@@ -3637,7 +3637,7 @@ Allows an application to query and set the status of input devices.
 
 **Authorization mode**：system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
 **Valid since**：16
 
@@ -4147,7 +4147,7 @@ Allows an application to access the confidential computing zone.
 
 **Authorization mode**：system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
 **Valid since**：16
 
@@ -4297,7 +4297,7 @@ Allows a system application to invoke the services provided by the account Servi
 
 **Authorization mode**：system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
 **Valid since**：15
 
@@ -4345,7 +4345,7 @@ Allows an application to read the SOS emergency information.
 
 **Authorization mode**：system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
 **Valid since**：16
 
@@ -4357,7 +4357,7 @@ Allows an application to write the SOS emergency information.
 
 **Authorization mode**：system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
 **Valid since**：16
 
@@ -4369,11 +4369,37 @@ Allows an application to enable or access the SOS service.
 
 **Authorization mode**：system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
 **Valid since**：16
 
 **Changelog**: This permission is available only to system services in API versions 12 to 14. From API version 15, it is also available to system applications.
+
+### ohos.permission.GET_ANIM_POLICY
+
+Allows a system application to register the animation plugin to obtain animation policies.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.VIRTUAL_KEYBOARD_WINDOW
+
+Allows a system application to create a virtual keyboard window.
+
+With this permission, the system application can create a virtual keyboard window successfully. Currently, this permission is available only to system applications running on 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
 
 ## system_grant Permissions (Unavailable via ACL)
 
@@ -4644,32 +4670,6 @@ Allows a system application to set the launch reason when starting another appli
 **Enable via ACL**: false
 
 **Valid since**: 16
-
-### ohos.permission.GET_ANIM_POLICY
-
-Allows a system application to register the animation plugin to obtain animation policies.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 16
-
-### ohos.permission.VIRTUAL_KEYBOARD_WINDOW
-
-Allows a system application to create a virtual keyboard window.
-
-With this permission, the system application can create a virtual keyboard window successfully. Currently, this permission is available only to system applications running on 2-in-1 devices.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 15
 
 ## user_grant Permissions (Available via ACL)
 
