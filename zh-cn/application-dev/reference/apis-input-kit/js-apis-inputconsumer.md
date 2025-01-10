@@ -80,7 +80,7 @@ on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;Hot
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801 | Capability not supported. |
-| 4200002  | The hotkey has been used by the system. You can call the {@Link [GetAllSystemHotkeys](#inputconsumergetallsystemhotkeys14)} interface to query all system hotkeys. |
+| 4200002  | The hotkey has been used by the system. |
 | 4200003  | The hotkey has been subscribed to by another. |
 
 **示例：** 
