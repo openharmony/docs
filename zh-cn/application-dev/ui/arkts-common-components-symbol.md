@@ -5,7 +5,7 @@ SymbolGlyph是图标小符号组件，便于使用精美的图标，如渲染多
 
 ## 创建图标
 
-SymbolGlyph通过$r引用Resource资源来创建，目前仅支持系统预置的Symbol资源名。
+SymbolGlyph通过$r引用Resource资源来创建，目前仅支持系统预置的Symbol资源名。<!--RP1--><!--RP1End-->
 
   ```ts
   SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
