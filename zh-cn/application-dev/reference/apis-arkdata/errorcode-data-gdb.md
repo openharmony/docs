@@ -57,11 +57,11 @@ Already closed.
 
 **可能原因**
 
-GraphStore对象，打开失败或者已调用过[close](js-apis-data-graphStore-sys.md#close)接口关库。
+执行当前操作时，已调用过[close](js-apis-data-graphStore-sys.md#close)接口关闭图数据库或者开库未成功。
 
 **处理步骤**
 
-使用[getStore](js-apis-data-graphStore-sys.md#graphstoregetstore)接口重新开库，注意保持入参一致。
+使用[getStore](js-apis-data-graphStore-sys.md#graphstoregetstore)接口重新开库，注意入参应与前一次成功开库时的入参保持一致。
 
 ## 31300003 数据库BUSY
 
@@ -75,7 +75,8 @@ The database is busy.
 
 **可能原因**
 
-同一应用多个进程同时打开了同一个数据库，进行读写操作。
+1. 同一应用多个进程同时打开了同一个数据库，进行读写操作。
+2. 进程内多线程同时进行读写操作，导致某一线程读写操作超时。
 
 **处理步骤**
 
@@ -118,7 +119,7 @@ The database is full.
 
 使用[write](js-apis-data-graphStore-sys.md#write)接口删除同系列数据后再插入。
 
-## 31300006 顶点和边的类型或特性名称重复
+## 31300006 顶点和边的类型或属性重复
 
 **错误信息**
 
@@ -126,15 +127,16 @@ Duplicate type or properties name of vertex and edge.
 
 **错误描述**
 
-顶点和边的类型或特性名称重复。
+顶点和边的类型或属性重复。
 
 **可能原因**
 
-不同顶点或边使用了相同的类型或特性名称。
+1. 不同顶点使用了相同的类型或属性。
+2. 不同边使用了相同的类型或属性。
 
 **处理步骤**
 
-使用[write](js-apis-data-graphStore-sys.md#write)接口插入顶点和边时，检查本次插入的顶点的类型（[Vertex](js-apis-data-graphStore-sys.md#vertex).labels）或特性名称（[Vertex](js-apis-data-graphStore-sys.md#vertex).properties）以及边的类型（[Edge](js-apis-data-graphStore-sys.md#edge).type）或特性名称（[Edge](js-apis-data-graphStore-sys.md#edge).labels）是否冲突。
+使用[write](js-apis-data-graphStore-sys.md#write)接口创建图时，检查建图语句中顶点的类型（[Vertex.labels](js-apis-data-graphStore-sys.md#vertex)）或属性（[Vertex.properties](js-apis-data-graphStore-sys.md#vertex)）以及边的类型（[Edge.type](js-apis-data-graphStore-sys.md#edge)）或属性（[Edge.labels](js-apis-data-graphStore-sys.md#edge)）是否存在上述冲突。
 
 ## 31300007 未定义顶点和边的类型或属性
 
@@ -152,9 +154,9 @@ The type or properties of vertex and edge is not defined.
 
 **处理步骤**
 
-使用[write](js-apis-data-graphStore-sys.md#write)接口插入顶点和边时，检查本次插入的顶点的类型（[Vertex](js-apis-data-graphStore-sys.md#vertex).labels）或特性名称（[Vertex](js-apis-data-graphStore-sys.md#vertex).properties）以及边的类型（[Edge](js-apis-data-graphStore-sys.md#edge).type）或特性名称（[Edge](js-apis-data-graphStore-sys.md#edge).labels）是否在创建图时已定义。
+使用[write](js-apis-data-graphStore-sys.md#write)接口插入顶点和边时，检查本次插入的顶点的类型（[Vertex.labels](js-apis-data-graphStore-sys.md#vertex)）或属性（[Vertex.properties](js-apis-data-graphStore-sys.md#vertex)）以及边的类型（[Edge.type](js-apis-data-graphStore-sys.md#edge)）或属性（[Edge.labels](js-apis-data-graphStore-sys.md#edge)）是否在创建图时已定义。
 
-## 31300008 顶点和边的类型或特性名称不符合约束
+## 31300008 顶点和边的类型或属性不符合约束
 
 **错误信息**
 
@@ -162,15 +164,17 @@ The type or properties name of vertex and edge does not conform to constraint.
 
 **错误描述**
 
-顶点和边的类型或特性名称不符合约束。
+顶点和边的类型或属性不符合约束。
 
 **可能原因**
 
-存在顶点和边的类型或特性名称不符合约束。
+1. 主键冲突。
+2. 唯一索引冲突。
+3. 语法约束冲突。
 
 **处理步骤**
 
-使用[write](js-apis-data-graphStore-sys.md#write)接口插入顶点和边时，检查本次插入的顶点的类型（[Vertex](js-apis-data-graphStore-sys.md#vertex).labels）或特性名称（[Vertex](js-apis-data-graphStore-sys.md#vertex).properties）以及边的类型（[Edge](js-apis-data-graphStore-sys.md#edge).type）或特性名称（[Edge](js-apis-data-graphStore-sys.md#edge).labels）是否符合约束。
+使用[write](js-apis-data-graphStore-sys.md#write)接口创建图时，检查建图语句中顶点的类型（[Vertex.labels](js-apis-data-graphStore-sys.md#vertex)）或属性（[Vertex.properties](js-apis-data-graphStore-sys.md#vertex)）以及边的类型（[Edge.type](js-apis-data-graphStore-sys.md#edge)）或属性（[Edge.labels](js-apis-data-graphStore-sys.md#edge)）是否符合上述约束。
 
 ## 31300009 GQL语句语法错误
 
@@ -188,7 +192,7 @@ GQL语句语法错误。
 
 **处理步骤**
 
-检查GQL语句。可参考行业标准。
+参照行业标准，检查修改确保GQL语句语法正确。
 
 ## 31300010 GQL语句语义错误
 
@@ -206,7 +210,7 @@ GQL语句语义错误。
 
 **处理步骤**
 
-检查GQL语句。可参考行业标准。
+参照行业标准，检查修改确保GQL语句语义正确。
 
 ## 31300012 顶点和边的类型或属性数量超过了上限
 
@@ -224,7 +228,7 @@ The number of types or properties of vertex and edge exceeds the upper limit.
 
 **处理步骤**
 
-减少顶点和边的类型或属性数量。顶点上限为2000个，边上限为10000条。
+减少顶点和边的类型或属性数量。顶点和边的属性上限均为1024个。
 
 ## 31300013 冲突约束已存在
 
@@ -242,7 +246,7 @@ A conflicting constraint already exists.
 
 **处理步骤**
 
-检查GQL语句。可参考行业标准。
+参照行业标准，检查修改确保GQL语句无上述冲突存在。
 
 ## 31300014 数据库路径不合法
 
@@ -256,11 +260,11 @@ Invalid database path.
 
 **可能原因**
 
-无效的数据库路径。
+数据库路径没有权限访问。
 
 **处理步骤**
 
-检查传入数据库路径。
+图数据库暂不支持自定义路径，目前仅支持使用[Context](../apis-ability-kit/js-apis-inner-app-context.md)中默认沙箱路径。请参考[getStore](js-apis-data-graphStore-sys.md#graphstoregetstore)接口示例代码进行修正。
 
 ## 31300015 关键配置已被更改
 

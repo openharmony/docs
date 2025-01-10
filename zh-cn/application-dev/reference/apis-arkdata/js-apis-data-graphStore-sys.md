@@ -1,6 +1,11 @@
 # @ohos.data.graphStore (图数据库)(系统接口)
 
-图数据库（Graph Database，GDB）是一种基于图论为数据基础的数据管理系统。图数据库提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的读、写等接口，可以直接运行用户输入的GQL（Graph Query Language，图查询语言）语句来满足复杂的场景需要。
+图数据库（Graph Database，GDB）是以顶点（[Vertex](#vertex)）、边（[Edge](#edge)）为基础存储单元，以高效存储、查询图数据为设计原理的数据管理系统。图数据库提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的读（查询）、写（增删改）等接口，可以直接运行用户输入的GQL（Graph Query Language，图查询语言）语句来满足存储、查询、分析高度互联数据的场景需要。
+
+- [Vertex](#vertex)：顶点，代表实体或实例，例如人员、企业、帐户或要跟踪的任何其他项目。它们大致相当于关系数据库中的记录、关系或行，或者文档存储数据库中的文档。
+- [Edge](#edge)：边，也称作关系，将节点连接到其他节点的线；代表节点之间的关系。边是图数据库中的关键概念，图数据库独有的数据抽象概念，而关系型数据库和文件型数据库并没有“边”这一概念，它们的关系查询必须在运行时进行具体化。
+- [Path](#path)：路径，由顶点和边按照一定顺序组成的序列。
+- [PathSegment](#pathsegment)：路径段，路径中的某一条边及其起点、终点。
 
 该模块提供以下图数据库相关的常用功能：
 
@@ -23,8 +28,6 @@ import { graphStore } from '@kit.ArkData';
 getStore(context: Context, config: StoreConfig): Promise&lt;GraphStore&gt;
 
 获得一个相关的GraphStore实例，操作图数据库，用户可以根据自己的需求配置GraphStore实例的参数，然后通过GraphStore实例调用相关接口可以执行相关的数据操作，使用promise异步回调。
-
-getStore目前不支持多线程并发操作。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -86,7 +89,7 @@ deleteStore(context: Context, config: StoreConfig): Promise&lt;void&gt;
 
 使用指定的数据库文件配置删除数据库，使用Promise异步回调。
 
-删除成功后，建议将数据库对象置为null。
+删除前，如果数据库未关闭，建议使用[close](#close)接口关闭数据后再进行删除。删除成功后，打开的数据库句柄已无效，建议将数据库对象置为null，不再使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -95,7 +98,7 @@ deleteStore(context: Context, config: StoreConfig): Promise&lt;void&gt;
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | context | Context                          | 是   | 应用的上下文，推荐使用Stage模型。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
-| config  | [StoreConfig](#storeconfig) | 是   | 与此GDB存储相关的数据库配置。                                |
+| config  | [StoreConfig](#storeconfig) | 是   | 与此GDB存储相关的数据库配置。<br/>**使用约束：** <br/>删除数据库时仅以config.name为标识，不关注其他配置项。 |
 
 **返回值**：
 
@@ -148,7 +151,7 @@ class EntryAbility extends UIAbility {
 
 | 名称        | 类型          | 必填 | 说明                                                      |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
-| name          | string        | 是   | 数据库文件名，也是数据库唯一标识符。<br/>**使用约束：** <br/>1. 文件名长度上限为255字节。<br/>2. 文件名不包含.db后缀。 |
+| name          | string        | 是   | 数据库文件名，也是数据库唯一标识符。<br/>**使用约束：** <br/>1. 文件名长度上限为128字节。<br/>2. 文件名不包含.db后缀。 |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别。<br/>**使用约束：** <br/>1. 安全级别不支持从高到低变更。<br/>2. 同一个数据库如果需要变更安全等级，需要使用[GraphStore.close](#close)接口关闭数据库，再将修改安全等级后的StoreConfig作为参数重新调用[graphStore.getStore](#graphstoregetstore)。 |
 
 ## SecurityLevel
@@ -159,10 +162,10 @@ class EntryAbility extends UIAbility {
 
 | 名称 | 值   | 说明                                                         |
 | ---- | ---- | ------------------------------------------------------------ |
-| S1   | 1    | 表示数据库的安全级别为低级别，当数据泄露时会产生较低影响。 |
-| S2   | 2    | 表示数据库的安全级别为中级别，当数据泄露时会产生较大影响。 |
-| S3   | 3    | 表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。 |
-| S4   | 4    | 表示数据库的安全级别为关键级别，当数据泄露时会产生严重影响。 |
+| S1   | 1    | 表示数据库的安全级别为低级别，当数据泄露时会产生较低影响。例如，包含壁纸等系统数据的数据库。 |
+| S2   | 2    | 表示数据库的安全级别为中级别，当数据泄露时会产生较大影响。例如，包含录音、视频等用户生成数据或通话记录等信息的数据库。 |
+| S3   | 3    | 表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。例如，包含用户运动、健康、位置等信息的数据库。 |
+| S4   | 4    | 表示数据库的安全级别为关键级别，当数据泄露时会产生严重影响。例如，包含认证凭据、财务数据等信息的数据库。 |
 
 ## ValueType
 
@@ -180,33 +183,33 @@ type ValueType = null | number | string
 
 ## Vertex
 
-记录顶点的相关信息。
+记录顶点的相关信息。Vertex仅作为返回值（[Result](#result)）中的类型出现，不支持自定义填写，可通过使用[read](#read)接口查询获得。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
 | 名称          | 类型                          | 必填  | 说明           |
 | ----------- | --------------------------- | --- | ------------ |
 | vid        | string | 是   | 顶点的标识符。不支持自定义填写，使用[write](#write)接口插入顶点后由底层分配的全局唯一标识符。 |
-| labels     | Array&lt;string&gt; | 是   | 顶点的标签。在创建图的GQL语句中指定，每个元素长度上限为128字节。 |
-| properties | Record&lt;string, [ValueType](#valuetype)&gt; | 是   | 顶点的属性。在创建图的GQL语句中指定，key长度上限为128字节，数量上限为1024条，value类型为string时长度上限为64 * 1024字节。 |
+| labels     | Array&lt;string&gt; | 是   | 顶点的标签。在使用[write](#write)接口创建图使用的GQL语句中指定，每个元素长度上限为128字节，不区分大小写，以大写形式存储。 |
+| properties | Record&lt;string, [ValueType](#valuetype)&gt; | 是   | 顶点的属性。key长度上限为128字节，数量上限为1024条，在使用[write](#write)接口创建图使用的GQL语句中指定，value类型为string时长度上限为64 * 1024字节。 |
 
 ## Edge
 
-记录边的相关信息。
+记录边的相关信息。Edge仅作为返回值（[Result](#result)）中的类型出现，不支持自定义填写，可通过使用[read](#read)接口查询获得。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
 | 名称          | 类型                          | 必填  | 说明           |
 | ----------- | --------------------------- | --- | ------------ |
 | eid        | string | 是   | 边的标识符。不支持自定义填写，使用[write](#write)接口插入边后由底层分配的全局唯一标识符。 |
-| type       | string | 是   | 边的类型。在创建图的GQL语句中指定，长度上限为128字节。 |
+| type       | string | 是   | 边的类型。在使用[write](#write)接口创建图使用的GQL语句中指定，长度上限为128字节，不区分大小写，以大写形式存储。 |
 | startVid   | string | 是   | 起始顶点的标识符。不支持自定义填写，使用[write](#write)接口插入顶点后由底层分配的全局唯一标识符。 |
 | endVid     | string | 是   | 终点的标识符。不支持自定义填写，使用[write](#write)接口插入顶点后由底层分配的全局唯一标识符。 |
-| properties | Record&lt;string, [ValueType](#valuetype)&gt; | 是   | 边的属性。在创建图的GQL语句中指定，key长度上限为128字节，数量上限为1024条，value类型为string时长度上限为64 * 1024字节。 |
+| properties | Record&lt;string, [ValueType](#valuetype)&gt; | 是   | 边的属性。key长度上限为128字节，数量上限为1024条，在使用[write](#write)接口创建图使用的GQL语句中指定，value类型为string时长度上限为64 * 1024字节。 |
 
 ## PathSegment
 
-记录路径段（路径中的每条边及其起点、终点）的相关信息。
+记录路径段（路径中的每条边及其起点、终点）的相关信息。PathSegment仅作为（[Path.segments](#path)）的类型出现，不支持自定义填写。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -218,7 +221,7 @@ type ValueType = null | number | string
 
 ## Path
 
-记录路径的相关信息。
+记录路径的相关信息。Path仅作为返回值（[Result](#result)）中的类型出现，不支持自定义填写，可通过使用[read](#read)接口查询获得。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -237,18 +240,20 @@ GQL语句执行结果。
 
 | 名称          | 类型                          | 必填  | 说明           |
 | ----------- | --------------------------- | --- | ------------ |
-| records | Array&lt;Record&lt;string, Object&gt;&gt; | 否   | GQL语句执行结果的数据记录。默认值为空。<br/>如果有执行结果，Object具体类型根据查询GQL语句不同，可能是[Vertex](#vertex)，[Edge](#edge)，[Path](#path)或[ValueType](#valuetype) |
+| records | Array&lt;Record&lt;string, Object&gt;&gt; | 否   | GQL语句执行结果的数据记录。默认值为空。<br/>如果有执行结果，Object具体类型根据查询GQL语句不同，可能是[Vertex](#vertex)，[Edge](#edge)，[Path](#path)或[ValueType](#valuetype)。 |
 
 
 ## GraphStore
 
 提供管理图数据库(GDB)方法的接口。
 
+下列API示例中都需先使用[graphStore.getStore](#graphstoregetstore)接口获取到GraphStore实例，再通过此实例调用对应方法。
+
 ### read
 
 read(gql: string): Promise&lt;Result&gt;
 
-执行查询过程。
+执行数据查询语句。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -311,7 +316,7 @@ if(store != null) {
 
 write(gql: string): Promise&lt;Result&gt;
 
-执行数据修改或表结构修改过程。
+执行数据写入语句。用于创建图、删除图、增删改数据等。暂不支持修改表结构（[Vertex](#vertex)和[Edge](#edge)的类型或属性）。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -354,7 +359,7 @@ write(gql: string): Promise&lt;Result&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const CREATE_GRAPH_GQL = "CREATE GRAPH test { (person:Person {name STRING, age INT}),(person)-[:Friend]->(person) };"
+const CREATE_GRAPH_GQL = "CREATE GRAPH test { (person:Person {name STRING, age INT}),(person)-[:Friend {year INT}]->(person) };"
 if(store != null) {
   (store as graphStore.GraphStore).write(CREATE_GRAPH_GQL).then(() => {
     console.info('Write successfully');
@@ -393,10 +398,10 @@ close(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if(store != null) {
-    (store as graphStore.GraphStore).close().then(() => {
-        console.info(`Close successfully`);
-    }).catch ((err: BusinessError) => {
-        console.error(`Close failed, code is ${err.code}, message is ${err.message}`);
-    })
+  (store as graphStore.GraphStore).close().then(() => {
+    console.info(`Close successfully`);
+  }).catch ((err: BusinessError) => {
+    console.error(`Close failed, code is ${err.code}, message is ${err.message}`);
+  })
 }
 ```
