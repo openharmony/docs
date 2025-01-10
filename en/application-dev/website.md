@@ -7,7 +7,7 @@
       - [Universal Error Codes](onlyfortest/reference/errorcode-universal.md)
   - Parent-node-urlpath-illegal<!--Urlpath-Illegal-->
     - errorCode
-      - errorCode<!--errorcode-for-ads-for-enterprise-device-management->
+      - errorCode<!--errorcode-for-ads-for-enterprise-device-management-->
         - [Enterprise-Device-Management-Error-Codes](onlyfortest/reference/apis-mdm-kit/errorcode-enterpriseDeviceManager.md) 
   - Parent-node-urlpath-null<!--urlpath-null-->
     - errorCode<!--errorcode-for-ads-->
