@@ -140,7 +140,7 @@ type Offset = Vector2
 
 ## Matrix4
 
-type Matix4 = [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]
+type Matrix4 = [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]
 
 设置四阶矩阵。
 
