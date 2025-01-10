@@ -1693,12 +1693,6 @@ startMoving(): void
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-**参数：**
-
-| 参数名   | 类型                   | 必填 | 说明     |
-| -------- | ---------------------- | ---- | -------- |
-|    |    |      |    |
-
 **返回值：**
 
 | 类型   | 说明                             |
@@ -1731,18 +1725,12 @@ try {
 }
 ```
 
-### startMoving<sup>16+</sup>
+### getDisplayId<sup>16+</sup>
 
 getDisplayId(): Promise<number>
 获取当前窗口的displayid，使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
-**参数：**
-
-| 参数名   | 类型                   | 必填 | 说明     |
-| -------- | ---------------------- | ---- | -------- |
-|    |    |      |    |
 
 **返回值：**
 
