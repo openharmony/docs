@@ -668,7 +668,7 @@ Custom cursor config.
 
 setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): Promise&lt;void&gt;
 
-Sets the custom cursor. You can set whether to adjust the cursor size based on the system settings.
+Sets the custom cursor. You can set whether to adjust the cursor size based on the system settings.This API Use a Promise asynchronous method to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
