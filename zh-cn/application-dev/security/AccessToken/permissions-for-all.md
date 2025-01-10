@@ -381,6 +381,26 @@
 
 **起始版本**：13
 
+## ohos.permission.USE_MESSAGES_PICKER
+
+允许应用使用短信选择器，获取短信内容。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：16
+
+## ohos.permission.USE_CALL_LOG_PICKER
+
+允许应用使用通话记录选择器，获取通话记录内容。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：16
+
 ### ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
 
 允许系统JS引擎申请带MAP_FORT标识的匿名可执行内存。
@@ -393,5 +413,55 @@
 
 **起始版本**：14
 
+<!--Del-->
+### ohos.permission.PRELOAD_FILE
 
+允许应用预加载文件以提升文件打开速度。
+
+仅当应用为文档编辑类应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：15
+<!--DelEnd-->
+
+### ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
+
+允许应用使用红外接口。
+
+查询红外支持最大频率，发送特定频率红外信号。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：12
+
+**变更信息**：在API 12-15，权限的开放范围为系统应用；从API16开始，开放范围变更为普通应用。
+
+### ohos.permission.INPUT_KEYBOARD_CONTROLLER
+
+允许应用设置键盘功能键状态。
+
+如CapsLock(大小写) 的亮灭状态等。当前仅输入法应用可以申请该权限。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：15
+
+### ohos.permission.NDK_START_SELF_UI_ABILITY
+
+允许应用通过C API启动同应用的UIAbility。
+
+当前仅2in1设备应用可申请此权限。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：15
 

@@ -50,7 +50,7 @@
 
 ## 接口
 
-List(value?: [ListOptions](#listoptions14对象说明))
+List(value?: [ListOptions](#listoptions16对象说明))
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -62,15 +62,15 @@ List(value?: [ListOptions](#listoptions14对象说明))
 
 | 参数名  | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| value    | [ListOptions](#listoptions14对象说明)  | 否   | 设置List组件参数。 |
+| value    | [ListOptions](#listoptions16对象说明)  | 否   | 设置List组件参数。 |
 
-## ListOptions<sup>14+</sup>对象说明
+## ListOptions<sup>16+</sup>对象说明
 
 用于设置List组件参数。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -104,7 +104,7 @@ listDirection(value: Axis)
 
 ### divider
 
-divider(value: [ListDividerOptions](#listdivideroptions14对象说明) | null)
+divider(value: [ListDividerOptions](#listdivideroptions16对象说明) | null)
 
 设置ListItem分割线样式，默认无分割线。
 
@@ -128,7 +128,7 @@ ListItem设置[多态样式](ts-universal-attributes-polymorphic-style.md)时，
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ListDividerOptions](#listdivideroptions14对象说明) \|&nbsp;null | 是   | ListItem分割线样式。<br/>默认值：null |
+| value  | [ListDividerOptions](#listdivideroptions16对象说明) \|&nbsp;null | 是   | ListItem分割线样式。<br/>默认值：null |
 
 ### scrollBar
 
@@ -349,6 +349,8 @@ scrollSnapAlign(value: ScrollSnapAlign)
 
 触控板和鼠标滑动List结束后不支持对齐效果。
 
+对齐动画期间onWillScroll事件上报的滚动操作来源类型为ScrollSource.FLING。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -534,13 +536,13 @@ maintainVisibleContentPosition(enabled: boolean)
 | ------- | -------- | ---- | ---------------------- |
 | onFinish | ()=>void | 否   | 在收起动画完成后触发。 |
 
-## ListDividerOptions<sup>14+</sup>对象说明
+## ListDividerOptions<sup>16+</sup>对象说明
 
 用于设置List或ListItemGroup组件的分割线样式。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -906,13 +908,13 @@ getItemRectInGroup(index: number, indexInGroup: number): RectResult
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100004   | Controller not bound to component.                               |
-### getVisibleListContentInfo<sup>13+</sup>
+### getVisibleListContentInfo<sup>14+</sup>
 
 getVisibleListContentInfo(x:number, y: number): VisibleListContentInfo
 
 根据坐标获取子组件的索引信息。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

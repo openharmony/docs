@@ -586,6 +586,7 @@ Enumerates mouse pointer styles.
 | CURSOR_CIRCLE<sup>10+</sup> | 41 | Circle|![Cursor_Circle.png](./figures/Cursor_Circle.png)|
 | LOADING<sup>10+</sup> | 42 | Animation loading|![Loading.png](./figures/Loading.png)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | RUNNING<sup>10+</sup> | 43 | Animation running in the background|![Running.png](./figures/Running.png)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MIDDLE_BTN_EAST_WEST<sup>16+</sup>           | 44   | Scrolling east-west|![MID_Btn_East_West.png](./figures/MID_Btn_East_West.png)|
 
 ## pointer.setCustomCursor<sup>11+</sup>
 

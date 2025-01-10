@@ -4588,6 +4588,8 @@ restoreWebState(state: Uint8Array): void
 
 当前Webview从序列化数据中恢复页面状态历史记录。
 
+如果state过大，可能会导致异常。建议state大于512k时，放弃恢复页面状态历史记录。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -5977,9 +5979,9 @@ struct WebComponent {
     Column() {
       Button('getDefaultUserAgent')
         .onClick(() => {
-          webview.WebviewController.getDefaultUserAgent();
-      })
-      Web({ src: 'www.example.com', controller: this.controller })
+          let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
+          console.log("defaultUserAgent: " + defaultUserAgent);
+        })
     }
   }
 }

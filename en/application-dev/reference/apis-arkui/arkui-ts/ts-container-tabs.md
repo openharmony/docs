@@ -500,7 +500,7 @@ This event is triggered when any of the following conditions is met:
 
 >  **NOTE**
 >
->  When a custom tab is used, the synchronization between tabs and swipe gestures in the **onChange** event may be performed only after tab switching occurs. This can lead to a delay in switching to the custom tab. To address this issue, listen for the current tab index in [onAnimationStart] (#onanimationstart11) and update the tab index accordingly. For details about the implementation, see [Example 1](#example-1-setting-up-custom-tab-switching-synchronization).
+>  When a custom tab is used, the synchronization between tabs and swipe gestures in the **onChange** event may be performed only after tab switching occurs. This can lead to a delay in switching to the custom tab. To address this issue, listen for the current tab index in [onAnimationStart](#onanimationstart11) and update the tab index accordingly. For details about the implementation, see [Example 1](#example-1-setting-up-custom-tab-switching-synchronization).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1078,11 +1078,11 @@ struct TabsDivider1 {
             this.startMargin -= 2
           }
         })
-      Button ('Increase Bottom Margin').width ('100%').margin ({ bottom:'12vp'})
+      Button('Increase Bottom Margin').width('100%').margin({ bottom:'12vp'})
         .onClick(() => {
           this.endMargin += 2
         })
-      Button ('Decrease Bottom Margin').width ('100%').margin ({ bottom:'12vp' })
+      Button('Decrease Bottom Margin').width('100%').margin({ bottom:'12vp' })
         .onClick(() => {
           if (this.endMargin > 2) {
             this.endMargin -= 2

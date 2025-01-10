@@ -2356,7 +2356,7 @@ console.info('result = ' + result);
 
 afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
-Performs subsequent operations after a value is removed. The subsequent operations must be implemented by developers. This API is called during deletion operations, such as [get<sup>9+</sup>](#get9), [put<sup>9+</sup>](#put9), [remove<sup>9+</sup>](#remove9), [clear<sup>9+</sup>](#clear9), and [updateCapacity<sup>9+</sup>] (#updatecapacity9).
+Performs subsequent operations after a value is removed. The subsequent operations must be implemented by developers. This API is called during deletion operations, such as [get<sup>9+</sup>](#get9), [put<sup>9+</sup>](#put9), [remove<sup>9+</sup>](#remove9), [clear<sup>9+</sup>](#clear9), and [updateCapacity<sup>9+</sup>](#updatecapacity9).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

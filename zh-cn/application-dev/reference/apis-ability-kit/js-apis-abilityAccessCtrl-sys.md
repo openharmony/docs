@@ -601,6 +601,56 @@ try {
 }
 ```
 
+### requestPermissionOnApplicationSetting<sup>16+</sup>
+
+requestPermissionOnApplicationSetting(tokenID: number): Promise&lt;void&gt;
+
+拉起应用权限设置页面。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名    | 类型                | 必填 | 说明                                                         |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
+
+**返回值：**
+
+| 类型          | 说明                                |
+| :------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100002 | The specified tokenID does not exist. |
+| 12100007 | The service is abnormal. |
+
+**示例：**
+
+```ts
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取
+atManager.requestPermissionOnApplicationSetting(tokenID).then(() => {
+  console.log('requestPermissionOnApplicationSetting success');
+}).catch((err: BusinessError) => {
+  console.error(`requestPermissionOnApplicationSetting fail, err->${JSON.stringify(err)}`);
+});
+```
+
 ### PermissionRequestToggleStatus<sup>12+</sup>
 
 表示指定权限对应的弹窗开关状态的枚举。

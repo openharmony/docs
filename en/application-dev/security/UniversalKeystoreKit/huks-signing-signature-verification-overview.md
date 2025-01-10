@@ -21,7 +21,7 @@ The key management service specifications include mandatory specifications and o
 | <!--DelRow-->DSA/SHA1<br>DSA/SHA224<br>DSA/SHA256<br>DSA/SHA384<br>DSA/SHA512 | - | 8+ | No|
 | <!--DelRow-->DSA/NoDigest | **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be specified with **NoDigest**.| 9+ | No|
 | <!--DelRow-->ECC/SHA1<br>ECC/SHA224 | - | 8+ | No|
-| ECC/SHA256<br>ECC/SHA384<br>ECC/SHA512 | - | 8+ | Yes|
+| ECC/SHA256<br>ECC/SHA384<br>ECC/SHA512 | The ECC algorithm supports elliptic curve functions P-256, P-384, and P-521.| 8+ | Yes|
 | <!--DelRow-->ECC/NoDigest | **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be specified with **NoDigest**.| 9+ | No|
 | ED25519/NoDigest | **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be specified with **NoDigest**.| 8+ | Yes|
 | SM2/SM3 | - | 9+ | Yes|

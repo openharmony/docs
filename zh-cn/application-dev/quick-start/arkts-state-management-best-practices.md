@@ -47,7 +47,7 @@ struct Parent {
 }
 ```
 
-在上文的示例中，PropChild组件没有改变\@Prop testNum: MyClass的值，所以这时较优的选择是使用\@ObjectLink，因为\@Prop是会深拷贝数据，具有拷贝的性能开销，所以这个时候\@ObjectLink是比\@Link和\@Prop更优的选择。
+在上文的示例中，PropChild组件没有改变\@Prop testClass: MyClass的值，所以这时较优的选择是使用\@ObjectLink，因为\@Prop是会深拷贝数据，具有拷贝的性能开销，所以这个时候\@ObjectLink是比\@Link和\@Prop更优的选择。
 
 【正例】
 

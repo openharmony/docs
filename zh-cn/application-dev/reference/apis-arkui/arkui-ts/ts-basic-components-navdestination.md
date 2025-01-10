@@ -4,13 +4,15 @@
 
 > **说明：**
 >
-> 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
+> - 该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
 >
-> NavDestination组件必须配合Navigation使用，作为Navigation目的页面的根节点，单独使用只能作为普通容器组件，不具备路由相关属性能力。
+> - NavDestination组件必须配合Navigation使用，作为Navigation目的页面的根节点，单独使用只能作为普通容器组件，不具备路由相关属性能力。
 >
-> 如果页面栈中间页面的生命周期发生变化，跳转之前的栈顶Destination的生命周期(onWillShow, onShown, onHidden, onWillDisappear)与跳转之后的栈顶Destination的生命周期(onWillShow, onShown, onHidden, onWillDisappear)均在最后触发。
+> - 如果页面栈中间页面的生命周期发生变化，跳转之前的栈顶Destination的生命周期(onWillShow, onShown, onHidden, onWillDisappear)与跳转之后的栈顶Destination的生命周期(onWillShow, onShown, onHidden, onWillDisappear)均在最后触发。
+>
+> - NavDestination未设置主副标题并且没有返回键时，不显示标题栏。
 
 ## 子组件
 
@@ -48,7 +50,7 @@ title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestination
 
 | 参数名 | 类型                                                         | 必填 | 说明       |
 | ------ | ------------------------------------------------------------ | ---- | ---------- |
-| value  | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavDestinationCommonTitle](#navdestinationcommontitle)&nbsp;\|&nbsp;[NavDestinationCustomTitle](#navdestinationcustomtitle)&nbsp;\|&nbsp;[Resource](ts-types.md#resource)  | 是   | 页面标题。 |
+| value  | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavDestinationCommonTitle](#navdestinationcommontitle)&nbsp;\|&nbsp;[NavDestinationCustomTitle](#navdestinationcustomtitle)&nbsp;\|&nbsp;[Resource<sup>14+</sup>](ts-types.md#resource)  | 是   | 页面标题。 |
 | options<sup>12+</sup> | [NavigationTitleOptions](ts-basic-components-navigation.md#navigationtitleoptions11) | 否   | 标题栏选项。 |
 
 ### hideTitleBar
@@ -254,7 +256,7 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| recoverable  | Optional&lt;boolean&gt; | 否   | NavDestination是否可恢复，默认为可恢复 |
+| recoverable  | Optional&lt;boolean&gt; | 是   | NavDestination是否可恢复，默认为不可恢复。<br/>默认值:false<br/>true:页面栈可恢复。<br/>false:页面栈不可恢复。 |
 
 >  **使用说明：**
 >
@@ -300,6 +302,22 @@ bindToNestedScrollable(scrollers: Array&lt;NestedScrollInfo&gt;)
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | scrollInfos | Array<[NestedScrollInfo](#nestedscrollinfo14)> | 是   | 嵌套的可滚动容器组件的控制器。 |
 
+### hideBackButton<sup>16+</sup>
+
+hideBackButton(hide: Optional&lt;boolean&gt;)
+
+设置是否隐藏标题栏中的返回键。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| hide  | Optional&lt;boolean&gt; | 是   | 是否隐藏标题栏中的返回键。 <br/>默认值：false<br/>true: 隐藏返回键。<br/>false: 显示返回键。 |
+
 ## NavDestinationMode枚举说明 <sup>11+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -317,7 +335,7 @@ bindToNestedScrollable(scrollers: Array&lt;NestedScrollInfo&gt;)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 枚举值   | 描述 |
+| 名称   | 值   | 说明 |
 | ----  | ---   | ----- |
 | DEFAULT  | 0 | 默认系统转场动画。|
 | NONE| 1 | 无系统转场动画。|

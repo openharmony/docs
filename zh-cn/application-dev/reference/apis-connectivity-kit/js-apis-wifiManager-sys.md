@@ -1376,6 +1376,47 @@ isHotspotDualBandSupported(): boolean
 	}
 ```
 
+## wifiManager.isOpenSoftApAllowed<sup>16+</sup>
+
+isOpenSoftApAllowed(): boolean
+
+热点是否支持双频。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | boolean | true:允许，&nbsp;false:不允许.|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
+
+**示例：**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		let ret = wifiManager.isOpenSoftApAllowed();
+		console.info("result:" + ret);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
 ## wifiManager.isHotspotActive<sup>9+</sup>
 
 isHotspotActive(): boolean

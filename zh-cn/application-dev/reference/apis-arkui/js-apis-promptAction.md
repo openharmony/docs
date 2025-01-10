@@ -693,8 +693,8 @@ closeCustomDialog(dialogId: number): void
 | textColor<sup>12+</sup>    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 文本提示框文本颜色<br/>默认值：Color.Black<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyle<sup>12+</sup>    | [BlurStyle](arkui-ts/ts-universal-attributes-background.md#blurstyle9) | 否   | 文本提示框背板模糊材质<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK<br/>**说明：** <br/>设置为BlurStyle.NONE即可关闭背景虚化。当设置了backgroundBlurStyle为非NONE值时，则不要设置backgroundColor，否则颜色显示将不符合预期效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | shadow<sup>12+</sup>    | [ShadowOptions](arkui-ts/ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10枚举说明) | 否   | 文本提示框背板阴影<br/>默认值：ShadowStyle.OUTER_DEFAULT_MD<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| enableHoverMode<sup>13+</sup>    | boolean                       | 否   | 是否响应悬停态。<br/>默认值：False，默认不响应。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
-| hoverModeArea<sup>13+</sup> | [HoverModeAreaType](arkui-ts/ts-appendix-enums.md#hovermodeareatype13)         | 否   | 响应悬停态时，弹窗的显示区域。<br/>默认值：HoverModeAreaType.BOTTOM_SCREEN，默认显示在下半屏。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。         |
+| enableHoverMode<sup>14+</sup>    | boolean                       | 否   | 是否响应悬停态。<br/>默认值：False，默认不响应。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| hoverModeArea<sup>14+</sup> | [HoverModeAreaType](arkui-ts/ts-appendix-enums.md#hovermodeareatype14)         | 否   | 响应悬停态时，弹窗的显示区域。<br/>默认值：HoverModeAreaType.BOTTOM_SCREEN，默认显示在下半屏。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。         |
 
 ## ToastShowMode<sup>11+</sup>
 
@@ -726,8 +726,8 @@ closeCustomDialog(dialogId: number): void
 | backgroundColor<sup>12+</sup>     | [ResourceColor](arkui-ts/ts-types.md#resourcecolor)          | 否   | 弹窗背板颜色。<br/>默认值：Color.Transparent<br/>**说明：** <br/>当设置了backgroundColor为非透明色时，backgroundBlurStyle需要设置为BlurStyle.NONE，否则颜色显示将不符合预期效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyle<sup>12+</sup> | [BlurStyle](arkui-ts/ts-universal-attributes-background.md#blurstyle9) | 否   | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK<br/>**说明：** <br/>设置为BlurStyle.NONE即可关闭背景虚化。当设置了backgroundBlurStyle为非NONE值时，则不要设置backgroundColor，否则颜色显示将不符合预期效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | shadow<sup>12+</sup>              | [ShadowOptions](arkui-ts/ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10枚举说明) | 否   | 设置弹窗背板的阴影。<br /> 当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦为ShadowStyle.OUTER_FLOATING_SM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| enableHoverMode<sup>13+</sup>     | boolean                                                      | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。            |
-| hoverModeArea<sup>13+</sup>       | [HoverModeAreaType](arkui-ts/ts-appendix-enums.md#hovermodeareatype13) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。 |
+| enableHoverMode<sup>14+</sup>     | boolean                                                      | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。            |
+| hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](arkui-ts/ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## ShowDialogSuccessResponse
 
@@ -765,6 +765,135 @@ closeCustomDialog(dialogId: number): void
 | 名称  | 类型   | 必填 | 说明                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
 | index | number | 是   | 选中按钮在buttons数组中的索引，从0开始。 |
+
+## DialogController<sup>16+</sup>
+
+自定义弹窗控制器，继承自[CommonController](#commoncontroller16)。
+
+DialogController可作为UIContext弹出自定义弹窗的成员变量，具体用法可看[openCustomDialogWithController](js-apis-arkui-UIContext.md#opencustomdialogwithcontroller16)和[presentCustomDialog](js-apis-arkui-UIContext.md#presentcustomdialog16)示例。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+## CommonController<sup>16+</sup>
+
+公共控制器，可以控制promptAction相关组件。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### constructor
+constructor()
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### close
+close(): void
+
+关闭显示的自定义弹窗，若已关闭，则不生效。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+## DialogOptions<sup>16+</sup>
+
+自定义弹窗的内容，继承自[BaseDialogOptions](#basedialogoptions11)。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                                    | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| backgroundColor | [ResourceColor](arkui-ts/ts-types.md#resourcecolor)  | 否 | 设置弹窗背板颜色。<br/>默认值：Color.Transparent<br/>**说明：** <br/>当设置了backgroundColor为非透明色时，backgroundBlurStyle需要设置为BlurStyle.NONE，否则颜色显示将不符合预期效果。 |
+| cornerRadius | [DialogOptionsCornerRadius](#dialogoptionscornerradius16) | 否 | 设置弹窗背板的圆角半径。<br />可分别设置4个圆角的半径。<br />默认值：{ topLeft: '32vp', topRight: '32vp', bottomLeft: '32vp', bottomRight: '32vp' }。<br /> 圆角大小受组件尺寸限制，最大值为组件宽或高的一半，若值为负，则按照默认值处理。 <br /> 百分比参数方式：以父元素弹窗宽和高的百分比来设置弹窗的圆角。|
+| borderWidth | [DialogOptionsBorderWidth](#dialogoptionsborderwidth16) | 否 | 设置弹窗背板的边框宽度。<br />可分别设置4个边框宽度。<br />默认值：0。<br /> 百分比参数方式：以父元素弹窗宽的百分比来设置弹窗的边框宽度。<br />当弹窗左边框和右边框大于弹窗宽度，弹窗上边框和下边框大于弹窗高度，显示可能不符合预期。|
+| borderColor | [DialogOptionsBorderColor](#dialogoptionsbordercolor16) | 否 | 设置弹窗背板的边框颜色。<br/>默认值：Color.Black。<br/> 如果使用borderColor属性，需要和borderWidth属性一起使用。 |
+| borderStyle | [DialogOptionsBorderStyle](#dialogoptionsborderstyle16) | 否 | 设置弹窗背板的边框样式。<br/>默认值：BorderStyle.Solid。<br/> 如果使用borderStyle属性，需要和borderWidth属性一起使用。 |
+| width | [Dimension](arkui-ts/ts-types.md#dimension10) | 否   | 设置弹窗背板的宽度。<br />**说明：**<br>- 弹窗宽度默认最大值：400vp。<br />- 百分比参数方式：弹窗参考宽度为所在窗口的宽度，在此基础上调小或调大。|
+| height | [Dimension](arkui-ts/ts-types.md#dimension10)  | 否   | 设置弹窗背板的高度。<br />**说明：**<br />- 弹窗高度默认最大值：0.9 *（窗口高度 - 安全区域）。<br />- 百分比参数方式：弹窗参考高度为（窗口高度 - 安全区域），在此基础上调小或调大。|
+| shadow | [DialogOptionsShadow](#dialogoptionsshadow16) | 否 | 设置弹窗背板的阴影。<br />当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦为ShadowStyle.OUTER_FLOATING_SM |
+| backgroundBlurStyle | [BlurStyle](arkui-ts/ts-universal-attributes-background.md#blurstyle9)                 | 否   | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK<br/>**说明：** <br/>设置为BlurStyle.NONE即可关闭背景虚化。当设置了backgroundBlurStyle为非NONE值时，则不要设置backgroundColor，否则颜色显示将不符合预期效果。 |
+
+## DialogOptionsCornerRadius<sup>16+</sup>
+
+type DialogOptionsCornerRadius = Dimension&nbsp;\|&nbsp;BorderRadiuses
+
+表示弹窗背板的圆角半径允许的数据字段类型。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                                                         | 说明                         |
+| ------------------------------------------------------------ | ---------------------------- |
+| [Dimension](arkui-ts/ts-types.md#dimension10) | 表示值类型为长度类型，用于描述尺寸单位。 |
+| [BorderRadiuses](arkui-ts/ts-types.md#borderradiuses9) | 表示值类型为圆角类型，用于描述组件边框圆角半径。 |
+
+## DialogOptionsBorderWidth<sup>16+</sup>
+
+type DialogOptionsBorderWidth = Dimension&nbsp;\|&nbsp;EdgeWidths
+
+表示弹窗背板的边框宽度允许的数据字段类型。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                                                         | 说明                         |
+| ------------------------------------------------------------ | ---------------------------- |
+| [Dimension](arkui-ts/ts-types.md#dimension10) | 表示值类型为长度类型，用于描述尺寸单位。 |
+| [EdgeWidths](arkui-ts/ts-types.md#edgewidths9) | 表示值类型为边框宽度类型，用于描述组件边框不同方向的宽度。 |
+
+## DialogOptionsBorderColor<sup>16+</sup>
+
+type DialogOptionsBorderColor = ResourceColor&nbsp;\|&nbsp;EdgeColors
+
+表示弹窗背板的边框颜色允许的数据字段类型。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                                                         | 说明                         |
+| ------------------------------------------------------------ | ---------------------------- |
+| [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 表示值类型为颜色类型，用于描述资源颜色类型。 |
+| [EdgeColors](arkui-ts/ts-types.md#edgecolors9) | 表示值类型为边框颜色，用于描述组件边框四条边的颜色。 |
+
+## DialogOptionsBorderStyle<sup>16+</sup>
+
+type DialogOptionsBorderStyle = BorderStyle&nbsp;\|&nbsp;EdgeStyles
+
+表示弹窗背板的边框样式允许的数据字段类型。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                                                         | 说明                         |
+| ------------------------------------------------------------ | ---------------------------- |
+| [BorderStyle](arkui-ts/ts-appendix-enums.md#borderstyle) | 表示值类型为边框类型，用于描述组件边框的类型。 |
+| [EdgeStyles](arkui-ts/ts-types.md#edgestyles9) | 表示值类型为边框样式，用于描述组件边框四条边的样式。 |
+
+## DialogOptionsShadow<sup>16+</sup>
+
+type DialogOptionsShadow = ShadowOptions&nbsp;\|&nbsp;ShadowStyle
+
+表示弹窗背板的阴影允许的数据字段类型。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                                                         | 说明                         |
+| ------------------------------------------------------------ | ---------------------------- |
+| [ShadowOptions](arkui-ts/ts-universal-attributes-image-effect.md#shadowoptions对象说明) | 表示值类型为阴影属性集合，用于设置阴影的模糊半径、阴影的颜色、X轴和Y轴的偏移量。 |
+| [ShadowStyle](arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10枚举说明) | 表示值类型为阴影类型，用于描述阴影的类型。 |
 
 ## CustomDialogOptions<sup>11+</sup>
 
@@ -811,8 +940,9 @@ closeCustomDialog(dialogId: number): void
 | onWillAppear<sup>12+</sup> | () => void | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 |
 | onWillDisappear<sup>12+</sup> | () => void | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。 |
 | keyboardAvoidMode<sup>12+</sup> | [KeyboardAvoidMode](#keyboardavoidmode12枚举说明) | 否 | 用于设置弹窗是否在拉起软键盘时进行自动避让。<br/>默认值：KeyboardAvoidMode.DEFAULT<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| enableHoverMode<sup>13+</sup>              | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。|
-| hoverModeArea<sup>13+</sup>              | [HoverModeAreaType](arkui-ts/ts-appendix-enums.md#hovermodeareatype13) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。|
+| enableHoverMode<sup>14+</sup>   | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| hoverModeArea<sup>14+</sup>     | [HoverModeAreaType](arkui-ts/ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| keyboardAvoidDistance<sup>16+</sup>       | [LengthMetrics](js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 弹窗避让键盘后，和键盘之间的最小距离。<br />**说明：**<br />- 默认值：16vp。<br />- 默认单位：vp。<br />- 当且仅当keyboardAvoidMode属性设置为DEFAULT时生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 ## DismissDialogAction<sup>12+</sup>
 

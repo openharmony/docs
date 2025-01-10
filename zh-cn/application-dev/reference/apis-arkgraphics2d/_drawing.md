@@ -62,7 +62,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct  [OH_Drawing_String](_o_h___drawing___string.md) | 采用UTF-16BE（大端模式）编码的字符串信息结构体。 |
+| struct  [OH_Drawing_String](_o_h___drawing___string.md) | 采用UTF-16编码的字符串信息结构体。 |
 | struct  [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) | 结构体用于描述位图像素的格式，包括颜色类型和透明度类型 | 
 | struct  [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) | 定义字体度量信息的结构体。 | 
 | struct  [OH_Drawing_GpuContextOptions](_o_h___drawing___gpu_context_options.md) | 定义有关图形处理器上下文的选项。 | 
@@ -89,7 +89,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [OH_Drawing_String](_o_h___drawing___string.md) [OH_Drawing_String](#oh_drawing_string) | 采用UTF-16BE（大端模式）编码的字符串信息结构体。 |
+| typedef struct [OH_Drawing_String](_o_h___drawing___string.md) [OH_Drawing_String](#oh_drawing_string) | 采用UTF-16编码的字符串信息结构体。 |
 | typedef enum [OH_Drawing_SystemFontType](#oh_drawing_systemfonttype) [OH_Drawing_SystemFontType](#oh_drawing_systemfonttype) | 字体类型的枚举。 |
 | typedef bool(\* [Drawing_CaretOffsetsCallback](#drawing_caretoffsetscallback)) (double offset, int32_t index, bool leadingEdge) | 用户自定义的回调函数。将文本行对象中每个字符的偏移量、索引值作为参数传递给用户自定义的回调函数。 |
 | typedef struct [OH_Drawing_LineTypography](#oh_drawing_linetypography) [OH_Drawing_LineTypography](#oh_drawing_linetypography) | 用于从一段文字中提取单行数据进行排版。 |
@@ -246,6 +246,8 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 |
 | -------- | -------- |
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontSetThemeFontFollowed](#oh_drawing_fontsetthemefontfollowed) ([OH_Drawing_Font](#oh_drawing_font) \*font, bool followed) | 设置字型中的字体是否跟随主题字体。设置跟随主题字体后，若系统启用主题字体并且字型未被设置字体，字型会使用该主题字体。 | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontIsThemeFontFollowed](#oh_drawing_fontisthemefontfollowed) (const [OH_Drawing_Font](#oh_drawing_font) \*font, bool \*followed) | 获取字型中的字体是否跟随主题字体。默认不跟随主题字体。 | 
 | OH_Drawing_FontCollection \* [OH_Drawing_GetFontCollectionGlobalInstance](#oh_drawing_getfontcollectionglobalinstance) (void) | 获取全局字体集对象OH_Drawing_FontCollection，可感知主题字信息，禁止释放该对象。  | 
 | [OH_Drawing_Bitmap](#oh_drawing_bitmap) \* [OH_Drawing_BitmapCreate](#oh_drawing_bitmapcreate) (void) | 用于创建一个位图对象。 |
 | void [OH_Drawing_BitmapDestroy](#oh_drawing_bitmapdestroy) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 用于销毁位图对象并回收该对象占有内存。 |
@@ -836,7 +838,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 ### OH_Drawing_Array
 
 ```
-typedef struct OH_Drawing_ArrayOH_Drawing_Array
+typedef struct OH_Drawing_Array OH_Drawing_Array
 ```
 
 **描述**
@@ -850,7 +852,7 @@ typedef struct OH_Drawing_ArrayOH_Drawing_Array
 ### OH_Drawing_LineTypography
 
 ```
-typedef struct OH_Drawing_LineTypographyOH_Drawing_LineTypography
+typedef struct OH_Drawing_LineTypography OH_Drawing_LineTypography
 ```
 
 **描述**
@@ -862,7 +864,7 @@ typedef struct OH_Drawing_LineTypographyOH_Drawing_LineTypography
 ### OH_Drawing_TextTab
 
 ```
-typedef struct OH_Drawing_TextTabOH_Drawing_TextTab
+typedef struct OH_Drawing_TextTab OH_Drawing_TextTab
 ```
 
 **描述**
@@ -900,12 +902,12 @@ typedef bool(* Drawing_CaretOffsetsCallback) (double offset, int32_t index, bool
 ### OH_Drawing_String
 
 ```
-typedef struct OH_Drawing_StringOH_Drawing_String
+typedef struct OH_Drawing_String OH_Drawing_String
 ```
 
 **描述**
 
-采用UTF-16BE（大端模式）编码的字符串信息结构体。
+采用UTF-16编码的字符串信息结构体。
 
 **起始版本：** 14
 
@@ -3099,6 +3101,57 @@ enum OH_Drawing_WordBreakType
 
 
 ## 函数说明
+
+
+### OH_Drawing_FontSetThemeFontFollowed()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontSetThemeFontFollowed (OH_Drawing_Font* font, bool followed )
+```
+
+**描述**
+
+设置字型中的字体是否跟随主题字体。设置跟随主题字体后，若系统启用主题字体并且字型未被设置字体，字型会使用该主题字体。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| font | 指示字体对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| followed | 字型中的字体是否跟随主题字体，true表示跟随主题字体，false表示不跟随主题字体。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数font为空。
+
+### OH_Drawing_FontIsThemeFontFollowed()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontIsThemeFontFollowed (const OH_Drawing_Font* font, bool* followed )
+```
+
+**描述**
+
+获取字型中的字体是否跟随主题字体。默认不跟随主题字体。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| font | 指示字体对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| followed | 返回字型中的字体是否跟随主题字体的结果，true表示跟随主题字体，false表示不跟随主题字体。作为出参使用。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数font或者followed其中一个为空。
 
 ### OH_Drawing_GetFontCollectionGlobalInstance()
 

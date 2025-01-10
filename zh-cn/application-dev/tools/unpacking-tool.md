@@ -444,6 +444,7 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | -------- | ------------------- |----------------------| ---- |
 | actions  | List\<String>       | 标识能够接收的意图的action值的集合 | NA   |
 | entities | List\<String>       | 标识能够接收的意图的元能力的类别集合   | NA   |
+| domainVerify | boolean       | ability是否支持域校验   | NA   |
 
 ### UriInfo结构体信息
 

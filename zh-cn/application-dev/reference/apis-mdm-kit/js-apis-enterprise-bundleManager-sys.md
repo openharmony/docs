@@ -57,7 +57,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addAllowedInstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -108,7 +108,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -165,7 +165,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in adding allowed install bundles');
@@ -213,7 +213,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeAllowedInstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -264,7 +264,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -321,7 +321,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in removing allowed install bundles');
@@ -519,7 +519,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addDisallowedInstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -570,7 +570,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -627,7 +627,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in adding disallowed install bundles');
@@ -675,7 +675,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -726,7 +726,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -783,7 +783,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in removing disallowed install bundles');
@@ -981,7 +981,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -1032,7 +1032,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -1089,7 +1089,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in adding disallowed uninstall bundles');
@@ -1137,7 +1137,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -1188,7 +1188,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -1245,7 +1245,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in removing disallowed uninstall bundles');

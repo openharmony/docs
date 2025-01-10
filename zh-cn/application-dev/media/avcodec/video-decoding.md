@@ -4,15 +4,7 @@
 
 <!--RP3--><!--RP3End-->
 
-当前支持的解码能力如下：
-
-| 视频硬解类型       | 视频软解类型   |
-| --------------------- | ---------------- |
-| AVC(H.264)、HEVC(H.265) |AVC(H.264)、HEVC(H.265) |
-
-视频解码软/硬件解码存在差异，基于MimeType创建解码器时，软解当前仅支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC)，硬解则支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
-
-每一种解码的能力范围，可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取。
+当前支持的解码能力请参考[AVCodec支持的格式](avcodec-support-formats.md#视频解码)。
 
 <!--RP1--><!--RP1End-->
 
@@ -26,7 +18,7 @@
 
 ## 限制约束
 
-1. Buffer模式不支持10bit的图像数据。
+1. Buffer模式不支持HDRVivid解码。
 2. Flush，Reset，Stop之后，重新Start时，需要重新传PPS/SPS。具体示例请参考[Surface模式](#surface模式)步骤14调用OH_VideoDecoder_Flush()。
 3. Flush，Reset，Stop，Destroy在非回调线程中执行时，会等待所有回调执行完成后，将执行结果返回给用户。
 4. 由于硬件解码器资源有限，每个解码器在使用完毕后都必须调用OH_VideoDecoder_Destroy接口来销毁实例并释放资源。
@@ -271,8 +263,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         (void)userData;
         OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, &width);
         OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, &height);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, &heightStride);
     }
 
     // 解码输入回调OH_AVCodecOnNeedInputBuffer实现
@@ -306,6 +296,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > 1. 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
     > 2. 播放视频时，若视频码流的SPS中包含颜色信息，解码器会把这些信息（RangeFlag、ColorPrimary、MatrixCoefficient、TransferCharacteristic）通过
     > OH_AVCodecOnStreamChanged接口中的OH_AVFormat返回。
+    > 3. 视频解码的Surface模式下，内部数据默认是走HEBC（High Efficiency Bandwidth Compression，高效带宽压缩），无法获取到widthStride和heightStride的值。
     >
 
 4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。在获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第4步)，完成DRM许可证申请后，通过此接口进行解密配置。此接口需在Prepare前调用。在Surface模式下，DRM解密能力既支持安全视频通路，也支持非安全视频通路。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
@@ -632,7 +623,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVCodecBufferAttr info;
     info.flags = AVCODEC_BUFFER_FLAG_CODEC_DATA;
     // info信息写入buffer
-    int32_t ret = OH_AVBuffer_SetBufferAttr(bufferInfo->buffer, &info);
+    ret = OH_AVBuffer_SetBufferAttr(bufferInfo->buffer, &info);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -704,8 +695,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```c++
     std::unique_lock<std::shared_mutex> lock(codecMutex);
     // 调用OH_VideoDecoder_Destroy，注销解码器
+    int32_t ret = AV_ERR_OK;
     if (videoDec != NULL) {
-        int32_t ret = OH_VideoDecoder_Destroy(videoDec);
+        ret = OH_VideoDecoder_Destroy(videoDec);
         videoDec = NULL;
     }
     if (ret != AV_ERR_OK) {

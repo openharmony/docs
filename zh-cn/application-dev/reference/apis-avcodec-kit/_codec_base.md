@@ -127,8 +127,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | 名称                                                         | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [OH_MD_KEY_VIDEO_IS_HDR_VIVID](#oh_md_key_video_is_hdr_vivid) | 媒体文件中的视频轨是否为HDR Vivid的键，支持封装和解封装，值类型为int32_t。该键是可选的。  |
-| [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | 媒体文件中第一帧起始位置开始时间的键，值类型为int64_t。该键是可选的。            |
-| [OH_MD_KEY_TRACK_START_TIME](#oh_md_key_track_start_time) | 轨道开始时间的键，值类型为int64_t。该键是可选的。            |
+| [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | 媒体文件中第一帧起始位置开始时间的键，以微秒为单位，值类型为int64_t。该键是可选的。            |
+| [OH_MD_KEY_TRACK_START_TIME](#oh_md_key_track_start_time) | 轨道开始时间的键，以微秒为单位，值类型为int64_t。该键是可选的。            |
 | [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type)                | 轨道媒体类型的键，值类型为int32_t，请参见[OH_MediaType](#oh_mediatype-1)。该键是可选的。 |
 | [OH_MD_KEY_DURATION](#oh_md_key_duration)                    | 媒体文件持续时间的键，值类型为int64_t。该键是可选的。                  |
 | [OH_MD_KEY_TITLE](#oh_md_key_title)                          | 媒体文件标题的键，值类型为string。该键是可选的。               |
@@ -147,6 +147,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_DECODING_TIMESTAMP](#oh_md_key_decoding_timestamp) | AVBuffer中携带的音视频或字幕的sample对应的解码时间戳的键，以微秒为单位，值类型为int64_t。该键是可选的。            |
 | [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime)                | 编解码器[MIME](#媒体编解码格式)类型的键，值类型为string。该键是可选的。         |
 | [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar)                  | 样本长宽比的键，值类型为double。 |
+| [OH_MD_KEY_CREATION_TIME](#oh_md_key_creation_time)          | 媒体文件创建时间的元数据，值类型为string。 |
 
 
 ## 汇总
@@ -310,8 +311,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_AUDIO_OBJECT_NUMBER](#oh_md_key_audio_object_number) | 音频对象数目的键，值类型为int32_t，只有Audio Vivid解码使用。 |
 | const char \* [OH_MD_KEY_AUDIO_VIVID_METADATA](#oh_md_key_audio_vivid_metadata) | Audio Vivid元数据的键，值类型为uint8_t\*，只有Audio Vivid解码使用。 |
 | const char \* [OH_MD_KEY_VIDEO_IS_HDR_VIVID](#oh_md_key_video_is_hdr_vivid) | 媒体文件中的视频轨是否为HDR Vivid的键，支持封装和解封装，值类型为int32_t。 |
-| const char \* [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | 媒体文件中第一帧起始位置开始时间的键，值类型为int64_t。     |
-| const char \* [OH_MD_KEY_TRACK_START_TIME](#oh_md_key_track_start_time) | 轨道开始时间的键，值类型为int64_t。     |
+| const char \* [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | 媒体文件中第一帧起始位置开始时间的键，以微秒为单位，值类型为int64_t。     |
+| const char \* [OH_MD_KEY_TRACK_START_TIME](#oh_md_key_track_start_time) | 轨道开始时间的键，以微秒为单位，值类型为int64_t。     |
 | const char \* [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type) | 轨道媒体类型的键，值类型为int32_t，请参见[OH_MediaType](#oh_mediatype-1)。 |
 | const char \* [OH_MD_KEY_DURATION](#oh_md_key_duration) | 媒体文件持续时间的键，值类型为int64_t。 |
 | const char \* [OH_MD_KEY_TITLE](#oh_md_key_title) | 媒体文件标题的键，值类型为string。 |
@@ -329,7 +330,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_BUFFER_DURATION](#oh_md_key_buffer_duration) | AVBuffer中携带的音视频或字幕的sample对应的持续时间的键，以微秒为单位，值类型为int64_t。       |
 | const char \* [OH_MD_KEY_DECODING_TIMESTAMP](#oh_md_key_decoding_timestamp) | AVBuffer中携带的音视频或字幕的sample对应的解码时间戳的键，以微秒为单位，值类型为int64_t。  |
 | const char \* [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime) | 编解码器[MIME](#媒体编解码格式)类型的键，值类型为string。 |
-| const char \* [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar)            | 样本长宽比的键，值类型为double。 |
+| const char \* [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar) | 样本长宽比的键，值类型为double。 |
+| const char \* [OH_MD_KEY_CREATION_TIME](#oh_md_key_creation_time) | 媒体文件创建时间的元数据，值类型为string。 |
 
 
 ## 类型定义说明
@@ -2540,7 +2542,7 @@ AVBuffer中携带的音视频或字幕的sample对应的持续时间的键，以
 const char* OH_MD_KEY_START_TIME
 ```
 **描述**
-媒体文件中第一帧起始位置开始时间的键，值类型为int64_t。
+媒体文件中第一帧起始位置开始时间的键，以微秒为单位，值类型为int64_t。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2552,7 +2554,7 @@ const char* OH_MD_KEY_START_TIME
 const char* OH_MD_KEY_TRACK_START_TIME
 ```
 **描述**
-轨道开始时间的键，值类型为int64_t。
+轨道开始时间的键，以微秒为单位，值类型为int64_t。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2740,3 +2742,16 @@ const char* OH_MD_KEY_VIDEO_SAR
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 12
+
+
+### OH_MD_KEY_CREATION_TIME
+
+```
+const char* OH_MD_KEY_CREATION_TIME
+```
+**描述**
+媒体文件创建时间的元数据，值类型为string。使用ISO 8601标准的时间格式且为UTC时间，时间格式参考："2024-12-28T00:00:00:000000Z"。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 14

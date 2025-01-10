@@ -90,4 +90,5 @@ Wrong timer id output param.
 
 **可能原因**
 
-传入的timer id指针为空；任务名称已存在；接入函数执行时长检测定时器的进程中hicollie插件同时存在任务数达到最大值128。
+- 传入的timer id指针为空；
+- 接入函数执行时长检测机制的进程中hicollie插件同时存在任务数达到最大值128。

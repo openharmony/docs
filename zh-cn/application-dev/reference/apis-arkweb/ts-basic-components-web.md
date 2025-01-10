@@ -242,10 +242,22 @@ Web组件指定共享渲染进程。
 | 名称        | 类型                                     | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | src        | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
-| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller)  | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](#webviewcontroller9)  | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
 | sharedRenderProcessToken<sup>12+</sup> | string | 否 | 表示当前Web组件指定共享渲染进程的token, 多渲染进程模式下，相同token的Web组件会优先尝试复用与token相绑定的渲染进程。token与渲染进程的绑定发生在渲染进程的初始化阶段。当渲染进程没有关联的Web组件时，其与token绑定关系将被移除。<br> 默认值： ""  |
+
+## WebviewController<sup>9+</sup>
+
+type WebviewController = WebviewController
+
+提供Web控制器的方法。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 类型     | 说明       |
+| ------ | ---------- |
+| [WebviewController](js-apis-webview.md#webviewcontroller)  | 通过WebviewController可以控制Web组件各种行为。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。 |
 
 ## 属性
 
@@ -402,13 +414,13 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
     build() {
       Column() {
         Button('deleteJavaScriptRegister')
-        .onClick(() => {
-          try {
-            this.controller.deleteJavaScriptRegister("objName");
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
+          .onClick(() => {
+            try {
+              this.controller.deleteJavaScriptRegister("objName");
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: 'www.example.com', controller: this.controller })
           .javaScriptAccess(true)
           .javaScriptProxy({
@@ -2011,7 +2023,7 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
 > - 可以设置上下左右四个方向，或者设置向前、向后两个方向的嵌套滚动模式，实现与父组件的滚动联动。
 > - value为NestedScrollOptionsExt（上下左右四个方向）类型时，scrollUp、scrollDown、scrollLeft、scrollRight默认滚动选项为[NestedScrollMode.SELF_FIRST](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10)。
 > - value为NestedScrollOptions（向前、向后两个方向）类型时，scrollForward、scrollBackward默认滚动选项为NestedScrollMode.SELF_FIRST。
-> - 支持嵌套滚动的容器：[Grid](../apis-arkui/arkui-ts/ts-container-grid.md)、[List](../apis-arkui/arkui-ts/ts-container-list.md)、[Scroll](../apis-arkui/arkui-ts/ts-container-scroll.md)、[Swiper](../apis-arkui/arkui-ts/ts-container-swiper.md)、[Tabs](../apis-arkui/arkui-ts/ts-container-tabs.md)、[WaterFlow](../apis-arkui/arkui-ts/ts-container-waterflow.md)。
+> - 支持嵌套滚动的容器：[Grid](../apis-arkui/arkui-ts/ts-container-grid.md)、[List](../apis-arkui/arkui-ts/ts-container-list.md)、[Scroll](../apis-arkui/arkui-ts/ts-container-scroll.md)、[Swiper](../apis-arkui/arkui-ts/ts-container-swiper.md)、[Tabs](../apis-arkui/arkui-ts/ts-container-tabs.md)、[WaterFlow](../apis-arkui/arkui-ts/ts-container-waterflow.md)、[Refresh](../apis-arkui/arkui-ts/ts-container-refresh.md)、[bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
 > - 嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
@@ -2888,7 +2900,12 @@ blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
 enableSmoothDragResize(mode: boolean)
 
 
-设置是否开启Web组件窗口拖拽缩放优化能力，默认关闭。开启后在Web窗口拖拽放大时会优化跟手性，减少白块。
+设置是否开启Web组件窗口拖拽缩放优化能力，默认关闭。开启后在2in1上Web窗口拖拽放大时减少白块面积。
+
+> **说明：**
+>
+> 不支持全量展开（WebLayoutMode.FIT_CONTENT）和同步模式（RenderMode.SYNC_RENDER）。
+> 
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2914,6 +2931,43 @@ enableSmoothDragResize(mode: boolean)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .enableSmoothDragResize(true)
+      }
+    }
+  }
+  ```
+
+### enableFollowSystemFontWeight<sup>16+</sup>
+
+enableFollowSystemFontWeight(follow: boolean)
+
+设置Web组件是否开启字重跟随系统设置变化，默认不开启。
+
+> **说明：**
+>
+> 目前该能力只支持前端文本元素跟随变化，暂不支持canvas元素、内嵌docx和pdf格式中的文本跟随变化。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名       | 类型                             | 必填 | 说明                                |
+| ------------ | ------------------------------- | ---- | ----------------------------------- |
+| follow | boolean | 是    | 设置Web组件是否开启字重跟随系统设置变化，默认值：false。设置为true时，字重跟随系统设置中的字体粗细变化，系统设置改变时字重跟随变化。设置为false时，字重不再跟随系统设置中的字体粗细变化，系统设置改变时维持当前字重不变。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    build() {
+      Column() {
+        Web({ src: "www.example.com", controller: this.controller })
+          .enableFollowSystemFontWeight(true)
       }
     }
   }
@@ -7608,6 +7662,8 @@ grant(config: ScreenCaptureConfig): void
 
 ### setGestureEventResult<sup>12+</sup>
 
+设置手势事件消费结果。
+
 setGestureEventResult(result: boolean, stopPropagation?: boolean): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -7903,6 +7959,10 @@ paste(): void
 
 执行与此上下文菜单相关的粘贴操作。
 
+> **说明：**
+>
+> 需要配置权限：ohos.permission.READ_PASTEBOARD。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 ### cut<sup>9+</sup>
@@ -7989,10 +8049,10 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 | 名称      | 值 | 说明                                   |
 | ------- | -- | ------------------------------------ |
-| Default<sup>9+</sup> | 0 | 使用未过期的cache加载资源，如果cache中无该资源则从网络中获取。 |
-| None    | 1 | 加载资源使用cache，如果cache中无该资源则从网络中获取。     |
-| Online  | 2 | 加载资源不使用cache，全部从网络中获取。               |
-| Only    | 3 | 只从cache中加载资源。                        |
+| Default<sup>9+</sup> | 0 | 优先使用未过期cache加载资源，无效或无cache时从网络获取。 |
+| None    | 1 | 优先使用cache(含过期)加载资源，无cache时从网络获取。     |
+| Online  | 2 | 强制从网络获取最新资源，不使用任何cache。               |
+| Only    | 3 | 仅使用本地cache加载资源。                        |
 
 ## FileSelectorMode<sup>9+</sup>枚举说明
 
@@ -8031,7 +8091,11 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 ## OnContextMenuHideCallback<sup>11+</sup>
 
+type OnContextMenuHideCallback = () => void
+
 上下文菜单自定义隐藏的回调。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ## SslError<sup>9+</sup>枚举说明
 
@@ -9794,7 +9858,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | object     | object                                   | 是    | 参与注册的对象。只能声明方法，不能声明属性。                   |
 | name       | string                                   | 是    | 注册对象的名称，与window中调用的对象名一致。                |
 | methodList | Array\<string\>                          | 是    | 参与注册的应用侧JavaScript对象的同步方法。                 |
-| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](#webviewcontroller9) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
 | permission<sup>12+</sup>  | string  | 否    | json字符串，默认为空，通过该字符串配置JSBridge的权限管控，可以定义object、method一级的url白名单。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
 

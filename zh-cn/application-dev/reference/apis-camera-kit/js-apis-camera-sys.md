@@ -2135,7 +2135,7 @@ function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types:
 
 ## MetadataObject
 
-相机检测元数据信息的基础类型，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+相机检测元数据信息的基础类型，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2146,7 +2146,7 @@ function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types:
 
 ## MetadataFaceObject<sup>13+</sup>
 
-相机检测到的人脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+相机检测到的人脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2162,13 +2162,13 @@ function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types:
 
 ## MetadataHumanBodyObject<sup>13+</sup>
 
-相机检测到的人体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+相机检测到的人体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 ## MetadataCatFaceObject<sup>13+</sup>
 
-相机检测到的猫脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+相机检测到的猫脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2179,13 +2179,13 @@ function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types:
 
 ## MetadataCatBodyObject<sup>13+</sup>
 
-相机检测到的猫的身体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+相机检测到的猫的身体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 ## MetadataDogFaceObject<sup>13+</sup>
 
-相机检测到的狗脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+相机检测到的狗脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2196,13 +2196,19 @@ function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types:
 
 ## MetadataDogBodyObject<sup>13+</sup>
 
-相机检测到的狗的身体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+相机检测到的狗的身体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 ## MetadataSalientDetectionObject<sup>13+</sup>
 
-相机检测到的显著性元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+相机检测到的显著性元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+## MetadataBarcodeObject<sup>14+</sup>
+
+相机检测到的二维码元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 

@@ -4,17 +4,7 @@ You can call the native APIs provided by the AudioCodec module to encode audio, 
 
 PCM data can be from any source. For example, you can use a microphone to record audio data or import edited PCM data. After audio encoding, you can output streams in the desired format and encapsulate the streams into a target file.
 
-Currently, the following encoding capabilities are supported:
-
-| Container Format| Audio Encoding Type      |
-| -------- | :--------------- |
-| mp4      | AAC, FLAC       |
-| m4a      | AAC              |
-| flac     | FLAC            |
-| aac      | AAC              |
-| mp3      | MP3              |
-| raw      | G711mu           |
-<!--RP1--><!--RP1End-->
+For details about the supported encoding capabilities, see [AVCodec Supported Formats](avcodec-support-formats.md#audio-encoding).
 
 **Usage Scenario**
 
@@ -178,7 +168,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    <!--RP3--><!--RP3End-->
 
    The code snippet below shows the API call process, where AAC encoding at the bit rate of 32000 bit/s is carried out on the PCM audio with the 44100 Hz sampling rate, 2-channel stereo, and SAMPLE_S16LE sampling format.
-
+    <!--RP4-->
     ```cpp
     int32_t ret;
     // (Mandatory) Configure the audio sampling rate.
@@ -191,10 +181,6 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     constexpr OH_AudioChannelLayout CHANNEL_LAYOUT = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
     // (Mandatory) Configure the audio bit depth.
     constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_S16LE;
-    // Configure the audio compliance level. The default value is 0, and the value ranges from -2 to 2.
-    constexpr int32_t COMPLIANCE_LEVEL = 0;
-    // (Mandatory) Configure the audio sampling precision (SAMPLE_S16LE used as an example).
-    constexpr OH_BitsPerSample BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S16LE;
     // A frame of audio data takes 20 ms.
     constexpr float TIME_PER_FRAME = 0.02;
     // (Optional) Configure the maximum input length and the size of each frame of audio data.
@@ -213,7 +199,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // Exception handling.
     }
     ```
-
+    <!--RP4End-->
     The following shows the API call process in the case of FLAC encoding.
 
     ```cpp
@@ -276,8 +262,6 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
 
 7. Call **OH_AudioCodec_PushInputBuffer()** to write the data to encode.
-   
-   To indicate the End of Stream (EOS), pass in the **AVCODEC_BUFFER_FLAGS_EOS** flag.
 
    For AAC encoding, set **SAMPLES_PER_FRAME** to the number of PCM samples every 20 ms, that is, sampling rate x 0.02.
 
@@ -324,6 +308,14 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // Exception handling.
     }
     ```
+   In the preceding example, **attr.flags** indicates the type of the buffer flag.
+   
+   To indicate the End of Stream (EOS), pass in the **AVCODEC_BUFFER_FLAGS_EOS** flag.
+   | Value| Description| 
+   | -------- | -------- |
+   | AVCODEC_BUFFER_FLAGS_NONE | Common frame.| 
+   | AVCODEC_BUFFER_FLAGS_EOS | The buffer is an end-of-stream frame.| 
+   | AVCODEC_BUFFER_FLAGS_CODEC_DATA | The buffer contains codec-specific data.| 
 
 8. Call **OH_AudioCodec_FreeOutputBuffer()** to output the encoded stream.
 

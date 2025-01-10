@@ -2303,3 +2303,161 @@ try {
   console.log(`getPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
+## pointer.setTouchpadDoubleTapAndDragState<sup>14+</sup>
+
+setTouchpadDoubleTapAndDragState(isOpen: boolean, callback: AsyncCallback\<void>): void
+
+设置触控板双击拖拽开关状态，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                        | 必填   | 说明                                    |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| isOpen | boolean | 是    | 双击拖拽开关的状态，true代表开启，false代表关闭。|
+| callback | AsyncCallback\<void> | 是    | 回调函数。|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadDoubleTapAndDragState(true, (error: Error) => {
+    if (error) {
+      console.log(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadDoubleTapAndDragState success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadDoubleTapAndDragState<sup>14+</sup>
+
+setTouchpadDoubleTapAndDragState(isOpen: boolean): Promise\<void>
+
+设置触控板双击拖拽开关状态，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| state | boolean| 是    |  双击拖拽开关的状态，true代表开启，false代表关闭。 |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadDoubleTapAndDragState(false).then(() => {
+    console.log(`setTouchpadDoubleTapAndDragState success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadDoubleTapAndDragState<sup>14+</sup>
+
+getTouchpadDoubleTapAndDragState(callback: AsyncCallback\<boolean>): void
+
+获取触控板双击拖拽开关的开启状态，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                          | 必填   | 说明             |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板双击拖拽开关的开启状态。返回true代表开启，返回false代表关闭。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadDoubleTapAndDragState((error: Error, state: boolean) => {
+    console.log(`getTouchpadDoubleTapAndDragState success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadDoubleTapAndDragState<sup>14+</sup>
+
+getTouchpadDoubleTapAndDragState(): Promise\<boolean>
+
+获取触控板双击拖拽开关的开启状态，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise\<boolean> | Promise实例，异步返回触控板双击拖拽开启状态。true代表开启，false代表关闭。|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadDoubleTapAndDragState().then((state) => {
+    console.log(`getTouchpadDoubleTapAndDragState success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
