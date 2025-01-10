@@ -109,7 +109,6 @@ export const defaultTheme: SelectionMenuTheme = {
   iconPanelShadowStyle: ShadowStyle.OUTER_DEFAULT_MD,
   iconFocusBorderColor: $r('sys.color.ohos_id_color_focused_outline'),
 }
-  
 //定义startIcon信息
 
 RichEditor(this.options)
