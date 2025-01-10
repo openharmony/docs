@@ -36,7 +36,7 @@ SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, t
 
 | 名称 | 类型 | 必填 | 装饰器类型        | 说明     |
 | -------- | -------- | -------- |---------------|--------|
-| mainImage | [ResourceStr](ts-types.md#resourcestr) | 是 | -             | 传入图片。  |
+| mainImage | [ResourceStr](ts-types.md#resourcestr) | 是 | @State | 传入图片。  |
 | primaryText | [ResourceStr](ts-types.md#resourcestr) | 是 | @Prop         | 标题内容。  |
 | secondaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | @Prop         | 副标题内容。 |
 | tertiaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | @Prop         | 辅助文本。  |
