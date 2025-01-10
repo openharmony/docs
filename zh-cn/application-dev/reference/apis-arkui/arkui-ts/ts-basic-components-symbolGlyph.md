@@ -184,7 +184,7 @@ symbolEffect(symbolEffect: SymbolEffect, triggerValue?: number)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## ScaleSymbolEffect<sup>12+</sup>对象说明
+## ScaleSymbolEffect<sup>12+</sup>
 
 ScaleSymbolEffect继承自父类SymbolEffect。
 
@@ -220,7 +220,7 @@ ScaleSymbolEffect的构造函数，缩放动效。
 | scope     | [EffectScope](#effectscope12枚举说明)         | 否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
 | direction | [EffectDirection](#effectdirection12枚举说明) | 否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
 
-## HierarchicalSymbolEffect<sup>12+</sup>对象说明
+## HierarchicalSymbolEffect<sup>12+</sup>
 
 HierarchicalSymbolEffect继承自父类SymbolEffect。
 
@@ -254,7 +254,7 @@ HierarchicalSymbolEffect的构造函数，层级动效。
 | ---- | ---- | ---- | ---- |
 | fillStyle | [EffectFillStyle](#effectfillstyle12枚举说明) | 否   | 动效模式。<br/>默认值：EffectFillStyle.CUMULATIVE |
 
-## AppearSymbolEffect<sup>12+</sup>对象说明
+## AppearSymbolEffect<sup>12+</sup>
 
 AppearSymbolEffect继承自父类SymbolEffect。
 
@@ -288,7 +288,7 @@ AppearSymbolEffect的构造函数，出现动效。
 | ---- | ---- | ---- | ---- |
 | scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
 
-## DisappearSymbolEffect<sup>12+</sup>对象说明
+## DisappearSymbolEffect<sup>12+</sup>
 
 DisappearSymbolEffect继承自父类SymbolEffect。
 
@@ -322,7 +322,7 @@ DisappearSymbolEffect的构造函数，消失动效。
 | ---- | ---- | ---- | ---- |
 | scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
 
-## BounceSymbolEffect<sup>12+</sup>对象说明
+## BounceSymbolEffect<sup>12+</sup>
 
 BounceSymbolEffect继承自父类SymbolEffect。
 
@@ -358,7 +358,7 @@ BounceSymbolEffect的构造函数，弹跳动效。
 | scope     | [EffectScope](#effectscope12枚举说明)         | 否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
 | direction | [EffectDirection](#effectdirection12枚举说明) | 否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
 
-## ReplaceSymbolEffect<sup>12+</sup>对象说明
+## ReplaceSymbolEffect<sup>12+</sup>
 
 ReplaceSymbolEffect继承自父类SymbolEffect。
 
