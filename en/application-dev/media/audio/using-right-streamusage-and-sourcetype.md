@@ -17,7 +17,7 @@ The following table describes the typical stream types used for audio playback. 
 | STREAM_USAGE_MUSIC | Music playback and other media scenarios, for example, using [SoundPool](../media/using-soundpool-for-playback.md) to play short sounds.|
 | STREAM_USAGE_MOVIE |  Playing various video content such as short videos, movies, and TV series.|
 | STREAM_USAGE_AUDIOBOOK | Playing audiobooks, news, and podcasts.|
-| STREAM_USAGE_GAME | In-game background scores and character dubbing, ensuring uninterrupted background music. It is recommended that you use **VOICE_COMMUNICATION** for in-game voice.|
+| STREAM_USAGE_GAME | In-game background scores and character dubbing, ensuring uninterrupted background music. It is recommended that you use **STREAM_USAGE_VOICE_COMMUNICATION** for in-game voice.|
 | STREAM_USAGE_NAVIGATION | Voice broadcast in navigation scenarios.|
 | STREAM_USAGE_VOICE_MESSAGE | Playing voice short messages.|
 | STREAM_USAGE_VOICE_COMMUNICATION | VoIP voice calls.|
@@ -108,9 +108,9 @@ Common methods for setting the audio playback stream type are as follows:
   >
   > The **audioRendererInfo** property of the AVPlayer can be set only in the initialized state.
   >
-> If the application does not set this property, the AVPlayer performs default processing. If the media source contains videos, the default value of **usage** is **STREAM_USAGE_MOVIE**. Otherwise, the default value of **usage** is **STREAM_USAGE_MUSIC**.
+  > If the application does not set this property, the AVPlayer performs default processing. If the media source contains videos, the default value of **usage** is **STREAM_USAGE_MOVIE**. Otherwise, the default value of **usage** is **STREAM_USAGE_MUSIC**.
 
-- **[Using AVPlayer for Audio Playback (C/C++)](../media/using-ndk-avplayer-for-playerback.md)**
+- **[Using AVPlayer for Audio Playback (C/C++)](../media/using-ndk-avplayer-for-playback.md)**
   
   Pass [OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage) in [OH_AVPlayer_SetAudioRendererInfo](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudiorendererinfo) to specify the stream type.
 
