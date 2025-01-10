@@ -93,6 +93,27 @@ loop为false时，自动轮播到最后一页时停止轮播。手势切换后�
 | ------ | ------- | ---- | -------------------------------------- |
 | value  | boolean | 是   | 子组件是否自动播放。<br/>默认值：false |
 
+### autoPlay<sup>16+</sup>
+
+autoPlay(autoPlay: boolean, options: AutoPlayOptions)
+
+手指或者鼠标等按下屏幕时，设置子组件是否自动播放。
+
+当[loop](#loop)设置为false时，自动轮播将在到达最后一页时停止。在通过手势切换且未处于最后一页的情况下，轮播将继续进行。Swiper在不可见时，轮播也将停止。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                   |
+| ------ | ------- | ---- | -------------------------------------- |
+| autoPlay  | boolean | 是   | 子组件是否自动播放。<br/>默认值：false |
+| options  | [AutoPlayOptions](#autoplayoptions16对象说明)&nbsp; | 否   | 配置手指或者鼠标等按下屏幕时子组件是否停止自动播放。<br/>默认值：{ stopWhenTouched: true } 停止自动播放 |
+
 ### interval
 
 interval(value: number)
@@ -1140,6 +1161,17 @@ DigitIndicator的构造函数。
 | 名称  | 类型             | 必填 | 说明                             |
 | ------- | -------------------- | ------ | ------------------------------------ |
 | minSize | [VP](ts-types.md#vp10) | 是     | 设置元素显示最小宽度。<br/>默认值：0 |
+
+## AutoPlayOptions<sup>16+</sup>对象说明
+自动播放属性。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称              | 类型                                     | 必填  | 说明                                     |
+| ---------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| stopWhenTouched   | boolean                                  | 是    | 在按下事件中配置子组件是否立即停止播放。<br/>true |
 
 ## 事件
 
