@@ -6185,8 +6185,9 @@ setWindowLimits(windowLimits: WindowLimits, isForcible: boolean): Promise&lt;Win
 
 设置当前应用窗口的尺寸限制，使用Promise异步回调。
 默认存在一个系统尺寸限制，系统尺寸限制由产品配置决定，不可修改。未调用setWindowLimits配置过WindowLimits时，使用[getWindowLimits](#getwindowlimits11)可获取系统限制。
+此接口仅支持PC设备。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -6195,13 +6196,13 @@ setWindowLimits(windowLimits: WindowLimits, isForcible: boolean): Promise&lt;Win
 | 参数名       | 类型                          | 必填 | 说明                           |
 | :----------- | :---------------------------- | :--- | :----------------------------- |
 | windowLimits | [WindowLimits](#windowlimits11) | 是   | 目标窗口的尺寸限制，单位为px。 |
-| isForcible | boolean | 是   | 是否强制设置窗口的尺寸限制，对窗口的最小宽度和窗口的最小高度可忽略系统限制。 |
+| isForcible | boolean | 是   | 是否强制设置窗口的尺寸限制。<br>设置为true，则对窗口的最小宽度和最小高度可忽略系统限制，最大高度和最大宽度不可忽略系统限制，设置的最小值不能小于40vp，若小于则设置为40vp，最大值由系统默认尺寸限制。<br>设置为false，则窗口最大值最小值均由系统默认尺寸限制。|
 
 **返回值：**
 
 | 类型                                         | 说明                                |
 | :------------------------------------------- | :---------------------------------- |
-| Promise&lt;[WindowLimits](#windowlimits11)&gt; | Promise对象。返回设置后的尺寸限制，为入参与系统尺寸限制的交集。 |
+| Promise&lt;[WindowLimits](#windowlimits11)&gt; | Promise对象。返回设置后的尺寸限制，根据isForcible判断为入参与系统尺寸限制的交集。 |
 
 **错误码：**
 
@@ -6223,11 +6224,11 @@ try {
   let windowLimits: window.WindowLimits = {
     maxWidth: 1500,
     maxHeight: 1000,
-    minWidth: 500,
-    minHeight: 400
+    minWidth: 100,
+    minHeight: 100
   };
-  let promise = windowClass.setWindowLimits(windowLimits，true);
-    promise.then((data) => {
+  let promise = windowClass.setWindowLimits(windowLimits, true);
+  promise.then((data) => {
     console.info('Succeeded in changing the window limits. Cause:' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error(`Failed to change the window limits. Cause code: ${err.code}, message: ${err.message}`);
