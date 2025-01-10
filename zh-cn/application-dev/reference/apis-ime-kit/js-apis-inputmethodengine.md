@@ -1706,8 +1706,8 @@ startMoving(): void
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
 | 12800008 | input method manager service error. |
-| 12800017 | invalid panel type or panel flag. |
 | 12800013 | window manager service error. |
+| 12800017 | invalid panel type or panel flag. |
 
 **示例：**
 
