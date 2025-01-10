@@ -300,7 +300,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
-申请长时任务，使用promise异步回调。在一个长时任务中仅能申请一种类型。
+申请长时任务，使用promise异步回调。该接口仅支持申请一种类型。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -390,7 +390,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
-取消长时任务，使用callback异步回调。
+取消长时任务，使用callback异步回调。该接口仅支持申请一种类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -522,7 +522,7 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
-| bgModes    | string[] | 是    | 长时任务类型，类型包括:dataTransfer，audioPlayback，audioRecording，location，bluetoothInteraction，multiDeviceConnection，task_keeping，voip<sup>13+</sup>。<br>dataTransfer：数据传输。<br>audioPlayback：音视频播放。 <br>audioRecording：录制。<br>location：定位、导航。<br>bluetoothInteraction：蓝牙相关。<br>multiDeviceConnection：多设备互联。<br>task_keeping：计算任务。<br>voip<sup>13+</sup>	：音视频通话。<br> **说明** ：支持传入一个或多个类型。|
+| bgModes    | string[] | 是    | 长时任务类型，取值范围请参考长时任务类型中的[配置项](../../task-management/continuous-task.md#使用场景)。<br> **说明** ：支持传入一个或多个类型。|
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。                 |
 
 **返回值**：
