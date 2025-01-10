@@ -117,7 +117,7 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 描述           |
+| 名称    | 说明           |
 | ----- | ------------ |
 | CTRL  | 表示键盘上Ctrl键。  |
 | SHIFT | 表示键盘上Shift键。 |
@@ -129,7 +129,7 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 描述           |
+| 名称   | 说明           |
 | ---- | ------------ |
 | ESC  | 表示键盘上ESC功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | F1   | 表示键盘上F1功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
@@ -694,6 +694,18 @@
 | ----------- | ------------------------ |
 | PLACEHOLDER | 显示的数据为通用占位符。 |
 
+## ColoringStrategy<sup>10+</sup>
+
+智能取色枚举类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明              |
+| ------ | --------------- |
+| INVERT | 设置前景色为控件背景色的反色。仅支持在[foregroundColor](ts-universal-attributes-foreground-color.md#foregroundcolor)中设置该枚举。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+
 ## ClickEffectLevel<sup>10+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -705,6 +717,19 @@
 | LIGHT  | 小面积（轻盈） | 弹簧动效， 刚性：410，阻尼：38，初始速度：1 | 90% |
 | MIDDLE | 中面积（稳定） | 弹簧动效， 刚性：350，阻尼：35，初始速度：0.5 | 95% |
 | HEAVY  | 大面积（厚重） | 弹簧动效， 刚性：240，阻尼：28，初始速度：0 | 95% |
+
+## CheckBoxShape<sup>11+</sup>
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 值   | 说明     |
+| -------------- | ---- | -------- |
+| CIRCLE         | 0    | 圆形     |
+| ROUNDED_SQUARE | 1    | 圆角方形 |
 
 ## FoldStatus<sup>11+</sup>
 
@@ -727,7 +752,7 @@
 | INLINE  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。<br/>不支持showError属性。<br/>内联模式下，不支持拖入文本。 |
 
 
-## Nullable <sup>11+</sup>
+## Nullable<sup>11+</sup>
 
 Nullable\<T> {
 

@@ -1186,7 +1186,7 @@ customContentTransition(transition: SwiperContentAnimatedTransition)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| transition | [SwiperContentAnimatedTransition](#swipercontentanimatedtransition12对象说明) | 是 | Swiper自定义切换动画相关信息。 |
+| transition | [SwiperContentAnimatedTransition](#swipercontentanimatedtransition12) | 是 | Swiper自定义切换动画相关信息。 |
 
 ### onContentDidScroll<sup>12+</sup>
 
@@ -1222,7 +1222,7 @@ Swiper组件动画相关信息集合。
 | targetOffset | number | 否 | 否 | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
 | velocity | number | 否 | 否 | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0。|
 
-## SwiperContentAnimatedTransition<sup>12+</sup>对象说明
+## SwiperContentAnimatedTransition<sup>12+</sup>
 
 Swiper自定义切换动画相关信息。
 
