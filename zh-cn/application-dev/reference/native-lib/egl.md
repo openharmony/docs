@@ -1,4 +1,3 @@
-
 # EGL
 
 EGL 是Khronos渲染API (如OpenGL ES 或 OpenVG) 与底层原生窗口系统之间的接口。OpenHarmony 现已支持 EGL。
