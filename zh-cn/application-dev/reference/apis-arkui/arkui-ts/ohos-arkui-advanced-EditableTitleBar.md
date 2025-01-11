@@ -44,10 +44,13 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 | onCancel | ()&nbsp;=&gt;&nbsp;void | 否 | - | 当左侧按钮类型为&nbsp;Cancel，触发取消时的动作闭包。<br />默认值：() => void。<br />从API version 12开始，当左侧按钮类型为&nbsp;Back，触发返回时的动作闭包。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                |
 | options<sup>12+</sup> | [EditableTitleBarOptions](#editabletitlebaroptions12) | 否 | - | 标题样式。<br />默认值：<br />{<br />safeAreaTypes: [SafeAreaType.SYSTEM],<br />safeAreaEdges: [SafeAreaEdge.TOP], <br />backgroundColor: '#00000000'<br />}。<br/>**说明：** 未使用@Require装饰，构造时不强制校验参数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | contentMargin<sup>12+</sup> | [LocalizedMargin](ts-types.md#localizedmargin12) | 否 | @Prop | 标题栏外边距，不支持设置负数。<br />默认值：<br /> {start: LengthMetrics.resource(`$r('sys.float.margin_left')`), end: LengthMetrics.resource(`$r('sys.float.margin_right')`)}。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                               |
+| leftIconDefaultFocus<sup>16+</sup> | boolean  | 否 | - | 左侧图标是否为默认焦点。<br />默认值：false <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                                                                                               |
+| saveIconDefaultFocus<sup>16+</sup> | boolean  | 否 | - | 保存图标是否为默认焦点。<br />默认值：false <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                                                                                               |
 
 > **说明：**
 > 
 > 入参对象不可为undefined，即`EditableTitleBar(undefined)`。
+> 若同时有多个可操作区域设置值默认焦点，则设置过默认焦点的可操作区域中显示顺序的第一个为默认焦点。
 
 ## EditableLeftIconType
 
@@ -73,6 +76,7 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 | accessibilityLevel<sup>16+<sup>       | string  | 否 | 标题栏右侧自定义按钮无障碍重要性。用于控制当前项是否可被无障碍辅助服务所识别。<br/>支持的值为：<br/>"auto"：当前组件会转换'yes'。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | accessibilityText<sup>16+<sup>        | ResourceStr | 否 | 标题栏右侧自定义按钮的无障碍文本属性。当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br/>默认值：有label默认值为当前项label属性内容，没有设置label时，默认值为“ ”。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                     |
 | accessibilityDescription<sup>16+<sup> | ResourceStr | 否 | 标题栏右侧自定义按钮的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br/>默认值为“单指双击即可执行”。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。           |
+| defaultFocus<sup>16+<sup>             | boolean | 否 | 是否设置为默认获焦。<br/>默认值：false。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                                                                                                               |
 
 ## EditableTitleBarItem<sup>12+</sup>
 
@@ -326,3 +330,76 @@ struct Index1 {
 }
 ```
 ![/zh-cn_image_editabletitlebar_example03](figures/zh-cn_image_editabletitlebar_example03.png)
+
+### 示例4（左侧图标设置为默认焦点）
+该示例通过设置标题栏属性leftIconDefaultFocus使左侧图标默认获焦。
+```ts
+
+import { promptAction, EditableLeftIconType, EditableTitleBar } from '@kit.ArkUI'；
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      EditableTitleBar({
+        leftIconStyle: EditableLeftIconType.Back,
+        leftIconDefaultFocus: true, //设置左侧图标默认获焦。
+        title: '编辑页面',
+        menuItems: [],
+        onSave: () => {
+          promptAction.showToast({ message: 'on save' });
+        }
+      })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+![/editabletitlebarDefaultFocus01](figures/editabletitlebarDefaultFocus01.png)
+
+### 示例5（右侧自定义图标设置为默认焦点）
+该示例通过设置标题栏右侧图标属性defaultFocus使右侧图标默认获焦。
+```ts
+
+import { promptAction, EditableLeftIconType, EditableTitleBar } from '@kit.ArkUI'；
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      EditableTitleBar({
+        leftIconStyle: EditableLeftIconType.Back,
+        title: '主标题',
+        subtitle: '副标题',
+        // 右侧图标配置
+        menuItems: [
+          {
+            value: $r('sys.media.ohos_ic_public_remove'),
+            isEnabled: true,
+            action: () => {
+              promptAction.showToast({ message: "show toast index 1" });
+            }
+          },
+          {
+            value: $r('sys.media.ohos_ic_public_remove'),
+            isEnabled: true,
+            defaultFocus: true,
+            action: () => {
+              promptAction.showToast({ message: "show toast index 2" });
+            }
+          }
+        ],
+        onCancel: () => {
+          router.back();
+        },
+      })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+![/editabletitlebarDefaultFocus02](figures/editabletitlebarDefaultFocus02.png)
