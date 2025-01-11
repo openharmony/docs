@@ -230,6 +230,33 @@ promise.then((data : PiPWindow.PiPController) => {
 | controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | 否   | 画中画控制面板的可选控件组列表，应用可以对此进行配置以决定是否显示。如果应用没有配置，面板将显示基础控件（如视频播放控件组的播放/暂停控件）；如果应用选择配置，则最多可以选择三个控件。从API version 12开始支持此参数。                                                                                                                                                                                                                                                 |
 | customUIController<sup>12+</sup>      | [NodeController](js-apis-arkui-nodeController.md)           | 否   | 用于实现在画中画界面内容上方展示自定义UI功能。从API version 12开始支持此参数。                                                                                                                                                                                                                                                                                           |
 
+## PiPWindowSize<sup>16+</sup>
+
+画中画窗口大小。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称   | 类型 | 可读 | 可写 | 说明       |
+| ------ | -------- | ---- | ---- | ---------- |
+| width  | number   | 是   | 否   | 窗口宽度，单位为px，该参数应为整数。 |
+| height | number   | 是   | 否   | 窗口高度，单位为px，该参数应为整数。 |
+| scale  | number   | 是   | 否   | 窗口缩放比，该参数为浮点数，取值范围大于0.0，小于等于1.0。 |
+
+## PiPWindowInfo<sup>16+</sup>
+
+画中画窗口信息。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称   | 类型 | 可读 | 可写 | 说明       |
+| ------ | -------- | ---- | ---- | ---------- |
+| windowId  | number   | 是   | 否   | 画中画窗口ID。 |
+| size  | [PiPWindowSize](#pipwindowsize16)  | 是   | 否   | 画中画窗口大小。 |
+
 ## PiPTemplateType
 
 画中画媒体类型枚举。
