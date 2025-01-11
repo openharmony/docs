@@ -6185,7 +6185,7 @@ setWindowLimits(windowLimits: WindowLimits, isForcible: boolean): Promise&lt;Win
 
 设置当前应用窗口的尺寸限制，使用Promise异步回调。
 默认存在一个系统尺寸限制，系统尺寸限制由产品配置决定，不可修改。未调用setWindowLimits配置过WindowLimits时，使用[getWindowLimits](#getwindowlimits11)可获取系统限制。
-此接口仅支持PC设备。
+此接口仅支持2in1设备。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
