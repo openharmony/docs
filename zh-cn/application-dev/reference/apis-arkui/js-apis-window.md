@@ -2136,9 +2136,9 @@ try {
 
 setSystemAvoidAreaEnabled(enabled: boolean): Promise<void>
 
-设置当前系统窗口是否可以获取窗口内容的规避区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与系统窗口内容重叠时，需要窗口内容避让的区域。
+设置当前系统窗口是否可以获取窗口内容的[避让区](#avoidarea7)。
 
-该接口一般适用于此场景：应用的系统窗口需要获取布局避让区域时，可先调用该接口使能系统窗获取规避区域，再调用[getWindowAvoidArea()](#getwindowavoidarea9)获取规避区域。
+该接口一般适用于此场景：应用创建的系统窗口希望获取避让区或监听避让区变化时，需要在创建该系统窗口后调用该接口设置开启系统窗口避让区，再调用[getWindowAvoidArea()](#getwindowavoidarea9)获取避让区。
 
 **系统能力：** SystemCapability.Window.SessionManger
 
@@ -2207,7 +2207,7 @@ export default class EntryAbility extends UIAbility {
 
 isSystemAvoidAreaEnabled(): boolean
 
-获取当前系统窗口是否能获取窗口内容的规避区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与系统窗口内容重叠时，需要窗口内容避让的区域。
+获取当前系统窗口是否能获取窗口内容的[避让区](#avoidarea7)。
 
 **系统能力：** SystemCapability.Window.SessionManger
 
@@ -2217,7 +2217,7 @@ isSystemAvoidAreaEnabled(): boolean
 
 | 类型 | 说明 |
 | ------------------------------------- | ------------- |
-| boolean | 当前系统窗口是否能获取窗口内容的规避区域 |
+| boolean | 当前系统窗口是否能获取窗口内容的避让区 |
 
 **错误码：**
 
@@ -2237,6 +2237,44 @@ try {
   let enable = windowClass.isSystemAvoidAreaEnabled();
 } catch (exception) {
   console.error(`Failed to obtain whether the system window can obtain avoid area. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    let config: window.Configuration = {
+      name: "test",
+      windowType: window.WindowType.TYPE_SYSTEM_ALERT,
+      ctx: this.context
+    };
+    try {
+      window.createWindow(config, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to create the system alert window. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        windowClass = data;
+        windowClass.setUIContent("pages/Index");
+        let enabled = true;
+        let promise = windowClass.setSystemAvoidAreaEnabled(enabled);
+        promise.then(() => {
+          let enable = windowClass.isSystemAvoidAreaEnabled();
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to obtain whether the system alert window can get avoid area. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the system alert window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
