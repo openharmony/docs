@@ -2132,6 +2132,114 @@ try {
 }
 ```
 
+### setSystemAvoidAreaEnabled<sup>16+</sup>
+
+setSystemAvoidAreaEnabled(enabled: boolean): Promise<void>
+
+设置当前系统窗口是否可以获取窗口内容的规避区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与系统窗口内容重叠时，需要窗口内容避让的区域。
+
+该接口一般适用于此场景：应用的系统窗口需要获取布局避让区域时，可先调用该接口使能系统窗获取规避区域，再调用[getWindowAvoidArea()](#getwindowavoidarea9)获取规避区域。
+
+**系统能力：** SystemCapability.Window.SessionManger
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- |----------------------------------| -- | ------------------------------------------------------------ |
+| type | boolean | 是 | 表示规避区类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    let config: window.Configuration = {
+      name: "test",
+      windowType: window.WindowType.TYPE_SYSTEM_ALERT,
+      ctx: this.context
+    };
+    try {
+      window.createWindow(config, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to create the system alert window. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        windowClass = data;
+        windowClass.setUIContent("pages/Index");
+        let enabled = true;
+        let promise = windowClass.setSystemAvoidAreaEnabled(enabled);
+        promise.then(() => {
+          let type = window.AvoidAreaType.TYPE_SYSTEM;
+          let avoidArea = windowClass.getWindowAvoidArea(type);
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to obtain the system alert window avoid area. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the system alert window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
+```
+
+### isSystemAvoidAreaEnabled<sup>16+</sup>
+
+isSystemAvoidAreaEnabled(): boolean
+
+获取当前系统窗口是否能获取窗口内容的规避区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与系统窗口内容重叠时，需要窗口内容避让的区域。
+
+**系统能力：** SystemCapability.Window.SessionManger
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------------------------- | ------------- |
+| boolean | 当前系统窗口是否能获取窗口内容的规避区域 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+try {
+  let enable = windowClass.isSystemAvoidAreaEnabled();
+} catch (exception) {
+  console.error(`Failed to obtain whether the system window can obtain avoid area. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### setTitleAndDockHoverShown<sup>14+</sup>
 
 setTitleAndDockHoverShown(isTitleHoverShown?: boolean, isDockHoverShown?: boolean): Promise&lt;void&gt;
