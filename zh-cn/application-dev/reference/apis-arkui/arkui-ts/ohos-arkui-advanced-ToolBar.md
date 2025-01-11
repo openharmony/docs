@@ -402,6 +402,7 @@ struct Index {
       Stack() {
         Column() {
           ToolBar({
+            activateIndex: 2,
             toolBarList: this.toolbarList,
           })
         }
