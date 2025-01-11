@@ -66,7 +66,7 @@ operationItems?: SubHeaderV2OperationItem
 
 ## SubHeaderV2Title
 
-​**装饰器类型：**​@ObservedV2
+**装饰器类型：** @ObservedV2
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -110,7 +110,7 @@ constructor(options: SubHeaderV2TitleOptions)
 
 ## SubHeaderV2Select
 
-​**装饰器类型：**​@ObservedV2
+**装饰器类型：** @ObservedV2
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -194,7 +194,7 @@ type SubHeaderV2SelectOnSelect= (selectIndex: number, selectContent?: string) =>
 
 ## SubHeaderV2OperationItem
 
-​**装饰器类型：**​@ObservedV2
+**装饰器类型：** @ObservedV2
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
