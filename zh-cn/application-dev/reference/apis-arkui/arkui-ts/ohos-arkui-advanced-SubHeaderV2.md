@@ -204,9 +204,9 @@ type SubHeaderV2SelectOnSelect= (selectIndex: number, selectContent?: string) =>
 | -------- | -------- | -------- | -------- | -------- |
 | content |  [SubHeaderV2OperationItemType](#SubHeaderV2OperationItemType)  | 是 | @Trace | 操作区元素内容。 |
 | action | SubHeaderV2OperationItemAction | 否 | @Trace | 操作区事件。 |
-| accessibilityText |[ResourceStr](https://wiki.huawei.com/domains/80077/wiki/140885/ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍描述。|
-| accessibilityLevel |[string](https://wiki.huawei.com/domains/80077/wiki/140885/ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍重要性。<br>默认值: “yes”。  | 
-| accessibilityDescription|[ResourceStr](https://wiki.huawei.com/domains/80077/wiki/140885/ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。 |
+| accessibilityText |[ResourceStr](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍描述。|
+| accessibilityLevel |[string](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍重要性。<br>默认值: “yes”。  | 
+| accessibilityDescription|[ResourceStr](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。 |
 
 ### constructor
 
@@ -248,9 +248,9 @@ type SubHeaderV2OperationItemAction = () => void;
 | -------- | -------- | -------- | -------- |
 | value |  [SubHeaderV2IconType](#SubHeaderV2IconType)  | 是 | 文本内容。 |
 | action | SubHeaderV2OperationItemAction | 否 | 事件。 |
-| accessibilityText |[ResourceStr](https://wiki.huawei.com/domains/80077/wiki/140885/ts-types.md#resourcestr) | 否 | 子标题右侧icon图标无障碍描述。|
-| accessibilityLevel |[string](https://wiki.huawei.com/domains/80077/wiki/140885/ts-types.md#resourcestr) | 否 |子标题右侧icon图标无障碍重要性。<br>默认值: “yes”。  | 
-| accessibilityDescription|[ResourceStr](https://wiki.huawei.com/domains/80077/wiki/140885/ts-types.md#resourcestr) | 否 | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。 |
+| accessibilityText |[ResourceStr](ts-types.md#resourcestr) | 否 | 子标题右侧icon图标无障碍描述。|
+| accessibilityLevel |[string](ts-types.md#resourcestr) | 否 |子标题右侧icon图标无障碍重要性。<br>默认值: “yes”。  | 
+| accessibilityDescription|[ResourceStr](ts-types.md#resourcestr) | 否 | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。 |
 
 ## SubHeaderV2TitleBuilder
 
