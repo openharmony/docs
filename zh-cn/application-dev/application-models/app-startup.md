@@ -231,13 +231,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    let startParams = ['StartupTask_005', 'StartupTask_006'];
+    let startParams = ["StartupTask_005", "StartupTask_006"];
     try {
       startupManager.run(startParams).then(() => {
         console.log('StartupTest startupManager run then, startParams = ');
       }).catch((error: BusinessError) => {
-        console.info("StartupTest promise catch error, error = " + JSON.stringify(error));
-        console.info("StartupTest promise catch error, startParams = "
+        console.info('StartupTest promise catch error, error = ' + JSON.stringify(error));
+        console.info('StartupTest promise catch error, startParams = '
           + JSON.stringify(startParams));
       })
     } catch (error) {
@@ -261,7 +261,7 @@ import { startupManager } from '@kit.AbilityKit';
 @Component
 struct Index {
   @State message: string = '手动模式';
-  @State startParams: Array<string> = ['StartupTask_006'];
+  @State startParams: Array<string> = ["StartupTask_006"];
 
   build() {
     RelativeContainer() {
