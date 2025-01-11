@@ -19,7 +19,7 @@
 | 语言              | 地区      | 返回值   |
 | --------------- | ------- | -------- |
 | bo                | CN       |   false  |
-| en                | AE,AF,AG,AI,AL,AS,AT,AU,BB,BE,BI,BM,BS,BW,<br>BZ,CA,CC,CH,CK,CM,CX,CY,DE,DG,DK,DM,ER,FI,FJ,FK,FM,GB,GD,GG,GH,<br>GI,GM,GU,GY,HK,IE,IL,IM,IN,IO,IR,JE,JM,KE,KI,KN,KY,LC,LR,LS,MG,<br>MH,MO,MP,MS,MT,MU,MV,MW,MY,NA,NF,NG,NL,NR,NU,NZ,PG,PH,PK,PN,PR,PW,<br>RW,SB,SC,SD,SE,SG,SH,SI,SL,SS,SX,SZ,TC,TJ,TK,TM,TO,TT,TV,TZ,UG,<br>UM,VC,VG,VI,VU,WS,ZA,ZM,ZW       |   false  |
+| en                | AE,AF,AG,AI,AL,AS,AT,AU,BB,BE,BI,BM,BS,BW,BZ,CA,CC,CH,CK,CM,<br>CX,CY,DE,DG,DK,DM,ER,FI,FJ,FK,FM,GB,GD,GG,GH,GI,GM,GU,GY,HK,<br>IE,IL,IM,IN,IO,IR,JE,JM,KE,KI,KN,KY,LC,LR,LS,MG,MH,MO,MP,MS,<br>MT,MU,MV,MW,MY,NA,NF,NG,NL,NR,NU,NZ,PG,PH,PK,PN,PR,PW,RW,SB,<br>SC,SD,SE,SG,SH,SI,SL,SS,SX,SZ,TC,TJ,TK,TM,TO,TT,TV,TZ,UG,UM,<br>VC,VG,VI,VU,WS,ZA,ZM,ZW       |   false  |
 | ug                | CN       |   false  |
 | zh-Hans                | HK,SG,MO       |   true  |
 
@@ -28,7 +28,7 @@
 | 语言              | 地区      | 返回值   |
 | --------------- | ------- | -------- |
 | bo                | CN       |   true  |
-| en                | AE,AF,AG,AI,AL,AS,AT,AU,BB,BE,BI,BM,BS,BW,<br>BZ,CA,CC,CH,CK,CM,CX,CY,DE,DG,DK,DM,ER,FI,FJ,FK,FM,GB,GD,GG,GH,<br>GI,GM,GU,GY,HK,IE,IL,IM,IN,IO,IR,JE,JM,KE,KI,KN,KY,LC,LR,LS,MG,<br>MH,MO,MP,MS,MT,MU,MV,MW,MY,NA,NF,NG,NL,NR,NU,NZ,PG,PH,PK,PN,PR,PW,<br>RW,SB,SC,SD,SE,SG,SH,SI,SL,SS,SX,SZ,TC,TJ,TK,TM,TO,TT,TV,TZ,UG,<br>UM,VC,VG,VI,VU,WS,ZA,ZM,ZW       |   true  |
+| en                | AE,AF,AG,AI,AL,AS,AT,AU,BB,BE,BI,BM,BS,BW,BZ,CA,CC,CH,CK,CM,<br>CX,CY,DE,DG,DK,DM,ER,FI,FJ,FK,FM,GB,GD,GG,GH,GI,GM,GU,GY,HK,<br>IE,IL,IM,IN,IO,IR,JE,JM,KE,KI,KN,KY,LC,LR,LS,MG,MH,MO,MP,MS,<br>MT,MU,MV,MW,MY,NA,NF,NG,NL,NR,NU,NZ,PG,PH,PK,PN,PR,PW,RW,SB,<br>SC,SD,SE,SG,SH,SI,SL,SS,SX,SZ,TC,TJ,TK,TM,TO,TT,TV,TZ,UG,UM,<br>VC,VG,VI,VU,WS,ZA,ZM,ZW       |   true  |
 | ug                | CN       |   true  |
 | zh-Hans                | HK,SG,MO       |   false  |
 
