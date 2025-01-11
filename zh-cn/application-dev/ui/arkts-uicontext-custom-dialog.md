@@ -25,6 +25,10 @@
 
 ## 自定义弹出框的打开与关闭
 
+> **说明：**
+> 
+> 详细变量定义请参考[完整示例](#完整示例)。
+
 1. 创建ComponentContent。
    
    ComponentContent用于定义自定义弹出框的内容。其中，wrapBuilder(buildText)封装自定义组件，new Params(this.message)是自定义组件的入参，可以缺省，也可以传入基础数据类型。
@@ -51,12 +55,15 @@
    
    由于closeCustomDialog接口需要传入待关闭弹出框对应的ComponentContent。因此，如果需要在弹出框中设置关闭方法，则可参考完整示例封装静态方法来实现。
    
-   关闭弹出框之后若需要释放对应的ComponentContent，则需要调用ComponentContent的dispose方法。
+   关闭弹出框之后若需要释放对应的ComponentContent，则需要调用ComponentContent的[dispose](../reference/apis-arkui/js-apis-arkui-ComponentContent.md#dispose)方法。
    
    ```ts
    this.ctx.getPromptAction().closeCustomDialog(this.contentNode)
      .then(() => {
        console.info('CloseCustomDialog complete.')
+       if (this.contentNode !== null) {
+            this.contentNode.dispose();   // 释放contentNode
+        }
      })
      .catch((error: BusinessError) => {
        let message = (error as BusinessError).message;
@@ -95,7 +102,7 @@ this.ctx.getPromptAction().updateCustomDialog(this.contentNode, options)
 ```ts
 // PromptActionClass.ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { ComponentContent, window } from '@kit.ArkUI';
+import { ComponentContent } from '@kit.ArkUI';
 import { UIContext } from '@ohos.arkui.UIContext';
 
 export class PromptActionClass {
