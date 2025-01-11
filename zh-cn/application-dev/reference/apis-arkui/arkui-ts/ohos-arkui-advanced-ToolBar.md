@@ -171,12 +171,13 @@ ToolBarSymbolGlyphOptions定义图标的属性。
 ### 示例1（工具栏不同状态的默认效果）
 该示例展示了工具栏子项state属性分别设置ENABLE、DISABLE、ACTIVATE状态的不同显示效果。
 ```ts
-import { ToolBar, ToolBarOptions, ItemState } from '@kit.ArkUI'
+import { ToolBar, ToolBarOptions, ItemState } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  @State toolbarList: ToolBarOptions = new ToolBarOptions()
+  @State toolbarList: ToolBarOptions = new ToolBarOptions();
+
   aboutToAppear() {
     this.toolbarList.push({
       content: '剪贴我是超超超超超超超超超长样式',
@@ -189,14 +190,14 @@ struct Index {
       icon: $r('sys.media.ohos_ic_public_copy'),
       action: () => {
       },
-      state:ItemState.DISABLE
+      state: ItemState.DISABLE
     })
     this.toolbarList.push({
       content: '粘贴',
       icon: $r('sys.media.ohos_ic_public_paste'),
       action: () => {
       },
-      state:ItemState.ACTIVATE
+      state: ItemState.ACTIVATE
     })
     this.toolbarList.push({
       content: '全选',
@@ -217,6 +218,7 @@ struct Index {
       },
     })
   }
+
   build() {
     Row() {
       Stack() {
@@ -226,8 +228,10 @@ struct Index {
             toolBarList: this.toolbarList,
           })
         }
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
     }
   }
 }
@@ -238,17 +242,27 @@ struct Index {
 ### 示例2（设置工具栏自定义样式）
 该示例通过设置属性ToolBarModifier自定义工具栏高度、背景色、按压效果等样式。
 ```ts
-import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarModifier, ItemState, LengthMetrics } from '@kit.ArkUI';
+import {
+  SymbolGlyphModifier,
+  DividerModifier,
+  ToolBar,
+  ToolBarOptions,
+  ToolBarModifier,
+  ItemState,
+  LengthMetrics,
+} from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
   @State toolbarList: ToolBarOptions = new ToolBarOptions();
+  // 自定义工具栏样式
   private toolBarModifier: ToolBarModifier =
-  new ToolBarModifier().height(LengthMetrics.vp(52)).backgroundColor(Color.Transparent).stateEffect(false);
+    new ToolBarModifier().height(LengthMetrics.vp(52)).backgroundColor(Color.Transparent).stateEffect(false);
   @State dividerModifier: DividerModifier = new DividerModifier().height(0);
 
   aboutToAppear() {
+    // 添加工具栏子项
     this.toolbarList.push({
       content: 'Long long long long long long long long text',
       icon: $r('sys.media.ohos_ic_public_share'),
@@ -256,8 +270,8 @@ struct Index {
       },
       state: ItemState.ACTIVATE,
       toolBarSymbolOptions: {
-        normal: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Green]),
-        activated: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]),
+        normal: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Green]), // 普通态symbol图标
+        activated: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]), // 激活态symbol图标
       },
       activatedTextColor: $r('sys.color.font_primary'),
     })
@@ -266,17 +280,17 @@ struct Index {
       icon: $r('sys.media.ohos_ic_public_copy'),
       action: () => {
       },
-      state:ItemState.DISABLE,
+      state: ItemState.DISABLE,
       iconColor: '#ff18cb53',
-      activatedIconColor: '#ffec5d5d',
-      activatedTextColor: '#ffec5d5d',
+      activatedIconColor: '#ffec5d5d', // 激活态icon颜色
+      activatedTextColor: '#ffec5d5d', // 激活态文本颜色
     })
     this.toolbarList.push({
       content: 'Paste',
       icon: $r('sys.media.ohos_ic_public_paste'),
       action: () => {
       },
-      state:ItemState.ACTIVATE,
+      state: ItemState.ACTIVATE,
       textColor: '#ff18cb53',
     })
     this.toolbarList.push({
@@ -284,7 +298,7 @@ struct Index {
       icon: $r('sys.media.ohos_ic_public_select_all'),
       action: () => {
       },
-      state:ItemState.ACTIVATE,
+      state: ItemState.ACTIVATE,
     })
     this.toolbarList.push({
       content: '分享',
@@ -299,6 +313,7 @@ struct Index {
       },
     })
   }
+
   build() {
     Row() {
       Stack() {
@@ -311,8 +326,10 @@ struct Index {
           })
             .height(52)
         }
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
     }
   }
 }
