@@ -1789,22 +1789,34 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
+  @State currentIndex: number = 0
   @State message1: string = "tabBar1"
   @State message2: string = "tabBar2"
-  @State fontColor1: string = '#007DFF'
-  @State fontColor2: string = '#182431'
   unselectedFontColor: string = '#182431'
   selectedFontColor: string = '#007DFF'
   context: UIContext = this.getUIContext()
   private count1 = 0;
   private count2 = 0;
   private controller: TabsController = new TabsController();
+
+  getTabBar1() {
+    this.tabBar1.update(new Params(this.message1,
+      this.currentIndex === 0 ? this.selectedFontColor : this.unselectedFontColor));
+    return this.tabBar1;
+  }
+
+  getTabBar2() {
+    this.tabBar2.update(new Params(this.message2,
+      this.currentIndex === 1 ? this.selectedFontColor : this.unselectedFontColor));
+    return this.tabBar2;
+  }
+
   tabBar1: ComponentContent<Params> =
     new ComponentContent<Params>(this.context, wrapBuilder<[Params]>(buildText),
-      new Params(this.message1, this.fontColor1));
+      new Params(this.message1, this.selectedFontColor));
   tabBar2: ComponentContent<Params> =
     new ComponentContent<Params>(this.context, wrapBuilder<[Params]>(buildText),
-      new Params(this.message2, this.fontColor2));
+      new Params(this.message2, this.unselectedFontColor));
 
   build() {
     Row() {
@@ -1813,22 +1825,22 @@ struct Index {
           .onClick((event?: ClickEvent) => {
             this.count1 += 1;
             this.message1 = "Update 1_" + this.count1.toString();
-            this.tabBar1.update(new Params(this.message1, this.fontColor1));
+            this.tabBar1.update(new Params(this.message1, this.unselectedFontColor));
           })
         Button("更新tabBar2").width('90%').margin(20)
           .onClick((event?: ClickEvent) => {
             this.count2 += 1;
             this.message2 = "Update 2_" + this.count2.toString();
-            this.tabBar2.update(new Params(this.message2, this.fontColor2));
+            this.tabBar2.update(new Params(this.message2, this.unselectedFontColor));
           })
         Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Pink).borderRadius('12vp')
-          }.tabBar(this.tabBar1)
+          }.tabBar(this.getTabBar1())
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Blue).borderRadius('12vp')
-          }.tabBar(this.tabBar2)
+          }.tabBar(this.getTabBar2())
         }
         .vertical(false)
         .barWidth(414)
@@ -1838,17 +1850,7 @@ struct Index {
         .backgroundColor('#F1F3F5')
         .margin({ top: 20 })
         .onChange((index: number) => {
-          if (index == 1) {
-            this.fontColor1 = this.unselectedFontColor
-            this.tabBar1.update(new Params(this.message1, this.fontColor1));
-            this.fontColor2 = this.selectedFontColor
-            this.tabBar2.update(new Params(this.message2, this.fontColor2));
-          } else {
-            this.fontColor1 = this.selectedFontColor
-            this.tabBar1.update(new Params(this.message1, this.fontColor1));
-            this.fontColor2 = this.unselectedFontColor
-            this.tabBar2.update(new Params(this.message2, this.fontColor2));
-          }
+          this.currentIndex = index
         })
       }
       .width('100%')
@@ -1866,6 +1868,7 @@ struct Index {
 该示例实现了通过ComponentContent设置TabBar，使用TabsController的preloadItems预加载子节点。
 
 ```ts
+// xxx.ets
 import { BusinessError } from '@kit.BasicServicesKit'
 import { ComponentContent } from '@kit.ArkUI'
 
@@ -1908,6 +1911,31 @@ struct TabsPreloadItems {
   context: UIContext = this.getUIContext()
   unselectedFontColor: string = '#182431'
   selectedFontColor: string = '#007DFF'
+
+  getTabBar1() {
+    this.tabBar1.update(new Params('green',
+      this.currentIndex === 0 ? this.selectedFontColor : this.unselectedFontColor));
+    return this.tabBar1;
+  }
+
+  getTabBar2() {
+    this.tabBar2.update(new Params('blue',
+      this.currentIndex === 1 ? this.selectedFontColor : this.unselectedFontColor));
+    return this.tabBar2;
+  }
+
+  getTabBar3() {
+    this.tabBar3.update(new Params('yellow',
+      this.currentIndex === 2 ? this.selectedFontColor : this.unselectedFontColor));
+    return this.tabBar3;
+  }
+
+  getTabBar4() {
+    this.tabBar4.update(new Params('pink',
+      this.currentIndex === 3 ? this.selectedFontColor : this.unselectedFontColor));
+    return this.tabBar4;
+  }
+
   tabBar1: ComponentContent<Params> =
     new ComponentContent<Params>(this.context, wrapBuilder<[Params]>(TabBuilder),
       new Params('green', this.selectedFontColor));
@@ -1926,52 +1954,25 @@ struct TabsPreloadItems {
       Tabs({ index: this.currentIndex, controller: this.tabsController }) {
         TabContent() {
           MyComponent({ color: '#00CB87' })
-        }.tabBar(this.tabBar1)
+        }.tabBar(this.getTabBar1())
 
         TabContent() {
           MyComponent({ color: '#007DFF' })
-        }.tabBar(this.tabBar2)
+        }.tabBar(this.getTabBar2())
 
         TabContent() {
           MyComponent({ color: '#FFBF00' })
-        }.tabBar(this.tabBar3)
+        }.tabBar(this.getTabBar3())
 
         TabContent() {
           MyComponent({ color: '#E67C92' })
-        }.tabBar(this.tabBar4)
+        }.tabBar(this.getTabBar4())
       }
       .width(360)
       .height(296)
       .backgroundColor('#F1F3F5')
       .onChange((index: number) => {
         this.currentIndex = index
-        switch (this.currentIndex) {
-          case 0:
-            this.tabBar1.update(new Params('green', this.selectedFontColor));
-            this.tabBar2.update(new Params('blue', this.unselectedFontColor));
-            this.tabBar3.update(new Params('yellow', this.unselectedFontColor));
-            this.tabBar4.update(new Params('pink', this.unselectedFontColor));
-            break;
-          case 1:
-            this.tabBar1.update(new Params('green', this.unselectedFontColor));
-            this.tabBar2.update(new Params('blue', this.selectedFontColor));
-            this.tabBar3.update(new Params('yellow', this.unselectedFontColor));
-            this.tabBar4.update(new Params('pink', this.unselectedFontColor));
-            break;
-          case 2:
-            this.tabBar1.update(new Params('green', this.unselectedFontColor));
-            this.tabBar2.update(new Params('blue', this.unselectedFontColor));
-            this.tabBar3.update(new Params('yellow', this.selectedFontColor));
-            this.tabBar4.update(new Params('pink', this.unselectedFontColor));
-            break;
-          case 3:
-            this.tabBar1.update(new Params('green', this.unselectedFontColor));
-            this.tabBar2.update(new Params('blue', this.unselectedFontColor));
-            this.tabBar3.update(new Params('yellow', this.unselectedFontColor));
-            this.tabBar4.update(new Params('pink', this.selectedFontColor));
-            break;
-          default:
-        }
       })
 
       Button('preload items: [1,2,3]')
