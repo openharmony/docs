@@ -2134,7 +2134,7 @@ try {
 
 ### setSystemAvoidAreaEnabled<sup>16+</sup>
 
-setSystemAvoidAreaEnabled(enabled: boolean): Promise<void>
+setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt
 
 设置当前系统窗口是否可以获取窗口内容的[避让区](#avoidarea7)。
 
