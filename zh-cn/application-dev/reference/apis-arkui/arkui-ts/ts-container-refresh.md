@@ -141,7 +141,7 @@ onOffsetChange(callback: Callback\<number>)
 
 | 参数名 | 类型                                    | 必填 | 说明       |
 | ------ | --------------------------------------- | ---- | ---------- |
-| value  | number | 是   | 下拉距离。<br/>单位：vp |
+| callback  | Callback\<number> | 是   | 下拉距离。<br/>单位：vp |
 
 
 ## RefreshStatus枚举说明
