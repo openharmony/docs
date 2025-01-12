@@ -1505,6 +1505,18 @@ Allows an application to modify security settings.
 
 **Valid since**: 7
 
+### ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
+
+Allows an application to manage Wi-Fi connections.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
 ### ohos.permission.MANAGE_WIFI_CONNECTION
 
 Allows an application to manage Wi-Fi connections.
