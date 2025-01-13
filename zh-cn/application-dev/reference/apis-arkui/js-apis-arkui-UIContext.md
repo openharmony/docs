@@ -189,6 +189,50 @@ getOverlayManager(): OverlayManager
 uiContext.getOverlayManager();
 ```
 
+### setOverlayManagerOptions<sup>15+</sup>
+
+setOverlayManagerOptions(value: OverlayManagerOptions): void
+
+设置[OverlayManager](#overlaymanager12)参数。用于在使用OverlayManager能力之前先初始化overlayManager的参数，包括是否需要渲染overlay根节点等属性。该方法需要在执行getOverlayManager方法之前执行生效，且该方法只生效一次。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**: SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填   | 说明                                    |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| value | [OverlayManagerOptions](#overlaymanageroptions15) | 否    | OverlayManager参数。|
+
+**示例：**
+
+```ts
+uiContext.setOverlayManagerOptions({ renderRootOverlay: true });
+```
+
+### getOverlayManagerOptions<sup>15+</sup>
+
+getOverlayManagerOptions(): OverlayManagerOptions
+
+用于获取当前[OverlayManager](#overlaymanager12)参数。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**: SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                           | 说明                 |
+| ----------------------------- | ------------------- |
+| [OverlayManagerOptions](#overlaymanageroptions15) | 返回当前OverlayManagerOptions。 |
+
+**示例：**
+
+```ts
+uiContext.getOverlayManagerOptions();
+```
+
 ### animateTo
 
 animateTo(value: AnimateParam, event: () => void): void
@@ -5041,6 +5085,21 @@ type CustomBuilderWithId = (id: number)&nbsp;=&gt;&nbsp;void
 | -------- | -------- | -------- | -------- |
 | id | number | 是 | 组件ID |
 
+## TargetInfo<sup>16+</sup>
+
+指定组件绑定的目标节点。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| id | string&nbsp;\|&nbsp;number | 是 | 指定popup或menu绑定的目标节点。<br/>**说明：** <br/>1. 当id是number时，对应组件实例的UniquelD，此id由系统保证唯一性。<br/>2. 当id是string时，对应[通用属性id](arkui-ts/ts-universal-attributes-component-id.md#id)所指定的组件，此id的唯一性需由开发者确保，但实际可能会有多个。 |
+| componentId | number | 否 | 目标节点所在的自定义组件的UniquelD。当上述id指定为string类型时，可通过此属性圈定范围。方便开发者在一定范围内保证id: string的唯一性。 |
+
 ## PromptAction
 
 以下API需先使用UIContext中的[getPromptAction()](#getpromptaction)方法获取到PromptAction对象，再通过该对象调用对应方法。
@@ -6107,6 +6166,211 @@ struct Index {
 }
 ```
 
+### openPopup<sup>16+</sup>
+
+openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: PopupCommonOptions): Promise&lt;void&gt;
+
+创建并弹出以content作为内容的popup弹窗，使用Promise异步回调。通过该接口弹出的popup弹窗内容样式完全按照content中设置的样式显示。
+
+> **说明：**
+>
+> 1. 使用该接口时，若未传入有效的target，则无法弹出popup弹窗。
+>
+> 2. 由于[updatePopup](#updatepopup16)和[closePopup](#closepopup16)依赖content去更新或者关闭指定的popup弹窗，开发者需自行维护传入的content。
+>
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | popup弹窗中显示的组件内容。 |
+| target | [TargetInfo](#targetinfo16) | 是 | 需要绑定组件的信息。 |
+| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions16) | 否 | popup弹窗样式。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | the ComponentContent is incorrect. |
+| 103302 | the ComponentContent already exists. |
+| 133304 | the targetId does not exist. |
+| 133305 | the node of targetId is not in the component tree. |
+
+**示例：**
+
+```ts
+import { ComponentContent, FrameNode } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+interface PopupParam {
+  updateFunc?: () => void
+  closeFunc?: () => void
+}
+
+export function showPopup(context: UIContext, uniqueId: number, contentNode: ComponentContent<PopupParam>,
+  popupParam: PopupParam) {
+  const promptAction = context.getPromptAction();
+  let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
+  let targetId = frameNode?.getFirstChild()?.getUniqueId();
+  promptAction.openPopup(contentNode, { id: targetId }, {
+    radius: 16,
+    enableArrow: true
+  })
+    .then(() => {
+      console.info('openPopup success');
+    })
+    .catch((err: BusinessError) => {
+      console.info('openPopup error: ' + err.code + ' ' + err.message);
+    })
+  popupParam.updateFunc = () => {
+    promptAction.updatePopup(contentNode, {
+      enableArrow: false
+    }, true)
+      .then(() => {
+        console.info('updatePopup success');
+      })
+      .catch((err: BusinessError) => {
+        console.info('updatePopup error: ' + err.code + ' ' + err.message);
+      })
+  }
+  popupParam.closeFunc = () => {
+    promptAction.closePopup(contentNode)
+      .then(() => {
+        console.info('closePopup success');
+      })
+      .catch((err: BusinessError) => {
+        console.info('closePopup error: ' + err.code + ' ' + err.message);
+      })
+  }
+}
+
+@Builder
+function buildText(param?: PopupParam) {
+  Column() {
+    Text('popup')
+    Button('Update Popup')
+      .fontSize(20)
+      .onClick(() => {
+        param?.updateFunc?.();
+      })
+    Button('Close Popup')
+      .fontSize(20)
+      .onClick(() => {
+        param?.closeFunc?.();
+      })
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Button('Open Popup')
+        .fontSize(20)
+        .onClick(() => {
+          let context = this.getUIContext()
+          const popupParam: PopupParam = {};
+          const contentNode = new ComponentContent(context, wrapBuilder(buildText), popupParam);
+          showPopup(context, this.getUniqueId(), contentNode, popupParam)
+        })
+    }
+  }
+}
+```
+
+### updatePopup<sup>16+</sup>
+
+updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupCommonOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
+
+更新content对应的popup弹窗的样式，使用Promise异步回调。
+
+> **说明：**
+>
+> 不支持更新showInSubWindow、focusable、onStateChange、onWillDismiss、transition。
+>
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | popup弹窗中显示的组件内容。 |
+| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions16) | 是 | popup弹窗样式。<br/>**说明：** <br/>不支持更新showInSubWindow、focusable、onStateChange、onWillDismiss、transition。 |
+| partialUpdate | boolean | 否 | popup弹窗更新方式, 默认值为false。<br/>**说明：** <br/>1. true为增量更新，保留当前值，更新options中的指定属性。 <br/>2. false为全量更新，除options中的指定属性，其他属性恢复默认值。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | the ComponentContent is incorrect. |
+| 103303 | the ComponentContent cannot be found. |
+
+**示例：**
+
+请参考[openPopup](#openpopup16)示例。
+
+### closePopup<sup>16+</sup>
+
+closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
+
+关闭content对应的popup弹窗，使用Promise异步回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | popup弹窗中显示的组件内容。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | the ComponentContent is incorrect. |
+| 103303 | the ComponentContent cannot be found. |
+
+**示例：**
+
+请参考[openPopup](#openpopup16)示例。
+
 ## DragController<sup>11+</sup>
 以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取UIContext实例，再通过此实例调用对应方法。
 
@@ -6751,6 +7015,18 @@ hideAllComponentContents(): void
 
 请参考[addComponentContent示例](#addcomponentcontent12)
 
+## OverlayManagerOptions<sup>15+</sup>
+
+初始化[OverlayManager](#overlaymanager12)时所用参数。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称             | 类型                | 必填     | 说明                     |
+| --------------- | ---------------------- | ------------ | --------------------- |
+| renderRootOverlay   | boolean | 否 | 是否渲染overlay根节点，默认值为true。 |
+
 ## AtomicServiceBar<sup>11+</sup>
 
 以下接口需要先使用UIContext中的[getAtomicServiceBar](#getatomicservicebar11)方法获取到AtomicServiceBar对象，再通过该对象调用对应方法。
@@ -7121,7 +7397,7 @@ struct RequestExample {
 
 ### activate<sup>14+</sup>
 
-activate(isActive: boolean, atuoInactive?: boolean): void
+activate(isActive: boolean, autoInactive?: boolean): void
 
 设置当前界面的[焦点激活态](../../ui/arkts-common-events-focus-event.md)。
 
@@ -7241,7 +7517,7 @@ type PointerStyle = PointerStyle
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.MultimodalInput.Input.Pointer
 
 |类型|说明|
 | -- | -- |

@@ -76,6 +76,42 @@ Dialog content not found.
 
 NA
 
+## 103304 指定的targetId不存在
+
+**错误信息**
+
+The targetId does not exist.
+
+**错误描述**
+
+当无法通过targetId查找到对应的节点时，方法将返回该错误码。
+
+**可能原因**
+
+targetId是无效的，或者其对应的节点已销毁。
+
+**处理步骤**
+
+NA
+
+## 103305 指定的targetId对应的节点未挂载在节点树上
+
+**错误信息**
+
+The node of targetId is not in the component tree.
+
+**错误描述**
+
+指定的targetId对应的节点未挂载在节点树上时，方法将返回该错误码。
+
+**可能原因**
+
+指定的targetId对应的节点未挂载在节点树上。
+
+**处理步骤**
+
+NA
+
 ## 103401 无法找到对应的文本提示框
 
 **错误信息**

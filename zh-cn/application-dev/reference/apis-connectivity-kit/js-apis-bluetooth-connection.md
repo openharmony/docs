@@ -15,6 +15,71 @@ import { connection } from '@kit.ConnectivityKit';
 ```
 
 
+## ProfileConnectionState
+
+type ProfileConnectionState = constant.ProfileConnectionState
+
+蓝牙设备的profile连接状态。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 类型                  | 说明                  |
+| ------------------- | ------------------- |
+| [constant.ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | 蓝牙设备的profile连接状态。 |
+
+
+## ProfileId
+
+type ProfileId = constant.ProfileId
+
+蓝牙profile枚举。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 类型                  | 说明                  |
+| ------------------- | ------------------- |
+| [constant.ProfileId](js-apis-bluetooth-constant.md#profileid) | 蓝牙profile枚举。 |
+
+
+## ProfileUuids
+
+type ProfileUuids = constant.ProfileUuids
+
+表示Profile的UUID。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 类型                  | 说明                  |
+| ------------------- | ------------------- |
+| [constant.ProfileUuids](js-apis-bluetooth-constant.md#profileuuids) | 表示Profile的UUID。 |
+
+
+## MajorClass
+
+type MajorClass = constant.MajorClass
+
+蓝牙设备主要类别
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 类型                  | 说明                  |
+| ------------------- | ------------------- |
+| [constant.MajorClass](js-apis-bluetooth-constant.md#majorclass) | 蓝牙设备主要类别。 |
+
+
+## MajorMinorClass
+
+type MajorMinorClass = constant.MajorMinorClass
+
+主要次要蓝牙设备类别
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 类型                  | 说明                  |
+| ------------------- | ------------------- |
+| [constant.MajorMinorClass](js-apis-bluetooth-constant.md#majorminorclass) | 主要次要蓝牙设备类别。 |
+
+
 ## connection.pairDevice
 
 pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
