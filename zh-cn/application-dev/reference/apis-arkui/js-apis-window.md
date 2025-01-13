@@ -2134,7 +2134,7 @@ try {
 
 ### setSystemAvoidAreaEnabled<sup>16+</sup>
 
-setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt
+setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 
 设置当前系统窗口是否可以获取窗口内容的[避让区](#avoidarea7)。
 
@@ -2148,7 +2148,7 @@ setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- |----------------------------------| -- | ------------------------------------------------------------ |
-| type | boolean | 是 | 表示可以获取到避让区域。 |
+| type | boolean | 是 | 是否可以获取到避让区域。<br> true表示可以获取避让区；false表示不可以获取避让区。 |
 
 **错误码：**
 
@@ -2175,14 +2175,14 @@ export default class EntryAbility extends UIAbility {
     let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "test",
-      windowType: window.WindowType.TYPE_SYSTEM_ALERT,
+      windowType: window.WindowType.TYPE_DIALOG,
       ctx: this.context
     };
     try {
       window.createWindow(config, (err: BusinessError, data) => {
         const errCode: number = err.code;
         if (errCode) {
-          console.error(`Failed to create the system alert window. Cause code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to create the system dialog window. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
         windowClass = data;
@@ -2193,11 +2193,11 @@ export default class EntryAbility extends UIAbility {
           let type = window.AvoidAreaType.TYPE_SYSTEM;
           let avoidArea = windowClass.getWindowAvoidArea(type);
         }).catch((err: BusinessError) => {
-          console.error(`Failed to obtain the system alert window avoid area. Cause code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to obtain the system dialog window avoid area. Cause code: ${err.code}, message: ${err.message}`);
         });
       });
     } catch (exception) {
-      console.error(`Failed to create the system alert window. Cause code: ${exception.code}, message: ${exception.message}`);
+      console.error(`Failed to create the system dialog window. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 }
@@ -2217,7 +2217,7 @@ isSystemAvoidAreaEnabled(): boolean
 
 | 类型 | 说明 |
 | ------------------------------------- | ------------- |
-| boolean | 是否可以获取窗口内容的避让区。 |
+| boolean | 是否可以获取窗口内容的避让区。<br> true表示可以获取避让区；false表示不可以获取避让区。 |
 
 **错误码：**
 
@@ -2251,14 +2251,14 @@ export default class EntryAbility extends UIAbility {
     let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "test",
-      windowType: window.WindowType.TYPE_SYSTEM_ALERT,
+      windowType: window.WindowType.TYPE_DIALOG,
       ctx: this.context
     };
     try {
       window.createWindow(config, (err: BusinessError, data) => {
         const errCode: number = err.code;
         if (errCode) {
-          console.error(`Failed to create the system alert window. Cause code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to create the system dialog window. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
         windowClass = data;
@@ -2268,11 +2268,11 @@ export default class EntryAbility extends UIAbility {
         promise.then(() => {
           let enable = windowClass.isSystemAvoidAreaEnabled();
         }).catch((err: BusinessError) => {
-          console.error(`Failed to obtain whether the system alert window can get avoid area. Cause code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to obtain whether the system dialog window can get avoid area. Cause code: ${err.code}, message: ${err.message}`);
         });
       });
     } catch (exception) {
-      console.error(`Failed to create the system alert window. Cause code: ${exception.code}, message: ${exception.message}`);
+      console.error(`Failed to create the system dialog window. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 }
