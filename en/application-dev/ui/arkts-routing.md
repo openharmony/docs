@@ -49,6 +49,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   // On the Home page
   function onJumpClick(): void {
     router.pushUrl({
@@ -71,6 +72,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   // On the Login page
   function onJumpClick(): void {
     router.replaceUrl({
@@ -93,6 +95,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   // On the Setting page
   function onJumpClick(): void {
     router.pushUrl({
@@ -133,13 +136,14 @@ If you need to transfer data to the target page during redirection, you can add 
 
 ```ts
 import { router } from '@kit.ArkUI';
+
 class DataModelInfo {
   age: number = 0;
 }
 
 class DataModel {
   id: number = 0;
-  info: DataModelInfo|null = null;
+  info: DataModelInfo | null = null;
 }
 
 function onJumpClick(): void {
@@ -208,6 +212,7 @@ You can use any of the following methods to return to a page:
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back();
   ```
 
@@ -220,6 +225,7 @@ You can use any of the following methods to return to a page:
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'pages/Home'
   });
@@ -229,6 +235,7 @@ You can use any of the following methods to return to a page:
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'myPage' // myPage is the alias of the page to return to.
   });
@@ -243,6 +250,7 @@ You can use any of the following methods to return to a page:
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'pages/Home',
     params: {
@@ -255,6 +263,7 @@ You can use any of the following methods to return to a page:
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'myPage', // myPage is the alias of the page to return to.
     params: {
@@ -283,6 +292,7 @@ struct Home {
       const info: string = params.info as string; // Obtain the value of the info attribute.
     }
   }
+
   ...
 }
 ```
@@ -378,7 +388,7 @@ function onBackClick() {
         color: '#0099FF'
       }
     ]
-  }).then((result:promptAction.ShowDialogSuccessResponse) => {
+  }).then((result: promptAction.ShowDialogSuccessResponse) => {
     if (result.index === 0) {
       // The user selects Cancel.
       console.info('User canceled the operation.');
@@ -388,7 +398,7 @@ function onBackClick() {
       // Invoke the router.back() API to return to the previous page.
       router.back();
     }
-  }).catch((err:Error) => {
+  }).catch((err: Error) => {
     let message = (err as BusinessError).message
     let code = (err as BusinessError).code
     console.error(`Invoke showDialog failed, code is ${code}, message is ${message}`);
@@ -439,7 +449,8 @@ When the configuration is successful, import the named route page to the page fr
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import '@ohos/library/src/main/ets/pages/Index';  // Import the named route page from the library of the shared package.
+import '@ohos/library/src/main/ets/pages/Index'; // Import the named route page from the library of the shared package.
+
 @Entry
 @Component
 struct Index {

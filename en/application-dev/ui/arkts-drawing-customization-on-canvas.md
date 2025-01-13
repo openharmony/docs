@@ -189,13 +189,15 @@ After **onReady()** is invoked, you can use the **Canvas** component for drawing
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
-    .onReady(() =>{
-       // Draw filled text on the canvas.
-       this.context.font = '50px sans-serif';
-       this.context.fillText("Hello World!", 50, 100);
-       // Draw a text stroke on the canvas.
-       this.context.font = '55px sans-serif';
-       this.context.strokeText("Hello World!", 50, 150);
+    .onReady(() => {
+      // Draw filled text on the canvas.
+      this.context.font = '50px bolder sans-serif';
+      this.context.fillText("Hello World!", 50, 100);
+      // Draw a text stroke on the canvas.
+      this.context.strokeStyle = "#ff0000"
+      this.context.lineWidth = 2
+      this.context.font = '50px bolder sans-serif';
+      this.context.strokeText("Hello World!", 50, 150);
     })
   ```
 
