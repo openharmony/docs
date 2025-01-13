@@ -96,6 +96,18 @@ Allows a system application or carrier application to set the eSIM nickname and 
 
 **Changelog**: Since API 14, the permission level is changed to system_basic, and this permission is available only to normal enterprise applications instead of all applications.
 
+### ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
+
+Allows an application to manage Wi-Fi connections.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
 ## ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT
 
 Allows an application to access the user CA certificates of enterprise devices.

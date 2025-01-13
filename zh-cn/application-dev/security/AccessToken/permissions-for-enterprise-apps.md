@@ -96,6 +96,18 @@
 
 **变更信息**：从API 14开始，权限级别变更为system_basic，开发范围从所有应用变更为企业普通应用。
 
+### ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
+
+允许应用管理Wi-Fi的连接。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
 ## ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT
 
 允许应用管理企业设备的用户CA证书。
