@@ -115,6 +115,7 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | -------- | -------- | -------- | -------- |
 | isMultiSelectionEnabled | boolean | 否 | 表示拖拽过程中背板图是否支持多选聚拢效果。该参数只在[Grid](ts-container-grid.md)和[List](ts-container-list.md)组件中的[GridItem](ts-container-griditem.md)组件和[ListItem](ts-container-listitem.md)组件生效。<br/>当一个item组件设置为多选拖拽时，该组件的子组件不可拖拽。聚拢组件预览图设置的优先级为[dragPreview](#dragpreview11)中的string，dragPreview中的PixelMap，组件自截图，不支持dragPreview中的Builder形式。<br/>不支持组件绑定[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)中参数存在isShown的模式。<br/>默认值：false<br/> |
 | defaultAnimationBeforeLifting | boolean | 否 | 表示是否启用长按浮起阶段组件自身的默认点按效果（缩小）。<br/>默认值：false <br/> |
+| enableEdgeAutoScroll<sup>16+</sup> | boolean | 否 | 设置在拖拽至可滚动组件边缘时是否触发自动滚屏。<br />默认值：true，触发自动滚屏。 |
 
 ## 示例
 ### 示例1（允许拖拽和落入）
