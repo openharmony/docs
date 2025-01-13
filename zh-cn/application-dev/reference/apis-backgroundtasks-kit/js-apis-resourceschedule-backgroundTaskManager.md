@@ -392,7 +392,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
-取消长时任务，使用callback异步回调。该接口仅支持申请一种类型。
+取消长时任务，使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -654,7 +654,7 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;Continu
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
-| bgModes    | string[] | 是    | 更新后的长时任务类型，长时任务类型，取值范围请参考长时任务类型中的[配置项](../../task-management/continuous-task.md#使用场景)。<br> **说明：** 支持传入一个或多个类型。|
+| bgModes    | string[] | 是    | 更新后的长时任务类型，取值范围请参考长时任务类型中的[配置项](../../task-management/continuous-task.md#使用场景)。<br> **说明：** 支持传入一个或多个类型。|
 
 **返回值**：
 
