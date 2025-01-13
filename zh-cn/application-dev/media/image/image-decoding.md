@@ -152,10 +152,12 @@
       ```
    解码完成，获取到pixelMap对象后，可以进行后续[图片处理](image-transformation.md)。
 
-5. 释放pixelMap。
+5. 释放pixelMap和imageSource。
 
+   需确认pixelMap和imageSource异步方法已经执行完成，不再使用该变量后可按需手动调用下面方法释放。
    ```ts
    pixelMap.release();
+   imageSource.release();
    ```
 
 ## 开发示例-对资源文件中的图片进行解码
