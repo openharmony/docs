@@ -401,7 +401,7 @@
 
 **起始版本**：16
 
-### ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
+## ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
 
 允许系统JS引擎申请带MAP_FORT标识的匿名可执行内存。
 
@@ -414,7 +414,7 @@
 **起始版本**：14
 
 <!--Del-->
-### ohos.permission.PRELOAD_FILE
+## ohos.permission.PRELOAD_FILE
 
 允许应用预加载文件以提升文件打开速度。
 
@@ -427,7 +427,7 @@
 **起始版本**：15
 <!--DelEnd-->
 
-### ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
+## ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
 
 允许应用使用红外接口。
 
@@ -441,7 +441,7 @@
 
 **变更信息**：在API 12-15，权限的开放范围为系统应用；从API16开始，开放范围变更为普通应用。
 
-### ohos.permission.INPUT_KEYBOARD_CONTROLLER
+## ohos.permission.INPUT_KEYBOARD_CONTROLLER
 
 允许应用设置键盘功能键状态。
 
@@ -453,7 +453,7 @@
 
 **起始版本**：15
 
-### ohos.permission.NDK_START_SELF_UI_ABILITY
+## ohos.permission.NDK_START_SELF_UI_ABILITY
 
 允许应用通过C API启动同应用的UIAbility。
 
