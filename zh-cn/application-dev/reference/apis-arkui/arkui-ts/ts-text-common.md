@@ -382,8 +382,8 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| rangeBefore | [TextRange](ts-universal-attributes-text-style.md#textrange12) | 是 | 文本变化前将要被替换的文本范围。 |
-| rangeAfter | [TextRange](ts-universal-attributes-text-style.md#textrange12) | 是 | 文本变化后新增内容的文本范围。 |
+| rangeBefore | [TextRange](#textrange12) | 是 | 文本变化前将要被替换的文本范围。 |
+| rangeAfter | [TextRange](#textrange12) | 是 | 文本变化后新增内容的文本范围。 |
 
 ## StyledStringChangedListener<sup>12+</sup>
 
@@ -408,7 +408,7 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 
 | 名称 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| range | TextRange | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
+| range | [TextRange](#textrange12) | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
 | replacementString | [StyledString](ts-universal-styled-string.md#styledstring) | 是 | 用于替换的属性字符串。 |
 | previewText | [StyledString](ts-universal-styled-string.md#styledstring) | 否 | 预览样式字符串。 |
 
