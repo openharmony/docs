@@ -2148,7 +2148,7 @@ setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- |----------------------------------| -- | ------------------------------------------------------------ |
-| type | boolean | 是 | 表示规避区类型。 |
+| type | boolean | 是 | 表示可以获取到避让区域。 |
 
 **错误码：**
 
@@ -2207,7 +2207,7 @@ export default class EntryAbility extends UIAbility {
 
 isSystemAvoidAreaEnabled(): boolean
 
-获取当前系统窗口是否能获取窗口内容的[避让区](#avoidarea7)。
+获取当前系统窗口是否可以获取窗口内容的[避让区](#avoidarea7)。
 
 **系统能力：** SystemCapability.Window.SessionManger
 
@@ -2217,7 +2217,7 @@ isSystemAvoidAreaEnabled(): boolean
 
 | 类型 | 说明 |
 | ------------------------------------- | ------------- |
-| boolean | 当前系统窗口是否能获取窗口内容的避让区 |
+| boolean | 是否可以获取窗口内容的避让区。 |
 
 **错误码：**
 
