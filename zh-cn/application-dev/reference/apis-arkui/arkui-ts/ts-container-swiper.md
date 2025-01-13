@@ -1317,9 +1317,8 @@ onContentDidScroll(handler: ContentDidScrollCallback)
 | ------ | ---- | ---- | ---- |
 | handler | [ContentDidScrollCallback](#contentdidscrollcallback12) | 是 | Swiper滑动时触发的回调。 |
 
-## 回调函数
 
-### OnSwiperAnimationStartCallback<sup>16+</sup>
+## OnSwiperAnimationStartCallback<sup>16+</sup>
 
 type OnSwiperAnimationStartCallback = (index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => void
 
@@ -1339,7 +1338,7 @@ type OnSwiperAnimationStartCallback = (index: number, targetIndex: number, extra
 | targetIndex<sup>10+</sup> | number                                                     | 是   | 切换动画目标元素的索引。                                     |
 | extraInfo<sup>10+</sup>   | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Swiper起始位置的位移，以及离手速度。 |
 
-### OnSwiperAnimationEndCallback<sup>16+</sup>
+## OnSwiperAnimationEndCallback<sup>16+</sup>
 
 type OnSwiperAnimationEndCallback = (index: number, extraInfo: SwiperAnimationEvent) => void
 
@@ -1358,7 +1357,7 @@ type OnSwiperAnimationEndCallback = (index: number, extraInfo: SwiperAnimationEv
 | index                   | number                                                     | 是   | 当前显示元素的索引。多列Swiper时，index为最左侧组件的索引。                                         |
 | extraInfo<sup>10+</sup> | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
 
-### OnSwiperGestureSwipeCallback<sup>16+</sup>
+## OnSwiperGestureSwipeCallback<sup>16+</sup>
 
 type OnSwiperGestureSwipeCallback = (index: number, extraInfo: SwiperAnimationEvent) => void
 
@@ -1377,7 +1376,7 @@ type OnSwiperGestureSwipeCallback = (index: number, extraInfo: SwiperAnimationEv
 | index     | number                                                     | 是   | 当前显示元素的索引。多列Swiper时，index为最左侧组件的索引。                                         |
 | extraInfo | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
 
-### ContentDidScrollCallback<sup>12+</sup>
+## ContentDidScrollCallback<sup>12+</sup>
 
 type ContentDidScrollCallback = (selectedIndex: number, index: number, position: number, mainAxisLength: number) => void
 

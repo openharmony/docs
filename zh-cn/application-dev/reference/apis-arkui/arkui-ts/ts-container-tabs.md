@@ -627,9 +627,8 @@ onContentWillChange(handler: OnTabsContentWillChangeCallback)
 | ------ | ------ | ---- | -------------------- |
 | handler  | [OnTabsContentWillChangeCallback](#ontabscontentwillchangecallback16) | 是   | 自定义Tabs页面切换拦截事件能力，新页面即将显示时触发的回调。 |
 
-## 回调函数
 
-### OnTabsAnimationStartCallback<sup>16+</sup>
+## OnTabsAnimationStartCallback<sup>16+</sup>
 
 type OnTabsAnimationStartCallback = (index: number, targetIndex: number, extraInfo: TabsAnimationEvent) => void
 
@@ -649,7 +648,7 @@ type OnTabsAnimationStartCallback = (index: number, targetIndex: number, extraIn
 | targetIndex | number                                                 | 是   | 切换动画目标元素的索引。                                     |
 | event       | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Tabs起始位置的位移，以及离手速度。 |
 
-### OnTabsAnimationEndCallback<sup>16+</sup>
+## OnTabsAnimationEndCallback<sup>16+</sup>
 
 type OnTabsAnimationEndCallback = (index: number, extraInfo: TabsAnimationEvent) => void
 
@@ -668,7 +667,7 @@ type OnTabsAnimationEndCallback = (index: number, extraInfo: TabsAnimationEvent)
 | index  | number                                                 | 是   | 当前显示元素的索引。                                         |
 | event  | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
 
-### OnTabsGestureSwipeCallback<sup>16+</sup>
+## OnTabsGestureSwipeCallback<sup>16+</sup>
 
 type OnTabsGestureSwipeCallback = (index: number, extraInfo: TabsAnimationEvent) => void
 
@@ -687,7 +686,7 @@ type OnTabsGestureSwipeCallback = (index: number, extraInfo: TabsAnimationEvent)
 | index  | number                                                 | 是   | 当前显示元素的索引。                                         |
 | event  | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
 
-### TabsCustomContentTransitionCallback<sup>16+</sup>
+## TabsCustomContentTransitionCallback<sup>16+</sup>
 
 type TabsCustomContentTransitionCallback = (from: number, to: number) => TabContentAnimatedTransition | undefined
 
@@ -712,7 +711,7 @@ type TabsCustomContentTransitionCallback = (from: number, to: number) => TabCont
 | ------------------------------------------------------------ | ------------------------ |
 | [TabContentAnimatedTransition](#tabcontentanimatedtransition11)&nbsp;\|&nbsp;undefined | 自定义切换动画相关信息。 |
 
-### OnTabsContentWillChangeCallback<sup>16+</sup>
+## OnTabsContentWillChangeCallback<sup>16+</sup>
 
 type OnTabsContentWillChangeCallback = (currentIndex: number, comingIndex: number) => boolean
 
