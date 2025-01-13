@@ -193,6 +193,7 @@
     - [ComposeListItem](arkui-ts/ohos-arkui-advanced-ComposeListItem.md)
     - [GridObjectSortComponent](arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md)
     - [SwipeRefresher](arkui-ts/ohos-arkui-advanced-SwipeRefresher.md)
+    - [ArcScrollBar](arkui-ts/ts-basic-components-arcscrollbar.md)
     - [滚动组件通用接口](arkui-ts/ts-container-scrollable-common.md)
     <!--Del-->
     - [List (系统接口)](arkui-ts/ts-container-list-sys.md)
