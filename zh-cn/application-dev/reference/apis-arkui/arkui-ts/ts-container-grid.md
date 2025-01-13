@@ -1528,7 +1528,7 @@ struct Index {
 ![gridAlignItems](figures/gridAlignItems.png)
 
 ### 示例10（设置边缘渐隐）
-通过[fadingEdge](ts-container-scrollable-common.md#fadingedge13)属性来设置边缘渐隐效果。
+通过[fadingEdge](ts-container-scrollable-common.md#fadingedge14)属性来设置边缘渐隐效果。
 
 ```ts
 // xxx.ets
