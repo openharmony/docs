@@ -25,7 +25,7 @@
       - [app对象内部结构](quick-start/app-structure.md)
       - [deviceConfig内部结构](quick-start/deviceconfig-structure.md)
       - [module对象内部结构](quick-start/module-structure.md)
-    - 典型场景的开发指导
+    - 典型场景的开发指导<!--application-typical-scenarios-->
       - [集成态HSP](quick-start/integrated-hsp.md)
       - [HAR转HSP指导](quick-start/har-to-hsp.md)
       - [HSP转HAR指导](quick-start/hsp-to-har.md)
@@ -63,7 +63,7 @@
       - [@Reusable装饰器：组件复用](quick-start/arkts-reusable.md)
     - 状态管理<!--arkts-state-management-->
       - [状态管理概述](quick-start/arkts-state-management-overview.md)
-      - 状态管理（V1稳定版）<!--arkts-state-management-v1-->
+      - 状态管理（V1）<!--arkts-state-management-v1-->
         - 管理组件拥有的状态<!--arkts-component-state-management-->
           - [\@State装饰器：组件内状态](quick-start/arkts-state.md)
           - [\@Prop装饰器：父子单向同步](quick-start/arkts-prop.md)
@@ -85,7 +85,7 @@
         - [MVVM模式](quick-start/arkts-mvvm.md)
         - [状态管理优秀实践](quick-start/arkts-state-management-best-practices.md)
         - [状态管理合理使用开发指导](quick-start/properly-use-state-management-to-develope.md)
-      - 状态管理（V2试用版）<!--arkts-state-management-v2-->
+      - 状态管理（V2）<!--arkts-state-management-v2-->
         - V2所属装饰器<!--arkts-v2-decorators-->
           - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](quick-start/arkts-new-observedV2-and-trace.md)
           - [\@ComponentV2装饰器：自定义组件](quick-start/arkts-new-componentV2.md)
@@ -115,7 +115,7 @@
       - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
       - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
       - [ContentSlot：混合开发](quick-start/arkts-rendering-control-contentslot.md)
-- 开发
+- 开发<!--application-develop-->
   - 应用框架<!--app-framework-->
     - Ability Kit（程序框架服务）<!--ability-kit-->
       - [Ability Kit简介](application-models/abilitykit-overview.md)
@@ -507,7 +507,7 @@
         - 使用NDK接口构建UI<!--arkts-use-ndk-->
           - [NDK接口概述](ui/ndk-build-ui-overview.md)
           - [接入ArkTS页面](ui/ndk-access-the-arkts-page.md)
-          - 添加交互事件
+          - 添加交互事件<!--arkts-add-event-->
             - [监听组件事件](ui/ndk-listen-to-component-events.md)
             - [绑定手势事件](ui/ndk-bind-gesture-events.md)
           - [使用动画](ui/ndk-use-animation.md)
@@ -919,9 +919,9 @@
             - [使用ECDH进行密钥协商](security/CryptoArchitectureKit/crypto-key-agreement-using-ecdh.md)
             - [使用X25519进行密钥协商](security/CryptoArchitectureKit/crypto-key-agreement-using-x25519.md)
             - [使用DH进行密钥协商](security/CryptoArchitectureKit/crypto-key-agreement-using-dh.md)
-        - 消息摘要计算
+        - 消息摘要计算<!--crypto-generate-message-->
           - [消息摘要计算介绍及算法规格](security/CryptoArchitectureKit/crypto-generate-message-digest-overview.md)
-          - 消息摘要计算开发指导
+          - 消息摘要计算开发指导<!--crypto-generate-message-digest-dev-->
             - [消息摘要计算(ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest.md)
             - [消息摘要计算(C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
         - [消息认证码计算](security/CryptoArchitectureKit/crypto-compute-mac.md)
@@ -947,7 +947,7 @@
           - [证书链校验器对象的创建和校验](security/DeviceCertificateKit/create-verify-cerchainvalidator-object.md)
           - [证书集合及证书吊销列表集合对象的创建和获取](security/DeviceCertificateKit/create-get-cert-crl-object.md)
           - [证书链对象的创建和校验](security/DeviceCertificateKit/create-verify-certchain-object.md)
-        - 证书管理<!--certManager-->
+        - 证书管理<!--certmanager-->
           - [证书管理概述](security/DeviceCertificateKit/certManager-overview.md)
           - [证书管理开发指导](security/DeviceCertificateKit/certManager-guidelines.md)
           - [证书管理对话框开发指导](security/DeviceCertificateKit/certManagerDialog-guidelines.md)
@@ -1081,7 +1081,7 @@
       - Basics Service Kit（基础服务）<!--basic-services-kit-->
         - [Basic Services Kit简介](basic-services/basic-services-kit-overview.md)
         - 进程线程通信<!--app-events-->
-          - 使用公共事件进行进程间通信
+          - 使用公共事件进行进程间通信<!--common-event-communication-->
               - [公共事件简介](basic-services/common-event/common-event-overview.md)
               - [动态订阅公共事件](basic-services/common-event/common-event-subscription.md)
               <!--Del-->
@@ -1354,7 +1354,7 @@
         <!--Del-->
         - [深度信息(仅对系统应用开放)(ArkTS)](media/camera/camera-depth-data.md)
         <!--DelEnd-->
-      - 相机最佳实践(ArkTS)<!--Camera-best-practices-arkts-->
+      - 相机最佳实践(ArkTS)<!--camera-best-practices-arkts-->
         - [通过系统相机拍照和录像(ArkTS)](media/camera/camera-picker.md)
         - [拍照实现方案(ArkTS)](media/camera/camera-shooting-case.md)
         - [录像实现方案(ArkTS)](media/camera/camera-recording-case.md)
@@ -1561,7 +1561,7 @@
       - C/C++标准库<!--c-cpp-->
         - [C/C++标准库机制概述](napi/c-cpp-overview.md)
         - [fdsan使用指导](napi/fdsan.md)
-      - 使用Node-API实现跨语言交互
+      - 使用Node-API实现跨语言交互<!--using-napi-interaction-with-cpp-->
         - [Node-API简介](napi/napi-introduction.md)
         - [Node-API支持的数据类型和接口](napi/napi-data-types-interfaces.md)
         - [Node-API开发规范](napi/napi-guidelines.md)
@@ -1602,7 +1602,7 @@
         - [JSVM-API简介](napi/jsvm-introduction.md)
         - [JSVM-API支持的数据类型和接口](napi/jsvm-data-types-interfaces.md)
         - [使用JSVM-API实现JS与C/C++语言交互开发流程](napi/use-jsvm-process.md)
-        - JSVM-API开发规范
+        - JSVM-API开发规范<!--jsvm-development-standards-->
             - [JSVM-API使用规范](napi/jsvm-guidelines.md)
             - [JSVM-API常见问题](napi/jsvm-frequently-questions.md)
         - JSVM-API使用指导<!--jsvm-use-->
@@ -1629,7 +1629,7 @@
             - [使用JSVM-API判断给定的两个JS value是否严格相等](napi/use-jsvm-strict-equals.md)
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
-            - JSVM-API调优&高性能使用示例
+            - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
               - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
               - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
               - [JSVM 通用调优实践](napi/jsvm-optimizations.md)
@@ -1654,7 +1654,7 @@
       - [CPU特性](napi/cpu-features.md)
       - [使用Neon指令扩展](napi/neon-guide.md)
 
-- API参考
+- API参考<!--api-reference-->
   - API参考概述<!--ref-overview-api-->
     - [系统能力SystemCapability使用指南](reference/syscap.md)
     - [系统能力SystemCapability列表](reference/syscap-list.md)
@@ -1662,7 +1662,7 @@
   - 应用框架<!--app-framework-api-->
     - Ability Kit（程序框架服务）<!--ability-api-->
       - ArkTS API<!--ability-arkts-->
-        - Stage模型能力的接口
+        - Stage模型能力的接口<!--stage-model-->
           - [@ohos.app.ability.Ability (Ability基类)](reference/apis-ability-kit/js-apis-app-ability-ability.md)
           - [@ohos.app.ability.AbilityConstant (AbilityConstant)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md)
           - [@ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)](reference/apis-ability-kit/js-apis-app-ability-abilityLifecycleCallback.md)
@@ -1712,11 +1712,11 @@
           - [@ohos.app.ability.UIServiceExtensionAbility (UIServiceExtensionAbility)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)
           - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md)
           <!--DelEnd-->
-        - FA模型能力的接口
+        - FA模型能力的接口<!--fa-model-->
           - [@ohos.ability.ability (Ability)](reference/apis-ability-kit/js-apis-ability-ability.md)
           - [@ohos.ability.featureAbility (FeatureAbility模块)](reference/apis-ability-kit/js-apis-ability-featureAbility.md)
           - [@ohos.ability.particleAbility (ParticleAbility模块)](reference/apis-ability-kit/js-apis-ability-particleAbility.md)
-        - 通用能力的接口(推荐)
+        - 通用能力的接口(推荐)<!--both-models-->
           - [@ohos.abilityAccessCtrl (程序访问控制管理)](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)
           - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)](reference/apis-ability-kit/js-apis-screenLockFileManager.md)
           - [@ohos.app.ability.abilityManager (AbilityManager)](reference/apis-ability-kit/js-apis-app-ability-abilityManager.md)
@@ -1763,7 +1763,7 @@
           - [@ohos.privacyManager (隐私管理)(系统接口)](reference/apis-ability-kit/js-apis-privacyManager-sys.md)
           <!--DelEnd-->
         - 接口依赖的元素及定义<!--ability-api-interface-depend-->
-          - ability
+          - ability<!--ability-->
             - [abilityResult](reference/apis-ability-kit/js-apis-inner-ability-abilityResult.md)
             - [connectOptions](reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)
             - [dataAbilityHelper](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md)
@@ -1771,11 +1771,11 @@
             - [dataAbilityResult](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityResult.md)
             - [startAbilityParameter](reference/apis-ability-kit/js-apis-inner-ability-startAbilityParameter.md)
             - [want](reference/apis-ability-kit/js-apis-inner-ability-want.md)
-          - app
+          - app<!--app-->
             - [appVersionInfo](reference/apis-ability-kit/js-apis-inner-app-appVersionInfo.md)
             - [context](reference/apis-ability-kit/js-apis-inner-app-context.md)
             - [processInfo](reference/apis-ability-kit/js-apis-inner-app-processInfo.md)
-          - application
+          - application<!--ability-arkts-application-->
             - [abilityMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityMonitor.md)
             - [AbilityRunningInfo](reference/apis-ability-kit/js-apis-inner-application-abilityRunningInfo.md)
             - [AbilityStageContext](reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)
@@ -1835,7 +1835,7 @@
             - [ViewData(系统接口)](reference/apis-ability-kit/js-apis-inner-application-viewData-sys.md)
             - [AutoFillRect(系统接口)](reference/apis-ability-kit/js-apis-inner-application-autoFillRect-sys.md)
             <!--DelEnd-->
-          - bundleManager
+          - bundleManager<!--bundlemanager-->
             - [abilityInfo](reference/apis-ability-kit/js-apis-bundleManager-abilityInfo.md)
             - [applicationInfo](reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md)
             - [bundleInfo](reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md)
@@ -1861,15 +1861,15 @@
             - [SharedBundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-sharedBundleInfo-sys.md)
             - [shortcutInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-shortcutInfo-sys.md)
             <!--DelEnd-->
-          - continuation
+          - continuation<!--continuation-->
             - [continuationExtraParams](reference/apis-ability-kit/js-apis-continuation-continuationExtraParams.md)
             - [continuationResult](reference/apis-ability-kit/js-apis-continuation-continuationResult.md)
-          - security
+          - security<!--ability-security-->
             - [PermissionRequestResult](reference/apis-ability-kit/js-apis-permissionrequestresult.md)
-          - wantAgent
+          - wantAgent<!--wantagent-->
             - [triggerInfo](reference/apis-ability-kit/js-apis-inner-wantAgent-triggerInfo.md)
             - [wantAgentInfo](reference/apis-ability-kit/js-apis-inner-wantAgent-wantAgentInfo.md)
-        - 已停止维护的接口
+        - 已停止维护的接口<!--ability-arkts-dep-->
           - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis-ability-kit/js-apis-ability-dataUriUtils.md)
           - [@ohos.ability.errorCode (ErrorCode)](reference/apis-ability-kit/js-apis-ability-errorCode.md)
           - [@ohos.ability.wantConstant (wantConstant)](reference/apis-ability-kit/js-apis-ability-wantConstant.md)
@@ -1892,7 +1892,7 @@
           - [@ohos.distributedBundle (分布式包管理)(系统接口)](reference/apis-ability-kit/js-apis-Bundle-distributedBundle-sys.md)
           <!--DelEnd-->
           - [@system.package (应用管理)](reference/apis-ability-kit/js-apis-system-package.md)
-          - bundle
+          - bundle<!--bundle-->
             - [abilityInfo](reference/apis-ability-kit/js-apis-bundle-AbilityInfo.md)
             - [applicationInfo](reference/apis-ability-kit/js-apis-bundle-ApplicationInfo.md)
             - [bundleInfo](reference/apis-ability-kit/js-apis-bundle-BundleInfo.md)
@@ -1965,7 +1965,7 @@
           - [@ohos.data.rdb (关系型数据库)](reference/apis-arkdata/js-apis-data-rdb.md)
           - [@ohos.data.storage (轻量级存储)](reference/apis-arkdata/js-apis-data-storage.md)
           - [@system.storage数据存储](reference/apis-arkdata/js-apis-system-storage.md)
-          - data/rdb
+          - data/rdb<!--data-rdb-->
             - [resultSet结果集](reference/apis-arkdata/js-apis-data-resultset.md)
       - C API<!--arkdata-c-->
         - 模块<!--arkdata-module-->
@@ -2052,7 +2052,7 @@
         - [语言基础类库错误码](reference/apis-arkts/errorcode-utils.md)
     - ArkUI（方舟UI框架）<!--arkui-api-->
       - ArkTS API<!--arkui-arkts-->
-        - UI界面
+        - UI界面<!--ui-->
           - [@ohos.animator (动画)](reference/apis-arkui/js-apis-animator.md)
           - [@ohos.arkui.componentSnapshot (组件截图)](reference/apis-arkui/js-apis-arkui-componentSnapshot.md)
           - [@ohos.arkui.componentUtils (componentUtils)](reference/apis-arkui/js-apis-arkui-componentUtils.md)
@@ -2088,7 +2088,7 @@
           - [@ohos.arkui.UIContext (UIContext)(系统接口)](reference/apis-arkui/js-apis-arkui-UIContext-sys.md)
           - [@ohos.promptAction (弹窗)(系统接口)](reference/apis-arkui/js-apis-promptAction-sys.md)
           <!--DelEnd-->
-          - arkui
+          - arkui<!--ui-interface-arkui-->
             - [BuilderNode](reference/apis-arkui/js-apis-arkui-builderNode.md)
             - [ComponentContent](reference/apis-arkui/js-apis-arkui-ComponentContent.md)
             - [FrameNode](reference/apis-arkui/js-apis-arkui-frameNode.md)
@@ -2098,7 +2098,7 @@
             - [AttributeUpdater](reference/apis-arkui/js-apis-arkui-AttributeUpdater.md)
             - [Content](reference/apis-arkui/js-apis-arkui-Content.md)
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
-        - 图形图像
+        - 图形图像<!--graphics-api-->
           - [@ohos.display (屏幕属性)](reference/apis-arkui/js-apis-display.md)
           - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
           - [@ohos.window (窗口)](reference/apis-arkui/js-apis-window.md)
@@ -2121,8 +2121,8 @@
           - [@system.router (页面路由)](reference/apis-arkui/js-apis-system-router.md)
           - [XComponentNode](reference/apis-arkui/js-apis-arkui-xcomponentNode.md)
       - ArkTS组件<!--arkui-declarative-comp-->
-        - 组件通用信息
-          - 通用事件
+        - 组件通用信息<!--universal-component-information-->
+          - 通用事件<!--universal-events-->
             - [点击事件](reference/apis-arkui/arkui-ts/ts-universal-events-click.md)
             - [触摸事件](reference/apis-arkui/arkui-ts/ts-universal-events-touch.md)
             - [挂载卸载事件](reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md)
@@ -2138,7 +2138,7 @@
             - [组件快捷键事件](reference/apis-arkui/arkui-ts/ts-universal-events-keyboardshortcut.md)
             - [自定义事件分发](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-child-touch-test.md)
             - [自定义事件拦截](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md)
-          - 通用属性
+          - 通用属性<!--universal-attributes-->
             - [尺寸设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)
             - [位置设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md)
             - [布局约束](reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md)
@@ -2177,10 +2177,10 @@
             - [自定义绘制](reference/apis-arkui/arkui-ts/ts-universal-attributes-draw-modifier.md)
             - [自定义内容](reference/apis-arkui/arkui-ts/ts-universal-attributes-content-modifier.md)
             - [自定义属性设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-custom-property.md)
-            - 触摸交互控制
+            - 触摸交互控制<!--touch-interactions-->
               - [触摸热区设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md)
               - [触摸测试控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
-            - 模态转场设置
+            - 模态转场设置<!--transition-->
               - [全屏模态转场](reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md)
               - [半模态转场](reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)
             - [隐私遮罩](reference/apis-arkui/arkui-ts/ts-universal-attributes-obscured.md)
@@ -2195,7 +2195,7 @@
             - [点光源设置 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-attributes-point-light-style-sys.md)
             - [图像效果 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect-sys.md)
             <!--DelEnd-->
-          - 手势处理
+          - 手势处理<!--gesture-handling-->
             - [绑定手势方法](reference/apis-arkui/arkui-ts/ts-gesture-settings.md)
             - [TapGesture](reference/apis-arkui/arkui-ts/ts-basic-gestures-tapgesture.md)
             - [LongPressGesture](reference/apis-arkui/arkui-ts/ts-basic-gestures-longpressgesture.md)
@@ -2207,7 +2207,7 @@
             - [自定义手势判定](reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md)
             - [设置组件绑定的手势](reference/apis-arkui/arkui-ts/ts-uigestureevent.md)
             - [手势拦截增强](reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md)
-        - 行列与堆叠
+        - 行列与堆叠<!--rows-columns-and-stacking-->
           - [Flex](reference/apis-arkui/arkui-ts/ts-container-flex.md)
           - [Column](reference/apis-arkui/arkui-ts/ts-container-column.md)
           - [Row](reference/apis-arkui/arkui-ts/ts-container-row.md)
@@ -2220,7 +2220,7 @@
           - [Row (系统接口)](reference/apis-arkui/arkui-ts/ts-container-row-sys.md)
           - [Stack (系统接口)](reference/apis-arkui/arkui-ts/ts-container-stack-sys.md)
           <!--DelEnd-->
-        - 栅格与分栏
+        - 栅格与分栏<!--grid-and-column-layout-->
           - [GridRow](reference/apis-arkui/arkui-ts/ts-container-gridrow.md)
           - [GridCol](reference/apis-arkui/arkui-ts/ts-container-gridcol.md)
           - [ColumnSplit](reference/apis-arkui/arkui-ts/ts-container-columnsplit.md)
@@ -2228,7 +2228,7 @@
           - [SplitLayout](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SplitLayout.md)
           - [FoldSplitContainer](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FoldSplitContainer.md)
           - [SideBarContainer](reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)
-        - 滚动与滑动
+        - 滚动与滑动<!--scroll-and-swipe-->
           - [List](reference/apis-arkui/arkui-ts/ts-container-list.md)
           - [ListItem](reference/apis-arkui/arkui-ts/ts-container-listitem.md)
           - [ListItemGroup](reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)
@@ -2247,7 +2247,7 @@
           <!--Del-->
           - [List (系统接口)](reference/apis-arkui/arkui-ts/ts-container-list-sys.md)
           <!--DelEnd-->
-        - 导航与切换
+        - 导航与切换<!--navigation-and-switching-->
           - [Navigation](reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)
           - [NavDestination](reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)
           - [MultiNavigation](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-MultiNavigation.md)
@@ -2255,7 +2255,7 @@
           - [StepperItem](reference/apis-arkui/arkui-ts/ts-basic-components-stepperitem.md)
           - [Tabs](reference/apis-arkui/arkui-ts/ts-container-tabs.md)
           - [TabContent](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md)
-        - 按钮与选择
+        - 按钮与选择<!--buttons-and-selections-->
           - [Button](reference/apis-arkui/arkui-ts/ts-basic-components-button.md)
           - [Toggle](reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md)
           - [Checkbox](reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md)
@@ -2272,7 +2272,7 @@
           - [ProgressButton](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ProgressButton.md)
           - [SegmentButton](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButton.md)
           - [Filter](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Filter.md)
-        - 文本与输入
+        - 文本与输入<!--text-and-input-->
           - [Text](reference/apis-arkui/arkui-ts/ts-basic-components-text.md)
           - [TextArea](reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)
           - [TextInput](reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)
@@ -2292,7 +2292,7 @@
           - [TextInput (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-textinput-sys.md)
           - [属性字符串 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-styled-string-sys.md)
           <!--DelEnd-->
-        - 图片与视频
+        - 图片与视频<!--images-and-videos-->
           - [Image](reference/apis-arkui/arkui-ts/ts-basic-components-image.md)
           - [ImageAnimator](reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md)
           - [Video](reference/apis-arkui/arkui-ts/ts-media-components-video.md)
@@ -2301,7 +2301,7 @@
           - [Image (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-image-sys.md)
           - [MediaCachedImage (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-mediacachedimage-sys.md)
           <!--DelEnd-->
-        - 信息展示
+        - 信息展示<!--information-display-->
           - [AlphabetIndexer](reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md)
           - [Badge](reference/apis-arkui/arkui-ts/ts-container-badge.md)
           - [Chip](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)
@@ -2320,10 +2320,10 @@
           - [TextClock](reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md)
           - [TextTimer](reference/apis-arkui/arkui-ts/ts-basic-components-texttimer.md)
           - [TreeView](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-TreeView.md)
-        - 空白与分隔
+        - 空白与分隔<!--blank-and-divider-->
           - [Blank](reference/apis-arkui/arkui-ts/ts-basic-components-blank.md)
           - [Divider](reference/apis-arkui/arkui-ts/ts-basic-components-divider.md)
-        - 画布绘制
+        - 画布绘制<!--canvas-drawing-->
           - [Canvas](reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md)
           - [CanvasGradient](reference/apis-arkui/arkui-ts/ts-components-canvas-canvasgradient.md)
           - [CanvasPattern](reference/apis-arkui/arkui-ts/ts-components-canvas-canvaspattern.md)
@@ -2335,7 +2335,7 @@
           - [OffscreenCanvas](reference/apis-arkui/arkui-ts/ts-components-offscreencanvas.md)
           - [OffscreenCanvasRenderingContext2D](reference/apis-arkui/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
           - [Path2D](reference/apis-arkui/arkui-ts/ts-components-canvas-path2d.md)
-        - 图形绘制
+        - 图形绘制<!--graphic-drawing-->
           - [Circle](reference/apis-arkui/arkui-ts/ts-drawing-components-circle.md)
           - [Ellipse](reference/apis-arkui/arkui-ts/ts-drawing-components-ellipse.md)
           - [Line](reference/apis-arkui/arkui-ts/ts-drawing-components-line.md)
@@ -2344,23 +2344,23 @@
           - [Path](reference/apis-arkui/arkui-ts/ts-drawing-components-path.md)
           - [Rect](reference/apis-arkui/arkui-ts/ts-drawing-components-rect.md)
           - [Shape](reference/apis-arkui/arkui-ts/ts-drawing-components-shape.md)
-        - 渲染绘制
+        - 渲染绘制<!--rendering-drawing-->
           - [XComponent](reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)
           - [Component3D](reference/apis-arkui/arkui-ts/ts-basic-components-component3d.md)
           - [EmbeddedComponent](reference/apis-arkui/arkui-ts/ts-container-embedded-component.md) 
-        - 标题栏与工具栏
+        - 标题栏与工具栏<!--bars-and-toolbars-->
           - [ComposeTitleBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md)
           - [EditableTitleBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
           - [SelectTitleBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectTitleBar.md)
           - [TabTitleBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-TabTitleBar.md)
           - [ToolBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ToolBar.md)
           - [SubHeader](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SubHeader.md)
-        - 菜单
+        - 菜单<!--menus-->
           - [Menu](reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)
           - [MenuItem](reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md)
           - [MenuItemGroup](reference/apis-arkui/arkui-ts/ts-basic-components-menuitemgroup.md)
           - [ContextMenu](reference/apis-arkui/arkui-ts/ts-methods-menu.md)
-        - 动画
+        - 动画<!--animation-->
           - [属性动画 (animation)](reference/apis-arkui/arkui-ts/ts-animatorproperty.md)
           - [显式动画 (animateTo)](reference/apis-arkui/arkui-ts/ts-explicit-animation.md)
           - [关键帧动画 (keyframeAnimateTo)](reference/apis-arkui/arkui-ts/ts-keyframeAnimateTo.md)
@@ -2374,7 +2374,7 @@
           <!--Del-->
           - [组件内隐式共享元素转场 (geometryTransition)(系统接口)](reference/apis-arkui/arkui-ts/ts-transition-animation-geometrytransition-sys.md)
           <!--DelEnd-->  
-        - 弹窗
+        - 弹窗<!--dialog-boxes-->
           - [警告弹窗 (AlertDialog)](reference/apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md)
           - [列表选择弹窗 (ActionSheet)](reference/apis-arkui/arkui-ts/ts-methods-action-sheet.md)
           - [自定义弹窗 (CustomDialog)](reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
@@ -2383,13 +2383,13 @@
           - [时间滑动选择器弹窗 (TimePickerDialog)](reference/apis-arkui/arkui-ts/ts-methods-timepicker-dialog.md)
           - [文本滑动选择器弹窗 (TextPickerDialog)](reference/apis-arkui/arkui-ts/ts-methods-textpicker-dialog.md)
           - [弹出框 (Dialog)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)
-        - 卡片
+        - 卡片<!--service-widgets-->
           - [FormLink](reference/apis-arkui/arkui-ts/ts-container-formlink.md)
           - [FormMenu](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md)
           <!--Del-->
           - [FormComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)
           <!--DelEnd-->
-        - 安全
+        - 安全<!--arkui-security-->
           - [安全控件通用属性](reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)
           - [LocationButton](reference/apis-arkui/arkui-ts/ts-security-components-locationbutton.md)
           - [PasteButton](reference/apis-arkui/arkui-ts/ts-security-components-pastebutton.md)
@@ -2397,9 +2397,9 @@
           <!--Del-->
           - [SaveButton (系统接口)](reference/apis-arkui/arkui-ts/ts-security-components-savebutton-sys.md)
           <!--DelEnd-->
-        - 主题
+        - 主题<!--themes-->
           - [WithTheme](reference/apis-arkui/arkui-ts/ts-container-with-theme.md) 
-        - 原子化服务
+        - 原子化服务<!--atomic-services-->
           - [AtomicServiceNavigation](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceNavigation.md)
           - [AtomicServiceTabs](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceTabs.md)
           - [AtomicServiceWeb](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceWeb.md)
@@ -2409,19 +2409,19 @@
           - [InnerFullScreenLaunchComponent (系统接口)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-InnerFullScreenLaunchComponent-sys.md)
           <!--DelEnd-->
           - [NavPushPathHelper](reference/apis-arkui/arkui-ts/ohos-atomicservice-NavPushPathHelper.md)
-        - 自定义占位组件
+        - 自定义占位组件<!--custom-placeholder-comp-->
           - [NodeContainer](reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)
           - [ContentSlot](reference/apis-arkui/arkui-ts/ts-components-contentSlot.md)
-        - 自定义组件
+        - 自定义组件<!--custom-comp-->
           - [自定义组件的生命周期](reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md)
           - [自定义组件的自定义布局](reference/apis-arkui/arkui-ts/ts-custom-component-layout.md)
           - [自定义组件内置方法](reference/apis-arkui/arkui-ts/ts-custom-component-api.md)
-        - 状态管理与渲染控制
+        - 状态管理与渲染控制<!--state-management-and-rendering-control-->
           - [应用级变量的状态管理](reference/apis-arkui/arkui-ts/ts-state-management.md)
           - [ForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)
           - [LazyForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)
           - [Repeat](reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
-        - 公共定义
+        - 公共定义<!--common-definitions-->
           - [基础类型定义](reference/apis-arkui/arkui-ts/ts-types.md)
           - [像素单位](reference/apis-arkui/arkui-ts/ts-pixel-units.md)
           - [枚举说明](reference/apis-arkui/arkui-ts/ts-appendix-enums.md)
@@ -2431,14 +2431,14 @@
           - [枚举说明 (系统接口)](reference/apis-arkui/arkui-ts/ts-appendix-enums-sys.md)
           <!--DelEnd-->
         <!--Del-->
-        - 其他类别
+        - 其他类别<!--other-->
           - [EffectComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md)
           - [IsolatedComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-isolated-component-sys.md)
           - [RemoteWindow (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md)
           - [PluginComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md)
           - [UIExtensionComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)
         <!--DelEnd-->
-        - 已停止维护的组件与接口
+        - 已停止维护的组件与接口<!--arkui-declarative-comp-dep-->
           <!--Del-->
           - [AbilityComponent](reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md)
           <!--DelEnd-->
@@ -2450,7 +2450,7 @@
           - [栅格设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-grid.md)
       - JS组件<!--arkui-js-comp-->
         - 兼容JS的类Web开发范式（ArkUI.Full）<!--arkui-js-full-comp-->
-          - 组件通用信息
+          - 组件通用信息<!--js-full-universal-comp-infor-->
             - [通用属性](reference/apis-arkui/arkui-js/js-components-common-attributes.md)
             - [通用样式](reference/apis-arkui/arkui-js/js-components-common-styles.md)
             - [通用事件](reference/apis-arkui/arkui-js/js-components-common-events.md)
@@ -2461,7 +2461,7 @@
             - [媒体查询](reference/apis-arkui/arkui-js/js-components-common-mediaquery.md)
             - [自定义字体样式](reference/apis-arkui/arkui-js/js-components-common-customizing-font.md)
             - [原子布局](reference/apis-arkui/arkui-js/js-components-common-atomic-layout.md)
-          - 容器组件
+          - 容器组件<!--js-full-container-comp-->
             - [badge](reference/apis-arkui/arkui-js/js-components-container-badge.md)
             - [dialog](reference/apis-arkui/arkui-js/js-components-container-dialog.md)
             - [div](reference/apis-arkui/arkui-js/js-components-container-div.md)
@@ -2479,7 +2479,7 @@
             - [tabs](reference/apis-arkui/arkui-js/js-components-container-tabs.md)
             - [tab-bar](reference/apis-arkui/arkui-js/js-components-container-tab-bar.md)
             - [tab-content](reference/apis-arkui/arkui-js/js-components-container-tab-content.md)
-          - 基础组件
+          - 基础组件<!--js-full-basic-comp-->
             - [button](reference/apis-arkui/arkui-js/js-components-basic-button.md)
             - [chart](reference/apis-arkui/arkui-js/js-components-basic-chart.md)
             - [divider](reference/apis-arkui/arkui-js/js-components-basic-divider.md)
@@ -2509,9 +2509,9 @@
             - [toggle](reference/apis-arkui/arkui-js/js-components-basic-toggle.md)
             - [web](reference/apis-arkui/arkui-js/js-components-basic-web.md)
             - [xcomponent](reference/apis-arkui/arkui-js/js-components-basic-xcomponent.md)
-          - 媒体组件
+          - 媒体组件<!--js-full-media-comp-->
             - [video](reference/apis-arkui/arkui-js/js-components-media-video.md)
-          - 画布组件
+          - 画布组件<!--js-full-canvas-comp-->
             - [canvas组件](reference/apis-arkui/arkui-js/js-components-canvas-canvas.md)
             - [CanvasRenderingContext2D对象](reference/apis-arkui/arkui-js/js-components-canvas-canvasrenderingcontext2d.md)
             - [Image对象](reference/apis-arkui/arkui-js/js-components-canvas-image.md)
@@ -2521,12 +2521,12 @@
             - [ImageBitmap对象](reference/apis-arkui/arkui-js/js-components-canvas-imagebitmap.md)
             - [OffscreenCanvas对象](reference/apis-arkui/arkui-js/js-components-canvas-offscreencanvas.md)
             - [OffscreenCanvasRenderingContext2D对象](reference/apis-arkui/arkui-js/js-offscreencanvasrenderingcontext2d.md)
-          - 栅格组件
+          - 栅格组件<!--js-full-grid-comp-->
             - [基本概念](reference/apis-arkui/arkui-js/js-components-grid-basic-concepts.md)
             - [grid-container](reference/apis-arkui/arkui-js/js-components-grid-container.md)
             - [grid-row](reference/apis-arkui/arkui-js/js-components-grid-row.md)
             - [grid-col](reference/apis-arkui/arkui-js/js-components-grid-col.md)
-          - svg组件
+          - svg组件<!--js-full-svg-comp-->
             - [通用属性](reference/apis-arkui/arkui-js/js-components-svg-common-attributes.md)
             - [svg](reference/apis-arkui/arkui-js/js-components-svg.md)
             - [rect](reference/apis-arkui/arkui-js/js-components-svg-rect.md)
@@ -2542,7 +2542,7 @@
             - [animate](reference/apis-arkui/arkui-js/js-components-svg-animate.md)
             - [animateMotion](reference/apis-arkui/arkui-js/js-components-svg-animatemotion.md)
             - [animateTransform](reference/apis-arkui/arkui-js/js-components-svg-animatetransform.md)
-          - 自定义组件
+          - 自定义组件<!--js-full-custom-comp-->
             - [自定义组件的基本用法](reference/apis-arkui/arkui-js/js-components-custom-basic-usage.md)
             - [数据传递与处理](reference/apis-arkui/arkui-js/js-components-custom-props.md)
             - [继承样式](reference/apis-arkui/arkui-js/js-components-custom-style.md)
@@ -2551,29 +2551,29 @@
           - [动态创建组件](reference/apis-arkui/arkui-js/js-components-create-elements.md)
           - [数据类型说明](reference/apis-arkui/arkui-js/js-appendix-types.md)
         - 兼容JS的类Web开发范式（ArkUI.Lite）<!--arkui-js-lite-comp-->
-          - 框架说明
+          - 框架说明<!--js-lite-framework-overview-->
             - [文件组织](reference/apis-arkui/arkui-js-lite/js-lite-framework-file.md)
             - [js标签配置](reference/apis-arkui/arkui-js-lite/js-lite-framework-js-tag.md)
             - [app.js](reference/apis-arkui/arkui-js-lite/js-lite-framework-js-file.md)
             - [生命周期](reference/apis-arkui/arkui-js-lite/js-lite-framework-lifecycle.md)
             - [多语言](reference/apis-arkui/arkui-js-lite/js-lite-framework-localization.md)
-            - 语法
+            - 语法<!--js-lite-syntax-->
               - [HML语法参考](reference/apis-arkui/arkui-js-lite/js-lite-framework-syntax-hml.md)
               - [CSS语法参考](reference/apis-arkui/arkui-js-lite/js-lite-framework-syntax-css.md)
               - [JS语法参考](reference/apis-arkui/arkui-js-lite/js-lite-framework-syntax-js.md)
-          - 组件通用信息
+          - 组件通用信息<!--js-lite-universal-comp-infor-->
             - [通用事件](reference/apis-arkui/arkui-js-lite/js-lite-common-events.md)
             - [通用属性](reference/apis-arkui/arkui-js-lite/js-lite-common-attributes.md)
             - [通用样式](reference/apis-arkui/arkui-js-lite/js-lite-common-styles.md)
             - [动画样式](reference/apis-arkui/arkui-js-lite/js-lite-components-common-animation.md)
             - [媒体查询](reference/apis-arkui/arkui-js-lite/js-lite-components-common-mediaquery.md)
-          - 容器组件
+          - 容器组件<!--js-lite-container-comp-->
             - [div](reference/apis-arkui/arkui-js-lite/js-lite-components-container-div.md)
             - [list](reference/apis-arkui/arkui-js-lite/js-lite-components-container-list.md)
             - [list-item](reference/apis-arkui/arkui-js-lite/js-lite-components-container-list-item.md)
             - [stack](reference/apis-arkui/arkui-js-lite/js-lite-components-container-stack.md)
             - [swiper](reference/apis-arkui/arkui-js-lite/js-lite-components-container-swiper.md)
-          - 基础组件
+          - 基础组件<!--js-lite-basic-comp-->
             - [chart](reference/apis-arkui/arkui-js-lite/js-lite-components-basic-chart.md)
             - [image](reference/apis-arkui/arkui-js-lite/js-lite-components-basic-image.md)
             - [image-animator](reference/apis-arkui/arkui-js-lite/js-lite-components-basic-image-animator.md)
@@ -2585,19 +2585,19 @@
             - [slider](reference/apis-arkui/arkui-js-lite/js-lite-components-basic-slider.md)
             - [switch](reference/apis-arkui/arkui-js-lite/js-lite-components-basic-switch.md)
             - [text](reference/apis-arkui/arkui-js-lite/js-lite-components-basic-text.md)
-          - 画布组件
+          - 画布组件<!--js-lite-canvas-comp-->
             - [canvas组件](reference/apis-arkui/arkui-js-lite/js-lite-components-canvas-canvas.md)
             - [CanvasRenderingContext2D对象](reference/apis-arkui/arkui-js-lite/js-lite-components-canvas-canvasrenderingcontext2d.md)
         - JS服务卡片UI组件<!--arkui-card-comp-->
-          - 框架说明
+          - 框架说明<!--card-comp-framework-overview-->
             - [文件组织](reference/apis-arkui/js-service-widget-ui/js-service-widget-file.md)
-            - 语法
+            - 语法<!--card-comp-syntax-->
               - [HML语法参考](reference/apis-arkui/js-service-widget-ui/js-service-widget-syntax-hml.md)
               - [CSS语法参考](reference/apis-arkui/js-service-widget-ui/js-service-widget-syntax-css.md)
             - [多语言支持](reference/apis-arkui/js-service-widget-ui/js-service-widget-multiple-languages.md)
             - [版本兼容适配](reference/apis-arkui/js-service-widget-ui/js-service-widget-version-compatibility.md)
             - [设置主题样式](reference/apis-arkui/js-service-widget-ui/js-service-widget-theme.md)
-          - 组件通用信息
+          - 组件通用信息<!--card-comp-universal-comp-infor-->
             - [通用属性](reference/apis-arkui/js-service-widget-ui/js-service-widget-common-attributes.md)
             - [通用样式](reference/apis-arkui/js-service-widget-ui/js-service-widget-common-styles.md)
             - [通用事件](reference/apis-arkui/js-service-widget-ui/js-service-widget-common-events.md)
@@ -2606,14 +2606,14 @@
             - [自定义字体样式](reference/apis-arkui/js-service-widget-ui/js-service-widget-common-customizing-font.md)
             - [无障碍](reference/apis-arkui/js-service-widget-ui/js-service-widget-common-accessibility.md)
             - [原子布局](reference/apis-arkui/js-service-widget-ui/js-service-widget-common-atomic-layout.md)
-          - 容器组件
+          - 容器组件<!--card-comp-container-comp-->
             - [badge](reference/apis-arkui/js-service-widget-ui/js-service-widget-container-badge.md)
             - [div](reference/apis-arkui/js-service-widget-ui/js-service-widget-container-div.md)
             - [list](reference/apis-arkui/js-service-widget-ui/js-service-widget-container-list.md)
             - [list-item](reference/apis-arkui/js-service-widget-ui/js-service-widget-container-list-item.md)
             - [stack](reference/apis-arkui/js-service-widget-ui/js-service-widget-container-stack.md)
             - [swiper](reference/apis-arkui/js-service-widget-ui/js-service-widget-container-swiper.md)
-          - 基础组件
+          - 基础组件<!--card-comp-basic-comp-->
             - [button](reference/apis-arkui/js-service-widget-ui/js-service-widget-basic-button.md)
             - [calendar](reference/apis-arkui/js-service-widget-ui/js-service-widget-basic-calendar.md)
             - [chart](reference/apis-arkui/js-service-widget-ui/js-service-widget-basic-chart.md)
@@ -2692,7 +2692,7 @@
             - [NativeDisplayManager_Rect](reference/apis-arkui/_native_display_manager___rect.md)
             - [NativeDisplayManager_WaterfallDisplayAreaRects](reference/apis-arkui/ive_display_manager___waterfall_display_area_rects.md)
       - 错误码<!--arkui-arkts-errcode-->
-        - UI界面
+        - UI界面<!--arkui-ui-arkts-errcode-->
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)
           - [弹窗错误码](reference/apis-arkui/errorcode-promptAction.md)
           - [页面路由错误码](reference/apis-arkui/errorcode-router.md)
@@ -2702,7 +2702,7 @@
           - [焦点错误码](reference/apis-arkui/errorcode-focus.md)
           - [系统资源错误码](reference/apis-arkui/errorcode-system-resource.md)    
           - [半模态错误码](reference/apis-arkui/errorcode-bindSheet.md)
-        - 图形图像
+        - 图形图像<!--arkui-graphics-images-arkts-errcode-->
           - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
           - [窗口错误码](reference/apis-arkui/errorcode-window.md)
     - ArkWeb（方舟Web）<!--arkweb-api-->
@@ -2746,7 +2746,7 @@
         - [@ohos.resourceschedule.deviceStandby (设备待机模块)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceStandby-sys.md)
         - [@ohos.resourceschedule.usageStatistics (设备使用信息统计)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md) 
         <!--DelEnd-->
-        - application
+        - application<!--background-tasks-arkts-application-->
           - [WorkSchedulerExtensionContext](reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext.md)
           - [WorkSchedulerExtensionContext(系统接口)](reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext-sys.md)
         - 已停止维护的接口<!--background-tasks-arkts-dep-->
@@ -2835,7 +2835,7 @@
         - [@ohos.app.form.formProvider (FormProvider)(系统接口)](reference/apis-form-kit/js-apis-app-form-formProvider-sys.md)
         - [@ohos.app.form.formObserver (formObserver)(系统接口)](reference/apis-form-kit/js-apis-app-form-formObserver-sys.md)
         <!--DelEnd-->
-        - application
+        - application<!--form-arkts-application-->
           - [FormExtensionContext](reference/apis-form-kit/js-apis-inner-application-formExtensionContext.md)
           <!--Del-->
           - [FormExtensionContext(系统接口)](reference/apis-form-kit/js-apis-inner-application-formExtensionContext-sys.md)
@@ -2909,7 +2909,7 @@
         <!--Del-->
         - [@ohos.i18n (国际化-I18n)(系统接口)](reference/apis-localization-kit/js-apis-i18n-sys.md)
         <!--DelEnd-->
-        - global
+        - global<!--localization-global-arkts-->
           - [RawFileDescriptor](reference/apis-localization-kit/rawFileDescriptor.md) 
           - [Resource](reference/apis-localization-kit/resource.md)
           - [SendableResource](reference/apis-localization-kit/sendableResource.md)
@@ -3082,7 +3082,7 @@
           - [@ohos.nfc.tag (标准NFC-Tag)(系统接口)](reference/apis-connectivity-kit/js-apis-nfcTag-sys.md)
           - [@ohos.wifiManager (WLAN)(推荐)(系统接口)](reference/apis-connectivity-kit/js-apis-wifiManager-sys.md)
           <!--DelEnd-->
-          - tag
+          - tag<!--connectivity-nfc-tag-arkts-->
             - [nfctech (标准NFC-Tag Nfc 技术)](reference/apis-connectivity-kit/js-apis-nfctech.md)
             - [tagSession (标准NFC-Tag TagSession)](reference/apis-connectivity-kit/js-apis-tagSession.md)
         - C API<!--connectivity-c-->
@@ -3227,7 +3227,7 @@
     - 基础功能<!--system-basicfun-api-->
       - Basic Services Kit（基础服务）<!--basic-services-api-->
         - ArkTS API<!--basic-services-arkts-->
-          - 账号管理
+          - 账号管理<!--account-management-arkts-->
             - [@ohos.account.appAccount (应用账号管理)](reference/apis-basic-services-kit/js-apis-appAccount.md)
             - [@ohos.account.distributedAccount (分布式账号管理)](reference/apis-basic-services-kit/js-apis-distributed-account.md)
             - [@ohos.account.osAccount (系统账号管理)](reference/apis-basic-services-kit/js-apis-osAccount.md)
@@ -3235,7 +3235,7 @@
             - [@ohos.account.distributedAccount (分布式帐号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-distributed-account-sys.md)
             - [@ohos.account.osAccount (系统帐号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-osAccount-sys.md)
             <!--DelEnd-->
-          - 设备管理
+          - 设备管理<!--device-management-arkts-->
             - [@ohos.batteryInfo (电量信息)](reference/apis-basic-services-kit/js-apis-battery-info.md)
             - [@ohos.deviceInfo (设备信息)](reference/apis-basic-services-kit/js-apis-device-info.md)
             - [@ohos.power (系统电源管理)](reference/apis-basic-services-kit/js-apis-power.md)
@@ -3255,7 +3255,7 @@
             - [@ohos.usbManager (USB管理)(系统接口)](reference/apis-basic-services-kit/js-apis-usbManager-sys.md)
             - [@ohos.update (升级)(系统接口)](reference/apis-basic-services-kit/js-apis-update-sys.md)
             <!--DelEnd-->
-          - 数据文件处理
+          - 数据文件处理<!--data-file-processing-arkts-->
             - [@ohos.pasteboard (剪贴板)](reference/apis-basic-services-kit/js-apis-pasteboard.md)
             - [@ohos.print (打印)](reference/apis-basic-services-kit/js-apis-print.md)
             - [@ohos.request (上传下载)](reference/apis-basic-services-kit/js-apis-request.md)
@@ -3266,7 +3266,7 @@
             - [@ohos.print (打印)(系统接口)](reference/apis-basic-services-kit/js-apis-print-sys.md)
             - [@ohos.request (上传下载)(系统接口)](reference/apis-basic-services-kit/js-apis-request-sys.md)
             <!--DelEnd-->
-          - 进程线程通信
+          - 进程线程通信<!--process-thread-communi-arkts-->
             - [系统定义的公共事件](reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md)
             <!--Del-->
             - [系统定义的公共事件定义 (系统接口)](reference/apis-basic-services-kit/common_event/commonEventManager-definitions-sys.md)
@@ -3278,12 +3278,12 @@
             - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)(系统接口)](reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)
             - [@ohos.application.StaticSubscriberExtensionContext (StaticSubscriberExtensionContext)(系统接口)](reference/apis-basic-services-kit/js-apis-application-StaticSubscriberExtensionContext-sys.md)
             <!--DelEnd-->
-            - commonEvent
+            - commonEvent<!--commonevent-->
               - [CommonEventData](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventData.md)
               - [CommonEventPublishData](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md)
               - [CommonEventSubscriber](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscriber.md)
               - [CommonEventSubscribeInfo](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
-          - 其他
+          - 其他<!--others-->
             <!--Del-->
             - [@ohos.ai.intelligentVoice (智能语音)(系统接口)](reference/apis-basic-services-kit/js-apis-intelligentVoice-sys.md)
             <!--DelEnd-->
@@ -3480,7 +3480,7 @@
           <!--Del-->
           - [@ohos.driver.deviceManager (外设管理)(系统接口)](reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager-sys.md)
           <!--DelEnd-->
-          - application
+          - application<!--driver-development-arkts-application-->
             - [DriverExtensionContext](reference/apis-driverdevelopment-kit/js-apis-inner-application-driverExtensionContext.md)
         - C API<!--driver-development-c-->
           - 模块<!--driver-development-module-->
@@ -3681,11 +3681,11 @@
           - [OH_AVDataSource](reference/apis-avcodec-kit/_o_h___a_v_data_source.md)
           - [OH_AVRange](reference/apis-avcodec-kit/_o_h___a_v_range.md)
           - [DrmSubsample](reference/apis-avcodec-kit/_drm_subsample.md)
-        - 已停止维护的接口
-          - 模块
+        - 已停止维护的接口<!--avcodec-arkts-dep-->
+          - 模块<!--avcodec-module-arkts-dep-->
             - [AudioDecoder](reference/apis-avcodec-kit/_audio_decoder.md)
             - [AudioEncoder](reference/apis-avcodec-kit/_audio_encoder.md)
-          - 头文件
+          - 头文件<!--avcodec-headerfile-arkts-dep-->
             - [avcodec_audio_channel_layout.h](reference/apis-avcodec-kit/avcodec__audio__channel__layout_8h.md)
             - [native_avcodec_audiodecoder.h](reference/apis-avcodec-kit/native__avcodec__audiodecoder_8h.md)
             - [native_avcodec_audioencoder.h](reference/apis-avcodec-kit/native__avcodec__audioencoder_8h.md)
@@ -3860,7 +3860,7 @@
         <!--Del-->
         - [@ohos.multimedia.media (媒体服务)(系统接口)](reference/apis-media-kit/js-apis-media-sys.md)
         <!--DelEnd-->
-        - multimedia
+        - multimedia<!--media-multimedia-arkts-->
           - [SoundPool (音频池)](reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md)
           <!--Del-->
           - [SoundPool (音频池)(系统接口)](reference/apis-media-kit/js-apis-inner-multimedia-soundPool-sys.md)
@@ -4037,13 +4037,13 @@
     - ArkGraphics 3D（方舟3D图形）<!--arkgraphics-3d-api-->
       - ArkTS API<!--arkgraphics-3d-arkts-->
         - [@ohos.graphics.scene (ArkGraphics 3D模块)](reference/apis-arkgraphics3d/js-apis-scene.md)
-        - graphics3d
+        - graphics3d<!--graphics3d-->
           - [Scene](reference/apis-arkgraphics3d/js-apis-inner-scene.md)
           - [SceneNode](reference/apis-arkgraphics3d/js-apis-inner-scene-nodes.md)
           - [SceneType](reference/apis-arkgraphics3d/js-apis-inner-scene-types.md)
           - [SceneResources](reference/apis-arkgraphics3d/js-apis-inner-scene-resources.md)
           - [ScenePostProcessSettings](reference/apis-arkgraphics3d/js-apis-inner-scene-post-process-settings.md)
-    - 应用服务
+    - 应用服务<!--application-service-reference-->
     <!--Del-->
     - Ads Kit（广告服务）<!--ads-api-->
       - ArkTS API<!--ads-arkts-->
@@ -4093,7 +4093,7 @@
         - [@ohos.notificationManager (NotificationManager模块)(系统接口)](reference/apis-notification-kit/js-apis-notificationManager-sys.md)
         - [@ohos.notificationSubscribe (NotificationSubscribe模块)(系统接口)](reference/apis-notification-kit/js-apis-notificationSubscribe-sys.md)
         <!--DelEnd-->
-        - notification
+        - notification<!--notification-->
           - [NotificationActionButton](reference/apis-notification-kit/js-apis-inner-notification-notificationActionButton.md)
           - [NotificationCommonDef](reference/apis-notification-kit/js-apis-inner-notification-notificationCommonDef.md)
           - [NotificationContent](reference/apis-notification-kit/js-apis-inner-notification-notificationContent.md)
@@ -4194,10 +4194,10 @@
     - [EGL](reference/native-lib/egl.md)
     - [ICU4C](reference/native-lib/icu4c.md)
     - [Zlib](reference/native-lib/zlib.md)
-    - Vulkan
+    - Vulkan<!--vulkan-guide-->
       - [Vulkan开发指导](reference/native-lib/vulkan-guidelines.md)
       - [Vulkan支持能力](reference/native-lib/vulkan.md)
-      - Vulkan扩展能力
+      - Vulkan扩展能力<!--vulkan-extensions-->
         - [Vulkan模块](reference/native-lib/_vulkan.md)
         - [vulkan_ohos.h](reference/native-lib/vulkan__ohos_8h.md)
         - [VkExternalFormatOHOS](reference/native-lib/_vk_external_format_o_h_o_s.md)
@@ -4207,7 +4207,7 @@
         - [VkNativeBufferPropertiesOHOS](reference/native-lib/_vk_native_buffer_properties_o_h_o_s.md)
         - [VkNativeBufferUsageOHOS](reference/native-lib/_vk_native_buffer_usage_o_h_o_s.md)
         - [VkSurfaceCreateInfoOHOS](reference/native-lib/_vk_surface_create_info_o_h_o_s.md)
-    - 附录
+    - 附录<!--appendixes-->
       - [libc中没有导出的符号列表](reference/native-lib/musl-peculiar-symbol.md)
       - [NDK musl-libc接口受权限影响的说明](reference/native-lib/guidance-on-ndk-libc-interfaces-affected-by-permissions.md)
       - [Native api中导出的EGL符号列表](reference/native-lib/egl-symbol.md)
