@@ -114,6 +114,143 @@ r : 如果4个通道的计算方式相同，用r表示。 ra : 如果只操作�
 | XOR     | 3    | 异或操作。 |
 | REVERSE_DIFFERENCE     | 4    | 反向差集操作。 |
 
+## PathIteratorVerb<sup>16+</sup>
+
+迭代器包含的路径操作类型枚举。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+| 名称  | 值   | 说明                           |
+| ----- | ---- | ------------------------------ |
+| MOVE  | 0    | 设置起始点操作。 |
+| LINE  | 1    | 添加线段操作。 |
+| QUAD  | 2    | 添加二阶贝塞尔圆滑曲线操作。 |
+| CONIC | 3    | 添加圆锥曲线操作。 |
+| CUBIC | 4    | 添加三阶贝塞尔圆滑曲线操作。 |
+| CLOSE | 5    | 路径闭合操作。 |
+| DONE  | CLOSE + 1   | 路径设置完成操作。 |
+
+## PathIterator<sup>16+</sup>
+
+表示路径操作迭代器。
+
+### constructor<sup>16+</sup>
+
+constructor(path: Path)
+
+构造一个迭代器并绑定该路径。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| path | [Path](#path) | 是   | 迭代器绑定的路径对象。                 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+let iter: drawing.PathIterator = new drawing.PathIterator(path);
+```
+
+### next<sup>16+</sup>
+
+next(points: Array<common2D.Point>, offset?: number): PathIteratorVerb
+
+返回当前路径的下一个操作，并将迭代器置于该操作。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)>   | 是   | 坐标点数组，数组长度需要大于等于4，在操作后数组会被重写，数组中坐标点数对的数量取决于路径操作类型。具体来说：MOVE操作会在坐标点数组中填入1组坐标点；LINE操作会在坐标点数组中填入2组坐标点；QUAD操作会在坐标点数组中填入3组坐标点；CONIC操作会在坐标点数组中填入3.5组坐标点，即3组坐标点加圆锥曲线的权重；CUBIC操作会在坐标点数组中填入4组坐标点；CLOSE、DONE操作不会在坐标点数组中填入坐标点。因此坐标点数组长度至少为偏移量加上4。 |
+| offset | number   | 否   | 数组中写入位置相对起始点的偏移量，默认为0，取值范围为[0, size-4]，size是指坐标点数组长度。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [PathIteratorVerb](#pathiteratorverb16) | 迭代器包含的路径操作类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+path.moveTo(10, 20);
+let iter: drawing.PathIterator = new drawing.PathIterator(path);
+let verbStr: Array<string> = ["MOVE", "LINE", "QUAD", "CONIC", "CUBIC", "CLOSE", "DONE"];
+let pointCount: Array<number> = [1,2,3,4,4,0,0]; //1,2,3,3.5,4,0,0
+let points: Array<common2D.Point> = [{x: 0, y: 0}, {x: 0, y: 0}, {x: 0, y: 0}, {x: 0, y: 0}];
+let offset = 0;
+let verb = iter.next(points, offset);
+let outputMessage: string = "pathIteratorNext: ";
+outputMessage += "verb =" + verbStr[verb] + "; has " + pointCount[verb] + " pairs: ";
+for (let j = 0; j < pointCount[verb] + offset; j++) {
+  outputMessage += "[" + points[j].x + ", " + points[j].y + "]";
+}
+console.info(outputMessage);
+```
+
+### peek<sup>16+</sup>
+
+peek(): PathIteratorVerb
+
+返回当前路径的下一个操作，迭代器仍在原操作。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [PathIteratorVerb](#pathiteratorverb16) | 迭代器包含的路径操作类型。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+let iter: drawing.PathIterator = new drawing.PathIterator(path);
+let res = iter.peek();
+```
+
+### hasNext<sup>16+</sup>
+
+hasNext(): boolean
+
+判断路径操作迭代器中是否还有其他操作。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 判断路径操作迭代器中是否还有其他操作。true表示有，false表示没有。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+let iter: drawing.PathIterator = new drawing.PathIterator(path);
+let res = iter.hasNext();
+```
+
 ## Path
 
 由直线、圆弧、二阶贝塞尔、三阶贝塞尔组成的复合几何路径。
@@ -1227,6 +1364,28 @@ if(path.buildFromSvgString(svgStr)) {
 } else {
   console.info("buildFromSvgString return false");
 }
+```
+
+### getPathIterator<sup>16+</sup>
+
+getPathIterator(): PathIterator
+
+返回该路径的操作迭代器。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [PathIterator](#pathiterator16) | 该路径的迭代器对象。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+let iter = path.getPathIterator();
 ```
 
 ## Canvas
