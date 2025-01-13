@@ -335,7 +335,7 @@ struct Index1 {
 该示例通过设置标题栏属性leftIconDefaultFocus使左侧图标默认获焦。
 ```ts
 
-import { promptAction, EditableLeftIconType, EditableTitleBar } from '@kit.ArkUI'；
+import { promptAction, EditableLeftIconType, EditableTitleBar } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -363,7 +363,7 @@ struct Index {
 该示例通过设置标题栏右侧图标属性defaultFocus使右侧图标默认获焦。
 ```ts
 
-import { promptAction, EditableLeftIconType, EditableTitleBar } from '@kit.ArkUI'；
+import { promptAction, EditableLeftIconType, EditableTitleBar, router } from '@kit.ArkUI';
 
 @Entry
 @Component
