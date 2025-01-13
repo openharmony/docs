@@ -88,9 +88,9 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
 6. 回调函数的设置，主要监听录屏过程中的错误事件的发生，音频流和视频流数据的产生事件，具体设计可参考[详细说明](#详细说明)。
 
     ```c++
-    OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
-    OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, userData);
-    OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
+    OH_AVScreenCapture_SetErrorCallback(capture, ScreenCaptureCapiMock::OnErrorNew, userData);
+    OH_AVScreenCapture_SetStateCallback(capture, ScreenCaptureCapiMock::OnStateChange, userData);
+    OH_AVScreenCapture_SetDataCallback(capture, ScreenCaptureCapiMock::OnBufferAvailable, userData);
     ```
 
 7. 调用StartScreenCapture()方法开始进行屏幕录制。
@@ -100,7 +100,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_StartScreenCapture(capture);
     ```
 
-    或调用StartScreenCaptureWithSurface方法以Surface模式进行屏幕录制。
+    或调用StartScreenCaptureWithSurface()方法以Surface模式进行屏幕录制。
 
     ```c++
     OH_AVScreenCapture_StartScreenCaptureWithSurface(capture, window);
