@@ -1607,7 +1607,7 @@ try {
 | DEVICE_SUPER_CHARGE_NOT_CHARGED        | 2    | 未充电，支持超级充电。|
 | DEVICE_SUPER_CHARGE_IN_CHARGING       | 3    | 正在充电，支持超级充电。|
 
-## DiscoveryResult<sup>12+</sup>
+## DiscoveryResult<sup>16+</sup>
 
 描述扫描设备状态参数。
 
