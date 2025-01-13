@@ -7177,7 +7177,7 @@ struct RequestExample {
 
 ### activate<sup>14+</sup>
 
-activate(isActive: boolean, atuoInactive?: boolean): void
+activate(isActive: boolean, autoInactive?: boolean): void
 
 设置当前界面的[焦点激活态](../../ui/arkts-common-events-focus-event.md)。
 
@@ -7297,7 +7297,7 @@ type PointerStyle = PointerStyle
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.MultimodalInput.Input.Pointer
 
 |类型|说明|
 | -- | -- |
