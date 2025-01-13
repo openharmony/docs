@@ -381,9 +381,9 @@ Allows an application to set pinned windows.
 
 **Valid since**: 13
 
-## ohos.permission.USE_MESSAGES_PICKER
+## ohos.permission.USE_FRAUD_MESSAGES_PICKER
 
-Allows an application to use the message Picker to obtain SMS messages.
+Allows an application to use the scam message Picker to obtain SMS messages.
 
 **Permission level**: system_basic
 
@@ -391,9 +391,9 @@ Allows an application to use the message Picker to obtain SMS messages.
 
 **Valid since**: 16
 
-## ohos.permission.USE_CALL_LOG_PICKER
+## ohos.permission.USE_FRAUD_CALL_LOG_PICKER
 
-Allows an application to use the call log Picker to obtain call logs.
+Allows an application to use the scam call log Picker to obtain call logs.
 
 **Permission level**: system_basic
 
