@@ -22,17 +22,13 @@ import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from
 
 ## InterstitialDialogAction
 
-```
-InterstitialDialogAction {
-    uiContext: UIContext,
-    contentNode: ComponentContent<object>,
-    dialogParam: DialogParams,
-    bottomOffsetType?: BottomOffset,
-    constructor: (dialogOptions: DialogOptions),
-    openDialog(): void,
-    closeDialog(): void
-}
-```
+对自定义弹框进行封装，用于在保持当前的上下文环境时，临时展示用户需关注的信息或待处理的操作。使用示例参见[示例](#示例)。
+
+### constructor
+
+constructor(dialogOptions: DialogOptions)
+
+InterstitialDialogAction的构造函数
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -40,28 +36,29 @@ InterstitialDialogAction {
 
 **参数**：
 
-| 名称 | 类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | - | - | - | - |
-| uiContext | [UIContext](../js-apis-arkui-UIContext.md#uicontext) | 是 | UI上下文实例。 |
-| contentNode | [ComponentContent](../js-apis-arkui-ComponentContent.md)\<object\> | 是 | 组件节点对象。 |
-| dialogParam | [DialogParams](#dialogparams) | 是 | 设置弹框的一些属性。 |
-| bottomOffsetType | [BottomOffset](#bottomoffset) | 否 | 设定弹框距离窗口底部的距离类型。<br>默认值：[BottomOffset](#bottomoffset).OFFSET_FOR_BAR。 |
-| constructor | (dialogOptions: [DialogOptions](#dialogoptions)) | 是 | InterstitialDialogAction类的构造方法。 |
-| openDialog | void| 是 | 设置弹框打开的接口。 |
-| closeDialog | void | 是 | 设置弹框关闭的接口。 |
+| dialogOptions | [DialogOptions](#dialogoptions)| 是 | 设置弹框特有的属性。 |
 
-## DialogParams
+### openDialog
+
+openDialog(): void
+
+打开弹框。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-设置弹框的特有属性以及默认关闭动作函数。
+### closeDialog
 
-| 名称 | 类型 | 必填 | 说明 |
-| - | - | - | - |
-| dialogOptions | [DialogOptions](#dialogoptions) | 是 | 为弹框组件设置除了基础属性外的属性。 |
-| defaultCloseAction | Callback\<void\> | 是 | 点击弹框以及关闭按钮后执行的默认关闭行为。 |
+closeDialog(): void
+
+关闭弹框。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## DialogOptions
 
@@ -74,6 +71,7 @@ InterstitialDialogAction {
 | 名称| 类型 | 必填 | 说明 |
 | - | - | - | - |
 | uiContext | [UIContext](../js-apis-arkui-UIContext.md#uicontext) | 是 | UI上下文实例。 |
+| bottomOffsetType | [BottomOffset](#bottomoffset) | 是 | 弹框距离底部偏移类型 |
 | title | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹框标题文本。 |
 | subtitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹框副标题文本。 |
 | titleColor | [ResourceStr](ts-types.md#resourcestr) \| [Color](ts-appendix-enums.md#color) | 否 | 弹框标题文本颜色。 |
@@ -212,7 +210,7 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // Index.ets
-import { getMyUiContext } from '../entryability/EntryAbility';
+import { getDialogUIContext } from '../entryability/EntryAbility';
 import { UIContext, InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@kit.ArkUI';
 
 @Entry
@@ -225,7 +223,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let ctx: UIContext | null = getMyUiContext();
+            let ctx: UIContext | null = getDialogUIContext();
             let interstitialDialogAction: InterstitialDialogAction = new InterstitialDialogAction({
               uiContext: ctx as UIContext,
               title: "主标题",
@@ -267,6 +265,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let dialogUIContext: UIContext | null = null;
 
 export function getDialogUIContext(): UIContext | null {
+  if (getDialogUIContext === null) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'getDialogUIContext is null');
+  }
   return dialogUIContext;
 }
 
@@ -335,7 +336,7 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // Index.ets
-import { getMyUiContext } from '../entryability/EntryAbility';
+import { getDialogUIContext } from '../entryability/EntryAbility';
 import { UIContext, InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from '@kit.ArkUI';
 
 @Entry
@@ -348,7 +349,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let ctx: UIContext | null = getMyUiContext();
+            let ctx: UIContext | null = getDialogUIContext();
             let interstitialDialogAction: InterstitialDialogAction = new InterstitialDialogAction({
               uiContext: ctx as UIContext,
               title: "主标题",

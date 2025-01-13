@@ -753,3 +753,18 @@ setTextSelection选中文字时的配置。
 | ----- | ------ | -------------- |
 | horizontal | number | 组件在竖直方向的布局权重，设置大于0的数字时生效。 <br> 默认值：0 <br> 异常值：0  |
 | vertical     | number | 组件在水平方向的布局权重，设置大于0的数字时生效。 <br> 默认值：0 <br> 异常值：0 |
+
+## Configuration
+
+数据类型。用于设置颜色模式和字体缩放倍数。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 类型   | 只读 | 可选 | 说明       |
+| --------- | ------ | ---- | ---- | ---------- |
+| colorMode | string | 是   | 否   | 颜色模式。 |
+| fontScale | number | 是   | 否   | 字体缩放。 |

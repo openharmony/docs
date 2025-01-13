@@ -1909,7 +1909,7 @@ export struct PageOne {
               JSON.stringify(this.pageInfos.getParamByName('pageTwo')))
             console.log('Obtains the indexes of all the navigation destination pages that match name.',
               JSON.stringify(this.pageInfos.getIndexByName('pageOne')))
-            console.log ('Obtained the stack size', JSON.stringify (this.pageInfos.size ()))
+            console.log('Obtained the stack size', JSON.stringify (this.pageInfos.size ()))
           })
       }.width('100%').height('100%')
     }.title('pageOne')

@@ -115,7 +115,7 @@ struct BackDropBlurStyleDemo {
       GridItem() {
         Column() {
           Column() {
-            Text ('Original')
+            Text('Original')
               .fontSize(20)
               .fontColor(Color.White)
               .textAlign(TextAlign.Center)
@@ -127,7 +127,7 @@ struct BackDropBlurStyleDemo {
           .borderRadius(10)
           .backgroundImage($r('app.media.share'))
 
-          Text ('Original')
+          Text('Original')
             .fontSize(12)
             .fontColor(Color.Black)
         }
@@ -378,7 +378,7 @@ struct ForegroundBlurStyleDemo {
       GridItem() {
         Column() {
           Column() {
-            Text ('Original')
+            Text('Original')
               .fontSize(20)
               .fontColor(Color.White)
               .textAlign(TextAlign.Center)
@@ -390,7 +390,7 @@ struct ForegroundBlurStyleDemo {
           .borderRadius(10)
           .backgroundImage($r('app.media.share'))
 
-          Text ('Original')
+          Text('Original')
             .fontSize(12)
             .fontColor(Color.Black)
         }

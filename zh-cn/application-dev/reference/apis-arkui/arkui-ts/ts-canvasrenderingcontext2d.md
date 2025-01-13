@@ -105,7 +105,7 @@ struct LengthMetricsUnitDemo {
 | [lineCap](#linecap)                      | [CanvasLineCap](#canvaslinecap) | 否 | 否 | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'。 |
 | [lineJoin](#linejoin)                    | [CanvasLineJoin](#canvaslinejoin) | 否 | 否 | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'。 |
 | [miterLimit](#miterlimit)                | number | 否 | 否 | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>默认值：10px<br/>单位：px<br/>miterLimit取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。 |
-| [font](#font)                            | string | 否 | 否 | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px和vp。在不同设备上呈现的字体大小可能不同。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>默认值：'normal normal 14px sans-serif'。|
+| [font](#font)                            | string | 否 | 否 | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px和vp。在不同设备上呈现的字体大小可能不同。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。同时支持注册过的自定义字体，具体使用方法参考[自定义字体示例](#font)。<br/>默认值：'normal normal 14px sans-serif'。|
 | [textAlign](#textalign)                  | [CanvasTextAlign](#canvastextalign) | 否 | 否 | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。<br/>默认值：'start'。 |
 | [textBaseline](#textbaseline)            | [CanvasTextBaseline](#canvastextbaseline) | 否 | 否 | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>默认值：'alphabetic'。 |
 | [globalAlpha](#globalalpha)              | number | 否 | 否 | 设置透明度，0.0为完全透明，1.0为完全不透明。<br/>默认值：1.0。 |
@@ -122,6 +122,7 @@ struct LengthMetricsUnitDemo {
 | [direction](#direction)                  | [CanvasDirection](#canvasdirection) | 否 | 否 | 用于设置绘制文字时使用的文字方向。<br/>默认值："inherit"。 |
 | [filter](#filter)                        | string | 否 | 否 | 用于设置图像的滤镜，可以组合任意数量的滤镜。<br/>支持的滤镜效果如下：<br/>- 'none': 无滤镜效果<br/>- 'blur'：给图像设置高斯模糊<br/>- 'brightness'：给图片应用一种线性乘法，使其看起来更亮或更暗<br/>- 'contrast'：调整图像的对比度<br/>- 'grayscale'：将图像转换为灰度图像<br/>- 'hue-rotate'：给图像应用色相旋转<br/>- 'invert'：反转输入图像<br/>- 'opacity'：转化图像的透明程度<br/>- 'saturate'：转换图像饱和度<br/>- 'sepia'：将图像转换为深褐色<br/>默认值：'none'。 |
 | [canvas<sup>13+</sup>](#canvas13)                        | [FrameNode](../../apis-arkui/js-apis-arkui-frameNode.md) | 是 | 否 | 获取和CanvasRenderingContext2D关联的Canvas组件的FrameNode实例。<br/>可用于监听关联的Canvas组件的可见状态。<br/>默认值：null。 |
+| [letterSpacing<sup>16+</sup>](#letterspacing16)                  | string&nbsp;\| [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 否 | 当使用LengthMetrics时：<br/>字间距按照指定的单位设置；<br/>不支持FP、PERCENT和LPX（按无效值处理）；<br/>支持负数和小数，设为小数时字间距不四舍五入。<br/>当使用string时：<br/>不支持设置百分比（按无效值处理）；<br/>支持负数和小数，设为小数时字间距不四舍五入；<br/>若letterSpacing的赋值未指定单位（例如：letterSpacing='10'），且未指定LengthMetricsUnit时，默认单位设置为vp；<br/>指定LengthMetricsUnit为px时，默认单位设置为px；<br/>当letterSpacing的赋值指定单位时（例如：letterSpacing='10vp'），字间距按照指定的单位设置。<br/>默认值：0（输入无效值时，字间距设为默认值）<br/>注：推荐使用LengthMetrics，性能更好。 |
 
 > **说明：**
 >
@@ -326,6 +327,26 @@ struct MiterLimit {
 
 ### font
 
+使用font属性加载自定义字体前，必须在src/main/ets/entryability/目录下的EntryAbility.ets中先注册自定义字体，参考如下代码：
+
+> familyName必须设置为不带空格的连续字符串（例如："customFont"），否则font属性将无法加载自定义字体；
+> 
+> familySrc中的font文件夹与pages文件夹在同一目录下。
+
+```ts
+onWindowStageCreate(windowStage: window.WindowStage): void {
+  windowStage.loadContent('pages/Index', (err) => {
+    windowStage.getMainWindow().then(res => {
+      const uiCtc = res.getUIContext()
+      uiCtc.getFont().registerFont({
+        familyName: 'customFont',
+        familySrc: '/font/myFont.ttf'
+      })
+    })
+  });
+}
+```
+
 ```ts
 // xxx.ets
 @Entry
@@ -339,12 +360,15 @@ struct Fonts {
       Canvas(this.context)
         .width('100%')
         .height('100%')
-        .backgroundColor('#ffff00')
+        .backgroundColor('rgb(213,213,213)')
         .onReady(() =>{
           this.context.font = '30px sans-serif'
           this.context.fillText("Hello px", 20, 60)
           this.context.font = '30vp sans-serif'
           this.context.fillText("Hello vp", 20, 100)
+          // font属性的font-family可以指定被注册的自定义字体的familyName，从而加载自定义字体
+          this.context.font = '30vp customFont'
+          this.context.fillText("Hello 自定义字体", 20, 140)
         })
     }
     .width('100%')
@@ -353,8 +377,7 @@ struct Fonts {
 }
 ```
 
-![zh-cn_image_0000001193872488](figures/zh-cn_image_0000001193872488.png)
-
+![new_font](figures/new_font.jpeg)
 
 ### textAlign
 
@@ -953,6 +976,40 @@ struct CanvasExample {
 ```
 
 ![filterDemo](figures/filterDemo.jpeg)
+
+### letterSpacing<sup>16+</sup>
+
+```ts
+  // xxx.ets
+  import { LengthMetrics, LengthUnit } from '@kit.ArkUI'
+
+  @Entry
+  @Component
+  struct letterSpacingDemo {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
+            this.context.font = '30vp'
+            this.context.letterSpacing = '10vp'
+            this.context.fillText('hello world', 30, 50)
+            this.context.letterSpacing = new LengthMetrics(10, LengthUnit.VP)
+            this.context.fillText('hello world', 30, 100)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+```
+
+![letterSpacingDemo](figures/letterSpacingDemo.jpeg)
 
 ## 方法
 

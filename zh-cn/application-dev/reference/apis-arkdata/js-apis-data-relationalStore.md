@@ -65,6 +65,7 @@ getRdbStore目前不支持多线程并发操作。
 | 14801001  | The operation is supported in the stage model only.    |
 | 14801002  | Invalid data ground ID.     |
 | 14800017  | Config changed.   |
+| 14800020  | The secret key is corrupted or lost.   |
 | 14800021  | SQLite: Generic error.    |
 | 14800022  | SQLite: Callback routine requested an abort.   |
 | 14800023  | SQLite: Access permission denied.    |
@@ -171,7 +172,10 @@ getRdbStore目前不支持多线程并发操作。
 | 14801001  | The operation is supported in the stage model only.                               |
 | 14801002  | Invalid data ground ID.                             |
 | 14800017  | Config changed. |
+| 14800020  | The secret key is corrupted or lost.   |
 | 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort.   |
+| 14800023  | SQLite: Access permission denied.    |
 | 14800027  | SQLite: Attempt to write a readonly database. |
 | 14800028  | SQLite: Some kind of disk I/O error occurred. |
 | 14800029  | SQLite: The database is full. |
@@ -566,7 +570,7 @@ class EntryAbility extends UIAbility {
 
 ## SecurityLevel
 
-数据库的安全级别枚举。请使用枚举名称而非枚举值。
+数据库的安全级别枚举。请使用枚举名称而非枚举值。数据库的安全等级仅支持由低向高设置，不支持由高向低设置。
 
 > **说明：**
 >
@@ -849,6 +853,7 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 | 名称     | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | autoSync   | boolean | 是   | 该值为true时，表示该表支持自动同步和手动同步；该值为false时，表示该表只支持手动同步，不支持自动同步。 |
+| asyncDownloadAsset<sup>16+</sup> | boolean | 否 | 表示当前数据库在端云同步时，同步或异步下载资产。true表示优先下载完所有数据后，使用异步任务下载资产；false表示同步下载资产；默认值为false。 |
 
 ## ConflictResolution<sup>10+</sup>
 
@@ -4873,7 +4878,7 @@ createTransaction(options?: TransactionOptions): Promise&lt;Transaction&gt;
 
 创建一个事务对象并开始事务，使用Promise异步回调。
 
-与[beginTransaction](#begintransaction)的区别在于：该接口会返回一个事务对象，不同事务对象之间是隔离的。一个store最多支持同时存在四个事务对象，超过后会返回14800015错误码，此时需要检查是否持有事务对象时间过长或并发事务过多。如果已无法优化，可以等其它事务释放后再次尝试创建事务对象。
+与[beginTransaction](#begintransaction)的区别在于：createTransaction接口会返回一个事务对象，不同事务对象之间是隔离的。一个store最多支持同时存在四个事务对象，超过后会返回14800015错误码，此时需要检查是否持有事务对象时间过长或并发事务过多。如果已无法优化，可以等其它事务释放后再次尝试创建事务对象。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -8279,6 +8284,81 @@ getRow(): ValuesBucket
 ```ts
 if(resultSet != undefined) {
   const row = (resultSet as relationalStore.ResultSet).getRow();
+}
+```
+
+### getRows<sup>16+</sup>
+
+getRows(maxCount: number, position?: number): Promise<Array\<ValuesBucket>>
+
+从结果集中获取指定数量的数据，使用Promise异步回调。禁止与[ResultSet](#resultset)的其它接口并发调用，否则获取的数据可能非预期。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                    |
+| ----------- | ------ | ---- | ----------------------- |
+| maxCount | number | 是   | 正整数，指定要从结果集中获取数据的条数。不为正整数则参数非法，抛出错误码401。 |
+| position | number | 否   | 非负整数，指定从结果集中获取数据的起始位置，不填则从结果集的当前行(默认首次获取数据时为当前结果集的第一行)开始获取数据。不为非负整数则参数非法，抛出错误码401。 |
+
+
+**返回值：**
+
+| 类型              | 说明                           |
+| ---------------- | ---------------------------- |
+| Promise<Array<[ValuesBucket](#valuesbucket)>> | 返回maxCount条数据，剩余数据不足maxCount条则返回剩余数据，返回空数组时代表已经遍历到结果集的末尾。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+|-----------| ------------------------------------------------------------ |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800011  | Database corrupted. |
+| 14800012  | Row out of bounds. |
+| 14800013  | Column out of bounds. |
+| 14800014  | Already closed. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+
+**示例：**
+
+```ts
+// 以查到100条数据为例
+async function proccessRows(resultSet: relationalStore.ResultSet) {
+  // 示例1：仅指定maxCount
+  if (resultSet != undefined) {
+    let rows:Array<relationalStore.ValuesBucket>
+    let maxCount:number = 50
+    // 从结果集的当前行(默认首次获取数据时为当前结果集的第一行，后续为上次获取数据结束位置的下一行)开始获取数据
+    // getRows会自动移动结果集当前行到上次getRows获取结束位置的下一行，无需使用goToFirstRow、goToNextRow等接口移动
+    while ((rows = await (resultSet as relationalStore.ResultSet).getRows(maxCount)).length != 0) {
+      console.info(JSON.stringify(rows[0]))
+    }
+  }
+
+  // 示例2：指定maxCount和起始的position
+  if (resultSet != undefined) {
+    let rows:Array<relationalStore.ValuesBucket>
+    let maxCount:number = 50
+    let position:number = 50
+    while ((rows = await (resultSet as relationalStore.ResultSet).getRows(maxCount, position)).length != 0) {
+      console.info(JSON.stringify(rows[0]))
+      position += rows.length
+    }
+  }
 }
 ```
 

@@ -25,19 +25,19 @@ Enables or disables a module with the overlay feature in the current application
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | moduleName  | string | Yes   | Name of the module with the overlay feature.              |
-| isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module. |
+| isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module.|
 
 **Return value**
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | ------ | -------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
@@ -80,13 +80,13 @@ Enables or disables a module with the overlay feature in the current application
 | ----------- | ------ | ---- | --------------------------------------- |
 | moduleName  | string | Yes   | Name of the module with the overlay feature.              |
 | isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module.|
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object. |
+| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | ------ | -------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
@@ -140,7 +140,7 @@ Obtains the information about a module with the overlay feature in the current a
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | ------ | -------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
@@ -186,7 +186,7 @@ Obtains the information about a module with the overlay feature in the current a
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | ------ | -------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
@@ -234,13 +234,13 @@ Obtains the information about modules with the overlay feature in the current ap
 
 | Type                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Promise used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects. |
+| Promise\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Promise used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | ------ | -------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
@@ -285,7 +285,7 @@ Obtains the information about modules with the overlay feature in the current ap
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | ------ | -------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found.  |

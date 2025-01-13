@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **XComponent** is a rendering componentcan that can be used for EGL/OpenGL ES and media data output. It uses a unique [NativeWindow](../graphics/native-window-guidelines.md) to render graphics and is typically employed to meet complex custom rendering needs, such as displaying camera preview streams and rendering game graphics. You can specify different rendering methods through the **type** field, which are [XComponentType](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#xcomponenttype10).SURFACE and XComponentType.TEXTURE. For the SURFACE type, you display the custom drawing content on the screen separately. For the TEXTURE type, you combine custom drawing content with the content of the **XComponent** and display it on the screen.
+The **XComponent** is a rendering component that can be used for EGL/OpenGL ES and media data output. It uses a unique [NativeWindow](../graphics/native-window-guidelines.md) to render graphics and is typically employed to meet complex custom rendering needs, such as displaying camera preview streams and rendering game graphics. You can specify different rendering methods through the **type** field, which are [XComponentType](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#xcomponenttype10).SURFACE and XComponentType.TEXTURE. For the SURFACE type, you display the custom drawing content on the screen separately. For the TEXTURE type, you combine custom drawing content with the content of the **XComponent** and display it on the screen.
 
 The **XComponent** is mainly used in two scenarios. In the native XComponent scenario, the native layer is responsible for obtaining the native **XComponent** instance and registering the lifecycle callbacks of the **XComponent** along with touch, mouse, and key event callbacks. In the ArkTS XComponent scenario, the **SurfaceId** is obtained on the ArkTS side, with lifecycle callbacks, touch, mouse, and key event callbacks all being managed and triggered there.
 
@@ -94,7 +94,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
     }
         
     interface XComponentAttrs {
-    id: string;
+        id: string;
         type: number;
         libraryname: string;
     }
@@ -116,7 +116,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Init", "napi_define_properties failed");
             return nullptr;
         }
-        // Check whether the environment variables in the method contain the XComponent instance. If the instance exists, register the drawing-related API.
+        // Check whether the environment variable contains an instance of XComponent. If the instance exists, export the drawing-related API.
         PluginManager::GetInstance()->Export(env, exports);
         return exports;
     }
@@ -140,8 +140,44 @@ The following uses the SURFACE type as an example to describe how to use the **X
     {
         napi_module_register(&nativerenderModule);
     }
-    
-    // Use the napi_define_properties method to expose the drawPattern() method to the ArkTS side and call the drawPattern() method in ArkTS code to draw content.
+    ```
+    ```c++
+    // Check whether the environment variable contains an instance of XComponent. If the instance exists, export the drawing-related API.
+    void PluginManager::Export(napi_env env, napi_value exports)
+    {
+        // ...
+        // Obtain a native XComponent.
+        OH_NativeXComponent* nativeXComponent = nullptr;
+        if (napi_unwrap(env, exportInstance, reinterpret_cast<void**>(&nativeXComponent)) != napi_ok) {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "Export: napi_unwrap fail");
+            return;
+        }
+ 
+        // Obtain the ID of the XComponent, that is, the id parameter in the XComponent struct in the ArkTS code.
+        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
+        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+        if (OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+            OH_LOG_Print(
+                LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "Export: OH_NativeXComponent_GetXComponentId fail");
+            return;
+        }
+
+        std::string id(idStr);
+        auto context = PluginManager::GetInstance();
+        if ((context != nullptr) && (nativeXComponent != nullptr)) {
+            context->SetNativeXComponent(id, nativeXComponent);
+            auto render = context->GetRender(id);
+            if (render != nullptr) {
+                // Register the callbacks.
+                render->RegisterCallback(nativeXComponent);
+                // Use Node-API in the method to export drawing-related APIs to expose them to the ArkTS side.
+                render->Export(env, exports);
+            }
+        }
+    }
+    ```
+    ```c++
+    // Use the napi_define_properties method to expose the drawPattern() method to the ArkTS side, which allows the drawPattern() method to be called in ArkTS code.
     void PluginRender::Export(napi_env env, napi_value exports)
     {
         // ...
@@ -1297,7 +1333,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
         static std::unordered_map<int64_t, OHNativeWindow *> windowMap_;
     };
     
-    // Parse the surfaceId passed from the ArkTS side.
+    // Parse the surfaceId passed from ArkTS. Here, surfaceId is a 64-bit integer value.
     int64_t ParseId(napi_env env, napi_callback_info info) {
         if ((env == nullptr) || (info == nullptr)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ParseId", "env or info is null");
@@ -1567,7 +1603,7 @@ You can use the **XComponent** to develop EGL/OpenGL ES rendering by using the f
 ```typescript
 @Builder
 function myComponent() {
-  XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' })
+  XComponent({ id: 'xcomponentId1', type: XComponentType.SURFACE, libraryname: 'nativerender' })
     .onLoad((context) => {})
     .onDestroy(() => {})
 }

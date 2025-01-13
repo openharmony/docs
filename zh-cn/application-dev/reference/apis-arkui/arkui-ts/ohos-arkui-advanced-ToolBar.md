@@ -174,165 +174,12 @@ ToolBarSymbolGlyphOptions定义图标的属性。
 ### 示例1（工具栏不同状态的默认效果）
 该示例展示了工具栏子项state属性分别设置ENABLE、DISABLE、ACTIVATE状态的不同显示效果。
 ```ts
-import { ToolBar, ToolBarOptions, ItemState } from '@kit.ArkUI'
-
-@Entry
-@Component
-struct Index {
-  @State toolbarList: ToolBarOptions = new ToolBarOptions()
-  aboutToAppear() {
-    this.toolbarList.push({
-      content: '剪贴我是超超超超超超超超超长样式',
-      icon: $r('sys.media.ohos_ic_public_share'),
-      action: () => {
-      },
-    })
-    this.toolbarList.push({
-      content: '拷贝',
-      icon: $r('sys.media.ohos_ic_public_copy'),
-      action: () => {
-      },
-      state:ItemState.DISABLE
-    })
-    this.toolbarList.push({
-      content: '粘贴',
-      icon: $r('sys.media.ohos_ic_public_paste'),
-      action: () => {
-      },
-      state:ItemState.ACTIVATE
-    })
-    this.toolbarList.push({
-      content: '全选',
-      icon: $r('sys.media.ohos_ic_public_select_all'),
-      action: () => {
-      },
-    })
-    this.toolbarList.push({
-      content: '分享',
-      icon: $r('sys.media.ohos_ic_public_share'),
-      action: () => {
-      },
-    })
-    this.toolbarList.push({
-      content: '分享',
-      icon: $r('sys.media.ohos_ic_public_share'),
-      action: () => {
-      },
-    })
-  }
-  build() {
-    Row() {
-      Stack() {
-        Column() {
-          ToolBar({
-            activateIndex: 2,
-            toolBarList: this.toolbarList,
-          })
-        }
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
-    }
-  }
-}
-```
-
-![zh-cn_image_toolbar_example01](figures/zh-cn_image_toolbar_example01.png)
-
-### 示例2（设置工具栏自定义样式）
-该示例通过设置属性ToolBarModifier自定义工具栏高度、背景色、按压效果等样式。
-```ts
-import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarModifier, ItemState, LengthMetrics } from '@kit.ArkUI';
-
-@Entry
-@Component
-struct Index {
-  @State toolbarList: ToolBarOptions = new ToolBarOptions();
-  private toolBarModifier: ToolBarModifier =
-  new ToolBarModifier().height(LengthMetrics.vp(52)).backgroundColor(Color.Transparent).stateEffect(false);
-  @State dividerModifier: DividerModifier = new DividerModifier().height(0);
-
-  aboutToAppear() {
-    this.toolbarList.push({
-      content: 'Long long long long long long long long text',
-      icon: $r('sys.media.ohos_ic_public_share'),
-      action: () => {
-      },
-      state: ItemState.ACTIVATE,
-      toolBarSymbolOptions: {
-        normal: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Green]),
-        activated: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]),
-      },
-      activatedTextColor: $r('sys.color.font_primary'),
-    })
-    this.toolbarList.push({
-      content: 'Copy',
-      icon: $r('sys.media.ohos_ic_public_copy'),
-      action: () => {
-      },
-      state:ItemState.DISABLE,
-      iconColor: '#ff18cb53',
-      activatedIconColor: '#ffec5d5d',
-      activatedTextColor: '#ffec5d5d',
-    })
-    this.toolbarList.push({
-      content: 'Paste',
-      icon: $r('sys.media.ohos_ic_public_paste'),
-      action: () => {
-      },
-      state:ItemState.ACTIVATE,
-      textColor: '#ff18cb53',
-    })
-    this.toolbarList.push({
-      content: 'All',
-      icon: $r('sys.media.ohos_ic_public_select_all'),
-      action: () => {
-      },
-      state:ItemState.ACTIVATE,
-    })
-    this.toolbarList.push({
-      content: '分享',
-      icon: $r('sys.media.ohos_ic_public_share'),
-      action: () => {
-      },
-    })
-    this.toolbarList.push({
-      content: '分享',
-      icon: $r('sys.media.ohos_ic_public_share'),
-      action: () => {
-      },
-    })
-  }
-  build() {
-    Row() {
-      Stack() {
-        Column() {
-          ToolBar({
-            toolBarModifier: this.toolBarModifier,
-            dividerModifier: this.dividerModifier,
-            activateIndex: 0,
-            toolBarList: this.toolbarList,
-          })
-            .height(52)
-        }
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
-    }
-  }
-}
-```
-
-![zh-cn_image_toolbar_example02](figures/zh-cn_image_toolbar_example02.png)
-
-
-### 示例3（设置工具栏自定义播报）
-该示例通过设置工具栏子项属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
-```ts
 import { ToolBar, ToolBarOptions, ItemState } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  @State toolbarList: ToolBarOptions = new ToolBarOptions()
+  @State toolbarList: ToolBarOptions = new ToolBarOptions();
 
   aboutToAppear() {
     this.toolbarList.push({
@@ -340,17 +187,13 @@ struct Index {
       icon: $r('sys.media.ohos_ic_public_share'),
       action: () => {
       },
-      accessibilityText: '剪贴', //该项屏幕朗读播报文本为‘剪贴’
-      accessibilityDescription: '单指双击即可剪贴', //该项屏幕朗读播报描述为'单指双击即可剪贴'
-      accessibilityLevel: 'yes'  //该项可被无障碍屏幕朗读聚焦
     })
     this.toolbarList.push({
       content: '拷贝',
       icon: $r('sys.media.ohos_ic_public_copy'),
       action: () => {
       },
-      state: ItemState.DISABLE,
-      accessibilityLevel: 'no'  //该项将无法被屏幕朗读服务所识别，屏幕朗读不可聚焦
+      state: ItemState.DISABLE
     })
     this.toolbarList.push({
       content: '粘贴',
@@ -384,11 +227,189 @@ struct Index {
       Stack() {
         Column() {
           ToolBar({
+            activateIndex: 2,
             toolBarList: this.toolbarList,
           })
         }
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
+    }
+  }
+}
+```
+
+![zh-cn_image_toolbar_example01](figures/zh-cn_image_toolbar_example01.png)
+
+### 示例2（设置工具栏自定义样式）
+该示例通过设置属性ToolBarModifier自定义工具栏高度、背景色、按压效果等样式。
+```ts
+import {
+  SymbolGlyphModifier,
+  DividerModifier,
+  ToolBar,
+  ToolBarOptions,
+  ToolBarModifier,
+  ItemState,
+  LengthMetrics,
+} from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State toolbarList: ToolBarOptions = new ToolBarOptions();
+  // 自定义工具栏样式
+  private toolBarModifier: ToolBarModifier =
+    new ToolBarModifier().height(LengthMetrics.vp(52)).backgroundColor(Color.Transparent).stateEffect(false);
+  @State dividerModifier: DividerModifier = new DividerModifier().height(0);
+
+  aboutToAppear() {
+    // 添加工具栏子项
+    this.toolbarList.push({
+      content: 'Long long long long long long long long text',
+      icon: $r('sys.media.ohos_ic_public_share'),
+      action: () => {
+      },
+      state: ItemState.ACTIVATE,
+      toolBarSymbolOptions: {
+        normal: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Green]), // 普通态symbol图标
+        activated: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]), // 激活态symbol图标
+      },
+      activatedTextColor: $r('sys.color.font_primary'),
+    })
+    this.toolbarList.push({
+      content: 'Copy',
+      icon: $r('sys.media.ohos_ic_public_copy'),
+      action: () => {
+      },
+      state: ItemState.DISABLE,
+      iconColor: '#ff18cb53',
+      activatedIconColor: '#ffec5d5d', // 激活态icon颜色
+      activatedTextColor: '#ffec5d5d', // 激活态文本颜色
+    })
+    this.toolbarList.push({
+      content: 'Paste',
+      icon: $r('sys.media.ohos_ic_public_paste'),
+      action: () => {
+      },
+      state: ItemState.ACTIVATE,
+      textColor: '#ff18cb53',
+    })
+    this.toolbarList.push({
+      content: 'All',
+      icon: $r('sys.media.ohos_ic_public_select_all'),
+      action: () => {
+      },
+      state: ItemState.ACTIVATE,
+    })
+    this.toolbarList.push({
+      content: '分享',
+      icon: $r('sys.media.ohos_ic_public_share'),
+      action: () => {
+      },
+    })
+    this.toolbarList.push({
+      content: '分享',
+      icon: $r('sys.media.ohos_ic_public_share'),
+      action: () => {
+      },
+    })
+  }
+
+  build() {
+    Row() {
+      Stack() {
+        Column() {
+          ToolBar({
+            toolBarModifier: this.toolBarModifier,
+            dividerModifier: this.dividerModifier,
+            activateIndex: 0,
+            toolBarList: this.toolbarList,
+          })
+            .height(52)
+        }
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
+    }
+  }
+}
+```
+
+![zh-cn_image_toolbar_example02](figures/zh-cn_image_toolbar_example02.png)
+
+
+### 示例3（设置工具栏自定义播报）
+该示例通过设置工具栏子项属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+```ts
+import { ToolBar, ToolBarOptions, ItemState } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State toolbarList: ToolBarOptions = new ToolBarOptions();
+
+  aboutToAppear() {
+    // 添加工具栏子项
+    this.toolbarList.push({
+      content: '剪贴我是超超超超超超超超超长样式',
+      icon: $r('sys.media.ohos_ic_public_share'),
+      action: () => {
+      },
+      accessibilityText: '剪贴', // 该项屏幕朗读播报文本为‘剪贴’
+      accessibilityDescription: '单指双击即可剪贴', // 该项屏幕朗读播报描述为'单指双击即可剪贴'
+      accessibilityLevel: 'yes' // 该项可被无障碍屏幕朗读聚焦
+    })
+    this.toolbarList.push({
+      content: '拷贝',
+      icon: $r('sys.media.ohos_ic_public_copy'),
+      action: () => {
+      },
+      state: ItemState.DISABLE,
+      accessibilityLevel: 'no' // 该项将无法被屏幕朗读服务所识别，屏幕朗读不可聚焦
+    })
+    this.toolbarList.push({
+      content: '粘贴',
+      icon: $r('sys.media.ohos_ic_public_paste'),
+      action: () => {
+      },
+      state: ItemState.ACTIVATE
+    })
+    this.toolbarList.push({
+      content: '全选',
+      icon: $r('sys.media.ohos_ic_public_select_all'),
+      action: () => {
+      },
+    })
+    this.toolbarList.push({
+      content: '分享',
+      icon: $r('sys.media.ohos_ic_public_share'),
+      action: () => {
+      },
+    })
+    this.toolbarList.push({
+      content: '分享',
+      icon: $r('sys.media.ohos_ic_public_share'),
+      action: () => {
+      },
+    })
+  }
+
+  build() {
+    Row() {
+      Stack() {
+        Column() {
+          ToolBar({
+            activateIndex: 2,
+            toolBarList: this.toolbarList,
+          })
+        }
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
     }
   }
 }

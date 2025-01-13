@@ -579,7 +579,7 @@ enum OHNativeErrorCode
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | NATIVE_ERROR_OK | 成功 | 
-| NATIVE_ERROR_MEM_OPERATION_ERROR<sup>14+</sup> | 内存操作错误 | 
+| NATIVE_ERROR_MEM_OPERATION_ERROR<sup>15+</sup> | 内存操作错误 | 
 | NATIVE_ERROR_INVALID_ARGUMENTS | 入参无效 | 
 | NATIVE_ERROR_NO_PERMISSION | 无权限操作 | 
 | NATIVE_ERROR_NO_BUFFER | 无空闲可用的buffer | 

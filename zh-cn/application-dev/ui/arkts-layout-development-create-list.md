@@ -42,7 +42,7 @@ List除了提供垂直和水平布局能力、超出屏幕时可以滚动的自�
 ![zh-cn_image_0000001511421344](figures/zh-cn_image_0000001511421344.png)
 
 
-Grid和WaterFlow也可以实现单列、多列布局，如果布局每列等宽，且不需要跨行跨列布局，相比Gird和WaterFlow，则更推荐使用List。
+Grid和WaterFlow也可以实现单列、多列布局，如果布局每列等宽，且不需要跨行跨列布局，相比Grid和WaterFlow，则更推荐使用List。
 
 ### 约束
 

@@ -340,3 +340,89 @@ try {
   console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
+## inputDevice.setInputDeviceEnabled<sup>16+</sup>
+
+setInputDeviceEnabled(deviceId: number, enabled: boolean): Promise&lt;void&gt;
+
+Sets the input switch status of an input device. Take the touchscreen as an example. If the input switch is off, the touchscreen does not respond when being touched. If the input switch is on, the touchscreen wakes up when being touched.
+
+**Required permissions**: ohos.permission.INPUT_DEVICE_CONTROLLER
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type   | Mandatory| Description                     |
+| -------- | ------- | ---- | ------------------------- |
+| deviceId | number  | Yes  | Device ID.             |
+| enabled  | boolean | Yes  | Whether to enable input switch of the input device. The value true indicates that the input switch is enabled, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input Device Error Codes](errorcode-inputdevice.md).
+
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Not system application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 3900001  | The specified device does not exist.                         |
+
+**Example**
+
+```js
+try {
+  inputDevice.setInputDeviceEnabled(0, true).then(() => {
+    console.info(`Set input device enable success`);
+  }).catch((error) => {
+    console.info(`Set input device enable failed, error=${JSON.stringify(error)}`);
+  });
+} catch (error) {
+    console.info(`Set input device enable error`);
+}
+```
+
+## inputDevice.setFunctionKeyEnabled<sup>15+</sup>
+
+setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;void&gt;
+
+Sets whether to enable the function key.
+
+**System capability**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**System API**：This is a system API.
+
+**Parameters**：
+
+| Parameters   | Type     | Mandatory | Description                      |
+| -------- | ------- | ---- | ------------------------- |
+| functionKey | [FunctionKey](js-apis-inputdevice.md#functionkey15)  | Yes   | Function key id.              |
+| enabled  | boolean | Yes   | Setting the function key status, true is enable, false is disable. |
+
+**Error codes**：
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**：
+
+```js
+try {
+  inputDevice.setInputDeviceEnabled(1, true).then(() => {
+    console.info(`Set capslock state success`);
+  }).catch((error) => {
+    console.info(`Set capslock state failed, error=${JSON.stringify(error)}`);
+  });
+} catch (error) {
+    console.info(`Set capslock enable error`);
+}
+```
+## 

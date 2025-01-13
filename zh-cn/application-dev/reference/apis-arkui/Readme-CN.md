@@ -262,6 +262,7 @@
     - [ExceptionPrompt](arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
     - [Gauge](arkui-ts/ts-basic-components-gauge.md)
     - [LoadingProgress](arkui-ts/ts-basic-components-loadingprogress.md)
+    - [LinearIndicator](arkui-ts/ts-basic-components-linearindicator.md)
     - [Marquee](arkui-ts/ts-basic-components-marquee.md)
     - [PatternLock](arkui-ts/ts-basic-components-patternlock.md)
     - [Progress](arkui-ts/ts-basic-components-progress.md)
@@ -297,7 +298,8 @@
   - 渲染绘制
     - [XComponent](arkui-ts/ts-basic-components-xcomponent.md)
     - [Component3D](arkui-ts/ts-basic-components-component3d.md)
-    - [EmbeddedComponent](arkui-ts/ts-container-embedded-component.md) 
+    - [EmbeddedComponent](arkui-ts/ts-container-embedded-component.md)
+    - [XComponent(系统接口)](arkui-ts/ts-basic-components-xcomponent-sys.md)
   - 标题栏与工具栏
     - [ComposeTitleBar](arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md)
     - [EditableTitleBar](arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)

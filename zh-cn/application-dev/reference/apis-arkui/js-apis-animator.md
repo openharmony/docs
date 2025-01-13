@@ -443,6 +443,28 @@ let expectedFrameRate: ExpectedFrameRateRange = {
 animatorResult.setExpectedFrameRateRange(expectedFrameRate);
 ```
 
+### update<sup>(deprecated)</sup>
+
+update(options: AnimatorOptions): void
+
+更新当前动画器。
+
+从API version9开始不再维护，建议使用[reset<sup>9+</sup>](#reset9)
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型                                  | 必填   | 说明      |
+| ------- | ----------------------------------- | ---- | ------- |
+| options | [AnimatorOptions](#animatoroptions) | 是    | 定义动画选项。 |
+
+**示例：**
+
+```ts
+animator.update(options);
+```
+
 ## AnimatorOptions
 
 定义动画选项。
@@ -716,28 +738,6 @@ struct AnimatorTest {
     }
   }
 }
-```
-
-## update<sup>(deprecated)</sup>
-
-update(options: AnimatorOptions): void
-
-更新当前动画器。
-
-从API version9开始不再维护，建议使用[reset<sup>9+</sup>](#reset9)
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名     | 类型                                  | 必填   | 说明      |
-| ------- | ----------------------------------- | ---- | ------- |
-| options | [AnimatorOptions](#animatoroptions) | 是    | 定义动画选项。 |
-
-**示例：**
-
-```ts
-animator.update(options);
 ```
 
 ## createAnimator<sup>(deprecated)</sup>

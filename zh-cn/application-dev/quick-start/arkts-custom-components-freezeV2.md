@@ -348,6 +348,108 @@ struct NavigationContentMsgStack {
 
 ![navigation-freeze.gif](figures/navigation-freeze.gif)
 
+### Repeat virtualScroll
+
+对Repeat virtualScroll缓存池中的自定义组件进行冻结，避免不必要的组件刷新。建议提前阅读[Repeat组件生成及复用virtualScroll规则](./arkts-new-rendering-control-repeat.md#virtualscroll规则-1)。
+
+```ts
+@Entry
+@ComponentV2
+struct RepeatVirtualScrollFreeze {
+  @Local simpleList: Array<string> = [];
+  @Local bgColor: Color = Color.Pink;
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 7; i++) {
+      this.simpleList.push(`item${i}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Row() {
+        Button(`Reduce length to 5`)
+          .onClick(() => {
+            this.simpleList = this.simpleList.slice(0, 5);
+          })
+        Button(`Change bgColor`)
+          .onClick(() => {
+            this.bgColor = this.bgColor == Color.Pink ? Color.Blue : Color.Pink;
+          })
+      }
+
+      List() {
+        Repeat(this.simpleList)
+          .each((obj: RepeatItem<string>) => {
+          })
+          .key((item: string, index: number) => item)
+          .virtualScroll({ totalCount: this.simpleList.length })
+          .templateId(() => `a`)
+          .template(`a`, (ri) => {
+            ChildComponent({
+              message: ri.item,
+              bgColor: this.bgColor
+            })
+          }, { cachedCount: 2 })
+      }
+      .cachedCount(0)
+      .height(500)
+    }
+    .height(`100%`)
+  }
+}
+
+// 开启组件冻结
+@ComponentV2({ freezeWhenInactive: true })
+struct ChildComponent {
+  @Param @Require message: string = ``;
+  @Param @Require bgColor: Color = Color.Pink;
+  @Monitor(`bgColor`)
+  onBgColorChange(monitor: IMonitor) {
+    // bgColor改变时，缓存池中组件不刷新，不会打印日志
+    console.log(`repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+  }
+
+  build() {
+    Text(`[a]: ${this.message}`)
+      .fontSize(50)
+      .backgroundColor(this.bgColor)
+  }
+}
+```
+
+在上面的示例中：
+
+点击“Reduce length to 5”后，被移除的两个组件会进入Repeat缓存池，然后点击“Change bgColor”更改bgColor的值触发节点刷新。
+
+开启组件冻结（freezeWhenInactive: true），只有剩余节点中@Monitor装饰的方法onBgColorChange被触发，如示例中屏上的5个节点会刷新并打印5条日志，缓存池中的节点则不会。
+
+![freeze_repeat_L2.gif](figures/freeze_repeat_L2.gif)
+
+```ts
+// 关闭组件冻结
+@ComponentV2({ freezeWhenInactive: false })
+struct ChildComponent {
+  @Param @Require message: string = ``;
+  @Param @Require bgColor: Color = Color.Pink;
+  @Monitor(`bgColor`)
+  onBgColorChange(monitor: IMonitor) {
+    // bgColor改变时，缓存池组件也会刷新，并打印日志
+    console.log(`repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+  }
+
+  build() {
+    Text(`[a]: ${this.message}`)
+      .fontSize(50)
+      .backgroundColor(this.bgColor)
+  }
+}
+```
+
+不开启组件冻结（freezeWhenInactive: false，当未指定freezeWhenInactive参数时默认不开启组件冻结），剩余节点和缓存池节点中@Monitor装饰的方法onBgColorChange都会被触发，即会有7个节点会刷新并打印7条日志。
+
+![freeze_repeat_L2_unfreeze.gif](figures/freeze_repeat_L2_unfreeze.gif)
+
 ### 混用场景
 
 组件冻结混用场景即当支持组件冻结的场景彼此之间组合使用，对于不同的API version版本，冻结行为会有不同。给父组件设置组件冻结标志，在API version 15及以下，当父组件解冻时，会解冻自己子组件所有的节点；从API version 16开始，父组件解冻时，只会解冻子组件的屏上节点，详细说明见[\@Compone的自定义组件冻结的混用场景](./arkts-custom-components-freeze.md#组件混用)。

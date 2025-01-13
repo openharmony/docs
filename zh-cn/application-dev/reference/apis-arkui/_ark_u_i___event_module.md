@@ -34,7 +34,7 @@
 | {<br/>UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN = 0, UI_INPUT_EVENT_TOOL_TYPE_FINGER = 1, UI_INPUT_EVENT_TOOL_TYPE_PEN = 2, UI_INPUT_EVENT_TOOL_TYPE_MOUSE = 3,<br/>UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD = 4, UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK = 5<br/>} | 产生输入事件的工具类型定义。  | 
 | { UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN = 0, UI_INPUT_EVENTT_SOURCE_TYPE_MOUSE = 1, UI_INPUT_EVENTT_SOURCE_TYPE_TOUCH_SCREEN = 2 } | 产生输入事件的来源类型定义。  | 
 | [HitTestMode](#hittestmode) { HTMDEFAULT = 0, HTMBLOCK, HTMTRANSPARENT, HTMNONE } | 定义触摸测试类型的枚举值。  | 
-| { UI_MOUSE_EVENT_ACTION_UNKNOWN = 0, UI_MOUSE_EVENT_ACTION_PRESS = 1, UI_MOUSE_EVENT_ACTION_RELEASE = 2, UI_MOUSE_EVENT_ACTION_MOVE = 3 } | 定义鼠标事件的Action Code。  | 
+| { UI_MOUSE_EVENT_ACTION_UNKNOWN = 0, UI_MOUSE_EVENT_ACTION_PRESS = 1, UI_MOUSE_EVENT_ACTION_RELEASE = 2, UI_MOUSE_EVENT_ACTION_MOVE = 3, UI_MOUSE_EVENT_ACTION_CANCEL = 13 } | 定义鼠标事件的Action Code。  | 
 | {<br/>UI_MOUSE_EVENT_BUTTON_NONE = 0, UI_MOUSE_EVENT_BUTTON_LEFT = 1, UI_MOUSE_EVENT_BUTTON_RIGHT = 2, UI_MOUSE_EVENT_BUTTON_MIDDLE = 3,<br/>UI_MOUSE_EVENT_BUTTON_BACK = 4, UI_MOUSE_EVENT_BUTTON_FORWARD = 5<br/>} | 定义鼠标事件的按键类型。  | 
 | [ArkUI_ModifierKeyName](#arkui_modifierkeyname) { ARKUI_MODIFIER_KEY_CTRL = 1 &lt;&lt; 0, ARKUI_MODIFIER_KEY_SHIFT = 1 &lt;&lt; 1, ARKUI_MODIFIER_KEY_ALT = 1 &lt;&lt; 2, ARKUI_MODIFIER_KEY_FN = 1 &lt;&lt; 3 } | 定义modifier按键。  | 
 
@@ -90,7 +90,7 @@
 | int32_t [OH_ArkUI_MouseEvent_GetMouseAction](#oh_arkui_mouseevent_getmouseaction) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取鼠标事件的鼠标动作类型的值。  | 
 | int32_t [OH_ArkUI_PointerEvent_SetStopPropagation](#oh_arkui_pointerevent_setstoppropagation) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, bool stopPropagation) | 设置是否阻止事件冒泡。  | 
 | int32_t [OH_ArkUI_UIInputEvent_GetDeviceId](#oh_arkui_uiinputevent_getdeviceid) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前按键的输入设备ID。  | 
-| int32_t [OH_ArkUI_UIInputEvent_GetPressedKeys](#oh_arkui_uiinputevent_getpressedkeys) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, int32_t \*pressedKeyCodes, int32_t \*length) | 获取所有按下的按键。  | 
+| int32_t [OH_ArkUI_UIInputEvent_GetPressedKeys](#oh_arkui_uiinputevent_getpressedkeys) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, int32_t \*pressedKeyCodes, int32_t \*length) | 获取所有按下的按键，当前只支持按键事件。  | 
 
 
 ## 类型定义说明
@@ -189,6 +189,7 @@ anonymous enum
 | UI_MOUSE_EVENT_ACTION_PRESS  | 鼠标按键按下。  | 
 | UI_MOUSE_EVENT_ACTION_RELEASE  | 鼠标按键松开。  | 
 | UI_MOUSE_EVENT_ACTION_MOVE  | 鼠标移动。  | 
+| UI_MOUSE_EVENT_ACTION_CANCEL  | 鼠标按键被取消。  | 
 
 
 ### anonymous enum
@@ -1279,7 +1280,7 @@ int32_t OH_ArkUI_UIInputEvent_GetPressedKeys (const ArkUI_UIInputEvent * event, 
 ```
 **描述：**
 
-获取所有按下的按键。
+获取所有按下的按键，当前只支持按键事件。
 
 **起始版本：** 14
 

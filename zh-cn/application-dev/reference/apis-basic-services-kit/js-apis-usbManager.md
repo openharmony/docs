@@ -704,6 +704,10 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 **示例：**
 
+> **说明：** 
+>
+> 以下示例代码只是调用bulkTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
+
 ```ts
 //usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
 //把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
@@ -828,7 +832,7 @@ requestAccessoryRight(accessory: USBAccessory): Promise&lt;boolean&gt;
 
 需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
 
-**系统能力**  SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
 
@@ -874,7 +878,7 @@ cancelAccessoryRight(accessory: USBAccessory): void;
 
 需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
 
-**系统能力**  SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
 
@@ -913,7 +917,7 @@ getAccessoryList(): Array<Readonly&lt;USBAccessory&gt;>
 
 获取当前已接入主机的USB配件列表。
 
-**系统能力**  SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **错误码：**
 
@@ -949,7 +953,7 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle;
 
 需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
 
-**系统能力**  SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
 
@@ -965,7 +969,7 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle;
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 14400001 | Permission denied. Call requestAccessoryRight to get the right first. |
-| 14400004 | Service exception. Possible causes: No accessory is plugged in. |
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
 | 14401001 | The target USBAccessory not matched.                         |
 | 14401002 | Failed to open the native accessory node.                    |
 | 14401003 | Cannot reopen the accessory.                                 |
@@ -998,7 +1002,7 @@ closeAccessory(accessoryHandle: USBAccessoryHandle): void;
 
 需要调用[usbManager.openAccessory](#usbmanageropenaccessory14)获取配件列表，得到[USBAccessoryHandle](#usbaccessoryhandle14)作为参数。
 
-**系统能力**  SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
 

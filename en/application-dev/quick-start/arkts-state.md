@@ -304,7 +304,7 @@ struct MyComponent {
         .margin(10)
       Button(`Click to change title`)
         .onClick(() => {
-          // The update of the @State decorated variable triggers the update of the <Text> component.
+          // The update of the @State decorated variable triggers the update of the Text component.
           this.title.value = this.title.value === 'Hello ArkUI' ? 'Hello World' : 'Hello ArkUI';
         })
         .width(300)
@@ -312,7 +312,7 @@ struct MyComponent {
 
       Button(`Click to increase count = ${this.count}`)
         .onClick(() => {
-          // The update of the @State decorated variable triggers the update of the <Button> component.
+          // The update of the @State decorated variable triggers the update of the Button component.
           this.count += this.increaseBy;
         })
         .width(300)

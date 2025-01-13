@@ -115,6 +115,8 @@ The file format is not supported.
 
 Use a supported format.
 
+For details about the supported formats, see [Media Kit Overview](../../media/media/media-kit-intro.md).
+
 ## 5400107 Audio Focus Conflict
 
 **Error Message**
@@ -132,3 +134,211 @@ Another process occupies the audio focus.
 **Solution**
 
 Destroy the current instance and check whether another process is recording. If you can stop the other process, you can create the current instance again.
+
+## 5411001 Failed to Parse or Connect to the Server Address
+
+**Error Message**
+
+Can not find host.
+
+**Description**
+
+An error occurred when parsing or connecting to the server address.
+
+**Possible Causes**
+
+1. The server address is incorrect.
+2. The server address fails to be parsed.
+
+**Solution**
+
+Try another server address.
+
+## 5411002 Network Connection Timeout
+
+**Error Message**
+
+Connection time out.
+
+**Description**
+
+Network connection times out.
+
+**Possible Causes**
+
+The network is abnormal.
+
+**Solution**
+
+1. Check whether the network is normal.
+2. Destroy this instance and re-create it. If the re-creation fails, stop related operations.
+
+## 5411003 Data or Link Exception Caused by Network Exceptions
+
+**Error Message**
+
+NetWork abnormal.
+
+**Description**
+
+Data or links are abnormal due to network exceptions.
+
+**Possible Causes**
+
+The network is abnormal.
+
+**Solution**
+
+Destroy this instance and re-create it. If the re-creation fails, stop related operations.
+
+## 5411004 Network Disabled
+
+**Error Message**
+
+NetWork unavailable.
+
+**Description**
+
+The network is unavailable.
+
+**Possible Causes**
+
+The network is disabled.
+
+**Solution**
+
+1. Check whether the network is disabled.
+2. Destroy this instance and re-create it. If the re-creation fails, stop related operations.
+
+## 5411005 Access Denied
+
+**Error Message**
+
+No permission.
+
+**Description**
+
+No access permission.
+
+**Possible Causes**
+
+No access permission.
+
+**Solution**
+
+1. Check whether you have the access permission.
+2. Destroy this instance and re-create it. If the re-creation fails, stop related operations.
+
+## 5411006 Client Request Parameter Is Incorrect or Exceeds the Processing Capability
+
+**Error Message**
+
+Network access denied.
+
+**Description**
+
+The client request parameter is incorrect or exceeds the processing capability.
+
+**Possible Causes**
+
+The client request parameter is incorrect or exceeds the processing capability.
+
+**Solution**
+
+1. Correct the request parameter.
+2. Destroy this instance and re-create it. If the re-creation fails, stop related operations.
+
+## 5411007 No Resource Available
+
+**Error Message**
+
+Cannot find available network resources.
+
+**Description**
+
+No network resource is available.
+
+**Possible Causes**
+
+The server address is abnormal.
+
+**Solution**
+
+1. Check whether the server address is correct.
+2. Destroy this instance and re-create it. If the re-creation fails, stop related operations.
+
+## 5411008 Server Fails to Verify the Client Certificate
+
+**Error Message**
+
+SSL client cert needed.
+
+**Description**
+
+The SSL client is untrusted, and the server fails to verify the client certificate.
+
+**Possible Causes**
+
+The certificate is not carried, is invalid, or has expired.
+
+**Solution**
+
+1. Check whether the SSL certificate is normal.
+2. Destroy this instance and re-create it. If the re-creation fails, stop related operations.
+
+## 5411009 SSL Connection Failed
+
+**Error Message**
+
+SSL connection failed.
+
+**Description**
+
+The SSL connection fails.
+
+**Possible Causes**
+
+The SSL connection fails.
+
+**Solution**
+
+1. Check whether the SSL connection has expired.
+2. Destroy this instance and re-create it. If the re-creation fails, stop related operations.
+
+## 5411010 Client Fails to Verify the Server Certificate
+
+**Error Message**
+
+SSL server cert needed.
+
+**Description**
+
+The SSL server is untrusted, and the client fails to verify the server certificate.
+
+**Possible Causes**
+
+The certificate is not carried, is invalid, or has expired.
+
+**Solution**
+
+1. Check whether the SSL certificate is normal.
+2. Destroy this instance and re-create it. If the re-creation fails, stop related operations.
+
+## 5411011 Unsupported Request Due to Network Protocol Errors
+
+**Error Message**
+
+Unsupportted request.
+
+**Description**
+
+The client request parameter is incorrect or exceeds the processing capability.
+
+**Possible Causes**
+
+The client request parameter is incorrect or exceeds the processing capability.
+
+**Solution**
+
+1. Check whether the client request parameter is correct.
+2. Destroy this instance and re-create it. If the re-creation fails, stop related operations.

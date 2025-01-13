@@ -8,8 +8,13 @@ Media Library Kit（媒体文件管理服务）提供了管理相册和媒体文
 
 面向**所有应用**开放如下能力：
 
-- [使用Picker选择媒体库资源](photoAccessHelper-photoviewpicker.md)
-- [保存媒体库资源](photoAccessHelper-savebutton.md)
+- 选择/保存媒体库资源
+  - [使用Picker选择媒体库资源](photoAccessHelper-photoviewpicker.md)
+  - [保存媒体库资源](photoAccessHelper-savebutton.md)
+- 管理动态照片
+  - [访问和管理动态照片资源](photoAccessHelper-movingphoto.md)
+  - [使用MovingPhotoView播放动态照片](movingphotoview-guidelines.md)
+<!--RP2--><!--RP2End-->
 
 面向**三方应用受限**开放如下能力：
 

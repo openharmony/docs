@@ -73,7 +73,7 @@ aboutToDisappear?(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## onAttach<sup>16+</sup>
+### onAttach<sup>16+</sup>
 
 onAttach?(): void
 
@@ -87,7 +87,7 @@ onAttach?(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## onDetach<sup>16+</sup>
+### onDetach<sup>16+</sup>
 
 onDetach?(): void
 
@@ -101,7 +101,7 @@ onDetach?(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## onWillBind<sup>16+</sup>
+### onWillBind<sup>16+</sup>
 
 onWillBind?(containerId: number): void
 
@@ -117,7 +117,7 @@ onWillBind?(containerId: number): void
 | ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
 | containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)即将绑定。|
 
-## onWillUnbind<sup>16+</sup>
+### onWillUnbind<sup>16+</sup>
 
 onWillUnbind?(containerId: number): void
 
@@ -133,7 +133,7 @@ onWillUnbind?(containerId: number): void
 | ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
 | containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)即将解绑。|
 
-## onBind<sup>16+</sup>
+### onBind<sup>16+</sup>
 
 onBind?(containerId: number): void
 
@@ -149,7 +149,7 @@ onBind?(containerId: number): void
 | ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
 | containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)绑定完成。|
 
-## onUnbind<sup>16+</sup>
+### onUnbind<sup>16+</sup>
 
 onUnbind?(containerId: number): void
 

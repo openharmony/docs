@@ -159,7 +159,7 @@ onDataMoved(from: number, to: number): void
 
 > 从API 8开始，建议使用[onDataMove](#ondatamove8)。
 >
-> **说明：**数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。数据移动起始位置与数据移动目标位置交换完成后调用。
+> **说明：** 数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。数据移动起始位置与数据移动目标位置交换完成后调用。
 
 **参数：**
 
@@ -220,7 +220,7 @@ onDataMove(from: number, to: number): void
 
 通知组件数据有移动。将from和to位置的数据进行交换。数据移动起始位置与数据移动目标位置交换完成后调用。
 
-> **说明：**数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。
+> **说明：** 数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。
 
 **参数：**
 
@@ -271,7 +271,9 @@ onDataChange(index: number): void
 
 onDatasetChange(dataOperations: DataOperation[]): void
 
-进行批量的数据处理，该接口不可与上述接口混用。批量数据处理后调用。
+进行批量的数据处理后，调用onDatasetChange接口通知组件按照dataOperations刷新组件。
+
+> **说明：** onDatasetChange接口不能与其他DataChangeListener的更新接口混用。如在同一个LazyForEach中，调用过onDataAdd接口后，不能再调用onDatasetChange接口；反之，调用过onDatasetChange接口后，也不能调用onDataAdd等其他更新接口。页面中不同LazyForEach之间互不影响。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 

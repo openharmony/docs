@@ -102,7 +102,9 @@ index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程�
 - 0 <= totalCount < arr.length时，界面中只渲染“totalCount”个数据；
 - totalCount > arr.length时，代表Repeat将渲染totalCount个数据，滚动条样式根据totalCount值变化。
 
-> **注意：** 当totalCount < arr.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
+> **注意：** 
+>
+> 当totalCount < arr.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
 
 ## cachedCount规则
 
@@ -595,6 +597,7 @@ struct DemoList {
 
   aboutToAppear(): void {
     for (let i = 0; i < 10; i++) {
+      // 此处app.media.listItem0、app.media.listItem1、app.media.listItem2仅作示例，请开发者自行替换
       this.videoList.push(new DemoListItemInfo('视频' + i,
         i % 3 == 0 ? $r("app.media.listItem0") :
         i % 3 == 1 ? $r("app.media.listItem1") : $r("app.media.listItem2")));
@@ -704,6 +707,7 @@ struct DemoGrid {
 
   aboutToAppear(): void {
     for (let i = 0; i < 10; i++) {
+      // 此处app.media.gridItem0、app.media.gridItem1、app.media.gridItem2仅作示例，请开发者自行替换
       this.itemList.push(new DemoGridItemInfo('视频' + i,
         i % 3 == 0 ? $r("app.media.gridItem0") :
         i % 3 == 1 ? $r("app.media.gridItem1") : $r("app.media.gridItem2")));
@@ -769,8 +773,9 @@ struct DemoGrid {
       .onRefreshing(() => {
         setTimeout(() => {
           this.itemList.splice(10, 1);
-          this.itemList.unshift(new DemoGridItemInfo('refresh', $r('app.media.gridItem0')));
+          this.itemList.unshift(new DemoGridItemInfo('refresh', $r('app.media.gridItem0'))); // 此处app.media.gridItem0仅作示例，请开发者自行替换
           for (let i = 0; i < 10; i++) {
+            // 此处aapp.media.gridItem0、app.media.gridItem1、app.media.gridItem2仅作示例，请开发者自行替换
             this.itemList.unshift(new DemoGridItemInfo('新视频' + this.num,
               i % 3 == 0 ? $r("app.media.gridItem0") :
               i % 3 == 1 ? $r("app.media.gridItem1") : $r("app.media.gridItem2")));

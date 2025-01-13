@@ -1005,3 +1005,15 @@ You can customize the result codes sent to the server. The result codes in the f
 | 1002      | Incorrect protocol.          |
 | 1003      | Data unable to be processed.|
 | 1004~1015 | Reserved.            |
+
+## HttpProxy
+
+type HttpProxy = connection.HttpProxy
+
+Defines the global HTTP proxy configuration of the network.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| connection.HttpProxy | The specified network proxy is used.   |

@@ -315,7 +315,7 @@ struct Page2 {
   }
 }
 ```
-使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径。
+使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径，并且在module.json5中添加："routerMap": "$profile:route_map"。
 ```json
 {
   "routerMap": [
@@ -353,9 +353,8 @@ export class Sample {
 ### 使用globalConnect存储数据
 
 ```ts
-import { PersistenceV2, Type } from '@kit.ArkUI';
+import { PersistenceV2, Type, ConnectOptions } from '@kit.ArkUI';
 import { contextConstant } from '@kit.AbilityKit';
-import { ConnectOptions } from '@ohos.arkui.StateManagement';
 
 // 接受序列化失败的回调
 PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
