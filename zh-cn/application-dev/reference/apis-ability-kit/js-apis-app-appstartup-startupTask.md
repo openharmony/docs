@@ -89,7 +89,7 @@ export default class StartupTask_001 extends StartupTask {
     hilog.info(0x0000, 'testTag', 'StartupTask_001 init.');
     // ...
     
-    return 'StartupTask_001';
+    return "StartupTask_001";
   }
 
   onDependencyCompleted(dependence: string, result: Object): void {
