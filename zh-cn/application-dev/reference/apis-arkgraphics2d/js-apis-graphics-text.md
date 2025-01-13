@@ -23,7 +23,7 @@
 import { text } from '@kit.ArkGraphics2D';
 ```
 
-## text.matchFontDescriptors<sup>14+</sup>
+## text.matchFontDescriptors<sup>16+</sup>
 
 matchFontDescriptors(desc: FontDescriptor): Promise&lt;Array&lt;FontDescriptor&gt;&gt;
 
@@ -601,7 +601,7 @@ struct RenderTest {
 }
 ```
 
-### loadFont<sup>14+</sup>
+### loadFont<sup>16+</sup>
 
 loadFont(name: string, path: string | Resource): Promise\<void>
 
@@ -699,7 +699,7 @@ struct Index {
 | breakStrategy        | [BreakStrategy](#breakstrategy)            | 是   | 是   | 断行策略，默认为GREEDY。                        |
 | strutStyle           | [StrutStyle](#strutstyle)                  | 是   | 是   | 支柱样式，默认为初始的StrutStyle。               |
 | textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | 是   | 是   | 文本高度修饰符模式，默认为ALL。                              |
-| tab<sup>14+</sup>   | [TextTab](#texttab14)  | 是   | 是   | 表示段落中文本制表符之后文本的对齐方式及位置，默认为将制表符替换为一个空格。与文本对齐方式（即align属性）或省略号样式（即[TextStyle](#textstyle)中的ellipsis属性）共同配置时，此参数不生效。 |
+| tab<sup>16+</sup>   | [TextTab](#texttab14)  | 是   | 是   | 表示段落中文本制表符之后文本的对齐方式及位置，默认为将制表符替换为一个空格。与文本对齐方式（即align属性）或省略号样式（即[TextStyle](#textstyle)中的ellipsis属性）共同配置时，此参数不生效。 |
 
 
 ## PlaceholderAlignment
@@ -776,7 +776,7 @@ layoutSync(width: number): void
 paragraph.layoutSync(100);
 ```
 
-### layout<sup>14+</sup>
+### layout<sup>16+</sup>
 
 layout(width: number): Promise\<void>
 
@@ -1385,13 +1385,13 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 let lineMetrics =  paragraph.getLineMetrics(0);
 ```
 
-## LineTypeset<sup>14+</sup>
+## LineTypeset<sup>16+</sup>
 
 保存着文本内容以及样式的载体，可以用于计算单行排版信息。
 
 下列API示例中都需先使用[ParagraphBuilder](#paragraphbuilder)类的[buildLineTypeset()](#buildlinetypeset14)接口获取到LineTypeset对象实例，再通过此实例调用对应方法。
 
-### getLineBreak<sup>14+</sup>
+### getLineBreak<sup>16+</sup>
 
 getLineBreak(startIndex: number, width: number): number
 
@@ -1428,7 +1428,7 @@ let width = 100.0;
 let count = lineTypeset.getLineBreak(startIndex, width);
 ```
 
-### createLine<sup>14+</sup>
+### createLine<sup>16+</sup>
 
 createLine(startIndex: number, count: number): TextLine
 
@@ -1857,7 +1857,7 @@ struct Index {
 }
 ```
 
-### buildLineTypeset<sup>14+</sup>
+### buildLineTypeset<sup>16+</sup>
 
 buildLineTypeset(): LineTypeset
 
@@ -1948,7 +1948,7 @@ struct Index {
 }
 ```
 
-## TypographicBounds<sup>14+</sup>
+## TypographicBounds<sup>16+</sup>
 
 文本行的排版边界。文本行排版边界与排版字体、排版字号有关，与字符本身无关，例如字符串为" a b "，'a'字符前面有1个空格，'b'字符后面有1个空格，排版边界就包括行首和末尾空格的边界。例如字符串为"j"或"E"，排版边界相同，即与字符本身无关。
 
@@ -1975,7 +1975,7 @@ struct Index {
 >
 >![zh-ch_image_TypographicBounds_Character.png](figures/zh-ch_image_TypographicBounds_Character.png)
 
-## CaretOffsetsCallback<sup>14+</sup>
+## CaretOffsetsCallback<sup>16+</sup>
 
 type CaretOffsetsCallback = (offset: number, index: number, leadingEdge: boolean) => boolean
 
@@ -2162,7 +2162,7 @@ struct Index {
 }
 ```
 
-### createTruncatedLine<sup>14+</sup>
+### createTruncatedLine<sup>16+</sup>
 
 createTruncatedLine(width: number, ellipsisMode: EllipsisMode, ellipsis: string): TextLine
 
@@ -2225,7 +2225,7 @@ struct Index {
 }
 ```
 
-### getTypographicBounds<sup>14+</sup>
+### getTypographicBounds<sup>16+</sup>
 
 getTypographicBounds(): TypographicBounds
 
@@ -2273,7 +2273,7 @@ struct Index {
 }
 ```
 
-### getImageBounds<sup>14+</sup>
+### getImageBounds<sup>16+</sup>
 
 getImageBounds(): common2D.Rect
 
@@ -2322,7 +2322,7 @@ struct Index {
 }
 ```
 
-### getTrailingSpaceWidth<sup>14+</sup>
+### getTrailingSpaceWidth<sup>16+</sup>
 
 getTrailingSpaceWidth(): number
 
@@ -2360,7 +2360,7 @@ struct Index {
 }
 ```
 
-### getStringIndexForPosition<sup>14+</sup>
+### getStringIndexForPosition<sup>16+</sup>
 
 getStringIndexForPosition(point: common2D.Point): number
 
@@ -2413,7 +2413,7 @@ struct Index {
 }
 ```
 
-### getOffsetForStringIndex<sup>14+</sup>
+### getOffsetForStringIndex<sup>16+</sup>
 
 getOffsetForStringIndex(index: number): number
 
@@ -2465,7 +2465,7 @@ struct Index {
 }
 ```
 
-### enumerateCaretOffsets<sup>14+</sup>
+### enumerateCaretOffsets<sup>16+</sup>
 
 enumerateCaretOffsets(callback: CaretOffsetsCallback): void
 
@@ -2515,7 +2515,7 @@ struct Index {
 }
 ```
 
-### getAlignmentOffset<sup>14+</sup>
+### getAlignmentOffset<sup>16+</sup>
 
 getAlignmentOffset(alignmentFactor: number, alignmentWidth: number): number
 
@@ -2648,7 +2648,7 @@ struct Index {
 }
 ```
 
-### getGlyphs<sup>14+</sup>
+### getGlyphs<sup>16+</sup>
 
 getGlyphs(range: Range): Array\<number>
 
@@ -2740,7 +2740,7 @@ struct Index {
   }
 }
 ```
-### getPositions<sup>14+</sup>
+### getPositions<sup>16+</sup>
 
 getPositions(range: Range): Array<common2D.Point>
 
@@ -2917,7 +2917,7 @@ struct Index {
 }
 ```
 
-## TextTab<sup>14+</sup>
+## TextTab<sup>16+</sup>
 
 段落风格的文本制表符，储存了对齐方式和位置。
 
@@ -2942,7 +2942,7 @@ alignment为RIGHT，location为100，文本为"aabcdef/tg hi/tjkl/tmno/tp qr"：
 
 ![zh-ch_image_AlignmentRight.png](figures/zh-ch_image_AlignmentRight.png)
 
-### getStringRange<sup>14+</sup>
+### getStringRange<sup>16+</sup>
 
 getStringRange(): Range
 
@@ -2982,7 +2982,7 @@ struct Index {
 }
 ```
 
-### getStringIndices<sup>14+</sup>
+### getStringIndices<sup>16+</sup>
 
 getStringIndices(range?: Range): Array\<number>
 
@@ -3038,7 +3038,7 @@ struct Index {
 }
 ```
 
-### getImageBounds<sup>14+</sup>
+### getImageBounds<sup>16+</sup>
 
 getImageBounds(): common2D.Rect
 
@@ -3085,7 +3085,7 @@ struct Index {
 }
 ```
 
-### getTypographicBounds<sup>14+</sup>
+### getTypographicBounds<sup>16+</sup>
 
 getTypographicBounds(): TypographicBounds
 

@@ -4705,7 +4705,7 @@ let glyphs : number[] = font.textToGlyphs(text);
 console.info("drawing text toglyphs OnTestFunction num =  " + glyphs.length );
 ```
 
-### getBounds<sup>14+</sup>
+### getBounds<sup>16+</sup>
 
 getBounds(glyphs: Array\<number>): Array\<common2D.Rect>
 
@@ -4767,7 +4767,7 @@ struct Index {
 }
 ```
 
-### getTextPath<sup>14+</sup>
+### getTextPath<sup>16+</sup>
 
 getTextPath(text: string, byteLength: number, x: number, y: number): Path;
 
@@ -4818,7 +4818,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createPathForGlyph<sup>14+</sup>
+### createPathForGlyph<sup>16+</sup>
 
 createPathForGlyph(index: number): Path
 
