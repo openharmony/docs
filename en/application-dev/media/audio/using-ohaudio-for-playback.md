@@ -1,6 +1,6 @@
 # Using OHAudio for Audio Playback (C/C++)
 
-**OHAudio** is a set of C APIs introduced in API version 10. These APIs are normalized in design and support both common and low-latency audio channels. They support the PCM format only. They are suitable for playback applications that implement audio output at the native layer.
+**OHAudio** is a set of C APIs introduced in API version 10. These APIs are normalized in design and support both common and low-latency audio channels. They support the PCM format only and are suitable for playback applications that implement audio output at the native layer.
 
 OHAudio audio playback state transition
 
@@ -79,95 +79,215 @@ The following walks you through how to implement simple playback:
 
     Note that the audio data to play is written through callbacks. You must call **OH_AudioStreamBuilder_SetRendererCallback** to implement the callbacks. For details about the declaration of the callback functions, see [OH_AudioRenderer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_callbacks).
 
-
 3. Set the callback functions.
 
     For details about concurrent processing of multiple audio streams, see [Processing Audio Interruption Events](audio-playback-concurrency.md). The procedure is similar, and the only difference is the API programming language in use.
 
-    ```c++
-    // Customize a data writing function.
-    int32_t MyOnWriteData(
-        OH_AudioRenderer* renderer,
-        void* userData,
-        void* buffer,
-        int32_t length)
-    {
-        // Write the data to be played to the buffer by length.
-        return 0;
-    }
-    // Customize an audio stream event function.
-    int32_t MyOnStreamEvent(
-        OH_AudioRenderer* renderer,
-        void* userData,
-        OH_AudioStream_Event event)
-    {
-        // Update the player status and UI based on the audio stream event information indicated by the event.
-        return 0;
-    }
-    // Customize an audio interruption event function.
-    int32_t MyOnInterruptEvent(
-        OH_AudioRenderer* renderer,
-        void* userData,
-        OH_AudioInterrupt_ForceType type,
-        OH_AudioInterrupt_Hint hint)
-    {
-        // Update the player status and UI based on the audio interruption information indicated by type and hint.
-        return 0;
-    }
-    // Customize an exception callback function.
-    int32_t MyOnError(
-        OH_AudioRenderer* renderer,
-        void* userData,
-        OH_AudioStream_Result error)
-    {
-        // Perform operations based on the audio exception information indicated by error.
-        return 0;
-    }
+    The callback function [OH_AudioRenderer_OnWriteDataCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_onwritedatacallback) is introduced in API version 12 for writing audio data.
 
-    OH_AudioRenderer_Callbacks callbacks;
-    // Set the callbacks.
-    callbacks.OH_AudioRenderer_OnWriteData = MyOnWriteData;
-    callbacks.OH_AudioRenderer_OnStreamEvent = MyOnStreamEvent;
-    callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
-    callbacks.OH_AudioRenderer_OnError = MyOnError;
+    - Since API version 12, you are advised to use [OH_AudioRenderer_OnWriteDataCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_onwritedatacallback) instead of [OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](../../reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata) to write audio data.
 
-    // Set callbacks for the audio renderer.
-    OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
-    ```
+      > **NOTE**
+      > 
+      > - When the amount of data is sufficient to meet the required buffer length of the callback, you should return **AUDIO_DATA_CALLBACK_RESULT_VALID**, and the system uses the entire data buffer for playback. Do not return **AUDIO_DATA_CALLBACK_RESULT_VALID** in this case, as this leads to audio artifacts such as noise and playback stuttering.
+      > 
+      > - When the amount of data is insufficient to meet the required buffer length of the callback, you are advised to return **AUDIO_DATA_CALLBACK_RESULT_INVALID**. In this case, the system does not process this portion of audio data but requests data from the application again. Once the buffer is adequately filled, you can return **AUDIO_DATA_CALLBACK_RESULT_VALID**.
+      > 
+      > - Once the callback function finishes its execution, the audio service queues the data in the buffer for playback. Therefore, do not change the buffered data outside the callback. Regarding the last frame, if there is insufficient data to completely fill the buffer, you must concatenate the available data with padding to ensure that the buffer is full. This prevents any residual dirty data in the buffer from adversely affecting the playback effect.
 
-    To avoid unexpected behavior, ensure that each callback of [OH_AudioRenderer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_callbacks) is initialized by a custom callback method or null pointer when being set.
+    - Since API version 12, you can call [OH_AudioStreamBuilder_SetFrameSizeInCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setframesizeincallback) to set **audioDataSize**.
 
-    ```c++
-    // Customize a data writing function.
-    int32_t MyOnWriteData(
-        OH_AudioRenderer* renderer,
-        void* userData,
-        void* buffer,
-        int32_t length)
-    {
-        // Write the data to be played to the buffer by length.
-        return 0;
-    }
-    // Customize an audio interruption event function.
-    int32_t MyOnInterruptEvent(
-        OH_AudioRenderer* renderer,
-        void* userData,
-        OH_AudioInterrupt_ForceType type,
-        OH_AudioInterrupt_Hint hint)
-    {
-        // Update the player status and UI based on the audio interruption information indicated by type and hint.
-        return 0;
-    }
-    OH_AudioRenderer_Callbacks callbacks;
+      ```c++
+      // Customize a data writing function.
+      static OH_AudioData_Callback_Result NewAudioRendererOnWriteData(
+          OH_AudioRenderer* renderer,
+          void* userData,
+          void* audioData,
+          int32_t audioDataSize)
+      {
+          // Write the data to be played to audioData by audioDataSize.
+          // If you do not want to play a segment of audioData, return AUDIO_DATA_CALLBACK_RESULT_INVALID.
+          return AUDIO_DATA_CALLBACK_RESULT_VALID;
+      }
+      // Customize an audio stream event function.
+      int32_t MyOnStreamEvent(
+          OH_AudioRenderer* renderer,
+          void* userData,
+          OH_AudioStream_Event event)
+      {
+          // Update the player status and UI based on the audio stream event information indicated by the event.
+          return 0;
+      }
+      // Customize an audio interruption event function.
+      int32_t MyOnInterruptEvent(
+          OH_AudioRenderer* renderer,
+          void* userData,
+          OH_AudioInterrupt_ForceType type,
+          OH_AudioInterrupt_Hint hint)
+      {
+          // Update the player status and UI based on the audio interruption information indicated by type and hint.
+          return 0;
+      }
+      // Customize an exception callback function.
+      int32_t MyOnError(
+          OH_AudioRenderer* renderer,
+          void* userData,
+          OH_AudioStream_Result error)
+      {
+          // Perform operations based on the audio exception information indicated by error.
+          return 0;
+      }
 
-    // Configure a callback function. If listening is required, assign a value.
-    callbacks.OH_AudioRenderer_OnWriteData = MyOnWriteData;
-    callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+      OH_AudioRenderer_Callbacks callbacks;
 
-    // (Mandatory) If listening is not required, use a null pointer for initialization.
-    callbacks.OH_AudioRenderer_OnStreamEvent = nullptr;
-    callbacks.OH_AudioRenderer_OnError = nullptr;
-    ```
+      // Set the callbacks.
+      callbacks.OH_AudioRenderer_OnStreamEvent = MyOnStreamEvent;
+      callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+      callbacks.OH_AudioRenderer_OnError = MyOnError;
+      callbacks.OH_AudioRenderer_OnWriteData = nullptr;
+
+      // Set callbacks for the audio renderer.
+      OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
+
+      // Configure the callback function for writing audio data.
+      OH_AudioRenderer_OnWriteDataCallback writeDataCb = NewAudioRendererOnWriteData;
+      OH_AudioStreamBuilder_SetRendererWriteDataCallback(builder, writeDataCb, nullptr);
+      ```
+
+    - In API version 11, you can use the callback function [OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](../../reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata) to write audio data.
+
+      > **NOTE**
+      > 
+      > - This callback function does not return a callback result, and the system treats all data in the callback as valid by default. Ensure that the callback's data buffer is completely filled to the necessary length to prevent issues such as audio noise and playback stuttering.
+      > 
+      > - If the amount of data is insufficient to fill the data buffer, you are advised to temporarily halt data writing (without pausing the audio stream), block the callback function, and wait until enough data accumulates before resuming writing, thereby ensuring that the buffer is fully filled. If you need to call AudioRenderer APIs after the callback function is blocked, unblock the callback function first.
+      > 
+      > - If you do not want to play the audio data in this callback function, you can nullify the data block in the callback function. (Once nullified, the system still regards this as part of the written data, leading to silent frames during playback).
+      > 
+      > - Once the callback function finishes its execution, the audio service queues the data in the buffer for playback. Therefore, do not change the buffered data outside the callback. Regarding the last frame, if there is insufficient data to completely fill the buffer, you must concatenate the available data with padding to ensure that the buffer is full. This prevents any residual dirty data in the buffer from adversely affecting the playback effect.
+
+      ```c++
+      // Customize a data writing function.
+      int32_t MyOnWriteData(
+          OH_AudioRenderer* renderer,
+          void* userData,
+          void* buffer,
+          int32_t length)
+      {
+          // Write the data to be played to the buffer by length.
+          // If you do not want to play a particular portion of the buffer, you can clear that specific section of the buffer.
+          return 0;
+      }
+      // Customize an audio stream event function.
+      int32_t MyOnStreamEvent(
+          OH_AudioRenderer* renderer,
+          void* userData,
+          OH_AudioStream_Event event)
+      {
+          // Update the player status and UI based on the audio stream event information indicated by the event.
+          return 0;
+      }
+      // Customize an audio interruption event function.
+      int32_t MyOnInterruptEvent(
+          OH_AudioRenderer* renderer,
+          void* userData,
+          OH_AudioInterrupt_ForceType type,
+          OH_AudioInterrupt_Hint hint)
+      {
+          // Update the player status and UI based on the audio interruption information indicated by type and hint.
+          return 0;
+      }
+      // Customize an exception callback function.
+      int32_t MyOnError(
+          OH_AudioRenderer* renderer,
+          void* userData,
+          OH_AudioStream_Result error)
+      {
+          // Perform operations based on the audio exception information indicated by error.
+          return 0;
+      }
+
+      OH_AudioRenderer_Callbacks callbacks;
+
+      // Set the callbacks.
+      callbacks.OH_AudioRenderer_OnWriteData = MyOnWriteData;
+      callbacks.OH_AudioRenderer_OnStreamEvent = MyOnStreamEvent;
+      callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+      callbacks.OH_AudioRenderer_OnError = MyOnError;
+
+      // Set callbacks for the audio renderer.
+      OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
+      ```
+
+   To avoid unexpected behavior, you can set the audio callback functions in either of the following ways:
+
+   - Initialize each callback in [OH_AudioRenderer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_callbacks) by a custom callback method or a null pointer.
+   
+     ```c++
+     // Customize a data writing function.
+     int32_t MyOnWriteData(
+         OH_AudioRenderer* renderer,
+         void* userData,
+         void* buffer,
+         int32_t length)
+     {
+         // Write the data to be played to the buffer by length.
+         return 0;
+     }
+     // Customize an audio interruption event function.
+     int32_t MyOnInterruptEvent(
+         OH_AudioRenderer* renderer,
+         void* userData,
+         OH_AudioInterrupt_ForceType type,
+         OH_AudioInterrupt_Hint hint)
+     {
+         // Update the player status and UI based on the audio interruption information indicated by type and hint.
+         return 0;
+     }
+
+     OH_AudioRenderer_Callbacks callbacks;
+
+     // Configure a callback function. If listening is required, assign a value.
+     callbacks.OH_AudioRenderer_OnWriteData = MyOnWriteData;
+     callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+
+     // (Mandatory) If listening is not required, use a null pointer for initialization.
+     callbacks.OH_AudioRenderer_OnStreamEvent = nullptr;
+     callbacks.OH_AudioRenderer_OnError = nullptr;
+     ```
+   
+   - Initialize and clear the struct before using it.
+   
+     ```c++
+     // Customize a data writing function.
+     int32_t MyOnWriteData(
+         OH_AudioRenderer* renderer,
+         void* userData,
+         void* buffer,
+         int32_t length)
+     {
+         // Write the data to be played to the buffer by length.
+         return 0;
+     }
+     // Customize an audio interruption event function.
+     int32_t MyOnInterruptEvent(
+         OH_AudioRenderer* renderer,
+         void* userData,
+         OH_AudioInterrupt_ForceType type,
+         OH_AudioInterrupt_Hint hint)
+     {
+         // Update the player status and UI based on the audio interruption information indicated by type and hint.
+         return 0;
+     }
+     OH_AudioRenderer_Callbacks callbacks;
+   
+     // Initialize and clear the struct before using it.
+     memset(&callbacks, 0, sizeof(OH_AudioRenderer_Callbacks));
+   
+     // Configure the required callback functions.
+     callbacks.OH_AudioRenderer_OnWriteData = MyOnWriteData;
+     callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+     ```
 
 4. Create an audio renderer instance.
 
@@ -201,6 +321,10 @@ The following walks you through how to implement simple playback:
 If the device supports the low-latency channel, you can use the low-latency mode to create a player for a higher-quality audio experience.
 
 The development process is similar to that in the common playback scenario. The only difference is that you need to set the low delay mode by calling [OH_AudioStreamBuilder_SetLatencyMode()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setlatencymode) when creating an audio stream builder.
+
+> **NOTE**
+> 
+> In audio recording scenarios, if [OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage) is set to **AUDIOSTREAM_USAGE_VOICE_COMMUNICATION** or **AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION**, the low-latency mode cannot be set. The system determines the output audio channel based on the device capability.
 
 The code snippet is as follows:
 
