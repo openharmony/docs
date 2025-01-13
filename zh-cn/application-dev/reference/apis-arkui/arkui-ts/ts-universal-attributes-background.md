@@ -230,7 +230,6 @@ backgroundImageResizable(value: ResizableOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-
 ## backgroundBrightness<sup>12+</sup> 
 
 backgroundBrightness(params: BackgroundBrightnessOptions)

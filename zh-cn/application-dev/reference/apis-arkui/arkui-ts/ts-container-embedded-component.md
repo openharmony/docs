@@ -93,10 +93,14 @@ onError(callback: ErrorCallback)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 属性名  | 类型   | 说明                                                 |
-| ------- | ------ | ---------------------------------------------------  |
-| code    | number | 被拉起EmbeddedUIExtensionAbility退出时返回的结果码。 |
-| want    | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)   | 被拉起EmbeddedUIExtensionAbility退出时返回的数据。   |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+| 名称 | 类型                                                       | 必填 | 说明                                                 |
+| ---- | ---------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| code | number                                                     | 是   | 被拉起EmbeddedUIExtensionAbility退出时返回的结果码。 |
+| want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 被拉起EmbeddedUIExtensionAbility退出时返回的数据。   |
 
 ## 示例
 
