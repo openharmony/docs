@@ -393,7 +393,7 @@ Sets a URI for a system ringtone. This API uses an asynchronous callback to retu
 | Name  | Type                                     | Mandatory| Description                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | Yes  | Application context.          |
-| uri      | string                                   | Yes  | URI of the system ringtone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
+| uri      | string                                   | Yes  | URI of the system ringtone. For details about supported resources, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 | type     | [RingtoneType](#ringtonetype)            | Yes  | Type of the system ringtone.    |
 | callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result.    |
 
@@ -436,7 +436,7 @@ Sets a URI for a system ringtone. This API uses a promise to return the result.
 | Name  | Type                                     | Mandatory| Description                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)  | Yes  | Application context.        |
-| uri      | string                                   | Yes  | URI of the system ringtone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
+| uri      | string                                   | Yes  | URI of the system ringtone. For details about supported resources, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 | type     | [RingtoneType](#ringtonetype)            | Yes  | Type of the system ringtone.  |
 
 **Return value**
@@ -652,7 +652,7 @@ Sets a URI for a system ringtone. This API uses a promise to return the result.
 | Name  | Type                           | Mandatory| Description                    |
 | -------- |-------------------------------| ---- | ------------------------ |
 | context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)            | Yes  | Application context.        |
-| uri      | string                        | Yes  | URI of the system ringtone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
+| uri      | string                        | Yes  | URI of the system ringtone. For details about supported resources, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 | type     | [RingtoneType](#ringtonetype) | Yes  | Type of the system ringtone.  |
 
 **Return value**
@@ -805,7 +805,7 @@ Sets a URI for a system alert tone. This API uses a promise to return the result
 | Name  | Type                                 | Mandatory| Description                    |
 | -------- |-------------------------------------| ---- | ------------------------ |
 | context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context.        |
-| uri      | string                              | Yes  | URI of the system alert tone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
+| uri      | string                              | Yes  | URI of the system alert tone. For details about supported resources, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 | type     | [SystemToneType](#systemtonetype11) | Yes  | Type of the system alert tone.  |
 
 **Return value**
@@ -964,7 +964,7 @@ Obtains the attributes of the default system ringtone. This API uses a promise t
 
 | Type                                      | Description                 |
 |------------------------------------------|---------------------|
-| Promise&lt;[ToneAttrs](#toneattrs12)&gt; |  Promise used to return the attributes of the default system ringtone.|
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise used to return the attributes of the default system ringtone.|
 
 **Error codes**
 
@@ -1014,7 +1014,7 @@ Obtains the list of attributes of the default system ringtone. This API uses a p
 
 | Type                                                | Description                   |
 |----------------------------------------------------|-----------------------|
-| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; |  Promise used to return an array of the attributes of the default system ringtone.|
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise used to return an array of the attributes of the default system ringtone.|
 
 **Error codes**
 
@@ -1064,7 +1064,7 @@ Obtains the attributes of the default system alert tone. This API uses a promise
 
 | Type                                     | Description                  |
 |-----------------------------------------|----------------------|
-| Promise&lt;[ToneAttrs](#toneattrs12)&gt; |  Promise used to return the attributes of the default system alert tone.|
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise used to return the attributes of the default system alert tone.|
 
 **Error codes**
 
@@ -1114,7 +1114,7 @@ Obtains the list of attributes of the default system alert tone. This API uses a
 
 | Type                                               | Description                    |
 |---------------------------------------------------|------------------------|
-| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; |  Promise used to return an array of the attributes of the default system alert tone.|
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise used to return an array of the attributes of the default system alert tone.|
 
 **Error codes**
 
@@ -1163,7 +1163,7 @@ Obtains the attributes of the default alarm alert tone. This API uses a promise 
 
 | Type                                     | Description                 |
 |-----------------------------------------|---------------------|
-| Promise&lt;[ToneAttrs](#toneattrs12)&gt; |  Promise used to return the attributes of the default alarm alert tone.|
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise used to return the attributes of the default alarm alert tone.|
 
 **Error codes**
 
@@ -1206,7 +1206,7 @@ Sets a URI for an alarm alert tone. This API uses a promise to return the result
 | Name  | Type       | Mandatory| Description  |
 | -------- | --------- | ---- |--------------------------|
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.                                                                          |
-| uri      | string    | Yes  | URI of the alarm alert tone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
+| uri      | string    | Yes  | URI of the alarm alert tone. For details about supported resources, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 
 **Return value**
 
@@ -1332,7 +1332,7 @@ Enables an alarm alert tone. This API uses a promise to return the result.
 | Name  | Type      | Mandatory| Description                                                                                 |
 | -------- | ---------| ---- |-------------------------------------------------------------------------------------|
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.                                                                          |
-| uri      | string   | Yes  | URI of the alarm alert tone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
+| uri      | string   | Yes  | URI of the alarm alert tone. For details about supported resources, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 
 **Return value**
 

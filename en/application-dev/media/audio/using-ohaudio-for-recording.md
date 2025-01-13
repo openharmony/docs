@@ -75,14 +75,14 @@ The following walks you through how to implement simple recording:
     OH_AudioStreamBuilder_SetCapturerInfo(builder, AUDIOSTREAM_SOURCE_TYPE_MIC);
     ```
 
-    Note that the audio data to record is written through callbacks. You must call **OH_AudioStreamBuilder_SetCapturerCallback** to implement the callbacks. For details about the declaration of the callback functions, see [OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks).
+    Note that the audio data captured is read through callbacks. You must call **OH_AudioStreamBuilder_SetCapturerCallback** to implement the callbacks. For details about the declaration of the callback functions, see [OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks).
 
 3. Set the callback functions.
 
     For details about concurrent processing of multiple audio streams, see [Processing Audio Interruption Events](audio-playback-concurrency.md). The procedure is similar, and the only difference is the API programming language in use.
 
     ```c++
-    // Customize a data writing function.
+    // Customize a data reading function.
     int32_t MyOnReadData(
         OH_AudioCapturer* capturer,
         void* userData,
@@ -122,6 +122,7 @@ The following walks you through how to implement simple recording:
     }
 
     OH_AudioCapturer_Callbacks callbacks;
+
     // Set the callbacks.
     callbacks.OH_AudioCapturer_OnReadData = MyOnReadData;
     callbacks.OH_AudioCapturer_OnStreamEvent = MyOnStreamEvent;
@@ -132,39 +133,74 @@ The following walks you through how to implement simple recording:
     OH_AudioStreamBuilder_SetCapturerCallback(builder, callbacks, nullptr);
     ```
 
-    To avoid unexpected behavior, ensure that each callback of [OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks) is initialized by a custom callback method or null pointer when being set.
+    To avoid unexpected behavior, you can set the audio callback functions in either of the following ways:
 
-    ```c++
-    // Customize a data writing function.
-    int32_t MyOnReadData(
-        OH_AudioCapturer* capturer,
-        void* userData,
-        void* buffer,
-        int32_t length)
-    {
-        // Obtain the recording data of the specified length from the buffer.
-        return 0;
-    }
-    // Customize an audio interruption event function.
-    int32_t MyOnInterruptEvent(
-        OH_AudioCapturer* capturer,
-        void* userData,
-        OH_AudioInterrupt_ForceType type,
-        OH_AudioInterrupt_Hint hint)
-    {
-        // Update the capturer status and UI based on the audio interruption information indicated by type and hint.
-        return 0;
-    }
-    OH_AudioCapturer_Callbacks callbacks;
+    - Initialize each callback in [OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks) by a custom callback method or a null pointer.
 
-    // Configure a callback function. If listening is required, assign a value.
-    callbacks.OH_AudioCapturer_OnReadData = MyOnReadData;
-    callbacks.OH_AudioCapturer_OnInterruptEvent = MyOnInterruptEvent;
+      ```c++
+      // Customize a data reading function.
+      int32_t MyOnReadData(
+          OH_AudioCapturer* capturer,
+          void* userData,
+          void* buffer,
+          int32_t length)
+      {
+          // Obtain the recording data of the specified length from the buffer.
+          return 0;
+      }
+      // Customize an audio interruption event function.
+      int32_t MyOnInterruptEvent(
+          OH_AudioCapturer* capturer,
+          void* userData,
+          OH_AudioInterrupt_ForceType type,
+          OH_AudioInterrupt_Hint hint)
+      {
+          // Update the capturer status and UI based on the audio interruption information indicated by type and hint.
+          return 0;
+      }
+      OH_AudioCapturer_Callbacks callbacks;
+      
+      // Configure a callback function. If listening is required, assign a value.
+      callbacks.OH_AudioCapturer_OnReadData = MyOnReadData;
+      callbacks.OH_AudioCapturer_OnInterruptEvent = MyOnInterruptEvent;
+      
+      // (Mandatory) If listening is not required, use a null pointer for initialization.
+      callbacks.OH_AudioCapturer_OnStreamEvent = nullptr;
+      callbacks.OH_AudioCapturer_OnError = nullptr;
+      ```
 
-    // (Mandatory) If listening is not required, use a null pointer for initialization.
-    callbacks.OH_AudioCapturer_OnStreamEvent = nullptr;
-    callbacks.OH_AudioCapturer_OnError = nullptr;
-    ```
+    - Initialize and clear the struct before using it.
+
+      ```c++
+      // Customize a data reading function.
+      int32_t MyOnReadData(
+          OH_AudioCapturer* capturer,
+          void* userData,
+          void* buffer,
+          int32_t length)
+      {
+          // Obtain the recording data of the specified length from the buffer.
+          return 0;
+      }
+      // Customize an audio interruption event function.
+      int32_t MyOnInterruptEvent(
+          OH_AudioCapturer* capturer,
+          void* userData,
+          OH_AudioInterrupt_ForceType type,
+          OH_AudioInterrupt_Hint hint)
+      {
+          // Update the capturer status and UI based on the audio interruption information indicated by type and hint.
+          return 0;
+      }
+      OH_AudioCapturer_Callbacks callbacks;
+
+      // Initialize and clear the struct before using it.
+      memset(&callbacks, 0, sizeof(OH_AudioCapturer_Callbacks));
+
+      // Configure the required callback functions.
+      callbacks.OH_AudioCapturer_OnReadData = MyOnReadData;
+      callbacks.OH_AudioCapturer_OnInterruptEvent = MyOnInterruptEvent;
+      ```
 
 4. Create an audio capturer instance.
 
@@ -198,6 +234,10 @@ The following walks you through how to implement simple recording:
 If the device supports the low-latency channel, you can use the low-latency mode to create an audio capturer for a higher-quality audio experience.
 
 The development process is similar to that in the common recording scenario. The only difference is that you need to set the low delay mode by calling [OH_AudioStreamBuilder_SetLatencyMode()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setlatencymode) when creating an audio stream builder.
+
+> **NOTE**
+>
+> In audio recording scenarios, if [OH_AudioStream_SourceType](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_sourcetype) is set to **AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION**, the low-latency mode cannot be set. The system determines the output audio channel based on the device capability.
 
 Code snippet:
 

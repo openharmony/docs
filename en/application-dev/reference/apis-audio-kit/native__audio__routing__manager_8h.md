@@ -26,7 +26,7 @@ You can use the functions to create an audio routing manager, register and dereg
 | Name| Description| 
 | -------- | -------- |
 | typedef struct [OH_AudioRoutingManager](_o_h_audio.md#oh_audioroutingmanager) [OH_AudioRoutingManager](_o_h_audio.md#oh_audioroutingmanager) | Defines the struct of an audio routing manager, which is used for routing and device-related functions. | 
-| typedef int32_t(\* [OH_AudioRoutingManager_OnDeviceChangedCallback](_o_h_audio.md#oh_audioroutingmanager_ondevicechangedcallback)) ([OH_AudioDevice_ChangeType](_o_h_audio.md#oh_audiodevice_changetype) type, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray) | Defines a pointer to the callback function that returns the changed audio device descriptor (possibly multiple descriptors). | 
+| typedef int32_t(\* [OH_AudioRoutingManager_OnDeviceChangedCallback](_o_h_audio.md#oh_audioroutingmanager_ondevicechangedcallback)) ([OH_AudioDevice_ChangeType](_o_h_audio.md#oh_audiodevice_changetype) type, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray) | Defines a pointer to the callback function that returns the changed audio device descriptor (possibly multiple descriptors).  | 
 
 
 ### Functions

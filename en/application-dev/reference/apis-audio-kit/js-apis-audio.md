@@ -76,8 +76,8 @@ Creates an **AudioRenderer** instance. This API uses an asynchronous callback to
 import { audio } from '@kit.AudioKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_1,
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+  channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
 };
@@ -129,8 +129,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_1,
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+  channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
 };
@@ -165,7 +165,7 @@ Creates an **AudioCapturer** instance. This API uses an asynchronous callback to
 
 **Required permissions**: ohos.permission.MICROPHONE
 
-This permission is required when [SourceType] (#sourcetype8) is set to **SOURCE_TYPE_MIC**, **SOURCE_TYPE_VOICE_RECOGNITION**, **SOURCE_TYPE_VOICE_COMMUNICATION**, or **SOURCE_TYPE_VOICE_MESSAGE**.
+This permission is required when [SourceType](#sourcetype8) is set to **SOURCE_TYPE_MIC**, **SOURCE_TYPE_VOICE_RECOGNITION**, **SOURCE_TYPE_VOICE_COMMUNICATION**, or **SOURCE_TYPE_VOICE_MESSAGE**.
 
 **Parameters**
 
@@ -180,7 +180,7 @@ This permission is required when [SourceType] (#sourcetype8) is set to **SOURCE_
 import { audio } from '@kit.AudioKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
   channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
@@ -216,7 +216,7 @@ Creates an **AudioCapturer** instance. This API uses a promise to return the res
 
 **Required permissions**: ohos.permission.MICROPHONE
 
-This permission is required when [SourceType] (#sourcetype8) is set to **SOURCE_TYPE_MIC**, **SOURCE_TYPE_VOICE_RECOGNITION**, **SOURCE_TYPE_VOICE_COMMUNICATION**, or **SOURCE_TYPE_VOICE_MESSAGE**.
+This permission is required when [SourceType](#sourcetype8) is set to **SOURCE_TYPE_MIC**, **SOURCE_TYPE_VOICE_RECOGNITION**, **SOURCE_TYPE_VOICE_COMMUNICATION**, or **SOURCE_TYPE_VOICE_MESSAGE**.
 
 **Parameters**
 
@@ -237,7 +237,7 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
   channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
@@ -415,8 +415,8 @@ Enumerates the audio channels.
 
 | Name     |  Value      | Description  |
 | --------- | -------- |------|
-| CHANNEL_1 | 0x1 << 0 | One audio channel (mono).|
-| CHANNEL_2 | 0x1 << 1 | Two audio channels (stereo).|
+| CHANNEL_1 | 1 | One audio channel (mono).|
+| CHANNEL_2 | 2 | Two audio channels (stereo).|
 | CHANNEL_3<sup>11+</sup> | 3 | Three audio channels.|
 | CHANNEL_4<sup>11+</sup> | 4 | Four audio channels.|
 | CHANNEL_5<sup>11+</sup> | 5 | Five audio channels.|
@@ -5413,9 +5413,9 @@ Defines the callback function used to write data to the audio renderer. Once the
 
 **Return value**
 
-| Type                                                          | Description|
-|--------------------------------------------------------------| ------- |
-| [AudioDataCallbackResult](#audiodatacallbackresult12) \| void | If **void** or **AudioDataCallbackResult.VALID** is returned, the data is valid and will be played. If **AudioDataCallbackResult.INVALID** is returned, the data is invalid and will not be played.|
+| Type                                                          | Description                                                                                                         |
+|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| [AudioDataCallbackResult](#audiodatacallbackresult12) \| void | If **void** or **AudioDataCallbackResult.VALID** is returned, the data is valid and the audio data is played. If **AudioDataCallbackResult.INVALID** is returned, the data is invalid and the audio data is not played.|
 
 ## AudioRenderer<sup>8+</sup>
 
@@ -7696,6 +7696,8 @@ on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 
 Subscribes to the audio data write event, which is triggered when audio data needs to be written. This API uses an asynchronous callback to return the result.
 
+The callback function is used only to write audio data. Do not call AudioRenderer APIs in it.
+
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
 **Parameters**
@@ -8964,6 +8966,8 @@ audioCapturer.on('stateChange', (state: audio.AudioState) => {
 on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 
 Subscribes to the audio data read event, which is triggered when audio stream data needs to be read. This API uses an asynchronous callback to return the result.
+
+The callback function is used only to read audio data. Do not call AudioCapturer APIs in it.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
