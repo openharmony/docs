@@ -5,6 +5,8 @@
 
 The VideoProcessing module provides the APIs for video processing. It provides video processing capabilities, including color space conversion, metadata generation, and video scaling.
 
+<!--RP1--><!--RP1End-->
+
 **Since**: 12
 
 
@@ -13,78 +15,78 @@ The VideoProcessing module provides the APIs for video processing. It provides v
 
 ### Files
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [video_processing.h](video__processing_8h.md) | Declares the video processing functions.|
-| [video_processing_types.h](video__processing__types_8h.md) | Declares the video processing types.|
+| [video_processing.h](video__processing_8h.md) | Declares the video processing functions.| 
+| [video_processing_types.h](video__processing__types_8h.md) | Declares the video processing types.| 
 
 
 ### Structs
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| struct  [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md) | Describes the color space information of video processing.|
+| struct  [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md) | Describes the color space information of video processing.| 
 
 
 ### Types
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| typedef struct [OH_VideoProcessing](#oh_videoprocessing-1) [OH_VideoProcessing](#oh_videoprocessing) | Defines a struct for the video processing object.|
-| typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | Defines a struct for the NativeWindow object.|
-| typedef struct [OH_AVFormat](#oh_avformat-1) [OH_AVFormat](#oh_avformat) | Defines a struct for the OH_AVFormat object.|
-| typedef struct [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md) [VideoProcessing_ColorSpaceInfo](#videoprocessing_colorspaceinfo) | Defines a struct for the color space information of video processing.|
-| typedef enum [VideoDetailEnhancer_QualityLevel](#videodetailenhancer_qualitylevel-1) [VideoDetailEnhancer_QualityLevel](#videodetailenhancer_qualitylevel) | Defines an enum for the quality levels for detail enhancement.|
-| typedef enum [VideoProcessing_ErrorCode](#videoprocessing_errorcode-1) [VideoProcessing_ErrorCode](#videoprocessing_errorcode) | Defines an enum for the video processing error codes.|
-| typedef enum [VideoProcessing_State](#videoprocessing_state-1) [VideoProcessing_State](#videoprocessing_state) | Defines an enum for the video processing states.|
-| typedef struct [VideoProcessing_Callback](#videoprocessing_callback) [VideoProcessing_Callback](#videoprocessing_callback) | Defines a struct for the video processing callback object.|
-| typedef void(\* [OH_VideoProcessingCallback_OnError](#oh_videoprocessingcallback_onerror)) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, [VideoProcessing_ErrorCode](#videoprocessing_errorcode) error, void \*userData) | Defines a pointer to the callback function for reporting an error during video processing.|
-| typedef void(\* [OH_VideoProcessingCallback_OnState](#oh_videoprocessingcallback_onstate)) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, [VideoProcessing_State](#videoprocessing_state) state, void \*userData) | Defines a pointer to the callback function for reporting the video processing state.|
-| typedef void(\* [OH_VideoProcessingCallback_OnNewOutputBuffer](#oh_videoprocessingcallback_onnewoutputbuffer)) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, uint32_t index, void \*userData) | Defines a pointer to the callback function for reporting the data filled in the output buffer.|
+| typedef struct [OH_VideoProcessing](#oh_videoprocessing-1) [OH_VideoProcessing](#oh_videoprocessing) | Defines a struct for the video processing object.| 
+| typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | Defines a struct for the NativeWindow object.| 
+| typedef struct [OH_AVFormat](#oh_avformat-1) [OH_AVFormat](#oh_avformat) | Defines a struct for the OH_AVFormat object.| 
+| typedef struct [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md) [VideoProcessing_ColorSpaceInfo](#videoprocessing_colorspaceinfo) | Defines a struct for the color space information of video processing.| 
+| typedef enum [VideoDetailEnhancer_QualityLevel](#videodetailenhancer_qualitylevel-1) [VideoDetailEnhancer_QualityLevel](#videodetailenhancer_qualitylevel) | Defines an enum for the quality levels for detail enhancement.| 
+| typedef enum [VideoProcessing_ErrorCode](#videoprocessing_errorcode-1) [VideoProcessing_ErrorCode](#videoprocessing_errorcode) | Defines an enum for the video processing error codes.| 
+| typedef enum [VideoProcessing_State](#videoprocessing_state-1) [VideoProcessing_State](#videoprocessing_state) | Defines an enum for the video processing states.| 
+| typedef struct [VideoProcessing_Callback](#videoprocessing_callback) [VideoProcessing_Callback](#videoprocessing_callback) | Defines a struct for the video processing callback object.| 
+| typedef void(\* [OH_VideoProcessingCallback_OnError](#oh_videoprocessingcallback_onerror)) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, [VideoProcessing_ErrorCode](#videoprocessing_errorcode) error, void \*userData) | Defines a pointer to the callback function for reporting an error during video processing.| 
+| typedef void(\* [OH_VideoProcessingCallback_OnState](#oh_videoprocessingcallback_onstate)) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, [VideoProcessing_State](#videoprocessing_state) state, void \*userData) | Defines a pointer to the callback function for reporting the video processing state.| 
+| typedef void(\* [OH_VideoProcessingCallback_OnNewOutputBuffer](#oh_videoprocessingcallback_onnewoutputbuffer)) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, uint32_t index, void \*userData) | Defines a pointer to the callback function for reporting the data filled in the output buffer.| 
 
 
 ### Enums
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [VideoDetailEnhancer_QualityLevel](#videodetailenhancer_qualitylevel-1) {<br>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_NONE,<br>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_LOW,<br>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_MEDIUM,<br>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_HIGH } | Enumerates the quality levels for detail enhancement.|
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode-1) {<br>VIDEO_PROCESSING_SUCCESS,<br>VIDEO_PROCESSING_ERROR_INVALID_PARAMETER = 401,<br>VIDEO_PROCESSING_ERROR_UNKNOWN = 29210001,<br>VIDEO_PROCESSING_ERROR_INITIALIZE_FAILED,<br>VIDEO_PROCESSING_ERROR_CREATE_FAILED,<br>VIDEO_PROCESSING_ERROR_PROCESS_FAILED,<br>VIDEO_PROCESSING_ERROR_UNSUPPORTED_PROCESSING,<br>VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED,<br>VIDEO_PROCESSING_ERROR_NO_MEMORY,<br>VIDEO_PROCESSING_ERROR_INVALID_INSTANCE,<br>VIDEO_PROCESSING_ERROR_INVALID_VALUE<br>} | Enumerates the video processing error codes.|
-| [VideoProcessing_State](#videoprocessing_state-1) {<br>VIDEO_PROCESSING_STATE_RUNNING,<br>VIDEO_PROCESSING_STATE_STOPPED } | Enumerates the video processing states.|
+| [VideoDetailEnhancer_QualityLevel](#videodetailenhancer_qualitylevel-1) {<br>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_NONE,<br>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_LOW,<br>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_MEDIUM,<br>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_HIGH } | Enumerates the quality levels for detail enhancement.| 
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode-1) {<br>VIDEO_PROCESSING_SUCCESS,<br>VIDEO_PROCESSING_ERROR_INVALID_PARAMETER = 401,<br>VIDEO_PROCESSING_ERROR_UNKNOWN = 29210001,<br>VIDEO_PROCESSING_ERROR_INITIALIZE_FAILED,<br>VIDEO_PROCESSING_ERROR_CREATE_FAILED,<br>VIDEO_PROCESSING_ERROR_PROCESS_FAILED,<br>VIDEO_PROCESSING_ERROR_UNSUPPORTED_PROCESSING,<br>VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED,<br>VIDEO_PROCESSING_ERROR_NO_MEMORY,<br>VIDEO_PROCESSING_ERROR_INVALID_INSTANCE,<br>VIDEO_PROCESSING_ERROR_INVALID_VALUE<br>} | Enumerates the video processing error codes.| 
+| [VideoProcessing_State](#videoprocessing_state-1) {<br>VIDEO_PROCESSING_STATE_RUNNING,<br>VIDEO_PROCESSING_STATE_STOPPED } | Enumerates the video processing states.| 
 
 
 ### Functions
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_InitializeEnvironment](#oh_videoprocessing_initializeenvironment) (void) | Initializes the global video processing environment.|
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_DeinitializeEnvironment](#oh_videoprocessing_deinitializeenvironment) (void) | Releases the global video processing environment.|
-| bool [OH_VideoProcessing_IsColorSpaceConversionSupported](#oh_videoprocessing_iscolorspaceconversionsupported) (const [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md) \*sourceVideoInfo, const [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md) \*destinationVideoInfo) | Checks whether color space conversion is supported during video processing.|
-| bool [OH_VideoProcessing_IsMetadataGenerationSupported](#oh_videoprocessing_ismetadatagenerationsupported) (const [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md) \*sourceVideoInfo) | Checks whether metadata generation is supported during video processing.|
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_Create](#oh_videoprocessing_create) ([OH_VideoProcessing](#oh_videoprocessing) \*\*videoProcessor, int type) | Creates a video processing instance.|
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_Destroy](#oh_videoprocessing_destroy) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor) | Destroys a video processing instance.|
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_RegisterCallback](#oh_videoprocessing_registercallback) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, const [VideoProcessing_Callback](#videoprocessing_callback) \*callback, void \*userData) | Registers a callback for video processing.|
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_SetSurface](#oh_videoprocessing_setsurface) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, const [OHNativeWindow](#ohnativewindow) \*window) | Sets an output surface for video processing.|
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_GetSurface](#oh_videoprocessing_getsurface) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, [OHNativeWindow](#ohnativewindow) \*\*window) | Obtains a surface for video processing.|
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_SetParameter](#oh_videoprocessing_setparameter) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, const [OH_AVFormat](#oh_avformat) \*parameter) | Sets video processing parameters.|
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_GetParameter](#oh_videoprocessing_getparameter) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, [OH_AVFormat](#oh_avformat) \*parameter) | Obtains video processing parameters.|
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_Start](#oh_videoprocessing_start) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor) | Starts video processing.|
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_Stop](#oh_videoprocessing_stop) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor) | Stops video processing.|
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_RenderOutputBuffer](#oh_videoprocessing_renderoutputbuffer) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, uint32_t index) | Renders and processes the buffer, and then outputs it.|
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessingCallback_Create](#oh_videoprocessingcallback_create) ([VideoProcessing_Callback](#videoprocessing_callback) \*\*callback) | Creates a video processing callback object.|
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessingCallback_Destroy](#oh_videoprocessingcallback_destroy) ([VideoProcessing_Callback](#videoprocessing_callback) \*callback) | Destroys a video processing callback object.|
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessingCallback_BindOnError](#oh_videoprocessingcallback_bindonerror) ([VideoProcessing_Callback](#videoprocessing_callback) \*callback, [OH_VideoProcessingCallback_OnError](#oh_videoprocessingcallback_onerror) onError) | Binds the callback function [OH_VideoProcessingCallback_OnError](#oh_videoprocessingcallback_onerror) to a video processing callback object.|
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessingCallback_BindOnState](#oh_videoprocessingcallback_bindonstate) ([VideoProcessing_Callback](#videoprocessing_callback) \*callback, [OH_VideoProcessingCallback_OnState](#oh_videoprocessingcallback_onstate) onState) | Binds the callback function [OH_VideoProcessingCallback_OnState](#oh_videoprocessingcallback_onstate) to a video processing callback object.|
-| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessingCallback_BindOnNewOutputBuffer](#oh_videoprocessingcallback_bindonnewoutputbuffer) ([VideoProcessing_Callback](#videoprocessing_callback) \*callback, [OH_VideoProcessingCallback_OnNewOutputBuffer](#oh_videoprocessingcallback_onnewoutputbuffer) onNewOutputBuffer) | Binds the callback function [OH_VideoProcessingCallback_OnNewOutputBuffer](#oh_videoprocessingcallback_onnewoutputbuffer) to a video processing callback object.|
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_InitializeEnvironment](#oh_videoprocessing_initializeenvironment) (void) | Initializes the global video processing environment.| 
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_DeinitializeEnvironment](#oh_videoprocessing_deinitializeenvironment) (void) | Releases the global video processing environment.| 
+| bool [OH_VideoProcessing_IsColorSpaceConversionSupported](#oh_videoprocessing_iscolorspaceconversionsupported) (const [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md) \*sourceVideoInfo, const [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md) \*destinationVideoInfo) | Checks whether color space conversion is supported during video processing.| 
+| bool [OH_VideoProcessing_IsMetadataGenerationSupported](#oh_videoprocessing_ismetadatagenerationsupported) (const [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md) \*sourceVideoInfo) | Checks whether metadata generation is supported during video processing.| 
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_Create](#oh_videoprocessing_create) ([OH_VideoProcessing](#oh_videoprocessing) \*\*videoProcessor, int type) | Creates a video processing instance.| 
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_Destroy](#oh_videoprocessing_destroy) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor) | Destroys a video processing instance.| 
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_RegisterCallback](#oh_videoprocessing_registercallback) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, const [VideoProcessing_Callback](#videoprocessing_callback) \*callback, void \*userData) | Registers a callback for video processing.| 
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_SetSurface](#oh_videoprocessing_setsurface) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, const [OHNativeWindow](#ohnativewindow) \*window) | Sets an output surface for video processing.| 
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_GetSurface](#oh_videoprocessing_getsurface) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, [OHNativeWindow](#ohnativewindow) \*\*window) | Obtains a surface for video processing.| 
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_SetParameter](#oh_videoprocessing_setparameter) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, const [OH_AVFormat](#oh_avformat) \*parameter) | Sets video processing parameters.| 
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_GetParameter](#oh_videoprocessing_getparameter) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, [OH_AVFormat](#oh_avformat) \*parameter) | Obtains video processing parameters.| 
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_Start](#oh_videoprocessing_start) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor) | Starts video processing.| 
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_Stop](#oh_videoprocessing_stop) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor) | Stops video processing.| 
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessing_RenderOutputBuffer](#oh_videoprocessing_renderoutputbuffer) ([OH_VideoProcessing](#oh_videoprocessing) \*videoProcessor, uint32_t index) | Renders and processes the buffer, and then outputs it.| 
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessingCallback_Create](#oh_videoprocessingcallback_create) ([VideoProcessing_Callback](#videoprocessing_callback) \*\*callback) | Creates a video processing callback object.| 
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessingCallback_Destroy](#oh_videoprocessingcallback_destroy) ([VideoProcessing_Callback](#videoprocessing_callback) \*callback) | Destroys a video processing callback object.| 
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessingCallback_BindOnError](#oh_videoprocessingcallback_bindonerror) ([VideoProcessing_Callback](#videoprocessing_callback) \*callback, [OH_VideoProcessingCallback_OnError](#oh_videoprocessingcallback_onerror) onError) | Binds the callback function [OH_VideoProcessingCallback_OnError](#oh_videoprocessingcallback_onerror) to a video processing callback object.| 
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessingCallback_BindOnState](#oh_videoprocessingcallback_bindonstate) ([VideoProcessing_Callback](#videoprocessing_callback) \*callback, [OH_VideoProcessingCallback_OnState](#oh_videoprocessingcallback_onstate) onState) | Binds the callback function [OH_VideoProcessingCallback_OnState](#oh_videoprocessingcallback_onstate) to a video processing callback object.| 
+| [VideoProcessing_ErrorCode](#videoprocessing_errorcode) [OH_VideoProcessingCallback_BindOnNewOutputBuffer](#oh_videoprocessingcallback_bindonnewoutputbuffer) ([VideoProcessing_Callback](#videoprocessing_callback) \*callback, [OH_VideoProcessingCallback_OnNewOutputBuffer](#oh_videoprocessingcallback_onnewoutputbuffer) onNewOutputBuffer) | Binds the callback function [OH_VideoProcessingCallback_OnNewOutputBuffer](#oh_videoprocessingcallback_onnewoutputbuffer) to a video processing callback object.| 
 
 
 ### Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| const int32_t [VIDEO_PROCESSING_TYPE_COLOR_SPACE_CONVERSION](#video_processing_type_color_space_conversion) | Instance created for color space conversion during video processing.|
-| const int32_t [VIDEO_PROCESSING_TYPE_METADATA_GENERATION](#video_processing_type_metadata_generation) | Instance created for metadata generation during video processing.|
-| const int32_t [VIDEO_PROCESSING_TYPE_DETAIL_ENHANCER](#video_processing_type_detail_enhancer) | Instance for detail enhancement during video processing.|
-| const char \* [VIDEO_DETAIL_ENHANCER_PARAMETER_KEY_QUALITY_LEVEL](#video_detail_enhancer_parameter_key_quality_level) | Pointer to the quality level of video detail enhancement.|
+| const int32_t [VIDEO_PROCESSING_TYPE_COLOR_SPACE_CONVERSION](#video_processing_type_color_space_conversion) | Instance created for color space conversion during video processing.| 
+| const int32_t [VIDEO_PROCESSING_TYPE_METADATA_GENERATION](#video_processing_type_metadata_generation) | Instance created for metadata generation during video processing.| 
+| const int32_t [VIDEO_PROCESSING_TYPE_DETAIL_ENHANCER](#video_processing_type_detail_enhancer) | Instance for detail enhancement during video processing.| 
+| const char \* [VIDEO_DETAIL_ENHANCER_PARAMETER_KEY_QUALITY_LEVEL](#video_detail_enhancer_parameter_key_quality_level) | Pointer to the quality level of video detail enhancement.| 
 
 
 ## Type Description
@@ -142,11 +144,11 @@ The following error codes are defined in [VideoProcessing_ErrorCode](#videoproce
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| videoProcessor | Pointer to the video processing instance.|
-| error | Error code reported.|
-| userData | Pointer to user-defined data.|
+| videoProcessor | Pointer to the video processing instance.| 
+| error | Error code reported.| 
+| userData | Pointer to user-defined data.| 
 
 
 ### OH_VideoProcessingCallback_OnNewOutputBuffer
@@ -165,11 +167,11 @@ After data is filled in each new output buffer, the index of the buffer is repor
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| videoProcessor | Pointer to the video processing instance.|
-| index | Index of the output buffer.|
-| userData | Pointer to user-defined data.|
+| videoProcessor | Pointer to the video processing instance.| 
+| index | Index of the output buffer.| 
+| userData | Pointer to user-defined data.| 
 
 
 ### OH_VideoProcessingCallback_OnState
@@ -188,11 +190,11 @@ After [OH_VideoProcessing_Start](#oh_videoprocessing_start) is called, the video
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| videoProcessor | Pointer to the video processing instance.|
-| state | Video processing state. For details, see [VideoProcessing_State](#videoprocessing_state).|
-| userData | Pointer to user-defined data.|
+| videoProcessor | Pointer to the video processing instance.| 
+| state | Video processing state. For details, see [VideoProcessing_State](#videoprocessing_state).| 
+| userData | Pointer to user-defined data.| 
 
 
 ### OHNativeWindow
@@ -302,12 +304,12 @@ For details about the enumerated values, see [VIDEO_DETAIL_ENHANCER_PARAMETER_KE
 
 **Since**: 12
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_NONE | No detail enhancement.|
-| VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_LOW | Low-quality detail enhancement, which features fast speed. This is the default value.|
-| VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_MEDIUM | Medium-quality detail enhancement, which features moderate speed.|
-| VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_HIGH | High-quality detail enhancement, which features slow speed.|
+| VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_NONE | No detail enhancement.| 
+| VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_LOW | Low-quality detail enhancement, which features fast speed. This is the default value.| 
+| VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_MEDIUM | Medium-quality detail enhancement, which features moderate speed.| 
+| VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_HIGH | High-quality detail enhancement, which features slow speed.| 
 
 
 ### VideoProcessing_ErrorCode
@@ -322,19 +324,19 @@ Enumerates the video processing error codes.
 
 **Since**: 12
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| VIDEO_PROCESSING_SUCCESS | The processing is successful.|
-| VIDEO_PROCESSING_ERROR_INVALID_PARAMETER | An input parameter is invalid. This error code is returned in the following cases:<br>1 - The input or output video buffer is either invalid or empty.<br>2 - The provided parameter is invalid or missing.<br>3 - The requested processing type is invalid.|
-| VIDEO_PROCESSING_ERROR_UNKNOWN | An unknown error occurs. For example, the GPU computing or memcpy fails.|
-| VIDEO_PROCESSING_ERROR_INITIALIZE_FAILED | The global video processing environment, for example, the GPU environment, fails to be initialized.|
-| VIDEO_PROCESSING_ERROR_CREATE_FAILED | Creating the video processing instance fails. For example, the total number of instances exceeds the upper limit.|
-| VIDEO_PROCESSING_ERROR_PROCESS_FAILED | The processing fails. For example, the processing times out.|
-| VIDEO_PROCESSING_ERROR_UNSUPPORTED_PROCESSING | The processing type is not supported. You can call OH_VideoProcessing_Is*XXX*Supported to check whether a specific processing type is supported.|
-| VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED | The operation is not allowed. For example, the function is called in an incorrect running state.|
-| VIDEO_PROCESSING_ERROR_NO_MEMORY | Insufficient memory.|
-| VIDEO_PROCESSING_ERROR_INVALID_INSTANCE | The video processing instance is invalid, for example, a null instance.|
-| VIDEO_PROCESSING_ERROR_INVALID_VALUE | The input value is invalid. This error code is returned in the following cases:<br>1 - The width and height of the video buffer are inappropriate or the color space is incorrect.<br>2 - The parameter contains an invalid value. For example, the quality level of detail enhancement is incorrect.|
+| VIDEO_PROCESSING_SUCCESS | The processing is successful.| 
+| VIDEO_PROCESSING_ERROR_INVALID_PARAMETER | An input parameter is invalid. This error code is returned in the following cases:<br>1 - The input or output video buffer is either invalid or empty.<br>2 - The provided parameter is invalid or missing.<br>3 - The requested processing type is invalid.| 
+| VIDEO_PROCESSING_ERROR_UNKNOWN | An unknown error occurs. For example, the GPU computing or memcpy fails.| 
+| VIDEO_PROCESSING_ERROR_INITIALIZE_FAILED | The global video processing environment, for example, the GPU environment, fails to be initialized.| 
+| VIDEO_PROCESSING_ERROR_CREATE_FAILED | Creating the video processing instance fails. For example, the total number of instances exceeds the upper limit.| 
+| VIDEO_PROCESSING_ERROR_PROCESS_FAILED | The processing fails. For example, the processing times out.| 
+| VIDEO_PROCESSING_ERROR_UNSUPPORTED_PROCESSING | The processing type is not supported. You can call OH_VideoProcessing_Is*XXX*Supported to check whether a specific processing type is supported.| 
+| VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED | The operation is not allowed. For example, the function is called in an incorrect running state.| 
+| VIDEO_PROCESSING_ERROR_NO_MEMORY | Insufficient memory.| 
+| VIDEO_PROCESSING_ERROR_INVALID_INSTANCE | The video processing instance is invalid, for example, a null instance.| 
+| VIDEO_PROCESSING_ERROR_INVALID_VALUE | The input value is invalid. This error code is returned in the following cases:<br>1 - The width and height of the video buffer are inappropriate or the color space is incorrect.<br>2 - The parameter contains an invalid value. For example, the quality level of detail enhancement is incorrect.| 
 
 
 ### VideoProcessing_State
@@ -351,10 +353,10 @@ The video processing state is reported through the callback function [OH_VideoPr
 
 **Since**: 12
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| VIDEO_PROCESSING_STATE_RUNNING | Video processing is in progress.|
-| VIDEO_PROCESSING_STATE_STOPPED | Video processing stopped.|
+| VIDEO_PROCESSING_STATE_RUNNING | Video processing is in progress.| 
+| VIDEO_PROCESSING_STATE_STOPPED | Video processing stopped.| 
 
 
 ## Function Description
@@ -374,10 +376,10 @@ Creates a video processing instance.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| videoProcessor |  Double pointer to the video processing instance created. Before any input, **\*videoProcessor** must be a null pointer.|
-| type | Video processing type. The processing type of an instance cannot be changed.|
+| videoProcessor |  Double pointer to the video processing instance created. Before any input, **\*videoProcessor** must be a null pointer.| 
+| type | Video processing type. The processing type of an instance cannot be changed.| 
 
 **Returns**
 
@@ -434,9 +436,9 @@ Before destroying the instance, call [OH_VideoProcessing_Stop](#oh_videoprocessi
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| videoProcessor | Pointer to the video processing instance. You are advised to set the pointer to a null pointer after the instance is destroyed.|
+| videoProcessor | Pointer to the video processing instance. You are advised to set the pointer to a null pointer after the instance is destroyed.| 
 
 **Returns**
 
@@ -463,10 +465,10 @@ Obtains video processing parameters.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| videoProcessor | Pointer to a video processing instance.|
-| parameter | Pointer to the video processing parameters.|
+| videoProcessor | Pointer to a video processing instance.| 
+| parameter | Pointer to a video processing parameter instance.| 
 
 **Returns**
 
@@ -495,10 +497,10 @@ An input surface must be created before video processing starts, and it must be 
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| videoProcessor | Pointer to a video processing instance.|
-| window | Double pointer to the input surface. For example, the input surface pointer can point to an output surface of the video decoder.|
+| videoProcessor | Pointer to a video processing instance.| 
+| window | Double pointer to the input surface. For example, the input surface pointer can point to an output surface of the video decoder.| 
 
 **Returns**
 
@@ -551,10 +553,10 @@ Checks whether color space conversion is supported during video processing.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| sourceVideoInfo | Pointer to the color space information of the input video.|
-| destinationVideoInfo | Pointer to the color space information of the output video.|
+| sourceVideoInfo | Pointer to the color space information of the input video.| 
+| destinationVideoInfo | Pointer to the color space information of the output video.| 
 
 **Returns**
 
@@ -575,9 +577,9 @@ Checks whether metadata generation is supported during video processing.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| sourceVideoInfo | Pointer to the color space information of the input video.|
+| sourceVideoInfo | Pointer to the color space information of the input video.| 
 
 **Returns**
 
@@ -600,11 +602,11 @@ The callback function should be registered before video processing starts. Durin
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| videoProcessor | Pointer to a video processing instance.|
-| callback | Pointer to the callback function.|
-| userData | Pointer to user-defined data.|
+| videoProcessor | Pointer to a video processing instance.| 
+| callback | Pointer to the callback function.| 
+| userData | Pointer to user-defined data.| 
 
 **Returns**
 
@@ -635,10 +637,10 @@ If the callback function [OH_VideoProcessingCallback_OnNewOutputBuffer](#oh_vide
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| videoProcessor | Pointer to a video processing instance.|
-| index | Index of the output buffer.|
+| videoProcessor | Pointer to a video processing instance.| 
+| index | Index of the output buffer.| 
 
 **Returns**
 
@@ -667,10 +669,10 @@ Sets video processing parameters.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| videoProcessor | Pointer to a video processing instance.|
-| parameter | Pointer to a video processing parameter instance.|
+| videoProcessor | Pointer to a video processing instance.| 
+| parameter | Pointer to a video processing parameter instance.| 
 
 **Returns**
 
@@ -703,10 +705,10 @@ An output surface must be set before video processing starts.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| videoProcessor | Pointer to a video processing instance.|
-| window | Pointer to the output surface.|
+| videoProcessor | Pointer to a video processing instance.| 
+| window | Pointer to the output surface.| 
 
 **Returns**
 
@@ -735,9 +737,9 @@ After video processing starts, the callback [OH_VideoProcessingCallback_OnState]
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| videoProcessor | Pointer to a video processing instance.|
+| videoProcessor | Pointer to a video processing instance.| 
 
 **Returns**
 
@@ -766,9 +768,9 @@ After video processing stops, the callback [OH_VideoProcessingCallback_OnState](
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| videoProcessor | Pointer to a video processing instance.|
+| videoProcessor | Pointer to a video processing instance.| 
 
 **Returns**
 
@@ -795,10 +797,10 @@ Binds the callback function [OH_VideoProcessingCallback_OnError](#oh_videoproces
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| callback | Pointer to a callback object.|
-| onError | Callback function to bind.|
+| callback | Pointer to a callback object.| 
+| onError | Callback function to bind.| 
 
 **Returns**
 
@@ -823,10 +825,10 @@ Binds the callback function [OH_VideoProcessingCallback_OnNewOutputBuffer](#oh_v
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| callback | Pointer to a callback object.|
-| onNewOutputBuffer | Callback function to bind.|
+| callback | Pointer to a callback object.| 
+| onNewOutputBuffer | Callback function to bind.| 
 
 **Returns**
 
@@ -851,10 +853,10 @@ Binds the callback function [OH_VideoProcessingCallback_OnState](#oh_videoproces
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| callback | Pointer to a callback object.|
-| onState | Callback function to bind.|
+| callback | Pointer to a callback object.| 
+| onState | Callback function to bind.| 
 
 **Returns**
 
@@ -879,9 +881,9 @@ Creates a video processing callback object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| callback |  Double pointer to the video processing callback object. Before creating a callback object, **\*callback** must be a null pointer.|
+| callback |  Double pointer to the video processing callback object. Before creating a callback object, **\*callback** must be a null pointer.| 
 
 **Returns**
 
@@ -910,9 +912,9 @@ The video processing callback object can be destroyed after the callback functio
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| callback | Pointer to the callback object. You are advised to set the pointer to a null pointer after the callback object is destroyed.|
+| callback | Pointer to the callback object. You are advised to set the pointer to a null pointer after the callback object is destroyed.| 
 
 **Returns**
 
