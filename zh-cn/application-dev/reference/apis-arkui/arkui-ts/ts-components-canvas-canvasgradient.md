@@ -28,7 +28,9 @@ addColorStop(offset: number, color: string): void
 | color  | string | 是  | 设置渐变的颜色。颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中string类型说明 |
 
 
-**示例：**
+## 示例
+
+通过addColorStop设置渐变断点值，包括偏移和颜色。
 
   ```ts
   // xxx.ets
