@@ -87,17 +87,17 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     以上代码需要在module.json5文件中增加ohos.want.action.viewData：
 
     ```json
-      "skills":[
-        {
-          "entities":[
-            ...
-          ],
-          "actions":[
-            ...
-            "ohos.want.action.viewData"
-          ]
-        }
-      ]
+    "skills":[
+      {
+        "entities":[
+          ...
+        ],
+        "actions":[
+          ...
+          "ohos.want.action.viewData"
+        ]
+      }
+    ]
     ```
 
 3. 查询当前应用是否在沙箱中。
@@ -238,7 +238,15 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     }
     ```
 
-13. 以无边框形式打开DLP权限管理应用。此方法只能在UIAbility上下文中调用，只支持Stage模式。
+13. 生成DLP文件。
+
+    [该功能云端对接模块当前需要开发者自行搭建。](../DataProtectionKit/dlp-overview.md)
+
+    3.1 当前支持生成DLP文件的原文件类型: ".doc", ".docm", ".docx", ".dot", ".dotm", ".dotx", ".odp", ".odt", ".pdf", ".pot", ".potm", ".potx", ".ppa", ".ppam", ".pps", ".ppsm", ".ppsx", ".ppt", ".pptm", ".pptx", ".rtf", ".txt", ".wps", ".xla", ".xlam", ".xls", ".xlsb", ".xlsm", ".xlsx", ".xlt", ".xltm", ".xltx", ".xlw", ".xml", ".xps"。
+
+    3.2 首先要有一个DLP权限应用有读写权限的（比如文件管理的文档目录下）并且属于以上文件类型之一的原文件。
+
+    3.3 以无边框形式打开DLP权限管理应用。此方法只能在UIAbility上下文中调用，只支持Stage模式。调用以下代码，拉起DLP管理应用的设置权限页面，输入相关的授权账号信息，点击保存，在拉起的filepicker中选择DLP文件的保存路径，保存DLP文件。
 
     ```ts
     import { dlpPermission } from '@kit.DataProtectionKit';
