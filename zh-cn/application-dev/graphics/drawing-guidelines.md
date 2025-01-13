@@ -677,7 +677,13 @@ Native Drawing模块关于文本绘制提供两类API接口：
     | ------------------------------------ |-----------------------------------------------| --------------------------------------------------- |
     | ![main](./figures/drawIndex.jpg) | ![Draw Path](./figures/drawPath.jpg) | ![Draw Text](./figures/drawText.jpg) |
 
-##  相关实例
-以上代码为Drawing绘制关键代码，完整代码请参考下面sample。
 
-- [Native Drawing（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkDrawing)
+##  相关实例
+
+为Drawing绘制关键代码，完整代码和更多针对Drawing的开放适用，请参考以下相关实例：
+
+- [Native Drawing（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.2-Release/code/BasicFeature/Native/NdkDrawing)
+
+- [Native RenderNode Drawing（API12）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.2-Release/code/BasicFeature/Native/NdkRenderNodeDrawing)
+
+<!--RP1--><!--RP1End-->
