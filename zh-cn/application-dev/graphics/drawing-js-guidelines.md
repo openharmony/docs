@@ -266,3 +266,13 @@ import { common2D, drawing } from '@kit.ArkGraphics2D'
     | 主页                                 | 绘制五角星                                            | 绘制矩形                                            | 绘制文字                                            |
     | ------------------------------------ | ----------------------------------------------- | ------------------------------------ | ------------------------------------ |
     | ![main](./figures/JSMainPage.jpg) | ![Draw Path](figures/JSdrawPath.jpg) | ![Draw Path](figures/JSdrawRect.jpg) | ![Draw Path](figures/JSdrawText.jpg) |
+
+## 相关实例
+
+针对Drawing图形绘制和显示的更多开发，可参考以下相关示例：
+
+- [字体文本展开（ArkTS）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.2-Release/code/BasicFeature/Graphics/Graphics2d/ExpandText)
+
+- [字体绘制（ArkTS）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.2-Release/code/BasicFeature/Graphics/Graphics2d/PaintVerbatim)
+
+<!--RP1--><!--RP1End-->
