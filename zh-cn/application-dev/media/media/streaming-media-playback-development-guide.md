@@ -171,6 +171,10 @@ export class AVPlayerDemo {
   public videoTrackList: number[] = [];
   // 注册avplayer回调函数
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
+    // startRenderFrame首帧渲染回调函数
+    avPlayer.on('startRenderFrame', () => {
+      console.info(`AVPlayer start render frame`);
+    });
     // seek操作结果回调函数
     avPlayer.on('seekDone', (seekDoneTime: number) => {
       console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
@@ -192,10 +196,7 @@ export class AVPlayerDemo {
           break;
         case 'initialized': // avplayer 设置播放源后触发该状态上报
           console.info('AVPlayer state initialized called.');
-          this.avPlayer.audioRendererInfo = {
-            usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-            rendererFlags: 0
-          }
+          avPlayer.surfaceId = this.surfaceID; // 设置显示画面，当播放的资源为纯音频时无需设置
           avPlayer.prepare();
           break;
         case 'prepared': // prepare调用成功后上报该状态机
