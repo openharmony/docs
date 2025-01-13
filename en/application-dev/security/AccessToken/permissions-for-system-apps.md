@@ -1427,7 +1427,7 @@ Allows an application to obtain information about local accounts.
 
 ### ohos.permission.GET_TELEPHONY_STATE
 
-Allows an application to read telephony information.
+Allows an application to read telephony information. 
 
 **Permission level**: system_basic
 
@@ -3248,18 +3248,6 @@ Allows a system application or service to preload application processes.
 ### ohos.permission.ENABLE_EXPERIENCE_HBM
 
 Allows an application to enable the High Brightness Mode (HBM) for the screen.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 13
-
-### ohos.permission.ENABLE_EXPERIENCE_HBM
-
-Allows an application to enable High Brightness Mode(HBM) for the screen.
 
 **Permission level**: system_basic
 

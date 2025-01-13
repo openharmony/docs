@@ -819,7 +819,7 @@
 
 ### ohos.permission.MOUNT_UNMOUNT_MANAGER
 
-允许应用对外卡进行挂载卸载操作。
+允许应用对外卡进行挂载、卸载操作。
 
 **权限级别**：system_basic
 
@@ -3244,18 +3244,6 @@
 **ACL使能**：true
 
 **起始版本**: 12
-
-### ohos.permission.ENABLE_EXPERIENCE_HBM
-
-允许应用启用屏幕HBM（High Brightness Mode）亮度模式。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：13
 
 ### ohos.permission.ENABLE_EXPERIENCE_HBM
 
