@@ -41,16 +41,14 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 
 表示复用设备解锁结果的模式。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称        | 值   | 说明       |
 | ----------- | ---- | ---------- |
-| AUTH_TYPE_RELEVANT    | 1   | 与认证类型相关，只有当设备解锁结果在有效时间内，并且设备解锁的认证类型匹配上本次认证指定认证类型之一时，可以复用该结果。 |
-| AUTH_TYPE_IRRELEVANT  | 2   | 与认证类型无关，只要解锁认证结果在有效时间内，就可以重复使用。 |
-| CALLER_IRRELEVANT_AUTH_TYPE_RELEVANT<sup>14+</sup>    | 3   | 与认证类型相关，只有当任意身份认证（包括设备解锁）结果在有效时间内，并且身份认证的认证类型匹配上本次认证指定认证类型之一时，可以复用该结果。 |
-| CALLER_IRRELEVANT_AUTH_TYPE_IRRELEVANT<sup>14+</sup>  | 4   | 与认证类型无关，只要任意身份认证（包括设备解锁）结果在有效时间内，就可以重复使用。 |
+| AUTH_TYPE_RELEVANT    | 1   | 与认证类型相关，只有当设备解锁结果在有效时间内，并且设备解锁的认证类型匹配上本次认证指定认证类型之一时，可以复用该结果。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| AUTH_TYPE_IRRELEVANT  | 2   | 与认证类型无关，只要解锁认证结果在有效时间内，就可以重复使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CALLER_IRRELEVANT_AUTH_TYPE_RELEVANT<sup>14+</sup>    | 3   | 与认证类型相关，只有当任意身份认证（包括设备解锁）结果在有效时间内，并且身份认证的认证类型匹配上本次认证指定认证类型之一时，可以复用该结果。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| CALLER_IRRELEVANT_AUTH_TYPE_IRRELEVANT<sup>14+</sup>  | 4   | 与认证类型无关，只要任意身份认证（包括设备解锁）结果在有效时间内，就可以重复使用。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## ReuseUnlockResult<sup>12+</sup>
 
