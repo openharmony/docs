@@ -561,7 +561,7 @@ struct VideoCreateComponent {
         src: this.videoSrc,
         previewUri: this.previewUri,
         currentProgressRate: this.curRate,
-        controller: this.controller
+        controller: this.controller,
         posterOptions: { showFirstFrame: this.showFirstFrame }
       })
         .width('100%')
