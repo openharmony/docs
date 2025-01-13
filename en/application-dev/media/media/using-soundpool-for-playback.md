@@ -1,6 +1,6 @@
 # Using SoundPool to Play Short Sounds (ArkTS)
 
-The SoundPool class provides APIs to implement low-latency playback of short sounds.
+The [SoundPool](media-kit-intro.md#soundpool) class provides APIs to implement low-latency playback of short sounds.
 
 Short sound effects (such as the camera shutter sound effect and system notification sound effect) are often required during application development. You can call the APIs provided by SoundPool to implement one-time loading of short sounds and multiple times of low-latency playback.
 
@@ -13,7 +13,7 @@ The full process includes creating a SoundPool instance, loading a sound (includ
 During application development, you must subscribe to playback state changes and call the APIs in the defined sequence. Otherwise, an exception or undefined behavior may occur.  
 
 > **NOTE**
-> 
+>
 > For details about the audio focus strategy when SoundPool is used to play short sounds, see [Introduction to Audio Focus and Audio Session](../audio/audio-playback-concurrency.md).
 
 ## How to Develop
@@ -31,7 +31,7 @@ During application development, you must subscribe to playback state changes and
     let audioRendererInfo: audio.AudioRendererInfo = {
       usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
       rendererFlags : 0
-    }
+    };
 
     media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
       if (soundpool_ != null) {
@@ -54,7 +54,7 @@ During application development, you must subscribe to playback state changes and
     ```
 
 3. Call **on('playFinished')** to listen for the completion of sound playing.
-     
+
     ```ts
     soundPool.on('playFinished', () => {
       console.info("receive play finished message");
@@ -62,7 +62,7 @@ During application development, you must subscribe to playback state changes and
     ```
 
 4. Call **on('error')** to listen for errors that may occur.
-     
+
     ```ts
     soundPool.on('error', (error: BusinessError) => {
       console.info('error happened,message is :' + error.message);
@@ -78,7 +78,7 @@ During application development, you must subscribe to playback state changes and
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
     import { fileIo as fs } from '@kit.CoreFileKit';
-   
+
     let soundID: number;
     let uri: string;
     async function load() {
@@ -96,7 +96,7 @@ During application development, you must subscribe to playback state changes and
     ```
 
 6. Set **PlayParameters**, and call **play** after the **loadComplete** callback is received. If **play()** with the same sound ID passed in is called for multiple times, the sound is played only once.
-  
+
     ```ts
     let soundID: number;
     let streamID: number;
@@ -106,7 +106,7 @@ During application development, you must subscribe to playback state changes and
         leftVolume: 0.5, // range = 0.0-1.0
         rightVolume: 0.5, // range = 0.0-1.0
         priority: 0, // The sound playback has the lowest priority.
-      }
+      };
     soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
       if (error) {
         console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
@@ -118,10 +118,10 @@ During application development, you must subscribe to playback state changes and
     ```
 
 7. Call **setLoop()** to set the number of loops.
-     
+
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-   
+
     let streamID: number;
     soundPool.setLoop(streamID, 1).then(() => {
       console.info('setLoop success streamID:' + streamID);
@@ -131,7 +131,7 @@ During application development, you must subscribe to playback state changes and
     ```
 
 8. Call **setPriority()** to set the playback priority.
-     
+
     ```ts
     let streamID: number;
     soundPool.setPriority(streamID, 1);
@@ -141,7 +141,7 @@ During application development, you must subscribe to playback state changes and
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-   
+
     let streamID: number;
     // Call play() to obtain the stream ID.
 
@@ -153,10 +153,10 @@ During application development, you must subscribe to playback state changes and
     ```
 
 10. Call **stop()** to stop the playback.
-     
+
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     let streamID: number;
     // Call play() to obtain the stream ID.
 
@@ -171,7 +171,7 @@ During application development, you must subscribe to playback state changes and
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     let soundID: number;
     // Call load() to obtain the sound ID.
 
@@ -204,7 +204,7 @@ During application development, you must subscribe to playback state changes and
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     soundPool.release().then(() => {
       console.info('release success');
     }).catch((err: BusinessError) => {
@@ -230,14 +230,14 @@ let soundId: number = 0;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
-}
+};
 let playParameters: media.PlayParameters = {
   loop: 3, // The sound is played four times (three loops).
   rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // The sound is played at the original frequency.
   leftVolume: 0.5, // range = 0.0-1.0
   rightVolume: 0.5, // range = 0.0-1.0
   priority: 0, // The sound playback has the lowest priority.
-}
+};
 let uri: string = "";
 async function create() {
   // Create a SoundPool instance.
