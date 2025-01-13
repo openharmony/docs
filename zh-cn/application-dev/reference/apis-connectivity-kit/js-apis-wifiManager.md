@@ -1298,7 +1298,6 @@ isBandTypeSupported(bandType: WifiBandType): boolean
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1384,7 +1383,7 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed. |
+| 2801000  | P2P module error. |
 
 
 ## wifiManager.getP2pLinkedInfo<sup>9+</sup>
@@ -1512,7 +1511,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed. |
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -1585,7 +1584,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed. |
+| 2801000  | P2P module error. |
 | 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
@@ -1688,7 +1687,7 @@ API 11起：ohos.permission.GET_WIFI_INFO
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed. |
+| 2801000  | P2P module error. |
 | 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
@@ -2386,6 +2385,7 @@ on(type: 'hotspotStateChange', callback: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 | 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
@@ -2414,6 +2414,7 @@ off(type: 'hotspotStateChange', callback?: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 | 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
