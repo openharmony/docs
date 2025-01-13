@@ -32,6 +32,7 @@ import { common } from '@kit.AbilityKit';
 | cloudFileDir<sup>12+</sup>        | string | No   | No   | Cloud file directory.<br>**Atomic service API**: This API can be used in atomic services since API version 12.   |
 | eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | No   | No   | Event hub that implements event subscription, unsubscription, and triggering.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | No   | No   | Encryption level of the directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| processName<sup>16+</sup> | string | No  | No| Process name of the current application.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
 
 ## Context.createModuleContext<sup>(deprecated)</sup>
 
@@ -230,6 +231,105 @@ export default class EntryAbility extends UIAbility {
         console.log(`getGroupDir result is: ${JSON.stringify(data)}`);
       }
     });
+  }
+}
+```
+
+## Context.createAreaModeContext<sup>16+</sup>
+
+createAreaModeContext(areaMode: contextConstant.AreaMode): Context
+
+Creates the context for this application based on a data encryption level. This is required when an application needs to store different types of information in different directories. The application can obtain the corresponding directory.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| areaMode | [contextConstant.AreaMode](js-apis-app-ability-contextConstant.md#areamode) | Yes  | Data encryption level.|
+
+**Return value**
+
+| Type   | Description                  |
+| ------- | ---------------------- |
+| Context | Context created based on the data encryption level.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { common, UIAbility, contextConstant } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let areaMode: contextConstant.AreaMode = contextConstant.AreaMode.EL2;
+    let areaModeContext: common.Context;
+    try {
+      areaModeContext = this.context.createAreaModeContext(areaMode);
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', 'createAreaModeContext error is:%{public}s', JSON.stringify(error));
+    }
+  }
+}
+```
+
+## Context.createDisplayContext<sup>16+</sup>
+
+createDisplayContext(displayId: number): Context
+
+Creates the context based on the specified display ID, so as to obtain and use other application contexts with screen information (including [ScreenDensity](../apis-localization-kit/js-apis-resource-manager.md#screendensity) and [Direction](../apis-localization-kit/js-apis-resource-manager.md#direction)).
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| displayId | number | Yes   | Display ID.|
+
+**Return value**
+
+| Type   | Description                  |
+| ------- | ---------------------- |
+| [Context](#context) | Context with the specified screen information.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { common, UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let displayContext: common.Context;
+    try {
+      displayContext = this.context.createDisplayContext(0);
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', 'createDisplayContext error is:%{public}s', JSON.stringify(error));
+    }
   }
 }
 ```

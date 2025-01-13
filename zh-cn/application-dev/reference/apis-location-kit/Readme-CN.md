@@ -1,4 +1,4 @@
-# Localization Kit（本地化开发服务）
+# Location Kit API参考
 
 - ArkTS API
   - [@ohos.geoLocationManager (位置服务)](js-apis-geoLocationManager.md)

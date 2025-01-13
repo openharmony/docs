@@ -182,7 +182,30 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
 - 文本绘制。
 
-  可以通过[fillText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#filltext)（绘制填充类文本）、[strokeText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext)（绘制描边类文本）等接口进行文本绘制。
+  可以通过[fillText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#filltext)（文本填充）、[strokeText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext)（文本描边）等接口进行文本绘制。
+
+  ```ts
+  Canvas(this.context)
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F5DC62')
+    .onReady(() => {
+      // 文本填充
+      this.context.font = '50px bolder sans-serif';
+      this.context.fillText("Hello World!", 50, 100);
+      // 文本描边
+      this.context.strokeStyle = "#ff0000"
+      this.context.lineWidth = 2
+      this.context.font = '50px bolder sans-serif';
+      this.context.strokeText("Hello World!", 50, 150);
+    })
+  ```
+
+  ![2023022795105(1)](figures/2023022795105(1).jpg)
+
+- 使用自定义字体绘制文本
+
+  可以通过[font](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#font)接口（设置文本绘制中的字体样式）加载自定义字体，然后通过[fillText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#filltext)（绘制填充类文本）、[strokeText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext)（绘制描边类文本）等接口进行文本绘制。
 
   ```ts
   Canvas(this.context)
@@ -190,16 +213,14 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
     .height('100%')
     .backgroundColor('#F5DC62')
     .onReady(() =>{
-       //绘制填充类文本
-       this.context.font = '50px sans-serif';
-       this.context.fillText("Hello World!", 50, 100);
-       //绘制描边类文本
-       this.context.font = '55px sans-serif';
-       this.context.strokeText("Hello World!", 50, 150);
+      //加载自定义字体
+      this.context.font = '30vp customFont'
+      this.context.fillText("Hello World!", 20, 50)
+      this.context.strokeText("Hello World!", 20, 100)
     })
   ```
 
-  ![2023022795105(1)](figures/2023022795105(1).jpg)
+  ![customFont](figures/customFont.jpeg)
 
 - 绘制图片和图像像素信息处理。
 

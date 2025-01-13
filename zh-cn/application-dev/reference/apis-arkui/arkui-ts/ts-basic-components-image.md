@@ -137,6 +137,8 @@ imageMatrix(matrix: ImageMatrix)
 
 设置图片的变换矩阵。svg类型图源不支持该属性。
 
+设置resizable属性时，该属性设置不生效。
+
 **卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
@@ -549,8 +551,8 @@ orientation(orientation: ImageRotateOrientation)
 
 | 名称 | 类型 | 必填 | 说明 |
 | --------- |-----------|-----------|-----------|
-| slice | [EdgeWidths](#edgewidths参数说明) |  否  | 边框宽度类型，用于描述组件边框不同方向的宽度。<br>**说明：**<br>只有当bottom和right同时大于0时，该属性生效。 |
-| lattice<sup>12+</sup> | [DrawingLattice](#drawinglattice12) |  否  | 矩形网格对象。<br>**说明：**<br> 通过@ohos.graphics.drawing的createImageLattice接口创建Lattice类型作为入参。将图像划分为矩形网格，同时处于偶数列和偶数行上的网格图像是固定的，不会被拉伸。<br>该参数对[backgroundImageResizable](ts-universal-attributes-background.md#backgroundimageresizable12)接口不生效。 |
+| slice | [EdgeWidths](#edgewidths参数说明) |  否  | 边框宽度类型，用于描述组件边框不同方向的宽度。<br>**说明：**<br>只有当bottom和right同时大于0时，该属性生效。<br> 传入数字时默认单位为vp。|
+| lattice<sup>12+</sup> | [DrawingLattice](#drawinglattice12) |  否  | 矩形网格对象。<br>**说明：**<br> 通过@ohos.graphics.drawing的createImageLattice接口创建Lattice类型作为入参。将图像划分为矩形网格，同时处于偶数列和偶数行上的网格图像是固定的，不会被拉伸。<br>该参数对[backgroundImageResizable](ts-universal-attributes-background.md#backgroundimageresizable12)接口不生效。<br> 传入数字时默认单位为px。 |
 
 ## EdgeWidths参数说明
 

@@ -61,6 +61,18 @@ Allows an application to turn on and off the location service.
 
 **Valid since**: 12
 
+### ohos.permission.LOCATION_SWITCH_IGNORED
+
+Allows a system application to obtain location information when the location switch is turned off.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.SUBSCRIBE_SWING_ABILITY
 
 Allows an application to use the subscription capability powered by smart sensing.
@@ -324,6 +336,18 @@ Allows an application to start the upgrade service to perform assisted or collab
 **Enable via ACL**: true
 
 **Valid since**: 12
+
+### ohos.permission.PLUGIN_UPDATE
+
+Allows service parties to invoke upgrade-related interfaces to download and update plug-ins and AI models.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
 
 ### ohos.permission.RECEIVE_UPDATE_MESSAGE
 
@@ -1036,6 +1060,18 @@ Allows an application to control the microphone, for example, persisting the mut
 ### ohos.permission.CAPTURE_PLAYBACK
 
 Allows a system service to capture internal audio without using the AVScreenCapture framework.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.MICROPHONE_BACKGROUND
+
+Allows a system application to use the microphone in the background.
 
 **Permission level**: system_core
 
@@ -3209,18 +3245,6 @@ Allows a system application or service to preload application processes.
 
 **Valid since**: 12
 
-### ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
-
-Allows a system application to use infrared interfaces.
-
-**Permission level**: normal
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
-
 ### ohos.permission.ENABLE_EXPERIENCE_HBM
 
 Allows an application to enable the High Brightness Mode (HBM) for the screen.
@@ -3613,7 +3637,7 @@ Allows an application to query and set the status of input devices.
 
 **Authorization mode**：system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
 **Valid since**：16
 
@@ -4123,7 +4147,7 @@ Allows an application to access the confidential computing zone.
 
 **Authorization mode**：system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
 **Valid since**：16
 
@@ -4188,6 +4212,18 @@ Allows an application to access the application lock.
 **Enable via ACL**: true
 
 **Valid since**: 13
+
+### ohos.permission.ACCESS_APP_SINGLE_PERMISSION_MANAGEMENT
+
+Allows an application to launch a page for modifying a specific permission of another application.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
 
 ### ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
 
@@ -4261,9 +4297,9 @@ Allows a system application to invoke the services provided by the account Servi
 
 **Authorization mode**：system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：13
+**Valid since**：15
 
 ### ohos.permission.ANTI_FRAUD
 
@@ -4309,7 +4345,7 @@ Allows an application to read the SOS emergency information.
 
 **Authorization mode**：system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
 **Valid since**：16
 
@@ -4321,7 +4357,7 @@ Allows an application to write the SOS emergency information.
 
 **Authorization mode**：system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
 **Valid since**：16
 
@@ -4333,11 +4369,37 @@ Allows an application to enable or access the SOS service.
 
 **Authorization mode**：system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
 **Valid since**：16
 
 **Changelog**: This permission is available only to system services in API versions 12 to 14. From API version 15, it is also available to system applications.
+
+### ohos.permission.GET_ANIM_POLICY
+
+Allows a system application to register the animation plugin to obtain animation policies.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.VIRTUAL_KEYBOARD_WINDOW
+
+Allows a system application to create a virtual keyboard window.
+
+With this permission, the system application can create a virtual keyboard window successfully. Currently, this permission is available only to system applications running on 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
 
 ## system_grant Permissions (Unavailable via ACL)
 

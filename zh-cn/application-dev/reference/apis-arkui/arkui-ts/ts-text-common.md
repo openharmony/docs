@@ -94,7 +94,7 @@ getLineMetrics(lineNumber: number): LineMetrics
 
 ### getRectsForRange<sup>14+</sup>
 
-getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeightStyle): Array\<TextBox>
+getRectsForRange(range: TextRange, widthStyle: RectWidthStyle, heightStyle: RectHeightStyle): Array\<TextBox>
 
 获取给定的矩形区域宽度以及矩形区域高度的规格下，文本中任意区间范围内的字符或占位符所占的绘制区域信息。
 
@@ -106,7 +106,7 @@ getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeig
 
 | 参数名      | 类型                                 | 必填 | 说明                     |
 | ----------- | ----------------------------------- | ---- | ------------------------ |
-| range       | [Range](../../apis-arkgraphics2d/js-apis-graphics-text.md#range)                     | 是   | 需要获取的区域的文本区间。  |
+| range       | [TextRange](#textrange12)| 是   | 需要获取的区域的文本区间。  |
 | widthStyle  | [RectWidthStyle](#rectwidthstyle14)   | 是   | 返回的矩形区域的宽度的规格。|
 | heightStyle | [RectHeightStyle](#rectheightstyle14) | 是   | 返回的矩形区域的高度的规格。|
 
@@ -150,6 +150,7 @@ getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeig
 | COLLABORATION_SERVICE   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 互通服务。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | CAMERA_INPUT   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是   | 拍摄输入。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | AI_WRITER<sup>13+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 可对选中的文本进行润色、摘要提取、排版等。该菜单项依赖大模型能力，否则不生效。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| SEARCH<sup>16+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供搜索服务。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ### of
 
@@ -208,7 +209,7 @@ equals(id: TextMenuItemId): boolean
 | id | [TextMenuItemId](#textmenuitemid12) | 是   | 菜单id。 |
 | labelInfo<sup>16+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 快捷键提示。<br/>该字段仅2in1设备支持。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
-## EditMenuOptions对象说明
+## EditMenuOptions
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -391,7 +392,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 
 | 名称     | 类型                                             | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
-| enableVariableFontWeight | boolean | 否   | 是否支持字重无极调节。 |
+| enableVariableFontWeight | boolean | 否   | 是否支持字重无极调节。<br/>默认值：false |
 
 ## OnDidChangeCallback<sup>12+</sup>
 
@@ -501,7 +502,7 @@ getLayoutManager(): LayoutManager
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| [LayoutManager](ts-text-common.md#LayoutManager) | 布局管理器对象。 |
+| [LayoutManager](ts-text-common.md#layoutmanager12) | 布局管理器对象。 |
 
 ## TextEditControllerEx<sup>12+</sup>
 

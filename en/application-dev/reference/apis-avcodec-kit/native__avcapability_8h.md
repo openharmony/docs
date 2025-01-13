@@ -26,7 +26,6 @@ The **native_avcapability.h** file declares the native APIs used to query the co
 
 | Name| Description| 
 | -------- | -------- |
-| typedef enum [OH_BitrateMode](_a_v_capability.md#oh_bitratemode-1) [OH_BitrateMode](_a_v_capability.md#oh_bitratemode) | Defines an enum for bit rate modes of an encoder. | 
 | typedef struct [OH_AVRange](_o_h___a_v_range.md) [OH_AVRange](_a_v_capability.md#oh_avrange) | Defines the value range, which contains the minimum value and maximum value. | 
 | typedef enum [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory-1) [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory) | Defines an enum for codec categories. | 
 | typedef enum [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature-1) [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature) | Defines an enum for optional features that can be used in specific codec scenarios. | 
@@ -36,7 +35,6 @@ The **native_avcapability.h** file declares the native APIs used to query the co
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_BitrateMode](_a_v_capability.md#oh_bitratemode-1) { <br>BITRATE_MODE_CBR = 0, <br>BITRATE_MODE_VBR = 1, <br>BITRATE_MODE_CQ = 2 } | Enumerates the bit rate modes of an encoder. | 
 | [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory-1) { HARDWARE = 0, SOFTWARE } | Enumerates the codec categories. | 
 | [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature-1) {<br> VIDEO_ENCODER_TEMPORAL_SCALABILITY = 0, <br>VIDEO_ENCODER_LONG_TERM_REFERENCE = 1, <br>VIDEO_LOW_LATENCY = 2 <br>} | Enumerates the optional features that can be used in specific codec scenarios. | 
 
@@ -51,7 +49,7 @@ The **native_avcapability.h** file declares the native APIs used to query the co
 | const char \*[OH_AVCapability_GetName](_a_v_capability.md#oh_avcapability_getname) (OH_AVCapability \*capability) | Obtains the codec name. | 
 | int32_t [OH_AVCapability_GetMaxSupportedInstances](_a_v_capability.md#oh_avcapability_getmaxsupportedinstances) (OH_AVCapability \*capability) | Obtains the maximum number of codec instances supported by a codec. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*bitrateRange) | Obtains the bit rate range supported by an encoder. | 
-| bool [OH_AVCapability_IsEncoderBitrateModeSupported](_a_v_capability.md#oh_avcapability_isencoderbitratemodesupported) (OH_AVCapability \*capability, [OH_BitrateMode](_a_v_capability.md#oh_bitratemode) bitrateMode) | Checks whether an encoder supports a specific bit rate mode. | 
+| bool [OH_AVCapability_IsEncoderBitrateModeSupported](_a_v_capability.md#oh_avcapability_isencoderbitratemodesupported) (OH_AVCapability \*capability, [OH_BitrateMode](_codec_base.md#oh_bitratemode) bitrateMode) | Checks whether an encoder supports a specific bit rate mode. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderQualityRange](_a_v_capability.md#oh_avcapability_getencoderqualityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*qualityRange) | Obtains the quality range supported by an encoder. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderComplexityRange](_a_v_capability.md#oh_avcapability_getencodercomplexityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*complexityRange) | Obtains the complexity range supported by an encoder. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetAudioSupportedSampleRates](_a_v_capability.md#oh_avcapability_getaudiosupportedsamplerates) (OH_AVCapability \*capability, const int32_t \*\*sampleRates, uint32_t \*sampleRateNum) | Obtains the sample rates supported by an audio codec. | 

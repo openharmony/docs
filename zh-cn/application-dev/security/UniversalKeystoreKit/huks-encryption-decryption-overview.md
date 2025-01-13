@@ -21,8 +21,8 @@
 | SM4/CTR/NoPadding<br/>SM4/CBC/NoPadding<br/>SM4/CFB/NoPadding | IV 参数必选 | 12+ | 是 |
 | SM4/OFB/NoPadding | Nonce 参数必选 | 12+ | 是 |
 | SM2/-/NoPadding | 摘要算法SM3 | 11+ | 是 |
-| <!--DelRow-->DES/CBC/NoPadding<br/>DES/ECB/NoPadding | CBC模式下 IV 参数必选 | 16+ | 否 |
-| <!--DelRow-->3DES/CBC/NoPadding<br/>3DES/ECB/NoPadding | CBC模式下 IV 参数必选 | 16+ | 否 |
+| DES/CBC/NoPadding<br/>DES/ECB/NoPadding | CBC模式下 IV 参数必选 | 16+ | 是 |
+| 3DES/CBC/NoPadding<br/>3DES/ECB/NoPadding | CBC模式下 IV 参数必选 | 16+ | 是 |
 
 **轻量级设备规格**
 

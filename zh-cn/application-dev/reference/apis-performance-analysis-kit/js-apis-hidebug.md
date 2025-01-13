@@ -624,7 +624,7 @@ let cpuUsage: number = hidebug.getSystemCpuUsage();
 setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 设置应用的fd数量、线程数量、js内存或者native内存资源限制。
-**注意：** 当设置的开发者选项开关打开时,此功能有效。
+**注意：** 当设置的开发者选项开关打开并重启设备后,此功能有效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -955,6 +955,8 @@ getGraphicsMemory(): Promise&lt;number&gt;
 
 使用异步方式，获取应用显存大小。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
@@ -989,6 +991,8 @@ getGraphicsMemorySync(): number
 使用同步方式，获取应用显存大小。
 
 **注意：** 该接口涉及多次跨进程通信，可能存在性能问题，推荐使用异步接口getGraphicsMemory。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 

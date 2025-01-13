@@ -5,6 +5,20 @@
 
 The **OH_Camera** module provides C APIs for the camera service.
 
+You can refer to the corresponding development guide and samples based on your development requirements.
+
+- [Camera Device Management](../../media/camera/native-camera-device-management.md)
+- [Device Input Management](../../media/camera/native-camera-device-input.md)
+- [Camera Session Management](../../media/camera/native-camera-session-management.md)
+- [Preview](../../media/camera/native-camera-preview.md)
+- [Secondary Processing of Preview Streams](../../media/camera/native-camera-preview-imageReceiver.md)
+- [Photo Capture](../../media/camera/native-camera-shooting.md)
+- [Deferred Photo Delivery](../../media/camera/native-camera-deferred-capture.md)
+- [Video Recording](../../media/camera/native-camera-recording.md)
+- [Camera Metadata](../../media/camera/native-camera-metadata.md)
+- [Using the Flashlight](../../media/camera/native-camera-torch-use.md)
+<!--RP1--><!--RP1End-->
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Since**: 11
@@ -460,7 +474,7 @@ Defines an enum for the focus states.
 ### Camera_Format
 
 ```
-typedef enum Camera_FormatCamera_Format
+typedef enum Camera_Format Camera_Format
 ```
 
 **Description**
@@ -4994,6 +5008,8 @@ Camera_ErrorCode OH_PhotoOutput_Capture(Camera_PhotoOutput* photoOutput)
 
 Captures a photo.
 
+**OH_PhotoOutput_Capture()** must be called in prior to **OH_PreviewOutput_Release()**. Otherwise, photo capture fails.
+
 **Since**: 11
 
 **Parameters**
@@ -5780,7 +5796,7 @@ Obtains the active frame rates of a **PreviewOutput** instance.
 | Name| Description| 
 | -------- | -------- |
 | previewOutput | Pointer to a [Camera_PreviewOutput](#camera_previewoutput) instance.| 
-| frameRateRange | Double pointer to the frame rates, which are defined in [Camera_FrameRateRange](_camera___frame_rate_range.md), if the function is successfully called.| 
+| frameRateRange | Pointer to the frame rates, which are defined in [Camera_FrameRateRange](_camera___frame_rate_range.md), if the function is successfully called.| 
 
 **Returns**
 

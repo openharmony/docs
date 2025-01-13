@@ -79,11 +79,11 @@ The Core module provides the basic backbone capabilities for the media framework
 | struct [OH_AVFormat](#oh_avformat) \* [OH_AVFormat_CreateVideoFormat](#oh_avformat_createvideoformat) (const char \*mimeType, int32_t width, int32_t height) | Creates a video **OH_AVFormat** instance with specified parameters for reading and writing data.| 
 | void [OH_AVFormat_Destroy](#oh_avformat_destroy) (struct [OH_AVFormat](#oh_avformat) \*format) | Destroys an **OH_AVFormat** instance.| 
 | bool [OH_AVFormat_Copy](#oh_avformat_copy) (struct [OH_AVFormat](#oh_avformat) \*to, struct [OH_AVFormat](#oh_avformat) \*from) | Copies an **OH_AVFormat** instance.| 
-| bool [OH_AVFormat_SetIntValue](#oh_avformat_setintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t value) | Assigns a value of the int type to a key contained in an **OH_AVFormat**.| 
-| bool [OH_AVFormat_SetLongValue](#oh_avformat_setlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t value) | Assigns a value of the long type to a key contained in an **OH_AVFormat**.| 
-| bool [OH_AVFormat_SetFloatValue](#oh_avformat_setfloatvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, float value) | Assigns a value of the float type to a key contained in an **OH_AVFormat**.| 
-| bool [OH_AVFormat_SetDoubleValue](#oh_avformat_setdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double value) | Assigns a value of the double type to a key contained in an **OH_AVFormat**.| 
-| bool [OH_AVFormat_SetStringValue](#oh_avformat_setstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*value) | Assigns a value of the string type to a key contained in an **OH_AVFormat**.| 
+| bool [OH_AVFormat_SetIntValue](#oh_avformat_setintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t value) | Assigns a value of the int type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance.|
+| bool [OH_AVFormat_SetLongValue](#oh_avformat_setlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t value) | Assigns a value of the long type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance.|
+| bool [OH_AVFormat_SetFloatValue](#oh_avformat_setfloatvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, float value) | Assigns a value of the float type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance.|
+| bool [OH_AVFormat_SetDoubleValue](#oh_avformat_setdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double value) | Assigns a value of the double type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance.|
+| bool [OH_AVFormat_SetStringValue](#oh_avformat_setstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*value) | Assigns a value of the string type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance.|
 | bool [OH_AVFormat_SetBuffer](#oh_avformat_setbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const uint8_t \*addr, size_t size) | Writes data blocks of a specified length to an **OH_AVFormat** instance.| 
 | bool [OH_AVFormat_GetIntValue](#oh_avformat_getintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t \*out) | Obtains the value of the int type of a key contained in an **OH_AVFormat**.| 
 | bool [OH_AVFormat_GetLongValue](#oh_avformat_getlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t \*out) | Obtains the value of the long type of a key contained in an **OH_AVFormat**.| 
@@ -564,6 +564,24 @@ uint8_t* OH_AVBuffer_GetAddr (OH_AVBuffer *buffer)
 **Description**
 
 Obtains the virtual address of a data buffer.
+
+The capability to obtain virtual addresses varies in scenarios, as described in the table below.
+
+**Encoding**
+| Mode| Data Filling Mode|  Capability to Obtain Virtual Addresses|
+| --------------- | -------- | -------- |
+| Surface| OnNeedInputBuffer input | Not supported|
+| Surface| OnNewOutputBuffer output | Supported|
+| Buffer | OnNeedInputBuffer input | Supported|
+| Buffer | OnNewOutputBuffer output | Supported|
+
+**Decoding**
+| Mode| Data Filling Mode|  Capability to Obtain Virtual Addresses|
+| --------------- | -------- | -------- |
+| Surface| OnNeedInputBuffer input | Supported|
+| Surface| OnNewOutputBuffer output | Not supported|
+| Buffer | OnNeedInputBuffer input | Supported|
+| Buffer | OnNewOutputBuffer output | Supported|
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1185,7 +1203,7 @@ The possible causes of an operation failure are as follows:
 2. The passed-in value of **format** fails parameter structure verification.
 3. The passed-in value of **key** is a null pointer.
 4. The passed-in value of **addr** is a null pointer.
-5. The size is 0 or exceeds the upper limit 1 MB.
+5. The size is 0 or exceeds the upper limit (1 MB).
 6. The value type corresponding to the key is incorrect.
 
 
@@ -1197,7 +1215,7 @@ bool OH_AVFormat_SetDoubleValue (struct OH_AVFormat *format, const char *key, do
 
 **Description**
 
-Assigns a value of the double type to a key contained in an **OH_AVFormat**. This function can be used to set only parameters of the double type. For details, see [CodecBase](_codec_base.md).
+Assigns a value of the double type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the double type. For details, see [CodecBase](_codec_base.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1231,7 +1249,7 @@ bool OH_AVFormat_SetFloatValue (struct OH_AVFormat *format, const char *key, flo
 
 **Description**
 
-Assigns a value of the float type to a key contained in an **OH_AVFormat**. This function can be used to set only parameters of the float type. For details, see [CodecBase](_codec_base.md).
+Assigns a value of the float type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the float type. For details, see [CodecBase](_codec_base.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1264,7 +1282,7 @@ bool OH_AVFormat_SetIntValue (struct OH_AVFormat *format, const char *key, int32
 
 **Description**
 
-Assigns a value of the int type to a key contained in an **OH_AVFormat**. This function can be used to set only parameters of the int type. For details, see [CodecBase](_codec_base.md).
+Assigns a value of the int type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the int type. For details, see [CodecBase](_codec_base.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1298,7 +1316,7 @@ bool OH_AVFormat_SetLongValue (struct OH_AVFormat *format, const char *key, int6
 
 **Description**
 
-Assigns a value of the long type to a key contained in an **OH_AVFormat**. This function can be used to set only parameters of the long type. For details, see [CodecBase](_codec_base.md).
+Assigns a value of the long type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the long type. For details, see [CodecBase](_codec_base.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1332,7 +1350,7 @@ bool OH_AVFormat_SetStringValue (struct OH_AVFormat *format, const char *key, co
 
 **Description**
 
-Assigns a value of the string type to a key contained in an **OH_AVFormat**. This function can be used to set only parameters of the string type. For details, see [CodecBase](_codec_base.md).
+Assigns a value of the string type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the string type. For details, see [CodecBase](_codec_base.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 

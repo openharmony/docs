@@ -61,6 +61,18 @@
 
 **起始版本**：12
 
+### ohos.permission.LOCATION_SWITCH_IGNORED
+
+允许系统应用在位置开关关闭的情况下，获取位置信息。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.SUBSCRIBE_SWING_ABILITY
 
 允许应用使用智慧感知订阅能力。
@@ -324,6 +336,18 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.PLUGIN_UPDATE
+
+允许业务方调用升级相关接口完成插件、AI模型的后下载和更新业务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
 
 ### ohos.permission.RECEIVE_UPDATE_MESSAGE
 
@@ -1036,6 +1060,18 @@
 ### ohos.permission.CAPTURE_PLAYBACK
 
 允许系统服务不通过录屏框架，直接进行音频内录。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.MICROPHONE_BACKGROUND
+
+允许系统应用在后台使用麦克风。
 
 **权限级别**：system_core
 
@@ -3209,18 +3245,6 @@
 
 **起始版本**: 12
 
-### ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
-
-允许系统应用使用红外接口。
-
-**权限级别**：normal
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
 ### ohos.permission.ENABLE_EXPERIENCE_HBM
 
 允许应用启用屏幕HBM（High Brightness Mode）亮度模式。
@@ -4189,6 +4213,18 @@
 
 **起始版本**：13
 
+### ohos.permission.ACCESS_APP_SINGLE_PERMISSION_MANAGEMENT
+
+允许应用拉起用于修改其他应用授权的界面。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
 ### ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
 
 允许应用禁用本应用的代码运行时完整性保护。
@@ -4263,7 +4299,7 @@
 
 **ACL使能**：true
 
-**起始版本**：13
+**起始版本**：15
 
 ### ohos.permission.ANTI_FRAUD
 
@@ -4338,6 +4374,32 @@
 **起始版本**：16
 
 **变更信息**：API 12-14仅对系统服务开放；从API 15开始对系统应用开放。
+
+### ohos.permission.GET_ANIM_POLICY
+
+允许系统应用注册动效插件，获取动效使用策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.VIRTUAL_KEYBOARD_WINDOW
+
+允许系统应用创建虚拟键盘窗口。
+
+系统应用获取此权限后，才可以成功创建虚拟键盘窗口。当前仅2in1设备系统应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
 
 ## system_grant，不允许ACL跨级申请
 

@@ -23,6 +23,7 @@ import { AbilityConstant } from '@kit.AbilityKit';
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | launchReason | [LaunchReason](#launchreason)| 否 | 否 | 枚举类型，表示启动原因。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| launchReasonMessage<sup>16+</sup> | string | 否 | 是 | 表示启动的详细原因。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | lastExitReason | [LastExitReason](#lastexitreason) | 否 | 否 | 枚举类型，表示最后退出原因。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | lastExitMessage<sup>12+</sup> | string | 否 | 否 | 表示最后退出详细原因。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
@@ -266,6 +267,55 @@ class MyAbility extends UIAbility {
     this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
       console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
     });
+  }
+}
+```
+
+## CollaborateResult<sup>16+</sup>
+
+协同状态枚举值，用于表示多设备场景下，调用方应用拉起协同方应用时，协同方应用是否接受协同。配合UIAbility的[onCollaborate(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncollaborate)方法进行设置。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称     | 值   | 说明       |
+| -------- | ---- | ---------- |
+| ACCEPT   | 0    | 接受协同。 |
+| REJECT   | 1    | 拒绝协同。 |
+
+**示例：**
+
+```ts
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
+
+class MyAbility extends UIAbility {
+  onCollaborate(wantParam: Record<string, Object>) {
+    return AbilityConstant.CollaborateResult.ACCEPT;
+  }
+}
+```
+
+## PrepareTermination<sup>16+</sup>
+
+应用被强制结束前的动作枚举值，需要配合[AbilityStage](js-apis-app-ability-abilityStage.md)的[onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination16)方法使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称 | 值 | 说明 |
+| ------------- | --------- | ----------- |
+| TERMINATE_IMMEDIATELY | 0 | 表示立即执行结束动作，默认值。|
+| CANCEL | 1 | 表示取消结束动作。|
+
+**示例：**
+
+```ts
+import { AbilityConstant, AbilityStage } from '@kit.AbilityKit';
+
+class MyAbilityStage extends AbilityStage {
+  onPrepareTermination(): AbilityConstant.PrepareTermination {
+    console.info('MyAbilityStage.onPrepareTermination is called');
+    return AbilityConstant.PrepareTermination.CANCEL;
   }
 }
 ```

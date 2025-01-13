@@ -38,7 +38,12 @@
     "hwasanEnabled": false,
     "ubsanEnabled": false,
     "cloudFileSyncEnabled": false,
-    "configuration": "$profile:configuration"
+    "configuration": "$profile:configuration",
+    "assetAccessGroups": [
+      "com.ohos.photos",
+      "com.ohos.screenshot",
+      "com.ohos.note"
+    ]
   },
 }
 ```
@@ -83,6 +88,7 @@ app.json5配置文件包含以下标签。
 | ubsanEnabled | 标识应用程序是否开启UBsan检测。<br/>UBsan(Undefined Behavior Sanitizer)是一个用于运行时检测程序中未定义行为的工具，旨在帮助开发人员发现代码中潜在的错误和漏洞。<br/>-&nbsp;true：当前工程开启UBsan检测。<br/>-&nbsp;false：当前工程不开启UBsan检测。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | cloudFileSyncEnabled | 标识当前应用是否启用端云文件同步能力。 <br/>-&nbsp;true：当前应用启用端云文件同步能力。<br/>-&nbsp;false：当前应用不启用端云文件同步能力。 | 布尔值 | 该标签可缺省，缺省值为false。  |
 | [configuration](#configuration标签) | 标识当前应用字体大小跟随系统配置的能力。<br/>该标签是一个profile文件资源，用于指定描述应用字体大小跟随系统变更的配置文件。| 字符串 | 该标签可缺省，缺省时configuration使用不跟随系统默认设定。 |
+| assetAccessGroups | 配置应用的Group ID，它和Developer ID一起组成群组信息。<br/>打包HAP时，DevEco使用开发者证书对群组信息签名，其中群组信息由Developer ID（由应用市场分配）+ Group ID（开发者配置）组成。| 字符串数组 | 该标签可缺省，缺省值为空。 |
 
 ## icon标签
 
@@ -180,7 +186,7 @@ configuration标签示例：
 }
 ```
 
-在开发视图的AppScope/resources/base/media/profile下面定义配置文件configuration.json，其中文件名"configuration"可自定义，需要和configuration标签指定的信息对应。配置文件中列举了当前应用字体大小跟随系统变化的属性。
+在开发视图的AppScope/resources/base/profile下面定义配置文件configuration.json，其中文件名"configuration"可自定义，需要和configuration标签指定的信息对应。配置文件中列举了当前应用字体大小跟随系统变化的属性。
 
    **表4** configuration标签说明
 

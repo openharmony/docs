@@ -21,6 +21,7 @@
   - [@ohos.file.environment (目录环境能力)(系统接口)](js-apis-file-environment-sys.md)
   - [@ohos.file.fileAccess (公共文件访问与管理)(系统接口)](js-apis-fileAccess-sys.md)
   - [@ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)(系统接口)](js-apis-fileExtensionInfo-sys.md)
+  - [@ohos.file.keyManager (用户秘钥管理)(系统接口)](js-apis-file-keymanager-sys.md)
   - [@ohos.file.recent(最近访问列表)(系统接口)](js-apis-file-recent-sys.md)
   - [@ohos.file.storageStatistics (应用空间统计)(系统接口)](js-apis-file-storage-statistics-sys.md)
   - [@ohos.file.trash (回收站)(系统接口)](js-apis-file-trash-sys.md)

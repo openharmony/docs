@@ -5,7 +5,7 @@
 
 定义对称密钥加解密接口。
 
-**库：** libohcrypto.z.so
+**库：** libohcrypto.so
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 

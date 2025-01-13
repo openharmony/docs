@@ -20,14 +20,14 @@ The **native_avcodec_videoencoder.h** file declares the native APIs used for vid
 | Name| Description| 
 | -------- | -------- |
 | typedef void(\* [OH_VideoEncoder_OnNeedInputParameter](_video_encoder.md#oh_videoencoder_onneedinputparameter)) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index, OH_AVFormat \*parameter, void \*userData) | Defines the pointer to the function that is called when new input parameters are required during the running of an **OH_AVCodec** instance. The function carries a buffer to fill in the new input parameters. The parameters take effect immediately with the frame. | 
-| typedef enum [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode-1) [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) | Defines an enum for bit rate modes of a video encoder.| 
+| typedef enum [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode-1) [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) | Defines an enum for bit rate modes of a video encoder. (This type is deprecated from API version 14.)| 
 
 
 ### Enums
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode-1) { CBR = 0, VBR = 1, CQ = 2 } | Enumerates the bit rate modes of a video encoder.| 
+| [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode-1) { CBR = 0, VBR = 1, CQ = 2 } | Enumerates the bit rate modes of a video encoder. (This enum is deprecated from API version 14.)| 
 
 
 ### Functions

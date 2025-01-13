@@ -10,9 +10,13 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
 
 | 模块 | 接口名 | 功能 |
 | -------- | -------- | -------- |
-| \@ohos.file.storageStatistics | getCurrentBundleStats | 获取当前应用的存储空间大小（单位为Byte）。 | 
-| \@ohos.file.statvfs | getFreeSize | 获取指定文件系统的剩余空间大小（单位为Byte）。 | 
-| \@ohos.file.statvfs | getTotalSize | 获取指定文件系统的总空间大小（单位为Byte）。 | 
+| \@ohos.file.storageStatistics | getCurrentBundleStats | 获取当前应用的存储空间大小（单位为Byte）。 |
+| \@ohos.file.storageStatistics | getFreeSize | 异步获取内置存储的总空间大小（单位为Byte） |
+| \@ohos.file.storageStatistics | getFreeSizeSync | 同步获取内置存储的总空间大小（单位为Byte） |
+| \@ohos.file.storageStatistics | getTotalSize | 异步获取内置存储的可用空间大小（单位为Byte） |
+| \@ohos.file.storageStatistics | getTotalSizeSync | 同步获取内置存储的可用空间大小（单位为Byte） |
+| \@ohos.file.statvfs | getFreeSize | 获取指定文件系统的剩余空间大小（单位为Byte）。 |
+| \@ohos.file.statvfs | getTotalSize | 获取指定文件系统的总空间大小（单位为Byte）。 |
 
 **表2** 应用空间统计
 
@@ -25,7 +29,7 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
 ## 开发示例
 
 - 获取文件系统数据分区剩余空间大小。
-    
+  
   ```ts
   import { statfs } from '@kit.CoreFileKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -43,7 +47,7 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
   ```
 
 - 获取当前应用的存储空间大小。
-    
+  
   ```ts
   import { storageStatistics } from '@kit.CoreFileKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -56,3 +60,60 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
     }
   });
   ```
+
+- 异步获取内置存储的总空间大小。
+
+  ```ts
+  import { storageStatistics } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  storageStatistics.getTotalSize().then((number: number) => {
+    console.info("getTotalSize successfully:" + JSON.stringify(number));
+  }).catch((err: BusinessError) => {
+    console.error("getTotalSize failed with error:"+ JSON.stringify(err));
+  });
+  ```
+
+- 同步获取内置存储的总空间大小。
+
+  ```ts
+  import { storageStatistics } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  try {
+    let number = storageStatistics.getTotalSizeSync();
+    console.info("getTotalSizeSync successfully:" + JSON.stringify(number));
+  } catch (err) {
+    let error: BusinessError = err as BusinessError;
+    console.error("getTotalSizeSync failed with error:" + JSON.stringify(error));
+  }
+  ```
+
+- 异步获取内置存储的可用空间大小。
+
+  ```ts
+  import { storageStatistics } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  storageStatistics.getFreeSize().then((number: number) => {
+    console.info("getFreeSize successfully:" + JSON.stringify(number));
+  }).catch((err: BusinessError) => {
+    console.error("getFreeSize failed with error:" + JSON.stringify(err));
+  });
+  ```
+
+- 同步获取内置存储的可用空间大小。
+
+  ```ts
+  import { storageStatistics } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  try {
+    let number = storageStatistics.getFreeSizeSync();
+    console.info("getFreeSizeSync successfully:" + JSON.stringify(number));
+  } catch (err) {
+    let error: BusinessError = err as BusinessError;
+    console.error("getFreeSizeSync failed with error:" + JSON.stringify(error));
+  }
+  ```
+

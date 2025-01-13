@@ -10,7 +10,7 @@
 本文中T和S的含义如下：
 
 
-| 类型   | 描述                                     |
+| 类型   | 说明                                     |
 | ---- | -------------------------------------- |
 | T    | Class，number，boolean，string和这些类型的数组形式。 |
 | S    | number，boolean，string。                 |
@@ -44,8 +44,8 @@ static&nbsp;connect\<T extends object\>( </br >
 
 | 参数名   | 类型   | 必填 | 说明               |
 | -------- | ------ | ---- | ---------------------- |
-| type | TypeConstructorWithArgs\<T\> | 是   | 指定的类型，若未指定key，则使用type的name作为key。 |
-| keyOrDefaultCreater | string&nbsp;\|&nbsp;StorageDefaultCreator\<T\> | 否   | 指定的key，或者是获取默认值的构造器。 |
+| type | [TypeConstructorWithArgs\<T\>](#typeconstructorwithargst12) | 是   | 指定的类型，若未指定key，则使用type的name作为key。 |
+| keyOrDefaultCreator | string&nbsp;\|&nbsp;[StorageDefaultCreator\<T\>](#storagedefaultcreatort12) | 否   | 指定的key，或者是获取默认值的构造器。 |
 | defaultCreator | StorageDefaultCreator\<T\> | 否   | 获取默认值的构造器。 |
 
 >**说明：**
@@ -60,7 +60,7 @@ static&nbsp;connect\<T extends object\>( </br >
 
 **返回值：**
 
-| 类型                                   | 描述                                                         |
+| 类型                                   | 说明                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
 | T | 创建或获取AppStorageV2数据成功时，返回数据；否则返回undefined。 |
 
@@ -128,10 +128,6 @@ static&nbsp;keys():&nbsp;Array\<string\>;
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-无。
 
 **返回值：**
 
@@ -215,16 +211,15 @@ class ConnectOptions<T extends object> {
 
 **返回值：**
 
-| 类型 | 描述                                                         |
+| 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
 | T    | 创建或获取AppStorageV2数据成功时，返回数据；否则返回undefined。 |
 
 **示例：**
 
 ```ts
-import { PersistenceV2, Type } from '@kit.ArkUI';
+import { PersistenceV2, Type, ConnectOptions } from '@kit.ArkUI';
 import { contextConstant } from '@kit.AbilityKit';
-import { ConnectOptions } from '@ohos.arkui.StateManagement';
 
 @ObservedV2
 class SampleChild {
@@ -340,7 +335,7 @@ static getTarget\<T extends object\>(source: T): T;
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | T    | 数据源对象去除状态管理框架所加代理后的原始对象。 |
 
@@ -383,7 +378,7 @@ static makeObserved\<T extends object\>(source: T): T;
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | T    | 可观察的数据。 |
 
@@ -415,9 +410,9 @@ struct Index {
 }
 ```
 
-## StorageDefaultCreator<sup>12+</sup>
+## StorageDefaultCreator\<T\><sup>12+</sup>
 
-export declare type StorageDefaultCreator\<T\> = () => T;
+type StorageDefaultCreator\<T\> = () => T;
 
 返回默认构造器的函数。
 
@@ -427,7 +422,7 @@ export declare type StorageDefaultCreator\<T\> = () => T;
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | () => T    | 返回默认构造器的函数。 |
 
@@ -464,7 +459,7 @@ struct SampleComp {
 }
 ```
 
-## TypeConstructorWithArgs<sup>12+</sup>
+## TypeConstructorWithArgs\<T\><sup>12+</sup>
 
 含有任意入参的类构造器。
 
@@ -484,7 +479,7 @@ new(...args: any): T;
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | T    | T类型的实例。 |
 
@@ -523,7 +518,7 @@ struct SampleComp {
 
 ## PersistenceErrorCallback<sup>12+</sup>
 
-export declare type PersistenceErrorCallback = (key: string, reason: 'quota' | 'serialization' | 'unknown', message: string) => void;
+type PersistenceErrorCallback = (key: string, reason: 'quota' | 'serialization' | 'unknown', message: string) => void;
 
 持久化失败时返回错误原因的回调。
 
@@ -581,7 +576,7 @@ struct Index {
 }
 ```
 
-## TypeConstructor<sup>12+</sup>
+## TypeConstructor\<T\><sup>12+</sup>
 
 类构造函数。
 
@@ -591,7 +586,7 @@ new(): T;
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | T    | T类型的实例。 |
 
@@ -637,7 +632,7 @@ struct Index {
 
 ## TypeDecorator<sup>12+</sup>
 
-export declare type TypeDecorator = \<T\>(type: TypeConstructor\<T\>) => PropertyDecorator;
+type TypeDecorator = \<T\>(type: TypeConstructor\<T\>) => PropertyDecorator;
 
 属性装饰器。
 
@@ -649,11 +644,11 @@ export declare type TypeDecorator = \<T\>(type: TypeConstructor\<T\>) => Propert
 
 | 参数名 | 类型 | 必填 | 说明     |
 | ------ | ---- | ---- | ------------ |
-| type | TypeConstructor\<T\>    | 是   | 标记类属性的类型。   |
+| type | [TypeConstructor\<T\>](#typeconstructort12)    | 是   | 标记类属性的类型。   |
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | PropertyDecorator    | 属性装饰器。 |
 

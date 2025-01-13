@@ -469,3 +469,113 @@ Canvas组件的toDataURL接口。
 **适配指导**
 
 默认效果变更，无需适配，但应注意变更后的效果是否符合预期。
+
+## cl.arkui.7 RichEditor（富文本）预上屏候选词替换已上屏内容行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+通过输入法点击候选词来替换富文本中已显示的单词，这种替换被视为正式内容的一部分，且能够被富文本的输入相关回调aboutToIMEInput所拦截。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+变更前：
+当aboutToIMEInput回调返回false时，点击输入法候选词替换已上屏内容，候选词能够正常上屏，不会被拦截。
+
+
+变更后：
+当aboutToIMEInput回调返回false时，点击输入法候选词替换已上屏内容，候选词不可以上屏，会被拦截。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.57开始。
+
+**变更的接口/组件**
+
+RichEditor
+
+**适配指导**
+
+应用可以根据aboutToIMEInput回调入参中RichEditorInsertValue#previewText是否有值，判断此次插入是否是预上屏内容插入，进而执行对应逻辑。
+
+## cl.arkui.8 RichEditor（富文本）设置提示文本时鼠标拖动光标回调变更。
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+当组件设置了提示文本且无内容时，按住鼠标左键拖动会触发onSelect和onSelectionChange异常回调。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：
+当组件设置了提示文本且无内容时，若按住鼠标左键进行拖动操作，将触发onSelect和onSelectionChange异常回调，回调的范围界定为鼠标拖动时所覆盖的提示文本区域。
+
+变更后：
+当组件设置了提示文本且无内容时，若按住鼠标左键进行拖动操作，不触发onSelect和onSelectionChange回调。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.57开始。
+
+**变更的接口/组件**
+
+RichEditor
+
+**适配指导**
+
+默认行为变更，无需适配。
+
+## cl.arkui.9 RichEditor（富文本）onDeleteComplete回调变更。
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+在组件填充内容时，从内容的起始位置向前删除将触发onDeleteComplete回调，而从内容的末尾向后删除则不会触发onDeleteComplete回调，两者的表现不一致。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：
+在组件填充内容时，从内容的末尾向后删除不触发onDeleteComplete回调。
+
+变更后：
+在组件填充内容时，从内容的末尾向后删除触发onDeleteComplete回调。
+
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.57开始。
+
+**变更的接口/组件**
+
+RichEditor
+
+**适配指导**
+
+默认行为变更，无需适配。
