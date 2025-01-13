@@ -160,8 +160,6 @@ The development of deferred task scheduling consists of two steps: implementing 
            {
              "name": "MyWorkSchedulerExtensionAbility",
              "srcEntry": "./ets/WorkSchedulerExtension/WorkSchedulerExtension.ets",
-             "label": "$string:WorkSchedulerExtensionAbility_label",
-             "description": "$string:WorkSchedulerExtensionAbility_desc",
              "type": "workScheduler"
            }
          ]
