@@ -676,7 +676,7 @@ databaseAccess(databaseAccess: boolean)
 
 geolocationAccess(geolocationAccess: boolean)
 
-设置是否开启获取地理位置权限，默认开启。具体使用方式参考[管理位置权限](../../web/web-geolocation-permission.md)
+设置是否开启获取地理位置权限，默认开启。具体使用方式参考[管理位置权限](../../web/web-geolocation-permission.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6324,6 +6324,14 @@ type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => We
 
 控制自定义键盘的输入、删除、关闭等操作。示例代码参考[onInterceptKeyboardAttach](#oninterceptkeyboardattach12)。
 
+### constructor<sup>12+</sup>
+
+constructor()
+
+WebKeyboardController的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### insertText<sup>12+</sup>
 
 insertText(text: string): void
@@ -6392,6 +6400,14 @@ close(): void
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+ConsoleMessage的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### getLineNumber
 
 getLineNumber(): number
@@ -6452,6 +6468,14 @@ getSourceId(): string
 
 Web组件返回的弹窗确认或弹窗取消功能对象。示例代码参考[onAlert事件](#onalert)。
 
+### constructor
+
+constructor()
+
+JsResult的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### handleCancel
 
 handleCancel(): void
@@ -6490,6 +6514,8 @@ handlePromptConfirm(result: string): void
 
 constructor()
 
+FullScreenExitHandler的构造函数。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 ### exitFullScreen<sup>9+</sup>
@@ -6503,6 +6529,11 @@ exitFullScreen(): void
 ## ControllerHandler<sup>9+</sup>
 
 设置用户新建Web组件的WebviewController对象。示例代码参考[onWindowNew事件](#onwindownew9)。
+### constructor<sup>9+</sup>
+
+constructor()
+
+ControllerHandler的构造函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6523,6 +6554,14 @@ setWebController(controller: WebviewController): void
 ## WebResourceError
 
 Web组件资源管理错误信息对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+WebResourceError的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### getErrorCode
 
@@ -6555,6 +6594,14 @@ getErrorInfo(): string
 ## WebResourceRequest
 
 Web组件获取资源请求对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
+
+### constructor
+
+constructor()
+
+WebResourceRequest的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### getRequestHeader
 
@@ -6654,6 +6701,14 @@ Web组件返回的请求/响应头对象。
 ## WebResourceResponse
 
 Web组件资源响应对象。示例代码参考[onHttpErrorReceive事件](#onhttperrorreceive)。
+
+### constructor
+
+constructor()
+
+WebResourceResponse的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### getReasonMessage
 
@@ -6841,6 +6896,14 @@ setResponseIsReady(IsReady: boolean): void
 
 通知Web组件的文件选择结果。示例代码参考[onShowFileSelector事件](#onshowfileselector9)。
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+FileSelectorResult的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### handleFileList<sup>9+</sup>
 
 handleFileList(fileList: Array\<string\>): void
@@ -6858,6 +6921,14 @@ handleFileList(fileList: Array\<string\>): void
 ## FileSelectorParam<sup>9+</sup>
 
 Web组件获取文件对象。示例代码参考[onShowFileSelector事件](#onshowfileselector9)。
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+FileSelectorParam的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### getTitle<sup>9+</sup>
 
@@ -6919,6 +6990,14 @@ isCapture(): boolean
 
 Web组件返回的http auth认证请求确认或取消和使用缓存密码认证功能对象。示例代码参考[onHttpAuthRequest事件](#onhttpauthrequest9)。
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+HttpAuthHandler的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### cancel<sup>9+</sup>
 
 cancel(): void
@@ -6966,6 +7045,14 @@ isHttpAuthInfoSaved(): boolean
 
 Web组件返回的SSL错误通知事件用户处理功能对象。示例代码参考[onSslErrorEventReceive事件](#onsslerroreventreceive9)。
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+SslErrorHandler的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### handleCancel<sup>9+</sup>
 
 handleCancel(): void
@@ -6985,6 +7072,14 @@ handleConfirm(): void
 ## ClientAuthenticationHandler<sup>9+</sup>
 
 Web组件返回的SSL客户端证书请求事件用户处理功能对象。示例代码参考[onClientAuthenticationRequest事件](#onclientauthenticationrequest9)。
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+ClientAuthenticationHandler的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### confirm<sup>9+</sup>
 
@@ -7038,6 +7133,14 @@ ignore(): void
 ## PermissionRequest<sup>9+</sup>
 
 Web组件返回授权或拒绝权限功能的对象。示例代码参考[onPermissionRequest事件](#onpermissionrequest9)。
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+PermissionRequest的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### deny<sup>9+</sup>
 
@@ -7093,6 +7196,14 @@ grant(resources: Array\<string\>): void
 
 Web组件返回授权或拒绝屏幕捕获功能的对象。示例代码参考[onScreenCaptureRequest事件](#onscreencapturerequest10)。
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+ScreenCaptureHandler的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### deny<sup>10+</sup>
 
 deny(): void
@@ -7136,6 +7247,14 @@ grant(config: ScreenCaptureConfig): void
 ## EventResult<sup>12+</sup>
 
 通知Web组件事件消费结果，支持的事件参考[触摸事件的类型](../apis-arkui/arkui-ts/ts-appendix-enums.md#touchtype)。如果应用不消费该事件，则设置为false，事件被Web组件消费。应用消费了该事件，设置为true，Web组件不消费。示例代码参考[onNativeEmbedGestureEvent事件](#onnativeembedgestureevent11)。
+
+### constructor<sup>12+</sup>
+
+constructor()
+
+EventResult的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### setGestureEventResult<sup>12+</sup>
 
@@ -7204,6 +7323,14 @@ setGestureEventResult(result: boolean): void
 ## WebContextMenuParam<sup>9+</sup>
 
 实现长按页面元素或鼠标右键弹出来的菜单信息。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+WebContextMenuParam的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### x<sup>9+</sup>
 
@@ -7377,6 +7504,14 @@ getEditStateFlags(): number
 
 实现长按页面元素或鼠标右键弹出来的菜单所执行的响应事件。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+WebContextMenuResult的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### closeContextMenu<sup>9+</sup>
 
 closeContextMenu(): void
@@ -7432,6 +7567,8 @@ Web组件返回授权或拒绝权限功能的对象。示例代码参考[onGeolo
 ### constructor
 
 constructor()
+
+JsGeolocation的构造函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7617,6 +7754,14 @@ Web屏幕捕获的配置。
 
 通过DataResubmissionHandler可以重新提交表单数据或取消提交表单数据。
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+DataResubmissionHandler的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### resend<sup>9+</sup>
 
 resend(): void
@@ -7706,7 +7851,7 @@ getCookieManager(): WebCookie
 
 | 类型        | 说明                                       |
 | --------- | ---------------------------------------- |
-| WebCookie | Web组件cookie管理对象，参考[WebCookie](#webcookiedeprecated)定义。 |
+| WebCookie | Web组件cookie管理对象，参考[WebCookie](#webcookie)定义。 |
 
 **示例：**
 
@@ -8444,9 +8589,17 @@ clearHistory(): void
   }
   ```
 
-## WebCookie<sup>(deprecated)</sup>
+## WebCookie
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
+
+### constructor
+
+constructor()
+
+WebCookie的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### setCookie<sup>(deprecated)</sup>
 
