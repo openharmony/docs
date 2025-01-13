@@ -188,10 +188,10 @@ constructor(colorStops: ColorStop[])
 
 | 参数名         | 类型 | 必填 | 说明 |
 | ------------- | ------- | ---- | -------- |
-| colorStops | [ColorStop](#colorstop10对象说明)[] | 是 | 存储渐变颜色和渐变点。|
+| colorStops | [ColorStop](#colorstop10)[] | 是 | 存储渐变颜色和渐变点。|
 
 
-## ColorStop<sup>10+</sup>对象说明
+## ColorStop<sup>10+</sup>
 
 颜色断点类型，用于描述渐进色颜色断点。
 
