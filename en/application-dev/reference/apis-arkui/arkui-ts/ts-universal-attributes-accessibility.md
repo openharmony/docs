@@ -152,18 +152,18 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text ("Text 1")
+        Text("Text 1")
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        Text ("Text 2")
+        Text("Text 2")
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
       }
       .width('100%')
       .accessibilityGroup(true)
       .accessibilityLevel("yes")
-      .accessibilityText ("Group")
-      .accessibilityDescription("The <Column> component is selectable , and the text to be read out is "Group".)
+      .accessibilityText("Group")
+      .accessibilityDescription("The Column component is selectable , and the text to be read out is "Group".)
       .accessibilityVirtualNode(this.customAccessibilityNode)
     }
     .height('100%')

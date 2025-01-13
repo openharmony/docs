@@ -189,6 +189,50 @@ getOverlayManager(): OverlayManager
 uiContext.getOverlayManager();
 ```
 
+### setOverlayManagerOptions<sup>15+</sup>
+
+setOverlayManagerOptions(value: OverlayManagerOptions): void
+
+设置[OverlayManager](#overlaymanager12)参数。用于在使用OverlayManager能力之前先初始化overlayManager的参数，包括是否需要渲染overlay根节点等属性。该方法需要在执行getOverlayManager方法之前执行生效，且该方法只生效一次。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**: SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填   | 说明                                    |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| value | [OverlayManagerOptions](#overlaymanageroptions15) | 否    | OverlayManager参数。|
+
+**示例：**
+
+```ts
+uiContext.setOverlayManagerOptions({ renderRootOverlay: true });
+```
+
+### getOverlayManagerOptions<sup>15+</sup>
+
+getOverlayManagerOptions(): OverlayManagerOptions
+
+用于获取当前[OverlayManager](#overlaymanager12)参数。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**: SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                           | 说明                 |
+| ----------------------------- | ------------------- |
+| [OverlayManagerOptions](#overlaymanageroptions15) | 返回当前OverlayManagerOptions。 |
+
+**示例：**
+
+```ts
+uiContext.getOverlayManagerOptions();
+```
+
 ### animateTo
 
 animateTo(value: AnimateParam, event: () => void): void
@@ -6751,6 +6795,18 @@ hideAllComponentContents(): void
 
 请参考[addComponentContent示例](#addcomponentcontent12)
 
+## OverlayManagerOptions<sup>15+</sup>
+
+初始化[OverlayManager](#overlaymanager12)时所用参数。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称             | 类型                | 必填     | 说明                     |
+| --------------- | ---------------------- | ------------ | --------------------- |
+| renderRootOverlay   | boolean | 否 | 是否渲染overlay根节点，默认值为true。 |
+
 ## AtomicServiceBar<sup>11+</sup>
 
 以下接口需要先使用UIContext中的[getAtomicServiceBar](#getatomicservicebar11)方法获取到AtomicServiceBar对象，再通过该对象调用对应方法。
@@ -7121,7 +7177,7 @@ struct RequestExample {
 
 ### activate<sup>14+</sup>
 
-activate(isActive: boolean, atuoInactive?: boolean): void
+activate(isActive: boolean, autoInactive?: boolean): void
 
 设置当前界面的[焦点激活态](../../ui/arkts-common-events-focus-event.md)。
 
@@ -7241,7 +7297,7 @@ type PointerStyle = PointerStyle
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.MultimodalInput.Input.Pointer
 
 |类型|说明|
 | -- | -- |

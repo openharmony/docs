@@ -29,7 +29,7 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItem
 | options         | [SegmentButtonOptions](#segmentbuttonoptions) | 是   | @ObjectLink | 分段按钮选项。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | selectedIndexes | number[]                                      | 是   | @Link       | 分段按钮的选中项编号，第一项的编号为0，之后顺序增加。<br/>**说明：**<br/>`selectedIndexes`使用[@Link装饰器：父子双向同步](../../../quick-start/arkts-link.md)，仅支持有效的按钮编号（第一个按钮编号为0，之后按顺序累加），如没有选中项可传入空数组`[]`。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onItemClicked<sup>13+</sup> | Callback\<number\> | 否 | - | 当分段按钮选项被点击时触发的回调函数，回调入参为被点击的选项下标。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
-| maxFontScale<sup>14+</sup> | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否 | @Prop | 分段按钮选项文字的最大字体放大倍数。<br/>默认值：1<br/>取值范围：[1,2]<br/>**说明：** <br/>当设置的值小于1时，按值为1处理，设置的值大于2时，按值为2处理。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| maxFontScale<sup>14+</sup> | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是 | @Prop | 分段按钮选项文字的最大字体放大倍数。<br/>默认值：1<br/>取值范围：[1,2]<br/>**说明：** <br/>当设置的值小于1时，按值为1处理，设置的值大于2时，按值为2处理。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 >**说明：** 
 >

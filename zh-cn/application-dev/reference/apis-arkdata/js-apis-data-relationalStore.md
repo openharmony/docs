@@ -174,6 +174,8 @@ getRdbStore目前不支持多线程并发操作。
 | 14800017  | Config changed. |
 | 14800020  | The secret key is corrupted or lost.   |
 | 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort.   |
+| 14800023  | SQLite: Access permission denied.    |
 | 14800027  | SQLite: Attempt to write a readonly database. |
 | 14800028  | SQLite: Some kind of disk I/O error occurred. |
 | 14800029  | SQLite: The database is full. |
@@ -851,6 +853,7 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 | 名称     | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | autoSync   | boolean | 是   | 该值为true时，表示该表支持自动同步和手动同步；该值为false时，表示该表只支持手动同步，不支持自动同步。 |
+| asyncDownloadAsset<sup>16+</sup> | boolean | 否 | 表示当前数据库在端云同步时，同步或异步下载资产。true表示优先下载完所有数据后，使用异步任务下载资产；false表示同步下载资产；默认值为false。 |
 
 ## ConflictResolution<sup>10+</sup>
 

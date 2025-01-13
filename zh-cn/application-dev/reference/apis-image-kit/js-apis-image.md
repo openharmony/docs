@@ -5720,7 +5720,7 @@ async function Packing() {
 }
 ```
 
-### packing<sup>13+</sup>
+### packing<sup>16+</sup>
 
 packing(pixelmapSequence: Array\<PixelMap>, options: PackingOptionsForSequence): Promise\<ArrayBuffer>
 
@@ -5733,7 +5733,7 @@ packing(pixelmapSequence: Array\<PixelMap>, options: PackingOptionsForSequence):
 | 参数名           | 类型                                                      | 必填 | 说明                   |
 | ---------------- | --------------------------------------------------------- | ---- | ---------------------- |
 | pixelmapSequence | Array\<[PixelMap](#pixelmap7)>                            | 是   | 待编码的PixelMap序列。 |
-| options          | [PackingOptionsForSequence](#packingoptionsforsequence13) | 是   | 动图编码参数。         |
+| options          | [PackingOptionsForSequence](#packingoptionsforsequence16) | 是   | 动图编码参数。         |
 
 **返回值：**
 
@@ -6320,7 +6320,7 @@ async function PackToFile() {
 }
 ```
 
-### packToFile<sup>13+</sup>
+### packToFile<sup>16+</sup>
 
 packToFile(pixelmapSequence: Array\<PixelMap>, fd: number, options: PackingOptionsForSequence): Promise\<void>
 
@@ -6334,7 +6334,7 @@ packToFile(pixelmapSequence: Array\<PixelMap>, fd: number, options: PackingOptio
 | ---------------- | --------------------------------------------------------- | ---- | ---------------------- |
 | pixelmapSequence | Array<[PixelMap](#pixelmap7)>                             | 是   | 待编码的PixelMap序列。 |
 | fd               | number                                                    | 是   | 文件描述符。           |
-| options          | [PackingOptionsForSequence](#packingoptionsforsequence13) | 是   | 动图编码参数。         |
+| options          | [PackingOptionsForSequence](#packingoptionsforsequence16) | 是   | 动图编码参数。         |
 
 **返回值：**
 
@@ -8100,7 +8100,7 @@ PixelMap的初始化选项。
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 是   | 目标动态范围。默认值为SDR。 |
 | needsPackProperties<sup>12+</sup> | boolean | 否   | 是   | 是否需要编码图片属性信息，例如EXIF。默认值为false。 |
 
-## PackingOptionsForSequence<sup>13+</sup>
+## PackingOptionsForSequence<sup>16+</sup>
 
 描述图像序列打包的选项。
 

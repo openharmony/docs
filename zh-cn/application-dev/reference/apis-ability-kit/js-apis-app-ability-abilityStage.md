@@ -211,3 +211,32 @@ class MyAbilityStage extends AbilityStage {
   }
 }
 ```
+
+## AbilityStage.onPrepareTermination<sup>16+<sup>
+
+onPrepareTermination(): AbilityConstant.PrepareTermination
+
+当应用将被强制结束时调用，可用于询问用户选择立即执行操作还是取消操作。当前仅在2in1设备上生效。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 | 
+| -------- | -------- |
+| [AbilityConstant.PrepareTermination](js-apis-app-ability-abilityConstant.md#preparetermination16) | 用于返回用户的选择结果。 | 
+
+**示例：**
+
+```ts
+import { AbilityConstant, AbilityStage } from '@kit.AbilityKit';
+
+class MyAbilityStage extends AbilityStage {
+  onPrepareTermination(): AbilityConstant.PrepareTermination {
+    console.info('MyAbilityStage.onPrepareTermination is called');
+    return AbilityConstant.PrepareTermination.CANCEL;
+  }
+}
+```

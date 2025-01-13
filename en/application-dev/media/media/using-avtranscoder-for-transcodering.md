@@ -1,16 +1,14 @@
 # Using AVTranscoder to Transcode Videos (ArkTS)
 
-This topic describes how to use AVTranscoder to implement video transcoding, covering the process of starting, pausing, resuming, and exiting transcoding.
+You can use the [AVTranscoder](media-kit-intro.md#avtranscoder) to implement video transcoding<!--RP1--><!--RP1End-->. You can check whether the current device supports the AVTranscoder by calling [canIUse](../../reference/common/js-apis-syscap.md). If the return value of canIUse("SystemCapability.Multimedia.Media.AVTranscoder") is **true**, the transcoding capability can be used.
+
+This topic describes how to use the AVTranscoder to implement video transcoding, covering the process of starting, pausing, resuming, and exiting transcoding.
 
 ## How to Develop
 
 Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder12) for the API reference.
 
 1. Create an **avTranscoder** instance.
-
-   > **NOTE**
-   >
-   > Perform the subsequent operations after the avTranscoder completes value assignment, that is, after **avTranscoder = transcoder;** is executed.
 
    ```ts
    import { media } from '@kit.MediaKit';
@@ -19,12 +17,14 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
    let avTranscoder: media.AVTranscoder;
    media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
      avTranscoder = transcoder;
+     // Perform other operations after avTranscoder is assigned a value.
    }, (error: BusinessError) => {
      console.error(`createAVTranscoder failed`);
-   })
+   });
    ```
 
 2. Set the events to listen for.
+
    | Event Type| Description| 
    | -------- | -------- |
    | complete | Mandatory; used to listen for the completion of transcoding.| 
@@ -37,22 +37,22 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
    avTranscoder.on('complete', () => {
      console.log(`transcoder is completed`);
      // Listen for transcoding completion events.
-   })
+   });
    
    // Callback function for errors.
    avTranscoder.on('error', (err: BusinessError) => {
      console.error(`avTranscoder failed, code is ${err.code}, message is ${err.message}`);
-   })
+   });
    ```
 
-3. Set the **fdSrc** attribute.
+3. Set the FD of the source video file.
    > **NOTE**
    >
    > The **fdSrc** value in the code snippet below is for reference only. You need to check the media asset validity and set **fdSrc** based on service requirements.
    > 
    > - If local files are used for transcoding, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox directory, see [File Management](../../file-management/app-sandbox-directory.md).
    > 
-   > - You can also use **ResourceManager.getRawFd** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9).
+   > - You can also use **ResourceManager.getRawFd()** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9).
 
    ```ts
    import resourceManager from '@ohos.resourceManager';
@@ -64,22 +64,21 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
    this.avTranscoder.fdSrc = fileDescriptor;
    ```
 
-4. Set the **fdDst** attribute.
+4. Set the FD of the target video file.
    > **NOTE**
    >
-   > - **fdDst** specifies the FD of the output file after transcoding. The value is a number. You must call [ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../../file-management/app-file-access.md).
+   > **fdDst** specifies the FD of the output file after transcoding. The value is a number. You must call [ohos.file.fs of Core File Kit](../../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../../file-management/app-file-access.md).
    
    ```ts
    // Set fdDst of the output file.
-   this.avTranscoder.fdDst = 55 // Obtain the file descriptor of the created video file by referring to the sample code in Application File Access and Management.
+   this.avTranscoder.fdDst = 55; // Obtain the file descriptor of the created video file by referring to the sample code in Application File Access and Management.
    ```
 
 5. Set video transcoding parameters and call **prepare()**.
 
    > **NOTE**
-   > Pay attention to the following when configuring parameters:
    >
-   > - Set only transcoding-related parameters in **avConfig** of **prepare()**.
+   > Only transcoding-related parameters are set in the input parameter **avConfig** of the **prepare()** API.
 
    ```ts
    import { media } from '@kit.MediaKit';
@@ -87,18 +86,18 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
    
    let avConfig: media.AVTranscoderConfig = {
      audioBitrate: 100000, // Audio bit rate.
-     audioCodec: media.CodecMimeType.AUDIO_AAC,
-     fileFormat: media.ContainerFormatType.CFT_MPEG_4A,
+     audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format.
+     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Container format.
      videoBitrate: 2000000, // Video bit rate.
-     videoCodec: media.CodecMimeType.VIDEO_AVC,
-     videoFrameWidth: 640, // Video frame width.
-     videoFrameHeight: 480, // Video frame height.
-   }
+     videoCodec: media.CodecMimeType.VIDEO_AVC, // Video encoding format.
+     videoFrameWidth: 640, // Video frame width: 640.
+     videoFrameHeight: 480, // Video frame height: 480.
+   };
    avTranscoder.prepare(avConfig).then(() => {
      console.log('Invoke prepare succeeded.');
    }, (err: BusinessError) => {
      console.error(`Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
-   })
+   });
    ```
 
 6. Call **start()** to start transcoding.
@@ -149,13 +148,13 @@ export class AVTranscoderDemo {
   private avTranscoder: media.AVTranscoder | undefined = undefined;
   private avConfig: media.AVTranscoderConfig = {
     audioBitrate: 100000, // Audio bit rate.
-    audioCodec: media.CodecMimeType.AUDIO_AAC,
-    fileFormat: media.ContainerFormatType.CFT_MPEG_4A,
+    audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format.
+    fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Container format.
     videoBitrate: 200000, // Video bit rate.
-    videoCodec: media.CodecMimeType.VIDEO_AVC,
+    videoCodec: media.CodecMimeType.VIDEO_AVC, // Video encoding format.
     videoFrameWidth: 640, // Video frame width.
     videoFrameHeight: 480, // Video frame height.
-  }
+  };
 
   // Set AVTranscoder callback functions.
   setAVTranscoderCallback() {
@@ -165,11 +164,11 @@ export class AVTranscoderDemo {
         this.avTranscoder.on('complete', async () => {
           console.log(`AVTranscoder is completed`);
           await this.releaseTranscoderingProcess();
-        })
+        });
         // Callback function for errors.
         this.avTranscoder.on('error', (err: BusinessError) => {
           console.error(`AVTranscoder failed, code is ${err.code}, message is ${err.message}`);
-        })
+        });
       }
     }
   }

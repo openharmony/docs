@@ -2,12 +2,12 @@
 
 ## Function Description
 
-Input Kit provides services for a plurality of input devices, such as the touchpad, touchscreen, mouse, and keyboard. It normalizes various input events to ensure unified and smooth experience for users when interacting with different input devices. In addition to the basic input event services, Input Kit allows you to obtain the device list and change the mouse pointer style.
+Input Kit provides services for a plurality of input devices, such as the touchpad, touchscreen, mouse, and keyboard. It normalizes various input events to ensure unified and smooth experience for users when interacting with different input devices.
 
- 
+In addition to the basic input event services, Input Kit provides APIs for you to implement functions such as obtaining the device list and changing the mouse pointer style.
 
 ## How Input Kit Works
-As a basic service provided by the system for applications, Input Kit fulfills input device management as well as input event receiving, preprocessing, and distribution, and reports the input events to applications through the inner SDK and JSkit. The operation mechanism is as follows:
+As a basic service provided by the system for applications, Input Kit fulfills input device management as well as input event management, receiving, preprocessing, and distribution, and reports the input events to applications through the inner SDK and JSkit. The operation mechanism is as follows:
 
 ![MMI-operation](figures/MMI-operation.png)
 

@@ -159,12 +159,12 @@ Grid() {
   }
 
   GridItem() {
-    Text ('Vote')
+    Text('Vote')
       ...
   }
 
   GridItem() {
-    Text ('Print')
+    Text('Print')
       ...
   }
 }

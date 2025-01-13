@@ -1,7 +1,7 @@
 # TreeView
 
 
-The tree view component is used to display a hierarchical list of items. Each item can contain subitems, which may be expanded or collapsed.
+The **TreeView** component represents a tree view used to display a hierarchical list of items. Each item can contain subitems, which may be expanded or collapsed.
 
 
 This component is applicable in productivity applications, such as side navigation bars in notepad, email, and Gallery applications.
@@ -37,9 +37,6 @@ TreeView({ treeController: TreeController })
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
-**Parameters**
-
-
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | treeController | [TreeController](#treecontroller) | Yes| Node information of the tree view.|
@@ -51,24 +48,30 @@ Implements a **TreeController** object, which can be bound to a tree view compon
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 
 ### addNode
 
 
-addNode(nodeParam?: NodeParam): void
+addNode(nodeParam?: NodeParam): TreeController
 
 Adds a child node to the selected node.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-
-**Parameters**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | nodeParam | [NodeParam](#nodeparam) | No| Node information.|
 
+**Return value**
+
+| Type                             | Description                |
+| --------------------------------- | -------------------- |
+| [TreeController](#treecontroller) | Controller of the **TreeView** component.|
 
 ### removeNode
 
@@ -77,6 +80,8 @@ removeNode(): void
 Removes the selected node.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
 ### modifyNode
@@ -88,6 +93,8 @@ Modifies the selected node.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 
 ### buildDone
 
@@ -96,6 +103,8 @@ buildDone(): void
 Builds a tree view. After a node is added, this API must be called to save the tree information.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
 ### refreshNode
@@ -106,7 +115,7 @@ Refreshes the tree view. You can call this API to update the information about t
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-**Parameters**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -117,6 +126,8 @@ Refreshes the tree view. You can call this API to update the information about t
 ## NodeParam
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -144,6 +155,8 @@ Obtains a **TreeListenerManager** singleton object.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Return value**
 
 | Type             | Description              |
@@ -159,6 +172,8 @@ Obtains a listener.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Return value**
 
 | Type          | Description        |
@@ -168,7 +183,7 @@ Obtains a listener.
 
 ## TreeListener
 
-Listener of the tree view component. You can bind it to the tree view component and use it to listen for changes of tree nodes. A listener can be bound to only one tree view component.
+Listener of the tree view component. You can bind it to the **TreeView** component and use it to listen for changes of tree nodes. A listener can be bound to only one **TreeView** component.
 
 
 ### on
@@ -179,7 +194,7 @@ Register a listener.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-**Parameters**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -195,8 +210,7 @@ Registers a one-off listener.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-
-**Parameters**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -213,7 +227,7 @@ Unregisters a listener.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-**Parameters**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
 | Name| Type| Mandatory| Description|
@@ -225,17 +239,21 @@ Unregisters a listener.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name| Description|
-| -------- | -------- |
-| NODE_CLICK | Listens for click events of nodes.|
-| NODE_ADD | Listens for add events of nodes.|
-| NODE_DELETE | Listens for delete events of nodes.|
-| NODE_MODIFY | Listens for modify events of nodes.|
-| NODE_MOVE | Listens for move events of nodes.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| NODE_CLICK | "NodeClick" | Listens for click events of nodes.|
+| NODE_ADD | "NodeAdd" | Listens for add events of nodes.|
+| NODE_DELETE | "NodeDelete" | Listens for delete events of nodes.|
+| NODE_MODIFY | "NodeModify" | Listens for modify events of nodes.|
+| NODE_MOVE | "NodeMove" | Listens for move events of nodes.|
 
 ## CallbackParam
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -247,7 +265,7 @@ Unregisters a listener.
 The [universal events](ts-universal-events-click.md) are not supported.
 
 ## Example
-
+This example showcases how to use **TreeController** to perform operations on tree nodes, such as adding, deleting, and renaming. It also demonstrates the effects of adding nodes with different parameters.
 ```ts
 import { TreeController, TreeListener, TreeListenerManager, TreeListenType, NodeParam, TreeView, CallbackParam } from '@kit.ArkUI'
 

@@ -49,6 +49,14 @@ getCode(callback: AsyncCallback\<number>): void
 | -------- | ---------------------- | ---- | ------------------ |
 | callback | AsyncCallback\<number\> | 是   | 回调函数。返回公共事件代码。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+
 **示例：**
 
 ```ts
@@ -129,6 +137,14 @@ setCode(code: number, callback: AsyncCallback\<void>): void
 | code     | number               | 是   | 公共事件的代码。   |
 | callback | AsyncCallback\<void> | 是   | 回调函数。表示被指定的回调方法。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+
 **示例：**
 
 ```ts
@@ -164,6 +180,14 @@ setCode(code: number): Promise\<void>
 | 类型             | 说明                 |
 | ---------------- | -------------------- |
 | Promise\<void>   | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 
 **示例：**
 
@@ -225,6 +249,14 @@ getData(callback: AsyncCallback\<string>): void
 | 参数名   | 类型                   | 必填 | 说明                 |
 | -------- | ---------------------- | ---- | -------------------- |
 | callback | AsyncCallback\<string> | 是   | 回调函数。返回公共事件的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 
 **示例：**
 
@@ -306,6 +338,14 @@ setData(data: string, callback: AsyncCallback\<void>): void
 | data     | string               | 是   | 公共事件的数据。   |
 | callback | AsyncCallback\<void> | 是   | 回调函数。表示被指定的回调方法。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+
 **示例：**
 
 ```ts
@@ -341,6 +381,14 @@ setData(data: string): Promise\<void>
 | 类型             | 说明                 |
 | ---------------- | -------------------- |
 | Promise\<void>   | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 
 **示例：**
 
@@ -405,6 +453,14 @@ setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 | data     | string               | 是   | 公共事件的数据。   |
 | callback | AsyncCallback\<void> | 是   | 回调函数。表示被指定的回调方法。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+
 **示例：**
 
 ```ts
@@ -441,6 +497,14 @@ setCodeAndData(code: number, data: string): Promise\<void>
 | 类型             | 说明                 |
 | ---------------- | -------------------- |
 | Promise\<void>   | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 
 **示例：**
 
@@ -502,6 +566,14 @@ isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 | 参数名   | 类型                    | 必填 | 说明                               |
 | -------- | ----------------------- | ---- | ---------------------------------- |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示有序公共事件；false表示无序公共事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 
 **示例：**
 
@@ -576,6 +648,14 @@ isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
 | -------- | ----------------------- | ---- | ---------------------------------- |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示是粘性公共事件；false表示不是粘性公共事件。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+
 **示例：**
 
 ```ts
@@ -648,6 +728,14 @@ abortCommonEvent(callback: AsyncCallback\<void>): void
 | 参数名   | 类型                 | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback\<void> | 是   | 回调函数。表示被指定的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 
 **示例：**
 
@@ -733,6 +821,14 @@ clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback\<void> | 是   | 回调函数。表示被指定的回调方法。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+
 **示例：**
 
 ```ts
@@ -817,6 +913,14 @@ getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 | -------- | ----------------------- | ---- | ---------------------------------- |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示当前有序公共事件处于中止状态；false表示当前有序公共事件没有处于中止状态。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+
 **示例：**
 
 ```ts
@@ -891,6 +995,14 @@ getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 | 参数名   | 类型                                                         | 必填 | 说明                   |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------- |
 | callback | AsyncCallback\<[CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)> | 是   | 回调函数。返回订阅者的订阅信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 
 **示例：**
 
@@ -968,6 +1080,14 @@ finishCommonEvent(callback: AsyncCallback\<void>): void
 | 参数名   | 类型                  | 必填 | 说明                              |
 | -------- | -------------------- | ---- | -------------------------------- |
 | callback | AsyncCallback\<void> | 是   | 回调函数。表示被指定的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 
 **示例：**
 

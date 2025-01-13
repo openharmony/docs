@@ -290,7 +290,7 @@ accessStep(step: number): boolean
 
 | 错误码ID    | 错误信息                                                                                             |
 |----------|--------------------------------------------------------------------------------------------------|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
 
 ### loadUrl
@@ -316,7 +316,7 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 
 | 错误码ID    | 错误信息                                                                                             |
 |----------|--------------------------------------------------------------------------------------------------|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
 | 17100002 | Invalid url.                                                                                     |
 | 17100003 | Invalid resource path or file type.                                                              |
@@ -395,6 +395,18 @@ Web组件返回的请求/响应头对象。
 | 名称  | 类型     | 必填 | 说明        |
 |-----|--------|----|-----------|
 | url | string | 是  | 页面的URL地址。 |
+
+## OnLoadInterceptEvent
+
+当资源加载被拦截时，加载拦截事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| data | [WebResourceRequest](../../apis-arkweb/ts-basic-components-web.md#webresourcerequest) | 是 | 网页请求的封装信息。 |
 
 ## OnProgressChangeEvent
 
