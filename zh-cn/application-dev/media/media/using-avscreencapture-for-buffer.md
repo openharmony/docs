@@ -452,6 +452,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
         }
     }
 }
+
 struct OH_AVScreenCapture *capture;
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // 从js端获取窗口id number[]
