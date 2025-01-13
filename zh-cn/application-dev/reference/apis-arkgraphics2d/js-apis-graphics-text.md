@@ -8,7 +8,7 @@
 - [FontCollection](#fontcollection)：字体管理器，控制各种不同的字体。
 - [ParagraphStyle](#paragraphstyle)：段落样式，控制整个段落的显示样式。
 - [Paragraph](#paragraph)：段落，由ParagraphBuilder类调用[build()](#build)接口构建而成。
-- [LineTypeset](#linetypeset14)：行排版器，由ParagraphBuilder类调用[buildLineTypeset()](#buildlinetypeset14)接口构建而成。
+- [LineTypeset](#linetypeset16)：行排版器，由ParagraphBuilder类调用[buildLineTypeset()](#buildlinetypeset16)接口构建而成。
 - [ParagraphBuilder](#paragraphbuilder)：段落生成器，控制生成不同的段落对象。
 - [TextLine](#textline)：以行为单位的段落文本的载体，由段落类调用[getTextLines()](#gettextlines)接口获取。
 - [Run](#run)：文本排版的渲染单元，由行文本类调用[getGlyphRuns()](#getglyphruns)接口获取。
@@ -503,7 +503,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | fullName | string | 否 | 是 | 字体名称，可取任意值，默认值为空字符串。 |
 | fontFamily | string | 否 | 是 | 字体家族，可取任意值，默认值为空字符串。 |
 | fontSubfamily | string | 否 | 是 | 子字体家族，可取任意值，默认值为空字符串。 |
-| weight | [FontWeight](#fontweight) | 否 | 是 | 字体字重，默认值为FontWeight.W100的取值，即0。作为[matchFontDescriptors](#textmatchfontdescriptors14)接口入参使用时，不使用该字段视作该字段为默认值。 |
+| weight | [FontWeight](#fontweight) | 否 | 是 | 字体字重，默认值为FontWeight.W100的取值，即0。作为[matchFontDescriptors](#textmatchfontdescriptors16)接口入参使用时，不使用该字段视作该字段为默认值。 |
 | width | number | 否 | 是 | 字体宽度，取值范围是1-9整数，默认值为0。 |
 | italic | number | 否 | 是 | 是否是斜体字体，0表示非斜体，1表示斜体字体，默认值为0。 |
 | monoSpace | boolean | 否 | 是 | 是否是等宽字体，true表示等宽字体，false表示非等宽字体，默认值为false。 |
@@ -699,7 +699,7 @@ struct Index {
 | breakStrategy        | [BreakStrategy](#breakstrategy)            | 是   | 是   | 断行策略，默认为GREEDY。                        |
 | strutStyle           | [StrutStyle](#strutstyle)                  | 是   | 是   | 支柱样式，默认为初始的StrutStyle。               |
 | textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | 是   | 是   | 文本高度修饰符模式，默认为ALL。                              |
-| tab<sup>16+</sup>   | [TextTab](#texttab14)  | 是   | 是   | 表示段落中文本制表符之后文本的对齐方式及位置，默认为将制表符替换为一个空格。与文本对齐方式（即align属性）或省略号样式（即[TextStyle](#textstyle)中的ellipsis属性）共同配置时，此参数不生效。 |
+| tab<sup>16+</sup>   | [TextTab](#texttab16)  | 是   | 是   | 表示段落中文本制表符之后文本的对齐方式及位置，默认为将制表符替换为一个空格。与文本对齐方式（即align属性）或省略号样式（即[TextStyle](#textstyle)中的ellipsis属性）共同配置时，此参数不生效。 |
 
 
 ## PlaceholderAlignment
@@ -1389,7 +1389,7 @@ let lineMetrics =  paragraph.getLineMetrics(0);
 
 保存着文本内容以及样式的载体，可以用于计算单行排版信息。
 
-下列API示例中都需先使用[ParagraphBuilder](#paragraphbuilder)类的[buildLineTypeset()](#buildlinetypeset14)接口获取到LineTypeset对象实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[ParagraphBuilder](#paragraphbuilder)类的[buildLineTypeset()](#buildlinetypeset16)接口获取到LineTypeset对象实例，再通过此实例调用对应方法。
 
 ### getLineBreak<sup>16+</sup>
 
@@ -1441,7 +1441,7 @@ createLine(startIndex: number, count: number): TextLine
 | 参数名 | 类型   | 必填 | 说明           |
 | ----- | ------ | ---- | -------------- |
 | startIndex | number | 是 | 开始计算排版的起始位置，整数，取值范围为[0, 文本字符总数)。|
-| count | number | 是   | 从指定排版起始位置开始进行排版的字符个数，取值为[0,文本字符总数)的整数，startIndex和count之和不能大于文本字符总数。当count为0时，表示指定的排版区间为[startIndex, 文本结尾]。可以先使用[getLineBreak](#getlinebreak14)获得合理的可用于进行排版的字符总数。|
+| count | number | 是   | 从指定排版起始位置开始进行排版的字符个数，取值为[0,文本字符总数)的整数，startIndex和count之和不能大于文本字符总数。当count为0时，表示指定的排版区间为[startIndex, 文本结尾]。可以先使用[getLineBreak](#getlinebreak16)获得合理的可用于进行排版的字符总数。|
 
 **返回值：**
 
@@ -1869,7 +1869,7 @@ buildLineTypeset(): LineTypeset
 
 | 类型                     | 说明                           |
 | ------------------------ | ------------------------------ |
-| [LineTypeset](#linetypeset14)  | 可用于行排版的LineTypeset对象。|
+| [LineTypeset](#linetypeset16)  | 可用于行排版的LineTypeset对象。|
 
 **示例：**
 
@@ -2000,7 +2000,7 @@ type CaretOffsetsCallback = (offset: number, index: number, leadingEdge: boolean
 
 描述段落基础文本行结构的载体。
 
-下列API示例中都需先使用[Paragraph](#paragraph)类的[getTextLines()](#gettextlines)接口或者[LineTypeset](#linetypeset14)类的[createLine()](#createline14)接口获取到TextLine对象实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[Paragraph](#paragraph)类的[getTextLines()](#gettextlines)接口或者[LineTypeset](#linetypeset16)类的[createLine()](#createline16)接口获取到TextLine对象实例，再通过此实例调用对应方法。
 ### getGlyphCount
 
 getGlyphCount(): number
@@ -2042,7 +2042,7 @@ struct Index {
 
 getTextRange(): Range
 
-获取该文本行中的文本在整个段落文本中的索引区间。使用[LineTypeset](#linetypeset14)类的[creatLine](#createline14)方法创建的[TextLine](#textline)对象属于一个内部的临时对象，通过该对象调用[getTextRange](#gettextrange)方法返回的索引区间是相对于临时的[Paragraph](#paragraph)对象的区间，该临时对象在下一次调用[creatLine](#createline14)方法时会自动销毁。
+获取该文本行中的文本在整个段落文本中的索引区间。使用[LineTypeset](#linetypeset16)类的[creatLine](#createline16)方法创建的[TextLine](#textline)对象属于一个内部的临时对象，通过该对象调用[getTextRange](#gettextrange)方法返回的索引区间是相对于临时的[Paragraph](#paragraph)对象的区间，该临时对象在下一次调用[creatLine](#createline16)方法时会自动销毁。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2477,7 +2477,7 @@ enumerateCaretOffsets(callback: CaretOffsetsCallback): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -| - | - | - |
-| callback | [CaretOffsetsCallback](#caretoffsetscallback14) | 是 | 用户自定义函数。将文本行中枚举的每个字符偏移量、索引值作为参数的回调方法 |
+| callback | [CaretOffsetsCallback](#caretoffsetscallback16) | 是 | 用户自定义函数。将文本行中枚举的每个字符偏移量、索引值作为参数的回调方法 |
 
 **错误码：**
 
@@ -3107,7 +3107,7 @@ getTypographicBounds(): TypographicBounds
 
 | 类型                   | 说明           |
 | ---------------------- | -------------- |
-|  [TypographicBounds](#typographicbounds14)  | 该渲染单元的排版边界。|
+|  [TypographicBounds](#typographicbounds16)  | 该渲染单元的排版边界。|
 
 **示例：**
 
