@@ -6196,13 +6196,13 @@ setWindowLimits(windowLimits: WindowLimits, isForcible: boolean): Promise&lt;Win
 | 参数名       | 类型                          | 必填 | 说明                           |
 | :----------- | :---------------------------- | :--- | :----------------------------- |
 | windowLimits | [WindowLimits](#windowlimits11) | 是   | 目标窗口的尺寸限制，单位为px。 |
-| isForcible | boolean | 是   | 是否强制设置窗口的尺寸限制。<br>设置为true，则对窗口的最小宽度和最小高度可忽略系统限制，最大高度和最大宽度不可忽略系统限制，设置的最小值不能小于40vp，若小于则设置为40vp，最大值由系统默认尺寸限制。<br>设置为false，则窗口最大值最小值均由系统默认尺寸限制。|
+| isForcible | boolean | 是   | 是否强制设置窗口的尺寸限制。<br>设置为true，表示窗口宽高的最小值不受系统限制（但最小值不能小于40vp，小于40vp时则设置为40vp），窗口宽高的最大值仍取决于系统限制。<br>设置为false，则表示窗口宽高的最小值和最大值都取决于系统限制。|
 
 **返回值：**
 
 | 类型                                         | 说明                                |
 | :------------------------------------------- | :---------------------------------- |
-| Promise&lt;[WindowLimits](#windowlimits11)&gt; | Promise对象。返回设置后的尺寸限制，根据isForcible判断为入参与系统尺寸限制的交集。 |
+| Promise&lt;[WindowLimits](#windowlimits11)&gt; | Promise对象。返回设置后的窗口尺寸限制。根据isForcible判断为入参与系统默认窗口尺寸限制的交集。 |
 
 **错误码：**
 
