@@ -422,6 +422,21 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+### onResult<sup>16+</sup>
+
+onResult(callback:&nbsp;Callback\<ESObject\>)
+
+NavDestination返回时触发该回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ---- | ---------------- |
+|callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<ESObject\>| 是 | 页面返回回调， 入参为pop接口传入的result参数。如果不传该参数，入参为undefined。|
+
 ## NavDestinationCommonTitle
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
