@@ -660,8 +660,7 @@ isSendable(value: Object | null | undefined): boolean
 import { ArkTSUtils } from '@kit.ArkTS'
 
 @Sendable
-function sendableFunc()
-{
+function sendableFunc() {
   console.info("sendableFunc")
 }
 
