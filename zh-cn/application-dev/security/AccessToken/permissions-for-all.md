@@ -391,7 +391,7 @@
 
 **起始版本**：13
 
-### ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
+## ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
 
 允许系统JS引擎申请带MAP_FORT标识的匿名可执行内存。
 

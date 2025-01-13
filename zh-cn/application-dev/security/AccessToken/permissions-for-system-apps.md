@@ -819,7 +819,7 @@
 
 ### ohos.permission.MOUNT_UNMOUNT_MANAGER
 
-允许应用对外卡进行挂载卸载操作。
+允许应用对外卡进行挂载、卸载操作。
 
 **权限级别**：system_basic
 
