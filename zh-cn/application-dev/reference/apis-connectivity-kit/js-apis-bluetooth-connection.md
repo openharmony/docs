@@ -1409,7 +1409,7 @@ on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&g
 | 参数名      | 类型                                  | 必填   | 说明                                     |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
 | type     | string                              | 是    | 填写"discoveryResult"字符串，表示蓝牙设备发现事件。 |
-| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult12)&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。    |
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。    |
 
 **错误码**：
 
@@ -1452,7 +1452,7 @@ off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;
 | 参数名      | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | type     | string                              | 是    | 填写"discoveryResult"字符串，表示蓝牙设备发现事件。   |
-| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult12)&gt;&gt; | 否    | 表示取消订阅蓝牙设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | 否    | 表示取消订阅蓝牙设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 
 
 **错误码**：
 
