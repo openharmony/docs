@@ -1180,6 +1180,7 @@ struct WaterFlowDemo {
       .columnsGap(10)
       .rowsGap(5)
       .height('90%')
+      .scrollBar(BarState.On)
       .fadingEdge(true,{fadingEdgeLength:LengthMetrics.vp(80)})
 
     }
