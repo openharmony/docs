@@ -616,7 +616,7 @@ killAllProcesses(clearPageStack: boolean): Promise\<void\>
 >
 > 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](./js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -638,7 +638,7 @@ killAllProcesses(clearPageStack: boolean): Promise\<void\>
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 | If the input parameter is not valid parameter. |
 | 16000011 | The context does not exist. |
 
 **示例：**
