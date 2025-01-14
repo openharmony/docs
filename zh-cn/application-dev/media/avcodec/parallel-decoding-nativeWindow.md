@@ -1,14 +1,14 @@
-# 解耦视频解码与渲染
+# 创建视频解码器和NativeWindow初始化并行
 
 ## 场景介绍
 
-解码Surface模式的正常运行，依赖一片surface进行buffer轮转。但由于应用的业务原因，导致在调用OH_VideoDecoder_SetSurface()时，
-还没有已准备好的OHNativeWindow。这种场景，可以建立一片ConsumerSurface，作为OH_VideoDecoder_SetSurface()的入参，保证视频解码器正常创建运行。
+为了解码Surface模式的正常运行，需要依赖一个surface来进行buffer轮转。在XComponent尚未创建或OpenGL后处理尚未初始化的情况下,
+可以创建一个ConsumerSurface，以确保视频解码器能够正常创建和运行。
 
 
 ## 开发步骤
 
-以下步骤描述了在surface的texture没有创建之前，如何让视频解码器正常创建执行。
+以下步骤描述了在surface的消费端没有创建之前，如何并行创建视频解码器和NativeWindow，让视频解码器正常创建执行。
 
 **添加动态链接库**
 
@@ -35,21 +35,21 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 #include <multimedia/player_framework/native_avcodec_videodecoder.h>
 ```
 
-1. **创建OH_NativeImage实例**。
+1. 创建OH_NativeImage实例。
    
     ```c++
-    // 创建 NativeImage 实例，作为surface的消费者
+    // 创建NativeImage实例，作为surface的消费者
     OH_NativeImage* image = OH_ConsumerSurface_Create();
     ```
    
-2. **获取对应的数据生产者端NativeWindow**。
+2. 获取对应的数据生产者端NativeWindow。
 
     ```c++
     // 获取生产者NativeWindow
     OHNativeWindow* nativeImageWindow = OH_NativeImage_AcquireNativeWindow(image);
     ```
 
-3. **设置NativeWindow的宽高**。
+3. 设置NativeWindow的宽高。
 
     ```c++
     int code = SET_BUFFER_GEOMETRY;
@@ -61,7 +61,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-4. **注册NativeImage的回调函数**。
+4. 注册NativeImage的回调函数。
 
     注册OH_NativeImage的监听者OH_OnFrameAvailableListener，包括：
 
@@ -99,33 +99,33 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > 在此示例中，回调函数的实现仅仅是将buffer取出来并释放，调用者可以根据业务需求自行拓展。
     >
 
-5. **配置解码器**。
+5. 配置解码器。
 
     具体开发指导请参考[视频解码Surface模式](video-decoding.md#surface模式)“步骤-5：调用OH_VideoDecoder_Configure()配置解码器”。
 
-6. **设置surface**。
+6. 设置surface。
 
-    在应用业务相关的surface的texture创建成功之前，可以先使用消费者NativeImage作为临时输出的surface
+    在应用业务真正的surface消费端创建成功之前，可以先使用上面临时创建的消费端连接解码器。
 
     示例中的变量说明如下：
     - videoDec：视频解码器实例的指针。创建方式可参考[视频解码Surface模式](video-decoding.md#surface模式)“步骤-2：创建解码器实例对象”。
 
     ```c++
 
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, nativeImageWindow);
+    ret = OH_VideoDecoder_SetSurface(videoDec, nativeImageWindow);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
     ```
 
-7. **启动解码器**。
+7. 启动解码器。
 
     具体开发指导请参考[视频解码Surface模式](video-decoding.md#surface模式)“步骤-9：调用OH_VideoDecoder_Start()启动解码器”。
 
 
-8. **设置surface**。
+8. 设置surface。
 
-    在应用业务的surface的texture创建完毕后，可以调用OH_VideoDecoder_SetSurface接口，将解码输出重定向到新的surface上。
+    在应用业务真正的surface消费端创建成功后，可以调用OH_VideoDecoder_SetSurface接口，将解码输出重定向到新的surface上。
 
     本例中的nativeWindow，有两种方式获取：
     1. 如果解码后直接显示，则从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)；
@@ -133,13 +133,13 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ```c++
 
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);
+    ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
     ```
 
-9. **销毁OH_NativeImage实例**。
+9. 销毁OH_NativeImage实例。
    
    在调用OH_VideoDecoder_Destroy接口后，调用OH_NativeImage_Destroy接口销毁OH_NativeImage实例
    ```c++
