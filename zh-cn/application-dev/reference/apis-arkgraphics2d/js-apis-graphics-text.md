@@ -2247,7 +2247,7 @@ getTypographicBounds(): TypographicBounds
 
 | 类型 | 说明  |
 | -| - |
-| [TypographicBounds](#typographicbounds14) | 文本行的排版边界。|
+| [TypographicBounds](#typographicbounds16) | 文本行的排版边界。|
 
 **示例：**
 
@@ -2917,31 +2917,6 @@ struct Index {
 }
 ```
 
-## TextTab<sup>16+</sup>
-
-段落风格的文本制表符，储存了对齐方式和位置。
-
-**系统能力：** SystemCapability.Graphics.Drawing
-
-| 名称               | 类型                    | 只读 | 可选 | 说明                                               |
-| -----------------  | ----------------------- | ---- | ---  | -------------------------------------------------- |
-| alignment          | [TextAlign](#textalign) | 是   |  否  | 段落中制表符之后的文本对齐方式，支持设置[TextAlign](#textalign)的LEFT左对齐、RIGHT右对齐和CENTER居中对齐方式，其他枚举值为左对齐效果，默认为左对齐效果。 |
-| location           | number                  | 是   |  否  | 制表符之后的文本对齐位置，浮点数，单位为物理像素px，最小值为1.0，当该值小于1.0时，该制表符会被替换为一个空格。 |
-
-**示例：**
-
-alignment为CENTER，location为200，文本为"12/t345"：
-
-![zh-ch_image_AlignmentCenter.png](figures/zh-ch_image_AlignmentCenter.png)
-
-alignment为LEFT，location为100，文本为"abccccccccc/tdef"：
-
-![zh-ch_image_AlignmentLeft.png](figures/zh-ch_image_AlignmentLeft.png)
-
-alignment为RIGHT，location为100，文本为"aabcdef/tg hi/tjkl/tmno/tp qr"：
-
-![zh-ch_image_AlignmentRight.png](figures/zh-ch_image_AlignmentRight.png)
-
 ### getStringRange<sup>16+</sup>
 
 getStringRange(): Range
@@ -3131,6 +3106,31 @@ struct Index {
   }
 }
 ```
+
+## TextTab<sup>16+</sup>
+
+段落风格的文本制表符，储存了对齐方式和位置。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称               | 类型                    | 只读 | 可选 | 说明                                               |
+| -----------------  | ----------------------- | ---- | ---  | -------------------------------------------------- |
+| alignment          | [TextAlign](#textalign) | 是   |  否  | 段落中制表符之后的文本对齐方式，支持设置[TextAlign](#textalign)的LEFT左对齐、RIGHT右对齐和CENTER居中对齐方式，其他枚举值为左对齐效果，默认为左对齐效果。 |
+| location           | number                  | 是   |  否  | 制表符之后的文本对齐位置，浮点数，单位为物理像素px，最小值为1.0，当该值小于1.0时，该制表符会被替换为一个空格。 |
+
+**示例：**
+
+alignment为CENTER，location为200，文本为"12/t345"：
+
+![zh-ch_image_AlignmentCenter.png](figures/zh-ch_image_AlignmentCenter.png)
+
+alignment为LEFT，location为100，文本为"abccccccccc/tdef"：
+
+![zh-ch_image_AlignmentLeft.png](figures/zh-ch_image_AlignmentLeft.png)
+
+alignment为RIGHT，location为100，文本为"aabcdef/tg hi/tjkl/tmno/tp qr"：
+
+![zh-ch_image_AlignmentRight.png](figures/zh-ch_image_AlignmentRight.png)
 
 ## SystemFontType<sup>14+</sup>
 
