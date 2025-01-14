@@ -4351,6 +4351,30 @@ Allows an application to enable or access the SOS service.
 
 **Changelog**: This permission is available only to system services in API versions 12 to 14. From API version 15, it is also available to system applications.
 
+### ohos.permission.ACCESS_DLP_HIDE_INFO
+
+Allows a system application to start the page for setting privacy protection.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：16
+
+### ohos.permission.DLP_GET_HIDE_STATUS
+
+Allows a system application to use the information hiding APIs to obtain the information hiding status.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：16
+
 ### ohos.permission.GET_ANIM_POLICY
 
 Allows a system application to register the animation plugin to obtain animation policies.
