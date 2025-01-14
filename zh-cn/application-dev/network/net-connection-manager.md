@@ -123,6 +123,135 @@ conn.unregister((err: BusinessError, data: void) => {
 });
 ```
 
+## 监控默认网络变化并主动重建网络连接
+
+根据当前网络状态及网络质量情况，默认网络可能会发生变化，如：
+1. 在WiFi弱信号的情况下，默认网络可能会切换到蜂窝网络。
+2. 在蜂窝网络状态差的情况下，默认网络可能会切换到WiFi。
+3. 关闭WiFi后，默认网络可能会切换到蜂窝网络。
+4. 关闭蜂窝网络后，默认网络可能会切换到WiFi。
+5. 在WiFi弱信号的情况下，默认网络可能会切换到其他WiFi（存在跨网情况）。
+6. 在蜂窝网络状态差的情况下，默认网络可能会切换到其他蜂窝（存在跨网情况）。
+
+本节旨在介绍监控默认网络的变化后，应用报文能够快速迁移到新默认网络上，具体做法如下。
+
+### 监控默认网络变化
+
+```ts
+import { connection } from '@kit.NetworkKit';
+
+async function test() {
+  const netConnection = connection.createNetConnection();
+
+  /* 监听默认网络改变 */
+  netConnection.on('netAvailable', (data: connection.NetHandle) => {
+    console.log(JSON.stringify(data));
+  });
+}
+```
+
+### 默认网络变化后重新建立网络连接
+
+#### 原网络连接使用http模块建立网络连接
+
+如果您使用了http模块建立网络连接，由于该模块没有提供Close接口用于关闭Socket，在切换默认网络并建立新的网络连接后原有Socket不会立即关闭。因此请切换使用Remote Communication Kit建立网络连接。
+
+#### 原网络连接使用Remote Communication Kit建立网络连接
+
+```ts
+import { rcp } from '@kit.RemoteCommunicationKit';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let session = rcp.createSession();
+
+async function useRcp() {
+  /* 建立rcp请求 */
+  try {
+    const request = await session.get('https://www.example.com');
+    console.info(request.statusCode.toString());
+  } catch (e) {
+    console.error(e.code.toString());
+  }
+}
+
+async function rcpTest() {
+  const netConnection = connection.createNetConnection();
+  netConnection.on('netAvailable', async (netHandle: connection.NetHandle) => {
+    /* 发生默认网络切换，重新建立session */
+    session.close();
+    session = rcp.createSession();
+    useRcp();
+  });
+  try {
+    netConnection.register(() => {
+    });
+    useRcp();
+  } catch (e) {
+    console.error(e.code.toString());
+  }
+}
+```
+
+#### 原网络连接使用Socket模块建立连接
+
+```ts
+import { connection, socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let sock: socket.TCPSocket = socket.constructTCPSocketInstance();
+
+async function useSocket() {
+  let tcpConnectOptions: socket.TCPConnectOptions = {
+    address: {
+      address: '192.168.xx.xxx',
+      port: 8080
+    },
+    timeout: 6000
+  }
+
+  /* 建立socket连接 */
+  sock.connect(tcpConnectOptions, (err: BusinessError) => {
+    if (err) {
+      console.error('connect fail');
+      return;
+    }
+    console.log('connect success');
+
+    /* 通过socket发送数据 */
+    let tcpSendOptions: socket.TCPSendOptions = {
+      data: 'Hello, server!'
+    }
+    sock.send(tcpSendOptions).then(() => {
+      console.log('send success');
+    }).catch((err: BusinessError) => {
+      console.error('send fail');
+    });
+  })
+}
+
+async function socketTest() {
+  const netConnection = connection.createNetConnection();
+  netConnection.on('netAvailable', async (netHandle: connection.NetHandle) => {
+    console.log('default network changed');
+    await sock.close();
+    sock = socket.constructTCPSocketInstance();
+    useSocket();
+  });
+  try {
+    netConnection.register(() => {
+    });
+    useSocket();
+  } catch (e) {
+    console.error(e.code.toString());
+  }
+}
+```
+
+#### 原网络连接使用Socket Library建立网络连接
+
+请在监控到默认网络变化后关闭原有Socket并重新建立Socket连接。
+
 ## 获取所有注册的网络
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
