@@ -85,7 +85,7 @@ get varName(): T {
       return this.count * 2;
     }
   
-    // @Computed装饰的属性是只读的，开发者自己实现的setter不生效，且产生运行时报错
+    // @Computed装饰的属性是只读的，开发者自己实现的setter不生效，且产生编译时报错
     set double(newValue : number) {
       this.count = newValue / 2;
     }
