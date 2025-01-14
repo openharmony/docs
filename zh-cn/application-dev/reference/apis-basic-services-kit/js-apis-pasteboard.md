@@ -3016,3 +3016,38 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### getChangeCount<sup>16+</sup>
+
+getChangeCount(): number
+
+获取剪切板内容的变化次数。
+
+执行成功时返回剪切板内容的变化次数，否则返回0。
+
+当剪切板内容过期或调用[clearDataSync](#cleardatasync11)等接口导致剪切板内容为空时，内容变化次数不会因此改变。
+
+系统重启或剪贴板服务异常重启时，剪贴板内容变化次数重新从0开始计数。对同一内容连续多次复制会被视作多次更改，每次复制均会导致内容变化次数增加。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回读取到的剪切板内容变化次数。 |
+
+**示例：**
+
+```ts
+import { BusinessError pasteboard } from '@kit.BasicServicesKit';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    let result : number = systemPasteboard.getChangeCount();
+    console.info(`Succeeded in getting the ChangeCount. Result: ${result}`);
+} catch (err) {
+    console.error(`Failed to get the ChangeCount. Cause: ${err.message}`);
+};
+```
