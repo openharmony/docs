@@ -1252,3 +1252,96 @@ struct WaterFlowDemo {
 ```
 
 ![edgeEffect_waterFlow](figures/edgeEffect_waterFlow.gif)
+
+### 示例7（WaterFlow组件设置和改变尾部组件）
+
+该示例通过footerContent接口，实现了WaterFlow组件设置尾部组件。通过ComponentContent的update函数更新尾部组件。
+
+```ts
+// Index.ets
+import { ComponentContent, UIContext } from "@kit.ArkUI"
+import { WaterFlowDataSource } from './WaterFlowDataSource'
+
+class Params {
+  text: string = ""
+
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(20)
+      .fontWeight(FontWeight.Bold)
+      .margin(20)
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message1: string = "已经到底了"
+  @State message2: string = "加载更多"
+  @State colors: number[] = [0xD5D5D5, 0x7F7F7F, 0xF7F7F7]
+  @State minSize: number = 80
+  @State maxSize: number = 180
+  context: UIContext = this.getUIContext()
+  footerContent: ComponentContent<Params> = new ComponentContent<Params>(this.context, wrapBuilder<[Params]>(buildText), new Params(this.message1));
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
+  private itemWidthArray: number[] = []
+  private itemHeightArray: number[] = []
+
+  // 计算FlowItem宽/高
+  getSize() {
+    let ret = Math.floor(Math.random() * this.maxSize)
+    return (ret > this.minSize ? ret : this.minSize)
+  }
+
+  // 设置FlowItem宽/高数组
+  setItemSizeArray() {
+    for (let i = 0; i < 100; i++) {
+      this.itemWidthArray.push(this.getSize())
+      this.itemHeightArray.push(this.getSize())
+    }
+  }
+
+  aboutToAppear() {
+    this.setItemSizeArray()
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Button("更新footer").width('90%').margin(20)
+          .onClick((event?: ClickEvent) => {
+            this.footerContent.update(new Params(this.message2))
+          })
+        WaterFlow({ footerContent: this.footerContent }) {
+          LazyForEach(this.dataSource, (item: number) => {
+            FlowItem() {
+              Column() {
+                Text("N" + item).fontSize(12).height('16')
+              }
+              .width('100%')
+              .height(this.itemHeightArray[item % 100])
+              .backgroundColor(this.colors[item % 3])
+              .justifyContent(FlexAlign.Center)
+              .alignItems(HorizontalAlign.Center)
+            }
+          }, (item: string) => item)
+        }
+        .columnsTemplate('1fr')
+        .height("90%")
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![waterFlow_footerContent](figures/waterFlow_footerContent.gif)
