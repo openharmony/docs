@@ -1249,7 +1249,10 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 设置指定流的音量，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代，替代接口能力仅对系统应用开放。
+> 
+> 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
+> 
+> 应用无法直接调节系统音量，建议应用通过系统音量面板组件，让用户通过界面操作来调节音量。当用户通过应用内音量面板调节音量时，系统会展示音量提示界面，显性地提示用户系统音量发生改变。具体样例和介绍请查看[AVVolumePanel参考文档](ohos-multimedia-avvolumepanel.md)。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1286,7 +1289,10 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 设置指定流的音量，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代，替代接口能力仅对系统应用开放。
+>
+> 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
+>
+> 应用无法直接调节系统音量，建议应用通过系统音量面板组件，让用户通过界面操作来调节音量。当用户通过应用内音量面板调节音量时，系统会展示音量提示界面，显性地提示用户系统音量发生改变。具体样例和介绍请查看[AVVolumePanel参考文档](ohos-multimedia-avvolumepanel.md)。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
