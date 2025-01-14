@@ -196,8 +196,6 @@ async function rcpTest() {
 #### 原网络连接使用Socket模块建立连接
 
 ```ts
-
-
 import { connection, socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
