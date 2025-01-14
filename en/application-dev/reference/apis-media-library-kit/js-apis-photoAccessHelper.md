@@ -1031,7 +1031,7 @@ within 5 minutes after the user agrees to save the asset. If the same applicatio
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;string&gt; | Promise used to return the URI of the asset saved. The URI is granted with the permission for the application to write data.|
+| Promise&lt;string&gt; | Promise used to return the URI of the asset saved. The URIs are granted with the permission for the application to write data.|
 
 **Error codes**
 
@@ -1046,7 +1046,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 
 async function example() {
     console.info('createAssetWithShortTermPermissionDemo.');
@@ -1060,22 +1060,22 @@ async function example() {
         };
 
         let resultUri: string = await phAccessHelper.createAssetWithShortTermPermission(photoCreationConfig);
-        let resultFile: fs.File = fs.openSync(resultUri, fs.OpenMode.READ_WRITE);
+        let resultFile: fileIo.File = fileIo.openSync(resultUri, fileIo.OpenMode.READ_WRITE);
         // Use the actual URI and file size.
-        let srcFile:  fs.File = fs.openSync("file://test.jpg", fs.OpenMode.READ_ONLY);
+        let srcFile:  fileIo.File = fileIo.openSync("file://test.jpg", fileIo.OpenMode.READ_ONLY);
         let bufSize: number = 2000000;
         let readSize: number = 0;
         let buf = new ArrayBuffer(bufSize);
-        let readLen = fs.readSync(srcFile.fd, buf, {
+        let readLen = fileIo.readSync(srcFile.fd, buf, {
             offset: readSize,
             length: bufSize
         });
         if (readLen > 0) {
             readSize += readLen;
-            fs.writeSync(resultFile.fd, buf, { length: readLen });
+            fileIo.writeSync(resultFile.fd, buf, { length: readLen });
         }
-        fs.closeSync(srcFile);
-        fs.closeSync(resultFile);
+        fileIo.closeSync(srcFile);
+        fileIo.closeSync(resultFile);
     } catch (err) {
         console.error('createAssetWithShortTermPermission failed, errCode is ' + err.code + ', errMsg is ' + err.message);
     }
@@ -3355,10 +3355,10 @@ Sets the media asset title.
 | ---------- | ------- | ---- | ---------------------------------- |
 | title | string | Yes  | Title to set.|
 
-The title is not allowed to:
-- Contain the filename extension.
-- Exceed 255 characters.
-- Contain any of the following characters:<br>. \ / : * ? " ' ` < > | { } [ ]
+The title must meet the following requirements:
+- It does not contain a file name extension.
+- The file name cannot exceed 255 characters.
+- It does not contain any of the following characters:<br> . \ / : * ? " ' ` < > | { } [ ]
 
 **Error codes**
 
@@ -3707,8 +3707,8 @@ setAlbumName(name: string): void
 Sets the album name.
 
 The album name must comply with the following specifications:
-- It cannot exceed 255 characters.
-- It cannot contain any of the following characters:. \ / : * ? " ' ` < > | { } [ ]
+- It does not exceed 255 characters.
+- It does not contain any of the following characters:<br> . \ / : * ? " ' ` < > | { } [ ]
 - It is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -4256,7 +4256,7 @@ Media asset handler, which can be used to customize the media asset processing l
 onDataPrepared(data: T, map?: Map<string, string>): void
 
 Called when the requested media asset is ready. If an error occurs, **data** returned by the callback is **undefined**. Each media asset request corresponds to a callback.
-T supports the following data types: ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12), and boolean. ArrayBuffer indicates the image or video asset data, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource) indicates the image source, [MovingPhoto] (#movingphoto12) indicates a moving photo object, and boolean indicates whether the image or video is successfully written to the application sandbox directory.
+T supports the following data types: ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12), and boolean. ArrayBuffer indicates the image or video asset data, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource) indicates the image source, [MovingPhoto](#movingphoto12) indicates a moving photo object, and boolean indicates whether the image or video is successfully written to the application sandbox directory.
 
 Information returned by **map**:
 | Map Key | **Description**|
@@ -4640,8 +4640,8 @@ The member types are the union of the types listed in the following table.
 
 | Type| Description|
 | ---- | ---- |
-| number | The member value is a number.|
-| string | The member value is a string.|
+| number | The member value is any number.|
+| string | The member value is any string.|
 | boolean | The member value is true or false.|
 
 ## PhotoType
@@ -4715,7 +4715,7 @@ Defines the key information about an image or video file.
 
 | Name         | Value             | Description                                                      |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| URI           | 'uri'                 | URI of the file.<br>**NOTE**: Only the [DataSharePredicates.equalTo](../apis-arkdata/js-apis-data-dataSharePredicates.md#equalto10) predicate can be used for this field during photo query.          |
+| URI           | 'uri'                 | URI of the file.<br>**NOTE**: Only the [DataSharePredicates.equalTo](../apis-arkdata/js-apis-data-dataSharePredicates.md#equalto10) predicate can be used for this field during photo query.           |
 | PHOTO_TYPE    | 'media_type'           | Type of the file.                                             |
 | DISPLAY_NAME  | 'display_name'        | File name displayed.                                                  |
 | SIZE          | 'size'                | File size, in bytes.                                                  |
@@ -4752,10 +4752,10 @@ Enumerates the key album attributes.
 
 Options for creating an image or video asset.
 
-The title is not allowed to:
-- Contain the filename extension.
-- Exceed 255 characters.
-- Contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+The title must meet the following requirements:
+- It does not contain a file name extension.
+- The file name cannot exceed 255 characters.
+- It does not contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4784,8 +4784,8 @@ Represents request options.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| Name                  | Type                             | Readable| Writable| Description                                             |
-| ---------------------- |---------------------------------| ---- |---- | ------------------------------------------------ |
+| Name                  | Type                       | Readable| Writable| Description                                        |
+| ---------------------- |----------------------------| ---- | ---- | ------------------------------------------- |
 | deliveryMode           | [DeliveryMode](#deliverymode11) | Yes  | Yes  | Delivery mode of the requested asset. The value can be **FAST_MODE**, **HIGH_QUALITY_MODE**, or **BALANCE_MODE**.|
 
 ## MediaChangeRequest<sup>11+</sup>
@@ -4919,7 +4919,7 @@ Represents the text information about the recommended images.
 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| text | string   | No  | Text based on which images are recommended. The text cannot exceed 250 simplified Chinese characters.|
+| text | string   | No  | Text based on which images are recommended. The text cannot exceed 250 characters.|
 
 **Example**
 
