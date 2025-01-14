@@ -1,4 +1,4 @@
-# 网络防火墙（仅对系统应用开放）
+# 网络防火墙
 
 ## 简介
 
@@ -181,6 +181,7 @@ netFirewall.addNetFirewallRule(domainRule).then((result: number) => {
 });
 ```
 
+<!--Del-->
 ## 查询防火墙拦截记录
 
 1. 设备通过硬件接口，插入网线。
@@ -205,3 +206,4 @@ netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFi
   console.error("get intercept records failed: " + JSON.stringify(error));
 });
 ```
+<!--Del-->
