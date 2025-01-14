@@ -195,10 +195,12 @@ PopoverDialog({visible: boolean, popover: PopoverOptions, targetBuilder: Callbac
 | fontColor                 | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 按钮的字体颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | buttonStyle<sup>12+</sup> | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否   | 按钮的样式。<br/>默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | role<sup>12+</sup>        | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明) | 否   | 按钮的角色。<br/>默认值：ButtonRole.NORMAL。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
+| defaultFocus<sup>16+</sup> | boolean | 否   | 按钮是否设置默认获焦。<br/>默认值：false。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                 |
 
 >  **说明：**
 >
 >  buttonStyle和role优先级高于fontColor和background。如果buttonStyle和role设置的是默认值，那么fontColor和background可生效。
+> 若同时给多个按钮设置defaultFocus，则默认焦点为设置defaultFocus按钮中显示顺序的第一个按钮。
 
 ## PopoverOptions<sup>14+</sup>
 
@@ -693,3 +695,50 @@ struct Index {
 ```
 
 ![popover_dialog](figures/advanced_dialog_popover_dialog.png)
+
+### 示例10（弹出框按钮设置默认获焦）
+设置默认获焦按钮弹出框（以AlertDialog为例），包含defaultFocus等内容。
+
+```ts
+import { AlertDialog } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: AlertDialog({
+      primaryTitle: 'AlertDialog',
+      secondaryTitle: '副标题',
+      content: '第二个按钮设置为默认',
+      primaryButton: {
+        value: 'DEFAULT',
+        action: () => {}
+      },
+      secondaryButton: {
+        value: 'TRUE',
+        defaultFocus: true, //设置该按钮为默认获焦按钮。
+        action: () => {}
+      },
+    })
+  });
+
+  build() {
+    Row() {
+      Stack() {
+        Column() {
+          Button("AlertDialog")
+            .width(96)
+            .height(40)
+            .onClick(() => {
+              this.dialogController.open()
+            })
+        }.margin({ bottom: 300 })
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
+}
+```
+![dialogDefaultFocus](figures/dialogDefaultFocus.png)
