@@ -314,7 +314,7 @@ barBackgroundBlurStyle(value: BlurStyle)
 
 ### barBackgroundBlurStyle<sup>15+</sup>
 
-barBackgroundBlurStyle(value: BlurStyle, options: BackgroundBlurStyleOptions)
+barBackgroundBlurStyle(style: BlurStyle, options: BackgroundBlurStyleOptions)
 
 为TabBar提供一种在背景和内容之间的模糊能力，通过枚举值的方式封装了不同的模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度。
 
@@ -326,7 +326,7 @@ barBackgroundBlurStyle(value: BlurStyle, options: BackgroundBlurStyleOptions)
 
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                 | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 是   | 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。 |
+| style                 | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 是   | 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。 |
 | options | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明) | 是   | 背景模糊选项。   
 
 ### barGridAlign<sup>10+</sup>
@@ -379,7 +379,7 @@ barBackgroundEffect(options: BackgroundEffectOptions)
 
 ### pageFlipMode<sup>15+</sup>
 
-pageFlipMode(value: PageFlipMode)
+pageFlipMode(mode: Optional\<PageFlipMode>)
 
 设置鼠标滚轮翻页模式。
 
@@ -391,7 +391,7 @@ pageFlipMode(value: PageFlipMode)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PageFlipMode](ts-appendix-enums.md#pageflipmode15) | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
+| mode  | Optional\<[PageFlipMode](ts-appendix-enums.md#pageflipmode15)> | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
 
 ## DividerStyle<sup>10+</sup>对象说明
 
@@ -598,11 +598,6 @@ customContentTransition(delegate: TabsCustomContentTransitionCallback)
 | ------ | ------ | ---- | -------------------- |
 | delegate  | [TabsCustomContentTransitionCallback](#tabscustomcontenttransitioncallback16) | 是   | 自定义Tabs页面切换动画开始时触发的回调。 |
 
-**返回值：** 
-
-| 类型                                                         | 说明                     |
-| ------------------------------------------------------------ | ------------------------ |
-| [TabContentAnimatedTransition](#tabcontentanimatedtransition11)&nbsp;\|&nbsp;undefined | 自定义切换动画相关信息。 |
 
 ### onContentWillChange<sup>12+</sup>
 
@@ -632,15 +627,8 @@ onContentWillChange(handler: OnTabsContentWillChangeCallback)
 | ------ | ------ | ---- | -------------------- |
 | handler  | [OnTabsContentWillChangeCallback](#ontabscontentwillchangecallback16) | 是   | 自定义Tabs页面切换拦截事件能力，新页面即将显示时触发的回调。 |
 
-**返回值：** 
 
-| 类型    | 说明                                                         |
-| ------- | ------------------------------------------------------------ |
-| boolean | 当回调函数handler的返回值为true时，Tabs可以切换到新页面。<br/>当回调函数handler的返回值为false时，Tabs无法切换到新页面，仍然显示原来页面内容。 |
-
-## 回调函数
-
-### OnTabsAnimationStartCallback<sup>16+</sup>
+## OnTabsAnimationStartCallback<sup>16+</sup>
 
 type OnTabsAnimationStartCallback = (index: number, targetIndex: number, extraInfo: TabsAnimationEvent) => void
 
@@ -660,7 +648,7 @@ type OnTabsAnimationStartCallback = (index: number, targetIndex: number, extraIn
 | targetIndex | number                                                 | 是   | 切换动画目标元素的索引。                                     |
 | event       | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Tabs起始位置的位移，以及离手速度。 |
 
-### OnTabsAnimationEndCallback<sup>16+</sup>
+## OnTabsAnimationEndCallback<sup>16+</sup>
 
 type OnTabsAnimationEndCallback = (index: number, extraInfo: TabsAnimationEvent) => void
 
@@ -679,7 +667,7 @@ type OnTabsAnimationEndCallback = (index: number, extraInfo: TabsAnimationEvent)
 | index  | number                                                 | 是   | 当前显示元素的索引。                                         |
 | event  | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
 
-### OnTabsGestureSwipeCallback<sup>16+</sup>
+## OnTabsGestureSwipeCallback<sup>16+</sup>
 
 type OnTabsGestureSwipeCallback = (index: number, extraInfo: TabsAnimationEvent) => void
 
@@ -698,7 +686,7 @@ type OnTabsGestureSwipeCallback = (index: number, extraInfo: TabsAnimationEvent)
 | index  | number                                                 | 是   | 当前显示元素的索引。                                         |
 | event  | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
 
-### TabsCustomContentTransitionCallback<sup>16+</sup>
+## TabsCustomContentTransitionCallback<sup>16+</sup>
 
 type TabsCustomContentTransitionCallback = (from: number, to: number) => TabContentAnimatedTransition | undefined
 
@@ -717,7 +705,13 @@ type TabsCustomContentTransitionCallback = (from: number, to: number) => TabCont
 | from   | number | 是   | 动画开始时，当前页面的index值。 |
 | to     | number | 是   | 动画开始时，目标页面的index值。 |
 
-### OnTabsContentWillChangeCallback<sup>16+</sup>
+**返回值：** 
+
+| 类型                                                         | 说明                     |
+| ------------------------------------------------------------ | ------------------------ |
+| [TabContentAnimatedTransition](#tabcontentanimatedtransition11)&nbsp;\|&nbsp;undefined | 自定义切换动画相关信息。 |
+
+## OnTabsContentWillChangeCallback<sup>16+</sup>
 
 type OnTabsContentWillChangeCallback = (currentIndex: number, comingIndex: number) => boolean
 
@@ -735,6 +729,12 @@ type OnTabsContentWillChangeCallback = (currentIndex: number, comingIndex: numbe
 | ------------ | ------ | ---- | ------------------------------------------ |
 | currentIndex | number | 是   | 当前显示页面的index索引，索引从0开始计算。 |
 | comingIndex  | number | 是   | 将要显示的新页面的index索引。              |
+
+**返回值：** 
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 当回调函数handler的返回值为true时，Tabs可以切换到新页面。<br/>当回调函数handler的返回值为false时，Tabs无法切换到新页面，仍然显示原来页面内容。 |
 
 ## TabsAnimationEvent<sup>11+</sup>对象说明
 
