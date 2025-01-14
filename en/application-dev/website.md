@@ -22,10 +22,10 @@
       - [module.json5 Configuration File](quick-start/module-configuration-file.md)
     - Application Configuration Files in FA Model<!--application-configuration-file-fa-->
       - [Overview of Application Configuration Files in FA Model](quick-start/application-configuration-file-overview-fa.md)
-      - [Structure of the app Tag](quick-start/app-structure.md)
-      - [Structure of the deviceConfig Tag](quick-start/deviceconfig-structure.md)
-      - [Structure of the module Tag](quick-start/module-structure.md)
-    - Typical Scenario Development
+      - [Internal Structure of the app Tag](quick-start/app-structure.md)
+      - [Internal Structure of the deviceConfig Tag](quick-start/deviceconfig-structure.md)
+      - [Internal Structure of the module Tag](quick-start/module-structure.md)
+    - Typical Scenarios Development
       - [Integrated HSP](quick-start/integrated-hsp.md)
       - [Converting HAR to HSP](quick-start/har-to-hsp.md)
       - [Converting HSP to HAR](quick-start/hsp-to-har.md)
@@ -53,7 +53,7 @@
       - [\@Builder Decorator: Custom Builder Function](quick-start/arkts-builder.md)
       - [\@LocalBuilder Decorator: Maintaining the Parent-Child Relationship Between Component and State Management](quick-start/arkts-localBuilder.md)
       - [\@BuilderParam Decorator: @Builder Function Reference](quick-start/arkts-builderparam.md)
-      - [wrapBuilder: Encapsulating a Global @Builder](quick-start/arkts-wrapBuilder.md)
+      - [wrapBuilder: Encapsulating Global @Builder](quick-start/arkts-wrapBuilder.md)
       - [\@Styles Decorator: Definition of Reusable Styles](quick-start/arkts-style.md)
       - [\@Extend Decorator: Extension of Built-in Components](quick-start/arkts-extend.md)
       - [stateStyles: Polymorphic Style](quick-start/arkts-statestyles.md)
@@ -61,7 +61,7 @@
       - [\@Require Decorator: Validating Constructor Input Parameters](quick-start/arkts-require.md)
     - State Management<!--arkts-state-management-->
       - [State Management Overview](quick-start/arkts-state-management-overview.md)
-      - State Management (V1 Stable Version)<!--arkts-state-management-v1-->
+      - State Management (V1)<!--arkts-state-management-v1-->
         - Component State Management<!--arkts-component-state-management-->
           - [\@State Decorator: State Owned by Component](quick-start/arkts-state.md)
           - [\@Prop Decorator: One-Way Synchronization from the Parent Component to Child Components](quick-start/arkts-prop.md)
@@ -72,18 +72,18 @@
           - [Application State Management Overview](quick-start/arkts-application-state-management-overview.md)
           - [LocalStorage: UI State Storage](quick-start/arkts-localstorage.md)
           - [AppStorage: Application-wide UI State Storage](quick-start/arkts-appstorage.md)
-          - [PersistentStorage: Application State Persistence](quick-start/arkts-persiststorage.md)
+          - [PersistentStorage: Persisting Application State](quick-start/arkts-persiststorage.md)
           - [Environment: Device Environment Query](quick-start/arkts-environment.md)
         - Other State Management Features<!--arkts-other-state-mgmt-functions-->
           - [Overview of Other State Management Features](quick-start/arkts-other-state-mgmt-functions-overview.md)
           - [\@Watch Decorator: Getting Notified of State Variable Changes](quick-start/arkts-watch.md)
-          - [$$ Syntax: Two-Way Synchronization of Built-in Components](quick-start/arkts-two-way-sync.md)
+          - [$$ Syntax: Creating a Two-Way Synchronization with Built-in Components](quick-start/arkts-two-way-sync.md)
           - [\@Track Decorator: Class Object Property-level Update](quick-start/arkts-track.md)
           - [Freezing a Custom Component](quick-start/arkts-custom-components-freeze.md)
         - [MVVM](quick-start/arkts-mvvm.md)
         - [Best Practices for State Management](quick-start/arkts-state-management-best-practices.md)
         - [Proper Use of State Management](quick-start/properly-use-state-management-to-develope.md)
-      - State Management (V2 Trial Version)<!--arkts-state-management-v2-->
+      - State Management (V2)<!--arkts-state-management-v2-->
         - V2 Exclusive Decorators<!--arkts-v2-decorators-->
           - [\@ObservedV2 and \@Trace Decorators: Observing Class Property Changes](quick-start/arkts-new-observedV2-and-trace.md)
           - [\@ComponentV2 Decorator: Custom Component](quick-start/arkts-new-componentV2.md)
@@ -110,7 +110,7 @@
     - Rendering Control<!--arkts-rendering-control-->
       - [Rendering Control Overview](quick-start/arkts-rendering-control-overview.md)
       - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
-      - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
+      - [ForEach: Rendering Repeated Content](quick-start/arkts-rendering-control-foreach.md)
       - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
       - [ContentSlot: Developing in a Hybrid Mode](quick-start/arkts-rendering-control-contentslot.md)
 - Development
@@ -177,7 +177,7 @@
         <!--Del-->
         - Mission Management (for System Applications Only)<!--mission-management-->
           - [Mission Management Scenarios](application-models/mission-management-overview.md)
-          - [Mission and Launch Type](application-models/mission-management-launch-type.md)
+          - [Mission Management and Launch Type](application-models/mission-management-launch-type.md)
           - [Page Stack and Mission List](application-models/page-mission-stack.md)
           - [Setting the Icon and Name of a Mission Snapshot](application-models/mission-set-icon-name-for-task-snapshot.md)
         <!--DelEnd-->
@@ -293,7 +293,7 @@
         - Many-to-Many Data Sharing<!--many-to-many-data-share-->
           - [Sharing Data via Unified Data Channels](database/unified-data-channels.md)
       - [RelationalStore Development (C/C++)](database/native-relational-store-guidelines.md)
-      - [UDMF Development Guide (C/C++)](database/native-unified-data-management-framework-guidelines.md)
+      - [UDMF Development (C/C++)](database/native-unified-data-management-framework-guidelines.md)
       - [Persisting User Preferences (C/C++)](database/preferences-guidelines.md)
     - ArkTS<!--arkts-->
       - [Introduction to ArkTS](arkts-utils/arkts-overview.md)
@@ -311,7 +311,7 @@
           - [Nonlinear Containers](arkts-utils/nonlinear-container.md)
       - ArkTS Concurrency<!--arkts-concurrency-->
         - [Concurrency Overview](arkts-utils/concurrency-overview.md)
-        - [Asynchronous Concurrency](arkts-utils/async-concurrency-overview.md)
+        - [Asynchronous Concurrency Overview (Promise and Async/Await)](arkts-utils/async-concurrency-overview.md)
         - Multithreaded Concurrency<!--multithread-concurrency-->
           - [Multithreaded Concurrency Overview](arkts-utils/multi-thread-concurrency-overview.md)
           - [TaskPool Introduction](arkts-utils/taskpool-introduction.md)
@@ -398,32 +398,41 @@
             - [Creating a Swiper (Swiper)](ui/arkts-layout-development-create-looping.md)
             - [Tabs](ui/arkts-navigation-tabs.md)
         - Adding a Component<!--arkts-add-component-->
-          - Adding a Common Component<!--arkts-add-common-component-->
-            - [Button](ui/arkts-common-components-button.md)
-            - [Radio Button (Radio)](ui/arkts-common-components-radio-button.md)
-            - [Toggle](ui/arkts-common-components-switch.md)
-            - [Progress Indicator (Progress)](ui/arkts-common-components-progress-indicator.md)
-            - [Image Display (Image)](ui/arkts-graphics-display.md)
-            - [Video Playback (Video)](ui/arkts-common-components-video-player.md)
-            - [Native XComponent](ui/napi-xcomponent-guidelines.md)
-          - Adding a Popup and Menu<!--arkts-add-popup-menu-->
-            - [Popup](ui/arkts-popup-and-menu-components-popup.md)
-            - [Menu](ui/arkts-popup-and-menu-components-menu.md)
+          - [Button](ui/arkts-common-components-button.md)
+          - [Radio Button (Radio)](ui/arkts-common-components-radio-button.md)
+          - [Toggle](ui/arkts-common-components-switch.md)
+          - [Progress Indicator (Progress)](ui/arkts-common-components-progress-indicator.md)
+          - [Image Display (Image)](ui/arkts-graphics-display.md)
+          - [Video Playback (Video)](ui/arkts-common-components-video-player.md)
+          - [Native XComponent](ui/napi-xcomponent-guidelines.md)
         - Setting Component Navigation and Page Routing<!--arkts-set-navigation-routing-->
+          - [Component Navigation and Page Routing Overview](ui/arkts-navigation-introduction.md)
           - [Component Navigation (Recommended)](ui/arkts-navigation-navigation.md)
           - [Navigation Transition](ui/arkts-navigation-transition.md)
           - [Page Routing (@ohos.router) (Not Recommended)](ui/arkts-routing.md)
-          - [Transition from Router to Navigation](ui/arkts-router-to-navigation.md)
+          - [Page Routing](ui/arkts-router-to-navigation.md)
         - Using Text<!--arkts-use-text-->
+          - [Introduction to Text](ui/arkts-text-introduction.md)
           - [Text Display (Text/Span)](ui/arkts-common-components-text-display.md)
           - [Text Input (TextInput/TextArea)](ui/arkts-common-components-text-input.md)
           - [Rich Text (RichEditor)](ui/arkts-common-components-richeditor.md)
           - [Symbol Glyph (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
           - [Styled String (StyledString/MutableStyledString)](ui/arkts-styled-string.md)
         - Using Dialog Box<!--arkts-use-dialog-->
-          - [Modal Dialog Box (ModelDialog)](ui/arkts-modal-dialog.md)
-          - [Global Custom Dialog Box Independent of UI Components (Recommended)](ui/arkts-uicontext-custom-dialog.md)
-          - [Custom Dialog Box (CustomDialog)](ui/arkts-common-components-custom-dialog.md)
+          - [Popup Window Overview](ui/arkts-dialog-overview.md)
+          - Using Dialog Boxes (Dialog)<!--arkts-use-dialogs-->
+            - [Dialog Box Overview](ui/arkts-base-dialog-overview.md)
+            - [Global Custom Dialog Box Independent of UI Components (openCustomDialog) (Recommended)](ui/arkts-uicontext-custom-dialog.md)
+            - [Basic Custom Dialog Box (CustomDialog) (Not Recommended)](ui/arkts-common-components-custom-dialog.md)
+            - [Fixed Style Dialog Box](ui/arkts-fixes-style-dialog.md)
+          - [Menu Control (Menu)](ui/arkts-popup-and-menu-components-menu.md)
+          - [Popup](ui/arkts-popup-and-menu-components-popup.md)
+          - Binding a Modal Page<!--arkts-bind-modal-->
+            - [Modal Page Overview](ui/arkts-modal-overview.md)
+            - [Binding a Semi-Modal Page (bindSheet)](ui/arkts-sheet-page.md)
+            - [Binding a Full-Modal Page (bindContentCover)](ui/arkts-contentcover-page.md)
+          - [Using Toasts (Toast)](ui/arkts-create-toast.md)
+          - [Managing Overlays (OverlayManager)](ui/arkts-create-overlaymanager.md)
         - Using Graphics<!--arkts-draw-graphics-->
           - [Drawing Geometric Shapes (Shape)](ui/arkts-geometric-shape-drawing.md)
           - [Drawing Custom Graphics on the Canvas (Canvas)](ui/arkts-drawing-customization-on-canvas.md)
@@ -438,7 +447,7 @@
             - [Enter/Exit Transition](ui/arkts-enter-exit-transition.md)
             - [Modal Transition](ui/arkts-modal-transition.md)
             - [Shared Element Transition](ui/arkts-shared-element-transition.md)
-            - [Screen Rotation Transition Animation](ui/arkts-rotation-transition-animation.md)
+            - [Rotation Transition Animation](ui/arkts-rotation-transition-animation.md)
             - [Page Transition Animation (Not Recommended)](ui/arkts-page-transition-animation.md)
           - [Particle Animation](ui/arkts-particle-animation.md)
           - [Component Animation](ui/arkts-component-animation.md)
@@ -451,7 +460,7 @@
             - [Blur Effect](ui/arkts-blur-effect.md)
             - [Shadow Effect](ui/arkts-shadow-effect.md)
             - [Color Effect](ui/arkts-color-effect.md)
-          - [Frame Animation](ui/arkts-animator.md)
+          - [Frame Animation (ohos.animator)](ui/arkts-animator.md)
         - Using Interaction Events<!--arkts-events-->
           - [Interaction Event Overview](ui/arkts-event-overview.md)
           - Universal Events<!--arkts-common-events-->
@@ -465,22 +474,23 @@
             - [Single Gesture](ui/arkts-gesture-events-single-gesture.md)
             - [Combined Gestures](ui/arkts-gesture-events-combined-gestures.md)
             - [Multi-level Gesture Events](ui/arkts-gesture-events-multi-level-gesture.md)
+            - [Gesture Judgment](ui/arkts-gesture-events-gesture-judge.md)
         - Using Customization Capabilities<!--arkts-user-defined-capabilities-->
           - [Customization Capability Overview](ui/arkts-user-defined.md)
           - Using Custom Nodes<!--arkts-nodes-->
             - [Custom Node Overview](ui/arkts-user-defined-node.md)
             - [Custom Placeholder Node](ui/arkts-user-defined-place-hoder.md)
-            - [FrameNode](ui/arkts-user-defined-arktsNode-frameNode.md)
-            - [RenderNode](ui/arkts-user-defined-arktsNode-renderNode.md)
-            - [BuilderNode](ui/arkts-user-defined-arktsNode-builderNode.md)
+            - [Custom Component Node (FrameNode)](ui/arkts-user-defined-arktsNode-frameNode.md)
+            - [Custom RenderNode (RenderNode)](ui/arkts-user-defined-arktsNode-renderNode.md)
+            - [Custom Declarative Node (BuilderNode)](ui/arkts-user-defined-arktsNode-builderNode.md)
           - Custom Extension Capability<!--arkts-modifier-->
             - [Custom Extension Capability Overview](ui/arkts-user-defined-modifier.md)
-            - [AttributeModifier](ui/arkts-user-defined-extension-attributeModifier.md)
-            - [AttributeUpdater](ui/arkts-user-defined-extension-attributeUpdater.md)
+            - [Attribute Modifier (AttributeModifier)](ui/arkts-user-defined-extension-attributeModifier.md)
+            - [Attribute Updater (AttributeUpdater)](ui/arkts-user-defined-extension-attributeUpdater.md)
         - [Using the Mirroring Capability](ui/arkts-mirroring-display.md)
         - [Supporting Aging-Friendly Design](ui/arkui-support-for-aging-adaptation.md)
         - Theme Settings<!--arkts-theme-->
-          - [Setting the Theme and Skin](ui/theme_skinning.md)
+          - [Configuring In-Application Theme Skinning](ui/theme_skinning.md)
         - [Using the UI Context API for UI Operations (UIContext)](ui/arkts-global-interface.md)
         <!--Del-->
         - [Cross-Process Application Capability Extension (UIExtension, for System Applications Only)](ui/arkts-ui-extension-components.md)
@@ -488,7 +498,7 @@
         - Using NDK APIs to Build UIs<!--arkts-use-ndk-->
           - [NDK API Overview](ui/ndk-build-ui-overview.md)
           - [Integrating with ArkTS Pages](ui/ndk-access-the-arkts-page.md)
-          - Adding Interaction Events<!--arkts-add-event-->
+          - Using Interaction Events<!--arkts-add-event-->
             - [Listening for Component Events](ui/ndk-listen-to-component-events.md)
             - [Binding Gesture Events](ui/ndk-bind-gesture-events.md)
           - [Using Animations](ui/ndk-use-animation.md)
@@ -584,9 +594,10 @@
         - [Using OH_DisplayManager to Obtain Basic Display Information and Listen for Status Changes (C/C++)](displaymanager/native-display-manager.md)
     - ArkWeb<!--arkweb-->
       - [Introduction to ArkWeb](web/web-component-overview.md)
+      - [ArkWeb Process](web/web_component_process.md)
       - [Lifecycle of Web Components](web/web-event-sequence.md)
       - Setting Basic Attributes and Events<!--web-set-attributes-events-->
-        - [Default User Agent String](web/web-default-userAgent.md)
+        - [Setting UserAgent](web/web-default-userAgent.md)
         - [Managing Cookies and Data Storage](web/web-cookie-and-data-storage-mgmt.md)
         - [Setting the Dark Mode](web/web-set-dark-mode.md)
         - [Opening Pages in a New Window](web/web-open-in-new-window.md)
@@ -604,6 +615,8 @@
         - [Establishing a Data Channel Between the Application and the Frontend Page (C/C++)](web/arkweb-ndk-page-data-channel.md)
       - Managing Web Page Interactions<!--web-manage-page-interaction-->
         - [Implementing Nested Scrolling](web/web-nested-scrolling.md)
+        - [Docking to the Soft Keyboard](web/web-docking-softkeyboard.md)
+        - [Managing Focus](web/web-focus.md)
       - Managing Cyber Security and Privacy for the Web Component<!--web-manage-cyber-security-privacy-->
         - [Resolving Cross-Origin Resource Access](web/web-cross-origin.md)
         - [Intelligent Tracking Prevention](web/web-intelligent-tracking-prevention.md)
@@ -628,6 +641,7 @@
         - [Previewing PDF Files](web/web-pdf-preview.md)
         - [Calculating and Adjusting Safe Area Insets](web/web-safe-area-insets.md)
       - [Using Same-Layer Rendering](web/web-same-layer.md)
+      - [Using Offline Web Components](web/web-offline-mode.md)
       - Web Debugging<!--web-debugging-->
         - [Debugging Frontend Pages by Using DevTools](web/web-debugging-with-devtools.md)
         - [Using Crashpad to Collect Web Component Crash Information](web/web-crashpad.md)
@@ -709,7 +723,7 @@
               - [Updating Widget Content Through the message Event](form/arkts-ui-widget-event-formextensionability.md)
               - [Updating Widget Content Through the router or call Event](form/arkts-ui-widget-event-uiability.md)
             - Widget Data Interaction<!--arkts-ui-widget-interaction-->
-              - [Widget Data Interaction Overview](form/arkts-ui-widget-interaction-overview.md)
+              - [Widget Data Interaction](form/arkts-ui-widget-interaction-overview.md)
               - [Configuring a Widget to Update Periodically](form/arkts-ui-widget-update-by-time.md)
               <!--Del-->
               - [Updating Widget Content Through a Proxy](form/arkts-ui-widget-update-by-proxy.md)
@@ -1050,24 +1064,19 @@
     - Basic Functions<!--system-basicfun-->
       - Basic Services Kit<!--basic-services-kit-->
         - [Introduction to Basic Services Kit](basic-services/basic-services-kit-overview.md)
-        - Application Events<!--app-events-->
-          - IPC<!--event-ipc-->
+        - Process and Thread Communication<!--app-events-->
+          - Using Common Events for IPC
               - [Introduction to Common Events](basic-services/common-event/common-event-overview.md)
-              - Common Event Subscription<!--common-event-->
-                  <!--Del-->
-                  - [Common Event Subscription Overview](basic-services/common-event/common-event-subscription-overview.md)
-                  <!--DelEnd-->
-                  - [Subscribing to Common Events in Dynamic Mode](basic-services/common-event/common-event-subscription.md)
-                  <!--Del-->
-                  - [Subscribing to Common Events in Static Mode (for System Applications Only)](basic-services/common-event/common-event-static-subscription.md)
-                  <!--DelEnd-->
-                  - [Unsubscribing from Common Events in Dynamic Mode](basic-services/common-event/common-event-unsubscription.md)
+              - [Subscribing to Common Events in Dynamic Mode](basic-services/common-event/common-event-subscription.md)
+              <!--Del-->
+              - [Subscribing to Common Events in Static Mode (for System Applications Only)](basic-services/common-event/common-event-static-subscription.md)
+              <!--DelEnd-->
+              - [Unsubscribing from Common Events in Dynamic Mode](basic-services/common-event/common-event-unsubscription.md)
               - [Publishing Common Events](basic-services/common-event/common-event-publish.md)
               <!--Del-->
               - [Removing Sticky Common Events (for System Applications Only)](basic-services/common-event/common-event-remove-sticky.md)
               <!--DelEnd-->
-          - Inter-Thread Communication<!--event-itc-->
-              - [Using Emitter for Inter-Thread Communication](basic-services/common-event/itc-with-emitter.md)
+          - [Using Emitter for Inter-Thread Communication](basic-services/common-event/itc-with-emitter.md)
         - Account Management<!--account-management-->
           <!--Del-->
           - [Account Management Overview](basic-services/account/account-overview.md)
@@ -1276,6 +1285,7 @@
         - [Using OpenSL ES for Audio Recording (C/C++)](media/audio/using-opensl-es-for-recording.md)
     - AVCodec Kit<!--avcodec-kit-->
       - [Introduction to AVCodec Kit](media/avcodec/avcodec-kit-intro.md)
+      - [AVCodec Supported Formats](media/avcodec/avcodec-support-formats.md)
       - Audio and Video Codecs<!--audio-video-codec-->
         - [Obtaining Supported Codecs](media/avcodec/obtain-supported-codecs.md)
         - [Audio Encoding](media/avcodec/audio-encoding.md)
@@ -1321,6 +1331,7 @@
         - [Deferred Photo Delivery (ArkTS)](media/camera/camera-deferred-capture.md)
         - [Moving Photos (ArkTS)](media/camera/camera-moving-photo.md)
         - [Basic Camera Animation (ArkTS)](media/camera/camera-animation.md)
+        - [Using the Camera in the Worker Thread (ArkTS)](media/camera/camera-worker.md)
         <!--Del-->
         - [Depth Data (for System Applications Only) (ArkTS)](media/camera/camera-depth-data.md)
         <!--DelEnd-->
@@ -1330,6 +1341,7 @@
         - [Video Recording Sample (ArkTS)](media/camera/camera-recording-case.md)
         - [Dual-Channel Preview (ArkTS)](media/camera/camera-dual-channel-preview.md)
         - [Deferred Photo Delivery Sample (ArkTS)](media/camera/camera-deferred-capture-case.md)
+        - [Sample for Camera Recovery from the Background (ArkTS)](media/camera/camera-background-recovery.md)
         <!--Del-->
         - [Using Performance Improvement Features (for System Applications Only) (ArkTS)](media/camera/camera-performance-improvement.md)
         - [High-Performance Photo Capture Sample (for System Applications Only) (ArkTS)](media/camera/camera-deferred-photo-case.md)
@@ -1384,11 +1396,11 @@
         - [Using Image to Encode Images](media/image/image-encoding-native.md)
     - Media Kit<!--media-kit-->
       - [Introduction to Media Kit](media/media/media-kit-intro.md)
-      - [Media Development Preparation](media/media/media-preparation.md)
       - Media Development (ArkTS)<!--media-kit-dev--arkts-->
         - Playback<!--media-playback-arkts-->
           - [Using AVPlayer for Audio Playback (ArkTS)](media/media/using-avplayer-for-playback.md)
           - [Using AVPlayer to Play Videos (ArkTS)](media/media/video-playback.md)
+          - [Using AVPlayer to Set Playback URLs](media/media/playback-url-setting-method.md)
           - [Using AVPlayer to Play Streaming Media (ArkTS)](media/media/streaming-media-playback-development-guide.md)
           - [Using AVPlayer to Add External Subtitles to Videos (ArkTS)](media/media/video-subtitle.md)
           - [Using SoundPool to Play Short Sounds (ArkTS)](media/media/using-soundpool-for-playback.md)
@@ -1403,7 +1415,8 @@
           - [Using AVTranscoder to Transcode Videos (ArkTS)](media/media/using-avtranscoder-for-transcodering.md)
       - Media Development (C/C++)<!--media-kit-dev--c-->
         - Playback<!--media-playback-c-->
-          - [Using AVPlayer to Play Audio (C/C++)](media/media/using-ndk-avplayer-for-playerback.md)
+          - [Using AVPlayer to Play Audio (C/C++)](media/media/using-ndk-avplayer-for-playback.md)
+          - [Using AVPlayer to Play Video (C/C++)](media/media/using-ndk-avplayer-for-video-playback.md)
         - Screen Capture<!--media-recording-c-->
           - [Using AVScreenCapture to Capture Screens and Obtain Streams (C/C++)](media/media/using-avscreencapture-for-buffer.md)
           - [Using AVScreenCapture to Capture Screens and Write Them to Files (C/C++)](media/media/using-avscreencapture-for-file.md)
@@ -1550,6 +1563,26 @@
             - [Working with Task Queues Using JSVM-API](napi/use-jsvm-execute_tasks.md)
             - [Working with VM Snapshots Using JSVM-API](napi/use-jsvm-create-snapshot.md)
             - [Developing Wasm Using JSVM-API](napi/use-jsvm-about-wasm.md)
+            - [Creating and Calling JS Functions Using JSVM-API](napi/use-jsvm-function-call.md)
+            - [Performing JSON Operations Using JSVM-API](napi/use-jsvm-about-JSON.md)
+            - [Working with Arrays Using JSVM-API](napi/use-jsvm-about-array.md)
+            - [Working with ArrayBuffer Using JSVM-API](napi/use-jsvm-about-arraybuffer.md)
+            - [Working with BigInt Using JSVM-API](napi/use-jsvm-about-bigint.md)
+            - [Working with Classes Using JSVM-API](napi/use-jsvm-about-class.md)
+            - [Working with Date Using JSVM-API](napi/use-jsvm-about-date.md)
+            - [Working with Objects Using JSVM-API](napi/use-jsvm-about-object.md)
+            - [Working with Primitives Using JSVM-API](napi/use-jsvm-about-primitive.md)
+            - [Implementing Asynchronous Operations Using JSVM-API](napi/use-jsvm-about-promise.md)
+            - [Setting JS Object Properties Using JSVM-API](napi/use-jsvm-about-property.md)
+            <!--Del-->
+            - [Creating and Obtaining String Values Using JSVM-API](napi/use-jsvm-about-string.md)
+            <!--DelEnd-->
+            - [Obtaining the JSVM API Version Using JSVM-API](napi/use-jsvm-about-version.md)
+            - [Error Handling Using JSVM-API](napi/use-jsvm-error.md)
+            - [Debugging and Profiling JS Code Using JSVM-API](napi/use-jsvm-heapstatistics-debugger-cpuprofiler-heapsnapshot.md)
+            - [Performing Lifecycle Management Using JSVM-API](napi/use-jsvm-life-cycle.md)
+            - [Performing Memory Management Using JSVM-API](napi/use-jsvm-memory-management.md)
+            - [Comparing JS Values Using JSVM-API](napi/use-jsvm-strict-equals.md)
         - JSVM-API Use Cases<!--jsvm-scenarios-->
             - [JSVM-API Debugging](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - JSVM-API Tuning and Performant Coding Cases
@@ -1967,7 +2000,7 @@
         - [Common Library Error Codes](reference/apis-arkts/errorcode-utils.md)
     - ArkUI<!--arkui-api-->
       - ArkTS APIs<!--arkui-arkts-->
-        - UI Page<!--ui-->
+        - UI<!--ui-->
           - [@ohos.animator (Animator)](reference/apis-arkui/js-apis-animator.md)
           - [@ohos.arkui.componentSnapshot (Component Snapshot)](reference/apis-arkui/js-apis-arkui-componentSnapshot.md)
           - [@ohos.arkui.componentUtils (componentUtils)](reference/apis-arkui/js-apis-arkui-componentUtils.md)
@@ -2033,10 +2066,10 @@
           - [@system.configuration (Application Configuration)](reference/apis-arkui/js-apis-system-configuration.md)
           - [@system.mediaquery (Media Query)](reference/apis-arkui/js-apis-system-mediaquery.md)
           - [@system.prompt (Prompt)](reference/apis-arkui/js-apis-system-prompt.md)
-          - [@system.router (Page Routing)](reference/apis-arkui/js-apis-system-router.md)        
+          - [@system.router (Page Routing)](reference/apis-arkui/js-apis-system-router.md)
           - [XComponentNode](reference/apis-arkui/js-apis-arkui-xcomponentNode.md)
       - ArkTS Components<!--arkui-declarative-comp-->
-        - Universal Component Information<!--universal-component-information-->
+        - Universal Components<!--universal-component-information-->
           - Universal Events<!--universal-events-->
             - [Click Event](reference/apis-arkui/arkui-ts/ts-universal-events-click.md)
             - [Touch Event](reference/apis-arkui/arkui-ts/ts-universal-events-touch.md)
@@ -2057,6 +2090,7 @@
             - [Size](reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)
             - [Location](reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md)
             - [Layout Constraints](reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md)
+            - [Component-Level Pixel Rounding](reference/apis-arkui/arkui-ts/ts-universal-attributes-pixelRound.md)
             - [Flex Layout](reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md)
             - [Border](reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md)
             - [Border Image](reference/apis-arkui/arkui-ts/ts-universal-attributes-border-image.md)
@@ -2287,7 +2321,7 @@
           <!--Del-->
           - [Implicit Shared Element Transition (geometryTransition) (System API)](reference/apis-arkui/arkui-ts/ts-transition-animation-geometrytransition-sys.md)
           <!--DelEnd-->  
-        - Pop-up Window<!--dialog-boxes-->
+        - Dialog Boxes<!--dialog-boxes-->
           - [Alert Dialog Box (AlertDialog)](reference/apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md)
           - [Action Sheet (ActionSheet)](reference/apis-arkui/arkui-ts/ts-methods-action-sheet.md)
           - [Custom Dialog Box (CustomDialog)](reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
@@ -2317,7 +2351,7 @@
           - [AtomicServiceTabs](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceTabs.md)
           - [AtomicServiceWeb](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceWeb.md)
           - [InterstitialDialogAction](reference/apis-arkui/arkui-ts/ohos-atomicservice-InterstitialDialogAction.md)
-          - [FullScreenLaunchComponent](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md) 
+          - [FullScreenLaunchComponent](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
           <!--Del-->
           - [InnerFullScreenLaunchComponent (System API)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-InnerFullScreenLaunchComponent-sys.md)
           <!--DelEnd-->
@@ -2355,14 +2389,14 @@
           <!--Del-->
           - [AbilityComponent](reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md)
           <!--DelEnd-->
-          - [GridContainer](reference/apis-arkui/arkui-ts/ts-container-gridcontainer.md)        
+          - [GridContainer](reference/apis-arkui/arkui-ts/ts-container-gridcontainer.md)
           - [NavRouter](reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md)
           - [Navigator](reference/apis-arkui/arkui-ts/ts-container-navigator.md)
           - [Panel](reference/apis-arkui/arkui-ts/ts-container-panel.md)
           - [Click Control](reference/apis-arkui/arkui-ts/ts-universal-attributes-click.md)
       - JavaScript Components<!--arkui-js-comp-->
         - JavaScript-compatible Web-like Development Paradigm (ArkUI.Full)<!--arkui-js-full-comp-->
-          - Universal Component Information<!--js-full-universal-comp-infor-->
+          - Universal Components<!--js-full-universal-comp-infor-->
             - [Universal Attributes](reference/apis-arkui/arkui-js/js-components-common-attributes.md)
             - [Universal Styles](reference/apis-arkui/arkui-js/js-components-common-styles.md)
             - [Universal Events](reference/apis-arkui/arkui-js/js-components-common-events.md)
@@ -2463,7 +2497,7 @@
           - [Dynamic Component Creation](reference/apis-arkui/arkui-js/js-components-create-elements.md)
           - [Data Type Attributes](reference/apis-arkui/arkui-js/js-appendix-types.md)
         - JavaScript-compatible Web-like Development Paradigm (ArkUI.Lite)<!--arkui-js-lite-comp-->
-          - Framework<!--js-lite-framework-overview-->
+          - Framework Overview<!--js-lite-framework-overview-->
             - [File Organization](reference/apis-arkui/arkui-js-lite/js-lite-framework-file.md)
             - ["js" Tag](reference/apis-arkui/arkui-js-lite/js-lite-framework-js-tag.md)
             - [app.js](reference/apis-arkui/arkui-js-lite/js-lite-framework-js-file.md)
@@ -2473,7 +2507,7 @@
               - [HML](reference/apis-arkui/arkui-js-lite/js-lite-framework-syntax-hml.md)
               - [CSS](reference/apis-arkui/arkui-js-lite/js-lite-framework-syntax-css.md)
               - [JavaScript](reference/apis-arkui/arkui-js-lite/js-lite-framework-syntax-js.md)
-          - Universal Component Information<!--js-lite-universal-comp-infor-->
+          - Universal Components<!--js-lite-universal-comp-infor-->
             - [Universal Events](reference/apis-arkui/arkui-js-lite/js-lite-common-events.md)
             - [Universal Attributes](reference/apis-arkui/arkui-js-lite/js-lite-common-attributes.md)
             - [Universal Styles](reference/apis-arkui/arkui-js-lite/js-lite-common-styles.md)
@@ -2501,7 +2535,7 @@
             - [canvas](reference/apis-arkui/arkui-js-lite/js-lite-components-canvas-canvas.md)
             - [CanvasRenderingContext2D](reference/apis-arkui/arkui-js-lite/js-lite-components-canvas-canvasrenderingcontext2d.md)
         - JavaScript Service Widget UI Components<!--arkui-card-comp-->
-          - Framework<!--card-comp-framework-overview-->
+          - Framework Overview<!--card-comp-framework-overview-->
             - [File Organization](reference/apis-arkui/js-service-widget-ui/js-service-widget-file.md)
             - Syntax<!--card-comp-syntax-->
               - [HML](reference/apis-arkui/js-service-widget-ui/js-service-widget-syntax-hml.md)
@@ -2509,7 +2543,7 @@
             - [Multi-Language Capability](reference/apis-arkui/js-service-widget-ui/js-service-widget-multiple-languages.md)
             - [Version Compatibility Adaptation](reference/apis-arkui/js-service-widget-ui/js-service-widget-version-compatibility.md)
             - [Theme Configuration](reference/apis-arkui/js-service-widget-ui/js-service-widget-theme.md)
-          - Universal Component Information<!--card-comp-universal-comp-infor-->
+          - Universal Components<!--card-comp-universal-comp-infor-->
             - [Universal Attributes](reference/apis-arkui/js-service-widget-ui/js-service-widget-common-attributes.md)
             - [Universal Styles](reference/apis-arkui/js-service-widget-ui/js-service-widget-common-styles.md)
             - [Universal Events](reference/apis-arkui/js-service-widget-ui/js-service-widget-common-events.md)
@@ -2598,7 +2632,7 @@
             - [NativeDisplayManager_Rect](reference/apis-arkui/_native_display_manager___rect.md)
             - [NativeDisplayManager_WaterfallDisplayAreaRects](reference/apis-arkui/ive_display_manager___waterfall_display_area_rects.md)
       - Error Codes<!--arkui-arkts-errcode-->
-        - UI Page
+        - UI
           - [Animator Error Codes](reference/apis-arkui/errorcode-animator.md)
           - [promptAction Error Codes](reference/apis-arkui/errorcode-promptAction.md)
           - [Router Error Codes](reference/apis-arkui/errorcode-router.md)
@@ -2814,6 +2848,10 @@
         <!--Del-->
         - [@ohos.i18n (Internationalization) (System API)](reference/apis-localization-kit/js-apis-i18n-sys.md)
         <!--DelEnd-->
+        - global
+          - [RawFileDescriptor](reference/apis-localization-kit/rawFileDescriptor.md) 
+          - [Resource](reference/apis-localization-kit/resource.md)
+          - [SendableResource](reference/apis-localization-kit/sendableResource.md)
       - C APIs<!--localization-c-->
         - Modules<!--localization-module-->
           - [Rawfile](reference/apis-localization-kit/rawfile.md)
@@ -3023,8 +3061,10 @@
           - [@ohos.net.connection (Network Connection Management)](reference/apis-network-kit/js-apis-net-connection.md)
           - [@ohos.net.http (Data Request)](reference/apis-network-kit/js-apis-http.md)
           - [@ohos.net.mdns (mDNS Management)](reference/apis-network-kit/js-apis-net-mdns.md)
+          - [@ohos.net.policy (Network Policy Management)](reference/apis-network-kit/js-apis-net-policy.md)
           - [@ohos.net.socket (Socket Connection)](reference/apis-network-kit/js-apis-socket.md)
           - [@ohos.net.statistics (Traffic Management)](reference/apis-network-kit/js-apis-net-statistics.md)
+          - [@ohos.net.sharing (Network Sharing)](reference/apis-network-kit/js-apis-net-sharing.md)
           - [@ohos.net.vpnExtension (Enhanced VPN Management)](reference/apis-network-kit/js-apis-net-vpnExtension.md)
           - [@ohos.net.vpn (VPN Management)](reference/apis-network-kit/js-apis-net-vpn.md)
           - [@ohos.net.webSocket (WebSocket Connection)](reference/apis-network-kit/js-apis-webSocket.md)
@@ -3176,7 +3216,7 @@
               - [CommonEventPublishData](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md)
               - [CommonEventSubscriber](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscriber.md)
               - [CommonEventSubscribeInfo](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
-          - Others<!--others-->
+          - Other<!--others-->
             <!--Del-->
             - [@ohos.ai.intelligentVoice (Intelligent Voice) (System API)](reference/apis-basic-services-kit/js-apis-intelligentVoice-sys.md)
             <!--DelEnd-->
@@ -3535,8 +3575,6 @@
       - C APIs<!--avcodec-c-->
         - Modules<!--avcodec-module-->
           - [AudioCodec](reference/apis-avcodec-kit/_audio_codec.md)
-          - [AudioDecoder](reference/apis-avcodec-kit/_audio_decoder.md)
-          - [AudioEncoder](reference/apis-avcodec-kit/_audio_encoder.md)
           - [AVCapability](reference/apis-avcodec-kit/_a_v_capability.md)
           - [AVDemuxer](reference/apis-avcodec-kit/_a_v_demuxer.md)
           - [AVMuxer](reference/apis-avcodec-kit/_a_v_muxer.md)
@@ -3547,14 +3585,11 @@
           - [VideoEncoder](reference/apis-avcodec-kit/_video_encoder.md)
           - [Multimedia_Drm](reference/apis-avcodec-kit/_multimedia___drm.md)
         - Header Files<!--avcodec-headerfile-->
-          - [avcodec_audio_channel_layout.h](reference/apis-avcodec-kit/avcodec__audio__channel__layout_8h.md)
           - [native_audio_channel_layout.h](reference/apis-avcodec-kit/native__audio__channel__layout_8h.md)
           - [native_avbuffer.h](reference/apis-avcodec-kit/native__avbuffer_8h.md)
           - [native_avbuffer_info.h](reference/apis-avcodec-kit/native__avbuffer__info_8h.md)
           - [native_avcapability.h](reference/apis-avcodec-kit/native__avcapability_8h.md)
           - [native_avcodec_audiocodec.h](reference/apis-avcodec-kit/native__avcodec__audiocodec_8h.md)
-          - [native_avcodec_audiodecoder.h](reference/apis-avcodec-kit/native__avcodec__audiodecoder_8h.md)
-          - [native_avcodec_audioencoder.h](reference/apis-avcodec-kit/native__avcodec__audioencoder_8h.md)
           - [native_avcodec_base.h](reference/apis-avcodec-kit/native__avcodec__base_8h.md)
           - [native_avcodec_videodecoder.h](reference/apis-avcodec-kit/native__avcodec__videodecoder_8h.md)
           - [native_avcodec_videoencoder.h](reference/apis-avcodec-kit/native__avcodec__videoencoder_8h.md)
@@ -3572,6 +3607,14 @@
           - [OH_AVDataSource](reference/apis-avcodec-kit/_o_h___a_v_data_source.md)
           - [OH_AVRange](reference/apis-avcodec-kit/_o_h___a_v_range.md)
           - [DrmSubsample](reference/apis-avcodec-kit/_drm_subsample.md)
+        - APIs No Longer Maintained
+          - Modules
+            - [AudioDecoder](reference/apis-avcodec-kit/_audio_decoder.md)
+            - [AudioEncoder](reference/apis-avcodec-kit/_audio_encoder.md)
+          - Header Files
+            - [avcodec_audio_channel_layout.h](reference/apis-avcodec-kit/avcodec__audio__channel__layout_8h.md)
+            - [native_avcodec_audiodecoder.h](reference/apis-avcodec-kit/native__avcodec__audiodecoder_8h.md)
+            - [native_avcodec_audioencoder.h](reference/apis-avcodec-kit/native__avcodec__audioencoder_8h.md)
     - AVSession Kit<!--avsession-api-->
       - ArkTS APIs<!--avsession-arkts-->
         - [@ohos.multimedia.avsession (AVSession Management)](reference/apis-avsession-kit/js-apis-avsession.md)
@@ -3893,7 +3936,7 @@
           - [OH_Drawing_Point2D](reference/apis-arkgraphics2d/_o_h___drawing___point2_d.md)
           - [OH_Drawing_Point3D](reference/apis-arkgraphics2d/_o_h___drawing___point3_d.md)
           - [OH_Drawing_RectStyle_Info](reference/apis-arkgraphics2d/_o_h___drawing___rect_style___info.md)
-          - [OH_Drawing_RunBuffer](reference/apis-arkgraphics2d/_o_h___drawing___run_buffer.md) 
+          - [OH_Drawing_RunBuffer](reference/apis-arkgraphics2d/_o_h___drawing___run_buffer.md)
           - [OH_Drawing_StrutStyle](reference/apis-arkgraphics2d/_o_h___drawing___strut_style.md)
           - [OH_Filter](reference/apis-arkgraphics2d/_o_h___filter.md)
           - [OH_Filter_ColorMatrix](reference/apis-arkgraphics2d/_o_h___filter___color_matrix.md)
@@ -4092,3 +4135,37 @@
       - [EGL Symbols Exported](reference/native-lib/egl-symbol.md)
       - [ICU4C Symbols Exported from Native APIs](reference/native-lib/icu4c-symbol.md)
       - [OpenGL ES 3.2 Symbols Exported](reference/native-lib/openglesv3-symbol.md)
+
+<!--Del-->
+- FAQs
+  - [Full SDK Compilation](faqs/full-sdk-compile-guide.md)
+  - [Switching to Full SDK](faqs/full-sdk-switch-guide.md)
+  - [Application Model Development](faqs/faqs-ability.md)
+  - ArkUI Development (ArkTS)
+    - [ArkTS Syntax Usage](faqs/faqs-arkui-arkts.md)
+    - [ArkUI Component Development (ArkTS)](faqs/faqs-arkui-component.md)
+    - [ArkUI Layout Development (ArkTS)](faqs/faqs-arkui-layout.md)
+    - [ArkUI Routing/Navigation Development (ArkTS)](faqs/faqs-arkui-route-nav.md)
+    - [ArkUI Animation/Interaction Event Development (ArkTS)](faqs/faqs-arkui-animation-interactive-event.md)
+  - [ArkUI Development (JS)](faqs/faqs-arkui-js.md)
+  - [ArkTS Common Library Development](faqs/faqs-arkts-utils.md)
+  - [Web Development](faqs/faqs-arkui-web.md)
+  - [Bundle Management Development](faqs/faqs-bundle-management.md)
+  - [Resource Manager Development](faqs/faqs-globalization.md)
+  - [Common Event and Notification Development](faqs/faqs-event-notification.md)
+  - [Graphics Development](faqs/faqs-graphics.md)
+  - [Window Management Development](faqs/faqs-window-manager.md)
+  - [Multimedia Development](faqs/faqs-multimedia.md)
+  - [Basic Security Capability Development](faqs/faqs-security.md)
+  - [Ability Access Control Development](faqs/faqs-ability-access-control.md)
+  - [Data Management Development](faqs/faqs-distributed-data-management.md)
+  - [File Management Development](faqs/faqs-file-management.md)
+  - [Network Management Development](faqs/faqs-network-management.md)
+  - [DFX Development](faqs/faqs-dfx.md)
+  - [Pan-Sensor Development](faqs/faqs-sensor.md)
+  - [Startup Development](faqs/faqs-startup.md)
+  - [SDK Usage](faqs/faqs-sdk.md)
+  - [NDK Usage](faqs/faqs-ndk.md)
+  - [Compiler and Runtime](faqs/faqs-compiler-runtime.md)
+  - [Usage of Third- and Fourth-Party Libraries](faqs/faqs-third-fourth-party-library.md)
+<!--DelEnd-->
