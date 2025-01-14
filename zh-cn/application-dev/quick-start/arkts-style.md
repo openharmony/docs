@@ -100,6 +100,20 @@
 
 ## 限制条件
 
+- \@Styles方法不能有参数，编译期会报错，提醒开发者@Styles方法不支持参数。
+
+  ```ts
+  // 错误写法： @Styles不支持参数，编译期报错
+  @Styles function globalFancy (value: number) {
+    .width(value)
+  }
+
+  // 正确写法
+  @Styles function globalFancy () {
+    .width(value)
+  }
+  ```
+
 - 不支持在\@Styles方法内使用逻辑组件，在逻辑组件内的属性不生效。
 
   ```ts
@@ -115,22 +129,6 @@
     .backgroundColor(Color.Red)
   }
   ``` 
-
-## 限制条件
-
-- \@Styles方法不能有参数，编译期会报错，提醒开发者@Styles方法不支持参数。
-
-  ```ts
-  // 错误写法： @Styles不支持参数，编译期报错
-  @Styles function globalFancy (value: number) {
-    .width(value)
-  }
-
-  // 正确写法
-  @Styles function globalFancy () {
-    .width(value)
-  }
-  ```
 
 
 ## 使用场景
