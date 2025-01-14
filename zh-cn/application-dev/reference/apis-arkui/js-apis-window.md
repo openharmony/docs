@@ -2148,7 +2148,7 @@ setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- |----------------------------------| -- | ------------------------------------------------------------ |
-| type | boolean | 是 | 是否可以获取到避让区域。<br> true表示可以获取避让区；false表示不可以获取避让区。默认值是false。 |
+| enabled | boolean | 是 | 是否可以获取到避让区域。<br> true表示可以获取避让区；false表示不可以获取避让区。默认值是false。 |
 
 **错误码：**
 
@@ -2156,7 +2156,7 @@ setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
