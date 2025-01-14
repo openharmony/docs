@@ -52,7 +52,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-布局选项。其中,irregularIndexes和onGetIrregularSizeByIndex可对仅设置rowsTemplate或columnsTemplate的Grid使用，可以指定一个index数组，并为其中的index对应的GridItem设置其占据的行数与列数，使用方法参见[示例3](#示例3可滚动grid设置跨行跨列节点)；onGetRectByIndex可对同时设置rowsTemplate和columnsTemplate的Grid使用，为指定的index对应的GridItem设置位置和大小，使用方法参见[示例1](#示例1固定行列grid)。
+布局选项。其中，irregularIndexes和onGetIrregularSizeByIndex可对仅设置rowsTemplate或columnsTemplate的Grid使用，可以指定一个index数组，并为其中的index对应的GridItem设置其占据的行数与列数，使用方法参见[示例3](#示例3可滚动grid设置跨行跨列节点)；onGetRectByIndex可对同时设置rowsTemplate和columnsTemplate的Grid使用，为指定的index对应的GridItem设置位置和大小，使用方法参见[示例1](#示例1固定行列grid)。
 
 | 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
