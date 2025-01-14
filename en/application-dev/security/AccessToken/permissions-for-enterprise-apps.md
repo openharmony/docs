@@ -115,37 +115,37 @@ With this permission, the enterprise application can install private CA certific
 
 Allows an application to obtain domain account server configurations.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
 <!--Del-->
-**AEnable via ACL**：true<!--DelEnd-->
+**Enable via ACL**: true<!--DelEnd-->
 
-**Valid since**：16
+**Valid since**: 16
 
 ## ohos.permission.MANAGE_DOMAIN_ACCOUNT_SERVER_CONFIGS
 
 Allows an application to manage domain account server configurations.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
 <!--Del-->
-**Enable via ACL**：true<!--DelEnd-->
+**Enable via ACL**: true<!--DelEnd-->
 
-**Valid since**：16
+**Valid since**: 16
 
 ## ohos.permission.MANAGE_DOMAIN_ACCOUNTS
 
 Allows an application to manage domain accounts.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
 <!--Del-->
-**Enable via ACL**：true<!--DelEnd-->
+**Enable via ACL**: true<!--DelEnd-->
 
-**Valid since**：16
+**Valid since**: 16
