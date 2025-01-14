@@ -1,6 +1,6 @@
 # Selecting Media Assets Using Picker
 
-When a user needs to share files such as images and videos, use Picker to start **Gallery** for the user to select the files to share. No permission is required when Picker is used. Currently, a UIAbility is used to start **Gallery** with the window component. The procedure is as follows:
+When a user needs to share files such as images and videos, use **Picker** to start Gallery for the user to select the files to share. No permission is required when Picker is used. Currently, a UIAbility is used to start Gallery with the window component. The procedure is as follows:
 
 1. Import modules.
 
@@ -16,7 +16,7 @@ When a user needs to share files such as images and videos, use Picker to start 
    const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
    ```
 
-3. Set the type and maximum number of the files to select.
+3. Set the type and maximum number of media files to select.
    The following uses images as an example. For details about the media file types, see [PhotoViewMIMETypes](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewmimetypes).
 
    ```ts
@@ -24,7 +24,7 @@ When a user needs to share files such as images and videos, use Picker to start 
    photoSelectOptions.maxSelectNumber = 5; // Set the maximum number of images that can be selected.
    ```
 
-4. Create a **photoViewPicker** instance and call [PhotoViewPicker.select](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#select) to open the **Gallery** page for the user to select images. After the images are selected, [PhotoSelectResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoselectresult) is returned.
+4. Create a **photoViewPicker** instance and call [PhotoViewPicker.select](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#select) to open Gallery for the user to select images. After the images are selected, [PhotoSelectResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoselectresult) is returned.
 
    ```ts
    let uris: Array<string> = [];
@@ -45,7 +45,7 @@ When a user needs to share files such as images and videos, use Picker to start 
 
 ## Reading File Data by URI
 
-1. After the application UI is returned from **Gallery**, use a button to trigger the application's API. Use [fileIo.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open an image based on the URI. After the image is opened, the FD is returned. Note that the **mode** parameter of **fileIo.openSync()** must be **fileIo.OpenMode.READ_ONLY**.
+1. After the UI returns from Gallery, use a button to call other functions. Specifically, use[fileIo.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open the file and obtain its FD through the [media file URI](../../file-management/user-file-uri-intro.md#media-file-uri). Note that the **mode** parameter of **fileIo.openSync()** must be **fileIo.OpenMode.READ_ONLY**.
 
    ```ts
    let uri: string = '';
@@ -64,7 +64,7 @@ When a user needs to share files such as images and videos, use Picker to start 
 
 ## Obtaining an Image or Video by URI
 
-After an image or video is selected by Picker, the URI of the image or video is returned. You can obtain the image or video based on the URI. The following example demonstrates how to obtain the image based on the URI **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**.
+The media library allows **Picker** to select a [media file URI](../../file-management/user-file-uri-intro.md#media-file-uri) and obtain the corresponding image or video. The following describes how to query a URI named **'file://media/Photo/1/IMG_datetime_0001/displayName.jpg'**.
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
