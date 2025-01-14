@@ -149,7 +149,7 @@
         // 注：若涉及复杂处理流程，建议相关
         struct OH_AVCodecBufferAttr attr;
         (void)buffer->GetBufferAttr(attr);
-        // 刷新I帧后poc归零
+        // 刷新I帧后POC归零
         if (attr.flags & AVCODEC_BUFFER_FLAG_KEY_FRAME) {
             outPoc = 0;
         }
@@ -180,11 +180,11 @@
 | -------- | ---------------------------- |
 | OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT  |  长期参考帧个数参数 |
 | OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR  | 当前帧标记为LTR帧 |
-| OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR   | 当前帧参考的LTR帧号  |
+| OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR   | 当前帧参考的LTR帧的POC号  |
 
 - **长期参考帧个数参数：** 在配置阶段配置，应小于等于查询到的最大支持数目，查询方式详见开发指导。
 - **当前帧标记为LTR帧：** BL层标记为LTR，被跳跃参考的EL层也标记为LTR。
-- **当前帧参考的LTR帧号：** 如当前帧需要跳跃参考前面已被标记为LTR的帧号。
+- **当前帧参考的LTR帧的POC号：** 如当前帧需要跳跃参考前面已被标记为LTR帧的POC号。
 
 使用举例，实现[时域可分层视频编码介绍](#时域可分层视频编码介绍)中的4层时域分层结构的配置如下：
 
