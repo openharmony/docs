@@ -100,8 +100,6 @@
 | void [OH_Drawing_SetTextStyleFontWeight](_drawing.md#oh_drawing_settextstylefontweight) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 设置字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。  | 
 | void [OH_Drawing_SetTextStyleBaseLine](_drawing.md#oh_drawing_settextstylebaseline) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 设置字体基线位置。  | 
 | void [OH_Drawing_SetTextStyleDecoration](_drawing.md#oh_drawing_settextstyledecoration) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 设置装饰。  | 
-| void [OH_Drawing_AddTextStyleDecoration](_drawing.md#oh_drawing_addtextstyledecoration) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 新增指定装饰，可同时显示多种装饰线。  | 
-| void [OH_Drawing_RemoveTextStyleDecoration](_drawing.md#oh_drawing_removetextstyledecoration) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 删除指定装饰。  | 
 | void [OH_Drawing_SetTextStyleDecorationColor](_drawing.md#oh_drawing_settextstyledecorationcolor) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, uint32_t) | 设置装饰颜色。  | 
 | void [OH_Drawing_SetTextStyleFontHeight](_drawing.md#oh_drawing_settextstylefontheight) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, double) | 设置行高，按当前字体大小的倍数进行设置。  | 
 | void [OH_Drawing_SetTextStyleFontFamilies](_drawing.md#oh_drawing_settextstylefontfamilies) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int, const char \*fontFamilies[]) | 设置字体类型。  | 
@@ -279,9 +277,4 @@
 | void [OH_Drawing_DestroyLineTypography](_drawing.md#oh_drawing_destroylinetypography) ([OH_Drawing_LineTypography](_drawing.md#oh_drawing_linetypography) \*lineTypography) | 释放排版行对象[OH_Drawing_LineTypography](_drawing.md#oh_drawing_linetypography)占用的内存。  | 
 | size_t [OH_Drawing_LineTypographyGetLineBreak](_drawing.md#oh_drawing_linetypographygetlinebreak) ([OH_Drawing_LineTypography](_drawing.md#oh_drawing_linetypography) \*lineTypography, size_t startIndex, double width) | 计算在限定排版宽度的情况下，从指定位置处开始可以排版的字符个数。  | 
 | OH_Drawing_TextLine \* [OH_Drawing_LineTypographyCreateLine](_drawing.md#oh_drawing_linetypographycreateline) ([OH_Drawing_LineTypography](_drawing.md#oh_drawing_linetypography) \*lineTypography, size_t startIndex, size_t count) | 根据指定区间文本内容创建一个指向文本行对象**OH_Drawing_TextLine**的指针。  | 
-| [OH_Drawing_TextTab](_drawing.md#oh_drawing_texttab) \* [OH_Drawing_CreateTextTab](_drawing.md#oh_drawing_createtexttab) ([OH_Drawing_TextAlign](_drawing.md#oh_drawing_textalign) alignment, float location) | 创建文本制表符对象。  | 
-| void [OH_Drawing_DestroyTextTab](_drawing.md#oh_drawing_destroytexttab) ([OH_Drawing_TextTab](_drawing.md#oh_drawing_texttab) \*) | 释放文本制表符对象占据的内存。  | 
-| [OH_Drawing_TextAlign](_drawing.md#oh_drawing_textalign) [OH_Drawing_GetTextTabAlignment](_drawing.md#oh_drawing_gettexttabalignment) ([OH_Drawing_TextTab](_drawing.md#oh_drawing_texttab) \*) | 获取文本制表符对象的对齐方式。  | 
-| float [OH_Drawing_GetTextTabLocation](_drawing.md#oh_drawing_gettexttablocation) ([OH_Drawing_TextTab](_drawing.md#oh_drawing_texttab) \*) | 获取文本制表符的位置。  | 
-| void [OH_Drawing_SetTypographyTextTab](_drawing.md#oh_drawing_settypographytexttab) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, [OH_Drawing_TextTab](_drawing.md#oh_drawing_texttab) \*TextTab) | 设置文本制表符对齐方式及位置。当设置了文本对齐方式或者省略号风格时制表符不生效，当制表符位置小于1.0时为替换成空格的效果。  | 
 | size_t [OH_Drawing_GetDrawingArraySize](_drawing.md#oh_drawing_getdrawingarraysize) ([OH_Drawing_Array](_drawing.md#oh_drawing_array) \*drawingArray) | 获取传入类型为对象数组[OH_Drawing_Array](_drawing.md#oh_drawing_array)中的对象个数。  | 
