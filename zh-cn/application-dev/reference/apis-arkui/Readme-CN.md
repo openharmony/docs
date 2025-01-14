@@ -221,6 +221,7 @@
     - [DownloadFileButton](arkui-ts/ohos-arkui-advanced-DownloadFileButton.md)
     - [ProgressButton](arkui-ts/ohos-arkui-advanced-ProgressButton.md)
     - [SegmentButton](arkui-ts/ohos-arkui-advanced-SegmentButton.md)
+    - [SegmentButtonV2](arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
     - [Filter](arkui-ts/ohos-arkui-advanced-Filter.md)
   - 文本与输入
     - [Text](arkui-ts/ts-basic-components-text.md)
