@@ -138,7 +138,7 @@
 
 ## DOWNLOAD模式保存文件
 
-用户在使用save接口时，可以将pickerMode配置为DOWNLOAD模式，该模式下会拉起授权接口，用户确认后会在公共路径download目录下创建用户当前hap包名的文件夹，并通过save接口返回值回传相应的URI，后续用户可以直接将文件保存在该URI下。
+用户在使用save接口时，可以将pickerMode配置为DOWNLOAD模式，该模式下会在公共路径download目录下创建用户当前hap包名的文件夹，并通过save接口返回值回传相应的URI，后续用户可以直接将文件保存在该URI下。
 
 1. 导入选择器模块和文件管理模块。
 
