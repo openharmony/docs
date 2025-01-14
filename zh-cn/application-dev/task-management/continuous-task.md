@@ -4,40 +4,40 @@
 
 ### 功能介绍
 
-应用退至后台后，在后台需要长时间运行用户可感知的任务，如播放音乐、导航等。为防止应用进程被挂起，导致对应功能异常，可以申请长时任务，使应用在后台长时间运行。在长时任务中可以申请多种类型的任务，并对任务类型进行更新。应用退后台执行业务时，系统会做一致性校验，确保应用在执行相应的长时任务。同时，系统有与长时任务相关联的通知栏消息，用户删除通知栏消息时，系统会自动停止长时任务。
+应用退至后台后，在后台需要长时间运行用户可感知的任务，如播放音乐、导航等。为防止应用进程被挂起，导致对应功能异常，可以申请长时任务，使应用在后台长时间运行。在长时任务中，支持同时申请多种类型的任务，也可以对任务类型进行更新。应用退至后台执行业务时，系统会做一致性校验，确保应用在执行相应的长时任务。应用在申请长时任务成功后，通知栏会显示与长时任务相关联的消息，用户删除通知栏消息时，系统会自动停止长时任务。
 
 ### 使用场景
 
-下表给出了当前长时任务支持的类型，包含数据传输、音视频播放、录制、定位导航、蓝牙相关、多设备互联、WLAN相关、音视频通话和计算任务。可以参考下表中的场景举例，选择合适的长时任务类型。
+下表给出了当前长时任务支持的类型，包含数据传输、音视频播放、录制、定位导航、蓝牙相关业务、多设备互联、<!--Del-->WLAN相关业务、<!--DelEnd-->音视频通话和计算任务。可以参考下表中的场景举例，选择合适的长时任务类型。
 
 **表1** 长时任务类型
-| 参数名 | 描述 | 配置项 | 场景 |
+| 参数名 | 描述 | 配置项 | 场景举例 |
 | -------- | -------- | -------- | -------- |
 | DATA_TRANSFER | 数据传输 | dataTransfer | 非托管形式的上传、下载，如在浏览器后台上传或下载数据。 |
-| AUDIO_PLAYBACK | 音视频播放 | audioPlayback | 音频、视频在后台播放，投播。 <br> **说明：** 支持在原子化服务中使用。|
+| AUDIO_PLAYBACK | 音视频播放 | audioPlayback | 音频、视频在后台播放，音视频投播。 <br> **说明：** 支持在原子化服务中使用。|
 | AUDIO_RECORDING | 录制 | audioRecording | 录音、录屏退后台。 |
 | LOCATION | 定位导航 | location | 定位、导航。 |
-| BLUETOOTH_INTERACTION | 蓝牙相关 | bluetoothInteraction | 通过蓝牙传输文件时退后台。 |
+| BLUETOOTH_INTERACTION | 蓝牙相关业务 | bluetoothInteraction | 通过蓝牙传输文件时退后台。 |
 | MULTI_DEVICE_CONNECTION | 多设备互联 | multiDeviceConnection | 分布式业务连接、投播。<br> **说明：** 支持在原子化服务中使用。 |
-| <!--DelRow-->WIFI_INTERACTION | WLAN相关（仅对系统应用开放） | wifiInteraction  | 通过WLAN传输文件时退后台。 |
+| <!--DelRow-->WIFI_INTERACTION | WLAN相关业务（仅对系统应用开放） | wifiInteraction  | 通过WLAN传输文件时退后台。 |
 | VOIP<sup>13+</sup> | 音视频通话 | voip  | 某些聊天类应用（具有音视频业务）音频、视频通话时退后台。|
-| TASK_KEEPING | 计算任务（仅对2in1开放） | taskKeeping  | 如杀毒软件。 |
+| TASK_KEEPING | 计算任务（仅对2in1设备开放） | taskKeeping  | 如杀毒软件。 |
 
 关于DATA_TRANSFER（数据传输）说明：
 
 - 在数据传输时，若应用使用[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统，即使申请DATA_TRANSFER的后台任务，应用退后台时还是会被挂起。
 
-- 在数据传输时，应用需要更新进度。如果进度长时间（超过10分钟）不更新，数据传输的长时任务会被取消。
+- 在数据传输时，应用需要更新进度。如果进度长时间（超过10分钟）不更新，数据传输的长时任务会被取消。更新进度实现可参考[startBackgroundRunning()](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning12)中的示例。
 
 关于AUDIO_PLAYBACK（音视频播放）说明：
 
-- 若要通过AUDIO_PLAYBACK实现后台播放，须使用媒体会话服务（[AVSession](../media/avsession/avsession-overview.md)）的进行音视频开发。
+- 若要通过AUDIO_PLAYBACK实现后台播放，须使用媒体会话服务（[AVSession](../media/avsession/avsession-overview.md)）进行音视频开发。
 
-- 投播，是指将一台设备是音视频投至另一台设备播放。投播退至后台，长时任务会检测音视频播放和投屏两个业务，只要有其一正常运行，长时任务就不会终止。
+- 音视频投播，是指将一台设备的音视频投至另一台设备播放。投播退至后台，长时任务会检测音视频播放和投屏两个业务，只要有其一正常运行，长时任务就不会终止。
 
 ### 约束与限制
 
-**申请限制**：Stage模型中，长时任务仅支持UIAbility申请；FA模型中，长时任务仅支持ServiceAbility申请。
+**申请限制**：Stage模型中，长时任务仅支持UIAbility申请；FA模型中，长时任务仅支持ServiceAbility申请。长时任务支持设备当前应用申请，也支持跨设备或跨应用申请，跨设备或跨应用仅对系统应用开放。
 
 **数量限制**：一个UIAbility（FA模型则为ServiceAbility）同一时刻仅支持申请一个长时任务，即在一个长时任务结束后才可能继续申请。如果一个应用同时需要申请多个长时任务，需要创建多个UIAbility；一个应用的一个UIAbility申请长时任务后，整个应用下的所有进程均不会被挂起。
 
@@ -57,7 +57,7 @@
 >
 > 若音频在后台播放时被[打断](../media/audio/audio-playback-concurrency.md)，系统会自行检测和停止长时任务，音频重启播放时，需要再次申请长时任务。
 >
-> 播放音频的应用在后台停止长时任务的同时，需要暂停或停止音频流，否则应用会被系统强制终止。
+> 后台播放音频的应用，在停止长时任务的同时，需要暂停或停止音频流，否则应用会被系统强制终止。
 
 ## 接口说明
 
@@ -72,7 +72,7 @@
 
 ## 开发步骤
 
-本文以申请录制长时任务为例，示例中包含“申请长时任务”和“取消长时任务”两个按钮，显示效果为：
+本文以申请录制长时任务为例，实现如下功能：
 
 - 点击“申请长时任务”按钮，应用申请录制长时任务成功，通知栏显示“正在运行录制任务”通知。
 
@@ -83,7 +83,7 @@
 1. 需要申请ohos.permission.KEEP_BACKGROUND_RUNNING权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
 
 2. 声明后台模式类型。
-   在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型（配置文件中填写长时任务类型的[配置项](#使用场景)）。
+   在module.json5文件中为需要使用长时任务的UIAbility声明相应的长时任务类型，配置文件中填写长时任务类型的[配置项](continuous-task.md#使用场景)。
    
    ```json
     "module": {
@@ -114,14 +114,9 @@
 
 4. 申请和取消长时任务。
 
-   - 在Stage模型中，长时任务支持设备本应用申请，也支持跨设备或跨应用申请<!--RP2--><!--RP2End-->。
-   <!--Del-->
-   - 跨设备或者跨应用在后台执行长时任务时，可以通过Call的方式在后台创建并运行UIAbility，具体使用请参考[Call调用开发指南（同设备）](../application-models/uiability-intra-device-interaction.md#通过call调用实现uiability交互仅对系统应用开放)和[Call调用开发指南（跨设备）](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)。<!--DelEnd-->
-
-   **设备本应用**申请长时任务示例代码如下：
-
+   **设备当前应用**申请长时任务示例代码如下：   
+      
    ```ts
-
     function callback(info: backgroundTaskManager.ContinuousTaskCancelInfo) {
       // 长时任务id
       console.info('OnContinuousTaskCancel callback id ' + info.id);
@@ -271,7 +266,7 @@
    ```
    <!--Del-->
 
-   **跨设备或跨应用**申请长时任务示例代码如下：
+   **跨设备或跨应用**申请长时任务示例代码如下。跨设备或跨应用在后台执行长时任务时，可以通过Call的方式在后台创建并运行UIAbility，具体使用请参考[Call调用开发指南（同设备）](../application-models/uiability-intra-device-interaction.md#通过call调用实现uiability交互仅对系统应用开放)和[Call调用开发指南（跨设备）](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)。
    
    ```ts
     const MSG_SEND_METHOD: string = 'CallSendMsg'
@@ -551,4 +546,4 @@
 
 针对长时任务开发，有以下相关实例可供参考：
 
-- [长时任务（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ContinuousTask)
+- [长时任务（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ContinuousTask)
