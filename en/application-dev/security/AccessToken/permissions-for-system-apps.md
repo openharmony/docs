@@ -4401,6 +4401,18 @@ With this permission, the system application can create a virtual keyboard windo
 
 **Valid since**: 15
 
+### ohos.permission.GET_FAMILY_INFO
+
+Allows a system application to obtain the group information of Family Sharing.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
