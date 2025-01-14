@@ -1,6 +1,6 @@
 # Requesting User Authorization for the Second Time
 
-If the user rejects to grant the permission when an application calls [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to [request user authorization](request-user-authorization.md) in a dialog box, the application will no longer start the user authorization dialog box again by using **requestPermissionsFromUser**. If the application still needs the permission, you can use either of the following methods:
+If the user rejects to grant the permission when an application calls [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to [request user authorization](request-user-authorization.md) in a dialog box, the application will no longer start the user authorization dialog box again by using **requestPermissionsFromUser()**. If the application still needs the permission, you can use either of the following methods:
 
 - Allow the user to manually grant the permission using the system application **Settings** in the following path:
 <!--RP1-->
