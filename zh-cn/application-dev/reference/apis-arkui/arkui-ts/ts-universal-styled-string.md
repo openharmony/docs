@@ -795,17 +795,16 @@ constructor(value: ShadowOptions | Array\<ShadowOptions>)
 
 ### 属性
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称           | 类型              | 只读   | 可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  |  否  | 获取属性字符串的图片数据源。 |
-| size  | [SizeOptions](ts-types.md#sizeoptions) |  是  |  是  | 获取属性字符串的图片尺寸。 |
-| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) |  是  |  是  | 获取属性字符串的图片对齐方式。 |
-| objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  是  |  是  | 获取属性字符串的图片缩放类型。 |
-| layoutStyle  | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) |  是  |  是  | 获取属性字符串的图片布局。 |
+| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  |  否  | 获取属性字符串的图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| size  | [SizeOptions](ts-types.md#sizeoptions) |  是  |  是  | 获取属性字符串的图片尺寸。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) |  是  |  是  | 获取属性字符串的图片对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  是  |  是  | 获取属性字符串的图片缩放类型。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| layoutStyle  | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) |  是  |  是  | 获取属性字符串的图片布局。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| colorFilter<sup>16+</sup>  | [ColorFilter](ts-types.md#colorfilter9) |  是  |  是  | 获取属性字符串的图片颜色滤镜效果。**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ### constructor
 
@@ -825,17 +824,16 @@ constructor(value: ImageAttachmentInterface)
 
 ## ImageAttachmentInterface对象说明
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  | 设置图片数据源。 |
-| size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 |
-| verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 设置图片基于文本的对齐方式。 |
-| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。 |
-| layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) | 否   | 设置图片布局。 |
+| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  | 设置图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 设置图片基于文本的对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) | 否   | 设置图片布局。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| colorFilter<sup>16+</sup>  | [ColorFilter](ts-types.md#colorfilter9) |  否  | 获取属性字符串的图片颜色滤镜效果。**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## ImageAttachmentLayoutStyle对象说明
 
@@ -2101,6 +2099,67 @@ struct styled_string {
 ![](figures/styledString_9.gif)
 
 
+### 示例10 (给图片设置colorFilter)
+
+该示例通过给imageAttachment设置colorFilter实现了给图像设置颜色滤镜效果
+
+``` ts
+// xxx.ets
+import { LengthMetrics } from '@kit.ArkUI'
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+@Entry
+@Component
+struct styled_string_demo4 {
+  @State message: string = 'Hello World'
+  mutableStr: MutableStyledString = new MutableStyledString('origin image:');
+  mutableStr2: MutableStyledString = new MutableStyledString('with filter:');
+  controller: TextController = new TextController();
+  controller2: TextController = new TextController();
+  private color: common2D.Color = { alpha: 125, red: 125, green: 125, blue: 255 };
+  build() {
+    Row() {
+      Column({ space: 5 }) {
+        Text(undefined, { controller: this.controller })
+          .copyOption(CopyOptions.InApp)
+          .draggable(true)
+          .fontSize(30)
+          .onAppear(() => {
+            this.mutableStr = new MutableStyledString(new ImageAttachment({
+              resourceValue: $r('app.media.startIcon'),
+              size: { width: 50, height: 50 },
+              layoutStyle: { borderRadius: LengthMetrics.vp(10) },
+              verticalAlign: ImageSpanAlignment.BASELINE,
+              objectFit: ImageFit.Contain,
+              syncLoad: true
+            }))
+            this.controller.setStyledString(this.mutableStr)
+          })
+        Text(undefined, { controller: this.controller2 })
+          .copyOption(CopyOptions.InApp)
+          .draggable(true)
+          .fontSize(30)
+        Button('set image color filter')
+          .onClick(() => {
+            this.mutableStr2 = new MutableStyledString(new ImageAttachment({
+              resourceValue: $r('app.media.startIcon'),
+              size: { width: 50, height: 50 },
+              layoutStyle: { borderRadius: LengthMetrics.vp(10) },
+              verticalAlign: ImageSpanAlignment.BASELINE,
+              objectFit: ImageFit.Contain,
+              colorFilter: drawing.ColorFilter.createBlendModeColorFilter(this.color, drawing.BlendMode.SRC_IN),
+              syncLoad: true
+            }))
+            this.controller2.setStyledString(this.mutableStr2)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![](figures/styledString_10.gif)
 
 
 
