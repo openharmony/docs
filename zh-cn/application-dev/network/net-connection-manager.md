@@ -252,8 +252,6 @@ async function socketTest() {
 
 请在监控到默认网络变化后关闭原有Socket并重新建立Socket连接。
 
-
-
 ## 获取所有注册的网络
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
