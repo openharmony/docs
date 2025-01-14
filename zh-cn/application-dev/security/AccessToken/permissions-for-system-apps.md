@@ -1461,18 +1461,6 @@
 
 **起始版本**：7
 
-### ohos.permission.GET_WIFI_CONFIG
-
-允许应用获取Wi-Fi的配置信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：8
-
 ### ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
 允许应用为其他应用授予敏感权限。
@@ -1808,18 +1796,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
-### ohos.permission.SET_WIFI_CONFIG
-
-允许应用配置Wi-Fi信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：8
 
 ### ohos.permission.START_ABILIIES_FROM_BACKGROUND
 
