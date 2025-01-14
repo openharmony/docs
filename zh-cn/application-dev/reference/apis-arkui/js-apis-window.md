@@ -2138,7 +2138,7 @@ setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 
 设置当前系统窗口是否可以获取窗口内容的[避让区](#avoidarea7)。
 
-该接口一般适用于此场景：应用创建的系统窗口希望获取避让区或监听避让区变化时，需要在创建该系统窗口后调用该接口设置开启系统窗口避让区，再调用[getWindowAvoidArea()](#getwindowavoidarea9)获取避让区。
+该接口一般适用于此场景：应用于创建的系统窗口希望获取避让区或监听避让区变化时，需要在创建该系统窗口后调用该接口设置开启系统窗口避让区，再调用[getWindowAvoidArea()](#getwindowavoidarea9)获取避让区。
 
 **系统能力：** SystemCapability.Window.SessionManger
 
@@ -2148,7 +2148,7 @@ setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- |----------------------------------| -- | ------------------------------------------------------------ |
-| enabled | boolean | 是 | 是否可以获取到避让区域。<br> true表示可以获取避让区；false表示不可以获取避让区。默认值是false。 |
+| enabled | boolean | 是 | 是否可以获取到避让区。<br> true表示可以获取避让区；false表示不可以获取避让区。默认值是false。 |
 
 **错误码：**
 
