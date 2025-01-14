@@ -20,9 +20,7 @@ import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } 
 > - Currently, live attributes cannot be set.
 > - Currently, **expandSafeArea** in the ArkUI common attribute **ComponentOptions** cannot be set.
 > - When this component is long pressed to trigger playback, the component area is zoomed in to 1.1 times.
-> - This component uses [AVPlayer](../apis-media-kit/_a_v_player.md#avplayer) to play moving photos. A maximum of three [AVPlayers](../apis-media-kit/_a_v_player.md#avplayer) can be used at the same time. Otherwise, frame freezing may occur during the playback. Otherwise, frame freezing may occur during the playback.
-
-
+> - This component uses [AVPlayer](../apis-media-kit/_a_v_player.md#avplayer) to play moving photos. A maximum of three [AVPlayers](../apis-media-kit/_a_v_player.md#avplayer) can be used at the same time. Otherwise, frame freezing may occur during the playback.
 
 MovingPhotoView(options: MovingPhotoViewOptions)
 
@@ -31,7 +29,7 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 
 | Name | Type                                                 | Mandatory| Description      |
 | ------- | --------------------------------------------------------- | ---- | -------------- |
-| options | [MovingPhotoViewOptions](#movingphotoviewoptions) | Yes  | Moving photo information. <br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| options | [MovingPhotoViewOptions](#movingphotoviewoptions) | Yes  | Moving photo information.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## MovingPhotoViewOptions
 
@@ -60,7 +58,7 @@ Sets whether to mute the player.
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| isMuted | boolean | Yes  | Whether to mute the player.<br>Default value: **false**<br>The value **true** means to mute the player; the value **false** means the opposite. |
+| isMuted | boolean | Yes  | Whether to mute the player.<br>Default value: **false**<br>The value **true** means to mute the player; the value **false** means the opposite.|
 
 ### objectFit
 
@@ -87,7 +85,6 @@ Sets the autoplay period, which is a configuration item of **autoPlay**.
 
 Before this API is called, [autoPlay](#autoplay13) must be set to **true**. Otherwise, the specified video play period (**startTime**, **endTime**) does not take effect.
 
-
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -104,7 +101,6 @@ autoPlay(isAutoPlay: boolean)
 
 Sets autoplay. After the moving photo is played once, a static image is displayed.
 
-
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -112,7 +108,7 @@ Sets autoplay. After the moving photo is played once, a static image is displaye
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| isAutoPlay| boolean| Yes  | Whether to enable autoplay.<br>The value **true** means to enable autoplay; the value **false** means the opposite.<br>Default value: **false** |
+| isAutoPlay| boolean| Yes  | Whether to enable autoplay.<br>The value **true** means to enable autoplay; the value **false** means the opposite.<br>Default value: **false**|
 
 ### repeatPlay<sup>13+</sup>
 
@@ -120,7 +116,6 @@ repeatPlay(isRepeatPlay: boolean)
 
 Sets repeat play. **repeatPlay** is mutually exclusive with **autoPlay** and **Long Press**, and takes precedence over them.
 
-
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -128,7 +123,7 @@ Sets repeat play. **repeatPlay** is mutually exclusive with **autoPlay** and **L
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| isRepeatPlay| boolean| Yes  | Whether to enable repeat play.<br>The value **true** means to enable repeat play; the value **false** means the opposite.<br>Default value: **false** |
+| isRepeatPlay| boolean| Yes  | Whether to enable repeat play.<br>The value **true** means to enable repeat play; the value **false** means the opposite.<br>Default value: **false**|
 
 ## Events
 
@@ -140,7 +135,6 @@ onComplete(callback: MovingPhotoViewEventCallback)
 
 Called when the image of a moving photo is loaded.
 
-
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -148,7 +142,7 @@ Called when the image of a moving photo is loaded.
 
 | Name  | Type                                                         | Mandatory| Description                          |
 | -------- | ------------------------------------------------------------- | ---- | ------------------------------ |
-| callback | [MovingPhotoViewEventCallback](#movingphotovieweventcallback) | Yes  | Callback to be invoked when the image of a moving photo is loaded. |
+| callback | [MovingPhotoViewEventCallback](#movingphotovieweventcallback) | Yes  | Callback to be invoked when the image of a moving photo is loaded.|
 
 ### onStart
 
@@ -266,7 +260,6 @@ Stops playback. Once started again, the playback starts from the beginning.
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 ## Example
-
 
 ```ts
 // xxx.ets
@@ -411,16 +404,3 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
   }
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
