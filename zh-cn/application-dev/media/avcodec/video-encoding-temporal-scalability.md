@@ -149,7 +149,7 @@
         // 注：若涉及复杂处理流程，建议相关
         struct OH_AVCodecBufferAttr attr;
         (void)buffer->GetBufferAttr(attr);
-        // 刷新I帧后poc归零
+        // 刷新I帧后POC归零
         if (attr.flags & AVCODEC_BUFFER_FLAG_KEY_FRAME) {
             outPoc = 0;
         }
