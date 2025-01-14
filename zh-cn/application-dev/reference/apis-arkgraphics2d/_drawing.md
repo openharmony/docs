@@ -745,10 +745,6 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | const char \* [OH_Drawing_TextStyleGetLocale](#oh_drawing_textstylegetlocale) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取语言文本语言类型。 |
 | void [OH_Drawing_TypographyDestroyTextBox](#oh_drawing_typographydestroytextbox) ([OH_Drawing_TextBox](#oh_drawing_textbox) \*) | 释放文本框占用的内存。 |
 | void [OH_Drawing_SetTextShadow](#oh_drawing_settextshadow) ([OH_Drawing_TextShadow](#oh_drawing_textshadow) \*shadow, uint32_t color, [OH_Drawing_Point](#oh_drawing_point) \*offset, double blurRadius) | 设置字体阴影对象的参数。 |
-| [OH_Drawing_LineTypography](#oh_drawing_linetypography) \* [OH_Drawing_CreateLineTypography](#oh_drawing_createlinetypography) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*handler) | 创建一个排版行对象[OH_Drawing_LineTypography](#oh_drawing_linetypography)的指针，排版行对象保存着文本内容以及样式的载体， 可以用于计算单行排版信息。 |
-| void [OH_Drawing_DestroyLineTypography](#oh_drawing_destroylinetypography) ([OH_Drawing_LineTypography](#oh_drawing_linetypography) \*lineTypography) | 释放排版行对象[OH_Drawing_LineTypography](#oh_drawing_linetypography)占用的内存。 |
-| size_t [OH_Drawing_LineTypographyGetLineBreak](#oh_drawing_linetypographygetlinebreak) ([OH_Drawing_LineTypography](#oh_drawing_linetypography) \*lineTypography, size_t startIndex, double width) | 计算在限定排版宽度的情况下，从指定位置处开始可以排版的字符个数。 |
-| OH_Drawing_TextLine \* [OH_Drawing_LineTypographyCreateLine](#oh_drawing_linetypographycreateline) ([OH_Drawing_LineTypography](#oh_drawing_linetypography) \*lineTypography, size_t startIndex, size_t count) | 根据指定区间文本内容创建一个指向文本行对象**OH_Drawing_TextLine**的指针。 |
 | size_t [OH_Drawing_GetDrawingArraySize](#oh_drawing_getdrawingarraysize) ([OH_Drawing_Array](#oh_drawing_array) \*drawingArray) | 获取传入类型为对象数组[OH_Drawing_Array](#oh_drawing_array)中的对象个数。 |
 | [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_TypefaceCreateDefault](#oh_drawing_typefacecreatedefault) (void) | 用于创建一个默认的字形对象。 |
 | [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_TypefaceCreateFromFile](#oh_drawing_typefacecreatefromfile) (const char \*path, int index) | 通过文件创建一个字形对象。 |
@@ -3014,102 +3010,6 @@ OH_Drawing_FontCollection* OH_Drawing_GetFontCollectionGlobalInstance (void )
 **返回：**
 
 指向全局字体集对象的指针。
-
-### OH_Drawing_CreateLineTypography()
-
-```
-OH_Drawing_LineTypography* OH_Drawing_CreateLineTypography (OH_Drawing_TypographyCreate* handler)
-```
-
-**描述**
-
-创建一个排版行对象[OH_Drawing_LineTypography](#oh_drawing_linetypography)的指针，排版行对象保存着文本内容以及样式的载体， 可以用于计算单行排版信息。
-
-**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
-
-**起始版本：** 14
-
-**参数:**
-
-| 名称 | 描述 |
-| -------- | -------- |
-| handler | 指向[OH_Drawing_TypographyCreate](#oh_drawing_typographycreate)对象的指针，由[OH_Drawing_CreateTypographyHandler](#oh_drawing_createtypographyhandler)获取。 |
-
-**返回：**
-
-返回一个指向排版行对象[OH_Drawing_LineTypography](#oh_drawing_linetypography)的指针。
-
-### OH_Drawing_DestroyLineTypography()
-
-```
-void OH_Drawing_DestroyLineTypography (OH_Drawing_LineTypography* lineTypography)
-```
-
-**描述**
-
-释放排版行对象[OH_Drawing_LineTypography](#oh_drawing_linetypography)占用的内存。
-
-**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
-
-**起始版本：** 14
-
-**参数:**
-
-| 名称 | 描述 |
-| -------- | -------- |
-| lineTypography | 指向排版行对象[OH_Drawing_LineTypography](#oh_drawing_linetypography)的指针，由[OH_Drawing_CreateLineTypography](#oh_drawing_createlinetypography)获取。 |
-
-### OH_Drawing_LineTypographyGetLineBreak()
-
-```
-size_t OH_Drawing_LineTypographyGetLineBreak (OH_Drawing_LineTypography* lineTypography, size_t startIndex, double width )
-```
-
-**描述**
-
-计算在限定排版宽度的情况下，从指定位置处开始可以排版的字符个数。
-
-**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
-
-**起始版本：** 14
-
-**参数:**
-
-| 名称 | 描述 |
-| -------- | -------- |
-| lineTypography | 指向排版行对象[OH_Drawing_LineTypography](#oh_drawing_linetypography)的指针，由[OH_Drawing_CreateLineTypography](#oh_drawing_createlinetypography)获取。 |
-| startIndex | 开始计算排版的起始位置（包括起始位置）。取值范围需要为[0,文本字符总数）的整数。 |
-| width | 换行宽度，大于0的浮点数，单位为物理像素px。 |
-
-**返回：**
-
-返回在限定排版宽度的情况下，从指定位置处开始可以排版的字符总数，取值为整数。
-
-### OH_Drawing_LineTypographyCreateLine()
-
-```
-OH_Drawing_TextLine* OH_Drawing_LineTypographyCreateLine (OH_Drawing_LineTypography* lineTypography, size_t startIndex, size_t count )
-```
-
-**描述**
-
-根据指定区间文本内容创建一个指向文本行对象**OH_Drawing_TextLine**的指针。
-
-**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
-
-**起始版本：** 14
-
-**参数:**
-
-| 名称 | 描述 |
-| -------- | -------- |
-| lineTypography | 指向排版行对象[OH_Drawing_LineTypography](#oh_drawing_linetypography)的指针，由[OH_Drawing_CreateLineTypography](#oh_drawing_createlinetypography)获取。 |
-| startIndex | 表示计算排版的起始位置，整数，取值范围为[0, 文本字符总数)。 |
-| count | 表示从指定排版起始位置开始进行排版的字符个数，取值为[0,文本字符总数)的整数，startIndex和count之和不能大于文本字符总数。 可以先使用[OH_Drawing_LineTypographyGetLineBreak](#oh_drawing_linetypographygetlinebreak)获得合理的可用于进行排版的字符总数。如果该值设置为0，则返回nullptr。 |
-
-**返回：**
-
-返回一个指向文本行对象**OH_Drawing_TextLine**的指针。
 
 ### OH_Drawing_GetDrawingArraySize()
 
