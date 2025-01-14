@@ -9,7 +9,7 @@
   <!--DelEnd-->
 - ArkTS组件
   - [@ohos.file.AlbumPickerComponent (Album Picker组件)](ohos-file-AlbumPickerComponent.md)
-  - [@ohos.file.PhotoPickerComponent (Photo Picker组件)](ohos-file-PhotoPickerComponent.md)
+  - [@ohos.file.PhotoPickerComponent (PhotoPicker组件)](ohos-file-PhotoPickerComponent.md)
   - [@ohos.file.RecentPhotoComponent (最近图片组件)](ohos-file-RecentPhotoComponent.md)
   - [@ohos.multimedia.movingphotoview (动态照片)](ohos-multimedia-movingphotoview.md)
 - C API
