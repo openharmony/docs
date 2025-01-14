@@ -66,7 +66,7 @@
   <!--Del-->
   - Mission Management (for System Applications Only)
     - [Mission Management Scenarios](mission-management-overview.md)
-    - [Mission and Launch Type](mission-management-launch-type.md)
+    - [Mission Management and Launch Type](mission-management-launch-type.md)
     - [Page Stack and Mission List](page-mission-stack.md)
     - [Setting the Icon and Name of a Mission Snapshot](mission-set-icon-name-for-task-snapshot.md)
   <!--DelEnd-->
