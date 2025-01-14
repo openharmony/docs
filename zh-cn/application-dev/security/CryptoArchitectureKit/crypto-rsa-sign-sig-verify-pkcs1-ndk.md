@@ -29,7 +29,7 @@
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
-#include "CryptoArchitectureKit/crypto_asy_key.h"
+#include "CryptoArchitectureKit/crypto_asym_key.h"
 
 static bool doTestRsaSignature()
 {
