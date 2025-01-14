@@ -381,9 +381,9 @@
 
 **起始版本**：13
 
-## ohos.permission.USE_MESSAGES_PICKER
+## ohos.permission.USE_FRAUD_MESSAGES_PICKER
 
-允许应用使用短信选择器，获取短信内容。
+允许应用使用诈骗短信选择器，获取短信内容。
 
 **权限级别**：system_basic
 
@@ -391,9 +391,9 @@
 
 **起始版本**：16
 
-## ohos.permission.USE_CALL_LOG_PICKER
+## ohos.permission.USE_FRAUD_CALL_LOG_PICKER
 
-允许应用使用通话记录选择器，获取通话记录内容。
+允许应用使用诈骗通话记录选择器，获取通话记录内容。
 
 **权限级别**：system_basic
 
