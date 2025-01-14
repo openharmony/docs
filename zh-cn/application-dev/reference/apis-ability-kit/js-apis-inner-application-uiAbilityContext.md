@@ -2759,3 +2759,78 @@ struct UIServiceExtensionAbility {
   }
 }
 ```
+
+## UIAbilityContext.setAbilityInstanceInfo<sup>15+<sup>
+
+setAbilityInstanceInfo(label: string, icon: image.PixelMap) : Promise&lt;void&gt;
+
+设置当前UIAbility实例的图标和标签信息。图标与标签信息可在任务中心和快捷栏的界面中显示。使用Promise异步回调。
+
+
+> **说明**：
+>
+> 仅支持2in1设备。
+
+**需要权限**： ohos.permission.SET_ABILITY_INSTANCE_INFO
+
+**系统能力**： SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型                                                            | 必填 | 说明                                               |
+| ------ | -------------------------------------------------------------- | ---- | -------------------------------------------------- |
+| label  |string                                                          | 是   | 新的标题。标题长度不超过1024字节，标题不可为空字符串。  |
+| icon   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 新的图标。建议图标大小为512px*512px。                |
+
+**返回值**：
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息                                                                             |
+| -------- | ----------------------------------------------------------------------------------- |
+| 201      | The application does not have permission to call the interface.                     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801      | Capability not support.                                                             |
+| 16000001 | The specified ability does not exist.                                               |
+| 16000050 | Internal error.                                                                     |
+
+**示例**：
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    windowStage.loadContent('pages/Index', async (err, data) => {
+      if (err.code) {
+        console.error(`loadContent failed, code is ${err.code}`);
+        return;
+      }
+
+      let newLabel: string = 'instance label';
+      let color = new ArrayBuffer(0);
+      let imagePixelMap: image.PixelMap = await image.createPixelMap(color, {
+        size: {
+          height: 100,
+          width: 100
+        }
+      });
+      this.context.setAbilityInstanceInfo(newLabel, imagePixelMap)
+        .then(() => {
+          console.info('setAbilityInstanceInfo success');
+        }).catch((err: BusinessError) => {
+          console.error(`setAbilityInstanceInfo failed, code is ${err.code}, message is ${err.message}`);
+        });
+      });
+  }
+}
+```
