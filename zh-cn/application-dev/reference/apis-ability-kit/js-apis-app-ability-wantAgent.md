@@ -1271,3 +1271,31 @@ try {
 | finalData      | string                          | 否 | 否   | 公共事件收集的最终数据。  |
 | extraInfo      | Record\<string, Object>            | 否 |是   | 额外数据。               |
 
+## TriggerInfo
+
+type TriggerInfo = _TriggerInfo
+
+TriggerInfo对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [TriggerInfo](./js-apis-inner-wantAgent-triggerInfo.md) | TriggerInfo对象。 |
+
+## WantAgentInfo
+
+type WantAgentInfo = _WantAgentInfo
+
+WantAgentInfo对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [WantAgentInfo](./js-apis-inner-wantAgent-wantAgentInfo.md) | WantAgentInfo对象。 |
+

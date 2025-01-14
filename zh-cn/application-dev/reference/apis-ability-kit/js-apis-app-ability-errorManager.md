@@ -382,6 +382,34 @@ let promise1 = new Promise<void>(() => {}).then(() => {
 errorManager.off("unhandledRejection", observer);
 ```
 
+## ErrorObserver
+
+type ErrorObserver = _ErrorObserver.default
+
+ErrorObserver模块。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [ErrorObserver](./js-apis-inner-application-errorObserver.md) | ErrorObserver模块。 |
+
+## LoopObserver<sup>12+</sup>
+
+type LoopObserver = _LoopObserver
+
+LoopObserver模块。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [LoopObserver](./js-apis-inner-application-loopObserver.md) | LoopObserver模块。 |
+
 ## UnhandledRejectionObserver<sup>12+</sup>
 
 type UnhandledRejectionObserver = (reason: Error | any, promise: Promise\<any>) => void
