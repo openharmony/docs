@@ -43,6 +43,7 @@
    > 
 
 4. 设置窗口：获取并设置属性SurfaceID，用于设置显示画面。
+
    应用需要从XComponent组件获取surfaceID，获取方式请参考[XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
 5. 准备播放：调用prepare()，AVPlayer进入prepared状态，此时可以获取duration，设置缩放模式、音量等。
