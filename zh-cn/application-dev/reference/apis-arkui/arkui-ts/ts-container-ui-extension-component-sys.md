@@ -70,7 +70,7 @@ onReceive(callback: ReceiveCallback)
 
 | 参数名                       | 类型   | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
-| data                        | [ReceiveCallback](#receivecallback14) | 收到来自对端Ability的数据。                 |
+| data                        | [ReceiveCallback](#receivecallback16) | 收到来自对端Ability的数据。                 |
 
 ### onResult<sup>(deprecated)</sup>
 
@@ -159,7 +159,7 @@ onDrawReady(callback: Callback\<void>)
 | code    | number | 被拉起UIExtensionAbility退出时返回的结果码。 |
 | want    | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)   | 被拉起UIExtensionAbility退出时返回的数据。   |
 
-## ReceiveCallback<sup>14+<sup>
+## ReceiveCallback<sup>16+<sup>
 type ReceiveCallback = Callback\<Record\<string, Object\>\>
 
 用于封装被拉起的Ability发送的数据。
